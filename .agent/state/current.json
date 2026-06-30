@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T16:45:00.000+02:00",
+  "updatedAt": "2026-06-30T17:25:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-company-information-readiness-gate",
-  "activeCase": "PREP-038-COMPANY-INFORMATION-READINESS-GATE",
-  "active_case_file": ".agent/state/cases/prep-038-company-information-readiness-gate.json",
+  "activeArea": "universaarl-company-creation-splitbutton-route-correction",
+  "activeCase": "PREP-039-COMPANY-CREATION-SPLITBUTTON-ROUTE-CORRECTION",
+  "active_case_file": ".agent/state/cases/prep-039-company-creation-splitbutton-route-correction.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-readonly-prep-until-super-permissions",
@@ -48,7 +48,7 @@
     "preview-posting-until-target-company-exists",
     "api-shortcut-for-company-creation"
   ],
-  "nextStep": "After explicit SUPER/company-create permission confirmation, use the resume runbook for TARGET-009; after successful Company Creation run TARGET-COMPANY-INFO-001-COMPANY-INFORMATION-READONLY.",
+  "nextStep": "After explicit SUPER/company-create permission confirmation, run TARGET-009 using Mandanten -> Pfeil neben Neu -> Neues Unternehmen erstellen; do not click the main Neu button as the guided route.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -1357,7 +1357,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "warehouse-source-document-action-on-draft",
-  "lastCompletedCase": "PREP-030-BOOK-USECASE-QUALITY-SCORECARD",
+  "lastCompletedCase": "PREP-039-COMPANY-CREATION-SPLITBUTTON-ROUTE-CORRECTION",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3443,54 +3443,53 @@
       "replace-with-better-case"
     ],
     "latestDecisionCard": {
-      "currentCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
-      "plannedNextCaseBeforeReview": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
-      "lastEvidenceSummary": "PREP-025 replanned the next ten cases and selected W0/W1 source mapping before more read-only UI or book work.",
+      "currentCase": "PREP-039-COMPANY-CREATION-SPLITBUTTON-ROUTE-CORRECTION",
+      "plannedNextCaseBeforeReview": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+      "lastEvidenceSummary": "PREP-031 showed the Companies splitbutton/dropdown read-only; TARGET-008/009 showed why the main Neu route must not be treated as guided wizard evidence.",
       "isPlannedNextCaseStillSensible": true,
-      "reason": "W0/W1 source mapping is required before Companies Page screenshots, Chapter 4 text, My Settings context and later setup claims can be used without overclaiming.",
+      "reason": "TARGET-009 is still the live dependency, but the click target is narrowed to the dropdown arrow and Neues Unternehmen erstellen.",
       "lookaheadReviewed": [
-        {
-          "caseId": "PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT",
-          "status": "ready-next",
-          "reason": "Companies Page can now be observed read-only against explicit product and evidence claim gates."
-        },
-        {
-          "caseId": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
-          "status": "ready-after-current",
-          "reason": "Chapter 4 can use product-level source claims without asserting that Universaarl already exists."
-        },
-        {
-          "caseId": "PREP-033-MY-SETTINGS-READONLY-CONTEXT",
-          "status": "ready-after-current",
-          "reason": "My Settings source boundary is now known; read-only context proof can follow."
-        },
-        {
-          "caseId": "PREP-027-IMPLEMENTATION-GUIDE-BEST-PRACTICE-MAPPING",
-          "status": "ready-after-current",
-          "reason": "Implementation/UAT guidance should follow the product-source claim gates."
-        },
         {
           "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
           "status": "blocked",
-          "reason": "Company creation remains parked until SUPER/company-create permissions are confirmed."
+          "reason": "Requires SUPER/company-create permissions and must use Mandanten -> Pfeil neben Neu -> Neues Unternehmen erstellen."
+        },
+        {
+          "caseId": "TARGET-COMPANY-INFO-001-COMPANY-INFORMATION-READONLY",
+          "status": "ready-after-current",
+          "reason": "Run after UNIVERSAARL-DE exists and active company context is visible."
+        },
+        {
+          "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
+          "status": "ready-after-current",
+          "reason": "Requires company and Company Information context first."
+        },
+        {
+          "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
+          "status": "ready-after-current",
+          "reason": "Requires company foundation context first."
+        },
+        {
+          "caseId": "TARGET-008-VAT19-SETUP-READINESS",
+          "status": "needs-source-check-first",
+          "reason": "Needs German VAT source and later Universaarl setup evidence."
         }
       ],
       "queueChangesMade": [
-        "Marked PREP-026 done.",
-        "Promoted PREP-031 to ready-next.",
-        "Kept TARGET-009 parked until permissions are available."
+        "Added PREP-039 as a completed route-correction case.",
+        "Kept TARGET-009 parked until permissions.",
+        "Clarified that TARGET-009 must not use the main Neu button as guided route evidence."
       ],
-      "selectedNextCase": "PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT",
-      "whySelectedNextCaseIsBest": "It is the fastest practical next step: observe the Companies Page dropdown, tooltip and screenshot QA targets without creating a company.",
+      "selectedNextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+      "whySelectedNextCaseIsBest": "Company Creation remains the required dependency before Company Information, Foundation setup and any process evidence.",
       "risksBeforeNextCase": [
-        "Do not click the main Neu button when the dropdown arrow or Neues Unternehmen erstellen menu entry is the intended target.",
-        "Do not finish a wizard or save a company.",
-        "Do not mistake a product source for a Universaarl evidence claim."
+        "Main Neu can open a blank row and must not be mistaken for Neues Unternehmen erstellen.",
+        "Dropdown must be visible and menu item readable before the click.",
+        "Data basis must be visible before any finish/create confirmation."
       ],
       "requiredPreparation": [
-        "Use RO-W0-COMPANIES-357 from the read-only discovery pack.",
-        "Capture split-button target, dropdown state, tooltip/accessible name and screenshot QA.",
-        "Stop before any create/save/finish action."
+        "User confirms sufficient SUPER/company-create permissions.",
+        "Use UNIVERSAARL-SUPER-PERMISSION-RESUME-RUNBOOK.md and READY-FOR-SUPER-PERMISSIONS-CHECKLIST.md."
       ]
     }
   },
@@ -3695,42 +3694,53 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "PREP-030-BOOK-USECASE-QUALITY-SCORECARD",
-    "plannedNextCaseBeforeReview": "PREP-030-BOOK-USECASE-QUALITY-SCORECARD",
-    "lastEvidenceSummary": "PREP-029 created a bounded object-analysis roadmap for UAT and book gaps.",
+    "currentCase": "PREP-039-COMPANY-CREATION-SPLITBUTTON-ROUTE-CORRECTION",
+    "plannedNextCaseBeforeReview": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "lastEvidenceSummary": "PREP-031 showed the Companies splitbutton/dropdown read-only; TARGET-008/009 showed why the main Neu route must not be treated as guided wizard evidence.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The scorecard closes the PREP chain by turning UAT, object-analysis and screenshot rules into a concrete book/usecase quality gate.",
+    "reason": "TARGET-009 is still the live dependency, but the click target is narrowed to the dropdown arrow and Neues Unternehmen erstellen.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
         "status": "blocked",
-        "reason": "This is the next practical case, but it remains blocked until SUPER/company-create permissions are confirmed."
+        "reason": "Requires SUPER/company-create permissions and must use Mandanten -> Pfeil neben Neu -> Neues Unternehmen erstellen."
       },
       {
-        "caseId": "TARGET-COMPANY-INFO-001",
-        "status": "needs-setup-first",
-        "reason": "Company Information requires UNIVERSAARL-DE to exist."
+        "caseId": "TARGET-COMPANY-INFO-001-COMPANY-INFORMATION-READONLY",
+        "status": "ready-after-current",
+        "reason": "Run after UNIVERSAARL-DE exists and active company context is visible."
       },
       {
-        "caseId": "TARGET-FOUNDATION-001",
-        "status": "needs-setup-first",
-        "reason": "Foundation setup requires Company Creation and Company Information first."
+        "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "Requires company and Company Information context first."
+      },
+      {
+        "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "Requires company foundation context first."
+      },
+      {
+        "caseId": "TARGET-008-VAT19-SETUP-READINESS",
+        "status": "needs-source-check-first",
+        "reason": "Needs German VAT source and later Universaarl setup evidence."
       }
     ],
     "queueChangesMade": [
-      "Mark PREP-030 done.",
-      "Set TARGET-009 as parked next practical case until rights are available."
+      "Added PREP-039 as a completed route-correction case.",
+      "Kept TARGET-009 parked until permissions.",
+      "Clarified that TARGET-009 must not use the main Neu button as guided route evidence."
     ],
     "selectedNextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-    "whySelectedNextCaseIsBest": "After PREP completion, the next real project value is creating or conclusively blocking UNIVERSAARL-DE through the correct UI route once permissions exist.",
+    "whySelectedNextCaseIsBest": "Company Creation remains the required dependency before Company Information, Foundation setup and any process evidence.",
     "risksBeforeNextCase": [
-      "Do not click main Neu when the intended target is the dropdown arrow and Neues Unternehmen erstellen.",
-      "Do not finish the wizard or save a company without explicit permission confirmation.",
-      "Do not choose CRONUS copy or Testunternehmen as final target basis."
+      "Main Neu can open a blank row and must not be mistaken for Neues Unternehmen erstellen.",
+      "Dropdown must be visible and menu item readable before the click.",
+      "Data basis must be visible before any finish/create confirmation."
     ],
     "requiredPreparation": [
       "User confirms sufficient SUPER/company-create permissions.",
-      "Use PREP-031 splitbutton evidence and READY-FOR-SUPER-PERMISSIONS-CHECKLIST.md."
+      "Use UNIVERSAARL-SUPER-PERMISSION-RESUME-RUNBOOK.md and READY-FOR-SUPER-PERMISSIONS-CHECKLIST.md."
     ]
   },
   "permissionBlocker": {
@@ -4361,5 +4371,22 @@
       "requires-universaarl-company"
     ],
     "updatedAt": "2026-06-30T16:45:00.000+02:00"
+  },
+  "latestPrep039CompanyCreationSplitbuttonRouteCorrection": {
+    "caseId": "PREP-039-COMPANY-CREATION-SPLITBUTTON-ROUTE-CORRECTION",
+    "status": "prep-done",
+    "resultPath": "playwright/projects/fibu-book5/evidence/prep-039-company-creation-splitbutton-route-correction/PREP-039-result.json",
+    "summary": "Corrected active Company Creation route: use the dropdown arrow next to Neu and the menu item Neues Unternehmen erstellen; main Neu is a separate blank-row route and not wizard evidence.",
+    "noBcRun": true,
+    "noPlaywrightRun": true,
+    "noCompanyCreated": true,
+    "noSetupChange": true,
+    "noPreviewPosting": true,
+    "noPosting": true,
+    "nextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+    "blockedBy": [
+      "missing-super-or-company-create-permission"
+    ],
+    "updatedAt": "2026-06-30T17:25:00.000+02:00"
   }
 }

@@ -1,32 +1,63 @@
 {
   "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
   "caseId": "PREP-039-COMPANY-CREATION-SPLITBUTTON-ROUTE-CORRECTION",
-  "status": "prep-done",
-  "completedAt": "2026-06-30T17:25:00.000+02:00",
-  "summary": "Corrected the active Universaarl Company Creation route so the next rights-unblocked run targets the arrow beside Neu and the Neues Unternehmen erstellen menu item, not the main Neu button.",
-  "bcRun": false,
-  "playwrightRun": false,
-  "noCompanyCreated": true,
-  "noSetupChange": true,
-  "noMasterDataChange": true,
-  "noPreviewPosting": true,
-  "noPosting": true,
+  "source": "local-documentation-correction",
+  "resultStatus": "observed",
+  "runPlanId": "PREP-039-COMPANY-CREATION-SPLITBUTTON-ROUTE-CORRECTION-PLAN",
+  "selectedTaskClass": "monkey_work",
+  "selectedModelClass": "gpt-4-mini-low",
+  "proved": [
+    "The preferred Company Creation route is documented as Mandanten -> Pfeil neben Neu -> Neues Unternehmen erstellen.",
+    "The main Neu button is documented as a different route that may open a blank row and is not wizard evidence.",
+    "The resume checklist now requires the menu item itself to be clicked after tooltip/dropdown proof."
+  ],
+  "notProved": [
+    "UNIVERSAARL-DE was not created.",
+    "No live Business Central UI was opened.",
+    "No permission state changed.",
+    "No data basis option was observed."
+  ],
   "changedFiles": [
     "playwright/projects/fibu-book5/BC-ACTION-ATLAS.md",
     "playwright/projects/fibu-book5/book-drafts/universaarl-company-creation-draft.md",
     "playwright/projects/fibu-book5/UNIVERSAARL-SUPER-PERMISSION-RESUME-RUNBOOK.md",
     "playwright/projects/fibu-book5/READY-FOR-SUPER-PERMISSIONS-CHECKLIST.md",
     ".agent/state/cases/prep-039-company-creation-splitbutton-route-correction.json",
-    ".agent/state/current.json",
-    ".agent/state/coverage_state.json",
-    ".agent/state/marathon_queue.json",
-    ".agent/state/last_run_summary.json",
     "playwright/projects/fibu-book5/evidence/prep-039-company-creation-splitbutton-route-correction/README.md",
     "playwright/projects/fibu-book5/evidence/prep-039-company-creation-splitbutton-route-correction/PREP-039-result.json"
   ],
-  "nextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+  "statePatch": {
+    "current": {
+      "activeArea": "universaarl-company-creation-splitbutton-route-correction",
+      "activeCase": "PREP-039-COMPANY-CREATION-SPLITBUTTON-ROUTE-CORRECTION",
+      "active_case_file": ".agent/state/cases/prep-039-company-creation-splitbutton-route-correction.json",
+      "nextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
+      "nextStep": "After explicit SUPER/company-create permission confirmation, run TARGET-009 using Mandanten -> Pfeil neben Neu -> Neues Unternehmen erstellen; do not click the main Neu button as the guided route."
+    }
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/prep-039-company-creation-splitbutton-route-correction/README.md",
+    "playwright/projects/fibu-book5/evidence/prep-039-company-creation-splitbutton-route-correction/PREP-039-result.json"
+  ],
+  "warnings": [
+    "This is a route correction, not live Business Central evidence.",
+    "TARGET-009 remains blocked until permissions are confirmed.",
+    "The main Neu button remains a separate route and must not be mixed with Neues Unternehmen erstellen."
+  ],
   "blockedBy": [
     "missing-super-or-company-create-permission"
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "reason": "Local route correction completed without Business Central or Playwright execution.",
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:context",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
+    "npm run check:encoding",
+    "git diff --check"
   ],
   "nextStepDecisionCard": {
     "currentCase": "PREP-039-COMPANY-CREATION-SPLITBUTTON-ROUTE-CORRECTION",
@@ -38,7 +69,7 @@
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
         "status": "blocked",
-        "reason": "Requires SUPER/company-create permissions and must use Mandanten -> Pfeil neben Neu -> Neues Unternehmen erstellen."
+        "reason": "Requires SUPER/company-create permissions and must use the splitbutton dropdown route."
       },
       {
         "caseId": "TARGET-COMPANY-INFO-001-COMPANY-INFORMATION-READONLY",
@@ -77,13 +108,5 @@
       "User confirms sufficient SUPER/company-create permissions.",
       "Use UNIVERSAARL-SUPER-PERMISSION-RESUME-RUNBOOK.md and READY-FOR-SUPER-PERMISSIONS-CHECKLIST.md."
     ]
-  },
-  "runId": "PREP-039-20260630-1725",
-  "nextStep": "After explicit SUPER/company-create permission confirmation, run TARGET-009 using Mandanten -> Pfeil neben Neu -> Neues Unternehmen erstellen; do not click the main Neu button as the guided route.",
-  "hardStops": [
-    "missing-super-or-company-create-permission"
-  ],
-  "hardStopConditions": [
-    "missing-super-or-company-create-permission"
-  ]
+  }
 }

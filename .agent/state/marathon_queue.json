@@ -762,9 +762,27 @@
       "noEffectiveBusinessCentralActions": true,
       "noSearchExecution": true,
       "noCompanySwitch": true
+    },
+    {
+      "id": "PREP-039-COMPANY-CREATION-SPLITBUTTON-ROUTE-CORRECTION",
+      "order": 39,
+      "status": "done",
+      "category": "quality",
+      "expectedImpact": "prep-progress",
+      "mayWorkEffectively": false,
+      "mayRunPlaywright": false,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Correct the active Company Creation click target so the next live run uses the splitbutton dropdown route and not the main Neu button.",
+      "sourceCompany": "UNIVERSAARL-DE-planned-not-yet-created",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "lookaheadStatus": "done",
+      "completedAt": "2026-06-30T17:25:00.000+02:00",
+      "result": "Company Creation click target corrected across Action Atlas, bookdraft, resume runbook and super-permissions checklist.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/prep-039-company-creation-splitbutton-route-correction/PREP-039-result.json"
     }
   ],
-  "lastUpdated": "2026-06-30T16:45:00.000+02:00",
+  "lastUpdated": "2026-06-30T17:25:00.000+02:00",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -787,107 +805,107 @@
       "replace-with-better-case"
     ],
     "latestDecisionCard": {
-      "currentCase": "PREP-038-COMPANY-INFORMATION-READINESS-GATE",
+      "currentCase": "PREP-039-COMPANY-CREATION-SPLITBUTTON-ROUTE-CORRECTION",
       "plannedNextCaseBeforeReview": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-      "lastEvidenceSummary": "PREP-037 created the permission resume runbook; PREP-038 now defines the first Company Information read-only gate after Company Creation.",
+      "lastEvidenceSummary": "PREP-031 showed the Companies splitbutton/dropdown read-only; TARGET-008/009 showed why the main Neu route must not be treated as guided wizard evidence.",
       "isPlannedNextCaseStillSensible": true,
-      "reason": "TARGET-009 is still the correct live next step, because UNIVERSAARL-DE does not exist. PREP-038 improves the immediate post-creation follow-up.",
+      "reason": "TARGET-009 is still the live dependency, but the click target is narrowed to the dropdown arrow and Neues Unternehmen erstellen.",
       "lookaheadReviewed": [
         {
           "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
           "status": "blocked",
-          "reason": "Requires SUPER/company-create permissions; use the dropdown arrow next to Neu and Neues Unternehmen erstellen."
+          "reason": "Requires SUPER/company-create permissions and must use Mandanten -> Pfeil neben Neu -> Neues Unternehmen erstellen."
         },
         {
           "caseId": "TARGET-COMPANY-INFO-001-COMPANY-INFORMATION-READONLY",
           "status": "ready-after-current",
-          "reason": "Company Information is the first W1 gate after UNIVERSAARL-DE exists and the company context is visible."
+          "reason": "Run after UNIVERSAARL-DE exists and active company context is visible."
         },
         {
           "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
           "status": "ready-after-current",
-          "reason": "Number Series is the next Foundation control after company and company information context."
+          "reason": "Requires company and Company Information context first."
         },
         {
           "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
           "status": "ready-after-current",
-          "reason": "Posting Groups are required before any Preview/Post process can be meaningful."
+          "reason": "Requires company foundation context first."
         },
         {
           "caseId": "TARGET-008-VAT19-SETUP-READINESS",
           "status": "needs-source-check-first",
-          "reason": "German VAT needs BC setup evidence and later official/source-backed legal framing."
+          "reason": "Needs German VAT source and later Universaarl setup evidence."
         }
       ],
       "queueChangesMade": [
-        "Added PREP-038 as a completed Company Information readiness gate case.",
-        "Kept TARGET-009 as the next practical case after permission unblock.",
-        "Inserted TARGET-COMPANY-INFO-001-COMPANY-INFORMATION-READONLY as the explicit first page proof after Company Creation."
+        "Added PREP-039 as a completed route-correction case.",
+        "Kept TARGET-009 parked until permissions.",
+        "Clarified that TARGET-009 must not use the main Neu button as guided route evidence."
       ],
       "selectedNextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-      "whySelectedNextCaseIsBest": "Company Creation is still required before Company Information, Foundation setup, master data and process postings.",
+      "whySelectedNextCaseIsBest": "Company Creation remains the required dependency before Company Information, Foundation setup and any process evidence.",
       "risksBeforeNextCase": [
-        "Do not click main Neu when the intended target is the dropdown arrow and Neues Unternehmen erstellen.",
-        "Do not choose CRONUS copy or Testunternehmen as final target basis.",
-        "Do not skip directly from Company Creation into setup or master data without Company Context and Company Information read-only proof."
+        "Main Neu can open a blank row and must not be mistaken for Neues Unternehmen erstellen.",
+        "Dropdown must be visible and menu item readable before the click.",
+        "Data basis must be visible before any finish/create confirmation."
       ],
       "requiredPreparation": [
         "User confirms sufficient SUPER/company-create permissions.",
-        "Use UNIVERSAARL-SUPER-PERMISSION-RESUME-RUNBOOK.md as primary runbook; after success use UNIVERSAARL-COMPANY-INFORMATION-READINESS-GATE.md."
+        "Use UNIVERSAARL-SUPER-PERMISSION-RESUME-RUNBOOK.md and READY-FOR-SUPER-PERMISSIONS-CHECKLIST.md."
       ]
     }
   },
   "updatedAt": "2026-06-30T16:45:00.000+02:00",
-  "lastCompletedCase": "PREP-038-COMPANY-INFORMATION-READINESS-GATE",
+  "lastCompletedCase": "PREP-039-COMPANY-CREATION-SPLITBUTTON-ROUTE-CORRECTION",
   "nextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
   "nextStepDecisionCard": {
-    "currentCase": "PREP-038-COMPANY-INFORMATION-READINESS-GATE",
+    "currentCase": "PREP-039-COMPANY-CREATION-SPLITBUTTON-ROUTE-CORRECTION",
     "plannedNextCaseBeforeReview": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-    "lastEvidenceSummary": "PREP-037 created the permission resume runbook; PREP-038 now defines the first Company Information read-only gate after Company Creation.",
+    "lastEvidenceSummary": "PREP-031 showed the Companies splitbutton/dropdown read-only; TARGET-008/009 showed why the main Neu route must not be treated as guided wizard evidence.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "TARGET-009 is still the correct live next step, because UNIVERSAARL-DE does not exist. PREP-038 improves the immediate post-creation follow-up.",
+    "reason": "TARGET-009 is still the live dependency, but the click target is narrowed to the dropdown arrow and Neues Unternehmen erstellen.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
         "status": "blocked",
-        "reason": "Requires SUPER/company-create permissions; use the dropdown arrow next to Neu and Neues Unternehmen erstellen."
+        "reason": "Requires SUPER/company-create permissions and must use Mandanten -> Pfeil neben Neu -> Neues Unternehmen erstellen."
       },
       {
         "caseId": "TARGET-COMPANY-INFO-001-COMPANY-INFORMATION-READONLY",
         "status": "ready-after-current",
-        "reason": "Company Information is the first W1 gate after UNIVERSAARL-DE exists and the company context is visible."
+        "reason": "Run after UNIVERSAARL-DE exists and active company context is visible."
       },
       {
         "caseId": "TARGET-005-NUMBER-SERIES-PREFLIGHT",
         "status": "ready-after-current",
-        "reason": "Number Series is the next Foundation control after company and company information context."
+        "reason": "Requires company and Company Information context first."
       },
       {
         "caseId": "TARGET-006-POSTING-GROUPS-PREFLIGHT",
         "status": "ready-after-current",
-        "reason": "Posting Groups are required before any Preview/Post process can be meaningful."
+        "reason": "Requires company foundation context first."
       },
       {
         "caseId": "TARGET-008-VAT19-SETUP-READINESS",
         "status": "needs-source-check-first",
-        "reason": "German VAT needs BC setup evidence and later official/source-backed legal framing."
+        "reason": "Needs German VAT source and later Universaarl setup evidence."
       }
     ],
     "queueChangesMade": [
-      "Added PREP-038 as a completed Company Information readiness gate case.",
-      "Kept TARGET-009 as the next practical case after permission unblock.",
-      "Inserted TARGET-COMPANY-INFO-001-COMPANY-INFORMATION-READONLY as the explicit first page proof after Company Creation."
+      "Added PREP-039 as a completed route-correction case.",
+      "Kept TARGET-009 parked until permissions.",
+      "Clarified that TARGET-009 must not use the main Neu button as guided route evidence."
     ],
     "selectedNextCase": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
-    "whySelectedNextCaseIsBest": "Company Creation is still required before Company Information, Foundation setup, master data and process postings.",
+    "whySelectedNextCaseIsBest": "Company Creation remains the required dependency before Company Information, Foundation setup and any process evidence.",
     "risksBeforeNextCase": [
-      "Do not click main Neu when the intended target is the dropdown arrow and Neues Unternehmen erstellen.",
-      "Do not choose CRONUS copy or Testunternehmen as final target basis.",
-      "Do not skip directly from Company Creation into setup or master data without Company Context and Company Information read-only proof."
+      "Main Neu can open a blank row and must not be mistaken for Neues Unternehmen erstellen.",
+      "Dropdown must be visible and menu item readable before the click.",
+      "Data basis must be visible before any finish/create confirmation."
     ],
     "requiredPreparation": [
       "User confirms sufficient SUPER/company-create permissions.",
-      "Use UNIVERSAARL-SUPER-PERMISSION-RESUME-RUNBOOK.md as primary runbook; after success use UNIVERSAARL-COMPANY-INFORMATION-READINESS-GATE.md."
+      "Use UNIVERSAARL-SUPER-PERMISSION-RESUME-RUNBOOK.md and READY-FOR-SUPER-PERMISSIONS-CHECKLIST.md."
     ]
   }
 }

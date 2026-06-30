@@ -6,6 +6,14 @@ PREP-022-Qualitaet: `useful-but-legacy-heavy`.
 
 Aktiv fuer Universaarl sind vor allem die Split-Button-, Tooltip-, Dialog- und Companies-Regeln. P2P-, Payment-, Fixed-Assets- und andere RM-DEMO-Actions bleiben Patternquelle, aber keine aktive Zielroute. Sie werden erst wieder aktiv, wenn ein konkreter Universaarl-Usecase sie neu braucht.
 
+## PREP-039 Korrektur fuer Company Creation
+
+Aktuelle Zielregel fuer `TARGET-009`: Die bevorzugte Buch- und Live-Route ist `Mandanten` -> Pfeil neben `Neu` -> `Neues Unternehmen erstellen`.
+
+Der Hauptbutton `Neu` ist nicht dasselbe Ziel. Er kann eine direkte, leere Mandantenzeile oeffnen und darf nicht als Nachweis fuer den gefuehrten Weg `Neues Unternehmen erstellen` verwendet werden. Wenn nach einem Klick nur eine leere Mandantenzeile sichtbar ist, gilt dieser Zustand als eigener ListPart-/Zeilenpfad oder als `rejected-path`, nicht als erfolgreicher Wizard-Start.
+
+Vor dem naechsten wirksamen Lauf muessen Tooltip/Accessible Name, geoeffnetes Dropdown und der sichtbare Menueintrag `Neues Unternehmen erstellen` zusammen im Screenshot oder Result dokumentiert sein. Erst danach darf der Menueintrag selbst angeklickt werden; `Kopieren`, `Testunternehmen` und CRONUS-/Demo-Routen bleiben fuer die Universaarl-Zielbasis gesperrt.
+
 | Action | Bereich | Status | Belegte Nutzung | Evidence | Guard |
 |---|---|---|---|---|---|
 | Direkte Page `1801` / `Unterstuetztes Setup` | Universaarl Company | `route-proven-blocked-before-create` | TARGET-005 oeffnet die Assisted-Setup-Seite direkt in `playthru`; sichtbar sind u. a. `Unternehmen einrichten` und `Unternehmensdetails eingeben`, aber keine bestaetigte Blank-/Setup-only-Company-Anlage | `evidence/target-005-company-creation-source-backed-alternative-route/TARGET-005-result.json` | keine Auswahl von `Finish`, `Create`, `OK`, `Save`, Copy/Test/CRONUS; naechster Case mappt die Zeile `Unternehmen einrichten` scoped |

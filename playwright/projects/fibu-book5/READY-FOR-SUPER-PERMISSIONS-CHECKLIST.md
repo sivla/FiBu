@@ -35,11 +35,13 @@ Kompakter Ablauf fuer diesen Moment: `UNIVERSAARL-SUPER-PERMISSION-RESUME-RUNBOO
 - Seite `Mandanten` ist sichtbar.
 - `UNIVERSAARL-DE` ist noch nicht in der Liste sichtbar.
 - Der Hauptbutton `Neu`, der Dropdown-Pfeil und `Neues Unternehmen erstellen` sind durch Tooltip oder Screenshot auseinandergehalten.
+- Die Zielroute ist ausdruecklich: Pfeil neben `Neu` -> `Neues Unternehmen erstellen`.
+- Der Hauptbutton `Neu` ist fuer diesen Resume-Lauf nicht der Zielklick.
 - Screenshot-QA ist vorbereitet: Das Bild muss zeigen, was fuer die Entscheidung wichtig ist.
 - Zuerst ueber dem Hauptbutton `Neu` hovern und Tooltip/Accessible Name notieren.
 - Danach ueber dem Pfeil neben `Neu` hovern und Tooltip/Accessible Name notieren.
 - Wenn `Neues Unternehmen erstellen` im Dropdown gewaehlt werden soll, muss das Dropdown sichtbar offen sein und der Menueintrag selbst im Screenshot lesbar sein.
-- Der Klick wird auf den Menueintrag `Neues Unternehmen erstellen` ausgefuehrt, nicht auf den Hauptbutton `Neu`, wenn der gefuehrte Assistent Ziel des Cases ist.
+- Der Klick wird auf den Menueintrag `Neues Unternehmen erstellen` ausgefuehrt, nicht auf den Hauptbutton `Neu`.
 - Nach dem Klick muss sichtbar sein, ob ein Assistent, Dialog oder eine neue Listenzeile geoeffnet wurde.
 - Nach dem Klick muss der sichtbare Zielzustand zur gewaehlten Aktion passen. Eine leere Mandantenzeile ist nicht automatisch der gefuehrte `Neues Unternehmen erstellen`-Wizard.
 - Wenn der Zielzustand nicht passt, den Pfad als `rejected-path` dokumentieren und nicht weiter Werte eingeben.

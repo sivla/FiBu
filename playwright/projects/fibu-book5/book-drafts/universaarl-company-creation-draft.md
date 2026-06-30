@@ -4,6 +4,12 @@ Bevor Verkaufsaufträge, Einkaufsbelege, Lagerbewegungen oder Anlagenbuchungen e
 
 Für dieses Buch verwenden wir die Company `UNIVERSAARL-DE`. Sie gehört zur Musterfirma Universaarl GmbH. Die Company wird nicht aus einer CRONUS-Demofirma als fertige Zielwelt übernommen. Demodaten sind zum Lernen hilfreich, enthalten aber bereits Beispielkonten, Beispielartikel, Beispielkunden, Beispielsteuerlogik und Beispielbelege. Für eine durchgehende Fallstudie bauen wir die fachliche Welt kontrolliert auf.
 
+## Richtiger Einstieg auf der Seite Mandanten
+
+Die Anlage erfolgt ueber die Seite `Mandanten`. Dort ist der kleine Pfeil neben `Neu` entscheidend. Er oeffnet das Dropdown, in dem `Neues Unternehmen erstellen` sichtbar ist. Dieser Menueintrag ist der bevorzugte Buchpfad fuer `UNIVERSAARL-DE`.
+
+Der Hauptbutton `Neu` ist ein anderes Bedienelement. Er kann eine leere Mandantenzeile oeffnen. Eine leere Zeile ist noch kein gefuehrter Anlageweg und keine fertige Company. Wenn nur diese Zeile sichtbar ist, wird zuerst geklaert, ob wirklich der gewuenschte Pfad getroffen wurde.
+
 ## Environment und Company
 
 Ein Environment ist die Business-Central-Umgebung. In einem Environment können mehrere Companies liegen. Das Environment ist also die technische Umgebung; die Company ist der fachliche Buchungsraum.

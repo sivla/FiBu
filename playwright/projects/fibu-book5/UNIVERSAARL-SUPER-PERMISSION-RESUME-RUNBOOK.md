@@ -57,6 +57,8 @@ Zielaktion:
 Mandantenliste -> Pfeil neben Neu -> Neues Unternehmen erstellen
 ```
 
+Der Hauptbutton `Neu` ist nicht die Zielaktion dieses Resume-Laufs. Er kann eine leere Mandantenzeile oeffnen und war in der bisherigen Evidence ein eigener, nicht final erfolgreicher Pfad. Wenn nach dem Klick eine leere Zeile statt eines gefuehrten Anlagewegs erscheint, wird der Pfad als `rejected-path` dokumentiert.
+
 Stopps:
 
 - Hauptbutton `Neu` wurde versehentlich getroffen.
@@ -143,4 +145,3 @@ Buchtext darf erst angepasst werden, wenn der sichtbare Zustand klar ist. Das Bu
 - Screenshot zeigt nicht den relevanten Button, Dropdown, Dialog oder Feldbereich.
 
 Bei einem harten Stopp wird nicht "ein bisschen weiter" geklickt. Der Lauf endet mit Blocker, Screenshot, Result JSON und naechstem konkretem Loesungsweg.
-
