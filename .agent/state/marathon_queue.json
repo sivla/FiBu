@@ -1068,7 +1068,7 @@
     {
       "id": "TARGET-016D-NUMBER-SERIES-PAGE-INSPECTION-OR-ALTERNATIVE-ROUTE",
       "order": 10019,
-      "status": "pending",
+      "status": "done",
       "category": "target-foundation-number-series",
       "expectedImpact": "number-series-lines-page-field-route-discovery",
       "mayWorkEffectively": true,
@@ -1078,11 +1078,48 @@
       "sourceCompany": "UNIVERSAARL-DE",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": false,
+      "lookaheadStatus": "done",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-016d-number-series-page-inspection-or-alternative-route/TARGET-016D-result.json",
+      "result": "Page Inspection visible with No. Series Lines page/table/fields."
+    },
+    {
+      "id": "TARGET-016E-NUMBER-SERIES-LINES-FIELD-FLOW-CONTROLLED-FIT",
+      "order": 10020,
+      "status": "blocked",
+      "category": "target-foundation-number-series",
+      "expectedImpact": "number-series-lines-controlled-field-flow-fit",
+      "mayWorkEffectively": true,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": true,
+      "goal": "Set U-CUST Number Series Lines using the visible field flow Startdatum -> Startnr. -> Endnr., then prove persistence after reopen before any setup assignment or master data.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": false,
+      "lookaheadStatus": "blocked",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-016e-number-series-lines-field-flow-controlled-fit/TARGET-016E-result.json",
+      "result": "Field-flow and F2 route did not persist U-CUST Startnr./Endnr.; F2 opened Microsoft 365 app launcher.",
+      "blockedBy": [
+        "U-CUST Startnr./Endnr. target values were not visible after reopen."
+      ]
+    },
+    {
+      "id": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
+      "order": 10021,
+      "status": "pending",
+      "category": "target-foundation-number-series",
+      "expectedImpact": "number-series-lines-standard-route-discovery",
+      "mayWorkEffectively": true,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": true,
+      "goal": "Inspect Personalize or standard setup-assisted route for Number Series Lines after grid typing routes failed.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": false,
       "lookaheadStatus": "ready-next",
       "resultPath": null
     }
   ],
-  "lastUpdated": "2026-06-30T11:58:29.352Z",
+  "lastUpdated": "2026-06-30T12:20:35.744Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -1155,55 +1192,56 @@
       ]
     }
   },
-  "updatedAt": "2026-06-30T11:58:29.352Z",
-  "lastCompletedCase": "TARGET-016C-NUMBER-SERIES-ACTIVE-EDITOR-PROBE",
-  "nextCase": "TARGET-016D-NUMBER-SERIES-PAGE-INSPECTION-OR-ALTERNATIVE-ROUTE",
+  "updatedAt": "2026-06-30T12:20:35.744Z",
+  "lastCompletedCase": "TARGET-016E-NUMBER-SERIES-LINES-FIELD-FLOW-CONTROLLED-FIT",
+  "nextCase": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-016C-NUMBER-SERIES-ACTIVE-EDITOR-PROBE",
-    "plannedNextCaseBeforeReview": "TARGET-016C-NUMBER-SERIES-ACTIVE-EDITOR-PROBE",
-    "lastEvidenceSummary": "TARGET-016C reopened U-CUST Lines, clicked Liste bearbeiten and proved that coordinate/header plus selected-cell typing does not reliably persist Startnr./Endnr.; the final screenshot shows page text/labels selected instead of field values written.",
+    "currentCase": "TARGET-016E-NUMBER-SERIES-LINES-FIELD-FLOW-CONTROLLED-FIT",
+    "plannedNextCaseBeforeReview": "TARGET-016E-NUMBER-SERIES-LINES-FIELD-FLOW-CONTROLLED-FIT",
+    "lastEvidenceSummary": "TARGET-016D proved Page Inspection for No. Series Lines 457 / No. Series Line 309. TARGET-016E attempted Startdatum field-flow and F2 fallback; after reopen U-CUST00001/U-CUST99999 were not visible, and F2 opened the Microsoft 365 app launcher.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "The active-editor and selected-cell routes were exhausted with screenshot proof; repeating them would be waste. The next useful step must inspect the page/field model or use another standard UI route.",
+    "reason": "The field-flow and F2 routes are now rejected with screenshot proof. The next route must use Personalize or another standard BC setup-assisted path, not more grid typing.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-016D-NUMBER-SERIES-PAGE-INSPECTION-OR-ALTERNATIVE-ROUTE",
+        "caseId": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
         "status": "ready-next",
-        "reason": "Needed to identify the real BC field/editor path before Number Series setup can continue."
-      },
-      {
-        "caseId": "TARGET-016E-NUMBER-SERIES-LINES-CONTROLLED-FIT",
-        "status": "needs-ui-discovery-first",
-        "reason": "Line values cannot be fitted until TARGET-016D finds a reliable editor route."
+        "reason": "It changes route and can reveal available fields/actions without repeating failed typing."
       },
       {
         "caseId": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
         "status": "needs-setup-first",
-        "reason": "Assignments are premature until line ranges exist and are visible."
+        "reason": "Assignments still require valid line ranges."
       },
       {
         "caseId": "TARGET-018-CUSTOMER-MASTERDATA-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Customer creation depends on customer number series assignment."
+        "reason": "Customer creation depends on assigned customer number series."
       },
       {
         "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT",
         "status": "ready-after-current",
-        "reason": "Can proceed after Number Series path is unblocked or consciously parked."
+        "reason": "Can proceed after numbering is unblocked or consciously parked."
+      },
+      {
+        "caseId": "TARGET-020-VAT-SETUP-READINESS",
+        "status": "ready-after-current",
+        "reason": "VAT setup follows foundation sequencing."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-016C blocked with result evidence.",
-      "Added TARGET-016D-NUMBER-SERIES-PAGE-INSPECTION-OR-ALTERNATIVE-ROUTE as next route-discovery case."
+      "Marked TARGET-016D observed/done.",
+      "Marked TARGET-016E blocked with screenshot proof.",
+      "Added TARGET-016F as Personalize/setup-assisted route."
     ],
-    "selectedNextCase": "TARGET-016D-NUMBER-SERIES-PAGE-INSPECTION-OR-ALTERNATIVE-ROUTE",
-    "whySelectedNextCaseIsBest": "It changes route based on evidence instead of repeating failed grid typing, and it directly supports foundation setup for the book.",
+    "selectedNextCase": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
+    "whySelectedNextCaseIsBest": "It avoids all rejected grid typing routes and investigates BC-standard field/action availability.",
     "risksBeforeNextCase": [
-      "Do not use API shortcuts.",
-      "Do not type into selected labels or background grids.",
-      "Do not change checkbox states without explicit meaning and before/after proof."
+      "Do not save Personalize changes unless explicitly gated.",
+      "Do not change checkboxes.",
+      "Do not assign setup pages or create master data."
     ],
     "requiredPreparation": [
-      "Use Page Inspection / Personalize / standard line route discovery and capture screenshot QA."
+      "Capture Personalize/available field list screenshots or a standard route screenshot."
     ]
   }
 }

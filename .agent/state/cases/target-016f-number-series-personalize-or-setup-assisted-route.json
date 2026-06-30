@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
+  "title": "Universaarl Number Series Lines Personalize or setup-assisted route",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "workType": "foundation-number-series-lines-standard-route-discovery",
+  "status": "ready-next",
+  "dependsOn": [
+    "TARGET-016E-NUMBER-SERIES-LINES-FIELD-FLOW-CONTROLLED-FIT"
+  ],
+  "goal": "Use Personalize or another standard Business Central route to discover a reliable way to set Number Series Lines without repeating failed grid typing.",
+  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-016f-number-series-personalize-or-setup-assisted-route/",
+  "allowedActionsWhenRun": [
+    "open-playthru-business-central",
+    "open-UNIVERSAARL-DE-with-documentation",
+    "open-number-series-page",
+    "select-existing-U-CUST-row",
+    "open-Zeilen-from-selected-number-series",
+    "enter-personalize-readonly-or-reversible-mode",
+    "inspect-available-fields-and-actions",
+    "use-standard-ui-action-route-if-visible",
+    "capture-screenshot-qa",
+    "write-result",
+    "queue-and-state-update"
+  ],
+  "defaultLockedActions": [
+    "assign-number-series-in-sales-setup",
+    "assign-number-series-in-purchase-setup",
+    "assign-number-series-in-inventory-setup",
+    "master-data-create",
+    "preview-posting",
+    "posting",
+    "checkbox-change",
+    "api-shortcut",
+    "save-personalization"
+  ],
+  "forbiddenActions": [
+    "leave-playthru",
+    "api-shortcut-without-explicit-case-permission",
+    "operate-in-legacy-lab-as-active-target",
+    "mass-replace-historical-evidence",
+    "delete-legacy-evidence",
+    "claim-rm-demo-as-final-proof",
+    "operate-in-CRONUS-as-active-target",
+    "post",
+    "preview-posting",
+    "api-shortcut",
+    "create-master-data-before-number-series-lines",
+    "repeat-header-coordinate-route-from-TARGET-016B",
+    "repeat-selected-cell-typing-route-from-TARGET-016C",
+    "repeat-plain-field-flow-route-from-TARGET-016E",
+    "repeat-F2-route-from-TARGET-016E",
+    "claim-number-series-setup-ready-without-visible-start-end-values"
+  ],
+  "knownLearningFromTarget016D": [
+    "Ctrl+Alt+F1 opens Seitenueberpruefung in Playwright context when focus is in Number Series Lines.",
+    "Page Inspection shows No. Series Lines (457, List) and table No. Series Line (309).",
+    "Fields include Starting Date, Starting No., Ending No., Increment-by No., Open and other line fields."
+  ],
+  "knownLearningFromTarget016E": [
+    "Plain keyboard field-flow from Startdatum did not persist U-CUST Startnr./Endnr.",
+    "F2 in this context can open the Microsoft 365 app launcher instead of a Business Central cell editor.",
+    "setupWriteAttempted is not setupChanged; after reopen no target values were visible."
+  ],
+  "successCriteria": [
+    "Personalize or standard BC route reveals fields/actions that can lead to a reliable Startnr./Endnr. setup path.",
+    "No personalization is saved unless explicitly gated.",
+    "No setup assignment, master data, preview posting or posting occurs."
+  ],
+  "migrationRelevance": "german-final-candidate",
+  "finalScreenshotNeeded": true,
+  "nextSafeAction": "Inspect Personalize/standard BC route without saving changes.",
+  "updatedAt": "2026-06-30T12:20:35.744Z"
+}

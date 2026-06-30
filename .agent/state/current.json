@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T12:04:44.432Z",
+  "updatedAt": "2026-06-30T12:20:35.744Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "activeArea": "universaarl-w1-foundation-number-series",
-  "activeCase": "TARGET-016D-NUMBER-SERIES-PAGE-INSPECTION-OR-ALTERNATIVE-ROUTE",
-  "active_case_file": ".agent/state/cases/target-016d-number-series-page-inspection-or-alternative-route.json",
+  "activeCase": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
+  "active_case_file": ".agent/state/cases/target-016f-number-series-personalize-or-setup-assisted-route.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
@@ -24,9 +24,9 @@
     "open-number-series-page",
     "select-existing-U-CUST-row",
     "open-Zeilen-from-selected-number-series",
-    "use-page-inspection-or-personalize-readonly-to-identify-page-fields",
+    "enter-personalize-readonly-or-reversible-mode",
+    "inspect-available-fields-and-actions",
     "use-standard-ui-action-route-if-visible",
-    "hover-relevant-buttons-and-fields-for-tooltip-evidence",
     "capture-screenshot-qa",
     "write-result",
     "queue-and-state-update"
@@ -47,12 +47,15 @@
     "operate-in-CRONUS-as-active-target",
     "post",
     "preview-posting",
+    "api-shortcut",
     "create-master-data-before-number-series-lines",
     "repeat-header-coordinate-route-from-TARGET-016B",
     "repeat-selected-cell-typing-route-from-TARGET-016C",
+    "repeat-plain-field-flow-route-from-TARGET-016E",
+    "repeat-F2-route-from-TARGET-016E",
     "claim-number-series-setup-ready-without-visible-start-end-values"
   ],
-  "nextStep": "Run TARGET-016D: use Page Inspection/Personalize or another standard UI route to identify a reliable Number Series Lines editor; do not repeat coordinate typing or selected-cell typing.",
+  "nextStep": "Run TARGET-016F: use Personalize or another standard Business Central setup-assisted route for Number Series Lines; do not repeat coordinate, selected-cell, plain field-flow or F2 routes.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -1356,7 +1359,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "warehouse-source-document-action-on-draft",
-  "lastCompletedCase": "TARGET-016C-NUMBER-SERIES-ACTIVE-EDITOR-PROBE",
+  "lastCompletedCase": "TARGET-016E-NUMBER-SERIES-LINES-FIELD-FLOW-CONTROLLED-FIT",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3693,51 +3696,52 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-016C-NUMBER-SERIES-ACTIVE-EDITOR-PROBE",
-    "plannedNextCaseBeforeReview": "TARGET-016C-NUMBER-SERIES-ACTIVE-EDITOR-PROBE",
-    "lastEvidenceSummary": "TARGET-016C reopened U-CUST Lines, clicked Liste bearbeiten and proved that coordinate/header plus selected-cell typing does not reliably persist Startnr./Endnr.; the final screenshot shows page text/labels selected instead of field values written.",
+    "currentCase": "TARGET-016E-NUMBER-SERIES-LINES-FIELD-FLOW-CONTROLLED-FIT",
+    "plannedNextCaseBeforeReview": "TARGET-016E-NUMBER-SERIES-LINES-FIELD-FLOW-CONTROLLED-FIT",
+    "lastEvidenceSummary": "TARGET-016D proved Page Inspection for No. Series Lines 457 / No. Series Line 309. TARGET-016E attempted Startdatum field-flow and F2 fallback; after reopen U-CUST00001/U-CUST99999 were not visible, and F2 opened the Microsoft 365 app launcher.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "The active-editor and selected-cell routes were exhausted with screenshot proof; repeating them would be waste. The next useful step must inspect the page/field model or use another standard UI route.",
+    "reason": "The field-flow and F2 routes are now rejected with screenshot proof. The next route must use Personalize or another standard BC setup-assisted path, not more grid typing.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-016D-NUMBER-SERIES-PAGE-INSPECTION-OR-ALTERNATIVE-ROUTE",
+        "caseId": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
         "status": "ready-next",
-        "reason": "Needed to identify the real BC field/editor path before Number Series setup can continue."
-      },
-      {
-        "caseId": "TARGET-016E-NUMBER-SERIES-LINES-CONTROLLED-FIT",
-        "status": "needs-ui-discovery-first",
-        "reason": "Line values cannot be fitted until TARGET-016D finds a reliable editor route."
+        "reason": "It changes route and can reveal available fields/actions without repeating failed typing."
       },
       {
         "caseId": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
         "status": "needs-setup-first",
-        "reason": "Assignments are premature until line ranges exist and are visible."
+        "reason": "Assignments still require valid line ranges."
       },
       {
         "caseId": "TARGET-018-CUSTOMER-MASTERDATA-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Customer creation depends on customer number series assignment."
+        "reason": "Customer creation depends on assigned customer number series."
       },
       {
         "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT",
         "status": "ready-after-current",
-        "reason": "Can proceed after Number Series path is unblocked or consciously parked."
+        "reason": "Can proceed after numbering is unblocked or consciously parked."
+      },
+      {
+        "caseId": "TARGET-020-VAT-SETUP-READINESS",
+        "status": "ready-after-current",
+        "reason": "VAT setup follows foundation sequencing."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-016C blocked with result evidence.",
-      "Added TARGET-016D-NUMBER-SERIES-PAGE-INSPECTION-OR-ALTERNATIVE-ROUTE as next route-discovery case."
+      "Marked TARGET-016D observed/done.",
+      "Marked TARGET-016E blocked with screenshot proof.",
+      "Added TARGET-016F as Personalize/setup-assisted route."
     ],
-    "selectedNextCase": "TARGET-016D-NUMBER-SERIES-PAGE-INSPECTION-OR-ALTERNATIVE-ROUTE",
-    "whySelectedNextCaseIsBest": "It changes route based on evidence instead of repeating failed grid typing, and it directly supports foundation setup for the book.",
+    "selectedNextCase": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
+    "whySelectedNextCaseIsBest": "It avoids all rejected grid typing routes and investigates BC-standard field/action availability.",
     "risksBeforeNextCase": [
-      "Do not use API shortcuts.",
-      "Do not type into selected labels or background grids.",
-      "Do not change checkbox states without explicit meaning and before/after proof."
+      "Do not save Personalize changes unless explicitly gated.",
+      "Do not change checkboxes.",
+      "Do not assign setup pages or create master data."
     ],
     "requiredPreparation": [
-      "Use Page Inspection / Personalize / standard line route discovery and capture screenshot QA."
+      "Capture Personalize/available field list screenshots or a standard route screenshot."
     ]
   },
   "permissionBlocker": {
@@ -3816,7 +3820,7 @@
   },
   "activeCaseFile": ".agent/state/cases/prep-034-role-center-readonly-shell-map.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
-  "nextCase": "TARGET-016D-NUMBER-SERIES-PAGE-INSPECTION-OR-ALTERNATIVE-ROUTE",
+  "nextCase": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
     "status": "prep-observed",
@@ -4850,5 +4854,69 @@
     "noPreview": true,
     "noPosting": true,
     "updatedAt": "2026-06-30T11:58:29.352Z"
+  },
+  "latestTarget016DNumberSeriesPageInspectionRoute": {
+    "caseId": "TARGET-016D-NUMBER-SERIES-PAGE-INSPECTION-OR-ALTERNATIVE-ROUTE",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-016d-number-series-page-inspection-or-alternative-route/TARGET-016D-result.json",
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/target-016d-number-series-page-inspection-or-alternative-route/TARGET-016D-result.json",
+      "playwright/projects/fibu-book5/img/target-016d-010-lines-context-before-inspection.png",
+      "playwright/projects/fibu-book5/img/target-016d-020-startnr-tooltip-probe.png",
+      "playwright/projects/fibu-book5/img/target-016d-030-checkbox-tooltip-probe.png",
+      "playwright/projects/fibu-book5/img/target-016d-040-after-page-inspection-shortcut.png"
+    ],
+    "observed": [
+      "U-CUST Number Series Lines context was reopened in playthru / UNIVERSAARL-DE.",
+      "Startnr. and checkbox-related header tooltip probes were attempted with screenshot QA.",
+      "Page Inspection / Seitenpruefung technical context became visible."
+    ],
+    "notProved": [
+      "A reliable persistent Startnr./Endnr. write route is still not proven.",
+      "No setup assignment, master data, preview posting, posting or ledger trace was created.",
+      "Checkbox semantics were observed but not changed."
+    ],
+    "keyLearning": [
+      "Ctrl+Alt+F1 opens Seitenueberpruefung in Playwright context when focus is in Number Series Lines.",
+      "Page Inspection shows No. Series Lines (457, List) and table No. Series Line (309).",
+      "Fields include Starting Date, Starting No., Ending No., Increment-by No., Open and other line fields."
+    ],
+    "nextCase": "TARGET-016E-NUMBER-SERIES-LINES-FIELD-FLOW-CONTROLLED-FIT",
+    "updatedAt": "2026-06-30T12:20:35.744Z"
+  },
+  "latestTarget016ENumberSeriesFieldFlowFit": {
+    "caseId": "TARGET-016E-NUMBER-SERIES-LINES-FIELD-FLOW-CONTROLLED-FIT",
+    "status": "blocked",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-016e-number-series-lines-field-flow-controlled-fit/TARGET-016E-result.json",
+    "evidenceRefs": [
+      "playwright/projects/fibu-book5/evidence/target-016e-number-series-lines-field-flow-controlled-fit/TARGET-016E-result.json",
+      "playwright/projects/fibu-book5/img/target-016e-010-before-field-flow.png",
+      "playwright/projects/fibu-book5/img/target-016e-020-after-field-flow-write.png",
+      "playwright/projects/fibu-book5/img/target-016e-030-after-reopen-proof.png",
+      "playwright/projects/fibu-book5/img/target-016e-025-after-f2-field-flow-fallback.png"
+    ],
+    "observed": [
+      "U-CUST Number Series Lines context was reopened in playthru / UNIVERSAARL-DE.",
+      "A controlled U-CUST Number Series Lines field-flow write was attempted."
+    ],
+    "notProved": [
+      "A reliable persistent Startnr./Endnr. field-flow route is still not proven.",
+      "No setup assignment, master data, preview posting, posting or ledger trace was created.",
+      "Checkbox semantics were observed but not changed."
+    ],
+    "blockedBy": [
+      "U-CUST Startnr./Endnr. target values were not visible after reopen."
+    ],
+    "keyLearning": [
+      "Plain keyboard field-flow from Startdatum did not persist U-CUST Startnr./Endnr.",
+      "F2 in this context can open the Microsoft 365 app launcher instead of a Business Central cell editor.",
+      "setupWriteAttempted is not setupChanged; after reopen no target values were visible."
+    ],
+    "nextCase": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
+    "setupChanged": false,
+    "setupWriteAttempted": true,
+    "noPreview": true,
+    "noPosting": true,
+    "updatedAt": "2026-06-30T12:20:35.744Z"
   }
 }

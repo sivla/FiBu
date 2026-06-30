@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-016E-NUMBER-SERIES-LINES-FIELD-FLOW-CONTROLLED-FIT",
+  "title": "Universaarl Number Series Lines field-flow controlled fit",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "workType": "foundation-number-series-lines-controlled-setup-fit",
+  "status": "blocked-field-flow-and-f2-not-persistent",
+  "dependsOn": [
+    "TARGET-016D-NUMBER-SERIES-PAGE-INSPECTION-OR-ALTERNATIVE-ROUTE"
+  ],
+  "smartDecision": {
+    "why": "TARGET-016D proved Page 457 / Table 309 and showed the active line begins at Startdatum. The next route should use BC field flow from Startdatum to Startnr./Endnr. instead of coordinates.",
+    "alternatives": [
+      "Repeat selected-cell typing: rejected by TARGET-016C.",
+      "Repeat Ctrl+Alt+F1 only: not enough; Page Inspection is already proven.",
+      "Assign number series before line ranges: rejected."
+    ],
+    "risk": "Controlled setup write to one U-CUST number series line only.",
+    "fallback": "If values are not visible after reopen, mark blocked and move to Personalize/standard setup route."
+  },
+  "goal": "Set U-CUST Number Series Lines using the visible field flow Startdatum -> Startnr. -> Endnr., then prove persistence after reopen before any setup assignment or master data.",
+  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-016e-number-series-lines-field-flow-controlled-fit/",
+  "allowedActionsWhenRun": [
+    "open-playthru-business-central",
+    "open-UNIVERSAARL-DE-with-documentation",
+    "open-number-series-page",
+    "select-existing-U-CUST-row",
+    "open-Zeilen-from-selected-number-series",
+    "click-Liste-bearbeiten",
+    "set-start-date-start-no-end-no-for-U-CUST-only",
+    "blur-or-close-and-reopen-lines",
+    "capture-before-after-screenshots",
+    "write-result",
+    "queue-and-state-update"
+  ],
+  "defaultLockedActions": [
+    "assign-number-series-in-sales-setup",
+    "assign-number-series-in-purchase-setup",
+    "assign-number-series-in-inventory-setup",
+    "master-data-create",
+    "preview-posting",
+    "posting",
+    "checkbox-change",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "leave-playthru",
+    "operate-in-CRONUS-as-active-target",
+    "post",
+    "preview-posting",
+    "api-shortcut",
+    "create-master-data-before-number-series-lines",
+    "repeat-header-coordinate-route-from-TARGET-016B",
+    "repeat-selected-cell-typing-route-from-TARGET-016C",
+    "claim-setup-ready-without-reopen-proof"
+  ],
+  "probeSeries": {
+    "code": "U-CUST",
+    "startDate": "01.01.2026",
+    "startNo": "U-CUST00001",
+    "endNo": "U-CUST99999"
+  },
+  "successCriteria": [
+    "Startdatum, Startnr. and Endnr. are visible for U-CUST after write and after reopen.",
+    "Only U-CUST line range is changed.",
+    "No setup assignment, master data, preview posting or posting occurs.",
+    "Checkbox states are not changed."
+  ],
+  "migrationRelevance": "german-final-candidate",
+  "finalScreenshotNeeded": true,
+  "nextSafeAction": "Run TARGET-016F: use Personalize or another standard Business Central setup-assisted route for Number Series Lines; do not repeat coordinate, selected-cell, plain field-flow or F2 routes.",
+  "updatedAt": "2026-06-30T12:20:35.744Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-016e-number-series-lines-field-flow-controlled-fit/TARGET-016E-result.json",
+  "resultStatus": "blocked",
+  "blockedBy": [
+    "U-CUST Startnr./Endnr. target values were not visible after reopen."
+  ],
+  "keyLearning": [
+    "Plain keyboard field-flow from Startdatum did not persist U-CUST Startnr./Endnr.",
+    "F2 in this context can open the Microsoft 365 app launcher instead of a Business Central cell editor.",
+    "setupWriteAttempted is not setupChanged; after reopen no target values were visible."
+  ]
+}

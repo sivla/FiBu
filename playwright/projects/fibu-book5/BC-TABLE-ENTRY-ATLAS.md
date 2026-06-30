@@ -11,6 +11,7 @@ Noch gibt es keine Universaarl-Posten. Der Atlas darf deshalb keine Postenspur b
 | Entry/Page | Bereich | Erwartete Felder | Evidence | Grenze |
 |---|---|---|---|---|
 | Companies List row | Foundation/Company | `Name`, `Anzeigename`, `Testunternehmen`, Setup-Status | `evidence/target-001/`, `evidence/target-002/` | Keine Buchungsposten; TARGET-002 oeffnete eine unsaved blank row, aber keine gespeicherte Company |
+| No. Series Line (Table 309) | Foundation/Numbering Setup | `Series Code`, `Line No.`, `Starting Date`, `Starting No.`, `Ending No.`, `Warning No.`, `Increment-by No.`, `Last No. Used`, `Open` | `evidence/target-016d-number-series-page-inspection-or-alternative-route/`, Screenshot `target-016d-040-after-page-inspection-shortcut.png` | Setup-Tabelle, keine Ledger Entries; TARGET-016E beweist noch keine persistierte Start-/Endnummernzeile |
 
 ## Erwartete Universaarl-Entry-Matrix
 

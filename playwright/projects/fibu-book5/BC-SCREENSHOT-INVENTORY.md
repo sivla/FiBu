@@ -140,6 +140,15 @@ Diese Bilder werden erst erzeugt, wenn `UNIVERSAARL-DE` existiert und genug sinn
 | `target-016b-020-u-cust-lines-control-inventory.png` | Nr.-Serienzeilen / No. Series Lines | `playthru` / `UNIVERSAARL-DE` | Lines- und Checkbox-Inventar | `Startdatum`, `Startnr.`, `Endnr.`, `Luecken in Nummern zulassen` und `Offen` sind im Lines-Kontext sichtbar | Playwright hat den richtigen Detailkontext und Checkbox-Spalten erkannt | keine Persistenz von `U-CUST00001`/`U-CUST99999`, keine Belegnummernreife | `diagnostic-context` |
 | `target-016b-030-u-cust-lines-after-targeted-cell-route.png` | Nr.-Serienzeilen / No. Series Lines | `playthru` / `UNIVERSAARL-DE` | Abgelehnter Header-/Fokusversuch | Header-/Tooltip-Fokus ist sichtbar; die Zielwerte stehen nicht sichtbar in der Zeile | die getestete Header-Koordinatenroute ist nicht ausreichend | kein gespeicherter Start-/Endnummernwert; nicht als Buch- oder Setup-Erfolg verwenden | `rejected-value-proof` |
 
+## Universaarl Foundation - Nummernserien TARGET-016D/016E
+
+| Screenshot | Page | Company/Kontext | Schritt | Was man sehen soll | Interner Beweis | Beweist nicht | Status |
+|---|---|---|---|---|---|---|---|
+| `target-016d-040-after-page-inspection-shortcut.png` | Nr.-Serienzeilen / Seitenueberpruefung | `playthru` / `UNIVERSAARL-DE` | Technische Seitenpruefung fuer `U-CUST` Lines | rechts ist die Seitenueberpruefung offen; Page `No. Series Lines (457, List)`, Tabelle `No. Series Line (309)` und Felder wie `Starting Date`, `Starting No.`, `Ending No.`, `Open` sind sichtbar | `Ctrl+Alt+F1` liefert hier Page-/Table-/Field-Wahrheit fuer den Lines-Kontext | keine Wertpersistenz, keine Setup-Zuweisung, keine Belegnummernreife | `technical-proof-book-debug-candidate` |
+| `target-016e-020-after-field-flow-write.png` | Nr.-Serienzeilen / No. Series Lines | `playthru` / `UNIVERSAARL-DE` | Abgelehnter Feldfluss-Versuch | nach dem Feldfluss sind die Zielwerte `U-CUST00001` und `U-CUST99999` nicht sichtbar in der Zeile | einfacher `Startdatum -> Startnr. -> Endnr.` Feldfluss reicht fuer Playwright nicht als Schreibroute | keine gespeicherte Nummernserienzeile; nicht als Setup-Erfolg verwenden | `rejected-path` |
+| `target-016e-025-after-f2-field-flow-fallback.png` | Nr.-Serienzeilen / Microsoft-365-App-Launcher | `playthru` / `UNIVERSAARL-DE` | Abgelehnter F2-Fallback | F2 oeffnet den Microsoft-365-App-Launcher links oben statt eines BC-Zelleditors | F2 ist in diesem Browser-/BC-Kontext keine sichere Grid-Edit-Route | keine BC-Zellenbearbeitung, keine Wertpersistenz, keine Nummernserienreife | `do-not-repeat-rejected-path` |
+| `target-016e-030-after-reopen-proof.png` | Nr.-Serienzeilen / No. Series Lines | `playthru` / `UNIVERSAARL-DE` | Reopen-Proof nach Feldfluss/F2 | `U-CUST` Lines sind wieder geoeffnet; Start-/Endnummern sind weiterhin nicht als Zielwerte sichtbar | der Schreibversuch wurde nicht sichtbar persistiert | keine fertige Nummernserienzeile, keine Setup-Zuweisung, keine Stammdatenreife | `blocked-reopen-proof` |
+
 ## Qualitaetsfelder fuer neue Screenshot-Metadaten
 
 Neue oder ueberarbeitete `.screenshot.json`-Dateien sollen diese Felder tragen:

@@ -1,76 +1,86 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-016C-20260630",
-  "caseId": "TARGET-016C-NUMBER-SERIES-ACTIVE-EDITOR-PROBE",
+  "runId": "TARGET-016D-016E-20260630",
+  "caseId": "TARGET-016E-NUMBER-SERIES-LINES-FIELD-FLOW-CONTROLLED-FIT",
   "status": "blocked",
-  "summary": "TARGET-016C reopened U-CUST Number Series Lines in playthru / UNIVERSAARL-DE, clicked Liste bearbeiten and tested header/cell/selected-cell routes. Screenshot QA shows text/labels selected rather than Startnr./Endnr. values written, so the route is blocked and must change to Page Inspection/Personalize or another standard UI route.",
+  "summary": "TARGET-016D proved Page Inspection for Number Series Lines: page 457 list, table 309 and field list. TARGET-016E then tried Startdatum field-flow and F2 fallback for U-CUST; after reopen U-CUST00001/U-CUST99999 were not visible, and F2 opened the Microsoft 365 app launcher. Next route is Personalize or another BC-standard setup route.",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "posted": false,
   "previewPosting": false,
   "setupChanged": false,
+  "setupWriteAttempted": true,
   "masterDataChanged": false,
   "apiShortcut": false,
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/target-016c-number-series-active-editor-probe/TARGET-016C-result.json",
-    "playwright/projects/fibu-book5/img/target-016c-010-lines-before-edit-mode.png",
-    "playwright/projects/fibu-book5/img/target-016c-020-lines-after-edit-list-probe.png",
-    "playwright/projects/fibu-book5/img/target-016c-030-active-editor-after-cell-clicks.png",
-    "playwright/projects/fibu-book5/img/target-016c-040-after-unique-editor-write-attempt.png"
+    "playwright/projects/fibu-book5/evidence/target-016d-number-series-page-inspection-or-alternative-route/TARGET-016D-result.json",
+    "playwright/projects/fibu-book5/img/target-016d-010-lines-context-before-inspection.png",
+    "playwright/projects/fibu-book5/img/target-016d-020-startnr-tooltip-probe.png",
+    "playwright/projects/fibu-book5/img/target-016d-030-checkbox-tooltip-probe.png",
+    "playwright/projects/fibu-book5/img/target-016d-040-after-page-inspection-shortcut.png",
+    "playwright/projects/fibu-book5/evidence/target-016e-number-series-lines-field-flow-controlled-fit/TARGET-016E-result.json",
+    "playwright/projects/fibu-book5/img/target-016e-010-before-field-flow.png",
+    "playwright/projects/fibu-book5/img/target-016e-020-after-field-flow-write.png",
+    "playwright/projects/fibu-book5/img/target-016e-030-after-reopen-proof.png",
+    "playwright/projects/fibu-book5/img/target-016e-025-after-f2-field-flow-fallback.png"
   ],
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-016c-number-series-active-editor-probe/TARGET-016C-result.json",
+  "resultPaths": [
+    "playwright/projects/fibu-book5/evidence/target-016d-number-series-page-inspection-or-alternative-route/TARGET-016D-result.json",
+    "playwright/projects/fibu-book5/evidence/target-016e-number-series-lines-field-flow-controlled-fit/TARGET-016E-result.json"
+  ],
   "blockedBy": [
-    "Active-editor/selected-cell route did not make both target values visible after typing."
+    "U-CUST Startnr./Endnr. target values were not visible after reopen."
   ],
-  "nextCase": "TARGET-016D-NUMBER-SERIES-PAGE-INSPECTION-OR-ALTERNATIVE-ROUTE",
-  "nextStep": "Run TARGET-016D: use Page Inspection/Personalize or another standard UI route to identify a reliable Number Series Lines editor; do not repeat coordinate typing or selected-cell typing.",
+  "nextCase": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
+  "nextStep": "Run TARGET-016F: use Personalize or another standard Business Central setup-assisted route for Number Series Lines; do not repeat coordinate, selected-cell, plain field-flow or F2 routes.",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-016C-NUMBER-SERIES-ACTIVE-EDITOR-PROBE",
-    "plannedNextCaseBeforeReview": "TARGET-016C-NUMBER-SERIES-ACTIVE-EDITOR-PROBE",
-    "lastEvidenceSummary": "TARGET-016C reopened U-CUST Lines, clicked Liste bearbeiten and proved that coordinate/header plus selected-cell typing does not reliably persist Startnr./Endnr.; the final screenshot shows page text/labels selected instead of field values written.",
+    "currentCase": "TARGET-016E-NUMBER-SERIES-LINES-FIELD-FLOW-CONTROLLED-FIT",
+    "plannedNextCaseBeforeReview": "TARGET-016E-NUMBER-SERIES-LINES-FIELD-FLOW-CONTROLLED-FIT",
+    "lastEvidenceSummary": "TARGET-016D proved Page Inspection for No. Series Lines 457 / No. Series Line 309. TARGET-016E attempted Startdatum field-flow and F2 fallback; after reopen U-CUST00001/U-CUST99999 were not visible, and F2 opened the Microsoft 365 app launcher.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "The active-editor and selected-cell routes were exhausted with screenshot proof; repeating them would be waste. The next useful step must inspect the page/field model or use another standard UI route.",
+    "reason": "The field-flow and F2 routes are now rejected with screenshot proof. The next route must use Personalize or another standard BC setup-assisted path, not more grid typing.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-016D-NUMBER-SERIES-PAGE-INSPECTION-OR-ALTERNATIVE-ROUTE",
+        "caseId": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
         "status": "ready-next",
-        "reason": "Needed to identify the real BC field/editor path before Number Series setup can continue."
-      },
-      {
-        "caseId": "TARGET-016E-NUMBER-SERIES-LINES-CONTROLLED-FIT",
-        "status": "needs-ui-discovery-first",
-        "reason": "Line values cannot be fitted until TARGET-016D finds a reliable editor route."
+        "reason": "It changes route and can reveal available fields/actions without repeating failed typing."
       },
       {
         "caseId": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
         "status": "needs-setup-first",
-        "reason": "Assignments are premature until line ranges exist and are visible."
+        "reason": "Assignments still require valid line ranges."
       },
       {
         "caseId": "TARGET-018-CUSTOMER-MASTERDATA-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Customer creation depends on customer number series assignment."
+        "reason": "Customer creation depends on assigned customer number series."
       },
       {
         "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT",
         "status": "ready-after-current",
-        "reason": "Can proceed after Number Series path is unblocked or consciously parked."
+        "reason": "Can proceed after numbering is unblocked or consciously parked."
+      },
+      {
+        "caseId": "TARGET-020-VAT-SETUP-READINESS",
+        "status": "ready-after-current",
+        "reason": "VAT setup follows foundation sequencing."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-016C blocked with result evidence.",
-      "Added TARGET-016D-NUMBER-SERIES-PAGE-INSPECTION-OR-ALTERNATIVE-ROUTE as next route-discovery case."
+      "Marked TARGET-016D observed/done.",
+      "Marked TARGET-016E blocked with screenshot proof.",
+      "Added TARGET-016F as Personalize/setup-assisted route."
     ],
-    "selectedNextCase": "TARGET-016D-NUMBER-SERIES-PAGE-INSPECTION-OR-ALTERNATIVE-ROUTE",
-    "whySelectedNextCaseIsBest": "It changes route based on evidence instead of repeating failed grid typing, and it directly supports foundation setup for the book.",
+    "selectedNextCase": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
+    "whySelectedNextCaseIsBest": "It avoids all rejected grid typing routes and investigates BC-standard field/action availability.",
     "risksBeforeNextCase": [
-      "Do not use API shortcuts.",
-      "Do not type into selected labels or background grids.",
-      "Do not change checkbox states without explicit meaning and before/after proof."
+      "Do not save Personalize changes unless explicitly gated.",
+      "Do not change checkboxes.",
+      "Do not assign setup pages or create master data."
     ],
     "requiredPreparation": [
-      "Use Page Inspection / Personalize / standard line route discovery and capture screenshot QA."
+      "Capture Personalize/available field list screenshots or a standard route screenshot."
     ]
   },
-  "updatedAt": "2026-06-30T11:58:29.352Z"
+  "updatedAt": "2026-06-30T12:20:35.744Z"
 }

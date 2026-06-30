@@ -11,6 +11,8 @@ Der Atlas enthaelt aktuell nur einen belastbaren aktiven Companies-/Mandantenkon
 | Card/List/Worksheet | Page ID | Bereich | FastTabs/Felder | Actions | Evidence | Grenze |
 |---|---:|---|---|---|---|---|
 | Companies List / Mandanten | `357` | Foundation/Company | `Name`, `Anzeigename`, `Testunternehmen`, `Unternehmenseinrichtung aktivieren`, `Einrichtungsstatus` | `Neu`, Pfeil neben `Neu`, `Kopieren`, `Testunternehmen`, `Liste bearbeiten` sichtbar; TARGET-002 zeigt `Neu` als unsaved blank row; TARGET-007 zeigt Dropdown; TARGET-009 ist bis Rechtefreigabe geparkt | `evidence/target-001/` bis `evidence/target-009-main-neu-list-company-create-gate/` | Liste, keine Company Card und keine gespeicherte Erstellung bewiesen; nach Rechtefreigabe `Neues Unternehmen erstellen` neu pruefen |
+| No. Series / Nummernserien | `456` | Foundation/Numbering | Seriencode, Beschreibung, Start-/Endnummernspalten, Checkboxen wie `Manuelle Anz.` und `Luecken in Nummern zulassen` | `Zeilen`, `Liste bearbeiten`, Page-Inspection-Shortcut `Ctrl+Alt+F1` | `evidence/target-016*/`; TARGET-016 zeigt U-Serienkoepfe, TARGET-016D beweist Lines-Page/Table/Felder | Start-/Endnummern sind noch nicht persistent eingerichtet; keine Setup-Zuweisung und keine Belegnummernreife |
+| No. Series Lines / Nr.-Serienzeilen | `457` | Foundation/Numbering | Tabelle `No. Series Line (309)` mit `Starting Date`, `Starting No.`, `Ending No.`, `Warning No.`, `Increment-by No.`, `Last No. Used`, `Open` | `Liste bearbeiten`; Page Inspection; Personalisieren/alternative Standardroute als naechster Kandidat | TARGET-016D: `target-016d-040-after-page-inspection-shortcut.png`; TARGET-016E: Feldfluss/F2-Rejected-Proofs | Koordinaten-, Selected-Cell-, einfacher Feldfluss- und F2-Routen nicht wiederholen; F2 oeffnet hier den Microsoft-365-App-Launcher |
 
 ## Naechste Kartenprioritaeten
 
@@ -29,7 +31,7 @@ Der Atlas enthaelt aktuell nur einen belastbaren aktiven Companies-/Mandantenkon
 | `RO-W0-COMPANIES-357` | Companies List / Mandanten | `ready-for-readonly-playwright` | sichtbare Spalten, sichtbarer `Neu`-Kontext, sichtbarer Dropdown-Kontext, ob `UNIVERSAARL-DE` sichtbar ist | keine Company-Anlage, kein Speichererfolg |
 | `RO-W0-MY-SETTINGS` | My Settings / Meine Einstellungen | `universaarl-prep-observed` | aktive Company-/Rollen-/Sprachfelder; PREP-033 beweist Settings-Menue-Route und OK/Abbrechen-Grenze | keine erfolgte Company-Auswahl, keine gespeicherte Aenderung |
 | `RO-W1-COMPANY-INFORMATION` | Company Information | `requires-universaarl-company` | Name, Adresse, Land/Region, USt-IdNr., FastTabs | keine rechtlich/final korrekten Firmendaten ohne spaeteres Setup |
-| `RO-W1-NO-SERIES` | No. Series / Nummernserien | `requires-universaarl-company` | Seriencode, Beschreibung, Start-/Letztnummern, Manual-Nos.-Signal | keine aktive Nummernserienkonfiguration ohne Setup-Case |
+| `RO-W1-NO-SERIES` | No. Series / Nummernserien | `in-progress-blocked-standard-route-needed` | Seriencode, Beschreibung, Start-/Letztnummern, Manual-Nos.-Signal; Lines-Page 457 und Tabelle 309 sind technisch bewiesen | keine aktive Nummernserienkonfiguration ohne persistierte Start-/Endnummern und Setup-Zuweisung |
 
 ## Erfassungsregel
 
