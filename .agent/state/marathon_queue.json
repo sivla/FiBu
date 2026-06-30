@@ -1141,7 +1141,7 @@
     {
       "id": "TARGET-016H-NUMBER-SERIES-SOURCE-OR-ASSISTED-SETUP-ROUTE",
       "order": 10023,
-      "status": "pending",
+      "status": "done",
       "category": "target-foundation-number-series",
       "expectedImpact": "number-series-source-assisted-route-decision",
       "mayWorkEffectively": false,
@@ -1152,10 +1152,28 @@
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": false,
       "lookaheadStatus": "ready-next",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-016h-number-series-source-or-assisted-setup-route/TARGET-016H-result.json",
+      "completedAt": "2026-06-30T13:02:28.387Z",
+      "result": "Source-backed Number Series route selected: official Lines New path with Starting Date, Starting No. and Ending No.; no BC write in 016H."
+    },
+    {
+      "id": "TARGET-016I-NUMBER-SERIES-LINES-OFFICIAL-NEW-ROUTE-WRITE-GATE",
+      "order": 10024,
+      "status": "pending",
+      "category": "target-foundation-number-series",
+      "expectedImpact": "number-series-lines-official-write-gate",
+      "mayWorkEffectively": true,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": true,
+      "goal": "Test the Microsoft Learn-backed Number Series Lines path for U-CUST only: Zeilen -> Neu -> Startdatum -> Startnr. -> Endnr.; then reopen proof. Do not assign setup or create master data.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": false,
+      "lookaheadStatus": "ready-next",
       "resultPath": null
     }
   ],
-  "lastUpdated": "2026-06-30T12:51:51.335Z",
+  "lastUpdated": "2026-06-30T13:02:28.387Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -1178,26 +1196,26 @@
       "replace-with-better-case"
     ],
     "latestDecisionCard": {
-      "currentCase": "TARGET-016G-NUMBER-SERIES-PERSONALIZE-FIELD-ACTION-MAP",
-      "plannedNextCaseBeforeReview": "TARGET-016G-NUMBER-SERIES-PERSONALIZE-FIELD-ACTION-MAP",
-      "lastEvidenceSummary": "TARGET-016F proved Settings -> Personalisieren enters Nr.-Serienzeilen personalization mode and exits via Fertig without changes.",
+      "currentCase": "TARGET-016H-NUMBER-SERIES-SOURCE-OR-ASSISTED-SETUP-ROUTE",
+      "plannedNextCaseBeforeReview": "TARGET-016H-NUMBER-SERIES-SOURCE-OR-ASSISTED-SETUP-ROUTE",
+      "lastEvidenceSummary": "TARGET-016G proved Personalisieren on Nr.-Serienzeilen but did not expose a safe Add-field or value-entry route.",
       "isPlannedNextCaseStillSensible": true,
-      "reason": "The next non-repeated step is to map fields/actions in the now-proven Personalize mode before any write attempt.",
+      "reason": "A source-backed route decision is necessary before another setup write attempt because the previous UI probes repeatedly failed.",
       "lookaheadReviewed": [
         {
-          "caseId": "TARGET-016H-NUMBER-SERIES-SOURCE-OR-ASSISTED-SETUP-ROUTE",
+          "caseId": "TARGET-016I-NUMBER-SERIES-LINES-OFFICIAL-NEW-ROUTE-WRITE-GATE",
           "status": "ready-next",
-          "reason": "Depends on whether Personalize exposes useful field/action affordances."
+          "reason": "Uses the documented Lines route and changes only the one missing line context under a controlled setup gate."
         },
         {
           "caseId": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
           "status": "needs-setup-first",
-          "reason": "Assignments require valid line ranges."
+          "reason": "Assignments require visible persisted number-series line values first."
         },
         {
           "caseId": "TARGET-018-CUSTOMER-MASTERDATA-PREFLIGHT",
           "status": "needs-setup-first",
-          "reason": "Customer creation depends on customer number-series assignment."
+          "reason": "Customer creation depends on assigned customer number series."
         },
         {
           "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT",
@@ -1207,25 +1225,30 @@
         {
           "caseId": "TARGET-020-VAT-SETUP-READINESS",
           "status": "ready-after-current",
-          "reason": "Follows foundation sequencing."
+          "reason": "Follows foundation sequencing after or alongside posting-group readiness."
         }
       ],
-      "queueChangesMade": [],
-      "selectedNextCase": "TARGET-016H-NUMBER-SERIES-SOURCE-OR-ASSISTED-SETUP-ROUTE",
-      "whySelectedNextCaseIsBest": "TARGET-016G adds field/action UI knowledge without changing setup and avoids repeating failed grid typing.",
+      "queueChangesMade": [
+        "Marked TARGET-016H observed as source-backed route decision.",
+        "Added TARGET-016I as the next controlled official Lines write-gate."
+      ],
+      "selectedNextCase": "TARGET-016I-NUMBER-SERIES-LINES-OFFICIAL-NEW-ROUTE-WRITE-GATE",
+      "whySelectedNextCaseIsBest": "It is the first next case aligned with Microsoft Learn and avoids all rejected UI typing routes.",
       "risksBeforeNextCase": [
-        "Do not save Personalize changes without explicit gate.",
-        "Do not change checkbox states.",
-        "Do not create master data before line ranges are ready."
+        "Do not assign U-CUST in Sales & Receivables Setup yet.",
+        "Do not change Allow Gaps in Nos. or Open checkboxes unless explicitly gated.",
+        "Stop if Startnr./Endnr. are not visible after reopen."
       ],
       "requiredPreparation": [
-        "Review TARGET-016G screenshots and decide route based on visible field/action affordances."
+        "Open only playthru / UNIVERSAARL-DE.",
+        "Use screenshot QA before and after the line write.",
+        "Capture reopen proof."
       ]
     }
   },
   "updatedAt": "2026-06-30T12:20:35.744Z",
   "lastCompletedCase": "TARGET-016F-NUMBER-SERIES-PERSONALIZE-OR-SETUP-ASSISTED-ROUTE",
-  "nextCase": "TARGET-016H-NUMBER-SERIES-SOURCE-OR-ASSISTED-SETUP-ROUTE",
+  "nextCase": "TARGET-016I-NUMBER-SERIES-LINES-OFFICIAL-NEW-ROUTE-WRITE-GATE",
   "nextStepDecisionCard": {
     "currentCase": "TARGET-016E-NUMBER-SERIES-LINES-FIELD-FLOW-CONTROLLED-FIT",
     "plannedNextCaseBeforeReview": "TARGET-016E-NUMBER-SERIES-LINES-FIELD-FLOW-CONTROLLED-FIT",

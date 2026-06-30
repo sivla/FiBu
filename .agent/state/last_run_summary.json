@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-016G-20260630",
-  "caseId": "TARGET-016G-NUMBER-SERIES-PERSONALIZE-FIELD-ACTION-MAP",
+  "runId": "TARGET-016H-20260630",
+  "caseId": "TARGET-016H-NUMBER-SERIES-SOURCE-OR-ASSISTED-SETUP-ROUTE",
   "status": "observed",
-  "summary": "TARGET-016G mapped Number Series Lines Personalize field/action affordances without saving changes.",
+  "summary": "TARGET-016H selected a source-backed official Number Series Lines route and created TARGET-016I as the next controlled write-gate.",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "posted": false,
@@ -13,39 +13,37 @@
   "masterDataChanged": false,
   "apiShortcut": false,
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/target-016g-number-series-personalize-field-action-map/TARGET-016G-result.json",
-    "playwright/projects/fibu-book5/img/target-016g-010-lines-context-before-personalize-map.png",
-    "playwright/projects/fibu-book5/img/target-016g-020-personalize-mode-field-action-map.png",
-    "playwright/projects/fibu-book5/img/target-016g-030-personalize-hover-tooltip-map.png",
-    "playwright/projects/fibu-book5/img/target-016g-050-after-personalize-field-map-exit.png"
-  ],
-  "resultPaths": [
+    "playwright/projects/fibu-book5/evidence/target-016h-number-series-source-or-assisted-setup-route/TARGET-016H-result.json",
+    "playwright/projects/fibu-book5/evidence/target-016h-number-series-source-or-assisted-setup-route/README.md",
     "playwright/projects/fibu-book5/evidence/target-016g-number-series-personalize-field-action-map/TARGET-016G-result.json"
   ],
+  "resultPaths": [
+    "playwright/projects/fibu-book5/evidence/target-016h-number-series-source-or-assisted-setup-route/TARGET-016H-result.json"
+  ],
   "blockedBy": [],
-  "nextCase": "TARGET-016H-NUMBER-SERIES-SOURCE-OR-ASSISTED-SETUP-ROUTE",
-  "nextStep": "Run TARGET-016H: source-backed or Assisted Setup route discovery before another Number Series Lines write attempt.",
+  "nextCase": "TARGET-016I-NUMBER-SERIES-LINES-OFFICIAL-NEW-ROUTE-WRITE-GATE",
+  "nextStep": "Run TARGET-016I: controlled official Number Series Lines route for U-CUST only, using Zeilen -> Neu -> Startdatum -> Startnr. -> Endnr., then reopen proof; no setup assignment or master data.",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-016G-NUMBER-SERIES-PERSONALIZE-FIELD-ACTION-MAP",
-    "plannedNextCaseBeforeReview": "TARGET-016G-NUMBER-SERIES-PERSONALIZE-FIELD-ACTION-MAP",
-    "lastEvidenceSummary": "TARGET-016F proved Settings -> Personalisieren enters Nr.-Serienzeilen personalization mode and exits via Fertig without changes.",
+    "currentCase": "TARGET-016H-NUMBER-SERIES-SOURCE-OR-ASSISTED-SETUP-ROUTE",
+    "plannedNextCaseBeforeReview": "TARGET-016H-NUMBER-SERIES-SOURCE-OR-ASSISTED-SETUP-ROUTE",
+    "lastEvidenceSummary": "TARGET-016G proved Personalisieren on Nr.-Serienzeilen but did not expose a safe Add-field or value-entry route.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The next non-repeated step is to map fields/actions in the now-proven Personalize mode before any write attempt.",
+    "reason": "A source-backed route decision is necessary before another setup write attempt because the previous UI probes repeatedly failed.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-016H-NUMBER-SERIES-SOURCE-OR-ASSISTED-SETUP-ROUTE",
+        "caseId": "TARGET-016I-NUMBER-SERIES-LINES-OFFICIAL-NEW-ROUTE-WRITE-GATE",
         "status": "ready-next",
-        "reason": "Depends on whether Personalize exposes useful field/action affordances."
+        "reason": "Uses the documented Lines route and changes only the one missing line context under a controlled setup gate."
       },
       {
         "caseId": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
         "status": "needs-setup-first",
-        "reason": "Assignments require valid line ranges."
+        "reason": "Assignments require visible persisted number-series line values first."
       },
       {
         "caseId": "TARGET-018-CUSTOMER-MASTERDATA-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Customer creation depends on customer number-series assignment."
+        "reason": "Customer creation depends on assigned customer number series."
       },
       {
         "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT",
@@ -55,24 +53,29 @@
       {
         "caseId": "TARGET-020-VAT-SETUP-READINESS",
         "status": "ready-after-current",
-        "reason": "Follows foundation sequencing."
+        "reason": "Follows foundation sequencing after or alongside posting-group readiness."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-016H-NUMBER-SERIES-SOURCE-OR-ASSISTED-SETUP-ROUTE",
-    "whySelectedNextCaseIsBest": "TARGET-016G adds field/action UI knowledge without changing setup and avoids repeating failed grid typing.",
+    "queueChangesMade": [
+      "Marked TARGET-016H observed as source-backed route decision.",
+      "Added TARGET-016I as the next controlled official Lines write-gate."
+    ],
+    "selectedNextCase": "TARGET-016I-NUMBER-SERIES-LINES-OFFICIAL-NEW-ROUTE-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It is the first next case aligned with Microsoft Learn and avoids all rejected UI typing routes.",
     "risksBeforeNextCase": [
-      "Do not save Personalize changes without explicit gate.",
-      "Do not change checkbox states.",
-      "Do not create master data before line ranges are ready."
+      "Do not assign U-CUST in Sales & Receivables Setup yet.",
+      "Do not change Allow Gaps in Nos. or Open checkboxes unless explicitly gated.",
+      "Stop if Startnr./Endnr. are not visible after reopen."
     ],
     "requiredPreparation": [
-      "Review TARGET-016G screenshots and decide route based on visible field/action affordances."
+      "Open only playthru / UNIVERSAARL-DE.",
+      "Use screenshot QA before and after the line write.",
+      "Capture reopen proof."
     ]
   },
-  "updatedAt": "2026-06-30T12:51:51.335Z",
-  "lastCase": "TARGET-016G-NUMBER-SERIES-PERSONALIZE-FIELD-ACTION-MAP",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-016g-number-series-personalize-field-action-map/TARGET-016G-result.json",
+  "updatedAt": "2026-06-30T13:02:28.387Z",
+  "lastCase": "TARGET-016H-NUMBER-SERIES-SOURCE-OR-ASSISTED-SETUP-ROUTE",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-016h-number-series-source-or-assisted-setup-route/TARGET-016H-result.json",
   "noPreview": true,
   "noPosting": true,
   "noMasterData": true,

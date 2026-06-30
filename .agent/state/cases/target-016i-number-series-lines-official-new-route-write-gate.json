@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-016I-NUMBER-SERIES-LINES-OFFICIAL-NEW-ROUTE-WRITE-GATE",
+  "title": "Universaarl Number Series Lines official New route write gate",
+  "instance": "playthru",
+  "targetCompany": "UNIVERSAARL-DE",
+  "legalName": "Universaarl GmbH",
+  "workType": "foundation-number-series-lines-official-new-write-gate",
+  "status": "ready-next",
+  "dependsOn": [
+    "TARGET-016H-NUMBER-SERIES-SOURCE-OR-ASSISTED-SETUP-ROUTE"
+  ],
+  "goal": "Test the Microsoft Learn-backed Number Series Lines path for U-CUST only: Zeilen -> Neu -> Startdatum -> Startnr. -> Endnr.; then reopen proof. Do not assign setup or create master data.",
+  "evidenceTarget": "playwright/projects/fibu-book5/evidence/target-016i-number-series-lines-official-new-route-write-gate/",
+  "sourceBackedBy": [
+    {
+      "title": "Microsoft Learn: Create number series",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/ui-create-number-series",
+      "claimSupported": "No. Series use Lines with Starting Date, Starting No. and Ending No.; Manual Nos. and Allow Gaps are separate settings; setup assignment happens later in setup pages."
+    }
+  ],
+  "allowedActionsWhenRun": [
+    "open-playthru-business-central",
+    "open-UNIVERSAARL-DE-with-documentation",
+    "open-number-series-page",
+    "select-existing-U-CUST-row",
+    "open-Zeilen-from-selected-number-series",
+    "use-official-lines-new-route-for-U-CUST-only",
+    "set-starting-date-starting-no-ending-no-under-gate",
+    "reopen-lines-for-persistence-proof",
+    "capture-screenshot-qa",
+    "write-result",
+    "queue-and-state-update"
+  ],
+  "defaultLockedActions": [
+    "assign-number-series-in-sales-setup",
+    "assign-number-series-in-purchase-setup",
+    "assign-number-series-in-inventory-setup",
+    "master-data-create",
+    "preview-posting",
+    "posting",
+    "checkbox-change",
+    "api-shortcut"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "leave-playthru",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "api-shortcut-without-explicit-case-permission",
+    "final-german-claim-from-rm-demo",
+    "operate-in-legacy-lab-as-active-target",
+    "mass-replace-historical-evidence",
+    "delete-legacy-evidence",
+    "claim-rm-demo-as-final-proof",
+    "operate-in-CRONUS-as-active-target",
+    "post",
+    "preview-posting",
+    "api-shortcut",
+    "create-master-data-before-number-series-lines",
+    "repeat-header-coordinate-route-from-TARGET-016B",
+    "repeat-selected-cell-typing-route-from-TARGET-016C",
+    "repeat-plain-field-flow-route-from-TARGET-016E",
+    "repeat-F2-route-from-TARGET-016E",
+    "claim-number-series-setup-ready-without-visible-start-end-values",
+    "save-personalization-with-field-changes",
+    "change-number-series-line-checkboxes",
+    "repeat-more-options-copilot-generate-misclick-from-TARGET-016F",
+    "repeat-personalize-add-field-route-from-TARGET-016G-without-new-visible-field-button",
+    "claim-personalize-as-value-write-route-without-persistence",
+    "assign-number-series-before-line-persistence-proof",
+    "change-number-series-gap-checkbox-without-gate"
+  ],
+  "successCriteria": [
+    "U-CUST Lines page is opened in playthru / UNIVERSAARL-DE.",
+    "Startdatum, Startnr. and Endnr. are entered by the official Lines New route or target values are already visible.",
+    "After reopening U-CUST Lines, U-CUST00001 and U-CUST99999 are visible in the correct line.",
+    "No setup assignment, master data, preview posting or posting occurs.",
+    "No gap/open checkbox is changed without explicit gate."
+  ],
+  "targetValues": {
+    "seriesCode": "U-CUST",
+    "startingDate": "2026-01-01",
+    "startingNo": "U-CUST00001",
+    "endingNo": "U-CUST99999"
+  },
+  "migrationRelevance": "german-final-candidate",
+  "finalScreenshotNeeded": true,
+  "nextSafeAction": "Run the official U-CUST Number Series Lines New route with before/after/reopen evidence.",
+  "updatedAt": "2026-06-30T13:02:28.387Z"
+}

@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-06-30T12:51:51.335Z",
+  "updatedAt": "2026-06-30T13:02:28.387Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "activeArea": "universaarl-w1-foundation-number-series",
-  "activeCase": "TARGET-016H-NUMBER-SERIES-SOURCE-OR-ASSISTED-SETUP-ROUTE",
-  "active_case_file": ".agent/state/cases/target-016h-number-series-source-or-assisted-setup-route.json",
+  "activeCase": "TARGET-016I-NUMBER-SERIES-LINES-OFFICIAL-NEW-ROUTE-WRITE-GATE",
+  "active_case_file": ".agent/state/cases/target-016i-number-series-lines-official-new-route-write-gate.json",
   "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
   "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
   "mode": "universaarl-target-execution",
@@ -19,12 +19,14 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "review-target-016g-evidence",
-    "source-check-number-series-lines-and-assisted-setup",
-    "open-playthru-business-central-if-needed",
+    "open-playthru-business-central",
     "open-UNIVERSAARL-DE-with-documentation",
-    "open-assisted-setup-or-number-series-pages-readonly",
-    "inspect-standard-business-central-route-without-value-write",
+    "open-number-series-page",
+    "select-existing-U-CUST-row",
+    "open-Zeilen-from-selected-number-series",
+    "use-official-lines-new-route-for-U-CUST-only",
+    "set-starting-date-starting-no-ending-no-under-gate",
+    "reopen-lines-for-persistence-proof",
     "capture-screenshot-qa",
     "write-result",
     "queue-and-state-update"
@@ -56,9 +58,11 @@
     "change-number-series-line-checkboxes",
     "repeat-more-options-copilot-generate-misclick-from-TARGET-016F",
     "repeat-personalize-add-field-route-from-TARGET-016G-without-new-visible-field-button",
-    "claim-personalize-as-value-write-route-without-persistence"
+    "claim-personalize-as-value-write-route-without-persistence",
+    "assign-number-series-before-line-persistence-proof",
+    "change-number-series-gap-checkbox-without-gate"
   ],
-  "nextStep": "Run TARGET-016H: because TARGET-016G did not expose a safe Add field/value route, use source-backed or Assisted Setup route discovery before another Number Series Lines write attempt.",
+  "nextStep": "Run TARGET-016I: controlled official Number Series Lines route for U-CUST only, using Zeilen -> Neu -> Startdatum -> Startnr. -> Endnr., then reopen proof; no setup assignment or master data.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -3448,26 +3452,26 @@
       "replace-with-better-case"
     ],
     "latestDecisionCard": {
-      "currentCase": "TARGET-016G-NUMBER-SERIES-PERSONALIZE-FIELD-ACTION-MAP",
-      "plannedNextCaseBeforeReview": "TARGET-016G-NUMBER-SERIES-PERSONALIZE-FIELD-ACTION-MAP",
-      "lastEvidenceSummary": "TARGET-016F proved Settings -> Personalisieren enters Nr.-Serienzeilen personalization mode and exits via Fertig without changes.",
+      "currentCase": "TARGET-016H-NUMBER-SERIES-SOURCE-OR-ASSISTED-SETUP-ROUTE",
+      "plannedNextCaseBeforeReview": "TARGET-016H-NUMBER-SERIES-SOURCE-OR-ASSISTED-SETUP-ROUTE",
+      "lastEvidenceSummary": "TARGET-016G proved Personalisieren on Nr.-Serienzeilen but did not expose a safe Add-field or value-entry route.",
       "isPlannedNextCaseStillSensible": true,
-      "reason": "The next non-repeated step is to map fields/actions in the now-proven Personalize mode before any write attempt.",
+      "reason": "A source-backed route decision is necessary before another setup write attempt because the previous UI probes repeatedly failed.",
       "lookaheadReviewed": [
         {
-          "caseId": "TARGET-016H-NUMBER-SERIES-SOURCE-OR-ASSISTED-SETUP-ROUTE",
+          "caseId": "TARGET-016I-NUMBER-SERIES-LINES-OFFICIAL-NEW-ROUTE-WRITE-GATE",
           "status": "ready-next",
-          "reason": "Depends on whether Personalize exposes useful field/action affordances."
+          "reason": "Uses the documented Lines route and changes only the one missing line context under a controlled setup gate."
         },
         {
           "caseId": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
           "status": "needs-setup-first",
-          "reason": "Assignments require valid line ranges."
+          "reason": "Assignments require visible persisted number-series line values first."
         },
         {
           "caseId": "TARGET-018-CUSTOMER-MASTERDATA-PREFLIGHT",
           "status": "needs-setup-first",
-          "reason": "Customer creation depends on customer number-series assignment."
+          "reason": "Customer creation depends on assigned customer number series."
         },
         {
           "caseId": "TARGET-019-POSTING-GROUPS-PREFLIGHT",
@@ -3477,19 +3481,24 @@
         {
           "caseId": "TARGET-020-VAT-SETUP-READINESS",
           "status": "ready-after-current",
-          "reason": "Follows foundation sequencing."
+          "reason": "Follows foundation sequencing after or alongside posting-group readiness."
         }
       ],
-      "queueChangesMade": [],
-      "selectedNextCase": "TARGET-016H-NUMBER-SERIES-SOURCE-OR-ASSISTED-SETUP-ROUTE",
-      "whySelectedNextCaseIsBest": "TARGET-016G adds field/action UI knowledge without changing setup and avoids repeating failed grid typing.",
+      "queueChangesMade": [
+        "Marked TARGET-016H observed as source-backed route decision.",
+        "Added TARGET-016I as the next controlled official Lines write-gate."
+      ],
+      "selectedNextCase": "TARGET-016I-NUMBER-SERIES-LINES-OFFICIAL-NEW-ROUTE-WRITE-GATE",
+      "whySelectedNextCaseIsBest": "It is the first next case aligned with Microsoft Learn and avoids all rejected UI typing routes.",
       "risksBeforeNextCase": [
-        "Do not save Personalize changes without explicit gate.",
-        "Do not change checkbox states.",
-        "Do not create master data before line ranges are ready."
+        "Do not assign U-CUST in Sales & Receivables Setup yet.",
+        "Do not change Allow Gaps in Nos. or Open checkboxes unless explicitly gated.",
+        "Stop if Startnr./Endnr. are not visible after reopen."
       ],
       "requiredPreparation": [
-        "Review TARGET-016G screenshots and decide route based on visible field/action affordances."
+        "Open only playthru / UNIVERSAARL-DE.",
+        "Use screenshot QA before and after the line write.",
+        "Capture reopen proof."
       ]
     }
   },
@@ -3817,7 +3826,7 @@
   },
   "activeCaseFile": ".agent/state/cases/prep-034-role-center-readonly-shell-map.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
-  "nextCase": "TARGET-016G-NUMBER-SERIES-PERSONALIZE-FIELD-ACTION-MAP",
+  "nextCase": "TARGET-016I-NUMBER-SERIES-LINES-OFFICIAL-NEW-ROUTE-WRITE-GATE",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
     "status": "prep-observed",
@@ -4986,5 +4995,46 @@
     "noPreview": true,
     "noPosting": true,
     "updatedAt": "2026-06-30T12:51:51.335Z"
+  },
+  "latestTarget016HNumberSeriesSourceDecision": {
+    "caseId": "TARGET-016H-NUMBER-SERIES-SOURCE-OR-ASSISTED-SETUP-ROUTE",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-016h-number-series-source-or-assisted-setup-route/TARGET-016H-result.json",
+    "sourceRefs": [
+      {
+        "title": "Microsoft Learn: Create number series",
+        "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/ui-create-number-series",
+        "claimSupported": "No. Series use Lines with Starting Date, Starting No. and Ending No.; Manual Nos. and Allow Gaps are separate settings; setup assignment happens later in setup pages."
+      }
+    ],
+    "decision": {
+      "selectedRoute": "official-no-series-lines-new-starting-date-first",
+      "rejectedRoutes": [
+        "repeat-header-coordinate-route-from-TARGET-016B",
+        "repeat-selected-cell-typing-route-from-TARGET-016C",
+        "repeat-plain-field-flow-route-from-TARGET-016E",
+        "repeat-F2-route-from-TARGET-016E",
+        "repeat-more-options-copilot-generate-misclick-from-TARGET-016F",
+        "repeat-personalize-add-field-route-from-TARGET-016G-without-new-visible-field-button"
+      ],
+      "nextCase": "TARGET-016I-NUMBER-SERIES-LINES-OFFICIAL-NEW-ROUTE-WRITE-GATE",
+      "why": "The source-backed route is the first non-repeated path that matches Business Central's documented number-series flow and the observed U-CUST Lines page."
+    },
+    "observed": [
+      "Microsoft Learn source-backed route for number series was reviewed and mapped to the Universaarl blocker.",
+      "The official route separates number-series headers from number-series lines with Starting Date, Starting No. and Ending No.",
+      "TARGET-016G Personalize evidence remains diagnostic and is not a value-write route."
+    ],
+    "notProved": [
+      "No new Business Central UI action was executed in TARGET-016H.",
+      "No U-CUST Startnr./Endnr. value was written or reloaded in this run.",
+      "No setup assignment, master data, preview posting, posting or ledger trace was created.",
+      "No checkbox value such as Allow Gaps in Nos. / Luecken in Nummern zulassen was changed."
+    ],
+    "nextCase": "TARGET-016I-NUMBER-SERIES-LINES-OFFICIAL-NEW-ROUTE-WRITE-GATE",
+    "setupChanged": false,
+    "noPreview": true,
+    "noPosting": true,
+    "updatedAt": "2026-06-30T13:02:28.387Z"
   }
 }

@@ -111,6 +111,8 @@ Beispiele:
 | Universaarl wurde mit `Production - Setup Data Only` angelegt. | Evidence-Claim | nein | erst nach sichtbarer Auswahl und Erfolg |
 | Nummernserien helfen Datensaetze, Konten, Belege und Journalzeilen eindeutig zu identifizieren. | Produkt-/Setupclaim | ja | Microsoft Learn `Create number series` |
 | Die Universaarl-Verkaufsrechnung bekommt Nummer `...`. | Evidence-Claim | nein | erst nach konkretem Beleg |
+| In den Nr.-Serienzeilen werden Startdatum, Startnummer und Endnummer gepflegt. | Produkt-/Setupclaim | ja | Microsoft Learn `Create number series`; konkrete Universaarl-Werte brauchen TARGET-016I |
+| `U-CUST00001` ist als Startnummer fuer Universaarl gespeichert. | Evidence-Claim | nein | erst nach sichtbarem Reopen-Proof in `UNIVERSAARL-DE` |
 | Posting Groups steuern Kontenfindung. | Produkt-/Setupclaim | ja | Microsoft Learn `Posting group setup` |
 | Ein Universaarl-Beleg bucht auf Konto `...`. | Setup-/Posting-Wirkung | nein | erst nach Preview/Posting/Entries |
 | VAT Setup kombiniert VAT Business und Product Posting Groups. | Produkt-/Setupclaim | ja | Microsoft Learn `Set up VAT` |

@@ -28,6 +28,7 @@ Diese Registry ordnet Quellen fuer das Universaarl-Buch und den Autopilot. Sie e
 | Microsoft Learn: Searching, sorting, and filtering data in Business Central | 1 | Look and Feel, Listen, Filter | Such-, Sortier- und Filterprinzipien, Filterausdruecke, `Filter list by`, `Filter totals by`, Reportfilter | Beweis, dass Universaarl-Daten existieren oder ein konkreter Filter im Zielmandanten funktioniert | Produkt-/UI-Claim; Universaarl-Beispiel braucht eigene Evidence | geprueft 2026-06-29 |
 | Microsoft Learn: Analyze list page and query data using data analysis mode | 1 | Look and Feel, Analysis Mode | read-only Analysemodus, Gruppierung/Filterung/Summen auf Listen- oder Querydaten | Buchungs-, Posting- oder Reportfinalnachweis | Produkt-/UI-Claim; konkrete Universaarl-Auswertung braucht eigene Evidence | geprueft 2026-06-29 |
 | Microsoft Learn: Personalize your workspace | 1 | Look and Feel, Debugging, Personalisierung | Felder, Spalten, Aktionen und Oberflaechenbereiche fuer den Benutzer sichtbar machen | Tabellenlogik, Buchungswirkung oder allgemeingueltige Sicht fuer alle Benutzer | Produkt-/UI-Claim; konkrete Universaarl-Personalisierung braucht eigene Evidence und Gate | geprueft 2026-06-30 |
+| Microsoft Learn: Create number series | 1 | Number Series, No. Series Lines | Nummernseriencodes, Lines, Starting Date, Starting No., Ending No., Manual Nos., Allow Gaps, spaetere Setup-Zuweisung | konkrete Universaarl-Werte, persistierte Start-/Endnummern, deutsche Rechts-/Steuerfinalclaims | Produkt-/Setupclaim; Universaarl braucht TARGET-016I Write-Gate und spaetere Setup-/Beleg-Evidence | geprueft 2026-06-30, TARGET-016H |
 | Microsoft Learn: Business intelligence and reporting | 1 | Reporting, Request Pages | Reporting-/BI-Bereich und Reportauswertung als Produktfunktion | konkrete Reportparameter oder Universaarl-Reportausgabe | Produktclaim; konkrete Request Page und Reportausgabe brauchen eigene Evidence | geprueft 2026-06-30 |
 | Microsoft Learn: Dynamics 365 Implementation Guide overview | 3 | Implementierungsmethodik | Strategize, Initiate, Implement, Prepare, Operate | konkrete BC-Feldlogik | Best-Practice-/Projektclaim | geprueft 2026-06-29 |
 | Microsoft Learn: Success by Design framework | 3 | Governance, Reviews, Projektrisiko | Projekt-, Test- und Architekturdenken | UI- oder Buchungsbeweis | Best-Practice-/Projektclaim | geprueft 2026-06-29 |
@@ -91,6 +92,18 @@ Die erste Universaarl-Welle wird nicht aus alten RM-/CRONUS-Laborbelegen abgelei
 - Microsoft Learn `Work with dimensions` stuetzt Dimensionen, Dimension Sets, Global/Shortcut Dimensions und Default Dimensions. Eigene Evidence bleibt Pflicht fuer Universaarl-Dimensionswerte und Dimension Set Entries.
 
 Der naechste praktische Source-Nachfolger ist `PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT`, weil die Produktquellen nun klar trennen, was die spaetere Mandantenlisten-Evidence beweisen muss.
+
+## TARGET-016H Nummernserien-Quellenentscheidung
+
+Microsoft Learn `Create number series` stuetzt fuer TARGET-016H den BC-Standardpfad: Nummernserie oeffnen, `Neu` fuer einen Code nutzen, danach `Zeilen` oeffnen und dort die Line-Felder wie `Starting Date`, `Starting No.` und `Ending No.` pflegen. Die Quelle trennt ausserdem `Manual Nos.`, `Allow Gaps in Nos.` und die spaetere Zuweisung in Setup-Seiten wie `Sales & Receivables Setup`.
+
+Fuer Universaarl folgt daraus:
+
+- TARGET-016B bis TARGET-016G waren Diagnosepfade, aber kein vollstaendiger Standardpfad fuer Wertpersistenz.
+- `Personalisieren` beweist Sichtbarkeit von Feldern/Spalten, aber nicht das Schreiben von `Startnr.`/`Endnr.`.
+- Der naechste praktische Write-Gate darf nur den offiziellen Lines-Pfad testen: richtige `U-*` Nummernserie waehlen, `Zeilen`, `Neu`, `Startdatum`, `Startnr.`, `Endnr.`; danach Reopen-Proof.
+- `Luecken in Nummern zulassen` bleibt default-locked und darf nicht als Nebeneffekt geaendert werden.
+- Setup-Zuweisung an Sales/Purchase/Inventory bleibt bis nach sichtbarer Line-Persistenz gesperrt.
 
 ## PREP-027 Implementation-Guide-Quellenentscheidung
 
