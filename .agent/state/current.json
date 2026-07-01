@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T05:25:00.000Z",
+  "updatedAt": "2026-07-01T06:10:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-vat-matrix-recreate-route-diagnosis",
-  "activeCase": "TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS",
-  "active_case_file": ".agent/state/cases/target-027d15-vat-matrix-recreate-route-diagnosis.json",
-  "lastReferenceCase": "TARGET-027D14-VAT-MATRIX-RECREATE-AFTER-CLEANUP",
-  "lastReferenceCaseFile": ".agent/state/cases/target-027d14-vat-matrix-recreate-after-cleanup.json",
+  "activeArea": "universaarl-vat-matrix-route-decision-after-diagnosis",
+  "activeCase": "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION",
+  "active_case_file": ".agent/state/cases/target-027d16-vat-matrix-recreate-card-or-inspection-route-decision.json",
+  "lastReferenceCase": "TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS",
+  "lastReferenceCaseFile": ".agent/state/cases/target-027d15-vat-matrix-recreate-route-diagnosis.json",
   "mode": "universaarl-target-execution",
   "requiresStrongModel": true,
   "requiredPreflightChecks": [
@@ -49,8 +49,8 @@
     "api-shortcut",
     "claim-german-vat-final-proof"
   ],
-  "nextCase": "TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS",
-  "nextStep": "Diagnose Page 472 transient new-row/card/field route after D14 blocked before any value write.",
+  "nextCase": "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION",
+  "nextStep": "Review D14/D15 no-write diagnostics and choose a non-repeating VAT matrix route before any further setup write.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -233,7 +233,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "Universaarl VAT Page 472 D14 proved that Neu creates a transient blank row but no true active editor for the first mandatory VAT Business Posting Group cell; next D15 is diagnosis only, not another setup write.",
+  "currentCoverageFocus": "Universaarl VAT Page 472 D15 proved Page Inspection is useful and Bearbeiten remains list/grid surface; no target row persisted and no values were typed. Next D16 is local route decision, not BC execution.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -6929,5 +6929,28 @@
     ],
     "learning": "Neu/New on Page 472 can expose a transient blank row and cell geometry, but the first mandatory business posting group cell did not expose a true active editor; screenshot QA caught the row/header distinction.",
     "nextCase": "TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS"
+  },
+  "latestVatMatrixRecreateRouteDiagnosis": {
+    "caseId": "TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS",
+    "status": "observed-route-diagnosis-no-write",
+    "completedAt": "2026-07-01T06:10:00.000Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d15-vat-matrix-recreate-route-diagnosis/TARGET-027D15-result.json",
+    "sourceInstance": "playthru",
+    "sourceCompany": "UNIVERSAARL-DE",
+    "setupChanged": false,
+    "setupChangeAttempted": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "screenshots": [
+      "target-027d15-010-before-diagnosis.png",
+      "target-027d15-020-after-new-row-diagnosis.png",
+      "target-027d15-030-after-cell-probes.png",
+      "target-027d15-040-after-edit-card-probe.png",
+      "target-027d15-050-after-page-inspection-probe.png",
+      "target-027d15-060-reopen-no-persist-proof.png"
+    ],
+    "learning": "Page Inspection shows VAT Posting Setup (472, List), table 325 and empty row field values; Bearbeiten did not open a safe card route; no INLAND/VAT19 row persisted after reopen.",
+    "nextCase": "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION"
   }
 }

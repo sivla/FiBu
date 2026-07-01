@@ -616,6 +616,19 @@ Screenshot-QA zu TARGET-027D13C: Dieses Bildpaket beweist einen echten UI-Lernfo
 
 Screenshot-QA zu TARGET-027D14: Der Lauf beweist keinen USt-Erfolg, aber eine wichtige Bediengrenze. Die Seite kann eine neue Zeile anzeigen, ohne dass der erste fachliche Pflichtwert sicher editierbar ist. Fuer das Buch ist dieses Paket nur internes Setup-/Playwright-Lernen. Fuer den naechsten Lauf zaehlt nicht ein weiterer Tippversuch, sondern eine gezielte Diagnose der echten Feld-/Karten-/Page-Inspection-Route.
 
+## Universaarl VAT Matrix Route Diagnosis TARGET-027D15
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Interner Beweis | Beweist nicht | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-027d15-010-before-diagnosis.png` | MwSt.-Buchungsmatrix Einr., Page 472 | `playthru` / `UNIVERSAARL-DE` | Vor No-Write-Diagnose | Page 472 ist erreichbar und die Zielzeile ist nicht sichtbar | Richtiger Startkontext nach D14 | keine Matrix, keine USt-Berechnung | `setup-before`, `diagnosis-start` |
+| `target-027d15-020-after-new-row-diagnosis.png` | MwSt.-Buchungsmatrix Einr., Page 472 | `playthru` / `UNIVERSAARL-DE` | Nach `Neu` fuer Diagnose | Transiente leere Zeile mit default-artigen Feldern | Zellgeometrie kann ohne Werteingabe untersucht werden | keine persistierte Zeile, keine Werte | `diagnostic-only`, `transient-row` |
+| `target-027d15-030-after-cell-probes.png` | MwSt.-Buchungsmatrix Einr., Page 472 | `playthru` / `UNIVERSAARL-DE` | Nach Zellfokus-Proben | Zell-/Header-/Menuefokus ist sichtbar | Aktive Controls sind nicht automatisch fachliche Editoren | keine sichere Schreibroute | `active-element-diagnosis` |
+| `target-027d15-040-after-edit-card-probe.png` | MwSt.-Buchungsmatrix Einr., Page 472 | `playthru` / `UNIVERSAARL-DE` | Nach `Bearbeiten`-Probe | Die Oberflaeche bleibt Listen-/Grid-artig | `Bearbeiten` ist hier kein bewiesener Kartenpfad | keine Kartenroute, keine Werte | `card-route-not-proven` |
+| `target-027d15-050-after-page-inspection-probe.png` | Seitenueberpruefung ueber Page 472 | `playthru` / `UNIVERSAARL-DE` | Page Inspection | `VAT Posting Setup (472, List)`, Tabelle `VAT Posting Setup (325)` und leere Feldwerte sind sichtbar | Technische Page-/Table-/Field-Wahrheit fuer die transiente Zeile | keine gespeicherte Matrix, keine Buchungswirkung | `page-inspection-proof`, `field-diagnosis` |
+| `target-027d15-060-reopen-no-persist-proof.png` | MwSt.-Buchungsmatrix Einr., Page 472 | `playthru` / `UNIVERSAARL-DE` | Reopen nach Diagnose | Die Liste zeigt keine `INLAND`/`VAT19`-Zeile | Der Diagnose-Lauf hat keine Zielzeile persistiert | keine fertige Matrix, keine USt | `reopen-proof`, `no-persisted-row` |
+
+Screenshot-QA zu TARGET-027D15: Das wichtigste Bild ist die Seitenueberpruefung. Sie zeigt die technische Wahrheit der Page und Tabelle, aber gerade deshalb auch die Grenze: Die relevanten Felder sind leer und noch nicht sicher geschrieben. Der naechste Schritt ist eine Routenentscheidung auf Basis dieser Diagnose, nicht ein weiterer blinder Zellschreibversuch.
+
 ## PREP-010 Screenshot-QA-Regel
 
 Vor jeder Buch- oder Clickguide-Nutzung muss der Screenshot gegen die konkrete Behauptung geprueft werden:

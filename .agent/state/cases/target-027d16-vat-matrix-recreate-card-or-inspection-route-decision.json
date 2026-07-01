@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "VAT matrix recreate route decision after D15 no-write diagnosis",
+  "purpose": "Review D14/D15 screenshots, Page Inspection field facts and Microsoft Learn VAT setup source before choosing any future VAT matrix write route.",
+  "sourceCases": [
+    "TARGET-027D14-VAT-MATRIX-RECREATE-AFTER-CLEANUP",
+    "TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": false,
+  "allowedActions": [
+    "read-d14-d15-results",
+    "review-page-inspection-field-facts",
+    "review-microsoft-learn-vat-setup-source",
+    "decide-next-route",
+    "update-source-registry-atlas-queue",
+    "create-next-narrow-case"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "type-INLAND-or-VAT19",
+    "type-19-3806-1406",
+    "delete-row",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-german-vat-final-proof"
+  ],
+  "acceptanceCriteria": [
+    "D16 selects exactly one non-repeating route for the next VAT matrix write or explicitly parks VAT matrix setup.",
+    "D16 explains why Bearbeiten/list route and blind grid typing are insufficient.",
+    "D16 may create a future write case only if it has a concrete field/control route and stop condition.",
+    "No BC, Playwright, setup, master data, preview or posting occurs in D16."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS",
+    "plannedNextCaseBeforeReview": "TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS",
+    "lastEvidenceSummary": "D14 showed Neu/New can expose a transient blank Page-472 row, but no true editor for the first mandatory field.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Before any further VAT setup write, the UI route must distinguish rowheader/header/display cells from real editable controls.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION",
+        "status": "ready-next",
+        "reason": "D15 provides the no-write geometry/control data needed for a route decision."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Posting groups wait for correct VAT matrix setup."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for VAT/posting defaults."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness waits for VAT matrix and posting groups."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "The next step should be a local/source/UI route decision, not another blind list-cell write.",
+    "risksBeforeNextCase": [
+      "Do not type setup values from D15 alone.",
+      "Do not claim VAT setup or final German VAT correctness.",
+      "Do not start master data before VAT/posting setup is ready."
+    ],
+    "requiredPreparation": [
+      "Review D15 active-element and Page Inspection observations.",
+      "Choose a card/detail route, Page Inspection backed route, or source-backed alternative before writing values."
+    ]
+  },
+  "createdAt": "2026-07-01T06:10:00.000Z"
+}

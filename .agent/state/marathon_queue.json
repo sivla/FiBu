@@ -2470,7 +2470,7 @@
     {
       "id": "TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS",
       "order": 10074,
-      "status": "pending",
+      "status": "done",
       "category": "vat-matrix-recreate-route-diagnosis",
       "expectedImpact": "diagnose-page-472-new-row-or-card-route-after-d14-editor-blocker",
       "mayRunPlaywright": true,
@@ -2482,10 +2482,31 @@
       "sourceCase": "TARGET-027D14-VAT-MATRIX-RECREATE-AFTER-CLEANUP",
       "lookaheadStatus": "ready-next",
       "goal": "Map Page 472 transient new-row controls, active element state, card/Bearbeiten route and Page Inspection facts without typing target setup values.",
+      "blockedBy": [],
+      "completedAt": "2026-07-01T06:10:00.000Z",
+      "result": "No-write Page 472 route diagnosis completed. Page Inspection proved technical page/table/field context and empty transient row values; Bearbeiten did not open a safe card route; no setup persisted.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-027d15-vat-matrix-recreate-route-diagnosis/TARGET-027D15-result.json",
+      "nextCase": "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION"
+    },
+    {
+      "id": "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION",
+      "order": 10075,
+      "status": "pending",
+      "category": "vat-matrix-route-decision-after-diagnosis",
+      "expectedImpact": "select-non-repeating-vat-matrix-write-route-after-page-inspection-diagnosis",
+      "mayRunPlaywright": false,
+      "effectiveBcActionsAllowed": false,
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "reason": "D15 captured Page 472 no-write diagnostics and Page Inspection facts; a route decision is required before any future setup write.",
+      "sourceCase": "TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS",
+      "lookaheadStatus": "ready-next",
+      "goal": "Choose the next safe VAT matrix route or park the VAT matrix with explicit consequences; no BC execution in D16.",
       "blockedBy": []
     }
   ],
-  "lastUpdated": "2026-07-01T05:25:00.000Z",
+  "lastUpdated": "2026-07-01T06:10:00.000Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -2597,19 +2618,24 @@
     }
   },
   "updatedAt": "2026-07-01T04:05:00.000Z",
-  "lastCompletedCase": "TARGET-027D14-VAT-MATRIX-RECREATE-AFTER-CLEANUP",
-  "nextCase": "TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS",
+  "lastCompletedCase": "TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS",
+  "nextCase": "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-027D14-VAT-MATRIX-RECREATE-AFTER-CLEANUP",
-    "plannedNextCaseBeforeReview": "TARGET-027D14-VAT-MATRIX-RECREATE-AFTER-CLEANUP",
-    "lastEvidenceSummary": "D13C proved the incomplete INLAND/VAT19 row is absent after row-inline cleanup and reopen proof.",
+    "currentCase": "TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS",
+    "plannedNextCaseBeforeReview": "TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS",
+    "lastEvidenceSummary": "D14 showed Neu/New can expose a transient blank Page-472 row, but no true editor for the first mandatory field.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The next smallest W1 Foundation dependency is one clean INLAND/VAT19 VAT Posting Setup row before posting groups and master data.",
+    "reason": "Before any further VAT setup write, the UI route must distinguish rowheader/header/display cells from real editable controls.",
     "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION",
+        "status": "ready-next",
+        "reason": "D15 provides the no-write geometry/control data needed for a route decision."
+      },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "VAT matrix row is not complete/proven."
+        "reason": "Posting groups wait for correct VAT matrix setup."
       },
       {
         "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
@@ -2619,25 +2645,21 @@
       {
         "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Foundation readiness waits for VAT matrix, posting groups and dimensions/defaults."
-      },
-      {
-        "caseId": "TARGET-031-FIRST-DOCUMENT-DRAFT-GATE",
-        "status": "needs-setup-first",
-        "reason": "Document drafts wait for foundation readiness and master data."
+        "reason": "Foundation readiness waits for VAT matrix and posting groups."
       }
     ],
     "queueChangesMade": [],
-    "selectedNextCase": "TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS",
-    "whySelectedNextCaseIsBest": "The failed recreate route needs a narrower UI/field diagnosis before any more VAT setup write.",
+    "selectedNextCase": "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "The next step should be a local/source/UI route decision, not another blind list-cell write.",
     "risksBeforeNextCase": [
-      "Do not claim final German VAT correctness before Preview Posting, VAT Entries and G/L Entries.",
-      "Do not start master data until posting groups/defaults are ready.",
-      "Do not repeat the same failed editor route if D14 blocks."
+      "Do not type setup values from D15 alone.",
+      "Do not claim VAT setup or final German VAT correctness.",
+      "Do not start master data before VAT/posting setup is ready."
     ],
     "requiredPreparation": [
-      "Review D14 screenshots and active-editor diagnostics; use Page Inspection, row card, or an alternate standard UI route next."
+      "Review D15 active-element and Page Inspection observations.",
+      "Choose a card/detail route, Page Inspection backed route, or source-backed alternative before writing values."
     ]
   },
-  "nextStep": "Diagnose Page 472 transient new-row/card/field route after D14 blocked before any value write."
+  "nextStep": "D16 local route decision after D15 no-write Page Inspection diagnosis."
 }
