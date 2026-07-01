@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T06:57:17.462Z",
+  "updatedAt": "2026-07-01T07:08:19.390Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-customer-posting-group-write-gate",
-  "activeCase": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
-  "active_case_file": ".agent/state/cases/target-031b-customer-posting-group-inland-write-gate.json",
+  "activeArea": "universaarl-general-posting-setup-gate",
+  "activeCase": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
+  "active_case_file": ".agent/state/cases/target-032-general-posting-groups-and-setup-gate.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -19,40 +19,36 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-playthru-business-central",
-    "confirm-UNIVERSAARL-DE-context",
-    "open-customer-posting-groups-page-110",
-    "create-or-confirm-only-customer-posting-group-INLAND",
-    "set-receivables-account-only-to-1200",
-    "capture-before-after-reopen-proof",
+    "read-target-031b-result",
+    "source-check-general-posting-groups",
+    "source-check-general-posting-setup",
+    "decide-smallest-safe-next-write-case",
     "write-result-json-and-next-step-decision"
   ],
   "forbiddenActions": [
     "leave-instance",
     "company-switch",
+    "change-customer-posting-groups",
     "change-vendor-posting-groups",
     "change-general-posting-setup",
     "change-inventory-posting-setup",
     "change-vat-posting-setup",
     "change-bank-posting-groups",
-    "change-account-1200",
-    "create-account-1400-for-skr04-receivables",
-    "use-1406-as-receivables-account",
     "create-master-data",
     "create-document-or-draft",
     "preview-posting",
     "post",
     "payment",
     "api-shortcut",
-    "claim-posting-readiness-from-posting-group-only",
+    "claim-posting-readiness-from-specific-posting-groups",
     "claim-german-vat-final-proof",
     "commit-secrets",
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence"
   ],
-  "nextCase": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
-  "nextStep": "Run TARGET-031B to create or verify only Customer Posting Group INLAND with receivables account 1200. Do not create master data, documents, Preview Posting or Posting.",
+  "nextCase": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
+  "nextStep": "Run TARGET-032 as a source-backed General Posting Groups / General Posting Setup decision gate. Do not change setup, create master data, documents, Preview Posting or Posting.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -235,7 +231,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "TARGET-031A proved account 1200 as Forderungen aus Lieferungen und Leistungen, Bilanz and Kontoart Buchung after reopen. TARGET-031B can now write or verify only Customer Posting Group INLAND with Debitorensammelkonto 1200; master data, documents, Preview Posting and Posting remain locked.",
+  "currentCoverageFocus": "TARGET-031B proved Customer Posting Group INLAND with Debitorensammelkonto 1200 after reopen. TARGET-032 must source-check General Business/Product Posting Groups and Page 314 mapping before any General Posting Setup write.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -1357,7 +1353,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "universaarl-skr04-balance-sheet-accounts-fit",
-  "lastCompletedCase": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
+  "lastCompletedCase": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3443,53 +3439,43 @@
       "replace-with-better-case"
     ],
     "latestDecisionCard": {
-      "currentCase": "TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY",
-      "plannedNextCaseBeforeReview": "TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY",
-      "lastEvidenceSummary": "TARGET-027C3 recovered the visible Tell-Me input and TARGET-027C2 accepted Page 471. TARGET-027C4 now accepts Page 470 after exact result locator/geometry click.",
+      "currentCase": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
+      "plannedNextCaseBeforeReview": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
+      "lastEvidenceSummary": "TARGET-031B proved the single Customer Posting Group INLAND with account 1200 after reopen.",
       "isPlannedNextCaseStillSensible": true,
-      "reason": "C4 was the narrow remaining UI-route blocker before retrying the bounded VAT group write case. It is now completed as read-only navigation evidence.",
+      "reason": "Customer and Vendor Posting Groups have the first INLAND groups; the next useful gate is General Posting Groups / General Posting Setup source and write decision.",
       "lookaheadReviewed": [
         {
-          "caseId": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
-          "status": "ready-next",
-          "reason": "Page 470 and Page 471 now have accepted read-only surfaces; INLAND/VAT19 write retry can be scoped to those pages only."
+          "caseId": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
+          "status": "needs-source-check-first",
+          "reason": "Requires General Business/Product Posting Groups and sales/purchase account mapping before Page 314 writes."
         },
         {
-          "caseId": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
-          "status": "needs-setup-first",
-          "reason": "Depends on visible INLAND and VAT19 groups after controlled write/reopen proof."
-        },
-        {
-          "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
-          "status": "needs-setup-first",
-          "reason": "General posting/customer/vendor/item setup should wait until VAT group and matrix prerequisites are done."
-        },
-        {
-          "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
-          "status": "needs-setup-first",
-          "reason": "Master data waits for posting groups, VAT defaults and dimensions; no card creation should start from a VAT route recovery."
-        },
-        {
-          "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+          "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
           "status": "ready-after-current",
-          "reason": "Only after VAT and posting-group setup checkpoints can the foundation be called ready for master data."
+          "reason": "Dimensions can resume after posting-group route status is clear."
+        },
+        {
+          "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+          "status": "needs-setup-first",
+          "reason": "Foundation checkpoint still needs general setup, VAT matrix and dimensions status."
+        },
+        {
+          "caseId": "TARGET-035-MASTER-DATA-FIRST-CUSTOMER-VENDOR-ITEM",
+          "status": "needs-setup-first",
+          "reason": "Master data remains locked until posting groups, VAT and dimensions are sufficient."
         }
       ],
-      "queueChangesMade": [
-        "Marked TARGET-027C4 as observed/read-only route recovery.",
-        "Added TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY as the next bounded setup-write queue item."
-      ],
-      "selectedNextCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
-      "whySelectedNextCaseIsBest": "The route blocker is removed; the smallest practical W1 Foundation step is to create or confirm only INLAND and VAT19 with before/after/reopen proof.",
+      "queueChangesMade": [],
+      "selectedNextCase": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
+      "whySelectedNextCaseIsBest": "It moves from specific posting groups to the broader General Posting Setup only after both sides have narrow evidence.",
       "risksBeforeNextCase": [
-        "Do not click New/Edit/List actions unless Page 470 or Page 471 screenshot QA has accepted the target surface in the same write case.",
-        "Do not create the VAT Posting Setup matrix row in the group-write retry.",
-        "Do not claim German VAT correctness before matrix, Preview Posting, VAT Entries and G/L Entries exist."
+        "Do not create master data yet.",
+        "Do not run Preview Posting or Posting.",
+        "Do not claim full posting readiness from one specific posting group."
       ],
       "requiredPreparation": [
-        "Reuse the C4 smallest-normalized-result-row click pattern for Page 470.",
-        "Keep Page 471 direct accepted-surface proof as the product-group prerequisite.",
-        "Capture before, after and reopen proof for INLAND and VAT19 if the write case proceeds."
+        "Source-check General Business/Product Posting Groups and Page 314 field mapping before any write."
       ]
     },
     "lastDecisionCard": {
@@ -3732,46 +3718,43 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
-    "lastEvidenceSummary": "TARGET-031A corrected account 1200 from Bank Saarland to Forderungen aus Lieferungen und Leistungen and proved after reopen: Bilanz + Kontoart Buchung.",
+    "currentCase": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-031B proved the single Customer Posting Group INLAND with account 1200 after reopen.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The receivables account prerequisite is now proven, so the next smallest useful setup gate is Customer Posting Group INLAND on Page 110 with Debitorensammelkonto 1200.",
+    "reason": "Customer and Vendor Posting Groups have the first INLAND groups; the next useful gate is General Posting Groups / General Posting Setup source and write decision.",
     "lookaheadReviewed": [
-      {
-        "caseId": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
-        "status": "ready-next",
-        "reason": "1200 Forderungen/Bilanz/Buchung proof exists."
-      },
       {
         "caseId": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
         "status": "needs-source-check-first",
-        "reason": "Requires General Business/Product Posting Groups and sales/purchase account mapping."
+        "reason": "Requires General Business/Product Posting Groups and sales/purchase account mapping before Page 314 writes."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-after-current",
-        "reason": "Can resume after posting-group route status is clear."
+        "reason": "Dimensions can resume after posting-group route status is clear."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Foundation still lacks customer posting group, general setup, VAT matrix and dimensions status."
+        "reason": "Foundation checkpoint still needs general setup, VAT matrix and dimensions status."
+      },
+      {
+        "caseId": "TARGET-035-MASTER-DATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data remains locked until posting groups, VAT and dimensions are sufficient."
       }
     ],
-    "queueChangesMade": [
-      "Marked TARGET-031A as done with setupChangedOnlyAccount1200=true.",
-      "Added TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE as the next pending queue item."
-    ],
-    "selectedNextCase": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
-    "whySelectedNextCaseIsBest": "It is now the smallest safe setup write after the receivables account proof.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
+    "whySelectedNextCaseIsBest": "It moves from specific posting groups to the broader General Posting Setup only after both sides have narrow evidence.",
     "risksBeforeNextCase": [
-      "Do not create account 1400.",
-      "Do not use 1406 as receivables account.",
-      "Do not create master data yet."
+      "Do not create master data yet.",
+      "Do not run Preview Posting or Posting.",
+      "Do not claim full posting readiness from one specific posting group."
     ],
     "requiredPreparation": [
-      "Use Page 110 only for Customer Posting Group INLAND + account 1200."
+      "Source-check General Business/Product Posting Groups and Page 314 field mapping before any write."
     ]
   },
   "permissionBlocker": {
@@ -7274,7 +7257,7 @@
     "currentVisibleText": "1200 Forderungen aus Lieferungen und Leistungen Bilanz Buchung",
     "correctedReason": "SKR04-oriented Universaarl foundation must not create a new 1400 receivables account; 1400 belongs to the wrong mapping context for this target."
   },
-  "nextQueueItem": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
+  "nextQueueItem": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
   "openItems": 1,
   "latestCustomerReceivablesSourceCorrection": {
     "caseId": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
@@ -7312,5 +7295,30 @@
       "playwright/projects/fibu-book5/img/target-031a-030-after-reopen-proof.png"
     ],
     "nextCase": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE"
+  },
+  "latestCustomerPostingGroupFit": {
+    "caseId": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
+    "status": "observed",
+    "completedAt": "2026-07-01T07:08:19.390Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-031b-customer-posting-group-inland-write-gate/TARGET-031B-result.json",
+    "sourceInstance": "playthru",
+    "sourceCompany": "UNIVERSAARL-DE",
+    "pageId": 110,
+    "code": "INLAND",
+    "description": "Inlaendische Kunden",
+    "receivablesAccount": "1200",
+    "receivablesFieldLabel": "Debitorensammelkonto",
+    "setupChanged": true,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-031b-010-before-customer-posting-groups.png",
+      "playwright/projects/fibu-book5/img/target-031b-020-after-attempt.png",
+      "playwright/projects/fibu-book5/img/target-031b-030-after-reopen.png"
+    ],
+    "nextCase": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE"
   }
 }

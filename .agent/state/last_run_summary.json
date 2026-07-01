@@ -1,98 +1,94 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
-  "caseId": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
-  "completedAt": "2026-07-01T06:57:17.462Z",
-  "summary": "TARGET-031A ran Playwright in playthru / UNIVERSAARL-DE and corrected only account 1200 from Bank Saarland to Forderungen aus Lieferungen und Leistungen. Reopen proof shows 1200 as Bilanz and Kontoart Buchung. Customer Posting Groups, master data, drafts, Preview Posting and Posting were not touched.",
+  "runId": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
+  "caseId": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
+  "completedAt": "2026-07-01T07:08:19.390Z",
+  "summary": "TARGET-031B ran Playwright in playthru / UNIVERSAARL-DE and created the Customer Posting Group INLAND with Debitorensammelkonto 1200 on Page 110. Reopen proof shows INLAND and 1200. General Posting Setup, VAT Setup, master data, drafts, Preview Posting and Posting were not touched.",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "bcRun": true,
   "playwrightRun": true,
   "setupChanged": true,
-  "setupChangedOnlyAccount1200": true,
   "masterDataChanged": false,
   "draftCreated": false,
   "previewPosting": false,
   "posted": false,
   "apiShortcut": false,
   "changedFiles": [
-    "playwright/projects/fibu-book5/tests/target-031a-receivables-account-recovery.spec.ts",
+    "playwright/projects/fibu-book5/tests/target-031b-customer-posting-group-inland-write-gate.spec.ts",
     "package.json",
-    "playwright/projects/fibu-book5/evidence/target-031a-receivables-account-recovery/TARGET-031A-result.json",
-    "playwright/projects/fibu-book5/evidence/target-031a-receivables-account-recovery/",
-    "playwright/projects/fibu-book5/img/target-031a-010-before-chart-of-accounts.png",
-    "playwright/projects/fibu-book5/img/target-031a-020-card-before-correction.png",
-    "playwright/projects/fibu-book5/img/target-031a-030-after-reopen-proof.png",
-    ".agent/state/cases/target-031b-customer-posting-group-inland-write-gate.json"
+    "playwright/projects/fibu-book5/evidence/target-031b-customer-posting-group-inland-write-gate/TARGET-031B-result.json",
+    "playwright/projects/fibu-book5/evidence/target-031b-customer-posting-group-inland-write-gate/",
+    "playwright/projects/fibu-book5/img/target-031b-010-before-customer-posting-groups.png",
+    "playwright/projects/fibu-book5/img/target-031b-020-after-attempt.png",
+    "playwright/projects/fibu-book5/img/target-031b-030-after-reopen.png",
+    ".agent/state/cases/target-032-general-posting-groups-and-setup-gate.json"
   ],
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/target-031a-receivables-account-recovery/TARGET-031A-result.json",
-    "playwright/projects/fibu-book5/img/target-031a-010-before-chart-of-accounts.png",
-    "playwright/projects/fibu-book5/img/target-031a-020-card-before-correction.png",
-    "playwright/projects/fibu-book5/img/target-031a-030-after-reopen-proof.png"
+    "playwright/projects/fibu-book5/evidence/target-031b-customer-posting-group-inland-write-gate/TARGET-031B-result.json",
+    "playwright/projects/fibu-book5/img/target-031b-010-before-customer-posting-groups.png",
+    "playwright/projects/fibu-book5/img/target-031b-020-after-attempt.png",
+    "playwright/projects/fibu-book5/img/target-031b-030-after-reopen.png"
   ],
   "proved": [
     "Business Central stayed in playthru / UNIVERSAARL-DE.",
-    "Only account 1200 was targeted.",
-    "After reopen, account 1200 is visible as Forderungen aus Lieferungen und Leistungen.",
-    "After reopen, account 1200 is visible as Bilanz and Kontoart Buchung.",
-    "No account 1400, Customer Posting Group, master data, draft, Preview Posting, Posting or API shortcut was created/executed."
+    "Page 110 Debitorenbuchungsgruppen was used as the scoped setup page.",
+    "INLAND is visible after reopen with Debitorensammelkonto 1200.",
+    "No master data, document draft, Preview Posting, Posting or API shortcut was executed."
   ],
   "notProved": [
-    "No Customer Posting Group INLAND exists or is assigned.",
-    "No receivables posting readiness is proven.",
-    "No General Posting Setup, VAT Posting Setup, master data, Preview Posting or ledger trace is proven.",
-    "No full SKR04 chart of accounts completeness or tax advisor approval is proven."
+    "No General Posting Setup is proven.",
+    "No Inventory Posting Setup is proven.",
+    "No VAT Posting Setup is proven.",
+    "No Customer, Sales Document, Preview Posting or Posting is proven.",
+    "No final SKR04, tax advisor or German compliance claim is proven."
   ],
   "blockedBy": [],
   "warnings": [
-    "Do not create account 1400 for SKR04 receivables.",
-    "Do not use account 1406 as receivables account.",
-    "Customer Posting Group write remains separate in TARGET-031B."
+    "A single Customer Posting Group does not make the company posting-ready.",
+    "Account 1200 is a Universaarl starter account, not a final tax-advisor-approved setup.",
+    "Master data remains locked until further posting group and VAT gates pass."
   ],
-  "nextStep": "Run TARGET-031B to create or verify only Customer Posting Group INLAND with receivables account 1200. Do not create master data, documents, Preview Posting or Posting.",
-  "nextCase": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
+  "nextStep": "Run TARGET-032 as a source-backed General Posting Groups / General Posting Setup decision gate. Do not change setup, create master data, documents, Preview Posting or Posting.",
+  "nextCase": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
-    "lastEvidenceSummary": "TARGET-031A corrected account 1200 from Bank Saarland to Forderungen aus Lieferungen und Leistungen and proved after reopen: Bilanz + Kontoart Buchung.",
+    "currentCase": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-031B proved the single Customer Posting Group INLAND with account 1200 after reopen.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The receivables account prerequisite is now proven, so the next smallest useful setup gate is Customer Posting Group INLAND on Page 110 with Debitorensammelkonto 1200.",
+    "reason": "Customer and Vendor Posting Groups have the first INLAND groups; the next useful gate is General Posting Groups / General Posting Setup source and write decision.",
     "lookaheadReviewed": [
-      {
-        "caseId": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
-        "status": "ready-next",
-        "reason": "1200 Forderungen/Bilanz/Buchung proof exists."
-      },
       {
         "caseId": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
         "status": "needs-source-check-first",
-        "reason": "Requires General Business/Product Posting Groups and sales/purchase account mapping."
+        "reason": "Requires General Business/Product Posting Groups and sales/purchase account mapping before Page 314 writes."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-after-current",
-        "reason": "Can resume after posting-group route status is clear."
+        "reason": "Dimensions can resume after posting-group route status is clear."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Foundation still lacks customer posting group, general setup, VAT matrix and dimensions status."
+        "reason": "Foundation checkpoint still needs general setup, VAT matrix and dimensions status."
+      },
+      {
+        "caseId": "TARGET-035-MASTER-DATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data remains locked until posting groups, VAT and dimensions are sufficient."
       }
     ],
-    "queueChangesMade": [
-      "Marked TARGET-031A as done with setupChangedOnlyAccount1200=true.",
-      "Added TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE as the next pending queue item."
-    ],
-    "selectedNextCase": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
-    "whySelectedNextCaseIsBest": "It is now the smallest safe setup write after the receivables account proof.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
+    "whySelectedNextCaseIsBest": "It moves from specific posting groups to the broader General Posting Setup only after both sides have narrow evidence.",
     "risksBeforeNextCase": [
-      "Do not create account 1400.",
-      "Do not use 1406 as receivables account.",
-      "Do not create master data yet."
+      "Do not create master data yet.",
+      "Do not run Preview Posting or Posting.",
+      "Do not claim full posting readiness from one specific posting group."
     ],
     "requiredPreparation": [
-      "Use Page 110 only for Customer Posting Group INLAND + account 1200."
+      "Source-check General Business/Product Posting Groups and Page 314 field mapping before any write."
     ]
   }
 }

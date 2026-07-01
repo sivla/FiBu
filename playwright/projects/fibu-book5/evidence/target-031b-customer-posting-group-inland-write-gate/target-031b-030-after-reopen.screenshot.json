@@ -1,0 +1,98 @@
+{
+  "fileName": "target-031b-030-after-reopen.png",
+  "imagePath": "C:\\Users\\kkali\\.codex\\worktrees\\b8d6\\FiBu\\playwright\\projects\\fibu-book5\\img\\target-031b-030-after-reopen.png",
+  "project": "fibu-book5",
+  "caseId": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "pageId": 110,
+  "page": "Debitorenbuchungsgruppen / Customer Posting Groups",
+  "step": "After reopening Page 110 for persistence proof.",
+  "visibleLearning": [
+    "Die Seite verbindet Debitorenposten mit einem Forderungskonto.",
+    "TARGET-031B darf nur die Gruppe INLAND und das Konto 1200 bearbeiten."
+  ],
+  "importantUi": [
+    "Code",
+    "Beschreibung",
+    "Debitorensammelkonto"
+  ],
+  "internallyProves": "Page 110 context and INLAND/1200 row state in playthru / UNIVERSAARL-DE.",
+  "doesNotProve": [
+    "No vendor posting group change.",
+    "No general posting setup.",
+    "No VAT setup.",
+    "No master data.",
+    "No Preview Posting.",
+    "No Posting."
+  ],
+  "finalScreenshotStatus": "foundation-evidence",
+  "writeAttempt": {
+    "changed": true,
+    "reason": "Filled visible card fields as Code, Beschreibung and Debitorensammelkonto."
+  },
+  "steps": [
+    {
+      "step": "smart-decision",
+      "whyNow": "TARGET-031A proved account 1200 as Forderungen aus Lieferungen und Leistungen, Bilanz and Buchung. Customer Posting Group INLAND is now the smallest safe next setup dependency before master data.",
+      "supportedBy": [
+        "TARGET-028 read-only Page 110 context",
+        "TARGET-031A account 1200 reopen proof",
+        "TARGET-030 Vendor Posting Group INLAND/3300 proof as same narrow setup pattern"
+      ],
+      "fieldsChangedOnlyIfSafe": [
+        "Code",
+        "Beschreibung",
+        "Debitorensammelkonto"
+      ],
+      "fieldsNotTouched": [
+        "Vendor Posting Groups",
+        "General Posting Setup",
+        "Inventory Posting Setup",
+        "VAT Posting Setup",
+        "Bank Posting Groups",
+        "G/L Account 1200",
+        "Master Data",
+        "Documents",
+        "Preview Posting",
+        "Posting"
+      ],
+      "fallback": "Abort and document editor diagnostics if Page 110 or visible row inputs are not safe."
+    },
+    {
+      "step": "click-new",
+      "newClicked": true
+    },
+    {
+      "step": "card-inputs-before-fill",
+      "inspected": [
+        {
+          "aria": "",
+          "title": "",
+          "role": "textbox",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "role": "textbox",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "role": "combobox",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "step": "filled-card-inputs",
+      "values": [
+        "INLAND",
+        "Inlaendische Kunden",
+        "1200"
+      ]
+    }
+  ]
+}

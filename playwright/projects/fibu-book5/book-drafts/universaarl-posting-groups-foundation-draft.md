@@ -38,4 +38,8 @@ Fuer die SKR04-orientierte Universaarl-Struktur verwenden wir **1200 Forderungen
 
 Vor der Korrektur war die Nummer **1200** mit einer falschen Bezeichnung belegt. Im Kontenplan stand dort **Bank Saarland**. Das Bankkonto steht jetzt getrennt auf **1800 Bank Saarland**. Dadurch ist die Trennung wieder sauber: **1200** ist fuer Forderungen, **1800** ist fuer Bank. Erst nach diesem Kontrollpunkt kann die Debitorenbuchungsgruppe vorbereitet werden.
 
-Der naechste kleine Schritt ist die Seite **Debitorenbuchungsgruppen**. Dort wird eine Gruppe **INLAND** fuer inlaendische Kunden angelegt oder geprueft. Im Feld **Debitorensammelkonto** wird **1200** eingetragen. Auch dieser Schritt erzeugt noch keinen Kunden, keine Rechnung, keine Belegvorschau und keine Buchung. Er bereitet nur die Forderungsseite fuer spaetere Verkaufsprozesse vor.
+Auf der Seite **Debitorenbuchungsgruppen** ist jetzt ebenfalls die Gruppe **INLAND** vorhanden. Sie steht fuer inlaendische Kunden. In der Liste sieht man den Code **INLAND**, die Beschreibung **Inlaendische Kunden** und das **Debitorensammelkonto 1200**. Dieses Sammelkonto verbindet spaetere Debitorenposten mit dem Forderungskonto im Hauptbuch.
+
+Business Central oeffnet auch diese Einrichtung ueber **Neu** zunaechst als Karte. Dort werden **Code**, **Beschreibung** und **Debitorensammelkonto** gepflegt. Nach dem erneuten Oeffnen der Liste ist die Gruppe sichtbar. Damit ist die Forderungsseite vorbereitet, aber noch keine Verkaufsbuchung bewiesen: Es gibt noch keinen Kunden, keine Verkaufsrechnung, keine Belegvorschau und keine Sachposten.
+
+Der naechste Einrichtungsschritt ist die allgemeine Buchungsmatrix. Dort reichen einzelne Debitoren- und Kreditorenbuchungsgruppen nicht aus. Business Central braucht zusaetzlich Kombinationen aus Geschaeftsbuchungsgruppen und Produktbuchungsgruppen, damit Verkaufs- und Einkaufsbetraege spaeter auf die richtigen Erloes- und Aufwandskonten laufen.

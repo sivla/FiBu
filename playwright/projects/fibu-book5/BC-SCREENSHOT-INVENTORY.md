@@ -364,6 +364,16 @@ Screenshot-QA zu TARGET-024F: Das Bild ist kein Erfolgsscreenshot fuer globale D
 
 Screenshot-QA zu TARGET-024G: Diese Bilder begruenden die Parkentscheidung. Sie sind gute Debugging-Bilder fuer das Buch/Atlas-System, aber keine Erfolgsscreenshots fuer globale Dimensionen.
 
+## Universaarl Foundation - Debitorenbuchungsgruppe TARGET-031B
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Beweist intern | Beweist nicht | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-031b-010-before-customer-posting-groups.png` | Debitorenbuchungsgruppen, Page 110 | `playthru` / `UNIVERSAARL-DE` | Vorher vor INLAND-Anlage | Leere Liste mit `Code`, `Beschreibung`, `Neu` und `Liste bearbeiten` | Page 110 ist der richtige Debitorenbuchungsgruppen-Kontext | Debitorenbuchungsgruppe, Konto, Buchungsreife | `universaarl-setup-before` |
+| `target-031b-020-after-attempt.png` | Debitorenbuchungsgruppen-Karte, Page 148 | `playthru` / `UNIVERSAARL-DE` | Nach Eingabe ueber Neu/Karte | Karte fuer `INLAND` mit `1200`; Business Central meldet gespeichert | `Neu` oeffnet fuer Page 110 eine Karte; Code/Beschreibung/Debitorensammelkonto wurden sichtbar gepflegt | Reopen-Persistenz allein durch dieses Bild | `universaarl-setup-card-route` |
+| `target-031b-030-after-reopen.png` | Debitorenbuchungsgruppen, Page 110 | `playthru` / `UNIVERSAARL-DE` | Reopen-Proof | Liste zeigt `INLAND`, `Inlaendische Kunden` und `Debitorensammelkonto 1200` | Customer Posting Group INLAND/1200 ist nach Reopen sichtbar | General Posting Setup, VAT Setup, Stammdaten, Verkaufsrechnung, Preview, Posting, Sachposten | `universaarl-setup-after-reopen`, `book-candidate` |
+
+Screenshot-QA zu TARGET-031B: Die sichtbare deutsche Spalte heisst `Debitorensammelkonto`. Der kompakte Textauszug kann nach Reopen einzelne Spaltenueberschriften auslassen; der Screenshot selbst ist deshalb der bessere Buchkandidat fuer die Lesererklaerung. Das Bild beweist keine Buchungsfaehigkeit, sondern nur die vorbereitete Forderungs-Kontenfindung.
+
 ## Qualitaetsfelder fuer neue Screenshot-Metadaten
 
 Neue oder ueberarbeitete `.screenshot.json`-Dateien sollen diese Felder tragen:

@@ -1,0 +1,397 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
+  "source": "playwright-universaarl-customer-posting-group-write-gate",
+  "resultStatus": "observed",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "Debitorenbuchungsgruppen / Customer Posting Groups",
+  "pageId": 110,
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=110&company=UNIVERSAARL-DE",
+  "actionsTaken": [
+    "Opened Business Central in playthru / UNIVERSAARL-DE.",
+    "Opened Page 110 Debitorenbuchungsgruppen directly.",
+    "Captured before screenshot QA.",
+    "Attempted only the INLAND Customer Posting Group row write.",
+    "Reopened Page 110 for persistence proof.",
+    "Captured after/reopen screenshot QA."
+  ],
+  "actionsNotTaken": [
+    "No Vendor Posting Groups changed.",
+    "No General Posting Setup changed.",
+    "No Inventory Posting Setup changed.",
+    "No VAT Posting Setup changed.",
+    "No Bank Posting Groups changed.",
+    "No G/L Account 1200 changed.",
+    "No master data created.",
+    "No document or draft created.",
+    "No Preview Posting executed.",
+    "No Posting executed.",
+    "No API shortcut used."
+  ],
+  "setupChanged": true,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/target-031b-010-before-customer-posting-groups.png",
+    "playwright/projects/fibu-book5/img/target-031b-020-after-attempt.png",
+    "playwright/projects/fibu-book5/img/target-031b-030-after-reopen.png"
+  ],
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Page 110 Debitorenbuchungsgruppen was used as the scoped setup page.",
+    "INLAND is visible after reopen with Debitorensammelkonto 1200.",
+    "No master data, document draft, Preview Posting, Posting or API shortcut was executed."
+  ],
+  "notProved": [
+    "No General Posting Setup is proven.",
+    "No Inventory Posting Setup is proven.",
+    "No VAT Posting Setup is proven.",
+    "No Customer, Sales Document, Preview Posting or Posting is proven.",
+    "No final SKR04, tax advisor or German compliance claim is proven."
+  ],
+  "blockedBy": [],
+  "warnings": [
+    "A single Customer Posting Group does not make the company posting-ready.",
+    "Account 1200 is a Universaarl starter account, not a final tax-advisor-approved setup.",
+    "Master data remains locked until further posting group and VAT gates pass."
+  ],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true,
+    "noVatSetupChange": true,
+    "noVendorPostingGroupChange": true,
+    "noGeneralPostingSetupChange": true,
+    "noInventoryPostingSetupChange": true,
+    "noAccount1200Change": true
+  },
+  "before": {
+    "step": "Before Customer Posting Group INLAND write gate.",
+    "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=110&company=UNIVERSAARL-DE",
+    "title": "Debitorenbuchungsgruppen",
+    "compact": "Debitorenbuchungsgruppen:\nNeu\nListe bearbeiten\nCode\nBeschreibung\nCode, Sortierreihenfolge Aufsteigend",
+    "visible": {
+      "pageContext": true,
+      "code": false,
+      "description": false,
+      "receivablesAccount": false,
+      "receivablesField": false
+    }
+  },
+  "afterAttempt": {
+    "step": "After Customer Posting Group INLAND write attempt.",
+    "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=148&company=UNIVERSAARL-DE",
+    "title": "Neu - Debitorenbuchungsgruppen-Karte",
+    "compact": "Debitorenbuchungsgruppen:\nNeu\nListe bearbeiten\nCode\nBeschreibung\nINLAND\n1200\nGespeichert\nDebitorenbuchungsgruppen-Karte\nCode, Sortierreihenfolge Aufsteigend\nListe mit Titel „Debitorenbuchungsgruppen“ hat jetzt einen Artikel",
+    "visible": {
+      "pageContext": true,
+      "code": true,
+      "description": true,
+      "receivablesAccount": true,
+      "receivablesField": false,
+      "visualFieldLabel": "Debitorensammelkonto"
+    },
+    "writeAttempt": {
+      "changed": true,
+      "reason": "Filled visible card fields as Code, Beschreibung and Debitorensammelkonto."
+    },
+    "steps": [
+      {
+        "step": "smart-decision",
+        "whyNow": "TARGET-031A proved account 1200 as Forderungen aus Lieferungen und Leistungen, Bilanz and Buchung. Customer Posting Group INLAND is now the smallest safe next setup dependency before master data.",
+        "supportedBy": [
+          "TARGET-028 read-only Page 110 context",
+          "TARGET-031A account 1200 reopen proof",
+          "TARGET-030 Vendor Posting Group INLAND/3300 proof as same narrow setup pattern"
+        ],
+        "fieldsChangedOnlyIfSafe": [
+          "Code",
+          "Beschreibung",
+          "Debitorensammelkonto"
+        ],
+        "fieldsNotTouched": [
+          "Vendor Posting Groups",
+          "General Posting Setup",
+          "Inventory Posting Setup",
+          "VAT Posting Setup",
+          "Bank Posting Groups",
+          "G/L Account 1200",
+          "Master Data",
+          "Documents",
+          "Preview Posting",
+          "Posting"
+        ],
+        "fallback": "Abort and document editor diagnostics if Page 110 or visible row inputs are not safe."
+      },
+      {
+        "step": "click-new",
+        "newClicked": true
+      },
+      {
+        "step": "card-inputs-before-fill",
+        "inspected": [
+          {
+            "aria": "",
+            "title": "",
+            "role": "textbox",
+            "value": ""
+          },
+          {
+            "aria": "",
+            "title": "",
+            "role": "textbox",
+            "value": ""
+          },
+          {
+            "aria": "",
+            "title": "",
+            "role": "combobox",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "step": "filled-card-inputs",
+        "values": [
+          "INLAND",
+          "Inlaendische Kunden",
+          "1200"
+        ]
+      }
+    ]
+  },
+  "afterReopen": {
+    "step": "After reopening Page 110 for persistence proof.",
+    "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=110&company=UNIVERSAARL-DE",
+    "title": "Debitorenbuchungsgruppen",
+    "compact": "Debitorenbuchungsgruppen:\nNeu\nListe bearbeiten\nCode\nBeschreibung\nINLAND\n1200\nListe mit Titel „Debitorenbuchungsgruppen“ hat jetzt einen Artikel\nCode, Sortierreihenfolge Aufsteigend",
+    "visible": {
+      "pageContext": true,
+      "code": true,
+      "description": true,
+      "receivablesAccount": true,
+      "receivablesField": false,
+      "visualFieldLabel": "Debitorensammelkonto"
+    },
+    "writeAttempt": {
+      "changed": true,
+      "reason": "Filled visible card fields as Code, Beschreibung and Debitorensammelkonto."
+    },
+    "steps": [
+      {
+        "step": "smart-decision",
+        "whyNow": "TARGET-031A proved account 1200 as Forderungen aus Lieferungen und Leistungen, Bilanz and Buchung. Customer Posting Group INLAND is now the smallest safe next setup dependency before master data.",
+        "supportedBy": [
+          "TARGET-028 read-only Page 110 context",
+          "TARGET-031A account 1200 reopen proof",
+          "TARGET-030 Vendor Posting Group INLAND/3300 proof as same narrow setup pattern"
+        ],
+        "fieldsChangedOnlyIfSafe": [
+          "Code",
+          "Beschreibung",
+          "Debitorensammelkonto"
+        ],
+        "fieldsNotTouched": [
+          "Vendor Posting Groups",
+          "General Posting Setup",
+          "Inventory Posting Setup",
+          "VAT Posting Setup",
+          "Bank Posting Groups",
+          "G/L Account 1200",
+          "Master Data",
+          "Documents",
+          "Preview Posting",
+          "Posting"
+        ],
+        "fallback": "Abort and document editor diagnostics if Page 110 or visible row inputs are not safe."
+      },
+      {
+        "step": "click-new",
+        "newClicked": true
+      },
+      {
+        "step": "card-inputs-before-fill",
+        "inspected": [
+          {
+            "aria": "",
+            "title": "",
+            "role": "textbox",
+            "value": ""
+          },
+          {
+            "aria": "",
+            "title": "",
+            "role": "textbox",
+            "value": ""
+          },
+          {
+            "aria": "",
+            "title": "",
+            "role": "combobox",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "step": "filled-card-inputs",
+        "values": [
+          "INLAND",
+          "Inlaendische Kunden",
+          "1200"
+        ]
+      }
+    ]
+  },
+  "steps": [
+    {
+      "step": "smart-decision",
+      "whyNow": "TARGET-031A proved account 1200 as Forderungen aus Lieferungen und Leistungen, Bilanz and Buchung. Customer Posting Group INLAND is now the smallest safe next setup dependency before master data.",
+      "supportedBy": [
+        "TARGET-028 read-only Page 110 context",
+        "TARGET-031A account 1200 reopen proof",
+        "TARGET-030 Vendor Posting Group INLAND/3300 proof as same narrow setup pattern"
+      ],
+      "fieldsChangedOnlyIfSafe": [
+        "Code",
+        "Beschreibung",
+        "Debitorensammelkonto"
+      ],
+      "fieldsNotTouched": [
+        "Vendor Posting Groups",
+        "General Posting Setup",
+        "Inventory Posting Setup",
+        "VAT Posting Setup",
+        "Bank Posting Groups",
+        "G/L Account 1200",
+        "Master Data",
+        "Documents",
+        "Preview Posting",
+        "Posting"
+      ],
+      "fallback": "Abort and document editor diagnostics if Page 110 or visible row inputs are not safe."
+    },
+    {
+      "step": "click-new",
+      "newClicked": true
+    },
+    {
+      "step": "card-inputs-before-fill",
+      "inspected": [
+        {
+          "aria": "",
+          "title": "",
+          "role": "textbox",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "role": "textbox",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "role": "combobox",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "step": "filled-card-inputs",
+      "values": [
+        "INLAND",
+        "Inlaendische Kunden",
+        "1200"
+      ]
+    }
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-031B proved the single Customer Posting Group INLAND with account 1200 after reopen.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Customer and Vendor Posting Groups have the first INLAND groups; the next useful gate is General Posting Groups / General Posting Setup source and write decision.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
+        "status": "needs-source-check-first",
+        "reason": "Requires General Business/Product Posting Groups and sales/purchase account mapping before Page 314 writes."
+      },
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "ready-after-current",
+        "reason": "Dimensions can resume after posting-group route status is clear."
+      },
+      {
+        "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation checkpoint still needs general setup, VAT matrix and dimensions status."
+      },
+      {
+        "caseId": "TARGET-035-MASTER-DATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data remains locked until posting groups, VAT and dimensions are sufficient."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
+    "whySelectedNextCaseIsBest": "It moves from specific posting groups to the broader General Posting Setup only after both sides have narrow evidence.",
+    "risksBeforeNextCase": [
+      "Do not create master data yet.",
+      "Do not run Preview Posting or Posting.",
+      "Do not claim full posting readiness from one specific posting group."
+    ],
+    "requiredPreparation": [
+      "Source-check General Business/Product Posting Groups and Page 314 field mapping before any write."
+    ]
+  },
+  "nextCase": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-031b-customer-posting-group-inland-write-gate/TARGET-031B-result.json",
+    "playwright/projects/fibu-book5/evidence/target-031b-customer-posting-group-inland-write-gate/*.txt",
+    "playwright/projects/fibu-book5/evidence/target-031b-customer-posting-group-inland-write-gate/*.snapshot.json",
+    "playwright/projects/fibu-book5/evidence/target-031b-customer-posting-group-inland-write-gate/*.screenshot.json",
+    "playwright/projects/fibu-book5/img/target-031b-*.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-031b-customer-posting-group-inland-write-gate/TARGET-031B-result.json",
+    "playwright/projects/fibu-book5/img/target-031b-010-before-customer-posting-groups.png",
+    "playwright/projects/fibu-book5/img/target-031b-020-after-attempt.png",
+    "playwright/projects/fibu-book5/img/target-031b-030-after-reopen.png"
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
+      "activeArea": "universaarl-general-posting-setup-gate",
+      "nextStep": "Run TARGET-032 as a source-backed General Posting Groups / General Posting Setup gate. Do not create master data, documents, Preview Posting or Posting."
+    },
+    "activeCase": {
+      "status": "done",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-031b-customer-posting-group-inland-write-gate/TARGET-031B-result.json",
+      "nextCase": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE"
+    },
+    "coverage": {
+      "latestCustomerPostingGroupFit": {
+        "caseId": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
+        "status": "observed",
+        "pageId": 110,
+        "code": "INLAND",
+        "receivablesAccount": "1200",
+        "resultPath": "playwright/projects/fibu-book5/evidence/target-031b-customer-posting-group-inland-write-gate/TARGET-031B-result.json"
+      }
+    }
+  },
+  "screenshotQaLearning": "The visible Page 110 list column is Debitorensammelkonto. Compact text after reopen proves INLAND and 1200, while the screenshot proves the visible column context."
+}

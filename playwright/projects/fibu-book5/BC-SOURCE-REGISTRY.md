@@ -360,6 +360,16 @@ TARGET-031 hat Page 16 und Page 110 read-only geoeffnet und damit gezeigt: `1200
 
 TARGET-031A hat diesen Schritt in `playthru` / `UNIVERSAARL-DE` ausgefuehrt. Nach Reopen zeigt der Kontenplan `1200 Forderungen aus Lieferungen und Leistungen`, `Bilanz`, Kontoart `Buchung`. `1800 Bank Saarland` bleibt als separates Bankkonto sichtbar. Damit ist nur das Forderungskonto als Voraussetzung fuer die Debitorenbuchungsgruppe bewiesen. Nicht bewiesen sind Debitorenbuchungsgruppe, Buchungsmatrix, USt-Setup, Stammdaten, Preview Posting, Buchung oder steuerliche Finalkorrektheit.
 
+## TARGET-031B Debitorenbuchungsgruppe INLAND
+
+TARGET-031B hat Page 110 `Debitorenbuchungsgruppen` in `playthru` / `UNIVERSAARL-DE` genutzt. Die Gruppe `INLAND` ist nach Reopen sichtbar mit Beschreibung `Inlaendische Kunden` und `Debitorensammelkonto 1200`.
+
+- Der sichtbare deutsche Feldname ist `Debitorensammelkonto`.
+- `Neu` oeffnete in diesem Lauf eine Karte, nicht nur eine direkte neue Listenzeile.
+- Der Screenshot nach Reopen ist der Buchkandidat, weil er die Spalte `Debitorensammelkonto` sichtbar zeigt.
+- Bewiesen ist nur die Debitorenbuchungsgruppe als Forderungs-Kontenfindung.
+- Nicht bewiesen sind Buchungsmatrix, USt-Setup, Stammdaten, Verkaufsbelege, Preview Posting, Buchung, Sachposten oder steuerliche Finalkorrektheit.
+
 ## URLs
 
 - https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company

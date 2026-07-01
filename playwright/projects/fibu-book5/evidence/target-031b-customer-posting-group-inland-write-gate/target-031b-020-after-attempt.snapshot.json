@@ -1,0 +1,81 @@
+{
+  "step": "After Customer Posting Group INLAND write attempt.",
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=148&company=UNIVERSAARL-DE",
+  "title": "Neu - Debitorenbuchungsgruppen-Karte",
+  "compact": "Debitorenbuchungsgruppen:\nNeu\nListe bearbeiten\nCode\nBeschreibung\nINLAND\n1200\nGespeichert\nDebitorenbuchungsgruppen-Karte\nCode, Sortierreihenfolge Aufsteigend\nListe mit Titel „Debitorenbuchungsgruppen“ hat jetzt einen Artikel",
+  "visible": {
+    "pageContext": true,
+    "code": true,
+    "description": true,
+    "receivablesAccount": true,
+    "receivablesField": false
+  },
+  "writeAttempt": {
+    "changed": true,
+    "reason": "Filled visible card fields as Code, Beschreibung and Debitorensammelkonto."
+  },
+  "steps": [
+    {
+      "step": "smart-decision",
+      "whyNow": "TARGET-031A proved account 1200 as Forderungen aus Lieferungen und Leistungen, Bilanz and Buchung. Customer Posting Group INLAND is now the smallest safe next setup dependency before master data.",
+      "supportedBy": [
+        "TARGET-028 read-only Page 110 context",
+        "TARGET-031A account 1200 reopen proof",
+        "TARGET-030 Vendor Posting Group INLAND/3300 proof as same narrow setup pattern"
+      ],
+      "fieldsChangedOnlyIfSafe": [
+        "Code",
+        "Beschreibung",
+        "Debitorensammelkonto"
+      ],
+      "fieldsNotTouched": [
+        "Vendor Posting Groups",
+        "General Posting Setup",
+        "Inventory Posting Setup",
+        "VAT Posting Setup",
+        "Bank Posting Groups",
+        "G/L Account 1200",
+        "Master Data",
+        "Documents",
+        "Preview Posting",
+        "Posting"
+      ],
+      "fallback": "Abort and document editor diagnostics if Page 110 or visible row inputs are not safe."
+    },
+    {
+      "step": "click-new",
+      "newClicked": true
+    },
+    {
+      "step": "card-inputs-before-fill",
+      "inspected": [
+        {
+          "aria": "",
+          "title": "",
+          "role": "textbox",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "role": "textbox",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "role": "combobox",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "step": "filled-card-inputs",
+      "values": [
+        "INLAND",
+        "Inlaendische Kunden",
+        "1200"
+      ]
+    }
+  ]
+}

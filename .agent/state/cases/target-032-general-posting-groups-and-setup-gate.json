@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "General Posting Groups and General Posting Setup gate",
+  "purpose": "Source-check and decide the smallest safe General Business/Product Posting Groups and General Posting Setup route after Vendor Posting Group INLAND/3300 and Customer Posting Group INLAND/1200 are proven.",
+  "sourceCases": [
+    "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+    "TARGET-030-POSTING-GROUPS-VENDOR-INLAND-WRITE-GATE",
+    "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
+    "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": false,
+  "taskClass": "judge_work",
+  "targetPages": [
+    {
+      "pageId": 314,
+      "page": "Buchungsmatrix Einrichtung / General Posting Setup"
+    }
+  ],
+  "allowedActions": [
+    "read-target-031b-result",
+    "source-check-general-posting-groups",
+    "source-check-general-posting-setup",
+    "decide-smallest-safe-next-write-case",
+    "write-result-json-and-next-step-decision"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "change-customer-posting-groups",
+    "change-vendor-posting-groups",
+    "change-general-posting-setup",
+    "change-inventory-posting-setup",
+    "change-vat-posting-setup",
+    "change-bank-posting-groups",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-posting-readiness-from-specific-posting-groups",
+    "claim-german-vat-final-proof",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-030 proved Vendor Posting Group INLAND with Verbindlichkeiten-Konto 3300.",
+    "TARGET-031A proved account 1200 as Forderungen aus Lieferungen und Leistungen after reopen.",
+    "TARGET-031B proved Customer Posting Group INLAND with Debitorensammelkonto 1200.",
+    "No master data, document draft, Preview Posting or Posting has been executed."
+  ],
+  "decisionQuestions": [
+    "Which General Business Posting Group code should Universaarl use first?",
+    "Which General Product Posting Group code should Universaarl use first?",
+    "Which sales and purchase G/L accounts are needed for the first safe Page 314 row?",
+    "Should the next case be read-only/source-only or a controlled write?"
+  ],
+  "acceptanceCriteria": [
+    "The next write route is source-backed and narrower than a broad Page 314 setup.",
+    "No setup is changed in this decision case.",
+    "Master data, documents, Preview Posting and Posting remain locked.",
+    "Book-facing notes explain that specific posting groups alone do not make Business Central posting-ready."
+  ],
+  "nextCaseIfDone": "TARGET-032A-GENERAL-POSTING-GROUPS-SOURCE-ROUTE",
+  "nextCaseIfBlocked": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE-FOLLOWUP",
+  "createdAt": "2026-07-01T07:40:00.000Z"
+}
