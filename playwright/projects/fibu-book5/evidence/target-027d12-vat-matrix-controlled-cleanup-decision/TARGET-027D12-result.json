@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-027D12-VAT-MATRIX-CONTROLLED-CLEANUP-DECISION",
+  "source": "local-decision-vat-matrix-cleanup",
+  "resultStatus": "done-controlled-cleanup-selected-no-bc",
+  "runPlanId": "TARGET-027D12-VAT-MATRIX-CONTROLLED-CLEANUP-DECISION-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "selectedRoute": "TARGET-027D13-VAT-MATRIX-CONTROLLED-CLEANUP-EXECUTION",
+  "decision": "Run a separate controlled cleanup execution for the incomplete INLAND/VAT19 VAT Posting Setup row before any recreate/completion route.",
+  "actionsTaken": [
+    "Reviewed D10 row/action inventory result.",
+    "Reviewed D11 row-scoped delete dialog cancel proof.",
+    "Reviewed existing source rule: Microsoft Learn supports VAT Posting Setup as the combination of VAT business group, VAT product group, VAT rate and VAT G/L accounts, but does not prove safe deletion in this tenant.",
+    "Compared cleanup, recreate and further list-edit routes.",
+    "Created the next controlled cleanup case with explicit stop rules."
+  ],
+  "actionsNotTaken": [
+    "No Business Central execution.",
+    "No Playwright execution.",
+    "No delete confirmation.",
+    "No setup write.",
+    "No master data.",
+    "No document draft.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No API shortcut.",
+    "No bookmaster change.",
+    "No German VAT final claim."
+  ],
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "cleanupDeleteExecuted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "proved": [
+    "D12 itself performed no BC or Playwright action.",
+    "The incomplete INLAND/VAT19 row is not acceptable as VAT setup proof because prior evidence shows VAT % = 0 and missing Sales/Purchase VAT Accounts.",
+    "Direct D3/D5/D8 list or cell-edit routes must not be repeated for 3806 and 1406.",
+    "D10 and D11 make a separate controlled cleanup execution the narrowest next practical route.",
+    "Cleanup and recreate/completion must stay separate cases."
+  ],
+  "notProved": [
+    "The incomplete row has not been deleted.",
+    "The correct INLAND/VAT19 VAT Posting Setup row has not been recreated or completed.",
+    "No Preview Posting, VAT Entry, G/L Entry or VAT Statement proof exists.",
+    "No German VAT final correctness is proven."
+  ],
+  "sourceBasis": [
+    "playwright/projects/fibu-book5/BC-SOURCE-REGISTRY.md#TARGET-027D7-VAT-Matrix-Route-Entscheidung",
+    "playwright/projects/fibu-book5/BC-SOURCE-REGISTRY.md#TARGET-027D9-VAT-Matrix-Cleanup-Entscheidung",
+    "playwright/projects/fibu-book5/evidence/target-027d10-vat-matrix-row-action-inventory-no-delete/TARGET-027D10-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d11-vat-matrix-row-scoped-delete-dialog-cancel-probe/TARGET-027D11-result.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-027d12-vat-matrix-controlled-cleanup-decision/TARGET-027D12-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d12-vat-matrix-controlled-cleanup-decision/README.md"
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-027d12-vat-matrix-controlled-cleanup-decision/TARGET-027D12-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d12-vat-matrix-controlled-cleanup-decision/README.md",
+    ".agent/state/cases/target-027d12-vat-matrix-controlled-cleanup-decision.json",
+    ".agent/state/cases/target-027d13-vat-matrix-controlled-cleanup-execution.json",
+    ".agent/state/current.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/marathon_queue.json"
+  ],
+  "blockedBy": [],
+  "warnings": [
+    "D13 is a setup-changing cleanup case. It must stop if the fresh dialog text, focused row or after-reopen state differs from D11 expectations.",
+    "D13 must not recreate the VAT matrix row in the same run."
+  ],
+  "flags": {
+    "noBcExecution": true,
+    "noPlaywrightExecution": true,
+    "noDeleteConfirmation": true,
+    "noSetupWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true,
+    "noD3D5D8CellRouteRepeat": true
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-027D12-VAT-MATRIX-CONTROLLED-CLEANUP-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-027D12-VAT-MATRIX-CONTROLLED-CLEANUP-DECISION",
+    "lastEvidenceSummary": "D11 proved the row-scoped delete action opens a Ja/Nein confirmation and Nein leaves the incomplete INLAND/VAT19 row visible after reopen.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The current row is incomplete and blocks the VAT matrix foundation; direct correction routes are exhausted, and D11 makes a narrow guarded cleanup execution testable.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D13-VAT-MATRIX-CONTROLLED-CLEANUP-EXECUTION",
+        "status": "ready-next",
+        "reason": "D10/D11 establish row focus, visible delete action and cancellable dialog. D13 can execute only the cleanup and prove row absence."
+      },
+      {
+        "caseId": "TARGET-027D14-VAT-MATRIX-RECREATE-AFTER-CLEANUP",
+        "status": "ready-after-current",
+        "reason": "Recreate/completion is only sensible after D13 proves the incomplete row is absent."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Posting Groups must wait until VAT matrix cleanup and recreate/completion are settled."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for VAT/posting defaults."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation cannot be ready until VAT matrix and posting setup gates are closed."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked TARGET-027D12 done as a no-BC decision case.",
+      "Added TARGET-027D13-VAT-MATRIX-CONTROLLED-CLEANUP-EXECUTION as the next pending case."
+    ],
+    "selectedNextCase": "TARGET-027D13-VAT-MATRIX-CONTROLLED-CLEANUP-EXECUTION",
+    "whySelectedNextCaseIsBest": "It is the smallest non-repeating step that can remove the known wrong row while preserving safety: fresh row proof, fresh confirmation text, confirm only the expected dialog, then immediate reopen proof.",
+    "risksBeforeNextCase": [
+      "A wrong row could be selected if row focus is not freshly proven.",
+      "The dialog text may differ from D11; then D13 must stop.",
+      "Cleanup changes setup and must not be followed by recreate in the same case."
+    ],
+    "requiredPreparation": [
+      "Use D11 row-focus and dialog-cancel screenshots as the route precedent.",
+      "Capture before, dialog and after-reopen proof.",
+      "Keep Preview Posting, Posting, master data, drafts, API and bookmaster changes locked."
+    ]
+  },
+  "safeToFinalizeState": true,
+  "requiresReview": false,
+  "statePatch": {
+    "current": {
+      "activeArea": "universaarl-vat-matrix-controlled-cleanup-execution",
+      "activeCase": "TARGET-027D13-VAT-MATRIX-CONTROLLED-CLEANUP-EXECUTION",
+      "active_case_file": ".agent/state/cases/target-027d13-vat-matrix-controlled-cleanup-execution.json",
+      "lastReferenceCase": "TARGET-027D12-VAT-MATRIX-CONTROLLED-CLEANUP-DECISION",
+      "nextCase": "TARGET-027D13-VAT-MATRIX-CONTROLLED-CLEANUP-EXECUTION",
+      "nextStep": "Execute only the controlled cleanup of the incomplete INLAND/VAT19 VAT Posting Setup row, then prove row absence after reopen. Do not recreate in the same case."
+    },
+    "lastRunSummary": {
+      "runId": "TARGET-027D12-VAT-MATRIX-CONTROLLED-CLEANUP-DECISION",
+      "caseId": "TARGET-027D12-VAT-MATRIX-CONTROLLED-CLEANUP-DECISION",
+      "status": "done-controlled-cleanup-selected-no-bc",
+      "instance": "playthru",
+      "company": "UNIVERSAARL-DE",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-027d12-vat-matrix-controlled-cleanup-decision/TARGET-027D12-result.json",
+      "summary": "D12 selected a separate controlled cleanup execution as the next route for the incomplete INLAND/VAT19 VAT matrix row; no BC or Playwright action was executed.",
+      "nextCase": "TARGET-027D13-VAT-MATRIX-CONTROLLED-CLEANUP-EXECUTION"
+    }
+  },
+  "nextCase": "TARGET-027D13-VAT-MATRIX-CONTROLLED-CLEANUP-EXECUTION",
+  "reason": "The partial row blocks the VAT matrix. A guarded cleanup execution is now justified, but recreate/completion must be a later separate case."
+}
