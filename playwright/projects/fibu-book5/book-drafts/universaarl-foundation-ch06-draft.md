@@ -93,6 +93,10 @@ Auf der Seite `Nummernserien` sind besonders wichtig:
 
 Bevor ein Prozesskapitel Belege erzeugt, muss die passende Nummernserie sichtbar und erklaerbar sein.
 
+Auf der Nummernserienseite reichen Startnummer und Endnummer allein nicht immer aus. Die Checkbox `Standardnr.` steuert, ob Business Central automatisch die naechste Nummer aus dieser Serie vergeben darf. Die Checkbox `Manuelle Anz.` steuert, ob der Benutzer eine Nummer selbst eingeben darf. Fuer Kreditoren ist das wichtig: Wenn `U-VEND` zwar als Nummernserie im Einkaufssetup steht, aber weder automatische noch manuelle Nummernvergabe sauber erlaubt ist, kann eine neue Kreditorenkarte schon beim Speichern blockieren.
+
+Bei Listen mit Checkboxen muss man besonders genau arbeiten. Die markierte Zeile, die sichtbare Checkbox und der tatsaechlich gespeicherte Feldwert muessen zusammenpassen. Ein Klick auf eine scheinbar passende Checkbox ist kein Erfolg, solange die Seite nach erneutem Oeffnen nicht denselben Wert zeigt. Fuer `U-VEND` bleibt deshalb zuerst die sichere Routenfrage offen: Die Standardnummern sollen erst aktiviert werden, wenn klar ist, ob die Aenderung ueber die Liste, eine Karte, Personalisierung oder Seitenueberpruefung eindeutig dem Kreditoren-Nummernserienkopf zugeordnet werden kann.
+
 ## Buchungsgruppen und Buchungsmatrix
 
 Buchungsgruppen beantworten die Frage: Auf welche Sachkonten bucht Business Central, wenn ein Beleg gebucht wird?

@@ -254,6 +254,16 @@ Screenshot-QA zu TARGET-016M: Die Nummern sind im Grid eng dargestellt. Der Bild
 
 Screenshot-QA zu TARGET-036D2: Die Vorheraufnahme ist brauchbar fuer das Buch, weil sie die Nummernserie `U-VEND`, die Spalten `Standardnr.` und `Manuelle Anz.` sowie die Nummernserienzeilen zusammen zeigt. Der Nachher- und Reopen-Beweis ist ein Blockerbeweis: Der sichtbare row-scoped Klickweg darf nicht als Setup-Erfolg verwendet werden.
 
+## Universaarl Foundation - U-VEND Checkboxroute TARGET-036D2B
+
+| Screenshot | Page | Company/Kontext | Schritt | Was man sehen soll | Interner Beweis | Beweist nicht | Status |
+|---|---|---|---|---|---|---|---|
+| `target-036d2b-010-before-marked-checkbox-route.png` | Nummernserie / No. Series, Page 456 | `playthru` / `UNIVERSAARL-DE`, `U-VEND` | Vor markierter DOM-Checkboxroute | `U-VEND` ist markiert, `Standardnr.` und `Manuelle Anz.` sind sichtbar, rechts stehen die offenen U-VEND-Zeilen; ein Copilot-/Generieren-Flyout liegt unten ueber der Liste | Der Seitenkontext ist richtig und die Checkboxspalten sind visuell vorhanden | keine eindeutige DOM-Zeilenbindung, keine Setupaenderung, kein Kreditor | `blocked-route-context`, `screenshot-qa-required` |
+| `target-036d2b-020-after-marked-checkbox-route.png` | Nummernserie / No. Series, Page 456 | `playthru` / `UNIVERSAARL-DE`, `U-VEND` | Nach sicherem Stop vor unklarer Checkboxaktion | Die Seite bleibt unveraendert; U-VEND ist sichtbar, aber `Standardnr.` bleibt leer | Playwright hat vor einer unsicheren Aenderung gestoppt, weil kein eindeutiger U-VEND-Checkboxkandidat gefunden wurde | keine aktive Standardnummer, keine manuelle Nummernfreigabe, keine Kreditoranlage | `blocked-no-setup-change`, `do-not-repeat-dom-route` |
+| `target-036d2b-030-reopen-proof.png` | Nummernserie / No. Series, Page 456 | `playthru` / `UNIVERSAARL-DE`, `U-VEND` | Reopen-Proof nach blockierter Route | Nach erneutem Oeffnen ist `U-VEND` weiterhin sichtbar; `Standardnr.` bleibt nicht aktiv | Es gab keine verdeckte Setupaenderung | keine automatische Kreditorennummernvergabe, keine Karten-/Personalisierungsroute | `blocked-reopen-proof`, `next-card-or-personalization-route-required` |
+
+Screenshot-QA zu TARGET-036D2B: Die Bilder zeigen einen guten UI-Blocker fuer das Buch und fuer Playwright. Der relevante sichtbare Bereich ist vorhanden, aber eine Checkbox in einer Business-Central-Liste darf nicht nur nach Bildschirmposition oder allgemeinem DOM-Checkboxindex veraendert werden. Naechster Weg ist eine Karten-/Detailroute, `Personalisieren` oder `Seitenueberpruefung`, bevor wieder ein Setupfeld geaendert wird.
+
 ## Universaarl Foundation - Nummernserien TARGET-017
 
 | Screenshot | Page | Company/Kontext | Schritt | Was man sehen soll | Interner Beweis | Beweist nicht | Status |

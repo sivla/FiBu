@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-036D2C-VENDOR-NUMBER-SERIES-CARD-OR-PERSONALIZATION-ROUTE",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Find a safer U-VEND Standardnr. route through card, personalization or page inspection",
+  "purpose": "Recover the U-VEND Default Nos. setup route after the visible checkbox route and the marked DOM checkbox route could not be trusted.",
+  "sourceCases": [
+    "TARGET-036D2-VENDOR-NUMBER-SERIES-CHECKBOX-FIT",
+    "TARGET-036D2B-VENDOR-NUMBER-SERIES-CHECKBOX-ROUTE-RECOVERY"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": true,
+  "taskClass": "wizard_work",
+  "smartDecisionRequired": true,
+  "targetRecord": {
+    "table": "No. Series",
+    "code": "U-VEND",
+    "targetField": "Standardnr. / Default Nos."
+  },
+  "allowedActions": [
+    "open-playthru-business-central",
+    "confirm-UNIVERSAARL-DE-context",
+    "open-number-series-page-456",
+    "select-or-filter-U-VEND-row",
+    "inspect-visible-row-actions",
+    "hover-standardnr-and-manuelle-anz-checkboxes",
+    "open-page-inspection-readonly-if-available",
+    "open-personalization-readonly-if-available-and-exit-without-save",
+    "look-for-card-or-details-route-without-changing-values",
+    "write-result-json-and-next-step-decision"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "create-customer",
+    "create-vendor",
+    "create-item",
+    "change-number-series-lines",
+    "change-non-U-VEND-series",
+    "toggle-standard-nos",
+    "toggle-manual-nos",
+    "change-sales-or-purchase-doc-number-series",
+    "change-posting-setup",
+    "change-vat-setup",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "repeat-target-036d2-row-scoped-coordinate-click-route",
+    "repeat-target-036d2b-untrusted-dom-checkbox-route",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-036D2B result exists and is blocked before setup change.",
+    "Business Central context is playthru / UNIVERSAARL-DE.",
+    "The next route must not rely on raw row coordinates or an untrusted checkbox locator."
+  ],
+  "stopIf": [
+    "The active instance is not playthru.",
+    "The active company is not UNIVERSAARL-DE.",
+    "U-VEND row is not uniquely visible.",
+    "A dialog asks to save, confirm setup, create a record, post, preview, delete or switch company.",
+    "The route would change any value before a trusted field/page mapping is documented."
+  ],
+  "acceptanceCriteria": [
+    "A safer route is documented for U-VEND Standardnr. setup, or the blocker is narrowed to a specific missing UI affordance.",
+    "No setup value is changed in this case.",
+    "No vendor/customer/item/document is created.",
+    "No Preview Posting, Posting, payment, API shortcut or company switch occurs.",
+    "The next case is either a narrow controlled U-VEND write case or a documented alternative numbering decision."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-036D2B-VENDOR-NUMBER-SERIES-CHECKBOX-ROUTE-RECOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-036D3-FIRST-VENDOR-CONTROLLED-WRITE-RETRY",
+    "lastEvidenceSummary": "TARGET-036D2B kept playthru / UNIVERSAARL-DE, selected U-VEND on Page 456 and stopped before setup change because no unique trusted Standardnr. checkbox candidate could be mapped to the U-VEND row.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The first vendor retry still depends on active automatic vendor numbering. A safer UI route must be understood before changing Standardnr. or creating a vendor.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-036D2C-VENDOR-NUMBER-SERIES-CARD-OR-PERSONALIZATION-ROUTE",
+        "status": "ready-next",
+        "reason": "Read-only route discovery avoids another unsafe checkbox attempt and can reveal a card, personalization or page-inspection path."
+      },
+      {
+        "caseId": "TARGET-036D3-FIRST-VENDOR-CONTROLLED-WRITE-RETRY",
+        "status": "blocked",
+        "reason": "Blocked until U-VEND Standardnr. / Default Nos. is proven active after reopen or another numbering route is selected."
+      },
+      {
+        "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Item creation should wait until numbering and master-data foundations are stable."
+      },
+      {
+        "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+        "status": "ready-after-current",
+        "reason": "Useful after the numbering route decision to re-check remaining foundation blockers."
+      }
+    ],
+    "queueChangesMade": [
+      "Inserted TARGET-036D2C before TARGET-036D3."
+    ],
+    "selectedNextCase": "TARGET-036D2C-VENDOR-NUMBER-SERIES-CARD-OR-PERSONALIZATION-ROUTE",
+    "whySelectedNextCaseIsBest": "It improves Business Central UI understanding before the next effective setup write and prevents repeated blind checkbox attempts.",
+    "risksBeforeNextCase": [
+      "Do not toggle Standardnr. or Manuelle Anz.",
+      "Do not change number-series lines.",
+      "Do not create vendor/customer/item records.",
+      "Do not use API shortcuts.",
+      "Do not confirm any save or setup dialog."
+    ],
+    "requiredPreparation": [
+      "Use screenshot QA before and after opening any menu, card, personalization or page inspection surface.",
+      "Capture what each visible action does or does not allow before selecting a write route."
+    ]
+  },
+  "createdAt": "2026-07-01T12:00:00.000Z"
+}
