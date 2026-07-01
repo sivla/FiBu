@@ -1,0 +1,271 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
+  "source": "playwright-readonly-masterdata-cards-templates-preflight",
+  "resultStatus": "observed",
+  "runPlanId": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "proved": [
+    "4/4 master-data pages opened read-only in playthru/UNIVERSAARL-DE.",
+    "No customer, vendor, item or location was created.",
+    "No template was applied, no save/create was confirmed, no preview/posting occurred.",
+    "Customers / Debitoren visible read-only.",
+    "Vendors / Kreditoren visible read-only.",
+    "Items / Artikel visible read-only.",
+    "Locations / Lagerorte visible read-only."
+  ],
+  "notProved": [
+    "Templates and mandatory fields are not fully proven because New/Create was intentionally not confirmed.",
+    "Posting groups, VAT groups and number-series readiness for actual new cards are not proven.",
+    "No Default Dimensions, ledger entries, VAT entries, item entries or value entries exist from this case.",
+    "Final clean book screenshots are not proven because Teaching Tips remain visible on the captured pages.",
+    "Card mandatory fields are not proven because New/Create was not opened or confirmed."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-035-master-data-cards-templates-preflight/TARGET-035-result.json",
+    "playwright/projects/fibu-book5/evidence/target-035-master-data-cards-templates-preflight/README.md",
+    "playwright/projects/fibu-book5/evidence/target-035-master-data-cards-templates-preflight/*.txt",
+    "playwright/projects/fibu-book5/evidence/target-035-master-data-cards-templates-preflight/*.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-035-master-data-cards-templates-preflight/target-035-*.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-035-master-data-cards-templates-preflight/TARGET-035-result.json",
+    "playwright/projects/fibu-book5/evidence/target-035-master-data-cards-templates-preflight/target-035-010-customers-list.png",
+    "playwright/projects/fibu-book5/evidence/target-035-master-data-cards-templates-preflight/target-035-020-vendors-list.png",
+    "playwright/projects/fibu-book5/evidence/target-035-master-data-cards-templates-preflight/target-035-030-items-list.png",
+    "playwright/projects/fibu-book5/evidence/target-035-master-data-cards-templates-preflight/target-035-040-locations-list.png"
+  ],
+  "pages": [
+    {
+      "id": "customers-list",
+      "pageId": 22,
+      "label": "Customers / Debitoren",
+      "status": "observed",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=22&company=UNIVERSAARL-DE",
+      "screenshot": "playwright/projects/fibu-book5/evidence/target-035-master-data-cards-templates-preflight/target-035-010-customers-list.png",
+      "textFile": "playwright/projects/fibu-book5/evidence/target-035-master-data-cards-templates-preflight/customers-list.txt",
+      "textSignals": [
+        "Debitoren:",
+        "Neu",
+        "Neuer Beleg",
+        "Debitor",
+        "Es sind noch keine Daten vorhanden. Möchten Sie Debitoren importieren?",
+        "Nr.",
+        "Name",
+        "Telefonnr.",
+        "Debitorennr.",
+        "Debitoren-Abonnementverträge",
+        "Informationen zu Debitoren",
+        "Hier sehen Sie alle registrierten Debitoren, deren Salden und Verkaufsstatistiken. Mit Debitorenvorlagen können Sie schnell neue Debitoren mit gemeinsamen Details erstellen, die...",
+        "Nr., Sortierreihenfolge Aufsteigend"
+      ],
+      "visibleActions": [
+        "New/Neu visible but not clicked.",
+        "Edit/Bearbeiten visible but not clicked.",
+        "Template/Vorlage text visible; no template applied."
+      ],
+      "plannedRecords": [
+        "U-CUST-100",
+        "U-CUST-110",
+        "U-CUST-120",
+        "U-CUST-190",
+        "U-CUST-900"
+      ],
+      "reason": "Expected master-data page text is visible."
+    },
+    {
+      "id": "vendors-list",
+      "pageId": 27,
+      "label": "Vendors / Kreditoren",
+      "status": "observed",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=27&company=UNIVERSAARL-DE",
+      "screenshot": "playwright/projects/fibu-book5/evidence/target-035-master-data-cards-templates-preflight/target-035-020-vendors-list.png",
+      "textFile": "playwright/projects/fibu-book5/evidence/target-035-master-data-cards-templates-preflight/vendors-list.txt",
+      "textSignals": [
+        "Kreditoren:",
+        "Neu",
+        "Neuer Beleg",
+        "Kreditor",
+        "Es sind noch keine Daten vorhanden. Möchten Sie Kreditoren importieren?",
+        "Nr.",
+        "Name",
+        "Telefonnr.",
+        "Kreditorenstatistik",
+        "Kreditorennr.",
+        "Historie für Einkauf von Kreditor",
+        "Kreditoren-Abonnementverträge",
+        "Informationen zu Kreditoren",
+        "Hier erhalten Sie eine Übersicht aller registrierten Kreditoren, von denen Sie Waren und Dienstleistungen kaufen. Mit Kreditorenvorlagen können Sie schnell neue Kreditoren mit g...",
+        "Nr., Sortierreihenfolge Aufsteigend"
+      ],
+      "visibleActions": [
+        "New/Neu visible but not clicked.",
+        "Edit/Bearbeiten visible but not clicked.",
+        "Template/Vorlage text visible; no template applied."
+      ],
+      "plannedRecords": [
+        "U-VEND-100",
+        "U-VEND-110",
+        "U-VEND-120",
+        "U-VEND-130",
+        "U-VEND-900"
+      ],
+      "reason": "Expected master-data page text is visible."
+    },
+    {
+      "id": "items-list",
+      "pageId": 31,
+      "label": "Items / Artikel",
+      "status": "observed",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=31&company=UNIVERSAARL-DE",
+      "screenshot": "playwright/projects/fibu-book5/evidence/target-035-master-data-cards-templates-preflight/target-035-030-items-list.png",
+      "textFile": "playwright/projects/fibu-book5/evidence/target-035-master-data-cards-templates-preflight/items-list.txt",
+      "textSignals": [
+        "Artikel:",
+        "Neu",
+        "Artikel",
+        "Es sind noch keine Daten vorhanden. Möchten Sie Artikel importieren?",
+        "Nr.",
+        "Beschreibung",
+        "Lagerbestand",
+        "Ersatzartikel vorhanden",
+        "Kreditorennr.",
+        "Artikeldetails - Fakturierung",
+        "Artikelnr.",
+        "Lagerabgangsmethode",
+        "Direkte Kosten (neueste)",
+        "Artikeldetails - Planung",
+        "Neuplanungsperiode",
+        "Artikelattribute",
+        "Informationen zu Artikeln",
+        "Artikel stellen die Produkte und Dienstleistungen dar, die Sie kaufen und verkaufen. Sie können für jeden Artikel die üblichen Verkaufs- und Einkaufspreise verwalten, die beim E...",
+        "Nr., Sortierreihenfolge Aufsteigend"
+      ],
+      "visibleActions": [
+        "New/Neu visible but not clicked.",
+        "Edit/Bearbeiten visible but not clicked.",
+        "Template/Vorlage text visible; no template applied."
+      ],
+      "plannedRecords": [
+        "U-ITEM-HW100",
+        "U-ITEM-RM100",
+        "U-ITEM-FG100",
+        "U-ITEM-SRV100",
+        "U-ITEM-ERR900"
+      ],
+      "reason": "Expected master-data page text is visible."
+    },
+    {
+      "id": "locations-list",
+      "pageId": 15,
+      "label": "Locations / Lagerorte",
+      "status": "observed",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=15&company=UNIVERSAARL-DE",
+      "screenshot": "playwright/projects/fibu-book5/evidence/target-035-master-data-cards-templates-preflight/target-035-040-locations-list.png",
+      "textFile": "playwright/projects/fibu-book5/evidence/target-035-master-data-cards-templates-preflight/locations-list.txt",
+      "textSignals": [
+        "Lagerorte:",
+        "Neu",
+        "Lagerort",
+        "Code",
+        "Name",
+        "Info über Lagerorte",
+        "Richten Sie Lager und andere Lagerorte ein, und verwalten Sie sie, konfigurieren Sie Lagerrichtlinien und Lagerplatzeinstellungen, und verfolgen Sie Artikelverfügbarkeit sowie U...",
+        "Code, Sortierreihenfolge Aufsteigend",
+        "cacheLocation: \"sessionStorage\","
+      ],
+      "visibleActions": [
+        "New/Neu visible but not clicked."
+      ],
+      "plannedRecords": [
+        "SAAR-HL",
+        "SAAR-QS",
+        "SAAR-SRV"
+      ],
+      "reason": "Expected master-data page text is visible."
+    }
+  ],
+  "blockedBy": [],
+  "warnings": [
+    "New/Neu visible but not clicked.",
+    "Edit/Bearbeiten visible but not clicked.",
+    "Template/Vorlage text visible; no template applied.",
+    "Teaching Tips visible on screenshots; close or explain before final book use."
+  ],
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noSearch": true,
+    "noBookMasterChange": true,
+    "noTemplateApplied": true,
+    "readOnlyDirectPageRoutes": true
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
+    "plannedNextCaseBeforeReview": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
+    "lastEvidenceSummary": "TARGET-034 classified Foundation as partial and allowed only read-only master-data card/template preflight.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Master-data list surfaces must be visible and screenshot-qualified before any controlled New/template/create case can be attempted.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
+        "status": "needs-source-check-first",
+        "reason": "The next step must decide which first record can be created and which fields/templates stay locked."
+      },
+      {
+        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
+        "status": "blocked",
+        "reason": "Preview remains blocked until real master data, accepted VAT/posting boundaries and expected entry traces exist."
+      },
+      {
+        "caseId": "TARGET-038-FIRST-POSTING-GATE",
+        "status": "blocked",
+        "reason": "Posting remains blocked until preview evidence and expected ledger/subledger traces exist."
+      },
+      {
+        "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+        "status": "ready-after-current",
+        "reason": "Parked Page 314, VAT matrix, inventory posting and default-dimension blockers can be revisited after the first master-data route decision."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
+    "whySelectedNextCaseIsBest": "The first controlled write decision must choose one low-risk record family and keep templates/save actions gated.",
+    "risksBeforeNextCase": [
+      "New/template actions can create records if confirmed blindly.",
+      "No master-data creation should occur before setup-field decisions are explicit."
+    ],
+    "requiredPreparation": [
+      "Keep New/Create/Save dialogs cancel-safe.",
+      "Do not treat list visibility as proof of mandatory field completeness."
+    ]
+  },
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "statePatch": {},
+  "reason": "Master-data list/card contexts were observed read-only; no records were created.",
+  "screenshotQa": {
+    "status": "usable-evidence-not-final-book-screenshots",
+    "checkedByVisualInspection": true,
+    "findings": [
+      "Customers, Vendors, Items and Locations list pages are visibly in playthru / Universaarl GmbH context.",
+      "Each page shows an empty-list state and a visible Neu/New action, but Neu was not clicked.",
+      "Customers, Vendors and Items show Teaching Tips about templates; Locations shows a Teaching Tip about warehouse/location setup.",
+      "Teaching Tips are useful learning evidence but obscure the lower-left area; final book screenshots should close them or explain them deliberately.",
+      "Item page FactBox is scrolled and reveals many planning/factoring fields; this is useful for field discovery but not proof of mandatory card fields."
+    ],
+    "bookUse": "draft-context-only",
+    "finalScreenshotNeeded": true
+  },
+  "nextCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION"
+}

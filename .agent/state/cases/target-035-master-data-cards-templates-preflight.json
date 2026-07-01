@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
-  "status": "planned",
+  "status": "done",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -72,43 +72,77 @@
     "No setup, draft, Preview Posting or Posting occurs."
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+    "currentCase": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
     "plannedNextCaseBeforeReview": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
-    "lastEvidenceSummary": "TARGET-034 allows only read-only master data preflight; Page 314 and VAT remain parked.",
+    "lastEvidenceSummary": "TARGET-034 classified Foundation as partial and allowed only read-only master-data card/template preflight.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The next practical progress is to understand master data cards/templates without creating records.",
+    "reason": "Master-data list surfaces must be visible and screenshot-qualified before any controlled New/template/create case can be attempted.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
-        "status": "ready-next",
-        "reason": "Read-only probe can run safely before master data creation."
-      },
-      {
         "caseId": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
-        "status": "ready-after-current",
-        "reason": "Only after TARGET-035 proves required fields and safe abort logic."
+        "status": "needs-source-check-first",
+        "reason": "The next step must decide which first record can be created and which fields/templates stay locked."
       },
       {
         "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
         "status": "blocked",
-        "reason": "Requires actual master data and accepted posting/VAT boundaries."
+        "reason": "Preview remains blocked until real master data, accepted VAT/posting boundaries and expected entry traces exist."
       },
       {
         "caseId": "TARGET-038-FIRST-POSTING-GATE",
         "status": "blocked",
-        "reason": "Requires preview evidence and expected entry trace."
+        "reason": "Posting remains blocked until preview evidence and expected ledger/subledger traces exist."
+      },
+      {
+        "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+        "status": "ready-after-current",
+        "reason": "Parked Page 314, VAT matrix, inventory posting and default-dimension blockers can be revisited after the first master-data route decision."
       }
     ],
     "queueChangesMade": [],
-    "selectedNextCase": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
-    "whySelectedNextCaseIsBest": "It creates practical UI/book knowledge while keeping all writes locked.",
+    "selectedNextCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
+    "whySelectedNextCaseIsBest": "The first controlled write decision must choose one low-risk record family and keep templates/save actions gated.",
     "risksBeforeNextCase": [
-      "New/template dialogs can create records if confirmed.",
-      "Card visibility is not posting readiness."
+      "New/template actions can create records if confirmed blindly.",
+      "No master-data creation should occur before setup-field decisions are explicit."
     ],
     "requiredPreparation": [
-      "Use screenshot QA and abort on any dialog requiring OK/Yes to create data."
+      "Keep New/Create/Save dialogs cancel-safe.",
+      "Do not treat list visibility as proof of mandatory field completeness."
     ]
   },
-  "createdAt": "2026-07-01T09:05:00.000Z"
+  "createdAt": "2026-07-01T09:05:00.000Z",
+  "resultStatus": "observed",
+  "completedAt": "2026-07-01T09:03:36.035Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-035-master-data-cards-templates-preflight/TARGET-035-result.json",
+  "proved": [
+    "4/4 master-data pages opened read-only in playthru/UNIVERSAARL-DE.",
+    "No customer, vendor, item or location was created.",
+    "No template was applied, no save/create was confirmed, no preview/posting occurred.",
+    "Customers / Debitoren visible read-only.",
+    "Vendors / Kreditoren visible read-only.",
+    "Items / Artikel visible read-only.",
+    "Locations / Lagerorte visible read-only."
+  ],
+  "notProved": [
+    "Templates and mandatory fields are not fully proven because New/Create was intentionally not confirmed.",
+    "Posting groups, VAT groups and number-series readiness for actual new cards are not proven.",
+    "No Default Dimensions, ledger entries, VAT entries, item entries or value entries exist from this case.",
+    "Final clean book screenshots are not proven because Teaching Tips remain visible on the captured pages.",
+    "Card mandatory fields are not proven because New/Create was not opened or confirmed."
+  ],
+  "screenshotQa": {
+    "status": "usable-evidence-not-final-book-screenshots",
+    "checkedByVisualInspection": true,
+    "findings": [
+      "Customers, Vendors, Items and Locations list pages are visibly in playthru / Universaarl GmbH context.",
+      "Each page shows an empty-list state and a visible Neu/New action, but Neu was not clicked.",
+      "Customers, Vendors and Items show Teaching Tips about templates; Locations shows a Teaching Tip about warehouse/location setup.",
+      "Teaching Tips are useful learning evidence but obscure the lower-left area; final book screenshots should close them or explain them deliberately.",
+      "Item page FactBox is scrolled and reveals many planning/factoring fields; this is useful for field discovery but not proof of mandatory card fields."
+    ],
+    "bookUse": "draft-context-only",
+    "finalScreenshotNeeded": true
+  },
+  "nextCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION"
 }

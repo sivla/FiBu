@@ -3089,7 +3089,7 @@
     {
       "id": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
       "order": 10110,
-      "status": "pending",
+      "status": "done",
       "priority": "high",
       "area": "universaarl-master-data",
       "category": "master-data-readonly-preflight",
@@ -3101,10 +3101,31 @@
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
       "caseFile": ".agent/state/cases/target-035-master-data-cards-templates-preflight.json",
+      "blockedBy": [],
+      "result": "Customers, Vendors, Items and Locations opened read-only in playthru / UNIVERSAARL-DE; no master data/template/save/preview/posting; Teaching Tips visible as screenshot limitation.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-035-master-data-cards-templates-preflight/TARGET-035-result.json",
+      "completedAt": "2026-07-01T09:03:36.035Z",
+      "nextCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION"
+    },
+    {
+      "id": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
+      "order": 10120,
+      "status": "pending",
+      "priority": "high",
+      "area": "universaarl-master-data",
+      "category": "master-data-write-decision",
+      "expectedImpact": "choose-first-controlled-master-data-write-route",
+      "mayRunPlaywright": false,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Decide the first controlled master-data write route after TARGET-035 without creating records.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "caseFile": ".agent/state/cases/target-036-master-data-first-controlled-write-decision.json",
       "blockedBy": []
     }
   ],
-  "lastUpdated": "2026-07-01T09:05:00.000Z",
+  "lastUpdated": "2026-07-01T09:03:36.035Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -3211,61 +3232,52 @@
       ]
     }
   },
-  "updatedAt": "2026-07-01T08:43:26.535Z",
-  "lastCompletedCase": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
-  "nextCase": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
+  "updatedAt": "2026-07-01T09:03:36.035Z",
+  "lastCompletedCase": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
+  "nextCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
-    "plannedNextCaseBeforeReview": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
-    "lastEvidenceSummary": "TARGET-033 revalidated starter dimensions and values; TARGET-032F parked Page 314; TARGET-027D24 parked VAT matrix; TARGET-030/031B proved customer/vendor posting groups.",
+    "currentCase": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
+    "plannedNextCaseBeforeReview": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
+    "lastEvidenceSummary": "TARGET-034 classified Foundation as partial and allowed only read-only master-data card/template preflight.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "A local checkpoint prevents overclaiming and defines whether any master data work can begin.",
+    "reason": "Master-data list surfaces must be visible and screenshot-qualified before any controlled New/template/create case can be attempted.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
-        "status": "ready-next",
-        "reason": "The previous W1 evidence is sufficient for a local classification without BC."
-      },
-      {
-        "caseId": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
-        "status": "ready-next",
-        "reason": "Read-only inspection of customer, vendor, item and location cards/templates can proceed without creating records."
-      },
-      {
         "caseId": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
-        "status": "needs-setup-first",
-        "reason": "Actual creation depends on TARGET-035 required-field/template evidence and the explicit acceptance of parked VAT/Page314 boundaries."
+        "status": "needs-source-check-first",
+        "reason": "The next step must decide which first record can be created and which fields/templates stay locked."
       },
       {
         "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
         "status": "blocked",
-        "reason": "Preview requires master data plus accepted posting/VAT boundaries."
+        "reason": "Preview remains blocked until real master data, accepted VAT/posting boundaries and expected entry traces exist."
       },
       {
         "caseId": "TARGET-038-FIRST-POSTING-GATE",
         "status": "blocked",
-        "reason": "Posting requires Preview evidence and expected entry trace."
+        "reason": "Posting remains blocked until preview evidence and expected ledger/subledger traces exist."
+      },
+      {
+        "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+        "status": "ready-after-current",
+        "reason": "Parked Page 314, VAT matrix, inventory posting and default-dimension blockers can be revisited after the first master-data route decision."
       }
     ],
-    "queueChangesMade": [
-      "Marked TARGET-034 done as a no-BC foundation checkpoint.",
-      "Added TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT as read-only next case.",
-      "Kept actual master data creation, Preview Posting and Posting locked."
-    ],
-    "selectedNextCase": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
-    "whySelectedNextCaseIsBest": "It advances toward beginner-friendly master data chapters without writing records while Page 314 and VAT setup remain parked.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
+    "whySelectedNextCaseIsBest": "The first controlled write decision must choose one low-risk record family and keep templates/save actions gated.",
     "risksBeforeNextCase": [
-      "Do not click New if it would create a record.",
-      "Do not accept template dialogs.",
-      "Do not fill or save fields.",
-      "Do not claim posting readiness from card/template visibility."
+      "New/template actions can create records if confirmed blindly.",
+      "No master-data creation should occur before setup-field decisions are explicit."
     ],
     "requiredPreparation": [
-      "Inspect only read-only card/list/template surfaces for customers, vendors, items and locations.",
-      "Capture required fields, visible posting group fields, template prompts and abort rules."
+      "Keep New/Create/Save dialogs cancel-safe.",
+      "Do not treat list visibility as proof of mandatory field completeness."
     ]
   },
-  "nextStep": "Run TARGET-034 as a no-BC Foundation checkpoint: classify proven, parked and blocked W1 setup before any master data.",
-  "openItems": 1,
-  "nextQueueItem": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT"
+  "nextStep": "Run TARGET-036 as no-write decision gate before any master-data creation.",
+  "openItems": [
+    "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION"
+  ],
+  "nextQueueItem": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION"
 }

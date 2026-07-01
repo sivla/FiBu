@@ -5,9 +5,9 @@
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-master-data-readonly-preflight",
-  "activeCase": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
-  "active_case_file": ".agent/state/cases/target-035-master-data-cards-templates-preflight.json",
+  "activeArea": "universaarl-master-data-write-decision",
+  "activeCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
+  "active_case_file": ".agent/state/cases/target-036-master-data-first-controlled-write-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -47,8 +47,8 @@
     "fake-evidence",
     "book-claim-without-evidence"
   ],
-  "nextCase": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
-  "nextStep": "Run TARGET-035 as read-only master data cards/templates preflight. Do not create customers, vendors, items, locations, drafts, Preview Posting or Posting.",
+  "nextCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
+  "nextStep": "Run TARGET-036 as a no-write decision gate: choose the first controlled Universaarl master-data write route after TARGET-035; do not create records yet.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -231,7 +231,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "TARGET-034 classifies W1 Foundation as partial: read-only master data preflight is useful, but actual master data creation, Preview Posting and Posting remain locked while Page 314 and VAT setup are parked.",
+  "currentCoverageFocus": "TARGET-035 observed Customers, Vendors, Items and Locations read-only in playthru / UNIVERSAARL-DE. First controlled master-data write now needs a decision gate; Preview Posting and Posting remain locked.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -7273,7 +7273,7 @@
     "currentVisibleText": "1200 Forderungen aus Lieferungen und Leistungen Bilanz Buchung",
     "correctedReason": "SKR04-oriented Universaarl foundation must not create a new 1400 receivables account; 1400 belongs to the wrong mapping context for this target."
   },
-  "nextQueueItem": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
+  "nextQueueItem": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
   "openItems": 1,
   "latestCustomerReceivablesSourceCorrection": {
     "caseId": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
@@ -7596,5 +7596,65 @@
     ],
     "nextCase": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
     "updatedAt": "2026-07-01T09:05:00.000Z"
+  },
+  "latestTarget035MasterDataPreflight": {
+    "caseId": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-035-master-data-cards-templates-preflight/TARGET-035-result.json",
+    "pagesObserved": [
+      {
+        "id": "customers-list",
+        "label": "Customers / Debitoren",
+        "pageId": 22,
+        "status": "observed"
+      },
+      {
+        "id": "vendors-list",
+        "label": "Vendors / Kreditoren",
+        "pageId": 27,
+        "status": "observed"
+      },
+      {
+        "id": "items-list",
+        "label": "Items / Artikel",
+        "pageId": 31,
+        "status": "observed"
+      },
+      {
+        "id": "locations-list",
+        "label": "Locations / Lagerorte",
+        "pageId": 15,
+        "status": "observed"
+      }
+    ],
+    "flags": {
+      "noWrite": true,
+      "noPost": true,
+      "noPreview": true,
+      "noDraft": true,
+      "noSetupChange": true,
+      "noMasterDataChange": true,
+      "noCompanySwitch": true,
+      "noApiShortcut": true,
+      "noSearch": true,
+      "noBookMasterChange": true,
+      "noTemplateApplied": true,
+      "readOnlyDirectPageRoutes": true
+    },
+    "screenshotQa": {
+      "status": "usable-evidence-not-final-book-screenshots",
+      "checkedByVisualInspection": true,
+      "findings": [
+        "Customers, Vendors, Items and Locations list pages are visibly in playthru / Universaarl GmbH context.",
+        "Each page shows an empty-list state and a visible Neu/New action, but Neu was not clicked.",
+        "Customers, Vendors and Items show Teaching Tips about templates; Locations shows a Teaching Tip about warehouse/location setup.",
+        "Teaching Tips are useful learning evidence but obscure the lower-left area; final book screenshots should close them or explain them deliberately.",
+        "Item page FactBox is scrolled and reveals many planning/factoring fields; this is useful for field discovery but not proof of mandatory card fields."
+      ],
+      "bookUse": "draft-context-only",
+      "finalScreenshotNeeded": true
+    },
+    "nextCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
+    "updatedAt": "2026-07-01T09:03:36.035Z"
   }
 }

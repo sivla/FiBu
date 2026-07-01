@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "First controlled master-data write decision",
+  "purpose": "Choose exactly one low-risk first Universaarl master-data record family after TARGET-035, without yet opening Preview Posting or Posting.",
+  "sourceCases": [
+    "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+    "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": false,
+  "taskClass": "judge_work",
+  "smartDecisionRequired": true,
+  "allowedActions": [
+    "review-target-035-evidence",
+    "decide-first-record-family",
+    "write-next-controlled-case",
+    "keep-preview-posting-and-posting-locked"
+  ],
+  "forbiddenActions": [
+    "create-master-data",
+    "click-new-without-dedicated-write-case",
+    "confirm-template-dialog",
+    "save-record",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-master-data-readiness"
+  ],
+  "entryCriteria": [
+    "TARGET-035 result exists and proves Customers, Vendors, Items and Locations lists read-only in playthru / UNIVERSAARL-DE.",
+    "TARGET-035 does not prove templates, mandatory card fields or posting/VAT readiness."
+  ],
+  "acceptanceCriteria": [
+    "Select one first write route or explicitly block all writes with reason.",
+    "Define fields that may be changed and fields that remain untouched.",
+    "Decide whether Teaching Tips must be closed before write screenshots.",
+    "No master data, setup, draft, preview or posting is created in this decision case."
+  ],
+  "lookahead": [
+    {
+      "caseId": "TARGET-036A-FIRST-CUSTOMER-OR-LOCATION-CONTROLLED-WRITE-GATE",
+      "status": "ready-after-current",
+      "reason": "Only after TARGET-036 chooses a low-risk family and fields."
+    },
+    {
+      "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
+      "status": "blocked",
+      "reason": "Requires real master data and accepted VAT/posting boundaries."
+    },
+    {
+      "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+      "status": "ready-after-current",
+      "reason": "Page 314, VAT matrix and default dimensions remain parked and may need to be revisited before documents."
+    }
+  ],
+  "createdAt": "2026-07-01T09:03:36.035Z"
+}

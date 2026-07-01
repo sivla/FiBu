@@ -212,3 +212,24 @@ Diese UAT-Faelle werden erst ausfuehrbar, wenn `UNIVERSAARL-DE` existiert und de
 3. Keine neuen Stammdaten speichern, solange Pflichtfelder, Vorlagenlogik und Abbruchweg nicht klar sind.
 4. Danach entscheiden, welcher erste Datensatz kontrolliert angelegt werden darf.
 5. Belegvorschau und Buchung bleiben gesperrt, bis Stammdaten, Buchungsmatrix, USt und Postenspur vorbereitet sind.
+
+## Erste Sicht auf Stammdatenlisten
+
+Nach der Foundation-Pruefung oeffnen wir die wichtigsten Stammdatenbereiche zunaechst nur lesend: Debitoren, Kreditoren, Artikel und Lagerorte. Diese Seiten sind die Einstiegspunkte fuer Kunden, Lieferanten, Produkte und Lagerstruktur.
+
+Die Listen sind in `UNIVERSAARL-DE` noch leer. Das ist fuer eine frisch aufgebaute Company normal. Business Central zeigt oben jeweils die Aktion `Neu`, daneben weitere Befehle und in der Mitte die leere Liste. Bei Debitoren, Kreditoren und Artikeln erscheint ausserdem ein Hinweis zur Datenmigration. Dieser Hinweis bedeutet nicht, dass Daten fehlen, die sofort importiert werden muessen. Er erinnert nur daran, dass Business Central Stammdaten auch aus anderen Quellen uebernehmen kann.
+
+Auf den Seiten sieht man schon wichtige Unterschiede:
+
+| Seite | Woran man sie erkennt | Warum sie wichtig ist |
+| --- | --- | --- |
+| Debitoren | Spalten wie `Nr.`, `Name`, `Lagerortcode`, `Telefonnr.`, `Kontakt` und eine FactBox mit Verkaufsstatistik | Debitoren sind Kunden. Ueber sie entstehen spaeter Forderungen, Verkaufsbelege und Debitorenposten. |
+| Kreditoren | Spalten wie `Nr.`, `Name`, `Suchbegriff`, Salden und eine FactBox mit Einkaufsstatistik | Kreditoren sind Lieferanten. Ueber sie entstehen spaeter Verbindlichkeiten, Einkaufsbelege und Kreditorenposten. |
+| Artikel | Spalten wie `Nr.`, `Beschreibung`, `Art`, Lagerbestand, Basiseinheit, Einstandspreis und VK-Preis | Artikel verbinden Verkauf, Einkauf, Lager, Planung und spaeter Fertigung oder Service. |
+| Lagerorte | Spalten `Code` und `Name` | Lagerorte trennen Bestandsorte. Sie werden spaeter fuer Wareneingang, Versand, Umlagerung und Lagerbewertung wichtig. |
+
+Die Aktion `Neu` ist auf allen vier Seiten sichtbar. Sie wird noch nicht verwendet. Ein neuer Datensatz sollte erst angelegt werden, wenn klar ist, welche Vorlage Business Central anbietet, welche Felder Pflichtfelder sind und welche Buchungsgruppen spaeter die Kontenfindung steuern. Sonst entsteht schnell ein unvollstaendiger Kunde, Lieferant oder Artikel, der beim ersten Beleg einen schwer verstaendlichen Fehler ausloest.
+
+Die eingeblendeten Info-Karten und Teaching-Tips sind hilfreich fuer die Orientierung. Fuer ein endgueltiges Buchbild sollten sie aber entweder bewusst erklaert oder vor dem Screenshot geschlossen werden, damit wichtige Spalten und Felder nicht verdeckt werden.
+
+Der naechste sichere Schritt ist deshalb kein Beleg und keine Buchung. Zuerst wird entschieden, welcher erste Stammdatensatz mit welchen Feldern kontrolliert angelegt werden darf. Erst wenn dieser Datensatz nach erneutem Oeffnen sichtbar ist, kann er als Grundlage fuer Belege, Vorschau und Postenspur dienen.

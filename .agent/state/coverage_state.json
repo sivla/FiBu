@@ -789,11 +789,11 @@
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
   "updatedAt": "2026-07-01T09:05:00.000Z",
-  "activeArea": "universaarl-foundation-ready-checkpoint",
+  "activeArea": "universaarl-master-data-write-decision",
   "currentBlock": "Foundation checkpoint needed before master data: General Posting Setup Page 314 and VAT matrix are parked; Dimensions starter set is visible but Global/Default Dimensions and posting effects are not proven.",
   "latestPracticalCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
   "latestReviewCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
-  "nextCase": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+  "nextCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -1014,7 +1014,7 @@
     "playwright/projects/fibu-book5/BC-ERROR-BLOCKER-ATLAS.md",
     "playwright/projects/fibu-book5/BC-PROCESS-COVERAGE-ROADMAP.md"
   ],
-  "currentCoverageFocus": "TARGET-032E proved that the tested Page 314 alternative probes did not produce a safe card/write route: More options only widened the command bar, Ctrl+Alt+F1 did not provide a stable Page 314 technical proof, and direct Page 315 is MwSt.-Posten/VAT Entries, not General Posting Setup.",
+  "currentCoverageFocus": "TARGET-035 observed Customers, Vendors, Items and Locations read-only in playthru / UNIVERSAARL-DE. First controlled master-data write now needs a decision gate; Preview Posting and Posting remain locked.",
   "latestCoverageUpdate": {
     "at": "2026-06-28T19:28:00.000+02:00",
     "type": "p2p-011-purchase-lines-action-discovery-tested",
@@ -1894,7 +1894,7 @@
     "nextCase": "FIXEDASSETS-298-FA-DEPRECIATION-BLOCKER-BOOK-SYNC",
     "updatedAt": "2026-06-29T07:09:31.588Z"
   },
-  "nextStep": "Run TARGET-034 as a no-BC Foundation checkpoint: classify proven, parked and blocked W1 setup before any master data.",
+  "nextStep": "Run TARGET-036 as a no-write decision gate: choose the first controlled Universaarl master-data write route after TARGET-035; do not create records yet.",
   "warehouse": {
     "chapter": "Kapitel 13",
     "status": "in-progress",
@@ -2344,8 +2344,8 @@
     "finalScreenshotNeeded": true,
     "updatedAt": "2026-06-29T23:59:00+02:00"
   },
-  "activeCase": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
-  "active_case_file": ".agent/state/cases/target-034-foundation-ready-checkpoint.json",
+  "activeCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
+  "active_case_file": ".agent/state/cases/target-036-master-data-first-controlled-write-decision.json",
   "latestManufacturing005": {
     "caseId": "MANUFACTURING-005-CHAPTER14-LAB-VS-TARGET-CLEANUP",
     "status": [
@@ -4529,5 +4529,66 @@
     "masterDataCreationReadiness": "not-unlocked",
     "masterDataPreflightReadiness": "unlocked-readonly-only",
     "nextCase": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT"
-  }
+  },
+  "latestTarget035MasterDataPreflight": {
+    "caseId": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-035-master-data-cards-templates-preflight/TARGET-035-result.json",
+    "pagesObserved": [
+      {
+        "id": "customers-list",
+        "label": "Customers / Debitoren",
+        "pageId": 22,
+        "status": "observed"
+      },
+      {
+        "id": "vendors-list",
+        "label": "Vendors / Kreditoren",
+        "pageId": 27,
+        "status": "observed"
+      },
+      {
+        "id": "items-list",
+        "label": "Items / Artikel",
+        "pageId": 31,
+        "status": "observed"
+      },
+      {
+        "id": "locations-list",
+        "label": "Locations / Lagerorte",
+        "pageId": 15,
+        "status": "observed"
+      }
+    ],
+    "flags": {
+      "noWrite": true,
+      "noPost": true,
+      "noPreview": true,
+      "noDraft": true,
+      "noSetupChange": true,
+      "noMasterDataChange": true,
+      "noCompanySwitch": true,
+      "noApiShortcut": true,
+      "noSearch": true,
+      "noBookMasterChange": true,
+      "noTemplateApplied": true,
+      "readOnlyDirectPageRoutes": true
+    },
+    "screenshotQa": {
+      "status": "usable-evidence-not-final-book-screenshots",
+      "checkedByVisualInspection": true,
+      "findings": [
+        "Customers, Vendors, Items and Locations list pages are visibly in playthru / Universaarl GmbH context.",
+        "Each page shows an empty-list state and a visible Neu/New action, but Neu was not clicked.",
+        "Customers, Vendors and Items show Teaching Tips about templates; Locations shows a Teaching Tip about warehouse/location setup.",
+        "Teaching Tips are useful learning evidence but obscure the lower-left area; final book screenshots should close them or explain them deliberately.",
+        "Item page FactBox is scrolled and reveals many planning/factoring fields; this is useful for field discovery but not proof of mandatory card fields."
+      ],
+      "bookUse": "draft-context-only",
+      "finalScreenshotNeeded": true
+    },
+    "nextCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
+    "updatedAt": "2026-07-01T09:03:36.035Z"
+  },
+  "nextQueueItem": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION"
 }
