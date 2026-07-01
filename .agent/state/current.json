@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T03:55:00.000+02:00",
+  "updatedAt": "2026-07-01T01:21:03.007Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-vat-groups-controlled-write-retry",
-  "activeCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
-  "active_case_file": ".agent/state/cases/target-027c-vat-groups-controlled-write.json",
-  "lastReferenceCase": "TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY",
+  "activeArea": "universaarl-vat-posting-setup-matrix-write",
+  "activeCase": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
+  "active_case_file": ".agent/state/cases/target-027d-vat-posting-setup-matrix-write.json",
+  "lastReferenceCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
   "lastReferenceCaseFile": ".agent/state/cases/target-027c4-vat-business-result-click-recovery.json",
   "mode": "universaarl-target-execution",
   "requiresStrongModel": true,
@@ -19,12 +19,12 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-vat-business-posting-groups-page-470",
-    "open-vat-product-posting-groups-page-471",
-    "create-or-confirm-vat-business-posting-group-INLAND-if-page-accepted",
-    "create-or-confirm-vat-product-posting-group-VAT19-if-page-accepted",
-    "capture-before-after-reopen-proof",
-    "stop-before-vat-posting-setup-matrix"
+    "open-vat-posting-setup-page-472",
+    "capture-before-state",
+    "run-source-backed-smart-decision-gate-for-INLAND-VAT19-matrix",
+    "create-or-confirm-one-vat-posting-setup-matrix-row-INLAND-VAT19-if-gate-passes",
+    "capture-after-and-reopen-proof",
+    "stop-before-master-data-preview-posting"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -32,16 +32,16 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "create-vat-posting-setup-matrix-row",
     "create-master-data",
     "create-document-or-draft",
     "preview-posting",
     "post",
     "api-shortcut",
-    "claim-german-19-percent-vat-final-proof"
+    "claim-german-19-percent-vat-final-proof",
+    "change-vat-groups-INLAND-or-VAT19-again-without-reopen-blocker"
   ],
-  "nextCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
-  "nextStep": "Retry the bounded VAT group write: create or confirm only INLAND on Page 470 and VAT19 on Page 471 with before/after/reopen proof; keep VAT Posting Setup matrix, preview, posting, master data and documents locked.",
+  "nextCase": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
+  "nextStep": "Create a controlled Page 472 VAT Posting Setup matrix case for INLAND + VAT19 only after decision/source gate; no master data, draft, Preview Posting or Posting.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -6533,5 +6533,36 @@
     "noPreview": true,
     "noPosting": true,
     "nextCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY"
+  },
+  "latestVatGroupsControlledWriteRetry": {
+    "caseId": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
+    "status": "observed-screenshot-qa-with-extractor-gap",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/TARGET-027C-RETRY-screenshot-reviewed-result.json",
+    "rawResultPath": "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/TARGET-027C-RETRY-result.json",
+    "setupChanged": true,
+    "groups": {
+      "vatBusinessPostingGroup": {
+        "code": "INLAND",
+        "description": "Inland Deutschland",
+        "pageId": 470
+      },
+      "vatProductPostingGroup": {
+        "code": "VAT19",
+        "description": "USt 19 Prozent",
+        "pageId": 471
+      }
+    },
+    "evidenceScreenshots": [
+      "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/target-027c-001-business-reopen.png",
+      "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/target-027c-002-product-reopen.png"
+    ],
+    "limits": [
+      "No VAT Posting Setup matrix row.",
+      "No Preview Posting, Posting, VAT Entries or G/L Entries.",
+      "No German 19 percent VAT final proof.",
+      "Raw text extraction missed active BC grid values; use screenshot QA/value-aware helper."
+    ]
   }
 }

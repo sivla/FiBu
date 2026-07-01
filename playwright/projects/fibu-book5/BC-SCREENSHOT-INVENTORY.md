@@ -248,6 +248,15 @@ Screenshot-QA zu TARGET-019B: Die Bilder zeigen erreichbare Setupkontexte. Sie s
 
 Screenshot-QA zu TARGET-020: Diese Bilder zeigen nur die USt-Setup-Ebenen. Sie duerfen im Buch erklaeren, welche Seiten vor einem deutschen USt-Beleg geprueft werden. Sie beweisen noch keine 19-Prozent-USt, keine Kontenrichtigkeit und keine Buchungswirkung.
 
+## Universaarl Foundation - USt/VAT TARGET-027C
+
+| Screenshot | Page | Company/Kontext | Schritt | Was man sehen soll | Interner Beweis | Beweist nicht | Status |
+|---|---|---|---|---|---|---|---|
+| `target-027c-001-business-reopen.png` | MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups, Page 470 | `playthru` / `UNIVERSAARL-DE` | Reopen nach kontrolliertem Gruppen-Write | `INLAND` mit Beschreibung `Inland Deutschland` ist im Grid sichtbar | MwSt.-Geschaeftsbuchungsgruppe `INLAND` ist in der Zielcompany sichtbar bestaetigt | keine MwSt.-Buchungsmatrix, keine USt-Berechnung, keine Preview, keine Posten | `universaarl-setup-proof`, `screenshot-qa-reviewed` |
+| `target-027c-002-product-reopen.png` | MwSt.-Produktbuchungsgruppen / VAT Product Posting Groups, Page 471 | `playthru` / `UNIVERSAARL-DE` | Reopen nach kontrolliertem Gruppen-Write | `VAT19` mit Beschreibung `USt 19 Prozent` ist im Grid sichtbar | MwSt.-Produktbuchungsgruppe `VAT19` ist in der Zielcompany sichtbar bestaetigt | keine MwSt.-Buchungsmatrix, keine USt-Berechnung, keine Preview, keine Posten | `universaarl-setup-proof`, `screenshot-qa-reviewed` |
+
+Screenshot-QA zu TARGET-027C: Der rohe Text-Extractor hat aktive BC-Gridwerte nicht zuverlaessig gelesen. Die akzeptierte Evidenz ist deshalb der Reopen-PNG-Beweis plus Screenshot-Metadaten. Dieser Block beweist nur die beiden Voraussetzungscodes `INLAND` und `VAT19`; die spaetere Page-472-Matrix, 19-Prozent-USt, VAT Entries und Sachposten bleiben offen.
+
 ## Universaarl Foundation - Dimensionen TARGET-021
 
 | Screenshot | Page | Company/Kontext | Schritt | Was man sehen soll | Interner Beweis | Beweist nicht | Status |

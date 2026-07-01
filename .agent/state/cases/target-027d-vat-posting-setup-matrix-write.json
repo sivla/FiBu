@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
+  "id": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
+  "status": "planned",
+  "area": "universaarl-vat-setup",
+  "goal": "Create or confirm only the VAT Posting Setup matrix row for INLAND + VAT19 after source/decision gate.",
+  "sourceCompany": "UNIVERSAARL-DE",
+  "targetWorld": "Universaarl",
+  "sourceCases": [
+    "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE"
+  ],
+  "prerequisites": [
+    "VAT Business Posting Group INLAND visible after reopen.",
+    "VAT Product Posting Group VAT19 visible after reopen.",
+    "SKR04 VAT receivable/payable account mapping decision for 1406/3806 must be checked before write."
+  ],
+  "allowedActions": [
+    "open-vat-posting-setup-page-472",
+    "capture-before-state",
+    "create-or-confirm-one-matrix-row-INLAND-VAT19-if-decision-gate-passes",
+    "capture-after-and-reopen-proof",
+    "stop-before-master-data-preview-posting"
+  ],
+  "forbiddenActions": [
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-german-19-percent-vat-final-proof"
+  ],
+  "acceptanceCriteria": [
+    "The run stays in playthru / UNIVERSAARL-DE.",
+    "Page 472 is visibly confirmed before any write.",
+    "Only INLAND + VAT19 matrix row is created or confirmed.",
+    "No master data, document draft, Preview Posting, Posting or API shortcut is executed.",
+    "The result clearly states that final German VAT proof still requires Preview Posting, VAT Entries and G/L Entries."
+  ],
+  "nextIfSuccessful": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+  "createdAt": "2026-07-01T01:21:03.007Z"
+}

@@ -129,6 +129,17 @@ Der anschliessende read-only C2-Retry hat Page 471 `MwSt.-Produktbuchungsgruppen
 
 Das ist weiterhin kein USt-Setup-Beweis. `INLAND` und `VAT19` wurden nicht angelegt, die MwSt.-Buchungsmatrix wurde nicht geaendert, und es gibt keine Preview, keine VAT Entries und keine Sachposten. Der naechste sinnvolle Schritt ist ein begrenzter Write-Retry: nur `INLAND` auf Page 470 und `VAT19` auf Page 471 mit Vorher-/Nachher-/Reopen-Proof. Die Matrixzeile und jede steuerliche 19-Prozent-Behauptung bleiben bis danach gesperrt.
 
+## Stand nach `TARGET-027C` Retry
+
+`TARGET-027C` hat die beiden Voraussetzungscodes in `playthru / UNIVERSAARL-DE` sichtbar bestaetigt:
+
+- `INLAND` auf Page 470 `MwSt.-Geschaeftsbuchungsgruppen` mit Beschreibung `Inland Deutschland`.
+- `VAT19` auf Page 471 `MwSt.-Produktbuchungsgruppen` mit Beschreibung `USt 19 Prozent`.
+
+Die akzeptierte Evidenz sind die Reopen-Screenshots. Der rohe Text-Extractor hat aktive Business-Central-Gridwerte nicht zuverlaessig gelesen; deshalb ist dieser Lauf zugleich ein Playwright-Learning fuer Grid-/Screenshot-QA. Ein wiederholter Schreibversuch zeigte zwischenzeitlich `Nicht gespeichert`, weil der Zielcode offenbar bereits vorhanden war. Entscheidend ist der Reopen-Beweis: jeweils eine sichtbare Zeile bleibt auf der passenden Seite erhalten.
+
+Weiter offen bleibt die eigentliche MwSt.-Buchungsmatrix auf Page 472. `1406` und `3806` sind vorbereitete SKR04-Sachkonten, aber noch nicht in einer `INLAND` + `VAT19` Matrixzeile verwendet. Es gibt weiterhin keine 19-Prozent-USt-Berechnung, keine Preview, keine VAT Entries und keine Sachposten.
+
 ## Quellenbasis
 
 - DATEV SKR04 Produktseite: https://www.datev.de/web/de/datev-shop/rechnungswesen/skr-04/

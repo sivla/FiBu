@@ -5,7 +5,7 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "queueId": "TARGET-MARATHON-002-UNIVERSAARL-REPO-READONLY-PREP",
-  "reason": "TARGET-027C blocked before any setup write because Page 470/471 did not produce an accepted visible VAT list surface; next is route/surface recovery.",
+  "reason": "TARGET-027C retry confirmed INLAND and VAT19 by screenshot QA; next is controlled VAT Posting Setup matrix row.",
   "noEffectiveBusinessCentralActions": false,
   "forbiddenUntilUnblocked": [],
   "unblockCriteria": "Satisfied: UNIVERSAARL-DE exists and active Role Center context / Firmendaten read-only proof is available.",
@@ -2146,7 +2146,7 @@
     {
       "id": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
       "order": 10050,
-      "status": "pending",
+      "status": "done",
       "category": "controlled-setup-write",
       "expectedImpact": "vat-prerequisite-groups-write-retry",
       "mayWorkEffectively": true,
@@ -2156,7 +2156,7 @@
       "sourceCompany": "UNIVERSAARL-DE",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-next",
+      "lookaheadStatus": "done",
       "reason": "TARGET-027C4 recovered Page 470 surface and TARGET-027C2 accepted Page 471; the setup write retry is now the smallest W1 Foundation step.",
       "caseFile": ".agent/state/cases/target-027c-vat-groups-controlled-write.json",
       "blockedUntil": [],
@@ -2167,7 +2167,25 @@
         "preview-posting",
         "post",
         "api-shortcut"
-      ]
+      ],
+      "completedAt": "2026-07-01T01:21:03.007Z",
+      "result": "INLAND and VAT19 visible after reopen by screenshot QA; raw text extraction missed active grid values.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/TARGET-027C-RETRY-screenshot-reviewed-result.json"
+    },
+    {
+      "id": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
+      "order": 10060,
+      "status": "pending",
+      "category": "controlled-setup-write",
+      "expectedImpact": "vat-posting-setup-matrix-prerequisite",
+      "mayWorkEffectively": true,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": true,
+      "goal": "Create or confirm only the INLAND + VAT19 VAT Posting Setup matrix row after decision/source gate.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "lookaheadStatus": "ready-next"
     }
   ],
   "lastUpdated": "2026-07-01T03:55:00.000+02:00",

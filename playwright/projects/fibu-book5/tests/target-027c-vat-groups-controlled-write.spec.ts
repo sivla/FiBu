@@ -1,4 +1,4 @@
-import { expect, test, type Locator, type Page } from '@playwright/test';
+import { expect, test, type Frame, type Locator, type Page } from '@playwright/test';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
@@ -10,9 +10,9 @@ test.setTimeout(300_000);
 const CASE_ID = 'TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE';
 const EXPECTED_INSTANCE = 'playthru';
 const TARGET_COMPANY = 'UNIVERSAARL-DE';
-const EVIDENCE_ID = 'target-027c-vat-groups-controlled-write';
+const EVIDENCE_ID = 'target-027c-vat-groups-controlled-write-retry';
 const EVIDENCE_DIR = path.resolve('playwright/projects/fibu-book5/evidence', EVIDENCE_ID);
-const RESULT_PATH = path.join(EVIDENCE_DIR, 'TARGET-027C-result.json');
+const RESULT_PATH = path.join(EVIDENCE_DIR, 'TARGET-027C-RETRY-result.json');
 
 type GroupTarget = {
   kind: 'business' | 'product';
@@ -62,12 +62,12 @@ const targets: GroupTarget[] = [
     pageId: 470,
     code: 'INLAND',
     description: 'Inland Deutschland',
-    pageTitle: /MwSt\.-?Gesch[aä]ftsbuchungsgruppen|USt\.-?Gesch[aä]ftsbuchungsgruppen|VAT Business Posting Groups/i,
+    pageTitle: /MwSt\.-?(?:Gesch[a-z]*ft|Geschaeft)sbuchungsgruppen|USt\.-?(?:Gesch[a-z]*ft|Geschaeft)sbuchungsgruppen|VAT Business Posting Groups/i,
     pageLabel: 'MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups',
     codeColumn: /^Code$/i,
     descriptionColumn: /Beschreibung|Description/i,
-    searchTerm: 'MwSt.-Geschäftsbuchungsgruppen',
-    searchResult: /MwSt\.-?Gesch[aä]ftsbuchungsgruppen\s+Verwaltung|VAT Business Posting Groups\s+Verwaltung/i
+    searchTerm: 'MwSt.-Gesch\u00e4ftsbuchungsgruppen',
+    searchResult: /MwSt\.-?(?:Gesch[a-z]*ft|Geschaeft)sbuchungsgruppen\s+Verwaltung|VAT Business Posting Groups\s+Verwaltung/i
   },
   {
     kind: 'product',
@@ -97,10 +97,33 @@ function clean(value: string | null | undefined) {
     .trim();
 }
 
+function normalizeForMatch(value: string | null | undefined) {
+  return (value ?? '')
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(new RegExp('\u00c3\u0192\u00c2\u00a4', 'g'), 'a')
+    .replace(new RegExp('\u00c3\u0192\u00e2\u20ac\u017e', 'g'), 'A')
+    .replace(new RegExp('\u00c3\u0192\u00c2\u00b6', 'g'), 'o')
+    .replace(new RegExp('\u00c3\u0192\u00e2\u20ac\u201c', 'g'), 'O')
+    .replace(new RegExp('\u00c3\u0192\u00c2\u00bc', 'g'), 'u')
+    .replace(new RegExp('\u00c3\u0192\u00c5\u201c', 'g'), 'U')
+    .replace(new RegExp('\u00c3\u0192\u00c5\u00b8', 'g'), 'ss')
+    .toLowerCase();
+}
+
 function buildPlaythruUrl(pageId: number) {
   const url = new URL(requireBcUrl('FIBU_BOOK5'));
   url.pathname = url.pathname.replace(/\/MCP_1_20260210(\/|$)/i, '/playthru$1');
   url.searchParams.set('page', String(pageId));
+  url.searchParams.set('company', TARGET_COMPANY);
+  url.searchParams.set('dc', '0');
+  return url.toString();
+}
+
+function buildPlaythruBaseUrl() {
+  const url = new URL(requireBcUrl('FIBU_BOOK5'));
+  url.pathname = url.pathname.replace(/\/MCP_1_20260210(\/|$)/i, '/playthru$1');
+  url.searchParams.delete('page');
   url.searchParams.set('company', TARGET_COMPANY);
   url.searchParams.set('dc', '0');
   return url.toString();
@@ -177,6 +200,8 @@ async function targetSurface(page: Page, target: GroupTarget): Promise<Locator |
   const scopes = [page, ...page.frames()];
   const candidates: Locator[] = [];
   for (const scope of scopes) {
+    candidates.push(scope.locator('[role="dialog"]').filter({ hasText: target.pageTitle }).last());
+    candidates.push(scope.locator('[aria-modal="true"]').filter({ hasText: target.pageTitle }).last());
     candidates.push(scope.locator('form').filter({ hasText: target.pageTitle }).last());
     candidates.push(scope.locator('form').filter({ hasText: /Code|Beschreibung|Description/i }).last());
     candidates.push(scope.getByRole('form', { name: target.pageTitle }).last());
@@ -197,6 +222,54 @@ async function targetSurface(page: Page, target: GroupTarget): Promise<Locator |
   return null;
 }
 
+async function findVisibleCandidates(page: Page, pattern: RegExp) {
+  const all: Array<{ frameUrl: string; text: string; role: string; rect: { x: number; y: number; width: number; height: number } }> = [];
+  for (const frame of page.frames()) {
+    const entries = await frame
+      .evaluate((source) => {
+        const pattern = new RegExp(source, 'i');
+        const selectors = '[role="option"],[role="button"],[role="link"],button,a,li,div,span';
+        return [...document.querySelectorAll<HTMLElement>(selectors)]
+          .map((element) => {
+            const rect = element.getBoundingClientRect();
+            const style = window.getComputedStyle(element);
+            const value = element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement ? element.value : '';
+            const text = (element.innerText || value || element.getAttribute('aria-label') || element.getAttribute('title') || '').replace(/\s+/g, ' ').trim();
+            const visible =
+              text.length > 0 &&
+              pattern.test(text) &&
+              rect.width > 1 &&
+              rect.height > 1 &&
+              rect.bottom > 0 &&
+              rect.right > 0 &&
+              rect.top < window.innerHeight &&
+              rect.left < window.innerWidth &&
+              style.visibility !== 'hidden' &&
+              style.display !== 'none' &&
+              Number(style.opacity || '1') > 0;
+            if (!visible) return null;
+            return {
+              text,
+              role: element.getAttribute('role') || element.tagName.toLowerCase(),
+              rect: {
+                x: Math.round(rect.x),
+                y: Math.round(rect.y),
+                width: Math.round(rect.width),
+                height: Math.round(rect.height)
+              }
+            };
+          })
+          .filter(Boolean)
+          .slice(0, 80);
+      }, pattern.source)
+      .catch(() => []);
+    for (const entry of entries as Array<{ text: string; role: string; rect: { x: number; y: number; width: number; height: number } }>) {
+      all.push({ frameUrl: sanitizeEvidenceUrl(frame.url()), ...entry });
+    }
+  }
+  return all;
+}
+
 async function compactGroupText(page: Page, target: GroupTarget) {
   const surface = await targetSurface(page, target);
   if (surface) {
@@ -215,15 +288,18 @@ async function compactGroupText(page: Page, target: GroupTarget) {
 async function capture(page: Page, target: GroupTarget, prefix: string, step: string): Promise<Capture> {
   const text = (await compactGroupText(page, target)) || (await visibleText(page));
   const surface = await targetSurface(page, target);
-  const targetSurfaceVisible = !!surface;
+  const escapedDescription = target.description.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const visibleValueCandidates = await findVisibleCandidates(page, new RegExp(`${target.code}|${escapedDescription}`, 'i'));
   const pageTitleVisible = target.pageTitle.test(text);
   const gridColumnsVisible = /Code/i.test(text) && /Beschreibung|Description/i.test(text);
-  const targetCodeVisible = new RegExp(`\\b${target.code}\\b`, 'i').test(text);
-  const targetDescriptionVisible = new RegExp(target.description.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i').test(text);
+  const targetSurfaceVisible = !!surface || (pageTitleVisible && gridColumnsVisible);
+  const visibleValueText = visibleValueCandidates.map((entry) => entry.text).join('\n');
+  const targetCodeVisible = new RegExp(`\\b${target.code}\\b`, 'i').test(`${text}\n${visibleValueText}`);
+  const targetDescriptionVisible = new RegExp(escapedDescription, 'i').test(`${text}\n${visibleValueText}`);
   const screenshotName = `${prefix}.png`;
   const textFile = `${prefix}.txt`;
 
-  await writeText(textFile, text || 'No visible VAT group text captured.');
+  await writeText(textFile, [text, ...visibleValueCandidates.map((entry) => entry.text)].filter(Boolean).join('\n') || 'No visible VAT group text captured.');
   const imagePath = path.join(EVIDENCE_DIR, screenshotName);
   if (surface) {
     await surface.scrollIntoViewIfNeeded({ timeout: 3000 }).catch(() => undefined);
@@ -248,7 +324,8 @@ async function capture(page: Page, target: GroupTarget, prefix: string, step: st
           : 'Die Liste MwSt.-Produktbuchungsgruppen enthaelt steuerliche Gruppen fuer Artikel, Ressourcen oder Sachkonten.',
       internallyProves: targetCodeVisible && targetDescriptionVisible ? `${target.code} is visible with its target description.` : `${target.pageLabel} route state was captured.`,
       doesNotProve: ['No VAT Posting Setup matrix row.', 'No Preview Posting.', 'No Posting.', 'No VAT Entries.'],
-      screenshotQaRule: 'Accepted only when the screenshot itself shows the VAT group page, not Role Center or Tell-Me search.'
+      screenshotQaRule: 'Accepted only when the screenshot itself shows the VAT group page, not Role Center or Tell-Me search.',
+      visibleValueCandidates: visibleValueCandidates.slice(0, 20)
   });
 
   return {
@@ -264,7 +341,7 @@ async function capture(page: Page, target: GroupTarget, prefix: string, step: st
     targetDescriptionVisible,
     roleCenterVisible: roleCenterVisible(text),
     searchOverlayVisible: searchOverlayVisible(text),
-    textSignals: text.split('\n').slice(0, 80)
+    textSignals: [text, ...visibleValueCandidates.map((entry) => entry.text)].join('\n').split('\n').slice(0, 80)
   };
 }
 
@@ -278,7 +355,7 @@ async function openTargetPage(page: Page, target: GroupTarget, route: string[]) 
 }
 
 async function clickExactSearchResult(page: Page, target: GroupTarget) {
-  const scopes = [page, ...page.frames()];
+  const scopes = [page, ...page.frames()] as Array<Page | Frame>;
   for (const scope of scopes) {
     const locators = [
       scope.getByRole('row', { name: target.searchResult }),
@@ -298,6 +375,20 @@ async function clickExactSearchResult(page: Page, target: GroupTarget) {
       }
     }
   }
+
+  const candidates = await findVisibleCandidates(page, /MwSt|USt|VAT|Buchungsgruppen|Verwaltung/i);
+  const expected = normalizeForMatch(target.kind === 'business' ? 'mwst.-geschaftsbuchungsgruppen' : 'mwst.-produktbuchungsgruppen');
+  const exact = candidates
+    .filter((entry) => normalizeForMatch(entry.text).includes(expected))
+    .filter((entry) => /verwaltung|posting groups|buchungsgruppen/i.test(normalizeForMatch(entry.text)))
+    .filter((entry) => entry.rect.width < 700 && entry.rect.height <= 120 && entry.rect.x >= 350 && entry.rect.y >= 70)
+    .sort((a, b) => a.rect.width * a.rect.height - b.rect.width * b.rect.height)[0];
+  if (exact) {
+    await page.mouse.click(exact.rect.x + Math.min(40, Math.round(exact.rect.width / 2)), exact.rect.y + Math.round(exact.rect.height / 2));
+    await page.waitForTimeout(3500);
+    await waitForBusinessCentralShell(page);
+    return true;
+  }
   return false;
 }
 
@@ -307,10 +398,12 @@ async function openTargetPageWithFallback(page: Page, target: GroupTarget, route
   if (/Code/i.test(directText) && /Beschreibung|Description/i.test(directText) && !roleCenterVisible(directText) && !searchOverlayVisible(directText)) return 'direct';
 
   route.push(`exact-search-result:${target.searchTerm}`);
+  await page.goto(buildPlaythruBaseUrl(), { waitUntil: 'domcontentloaded', timeout: 120_000 });
+  await waitForBusinessCentralShell(page);
+  await page.waitForTimeout(1500);
   await searchFor(page, target.searchTerm);
   const clicked = await clickExactSearchResult(page, target);
   if (!clicked) return 'search-result-not-clicked';
-  await page.keyboard.press('Escape').catch(() => undefined);
   await assertTargetContext(page);
   return 'exact-search-result';
 }
@@ -318,6 +411,17 @@ async function openTargetPageWithFallback(page: Page, target: GroupTarget, route
 async function clickIfVisible(locator: Locator) {
   if (!(await locator.isVisible({ timeout: 900 }).catch(() => false))) return false;
   await locator.click({ timeout: 4000 }).catch(async () => locator.click({ timeout: 4000, force: true }));
+  return true;
+}
+
+async function clickActionByPaneGeometry(page: Page, name: RegExp) {
+  const candidates = await findVisibleCandidates(page, name);
+  const candidate = candidates
+    .filter((entry) => entry.rect.x >= 390 && entry.rect.x <= 1500 && entry.rect.y >= 70 && entry.rect.y <= 180)
+    .sort((a, b) => a.rect.width * a.rect.height - b.rect.width * b.rect.height)[0];
+  if (!candidate) return false;
+  await page.mouse.click(candidate.rect.x + Math.min(24, Math.round(candidate.rect.width / 2)), candidate.rect.y + Math.round(candidate.rect.height / 2));
+  await page.waitForTimeout(1200);
   return true;
 }
 
@@ -334,10 +438,11 @@ async function ensureEditMode(page: Page, surface: Locator) {
       return 'clicked-edit-list';
     }
   }
+  if (await clickActionByPaneGeometry(page, /^Liste bearbeiten$|^Edit List$/i)) return 'clicked-edit-list-by-geometry';
   return 'edit-list-not-visible-or-already-editable';
 }
 
-async function clickNew(surface: Locator) {
+async function clickNew(page: Page, surface: Locator) {
   const candidates = [
     surface.getByRole('menuitem', { name: /^Neu$|^New$/i }).first(),
     surface.getByRole('button', { name: /^Neu$|^New$/i }).first(),
@@ -349,6 +454,7 @@ async function clickNew(surface: Locator) {
       return true;
     }
   }
+  if (await clickActionByPaneGeometry(page, /^Neu$|^New$/i)) return true;
   return false;
 }
 
@@ -360,8 +466,12 @@ async function fillFocusedOrActive(page: Page, value: string) {
 async function createGroupRow(page: Page, target: GroupTarget) {
   const surface = await targetSurface(page, target);
   if (!surface) throw new Error(`No scoped VAT form/grid surface for ${target.pageLabel}; refusing to click unscoped New.`);
+  const currentText = await visibleText(page);
+  if (!target.pageTitle.test(currentText) || !/\bCode\b/i.test(currentText) || !/Beschreibung|Description/i.test(currentText)) {
+    throw new Error(`Visible VAT page signals are incomplete for ${target.pageLabel}; refusing setup write.`);
+  }
   const editMode = await ensureEditMode(page, surface);
-  const clickedNew = await clickNew(surface);
+  const clickedNew = await clickNew(page, surface);
   if (!clickedNew) {
     throw new Error(`Neu/New not visible on ${target.pageLabel}; editMode=${editMode}`);
   }

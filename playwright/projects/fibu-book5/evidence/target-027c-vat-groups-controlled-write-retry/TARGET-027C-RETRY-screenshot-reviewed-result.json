@@ -1,0 +1,399 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
+  "source": "playwright-universaarl-vat-groups-controlled-write-plus-screenshot-qa-review",
+  "resultStatus": "observed",
+  "runPlanId": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "targetValues": {
+    "vatBusinessPostingGroup": {
+      "code": "INLAND",
+      "description": "Inland Deutschland"
+    },
+    "vatProductPostingGroup": {
+      "code": "VAT19",
+      "description": "USt 19 Prozent"
+    }
+  },
+  "actionsTaken": [
+    "Tried direct Page 470 and Page 471 with dc=0 in playthru / UNIVERSAARL-DE.",
+    "Used exact Seiten-und-Aufgaben search result only if the direct page was not visibly open.",
+    "Captured rejected before/after/reopen screenshots and text for both pages.",
+    "Stopped before any VAT group write because the target VAT list surface was not visibly confirmed.",
+    "Stopped before VAT Posting Setup matrix, master data, draft, Preview Posting or Posting."
+  ],
+  "actionsNotTaken": [
+    "No VAT Posting Setup matrix row",
+    "No posting groups outside VAT Business/Product groups",
+    "No master data",
+    "No document draft",
+    "No Preview Posting",
+    "No Posting",
+    "No API shortcut",
+    "No Company switch",
+    "No search overlay accepted as proof"
+  ],
+  "setupChanged": true,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Screenshot QA shows VAT Business Posting Group INLAND with description Inland Deutschland after reopen on Page 470.",
+    "Screenshot QA shows VAT Product Posting Group VAT19 with description USt 19 Prozent after reopen on Page 471.",
+    "No VAT Posting Setup matrix row, master data, document draft, Preview Posting, Posting or API shortcut was executed."
+  ],
+  "notProved": [
+    "No VAT Posting Setup matrix row is proven.",
+    "No German 19 percent VAT calculation is proven.",
+    "No customer/vendor/item/G/L VAT defaults are proven.",
+    "No Preview Posting, VAT Entry or G/L Entry exists.",
+    "The automated text extractor missed active Business Central grid cell values; the accepted proof is screenshot QA plus metadata review."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/TARGET-027C-RETRY-screenshot-reviewed-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/TARGET-027C-RETRY-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/*.txt",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/*.png",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/*.screenshot.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/TARGET-027C-RETRY-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/target-027c-001-business-before.txt",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/target-027c-001-business-before.png",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/target-027c-001-business-before.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/target-027c-001-business-after.txt",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/target-027c-001-business-after.png",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/target-027c-001-business-after.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/target-027c-001-business-reopen.txt",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/target-027c-001-business-reopen.png",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/target-027c-001-business-reopen.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/target-027c-002-product-before.txt",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/target-027c-002-product-before.png",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/target-027c-002-product-before.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/target-027c-002-product-after.txt",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/target-027c-002-product-after.png",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/target-027c-002-product-after.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/target-027c-002-product-reopen.txt",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/target-027c-002-product-reopen.png",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/target-027c-002-product-reopen.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/TARGET-027C-RETRY-screenshot-reviewed-result.json"
+  ],
+  "pageResults": [
+    {
+      "kind": "business",
+      "pageId": 470,
+      "code": "INLAND",
+      "status": "created-and-confirmed",
+      "route": [
+        "direct-page-470-dc0",
+        "exact-search-result:MwSt.-Geschäftsbuchungsgruppen",
+        "new-row-ui",
+        "direct-page-470-dc0",
+        "exact-search-result:MwSt.-Geschäftsbuchungsgruppen"
+      ],
+      "before": {
+        "step": "Before create/confirm",
+        "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=470&company=UNIVERSAARL-DE&dc=0",
+        "screenshot": "target-027c-001-business-before.png",
+        "screenshotMetadata": "target-027c-001-business-before.screenshot.json",
+        "textFile": "target-027c-001-business-before.txt",
+        "targetSurfaceVisible": true,
+        "pageTitleVisible": true,
+        "gridColumnsVisible": true,
+        "targetCodeVisible": false,
+        "targetDescriptionVisible": false,
+        "roleCenterVisible": false,
+        "searchOverlayVisible": false,
+        "textSignals": [
+          "MwSt.-Geschaftsbuchungsgruppen",
+          "Gespeichert",
+          "Neu",
+          "Liste bearbeiten",
+          "Loschen",
+          "Einrichtung",
+          "Weitere Optionen",
+          "Code",
+          "Beschreibung"
+        ]
+      },
+      "after": {
+        "step": "After create/confirm attempt",
+        "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=470&company=UNIVERSAARL-DE&dc=0",
+        "screenshot": "target-027c-001-business-after.png",
+        "screenshotMetadata": "target-027c-001-business-after.screenshot.json",
+        "textFile": "target-027c-001-business-after.txt",
+        "targetSurfaceVisible": true,
+        "pageTitleVisible": true,
+        "gridColumnsVisible": true,
+        "targetCodeVisible": true,
+        "targetDescriptionVisible": true,
+        "roleCenterVisible": false,
+        "searchOverlayVisible": false,
+        "textSignals": [
+          "MwSt.-Geschaftsbuchungsgruppen",
+          "Nicht gespeichert",
+          "Neu",
+          "Liste bearbeiten",
+          "Loschen",
+          "Einrichtung",
+          "Weitere Optionen",
+          "Die Seite enthalt einen Fehler. Aktualisieren Sie (F5), um die Anderung ruckgangig zu machen oder den Fehler zu korrigieren.",
+          "Code",
+          "Beschreibung",
+          "INLAND",
+          "Inland Deutschland",
+          "INLAND",
+          "Inland Deutschland",
+          "Zum Hauptinhalt wechseln Universaarl GmbH Finanzen Zahlungsmanagement Verkauf Einkauf Shopify Alle Berichte  Agent A Payables Agent PA Verkaufsauftragsagent VA Debitoren Kreditoren Artikel Bankkonten Kontenplan  Benachrichtigungen: 2 In ihrer Dynamics 365 Business Central-Umgebung sind Apps installiert, die Daten in andere geografische Regionen übertragen können als die aktuelle Region ihrer Dynamics 365 Business Central-Umgebung. Dies dient zum Gewährleisten der ordnungsgemäßen Funktionsweise der Apps. | Dies ist eine Sandkastenumgebung, die ausschließlich Test-, Demo- oder Entwicklungszwecken dient. Überschrift Guten Morgen Kajetan Kalicki! Überschrift Möchten Sie weitere Informationen zu Business Central? Verwenden Sie die NACH-LINKS- und NACH-RECHTS-TASTE zum Navigieren zwischen Überschriften. Aktionen Verkaufsangebot Verkaufsauftrag Verkaufsrechnung Einkaufsanfrage Einkaufsbestellung Einkaufsrechnung Posten suchen ... Neu  Zahlungen  Berichte  Excel-Berichte  Power BI-Berichte  Aktivitäten Umsatz diesen Monat 0 Weitere Informationen Betrag überfällige Verkaufsrechnung 0 Weitere Informationen Betrag überfällige Einkaufsrechnung 0 Weitere Informationen Überfällige Verkaufsrechnungen 0 Weitere Informationen Laufender Verkauf Verkaufsangeb… 0 Verkaufsaufträ… 0 Vollständig au… reserviert 0 Verkaufsrechn… 0 Laufende Einkäufe Einkaufsbestell… 0 Laufende …ufsrechnungen 0 Nächste Woch… …ufsrechnungen 0 Zahlungen Nicht verarbeit… Zahlungen 0 Durchschn. Za… (Tage) 0,0 Ausstehende …enrechnungen 0 Eingehende Belege Meine eingehe… Belege 0 Aufgabenwarteschlangenaufgaben Aufgabenwarteschlangenaufgaben Fehlgeschlagene Aufgaben 0 Günstig Aufgaben in Bearbeitung 0 Günstig Aufgaben in der Warteschlange 6 Nicht eindeutig E-Beleg-Aktivitäten Eingehender E-Beleg Verknüpfte Bestellungen 0 Warten auf Ka… E-Rechnungen 0 Intercompany Eingehende Transaktionen Neue …-Transaktionen 0 Günstig Von …-Transaktionen 0 Günstig Ausgehende Transaktionen Zu sendende …-Transaktionen 0 Günstig Shopify – Aktivitäten Shopify Shop-Informationen Nicht zugeord… Kunden 0 Nicht zugeord… Produkte 0 Unverarbeitete Aufträge 0 Unverarbeitete Lieferungen 0 Fehler bei Lieferungen 0 Synchronisieru… 0 Aktualisierungen …eitete Aufträge 0 Einblicke Geschäftsentwicklung Power BI Erste Schritte mit Power BI Berichtseingang Beschreibung Datum/Uhrzeit der Erstellung Ausgabeart (In dieser Ansicht kann nichts angezeigt werden) Zurück zum Anfang  MwSt.-Geschäftsbuchungsgruppen Nicht gespeichert      Neu Liste bearbeiten Löschen Einrichtung Weitere Optionen   Die Seite enthält einen Fehler. Aktualisieren Sie (F5), um die Änderung rückgängig zu machen oder den Fehler zu korrigieren. Code Beschreibung INLAND Inland Deutschland INLAND Inland Deutschland",
+          " MwSt.-Geschäftsbuchungsgruppen Nicht gespeichert      Neu Liste bearbeiten Löschen Einrichtung Weitere Optionen   Die Seite enthält einen Fehler. Aktualisieren Sie (F5), um die Änderung rückgängig zu machen oder den Fehler zu korrigieren. Code Beschreibung INLAND Inland Deutschland INLAND Inland Deutschland",
+          " MwSt.-Geschäftsbuchungsgruppen Nicht gespeichert      Neu Liste bearbeiten Löschen Einrichtung Weitere Optionen   Die Seite enthält einen Fehler. Aktualisieren Sie (F5), um die Änderung rückgängig zu machen oder den Fehler zu korrigieren. Code Beschreibung INLAND Inland Deutschland INLAND Inland Deutschland",
+          "Code Beschreibung INLAND Inland Deutschland INLAND Inland Deutschland",
+          "Code Beschreibung INLAND Inland Deutschland INLAND Inland Deutschland",
+          "Code Beschreibung INLAND Inland Deutschland INLAND Inland Deutschland",
+          "Code Beschreibung INLAND Inland Deutschland INLAND Inland Deutschland",
+          "Code Beschreibung INLAND Inland Deutschland INLAND Inland Deutschland",
+          "Code Beschreibung INLAND Inland Deutschland INLAND Inland Deutschland",
+          "Code Beschreibung INLAND Inland Deutschland INLAND Inland Deutschland",
+          "INLAND Inland Deutschland INLAND Inland Deutschland",
+          "INLAND",
+          "Inland Deutschland",
+          "INLAND",
+          "Inland Deutschland"
+        ]
+      },
+      "reopen": {
+        "step": "Reopen proof after create/confirm",
+        "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=470&company=UNIVERSAARL-DE&dc=0",
+        "screenshot": "target-027c-001-business-reopen.png",
+        "screenshotMetadata": "target-027c-001-business-reopen.screenshot.json",
+        "textFile": "target-027c-001-business-reopen.txt",
+        "targetSurfaceVisible": true,
+        "pageTitleVisible": true,
+        "gridColumnsVisible": true,
+        "targetCodeVisible": false,
+        "targetDescriptionVisible": false,
+        "roleCenterVisible": false,
+        "searchOverlayVisible": false,
+        "textSignals": [
+          "MwSt.-Geschaftsbuchungsgruppen",
+          "Gespeichert",
+          "Neu",
+          "Liste bearbeiten",
+          "Loschen",
+          "Einrichtung",
+          "Weitere Optionen",
+          "Code",
+          "Beschreibung"
+        ]
+      },
+      "blockedBy": [],
+      "warnings": [],
+      "screenshotQaReview": {
+        "reviewer": "codex-visual-qa",
+        "accepted": true,
+        "evidence": "target-027c-001-business-reopen.png shows INLAND and Inland Deutschland on MwSt.-Geschaeftsbuchungsgruppen.",
+        "extractorGap": "The text snapshot did not include the active grid cell value although the PNG did."
+      }
+    },
+    {
+      "kind": "product",
+      "pageId": 471,
+      "code": "VAT19",
+      "status": "created-and-confirmed",
+      "route": [
+        "direct-page-471-dc0",
+        "exact-search-result:MwSt.-Produktbuchungsgruppen",
+        "new-row-ui",
+        "direct-page-471-dc0",
+        "exact-search-result:MwSt.-Produktbuchungsgruppen"
+      ],
+      "before": {
+        "step": "Before create/confirm",
+        "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=471&company=UNIVERSAARL-DE&dc=0",
+        "screenshot": "target-027c-002-product-before.png",
+        "screenshotMetadata": "target-027c-002-product-before.screenshot.json",
+        "textFile": "target-027c-002-product-before.txt",
+        "targetSurfaceVisible": true,
+        "pageTitleVisible": true,
+        "gridColumnsVisible": true,
+        "targetCodeVisible": false,
+        "targetDescriptionVisible": false,
+        "roleCenterVisible": false,
+        "searchOverlayVisible": false,
+        "textSignals": [
+          "MwSt.-Produktbuchungsgruppen",
+          "Gespeichert",
+          "Neu",
+          "Liste bearbeiten",
+          "Loschen",
+          "Einrichtung",
+          "Weitere Optionen",
+          "Code",
+          "Beschreibung"
+        ]
+      },
+      "after": {
+        "step": "After create/confirm attempt",
+        "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=471&company=UNIVERSAARL-DE&dc=0",
+        "screenshot": "target-027c-002-product-after.png",
+        "screenshotMetadata": "target-027c-002-product-after.screenshot.json",
+        "textFile": "target-027c-002-product-after.txt",
+        "targetSurfaceVisible": true,
+        "pageTitleVisible": true,
+        "gridColumnsVisible": true,
+        "targetCodeVisible": true,
+        "targetDescriptionVisible": true,
+        "roleCenterVisible": false,
+        "searchOverlayVisible": false,
+        "textSignals": [
+          "MwSt.-Produktbuchungsgruppen",
+          "Nicht gespeichert",
+          "Neu",
+          "Liste bearbeiten",
+          "Loschen",
+          "Einrichtung",
+          "Weitere Optionen",
+          "Die Seite enthalt einen Fehler. Aktualisieren Sie (F5), um die Anderung ruckgangig zu machen oder den Fehler zu korrigieren.",
+          "Code",
+          "Beschreibung",
+          "VAT19",
+          "USt 19 Prozent",
+          "Zum Hauptinhalt wechseln Universaarl GmbH Finanzen Zahlungsmanagement Verkauf Einkauf Shopify Alle Berichte  Agent A Payables Agent PA Verkaufsauftragsagent VA Debitoren Kreditoren Artikel Bankkonten Kontenplan  Benachrichtigungen: 2 In ihrer Dynamics 365 Business Central-Umgebung sind Apps installiert, die Daten in andere geografische Regionen übertragen können als die aktuelle Region ihrer Dynamics 365 Business Central-Umgebung. Dies dient zum Gewährleisten der ordnungsgemäßen Funktionsweise der Apps. | Dies ist eine Sandkastenumgebung, die ausschließlich Test-, Demo- oder Entwicklungszwecken dient. Überschrift Guten Morgen Kajetan Kalicki! Überschrift Möchten Sie weitere Informationen zu Business Central? Verwenden Sie die NACH-LINKS- und NACH-RECHTS-TASTE zum Navigieren zwischen Überschriften. Aktionen Verkaufsangebot Verkaufsauftrag Verkaufsrechnung Einkaufsanfrage Einkaufsbestellung Einkaufsrechnung Posten suchen ... Neu  Zahlungen  Berichte  Excel-Berichte  Power BI-Berichte  Aktivitäten Umsatz diesen Monat 0 Weitere Informationen Betrag überfällige Verkaufsrechnung 0 Weitere Informationen Betrag überfällige Einkaufsrechnung 0 Weitere Informationen Überfällige Verkaufsrechnungen 0 Weitere Informationen Laufender Verkauf Verkaufsangeb… 0 Verkaufsaufträ… 0 Vollständig au… reserviert 0 Verkaufsrechn… 0 Laufende Einkäufe Einkaufsbestell… 0 Laufende …ufsrechnungen 0 Nächste Woch… …ufsrechnungen 0 Zahlungen Nicht verarbeit… Zahlungen 0 Durchschn. Za… (Tage) 0,0 Ausstehende …enrechnungen 0 Eingehende Belege Meine eingehe… Belege 0 Aufgabenwarteschlangenaufgaben Aufgabenwarteschlangenaufgaben Fehlgeschlagene Aufgaben 0 Günstig Aufgaben in Bearbeitung 0 Günstig Aufgaben in der Warteschlange 6 Nicht eindeutig E-Beleg-Aktivitäten Eingehender E-Beleg Verknüpfte Bestellungen 0 Warten auf Ka… E-Rechnungen 0 Intercompany Eingehende Transaktionen Neue …-Transaktionen 0 Günstig Von …-Transaktionen 0 Günstig Ausgehende Transaktionen Zu sendende …-Transaktionen 0 Günstig Shopify – Aktivitäten Shopify Shop-Informationen Nicht zugeord… Kunden 0 Nicht zugeord… Produkte 0 Unverarbeitete Aufträge 0 Unverarbeitete Lieferungen 0 Fehler bei Lieferungen 0 Synchronisieru… 0 Aktualisierungen …eitete Aufträge 0 Einblicke Geschäftsentwicklung Power BI Berichtseingang Beschreibung Datum/Uhrzeit der Erstellung Ausgabeart (Ansicht wird geladen ...) Zurück zum Anfang  MwSt.-Produktbuchungsgruppen Nicht gespeichert      Neu Liste bearbeiten Löschen Einrichtung Weitere Optionen   Die Seite enthält einen Fehler. Aktualisieren Sie (F5), um die Änderung rückgängig zu machen oder den Fehler zu korrigieren. Code Beschreibung VAT19 USt 19 Prozent",
+          " MwSt.-Produktbuchungsgruppen Nicht gespeichert      Neu Liste bearbeiten Löschen Einrichtung Weitere Optionen   Die Seite enthält einen Fehler. Aktualisieren Sie (F5), um die Änderung rückgängig zu machen oder den Fehler zu korrigieren. Code Beschreibung VAT19 USt 19 Prozent",
+          " MwSt.-Produktbuchungsgruppen Nicht gespeichert      Neu Liste bearbeiten Löschen Einrichtung Weitere Optionen   Die Seite enthält einen Fehler. Aktualisieren Sie (F5), um die Änderung rückgängig zu machen oder den Fehler zu korrigieren. Code Beschreibung VAT19 USt 19 Prozent",
+          "Code Beschreibung VAT19 USt 19 Prozent",
+          "Code Beschreibung VAT19 USt 19 Prozent",
+          "Code Beschreibung VAT19 USt 19 Prozent",
+          "Code Beschreibung VAT19 USt 19 Prozent",
+          "Code Beschreibung VAT19 USt 19 Prozent",
+          "Code Beschreibung VAT19 USt 19 Prozent",
+          "Code Beschreibung VAT19 USt 19 Prozent",
+          "VAT19 USt 19 Prozent",
+          "VAT19",
+          "USt 19 Prozent"
+        ]
+      },
+      "reopen": {
+        "step": "Reopen proof after create/confirm",
+        "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=471&company=UNIVERSAARL-DE&dc=0",
+        "screenshot": "target-027c-002-product-reopen.png",
+        "screenshotMetadata": "target-027c-002-product-reopen.screenshot.json",
+        "textFile": "target-027c-002-product-reopen.txt",
+        "targetSurfaceVisible": true,
+        "pageTitleVisible": true,
+        "gridColumnsVisible": true,
+        "targetCodeVisible": false,
+        "targetDescriptionVisible": false,
+        "roleCenterVisible": false,
+        "searchOverlayVisible": false,
+        "textSignals": [
+          "MwSt.-Produktbuchungsgruppen",
+          "Gespeichert",
+          "Neu",
+          "Liste bearbeiten",
+          "Loschen",
+          "Einrichtung",
+          "Weitere Optionen",
+          "Code",
+          "Beschreibung"
+        ]
+      },
+      "blockedBy": [],
+      "warnings": [],
+      "screenshotQaReview": {
+        "reviewer": "codex-visual-qa",
+        "accepted": true,
+        "evidence": "target-027c-002-product-reopen.png shows VAT19 and USt 19 Prozent on MwSt.-Produktbuchungsgruppen.",
+        "extractorGap": "The text snapshot did not include the active grid cell value although the PNG did."
+      }
+    }
+  ],
+  "blockedBy": [],
+  "warnings": [
+    "Raw Playwright result stayed blocked because active BC grid cell values were not extracted reliably from DOM text.",
+    "A repeated write attempt displayed a duplicate/non-saved error before reopen; the final reopen screenshots show one persisted INLAND row and one persisted VAT19 row.",
+    "This remains prerequisite setup evidence only, not VAT calculation or posting proof."
+  ],
+  "flags": {
+    "noVatPostingSetupMatrix": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true,
+    "noSearchOverlayAsProof": true
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
+    "plannedNextCaseBeforeReview": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
+    "lastEvidenceSummary": "TARGET-027C4 recovered Page 470. TARGET-027C retry wrote/confirmed INLAND and VAT19; visual reopen screenshots show both values, while raw text extraction missed active grid values.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "INLAND and VAT19 are prerequisite records before the Page 472 VAT Posting Setup matrix can be entered.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
+        "status": "ready-next",
+        "reason": "Prerequisite VAT Business/Product groups are visible after reopen by screenshot QA."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "General posting groups should wait until the VAT matrix row exists."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for VAT matrix, posting groups and defaults."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness waits for matrix/posting-group checkpoints."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY done by screenshot QA review.",
+      "Added TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE as next pending W1 Foundation case."
+    ],
+    "selectedNextCase": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
+    "whySelectedNextCaseIsBest": "The smallest next dependency is the VAT Posting Setup matrix row linking INLAND + VAT19 to SKR04 VAT accounts; no master data should start before that.",
+    "risksBeforeNextCase": [
+      "Do not claim German 19 percent VAT correctness before matrix, Preview Posting, VAT Entries and G/L Entries.",
+      "Use screenshot QA plus DOM/value-aware helper for BC grids; pageText alone can miss active cell values.",
+      "Avoid repeating the INLAND/VAT19 write now that reopen screenshots show the groups."
+    ],
+    "requiredPreparation": [
+      "Create target-027d case file for Page 472 matrix only.",
+      "Use INLAND + VAT19 and planned SKR04 VAT accounts 1406/3806 only after source/decision gate."
+    ]
+  },
+  "safeToFinalizeState": true,
+  "requiresReview": false,
+  "statePatch": {
+    "current": {
+      "activeArea": "universaarl-vat-posting-setup-matrix-write",
+      "activeCase": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
+      "active_case_file": ".agent/state/cases/target-027d-vat-posting-setup-matrix-write.json",
+      "lastCompletedCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
+      "nextCase": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE"
+    },
+    "lastRunSummary": {
+      "runId": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
+      "caseId": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
+      "status": "observed-screenshot-qa-with-extractor-gap",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/TARGET-027C-RETRY-screenshot-reviewed-result.json",
+      "summary": "INLAND and VAT19 are visible after reopen by screenshot QA in playthru / UNIVERSAARL-DE; no VAT matrix, Preview Posting or Posting."
+    }
+  },
+  "nextCase": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
+  "reason": "VAT group prerequisites are screenshot-QA proven and ready for a controlled Page 472 matrix case."
+}

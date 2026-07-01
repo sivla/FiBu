@@ -1,93 +1,93 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY",
-  "caseId": "TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY",
-  "status": "observed-readonly-page-470-surface",
-  "completedAt": "2026-07-01T03:55:00.000+02:00",
+  "runId": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
+  "caseId": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
+  "status": "observed-screenshot-qa-with-extractor-gap",
+  "completedAt": "2026-07-01T01:21:03.007Z",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-027c4-vat-business-result-click-recovery/TARGET-027C4-result.json",
-  "evidencePath": "playwright/projects/fibu-book5/evidence/target-027c4-vat-business-result-click-recovery/",
-  "summary": "TARGET-027C4 recovered the visible Page 470 MwSt.-Geschaeftsbuchungsgruppen route by activating the smallest normalized visible Tell-Me result row. No setup, master data, draft, Preview Posting or Posting action was executed.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/TARGET-027C-RETRY-screenshot-reviewed-result.json",
+  "rawResultPath": "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/TARGET-027C-RETRY-result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/",
+  "summary": "INLAND and VAT19 are visible after reopen by screenshot QA; the raw text extractor missed active BC grid values. No VAT matrix, master data, Preview Posting or Posting.",
   "proved": [
     "Business Central stayed in playthru / UNIVERSAARL-DE.",
-    "Page 470 MwSt.-Geschaeftsbuchungsgruppen is visible read-only with title, Code and Beschreibung columns.",
-    "Screenshot QA accepted the target page surface after exact-result-locator-or-geometry-click."
+    "Screenshot QA shows VAT Business Posting Group INLAND with description Inland Deutschland after reopen on Page 470.",
+    "Screenshot QA shows VAT Product Posting Group VAT19 with description USt 19 Prozent after reopen on Page 471.",
+    "No VAT Posting Setup matrix row, master data, document draft, Preview Posting, Posting or API shortcut was executed."
   ],
   "notProved": [
-    "INLAND and VAT19 are not created or confirmed by this run.",
-    "No VAT Posting Setup matrix row, German 19 percent VAT calculation, VAT Entry, G/L Entry, Preview Posting or Posting is proven."
+    "No VAT Posting Setup matrix row is proven.",
+    "No German 19 percent VAT calculation is proven.",
+    "No customer/vendor/item/G/L VAT defaults are proven.",
+    "No Preview Posting, VAT Entry or G/L Entry exists.",
+    "The automated text extractor missed active Business Central grid cell values; the accepted proof is screenshot QA plus metadata review."
   ],
   "blockedBy": [],
   "warnings": [
-    "This is navigation and page-surface proof only.",
-    "Visible New/List Edit actions remain unclicked until the controlled write retry case."
+    "Raw Playwright result stayed blocked because active BC grid cell values were not extracted reliably from DOM text.",
+    "A repeated write attempt displayed a duplicate/non-saved error before reopen; the final reopen screenshots show one persisted INLAND row and one persisted VAT19 row.",
+    "This remains prerequisite setup evidence only, not VAT calculation or posting proof."
   ],
   "actionsNotTaken": [
-    "No VAT group create/edit",
     "No VAT Posting Setup matrix row",
+    "No posting groups outside VAT Business/Product groups",
     "No master data",
     "No document draft",
     "No Preview Posting",
     "No Posting",
     "No API shortcut",
     "No Company switch",
-    "No book change"
+    "No search overlay accepted as proof"
   ],
   "screenshots": [
-    "playwright/projects/fibu-book5/evidence/target-027c4-vat-business-result-click-recovery/target-027c4-000-search-overlay-before-click.png",
-    "playwright/projects/fibu-book5/evidence/target-027c4-vat-business-result-click-recovery/target-027c4-001-exact-result-locator-or-geometry-click.png"
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/target-027c-001-business-reopen.png",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/target-027c-002-product-reopen.png"
   ],
-  "nextCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
-  "nextStep": "Retry bounded INLAND/VAT19 group write with accepted Page 470 and Page 471 surfaces; keep matrix, preview, posting, master data and documents locked.",
+  "nextCase": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
+  "nextStep": "Prepare and run the controlled VAT Posting Setup matrix row case for INLAND + VAT19 only.",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY",
-    "lastEvidenceSummary": "TARGET-027C3 recovered the visible Tell-Me input and TARGET-027C2 accepted Page 471. TARGET-027C4 now accepts Page 470 after exact result locator/geometry click.",
+    "currentCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
+    "plannedNextCaseBeforeReview": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
+    "lastEvidenceSummary": "TARGET-027C4 recovered Page 470. TARGET-027C retry wrote/confirmed INLAND and VAT19; visual reopen screenshots show both values, while raw text extraction missed active grid values.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "C4 was the narrow remaining UI-route blocker before retrying the bounded VAT group write case. It is now completed as read-only navigation evidence.",
+    "reason": "INLAND and VAT19 are prerequisite records before the Page 472 VAT Posting Setup matrix can be entered.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
-        "status": "ready-next",
-        "reason": "Page 470 and Page 471 now have accepted read-only surfaces; INLAND/VAT19 write retry can be scoped to those pages only."
-      },
-      {
         "caseId": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
-        "status": "needs-setup-first",
-        "reason": "Depends on visible INLAND and VAT19 groups after controlled write/reopen proof."
+        "status": "ready-next",
+        "reason": "Prerequisite VAT Business/Product groups are visible after reopen by screenshot QA."
       },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "General posting/customer/vendor/item setup should wait until VAT group and matrix prerequisites are done."
+        "status": "ready-after-current",
+        "reason": "General posting groups should wait until the VAT matrix row exists."
       },
       {
         "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
         "status": "needs-setup-first",
-        "reason": "Master data waits for posting groups, VAT defaults and dimensions; no card creation should start from a VAT route recovery."
+        "reason": "Master data waits for VAT matrix, posting groups and defaults."
       },
       {
         "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
-        "status": "ready-after-current",
-        "reason": "Only after VAT and posting-group setup checkpoints can the foundation be called ready for master data."
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness waits for matrix/posting-group checkpoints."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-027C4 as observed/read-only route recovery.",
-      "Added TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY as the next bounded setup-write queue item."
+      "Marked TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY done by screenshot QA review.",
+      "Added TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE as next pending W1 Foundation case."
     ],
-    "selectedNextCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
-    "whySelectedNextCaseIsBest": "The route blocker is removed; the smallest practical W1 Foundation step is to create or confirm only INLAND and VAT19 with before/after/reopen proof.",
+    "selectedNextCase": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
+    "whySelectedNextCaseIsBest": "The smallest next dependency is the VAT Posting Setup matrix row linking INLAND + VAT19 to SKR04 VAT accounts; no master data should start before that.",
     "risksBeforeNextCase": [
-      "Do not click New/Edit/List actions unless Page 470 or Page 471 screenshot QA has accepted the target surface in the same write case.",
-      "Do not create the VAT Posting Setup matrix row in the group-write retry.",
-      "Do not claim German VAT correctness before matrix, Preview Posting, VAT Entries and G/L Entries exist."
+      "Do not claim German 19 percent VAT correctness before matrix, Preview Posting, VAT Entries and G/L Entries.",
+      "Use screenshot QA plus DOM/value-aware helper for BC grids; pageText alone can miss active cell values.",
+      "Avoid repeating the INLAND/VAT19 write now that reopen screenshots show the groups."
     ],
     "requiredPreparation": [
-      "Reuse the C4 smallest-normalized-result-row click pattern for Page 470.",
-      "Keep Page 471 direct accepted-surface proof as the product-group prerequisite.",
-      "Capture before, after and reopen proof for INLAND and VAT19 if the write case proceeds."
+      "Create target-027d case file for Page 472 matrix only.",
+      "Use INLAND + VAT19 and planned SKR04 VAT accounts 1406/3806 only after source/decision gate."
     ]
   }
 }
