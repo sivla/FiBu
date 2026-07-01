@@ -19,7 +19,7 @@ Dieses Mapping ist noch kein vollstaendiger Kontenplan und keine Steuerberaterfr
 | Konto | Name fuer Universaarl | Kontenfamilie | Bilanz/GuV | Verwendung im naechsten Setup | Status |
 | --- | --- | --- | --- | --- | --- |
 | `1200` | Forderungen aus Lieferungen und Leistungen | Debitoren/Forderungen | Bilanz | Customer Posting Group spaeter | `wrong-bank-path-classified`; bestehendes Konto `1200 Bank Saarland` ist sichtbar, darf aber nicht als Bank-/Payment-/VAT-/Posting-Ziel genutzt werden |
-| `1140` | Waren (Bestand) | Vorraete/Warenbestand | Bilanz | Inventory Posting Setup Inventory Account spaeter | `universaarl-created-wrong-guv-blocked`; in `TARGET-048B` sichtbar angelegt, aber noch falsch als `GuV`/`Buchung`; `TARGET-048C` muss nur `GuV/Bilanz = Bilanz` korrigieren |
+| `1140` | Waren (Bestand) | Vorraete/Warenbestand | Bilanz | Inventory Posting Setup Inventory Account spaeter | `universaarl-proven-bilanz-reopen-proof`; in `TARGET-048C` sichtbar als `Bilanz`/`Buchung` nach Sachkontokarten-Reopen und Kontenplan-Reopen |
 | `1800` | Bank Saarland | Bank | Bilanz | Bankkonto, Zahlungsjournal, Bankabstimmung spaeter | `universaarl-proven`; in `TARGET-026J` sichtbar nach Reopen |
 | `1406` | Abziehbare Vorsteuer 19 Prozent | Vorsteuer | Bilanz | Purchase VAT Account spaeter | `universaarl-proven`; in `TARGET-026K` sichtbar nach kontrolliertem Fit und Reopen |
 | `3300` | Verbindlichkeiten aus Lieferungen und Leistungen | Kreditoren/Verbindlichkeiten | Bilanz | Vendor Posting Group spaeter | `universaarl-proven`; in `TARGET-026L` sichtbar nach kontrolliertem Fit und Reopen |
@@ -32,7 +32,7 @@ Dieses Mapping ist noch kein vollstaendiger Kontenplan und keine Steuerberaterfr
 | Bereich | Warum noch nicht |
 | --- | --- |
 | Eigenkapital / Opening Balances | Opening-Balance- und Cutover-Logik braucht eigenen Migrations-/Eroeffnungsfall. |
-| Bestand / Lagerbewertung | `TARGET-048` waehlt `1140 Waren (Bestand)` als source-backed Kandidat. Dieses Konto ist aber noch nicht in `UNIVERSAARL-DE` sichtbar/reopened bewiesen. Inventory Posting Setup darf erst nach `TARGET-048B` weitergehen und darf nicht aus dem alten CRONUS-Konto `14140` abgeleitet werden. |
+| Bestand / Lagerbewertung | `TARGET-048C` beweist `1140 Waren (Bestand)` in `UNIVERSAARL-DE` als `Bilanz`/`Buchung`. Inventory Posting Setup darf trotzdem erst nach eigenem Item-Posting-Group- und Inventory-Posting-Setup-Gate weitergehen und darf nicht aus dem alten CRONUS-Konto `14140` abgeleitet werden. |
 | Anlagen | Fixed Assets brauchen Anlagenbuchungsgruppen, AfA-Buch und deutsche Sachkontenlogik als eigene Strecke. |
 | Abschreibungen | AfA-Aufwand wird erst mit Anlagen-Setup und AfA-Preview/Posten festgelegt. |
 | Sonstige Aufwendungen | Nur anlegen, wenn ein konkreter Beleg- oder Fehlerfall es braucht. |
@@ -85,6 +85,12 @@ Der naechste enge Schritt ist `TARGET-048B`: In `playthru / UNIVERSAARL-DE` wird
 `TARGET-048B` hat einen echten, aber noch nicht freigegebenen Teilfortschritt erzeugt: `1140 Waren (Bestand)` ist in `playthru / UNIVERSAARL-DE` im Kontenplan sichtbar. Die Screenshot-QA und der zeilengenaue Reopen-Text zeigen jedoch weiterhin `GuV`/`Buchung` statt `Bilanz`/`Buchung`. Damit darf `1140` noch nicht fuer Item Posting Groups oder Inventory Posting Setup verwendet werden.
 
 Der naechste enge Schritt ist `TARGET-048C`: Nur das Feld `GuV/Bilanz` fuer Konto `1140` wird auf `Bilanz` korrigiert oder sauber blockiert. Keine anderen Sachkonten, keine Posting Groups, kein Inventory Posting Setup, keine Artikel, keine Belege, keine Preview und keine Buchung.
+
+## Stand nach `TARGET-048C`
+
+`TARGET-048C` hat den Blocker aus `TARGET-048B` korrigiert: `1140 Waren (Bestand)` ist in `playthru / UNIVERSAARL-DE` nach Sachkontokarten-Reopen und Kontenplan-Reopen als `Bilanz`/`Buchung` sichtbar. Das reicht als enge Kontenplan-Abhaengigkeit fuer den naechsten Item-Posting-Group-Schritt.
+
+Nicht bewiesen sind weiterhin ein vollstaendiger SKR04-Kontenplan, Steuerberaterfreigabe, Item Posting Groups, Inventory Posting Setup, Artikelbuchungsfaehigkeit, Belege, Preview Posting oder Buchung. Der naechste enge Schritt ist `TARGET-049`: genau eine minimale Item Posting Group erzeugen oder bestaetigen; Inventory Posting Setup bleibt bis `TARGET-050` gesperrt.
 
 ## Stand nach `TARGET-027`
 

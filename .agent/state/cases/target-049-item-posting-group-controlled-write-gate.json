@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+  "status": "ready-next",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Create or verify the first Universaarl Item Posting Group",
+  "purpose": "Prepare the next inventory foundation dependency after account 1140 is visible as Bilanz/Buchung. This case may only create or verify the minimal Item Posting Group needed before Inventory Posting Setup.",
+  "sourceCases": [
+    "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
+    "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+    "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+    "TARGET-048C-INVENTORY-ACCOUNT-1140-BALANCE-SHEET-CORRECTION"
+  ],
+  "effectiveBcActionsAllowed": true,
+  "mayRunPlaywright": true,
+  "taskClass": "wizard_work",
+  "allowedActions": [
+    "open-business-central-playthru",
+    "confirm-company-universaarl-de",
+    "open-item-posting-groups",
+    "inspect-existing-item-posting-groups",
+    "create-or-verify-one-minimal-item-posting-group",
+    "reopen-proof-item-posting-group",
+    "write-evidence-result",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "change-gl-account-1140",
+    "change-any-gl-account",
+    "create-or-change-inventory-posting-setup",
+    "change-item-card",
+    "create-item",
+    "change-vat-posting-setup",
+    "change-general-posting-setup",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-inventory-posting-readiness",
+    "claim-skr04-complete",
+    "claim-tax-advisor-approved",
+    "book-claim-without-evidence",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence"
+  ],
+  "smartDecision": {
+    "whyNow": "TARGET-048C corrected 1140 Waren (Bestand) to Bilanz/Buchung. Inventory Posting Setup still needs an Item Posting Group before it can be created or validated.",
+    "fieldsToChange": [
+      "one Item Posting Group code/name if missing"
+    ],
+    "fieldsNotToTouch": [
+      "G/L Account 1140",
+      "Inventory Posting Setup",
+      "Item Card",
+      "VAT Posting Setup",
+      "General Posting Setup",
+      "Documents",
+      "Preview Posting",
+      "Posting"
+    ],
+    "fallback": "If the Item Posting Groups page or required code/name fields are not clear, stop read-only with screenshot QA and do not create setup rows."
+  },
+  "entryCriteria": [
+    "TARGET-048C result exists and shows 1140 Waren (Bestand) as Bilanz/Buchung.",
+    "Auth and company context are valid for playthru / UNIVERSAARL-DE.",
+    "No dirty worktree or pull blocker."
+  ],
+  "acceptanceCriteria": [
+    "Business Central remains in playthru / UNIVERSAARL-DE.",
+    "Item Posting Groups page is visible.",
+    "Exactly one minimal Item Posting Group is created or verified, or the case blocks before change.",
+    "No Inventory Posting Setup, item, document, Preview Posting, Posting or API shortcut occurs.",
+    "Result JSON records before/after/reopen proof and notProved boundaries."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-048C-INVENTORY-ACCOUNT-1140-BALANCE-SHEET-CORRECTION",
+    "plannedNextCaseBeforeReview": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-048C shows 1140 Waren (Bestand) as Bilanz/Buchung after card and chart reopen.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Item Posting Group is the next dependency before Inventory Posting Setup can use 1140.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+        "status": "ready-next",
+        "reason": "1140 account dependency is now satisfied."
+      },
+      {
+        "caseId": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+        "status": "ready-after-current",
+        "reason": "Needs Item Posting Group plus 1140 Bilanz/Buchung."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Still waits for foundation setup."
+      },
+      {
+        "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
+        "status": "ready-after-current",
+        "reason": "Separate VAT blocker lane; do not mix with inventory setup."
+      }
+    ],
+    "queueChangesMade": [
+      "Create TARGET-049 case file after TARGET-048C success."
+    ],
+    "selectedNextCase": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It is the smallest next setup object before Inventory Posting Setup and item field assignment.",
+    "risksBeforeNextCase": [
+      "Do not create Inventory Posting Setup in the same case.",
+      "Do not change item cards or documents.",
+      "Do not claim inventory posting readiness."
+    ],
+    "requiredPreparation": [
+      "Review TARGET-046 source mapping and TARGET-048C proof before writing."
+    ]
+  },
+  "createdAt": "2026-07-02T00:00:00.000Z"
+}

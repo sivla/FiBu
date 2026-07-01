@@ -1,0 +1,76 @@
+{
+  "fileName": "target-048c-030-card-reopen-proof.png",
+  "imagePath": "C:\\Users\\kkali\\.codex\\worktrees\\b8d6\\FiBu\\playwright\\projects\\fibu-book5\\evidence\\target-048c-inventory-account-1140-balance-sheet-correction\\target-048c-030-card-reopen-proof.png",
+  "caseId": "TARGET-048C-INVENTORY-ACCOUNT-1140-BALANCE-SHEET-CORRECTION",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "Sachkontokarte / G/L Account Card",
+  "step": "Card reopen proof for 1140 Bilanz/Buchung.",
+  "targetAccount": {
+    "no": "1140",
+    "name": "Waren (Bestand)",
+    "expectedType": "Bilanz",
+    "expectedAccountType": "Buchung"
+  },
+  "status": "inventory-account-1140-balance-sheet-correction",
+  "importantUi": [
+    "GuV/Bilanz",
+    "Bilanz",
+    "GuV",
+    "Kontoart",
+    "Buchung"
+  ],
+  "internallyProves": "Visible account field state for 1140 in playthru / UNIVERSAARL-DE.",
+  "doesNotProve": [
+    "No Inventory Posting Setup",
+    "No Item Posting Group",
+    "No item",
+    "No document draft",
+    "No preview",
+    "No posting"
+  ],
+  "screenshotQaRule": "1140 must visibly be Bilanz and Buchung after reopen. Nearby Bilanz values from other rows do not count.",
+  "steps": [
+    {
+      "step": "enter-edit-mode",
+      "edit": {
+        "clicked": true,
+        "method": "coordinate-pencil-fallback-from-card-screenshot-qa"
+      }
+    },
+    {
+      "step": "located-income-balance-point",
+      "point": {
+        "x": 635,
+        "y": 408,
+        "source": "fallback-card-coordinate"
+      }
+    },
+    {
+      "step": "click-income-balance-value",
+      "point": {
+        "x": 635,
+        "y": 408,
+        "source": "fallback-card-coordinate"
+      }
+    },
+    {
+      "step": "click-income-balance-dropdown-arrow-from-screenshot-qa",
+      "point": {
+        "x": 747,
+        "y": 408
+      }
+    },
+    {
+      "step": "option-not-visible-after-key",
+      "key": "Alt+ArrowDown"
+    },
+    {
+      "step": "option-not-visible-after-key",
+      "key": "F4"
+    },
+    {
+      "step": "typed-bilanz-enter-fallback"
+    }
+  ]
+}

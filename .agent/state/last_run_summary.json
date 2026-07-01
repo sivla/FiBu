@@ -1,48 +1,52 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
-  "caseId": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+  "runId": "TARGET-048C-INVENTORY-ACCOUNT-1140-BALANCE-SHEET-CORRECTION",
+  "caseId": "TARGET-048C-INVENTORY-ACCOUNT-1140-BALANCE-SHEET-CORRECTION",
   "status": "observed",
-  "runType": "local-source-decision-universaarl-inventory-account-skr04",
+  "runType": "playwright-controlled-setup-write",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "bcRun": false,
-  "playwrightRun": false,
-  "summary": "TARGET-048B created/exposed 1140 Waren (Bestand), but screenshot QA proves it is still GuV/Buchung rather than Bilanz/Buchung. Inventory setup remains locked.",
-  "changedInBC": false,
-  "setupChanged": false,
-  "setupChangeAttempted": false,
+  "bcRun": true,
+  "playwrightRun": true,
+  "summary": "TARGET-048C corrected 1140 Waren (Bestand) from GuV/Buchung to Bilanz/Buchung with card and chart reopen proof. Inventory setup remains locked until Item Posting Group and Inventory Posting Setup cases run.",
+  "changedInBC": true,
+  "setupChanged": true,
+  "setupChangeAttempted": true,
   "masterDataChanged": false,
   "draftCreated": false,
   "previewPosting": false,
   "posted": false,
   "payment": false,
   "apiShortcut": false,
-  "screenshots": [],
+  "screenshots": [
+    "playwright/projects/fibu-book5/evidence/target-048c-inventory-account-1140-balance-sheet-correction/target-048c-010-before-card.png",
+    "playwright/projects/fibu-book5/evidence/target-048c-inventory-account-1140-balance-sheet-correction/target-048c-020-after-field-route.png",
+    "playwright/projects/fibu-book5/evidence/target-048c-inventory-account-1140-balance-sheet-correction/target-048c-030-card-reopen-proof.png",
+    "playwright/projects/fibu-book5/evidence/target-048c-inventory-account-1140-balance-sheet-correction/target-048c-040-chart-reopen-proof.png"
+  ],
   "proved": [
-    "A registered SKR04 source lists 1140 Waren (Bestand) as a Warenbestand / inventory balance candidate.",
-    "The existing Universaarl chart checkpoint does not prove account 1140 visible.",
-    "5400 Wareneingang / Materialaufwand remains unsuitable as Inventory Posting Setup inventory account without a separate accounting decision.",
-    "Legacy RM-DEMO/CRONUS account 14140 is rejected as active Universaarl target truth.",
-    "The next practical step is a narrow Chart of Accounts write/verify gate for 1140 only."
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Account 1140 remains Waren (Bestand).",
+    "Account 1140 is visible after reopen as Bilanz and Buchung/Posting.",
+    "No VAT setup, posting groups, item posting group, inventory posting setup, item, document, Preview Posting, Posting or API shortcut was executed."
   ],
   "notProved": [
-    "Account 1140 does not yet exist in UNIVERSAARL-DE as visible/reopened account.",
-    "No tax advisor approval or complete SKR04 chart is proven.",
-    "No Inventory Posting Group code is selected.",
-    "No Inventory Posting Setup row for SAAR-HL exists or is correct.",
-    "No item posting field value is saved on U-ITEM-HW100.",
-    "No inventory posting readiness, Item Ledger Entry, Value Entry, G/L Entry, O2C, P2P, Preview Posting or Posting is proven."
+    "No complete SKR04 chart of accounts.",
+    "No tax advisor approval.",
+    "No Item Posting Group.",
+    "No Inventory Posting Setup row.",
+    "No item master data.",
+    "No inventory valuation posting.",
+    "No document, Preview Posting or Posting.",
+    "No German compliance final claim."
   ],
   "warnings": [
-    "This is a source gate, not Business Central setup proof.",
-    "1140 is selected as candidate only; it still needs visible Universaarl account proof.",
-    "Do not use 1140 for finished goods/manufacturing without a later separate finished-goods decision."
+    "1140 is still only a starter account dependency, not proof of complete inventory valuation readiness."
   ],
   "blockedBy": [],
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-048b-inventory-account-1140-controlled-write-gate/TARGET-048B-result.json",
-  "nextCase": "TARGET-048C-INVENTORY-ACCOUNT-1140-BALANCE-SHEET-CORRECTION",
-  "nextStep": "Run TARGET-048B to create or verify 1140 Waren (Bestand) in the Chart of Accounts before inventory setup writes.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-048c-inventory-account-1140-balance-sheet-correction/TARGET-048C-result.json",
+  "nextCase": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+  "nextStep": "Run TARGET-049 to create or verify exactly one minimal Item Posting Group before Inventory Posting Setup writes.",
   "nextStepDecisionCard": {
     "currentCase": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
     "plannedNextCaseBeforeReview": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
@@ -92,7 +96,7 @@
       "Keep customer/item field writes, O2C/P2P documents, Preview Posting and Posting locked."
     ]
   },
-  "updatedAt": "2026-07-01T23:19:11.286Z",
+  "updatedAt": "2026-07-02T00:00:00.000Z",
   "activeCase": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
   "authUnblock": {
     "status": "blocked-attended-login-required",
@@ -116,23 +120,23 @@
     "rawTenantOrAuthDetailsCommitted": false,
     "nextRequiredAction": "Complete attended Login/MFA in the auth browser until Business Central Role Center/Search/My Settings is visible; then run npm run auth:bc:check before rerunning D2F. If sign-in stalls or times out, run npm run auth:bc:diagnose for a short redacted diagnosis."
   },
-  "completedAt": "2026-07-02T02:00:00.000Z",
+  "completedAt": "2026-07-02T00:00:00.000Z",
   "nextStepDecision": {
-    "currentCase": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-048 selected 1140 Waren (Bestand) as source-backed SKR04 inventory account candidate without BC write.",
+    "currentCase": "TARGET-048C-INVENTORY-ACCOUNT-1140-BALANCE-SHEET-CORRECTION",
+    "plannedNextCaseBeforeReview": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-048B shows 1140 Waren (Bestand) exists, but as GuV/Buchung instead of Bilanz/Buchung.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The inventory account must be visible/reopened before Item Posting Group or Inventory Posting Setup writes.",
+    "reason": "1140 now has the narrow Bilanz/Buchung reopen proof needed before item/inventory setup gates.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
-        "status": "needs-setup-first",
-        "reason": "1140 still lacks reopen proof."
+        "status": "ready-next",
+        "reason": "1140 is ready as account dependency."
       },
       {
         "caseId": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
-        "status": "needs-setup-first",
-        "reason": "Inventory Posting Setup needs both an item posting group code and visible 1140 inventory account."
+        "status": "ready-after-current",
+        "reason": "Inventory Posting Setup also needs Item Posting Group completion."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
@@ -142,40 +146,35 @@
       {
         "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
         "status": "ready-after-current",
-        "reason": "VAT remains a separate blocked foundation lane and must not be mixed with inventory account setup."
+        "reason": "VAT remains a separate blocked foundation lane and must not be mixed with inventory account correction."
       }
     ],
-    "queueChangesMade": [
-      "Insert TARGET-048C before TARGET-049.",
-      "Keep TARGET-049 and TARGET-050 blocked until 1140 is Bilanz/Buchung."
-    ],
-    "selectedNextCase": "TARGET-048C-INVENTORY-ACCOUNT-1140-BALANCE-SHEET-CORRECTION",
-    "whySelectedNextCaseIsBest": "Do not continue to inventory setup until account 1140 is corrected to Bilanz/Buchung with reopen proof.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "The account dependency is now corrected; the next smallest setup gate is Item Posting Group before Inventory Posting Setup.",
     "risksBeforeNextCase": [
-      "Avoid repeating the same editor route without a better UI diagnosis."
+      "Do not claim SKR04 completeness, tax approval or inventory posting readiness from one corrected account."
     ],
     "requiredPreparation": [
-      "Review screenshots and BC row/editor state for 1140."
+      "Keep Inventory Posting Setup, items, documents, Preview Posting and Posting locked until their own cases."
     ]
   },
   "resultStatus": "blocked-partial",
   "actionsTaken": [
-    "Read TARGET-047 inventory posting setup decision.",
-    "Read Universaarl SKR04 minimal account mapping.",
-    "Read TARGET-026O visible chart checkpoint.",
-    "Checked registered SKR04 source for inventory / Waren (Bestand) account candidates.",
-    "Selected 1140 Waren (Bestand) as source-backed candidate for the first Universaarl hardware/trading-goods inventory valuation path.",
-    "Inserted TARGET-048B as controlled write gate before Item Posting Group or Inventory Posting Setup writes."
+    "Opened Business Central in playthru / UNIVERSAARL-DE.",
+    "Opened G/L Account Card Page 17 for account 1140.",
+    "Changed or verified only 1140 GuV/Bilanz toward Bilanz.",
+    "Captured before, after-route, card-reopen and chart-reopen screenshots."
   ],
   "actionsNotTaken": [
-    "No Business Central execution.",
-    "No Playwright execution.",
-    "No company switch.",
-    "No G/L account created or changed.",
-    "No Item Posting Group created or changed.",
-    "No Inventory Posting Setup created or changed.",
-    "No item changed.",
-    "No document or draft.",
+    "No account number or account name change.",
+    "No other G/L account changed.",
+    "No VAT setup.",
+    "No General Posting Setup.",
+    "No Item Posting Group.",
+    "No Inventory Posting Setup.",
+    "No item master data.",
+    "No document draft.",
     "No Preview Posting.",
     "No Posting.",
     "No API shortcut."

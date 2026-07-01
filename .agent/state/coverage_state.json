@@ -820,7 +820,7 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-07-01T23:17:28.411Z",
+  "updatedAt": "2026-07-02T00:00:00.000Z",
   "activeArea": "universaarl-master-data-write-decision",
   "currentBlock": "Foundation checkpoint needed before master data: General Posting Setup Page 314 and VAT matrix are parked; Dimensions starter set is visible but Global/Default Dimensions and posting effects are not proven.",
   "latestPracticalCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
@@ -3855,21 +3855,31 @@
       "nextCase": "TARGET-024C-GLOBAL-DIMENSION-FIELD-DISCOVERY"
     },
     "inventoryAccount1140": {
-      "status": "blocked-partial-created-wrong-guv",
+      "status": "universaarl-proven",
+      "caseId": "TARGET-048C-INVENTORY-ACCOUNT-1140-BALANCE-SHEET-CORRECTION",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-048c-inventory-account-1140-balance-sheet-correction/TARGET-048C-result.json",
       "accountNo": "1140",
       "accountName": "Waren (Bestand)",
-      "currentVisibleType": "GuV/Buchung",
-      "requiredVisibleType": "Bilanz/Buchung",
-      "evidence": "playwright/projects/fibu-book5/evidence/target-048b-inventory-account-1140-controlled-write-gate/TARGET-048B-result.json",
-      "nextCase": "TARGET-048C-INVENTORY-ACCOUNT-1140-BALANCE-SHEET-CORRECTION",
-      "boundaries": [
-        "No Item Posting Group",
-        "No Inventory Posting Setup",
-        "No item",
-        "No document",
-        "No Preview Posting",
-        "No Posting"
-      ]
+      "balanceOrIncomeStatement": "Bilanz",
+      "accountType": "Buchung",
+      "setupChanged": true,
+      "screenshotStatus": "card-and-chart-reopen-proof",
+      "notProved": [
+        "No complete SKR04 chart of accounts.",
+        "No tax advisor approval.",
+        "No Item Posting Group.",
+        "No Inventory Posting Setup row.",
+        "No item master data.",
+        "No inventory valuation posting.",
+        "No document, Preview Posting or Posting.",
+        "No German compliance final claim."
+      ],
+      "nextCase": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE"
+    },
+    "itemPostingGroupGate": {
+      "status": "ready-next",
+      "caseId": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+      "reason": "1140 Waren (Bestand) is now proven as Bilanz/Buchung; Item Posting Group is the next inventory foundation dependency."
     }
   },
   "latestTarget024EGlobalDimensionSourceRoute": {
