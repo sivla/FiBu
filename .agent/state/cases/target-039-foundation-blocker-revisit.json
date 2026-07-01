@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Revisit parked W1 Foundation blockers before further master data",
+  "purpose": "Classify parked W1 Foundation blockers after TARGET-037: General Posting Setup Page 314, VAT Posting Setup, Inventory Posting Setup, global/default dimensions, U-ITEM numbering and vendor numbering.",
+  "sourceCases": [
+    "TARGET-027D24-VAT-MATRIX-PARK-DECISION",
+    "TARGET-032F-GENERAL-POSTING-SETUP-PAGE314-PARK-DECISION",
+    "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+    "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+    "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": false,
+  "taskClass": "wizard_work",
+  "smartDecisionRequired": true,
+  "allowedActions": [
+    "read-current-state",
+    "read-recent-foundation-results",
+    "classify-foundation-blockers",
+    "select-one-next-foundation-case",
+    "update-coverage-and-catalog",
+    "write-result-json-and-next-step-decision"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "open-business-central",
+    "run-playwright",
+    "create-customer",
+    "create-vendor",
+    "create-item",
+    "change-number-series",
+    "change-posting-setup",
+    "change-vat-setup",
+    "change-inventory-setup",
+    "change-dimensions",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-037 classified Location and Customer as basic proven records.",
+    "Vendor and Item remain locked.",
+    "Preview Posting and Posting remain false."
+  ],
+  "acceptanceCriteria": [
+    "Each parked Foundation blocker is classified as solve-next, park-with-boundary, needs-ui-discovery-first, or blocked.",
+    "Exactly one next Foundation case is selected.",
+    "No live Business Central or Playwright action occurs in this review case.",
+    "No setup or master data is changed."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
+    "plannedNextCaseBeforeReview": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-037 classifies SAAR-HL and U-CUST-100 as basic proven records, but keeps Vendor, Item, Preview and Posting locked.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Item creation is not the best next step while Foundation blockers remain open.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+        "status": "ready-next",
+        "reason": "Best next step after TARGET-037."
+      },
+      {
+        "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Wait until item setup and posting-impact fields are scoped."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Requires item and setup readiness."
+      }
+    ],
+    "queueChangesMade": [
+      "TARGET-039 inserted before item creation."
+    ],
+    "selectedNextCase": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+    "whySelectedNextCaseIsBest": "It returns to W1 Foundation priority before more master-data writes.",
+    "risksBeforeNextCase": [
+      "Do not write setup in a review case."
+    ],
+    "requiredPreparation": [
+      "Read parked foundation result summaries."
+    ]
+  },
+  "createdAt": "2026-07-01T12:30:00.000Z",
+  "updatedAt": "2026-07-01T12:30:00.000Z"
+}

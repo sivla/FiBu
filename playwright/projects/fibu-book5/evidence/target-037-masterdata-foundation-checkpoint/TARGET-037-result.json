@@ -1,17 +1,34 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
   "caseId": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
-  "status": "observed",
-  "runType": "local-masterdata-foundation-checkpoint",
+  "source": "local-masterdata-foundation-checkpoint",
+  "resultStatus": "observed",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "bcRun": false,
-  "playwrightRun": false,
-  "summary": "Master-data checkpoint confirms SAAR-HL and U-CUST-100 are basic proven records; Vendor and Item remain locked; next step is W1 Foundation blocker revisit.",
-  "changedInBC": false,
+  "url": "not-opened-this-run",
+  "page": "local checkpoint from prior Universaarl evidence",
+  "actionsTaken": [
+    "Reviewed the current State, marathon queue, last run summary and active TARGET-037 case.",
+    "Reviewed TARGET-036A Location evidence, TARGET-036C Customer evidence and TARGET-036D2E/D2F vendor numbering blocker evidence.",
+    "Classified Location, Customer, Vendor and Item readiness separately.",
+    "Kept all live Business Central, Playwright, setup, master data, document, Preview Posting and Posting actions locked.",
+    "Selected a Foundation Blocker Revisit before any further master-data write."
+  ],
+  "actionsNotTaken": [
+    "No Business Central UI was opened.",
+    "No Playwright run was executed.",
+    "No company switch.",
+    "No setup field was changed.",
+    "No number series was changed.",
+    "No customer, vendor or item was created or edited.",
+    "No sales or purchase document draft was created.",
+    "No journal line was created.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No payment.",
+    "No API shortcut."
+  ],
   "setupChanged": false,
-  "setupChangeAttempted": false,
   "masterDataChanged": false,
   "draftCreated": false,
   "previewPosting": false,
@@ -19,24 +36,11 @@
   "payment": false,
   "apiShortcut": false,
   "screenshots": [],
-  "proved": [
-    "The Universaarl master-data foundation is not empty: SAAR-HL and U-CUST-100 are proven from prior reopen evidence.",
-    "The first vendor is correctly blocked, not merely delayed, because U-VEND Manual Nos. is not active after reopen.",
-    "Item creation should not be used as a quick fallback while item setup and posting-impact fields are unscoped.",
-    "Preview Posting and Posting remain locked because no complete customer-item-posting-VAT path exists."
-  ],
-  "notProved": [
-    "No vendor exists in the Universaarl target evidence.",
-    "No item exists in the Universaarl target evidence.",
-    "No customer/vendor/item posting groups are proven on master data.",
-    "No VAT Posting Setup, Inventory Posting Setup, General Posting Setup row, default dimensions or global dimensions are proven as posting-ready.",
-    "No sales, purchase, inventory, payment, journal, Preview Posting or Posting process is proven from Universaarl master data."
-  ],
-  "blockedBy": [],
-  "warnings": [
-    "The first Location and Customer are useful for book explanation and UI data richness, but they do not make the company posting-ready.",
-    "Do not use a blocked vendor route as permission to jump into item or document processes.",
-    "The next case should revisit the Foundation blockers before another master-data write."
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-036a-first-location-controlled-write-gate/TARGET-036A-result.json",
+    "playwright/projects/fibu-book5/evidence/target-036c-first-customer-controlled-write-gate/TARGET-036C-result.json",
+    "playwright/projects/fibu-book5/evidence/target-036d2e-u-vend-manual-nos-controlled-write-gate/TARGET-036D2E-result.json",
+    "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/TARGET-036D2F-result.json"
   ],
   "readiness": {
     "location": {
@@ -79,10 +83,39 @@
       ]
     }
   },
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-037-masterdata-foundation-checkpoint/TARGET-037-result.json",
-  "nextCase": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
-  "nextStep": "Run TARGET-039 to classify parked W1 Foundation blockers before any further master-data write.",
-  "nextStepDecisionCard": {
+  "proved": [
+    "The Universaarl master-data foundation is not empty: SAAR-HL and U-CUST-100 are proven from prior reopen evidence.",
+    "The first vendor is correctly blocked, not merely delayed, because U-VEND Manual Nos. is not active after reopen.",
+    "Item creation should not be used as a quick fallback while item setup and posting-impact fields are unscoped.",
+    "Preview Posting and Posting remain locked because no complete customer-item-posting-VAT path exists."
+  ],
+  "notProved": [
+    "No vendor exists in the Universaarl target evidence.",
+    "No item exists in the Universaarl target evidence.",
+    "No customer/vendor/item posting groups are proven on master data.",
+    "No VAT Posting Setup, Inventory Posting Setup, General Posting Setup row, default dimensions or global dimensions are proven as posting-ready.",
+    "No sales, purchase, inventory, payment, journal, Preview Posting or Posting process is proven from Universaarl master data."
+  ],
+  "blockedBy": [],
+  "warnings": [
+    "The first Location and Customer are useful for book explanation and UI data richness, but they do not make the company posting-ready.",
+    "Do not use a blocked vendor route as permission to jump into item or document processes.",
+    "The next case should revisit the Foundation blockers before another master-data write."
+  ],
+  "flags": {
+    "noBcRunThisCase": true,
+    "noPlaywrightRunThisCase": true,
+    "noCompanySwitch": true,
+    "noSetupChange": true,
+    "noMasterDataChangeThisCase": true,
+    "noDraft": true,
+    "noPreview": true,
+    "noPost": true,
+    "noPayment": true,
+    "noApiShortcut": true,
+    "shopifyExcluded": true
+  },
+  "nextStepDecision": {
     "currentCase": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
     "plannedNextCaseBeforeReview": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
     "lastEvidenceSummary": "SAAR-HL and U-CUST-100 are proven as small master-data records; U-VEND remains blocked because Manual Nos. is not active after reopen; no item exists.",
@@ -131,17 +164,32 @@
       "Classify each parked Foundation blocker as solve-next, park-with-boundary or needs-ui-discovery."
     ]
   },
-  "updatedAt": "2026-07-01T12:30:00.000Z",
-  "completedAt": "2026-07-01T12:30:00.000Z",
-  "activeCaseAfterRun": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
-  "checksRequiredAfterRun": [
-    "agent:preflight",
-    "agent:context",
-    "agent:dry-run",
-    "agent:run-plan",
-    "agent:result-normalize",
-    "agent:state-finalize",
-    "check:encoding",
-    "git diff --check"
-  ]
+  "nextCase": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+  "timestamp": "2026-07-01T12:30:00.000Z",
+  "safeToFinalizeState": true,
+  "requiresReview": false,
+  "statePatch": {
+    "current": {
+      "activeCase": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+      "activeArea": "universaarl-foundation-blocker-revisit",
+      "nextStep": "Run TARGET-039 to classify parked W1 Foundation blockers before any further master-data write."
+    },
+    "lastRunSummary": {
+      "runId": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
+      "caseId": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
+      "completedAt": "2026-07-01T12:30:00.000Z",
+      "status": "observed",
+      "instance": "playthru",
+      "company": "UNIVERSAARL-DE",
+      "bcRun": false,
+      "playwrightRun": false,
+      "setupChanged": false,
+      "masterDataChanged": false,
+      "draftCreated": false,
+      "previewPosting": false,
+      "posted": false,
+      "nextCase": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+      "summary": "Master-data checkpoint confirms SAAR-HL and U-CUST-100 are basic proven records; Vendor and Item remain locked; next step is W1 Foundation blocker revisit."
+    }
+  }
 }
