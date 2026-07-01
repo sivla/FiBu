@@ -1,17 +1,36 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
   "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-  "status": "blocked-parked",
-  "runType": "local-vendor-number-series-route-recovery-decision",
+  "source": "local-route-recovery-decision",
+  "resultStatus": "blocked-parked",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "bcRun": false,
-  "playwrightRun": false,
-  "summary": "U-VEND Manual Nos route recovery was parked after repeated failed checkbox/list routes; next safe step is a no-write master-data foundation checkpoint.",
-  "changedInBC": false,
+  "url": "not-opened-this-run",
+  "page": "No. Series / Nummernserie",
+  "pageId": 456,
+  "table": "No. Series",
+  "tableId": 308,
+  "actionsTaken": [
+    "Reviewed TARGET-036D2E result and the prior D2/D2B/D2C/D2D number-series evidence.",
+    "Rejected another blind U-VEND checkbox attempt because no new safer card, personalization or Page-Inspection-backed write route is available in the current evidence.",
+    "Parked first-vendor creation until U-VEND Manual Nos. can be proven by a new, non-repeated route.",
+    "Selected a local master-data foundation checkpoint before any further customer, vendor or item writes."
+  ],
+  "actionsNotTaken": [
+    "No Business Central UI was opened in this D2F decision run.",
+    "No Playwright run was executed in this D2F decision run.",
+    "No company switch.",
+    "No setup field was changed.",
+    "No customer, vendor or item card was created.",
+    "No sales or purchase document draft was created.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No payment.",
+    "No API shortcut."
+  ],
   "setupChanged": false,
   "setupChangeAttempted": false,
+  "changedFields": [],
   "masterDataChanged": false,
   "draftCreated": false,
   "previewPosting": false,
@@ -19,6 +38,12 @@
   "payment": false,
   "apiShortcut": false,
   "screenshots": [],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-036d2e-u-vend-manual-nos-controlled-write-gate/TARGET-036D2E-result.json",
+    "playwright/projects/fibu-book5/img/target-036d2e-010-before-u-vend-manual-nos.png",
+    "playwright/projects/fibu-book5/img/target-036d2e-020-after-u-vend-manual-nos-attempt.png",
+    "playwright/projects/fibu-book5/img/target-036d2e-030-reopen-proof.png"
+  ],
   "proved": [
     "D2E already proved Business Central stayed in playthru / UNIVERSAARL-DE during the last live U-VEND Manual Nos. attempt.",
     "D2E did not prove U-VEND Manual Nos. active after reopen.",
@@ -41,10 +66,19 @@
     "Item creation should also wait for a checkpoint because item setup and posting fields are higher risk than the already proven simple Location and Customer writes.",
     "The book may explain the number-series blocker, but it must not claim vendor master-data readiness."
   ],
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/TARGET-036D2F-result.json",
-  "nextCase": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
-  "nextStep": "Run TARGET-037 as a no-write checkpoint before any further master-data write; vendor remains blocked until U-VEND Manual Nos. is proven active.",
-  "nextStepDecisionCard": {
+  "flags": {
+    "noBcRunThisCase": true,
+    "noPlaywrightRunThisCase": true,
+    "noCompanySwitch": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noDraft": true,
+    "noPreview": true,
+    "noPost": true,
+    "noPayment": true,
+    "noApiShortcut": true
+  },
+  "nextStepDecision": {
     "currentCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
     "plannedNextCaseBeforeReview": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
     "lastEvidenceSummary": "TARGET-036D2E attempted a controlled U-VEND Manual Nos. write gate in playthru / UNIVERSAARL-DE, but Manual Nos. was not active after reopen and no setup change was accepted.",
@@ -94,17 +128,32 @@
       "Choose the next write gate only after the checkpoint."
     ]
   },
-  "updatedAt": "2026-07-01T12:05:00.000Z",
-  "completedAt": "2026-07-01T12:05:00.000Z",
-  "activeCaseAfterRun": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
-  "checksRequiredAfterRun": [
-    "agent:preflight",
-    "agent:context",
-    "agent:dry-run",
-    "agent:run-plan",
-    "agent:result-normalize",
-    "agent:state-finalize",
-    "check:encoding",
-    "git diff --check"
-  ]
+  "nextCase": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
+  "timestamp": "2026-07-01T12:05:00.000Z",
+  "safeToFinalizeState": true,
+  "requiresReview": false,
+  "statePatch": {
+    "current": {
+      "activeCase": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
+      "activeArea": "universaarl-masterdata-foundation-checkpoint",
+      "nextStep": "Run TARGET-037 as a no-write checkpoint before any further master-data write; vendor remains blocked until U-VEND Manual Nos. is proven active."
+    },
+    "lastRunSummary": {
+      "runId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+      "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+      "completedAt": "2026-07-01T12:05:00.000Z",
+      "status": "blocked-parked",
+      "instance": "playthru",
+      "company": "UNIVERSAARL-DE",
+      "bcRun": false,
+      "playwrightRun": false,
+      "setupChanged": false,
+      "masterDataChanged": false,
+      "draftCreated": false,
+      "previewPosting": false,
+      "posted": false,
+      "nextCase": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
+      "summary": "U-VEND Manual Nos route recovery was parked after repeated failed checkbox/list routes; next safe step is a no-write master-data foundation checkpoint."
+    }
+  }
 }

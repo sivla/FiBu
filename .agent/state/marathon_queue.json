@@ -3380,7 +3380,7 @@
     {
       "id": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
       "order": 10166,
-      "status": "pending",
+      "status": "blocked",
       "category": "target-masterdata-number-series",
       "expectedImpact": "vendor-numbering-route-recovery",
       "mayRunPlaywright": true,
@@ -3389,10 +3389,32 @@
       "sourceCompany": "UNIVERSAARL-DE",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-next"
+      "lookaheadStatus": "blocked",
+      "completedAt": "2026-07-01T12:05:00.000Z",
+      "result": "Parked: no new safer route for U-VEND Manual Nos after D2E; no BC/Playwright run and no setup/masterdata change in D2F.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/TARGET-036D2F-result.json",
+      "blockedBy": [
+        "No new safer Business Central route for U-VEND Manual Nos. is available after D2E; repeating the failed list/checkbox routes would not improve evidence."
+      ],
+      "nextCase": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT"
+    },
+    {
+      "id": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
+      "order": 10167,
+      "status": "pending",
+      "category": "target-masterdata-foundation",
+      "expectedImpact": "masterdata-readiness-checkpoint",
+      "mayRunPlaywright": false,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Classify Location, Customer, Vendor and Item readiness after first Universaarl master-data writes and parked vendor numbering blocker.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "lookaheadStatus": "ready-next",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-037-masterdata-foundation-checkpoint/TARGET-037-result.json"
     }
   ],
-  "lastUpdated": "2026-07-01T11:19:00.211Z",
+  "lastUpdated": "2026-07-01T12:05:00.000Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -3415,49 +3437,53 @@
       "replace-with-better-case"
     ],
     "latestDecisionCard": {
-      "currentCase": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
-      "plannedNextCaseBeforeReview": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
-      "lastEvidenceSummary": "TARGET-032B created/reverified INLAND and WAREN but blocked Page 314 because account column mapping was unsafe.",
+      "currentCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+      "plannedNextCaseBeforeReview": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+      "lastEvidenceSummary": "TARGET-036D2E attempted a controlled U-VEND Manual Nos. write gate in playthru / UNIVERSAARL-DE, but Manual Nos. was not active after reopen and no setup change was accepted.",
       "isPlannedNextCaseStillSensible": true,
-      "reason": "Page 314 is the narrow remaining setup route blocker before a controlled General Posting Setup write.",
+      "reason": "D2F is still sensible as a recovery decision, but not as another blind UI write. The safest useful outcome is to park the vendor numbering route until a new UI signal exists.",
       "lookaheadReviewed": [
         {
-          "caseId": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
-          "status": "ready-next",
-          "reason": "It directly addresses the remaining Page 314 field-mapping blocker without writing setup."
+          "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+          "status": "blocked",
+          "reason": "Vendor write remains blocked because U-VEND Manual Nos. is not active."
         },
         {
-          "caseId": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
-          "status": "ready-next",
-          "reason": "Header geometry is good enough to prepare a controlled write case."
+          "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+          "status": "needs-setup-first",
+          "reason": "Item creation touches Base Unit, Item Type, posting groups and inventory setup; it should not be the immediate fallback while numbering/setup boundaries are unresolved."
         },
         {
-          "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+          "caseId": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
+          "status": "ready-next",
+          "reason": "A checkpoint can classify what is truly ready after SAAR-HL and U-CUST-100, what remains blocked, and which next write gate is lowest risk."
+        },
+        {
+          "caseId": "TARGET-038-O2C-PREFLIGHT",
+          "status": "needs-setup-first",
+          "reason": "Sales process needs customer/item/VAT/posting setup readiness before any document or preview."
+        },
+        {
+          "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
           "status": "ready-after-current",
-          "reason": "Dimensions should wait until Page 314 is written or consciously parked."
-        },
-        {
-          "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
-          "status": "needs-setup-first",
-          "reason": "Foundation still needs matrix/VAT/dimensions status before readiness."
-        },
-        {
-          "caseId": "TARGET-035-MASTER-DATA-FIRST-CUSTOMER-VENDOR-ITEM",
-          "status": "needs-setup-first",
-          "reason": "Master data remains locked until posting groups, VAT and dimensions are sufficient."
+          "reason": "Useful after TARGET-037 if the checkpoint shows a specific setup blocker should be revisited before more master data."
         }
       ],
-      "queueChangesMade": [],
-      "selectedNextCase": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
-      "whySelectedNextCaseIsBest": "A controlled Page 314 write gate is now better than more diagnosis because exact target headers are visible.",
+      "queueChangesMade": [
+        "Marked TARGET-036D2F as blocked-parked instead of repeating failed checkbox routes.",
+        "Inserted TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT as the next safe case."
+      ],
+      "selectedNextCase": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
+      "whySelectedNextCaseIsBest": "It creates a clean stop-and-check point after the first Location and Customer success and before another master-data write, while the vendor numbering route remains blocked.",
       "risksBeforeNextCase": [
-        "Do not create master data yet.",
-        "Do not run Preview Posting or Posting.",
-        "Do not claim posting readiness from posting groups alone.",
-        "Do not type Page 314 account values without before/after/reopen proof."
+        "Do not create vendor or item records during the checkpoint.",
+        "Do not treat parked U-VEND Manual Nos. as solved.",
+        "Do not unlock Preview Posting, Posting or documents from master-data evidence alone."
       ],
       "requiredPreparation": [
-        "Use header geometry, not input index, to target Page 314 fields in TARGET-032D."
+        "Read the D2E/D2F results.",
+        "Classify Location, Customer, Vendor and Item readiness separately.",
+        "Choose the next write gate only after the checkpoint."
       ]
     },
     "lastDecisionCard": {
@@ -3499,102 +3525,118 @@
       ]
     }
   },
-  "updatedAt": "2026-07-01T11:31:24.302Z",
-  "lastCompletedCase": "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE",
-  "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+  "updatedAt": "2026-07-01T12:05:00.000Z",
+  "lastCompletedCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+  "nextCase": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-036D2D-VENDOR-NUMBER-SERIES-READONLY-ROUTE-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-036D3-FIRST-VENDOR-CONTROLLED-WRITE-RETRY",
-    "lastEvidenceSummary": "TARGET-036D2C proved U-VEND read-only on Number Series Page 456 and Page Inspection mapped Table 308 fields Default Nos. and Manual Nos.; it did not change setup or prove either checkbox active.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "Vendor retry is still blocked because U-VEND numbering is unresolved. Since the planned first vendor number is U-VEND-100, Microsoft Learn supports Manual Nos. as the deliberate next numbering strategy; setup must be fitted before vendor creation.",
-    "lookaheadReviewed": [
-      {
-        "caseId": "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE",
-        "status": "ready-next",
-        "reason": "Smallest source-backed write: enable Manual Nos. only for U-VEND with before/after/reopen proof. No vendor is created in this case."
-      },
-      {
-        "caseId": "TARGET-036D3-FIRST-VENDOR-CONTROLLED-WRITE-RETRY",
-        "status": "ready-after-current",
-        "reason": "Retry becomes sensible only after U-VEND Manual Nos. is visibly active after reopen."
-      },
-      {
-        "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
-        "status": "needs-setup-first",
-        "reason": "Item creation should wait until the vendor-numbering blocker is closed or explicitly parked."
-      },
-      {
-        "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
-        "status": "ready-after-current",
-        "reason": "Useful after numbering route closure to re-check foundation blockers before broader master data."
-      }
-    ],
-    "queueChangesMade": [
-      "Marked TARGET-036D2D-VENDOR-NUMBER-SERIES-READONLY-ROUTE-DECISION done as local decision.",
-      "Inserted TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE before vendor retry."
-    ],
-    "selectedNextCase": "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE",
-    "whySelectedNextCaseIsBest": "It resolves the specific first-vendor blocker with one narrow, source-backed setup field that matches the intended readable vendor number U-VEND-100, while keeping Standard Nos., master data, drafts, Preview and Posting locked.",
-    "risksBeforeNextCase": [
-      "Do not toggle Standardnr. / Default Nos. in the manual-numbering case.",
-      "Do not create the vendor in D2E.",
-      "Do not change number-series lines or other number series.",
-      "Do not use row-menu screenshots as value proof without selected-row QA."
-    ],
-    "requiredPreparation": [
-      "Use Page 456 U-VEND selected-row proof before write.",
-      "Use Liste bearbeiten or another explicit edit affordance only if the U-VEND row and Manual Nos. cell are both mapped.",
-      "Capture before, after and reopen screenshots plus Page Inspection/field context if needed."
-    ]
-  },
-  "nextStep": "Run TARGET-036D2F: recover a safer U-VEND Manual Nos route; do not create a vendor until Manual Nos. is proven active after reopen.",
-  "openItems": [
-    "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE"
-  ],
-  "nextQueueItem": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-  "nextCases": [
-    "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE",
-    "TARGET-036D3-FIRST-VENDOR-CONTROLLED-WRITE-RETRY",
-    "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
-    "TARGET-039-FOUNDATION-BLOCKER-REVISIT"
-  ],
-  "nextStepDecision": {
-    "currentCase": "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-036D2D selected Manual Nos for explicit U-VEND-100-style vendor numbers based on Microsoft Learn and Page 456 field evidence.",
+    "currentCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+    "lastEvidenceSummary": "TARGET-036D2E attempted a controlled U-VEND Manual Nos. write gate in playthru / UNIVERSAARL-DE, but Manual Nos. was not active after reopen and no setup change was accepted.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The first vendor cannot be created with the planned manual number until U-VEND Manual Nos is active after reopen proof.",
+    "reason": "D2F is still sensible as a recovery decision, but not as another blind UI write. The safest useful outcome is to park the vendor numbering route until a new UI signal exists.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
         "status": "blocked",
-        "reason": "Vendor write remains blocked until U-VEND Manual Nos is active."
+        "reason": "Vendor write remains blocked because U-VEND Manual Nos. is not active."
       },
       {
         "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
-        "status": "ready-after-current",
-        "reason": "Item setup can continue after vendor numbering no longer blocks vendor foundation."
+        "status": "needs-setup-first",
+        "reason": "Item creation touches Base Unit, Item Type, posting groups and inventory setup; it should not be the immediate fallback while numbering/setup boundaries are unresolved."
       },
       {
         "caseId": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
-        "status": "ready-after-current",
-        "reason": "Checkpoint is useful only after vendor and item foundation are resolved."
+        "status": "ready-next",
+        "reason": "A checkpoint can classify what is truly ready after SAAR-HL and U-CUST-100, what remains blocked, and which next write gate is lowest risk."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Sales process needs master data and posting setup readiness before documents."
+        "reason": "Sales process needs customer/item/VAT/posting setup readiness before any document or preview."
+      },
+      {
+        "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+        "status": "ready-after-current",
+        "reason": "Useful after TARGET-037 if the checkpoint shows a specific setup blocker should be revisited before more master data."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-    "whySelectedNextCaseIsBest": "The setup route is still not proven; recovery must inspect a safer UI route before any vendor attempt.",
+    "queueChangesMade": [
+      "Marked TARGET-036D2F as blocked-parked instead of repeating failed checkbox routes.",
+      "Inserted TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT as the next safe case."
+    ],
+    "selectedNextCase": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
+    "whySelectedNextCaseIsBest": "It creates a clean stop-and-check point after the first Location and Customer success and before another master-data write, while the vendor numbering route remains blocked.",
     "risksBeforeNextCase": [
-      "Manual Nos route remains ambiguous."
+      "Do not create vendor or item records during the checkpoint.",
+      "Do not treat parked U-VEND Manual Nos. as solved.",
+      "Do not unlock Preview Posting, Posting or documents from master-data evidence alone."
     ],
     "requiredPreparation": [
-      "Inspect row/card/personalization route without changing other number series."
+      "Read the D2E/D2F results.",
+      "Classify Location, Customer, Vendor and Item readiness separately.",
+      "Choose the next write gate only after the checkpoint."
+    ]
+  },
+  "nextStep": "Run TARGET-037 as a no-write checkpoint before any further master-data write; vendor remains blocked until U-VEND Manual Nos. is proven active.",
+  "openItems": [
+    "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT"
+  ],
+  "nextQueueItem": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
+  "nextCases": [
+    "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
+    "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+    "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+    "TARGET-038-O2C-PREFLIGHT"
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+    "lastEvidenceSummary": "TARGET-036D2E attempted a controlled U-VEND Manual Nos. write gate in playthru / UNIVERSAARL-DE, but Manual Nos. was not active after reopen and no setup change was accepted.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "D2F is still sensible as a recovery decision, but not as another blind UI write. The safest useful outcome is to park the vendor numbering route until a new UI signal exists.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Vendor write remains blocked because U-VEND Manual Nos. is not active."
+      },
+      {
+        "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Item creation touches Base Unit, Item Type, posting groups and inventory setup; it should not be the immediate fallback while numbering/setup boundaries are unresolved."
+      },
+      {
+        "caseId": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
+        "status": "ready-next",
+        "reason": "A checkpoint can classify what is truly ready after SAAR-HL and U-CUST-100, what remains blocked, and which next write gate is lowest risk."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Sales process needs customer/item/VAT/posting setup readiness before any document or preview."
+      },
+      {
+        "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+        "status": "ready-after-current",
+        "reason": "Useful after TARGET-037 if the checkpoint shows a specific setup blocker should be revisited before more master data."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked TARGET-036D2F as blocked-parked instead of repeating failed checkbox routes.",
+      "Inserted TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT as the next safe case."
+    ],
+    "selectedNextCase": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
+    "whySelectedNextCaseIsBest": "It creates a clean stop-and-check point after the first Location and Customer success and before another master-data write, while the vendor numbering route remains blocked.",
+    "risksBeforeNextCase": [
+      "Do not create vendor or item records during the checkpoint.",
+      "Do not treat parked U-VEND Manual Nos. as solved.",
+      "Do not unlock Preview Posting, Posting or documents from master-data evidence alone."
+    ],
+    "requiredPreparation": [
+      "Read the D2E/D2F results.",
+      "Classify Location, Customer, Vendor and Item readiness separately.",
+      "Choose the next write gate only after the checkpoint."
     ]
   }
 }

@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Master data foundation checkpoint after first Location and Customer",
+  "purpose": "Classify the current Universaarl master-data foundation before another write: Location and Customer are proven, Vendor is blocked by U-VEND Manual Nos., and Item remains higher-risk until its setup fields are deliberately scoped.",
+  "sourceCases": [
+    "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
+    "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
+    "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE",
+    "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": false,
+  "taskClass": "wizard_work",
+  "smartDecisionRequired": true,
+  "allowedActions": [
+    "read-current-state",
+    "read-recent-result-json",
+    "classify-location-customer-vendor-item-readiness",
+    "update-coverage-and-book-draft-if-needed",
+    "write-result-json-and-next-step-decision"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "open-business-central",
+    "run-playwright",
+    "create-customer",
+    "create-vendor",
+    "create-item",
+    "change-number-series",
+    "change-posting-setup",
+    "change-vat-setup",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-036A proves SAAR-HL after reopen.",
+    "TARGET-036C proves U-CUST-100 after reopen.",
+    "TARGET-036D2E/D2F keep U-VEND Manual Nos. and first vendor blocked.",
+    "No item write gate has been run yet."
+  ],
+  "acceptanceCriteria": [
+    "Location, Customer, Vendor and Item readiness are classified separately.",
+    "Vendor remains blocked unless U-VEND Manual Nos. is later proven active.",
+    "Item is not created in this checkpoint.",
+    "The next write gate is selected with lookahead and risk rationale.",
+    "Preview Posting and Posting remain false."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "D2F parks the U-VEND Manual Nos. recovery because repeated list/checkbox routes did not prove the field active after reopen.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Vendor creation is still blocked; the next practical step is a no-write checkpoint before selecting another master-data write route.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
+        "status": "ready-next",
+        "reason": "No write and directly clarifies readiness after the first Location and Customer."
+      },
+      {
+        "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+        "status": "ready-after-current",
+        "reason": "May be sensible after checkpoint if item setup and required fields are scoped."
+      },
+      {
+        "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+        "status": "ready-after-current",
+        "reason": "May be better than item creation if the checkpoint shows a setup blocker should be fixed first."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Requires item/customer/posting/VAT readiness and must not precede foundation."
+      }
+    ],
+    "queueChangesMade": [
+      "TARGET-037 inserted after TARGET-036D2F."
+    ],
+    "selectedNextCase": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
+    "whySelectedNextCaseIsBest": "It prevents another premature write and gives the book a clear explanation of what first master data really exists.",
+    "risksBeforeNextCase": [
+      "Do not convert this checkpoint into a live write.",
+      "Do not claim vendor or item readiness."
+    ],
+    "requiredPreparation": [
+      "Read TARGET-036A, TARGET-036C, TARGET-036D2E and TARGET-036D2F results."
+    ]
+  },
+  "createdAt": "2026-07-01T12:05:00.000Z",
+  "updatedAt": "2026-07-01T12:05:00.000Z"
+}
