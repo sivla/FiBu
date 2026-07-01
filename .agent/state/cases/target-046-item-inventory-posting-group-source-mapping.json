@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
+  "status": "ready-next",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Item posting group and inventory posting setup source mapping",
+  "purpose": "Map the missing item posting group / inventory posting setup dependency before any write to U-ITEM-HW100.",
+  "sourceCases": [
+    "TARGET-045A-CUSTOMER-ITEM-FIELD-SOURCE-MAPPING",
+    "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": false,
+  "taskClass": "wizard_work",
+  "allowedActions": [
+    "read-target-045a-field-map",
+    "read-target-045b-result",
+    "inspect-existing-inventory-posting-group-evidence",
+    "inspect-existing-inventory-posting-setup-evidence",
+    "write-source-map-json",
+    "write-next-step-decision",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "open-business-central",
+    "run-playwright",
+    "enter-edit-mode",
+    "change-item",
+    "change-inventory-posting-group",
+    "change-inventory-posting-setup",
+    "change-general-posting-setup",
+    "change-vat-posting-setup",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-o2c-readiness-from-source-map",
+    "claim-german-vat-final-proof",
+    "book-claim-without-evidence",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-045B result exists and selects this case.",
+    "TARGET-045B proves U-ITEM-HW100 was inspected read-only.",
+    "TARGET-045B does not expose Item Posting Group / Lagerbuchungsgruppe on the standard card route."
+  ],
+  "acceptanceCriteria": [
+    "A compact source map classifies which setup object/page controls Item Posting Group and Inventory Posting Setup for U-ITEM-HW100.",
+    "No Business Central or Playwright execution occurs in this source-mapping case.",
+    "No item, setup, document, preview, posting or API change occurs.",
+    "The next case is selected from setup dependency truth, not from visible card fields alone."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
+    "plannedNextCaseBeforeReview": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
+    "lastEvidenceSummary": "TARGET-045B inspected U-CUST-100 and U-ITEM-HW100 read-only. It exposed Basiseinheit and Lagerbestand, but not Lagerbuchungsgruppe / Item Posting Group.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Before changing the item card, the inventory posting group and inventory posting setup dependency must be mapped.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
+        "status": "ready-next",
+        "reason": "Narrow local source mapping from TARGET-045A/TARGET-045B evidence."
+      },
+      {
+        "caseId": "TARGET-047-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT-AFTER-SOURCES",
+        "status": "needs-setup-first",
+        "reason": "Only after source dependencies and target values are explicit."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C needs customer/item fields, General Posting Setup, VAT Posting Setup and posting trace expectations."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
+    "whySelectedNextCaseIsBest": "It resolves the item setup dependency before another master-data write attempt.",
+    "risksBeforeNextCase": [
+      "Do not write U-ITEM-HW100 from source mapping alone.",
+      "Do not claim posting readiness from field/source visibility.",
+      "Keep Preview Posting and Posting false."
+    ],
+    "requiredPreparation": [
+      "Read TARGET-045A source-field-map.json.",
+      "Read TARGET-045B result and screenshot QA.",
+      "Inspect existing TARGET-040 / posting setup evidence before selecting a write case."
+    ]
+  },
+  "createdAt": "2026-07-02T00:00:00.000Z"
+}

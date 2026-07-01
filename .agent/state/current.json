@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T22:11:39.231Z",
+  "updatedAt": "2026-07-01T22:19:47.605Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-customer-item-readonly-field-route",
-  "activeCase": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
-  "active_case_file": ".agent/state/cases/target-045b-customer-item-posting-fields-readonly-route-retry.json",
+  "activeArea": "universaarl-item-inventory-posting-group-source-mapping",
+  "activeCase": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
+  "active_case_file": ".agent/state/cases/target-046-item-inventory-posting-group-source-mapping.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -19,42 +19,39 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central-readonly",
-    "confirm-instance-playthru",
-    "confirm-company-universaarl-de",
-    "open-u-cust-100-readonly",
-    "open-u-item-hw100-readonly",
-    "expand-fasttabs-and-show-more-readonly",
-    "capture-field-route-screenshots",
-    "write-result-json-and-next-step-decision",
+    "read-target-045a-field-map",
+    "read-target-045b-result",
+    "inspect-existing-inventory-posting-group-evidence",
+    "inspect-existing-inventory-posting-setup-evidence",
+    "write-source-map-json",
+    "write-next-step-decision",
     "update-state-and-queue"
   ],
   "forbiddenActions": [
     "leave-instance",
     "company-switch",
+    "open-business-central",
+    "run-playwright",
     "enter-edit-mode",
-    "change-customer",
     "change-item",
-    "change-posting-groups",
+    "change-inventory-posting-group",
+    "change-inventory-posting-setup",
     "change-general-posting-setup",
     "change-vat-posting-setup",
-    "change-inventory-posting-setup",
     "create-document-or-draft",
-    "apply-template",
-    "confirm-dialog",
     "preview-posting",
     "post",
     "payment",
     "api-shortcut",
-    "claim-o2c-readiness-from-field-visibility",
+    "claim-o2c-readiness-from-source-map",
     "claim-german-vat-final-proof",
     "book-claim-without-evidence",
     "commit-secrets",
     "show-env-or-auth",
     "fake-evidence"
   ],
-  "nextCase": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
-  "nextStep": "Run a read-only customer/item card field-route retry using the exact TARGET-045A field map; do not write fields.",
+  "nextCase": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
+  "nextStep": "Run TARGET-046 Item Posting Group source/setup mapping before any item posting field write.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -3206,7 +3203,7 @@
     "companyCreationActionLabels": [
       "Kopieren",
       "Neu",
-      "Neu ",
+      "Neu îœ",
       "Testunternehmen"
     ],
     "resultPath": "playwright/projects/fibu-book5/evidence/target-001/TARGET-001-result.json",
@@ -3360,8 +3357,8 @@
     "apiShortcut": false,
     "noSearch": true,
     "effectiveActionsTaken": [
-      "opened-safe-menu:new-related-actions-dropdown: | Verwandte Aktionen für Neu | Verwandte Aktionen für Neu",
-      "opened-safe-menu:commandbar-more-options:Weitere Optionen | Sekundäre Aktionen anzeigen"
+      "opened-safe-menu:new-related-actions-dropdown:Verwandte Aktionen fuer Neu",
+      "opened-safe-menu:commandbar-more-options:Weitere Optionen | Sekundaere Aktionen anzeigen"
     ],
     "blockedBy": [
       "safe-create-new-company-action-not-found-after-scoped-menu-discovery"
@@ -8439,5 +8436,52 @@
       "apiShortcut": false
     }
   ],
-  "lastCompletedResultPath": "playwright/projects/fibu-book5/evidence/target-045a-customer-item-field-source-mapping/TARGET-045A-result.json"
+  "lastCompletedResultPath": "playwright/projects/fibu-book5/evidence/target-045a-customer-item-field-source-mapping/TARGET-045A-result.json",
+  "latestTarget045B": {
+    "caseId": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-045b-customer-item-posting-fields-readonly-route-retry/TARGET-045B-result.json",
+    "resultStatus": "observed",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-045b-010-customer-expanded-standard-page-route.png",
+      "playwright/projects/fibu-book5/img/target-045b-020-item-expanded-standard-page-route.png"
+    ],
+    "visibleFieldTerms": [
+      "Gesperrt",
+      "Basiseinheit",
+      "Lagerbestand",
+      "Inventory"
+    ],
+    "missingFieldTerms": [
+      "Debitorenbuchungsgruppe",
+      "Customer Posting Group",
+      "Geschaeftsbuchungsgruppe",
+      "Geschaeftsbuchungsgruppe",
+      "Gen. Bus. Posting Group",
+      "MwSt.-Geschaeftsbuchungsgruppe",
+      "MwSt.-Geschaeftsbuchungsgruppe",
+      "VAT Bus. Posting Group",
+      "Zahlungsbedingungscode",
+      "Payment Terms Code",
+      "Blocked",
+      "Base Unit of Measure",
+      "Lagerbuchungsgruppe",
+      "Item Posting Group",
+      "Produktbuchungsgruppe",
+      "Gen. Prod. Posting Group",
+      "MwSt.-Produktbuchungsgruppe",
+      "VAT Prod. Posting Group",
+      "Einstandspreismethode",
+      "Costing Method",
+      "Lagerabgangsmethode"
+    ],
+    "nextCase": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
+    "updatedAt": "2026-07-01T22:19:47.605Z"
+  }
 }

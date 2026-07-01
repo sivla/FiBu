@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
-  "status": "ready-next",
+  "status": "done",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -64,45 +64,72 @@
   ],
   "nextStepDecision": {
     "currentCase": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
-    "plannedNextCaseBeforeReview": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
-    "lastEvidenceSummary": "TARGET-045A mapped exact customer and item field targets and kept all writes locked.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "Read-only field-route discovery is now bounded by an exact field list and can improve Playwright without changing data.",
+    "plannedNextCaseBeforeReview": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
+    "lastEvidenceSummary": "TARGET-045A mapped exact customer/item field names and values but kept all writes locked until a read-only route retry proved visibility.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The item posting group route remains insufficient; before any item write, the inventory posting group source/setup gap is the smaller and safer next decision.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
-        "status": "ready-after-current",
-        "reason": "If item field route finds the Item Posting Group gap, source-map inventory posting group before any item write."
-      },
-      {
-        "caseId": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+        "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
         "status": "needs-ui-discovery-first",
-        "reason": "General Posting Setup remains parked; revisit only with a materially new route."
+        "reason": "Still missing enough visible route/value truth."
       },
       {
-        "caseId": "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
-        "status": "blocked",
-        "reason": "VAT matrix remains parked; do not reopen until a new standard route or explicit strategy exists."
+        "caseId": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
+        "status": "ready-next",
+        "reason": "The item field map already classified Item Posting Group as blocked by item posting group and inventory posting setup gaps."
+      },
+      {
+        "caseId": "TARGET-045C-CUSTOMER-ITEM-FIELD-ROUTE-PAGEINSPECTION-DECISION",
+        "status": "ready-after-current",
+        "reason": "Use only if standard-page expansion gives partial route truth but not enough safe write confidence."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C still needs customer/item fields, General Posting Setup, VAT Posting Setup and posting trace expectations."
+        "reason": "O2C remains blocked until posting/VAT/payment field readiness is proven."
+      },
+      {
+        "caseId": "TARGET-047-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT-AFTER-SOURCES",
+        "status": "needs-setup-first",
+        "reason": "Do not write customer/item posting fields until source/setup dependencies are explicit and the active case unlocks exactly those fields."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
-    "whySelectedNextCaseIsBest": "It is the smallest practical follow-up: use exact field names to improve Playwright/UI understanding while keeping all writes locked.",
+    "queueChangesMade": [
+      "TARGET-045B ran as exact field-map read-only route retry.",
+      "Selected TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING as next case."
+    ],
+    "selectedNextCase": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
+    "whySelectedNextCaseIsBest": "It resolves the item posting group source/setup dependency before another customer/item write attempt.",
     "risksBeforeNextCase": [
-      "Do not enter edit mode or change U-CUST-100/U-ITEM-HW100.",
-      "Do not treat candidate values as posting readiness.",
-      "Do not create sales/purchase documents, Preview Posting or Posting."
+      "Do not claim posting readiness from field visibility.",
+      "Do not edit customer, item or setup fields without exact target values.",
+      "Keep Preview Posting and Posting false."
     ],
     "requiredPreparation": [
-      "Use source-field-map.json as the field list.",
-      "Capture page/FastTab/field visibility and not-found terms separately.",
-      "Abort if Business Central opens any write, template, apply, edit or confirmation flow."
+      "Map Item Posting Group and Inventory Posting Setup sources before item field write.",
+      "Keep customer/item field writes, O2C/P2P documents, Preview Posting and Posting locked."
     ]
   },
-  "createdAt": "2026-07-01T22:09:44.675Z"
+  "createdAt": "2026-07-01T22:09:44.675Z",
+  "completedAt": "2026-07-01T22:19:47.605Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-045b-customer-item-posting-fields-readonly-route-retry/TARGET-045B-result.json",
+  "result": "Read-only route retry completed: customer/item cards opened in playthru / UNIVERSAARL-DE; posting/VAT fields remained hidden; no write occurred.",
+  "proved": [
+    "U-CUST-100 and U-ITEM-HW100 were inspected on standard pages in playthru / UNIVERSAARL-DE.",
+    "Standard FastTabs and Mehr anzeigen/Show more were used as the alternative route instead of Personalize.",
+    "Visible relevant terms captured: Gesperrt, Basiseinheit, Lagerbestand, Inventory.",
+    "No setup, master data, document, Preview Posting, Posting, payment, API shortcut, personalization or company switch occurred."
+  ],
+  "notProved": [
+    "Field visibility is not value correctness.",
+    "No customer or item posting field was changed.",
+    "No VAT Posting Setup, General Posting Setup or Inventory Posting Setup correctness is proven by this route.",
+    "No O2C, P2P, Preview Posting, Posting, Customer Ledger Entry, Item Ledger Entry, Value Entry, G/L Entry or VAT Entry is proven."
+  ],
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/target-045b-010-customer-expanded-standard-page-route.png",
+    "playwright/projects/fibu-book5/img/target-045b-020-item-expanded-standard-page-route.png"
+  ],
+  "nextCase": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING"
 }
