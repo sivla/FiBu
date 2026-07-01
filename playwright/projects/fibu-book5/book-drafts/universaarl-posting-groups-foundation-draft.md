@@ -23,3 +23,7 @@ Ein erfolgreicher erster Kontrollpunkt ist erreicht, wenn diese Seiten geoeffnet
 - USt-Buchungsmatrix
 
 Diese Sichtpruefung beweist noch nicht, dass die Einrichtung fachlich vollstaendig ist. Sie zeigt aber, wo Business Central die spaetere Kontenfindung vorbereitet. Erst danach lohnt es sich, Kunden, Lieferanten, Artikel und Belege aufzubauen.
+
+Der erste sinnvolle Einrichtungsschritt ist bewusst klein: die Kreditorenbuchungsgruppe fuer inlaendische Lieferanten. Auf der Seite **Kreditorenbuchungsgruppen** legt der Code fest, welche Gruppe spaeter auf einer Lieferantenkarte verwendet wird. Das Feld **Verbindlichkeiten-Konto** legt fest, auf welches Sammelkonto Business Central die offenen Kreditorenposten im Hauptbuch fuehrt. Fuer die Universaarl GmbH ist als erster Kandidat die Gruppe **INLAND** mit dem Verbindlichkeitskonto **3300 Verbindlichkeiten aus Lieferungen und Leistungen** vorgesehen.
+
+Dieser Schritt richtet noch keine Einkaufsrechnung ein. Er erzeugt auch keinen Lieferanten, keinen Artikel und keine Buchung. Er bereitet nur die Kontenfindung fuer Lieferanten vor. Erst wenn diese Gruppe gespeichert und nach erneutem Oeffnen sichtbar ist, kann die Debitorenseite, die allgemeine Buchungsmatrix, die Lagerbuchung und die USt-Buchungsmatrix sauber weiter aufgebaut werden.

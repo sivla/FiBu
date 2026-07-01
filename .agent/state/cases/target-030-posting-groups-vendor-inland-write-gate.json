@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-030-POSTING-GROUPS-VENDOR-INLAND-WRITE-GATE",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Vendor Posting Group INLAND controlled write gate",
+  "purpose": "Create or verify exactly one Kreditorenbuchungsgruppe row for Universaarl if Page 111 and account 3300 are still visible, without touching other posting setup families.",
+  "sourceCases": [
+    "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+    "TARGET-029-POSTING-GROUPS-CONTROLLED-SETUP-DECISION",
+    "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT"
+  ],
+  "effectiveBcActionsAllowed": true,
+  "mayRunPlaywright": true,
+  "taskClass": "wizard_work",
+  "targetPage": {
+    "pageId": 111,
+    "page": "Kreditorenbuchungsgruppen / Vendor Posting Groups"
+  },
+  "candidateValues": {
+    "code": "INLAND",
+    "description": "Inlaendische Lieferanten",
+    "payablesAccount": "3300",
+    "payablesAccountName": "Verbindlichkeiten aus Lieferungen und Leistungen"
+  },
+  "allowedActions": [
+    "open-playthru-business-central",
+    "confirm-UNIVERSAARL-DE-context",
+    "open-vendor-posting-groups-page-111",
+    "capture-before-screenshot-qa",
+    "create-or-complete-only-INLAND-vendor-posting-group-row",
+    "set-only-description-and-payables-account-3300",
+    "reopen-page-111-and-capture-after-screenshot-qa",
+    "write-result-and-next-step-card",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "change-customer-posting-groups",
+    "change-general-posting-setup",
+    "change-inventory-posting-setup",
+    "change-vat-posting-setup",
+    "change-bank-posting-groups",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-posting-readiness-from-single-row",
+    "claim-german-vat-final-proof",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "smartDecisionGate": {
+    "effectiveActionType": "setup-change-single-row",
+    "mustConfirmBeforeWrite": [
+      "URL/environment contains playthru.",
+      "Company context is UNIVERSAARL-DE.",
+      "Page title or visible texts confirm Kreditorenbuchungsgruppen / Vendor Posting Groups.",
+      "Field Verbindlichkeiten-Konto is visible or safely discoverable on Page 111.",
+      "No modal/dialog asks to post, preview, delete, copy company, switch company or create documents."
+    ],
+    "abortIf": [
+      "Page 111 opens the wrong page.",
+      "The row editor cannot be scoped to Vendor Posting Groups.",
+      "INLAND already exists with a different payables account and the difference cannot be explained safely.",
+      "Account 3300 is not selectable or not visible.",
+      "Any dialog requests a broad setup import, posting, preview, delete or unrelated setup action."
+    ]
+  },
+  "entryCriteria": [
+    "TARGET-029 selected Vendor Posting Groups Page 111 as the smallest safe setup write route.",
+    "TARGET-026L showed account 3300 Verbindlichkeiten aus Lieferungen und Leistungen as visible in Universaarl.",
+    "No master data or document creation has started."
+  ],
+  "acceptanceCriteria": [
+    "The run stays in playthru / UNIVERSAARL-DE.",
+    "Before screenshot QA captures Page 111 and the current INLAND status.",
+    "After screenshot QA shows INLAND with Verbindlichkeiten-Konto 3300, or the blocker is documented with screenshot/JSON.",
+    "No Customer Posting Groups, General Posting Setup, Inventory Posting Setup, VAT Posting Setup, master data, draft, Preview Posting, Posting or API shortcut is touched.",
+    "The result includes a next-step lookahead card for customer posting group, general posting setup, dimensions and foundation checkpoint."
+  ],
+  "nextCaseIfDone": "TARGET-031-CUSTOMER-POSTING-GROUP-RECEIVABLES-GATE",
+  "nextCaseIfBlocked": "TARGET-030B-VENDOR-POSTING-GROUP-EDITOR-ROUTE-RECOVERY",
+  "createdAt": "2026-07-01T06:22:55.160Z"
+}

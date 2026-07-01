@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-029-POSTING-GROUPS-CONTROLLED-SETUP-DECISION",
-  "status": "planned",
+  "status": "done",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -82,45 +82,60 @@
   ],
   "nextStepDecisionCard": {
     "currentCase": "TARGET-029-POSTING-GROUPS-CONTROLLED-SETUP-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-029-POSTING-GROUPS-CONTROLLED-SETUP-DECISION",
-    "lastEvidenceSummary": "TARGET-028 proved 5/5 posting-group/VAT setup page contexts read-only and corrected Vendor Posting Groups to Page 111. It did not prove setup completeness or account correctness.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "A setup decision is the next safest step before any write because the pages are visible but values and completeness are not yet defined.",
+    "plannedNextCaseBeforeReview": "TARGET-030-DIMENSIONS-RECOVERY-DEFAULTS",
+    "lastEvidenceSummary": "TARGET-028 proved the current read-only page context for General Posting Setup Page 314, Customer Posting Groups Page 110, Vendor Posting Groups Page 111, Inventory Posting Setup Page 5826 and VAT Posting Setup Page 472. It did not prove setup completeness, account correctness, Preview Posting or posting readiness.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Dimensions remain important, but posting groups are still a blocking foundation dependency before master data and any posting preview. The smallest safe next effective action is a single Vendor Posting Group write gate using the already observed Page 111 route and the already visible SKR04 payables account 3300.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-030-DIMENSIONS-RECOVERY-DEFAULTS",
+        "caseId": "TARGET-030-POSTING-GROUPS-VENDOR-INLAND-WRITE-GATE",
+        "status": "ready-next",
+        "reason": "Page 111 is verified and account 3300 is visible as the payables account candidate. The case can be narrowly gated and should not touch other posting setup families."
+      },
+      {
+        "caseId": "TARGET-031-CUSTOMER-POSTING-GROUP-RECEIVABLES-GATE",
+        "status": "needs-setup-first",
+        "reason": "Receivables mapping must be confirmed again before a Debitorenbuchungsgruppe is written."
+      },
+      {
+        "caseId": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
+        "status": "needs-source-check-first",
+        "reason": "General Posting Setup requires General Business and General Product Posting Groups plus sales/purchase accounts, not just Page 314 visibility."
+      },
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-after-current",
-        "reason": "Dimensions can resume after posting-group direction and VAT boundary are explicit."
+        "reason": "Dimensions can resume after the first posting-group write gate is completed or blocked with evidence."
       },
       {
-        "caseId": "TARGET-031-FOUNDATION-READY-CHECKPOINT",
+        "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Foundation checkpoint needs posting-group/VAT/dimension status, not just page visibility."
-      },
-      {
-        "caseId": "TARGET-032-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
-        "status": "needs-setup-first",
-        "reason": "Master data remains locked until posting groups, VAT and dimensions have explicit decisions."
-      },
-      {
-        "caseId": "TARGET-033-FIRST-PREVIEW-GATE",
-        "status": "needs-setup-first",
-        "reason": "Preview requires master data and posting setup; it is not next."
+        "reason": "The checkpoint needs posting groups, VAT boundary and dimension status before master data can start."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-029-POSTING-GROUPS-CONTROLLED-SETUP-DECISION",
-    "whySelectedNextCaseIsBest": "It converts read-only page context into a bounded setup strategy instead of jumping to master data or repeating VAT matrix writes.",
+    "queueChangesMade": [
+      "Replaced the previously planned TARGET-030-DIMENSIONS-RECOVERY-DEFAULTS with TARGET-030-POSTING-GROUPS-VENDOR-INLAND-WRITE-GATE as the next active case.",
+      "Shifted Dimensions Recovery to a later lookahead slot after the first bounded posting-group setup write gate."
+    ],
+    "selectedNextCase": "TARGET-030-POSTING-GROUPS-VENDOR-INLAND-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It is the smallest useful setup write: one verified page, one posting group row, one already proven payables account, no master data, no VAT matrix, no Preview Posting and no posting.",
     "risksBeforeNextCase": [
-      "Do not write posting groups from a decision case.",
-      "Do not treat empty setup lists as correct setup.",
-      "Do not create customers/vendors/items before posting group values and VAT boundaries are explicit."
+      "Do not create customer/vendor/item master data in the posting group write case.",
+      "Do not edit Customer Posting Groups, General Posting Setup, Inventory Posting Setup or VAT Posting Setup from the vendor posting group case.",
+      "Do not treat account 3300 as tax-advisor-final; it is a Universaarl starter SKR04 lab account.",
+      "Abort if Page 111 does not show Kreditorenbuchungsgruppen or Verbindlichkeiten-Konto."
     ],
     "requiredPreparation": [
-      "Read TARGET-028 result and screenshot metadata.",
-      "Use SKR04 starter accounts already proven in Universaarl as candidate account references only where appropriate.",
-      "Keep VAT Posting Setup matrix parked unless a materially different route is selected."
+      "Open only playthru / UNIVERSAARL-DE.",
+      "Reconfirm Page 111 route and empty/current row context before any edit.",
+      "Use screenshot QA before and after the write attempt.",
+      "Persist only if Code, Description and Verbindlichkeiten-Konto are visible after reopen."
     ]
   },
-  "createdAt": "2026-07-01T06:09:50.743Z"
+  "createdAt": "2026-07-01T06:09:50.743Z",
+  "completedAt": "2026-07-01T06:22:55.160Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-029-posting-groups-controlled-setup-decision/TARGET-029-result.json",
+  "selectedRoute": "vendor-posting-group-single-row-write-gate",
+  "selectedNextCase": "TARGET-030-POSTING-GROUPS-VENDOR-INLAND-WRITE-GATE",
+  "nextCase": "TARGET-030-POSTING-GROUPS-VENDOR-INLAND-WRITE-GATE"
 }
