@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-02T02:00:00.000Z",
+  "updatedAt": "2026-07-01T23:19:11.279Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-inventory-account-1140-controlled-write-gate",
-  "activeCase": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
-  "active_case_file": ".agent/state/cases/target-048b-inventory-account-1140-controlled-write-gate.json",
+  "activeArea": "universaarl-inventory-account-1140-balance-sheet-correction",
+  "activeCase": "TARGET-048C-INVENTORY-ACCOUNT-1140-BALANCE-SHEET-CORRECTION",
+  "active_case_file": ".agent/state/cases/target-048c-inventory-account-1140-balance-sheet-correction.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -22,11 +22,10 @@
     "open-business-central-playthru",
     "confirm-company-universaarl-de",
     "open-chart-of-accounts",
-    "check-account-1140-before",
-    "create-or-verify-account-1140-only",
-    "set-account-1140-name-waren-bestand",
-    "set-account-1140-balance-sheet",
-    "set-account-1140-posting-account",
+    "open-gl-account-card-1140",
+    "inspect-card-field-guv-bilanz",
+    "use-page-inspection-if-needed",
+    "correct-only-account-1140-income-balance-to-bilanz",
     "reopen-proof-account-1140",
     "write-evidence-result",
     "update-state-and-queue"
@@ -35,6 +34,7 @@
     "leave-instance",
     "company-switch",
     "create-or-change-any-account-except-1140",
+    "change-account-1140-name-or-number",
     "change-vat-posting-setup",
     "change-general-posting-setup",
     "create-item-posting-group",
@@ -55,8 +55,8 @@
     "show-env-or-auth",
     "fake-evidence"
   ],
-  "nextCase": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
-  "nextStep": "Run TARGET-048B to create or verify 1140 Waren (Bestand) in the Chart of Accounts before inventory setup writes.",
+  "nextCase": "TARGET-048C-INVENTORY-ACCOUNT-1140-BALANCE-SHEET-CORRECTION",
+  "nextStep": "Run TARGET-048C to correct only account 1140 GuV/Bilanz from GuV to Bilanz before any item/inventory setup writes.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -1361,7 +1361,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "universaarl-skr04-balance-sheet-accounts-fit",
-  "lastCompletedCase": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+  "lastCompletedCase": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3826,7 +3826,7 @@
     "nextCase": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP"
   },
   "lastCompletedCaseFile": ".agent/state/cases/prep-031-companies-page-readonly-playwright.json",
-  "lastResultPath": "playwright/projects/fibu-book5/evidence/target-027s-vat-business-posting-groups-route-followup/TARGET-027S-result.json",
+  "lastResultPath": "playwright/projects/fibu-book5/evidence/target-048b-inventory-account-1140-controlled-write-gate/TARGET-048B-result.json",
   "latestReadonlyUiLookAndFeelMap": {
     "caseId": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
     "status": "prep-done",
@@ -3863,7 +3863,7 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/target-026m-skr04-guv-account-route-recovery.json",
+  "activeCaseFile": ".agent/state/cases/target-048c-inventory-account-1140-balance-sheet-correction.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
@@ -7290,12 +7290,12 @@
     "correctedReason": "SKR04-oriented Universaarl foundation must not create a new 1400 receivables account; 1400 belongs to the wrong mapping context for this target."
   },
   "nextQueueItem": {
-    "id": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+    "id": "TARGET-048C-INVENTORY-ACCOUNT-1140-BALANCE-SHEET-CORRECTION",
     "status": "pending",
-    "caseFile": ".agent/state/cases/target-048b-inventory-account-1140-controlled-write-gate.json"
+    "caseFile": ".agent/state/cases/target-048c-inventory-account-1140-balance-sheet-correction.json"
   },
   "openItems": [
-    "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE"
+    "TARGET-048C-INVENTORY-ACCOUNT-1140-BALANCE-SHEET-CORRECTION"
   ],
   "latestCustomerReceivablesSourceCorrection": {
     "caseId": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
@@ -7935,7 +7935,7 @@
     "updatedAt": "2026-07-01T11:31:24.302Z"
   },
   "nextCases": [
-    "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+    "TARGET-048C-INVENTORY-ACCOUNT-1140-BALANCE-SHEET-CORRECTION",
     "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
     "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
     "TARGET-038-O2C-PREFLIGHT",
@@ -7980,54 +7980,44 @@
     "uiLearning": "BC Page 456 URL filters require quoted table/field syntax for table names with punctuation; the filtered U-VEND list shows checkbox columns, but the write locator still must be source-backed or assisted before toggling Manual Nos."
   },
   "nextStepDecision": {
-    "currentCase": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-047 proved that Inventory Posting Setup needs an inventory account and that no current Universaarl starter account is released for inventory valuation.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "An Item Posting Group write is still premature because the selected inventory account 1140 is not yet created/proven in UNIVERSAARL-DE.",
+    "currentCase": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-048 selected 1140 Waren (Bestand) as source-backed SKR04 inventory account candidate without BC write.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The inventory account must be visible/reopened before Item Posting Group or Inventory Posting Setup writes.",
     "lookaheadReviewed": [
-      {
-        "caseId": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
-        "status": "ready-next",
-        "reason": "Smallest write gate: create or verify 1140 as Bilanz/Buchung before inventory setup."
-      },
       {
         "caseId": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
         "status": "needs-setup-first",
-        "reason": "Needs 1140 visible/reopened or consciously parked."
+        "reason": "1140 still lacks reopen proof."
       },
       {
         "caseId": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
         "status": "needs-setup-first",
-        "reason": "Needs Inventory Posting Group code and 1140 visible as inventory account."
+        "reason": "Inventory Posting Setup needs both an item posting group code and visible 1140 inventory account."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C still waits for customer/item posting fields, VAT setup, general posting setup and inventory setup boundaries."
+        "reason": "O2C remains blocked until foundation setup and item/customer posting fields are ready."
       },
       {
         "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
         "status": "ready-after-current",
-        "reason": "VAT remains a separate blocked foundation lane and should not be mixed with inventory account setup."
+        "reason": "VAT remains a separate blocked foundation lane and must not be mixed with inventory account setup."
       }
     ],
     "queueChangesMade": [
-      "Insert TARGET-048B before TARGET-049.",
-      "Keep TARGET-049, TARGET-050, O2C, Preview Posting and Posting locked."
+      "Insert TARGET-048C before TARGET-049.",
+      "Keep TARGET-049 and TARGET-050 blocked until 1140 is Bilanz/Buchung."
     ],
-    "selectedNextCase": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
-    "whySelectedNextCaseIsBest": "It turns the source-backed account candidate into a visible Universaarl G/L account before any inventory posting setup row uses it.",
+    "selectedNextCase": "TARGET-048C-INVENTORY-ACCOUNT-1140-BALANCE-SHEET-CORRECTION",
+    "whySelectedNextCaseIsBest": "Do not continue to inventory setup until account 1140 is corrected to Bilanz/Buchung with reopen proof.",
     "risksBeforeNextCase": [
-      "Do not claim SKR04 completeness or tax advisor approval.",
-      "Do not change Inventory Posting Setup in the same run.",
-      "Do not use 1140 for manufacturing finished goods without a separate goods/fertigwaren decision."
+      "Avoid repeating the same editor route without a better UI diagnosis."
     ],
     "requiredPreparation": [
-      "Open Chart of Accounts in playthru / UNIVERSAARL-DE.",
-      "Check whether 1140 already exists.",
-      "If missing and case unlocks it, create only 1140 Waren (Bestand) as Bilanz/Buchung with reopen proof.",
-      "Do not touch Item Posting Groups, Inventory Posting Setup, items, documents, Preview Posting or Posting."
+      "Review screenshots and BC row/editor state for 1140."
     ]
   },
   "latestTarget037MasterdataFoundationCheckpoint": {
@@ -8559,5 +8549,14 @@
     },
     "selectedNextCase": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
     "summary": "1140 Waren (Bestand) selected as source-backed SKR04-oriented inventory balance candidate; no Business Central account proof yet."
-  }
+  },
+  "acceptanceCriteria": [
+    "Business Central remains in playthru / UNIVERSAARL-DE.",
+    "Account 1140 remains Waren (Bestand).",
+    "Only 1140 GuV/Bilanz is corrected to Bilanz.",
+    "1140 is visible after reopen as Bilanz and Buchung.",
+    "No other G/L account is created or changed.",
+    "No Item Posting Group, Inventory Posting Setup, item, document, Preview Posting, Posting or API shortcut occurs.",
+    "Result JSON records before/after/reopen proof and notProved boundaries."
+  ]
 }

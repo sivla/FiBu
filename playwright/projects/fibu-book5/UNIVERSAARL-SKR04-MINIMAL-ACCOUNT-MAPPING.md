@@ -19,7 +19,7 @@ Dieses Mapping ist noch kein vollstaendiger Kontenplan und keine Steuerberaterfr
 | Konto | Name fuer Universaarl | Kontenfamilie | Bilanz/GuV | Verwendung im naechsten Setup | Status |
 | --- | --- | --- | --- | --- | --- |
 | `1200` | Forderungen aus Lieferungen und Leistungen | Debitoren/Forderungen | Bilanz | Customer Posting Group spaeter | `wrong-bank-path-classified`; bestehendes Konto `1200 Bank Saarland` ist sichtbar, darf aber nicht als Bank-/Payment-/VAT-/Posting-Ziel genutzt werden |
-| `1140` | Waren (Bestand) | Vorraete/Warenbestand | Bilanz | Inventory Posting Setup Inventory Account spaeter | `source-selected-not-created`; in `TARGET-048` aus SKR04-Quelle als Kandidat gewaehlt, aber noch kein Business-Central-Reopen-Proof |
+| `1140` | Waren (Bestand) | Vorraete/Warenbestand | Bilanz | Inventory Posting Setup Inventory Account spaeter | `universaarl-created-wrong-guv-blocked`; in `TARGET-048B` sichtbar angelegt, aber noch falsch als `GuV`/`Buchung`; `TARGET-048C` muss nur `GuV/Bilanz = Bilanz` korrigieren |
 | `1800` | Bank Saarland | Bank | Bilanz | Bankkonto, Zahlungsjournal, Bankabstimmung spaeter | `universaarl-proven`; in `TARGET-026J` sichtbar nach Reopen |
 | `1406` | Abziehbare Vorsteuer 19 Prozent | Vorsteuer | Bilanz | Purchase VAT Account spaeter | `universaarl-proven`; in `TARGET-026K` sichtbar nach kontrolliertem Fit und Reopen |
 | `3300` | Verbindlichkeiten aus Lieferungen und Leistungen | Kreditoren/Verbindlichkeiten | Bilanz | Vendor Posting Group spaeter | `universaarl-proven`; in `TARGET-026L` sichtbar nach kontrolliertem Fit und Reopen |
@@ -79,6 +79,12 @@ Damit ist der Starter-Kontenplan als Universaarl-Foundation-Kontext sichtbar gen
 `TARGET-048` hat keine Business-Central-Aktion ausgefuehrt. Der Lauf hat nur die Quellenfrage fuer das Lagerbewertungskonto entschieden: Fuer den ersten Waren-/Hardwarefall ist `1140 Waren (Bestand)` der source-backed Kandidat. `5400 Wareneingang / Materialaufwand` bleibt ein GuV-Aufwandskonto fuer Einkaufs-/Materiallogik und darf nicht still als Inventory-Posting-Setup-Konto verwendet werden.
 
 Der naechste enge Schritt ist `TARGET-048B`: In `playthru / UNIVERSAARL-DE` wird ausschliesslich geprueft, ob `1140` bereits als Sachkonto sichtbar ist, oder es wird genau dieses eine Konto als `Bilanz`/`Buchung` angelegt und nach erneutem Oeffnen bewiesen. Item Posting Groups, Inventory Posting Setup, Artikel, Belege, Preview Posting und Posting bleiben dabei gesperrt.
+
+## Stand nach `TARGET-048B`
+
+`TARGET-048B` hat einen echten, aber noch nicht freigegebenen Teilfortschritt erzeugt: `1140 Waren (Bestand)` ist in `playthru / UNIVERSAARL-DE` im Kontenplan sichtbar. Die Screenshot-QA und der zeilengenaue Reopen-Text zeigen jedoch weiterhin `GuV`/`Buchung` statt `Bilanz`/`Buchung`. Damit darf `1140` noch nicht fuer Item Posting Groups oder Inventory Posting Setup verwendet werden.
+
+Der naechste enge Schritt ist `TARGET-048C`: Nur das Feld `GuV/Bilanz` fuer Konto `1140` wird auf `Bilanz` korrigiert oder sauber blockiert. Keine anderen Sachkonten, keine Posting Groups, kein Inventory Posting Setup, keine Artikel, keine Belege, keine Preview und keine Buchung.
 
 ## Stand nach `TARGET-027`
 

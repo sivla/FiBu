@@ -1,0 +1,528 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+  "source": "playwright-controlled-setup-write",
+  "resultStatus": "blocked",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=16&company=UNIVERSAARL-DE",
+  "page": "Kontenplan / Chart of Accounts",
+  "pageId": 16,
+  "actionsTaken": [
+    "Opened Business Central in playthru / UNIVERSAARL-DE.",
+    "Opened Chart of Accounts Page 16.",
+    "Checked account 1140 before the write gate.",
+    "Created or verified only account 1140 Waren (Bestand).",
+    "Captured before, after-attempt and reopen screenshots."
+  ],
+  "actionsNotTaken": [
+    "No other G/L account was intentionally changed.",
+    "No VAT setup.",
+    "No posting groups.",
+    "No Item Posting Group.",
+    "No Inventory Posting Setup.",
+    "No item master data.",
+    "No document draft.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No API shortcut."
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "The 1140 route stopped before wider inventory setup."
+  ],
+  "notProved": [
+    "No complete SKR04 chart of accounts.",
+    "No tax advisor approval.",
+    "No Inventory Posting Setup row.",
+    "No Item Posting Group.",
+    "No item master data.",
+    "No inventory valuation posting.",
+    "No document, Preview Posting or Posting.",
+    "No German compliance final claim."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-048b-inventory-account-1140-controlled-write-gate/"
+  ],
+  "screenshots": [
+    "target-048b-010-before-chart-of-accounts.png",
+    "target-048b-026-card-after-edit-attempt.png",
+    "target-048b-025-card-before-correction.png",
+    "target-048b-020-after-account-attempt.png",
+    "target-048b-030-reopen-proof.png"
+  ],
+  "evidenceRefs": [
+    "TARGET-048B-result.json",
+    "README.md",
+    "target-048b-026-card-after-edit-attempt.screenshot.json",
+    "target-048b-026-card-after-edit-attempt.png",
+    "target-048b-025-card-before-correction.screenshot.json",
+    "target-048b-025-card-before-correction.png",
+    "target-048b-010-before-chart-of-accounts.png",
+    "target-048b-010-before-chart-of-accounts.screenshot.json",
+    "target-048b-010-before-chart-of-accounts.snapshot.json",
+    "target-048b-010-before-chart-of-accounts.txt",
+    "target-048b-020-after-account-attempt.png",
+    "target-048b-020-after-account-attempt.screenshot.json",
+    "target-048b-020-after-account-attempt.snapshot.json",
+    "target-048b-020-after-account-attempt.txt",
+    "target-048b-030-reopen-proof.png",
+    "target-048b-030-reopen-proof.screenshot.json",
+    "target-048b-030-reopen-proof.snapshot.json",
+    "target-048b-030-reopen-proof.txt"
+  ],
+  "warnings": [
+    "1140 is a source-backed starter account candidate, not proof of full inventory valuation readiness."
+  ],
+  "blockedBy": [
+    "Card correction did not produce 1140 Bilanz/Buchung. Chart snippet: 1140 Waren (Bestand) GuV Buchung. Initial row text: 1140\nWaren (Bestand) GuV Buchung"
+  ],
+  "requiresReview": true,
+  "safeToFinalizeState": false,
+  "flags": {
+    "setupChangeAttempted": true,
+    "setupChanged": false,
+    "noVatSetupChange": true,
+    "noPostingGroupChange": true,
+    "noItemPostingGroupChange": true,
+    "noInventoryPostingSetupChange": true,
+    "noMasterData": true,
+    "noDocumentOrDraft": true,
+    "noPreview": true,
+    "noPost": true,
+    "noApiShortcut": true,
+    "noBookChange": true,
+    "noCompanySwitch": true
+  },
+  "before": {
+    "step": "Before 1140 controlled write gate.",
+    "targetAccount": {
+      "no": "1140",
+      "name": "Waren (Bestand)",
+      "expectedType": "Bilanz",
+      "expectedAccountType": "Buchung",
+      "purpose": "SKR04-orientiertes Warenbestandskonto fuer spaetere Inventory Posting Setup Zeilen"
+    },
+    "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=16&company=UNIVERSAARL-DE",
+    "title": "Kontenplan",
+    "text": "Kontenplan:\nNeu\nListe bearbeiten\nNr.\nName\nGuV/Bilanz\nKontoart\nBuchungsart\nGeschaftsbuchungsgruppe\nProduktbuchungsgruppe\nBuchung in Ursprungswahrung\nKostenartnr.\n1140\nWaren (Bestand) GuV Buchung\nBilanz Anlagen Debitoren Buchung\nBilanz Buchung\nBilanz Verbindlichkeiten Kurzfristige Verbindlichkeiten Buchung\nGuV Buchung\nWareneingang / Materialaufwand\nListe mit Titel Kontenplan hat jetzt 8 Artikel",
+    "valueState": {
+      "accountVisible": true,
+      "nameVisible": true,
+      "balanceSheetVisible": false,
+      "incomeStatementVisible": true,
+      "postingVisible": true,
+      "rowSnippet": "1140 Waren (Bestand) GuV Buchung"
+    }
+  },
+  "afterAttempt": {
+    "step": "After 1140 controlled write gate attempt.",
+    "targetAccount": {
+      "no": "1140",
+      "name": "Waren (Bestand)",
+      "expectedType": "Bilanz",
+      "expectedAccountType": "Buchung",
+      "purpose": "SKR04-orientiertes Warenbestandskonto fuer spaetere Inventory Posting Setup Zeilen"
+    },
+    "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=16&company=UNIVERSAARL-DE",
+    "title": "Kontenplan",
+    "text": "Kontenplan:\nNeu\nListe bearbeiten\nNur Buchungskonten anzeigen\nNr.\nName\nGuV/Bilanz\nKontoart\nBuchungsart\nGeschaftsbuchungsgruppe\nProduktbuchungsgruppe\nBuchung in Ursprungswahrung\nKostenartnr.\n1140\nWaren (Bestand) GuV Buchung\nBilanz Anlagen Debitoren Buchung\nBilanz Buchung\nBilanz Verbindlichkeiten Kurzfristige Verbindlichkeiten Buchung\nGuV Buchung\nWareneingang / Materialaufwand\nListe mit Titel Kontenplan hat jetzt 8 Artikel",
+    "valueState": {
+      "accountVisible": true,
+      "nameVisible": true,
+      "balanceSheetVisible": false,
+      "incomeStatementVisible": true,
+      "postingVisible": true,
+      "rowSnippet": "1140 Waren (Bestand) GuV Buchung"
+    },
+    "accountResult": {
+      "status": "blocked",
+      "reason": "Card correction did not produce 1140 Bilanz/Buchung. Chart snippet: 1140 Waren (Bestand) GuV Buchung. Initial row text: 1140\nWaren (Bestand) GuV Buchung",
+      "steps": [
+        {
+          "step": "edit-list-for-existing-account",
+          "clicked": true
+        },
+        {
+          "step": "existing-account-balance-verification",
+          "verification": {
+            "corrected": false,
+            "reason": "Card correction did not produce 1140 Bilanz/Buchung. Chart snippet: 1140 Waren (Bestand) GuV Buchung. Initial row text: 1140\nWaren (Bestand) GuV Buchung",
+            "steps": [
+              {
+                "step": "row-text-before-balance-check",
+                "rowText": "1140\nWaren (Bestand) GuV Buchung"
+              },
+              {
+                "step": "correct-guv-to-bilanz-inline",
+                "correction": {
+                  "corrected": false,
+                  "reason": "Inline Bilanz correction did not persist visibly. Row text after: 1140\nWaren (Bestand) GuV Buchung",
+                  "steps": [
+                    {
+                      "step": "opened-guv-cell-editor"
+                    },
+                    {
+                      "step": "typed-bilanz-enter"
+                    },
+                    {
+                      "step": "row-text-after-bilanz-correction",
+                      "rowTextAfter": "1140\nWaren (Bestand) GuV Buchung"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "correct-guv-to-bilanz-card-fallback",
+                "cardCorrection": {
+                  "corrected": false,
+                  "reason": "Card correction did not produce 1140 Bilanz/Buchung. Chart snippet: 1140 Waren (Bestand) GuV Buchung",
+                  "steps": [
+                    {
+                      "step": "open-card",
+                      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=17&company=UNIVERSAARL-DE&filter=%27G%2FL+Account%27.%27No.%27+IS+%27%40*1140*%27"
+                    },
+                    {
+                      "step": "card-before",
+                      "before": {
+                        "accountVisible": true,
+                        "nameVisible": true,
+                        "balanceSheetVisible": false,
+                        "incomeStatementVisible": false,
+                        "postingVisible": false,
+                        "rowSnippet": "1140 Waren (Bestand)"
+                      }
+                    },
+                    {
+                      "step": "enter-edit-mode",
+                      "edit": {
+                        "clicked": true,
+                        "method": "coordinate-pencil-fallback-from-card-route"
+                      }
+                    },
+                    {
+                      "step": "located-income-balance-point",
+                      "point": {
+                        "x": 635,
+                        "y": 408,
+                        "source": "fallback-card-coordinate"
+                      }
+                    },
+                    {
+                      "step": "typed-bilanz-enter-on-card"
+                    },
+                    {
+                      "step": "card-after-reopen",
+                      "after": {
+                        "accountVisible": true,
+                        "nameVisible": true,
+                        "balanceSheetVisible": false,
+                        "incomeStatementVisible": false,
+                        "postingVisible": false,
+                        "rowSnippet": "1140 Waren (Bestand)"
+                      }
+                    },
+                    {
+                      "step": "chart-after-card-correction",
+                      "chartState": {
+                        "accountVisible": true,
+                        "nameVisible": true,
+                        "balanceSheetVisible": false,
+                        "incomeStatementVisible": true,
+                        "postingVisible": true,
+                        "rowSnippet": "1140 Waren (Bestand) GuV Buchung"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "reopen": {
+    "step": "After reopening Chart of Accounts for 1140 proof.",
+    "targetAccount": {
+      "no": "1140",
+      "name": "Waren (Bestand)",
+      "expectedType": "Bilanz",
+      "expectedAccountType": "Buchung",
+      "purpose": "SKR04-orientiertes Warenbestandskonto fuer spaetere Inventory Posting Setup Zeilen"
+    },
+    "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=16&company=UNIVERSAARL-DE",
+    "title": "Kontenplan",
+    "text": "Kontenplan:\nNeu\nListe bearbeiten\nNur Buchungskonten anzeigen\nNr.\nName\nGuV/Bilanz\nKontoart\nBuchungsart\nGeschaftsbuchungsgruppe\nProduktbuchungsgruppe\nBuchung in Ursprungswahrung\nKostenartnr.\n1140\nWaren (Bestand) GuV Buchung\nBilanz Anlagen Debitoren Buchung\nBilanz Buchung\nBilanz Verbindlichkeiten Kurzfristige Verbindlichkeiten Buchung\nGuV Buchung\nWareneingang / Materialaufwand\nListe mit Titel Kontenplan hat jetzt 8 Artikel",
+    "valueState": {
+      "accountVisible": true,
+      "nameVisible": true,
+      "balanceSheetVisible": false,
+      "incomeStatementVisible": true,
+      "postingVisible": true,
+      "rowSnippet": "1140 Waren (Bestand) GuV Buchung"
+    },
+    "accountResult": {
+      "status": "blocked",
+      "reason": "Card correction did not produce 1140 Bilanz/Buchung. Chart snippet: 1140 Waren (Bestand) GuV Buchung. Initial row text: 1140\nWaren (Bestand) GuV Buchung",
+      "steps": [
+        {
+          "step": "edit-list-for-existing-account",
+          "clicked": true
+        },
+        {
+          "step": "existing-account-balance-verification",
+          "verification": {
+            "corrected": false,
+            "reason": "Card correction did not produce 1140 Bilanz/Buchung. Chart snippet: 1140 Waren (Bestand) GuV Buchung. Initial row text: 1140\nWaren (Bestand) GuV Buchung",
+            "steps": [
+              {
+                "step": "row-text-before-balance-check",
+                "rowText": "1140\nWaren (Bestand) GuV Buchung"
+              },
+              {
+                "step": "correct-guv-to-bilanz-inline",
+                "correction": {
+                  "corrected": false,
+                  "reason": "Inline Bilanz correction did not persist visibly. Row text after: 1140\nWaren (Bestand) GuV Buchung",
+                  "steps": [
+                    {
+                      "step": "opened-guv-cell-editor"
+                    },
+                    {
+                      "step": "typed-bilanz-enter"
+                    },
+                    {
+                      "step": "row-text-after-bilanz-correction",
+                      "rowTextAfter": "1140\nWaren (Bestand) GuV Buchung"
+                    }
+                  ]
+                }
+              },
+              {
+                "step": "correct-guv-to-bilanz-card-fallback",
+                "cardCorrection": {
+                  "corrected": false,
+                  "reason": "Card correction did not produce 1140 Bilanz/Buchung. Chart snippet: 1140 Waren (Bestand) GuV Buchung",
+                  "steps": [
+                    {
+                      "step": "open-card",
+                      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=17&company=UNIVERSAARL-DE&filter=%27G%2FL+Account%27.%27No.%27+IS+%27%40*1140*%27"
+                    },
+                    {
+                      "step": "card-before",
+                      "before": {
+                        "accountVisible": true,
+                        "nameVisible": true,
+                        "balanceSheetVisible": false,
+                        "incomeStatementVisible": false,
+                        "postingVisible": false,
+                        "rowSnippet": "1140 Waren (Bestand)"
+                      }
+                    },
+                    {
+                      "step": "enter-edit-mode",
+                      "edit": {
+                        "clicked": true,
+                        "method": "coordinate-pencil-fallback-from-card-route"
+                      }
+                    },
+                    {
+                      "step": "located-income-balance-point",
+                      "point": {
+                        "x": 635,
+                        "y": 408,
+                        "source": "fallback-card-coordinate"
+                      }
+                    },
+                    {
+                      "step": "typed-bilanz-enter-on-card"
+                    },
+                    {
+                      "step": "card-after-reopen",
+                      "after": {
+                        "accountVisible": true,
+                        "nameVisible": true,
+                        "balanceSheetVisible": false,
+                        "incomeStatementVisible": false,
+                        "postingVisible": false,
+                        "rowSnippet": "1140 Waren (Bestand)"
+                      }
+                    },
+                    {
+                      "step": "chart-after-card-correction",
+                      "chartState": {
+                        "accountVisible": true,
+                        "nameVisible": true,
+                        "balanceSheetVisible": false,
+                        "incomeStatementVisible": true,
+                        "postingVisible": true,
+                        "rowSnippet": "1140 Waren (Bestand) GuV Buchung"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "accountResult": {
+    "status": "blocked",
+    "reason": "Card correction did not produce 1140 Bilanz/Buchung. Chart snippet: 1140 Waren (Bestand) GuV Buchung. Initial row text: 1140\nWaren (Bestand) GuV Buchung",
+    "steps": [
+      {
+        "step": "edit-list-for-existing-account",
+        "clicked": true
+      },
+      {
+        "step": "existing-account-balance-verification",
+        "verification": {
+          "corrected": false,
+          "reason": "Card correction did not produce 1140 Bilanz/Buchung. Chart snippet: 1140 Waren (Bestand) GuV Buchung. Initial row text: 1140\nWaren (Bestand) GuV Buchung",
+          "steps": [
+            {
+              "step": "row-text-before-balance-check",
+              "rowText": "1140\nWaren (Bestand) GuV Buchung"
+            },
+            {
+              "step": "correct-guv-to-bilanz-inline",
+              "correction": {
+                "corrected": false,
+                "reason": "Inline Bilanz correction did not persist visibly. Row text after: 1140\nWaren (Bestand) GuV Buchung",
+                "steps": [
+                  {
+                    "step": "opened-guv-cell-editor"
+                  },
+                  {
+                    "step": "typed-bilanz-enter"
+                  },
+                  {
+                    "step": "row-text-after-bilanz-correction",
+                    "rowTextAfter": "1140\nWaren (Bestand) GuV Buchung"
+                  }
+                ]
+              }
+            },
+            {
+              "step": "correct-guv-to-bilanz-card-fallback",
+              "cardCorrection": {
+                "corrected": false,
+                "reason": "Card correction did not produce 1140 Bilanz/Buchung. Chart snippet: 1140 Waren (Bestand) GuV Buchung",
+                "steps": [
+                  {
+                    "step": "open-card",
+                    "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=17&company=UNIVERSAARL-DE&filter=%27G%2FL+Account%27.%27No.%27+IS+%27%40*1140*%27"
+                  },
+                  {
+                    "step": "card-before",
+                    "before": {
+                      "accountVisible": true,
+                      "nameVisible": true,
+                      "balanceSheetVisible": false,
+                      "incomeStatementVisible": false,
+                      "postingVisible": false,
+                      "rowSnippet": "1140 Waren (Bestand)"
+                    }
+                  },
+                  {
+                    "step": "enter-edit-mode",
+                    "edit": {
+                      "clicked": true,
+                      "method": "coordinate-pencil-fallback-from-card-route"
+                    }
+                  },
+                  {
+                    "step": "located-income-balance-point",
+                    "point": {
+                      "x": 635,
+                      "y": 408,
+                      "source": "fallback-card-coordinate"
+                    }
+                  },
+                  {
+                    "step": "typed-bilanz-enter-on-card"
+                  },
+                  {
+                    "step": "card-after-reopen",
+                    "after": {
+                      "accountVisible": true,
+                      "nameVisible": true,
+                      "balanceSheetVisible": false,
+                      "incomeStatementVisible": false,
+                      "postingVisible": false,
+                      "rowSnippet": "1140 Waren (Bestand)"
+                    }
+                  },
+                  {
+                    "step": "chart-after-card-correction",
+                    "chartState": {
+                      "accountVisible": true,
+                      "nameVisible": true,
+                      "balanceSheetVisible": false,
+                      "incomeStatementVisible": true,
+                      "postingVisible": true,
+                      "rowSnippet": "1140 Waren (Bestand) GuV Buchung"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "nextStepDecision": {
+    "currentCase": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-048 selected 1140 Waren (Bestand) as source-backed SKR04 inventory account candidate without BC write.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The inventory account must be visible/reopened before Item Posting Group or Inventory Posting Setup writes.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "1140 still lacks reopen proof."
+      },
+      {
+        "caseId": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Inventory Posting Setup needs both an item posting group code and visible 1140 inventory account."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C remains blocked until foundation setup and item/customer posting fields are ready."
+      },
+      {
+        "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
+        "status": "ready-after-current",
+        "reason": "VAT remains a separate blocked foundation lane and must not be mixed with inventory account setup."
+      }
+    ],
+    "queueChangesMade": [
+      "Insert TARGET-048C before TARGET-049.",
+      "Keep TARGET-049 and TARGET-050 blocked until 1140 is Bilanz/Buchung."
+    ],
+    "selectedNextCase": "TARGET-048C-INVENTORY-ACCOUNT-1140-BALANCE-SHEET-CORRECTION",
+    "whySelectedNextCaseIsBest": "Do not continue to inventory setup until account 1140 is corrected to Bilanz/Buchung with reopen proof.",
+    "risksBeforeNextCase": [
+      "Avoid repeating the same editor route without a better UI diagnosis."
+    ],
+    "requiredPreparation": [
+      "Review screenshots and BC row/editor state for 1140."
+    ]
+  },
+  "nextCase": "TARGET-048C-INVENTORY-ACCOUNT-1140-BALANCE-SHEET-CORRECTION",
+  "reason": "1140 controlled write gate blocked: Card correction did not produce 1140 Bilanz/Buchung. Chart snippet: 1140 Waren (Bestand) GuV Buchung. Initial row text: 1140\nWaren (Bestand) GuV Buchung"
+}
