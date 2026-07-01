@@ -92,6 +92,12 @@ Der naechste enge Schritt ist `TARGET-048C`: Nur das Feld `GuV/Bilanz` fuer Kont
 
 Nicht bewiesen sind weiterhin ein vollstaendiger SKR04-Kontenplan, Steuerberaterfreigabe, Item Posting Groups, Inventory Posting Setup, Artikelbuchungsfaehigkeit, Belege, Preview Posting oder Buchung. Der naechste enge Schritt ist `TARGET-049`: genau eine minimale Item Posting Group erzeugen oder bestaetigen; Inventory Posting Setup bleibt bis `TARGET-050` gesperrt.
 
+## Stand nach `TARGET-049`
+
+`TARGET-049` hat die erste minimale Lagerbuchungsgruppe angelegt und nach erneutem Oeffnen sichtbar gemacht: `WARE / Warenbestand` steht auf Page 112 `Lagerbuchungsgruppen` in `playthru / UNIVERSAARL-DE`.
+
+Das ist nur die Gruppen-Zeile. Noch nicht bewiesen sind Inventory Posting Setup, Artikelzuordnung, Buchungsfaehigkeit, Belege, Preview Posting, Posting, Item Ledger Entries, Value Entries, Sachposten oder USt-Posten. Der naechste enge Schritt ist `TARGET-050`: genau eine Inventory-Posting-Setup-Zeile fuer `SAAR-HL + WARE + 1140` erzeugen oder bestaetigen.
+
 ## Stand nach `TARGET-027`
 
 `TARGET-027` hat keinen VAT-Setup-Fortschritt freigegeben. Der Lauf blieb read-only und versuchte Direct-Page-Routen fuer VAT Business Posting Groups, VAT Product Posting Groups und VAT Posting Setup sowie einen Such-Fallback. Die Screenshot-QA zeigte aber weiter Role Center bzw. keinen sichtbaren VAT-Seitenkontext. Deshalb bleibt VAT Setup gesperrt.

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
-  "status": "ready-next",
+  "status": "done",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -79,46 +79,56 @@
     "Result JSON records before/after/reopen proof and notProved boundaries."
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-048C-INVENTORY-ACCOUNT-1140-BALANCE-SHEET-CORRECTION",
-    "plannedNextCaseBeforeReview": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-048C shows 1140 Waren (Bestand) as Bilanz/Buchung after card and chart reopen.",
+    "currentCase": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "WARE / Warenbestand is visible on Page 112 after reopen; 1140 Waren (Bestand) was already proven as Bilanz/Buchung in TARGET-048C.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Item Posting Group is the next dependency before Inventory Posting Setup can use 1140.",
+    "reason": "The next smallest dependency is Inventory Posting Setup for SAAR-HL + WARE + 1140.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
-        "status": "ready-next",
-        "reason": "1140 account dependency is now satisfied."
-      },
-      {
         "caseId": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
-        "status": "ready-after-current",
-        "reason": "Needs Item Posting Group plus 1140 Bilanz/Buchung."
+        "status": "ready-next",
+        "reason": "Needs WARE plus 1140 and location SAAR-HL."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Still waits for foundation setup."
+        "reason": "O2C still waits for Inventory Posting Setup, VAT and General Posting Setup."
       },
       {
         "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
         "status": "ready-after-current",
-        "reason": "Separate VAT blocker lane; do not mix with inventory setup."
+        "reason": "VAT remains a separate foundation lane and must not be mixed with inventory setup."
+      },
+      {
+        "caseId": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+        "status": "blocked",
+        "reason": "Vendor numbering remains a separate parked blocker."
       }
     ],
     "queueChangesMade": [
-      "Create TARGET-049 case file after TARGET-048C success."
+      "Mark TARGET-049 done and activate TARGET-050."
     ],
-    "selectedNextCase": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
-    "whySelectedNextCaseIsBest": "It is the smallest next setup object before Inventory Posting Setup and item field assignment.",
+    "selectedNextCase": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It combines already proven SAAR-HL, WARE and 1140 in the next narrow Inventory Posting Setup gate.",
     "risksBeforeNextCase": [
-      "Do not create Inventory Posting Setup in the same case.",
-      "Do not change item cards or documents.",
-      "Do not claim inventory posting readiness."
+      "Do not claim inventory posting readiness before Inventory Posting Setup reopen proof.",
+      "Do not assign WARE to an item before the item-field case unlocks it.",
+      "Keep Preview Posting and Posting false."
     ],
     "requiredPreparation": [
-      "Review TARGET-046 source mapping and TARGET-048C proof before writing."
+      "Keep Inventory Posting Setup as its own case; use 1140 only as proven Bilanz/Buchung account candidate."
     ]
   },
-  "createdAt": "2026-07-02T00:00:00.000Z"
+  "createdAt": "2026-07-02T00:00:00.000Z",
+  "completedAt": "2026-07-01T23:40:39.709Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-049-item-posting-group-controlled-write-gate/TARGET-049-result.json",
+  "result": "WARE / Warenbestand is visible on Page 112 Lagerbuchungsgruppen after reopen. Inventory Posting Setup remains locked for TARGET-050.",
+  "setupChanged": true,
+  "masterDataChanged": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "blockedBy": [],
+  "nextCase": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE"
 }

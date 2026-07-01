@@ -1,0 +1,226 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+  "source": "playwright-controlled-setup-write",
+  "resultStatus": "observed",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": {
+    "pageId": 112,
+    "name": "Lagerbuchungsgruppen / Item Posting Groups",
+    "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=112&company=UNIVERSAARL-DE&filter=%27Inventory+Posting+Group%27.Code+IS+%27WARE%27"
+  },
+  "targetGroup": {
+    "code": "WARE",
+    "description": "Warenbestand",
+    "purpose": "Minimale Lagerbuchungsgruppe fuer spaetere Inventory Posting Setup Zeilen mit 1140 Waren (Bestand)."
+  },
+  "actionsTaken": [
+    "Opened Page 112 Lagerbuchungsgruppen / Item Posting Groups in playthru / UNIVERSAARL-DE.",
+    "Create-or-verify route outcome: attempted-create.",
+    "Reopened Page 112 with target filter for WARE."
+  ],
+  "actionsNotTaken": [
+    "No Inventory Posting Setup row was created or changed.",
+    "No G/L account was changed.",
+    "No item card was changed.",
+    "No item was created.",
+    "No document or draft was created.",
+    "No Preview Posting was run.",
+    "No Posting was run.",
+    "No API shortcut was used."
+  ],
+  "setupChanged": true,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/target-049-010-before-item-posting-groups.png",
+    "playwright/projects/fibu-book5/img/target-049-020-after-item-posting-group-route.png",
+    "playwright/projects/fibu-book5/img/target-049-030-reopen-proof.png"
+  ],
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Page 112 Lagerbuchungsgruppen / Item Posting Groups was opened.",
+    "WARE / Warenbestand is visible after Page 112 reopen.",
+    "A controlled UI write was attempted only for WARE / Warenbestand.",
+    "No Inventory Posting Setup, item, document, Preview Posting, Posting or API shortcut occurred."
+  ],
+  "notProved": [
+    "No Inventory Posting Setup row is proven.",
+    "No item card assignment is proven.",
+    "No inventory posting readiness is proven.",
+    "No Item Ledger Entry, Value Entry, G/L Entry or VAT Entry is proven.",
+    "No complete SKR04 chart, tax-advisor approval or legal compliance is proven."
+  ],
+  "blockedBy": [],
+  "warnings": [],
+  "steps": [
+    {
+      "step": "click-scoped-new-on-item-posting-groups",
+      "newClicked": true
+    },
+    {
+      "step": "editable-inputs-after-new-item-posting-group",
+      "inspected": [
+        {
+          "index": 0,
+          "visible": true,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "index": 1,
+          "visible": true,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        }
+      ]
+    }
+  ],
+  "snapshots": {
+    "before": {
+      "step": "before-create-or-verify",
+      "targetGroup": {
+        "code": "WARE",
+        "description": "Warenbestand",
+        "purpose": "Minimale Lagerbuchungsgruppe fuer spaetere Inventory Posting Setup Zeilen mit 1140 Waren (Bestand)."
+      },
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=112&company=UNIVERSAARL-DE",
+      "title": "Lagerbuchungsgruppen",
+      "text": "Lagerbuchungsgruppen:\nNeu\nCode\nBeschreibung\nCode, Sortierreihenfolge Aufsteigend",
+      "visible": {
+        "pageContextVisible": true,
+        "targetCodeVisible": false,
+        "targetDescriptionVisible": false,
+        "rowSnippet": "",
+        "dangerousTextVisible": false
+      }
+    },
+    "after": {
+      "step": "after-create-or-verify",
+      "targetGroup": {
+        "code": "WARE",
+        "description": "Warenbestand",
+        "purpose": "Minimale Lagerbuchungsgruppe fuer spaetere Inventory Posting Setup Zeilen mit 1140 Waren (Bestand)."
+      },
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=112&company=UNIVERSAARL-DE",
+      "title": "Neu - Lagerbuchungsgruppen",
+      "text": "Lagerbuchungsgruppen:\nNeu\nCode\nBeschreibung\nWARE\nWarenbestand\nLagerbuchungsgruppen\nCode, Sortierreihenfolge Aufsteigend\nListe mit Titel Neu - Lagerbuchungsgruppen hat jetzt 3 Artikel\nListe mit Titel Lagerbuchungsgruppen hat jetzt einen Artikel",
+      "visible": {
+        "pageContextVisible": true,
+        "targetCodeVisible": true,
+        "targetDescriptionVisible": true,
+        "rowSnippet": "WARE Warenbestand Lagerbuchungsgruppen",
+        "dangerousTextVisible": false
+      },
+      "writeOutcome": {
+        "changed": true,
+        "status": "attempted-create",
+        "reason": "Attempted to create WARE / Warenbestand through Page 112 list editor."
+      }
+    },
+    "reopen": {
+      "step": "filtered-reopen-proof",
+      "targetGroup": {
+        "code": "WARE",
+        "description": "Warenbestand",
+        "purpose": "Minimale Lagerbuchungsgruppe fuer spaetere Inventory Posting Setup Zeilen mit 1140 Waren (Bestand)."
+      },
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=112&company=UNIVERSAARL-DE&filter=%27Inventory+Posting+Group%27.Code+IS+%27WARE%27",
+      "title": "Lagerbuchungsgruppen",
+      "text": "Lagerbuchungsgruppen:\nNeu\nCode\nBeschreibung\nWARE\nWarenbestand\nListe mit Titel Lagerbuchungsgruppen hat jetzt einen Artikel\nCode, Sortierreihenfolge Aufsteigend",
+      "visible": {
+        "pageContextVisible": true,
+        "targetCodeVisible": true,
+        "targetDescriptionVisible": true,
+        "rowSnippet": "WARE Warenbestand Liste mit Titel Lagerbuchungsgruppen hat jetzt einen Artikel",
+        "dangerousTextVisible": false
+      },
+      "filterUsed": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?company=UNIVERSAARL-DE&page=112&filter=%27Inventory+Posting+Group%27.%27Code%27+IS+%27WARE%27"
+    }
+  },
+  "nextStepDecision": {
+    "currentCase": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "WARE / Warenbestand is visible on Page 112 after reopen; 1140 Waren (Bestand) was already proven as Bilanz/Buchung in TARGET-048C.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The next smallest dependency is Inventory Posting Setup for SAAR-HL + WARE + 1140.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+        "status": "ready-next",
+        "reason": "Needs WARE plus 1140 and location SAAR-HL."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C still waits for Inventory Posting Setup, VAT and General Posting Setup."
+      },
+      {
+        "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
+        "status": "ready-after-current",
+        "reason": "VAT remains a separate foundation lane and must not be mixed with inventory setup."
+      },
+      {
+        "caseId": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+        "status": "blocked",
+        "reason": "Vendor numbering remains a separate parked blocker."
+      }
+    ],
+    "queueChangesMade": [
+      "Mark TARGET-049 done and activate TARGET-050."
+    ],
+    "selectedNextCase": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It combines already proven SAAR-HL, WARE and 1140 in the next narrow Inventory Posting Setup gate.",
+    "risksBeforeNextCase": [
+      "Do not claim inventory posting readiness before Inventory Posting Setup reopen proof.",
+      "Do not assign WARE to an item before the item-field case unlocks it.",
+      "Keep Preview Posting and Posting false."
+    ],
+    "requiredPreparation": [
+      "Keep Inventory Posting Setup as its own case; use 1140 only as proven Bilanz/Buchung account candidate."
+    ]
+  },
+  "nextCase": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+  "statePatch": {
+    "current": {
+      "activeArea": "universaarl-inventory-posting-setup-controlled-write-gate",
+      "activeCase": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+      "active_case_file": ".agent/state/cases/target-050-inventory-posting-setup-controlled-write-gate.json",
+      "nextCase": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE"
+    },
+    "lastRunSummary": {
+      "caseId": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+      "status": "observed",
+      "instance": "playthru",
+      "company": "UNIVERSAARL-DE",
+      "summary": "TARGET-049 proved WARE / Warenbestand as minimal Item Posting Group after Page 112 reopen. Inventory Posting Setup remains locked for TARGET-050.",
+      "nextCase": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE"
+    },
+    "activeCase": {
+      "status": "done",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-049-item-posting-group-controlled-write-gate/TARGET-049-result.json",
+      "completedAt": "2026-07-01T23:37:47.188Z",
+      "nextCase": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE"
+    }
+  },
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run fibu:target:item-posting-group-write-gate",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/target-049-item-posting-group-controlled-write-gate/TARGET-049-result.json",
+    "npm run check:encoding",
+    "git diff --check"
+  ]
+}

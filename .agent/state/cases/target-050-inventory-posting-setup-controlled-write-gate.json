@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+  "status": "ready-next",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "sourceCase": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+  "targetWorld": "Universaarl",
+  "activeArea": "universaarl-inventory-posting-setup-controlled-write-gate",
+  "purpose": "Create or verify one minimal Inventory Posting Setup row for the already proven Universaarl inventory foundation dependencies.",
+  "targetSetup": {
+    "locationCode": "SAAR-HL",
+    "inventoryPostingGroupCode": "WARE",
+    "inventoryAccount": "1140",
+    "inventoryAccountName": "Waren (Bestand)"
+  },
+  "sourceEvidence": [
+    "TARGET-036A proves SAAR-HL as first Universaarl location after reopen.",
+    "TARGET-048C proves 1140 Waren (Bestand) as Bilanz/Buchung after card and chart reopen.",
+    "TARGET-049 proves WARE / Warenbestand as Item Posting Group after Page 112 reopen."
+  ],
+  "allowedActions": [
+    "open-business-central-playthru",
+    "confirm-company-universaarl-de",
+    "open-inventory-posting-setup",
+    "inspect-existing-inventory-posting-setup",
+    "create-or-verify-one-minimal-inventory-posting-setup-row",
+    "reopen-proof-inventory-posting-setup-row",
+    "write-evidence-result",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "change-gl-account-1140",
+    "change-any-gl-account",
+    "change-item-posting-group-ware",
+    "change-location-saar-hl",
+    "change-item-card",
+    "create-item",
+    "change-vat-posting-setup",
+    "change-general-posting-setup",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-inventory-posting-readiness",
+    "claim-skr04-complete",
+    "claim-tax-advisor-approved",
+    "book-claim-without-evidence",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence"
+  ],
+  "smartDecision": {
+    "whyNow": "TARGET-049 has proven the missing Item Posting Group dependency. Inventory Posting Setup is the next narrow setup object before item-field assignment or document processes.",
+    "fieldsToChange": [
+      "Location Code = SAAR-HL if the target row is missing",
+      "Inventory Posting Group Code = WARE if the target row is missing",
+      "Inventory Account = 1140 if the target row is missing or incomplete"
+    ],
+    "fieldsNotToTouch": [
+      "G/L Account 1140 card/list values",
+      "Item Posting Group WARE row",
+      "Location SAAR-HL row",
+      "Item Card",
+      "VAT Posting Setup",
+      "General Posting Setup",
+      "Documents",
+      "Preview Posting",
+      "Posting"
+    ],
+    "fallback": "If Page 5826 or the row field route is not clear, stop read-only with screenshot QA and do not write a partial matrix row."
+  },
+  "acceptanceCriteria": [
+    "Business Central remains in playthru / UNIVERSAARL-DE.",
+    "Inventory Posting Setup page is visible.",
+    "Exactly one row for SAAR-HL + WARE + 1140 is created or verified, or the case blocks before change.",
+    "No item, document, VAT setup, General Posting Setup, Preview Posting, Posting or API shortcut occurs.",
+    "Result JSON records before/after/reopen proof and notProved boundaries."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-049 proves WARE / Warenbestand on Page 112 after reopen; TARGET-048C proves 1140; TARGET-036A proves SAAR-HL.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Inventory Posting Setup is the next smallest setup dependency before item posting fields and process documents.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+        "status": "ready-next",
+        "reason": "Required dependencies SAAR-HL, WARE and 1140 are now proven individually."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C still waits for Inventory Posting Setup, VAT and General Posting Setup."
+      },
+      {
+        "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
+        "status": "ready-after-current",
+        "reason": "VAT remains a separate foundation lane and must not be mixed with inventory setup."
+      },
+      {
+        "caseId": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+        "status": "blocked",
+        "reason": "Vendor numbering remains parked and separate."
+      }
+    ],
+    "queueChangesMade": [
+      "Create TARGET-050 as the next narrow Inventory Posting Setup gate after TARGET-049."
+    ],
+    "selectedNextCase": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It is the smallest remaining inventory foundation setup before any item assignment or document process can be meaningful.",
+    "risksBeforeNextCase": [
+      "Page 5826 list editing may create a partial row if field flow is wrong.",
+      "Do not infer posting readiness from setup visibility alone.",
+      "Keep Preview Posting and Posting false."
+    ],
+    "requiredPreparation": [
+      "Use visible Page 5826 row proof.",
+      "Stop before writing if SAAR-HL, WARE or 1140 cannot be targeted exactly."
+    ]
+  }
+}
