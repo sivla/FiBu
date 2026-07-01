@@ -21,6 +21,15 @@ function requireArray(obj, key, file, errors) {
   }
 }
 
+function arraysEqual(left, right) {
+  return (
+    Array.isArray(left) &&
+    Array.isArray(right) &&
+    left.length === right.length &&
+    left.every((value, index) => value === right[index])
+  );
+}
+
 const errors = [];
 
 const files = {
@@ -61,6 +70,12 @@ if (!existsSync(current.active_case_file)) {
   const activeCase = readJson(current.active_case_file);
   if (activeCase.caseId !== current.activeCase) {
     errors.push(`active case mismatch: current=${current.activeCase}, case file=${activeCase.caseId}`);
+  }
+  if (Array.isArray(activeCase.allowedActions) && !arraysEqual(current.allowedActions, activeCase.allowedActions)) {
+    errors.push(`current.allowedActions must mirror active case allowedActions: ${current.active_case_file}`);
+  }
+  if (Array.isArray(activeCase.forbiddenActions) && !arraysEqual(current.forbiddenActions, activeCase.forbiddenActions)) {
+    errors.push(`current.forbiddenActions must mirror active case forbiddenActions: ${current.active_case_file}`);
   }
 }
 

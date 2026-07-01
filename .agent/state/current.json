@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T18:45:25.720Z",
+  "updatedAt": "2026-07-01T18:57:18.900Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -21,36 +21,35 @@
   "allowedActions": [
     "open-playthru-business-central",
     "confirm-UNIVERSAARL-DE-context",
-    "open-U-CUST-100-readonly",
-    "open-U-ITEM-HW100-readonly",
-    "open-personalize-mode-readonly",
-    "hover-relevant-buttons-and-capture-tooltips",
-    "inspect-available-fields-without-adding-or-moving",
-    "capture-screenshot-qa",
-    "close-personalize-mode-without-saving",
-    "write-result-json-and-next-step-decision",
-    "update-state-and-queue"
+    "open-number-series-page-456",
+    "select-or-filter-U-VEND-row",
+    "capture-screenshot-qa-before-any-action",
+    "inspect-card-details-personalize-page-inspection-or-supported-edit-route",
+    "toggle-only-u-vend-manual-nos-if-a-new-safer-route-is-proven",
+    "capture-after-and-reopen-proof",
+    "write-result-json-and-next-step-decision"
   ],
   "forbiddenActions": [
     "leave-instance",
     "company-switch",
-    "click-new-edit-delete-or-post-actions",
-    "change-customer",
-    "change-item",
-    "change-posting-groups",
-    "change-general-posting-setup",
-    "change-vat-posting-setup",
-    "change-inventory-posting-setup",
-    "add-field-through-personalization",
-    "move-field-through-personalization",
-    "save-or-apply-personalization",
+    "create-customer",
+    "create-vendor",
+    "create-item",
+    "change-number-series-lines",
+    "toggle-standard-nos",
+    "change-non-U-VEND-series",
+    "change-sales-or-purchase-doc-number-series",
+    "change-posting-setup",
+    "change-vat-setup",
     "create-document-or-draft",
     "preview-posting",
     "post",
     "payment",
     "api-shortcut",
-    "claim-o2c-readiness-from-field-visibility",
-    "claim-german-vat-final-proof",
+    "repeat-target-036d2-row-scoped-coordinate-click-route",
+    "repeat-target-036d2b-untrusted-dom-checkbox-route",
+    "repeat-target-036d2e-screenshot-coordinate-fallback-without-new-signal",
+    "treat-more-options-row-menu-as-u-vend-value-proof",
     "commit-secrets",
     "show-env-or-auth",
     "fake-evidence",
@@ -8412,5 +8411,12 @@
   ],
   "warnings": [
     "Auth diagnosis must not commit raw tenant, cookie, token or account details."
-  ]
+  ],
+  "stateConsistencyNote": {
+    "status": "aligned-with-active-case",
+    "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+    "reason": "Top-level allowedActions and forbiddenActions now mirror the active D2F case so simple readers do not inherit stale Customer/Item personalization scope while auth is blocked.",
+    "authGateStillRequired": true,
+    "nextRequiredAction": "Complete attended Login/MFA in the auth browser until Business Central Role Center/Search/My Settings is visible; then run npm run auth:bc:check before rerunning D2F. If sign-in stalls or times out, run npm run auth:bc:diagnose for a short redacted diagnosis."
+  }
 }
