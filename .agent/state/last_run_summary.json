@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-036D2B-VENDOR-NUMBER-SERIES-CHECKBOX-ROUTE-RECOVERY",
-  "caseId": "TARGET-036D2B-VENDOR-NUMBER-SERIES-CHECKBOX-ROUTE-RECOVERY",
-  "status": "blocked-no-trusted-checkbox-candidate",
-  "runType": "playwright-vendor-number-series-checkbox-route-recovery",
+  "runId": "TARGET-036D2C-VENDOR-NUMBER-SERIES-CARD-OR-PERSONALIZATION-ROUTE",
+  "caseId": "TARGET-036D2C-VENDOR-NUMBER-SERIES-CARD-OR-PERSONALIZATION-ROUTE",
+  "status": "observed",
+  "runType": "playwright-vendor-number-series-readonly-route-discovery",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "bcRun": true,
   "playwrightRun": true,
-  "summary": "TARGET-036D2B kept U-VEND visible on Number Series Page 456 but stopped before setup change because the marked DOM checkbox route could not uniquely bind Standardnr. to U-VEND.",
+  "summary": "TARGET-036D2C inspected U-VEND read-only on Number Series Page 456. Page Inspection proved Page 456 / Table 308 and Default Nos./Manual Nos. fields for U-VEND; no setup or master data was changed.",
   "changedInBC": false,
   "setupChanged": false,
   "setupChangeAttempted": false,
@@ -19,76 +19,78 @@
   "payment": false,
   "apiShortcut": false,
   "screenshots": [
-    "playwright/projects/fibu-book5/img/target-036d2b-010-before-marked-checkbox-route.png",
-    "playwright/projects/fibu-book5/img/target-036d2b-020-after-marked-checkbox-route.png",
-    "playwright/projects/fibu-book5/img/target-036d2b-030-reopen-proof.png"
+    "playwright/projects/fibu-book5/img/target-036d2c-010-u-vend-readonly-context.png",
+    "playwright/projects/fibu-book5/img/target-036d2c-020-hover-checkbox-columns.png",
+    "playwright/projects/fibu-book5/img/target-036d2c-030-more-options-context.png",
+    "playwright/projects/fibu-book5/img/target-036d2c-040-page-inspection-attempt.png"
   ],
   "proved": [
     "Business Central stayed in playthru / UNIVERSAARL-DE.",
-    "A different marked DOM-checkbox route was attempted instead of repeating the D2 coordinate route."
+    "U-VEND was inspected read-only on Number Series Page 456.",
+    "No setup, master data, document, Preview Posting, Posting, payment, API shortcut or company switch occurred.",
+    "At least one route signal was visible enough for a follow-up route-decision case.",
+    "Page Inspection exposed the No. Series page/table and field identifiers read-only; this is a technical field-list proof, not a U-VEND value proof."
   ],
   "notProved": [
-    "No vendor is created by this case.",
-    "No manual U-VEND-100 number route is proven.",
-    "No Vendor Posting Group, VAT group, payment term, document, Preview Posting or Posting is proven.",
-    "No number-series line, last number used or legal numbering behavior is proven by this setup fit alone."
+    "U-VEND Standardnr. / Default Nos. is not proven active.",
+    "Manual Nos. / Manuelle Anz. is not changed or proven active.",
+    "Page Inspection does not prove a persisted U-VEND checkbox value in this read-only case.",
+    "The More Options row-menu screenshot is not a U-VEND value proof because Business Central can move list focus while opening row menus.",
+    "No vendor creation retry is allowed from this case alone.",
+    "No legal numbering, posting group, VAT, payment term, document, Preview Posting or Posting behavior is proven."
   ],
-  "blockedBy": [
-    "No trusted U-VEND Standardnr. checkbox candidate: no-unique-trusted-u-vend-default-nos-checkbox."
-  ],
+  "blockedBy": [],
   "warnings": [
-    "This case only concerns automatic vendor numbering and does not make the vendor posting-ready.",
-    "Manual Nos. remains a separate decision if explicit U-VEND-100-style manual numbers are required."
+    "D2C is read-only and must not be treated as a setup-fit proof.",
+    "Checkbox grid values on Business Central lists need a route with row/field certainty before any write.",
+    "Screenshot QA must distinguish selected-row proof from general action/menu inventory; row focus can drift on Business Central lists."
   ],
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-036d2b-vendor-number-series-checkbox-route-recovery/TARGET-036D2B-result.json",
-  "nextCase": "TARGET-036D2C-VENDOR-NUMBER-SERIES-CARD-OR-PERSONALIZATION-ROUTE",
-  "nextStep": "Run TARGET-036D2C: read-only card/personalisieren/page-inspection route discovery for U-VEND Standardnr.; do not toggle Standardnr. in D2C.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-036d2c-vendor-number-series-card-or-personalization-route/TARGET-036D2C-result.json",
+  "nextCase": "TARGET-036D2D-VENDOR-NUMBER-SERIES-READONLY-ROUTE-DECISION",
+  "nextStep": "Run TARGET-036D2D as a local/read-only decision case before any U-VEND setup write or vendor retry.",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-036D2B-VENDOR-NUMBER-SERIES-CHECKBOX-ROUTE-RECOVERY",
+    "currentCase": "TARGET-036D2C-VENDOR-NUMBER-SERIES-CARD-OR-PERSONALIZATION-ROUTE",
     "plannedNextCaseBeforeReview": "TARGET-036D3-FIRST-VENDOR-CONTROLLED-WRITE-RETRY",
-    "lastEvidenceSummary": "TARGET-036D2B opened Number Series Page 456 in playthru / UNIVERSAARL-DE, kept U-VEND visible, and stopped before setup change because no unique trusted Standardnr. checkbox candidate could be mapped to the U-VEND row.",
+    "lastEvidenceSummary": "TARGET-036D2B blocked before setup change because the U-VEND Standardnr. checkbox could not be safely mapped to the row.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "The first vendor retry still depends on U-VEND Standardnr. being active or on a conscious alternative numbering decision. D2B narrowed the blocker but did not change setup.",
+    "reason": "The vendor retry still needs a supported U-VEND numbering decision. D2C is read-only and only discovers whether a safer route exists.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-036D2C-VENDOR-NUMBER-SERIES-CARD-OR-PERSONALIZATION-ROUTE",
+        "caseId": "TARGET-036D2D-VENDOR-NUMBER-SERIES-READONLY-ROUTE-DECISION",
         "status": "ready-next",
-        "reason": "Read-only route discovery can find a safer card, personalization or page-inspection route without another unsafe checkbox write."
+        "reason": "Route signals were observed and must be reviewed before a narrow write case."
       },
       {
         "caseId": "TARGET-036D3-FIRST-VENDOR-CONTROLLED-WRITE-RETRY",
         "status": "blocked",
-        "reason": "Blocked until U-VEND Standardnr. / Default Nos. is proven active after reopen or an alternative vendor numbering route is approved."
+        "reason": "Blocked until U-VEND Standardnr. is active after reopen or another numbering route is deliberately selected."
       },
       {
         "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
         "status": "needs-setup-first",
-        "reason": "Item creation should wait until numbering and master-data foundations are stable."
+        "reason": "Item creation should wait until the vendor-numbering blocker is closed or consciously parked."
       },
       {
         "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
         "status": "ready-after-current",
-        "reason": "Useful after the numbering route decision to revisit remaining foundation blockers before documents or posting."
+        "reason": "Useful after the numbering decision to re-check remaining foundation blockers."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-036D2B blocked with result path.",
-      "Inserted TARGET-036D2C before TARGET-036D3."
+      "Prepare TARGET-036D2D-VENDOR-NUMBER-SERIES-READONLY-ROUTE-DECISION after D2C."
     ],
-    "selectedNextCase": "TARGET-036D2C-VENDOR-NUMBER-SERIES-CARD-OR-PERSONALIZATION-ROUTE",
-    "whySelectedNextCaseIsBest": "It improves BC UI understanding and avoids repeating the failed row-scoped or untrusted DOM checkbox routes before any further setup write.",
+    "selectedNextCase": "TARGET-036D2D-VENDOR-NUMBER-SERIES-READONLY-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "It reviews the captured route signals before any setup write.",
     "risksBeforeNextCase": [
-      "Do not toggle Standardnr. or Manuelle Anz.",
-      "Do not change number-series lines.",
+      "Do not toggle Standardnr. or Manuelle Anz. without an explicit write case.",
       "Do not create vendor/customer/item records.",
       "Do not use API shortcuts.",
       "Do not confirm save/setup/post/preview/delete dialogs."
     ],
     "requiredPreparation": [
-      "Use screenshot QA for any action/menu/personalisieren/page-inspection surface.",
-      "Document what the UI reveals and does not reveal before selecting a write route."
+      "Review D2C action inventory, hover context and Page Inspection result before selecting a write route."
     ]
   },
-  "updatedAt": "2026-07-01T10:53:03.674Z",
-  "activeCase": "TARGET-036D2C-VENDOR-NUMBER-SERIES-CARD-OR-PERSONALIZATION-ROUTE"
+  "updatedAt": "2026-07-01T11:09:16.294Z",
+  "activeCase": "TARGET-036D2D-VENDOR-NUMBER-SERIES-READONLY-ROUTE-DECISION"
 }

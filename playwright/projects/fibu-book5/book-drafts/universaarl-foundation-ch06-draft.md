@@ -97,6 +97,10 @@ Auf der Nummernserienseite reichen Startnummer und Endnummer allein nicht immer 
 
 Bei Listen mit Checkboxen muss man besonders genau arbeiten. Die markierte Zeile, die sichtbare Checkbox und der tatsaechlich gespeicherte Feldwert muessen zusammenpassen. Ein Klick auf eine scheinbar passende Checkbox ist kein Erfolg, solange die Seite nach erneutem Oeffnen nicht denselben Wert zeigt. Fuer `U-VEND` bleibt deshalb zuerst die sichere Routenfrage offen: Die Standardnummern sollen erst aktiviert werden, wenn klar ist, ob die Aenderung ueber die Liste, eine Karte, Personalisierung oder Seitenueberpruefung eindeutig dem Kreditoren-Nummernserienkopf zugeordnet werden kann.
 
+Business Central hilft bei solchen Fragen mit zwei einfachen Mitteln. Wenn man mit der Maus ueber eine Spaltenueberschrift oder einen Button faehrt, erscheint oft ein Tooltip. Bei `Manuelle Anz.` beschreibt der Tooltip, dass Nummern manuell eingegeben werden koennen, statt automatisch aus der Nummernserie zu kommen. Fuer technische Kontrolle gibt es die Seitenueberpruefung mit `Strg + Alt + F1`. Dort sieht man zur Seite `Nummernserie` die Page `No. Series`, die Tabelle `No. Series` und technische Felder wie `Default Nos.` und `Manual Nos.`. Diese Ansicht hilft beim Verstehen der Oberflaeche. Sie ersetzt aber nicht die fachliche Kontrolle: Nach einer Aenderung muss die Nummernserie erneut geoeffnet werden, und derselbe Wert muss in derselben Zeile wieder sichtbar sein.
+
+Bei Zeilenmenues ist besondere Vorsicht noetig. Ein Menue kann sich oeffnen, waehrend Business Central den Fokus auf eine andere Zeile setzt. Dann sieht man zwar ein Menue, aber nicht zwingend das Menue zur Zeile, die man eigentlich bearbeiten wollte. Deshalb gehoert zu jeder Nummernserien-Aenderung ein sichtbarer Vorher-Zustand, ein sichtbarer Nachher-Zustand und ein erneuter Oeffnungsnachweis.
+
 ## Buchungsgruppen und Buchungsmatrix
 
 Buchungsgruppen beantworten die Frage: Auf welche Sachkonten bucht Business Central, wenn ein Beleg gebucht wird?

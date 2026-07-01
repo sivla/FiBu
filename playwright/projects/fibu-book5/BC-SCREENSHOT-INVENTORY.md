@@ -264,6 +264,17 @@ Screenshot-QA zu TARGET-036D2: Die Vorheraufnahme ist brauchbar fuer das Buch, w
 
 Screenshot-QA zu TARGET-036D2B: Die Bilder zeigen einen guten UI-Blocker fuer das Buch und fuer Playwright. Der relevante sichtbare Bereich ist vorhanden, aber eine Checkbox in einer Business-Central-Liste darf nicht nur nach Bildschirmposition oder allgemeinem DOM-Checkboxindex veraendert werden. Naechster Weg ist eine Karten-/Detailroute, `Personalisieren` oder `Seitenueberpruefung`, bevor wieder ein Setupfeld geaendert wird.
 
+## Universaarl Foundation - U-VEND Route Discovery TARGET-036D2C
+
+| Screenshot | Page | Company/Kontext | Schritt | Was man sehen soll | Interner Beweis | Beweist nicht | Status |
+|---|---|---|---|---|---|---|---|
+| `target-036d2c-010-u-vend-readonly-context.png` | Nummernserie / No. Series, Page 456 | `playthru` / `UNIVERSAARL-DE`, `U-VEND` | Read-only Kontext vor Route Discovery | `U-VEND` ist markiert; `Standardnr.` und `Manuelle Anz.` sind sichtbar; rechts stehen die offenen U-VEND-Zeilen | Richtiger Instanz-/Company-/Page-/Zeilenkontext fuer die naechste Nummernserienentscheidung | keine gespeicherte Checkboxaenderung, keine Kreditoranlage, keine Buchungsreife | `observed`, `route-context` |
+| `target-036d2c-020-hover-checkbox-columns.png` | Nummernserie / No. Series, Page 456 | `playthru` / `UNIVERSAARL-DE` | Tooltip-/Hover-Kontext | Die Spalten bleiben sichtbar; Tooltiptext kann helfen, `Manuelle Anz.` als manuelle Nummernvergabe zu verstehen | Hover ist fuer Business-Central-UI-Lernen nuetzlich und darf in Klickanleitungen erklaert werden | kein Wert, keine Persistenz, keine Feldroute fuer einen Write | `ui-learning`, `readonly` |
+| `target-036d2c-030-more-options-context.png` | Nummernserie / No. Series, Page 456 | `playthru` / `UNIVERSAARL-DE` | Row-/More-Options-Menue | Das Menue zeigt Aktionen wie `Zeilen`, `Verbindungen`, `Loeschen`, `Weitere auswaehlen`; Screenshot-QA zeigt aber Zeilenfokus auf `BANKEINZ` | Business Central kann beim Oeffnen von Zeilenmenues den Fokus verschieben; solche Bilder sind nur Action-Inventar | kein U-VEND-Wertbeweis, keine sichere Checkboxroute, keine Setupaenderung | `row-focus-warning`, `not-value-proof` |
+| `target-036d2c-040-page-inspection-attempt.png` | Nummernserie / No. Series, Page 456; Table 308 | `playthru` / `UNIVERSAARL-DE`, `U-VEND` | Seitenueberpruefung / Page Inspection | Die Seitenueberpruefung zeigt `No. Series (456, List)`, Tabelle `No. Series (308)`, `Code U-VEND`, `Default Nos. (3, Boolean)` und `Manual Nos. (4, Boolean)` | Technischer Page-/Table-/Field-Nachweis fuer U-VEND und die beiden Checkboxfelder | keine Setupaenderung, kein Reopen-Wertbeweis, keine Freigabe fuer Kreditor-Retry | `technical-field-proof`, `readonly` |
+
+Screenshot-QA zu TARGET-036D2C: Page Inspection ist hier der wertvollste Fortschritt, weil sie die technische Feldwahrheit zu `U-VEND` sichtbar macht. Gleichzeitig zeigt das More-Options-Bild eine wichtige Fehlerquelle: Ein Menue kann den Zeilenfokus verschieben. Deshalb zaehlt `target-036d2c-030` nur als Action-Inventar und nicht als U-VEND-Wertbeweis. Naechster Schritt ist eine Entscheidung, ob ein enger U-VEND-Write-Case, eine manuelle Nummernroute oder ein Parken des Kreditor-Retry fachlich sinnvoll ist.
+
 ## Universaarl Foundation - Nummernserien TARGET-017
 
 | Screenshot | Page | Company/Kontext | Schritt | Was man sehen soll | Interner Beweis | Beweist nicht | Status |
