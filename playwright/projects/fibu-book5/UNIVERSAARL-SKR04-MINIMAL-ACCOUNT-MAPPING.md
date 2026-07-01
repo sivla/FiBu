@@ -121,7 +121,13 @@ Fuer den SKR04-Pfad bedeutet das: `1406` und `3806` bleiben nur vorbereitende Sa
 
 `TARGET-027C3` hat die sichtbare Business-Central-Suche wieder nutzbar gemacht: Der Suchdialog enthaelt den Begriff `MwSt.-Geschaeftsbuchungsgruppen` und zeigt den gleichnamigen Treffer in der Gruppe `Verwaltung`. Das ist Navigations-Evidence, keine USt-Einrichtung.
 
-Der anschliessende read-only C2-Retry hat Page 471 `MwSt.-Produktbuchungsgruppen` sichtbar akzeptiert. Page 470 `MwSt.-Geschaeftsbuchungsgruppen` bleibt dagegen blockiert, weil der Trefferklick noch nicht in eine akzeptierte Listenoberflaeche fuehrt. Der VAT-Schreibcase fuer `INLAND` und `VAT19` bleibt deshalb gesperrt.
+Der anschliessende read-only C2-Retry hat Page 471 `MwSt.-Produktbuchungsgruppen` sichtbar akzeptiert. Page 470 `MwSt.-Geschaeftsbuchungsgruppen` blieb danach noch blockiert, weil der Trefferklick noch nicht in eine akzeptierte Listenoberflaeche fuehrte.
+
+## Stand nach `TARGET-027C4`
+
+`TARGET-027C4` hat den Page-470-Oberflaechenblocker geloest. Der Suchdialog zeigt den Treffer `MwSt.-Geschaeftsbuchungsgruppen`; der engere Trefferklick oeffnet danach die Seite `MwSt.-Geschaeftsbuchungsgruppen` mit den Spalten `Code` und `Beschreibung`. Damit ist die Zieloberflaeche fuer den naechsten kleinen Setup-Write erreichbar.
+
+Das ist weiterhin kein USt-Setup-Beweis. `INLAND` und `VAT19` wurden nicht angelegt, die MwSt.-Buchungsmatrix wurde nicht geaendert, und es gibt keine Preview, keine VAT Entries und keine Sachposten. Der naechste sinnvolle Schritt ist ein begrenzter Write-Retry: nur `INLAND` auf Page 470 und `VAT19` auf Page 471 mit Vorher-/Nachher-/Reopen-Proof. Die Matrixzeile und jede steuerliche 19-Prozent-Behauptung bleiben bis danach gesperrt.
 
 ## Quellenbasis
 

@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T03:10:00.000+02:00",
+  "updatedAt": "2026-07-01T03:55:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-vat-page-surface-recovery",
-  "activeCase": "TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY",
-  "active_case_file": ".agent/state/cases/target-027c4-vat-business-result-click-recovery.json",
-  "lastReferenceCase": "TARGET-027C2-VAT-PAGE-SURFACE-RECOVERY",
-  "lastReferenceCaseFile": ".agent/state/cases/target-027c2-vat-page-surface-recovery.json",
+  "activeArea": "universaarl-vat-groups-controlled-write-retry",
+  "activeCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
+  "active_case_file": ".agent/state/cases/target-027c-vat-groups-controlled-write.json",
+  "lastReferenceCase": "TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY",
+  "lastReferenceCaseFile": ".agent/state/cases/target-027c4-vat-business-result-click-recovery.json",
   "mode": "universaarl-target-execution",
   "requiresStrongModel": true,
   "requiredPreflightChecks": [
@@ -19,11 +19,12 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-page-470-471-readonly",
-    "inspect-visible-form-grid-surface",
-    "capture-role-center-rejected-screenshots",
-    "capture-accepted-vat-page-screenshots-if-found",
-    "update-playwright-helper-patterns"
+    "open-vat-business-posting-groups-page-470",
+    "open-vat-product-posting-groups-page-471",
+    "create-or-confirm-vat-business-posting-group-INLAND-if-page-accepted",
+    "create-or-confirm-vat-product-posting-group-VAT19-if-page-accepted",
+    "capture-before-after-reopen-proof",
+    "stop-before-vat-posting-setup-matrix"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -31,7 +32,6 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "create-or-edit-vat-groups",
     "create-vat-posting-setup-matrix-row",
     "create-master-data",
     "create-document-or-draft",
@@ -40,8 +40,8 @@
     "api-shortcut",
     "claim-german-19-percent-vat-final-proof"
   ],
-  "nextCase": "TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY",
-  "nextStep": "Recover the exact visible Tell-Me result click for Page 470; Page 471 is already accepted read-only.",
+  "nextCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
+  "nextStep": "Retry the bounded VAT group write: create or confirm only INLAND on Page 470 and VAT19 on Page 471 with before/after/reopen proof; keep VAT Posting Setup matrix, preview, posting, master data and documents locked.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -224,7 +224,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "Universaarl VAT setup remains blocked before write; Page 471 is accepted read-only, Page 470 result-click recovery is next.",
+  "currentCoverageFocus": "Universaarl VAT Page 470 and Page 471 surfaces are accepted read-only; next is a bounded INLAND/VAT19 prerequisite group write retry, not matrix, preview or posting.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -3432,54 +3432,53 @@
       "replace-with-better-case"
     ],
     "latestDecisionCard": {
-      "currentCase": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
-      "plannedNextCaseBeforeReview": "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
-      "lastEvidenceSummary": "TARGET-020 proves Page 470 read-only context; TARGET-027R proves Page 471 and 472 read-only context; TARGET-027S rejects the newer search-overlay fallback.",
+      "currentCase": "TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY",
+      "plannedNextCaseBeforeReview": "TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY",
+      "lastEvidenceSummary": "TARGET-027C3 recovered the visible Tell-Me input and TARGET-027C2 accepted Page 471. TARGET-027C4 now accepts Page 470 after exact result locator/geometry click.",
       "isPlannedNextCaseStillSensible": true,
-      "reason": "The setup write gate needed source-backed target values before any write. Those values are now decided narrowly, without changing Business Central.",
+      "reason": "C4 was the narrow remaining UI-route blocker before retrying the bounded VAT group write case. It is now completed as read-only navigation evidence.",
       "lookaheadReviewed": [
         {
-          "caseId": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
+          "caseId": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
           "status": "ready-next",
-          "reason": "The next smallest safe write is to create or confirm only INLAND and VAT19 on Pages 470 and 471."
+          "reason": "Page 470 and Page 471 now have accepted read-only surfaces; INLAND/VAT19 write retry can be scoped to those pages only."
         },
         {
           "caseId": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
-          "status": "ready-after-current",
-          "reason": "The matrix row depends on the groups existing visibly first."
+          "status": "needs-setup-first",
+          "reason": "Depends on visible INLAND and VAT19 groups after controlled write/reopen proof."
         },
         {
           "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
           "status": "needs-setup-first",
-          "reason": "Posting groups depend on VAT setup row and account mapping."
+          "reason": "General posting/customer/vendor/item setup should wait until VAT group and matrix prerequisites are done."
         },
         {
           "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
           "status": "needs-setup-first",
-          "reason": "Master data waits for VAT and posting group setup."
+          "reason": "Master data waits for posting groups, VAT defaults and dimensions; no card creation should start from a VAT route recovery."
         },
         {
           "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
-          "status": "needs-setup-first",
-          "reason": "Foundation readiness waits for VAT, posting groups and at least read-only context checks."
+          "status": "ready-after-current",
+          "reason": "Only after VAT and posting-group setup checkpoints can the foundation be called ready for master data."
         }
       ],
       "queueChangesMade": [
-        "Mark TARGET-027B as observed-decision-no-write.",
-        "Insert TARGET-027C before any VAT Posting Setup matrix write."
+        "Marked TARGET-027C4 as observed/read-only route recovery.",
+        "Added TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY as the next bounded setup-write queue item."
       ],
-      "selectedNextCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
-      "whySelectedNextCaseIsBest": "It is the smallest practical W1 Foundation write: create or confirm the two groups needed before the VAT Posting Setup matrix row.",
+      "selectedNextCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
+      "whySelectedNextCaseIsBest": "The route blocker is removed; the smallest practical W1 Foundation step is to create or confirm only INLAND and VAT19 with before/after/reopen proof.",
       "risksBeforeNextCase": [
-        "Wrong route may again land in Tell-Me/search overlay; use TARGET-020 direct Page 470 route pattern.",
-        "The write case must not click matrix setup, Preview Posting, Post, master data or document actions.",
-        "The UI value for Normal VAT must be confirmed later on Page 472 before the matrix row is written."
+        "Do not click New/Edit/List actions unless Page 470 or Page 471 screenshot QA has accepted the target surface in the same write case.",
+        "Do not create the VAT Posting Setup matrix row in the group-write retry.",
+        "Do not claim German VAT correctness before matrix, Preview Posting, VAT Entries and G/L Entries exist."
       ],
       "requiredPreparation": [
-        "Open Page 470 and Page 471 directly in playthru / UNIVERSAARL-DE.",
-        "Before/after screenshots for INLAND and VAT19.",
-        "Reopen proof for both groups.",
-        "Stop if the visible page context is not the target page."
+        "Reuse the C4 smallest-normalized-result-row click pattern for Page 470.",
+        "Keep Page 471 direct accepted-surface proof as the product-group prerequisite.",
+        "Capture before, after and reopen proof for INLAND and VAT19 if the write case proceeds."
       ]
     },
     "lastDecisionCard": {
@@ -3722,42 +3721,53 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
-    "plannedNextCaseBeforeReview": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
-    "lastEvidenceSummary": "TARGET-027B selected INLAND/VAT19 and SKR04 VAT accounts as the next controlled write gate.",
+    "currentCase": "TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY",
+    "lastEvidenceSummary": "TARGET-027C3 recovered the visible Tell-Me input and TARGET-027C2 accepted Page 471. TARGET-027C4 now accepts Page 470 after exact result locator/geometry click.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "VAT business/product groups are prerequisite records for the later Page 472 VAT Posting Setup matrix.",
+    "reason": "C4 was the narrow remaining UI-route blocker before retrying the bounded VAT group write case. It is now completed as read-only navigation evidence.",
     "lookaheadReviewed": [
       {
+        "caseId": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
+        "status": "ready-next",
+        "reason": "Page 470 and Page 471 now have accepted read-only surfaces; INLAND/VAT19 write retry can be scoped to those pages only."
+      },
+      {
         "caseId": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
-        "status": "blocked",
-        "reason": "Group creation/confirmation must be fixed before matrix setup."
+        "status": "needs-setup-first",
+        "reason": "Depends on visible INLAND and VAT19 groups after controlled write/reopen proof."
       },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "General posting groups wait until VAT matrix setup is at least planned."
+        "reason": "General posting/customer/vendor/item setup should wait until VAT group and matrix prerequisites are done."
       },
       {
         "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
         "status": "needs-setup-first",
-        "reason": "Master data must wait for VAT and posting group defaults."
+        "reason": "Master data waits for posting groups, VAT defaults and dimensions; no card creation should start from a VAT route recovery."
       },
       {
         "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
-        "status": "needs-setup-first",
-        "reason": "Foundation checkpoint waits for VAT matrix and posting groups."
+        "status": "ready-after-current",
+        "reason": "Only after VAT and posting-group setup checkpoints can the foundation be called ready for master data."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-FOLLOWUP",
-    "whySelectedNextCaseIsBest": "The group write gate must be repeated with a better visible-page route before any matrix setup.",
+    "queueChangesMade": [
+      "Marked TARGET-027C4 as observed/read-only route recovery.",
+      "Added TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY as the next bounded setup-write queue item."
+    ],
+    "selectedNextCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
+    "whySelectedNextCaseIsBest": "The route blocker is removed; the smallest practical W1 Foundation step is to create or confirm only INLAND and VAT19 with before/after/reopen proof.",
     "risksBeforeNextCase": [
-      "Do not claim German VAT correctness before VAT matrix, Preview Posting, VAT Entries and G/L Entries.",
-      "Do not accept Role Center or Tell-Me overlay screenshots as VAT page proof."
+      "Do not click New/Edit/List actions unless Page 470 or Page 471 screenshot QA has accepted the target surface in the same write case.",
+      "Do not create the VAT Posting Setup matrix row in the group-write retry.",
+      "Do not claim German VAT correctness before matrix, Preview Posting, VAT Entries and G/L Entries exist."
     ],
     "requiredPreparation": [
-      "Fix Page 470/Page 471 visible route before write."
+      "Reuse the C4 smallest-normalized-result-row click pattern for Page 470.",
+      "Keep Page 471 direct accepted-surface proof as the product-group prerequisite.",
+      "Capture before, after and reopen proof for INLAND and VAT19 if the write case proceeds."
     ]
   },
   "permissionBlocker": {
@@ -6262,7 +6272,7 @@
     "nextCase": "TARGET-026K-SKR04-REMAINING-STARTER-ACCOUNTS-FIT",
     "updatedAt": "2026-06-30T19:52:53.805Z"
   },
-  "lastEvidenceResult": "playwright/projects/fibu-book5/evidence/target-027b-vat-posting-setup-write-gate-decision/TARGET-027B-result.json",
+  "lastEvidenceResult": "playwright/projects/fibu-book5/evidence/target-027c4-vat-business-result-click-recovery/TARGET-027C4-result.json",
   "latestSkr04AccountFit": {
     "caseId": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
     "status": [
@@ -6497,5 +6507,31 @@
     "noPreview": true,
     "noPosting": true,
     "nextCase": "TARGET-027C2-VAT-PAGE-SURFACE-RECOVERY-RETRY"
+  },
+  "latestVatBusinessResultClickRecovery": {
+    "caseId": "TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY",
+    "status": "observed-readonly-page-470-surface",
+    "updatedAt": "2026-07-01T03:55:00.000+02:00",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027c4-vat-business-result-click-recovery/TARGET-027C4-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/target-027c4-vat-business-result-click-recovery/",
+    "screenshots": [
+      "playwright/projects/fibu-book5/evidence/target-027c4-vat-business-result-click-recovery/target-027c4-000-search-overlay-before-click.png",
+      "playwright/projects/fibu-book5/evidence/target-027c4-vat-business-result-click-recovery/target-027c4-001-exact-result-locator-or-geometry-click.png"
+    ],
+    "proved": [
+      "Business Central stayed in playthru / UNIVERSAARL-DE.",
+      "Tell-Me exact result activation reaches visible Page 470 MwSt.-Geschaeftsbuchungsgruppen.",
+      "The accepted screenshot shows the Page 470 title plus Code and Beschreibung columns."
+    ],
+    "notProved": [
+      "No INLAND or VAT19 group exists or was changed by this run.",
+      "No VAT Posting Setup matrix row exists.",
+      "No German 19 percent VAT calculation, VAT Entry, G/L Entry, preview or posting is proven."
+    ],
+    "helperLearning": "When Tell-Me result candidates include broad containers, normalize mojibake/umlauts and click the smallest visible candidate row that contains the exact page text rather than the full overlay/body.",
+    "noSetupChange": true,
+    "noPreview": true,
+    "noPosting": true,
+    "nextCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY"
   }
 }

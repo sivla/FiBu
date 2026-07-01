@@ -502,6 +502,15 @@ TARGET-027C2 ist bewusst keine USt-Setup-Evidence. Der Lauf beweist nur den sich
 
 TARGET-027C3 ist ein gutes Buch-/Debugging-Bild fuer die Bedienlogik der Suche, aber kein USt-Setup-Bild. Es zeigt, wie Business Central einen Suchbegriff und einen Seitentreffer anbietet. Der naechste Schritt ist der exakte Klick auf diesen Treffer und danach ein sichtbarer Page-470-Nachweis.
 
+## Universaarl VAT Business Result Click Recovery TARGET-027C4
+
+| Screenshot | Page / Kontext | Company | Zweck | Sichtbar | Interner Beweis | Nicht bewiesen | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-027c4-000-search-overlay-before-click.png` | Tell-Me-Dialog / Seiten und Aufgaben | `playthru` / `UNIVERSAARL-DE` | Vor dem Trefferklick pruefen, ob der richtige Page-470-Treffer sichtbar ist | Suchdialog mit Treffer `MwSt.-Geschaeftsbuchungsgruppen` in der Gruppe `Verwaltung` | Der Suchbegriff und der Zieltreffer sind sichtbar genug fuer einen gezielten Klickversuch | keine geoeffnete Page 470, keine Gruppe, keine Setup-Freigabe | `accepted-navigation-candidate`, `not-setup-proof` |
+| `target-027c4-001-exact-result-locator-or-geometry-click.png` | MwSt.-Geschaeftsbuchungsgruppen, Page 470 | `playthru` / `UNIVERSAARL-DE` | Nachweis, dass der genaue Suchtreffer die Zielseite oeffnet | Seitentitel `MwSt.-Geschaeftsbuchungsgruppen`, Spalten `Code` und `Beschreibung`, leere Liste, Aktionen `Neu` und `Liste bearbeiten` sichtbar | Page 470 ist in der Zielcompany read-only erreichbar und als VAT-Business-Posting-Groups-Oberflaeche akzeptiert | keine `INLAND`-Gruppe, keine `VAT19`-Gruppe, keine Matrixzeile, keine 19-Prozent-USt, keine Preview, keine Buchung | `universaarl-readonly-page-proof`, `write-gate-prerequisite` |
+
+TARGET-027C4 schliesst den Page-470-Oberflaechenblocker. Das Bild ist gut fuer die Klickanleitung zur Suche und fuer das naechste Setup-Gate, aber nicht fuer steuerliche Aussagen. Der naechste Case darf `Neu` oder `Liste bearbeiten` erst innerhalb dieser sichtbaren Page-470/Page-471-Oberflaechen verwenden und muss wieder Vorher/Nachher/Reopen-Bilder erzeugen.
+
 TARGET-027C hat keine Setup-Aenderung ausgefuehrt. Die After-/Reopen-Bilder bleiben als Blocker-Evidence erhalten, zeigen aber ebenfalls keinen akzeptierten Zielseitenkontext. Fuer den naechsten Lauf gilt: erst eine sichtbare Page-470/Page-471-Oberflaeche recovern, dann erst `Neu` oder `Liste bearbeiten` innerhalb dieser Oberflaeche pruefen.
 
 ## PREP-010 Screenshot-QA-Regel

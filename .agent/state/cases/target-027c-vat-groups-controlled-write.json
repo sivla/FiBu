@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
   "id": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
-  "status": "blocked",
+  "status": "retry-ready",
   "area": "universaarl-vat-setup",
   "goal": "Create or confirm the prerequisite VAT Business Posting Group INLAND and VAT Product Posting Group VAT19 before any VAT Posting Setup matrix row.",
   "sourceCompany": "UNIVERSAARL-DE",
@@ -11,15 +11,17 @@
     "TARGET-020-VAT-SETUP-READINESS",
     "TARGET-027R-VAT-PAGE-ROUTE-RECOVERY",
     "TARGET-027S-VAT-PAGE-ROUTE-SOURCE-AND-UI-FOLLOWUP",
-    "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION"
+    "TARGET-027B-VAT-POSTING-SETUP-WRITE-GATE-DECISION",
+    "TARGET-027C2-VAT-PAGE-SURFACE-RECOVERY",
+    "TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY"
   ],
   "allowedActions": [
-    "open-vat-business-posting-groups-direct-page-470",
-    "open-vat-product-posting-groups-direct-page-471",
+    "open-vat-business-posting-groups-page-470",
+    "open-vat-product-posting-groups-page-471",
     "create-or-confirm-vat-business-posting-group-INLAND",
     "create-or-confirm-vat-product-posting-group-VAT19",
     "capture-before-after-reopen-proof",
-    "write-result-and-next-step-card"
+    "stop-before-vat-posting-setup-matrix"
   ],
   "forbiddenActions": [
     "create-vat-posting-setup-matrix-row",
@@ -61,10 +63,13 @@
     "MwSt.-Produktbuchungsgruppen / VAT Product Posting Groups is not visibly open; refusing setup write.",
     "VAT19 with expected description is not visibly confirmed after reopen."
   ],
-  "nextCase": "TARGET-027C2-VAT-PAGE-SURFACE-RECOVERY",
+  "nextCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
   "learned": [
     "Do not accept Role Center or generic Neu/Beschreibung text as VAT page proof.",
     "Scope New/Edit/List actions to a verified VAT form/grid surface before writing.",
-    "Direct page route with dc=0 and exact search-result fallback can leave visible UI on Role Center in playthru; write must stay locked."
-  ]
+    "Direct page route with dc=0 and exact search-result fallback can leave visible UI on Role Center in playthru; write must stay locked.",
+    "TARGET-027C4 recovered Page 470 by selecting the smallest normalized visible Tell-Me result row; use that pattern before scoped New/List Edit in the retry.",
+    "Page 470/471 surface proof is only a prerequisite for INLAND/VAT19, not VAT Posting Setup or German 19 percent proof."
+  ],
+  "retryReason": "TARGET-027C4 accepted Page 470 read-only surface; TARGET-027C2 accepted Page 471 read-only surface."
 }
