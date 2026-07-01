@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T08:24:32.854Z",
+  "updatedAt": "2026-07-01T09:05:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-foundation-ready-checkpoint",
-  "activeCase": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
-  "active_case_file": ".agent/state/cases/target-034-foundation-ready-checkpoint.json",
+  "activeArea": "universaarl-master-data-readonly-preflight",
+  "activeCase": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
+  "active_case_file": ".agent/state/cases/target-035-master-data-cards-templates-preflight.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
-  "requiresStrongModel": true,
+  "requiresStrongModel": false,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,14 +19,20 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "review-foundation-results",
-    "classify-proven-parked-blocked-gates",
-    "update-catalog-coverage-state-bookdraft",
-    "select-next-case-with-lookahead"
+    "open-playthru-business-central",
+    "confirm-UNIVERSAARL-DE-context",
+    "open-customer-vendor-item-location-pages-readonly",
+    "inspect-visible-fields-actions-and-template-prompts",
+    "capture-screenshot-qa",
+    "write-result-json-and-next-step-decision"
   ],
   "forbiddenActions": [
     "leave-instance",
     "company-switch",
+    "click-new-to-create-record",
+    "confirm-template-dialog",
+    "fill-master-data-fields",
+    "save-record",
     "change-setup",
     "create-master-data",
     "create-document-or-draft",
@@ -34,14 +40,15 @@
     "post",
     "payment",
     "api-shortcut",
+    "claim-master-data-readiness",
     "claim-posting-readiness",
     "commit-secrets",
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence"
   ],
-  "nextCase": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
-  "nextStep": "Run TARGET-034 as a no-BC Foundation checkpoint: classify proven, parked and blocked W1 setup before any master data.",
+  "nextCase": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
+  "nextStep": "Run TARGET-035 as read-only master data cards/templates preflight. Do not create customers, vendors, items, locations, drafts, Preview Posting or Posting.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -224,7 +231,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "TARGET-033 revalidated PRODUCTLINE, COSTCENTER and CHANNEL plus starter values in playthru / UNIVERSAARL-DE. Global Dimension Code 1/2, Default Dimensions, Dimension Set Entries and posting/reporting effects remain unproven.",
+  "currentCoverageFocus": "TARGET-034 classifies W1 Foundation as partial: read-only master data preflight is useful, but actual master data creation, Preview Posting and Posting remain locked while Page 314 and VAT setup are parked.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -3716,43 +3723,54 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
-    "plannedNextCaseBeforeReview": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
-    "lastEvidenceSummary": "TARGET-023B proved starter Dimension Values; TARGET-024H parked global dimension assignment and default dimensions until better route or concrete master data exists.",
+    "currentCase": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+    "plannedNextCaseBeforeReview": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+    "lastEvidenceSummary": "TARGET-033 revalidated starter dimensions and values; TARGET-032F parked Page 314; TARGET-027D24 parked VAT matrix; TARGET-030/031B proved customer/vendor posting groups.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Dimensions are independent from the parked Page 314 General Posting Setup route and can be revalidated read-only before the Foundation checkpoint.",
+    "reason": "A local checkpoint prevents overclaiming and defines whether any master data work can begin.",
     "lookaheadReviewed": [
-      {
-        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
-        "status": "ready-next",
-        "reason": "Read-only revalidation of starter dimension codes and values is safe and useful."
-      },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "ready-next",
-        "reason": "The dimensions starter set is visible; checkpoint can classify remaining parked setup gaps."
+        "reason": "The previous W1 evidence is sufficient for a local classification without BC."
       },
       {
-        "caseId": "TARGET-035-MASTER-DATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "caseId": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
+        "status": "ready-next",
+        "reason": "Read-only inspection of customer, vendor, item and location cards/templates can proceed without creating records."
+      },
+      {
+        "caseId": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
         "status": "needs-setup-first",
-        "reason": "Master data remains locked until Foundation checkpoint accepts the remaining parked boundaries."
+        "reason": "Actual creation depends on TARGET-035 required-field/template evidence and the explicit acceptance of parked VAT/Page314 boundaries."
       },
       {
-        "caseId": "TARGET-036-FIRST-PREVIEW-GATE",
+        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
         "status": "blocked",
-        "reason": "No Preview Posting before master data and posting/VAT boundaries are deliberately accepted."
+        "reason": "Preview requires master data plus accepted posting/VAT boundaries."
+      },
+      {
+        "caseId": "TARGET-038-FIRST-POSTING-GATE",
+        "status": "blocked",
+        "reason": "Posting requires Preview evidence and expected entry trace."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
-    "whySelectedNextCaseIsBest": "The starter dimensions are visible; the next value is a Foundation checkpoint that states exactly what is proven, parked and still blocked.",
+    "queueChangesMade": [
+      "Marked TARGET-034 done as a no-BC foundation checkpoint.",
+      "Added TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT as read-only next case.",
+      "Kept actual master data creation, Preview Posting and Posting locked."
+    ],
+    "selectedNextCase": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
+    "whySelectedNextCaseIsBest": "It advances toward beginner-friendly master data chapters without writing records while Page 314 and VAT setup remain parked.",
     "risksBeforeNextCase": [
-      "Do not claim Global Dimension Code 1/2 are assigned.",
-      "Do not claim Default Dimensions exist for customers, vendors or items.",
-      "Do not unlock master data, Preview Posting or Posting without the Foundation checkpoint."
+      "Do not click New if it would create a record.",
+      "Do not accept template dialogs.",
+      "Do not fill or save fields.",
+      "Do not claim posting readiness from card/template visibility."
     ],
     "requiredPreparation": [
-      "Review Page 314 and VAT parked boundaries before checkpoint."
+      "Inspect only read-only card/list/template surfaces for customers, vendors, items and locations.",
+      "Capture required fields, visible posting group fields, template prompts and abort rules."
     ]
   },
   "permissionBlocker": {
@@ -7255,7 +7273,7 @@
     "currentVisibleText": "1200 Forderungen aus Lieferungen und Leistungen Bilanz Buchung",
     "correctedReason": "SKR04-oriented Universaarl foundation must not create a new 1400 receivables account; 1400 belongs to the wrong mapping context for this target."
   },
-  "nextQueueItem": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+  "nextQueueItem": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
   "openItems": 1,
   "latestCustomerReceivablesSourceCorrection": {
     "caseId": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
@@ -7547,5 +7565,36 @@
     "screenshotQa": "The Dimensions list screenshot includes a bottom-left info card that does not hide the dimension rows; values screenshots clearly show the relevant rows.",
     "nextCase": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
     "updatedAt": "2026-07-01T08:43:26.535Z"
+  },
+  "latestFoundationReadyCheckpoint": {
+    "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+    "status": "foundation-partial-ready-for-masterdata-preflight-only",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-034-foundation-ready-checkpoint/TARGET-034-result.json",
+    "foundationClassification": {
+      "overall": "partial-ready-for-readonly-masterdata-preflight-only",
+      "postingReadiness": "not-proven",
+      "previewReadiness": "not-proven",
+      "masterDataCreationReadiness": "not-unlocked",
+      "masterDataPreflightReadiness": "unlocked-readonly-only"
+    },
+    "provenGates": [
+      "company-context",
+      "starter-chart-of-accounts",
+      "number-series-lines",
+      "customer-vendor-posting-groups",
+      "general-business-product-posting-groups",
+      "dimensions"
+    ],
+    "parkedGates": [
+      "general-posting-setup-page314",
+      "vat-posting-setup",
+      "global-dimensions",
+      "default-dimensions",
+      "inventory-bank-fa-posting-setup"
+    ],
+    "nextCase": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
+    "updatedAt": "2026-07-01T09:05:00.000Z"
   }
 }

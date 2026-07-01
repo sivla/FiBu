@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
-  "status": "planned",
+  "status": "done",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -65,39 +65,157 @@
     "No BC or Playwright execution is needed for the checkpoint."
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+    "currentCase": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
     "plannedNextCaseBeforeReview": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
-    "lastEvidenceSummary": "TARGET-033 revalidated starter dimensions and parked Global/Default Dimensions.",
+    "lastEvidenceSummary": "TARGET-033 revalidated starter dimensions and values; TARGET-032F parked Page 314; TARGET-027D24 parked VAT matrix; TARGET-030/031B proved customer/vendor posting groups.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "A checkpoint is the safest next step before deciding whether master data can start with known parked boundaries.",
+    "reason": "A local checkpoint prevents overclaiming and defines whether any master data work can begin.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "ready-next",
-        "reason": "The dimensions starter set is visible; checkpoint can classify remaining parked setup gaps."
+        "reason": "The previous W1 evidence is sufficient for a local classification without BC."
       },
       {
-        "caseId": "TARGET-035-MASTER-DATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "caseId": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
+        "status": "ready-next",
+        "reason": "Read-only inspection of customer, vendor, item and location cards/templates can proceed without creating records."
+      },
+      {
+        "caseId": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
         "status": "needs-setup-first",
-        "reason": "Master data remains locked until Foundation checkpoint accepts the remaining parked boundaries."
+        "reason": "Actual creation depends on TARGET-035 required-field/template evidence and the explicit acceptance of parked VAT/Page314 boundaries."
       },
       {
-        "caseId": "TARGET-036-FIRST-PREVIEW-GATE",
+        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
         "status": "blocked",
-        "reason": "No Preview Posting before master data and posting/VAT boundaries are deliberately accepted."
+        "reason": "Preview requires master data plus accepted posting/VAT boundaries."
+      },
+      {
+        "caseId": "TARGET-038-FIRST-POSTING-GATE",
+        "status": "blocked",
+        "reason": "Posting requires Preview evidence and expected entry trace."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
-    "whySelectedNextCaseIsBest": "The starter dimensions are visible; the next value is a Foundation checkpoint that states exactly what is proven, parked and still blocked.",
+    "queueChangesMade": [
+      "Marked TARGET-034 done as a no-BC foundation checkpoint.",
+      "Added TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT as read-only next case.",
+      "Kept actual master data creation, Preview Posting and Posting locked."
+    ],
+    "selectedNextCase": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
+    "whySelectedNextCaseIsBest": "It advances toward beginner-friendly master data chapters without writing records while Page 314 and VAT setup remain parked.",
     "risksBeforeNextCase": [
-      "Do not claim Global Dimension Code 1/2 are assigned.",
-      "Do not claim Default Dimensions exist for customers, vendors or items.",
-      "Do not unlock master data, Preview Posting or Posting without the Foundation checkpoint."
+      "Do not click New if it would create a record.",
+      "Do not accept template dialogs.",
+      "Do not fill or save fields.",
+      "Do not claim posting readiness from card/template visibility."
     ],
     "requiredPreparation": [
-      "Review Page 314 and VAT parked boundaries before checkpoint."
+      "Inspect only read-only card/list/template surfaces for customers, vendors, items and locations.",
+      "Capture required fields, visible posting group fields, template prompts and abort rules."
     ]
   },
-  "createdAt": "2026-07-01T08:43:26.535Z"
+  "createdAt": "2026-07-01T08:43:26.535Z",
+  "completedAt": "2026-07-01T09:05:00.000Z",
+  "resultStatus": "foundation-partial-ready-for-masterdata-preflight-only",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-034-foundation-ready-checkpoint/TARGET-034-result.json",
+  "result": "W1 Foundation classified as partial: not posting-ready, not preview-ready, actual master data creation locked; read-only master data cards/templates preflight selected.",
+  "foundationClassification": {
+    "overall": "partial-ready-for-readonly-masterdata-preflight-only",
+    "postingReadiness": "not-proven",
+    "previewReadiness": "not-proven",
+    "masterDataCreationReadiness": "not-unlocked",
+    "masterDataPreflightReadiness": "unlocked-readonly-only"
+  },
+  "provenGates": [
+    {
+      "gate": "company-context",
+      "status": "proven",
+      "basis": "UNIVERSAARL-DE exists in playthru and Universaarl GmbH is visible in Company Information."
+    },
+    {
+      "gate": "starter-chart-of-accounts",
+      "status": "proven-starter-only",
+      "basis": "Starter accounts 1200, 1406, 1800, 3300, 3806, 4400 and 5400 have Universaarl evidence; no full SKR04 or tax-advisor proof."
+    },
+    {
+      "gate": "number-series-lines",
+      "status": "partially-proven",
+      "basis": "U-* number series lines are visible; some setup assignments were parked."
+    },
+    {
+      "gate": "customer-vendor-posting-groups",
+      "status": "proven-for-inland-starter",
+      "basis": "Customer Posting Group INLAND points to 1200; Vendor Posting Group INLAND points to 3300."
+    },
+    {
+      "gate": "general-business-product-posting-groups",
+      "status": "proven-for-starter-groups",
+      "basis": "General Business Posting Group INLAND and General Product Posting Group WAREN are visible after reopen."
+    },
+    {
+      "gate": "dimensions",
+      "status": "starter-values-proven",
+      "basis": "PRODUCTLINE, COSTCENTER, CHANNEL and their starter values are visible in TARGET-033."
+    }
+  ],
+  "parkedGates": [
+    {
+      "gate": "general-posting-setup-page314",
+      "status": "parked-blocked-not-proven",
+      "boundary": "No INLAND/WAREN row with Sales Account 4400 and Purchase Account 5400 is saved or reopened."
+    },
+    {
+      "gate": "vat-posting-setup",
+      "status": "parked-blocked-not-proven",
+      "boundary": "No correct INLAND/VAT19 VAT Posting Setup row is proven; no German 19 percent claim is allowed."
+    },
+    {
+      "gate": "global-dimensions",
+      "status": "parked-not-proven",
+      "boundary": "PRODUCTLINE and COSTCENTER are not proven as Global Dimension Code 1/2."
+    },
+    {
+      "gate": "default-dimensions",
+      "status": "parked-until-masterdata-exists",
+      "boundary": "Default Dimensions need concrete customers, vendors, items or accounts before assignment."
+    },
+    {
+      "gate": "inventory-bank-fa-posting-setup",
+      "status": "not-yet-proven",
+      "boundary": "Inventory, bank and fixed asset posting setup remain separate gates."
+    }
+  ],
+  "proved": [
+    "W1 Foundation is not posting-ready.",
+    "W1 Foundation is not Preview Posting-ready.",
+    "Master data creation remains locked.",
+    "A read-only Master Data preflight is now useful because starter accounts, customer/vendor posting groups, starter posting groups and starter dimensions are known enough to inspect cards, templates and required fields.",
+    "TARGET-034 did not open BC, run Playwright, change setup, create master data, create drafts, preview or post."
+  ],
+  "notProved": [
+    "No full SKR04 chart of accounts is proven.",
+    "No German VAT correctness is proven.",
+    "No General Posting Setup INLAND/WAREN/4400/5400 matrix row is proven.",
+    "No Inventory Posting Setup is proven.",
+    "No Customer, Vendor, Item or Location master record exists as Universaarl target evidence from this checkpoint.",
+    "No Preview Posting, G/L Entries, VAT Entries, Customer Ledger Entries, Vendor Ledger Entries, Item Ledger Entries or Value Entries are proven."
+  ],
+  "blockedBy": [
+    "General Posting Setup Page 314 route is parked.",
+    "VAT Posting Setup route is parked.",
+    "Global Dimensions and Default Dimensions remain unproven."
+  ],
+  "warnings": [
+    "Do not interpret this checkpoint as posting readiness.",
+    "Do not create customer/vendor/item/location records until a read-only preflight has identified required fields, templates and safe abort logic.",
+    "Do not write German VAT claims before VAT setup, Preview Posting, VAT Entries and G/L Entries exist."
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "nextCase": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT"
 }

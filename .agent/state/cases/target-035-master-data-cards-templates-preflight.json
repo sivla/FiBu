@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Read-only master data cards and templates preflight",
+  "purpose": "Inspect customer, vendor, item and location card/list/template surfaces before any Universaarl master data is created.",
+  "sourceCases": [
+    "TARGET-034-FOUNDATION-READY-CHECKPOINT"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": true,
+  "taskClass": "wizard_work",
+  "smartDecision": {
+    "whyNow": "TARGET-034 allows only read-only master data preflight. Actual master data creation remains locked while Page 314 and VAT setup are parked.",
+    "fieldsAllowedToChange": [],
+    "fieldsNotTouched": [
+      "Customer records",
+      "Vendor records",
+      "Item records",
+      "Location records",
+      "Templates",
+      "Posting Groups",
+      "VAT Posting Setup",
+      "General Posting Setup",
+      "Documents or drafts",
+      "Preview Posting",
+      "Posting"
+    ],
+    "risk": "Clicking New or accepting a template dialog could create a record too early.",
+    "fallback": "If a page opens a create/template dialog, capture the dialog and close or cancel without confirming."
+  },
+  "allowedActions": [
+    "open-playthru-business-central",
+    "confirm-UNIVERSAARL-DE-context",
+    "open-customer-vendor-item-location-pages-readonly",
+    "inspect-visible-fields-actions-and-template-prompts",
+    "capture-screenshot-qa",
+    "write-result-json-and-next-step-decision"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "click-new-to-create-record",
+    "confirm-template-dialog",
+    "fill-master-data-fields",
+    "save-record",
+    "change-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-master-data-readiness",
+    "claim-posting-readiness",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-034 result exists and classifies master data creation as locked but read-only preflight as useful.",
+    "Business Central must stay in playthru / UNIVERSAARL-DE."
+  ],
+  "acceptanceCriteria": [
+    "Customer, Vendor, Item and Location surfaces are classified as readable, blocked, or risky.",
+    "Required fields, visible posting-group fields, template prompts and abort logic are documented.",
+    "No record is created or edited.",
+    "No setup, draft, Preview Posting or Posting occurs."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+    "plannedNextCaseBeforeReview": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
+    "lastEvidenceSummary": "TARGET-034 allows only read-only master data preflight; Page 314 and VAT remain parked.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The next practical progress is to understand master data cards/templates without creating records.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
+        "status": "ready-next",
+        "reason": "Read-only probe can run safely before master data creation."
+      },
+      {
+        "caseId": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
+        "status": "ready-after-current",
+        "reason": "Only after TARGET-035 proves required fields and safe abort logic."
+      },
+      {
+        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
+        "status": "blocked",
+        "reason": "Requires actual master data and accepted posting/VAT boundaries."
+      },
+      {
+        "caseId": "TARGET-038-FIRST-POSTING-GATE",
+        "status": "blocked",
+        "reason": "Requires preview evidence and expected entry trace."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
+    "whySelectedNextCaseIsBest": "It creates practical UI/book knowledge while keeping all writes locked.",
+    "risksBeforeNextCase": [
+      "New/template dialogs can create records if confirmed.",
+      "Card visibility is not posting readiness."
+    ],
+    "requiredPreparation": [
+      "Use screenshot QA and abort on any dialog requiring OK/Yes to create data."
+    ]
+  },
+  "createdAt": "2026-07-01T09:05:00.000Z"
+}

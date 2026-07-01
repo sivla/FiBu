@@ -3064,7 +3064,7 @@
     {
       "id": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
       "order": 10100,
-      "status": "pending",
+      "status": "done",
       "priority": "high",
       "area": "universaarl-foundation",
       "category": "foundation-ready-checkpoint",
@@ -3076,10 +3076,35 @@
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
       "caseFile": ".agent/state/cases/target-034-foundation-ready-checkpoint.json",
+      "blockedBy": [
+        "General Posting Setup Page 314 route is parked.",
+        "VAT Posting Setup route is parked.",
+        "Global Dimensions and Default Dimensions remain unproven."
+      ],
+      "completedAt": "2026-07-01T09:05:00.000Z",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-034-foundation-ready-checkpoint/TARGET-034-result.json",
+      "result": "W1 Foundation partial checkpoint complete; read-only master data preflight unlocked, writes remain locked.",
+      "nextCase": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT"
+    },
+    {
+      "id": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
+      "order": 10110,
+      "status": "pending",
+      "priority": "high",
+      "area": "universaarl-master-data",
+      "category": "master-data-readonly-preflight",
+      "expectedImpact": "foundation-to-masterdata-ui-proof",
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Read-only inspect Customer, Vendor, Item and Location cards/templates before any master data write.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "caseFile": ".agent/state/cases/target-035-master-data-cards-templates-preflight.json",
       "blockedBy": []
     }
   ],
-  "lastUpdated": "2026-07-01T08:43:26.535Z",
+  "lastUpdated": "2026-07-01T09:05:00.000Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -3187,49 +3212,60 @@
     }
   },
   "updatedAt": "2026-07-01T08:43:26.535Z",
-  "lastCompletedCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
-  "nextCase": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+  "lastCompletedCase": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+  "nextCase": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
-    "plannedNextCaseBeforeReview": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
-    "lastEvidenceSummary": "TARGET-023B proved starter Dimension Values; TARGET-024H parked global dimension assignment and default dimensions until better route or concrete master data exists.",
+    "currentCase": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+    "plannedNextCaseBeforeReview": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+    "lastEvidenceSummary": "TARGET-033 revalidated starter dimensions and values; TARGET-032F parked Page 314; TARGET-027D24 parked VAT matrix; TARGET-030/031B proved customer/vendor posting groups.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Dimensions are independent from the parked Page 314 General Posting Setup route and can be revalidated read-only before the Foundation checkpoint.",
+    "reason": "A local checkpoint prevents overclaiming and defines whether any master data work can begin.",
     "lookaheadReviewed": [
-      {
-        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
-        "status": "ready-next",
-        "reason": "Read-only revalidation of starter dimension codes and values is safe and useful."
-      },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "ready-next",
-        "reason": "The dimensions starter set is visible; checkpoint can classify remaining parked setup gaps."
+        "reason": "The previous W1 evidence is sufficient for a local classification without BC."
       },
       {
-        "caseId": "TARGET-035-MASTER-DATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "caseId": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
+        "status": "ready-next",
+        "reason": "Read-only inspection of customer, vendor, item and location cards/templates can proceed without creating records."
+      },
+      {
+        "caseId": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
         "status": "needs-setup-first",
-        "reason": "Master data remains locked until Foundation checkpoint accepts the remaining parked boundaries."
+        "reason": "Actual creation depends on TARGET-035 required-field/template evidence and the explicit acceptance of parked VAT/Page314 boundaries."
       },
       {
-        "caseId": "TARGET-036-FIRST-PREVIEW-GATE",
+        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
         "status": "blocked",
-        "reason": "No Preview Posting before master data and posting/VAT boundaries are deliberately accepted."
+        "reason": "Preview requires master data plus accepted posting/VAT boundaries."
+      },
+      {
+        "caseId": "TARGET-038-FIRST-POSTING-GATE",
+        "status": "blocked",
+        "reason": "Posting requires Preview evidence and expected entry trace."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
-    "whySelectedNextCaseIsBest": "The starter dimensions are visible; the next value is a Foundation checkpoint that states exactly what is proven, parked and still blocked.",
+    "queueChangesMade": [
+      "Marked TARGET-034 done as a no-BC foundation checkpoint.",
+      "Added TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT as read-only next case.",
+      "Kept actual master data creation, Preview Posting and Posting locked."
+    ],
+    "selectedNextCase": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
+    "whySelectedNextCaseIsBest": "It advances toward beginner-friendly master data chapters without writing records while Page 314 and VAT setup remain parked.",
     "risksBeforeNextCase": [
-      "Do not claim Global Dimension Code 1/2 are assigned.",
-      "Do not claim Default Dimensions exist for customers, vendors or items.",
-      "Do not unlock master data, Preview Posting or Posting without the Foundation checkpoint."
+      "Do not click New if it would create a record.",
+      "Do not accept template dialogs.",
+      "Do not fill or save fields.",
+      "Do not claim posting readiness from card/template visibility."
     ],
     "requiredPreparation": [
-      "Review Page 314 and VAT parked boundaries before checkpoint."
+      "Inspect only read-only card/list/template surfaces for customers, vendors, items and locations.",
+      "Capture required fields, visible posting group fields, template prompts and abort rules."
     ]
   },
   "nextStep": "Run TARGET-034 as a no-BC Foundation checkpoint: classify proven, parked and blocked W1 setup before any master data.",
   "openItems": 1,
-  "nextQueueItem": "TARGET-034-FOUNDATION-READY-CHECKPOINT"
+  "nextQueueItem": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT"
 }

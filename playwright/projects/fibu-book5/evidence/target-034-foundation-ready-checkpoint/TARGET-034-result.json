@@ -1,15 +1,28 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
   "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
-  "status": "foundation-partial-ready-for-masterdata-preflight-only",
-  "runType": "local-foundation-checkpoint",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "bcRun": false,
-  "playwrightRun": false,
-  "summary": "TARGET-034 classified W1 Foundation as partial: not posting-ready and not preview-ready; actual master data creation remains locked. Read-only master data cards/templates preflight is the next safe step.",
-  "changedInBC": false,
+  "source": "local-foundation-checkpoint",
+  "resultStatus": "foundation-partial-ready-for-masterdata-preflight-only",
+  "page": "local checkpoint from prior Universaarl evidence",
+  "actionsTaken": [
+    "Reviewed W1 Foundation evidence from chart of accounts, number series, posting groups, VAT setup, General Posting Setup and dimensions.",
+    "Classified each foundation gate as proven, parked or blocked before any master data case.",
+    "Selected a read-only master data cards/templates preflight as the next safe case."
+  ],
+  "actionsNotTaken": [
+    "No Business Central UI was opened.",
+    "No Playwright test was run.",
+    "No setup value was changed.",
+    "No master data was created or edited.",
+    "No document or draft was created.",
+    "No Preview Posting was executed.",
+    "No Posting was executed.",
+    "No payment was executed.",
+    "No API shortcut was used.",
+    "No company switch was executed."
+  ],
   "setupChanged": false,
   "setupChangeAttempted": false,
   "masterDataChanged": false,
@@ -18,7 +31,73 @@
   "posted": false,
   "payment": false,
   "apiShortcut": false,
-  "screenshots": [],
+  "companySwitch": false,
+  "foundationClassification": {
+    "overall": "partial-ready-for-readonly-masterdata-preflight-only",
+    "postingReadiness": "not-proven",
+    "previewReadiness": "not-proven",
+    "masterDataCreationReadiness": "not-unlocked",
+    "masterDataPreflightReadiness": "unlocked-readonly-only"
+  },
+  "provenGates": [
+    {
+      "gate": "company-context",
+      "status": "proven",
+      "basis": "UNIVERSAARL-DE exists in playthru and Universaarl GmbH is visible in Company Information."
+    },
+    {
+      "gate": "starter-chart-of-accounts",
+      "status": "proven-starter-only",
+      "basis": "Starter accounts 1200, 1406, 1800, 3300, 3806, 4400 and 5400 have Universaarl evidence; no full SKR04 or tax-advisor proof."
+    },
+    {
+      "gate": "number-series-lines",
+      "status": "partially-proven",
+      "basis": "U-* number series lines are visible; some setup assignments were parked."
+    },
+    {
+      "gate": "customer-vendor-posting-groups",
+      "status": "proven-for-inland-starter",
+      "basis": "Customer Posting Group INLAND points to 1200; Vendor Posting Group INLAND points to 3300."
+    },
+    {
+      "gate": "general-business-product-posting-groups",
+      "status": "proven-for-starter-groups",
+      "basis": "General Business Posting Group INLAND and General Product Posting Group WAREN are visible after reopen."
+    },
+    {
+      "gate": "dimensions",
+      "status": "starter-values-proven",
+      "basis": "PRODUCTLINE, COSTCENTER, CHANNEL and their starter values are visible in TARGET-033."
+    }
+  ],
+  "parkedGates": [
+    {
+      "gate": "general-posting-setup-page314",
+      "status": "parked-blocked-not-proven",
+      "boundary": "No INLAND/WAREN row with Sales Account 4400 and Purchase Account 5400 is saved or reopened."
+    },
+    {
+      "gate": "vat-posting-setup",
+      "status": "parked-blocked-not-proven",
+      "boundary": "No correct INLAND/VAT19 VAT Posting Setup row is proven; no German 19 percent claim is allowed."
+    },
+    {
+      "gate": "global-dimensions",
+      "status": "parked-not-proven",
+      "boundary": "PRODUCTLINE and COSTCENTER are not proven as Global Dimension Code 1/2."
+    },
+    {
+      "gate": "default-dimensions",
+      "status": "parked-until-masterdata-exists",
+      "boundary": "Default Dimensions need concrete customers, vendors, items or accounts before assignment."
+    },
+    {
+      "gate": "inventory-bank-fa-posting-setup",
+      "status": "not-yet-proven",
+      "boundary": "Inventory, bank and fixed asset posting setup remain separate gates."
+    }
+  ],
   "proved": [
     "W1 Foundation is not posting-ready.",
     "W1 Foundation is not Preview Posting-ready.",
@@ -44,10 +123,7 @@
     "Do not create customer/vendor/item/location records until a read-only preflight has identified required fields, templates and safe abort logic.",
     "Do not write German VAT claims before VAT setup, Preview Posting, VAT Entries and G/L Entries exist."
   ],
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-034-foundation-ready-checkpoint/TARGET-034-result.json",
-  "nextCase": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
-  "nextStep": "Run TARGET-035 as read-only master data cards/templates preflight. Do not create records.",
-  "nextStepDecisionCard": {
+  "nextStepDecision": {
     "currentCase": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
     "plannedNextCaseBeforeReview": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
     "lastEvidenceSummary": "TARGET-033 revalidated starter dimensions and values; TARGET-032F parked Page 314; TARGET-027D24 parked VAT matrix; TARGET-030/031B proved customer/vendor posting groups.",
@@ -98,5 +174,9 @@
       "Capture required fields, visible posting group fields, template prompts and abort rules."
     ]
   },
-  "updatedAt": "2026-07-01T09:05:00.000Z"
+  "nextCase": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "statePatch": {},
+  "createdAt": "2026-07-01T09:05:00.000Z"
 }

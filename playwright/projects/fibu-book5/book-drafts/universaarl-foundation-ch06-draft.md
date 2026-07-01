@@ -1,12 +1,12 @@
 # Universaarl Foundation - Kapitel 6 Draft
 
-Status: `bookdraft-prep`
+Status: `bookdraft-foundation-partial`
 
 Instanz: `playthru`
 
-Zielcompany: `UNIVERSAARL-DE` (`planned-not-yet-created`)
+Zielcompany: `UNIVERSAARL-DE`
 
-Keine Business-Central-Ausfuehrung in diesem Lauf. Keine Company wurde angelegt, kein Setup gespeichert, keine Vorschau und keine Buchung ausgefuehrt.
+Die Company `UNIVERSAARL-DE` ist vorhanden. Die Universaarl GmbH wird in dieser Company aufgebaut. Die Foundation ist noch nicht buchungsbereit: Einige Bausteine sind vorhanden, andere bleiben bewusst offen, bis sie auf der passenden Seite sicher eingerichtet und danach wieder sichtbar geprueft werden koennen.
 
 ## Foundation: die Grundlage vor dem ersten Beleg
 
@@ -26,6 +26,10 @@ Die Reihenfolge ist wichtig:
 8. Erst danach Stammdaten und Belege anlegen.
 
 Diese Reihenfolge verhindert typische Anfaengerfehler. Ein Debitor ohne Debitorenbuchungsgruppe kann spaeter nicht sauber Forderungen erzeugen. Ein Artikel ohne passende Produktbuchungsgruppe kann im Verkauf oder Einkauf eine falsche Kontenfindung ausloesen. Eine Nummernserie ohne klare Logik macht Belege schwer nachvollziehbar. Eine Dimension, die erst nach der Buchung eingefuehrt wird, fehlt auf alten Posten.
+
+Der aktuelle Stand ist ein Zwischenstand. Die Company, die wichtigsten Starterkonten, mehrere Nummernserien, die Debitoren- und Kreditorenbuchungsgruppe `INLAND`, die Geschaeftsbuchungsgruppe `INLAND`, die Produktbuchungsgruppe `WAREN` sowie die Dimensionen `PRODUCTLINE`, `COSTCENTER` und `CHANNEL` sind als Grundlage sichtbar. Die Buchungsmatrix fuer `INLAND` + `WAREN`, die USt-Buchungsmatrix, Lagerbuchung, Bank, Anlagen, globale Dimensionen und Standarddimensionen sind noch keine fertigen Buchungsgrundlagen.
+
+Das bedeutet fuer den naechsten Schritt: Kunden, Lieferanten, Artikel und Lagerorte werden noch nicht angelegt. Zuerst werden ihre Listen, Karten, Pflichtfelder und Vorlagen nur angesehen. So erkennt man, welche Felder spaeter beim Anlegen wichtig sind, ohne bereits einen unvollstaendigen Stammdatensatz zu erzeugen.
 
 ## Company Information
 
@@ -171,7 +175,7 @@ Vor dem ersten O2C-, P2P-, Inventory-, Payment- oder Fixed-Assets-Prozess brauch
 | Dimensionen | erste Auswertungsachsen sind angelegt. |
 | Screenshot-QA | Bild zeigt nicht nur einen Code, sondern den fachlich wichtigen Bereich. |
 
-Erst wenn diese Kontrolle bestanden ist, erzeugt ein Prozessbeleg sinnvolle Posten. Vorher entsteht oft nur ein technischer Fehler, der fuer den Leser schwer einzuordnen ist.
+Diese Kontrolle ist noch nicht vollstaendig bestanden. Fuer Universaarl sind einzelne Bausteine schon sichtbar, aber die Company ist noch nicht bereit fuer Belegvorschau oder Buchung. Die Buchungsmatrix `INLAND` + `WAREN` ist noch nicht gespeichert, die USt-Buchungsmatrix ist noch nicht korrekt belegt, und Standarddimensionen gehoeren erst auf konkrete Stammdaten. Vorher entsteht bei einem Beleg oft nur ein technischer Fehler, der fuer den Leser schwer einzuordnen ist.
 
 ## Zielbilder fuer die spaeteren Screenshots
 
@@ -203,12 +207,8 @@ Diese UAT-Faelle werden erst ausfuehrbar, wenn `UNIVERSAARL-DE` existiert und de
 
 ## Naechste praktische Reihenfolge
 
-1. Rechte klaeren.
-2. Mandantenliste oeffnen.
-3. Pfeil neben `Neu` oeffnen.
-4. `Neues Unternehmen erstellen` waehlen.
-5. Datenbasis bewusst auswaehlen.
-6. `UNIVERSAARL-DE` sichtbar anlegen.
-7. Company Information pflegen.
-8. Foundation-Setup mit Nummernserien, Buchungsgruppen, USt und Dimensionen beginnen.
-
+1. Masterdata-Seiten nur lesend oeffnen: Debitoren, Kreditoren, Artikel und Lagerorte.
+2. Pruefen, welche Karten, Vorlagen, FastTabs und Pflichtfelder Business Central anbietet.
+3. Keine neuen Stammdaten speichern, solange Pflichtfelder, Vorlagenlogik und Abbruchweg nicht klar sind.
+4. Danach entscheiden, welcher erste Datensatz kontrolliert angelegt werden darf.
+5. Belegvorschau und Buchung bleiben gesperrt, bis Stammdaten, Buchungsmatrix, USt und Postenspur vorbereitet sind.
