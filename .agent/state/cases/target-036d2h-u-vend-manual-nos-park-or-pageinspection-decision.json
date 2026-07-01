@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
+  "status": "ready-next",
+  "area": "universaarl-vendor-number-series-route-recovery",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Park or Page Inspection decision for U-VEND Manual Nos",
+  "purpose": "Avoid another blind U-VEND Manual Nos checkbox attempt after D2G proved source basis but no unique row-scoped checkbox candidate.",
+  "dependsOn": [
+    "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION"
+  ],
+  "mayRunPlaywright": true,
+  "effectiveBcActionsAllowed": false,
+  "allowedActions": [
+    "open-playthru-business-central",
+    "confirm-UNIVERSAARL-DE-context",
+    "open-number-series-page-456-readonly",
+    "use-supported-filter-syntax-for-U-VEND",
+    "inspect-page-inspection-readonly",
+    "capture-screenshot-qa",
+    "write-result-json-and-next-step-decision"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "toggle-standard-nos",
+    "toggle-manual-nos",
+    "change-number-series-lines",
+    "create-customer",
+    "create-vendor",
+    "create-item",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "smartDecision": {
+    "whyNow": "D2F and D2G both reached Page 456 for U-VEND but did not prove a safe row-scoped Manual Nos write route.",
+    "evidenceBasis": [
+      "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/TARGET-036D2F-result.json",
+      "playwright/projects/fibu-book5/evidence/target-036d2g-u-vend-manual-nos-source-or-assisted-route-decision/TARGET-036D2G-result.json"
+    ],
+    "sourceBasis": [
+      {
+        "title": "Microsoft Learn: Create number series",
+        "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/ui-create-number-series"
+      },
+      {
+        "title": "Microsoft Learn: Integrate with Dynamics 365 Field Service",
+        "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/admin-integrate-field-service"
+      }
+    ],
+    "decisionNeeded": "Either Page Inspection exposes a safe field/value route for U-VEND Manual Nos, or vendor manual-numbering is parked and the next Foundation step moves away from this blocker.",
+    "risk": "A non-row-scoped checkbox click can change the wrong number series or false-positive a setup proof.",
+    "fallback": "Park manual vendor numbering and choose a non-vendor Foundation dependency with explicit rationale."
+  },
+  "acceptanceCriteria": [
+    "No setup, master data, document, Preview Posting, Posting or API shortcut occurs.",
+    "D2F/D2G list/cell/DOM routes are not repeated as write attempts.",
+    "A clear decision is written: safe Page Inspection route, park U-VEND Manual Nos, or helper-fix requirement.",
+    "The next case is selected from lookahead and does not create a vendor while U-VEND Manual Nos remains unproven."
+  ],
+  "stopIf": [
+    "Business Central does not show playthru / UNIVERSAARL-DE.",
+    "Page 456 is not visible.",
+    "A dialog asks to save, confirm setup, delete, preview, post, create or switch company.",
+    "The only available route is another unscoped checkbox/cell click."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
+    "lastEvidenceSummary": "D2G proved source basis for Manual Nos but blocked because no unique U-VEND Manual Nos checkbox candidate was exposed read-only.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "This case prevents another blind write attempt and forces either technical field proof or an explicit park decision.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Vendor creation remains blocked until U-VEND Manual Nos is active after reopen."
+      },
+      {
+        "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+        "status": "ready-after-current",
+        "reason": "Useful fallback if U-VEND manual-numbering is parked."
+      },
+      {
+        "caseId": "TARGET-027D-VAT-POSTING-SETUP",
+        "status": "blocked",
+        "reason": "VAT matrix remains separate and must not be mixed into number-series recovery."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
+    "whySelectedNextCaseIsBest": "It resolves whether U-VEND manual numbering should continue or be parked before any vendor retry.",
+    "risksBeforeNextCase": [
+      "Wrong checkbox toggle",
+      "False vendor-readiness claim",
+      "Unnecessary time spent on repeated BC grid routes"
+    ],
+    "requiredPreparation": [
+      "Use D2G diagnostics and screenshots.",
+      "Keep all BC actions read-only."
+    ]
+  },
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-036d2h-u-vend-manual-nos-park-or-pageinspection-decision/TARGET-036D2H-result.json"
+}

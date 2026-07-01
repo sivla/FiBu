@@ -3407,7 +3407,7 @@
     {
       "id": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
       "order": 10166.5,
-      "status": "pending",
+      "status": "blocked",
       "priority": "high",
       "area": "universaarl-number-series",
       "category": "vendor-number-series-route-decision",
@@ -3419,9 +3419,41 @@
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
       "caseFile": ".agent/state/cases/target-036d2g-u-vend-manual-nos-source-or-assisted-route-decision.json",
-      "lookaheadStatus": "ready-next",
+      "lookaheadStatus": "blocked",
       "dependsOn": [
         "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY"
+      ],
+      "completedAt": "2026-07-01T21:42:45.647Z",
+      "result": "Source-backed decision: do not write; use park/Page Inspection fallback first.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-036d2g-u-vend-manual-nos-source-or-assisted-route-decision/TARGET-036D2G-result.json",
+      "blockedBy": [
+        "Read-only DOM diagnostics did not expose a unique U-VEND Manual Nos checkbox candidate."
+      ],
+      "nextCase": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
+      "setupChanged": false,
+      "masterDataChanged": false,
+      "previewPosting": false,
+      "posted": false,
+      "apiShortcut": false
+    },
+    {
+      "id": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
+      "order": 10166.6,
+      "status": "pending",
+      "priority": "high",
+      "area": "universaarl-number-series",
+      "category": "vendor-number-series-route-decision",
+      "expectedImpact": "avoid-repeating-failed-u-vend-checkbox-routes",
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Decide whether to park U-VEND Manual Nos or use Page Inspection before any vendor retry.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "caseFile": ".agent/state/cases/target-036d2h-u-vend-manual-nos-park-or-pageinspection-decision.json",
+      "lookaheadStatus": "ready-next",
+      "dependsOn": [
+        "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION"
       ]
     },
     {
@@ -3742,7 +3774,7 @@
       "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY"
     }
   ],
-  "lastUpdated": "2026-07-01T17:38:17.235Z",
+  "lastUpdated": "2026-07-01T21:42:45.647Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -3852,9 +3884,9 @@
       ]
     }
   },
-  "updatedAt": "2026-07-01T17:38:17.235Z",
-  "lastCompletedCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-  "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+  "updatedAt": "2026-07-01T21:42:45.647Z",
+  "lastCompletedCase": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+  "nextCase": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
   "nextStepDecisionCard": {
     "currentCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
     "plannedNextCaseBeforeReview": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
@@ -3893,53 +3925,68 @@
       "Run npm run auth:bc attended until the Business Central shell is visible, then require npm run auth:bc:check to pass before rerunning D2F. If sign-in stalls or times out, run npm run auth:bc:diagnose for a short redacted diagnosis."
     ]
   },
-  "nextStep": "The next useful step is attended BC authentication recovery, followed by a green npm run auth:bc:check, before rerunning D2F.",
+  "nextStep": "no-write-until-dom-or-page-inspection-route-exposes-a-unique-u-vend-manual-nos-checkbox",
   "openItems": [
-    "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY"
+    "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION"
   ],
-  "nextQueueItem": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+  "nextQueueItem": {
+    "id": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
+    "status": "pending",
+    "caseFile": ".agent/state/cases/target-036d2h-u-vend-manual-nos-park-or-pageinspection-decision.json"
+  },
   "nextCases": [
+    "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
     "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
     "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
     "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
     "TARGET-038-O2C-PREFLIGHT"
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-036D2E did not persist U-VEND Manual Nos after an unfiltered/cell-coordinate route.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "D2F blocked before Business Central open by auth shell-validation preflight: shell-validation-meta-missing-or-invalid. Complete attended Login/MFA until the Business Central shell is visible, then require npm run auth:bc:check before rerunning D2F.",
+    "currentCase": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+    "lastEvidenceSummary": "TARGET-036D2F reached playthru / UNIVERSAARL-DE and filtered U-VEND, but the Manual Nos checkbox locator returned zero row/header/candidate matches.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "D2G is read-only and addresses the exact D2F blocker by combining Microsoft source basis with DOM/screenshot route diagnostics.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-        "status": "blocked",
-        "reason": "Stored auth must have shell-validation metadata; complete attended Login/MFA until the BC shell is visible, then require npm run auth:bc:check before retry. Use npm run auth:bc:diagnose if sign-in stalls or times out."
+        "caseId": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
+        "status": "ready-next",
+        "reason": "No unique candidate exists; the next step must park or use Page Inspection, not write."
       },
       {
         "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
         "status": "blocked",
-        "reason": "Vendor creation remains blocked until U-VEND Manual Nos is proven active."
+        "reason": "First vendor must wait until U-VEND Manual Nos is proven active after reopen."
       },
       {
-        "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
-        "status": "needs-ui-discovery-first",
-        "reason": "Still unrelated to the active vendor-numbering blocker."
+        "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+        "status": "ready-after-current",
+        "reason": "Useful as a cross-check, but SKR04 starter-account evidence is already recorded; it does not unblock U-VEND directly."
+      },
+      {
+        "caseId": "TARGET-027D-VAT-POSTING-SETUP",
+        "status": "blocked",
+        "reason": "VAT matrix remains a separate setup blocker and must not be mixed into vendor-numbering route recovery."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C must wait for master data and posting/VAT readiness."
+        "reason": "O2C requires customer/item/posting/VAT readiness and must not jump ahead of Foundation blockers."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-    "whySelectedNextCaseIsBest": "The next useful step is attended BC authentication recovery, followed by a green npm run auth:bc:check, before rerunning the same narrow D2F route.",
+    "queueChangesMade": [
+      "Selected TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION after D2G."
+    ],
+    "selectedNextCase": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
+    "whySelectedNextCaseIsBest": "no-write-until-dom-or-page-inspection-route-exposes-a-unique-u-vend-manual-nos-checkbox",
     "risksBeforeNextCase": [
-      "Do not create vendor/customer/item records until U-VEND Manual Nos is proven active."
+      "Do not create a vendor before U-VEND Manual Nos is proven active after reopen.",
+      "Do not toggle any checkbox unless the next case proves row, header and candidate identity.",
+      "Do not use API shortcuts."
     ],
     "requiredPreparation": [
-      "Run npm run auth:bc attended until the Business Central shell is visible, then require npm run auth:bc:check to pass before rerunning D2F. If sign-in stalls or times out, run npm run auth:bc:diagnose for a short redacted diagnosis."
+      "Use D2G DOM diagnostics and screenshot QA to repair the row/checkbox locator.",
+      "Keep the write case limited to U-VEND Manual Nos only, with reopen proof."
     ]
   }
 }

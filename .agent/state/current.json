@@ -6,8 +6,8 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "activeArea": "universaarl-vendor-number-series-route-recovery",
-  "activeCase": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
-  "active_case_file": ".agent/state/cases/target-036d2g-u-vend-manual-nos-source-or-assisted-route-decision.json",
+  "activeCase": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
+  "active_case_file": ".agent/state/cases/target-036d2h-u-vend-manual-nos-park-or-pageinspection-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -23,35 +23,31 @@
     "confirm-UNIVERSAARL-DE-context",
     "open-number-series-page-456-readonly",
     "use-supported-filter-syntax-for-U-VEND",
+    "inspect-page-inspection-readonly",
     "capture-screenshot-qa",
-    "inspect-page-inspection-personalize-or-assisted-setup-route-readonly",
     "write-result-json-and-next-step-decision"
   ],
   "forbiddenActions": [
     "leave-instance",
     "company-switch",
-    "create-customer",
-    "create-vendor",
-    "create-item",
     "toggle-standard-nos",
     "toggle-manual-nos",
     "change-number-series-lines",
-    "change-non-U-VEND-series",
-    "change-posting-setup",
-    "change-vat-setup",
+    "create-customer",
+    "create-vendor",
+    "create-item",
     "create-document-or-draft",
     "preview-posting",
     "post",
     "payment",
     "api-shortcut",
-    "repeat-target-036d2f-header-only-checkbox-fallback-without-dom-proof",
     "commit-secrets",
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence"
   ],
-  "nextCase": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
-  "nextStep": "It avoids repeating the failed list/cell routes and forces a source-backed route decision.",
+  "nextCase": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
+  "nextStep": "no-write-until-dom-or-page-inspection-route-exposes-a-unique-u-vend-manual-nos-checkbox",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -1356,7 +1352,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "universaarl-skr04-balance-sheet-accounts-fit",
-  "lastCompletedCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+  "lastCompletedCase": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -7958,42 +7954,51 @@
     "uiLearning": "BC Page 456 URL filters require quoted table/field syntax for table names with punctuation; the filtered U-VEND list shows checkbox columns, but the write locator still must be source-backed or assisted before toggling Manual Nos."
   },
   "nextStepDecision": {
-    "currentCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-036D2E did not persist U-VEND Manual Nos after an unfiltered/cell-coordinate route.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "Short auth diagnosis stayed on Microsoft sign-in page; Business Central shell signal was false and no shell-validation metadata was saved.",
+    "currentCase": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+    "lastEvidenceSummary": "TARGET-036D2F reached playthru / UNIVERSAARL-DE and filtered U-VEND, but the Manual Nos checkbox locator returned zero row/header/candidate matches.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "D2G is read-only and addresses the exact D2F blocker by combining Microsoft source basis with DOM/screenshot route diagnostics.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-        "status": "blocked",
-        "reason": "Still on Microsoft sign-in page; attended Login/MFA must reach Business Central shell first."
+        "caseId": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
+        "status": "ready-next",
+        "reason": "No unique candidate exists; the next step must park or use Page Inspection, not write."
       },
       {
         "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
         "status": "blocked",
-        "reason": "Vendor creation remains blocked until U-VEND Manual Nos is proven active."
+        "reason": "First vendor must wait until U-VEND Manual Nos is proven active after reopen."
       },
       {
-        "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
-        "status": "needs-ui-discovery-first",
-        "reason": "Still unrelated to the active vendor-numbering blocker."
+        "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+        "status": "ready-after-current",
+        "reason": "Useful as a cross-check, but SKR04 starter-account evidence is already recorded; it does not unblock U-VEND directly."
+      },
+      {
+        "caseId": "TARGET-027D-VAT-POSTING-SETUP",
+        "status": "blocked",
+        "reason": "VAT matrix remains a separate setup blocker and must not be mixed into vendor-numbering route recovery."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C must wait for master data and posting/VAT readiness."
+        "reason": "O2C requires customer/item/posting/VAT readiness and must not jump ahead of Foundation blockers."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-    "whySelectedNextCaseIsBest": "Complete attended Login/MFA in the auth browser until Business Central Role Center/Search/My Settings is visible; then run npm run auth:bc:check before rerunning D2F. If sign-in stalls or times out, run npm run auth:bc:diagnose for a short redacted diagnosis.",
+    "queueChangesMade": [
+      "Selected TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION after D2G."
+    ],
+    "selectedNextCase": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
+    "whySelectedNextCaseIsBest": "no-write-until-dom-or-page-inspection-route-exposes-a-unique-u-vend-manual-nos-checkbox",
     "risksBeforeNextCase": [
-      "Do not create vendor/customer/item records until U-VEND Manual Nos is proven active.",
-      "Do not rerun D2F or unattended auth refresh until auth:bc:check passes."
+      "Do not create a vendor before U-VEND Manual Nos is proven active after reopen.",
+      "Do not toggle any checkbox unless the next case proves row, header and candidate identity.",
+      "Do not use API shortcuts."
     ],
     "requiredPreparation": [
-      "Complete attended Login/MFA in the auth browser until Business Central Role Center/Search/My Settings is visible; then run npm run auth:bc:check before rerunning D2F. If sign-in stalls or times out, run npm run auth:bc:diagnose for a short redacted diagnosis."
+      "Use D2G DOM diagnostics and screenshot QA to repair the row/checkbox locator.",
+      "Keep the write case limited to U-VEND Manual Nos only, with reopen proof."
     ]
   },
   "latestTarget037MasterdataFoundationCheckpoint": {
@@ -8366,7 +8371,7 @@
     "updatedAt": "2026-07-01T14:02:31.619Z"
   },
   "lastRunSummaryPath": "playwright/projects/fibu-book5/evidence/target-044d-customer-item-posting-fields-alternative-page-route/TARGET-044D-result.json",
-  "lastEvidenceSummary": "TARGET-036D2F now reaches Business Central in playthru / UNIVERSAARL-DE and opens Page 456 with a U-VEND-only filter. It proves the previous token error was caused by malformed filter syntax, captures screenshot QA, and still blocks because Manual Nos. is not safely proven active after reopen.",
+  "lastEvidenceSummary": "TARGET-036D2G proved playthru / UNIVERSAARL-DE, Microsoft source basis and visible U-VEND checkbox columns, but blocked without a unique Playwright Manual Nos checkbox candidate.",
   "authUnblock": {
     "status": "resolved-local-shell-validation-present",
     "lastCheckedAt": "2026-07-01T21:25:00.977Z",
@@ -8396,5 +8401,20 @@
     "reason": "Top-level allowedActions and forbiddenActions now mirror the active D2F case so simple readers do not inherit stale Customer/Item personalization scope while auth is blocked.",
     "authGateStillRequired": true,
     "nextRequiredAction": "Complete attended Login/MFA in the auth browser until Business Central Role Center/Search/My Settings is visible; then run npm run auth:bc:check before rerunning D2F. If sign-in stalls or times out, run npm run auth:bc:diagnose for a short redacted diagnosis."
-  }
+  },
+  "caseHistory": [
+    {
+      "caseId": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+      "completedAt": "2026-07-01T21:42:45.647Z",
+      "status": "blocked",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-036d2g-u-vend-manual-nos-source-or-assisted-route-decision/TARGET-036D2G-result.json",
+      "summary": "Source-backed decision: do not write; use park/Page Inspection fallback first.",
+      "nextCase": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
+      "setupChanged": false,
+      "masterDataChanged": false,
+      "previewPosting": false,
+      "posted": false,
+      "apiShortcut": false
+    }
+  ]
 }

@@ -434,6 +434,14 @@ TARGET-032F parkt die Page-314-Schreibroute fuer die Kombination `INLAND` + `WAR
 
 Fuer Universaarl folgt daraus: Ein spaeterer General-Posting-Setup-Schreibfall braucht eine neue, belastbare Route. Bis dahin duerfen andere W1-Grundlagen wie Dimensionen nur mit dieser Grenze weiterlaufen.
 
+## TARGET-036D2G U-VEND Manual Nos Quellenentscheidung
+
+Microsoft Learn beschreibt `No. Series` als Standardseite fuer Nummernserien und nennt `Lines` als Route fuer die eigentlichen Nummernserienzeilen. Dieselbe Produktdokumentation nutzt `Manual Nos.` als Checkbox auf der `No. Series`-Seite, wenn man manuelle Nummern zulassen muss. Fuer Universaarl folgt daraus:
+
+- `Manual Nos.` ist der fachlich richtige Schalter fuer eine lesbare manuelle Kreditorennummer wie `U-VEND-100`.
+- Die Quelle ersetzt keinen UI-Beweis. In `TARGET-036D2G` blieb der Schreibweg blockiert, weil die Zeile `U-VEND` und die Checkbox `Manual Nos.` nicht eindeutig genug als ein row-scoped Playwright-Ziel verbunden waren.
+- Vor der ersten Kreditorenanlage bleibt `U-VEND` deshalb gesperrt, bis Page Inspection, ein verbesserter Helper oder eine bewusst dokumentierte Park-Entscheidung den Weg klaert.
+
 ## URLs
 
 - https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company
@@ -446,6 +454,8 @@ Fuer Universaarl folgt daraus: Ein spaeterer General-Posting-Setup-Schreibfall b
 - https://learn.microsoft.com/en-us/dynamics365/business-central/ui-enter-criteria-filters
 - https://learn.microsoft.com/en-us/dynamics365/business-central/analysis-mode
 - https://learn.microsoft.com/en-us/dynamics365/business-central/ui-personalization-user
+- https://learn.microsoft.com/en-us/dynamics365/business-central/ui-create-number-series
+- https://learn.microsoft.com/en-us/dynamics365/business-central/admin-integrate-field-service
 - https://learn.microsoft.com/en-us/dynamics365/business-central/finance-setup-vat
 - https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/set-up-standard-company-configuration-packages
 - https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/apply-company-configuration-packages
