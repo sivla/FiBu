@@ -28,8 +28,8 @@ Zero-Open-Questions-Regel: Jeder Bereich in diesem Katalog muss seine offenen Ob
 
 | Prioritaet | Case | Warum |
 | --- | --- | --- |
-| 1 | `TARGET-040-FOUNDATION-READY-RECHECK` | Aktueller naechster Schritt: TARGET-036E2 beweist `U-ITEM-HW100 / Universaarl Hardware 100` mit Basiseinheit `STK` nach Reopen. Jetzt muss die Foundation read-only geprueft werden, bevor O2C, VAT, Posting Groups, Dokumente, Preview oder Posting freigegeben werden. |
-| 2 | `TARGET-038-O2C-PREFLIGHT` | Bleibt gesperrt, bis der Foundation-Recheck bestaetigt, dass Artikel, Posting Groups, USt und erwartete Postenspur durch eigene Gates vorbereitet sind. |
+| 1 | `TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT` | Aktueller naechster Schritt: TARGET-040R hat `SAAR-HL`, `U-CUST-100` und `U-ITEM-HW100` read-only wieder sichtbar gemacht, aber keine Posting-/VAT-/Inventory-Felder auf Kunde und Artikel als buchungsbereit bewiesen. Diese Felder muessen vor O2C/P2P gelesen und klassifiziert werden. |
+| 2 | `TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION` | Danach entscheiden, ob fehlende Buchungsgruppen/VAT-/Inventory-Felder bewusst eingerichtet, geparkt oder in einem engeren Setup-Case vorbereitet werden. |
 | 3 | `TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE` | Bleibt blockiert, bis fuer `U-VEND` eine neue, nicht wiederholte und sichere Nummernserienroute vorliegt. |
 | 4 | `TARGET-037-FIRST-PREVIEW-GATE` | Bleibt gesperrt, bis Stammdaten vorhanden sind und die offenen Posting-/VAT-Grenzen bewusst akzeptiert oder geloest sind. |
 | 5 | `TARGET-038-FIRST-POSTING-GATE` | Bleibt gesperrt, bis eine Vorschau mit erwarteter Postenspur vorliegt. |

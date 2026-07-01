@@ -3540,7 +3540,7 @@
     {
       "id": "TARGET-040-FOUNDATION-READY-RECHECK",
       "order": 10173,
-      "status": "pending",
+      "status": "done",
       "category": "target-foundation-readiness-checkpoint",
       "expectedImpact": "foundation-truth-after-first-item",
       "mayWorkEffectively": false,
@@ -3550,10 +3550,36 @@
       "sourceCompany": "UNIVERSAARL-DE",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "lookaheadStatus": "ready-next",
+      "completedAt": "2026-07-01T16:30:00.000Z",
+      "result": "Location, customer and item foundation records are visible read-only; VAT/posting setup remains the next dependency.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-040-foundation-ready-recheck/TARGET-040-result.json",
+      "nextCase": "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
+      "setupChanged": false,
+      "masterDataChanged": false,
+      "previewPosting": false,
+      "posted": false,
+      "apiShortcut": false
+    },
+    {
+      "id": "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
+      "order": 10174,
+      "status": "pending",
+      "priority": "high",
+      "area": "universaarl-customer-item-posting-fields-preflight",
+      "category": "target-foundation-readonly-preflight",
+      "expectedImpact": "customer-item-posting-field-truth-before-o2c",
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Inspect U-CUST-100 and U-ITEM-HW100 posting, VAT and inventory-related fields read-only before any O2C/P2P document, Preview Posting or Posting.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "caseFile": ".agent/state/cases/target-042-customer-item-posting-fields-readonly-preflight.json",
       "lookaheadStatus": "ready-next"
     }
   ],
-  "lastUpdated": "2026-07-01T15:45:00.000Z",
+  "lastUpdated": "2026-07-01T16:30:00.000Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -3663,9 +3689,9 @@
       ]
     }
   },
-  "updatedAt": "2026-07-01T15:45:00.000Z",
-  "lastCompletedCase": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
-  "nextCase": "TARGET-040-FOUNDATION-READY-RECHECK",
+  "updatedAt": "2026-07-01T16:30:00.000Z",
+  "lastCompletedCase": "TARGET-040-FOUNDATION-READY-RECHECK",
+  "nextCase": "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
   "nextStepDecisionCard": {
     "currentCase": "TARGET-041-BASE-UNIT-OF-MEASURE-CONTROLLED-WRITE-GATE",
     "plannedNextCaseBeforeReview": "TARGET-041-BASE-UNIT-OF-MEASURE-CONTROLLED-WRITE-GATE",
@@ -3708,56 +3734,66 @@
       "Keep posting groups and VAT fields untouched."
     ]
   },
-  "nextStep": "Run TARGET-040 Foundation Ready Recheck read-only after U-ITEM-HW100 was proven with STK.",
+  "nextStep": "Run TARGET-042 Customer/Item Posting Fields Read-only Preflight before O2C/P2P.",
   "openItems": [
-    "TARGET-040-FOUNDATION-READY-RECHECK"
+    "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT"
   ],
-  "nextQueueItem": "TARGET-040-FOUNDATION-READY-RECHECK",
+  "nextQueueItem": "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
   "nextCases": [
-    "TARGET-040-FOUNDATION-READY-RECHECK",
+    "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
+    "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
     "TARGET-038-O2C-PREFLIGHT",
     "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE"
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-041-BASE-UNIT-OF-MEASURE-CONTROLLED-WRITE-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-041-BASE-UNIT-OF-MEASURE-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-036E blocked first item creation because no PCS/STK base unit was visible.",
+    "currentCase": "TARGET-040-FOUNDATION-READY-RECHECK",
+    "plannedNextCaseBeforeReview": "TARGET-040-FOUNDATION-READY-RECHECK",
+    "lastEvidenceSummary": "TARGET-036E2 proved U-ITEM-HW100 / Universaarl Hardware 100 with Base Unit STK after filtered reopen.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "A single STK unit is the smallest concrete prerequisite before retrying first item creation.",
+    "reason": "A read-only checkpoint is still the best step after item creation because O2C/P2P need posting groups, VAT and inventory setup boundaries before any document or posting.",
     "lookaheadReviewed": [
-      {
-        "caseId": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
-        "status": "ready-next",
-        "reason": "STK exists; retry first item creation with Base Unit STK."
-      },
-      {
-        "caseId": "TARGET-036E2-FIRST-ITEM-FIELD-HELPER-RECOVERY",
-        "status": "ready-after-current",
-        "reason": "Needed only if the next item card fill still cannot target fields safely."
-      },
-      {
-        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
-        "status": "ready-after-current",
-        "reason": "Useful after item creation is created or blocked again."
-      },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C still needs item, posting groups, VAT and expected entry trace boundaries."
+        "reason": "O2C should not start before VAT, customer/item posting groups and expected entry traces are prepared."
+      },
+      {
+        "caseId": "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
+        "status": "ready-next",
+        "reason": "The starter customer and item exist; their posting/VAT/product fields must be inspected read-only before O2C/P2P or further setup writes."
+      },
+      {
+        "caseId": "TARGET-030-POSTING-GROUPS-VENDOR-INLAND-WRITE-GATE",
+        "status": "obsolete",
+        "reason": "Already completed; Vendor Posting Group INLAND/3300 is historical context, not the next action."
+      },
+      {
+        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Vendor creation remains parked until a new non-repeated U-VEND numbering route is proven."
+      },
+      {
+        "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+        "status": "ready-after-current",
+        "reason": "Chart of Accounts remains a useful cross-check before VAT/posting setup claims are promoted."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
-    "whySelectedNextCaseIsBest": "The base-unit blocker is closed, so the first item can be retried narrowly.",
+    "queueChangesMade": [
+      "TARGET-040 Foundation Ready Recheck marked as the current checkpoint.",
+      "TARGET-038 O2C preflight kept behind VAT/posting setup dependencies.",
+      "TARGET-042 Customer/Item Posting Fields Read-only Preflight selected as the best next foundation step."
+    ],
+    "selectedNextCase": "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
+    "whySelectedNextCaseIsBest": "The concrete customer and item now exist, but their posting, VAT and inventory-related fields are not proven; inspecting them is safer and more useful than jumping into O2C documents.",
     "risksBeforeNextCase": [
-      "The item retry must not set posting groups casually.",
-      "No document, Preview Posting or Posting is allowed.",
-      "The item save still needs reopen proof."
+      "Do not mark the company as posting-ready.",
+      "Do not create sales or purchase documents from this checkpoint.",
+      "Do not change VAT setup without a dedicated Smart Decision and setup evidence."
     ],
     "requiredPreparation": [
-      "Use Base Unit STK on the first item retry.",
-      "Set only Item No., Description, Type and Base Unit if fields are trusted.",
-      "Keep posting groups and VAT fields untouched."
+      "Read TARGET-027 prior VAT preflight/result state before changing any VAT field.",
+      "Keep Preview Posting and Posting locked.",
+      "If VAT route is unclear, run read-only UI discovery instead of a write gate."
     ]
   }
 }

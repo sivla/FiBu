@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T15:45:00.000Z",
+  "updatedAt": "2026-07-01T16:30:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-foundation-ready-recheck",
-  "activeCase": "TARGET-040-FOUNDATION-READY-RECHECK",
-  "active_case_file": ".agent/state/cases/target-040-foundation-ready-recheck.json",
+  "activeArea": "universaarl-customer-item-posting-fields-preflight",
+  "activeCase": "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
+  "active_case_file": ".agent/state/cases/target-042-customer-item-posting-fields-readonly-preflight.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -21,37 +21,37 @@
   "allowedActions": [
     "confirm-playthru-instance",
     "confirm-universaarl-company",
-    "open-items-list",
-    "capture-before-screenshot-qa",
-    "open-new-item-card-only-after-smart-decision",
-    "create-one-controlled-item-if-fields-are-clear",
-    "set-only-approved-item-fields",
-    "reopen-item-card-for-proof",
+    "open-U-CUST-100-readonly",
+    "open-U-ITEM-HW100-readonly",
+    "capture-posting-field-screenshots",
+    "capture-screenshot-qa",
     "write-result-json-and-next-step-decision",
     "update-coverage-and-catalog"
   ],
   "forbiddenActions": [
     "leave-instance",
     "company-switch",
-    "create-customer",
-    "create-vendor",
-    "change-number-series",
-    "change-posting-setup",
-    "change-vat-setup",
-    "change-inventory-setup",
-    "change-dimensions",
+    "click-new-edit-delete-or-post-actions",
+    "change-customer",
+    "change-item",
+    "change-posting-groups",
+    "change-general-posting-setup",
+    "change-vat-posting-setup",
+    "change-inventory-posting-setup",
     "create-document-or-draft",
     "preview-posting",
     "post",
     "payment",
     "api-shortcut",
+    "claim-o2c-readiness-from-field-visibility",
+    "claim-german-vat-final-proof",
     "commit-secrets",
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence"
   ],
-  "nextCase": "TARGET-040-FOUNDATION-READY-RECHECK",
-  "nextStep": "Run a read-only Foundation Ready Recheck after first item U-ITEM-HW100 was proven with Base Unit STK; do not create documents, Preview Posting or Posting.",
+  "nextCase": "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
+  "nextStep": "Run TARGET-042 Customer/Item Posting Fields Read-only Preflight before O2C/P2P; keep documents, Preview Posting and Posting locked.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -1356,7 +1356,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "universaarl-skr04-balance-sheet-accounts-fit",
-  "lastCompletedCase": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+  "lastCompletedCase": "TARGET-040-FOUNDATION-READY-RECHECK",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -7916,7 +7916,8 @@
     "updatedAt": "2026-07-01T11:31:24.302Z"
   },
   "nextCases": [
-    "TARGET-040-FOUNDATION-READY-RECHECK",
+    "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
+    "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
     "TARGET-038-O2C-PREFLIGHT",
     "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE"
   ],
@@ -7941,48 +7942,54 @@
     "decision": "Park first-vendor creation until U-VEND Manual Nos. can be proven by a new non-repeated UI route."
   },
   "nextStepDecision": {
-    "currentCase": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
-    "plannedNextCaseBeforeReview": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
-    "lastEvidenceSummary": "TARGET-036E blocked item creation because no Base Unit was proven; TARGET-041 proved STK visible after reopen.",
+    "currentCase": "TARGET-040-FOUNDATION-READY-RECHECK",
+    "plannedNextCaseBeforeReview": "TARGET-040-FOUNDATION-READY-RECHECK",
+    "lastEvidenceSummary": "TARGET-036E2 proved U-ITEM-HW100 / Universaarl Hardware 100 with Base Unit STK after filtered reopen.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The item write retry was the right next step because STK was available and U-ITEM-HW100 is now visible after reopen.",
+    "reason": "A read-only checkpoint is still the best step after item creation because O2C/P2P need posting groups, VAT and inventory setup boundaries before any document or posting.",
     "lookaheadReviewed": [
-      {
-        "caseId": "TARGET-041-BASE-UNIT-OF-MEASURE-CONTROLLED-WRITE-GATE",
-        "status": "obsolete",
-        "reason": "Not needed if the item exists."
-      },
-      {
-        "caseId": "TARGET-036E3-FIRST-ITEM-FIELD-HELPER-RECOVERY",
-        "status": "ready-after-current",
-        "reason": "Needed only if a base unit exists but item-card field filling remains ambiguous."
-      },
-      {
-        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
-        "status": "ready-next",
-        "reason": "Useful after item creation or after the base-unit blocker is resolved."
-      },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C still needs item, posting groups, VAT and expected entry trace boundaries."
+        "reason": "O2C should not start before VAT, customer/item posting groups and expected entry traces are prepared."
+      },
+      {
+        "caseId": "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
+        "status": "ready-next",
+        "reason": "The starter customer and item exist; their posting/VAT/product fields must be inspected read-only before O2C/P2P or further setup writes."
+      },
+      {
+        "caseId": "TARGET-030-POSTING-GROUPS-VENDOR-INLAND-WRITE-GATE",
+        "status": "obsolete",
+        "reason": "Already completed; Vendor Posting Group INLAND/3300 is historical context, not the next action."
+      },
+      {
+        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Vendor creation remains parked until a new non-repeated U-VEND numbering route is proven."
+      },
+      {
+        "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+        "status": "ready-after-current",
+        "reason": "Chart of Accounts remains a useful cross-check before VAT/posting setup claims are promoted."
       }
     ],
     "queueChangesMade": [
-      "TARGET-036E2 marked done.",
-      "TARGET-040-FOUNDATION-READY-RECHECK selected as read-only checkpoint."
+      "TARGET-040 Foundation Ready Recheck marked as the current checkpoint.",
+      "TARGET-038 O2C preflight kept behind VAT/posting setup dependencies.",
+      "TARGET-042 Customer/Item Posting Fields Read-only Preflight selected as the best next foundation step."
     ],
-    "selectedNextCase": "TARGET-040-FOUNDATION-READY-RECHECK",
-    "whySelectedNextCaseIsBest": "The selected case follows directly from the observed item gate result.",
+    "selectedNextCase": "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
+    "whySelectedNextCaseIsBest": "The concrete customer and item now exist, but their posting, VAT and inventory-related fields are not proven; inspecting them is safer and more useful than jumping into O2C documents.",
     "risksBeforeNextCase": [
-      "The saved item is still not posting-ready.",
-      "Later item updates must not set posting groups casually.",
-      "No document, Preview Posting or Posting is allowed from this foundation gate."
+      "Do not mark the company as posting-ready.",
+      "Do not create sales or purchase documents from this checkpoint.",
+      "Do not change VAT setup without a dedicated Smart Decision and setup evidence."
     ],
     "requiredPreparation": [
-      "Use only Base Unit STK.",
-      "Capture before/after/reopen proof.",
-      "Keep posting groups and VAT fields untouched."
+      "Read TARGET-027 prior VAT preflight/result state before changing any VAT field.",
+      "Keep Preview Posting and Posting locked.",
+      "If VAT route is unclear, run read-only UI discovery instead of a write gate."
     ]
   },
   "latestTarget037MasterdataFoundationCheckpoint": {
@@ -8166,5 +8173,56 @@
       "No item posting group, product posting group or VAT product posting group is proven.",
       "No inventory posting setup, document, Preview Posting, Posting, Item Ledger Entry, Value Entry, G/L Entry or VAT Entry is proven."
     ]
+  },
+  "latestTarget040FoundationReadyRecheck": {
+    "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
+    "status": "observed",
+    "completedAt": "2026-07-01T16:30:00.000Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-040-foundation-ready-recheck/TARGET-040-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "foundationReadiness": {
+      "location": "basic-record-visible",
+      "customer": "basic-record-visible",
+      "vendor": "blocked-not-proven",
+      "item": "basic-record-visible-with-base-unit",
+      "itemPostingGroupsSurface": "visible-readonly",
+      "inventoryPostingSetupSurface": "visible-readonly",
+      "o2cReady": false,
+      "p2pReady": false,
+      "inventoryPostingReady": false
+    },
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-040r-010-location-saar-hl.png",
+      "playwright/projects/fibu-book5/img/target-040r-020-customer-u-cust-100.png",
+      "playwright/projects/fibu-book5/img/target-040r-030-item-u-item-hw100.png",
+      "playwright/projects/fibu-book5/img/target-040r-040-vendor-u-vend-100.png",
+      "playwright/projects/fibu-book5/img/target-040r-050-item-posting-groups.png",
+      "playwright/projects/fibu-book5/img/target-040r-060-inventory-posting-setup.png"
+    ],
+    "proved": [
+      "Business Central stayed in playthru / UNIVERSAARL-DE.",
+      "SAAR-HL / Saarbruecken Hauptlager is visible read-only.",
+      "U-CUST-100 / Universaarl Kunde 100 is visible read-only.",
+      "U-ITEM-HW100 / Universaarl Hardware 100 with STK is visible read-only.",
+      "Item Posting Groups and Inventory Posting Setup are reachable read-only as setup surfaces.",
+      "No setup, master data, document, Preview Posting, Posting, payment, API shortcut or company switch occurred."
+    ],
+    "notProved": [
+      "U-VEND-100 remains not proven as a visible vendor.",
+      "No Customer/Vendor/Item Posting Group assignment is proven correct.",
+      "No Gen. Business/Product Posting Group or VAT Business/Product Posting Group assignment is proven correct.",
+      "No VAT Posting Setup correctness is proven.",
+      "No Inventory Posting Setup correctness is proven.",
+      "No sales, purchase, inventory, Preview Posting, Posting, Customer Ledger Entry, Vendor Ledger Entry, Item Ledger Entry, Value Entry, G/L Entry or VAT Entry is proven.",
+      "Vendors / Kreditoren: Expected read-only page or record text was not visible."
+    ],
+    "nextCase": "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT"
   }
 }
