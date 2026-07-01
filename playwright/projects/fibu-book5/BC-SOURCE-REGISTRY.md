@@ -338,6 +338,16 @@ Success by Design, Process-focused solution, Fit-to-standard/Fit-gap, Testing St
 
 Die operative Zuordnung steht in `UNIVERSAARL-IMPLEMENTATION-GUIDE-MAPPING.md`. Der naechste Case ist `PREP-028-TESTING-STRATEGY-AND-UAT-MATRIX`.
 
+## TARGET-027D24 VAT-Matrix Parkgrenze und Posting-Groups-Preflight
+
+D24 nutzt Microsoft Learn erneut als Produktgrenze: `Set up VAT` trennt VAT Business Posting Groups, VAT Product Posting Groups und VAT Posting Setup; `Posting group setup` beschreibt Posting Groups als Kontenfindungsmechanismus fuer Entitaeten und Belege; `Set Up Company Configuration Packages` zeigt, dass Konfigurationspakete Setup-Tabellen wie VAT Posting Setup enthalten koennen, aber Import/Export/Validate/Apply wirksame Datenpfade sind.
+
+Die Universaarl-Evidence D14-D23B zeigt keinen sicheren Standardweg, der eine korrekte `INLAND` + `VAT19`-Matrixzeile schreibt. D24 parkt deshalb die VAT-Matrix als `parked-blocked-not-proven` und waehlt `TARGET-028-POSTING-GROUPS-PREFLIGHT` als naechsten read-only Schritt.
+
+- Das ist kein USt-Setup-Erfolg und kein deutscher 19-Prozent-Finalbeweis.
+- `TARGET-028` darf Posting-Group-Seiten nur read-only revalidieren.
+- Posting Groups, Stammdaten, Preview Posting und Posting bleiben bis zu eigenen Cases gesperrt.
+
 ## URLs
 
 - https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company

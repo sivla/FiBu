@@ -5,9 +5,9 @@
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-vat-matrix-alternative-standard-route-decision",
-  "activeCase": "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
-  "active_case_file": ".agent/state/cases/target-027d24-vat-matrix-alternative-standard-route-decision.json",
+  "activeArea": "universaarl-posting-groups-readonly-preflight",
+  "activeCase": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+  "active_case_file": ".agent/state/cases/target-028-posting-groups-preflight.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -19,11 +19,12 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-d23-result-json",
-    "read-d23-screenshot-metadata",
-    "classify-cleanup-blocker",
-    "select-next-vat-route",
-    "write-local-result-json",
+    "open-playthru-business-central",
+    "confirm-UNIVERSAARL-DE-context",
+    "open-posting-group-pages-readonly-by-direct-page-url",
+    "capture-readonly-context-screenshots",
+    "capture-screenshot-qa",
+    "write-result-and-next-step-card",
     "update-state-and-queue"
   ],
   "forbiddenActions": [
@@ -32,28 +33,21 @@
     "fake-evidence",
     "book-claim-without-evidence",
     "leave-instance",
-    "open-business-central",
-    "run-playwright",
-    "click-delete",
-    "click-new",
-    "click-get-tables",
-    "import-from-excel",
-    "export-to-excel",
-    "validate-package",
-    "apply-package",
-    "edit-in-excel-publish",
-    "type-INLAND-or-VAT19",
-    "type-19-3806-or-1406",
+    "company-switch",
+    "click-new-edit-delete-or-post-actions",
+    "change-posting-groups",
+    "change-vat-setup",
     "write-or-save-vat-matrix-values",
     "create-master-data",
     "create-document-or-draft",
     "preview-posting",
     "post",
     "api-shortcut",
+    "claim-posting-readiness-from-page-visibility",
     "claim-german-vat-final-proof"
   ],
-  "nextCase": "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
-  "nextStep": "Run TARGET-027D24 as a local VAT route decision. Do not open BC or run Playwright; choose the next executable VAT setup route or explicitly park VAT matrix setup with no final VAT/posting-readiness claim.",
+  "nextCase": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+  "nextStep": "Run TARGET-028 Posting Groups Preflight read-only in playthru / UNIVERSAARL-DE. Do not write posting groups, VAT setup, master data, drafts, preview or posting.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -236,7 +230,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "D23B locally reviewed the package cleanup blocker: U-VAT325-DISC remains visible as configuration-package metadata only; the package route is parked and D24 must choose an alternative standard VAT setup route or explicit park boundary before posting groups or master data continue.",
+  "currentCoverageFocus": "TARGET-027D24 parked the blocked VAT matrix route with explicit no-final/no-preview/no-posting boundary. TARGET-028 now revalidates posting-group pages read-only before any controlled setup write.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -3733,48 +3727,54 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-027D23B-VAT-PACKAGE-METADATA-CLEANUP-BLOCKER-REVIEW",
-    "plannedNextCaseBeforeReview": "TARGET-027D23B-VAT-PACKAGE-METADATA-CLEANUP-BLOCKER-REVIEW",
-    "lastEvidenceSummary": "D23 proved playthru / UNIVERSAARL-DE context and exact U-VAT325-DISC row visibility. Toolbar and row-inline delete attempts did not expose a trusted delete confirmation dialog; the package remained visible after reopen.",
+    "currentCase": "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
+    "lastEvidenceSummary": "D21-D23B show that Page 472 grid/card/lookup routes and Configuration Package routes did not produce a correct INLAND/VAT19 VAT Posting Setup row. U-VAT325-DISC remains package metadata only.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "D23B is the needed local blocker review: the package residue must be classified before the VAT matrix route continues.",
+    "reason": "The blocked VAT matrix must not cause another blind UI-write attempt. A local route decision is the smallest safe step before continuing foundation setup.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
-        "status": "ready-next",
-        "reason": "The package route is now classified as blocked/parked, so the next useful step is a source- and evidence-backed decision for an alternative standard VAT setup route or explicit VAT park decision."
-      },
-      {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "Posting groups need either a safe VAT matrix route or a documented VAT park boundary before they can be meaningful for the book and setup."
+        "status": "ready-next",
+        "reason": "Can inspect posting-group setup pages read-only after VAT matrix is parked with explicit no-posting/no-final-VAT boundaries."
       },
       {
-        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
-        "status": "needs-setup-first",
-        "reason": "Customer, vendor and item creation should not start until posting and VAT defaults are sufficiently understood or consciously parked."
+        "caseId": "TARGET-029-POSTING-GROUPS-CONTROLLED-SETUP-DECISION",
+        "status": "ready-after-current",
+        "reason": "Only after read-only preflight maps required groups/accounts can a write decision be scoped."
       },
       {
-        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "caseId": "TARGET-030-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "needs-setup-first",
-        "reason": "Foundation readiness cannot be claimed while VAT matrix route, posting groups and master data remain unresolved."
+        "reason": "Dimension defaults are useful after posting/VAT boundaries are clear enough for master data."
+      },
+      {
+        "caseId": "TARGET-031-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness requires posting groups, VAT boundary, dimensions and no hidden blockers."
+      },
+      {
+        "caseId": "TARGET-032-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data stays locked until foundation setup and explicit VAT/posting boundaries are ready."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-027D23B as done in marathon queue.",
-      "Added TARGET-027D24 as the next pending local route-decision case."
+      "Marked TARGET-027D24 as done.",
+      "Added TARGET-028-POSTING-GROUPS-PREFLIGHT as the next pending read-only foundation case.",
+      "Parked VAT matrix setup with explicit no-final-VAT/no-preview/no-posting boundary."
     ],
-    "selectedNextCase": "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
-    "whySelectedNextCaseIsBest": "It prevents repeating the same blocked package cleanup clicks and forces a deliberate route choice before any further VAT, posting group or master data action.",
+    "selectedNextCase": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+    "whySelectedNextCaseIsBest": "It advances W1 Foundation without pretending the VAT matrix is solved: Posting Groups can be mapped read-only while VAT matrix write remains locked until a later materially different route exists.",
     "risksBeforeNextCase": [
-      "U-VAT325-DISC is still visible as configuration-package metadata and must not be treated as VAT setup proof.",
-      "No German VAT matrix, posting groups, master data, preview or ledger trace is proven yet.",
-      "A future cleanup route must be materially different from the D23 toolbar/row-inline delete clicks."
+      "Do not claim VAT setup readiness or German 19 percent correctness from the park decision.",
+      "Do not create master data, drafts, preview or posting before posting groups and VAT boundaries are explicit.",
+      "Do not repeat D14-D23 VAT matrix write/package cleanup routes without a new route hypothesis."
     ],
     "requiredPreparation": [
-      "Use D21-D23 evidence only as blocker and route-selection input.",
-      "Review Microsoft/source notes and existing BC patterns before selecting a new standard route.",
-      "Do not run BC or Playwright in D24 unless the route decision explicitly creates a later execute case."
+      "Use Microsoft Learn VAT Setup and Posting Groups pages as product-source boundaries.",
+      "Use TARGET-019B read-only posting-group page evidence as old context only, then revalidate if needed in the current case.",
+      "Open only read-only posting group pages in TARGET-028 unless a later write case unlocks setup."
     ]
   },
   "permissionBlocker": {
@@ -4550,7 +4550,7 @@
   },
   "permissionStatus": "user-confirmed-super-permissions-available-target-company-created",
   "companyCreationPermissionStatus": "satisfied-live-ui-proven",
-  "lastUpdated": "2026-07-01T05:47:05.184Z",
+  "lastUpdated": "2026-07-01T05:54:10.322Z",
   "latestTarget009CompanyCreation": {
     "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
     "status": "universaarl-proven",
@@ -7113,5 +7113,21 @@
     "learning": "BC German action names expose real umlauts in accessible names; teaching tips can masquerade as role=dialog and must be dismissed/ignored before destructive dialog detection; toolbar/row-inline delete clicks did not produce a trusted confirmation dialog for this Configuration Package row.",
     "nextCase": "TARGET-027D23B-VAT-PACKAGE-METADATA-CLEANUP-BLOCKER-REVIEW"
   },
-  "nextAction": "Run TARGET-027D24 as a local VAT route decision. Do not open BC or run Playwright; choose the next executable VAT setup route or explicitly park VAT matrix setup with no final VAT/posting-readiness claim."
+  "nextAction": "Run TARGET-028 Posting Groups Preflight read-only in playthru / UNIVERSAARL-DE. Do not write posting groups, VAT setup, master data, drafts, preview or posting.",
+  "latestVatMatrixAlternativeRouteDecision": {
+    "caseId": "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
+    "status": "done-vat-matrix-parked-posting-groups-preflight-selected-no-bc",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d24-vat-matrix-alternative-standard-route-decision/TARGET-027D24-result.json",
+    "sourceInstance": "playthru",
+    "sourceCompany": "UNIVERSAARL-DE",
+    "selectedRoute": "park-vat-matrix-with-boundary-and-run-posting-groups-readonly-preflight",
+    "vatMatrixStatus": "parked-blocked-not-proven",
+    "bcRun": false,
+    "playwrightRun": false,
+    "setupChanged": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "nextCase": "TARGET-028-POSTING-GROUPS-PREFLIGHT"
+  }
 }

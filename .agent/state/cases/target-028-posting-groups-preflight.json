@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Posting Groups read-only preflight after VAT matrix park",
+  "purpose": "Revalidate the key posting-group pages read-only after the VAT matrix was parked, so the next setup-write case can be scoped without master data, drafts, preview or posting.",
+  "sourceCases": [
+    "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
+    "TARGET-019B-POSTING-GROUPS-READONLY-PREFLIGHT"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": true,
+  "taskClass": "wizard_work",
+  "targetPages": [
+    {
+      "id": "general-posting-setup",
+      "pageId": 314,
+      "page": "Buchungsmatrix / General Posting Setup"
+    },
+    {
+      "id": "customer-posting-groups",
+      "pageId": 110,
+      "page": "Debitorenbuchungsgruppen / Customer Posting Groups"
+    },
+    {
+      "id": "vendor-posting-groups",
+      "pageId": 93,
+      "page": "Kreditorenbuchungsgruppen / Vendor Posting Groups"
+    },
+    {
+      "id": "inventory-posting-setup",
+      "pageId": 5826,
+      "page": "Lagerbuchung Einrichtung / Inventory Posting Setup"
+    },
+    {
+      "id": "vat-posting-setup",
+      "pageId": 472,
+      "page": "USt-Buchungsmatrix / VAT Posting Setup read-only boundary"
+    }
+  ],
+  "allowedActions": [
+    "open-playthru-business-central",
+    "confirm-UNIVERSAARL-DE-context",
+    "open-posting-group-pages-readonly-by-direct-page-url",
+    "capture-readonly-context-screenshots",
+    "capture-screenshot-qa",
+    "write-result-and-next-step-card",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "click-new-edit-delete-or-post-actions",
+    "change-posting-groups",
+    "change-vat-setup",
+    "write-or-save-vat-matrix-values",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-posting-readiness-from-page-visibility",
+    "claim-german-vat-final-proof"
+  ],
+  "entryCriteria": [
+    "TARGET-027D24 parked VAT matrix setup with explicit no-final/no-preview/no-posting boundary.",
+    "UNIVERSAARL-DE remains the active target company.",
+    "No master data or document creation has started."
+  ],
+  "acceptanceCriteria": [
+    "The run stays in playthru / UNIVERSAARL-DE.",
+    "Target posting-group pages are observed, rejected or blocked read-only.",
+    "No setup value, master data, document draft, Preview Posting, Posting or API shortcut is executed.",
+    "The result names exact missing setup prerequisites before any Posting Groups controlled setup case."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+    "plannedNextCaseBeforeReview": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+    "lastEvidenceSummary": "TARGET-027D24 parked VAT matrix setup and selected read-only posting-group context as the next W1 Foundation step.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Posting Groups can be inspected read-only without writing setup or claiming posting readiness.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-029-POSTING-GROUPS-CONTROLLED-SETUP-DECISION",
+        "status": "ready-after-current",
+        "reason": "Depends on page visibility and required-field inventory from TARGET-028."
+      },
+      {
+        "caseId": "TARGET-030-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "needs-setup-first",
+        "reason": "Should wait until posting-group direction is known."
+      },
+      {
+        "caseId": "TARGET-031-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Needs posting/VAT/dimension status."
+      },
+      {
+        "caseId": "TARGET-032-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data remains locked until foundation setup gates are explicit."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+    "whySelectedNextCaseIsBest": "It gathers current page and field context for posting-group setup without changing Business Central.",
+    "risksBeforeNextCase": [
+      "Do not treat page visibility as setup correctness.",
+      "Do not click New/Edit/Delete or write setup values.",
+      "Do not continue to master data from read-only context alone."
+    ],
+    "requiredPreparation": [
+      "Reuse direct page URL pattern from TARGET-019B, but revalidate current context and screenshot truth.",
+      "Keep VAT matrix park boundary visible in result JSON."
+    ]
+  },
+  "nextCase": "TARGET-029-POSTING-GROUPS-CONTROLLED-SETUP-DECISION",
+  "createdAt": "2026-07-01T05:54:10.322Z"
+}
