@@ -32,6 +32,9 @@ type OpenBcPageOptions = WaitForBcReadyOptions & {
   dismissTeachingTips?: boolean;
 };
 
+export const BUSINESS_CENTRAL_AUTH_BLOCKER_RE =
+  /Token wurde erwartet|Something went wrong|Token was expected|sign in|Anmelden/i;
+
 export function requireBcUrl(envPrefix?: string) {
   const prefixedKey = envPrefix ? `${envPrefix}_BC_URL` : undefined;
   const bcUrl = (prefixedKey ? process.env[prefixedKey] : undefined) ?? process.env.BC_URL;
@@ -98,7 +101,20 @@ export async function waitForPageText(page: Page, expected: RegExp, options: { t
 
 export async function waitForBcReady(page: Page, options: WaitForBcReadyOptions = {}) {
   const timeout = options.timeout ?? 120_000;
-  await expect(page.getByRole('button', { name: /Suchen|Search/i })).toBeVisible({ timeout });
+  const deadline = Date.now() + timeout;
+  let searchVisible = false;
+
+  while (Date.now() < deadline) {
+    await throwIfBusinessCentralAuthBlocker(page, 'Business Central shell wait');
+    searchVisible = await page.getByRole('button', { name: /Suchen|Search/i }).isVisible({ timeout: 300 }).catch(() => false);
+    if (searchVisible) break;
+    await page.waitForTimeout(500);
+  }
+
+  await throwIfBusinessCentralAuthBlocker(page, 'Business Central shell wait');
+  if (!searchVisible) {
+    await expect(page.getByRole('button', { name: /Suchen|Search/i })).toBeVisible({ timeout: 1 });
+  }
 
   await waitForPageText(
     page,
@@ -109,6 +125,29 @@ export async function waitForBcReady(page: Page, options: WaitForBcReadyOptions 
 
 export async function waitForBusinessCentralShell(page: Page) {
   await waitForBcReady(page);
+}
+
+export function isBusinessCentralAuthBlockerText(text: string) {
+  return BUSINESS_CENTRAL_AUTH_BLOCKER_RE.test(text);
+}
+
+export async function businessCentralAuthBlockerText(page: Page) {
+  const text = (await pageText(page).catch(() => ''))
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^\x09\x0A\x0D\x20-\x7E]/g, ' ')
+    .replace(/[ \t]+/g, ' ')
+    .trim();
+  return isBusinessCentralAuthBlockerText(text) ? text.slice(0, 280) : '';
+}
+
+export async function throwIfBusinessCentralAuthBlocker(page: Page, phase = 'Business Central load') {
+  const authText = await businessCentralAuthBlockerText(page);
+  if (authText) {
+    throw new Error(
+      `Business Central auth/token blocker detected during ${phase}. Refresh playwright/.auth/bc-user.json before retry.`
+    );
+  }
 }
 
 export async function openBcPageById(page: Page, pageId: number, options: OpenBcPageOptions = {}) {

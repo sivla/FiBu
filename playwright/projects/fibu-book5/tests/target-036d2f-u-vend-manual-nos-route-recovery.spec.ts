@@ -2,7 +2,14 @@ import { expect, test, type Page } from '@playwright/test';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import { compactPageText, dismissTours, pageText, requireBcUrl, waitForBusinessCentralShell } from '../../../core/bc-helpers';
+import {
+  compactPageText,
+  dismissTours,
+  isBusinessCentralAuthBlockerText,
+  pageText,
+  requireBcUrl,
+  waitForBusinessCentralShell
+} from '../../../core/bc-helpers';
 
 test.use({
   storageState: 'playwright/.auth/bc-user.json',
@@ -18,7 +25,6 @@ const EVIDENCE_ID = 'target-036d2f-u-vend-manual-nos-route-recovery';
 const EVIDENCE_DIR = path.resolve('playwright/projects/fibu-book5/evidence', EVIDENCE_ID);
 const IMG_DIR = path.resolve('playwright/projects/fibu-book5/img');
 const RESULT_PATH = path.join(EVIDENCE_DIR, 'TARGET-036D2F-result.json');
-const AUTH_BLOCKER_RE = /Token wurde erwartet|Something went wrong|Token was expected|sign in|Anmelden/i;
 
 type ManualNosState = {
   found: boolean;
@@ -89,36 +95,9 @@ async function assertSafeContext(page: Page) {
   expect(text).not.toMatch(/Buchungsvorschau|Preview Posting|Moechten Sie buchen|Mochten Sie buchen|Do you want to post|Ship and Invoice|Zahlung buchen|Payment Journal/i);
 }
 
-async function authBlockerText(page: Page) {
-  const text = clean(await pageText(page).catch(() => ''));
-  return AUTH_BLOCKER_RE.test(text) ? text.slice(0, 280) : '';
-}
-
-async function stopFastOnAuthBlocker(page: Page, phase: string) {
-  const authText = await authBlockerText(page);
-  if (authText) {
-    throw new Error(`Business Central auth/token blocker detected during ${phase}. Refresh playwright/.auth/bc-user.json before retry.`);
-  }
-}
-
-async function waitForShellWithAuthGate(page: Page) {
-  for (let attempt = 0; attempt < 20; attempt += 1) {
-    await stopFastOnAuthBlocker(page, 'initial page load');
-    if (await page.getByRole('button', { name: /Suchen|Search/i }).isVisible({ timeout: 300 }).catch(() => false)) break;
-    await page.waitForTimeout(500);
-  }
-
-  try {
-    await waitForBusinessCentralShell(page);
-  } catch (error) {
-    await stopFastOnAuthBlocker(page, 'Business Central shell wait');
-    throw error;
-  }
-}
-
 async function openFilteredNumberSeries(page: Page) {
   await page.goto(buildNumberSeriesUrl(true), { waitUntil: 'domcontentloaded', timeout: 120_000 });
-  await waitForShellWithAuthGate(page);
+  await waitForBusinessCentralShell(page);
   await dismissTours(page).catch(() => undefined);
   await page.waitForTimeout(1500);
   await assertSafeContext(page);
@@ -134,7 +113,7 @@ async function writeBlockedResult(args: {
   const completedAt = new Date().toISOString();
   const visibleText = clean(await pageText(args.page).catch(() => ''));
   const sanitizedUrl = sanitizeUrl(args.page.url());
-  const authBlocker = AUTH_BLOCKER_RE.test(visibleText) || /auth\/token blocker/i.test(args.reason);
+  const authBlocker = isBusinessCentralAuthBlockerText(visibleText) || /auth\/token blocker/i.test(args.reason);
   const nextStepDecision = {
     currentCase: CASE_ID,
     plannedNextCaseBeforeReview: 'TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE',
