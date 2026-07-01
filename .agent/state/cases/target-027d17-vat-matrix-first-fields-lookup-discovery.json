@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027D17-VAT-MATRIX-FIRST-FIELDS-LOOKUP-DISCOVERY",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "VAT matrix first-field lookup/detail/select discovery",
+  "purpose": "Discover whether Page 472 exposes safe lookup/detail/select controls for VAT Bus. Posting Group and VAT Prod. Posting Group before any future VAT matrix write.",
+  "sourceCases": [
+    "TARGET-027D14-VAT-MATRIX-RECREATE-AFTER-CLEANUP",
+    "TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS",
+    "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": true,
+  "allowedActions": [
+    "open-page-472",
+    "prove-playthru-instance",
+    "prove-universaarl-company",
+    "prove-INLAND-VAT19-row-absent-before-discovery",
+    "click-liste-bearbeiten",
+    "click-neu-only-if-target-row-absent",
+    "probe-vat-business-posting-group-lookup-without-selection",
+    "probe-vat-product-posting-group-lookup-without-selection",
+    "capture-tooltip-or-detail-button-if-visible",
+    "capture-page-inspection-if-needed",
+    "reopen-page-472",
+    "prove-no-target-row-persisted"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "type-INLAND-or-VAT19",
+    "type-19-3806-1406",
+    "select-INLAND-or-VAT19",
+    "write-or-save-vat-matrix-row",
+    "delete-row",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-german-vat-final-proof"
+  ],
+  "acceptanceCriteria": [
+    "D17 proves whether the first two Page-472 fields expose safe lookup/detail/select controls.",
+    "D17 does not type or select INLAND/VAT19 and does not write 19/3806/1406.",
+    "D17 captures screenshot QA for the discovered control surface and explains what is visible.",
+    "D17 reopens Page 472 and proves no accidental INLAND/VAT19 row persisted.",
+    "If no safe lookup/select route appears, D17 blocks and recommends a non-UI setup route decision instead of repeating grid typing."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION",
+    "lastEvidenceSummary": "D16 selected the lookup/detail/select discovery route because D14/D15 did not prove a true editor or card route.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The first unresolved UI fact is whether VAT Bus. Posting Group and VAT Prod. Posting Group can be chosen through safe controls instead of blind typing.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D17-VAT-MATRIX-FIRST-FIELDS-LOOKUP-DISCOVERY",
+        "status": "ready-next",
+        "reason": "No-write discovery is the safest new route."
+      },
+      {
+        "caseId": "TARGET-027D18-VAT-MATRIX-CONTROLLED-WRITE-IF-LOOKUP-PROVEN",
+        "status": "ready-after-current",
+        "reason": "Only after D17 proves exact controls and stop conditions."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Waits for correct VAT matrix setup."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Waits for VAT/posting defaults."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-027D17-VAT-MATRIX-FIRST-FIELDS-LOOKUP-DISCOVERY",
+    "whySelectedNextCaseIsBest": "It is a new bounded UI hypothesis and prevents another blind Page-472 write attempt.",
+    "risksBeforeNextCase": [
+      "Lookup probes could navigate instead of selecting.",
+      "The row may be transient.",
+      "Any write must stay locked."
+    ],
+    "requiredPreparation": [
+      "Use screenshot QA after each control probe.",
+      "Stop if the active control is shell/header/rowheader text.",
+      "Do not type target setup values."
+    ]
+  },
+  "createdAt": "2026-07-01T07:00:00.000Z"
+}

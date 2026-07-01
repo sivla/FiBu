@@ -5,7 +5,7 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "queueId": "TARGET-MARATHON-002-UNIVERSAARL-REPO-READONLY-PREP",
-  "reason": "TARGET-027D created a partial VAT matrix row; correction routes are blocked, so next is field/control mapping before broader W1 Foundation work.",
+  "reason": "D16 chose first-field lookup/detail/select discovery before any future VAT matrix write; broader W1 Foundation work remains blocked on correct VAT matrix setup.",
   "noEffectiveBusinessCentralActions": false,
   "forbiddenUntilUnblocked": [],
   "unblockCriteria": "Satisfied: UNIVERSAARL-DE exists and active Role Center context / Firmendaten read-only proof is available.",
@@ -2491,7 +2491,7 @@
     {
       "id": "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION",
       "order": 10075,
-      "status": "pending",
+      "status": "done",
       "category": "vat-matrix-route-decision-after-diagnosis",
       "expectedImpact": "select-non-repeating-vat-matrix-write-route-after-page-inspection-diagnosis",
       "mayRunPlaywright": false,
@@ -2503,7 +2503,29 @@
       "sourceCase": "TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS",
       "lookaheadStatus": "ready-next",
       "goal": "Choose the next safe VAT matrix route or park the VAT matrix with explicit consequences; no BC execution in D16.",
-      "blockedBy": []
+      "blockedBy": [],
+      "completedAt": "2026-07-01T07:00:00.000Z",
+      "result": "Selected Page 472 first-field lookup/detail/select discovery as the next non-repeating route; no BC/Playwright/setup write.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-027d16-vat-matrix-route-decision/TARGET-027D16-result.json",
+      "nextCase": "TARGET-027D17-VAT-MATRIX-FIRST-FIELDS-LOOKUP-DISCOVERY"
+    },
+    {
+      "id": "TARGET-027D17-VAT-MATRIX-FIRST-FIELDS-LOOKUP-DISCOVERY",
+      "order": 10076,
+      "status": "pending",
+      "category": "vat-setup-ui-discovery",
+      "expectedImpact": "high-impact-foundation-gate",
+      "mayWorkEffectively": false,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Discover safe lookup/detail/select controls for the first two Page-472 VAT Posting Setup fields without typing or selecting target values.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "lookaheadStatus": "ready-next",
+      "dependsOn": [
+        "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION"
+      ]
     }
   ],
   "lastUpdated": "2026-07-01T06:10:00.000Z",
@@ -2617,7 +2639,7 @@
       ]
     }
   },
-  "updatedAt": "2026-07-01T04:05:00.000Z",
+  "updatedAt": "2026-07-01T07:00:00.000Z",
   "lastCompletedCase": "TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS",
   "nextCase": "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION",
   "nextStepDecisionCard": {

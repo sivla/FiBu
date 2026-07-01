@@ -231,6 +231,18 @@ Fuer Universaarl folgt daraus:
 - D15 ist keine Setup-Aenderung und kein USt-Erfolg.
 - Der naechste Schritt muss lokal entscheiden, welche konkrete Nicht-Wiederholungsroute vertretbar ist.
 - Der naechste Case ist `TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION`.
+
+## TARGET-027D16 VAT-Matrix Route Decision
+
+D16 prueft die bestehende Microsoft-Learn-Quelle `Set up value-added tax` erneut und nutzt zusaetzlich die Microsoft-Learn-Objektquelle zu Tabelle `VAT Posting Setup`. Die Produktquelle bestaetigt die fachliche Struktur: Business Central kombiniert VAT Business Posting Groups und VAT Product Posting Groups in der VAT Posting Setup Matrix und hinterlegt dort Steuersatz und G/L-Konten. Die Objektquelle bestaetigt die technischen Feldnamen der Tabelle 325, unter anderem `VAT Bus. Posting Group`, `VAT Prod. Posting Group`, `VAT %`, `Sales VAT Account` und `Purchase VAT Account`.
+
+Fuer Universaarl folgt daraus:
+
+- D14/D15 reichen nicht fuer einen Schreibversuch, weil sie keine sichere Feld-/Auswahlroute beweisen.
+- `Bearbeiten` bleibt fuer Page 472 aktuell eine Listen-/Grid-Oberflaeche, keine Kartenroute.
+- Page Inspection ist Feld- und Tabellenwahrheit, aber kein Schreibweg.
+- Der naechste nicht wiederholende Pfad ist `TARGET-027D17-VAT-MATRIX-FIRST-FIELDS-LOOKUP-DISCOVERY`: zuerst pruefen, ob die ersten beiden Pflichtfelder sichere Lookup-/Detail-/Select-Controls haben.
+- Eine kuenftige Matrix-Schreibung ist erst vertretbar, wenn D17 echte Controls, Stopbedingungen und Reopen-Proof liefert.
 - Keine Stammdaten, keine Preview, keine Buchung und kein finaler deutscher USt-Claim vor korrekter Matrix plus Buchungs-/Postennachweis.
 
 ## TARGET-026D Kontenplan-Quellenentscheidung

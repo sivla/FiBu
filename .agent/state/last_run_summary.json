@@ -1,75 +1,69 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS",
-  "caseId": "TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS",
-  "status": "observed-route-diagnosis-no-write",
-  "completedAt": "2026-07-01T06:10:00.000Z",
+  "runId": "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION",
+  "caseId": "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION",
+  "status": "observed",
+  "completedAt": "2026-07-01T07:00:00.000Z",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d15-vat-matrix-recreate-route-diagnosis/TARGET-027D15-result.json",
-  "evidencePath": "playwright/projects/fibu-book5/evidence/target-027d15-vat-matrix-recreate-route-diagnosis/",
-  "summary": "D15 ran a no-write Page 472 route diagnosis in playthru / UNIVERSAARL-DE. It captured row/cell geometry, active element states, Bearbeiten/list behavior and Page Inspection field facts. No setup values were typed, no target row persisted, no preview/posting/master data occurred.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d16-vat-matrix-route-decision/TARGET-027D16-result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/target-027d16-vat-matrix-route-decision/",
+  "summary": "D16 made a local/source/UI route decision after D14/D15. It selected first-field lookup/detail/select discovery as the next non-repeating Page 472 route and did not run BC or Playwright.",
   "proved": [
-    "Business Central stayed in playthru / UNIVERSAARL-DE.",
-    "D15 captured Page 472 row/cell/active-element diagnostics without typing target setup values.",
-    "No master data, document draft, Preview Posting, Posting or API shortcut was executed.",
-    "No INLAND/VAT19 row is visible after reopen; the diagnosis did not persist the target matrix row."
+    "D16 selected a non-repeating next route: first-field lookup/detail/select discovery.",
+    "D16 reviewed D14/D15 no-write diagnostics and Microsoft Learn VAT setup source.",
+    "D16 did not open BC, run Playwright, write setup, create master data, preview or post."
   ],
   "notProved": [
     "No correct INLAND/VAT19 VAT Posting Setup matrix row.",
+    "No safe write route for Page 472 yet.",
     "No final German VAT correctness.",
-    "No Preview Posting.",
-    "No VAT Entries.",
-    "No G/L Entries.",
-    "No VAT Statement."
+    "No VAT Entries or G/L Entries."
   ],
-  "blockedBy": [],
-  "warnings": [],
   "actionsTaken": [
-    "Opened Page 472 in playthru / UNIVERSAARL-DE.",
-    "Captured before screenshot/text.",
-    "Clicked Liste bearbeiten and Neu only for no-write route diagnosis when the target row was absent.",
-    "Captured row/cell geometry and active element states after cell clicks.",
-    "Probed Bearbeiten/card route and Page Inspection without typing target setup values.",
-    "Reopened Page 472 and checked that no INLAND/VAT19 row persisted."
+    "Reviewed D15 no-write result.",
+    "Reviewed Microsoft Learn VAT setup source and VAT Posting Setup table fields.",
+    "Selected D17 lookup/detail/select discovery before any write.",
+    "Updated state, queue, source registry, blocker atlas, Playwright patterns and catalog."
   ],
   "actionsNotTaken": [
-    "No INLAND/VAT19 typing",
-    "No 19/3806/1406 typing",
-    "No delete",
+    "No Business Central execution",
+    "No Playwright execution",
+    "No setup write",
     "No master data",
     "No document draft",
     "No Preview Posting",
     "No Posting",
     "No API shortcut",
-    "No final VAT claim"
+    "No book master change"
   ],
-  "screenshots": [
-    "target-027d15-010-before-diagnosis.png",
-    "target-027d15-020-after-new-row-diagnosis.png",
-    "target-027d15-030-after-cell-probes.png",
-    "target-027d15-040-after-edit-card-probe.png",
-    "target-027d15-050-after-page-inspection-probe.png",
-    "target-027d15-060-reopen-no-persist-proof.png"
+  "warnings": [
+    "D17 remains no-write until lookup/select controls are proven.",
+    "Do not treat Page Inspection as a write route."
   ],
-  "nextCase": "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION",
-  "nextStep": "Run D16 local/source/UI route decision before any VAT matrix write.",
+  "nextCase": "TARGET-027D17-VAT-MATRIX-FIRST-FIELDS-LOOKUP-DISCOVERY",
+  "nextStep": "Run a no-write Page 472 lookup/detail/select discovery for the first two VAT Posting Setup fields before any future matrix write.",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS",
-    "plannedNextCaseBeforeReview": "TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS",
-    "lastEvidenceSummary": "D14 showed Neu/New can expose a transient blank Page-472 row, but no true editor for the first mandatory field.",
+    "currentCase": "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION",
+    "lastEvidenceSummary": "D15 proved Page 472/Table 325 field truth and no persisted INLAND/VAT19 row, but did not prove a safe write route.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Before any further VAT setup write, the UI route must distinguish rowheader/header/display cells from real editable controls.",
+    "reason": "A local route decision is the required gate before any future VAT matrix write.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION",
+        "caseId": "TARGET-027D17-VAT-MATRIX-FIRST-FIELDS-LOOKUP-DISCOVERY",
         "status": "ready-next",
-        "reason": "D15 provides the no-write geometry/control data needed for a route decision."
+        "reason": "New UI hypothesis: prove lookup/detail/select controls for the first two VAT group fields without typing values."
+      },
+      {
+        "caseId": "TARGET-027D18-VAT-MATRIX-CONTROLLED-WRITE-IF-LOOKUP-PROVEN",
+        "status": "ready-after-current",
+        "reason": "Only sensible if D17 proves exact controls and stop conditions."
       },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Posting groups wait for correct VAT matrix setup."
+        "reason": "Posting Groups wait for a correct VAT Posting Setup matrix row."
       },
       {
         "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
@@ -79,21 +73,26 @@
       {
         "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Foundation readiness waits for VAT matrix and posting groups."
+        "reason": "Foundation readiness waits for VAT matrix and Posting Groups."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION",
-    "whySelectedNextCaseIsBest": "The next step should be a local/source/UI route decision, not another blind list-cell write.",
+    "queueChangesMade": [
+      "Marked D16 done.",
+      "Inserted D17 as the next pending no-write lookup discovery case."
+    ],
+    "selectedNextCase": "TARGET-027D17-VAT-MATRIX-FIRST-FIELDS-LOOKUP-DISCOVERY",
+    "whySelectedNextCaseIsBest": "It avoids blocked list/card/grid typing routes and targets the first unresolved UI fact: whether the key VAT group fields expose safe lookup/select controls.",
     "risksBeforeNextCase": [
-      "Do not type setup values from D15 alone.",
-      "Do not claim VAT setup or final German VAT correctness.",
-      "Do not start master data before VAT/posting setup is ready."
+      "A transient row may disappear without persistence.",
+      "Lookup/detail buttons may navigate to related records instead of selecting field values.",
+      "D17 must stop before typing or saving if safe controls are not visible."
     ],
     "requiredPreparation": [
-      "Review D15 active-element and Page Inspection observations.",
-      "Choose a card/detail route, Page Inspection backed route, or source-backed alternative before writing values."
+      "Open Page 472 only in playthru / UNIVERSAARL-DE.",
+      "Capture before state and row absence.",
+      "Use Liste bearbeiten and Neu only as a discovery surface.",
+      "Probe lookup/detail/select controls for the first two fields without typing target values."
     ]
   },
-  "updatedAt": "2026-07-01T06:10:00.000Z"
+  "updatedAt": "2026-07-01T07:00:00.000Z"
 }
