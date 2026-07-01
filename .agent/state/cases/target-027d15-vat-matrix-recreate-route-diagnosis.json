@@ -1,28 +1,27 @@
 {
   "schemaVersion": 1,
-  "caseId": "TARGET-027D14-VAT-MATRIX-RECREATE-AFTER-CLEANUP",
-  "status": "blocked",
+  "caseId": "TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS",
+  "status": "planned",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "title": "VAT matrix recreate after cleanup",
-  "purpose": "Create the correct INLAND/VAT19 VAT Posting Setup row only after D13C proved the incomplete row is absent.",
+  "title": "VAT matrix recreate route diagnosis after D14 editor blocker",
+  "purpose": "Diagnose the Page 472 new-row/card/field route after D14 proved that Neu creates a transient blank row but no safe editor for the first mandatory field.",
   "sourceCases": [
-    "TARGET-027D13C-VAT-MATRIX-ROW-INLINE-MENU-CLEANUP-ROUTE"
+    "TARGET-027D14-VAT-MATRIX-RECREATE-AFTER-CLEANUP"
   ],
-  "effectiveBcActionsAllowed": true,
+  "effectiveBcActionsAllowed": false,
   "allowedActions": [
     "open-page-472",
     "prove-playthru-instance",
     "prove-universaarl-company",
-    "prove-INLAND-VAT19-row-absent-before-write",
-    "create-single-INLAND-VAT19-row",
-    "set-vat-percent-19-only-if-editor-visible",
-    "set-vat-calculation-type-normal-vat-only-if-editor-visible",
-    "set-sales-vat-account-3806-only-if-editor-visible",
-    "set-purchase-vat-account-1406-only-if-editor-visible",
+    "click-new-row-for-diagnosis-only-if-page-empty",
+    "capture-row-cell-geometry",
+    "capture-active-element-after-row-cell-clicks",
+    "test-bearbeiten-card-route-without-writing",
+    "use-page-inspection-if-available",
     "reopen-page-472",
-    "prove-complete-row-or-stop"
+    "prove-no-persisted-INLAND-VAT19-row-or-stop"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -30,8 +29,9 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
+    "type-INLAND-or-VAT19",
+    "type-19-3806-1406",
     "delete-row",
-    "repeat-D3-D5-D8-cell-edit-route",
     "create-master-data",
     "create-document-or-draft",
     "preview-posting",
@@ -40,11 +40,10 @@
     "claim-german-vat-final-proof"
   ],
   "acceptanceCriteria": [
-    "Before screenshot/text proves no existing INLAND/VAT19 row.",
-    "Exactly one INLAND/VAT19 row is created or completed.",
-    "Reopen proof shows INLAND, VAT19, VAT % 19, Normal VAT/Normale MwSt., Sales VAT Account 3806 and Purchase VAT Account 1406 or the case blocks before false success.",
-    "No Preview Posting, Posting, master data or document draft is created.",
-    "If any required editor is not proven, stop and document the next route instead of guessing."
+    "D15 produces a field/control diagnosis for the transient Page 472 new row.",
+    "No setup value write is attempted in D15.",
+    "The route decision after D15 selects either a row/card field route, a Page Inspection based route, or a source-backed alternative page.",
+    "No Preview Posting, Posting, master data or document draft is created."
   ],
   "nextStepDecisionCard": {
     "currentCase": "TARGET-027D14-VAT-MATRIX-RECREATE-AFTER-CLEANUP",
@@ -86,34 +85,5 @@
       "Review D14 screenshots and active-editor diagnostics; use Page Inspection, row card, or an alternate standard UI route next."
     ]
   },
-  "createdAt": "2026-07-01T04:45:00.000Z",
-  "completedAt": "2026-07-01T05:25:00.000Z",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d14-vat-matrix-recreate-after-cleanup/TARGET-027D14-result.json",
-  "resultStatus": "blocked-vat-matrix-recreate-after-cleanup",
-  "setupChanged": false,
-  "setupChangeAttempted": false,
-  "blockedBy": [
-    "No true active editor detected for vat-business-posting-group; refusing to type INLAND."
-  ],
-  "warnings": [],
-  "screenshots": [
-    "target-027d14-010-before-recreate.png",
-    "target-027d14-020-after-new-row.png",
-    "target-027d14-030-after-write-or-stop.png",
-    "target-027d14-040-reopen-proof.png"
-  ],
-  "proved": [
-    "Business Central stayed in playthru / UNIVERSAARL-DE.",
-    "Page 472 route was captured with before/after/reopen screenshots.",
-    "The run stopped before master data, document draft, Preview Posting and Posting."
-  ],
-  "notProved": [
-    "No final German VAT correctness.",
-    "No Preview Posting.",
-    "No VAT Entries.",
-    "No G/L Entries.",
-    "No VAT Statement.",
-    "No tax advisor approval or compliance final proof."
-  ],
-  "nextCase": "TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS"
+  "createdAt": "2026-07-01T05:25:00.000Z"
 }

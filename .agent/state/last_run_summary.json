@@ -1,45 +1,41 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-027D13C-VAT-MATRIX-ROW-INLINE-MENU-CLEANUP-ROUTE",
-  "caseId": "TARGET-027D13C-VAT-MATRIX-ROW-INLINE-MENU-CLEANUP-ROUTE",
-  "status": "observed-row-inline-cleanup-row-absent-after-reopen",
-  "completedAt": "2026-07-01T04:45:00.000Z",
+  "runId": "TARGET-027D14-VAT-MATRIX-RECREATE-AFTER-CLEANUP",
+  "caseId": "TARGET-027D14-VAT-MATRIX-RECREATE-AFTER-CLEANUP",
+  "status": "blocked-vat-matrix-recreate-after-cleanup",
+  "completedAt": "2026-07-01T05:25:00.000Z",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d13c-vat-matrix-row-inline-menu-cleanup-route/TARGET-027D13C-result.json",
-  "evidencePath": "playwright/projects/fibu-book5/evidence/target-027d13c-vat-matrix-row-inline-menu-cleanup-route/",
-  "summary": "D13C used the row-inline ellipsis route, confirmed the expected delete dialog with Ja, and proved the incomplete INLAND/VAT19 row is absent after reopen.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d14-vat-matrix-recreate-after-cleanup/TARGET-027D14-result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/target-027d14-vat-matrix-recreate-after-cleanup/",
+  "summary": "D14 opened Page 472 in playthru / UNIVERSAARL-DE, proved D13C row absence, clicked Liste bearbeiten + Neu, captured a transient blank matrix row, but blocked before typing because the first mandatory field did not expose a true active editor. No setup value persisted, no preview/posting/master data.",
   "proved": [
     "Business Central stayed in playthru / UNIVERSAARL-DE.",
-    "Page 472 and the INLAND/VAT19 partial row were visible before the cleanup execution.",
-    "A row-inline menu candidate was clicked at the INLAND/VAT19 row level.",
-    "The row-inline delete route opened a confirmation dialog that was captured before confirmation.",
-    "The expected cleanup dialog was confirmed with button: Ja.",
-    "The INLAND/VAT19 row is not visible after reopen; controlled cleanup effect is proven."
+    "Page 472 route was captured with before/after/reopen screenshots.",
+    "The run stopped before master data, document draft, Preview Posting and Posting."
   ],
   "notProved": [
-    "No complete VAT Posting Setup row.",
-    "No corrected recreate route.",
     "No final German VAT correctness.",
     "No Preview Posting.",
     "No VAT Entries.",
     "No G/L Entries.",
     "No VAT Statement.",
-    "No tax advisor approval."
+    "No tax advisor approval or compliance final proof."
   ],
-  "blockedBy": [],
+  "blockedBy": [
+    "No true active editor detected for vat-business-posting-group; refusing to type INLAND."
+  ],
   "warnings": [],
   "actionsTaken": [
     "Opened Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix in playthru / UNIVERSAARL-DE.",
-    "Opened row-inline ellipsis/menu: row-inline-geometry.",
-    "Clicked the visible row-inline delete action after fresh target-row proof.",
-    "Confirmed the expected cleanup dialog with button: Ja."
+    "Captured before screenshot/text and checked that no INLAND/VAT19 row is visible before write.",
+    "Stopped before writing values because prerequisite or editor gates were not fully satisfied.",
+    "Captured after state and reopen proof.",
+    "Stopped before master data, document draft, Preview Posting, Posting and API shortcut."
   ],
   "actionsNotTaken": [
-    "Toolbar/More Options delete route was not repeated.",
-    "Delete confirmation accepted only after expected dialog text.",
-    "Ja clicked only on expected cleanup dialog.",
-    "Controlled cleanup executed for INLAND/VAT19 row only.",
+    "No delete/cleanup",
+    "No D3/D5/D8 existing-row cell route repeat",
     "No master data",
     "No document draft",
     "No Preview Posting",
@@ -49,30 +45,24 @@
     "No VAT final claim"
   ],
   "screenshots": [
-    "target-027d13c-010-before-row-inline-cleanup.png",
-    "target-027d13c-020-after-row-focus.png",
-    "target-027d13c-030-row-inline-menu-open.png",
-    "target-027d13c-040-before-confirm-dialog-state.png",
-    "target-027d13c-050-reopen-after-row-inline-cleanup-proof.png"
+    "target-027d14-010-before-recreate.png",
+    "target-027d14-020-after-new-row.png",
+    "target-027d14-030-after-write-or-stop.png",
+    "target-027d14-040-reopen-proof.png"
   ],
-  "nextCase": "TARGET-027D14-VAT-MATRIX-RECREATE-AFTER-CLEANUP",
-  "nextStep": "Recreate or complete the correct INLAND/VAT19 VAT Posting Setup row in a separate case after D13C row-absence proof.",
+  "nextCase": "TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS",
+  "nextStep": "Diagnose Page 472 transient new-row/card/field route after D14 blocked before any value write.",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-027D13C-VAT-MATRIX-ROW-INLINE-MENU-CLEANUP-ROUTE",
-    "plannedNextCaseBeforeReview": "TARGET-027D13C-VAT-MATRIX-ROW-INLINE-MENU-CLEANUP-ROUTE",
-    "lastEvidenceSummary": "D13C used the row-inline ellipsis route, confirmed the expected delete dialog with Ja, and Page 472 reopen proof shows no INLAND/VAT19 row.",
+    "currentCase": "TARGET-027D14-VAT-MATRIX-RECREATE-AFTER-CLEANUP",
+    "plannedNextCaseBeforeReview": "TARGET-027D14-VAT-MATRIX-RECREATE-AFTER-CLEANUP",
+    "lastEvidenceSummary": "D13C proved the incomplete INLAND/VAT19 row is absent after row-inline cleanup and reopen proof.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The wrong partial row is absent; the smallest useful W1 Foundation step is to recreate exactly one correct VAT Posting Setup row in a separate case.",
+    "reason": "The next smallest W1 Foundation dependency is one clean INLAND/VAT19 VAT Posting Setup row before posting groups and master data.",
     "lookaheadReviewed": [
-      {
-        "caseId": "TARGET-027D14-VAT-MATRIX-RECREATE-AFTER-CLEANUP",
-        "status": "ready-next",
-        "reason": "Prerequisite row-absence proof exists from D13C."
-      },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Posting Groups wait for the complete INLAND/VAT19 VAT matrix row or a documented blocker."
+        "reason": "VAT matrix row is not complete/proven."
       },
       {
         "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
@@ -82,25 +72,25 @@
       {
         "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Foundation cannot be ready until VAT, posting groups and dimension gates are settled."
+        "reason": "Foundation readiness waits for VAT matrix, posting groups and dimensions/defaults."
+      },
+      {
+        "caseId": "TARGET-031-FIRST-DOCUMENT-DRAFT-GATE",
+        "status": "needs-setup-first",
+        "reason": "Document drafts wait for foundation readiness and master data."
       }
     ],
-    "queueChangesMade": [
-      "Marked TARGET-027D13C done with row-absence proof.",
-      "Added TARGET-027D14 as the next separate recreate/completion case."
-    ],
-    "selectedNextCase": "TARGET-027D14-VAT-MATRIX-RECREATE-AFTER-CLEANUP",
-    "whySelectedNextCaseIsBest": "It is the narrow non-repeating follow-up after cleanup: create the correct VAT matrix row, with no preview/posting/master data.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS",
+    "whySelectedNextCaseIsBest": "The failed recreate route needs a narrower UI/field diagnosis before any more VAT setup write.",
     "risksBeforeNextCase": [
-      "Do not recreate if row absence is not freshly proven at start.",
-      "Do not repeat rejected D3/D5/D8 cell-edit guessing.",
-      "Do not claim German VAT final proof before Preview Posting, VAT Entries and G/L Entries."
+      "Do not claim final German VAT correctness before Preview Posting, VAT Entries and G/L Entries.",
+      "Do not start master data until posting groups/defaults are ready.",
+      "Do not repeat the same failed editor route if D14 blocks."
     ],
     "requiredPreparation": [
-      "Use D13C row-absence proof as prerequisite only, not as VAT setup success.",
-      "Capture before, editor, after and reopen screenshots.",
-      "Stop if true editors for 19/3806/1406 are not proven."
+      "Review D14 screenshots and active-editor diagnostics; use Page Inspection, row card, or an alternate standard UI route next."
     ]
   },
-  "updatedAt": "2026-07-01T04:45:00.000Z"
+  "updatedAt": "2026-07-01T05:25:00.000Z"
 }

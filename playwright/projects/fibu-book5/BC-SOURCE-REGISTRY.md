@@ -209,6 +209,18 @@ Fuer Universaarl folgt daraus:
 - Der naechste Execute-Case ist `TARGET-027D14-VAT-MATRIX-RECREATE-AFTER-CLEANUP`.
 - Keine Stammdaten, keine Preview, keine Buchung und kein finaler deutscher USt-Claim vor korrekter Matrix plus Buchungs-/Postennachweis.
 
+## TARGET-027D14 VAT-Matrix Recreate After Cleanup
+
+D14 nutzt keine neue externe Produktquelle. Die neue Wahrheit stammt aus Universaarl-UI-Evidence: Nach `Liste bearbeiten` und `Neu` kann Page 472 eine transiente neue Zeile anzeigen, aber der erste fachliche Pflichtwert `INLAND` erhielt keinen nachweisbaren aktiven Editor. Der Lauf stoppte deshalb vor jeder Werteingabe.
+
+Fuer Universaarl folgt daraus:
+
+- Die alte falsche Zielzeile bleibt nach D13C bereinigt; D14 hat keine neue Zielzeile persistiert.
+- Eine sichtbare leere/default-artige Grid-Zeile ist kein Setup-Erfolg.
+- `INLAND`, `VAT19`, `19`, `3806` und `1406` duerfen erst geschrieben werden, wenn echte Feld-/Karten-/Editorcontrols bewiesen sind.
+- Der naechste Case ist `TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS`.
+- Keine Stammdaten, keine Preview, keine Buchung und kein finaler deutscher USt-Claim vor korrekter Matrix plus Buchungs-/Postennachweis.
+
 ## TARGET-026D Kontenplan-Quellenentscheidung
 
 TARGET-026B zeigt in `UNIVERSAARL-DE` einen erreichbaren, aber leeren/insufficient Kontenplan ohne sichtbare USt-Konto-Kandidaten. Microsoft Learn `View the chart of accounts` und `Set up or change the chart of accounts` stuetzen die Produktlogik: Der Kontenplan ist das Verzeichnis der Finanzkonten und kann fuer die Company eingerichtet/geaendert werden.

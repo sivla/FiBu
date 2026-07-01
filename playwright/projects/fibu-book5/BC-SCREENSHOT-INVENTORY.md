@@ -605,6 +605,17 @@ Screenshot-QA zu TARGET-027D13: Der entscheidende Nachher-Screenshot zeigt weite
 
 Screenshot-QA zu TARGET-027D13C: Dieses Bildpaket beweist einen echten UI-Lernfortschritt. Die Zeilen-Ellipsis direkt an der Zielzeile funktioniert anders als die toolbar-nahe Loeschroute aus D13. Der Nachher-Screenshot zeigt die Zielzeile nicht mehr. Trotzdem ist das noch kein fachlicher USt-Erfolg: Die korrekte Matrixzeile muss in TARGET-027D14 separat und mit eigenem Reopen-Proof neu entstehen.
 
+## Universaarl VAT Matrix Recreate After Cleanup TARGET-027D14
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Interner Beweis | Beweist nicht | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-027d14-010-before-recreate.png` | MwSt.-Buchungsmatrix Einr., Page 472 | `playthru` / `UNIVERSAARL-DE` | Vor Neuerstellungsversuch | Die Matrixseite ist erreichbar; die alte `INLAND`/`VAT19`-Zeile ist nicht sichtbar | D13C-Cleanup bleibt nach Reopen wirksam genug fuer einen separaten Recreate-Versuch | keine neue Matrixzeile, keine 19-Prozent-USt, keine Steuerkonten | `setup-before`, `row-absence-proof` |
+| `target-027d14-020-after-new-row.png` | MwSt.-Buchungsmatrix Einr., Page 472 | `playthru` / `UNIVERSAARL-DE` | Nach `Liste bearbeiten` und `Neu` | Eine transiente leere Zeile mit default-artigen Zellen wird sichtbar | Die UI kann eine neue Zeile anzeigen; Zellgeometrie kann fuer Diagnose gelesen werden | keine persistierte Zeile, keine Werteingabe, keine USt-Korrektheit | `diagnostic-only`, `transient-row` |
+| `target-027d14-030-after-write-or-stop.png` | MwSt.-Buchungsmatrix Einr., Page 472 | `playthru` / `UNIVERSAARL-DE` | Nach Editor-Gate | Kein echter aktiver Editor fuer die erste Pflichtzelle wurde bewiesen | Der Lauf hat vor dem Tippen von `INLAND` gestoppt | keine Setup-Aenderung, keine Matrix, keine Preview | `blocked-before-write`, `editor-gate` |
+| `target-027d14-040-reopen-proof.png` | MwSt.-Buchungsmatrix Einr., Page 472 | `playthru` / `UNIVERSAARL-DE` | Reopen nach Stop | Die Liste zeigt keine persistierte `INLAND`/`VAT19`-Zeile | Der blockierte Recreate-Versuch hat keine sichtbare Zielzeile gespeichert | keine korrekte Matrix, keine Buchungswirkung, keine VAT Entries | `reopen-proof`, `no-persisted-row` |
+
+Screenshot-QA zu TARGET-027D14: Der Lauf beweist keinen USt-Erfolg, aber eine wichtige Bediengrenze. Die Seite kann eine neue Zeile anzeigen, ohne dass der erste fachliche Pflichtwert sicher editierbar ist. Fuer das Buch ist dieses Paket nur internes Setup-/Playwright-Lernen. Fuer den naechsten Lauf zaehlt nicht ein weiterer Tippversuch, sondern eine gezielte Diagnose der echten Feld-/Karten-/Page-Inspection-Route.
+
 ## PREP-010 Screenshot-QA-Regel
 
 Vor jeder Buch- oder Clickguide-Nutzung muss der Screenshot gegen die konkrete Behauptung geprueft werden:
