@@ -101,6 +101,8 @@ Business Central hilft bei solchen Fragen mit zwei einfachen Mitteln. Wenn man m
 
 Bei Zeilenmenues ist besondere Vorsicht noetig. Ein Menue kann sich oeffnen, waehrend Business Central den Fokus auf eine andere Zeile setzt. Dann sieht man zwar ein Menue, aber nicht zwingend das Menue zur Zeile, die man eigentlich bearbeiten wollte. Deshalb gehoert zu jeder Nummernserien-Aenderung ein sichtbarer Vorher-Zustand, ein sichtbarer Nachher-Zustand und ein erneuter Oeffnungsnachweis.
 
+Fuer die Universaarl GmbH werden die ersten Stammdaten mit lesbaren Codes aufgebaut. Ein Lieferant kann zum Beispiel `U-VEND-100` heissen. Damit Business Central so eine Nummer akzeptiert, muss die Nummernserie `U-VEND` manuelle Nummern erlauben. Dafuer ist die Spalte `Manuelle Anz.` zustaendig. Die automatische Vergabe ist ein anderes Prinzip: Dann wuerde Business Central selbst die naechste Nummer aus der Serie ziehen, und dafuer waere `Standardnr.` wichtig. Beide Wege sind moeglich, aber sie sollten nicht vermischt werden. Fuer den ersten Lieferanten ist zuerst die manuelle Nummernvergabe der passende Schritt.
+
 ## Buchungsgruppen und Buchungsmatrix
 
 Buchungsgruppen beantworten die Frage: Auf welche Sachkonten bucht Business Central, wenn ein Beleg gebucht wird?
@@ -274,4 +276,4 @@ Fuer Anfaenger ist diese Stelle wichtig, weil der Fehler nicht auf der Kreditore
 
 Auf der Seite `Nummernserie` sieht man bei `U-VEND` die Start- und Endnummern fuer Lieferanten. Daneben stehen eigene Kontrollkaestchen. `Standardnr.` steuert, ob Business Central automatisch die naechste Nummer vergibt. `Manuelle Anz.` steuert, ob man eine Nummer selbst eintippen darf. Beide Felder gehoeren zur Nummernserie selbst, nicht zur Kreditorenkarte.
 
-Eine Aenderung an diesen Kontrollkaestchen zaehlt erst dann als erledigt, wenn sie nach erneutem Oeffnen der Nummernserie noch sichtbar ist. Bei `U-VEND` ist `Standardnr.` noch nicht verlaesslich aktiv. Deshalb bleibt der erste Kreditor gesperrt, bis diese Nummernserienroute sauber kontrolliert wurde. Das ist ein guter Sicherheitsmechanismus: Business Central verhindert so, dass Stammdaten mit einer unklaren Nummernlogik entstehen.
+Eine Aenderung an diesen Kontrollkaestchen zaehlt erst dann als erledigt, wenn sie nach erneutem Oeffnen der Nummernserie noch sichtbar ist. Fuer den geplanten Kreditor `U-VEND-100` ist vor allem `Manuelle Anz.` wichtig, weil die Nummer bewusst eingetippt werden soll. In der aktuellen Universaarl-Ansicht ist diese Option fuer `U-VEND` noch nicht verlaesslich aktiv. Deshalb bleibt der erste Kreditor gesperrt, bis diese Nummernserienroute sauber kontrolliert wurde. Das ist ein guter Sicherheitsmechanismus: Business Central verhindert so, dass Stammdaten mit einer unklaren Nummernlogik entstehen.

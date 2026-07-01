@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-036D2D-VENDOR-NUMBER-SERIES-READONLY-ROUTE-DECISION",
-  "status": "planned",
+  "status": "done",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -148,48 +148,74 @@
     }
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-036D2C-VENDOR-NUMBER-SERIES-CARD-OR-PERSONALIZATION-ROUTE",
+    "currentCase": "TARGET-036D2D-VENDOR-NUMBER-SERIES-READONLY-ROUTE-DECISION",
     "plannedNextCaseBeforeReview": "TARGET-036D3-FIRST-VENDOR-CONTROLLED-WRITE-RETRY",
-    "lastEvidenceSummary": "TARGET-036D2B blocked before setup change because the U-VEND Standardnr. checkbox could not be safely mapped to the row.",
+    "lastEvidenceSummary": "TARGET-036D2C proved U-VEND read-only on Number Series Page 456 and Page Inspection mapped Table 308 fields Default Nos. and Manual Nos.; it did not change setup or prove either checkbox active.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "The vendor retry still needs a supported U-VEND numbering decision. D2C is read-only and only discovers whether a safer route exists.",
+    "reason": "Vendor retry is still blocked because U-VEND numbering is unresolved. Since the planned first vendor number is U-VEND-100, Microsoft Learn supports Manual Nos. as the deliberate next numbering strategy; setup must be fitted before vendor creation.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-036D2D-VENDOR-NUMBER-SERIES-READONLY-ROUTE-DECISION",
+        "caseId": "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE",
         "status": "ready-next",
-        "reason": "Route signals were observed and must be reviewed before a narrow write case."
+        "reason": "Smallest source-backed write: enable Manual Nos. only for U-VEND with before/after/reopen proof. No vendor is created in this case."
       },
       {
         "caseId": "TARGET-036D3-FIRST-VENDOR-CONTROLLED-WRITE-RETRY",
-        "status": "blocked",
-        "reason": "Blocked until U-VEND Standardnr. is active after reopen or another numbering route is deliberately selected."
+        "status": "ready-after-current",
+        "reason": "Retry becomes sensible only after U-VEND Manual Nos. is visibly active after reopen."
       },
       {
         "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
         "status": "needs-setup-first",
-        "reason": "Item creation should wait until the vendor-numbering blocker is closed or consciously parked."
+        "reason": "Item creation should wait until the vendor-numbering blocker is closed or explicitly parked."
       },
       {
         "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
         "status": "ready-after-current",
-        "reason": "Useful after the numbering decision to re-check remaining foundation blockers."
+        "reason": "Useful after numbering route closure to re-check foundation blockers before broader master data."
       }
     ],
     "queueChangesMade": [
-      "Prepare TARGET-036D2D-VENDOR-NUMBER-SERIES-READONLY-ROUTE-DECISION after D2C."
+      "Marked TARGET-036D2D-VENDOR-NUMBER-SERIES-READONLY-ROUTE-DECISION done as local decision.",
+      "Inserted TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE before vendor retry."
     ],
-    "selectedNextCase": "TARGET-036D2D-VENDOR-NUMBER-SERIES-READONLY-ROUTE-DECISION",
-    "whySelectedNextCaseIsBest": "It reviews the captured route signals before any setup write.",
+    "selectedNextCase": "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It resolves the specific first-vendor blocker with one narrow, source-backed setup field that matches the intended readable vendor number U-VEND-100, while keeping Standard Nos., master data, drafts, Preview and Posting locked.",
     "risksBeforeNextCase": [
-      "Do not toggle Standardnr. or Manuelle Anz. without an explicit write case.",
-      "Do not create vendor/customer/item records.",
-      "Do not use API shortcuts.",
-      "Do not confirm save/setup/post/preview/delete dialogs."
+      "Do not toggle Standardnr. / Default Nos. in the manual-numbering case.",
+      "Do not create the vendor in D2E.",
+      "Do not change number-series lines or other number series.",
+      "Do not use row-menu screenshots as value proof without selected-row QA."
     ],
     "requiredPreparation": [
-      "Review D2C action inventory, hover context and Page Inspection result before selecting a write route."
+      "Use Page 456 U-VEND selected-row proof before write.",
+      "Use Liste bearbeiten or another explicit edit affordance only if the U-VEND row and Manual Nos. cell are both mapped.",
+      "Capture before, after and reopen screenshots plus Page Inspection/field context if needed."
     ]
   },
   "createdAt": "2026-07-01T11:09:16.294Z",
-  "updatedAt": "2026-07-01T11:09:16.294Z"
+  "updatedAt": "2026-07-01T11:19:00.211Z",
+  "completedAt": "2026-07-01T11:19:00.211Z",
+  "resultPath": "playwright\\projects\\fibu-book5\\evidence\\target-036d2d-vendor-number-series-readonly-route-decision\\TARGET-036D2D-result.json",
+  "result": "Manual Nos. is the selected source-backed next route for the planned readable first vendor number U-VEND-100; no BC write was done in D2D.",
+  "selectedOption": "manual-vendor-numbering-route",
+  "selectedNextCase": "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE",
+  "proved": [
+    "D2D did not change Business Central data.",
+    "D2C Page Inspection mapped U-VEND on Page 456 / Table 308 and fields Default Nos. and Manual Nos.",
+    "Microsoft Learn supports Manual Nos. as the route for allowing users to enter numbers manually.",
+    "The next vendor retry remains blocked until U-VEND Manual Nos. is active after reopen proof."
+  ],
+  "notProved": [
+    "U-VEND Manual Nos. / Manuelle Anz. is not yet active.",
+    "U-VEND Default Nos. / Standardnr. is not active and is not selected as the next write target.",
+    "No vendor U-VEND-100 exists yet.",
+    "No Vendor Posting Group, VAT group, payment term, document, Preview Posting or Posting behavior is proven.",
+    "No final legal numbering or accounting compliance claim is made."
+  ],
+  "warnings": [
+    "D2E must not repeat coordinate or untrusted DOM checkbox routes.",
+    "D2E may only change Manual Nos. for U-VEND if row and field are both confidently mapped.",
+    "Standard Nos. remains a separate later decision for automatic numbering."
+  ]
 }

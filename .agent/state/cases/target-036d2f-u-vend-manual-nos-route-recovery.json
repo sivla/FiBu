@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Recover a safe U-VEND Manual Nos route without vendor creation",
+  "purpose": "Find a safer Business Central UI route for enabling or proving U-VEND Manual Nos after list checkbox/cell routes did not persist.",
+  "sourceCases": [
+    "TARGET-036D2C-VENDOR-NUMBER-SERIES-CARD-OR-PERSONALIZATION-ROUTE",
+    "TARGET-036D2D-VENDOR-NUMBER-SERIES-READONLY-ROUTE-DECISION",
+    "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE"
+  ],
+  "effectiveBcActionsAllowed": true,
+  "mayRunPlaywright": true,
+  "taskClass": "wizard_work",
+  "smartDecisionRequired": true,
+  "allowedActions": [
+    "open-playthru-business-central",
+    "confirm-UNIVERSAARL-DE-context",
+    "open-number-series-page-456",
+    "select-or-filter-U-VEND-row",
+    "capture-screenshot-qa-before-any-action",
+    "inspect-card-details-personalize-page-inspection-or-supported-edit-route",
+    "toggle-only-u-vend-manual-nos-if-a-new-safer-route-is-proven",
+    "capture-after-and-reopen-proof",
+    "write-result-json-and-next-step-decision"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "create-customer",
+    "create-vendor",
+    "create-item",
+    "change-number-series-lines",
+    "toggle-standard-nos",
+    "change-non-U-VEND-series",
+    "change-sales-or-purchase-doc-number-series",
+    "change-posting-setup",
+    "change-vat-setup",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "repeat-target-036d2-row-scoped-coordinate-click-route",
+    "repeat-target-036d2b-untrusted-dom-checkbox-route",
+    "repeat-target-036d2e-screenshot-coordinate-fallback-without-new-signal",
+    "treat-more-options-row-menu-as-u-vend-value-proof",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "smartDecision": {
+    "whyNow": "D2E proved the visible list route is not sufficient: DOM checkbox mapping was unavailable, exact cell discovery was too strict, and screenshot-coordinate fallback did not make U-VEND Manual Nos active after reopen.",
+    "evidenceBasis": [
+      "playwright/projects/fibu-book5/evidence/target-036d2e-u-vend-manual-nos-controlled-write-gate/TARGET-036D2E-result.json"
+    ],
+    "sourceBasis": [
+      "Microsoft Learn Create number series"
+    ],
+    "fieldsToChange": [
+      "U-VEND Manual Nos. / Manuelle Anz. only, only if a new route is proven"
+    ],
+    "fieldsToLeaveUntouched": [
+      "U-VEND Default Nos. / Standardnr.",
+      "No. Series Lines",
+      "all other No. Series rows"
+    ],
+    "risk": "Business Central list focus can drift and visible checkbox columns are not necessarily reliable write controls.",
+    "fallback": "Stop with a blocker and keep vendor retry locked if no card/detail/personalization/Page-Inspection-backed route is found.",
+    "screenshotProof": "Every route attempt must include screenshot QA before/after/reopen, and the image must show U-VEND, not U-SO or another row.",
+    "bookExplanation": "The book can explain Manual Nos. as a prerequisite, but not claim the Universaarl vendor route is ready until this setup is proven."
+  },
+  "entryCriteria": [
+    "D2E result exists and is blocked without setup change.",
+    "Business Central context is playthru / UNIVERSAARL-DE.",
+    "No vendor creation retry is attempted before Manual Nos. is proven active."
+  ],
+  "stopIf": [
+    "The active instance is not playthru.",
+    "The active company is not UNIVERSAARL-DE.",
+    "U-VEND row is not uniquely visible.",
+    "The route focuses U-SO or another row.",
+    "Manual Nos. cannot be proven active after reopen.",
+    "Any dialog asks to save unrelated setup, create a record, post, preview, delete or switch company."
+  ],
+  "acceptanceCriteria": [
+    "A new route signal is used, not the D2/D2B/D2E failed routes.",
+    "Before screenshot shows U-VEND and current Manual Nos. state.",
+    "Only U-VEND Manual Nos. is changed if a safe route exists.",
+    "Reopen proof shows U-VEND Manual Nos. active, or the case blocks without setup change.",
+    "No vendor/customer/item/document is created."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-036D2D selected Manual Nos for explicit U-VEND-100-style vendor numbers based on Microsoft Learn and Page 456 field evidence.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The first vendor cannot be created with the planned manual number until U-VEND Manual Nos is active after reopen proof.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Vendor write remains blocked until U-VEND Manual Nos is active."
+      },
+      {
+        "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+        "status": "ready-after-current",
+        "reason": "Item setup can continue after vendor numbering no longer blocks vendor foundation."
+      },
+      {
+        "caseId": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
+        "status": "ready-after-current",
+        "reason": "Checkpoint is useful only after vendor and item foundation are resolved."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Sales process needs master data and posting setup readiness before documents."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+    "whySelectedNextCaseIsBest": "The setup route is still not proven; recovery must inspect a safer UI route before any vendor attempt.",
+    "risksBeforeNextCase": [
+      "Manual Nos route remains ambiguous."
+    ],
+    "requiredPreparation": [
+      "Inspect row/card/personalization route without changing other number series."
+    ]
+  },
+  "createdAt": "2026-07-01T11:31:24.302Z",
+  "updatedAt": "2026-07-01T11:31:24.302Z"
+}

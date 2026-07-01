@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T11:09:16.294Z",
+  "updatedAt": "2026-07-01T11:31:24.302Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-vendor-number-series-route-decision",
-  "activeCase": "TARGET-036D2D-VENDOR-NUMBER-SERIES-READONLY-ROUTE-DECISION",
-  "active_case_file": ".agent/state/cases/target-036d2d-vendor-number-series-readonly-route-decision.json",
+  "activeArea": "universaarl-vendor-number-series-route-recovery",
+  "activeCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+  "active_case_file": ".agent/state/cases/target-036d2f-u-vend-manual-nos-route-recovery.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
-  "requiresStrongModel": true,
+  "requiresStrongModel": false,
   "requiredPreflightChecks": [
     "agent:preflight",
     "agent:state:validate",
@@ -19,22 +19,26 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-target-036d2c-result-json",
-    "review-screenshot-qa",
-    "review-page-inspection-field-mapping",
-    "decide-next-narrow-case",
-    "write-decision-result-or-case-update"
+    "open-playthru-business-central",
+    "confirm-UNIVERSAARL-DE-context",
+    "open-number-series-page-456",
+    "select-or-filter-U-VEND-row",
+    "capture-screenshot-qa-before-any-action",
+    "inspect-card-details-personalize-page-inspection-or-supported-edit-route",
+    "toggle-only-u-vend-manual-nos-if-a-new-safer-route-is-proven",
+    "capture-after-and-reopen-proof",
+    "write-result-json-and-next-step-decision"
   ],
   "forbiddenActions": [
     "leave-instance",
     "company-switch",
-    "run-playwright-live-test",
     "create-customer",
     "create-vendor",
     "create-item",
     "change-number-series-lines",
     "toggle-standard-nos",
-    "toggle-manual-nos",
+    "change-non-U-VEND-series",
+    "change-sales-or-purchase-doc-number-series",
     "change-posting-setup",
     "change-vat-setup",
     "create-document-or-draft",
@@ -44,14 +48,15 @@
     "api-shortcut",
     "repeat-target-036d2-row-scoped-coordinate-click-route",
     "repeat-target-036d2b-untrusted-dom-checkbox-route",
+    "repeat-target-036d2e-screenshot-coordinate-fallback-without-new-signal",
     "treat-more-options-row-menu-as-u-vend-value-proof",
     "commit-secrets",
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence"
   ],
-  "nextCase": "TARGET-036D2D-VENDOR-NUMBER-SERIES-READONLY-ROUTE-DECISION",
-  "nextStep": "Run TARGET-036D2D: decide the safe U-VEND numbering route from D2C evidence before any setup write or vendor retry.",
+  "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+  "nextStep": "Run TARGET-036D2F: recover a safer U-VEND Manual Nos route; do not create a vendor until Manual Nos. is proven active after reopen.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -234,7 +239,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "TARGET-036D2C proved Page Inspection context for U-VEND on Page 456 / Table 308 and showed that More Options row-menu evidence is not a U-VEND value proof; D2D must choose the next safe numbering route.",
+  "currentCoverageFocus": "TARGET-036D2E attempted the U-VEND Manual Nos write gate in playthru / UNIVERSAARL-DE and blocked without setup change; next step is route recovery before vendor creation.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -3726,46 +3731,49 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-036D2C-VENDOR-NUMBER-SERIES-CARD-OR-PERSONALIZATION-ROUTE",
+    "currentCase": "TARGET-036D2D-VENDOR-NUMBER-SERIES-READONLY-ROUTE-DECISION",
     "plannedNextCaseBeforeReview": "TARGET-036D3-FIRST-VENDOR-CONTROLLED-WRITE-RETRY",
-    "lastEvidenceSummary": "TARGET-036D2B blocked before setup change because the U-VEND Standardnr. checkbox could not be safely mapped to the row.",
+    "lastEvidenceSummary": "TARGET-036D2C proved U-VEND read-only on Number Series Page 456 and Page Inspection mapped Table 308 fields Default Nos. and Manual Nos.; it did not change setup or prove either checkbox active.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "The vendor retry still needs a supported U-VEND numbering decision. D2C is read-only and only discovers whether a safer route exists.",
+    "reason": "Vendor retry is still blocked because U-VEND numbering is unresolved. Since the planned first vendor number is U-VEND-100, Microsoft Learn supports Manual Nos. as the deliberate next numbering strategy; setup must be fitted before vendor creation.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-036D2D-VENDOR-NUMBER-SERIES-READONLY-ROUTE-DECISION",
+        "caseId": "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE",
         "status": "ready-next",
-        "reason": "Route signals were observed and must be reviewed before a narrow write case."
+        "reason": "Smallest source-backed write: enable Manual Nos. only for U-VEND with before/after/reopen proof. No vendor is created in this case."
       },
       {
         "caseId": "TARGET-036D3-FIRST-VENDOR-CONTROLLED-WRITE-RETRY",
-        "status": "blocked",
-        "reason": "Blocked until U-VEND Standardnr. is active after reopen or another numbering route is deliberately selected."
+        "status": "ready-after-current",
+        "reason": "Retry becomes sensible only after U-VEND Manual Nos. is visibly active after reopen."
       },
       {
         "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
         "status": "needs-setup-first",
-        "reason": "Item creation should wait until the vendor-numbering blocker is closed or consciously parked."
+        "reason": "Item creation should wait until the vendor-numbering blocker is closed or explicitly parked."
       },
       {
         "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
         "status": "ready-after-current",
-        "reason": "Useful after the numbering decision to re-check remaining foundation blockers."
+        "reason": "Useful after numbering route closure to re-check foundation blockers before broader master data."
       }
     ],
     "queueChangesMade": [
-      "Prepare TARGET-036D2D-VENDOR-NUMBER-SERIES-READONLY-ROUTE-DECISION after D2C."
+      "Marked TARGET-036D2D-VENDOR-NUMBER-SERIES-READONLY-ROUTE-DECISION done as local decision.",
+      "Inserted TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE before vendor retry."
     ],
-    "selectedNextCase": "TARGET-036D2D-VENDOR-NUMBER-SERIES-READONLY-ROUTE-DECISION",
-    "whySelectedNextCaseIsBest": "It reviews the captured route signals before any setup write.",
+    "selectedNextCase": "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It resolves the specific first-vendor blocker with one narrow, source-backed setup field that matches the intended readable vendor number U-VEND-100, while keeping Standard Nos., master data, drafts, Preview and Posting locked.",
     "risksBeforeNextCase": [
-      "Do not toggle Standardnr. or Manuelle Anz. without an explicit write case.",
-      "Do not create vendor/customer/item records.",
-      "Do not use API shortcuts.",
-      "Do not confirm save/setup/post/preview/delete dialogs."
+      "Do not toggle Standardnr. / Default Nos. in the manual-numbering case.",
+      "Do not create the vendor in D2E.",
+      "Do not change number-series lines or other number series.",
+      "Do not use row-menu screenshots as value proof without selected-row QA."
     ],
     "requiredPreparation": [
-      "Review D2C action inventory, hover context and Page Inspection result before selecting a write route."
+      "Use Page 456 U-VEND selected-row proof before write.",
+      "Use Liste bearbeiten or another explicit edit affordance only if the U-VEND row and Manual Nos. cell are both mapped.",
+      "Capture before, after and reopen screenshots plus Page Inspection/field context if needed."
     ]
   },
   "permissionBlocker": {
@@ -7869,5 +7877,44 @@
     "previewPosting": false,
     "posted": false,
     "nextCase": "TARGET-036D2D-VENDOR-NUMBER-SERIES-READONLY-ROUTE-DECISION"
+  },
+  "latestTarget036D2D": {
+    "caseId": "TARGET-036D2D-VENDOR-NUMBER-SERIES-READONLY-ROUTE-DECISION",
+    "status": "observed",
+    "selectedOption": "manual-vendor-numbering-route",
+    "resultPath": "playwright\\projects\\fibu-book5\\evidence\\target-036d2d-vendor-number-series-readonly-route-decision\\TARGET-036D2D-result.json",
+    "nextCase": "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE",
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "previewPosting": false,
+    "posted": false
+  },
+  "latestTarget036D2E": {
+    "caseId": "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE",
+    "status": "blocked",
+    "resultPath": "playwright\\projects\\fibu-book5\\evidence\\target-036d2e-u-vend-manual-nos-controlled-write-gate\\TARGET-036D2E-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "setupChanged": false,
+    "setupChangeAttempted": true,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "blockedBy": [
+      "U-VEND Manual Nos is not active after reopen proof."
+    ],
+    "warnings": [
+      "The final route used a screenshot-QA coordinate fallback; the result is accepted only if the reopen proof shows U-VEND Manual Nos active."
+    ],
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-036d2e-010-before-u-vend-manual-nos.png",
+      "playwright/projects/fibu-book5/img/target-036d2e-020-after-u-vend-manual-nos-attempt.png",
+      "playwright/projects/fibu-book5/img/target-036d2e-030-reopen-proof.png"
+    ],
+    "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+    "screenshotQa": "Visual QA: U-VEND remained selected after reopen and Manual Nos. stayed unchecked. Earlier screenshot-coordinate attempt can focus the wrong row; the final result did not accept any setup success without reopen proof.",
+    "updatedAt": "2026-07-01T11:31:24.302Z"
   }
 }

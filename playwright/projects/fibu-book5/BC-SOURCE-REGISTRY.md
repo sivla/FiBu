@@ -28,7 +28,7 @@ Diese Registry ordnet Quellen fuer das Universaarl-Buch und den Autopilot. Sie e
 | Microsoft Learn: Searching, sorting, and filtering data in Business Central | 1 | Look and Feel, Listen, Filter | Such-, Sortier- und Filterprinzipien, Filterausdruecke, `Filter list by`, `Filter totals by`, Reportfilter | Beweis, dass Universaarl-Daten existieren oder ein konkreter Filter im Zielmandanten funktioniert | Produkt-/UI-Claim; Universaarl-Beispiel braucht eigene Evidence | geprueft 2026-06-29 |
 | Microsoft Learn: Analyze list page and query data using data analysis mode | 1 | Look and Feel, Analysis Mode | read-only Analysemodus, Gruppierung/Filterung/Summen auf Listen- oder Querydaten | Buchungs-, Posting- oder Reportfinalnachweis | Produkt-/UI-Claim; konkrete Universaarl-Auswertung braucht eigene Evidence | geprueft 2026-06-29 |
 | Microsoft Learn: Personalize your workspace | 1 | Look and Feel, Debugging, Personalisierung | Felder, Spalten, Aktionen und Oberflaechenbereiche fuer den Benutzer sichtbar machen | Tabellenlogik, Buchungswirkung oder allgemeingueltige Sicht fuer alle Benutzer | Produkt-/UI-Claim; konkrete Universaarl-Personalisierung braucht eigene Evidence und Gate | geprueft 2026-06-30 |
-| Microsoft Learn: Create number series | 1 | Number Series, No. Series Lines | Nummernseriencodes, Lines, Starting Date, Starting No., Ending No., Manual Nos., Allow Gaps, spaetere Setup-Zuweisung | konkrete Universaarl-Werte, persistierte Start-/Endnummern, deutsche Rechts-/Steuerfinalclaims | Produkt-/Setupclaim; Universaarl braucht TARGET-016I Write-Gate und spaetere Setup-/Beleg-Evidence | geprueft 2026-06-30, TARGET-016H |
+| Microsoft Learn: Create number series | 1 | Number Series, No. Series Lines | Nummernseriencodes, Lines, Starting Date, Starting No., Ending No., Default Nos., Manual Nos., Allow Gaps, spaetere Setup-Zuweisung | konkrete Universaarl-Werte, persistierte Start-/Endnummern, deutsche Rechts-/Steuerfinalclaims | Produkt-/Setupclaim; Universaarl braucht TARGET-016I Write-Gate und spaetere Setup-/Beleg-Evidence | geprueft 2026-07-01, TARGET-036D2D |
 | Microsoft Learn: View / set up chart of accounts | 1 | Chart of Accounts, G/L Accounts, Kontenplan | Kontenplan als Finanzkontenverzeichnis; Konten koennen in Business Central eingerichtet/geaendert werden | konkreter Universaarl-Kontenplan, SKR04-/Steuerberater-Finalitaet, USt-Kontenwirkung | Produkt-/Setupclaim; Universaarl braucht TARGET-026E Plan und spaeter UI-Reopen-/Posting-Evidence | geprueft 2026-06-30, TARGET-026D |
 | Microsoft Learn: Set up value-added tax | 1 | VAT Setup, USt, Posting Setup | VAT Business Posting Groups, VAT Product Posting Groups, VAT Posting Setup als Produktstandard | deutsche Steuerrechtsbehauptung, konkrete Universaarl-19-Prozent-USt, Preview-/Posting-/VAT-Entry-Beweis | Produkt-/Setupclaim; Universaarl braucht TARGET-020 Kontext plus spaeter Setup-Fit, Preview und VAT Entries | geprueft 2026-06-30, TARGET-020 |
 | Microsoft Learn: Work with dimensions | 1 | Dimensions, Global Dimensions, Shortcut Dimensions | Dimensionen, Dimensionswerte, globale Dimensionen und Shortcut-Dimensionen als Produktstandard; General Ledger Setup als globaler Dimensionskontext | konkreter Universaarl-Persistenzbeweis fuer `PRODUCTLINE`/`COSTCENTER`, Default Dimensions, Dimension Set Entries oder Reportingwirkung | Produkt-/Setupclaim; Universaarl braucht TARGET-024F Page-118-Reopen-Proof und spaeter Entry-/Reporting-Evidence | geprueft 2026-06-30, TARGET-024E |
@@ -107,6 +107,18 @@ Fuer Universaarl folgt daraus:
 - Der naechste praktische Write-Gate darf nur den offiziellen Lines-Pfad testen: richtige `U-*` Nummernserie waehlen, `Zeilen`, `Neu`, `Startdatum`, `Startnr.`, `Endnr.`; danach Reopen-Proof.
 - `Luecken in Nummern zulassen` bleibt default-locked und darf nicht als Nebeneffekt geaendert werden.
 - Setup-Zuweisung an Sales/Purchase/Inventory bleibt bis nach sichtbarer Line-Persistenz gesperrt.
+
+## TARGET-036D2D Kreditoren-Nummernroute
+
+Microsoft Learn `Create number series` trennt die automatische Nummernvergabe ueber `Default Nos.` von der manuellen Nummerneingabe ueber `Manual Nos.`. TARGET-036D2C hat dazu in `UNIVERSAARL-DE` die technische Seitenpruefung auf Page `No. Series (456, List)` / Tabelle `No. Series (308)` fuer `U-VEND` erfasst: `Default Nos. (3, Boolean)` und `Manual Nos. (4, Boolean)`.
+
+Fuer Universaarl folgt daraus:
+
+- Der geplante erste Lieferant verwendet den lesbaren Code `U-VEND-100`.
+- Dafuer ist als naechster enger Setup-Fit `Manual Nos. / Manuelle Anz.` fuer `U-VEND` sinnvoller als ein weiterer blinder `Standardnr.`-Versuch.
+- `Standardnr. / Default Nos.` bleibt eine spaetere separate Entscheidung fuer automatische Kreditorennummern.
+- TARGET-036D2E darf nur `U-VEND Manual Nos.` aendern, wenn Zeile und Feld vor dem Write eindeutig sichtbar/gemappt sind.
+- Nach TARGET-036D2E zaehlt nur ein Reopen-Proof; Page Inspection allein beweist keine gespeicherte Checkbox.
 
 ## TARGET-024E Global-Dimensions-Quellenentscheidung
 

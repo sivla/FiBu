@@ -1,15 +1,33 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE",
+  "purpose": "autopilot-result-normalized",
   "caseId": "TARGET-036D2D-VENDOR-NUMBER-SERIES-READONLY-ROUTE-DECISION",
-  "status": "blocked",
-  "runType": "local-vendor-number-series-route-decision",
+  "source": "local-source-backed-number-series-decision",
+  "resultStatus": "observed",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "bcRun": true,
-  "playwrightRun": false,
-  "summary": "U-VEND Manual Nos write gate blocked: U-VEND Manual Nos is not active after reopen proof.",
-  "changedInBC": false,
+  "page": "No. Series / Nummernserie",
+  "pageId": 456,
+  "actionsTaken": [
+    "Reviewed TARGET-036D2C read-only U-VEND Page Inspection evidence.",
+    "Reviewed Microsoft Learn Create number series behavior for Default Nos. and Manual Nos.",
+    "Selected Manual Nos. / Manuelle Anz. as the next narrow setup-fit route because first vendor code is planned as U-VEND-100.",
+    "Created follow-up case TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE."
+  ],
+  "actionsNotTaken": [
+    "No Business Central UI was opened in D2D.",
+    "No Playwright live test was run in D2D.",
+    "No Standardnr. / Default Nos. checkbox was toggled.",
+    "No Manual Nos. / Manuelle Anz. checkbox was toggled in D2D.",
+    "No number-series line was changed.",
+    "No vendor, customer or item was created.",
+    "No document or draft was created.",
+    "No Preview Posting was executed.",
+    "No Posting was executed.",
+    "No payment was executed.",
+    "No API shortcut was used.",
+    "No company switch was executed."
+  ],
   "setupChanged": false,
   "setupChangeAttempted": false,
   "masterDataChanged": false,
@@ -23,6 +41,18 @@
     "playwright/projects/fibu-book5/img/target-036d2c-020-hover-checkbox-columns.png",
     "playwright/projects/fibu-book5/img/target-036d2c-030-more-options-context.png",
     "playwright/projects/fibu-book5/img/target-036d2c-040-page-inspection-attempt.png"
+  ],
+  "sourceBasis": [
+    {
+      "title": "Microsoft Learn: Create number series - Behavior of the No. field on documents and cards",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/ui-create-number-series",
+      "usedFor": "Default Nos. can support automatic numbering; Manual Nos. supports manual entry of a No. value such as U-VEND-100."
+    },
+    {
+      "title": "Microsoft Learn: Table No. Series",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/application/business-foundation/table/microsoft.foundation.noseries.no.-series",
+      "usedFor": "Table 308 contains Boolean fields Default Nos. and Manual Nos.; this matches D2C Page Inspection."
+    }
   ],
   "proved": [
     "D2D did not change Business Central data.",
@@ -43,10 +73,7 @@
     "D2E may only change Manual Nos. for U-VEND if row and field are both confidently mapped.",
     "Standard Nos. remains a separate later decision for automatic numbering."
   ],
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-036d2e-u-vend-manual-nos-controlled-write-gate/TARGET-036D2E-result.json",
-  "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-  "nextStep": "Run TARGET-036D2E: enable/prove U-VEND Manual Nos. only if U-VEND row and Manual Nos. field are safely mapped; no vendor retry yet.",
-  "nextStepDecisionCard": {
+  "nextStepDecision": {
     "currentCase": "TARGET-036D2D-VENDOR-NUMBER-SERIES-READONLY-ROUTE-DECISION",
     "plannedNextCaseBeforeReview": "TARGET-036D3-FIRST-VENDOR-CONTROLLED-WRITE-RETRY",
     "lastEvidenceSummary": "TARGET-036D2C proved U-VEND read-only on Number Series Page 456 and Page Inspection mapped Table 308 fields Default Nos. and Manual Nos.; it did not change setup or prove either checkbox active.",
@@ -92,18 +119,32 @@
       "Capture before, after and reopen screenshots plus Page Inspection/field context if needed."
     ]
   },
-  "updatedAt": "2026-07-01T11:31:24.302Z",
-  "activeCase": "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE",
-  "completedAt": "2026-07-01T11:29:48.571Z",
-  "activeCaseAfterRun": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-  "checksRequiredAfterRun": [
-    "agent:preflight",
-    "agent:context",
-    "agent:dry-run",
-    "agent:run-plan",
-    "agent:result-normalize",
-    "agent:state-finalize",
-    "check:encoding",
-    "git diff --check"
-  ]
+  "nextCase": "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE",
+  "changedFiles": [
+    "playwright\\projects\\fibu-book5\\evidence\\target-036d2d-vendor-number-series-readonly-route-decision\\TARGET-036D2D-result.json",
+    "playwright\\projects\\fibu-book5\\evidence\\target-036d2d-vendor-number-series-readonly-route-decision\\README.md",
+    ".agent/state/cases/target-036d2d-vendor-number-series-readonly-route-decision.json",
+    ".agent/state/cases/target-036d2e-u-vend-manual-nos-controlled-write-gate.json",
+    ".agent/state/current.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/marathon_queue.json",
+    ".agent/state/coverage_state.json",
+    "playwright/projects/fibu-book5/BC-SOURCE-REGISTRY.md",
+    "playwright/projects/fibu-book5/BC-MICROSOFT-LEARN-MAPPING.md",
+    "playwright/projects/fibu-book5/BC-CARD-ATLAS.md",
+    "playwright/projects/fibu-book5/BC-COVERAGE-MATRIX.md",
+    "playwright/projects/fibu-book5/book-drafts/universaarl-foundation-ch06-draft.md"
+  ],
+  "evidenceRefs": [
+    "playwright\\projects\\fibu-book5\\evidence\\target-036d2d-vendor-number-series-readonly-route-decision\\TARGET-036D2D-result.json",
+    "playwright/projects/fibu-book5/evidence/target-036d2c-vendor-number-series-card-or-personalization-route/TARGET-036D2C-result.json",
+    "playwright/projects/fibu-book5/img/target-036d2c-010-u-vend-readonly-context.png",
+    "playwright/projects/fibu-book5/img/target-036d2c-020-hover-checkbox-columns.png",
+    "playwright/projects/fibu-book5/img/target-036d2c-030-more-options-context.png",
+    "playwright/projects/fibu-book5/img/target-036d2c-040-page-inspection-attempt.png"
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "statePatch": {},
+  "reason": "Manual Nos. is the selected source-backed next route for the planned readable first vendor number U-VEND-100; no BC write was done in D2D."
 }

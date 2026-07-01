@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE",
+  "source": "playwright-universaarl-vendor-number-series-manual-nos-write-gate",
+  "resultStatus": "blocked",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=456&company=UNIVERSAARL-DE",
+  "page": "No. Series / Nummernserie",
+  "pageId": 456,
+  "table": "No. Series",
+  "tableId": 308,
+  "sourceBasis": [
+    {
+      "title": "Microsoft Learn: Create number series",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/ui-create-number-series",
+      "claim": "Manual Nos. allows users to manually enter numbers for cards or documents using the number series."
+    }
+  ],
+  "actionsTaken": [
+    "Selected U-VEND before Manual Nos diagnosis.",
+    "Enabled Liste bearbeiten / Edit List before the controlled Manual Nos write gate.",
+    "Clicked the screenshot-QA visible U-VEND / Manuelle Anz. cell coordinate after DOM cell discovery was too strict."
+  ],
+  "actionsNotTaken": [
+    "No company switch.",
+    "No customer, vendor or item card was created.",
+    "No sales or purchase document draft was created.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No payment.",
+    "No API shortcut.",
+    "No other number-series code was intentionally changed.",
+    "Standardnr. / Default Nos. was not intentionally changed."
+  ],
+  "setupChanged": false,
+  "changedFields": [],
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/target-036d2e-010-before-u-vend-manual-nos.png",
+    "playwright/projects/fibu-book5/img/target-036d2e-020-after-u-vend-manual-nos-attempt.png",
+    "playwright/projects/fibu-book5/img/target-036d2e-030-reopen-proof.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-036d2e-u-vend-manual-nos-controlled-write-gate/target-036d2e-010-before-u-vend-manual-nos.snapshot.json",
+    "playwright/projects/fibu-book5/evidence/target-036d2e-u-vend-manual-nos-controlled-write-gate/target-036d2e-020-after-u-vend-manual-nos-attempt.snapshot.json",
+    "playwright/projects/fibu-book5/evidence/target-036d2e-u-vend-manual-nos-controlled-write-gate/target-036d2e-030-reopen-proof.snapshot.json"
+  ],
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "U-VEND was inspected on Page 456 No. Series."
+  ],
+  "notProved": [
+    "U-VEND Manual Nos. was not proven active after reopen.",
+    "No vendor exists yet.",
+    "No posting, preview or document process was tested."
+  ],
+  "blockedBy": [
+    "U-VEND Manual Nos is not active after reopen proof."
+  ],
+  "warnings": [
+    "The final route used a screenshot-QA coordinate fallback; the result is accepted only if the reopen proof shows U-VEND Manual Nos active."
+  ],
+  "flags": {
+    "noCompanySwitch": true,
+    "noMasterDataChange": true,
+    "noDraft": true,
+    "noPreview": true,
+    "noPost": true,
+    "noPayment": true,
+    "noApiShortcut": true
+  },
+  "nextStepDecision": {
+    "currentCase": "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-036D2D selected Manual Nos for explicit U-VEND-100-style vendor numbers based on Microsoft Learn and Page 456 field evidence.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The first vendor cannot be created with the planned manual number until U-VEND Manual Nos is active after reopen proof.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Vendor write remains blocked until U-VEND Manual Nos is active."
+      },
+      {
+        "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+        "status": "ready-after-current",
+        "reason": "Item setup can continue after vendor numbering no longer blocks vendor foundation."
+      },
+      {
+        "caseId": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
+        "status": "ready-after-current",
+        "reason": "Checkpoint is useful only after vendor and item foundation are resolved."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Sales process needs master data and posting setup readiness before documents."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+    "whySelectedNextCaseIsBest": "The setup route is still not proven; recovery must inspect a safer UI route before any vendor attempt.",
+    "risksBeforeNextCase": [
+      "Manual Nos route remains ambiguous."
+    ],
+    "requiredPreparation": [
+      "Inspect row/card/personalization route without changing other number series."
+    ]
+  },
+  "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+  "timestamp": "2026-07-01T11:29:48.571Z",
+  "safeToFinalizeState": true,
+  "requiresReview": false,
+  "statePatch": {
+    "current": {
+      "activeCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+      "activeArea": "universaarl-vendor-number-series-route-recovery",
+      "nextStep": "The setup route is still not proven; recovery must inspect a safer UI route before any vendor attempt."
+    },
+    "lastRunSummary": {
+      "runId": "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE",
+      "completedAt": "2026-07-01T11:29:48.571Z",
+      "status": "blocked",
+      "instance": "playthru",
+      "company": "UNIVERSAARL-DE",
+      "bcRun": true,
+      "setupChanged": false,
+      "masterDataChanged": false,
+      "draftCreated": false,
+      "previewPosting": false,
+      "posted": false,
+      "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+      "summary": "U-VEND Manual Nos write gate blocked: U-VEND Manual Nos is not active after reopen proof."
+    }
+  }
+}
