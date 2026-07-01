@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027C2-VAT-PAGE-SURFACE-RECOVERY",
+  "id": "TARGET-027C2-VAT-PAGE-SURFACE-RECOVERY",
+  "status": "pending",
+  "area": "universaarl-vat-setup-playwright-route-recovery",
+  "goal": "Recover a visible, screenshot-accepted VAT Business/Product Posting Groups page surface before any INLAND/VAT19 write is retried.",
+  "sourceCompany": "UNIVERSAARL-DE",
+  "targetWorld": "Universaarl",
+  "sourceCases": [
+    "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE"
+  ],
+  "allowedActions": [
+    "open-page-470-471-readonly",
+    "inspect-visible-form-grid-surface",
+    "capture-role-center-rejected-screenshots",
+    "capture-accepted-vat-page-screenshots-if-found",
+    "update-playwright-helper-patterns"
+  ],
+  "forbiddenActions": [
+    "create-or-edit-vat-groups",
+    "create-vat-posting-setup-matrix-row",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-german-19-percent-vat-final-proof"
+  ],
+  "acceptanceCriteria": [
+    "The run stays in playthru / UNIVERSAARL-DE.",
+    "At least one VAT group page surface is accepted only when screenshot and visible text show the target list, not Role Center or Tell-Me.",
+    "If no visible VAT surface is recovered, the blocker names the exact route and UI symptom.",
+    "No setup write, master data, draft, Preview Posting, Posting or API shortcut is executed."
+  ],
+  "nextIfSuccessful": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
+  "createdAt": "2026-07-01T00:03:30.348Z"
+}

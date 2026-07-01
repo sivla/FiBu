@@ -103,6 +103,14 @@ Fuer `TARGET-027B` gilt deshalb: Werte fuer VAT Business Posting Groups, VAT Pro
 
 Diese Werte sind noch keine Business-Central-Setup-Wahrheit. Sie sind die fachliche Zielentscheidung fuer den naechsten kleinen UI-Schreibcase `TARGET-027C`. Dort duerfen nur `INLAND` und `VAT19` auf den Gruppen-Seiten angelegt oder bestaetigt werden. Die eigentliche MwSt.-Buchungsmatrix-Zeile bleibt bis danach gesperrt.
 
+## Stand nach `TARGET-027C`
+
+`TARGET-027C` hat keinen VAT-Gruppen-Write freigegeben. Playwright blieb in `playthru / UNIVERSAARL-DE` und versuchte Page 470/471 direkt mit `dc=0` sowie den eng begrenzten Seiten-und-Aufgaben-Treffer. Die Screenshot-QA zeigte jedoch wieder Role Center bzw. keinen akzeptierten MwSt.-Listenbereich. Deshalb wurden `INLAND` und `VAT19` nicht angelegt und nicht als vorhanden bestaetigt.
+
+Der wichtige Fortschritt ist die strengere Sicherheitsregel: `Neu` oder `Liste bearbeiten` darf bei VAT-Gruppen nur innerhalb einer sichtbar verifizierten VAT-Form/Grid-Oberflaeche geklickt werden. Generische Texte wie `Neu`, `Neue` oder `Beschreibung` reichen nicht, weil sie aus Role Center, Hintergrund-DOM oder Suchkontext stammen koennen.
+
+Der naechste Schritt ist `TARGET-027C2`: erst die sichtbare Page-470/Page-471-Oberflaeche recovern und als Screenshot akzeptieren. Erst danach darf der INLAND/VAT19-Schreibcase wiederholt werden. Die VAT Posting Setup Matrix, Preview Posting, Posting, Stammdaten und Belege bleiben gesperrt.
+
 ## Quellenbasis
 
 - DATEV SKR04 Produktseite: https://www.datev.de/web/de/datev-shop/rechnungswesen/skr-04/

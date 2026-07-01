@@ -476,6 +476,15 @@ Screenshot-QA zu TARGET-027R: Zwei von drei VAT-Zielseiten sind sichtbar genug f
 
 TARGET-027S ist kein Setup-Fortschritt, sondern ein wichtiges Playwright-Learning: Die fachliche Page-470-Referenz bleibt TARGET-020, waehrend die neue Such-/Fallbackroute abgelehnt bleibt. Der naechste VAT-Write-Gate-Lauf muss deshalb den direkten TARGET-020-Page-470-Stil verwenden und darf das TARGET-027S-Suchoverlay nicht als Proof verwerten.
 
+## Universaarl VAT Groups Controlled Write TARGET-027C
+
+| Screenshot | Page / Kontext | Company | Zweck | Sichtbar | Interner Beweis | Nicht bewiesen | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-027c-001-business-before.png` | Role Center statt sichtbarer Page 470 | `playthru` / `UNIVERSAARL-DE` | Vorherbild fuer INLAND-Write-Gate | Role Center/generische Shell, keine MwSt.-Geschaeftsbuchungsgruppen-Liste | Der Write-Gate blockiert korrekt, wenn keine sichtbare VAT-Listenoberflaeche akzeptiert wurde | `INLAND`, Page-470-Sichtbarkeit, VAT-Setup, 19-Prozent-USt | `rejected-role-center`, `blocked-before-write` |
+| `target-027c-002-product-before.png` | Role Center statt sichtbarer Page 471 | `playthru` / `UNIVERSAARL-DE` | Vorherbild fuer VAT19-Write-Gate | Role Center/generische Shell, keine MwSt.-Produktbuchungsgruppen-Liste | Der Write-Gate blockiert korrekt, wenn keine sichtbare VAT-Listenoberflaeche akzeptiert wurde | `VAT19`, Page-471-Sichtbarkeit, VAT-Setup, 19-Prozent-USt | `rejected-role-center`, `blocked-before-write` |
+
+TARGET-027C hat keine Setup-Aenderung ausgefuehrt. Die After-/Reopen-Bilder bleiben als Blocker-Evidence erhalten, zeigen aber ebenfalls keinen akzeptierten Zielseitenkontext. Fuer den naechsten Lauf gilt: erst eine sichtbare Page-470/Page-471-Oberflaeche recovern, dann erst `Neu` oder `Liste bearbeiten` innerhalb dieser Oberflaeche pruefen.
+
 ## PREP-010 Screenshot-QA-Regel
 
 Vor jeder Buch- oder Clickguide-Nutzung muss der Screenshot gegen die konkrete Behauptung geprueft werden:

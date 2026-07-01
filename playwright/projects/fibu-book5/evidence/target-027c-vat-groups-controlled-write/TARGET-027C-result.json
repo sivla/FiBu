@@ -1,0 +1,297 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
+  "source": "playwright-universaarl-vat-groups-controlled-write",
+  "resultStatus": "blocked",
+  "runPlanId": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "targetValues": {
+    "vatBusinessPostingGroup": {
+      "code": "INLAND",
+      "description": "Inland Deutschland"
+    },
+    "vatProductPostingGroup": {
+      "code": "VAT19",
+      "description": "USt 19 Prozent"
+    }
+  },
+  "actionsTaken": [
+    "Tried direct Page 470 and Page 471 with dc=0 in playthru / UNIVERSAARL-DE.",
+    "Used exact Seiten-und-Aufgaben search result only if the direct page was not visibly open.",
+    "Captured rejected before/after/reopen screenshots and text for both pages.",
+    "Stopped before any VAT group write because the target VAT list surface was not visibly confirmed.",
+    "Stopped before VAT Posting Setup matrix, master data, draft, Preview Posting or Posting."
+  ],
+  "actionsNotTaken": [
+    "No VAT Posting Setup matrix row",
+    "No posting groups outside VAT Business/Product groups",
+    "No master data",
+    "No document draft",
+    "No Preview Posting",
+    "No Posting",
+    "No API shortcut",
+    "No Company switch",
+    "No search overlay accepted as proof"
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE until the route was blocked."
+  ],
+  "notProved": [
+    "No VAT Posting Setup matrix row is proven.",
+    "No German 19 percent VAT calculation is proven.",
+    "No customer/vendor/item/G/L VAT defaults are proven.",
+    "No Preview Posting, VAT Entry or G/L Entry exists."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write/TARGET-027C-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write/*.txt",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write/*.png",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write/*.screenshot.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write/TARGET-027C-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write/target-027c-001-business-before.txt",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write/target-027c-001-business-before.png",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write/target-027c-001-business-before.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write/target-027c-001-business-after.txt",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write/target-027c-001-business-after.png",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write/target-027c-001-business-after.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write/target-027c-001-business-reopen.txt",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write/target-027c-001-business-reopen.png",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write/target-027c-001-business-reopen.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write/target-027c-002-product-before.txt",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write/target-027c-002-product-before.png",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write/target-027c-002-product-before.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write/target-027c-002-product-after.txt",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write/target-027c-002-product-after.png",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write/target-027c-002-product-after.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write/target-027c-002-product-reopen.txt",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write/target-027c-002-product-reopen.png",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write/target-027c-002-product-reopen.screenshot.json"
+  ],
+  "pageResults": [
+    {
+      "kind": "business",
+      "pageId": 470,
+      "code": "INLAND",
+      "status": "blocked",
+      "route": [
+        "direct-page-470-dc0",
+        "exact-search-result:MwSt.-Geschäftsbuchungsgruppen",
+        "direct-page-470-dc0",
+        "exact-search-result:MwSt.-Geschäftsbuchungsgruppen"
+      ],
+      "before": {
+        "step": "Before create/confirm",
+        "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?company=UNIVERSAARL-DE&dc=0",
+        "screenshot": "target-027c-001-business-before.png",
+        "screenshotMetadata": "target-027c-001-business-before.screenshot.json",
+        "textFile": "target-027c-001-business-before.txt",
+        "targetSurfaceVisible": false,
+        "pageTitleVisible": false,
+        "gridColumnsVisible": false,
+        "targetCodeVisible": false,
+        "targetDescriptionVisible": false,
+        "roleCenterVisible": false,
+        "searchOverlayVisible": false,
+        "textSignals": [
+          "Neu",
+          "Neue",
+          "Beschreibung"
+        ]
+      },
+      "after": {
+        "step": "After create/confirm attempt",
+        "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?company=UNIVERSAARL-DE&dc=0",
+        "screenshot": "target-027c-001-business-after.png",
+        "screenshotMetadata": "target-027c-001-business-after.screenshot.json",
+        "textFile": "target-027c-001-business-after.txt",
+        "targetSurfaceVisible": false,
+        "pageTitleVisible": false,
+        "gridColumnsVisible": false,
+        "targetCodeVisible": false,
+        "targetDescriptionVisible": false,
+        "roleCenterVisible": false,
+        "searchOverlayVisible": false,
+        "textSignals": [
+          "Neu",
+          "Neue",
+          "Beschreibung"
+        ]
+      },
+      "reopen": {
+        "step": "Reopen proof after create/confirm",
+        "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?company=UNIVERSAARL-DE&dc=0",
+        "screenshot": "target-027c-001-business-reopen.png",
+        "screenshotMetadata": "target-027c-001-business-reopen.screenshot.json",
+        "textFile": "target-027c-001-business-reopen.txt",
+        "targetSurfaceVisible": false,
+        "pageTitleVisible": false,
+        "gridColumnsVisible": false,
+        "targetCodeVisible": false,
+        "targetDescriptionVisible": false,
+        "roleCenterVisible": false,
+        "searchOverlayVisible": false,
+        "textSignals": [
+          "Neu",
+          "Neue",
+          "Beschreibung"
+        ]
+      },
+      "blockedBy": [
+        "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups is not visibly open; refusing setup write.",
+        "INLAND with expected description is not visibly confirmed after reopen."
+      ],
+      "warnings": []
+    },
+    {
+      "kind": "product",
+      "pageId": 471,
+      "code": "VAT19",
+      "status": "blocked",
+      "route": [
+        "direct-page-471-dc0",
+        "exact-search-result:MwSt.-Produktbuchungsgruppen",
+        "direct-page-471-dc0",
+        "exact-search-result:MwSt.-Produktbuchungsgruppen"
+      ],
+      "before": {
+        "step": "Before create/confirm",
+        "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?company=UNIVERSAARL-DE&dc=0",
+        "screenshot": "target-027c-002-product-before.png",
+        "screenshotMetadata": "target-027c-002-product-before.screenshot.json",
+        "textFile": "target-027c-002-product-before.txt",
+        "targetSurfaceVisible": false,
+        "pageTitleVisible": false,
+        "gridColumnsVisible": false,
+        "targetCodeVisible": false,
+        "targetDescriptionVisible": false,
+        "roleCenterVisible": false,
+        "searchOverlayVisible": false,
+        "textSignals": [
+          "Neu",
+          "Neue",
+          "Beschreibung"
+        ]
+      },
+      "after": {
+        "step": "After create/confirm attempt",
+        "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?company=UNIVERSAARL-DE&dc=0",
+        "screenshot": "target-027c-002-product-after.png",
+        "screenshotMetadata": "target-027c-002-product-after.screenshot.json",
+        "textFile": "target-027c-002-product-after.txt",
+        "targetSurfaceVisible": false,
+        "pageTitleVisible": false,
+        "gridColumnsVisible": false,
+        "targetCodeVisible": false,
+        "targetDescriptionVisible": false,
+        "roleCenterVisible": false,
+        "searchOverlayVisible": false,
+        "textSignals": [
+          "Neu",
+          "Neue",
+          "Beschreibung"
+        ]
+      },
+      "reopen": {
+        "step": "Reopen proof after create/confirm",
+        "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?company=UNIVERSAARL-DE&dc=0",
+        "screenshot": "target-027c-002-product-reopen.png",
+        "screenshotMetadata": "target-027c-002-product-reopen.screenshot.json",
+        "textFile": "target-027c-002-product-reopen.txt",
+        "targetSurfaceVisible": false,
+        "pageTitleVisible": false,
+        "gridColumnsVisible": false,
+        "targetCodeVisible": false,
+        "targetDescriptionVisible": false,
+        "roleCenterVisible": false,
+        "searchOverlayVisible": false,
+        "textSignals": [
+          "Neu",
+          "Neue",
+          "Beschreibung"
+        ]
+      },
+      "blockedBy": [
+        "MwSt.-Produktbuchungsgruppen / VAT Product Posting Groups is not visibly open; refusing setup write.",
+        "VAT19 with expected description is not visibly confirmed after reopen."
+      ],
+      "warnings": []
+    }
+  ],
+  "blockedBy": [
+    "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups is not visibly open; refusing setup write.",
+    "INLAND with expected description is not visibly confirmed after reopen.",
+    "MwSt.-Produktbuchungsgruppen / VAT Product Posting Groups is not visibly open; refusing setup write.",
+    "VAT19 with expected description is not visibly confirmed after reopen."
+  ],
+  "warnings": [
+    "This is setup evidence only; it is not a VAT calculation or posting proof.",
+    "If search fallback was used, only the final visible VAT page screenshot counts as proof."
+  ],
+  "flags": {
+    "noVatPostingSetupMatrix": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true,
+    "noSearchOverlayAsProof": true
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
+    "plannedNextCaseBeforeReview": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
+    "lastEvidenceSummary": "TARGET-027B selected INLAND/VAT19 and SKR04 VAT accounts as the next controlled write gate.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "VAT business/product groups are prerequisite records for the later Page 472 VAT Posting Setup matrix.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
+        "status": "blocked",
+        "reason": "Group creation/confirmation must be fixed before matrix setup."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "General posting groups wait until VAT matrix setup is at least planned."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data must wait for VAT and posting group defaults."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation checkpoint waits for VAT matrix and posting groups."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-FOLLOWUP",
+    "whySelectedNextCaseIsBest": "The group write gate must be repeated with a better visible-page route before any matrix setup.",
+    "risksBeforeNextCase": [
+      "Do not claim German VAT correctness before VAT matrix, Preview Posting, VAT Entries and G/L Entries.",
+      "Do not accept Role Center or Tell-Me overlay screenshots as VAT page proof."
+    ],
+    "requiredPreparation": [
+      "Fix Page 470/Page 471 visible route before write."
+    ]
+  },
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "statePatch": {},
+  "nextCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-FOLLOWUP",
+  "reason": "Visible VAT group write proof is blocked."
+}

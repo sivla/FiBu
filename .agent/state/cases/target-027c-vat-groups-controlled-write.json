@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
   "id": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
-  "status": "pending",
+  "status": "blocked",
   "area": "universaarl-vat-setup",
   "goal": "Create or confirm the prerequisite VAT Business Posting Group INLAND and VAT Product Posting Group VAT19 before any VAT Posting Setup matrix row.",
   "sourceCompany": "UNIVERSAARL-DE",
@@ -51,5 +51,20 @@
     "If route or visible page context is unclear, stop and document blocker instead of writing."
   ],
   "nextIfSuccessful": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
-  "createdAt": "2026-07-01T01:40:16.068+02:00"
+  "createdAt": "2026-07-01T01:40:16.068+02:00",
+  "completedAt": "2026-07-01T00:03:30.348Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write/TARGET-027C-result.json",
+  "result": "Blocked before setup write: Page 470/471 direct and exact search-result routes did not produce a visible VAT list surface; no INLAND/VAT19 write was attempted.",
+  "blockedBy": [
+    "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups is not visibly open; refusing setup write.",
+    "INLAND with expected description is not visibly confirmed after reopen.",
+    "MwSt.-Produktbuchungsgruppen / VAT Product Posting Groups is not visibly open; refusing setup write.",
+    "VAT19 with expected description is not visibly confirmed after reopen."
+  ],
+  "nextCase": "TARGET-027C2-VAT-PAGE-SURFACE-RECOVERY",
+  "learned": [
+    "Do not accept Role Center or generic Neu/Beschreibung text as VAT page proof.",
+    "Scope New/Edit/List actions to a verified VAT form/grid surface before writing.",
+    "Direct page route with dc=0 and exact search-result fallback can leave visible UI on Role Center in playthru; write must stay locked."
+  ]
 }
