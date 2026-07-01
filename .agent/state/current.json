@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T02:32:26.439Z",
+  "updatedAt": "2026-07-01T02:42:57.587Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-vat-matrix-list-edit-action-route",
-  "activeCase": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE",
-  "active_case_file": ".agent/state/cases/target-027d8-vat-matrix-list-edit-action-route.json",
-  "lastReferenceCase": "TARGET-027D7-VAT-MATRIX-ROUTE-DECISION-AFTER-D6",
+  "activeArea": "universaarl-vat-matrix-cleanup-or-alternative-route-decision",
+  "activeCase": "TARGET-027D9-VAT-MATRIX-CLEANUP-OR-ALTERNATIVE-ROUTE-DECISION",
+  "active_case_file": ".agent/state/cases/target-027d9-vat-matrix-cleanup-or-alternative-route-decision.json",
+  "lastReferenceCase": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d7-vat-matrix-route-decision-after-d6.json",
   "mode": "universaarl-target-execution",
   "requiresStrongModel": true,
@@ -44,8 +44,8 @@
     "api-shortcut",
     "claim-german-vat-final-proof"
   ],
-  "nextCase": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE",
-  "nextStep": "Run the Page 472 visible More options -> Liste bearbeiten route and require true editor proof before any VAT matrix value write.",
+  "nextCase": "TARGET-027D9-VAT-MATRIX-CLEANUP-OR-ALTERNATIVE-ROUTE-DECISION",
+  "nextStep": "Do not repeat list-edit route; decide controlled cleanup/recreate or alternative Page-472 route.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -6727,5 +6727,40 @@
     "nextCase": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE",
     "noBcExecution": true,
     "noPlaywrightExecution": true
+  },
+  "latestVatMatrixListEditActionRoute": {
+    "caseId": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE",
+    "status": "blocked-before-or-after-write",
+    "completedAt": "2026-07-01T02:42:57.587Z",
+    "sourceInstance": "playthru",
+    "sourceCompany": "UNIVERSAARL-DE",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d8-vat-matrix-list-edit-action-route/TARGET-027D8-result.json",
+    "setupChanged": false,
+    "setupChangeAttempted": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "route": {
+      "moreOptions": {
+        "clicked": true,
+        "by": "button"
+      },
+      "editList": {
+        "clicked": true,
+        "by": "menuitem"
+      }
+    },
+    "blockedBy": [
+      "No true active editor detected for Sales VAT Account; refusing to type 3806.",
+      "No true active editor detected for Purchase VAT Account; refusing to type 1406."
+    ],
+    "screenshots": [
+      "target-027d8-010-before-list-edit-route.png",
+      "target-027d8-020-after-visible-list-edit-action.png",
+      "target-027d8-030-after-editor-probes.png",
+      "target-027d8-040-after-write-or-stop.png",
+      "target-027d8-050-reopen-proof.png"
+    ],
+    "nextCase": "TARGET-027D9-VAT-MATRIX-CLEANUP-OR-ALTERNATIVE-ROUTE-DECISION"
   }
 }

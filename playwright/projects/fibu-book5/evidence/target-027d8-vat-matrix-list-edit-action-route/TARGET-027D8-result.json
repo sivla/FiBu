@@ -1,0 +1,248 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE",
+  "source": "playwright-universaarl-vat-matrix-list-edit-action-route",
+  "resultStatus": "blocked-before-or-after-write",
+  "runPlanId": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix Einr.",
+  "targetValues": {
+    "vatBusinessPostingGroup": "INLAND",
+    "vatProductPostingGroup": "VAT19",
+    "vatPercent": "19",
+    "salesVatAccount": "3806",
+    "purchaseVatAccount": "1406"
+  },
+  "route": {
+    "moreOptions": {
+      "clicked": true,
+      "by": "button"
+    },
+    "editList": {
+      "clicked": true,
+      "by": "menuitem"
+    }
+  },
+  "actionsTaken": [
+    "Opened Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix in playthru / UNIVERSAARL-DE.",
+    "Captured before screenshot/text for the existing INLAND/VAT19 row.",
+    "Used visible More options / Liste bearbeiten before any editor probe.",
+    "Probed true active editors for VAT %, Sales VAT Account and Purchase VAT Account.",
+    "Stopped without typing because the required editor/route gate was not fully satisfied.",
+    "Captured after state and reopen proof.",
+    "Stopped before master data, document draft, Preview Posting, Posting and API shortcut."
+  ],
+  "actionsNotTaken": [
+    "No cleanup/delete",
+    "No master data",
+    "No document draft",
+    "No Preview Posting",
+    "No Posting",
+    "No API shortcut",
+    "No Company switch",
+    "No VAT final claim"
+  ],
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Page 472 and the INLAND/VAT19 row were captured before the D8 route.",
+    "D8 did not repeat the D3/D5 direct cell-edit route.",
+    "The run stopped without Preview Posting, Posting, master data, document draft or API shortcut."
+  ],
+  "notProved": [
+    "No final German VAT correctness.",
+    "No Preview Posting.",
+    "No VAT Entries.",
+    "No G/L Entries.",
+    "No VAT Statement.",
+    "No tax advisor approval."
+  ],
+  "screenshots": [
+    "target-027d8-010-before-list-edit-route.png",
+    "target-027d8-020-after-visible-list-edit-action.png",
+    "target-027d8-030-after-editor-probes.png",
+    "target-027d8-040-after-write-or-stop.png",
+    "target-027d8-050-reopen-proof.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-027d8-vat-matrix-list-edit-action-route/TARGET-027D8-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d8-vat-matrix-list-edit-action-route/README.md"
+  ],
+  "changedFiles": [
+    ".agent/state/cases/target-027d8-vat-matrix-list-edit-action-route.json",
+    ".agent/state/cases/target-027d9-vat-matrix-cleanup-or-alternative-route-decision.json",
+    ".agent/state/current.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/marathon_queue.json",
+    "package.json",
+    "playwright/projects/fibu-book5/tests/target-027d8-vat-matrix-list-edit-action-route.spec.ts",
+    "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md",
+    "playwright/projects/fibu-book5/BC-SCREENSHOT-INVENTORY.md",
+    "playwright/projects/fibu-book5/evidence/target-027d8-vat-matrix-list-edit-action-route/TARGET-027D8-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d8-vat-matrix-list-edit-action-route/*.txt",
+    "playwright/projects/fibu-book5/evidence/target-027d8-vat-matrix-list-edit-action-route/*.png",
+    "playwright/projects/fibu-book5/evidence/target-027d8-vat-matrix-list-edit-action-route/*.screenshot.json"
+  ],
+  "blockedBy": [
+    "No true active editor detected for Sales VAT Account; refusing to type 3806.",
+    "No true active editor detected for Purchase VAT Account; refusing to type 1406."
+  ],
+  "warnings": [],
+  "steps": [
+    {
+      "step": "visible-more-options-list-edit-route",
+      "route": {
+        "moreOptions": {
+          "clicked": true,
+          "by": "button"
+        },
+        "editList": {
+          "clicked": true,
+          "by": "menuitem"
+        }
+      }
+    },
+    {
+      "step": "located-required-cells",
+      "row": {
+        "text": "INLAND",
+        "role": "gridcell",
+        "x": 193,
+        "y": 192,
+        "width": 145,
+        "height": 34
+      },
+      "y": 209,
+      "cellMap": {
+        "vatPercentX": 1056,
+        "salesVatX": 1457,
+        "purchaseVatX": 1611
+      }
+    },
+    {
+      "step": "vat-percent-editor-probe",
+      "x": 1056,
+      "y": 209,
+      "editor": {
+        "found": true,
+        "tagName": "span",
+        "role": "textbox",
+        "ariaLabel": "",
+        "title": "0",
+        "value": "",
+        "text": "0",
+        "contentEditable": "",
+        "rect": {
+          "x": 1054,
+          "y": 163,
+          "width": 27,
+          "height": 25
+        },
+        "distanceFromCell": 35
+      }
+    },
+    {
+      "step": "sales-vat-account-editor-probe",
+      "x": 1457,
+      "y": 209,
+      "editor": {
+        "found": false
+      }
+    },
+    {
+      "step": "purchase-vat-account-editor-probe",
+      "x": 1611,
+      "y": 209,
+      "editor": {
+        "found": false
+      }
+    }
+  ],
+  "flags": {
+    "noCleanupDelete": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true,
+    "noD3D5CellRouteRepeat": true
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE",
+    "plannedNextCaseBeforeReview": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE",
+    "lastEvidenceSummary": "D7 selected the visible Page-472 More options / Liste bearbeiten route after D6 proved Personalize was wrong-target and D3/D5 cell routes were unsafe.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The incomplete INLAND/VAT19 VAT Posting Setup row still blocks posting groups, master data and first documents.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "VAT matrix row remains incomplete or unproven."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for VAT/posting defaults."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation cannot be ready until VAT/posting/dimension gates are settled."
+      },
+      {
+        "caseId": "TARGET-031-FIRST-DOCUMENT-DRAFT-GATE",
+        "status": "needs-setup-first",
+        "reason": "Document drafts wait for foundation readiness and master data."
+      }
+    ],
+    "queueChangesMade": [
+      "Mark D8 blocked and insert a non-repeating cleanup-or-alternative-route decision before any more VAT matrix writes."
+    ],
+    "selectedNextCase": "TARGET-027D9-VAT-MATRIX-CLEANUP-OR-ALTERNATIVE-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "Another direct list-edit run would repeat the same failure pattern; the next step must decide cleanup/recreate or a different standard route.",
+    "risksBeforeNextCase": [
+      "Do not claim final German VAT correctness before Preview Posting, VAT Entries and G/L Entries.",
+      "Do not create master data until posting groups/defaults are ready.",
+      "Do not delete the partial VAT row without a row-scoped confirmation case."
+    ],
+    "requiredPreparation": [
+      "Review D8 screenshots and editor diagnostics; choose cleanup/recreate or another standard UI route, not D3/D5/D8 repetition."
+    ]
+  },
+  "safeToFinalizeState": true,
+  "requiresReview": false,
+  "statePatch": {
+    "current": {
+      "activeArea": "universaarl-vat-matrix-cleanup-or-alternative-route-decision",
+      "activeCase": "TARGET-027D9-VAT-MATRIX-CLEANUP-OR-ALTERNATIVE-ROUTE-DECISION",
+      "active_case_file": ".agent/state/cases/target-027d9-vat-matrix-cleanup-or-alternative-route-decision.json",
+      "lastReferenceCase": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE",
+      "nextCase": "TARGET-027D9-VAT-MATRIX-CLEANUP-OR-ALTERNATIVE-ROUTE-DECISION",
+      "nextStep": "Do not repeat list-edit route; decide controlled cleanup/recreate or alternative Page-472 route."
+    },
+    "lastRunSummary": {
+      "runId": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE",
+      "caseId": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE",
+      "status": "blocked-before-or-after-write",
+      "instance": "playthru",
+      "company": "UNIVERSAARL-DE",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-027d8-vat-matrix-list-edit-action-route/TARGET-027D8-result.json",
+      "summary": "D8 blocked safely after visible list-edit route; no setup value was proven after reopen.",
+      "nextCase": "TARGET-027D9-VAT-MATRIX-CLEANUP-OR-ALTERNATIVE-ROUTE-DECISION"
+    }
+  },
+  "nextCase": "TARGET-027D9-VAT-MATRIX-CLEANUP-OR-ALTERNATIVE-ROUTE-DECISION",
+  "reason": "D8 blocked safely: No true active editor detected for Sales VAT Account; refusing to type 3806.; No true active editor detected for Purchase VAT Account; refusing to type 1406."
+}

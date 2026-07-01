@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027D9-VAT-MATRIX-CLEANUP-OR-ALTERNATIVE-ROUTE-DECISION",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "VAT matrix cleanup or alternative route decision",
+  "purpose": "Stop repeating direct Page 472 list-edit routes after D8 and decide whether the partial INLAND/VAT19 row should be cleaned/recreated or whether another standard Business Central route exists.",
+  "sourceCases": [
+    "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
+    "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
+    "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
+    "TARGET-027D7-VAT-MATRIX-ROUTE-DECISION-AFTER-D6",
+    "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE"
+  ],
+  "allowedActions": [
+    "review-d4-to-d8-evidence",
+    "review-microsoft-learn-vat-setup-source",
+    "choose-cleanup-recreate-or-alternative-standard-ui-route",
+    "plan-row-scoped-confirmation-if-cleanup-selected",
+    "update-state-queue-and-patterns"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "repeat-d3-d5-d8-cell-or-list-edit-route",
+    "cleanup-delete-without-row-scoped-confirmation-proof",
+    "type-3806-or-1406-without-new-editor-proof",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-german-vat-final-proof"
+  ],
+  "decisionOptions": [
+    {
+      "id": "row-scoped-cleanup-and-recreate",
+      "status": "candidate-needs-confirmation-proof",
+      "description": "Delete only the partial INLAND/VAT19 row if Business Central shows a row-scoped confirmation and then recreate it through a safer route."
+    },
+    {
+      "id": "alternative-standard-ui-route",
+      "status": "candidate-needs-ui-discovery",
+      "description": "Find a standard BC route such as Kopieren/Copy or assisted setup that can produce a complete VAT Posting Setup row without blind cell typing."
+    },
+    {
+      "id": "park-vat-matrix-temporarily",
+      "status": "candidate-if-risk-too-high",
+      "description": "Park VAT matrix completion and document that posting groups, master data and document cases remain blocked until VAT is solved."
+    }
+  ],
+  "acceptanceCriteria": [
+    "No BC or Playwright execution in this decision case unless a follow-up execute case is created.",
+    "Explicitly rejects repeating D3/D5/D8 direct cell/list-edit routes.",
+    "If cleanup is selected, the next execute case must require row-scoped delete confirmation before deleting anything.",
+    "If alternative UI route is selected, it must identify the exact page/action and stop before Preview Posting or Posting.",
+    "Master data, drafts, Preview Posting and Posting stay locked."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE",
+    "plannedNextCaseBeforeReview": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE",
+    "lastEvidenceSummary": "D7 selected the visible Page-472 More options / Liste bearbeiten route after D6 proved Personalize was wrong-target and D3/D5 cell routes were unsafe.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The incomplete INLAND/VAT19 VAT Posting Setup row still blocks posting groups, master data and first documents.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "VAT matrix row remains incomplete or unproven."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for VAT/posting defaults."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation cannot be ready until VAT/posting/dimension gates are settled."
+      },
+      {
+        "caseId": "TARGET-031-FIRST-DOCUMENT-DRAFT-GATE",
+        "status": "needs-setup-first",
+        "reason": "Document drafts wait for foundation readiness and master data."
+      }
+    ],
+    "queueChangesMade": [
+      "Mark D8 blocked and insert a non-repeating cleanup-or-alternative-route decision before any more VAT matrix writes."
+    ],
+    "selectedNextCase": "TARGET-027D9-VAT-MATRIX-CLEANUP-OR-ALTERNATIVE-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "Another direct list-edit run would repeat the same failure pattern; the next step must decide cleanup/recreate or a different standard route.",
+    "risksBeforeNextCase": [
+      "Do not claim final German VAT correctness before Preview Posting, VAT Entries and G/L Entries.",
+      "Do not create master data until posting groups/defaults are ready.",
+      "Do not delete the partial VAT row without a row-scoped confirmation case."
+    ],
+    "requiredPreparation": [
+      "Review D8 screenshots and editor diagnostics; choose cleanup/recreate or another standard UI route, not D3/D5/D8 repetition."
+    ]
+  },
+  "createdAt": "2026-07-01T02:42:57.587Z"
+}

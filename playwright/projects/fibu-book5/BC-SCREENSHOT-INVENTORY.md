@@ -551,6 +551,15 @@ TARGET-027C hat keine Setup-Aenderung ausgefuehrt. Die After-/Reopen-Bilder blei
 
 Screenshot-QA zu TARGET-027D6: Die Bilder sind Diagnose- und Entscheidungsbilder, keine Buch-Erfolgsbilder fuer fertiges Umsatzsteuer-Setup. Besonders wichtig ist das rejected Bild `target-027d6-060-personalize-state.png`: Es zeigt, dass `Personalisieren` nicht automatisch die sichtbare Setup-Page betrifft. Fuer das Buch kann daraus eine Debugging-Regel entstehen, aber die VAT-Matrix bleibt bis zu einem kontrollierten Completion- oder Cleanup-Case offen.
 
+## Universaarl VAT Matrix List Edit Route TARGET-027D8
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Interner Beweis | Beweist nicht | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-027d8-020-after-visible-list-edit-action.png` | MwSt.-Buchungsmatrix Einr., Page 472 | `playthru` / `UNIVERSAARL-DE` | Nach `Weitere Optionen` / `Liste bearbeiten` | Die Page-472-Liste ist im Edit-List-Zustand sichtbar; die Zeile `INLAND`/`VAT19` bleibt unvollstaendig, `MwSt. %` steht weiter auf `0`, Steuerkonto-Spalten sind leer | Die sichtbare Standardroute wurde erreicht und dokumentiert | keine echten Konto-Editoren, keine Konten `3806`/`1406`, keine Matrix-Reife | `blocked-route-proof`, `do-not-repeat-list-edit` |
+| `target-027d8-050-reopen-proof.png` | MwSt.-Buchungsmatrix Einr., Page 472 | `playthru` / `UNIVERSAARL-DE` | Reopen nach D8 | Die gleiche unvollstaendige Zeile ist weiterhin sichtbar | Es wurde keine verdeckte Korrektur gespeichert; D8 hat ohne Wertschreiben gestoppt | keine USt-Berechnung, keine Preview, keine VAT Entries, keine Sachposten | `blocked-reopen-proof`, `cleanup-or-alternative-needed` |
+
+Screenshot-QA zu TARGET-027D8: Der Lauf beweist nicht, dass die MwSt.-Buchungsmatrix fertig ist. Er beweist, dass auch die sichtbare `Weitere Optionen`-/`Liste bearbeiten`-Route fuer die Steuerkonto-Felder keinen sicheren Schreibeditor liefert. Deshalb darf der naechste Lauf nicht erneut dieselbe Listen-Edit-Route testen, sondern muss kontrolliert entscheiden: row-scoped Cleanup/Recreate oder eine andere Standard-UI-Route.
+
 ## PREP-010 Screenshot-QA-Regel
 
 Vor jeder Buch- oder Clickguide-Nutzung muss der Screenshot gegen die konkrete Behauptung geprueft werden:
