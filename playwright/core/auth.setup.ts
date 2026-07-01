@@ -27,20 +27,28 @@ console.log('Bitte melde dich vollständig an, inklusive MFA und Company-Auswahl
 console.log('Der Login-State wird automatisch gespeichert, sobald Business Central geladen ist.');
 console.log('');
 
-await page.waitForFunction(
-  () => {
-    const isBusinessCentral = window.location.hostname.toLowerCase().includes('businesscentral.dynamics.com');
-    const text = document.body?.innerText ?? '';
-    const hasAppShell = /Business Central|CRONUS|Meine Firma|My Company|Rollencenter|Role Center|Suche|Tell me/i.test(text);
-    return isBusinessCentral && hasAppShell;
-  },
-  undefined,
-  { timeout: 10 * 60 * 1000 }
-);
+try {
+  await page.waitForFunction(
+    () => {
+      const isBusinessCentral = window.location.hostname.toLowerCase().includes('businesscentral.dynamics.com');
+      const text = document.body?.innerText ?? '';
+      const isAuthBlocker = /Token wurde erwartet|Something went wrong|Token was expected|sign in|Anmelden/i.test(text);
+      const hasAppShell = /CRONUS|Meine Firma|My Company|Rollencenter|Role Center|Suche|Tell me|Suchen|Meine Einstellungen|My Settings/i.test(text);
+      return isBusinessCentral && !isAuthBlocker && hasAppShell;
+    },
+    undefined,
+    { timeout: 10 * 60 * 1000 }
+  );
 
-await page.waitForTimeout(5000);
+  await page.waitForTimeout(5000);
 
-await context.storageState({ path: authFile });
-await browser.close();
-
-console.log(`Login-State gespeichert: ${authFile}`);
+  await context.storageState({ path: authFile });
+  console.log(`Login-State gespeichert: ${authFile}`);
+} catch (error) {
+  console.error('');
+  console.error('Business-Central-Shell wurde nicht bestaetigt. Login-State wurde nicht gespeichert.');
+  console.error('Bitte Login/MFA abschliessen und warten, bis Suche/Rollencenter/My Settings sichtbar ist.');
+  throw error;
+} finally {
+  await browser.close().catch(() => undefined);
+}
