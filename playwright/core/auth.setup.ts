@@ -6,12 +6,35 @@ import { BUSINESS_CENTRAL_AUTH_BLOCKER_RE, BUSINESS_CENTRAL_SHELL_RE } from './b
 
 const authFile = 'playwright/.auth/bc-user.json';
 const authMetaFile = 'playwright/.auth/bc-user.meta.json';
-const bcUrl = process.env.BC_URL;
+const bcUrlSource =
+  process.env.BC_AUTH_URL ? 'BC_AUTH_URL' : process.env.FIBU_BOOK5_BC_URL ? 'FIBU_BOOK5_BC_URL' : 'BC_URL';
+const bcUrl = process.env.BC_AUTH_URL ?? process.env.FIBU_BOOK5_BC_URL ?? process.env.BC_URL;
 const authTimeoutMs = Number(process.env.BC_AUTH_TIMEOUT_MS ?? 10 * 60 * 1000);
 
 if (!bcUrl) {
-  throw new Error('BC_URL fehlt. Lege eine .env mit BC_URL=https://businesscentral.dynamics.com/... an.');
+  throw new Error(
+    'BC_AUTH_URL, FIBU_BOOK5_BC_URL oder BC_URL fehlt. Lege eine .env mit Business-Central-Ziel-URL an.'
+  );
 }
+
+const expectedUrl = new URL(bcUrl);
+const currentState = JSON.parse(await fs.readFile('.agent/state/current.json', 'utf8')) as {
+  instance?: string;
+  company?: string;
+};
+const expectedEnvironment = currentState.instance ?? expectedUrl.pathname.split('/').filter(Boolean).at(-1) ?? '';
+const expectedCompany = currentState.company ?? expectedUrl.searchParams.get('company') ?? '';
+if (expectedEnvironment) {
+  const pathParts = expectedUrl.pathname.split('/').filter(Boolean);
+  if (pathParts.length) {
+    pathParts[pathParts.length - 1] = expectedEnvironment;
+    expectedUrl.pathname = `/${pathParts.join('/')}`;
+  }
+}
+if (expectedCompany) {
+  expectedUrl.searchParams.set('company', expectedCompany);
+}
+const targetUrl = expectedUrl.toString();
 
 await fs.mkdir('playwright/.auth', { recursive: true });
 
@@ -23,7 +46,8 @@ const context = await browser.newContext({
 });
 
 const page = await context.newPage();
-await page.goto(bcUrl);
+await page.goto(targetUrl);
+console.log(`Auth target source ${bcUrlSource} with .agent/state/current.json override: environment=${expectedEnvironment || '(unknown)'}, company=${expectedCompany || '(unknown)'}.`);
 
 console.log('');
 console.log('Business Central wurde geöffnet.');
@@ -35,7 +59,8 @@ try {
   const shellValidationHandle = await page.waitForFunction(
     ({ authBlockerSource, authBlockerFlags, shellSource, shellFlags }) => {
       const isBusinessCentral = window.location.hostname.toLowerCase().includes('businesscentral.dynamics.com');
-      const text = document.body?.innerText ?? '';
+      const url = new URL(window.location.href);
+      const text = `${document.title}\n${url.pathname}\n${url.search}\n${document.body?.innerText ?? ''}`;
       const authBlockerRe = new RegExp(authBlockerSource, authBlockerFlags);
       const shellRe = new RegExp(shellSource, shellFlags);
       if (!isBusinessCentral || authBlockerRe.test(text) || !shellRe.test(text)) return false;
@@ -56,6 +81,16 @@ try {
     { timeout: authTimeoutMs }
   );
   const shellValidation = await shellValidationHandle.jsonValue();
+  const actualEnvironment = String(shellValidation.pathname ?? '').split('/').filter(Boolean).at(-1) ?? '';
+  const actualCompany = String(shellValidation.company ?? '');
+  if (expectedEnvironment && actualEnvironment !== expectedEnvironment) {
+    throw new Error(
+      `Business Central environment mismatch: expected ${expectedEnvironment}, got ${actualEnvironment || '(empty)'}.`
+    );
+  }
+  if (expectedCompany && actualCompany !== expectedCompany) {
+    throw new Error(`Business Central company mismatch: expected ${expectedCompany}, got ${actualCompany || '(empty)'}.`);
+  }
 
   await page.waitForTimeout(5000);
 

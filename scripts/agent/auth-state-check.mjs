@@ -3,6 +3,7 @@ import path from 'node:path';
 
 const authFile = path.resolve('playwright/.auth/bc-user.json');
 const authMetaFile = path.resolve('playwright/.auth/bc-user.meta.json');
+const currentStateFile = path.resolve('.agent/state/current.json');
 const maxAgeHours = Number(process.env.BC_AUTH_MAX_AGE_HOURS ?? 12);
 const now = Date.now();
 const authUnblockStep =
@@ -31,6 +32,16 @@ function result(overrides) {
 }
 
 async function main() {
+  let expectedInstance = '';
+  let expectedCompany = '';
+  try {
+    const currentState = JSON.parse(await fs.readFile(currentStateFile, 'utf8'));
+    expectedInstance = typeof currentState?.instance === 'string' ? currentState.instance : '';
+    expectedCompany = typeof currentState?.company === 'string' ? currentState.company : '';
+  } catch {
+    // Auth can still report storage-state shape, but target context validation will stay unavailable.
+  }
+
   let stats;
   try {
     stats = await fs.stat(authFile);
@@ -86,6 +97,14 @@ async function main() {
       meta?.shellValidation === true &&
       typeof meta?.matchedShellSignal === 'string' &&
       meta.matchedShellSignal.length > 0;
+    const metaEnvironment = typeof meta?.pathname === 'string' ? meta.pathname.split('/').filter(Boolean).at(-1) ?? '' : '';
+    const metaCompany = typeof meta?.company === 'string' ? meta.company : '';
+    if (expectedInstance && metaEnvironment !== expectedInstance) {
+      blockedBy.push('shell-validation-environment-mismatch');
+    }
+    if (expectedCompany && metaCompany !== expectedCompany) {
+      blockedBy.push('shell-validation-company-mismatch');
+    }
   } catch {
     blockedBy.push('shell-validation-meta-missing-or-invalid');
   }
