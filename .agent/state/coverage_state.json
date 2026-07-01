@@ -4842,8 +4842,8 @@
       "Auth shell-validation failure is an execution blocker, not a Business Central setup finding."
     ],
     "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-    "decision": "Run npm run auth:bc, complete Login/MFA until the Business Central shell is visible, confirm npm run auth:bc:check is green, then rerun the same narrow D2F route.",
-    "coverageImpact": "No new BC setup truth. The auth/token blocker detection is now centralized in bc-helpers waitForBcReady, so future BC tests can fail fast instead of timing out on the Search button.",
+    "decision": "Complete attended Login/MFA until the Business Central shell is visible, confirm npm run auth:bc:check is green, then rerun the same narrow D2F route. If sign-in stalls or times out, run npm run auth:bc:diagnose for a short redacted diagnosis.",
+    "coverageImpact": "No new BC setup truth. The auth shell-validation gate and short auth diagnose fallback prevent future BC tests from spending long runs on a Microsoft sign-in page.",
     "updatedAt": "2026-07-01T17:38:17.235Z"
   },
   "latestTarget037MasterdataFoundationCheckpoint": {
