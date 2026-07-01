@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
-  "status": "planned",
+  "status": "done",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -58,5 +58,63 @@
       "reason": "Page 314, VAT matrix and default dimensions remain parked and may need to be revisited before documents."
     }
   ],
-  "createdAt": "2026-07-01T09:03:36.035Z"
+  "createdAt": "2026-07-01T09:03:36.035Z",
+  "completedAt": "2026-07-01T09:25:00.000Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-036-master-data-first-controlled-write-decision/TARGET-036-result.json",
+  "selectedFirstWriteRoute": "Location",
+  "selectedNextCase": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
+  "nextCase": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
+  "decision": "First controlled Universaarl master-data write should be Location SAAR-HL, not Customer/Vendor/Item.",
+  "noWriteInThisCase": true,
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
+    "lastEvidenceSummary": "TARGET-035 showed Customers, Vendors, Items and Locations list surfaces read-only in playthru / UNIVERSAARL-DE; no New, template, save, setup, Preview Posting or Posting occurred.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A no-write decision was still required before any first master-data record because Customer, Vendor and Item creation can involve templates and posting-related fields.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
+        "status": "ready-next",
+        "reason": "Location is useful for inventory/warehouse context and can be constrained to Code and Name."
+      },
+      {
+        "caseId": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+        "status": "ready-after-current",
+        "reason": "Customer, Vendor and Item creation need template and mandatory-field discovery before any save."
+      },
+      {
+        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
+        "status": "blocked",
+        "reason": "Preview requires real master data plus accepted VAT/posting boundaries and expected entry trace."
+      },
+      {
+        "caseId": "TARGET-038-FIRST-POSTING-GATE",
+        "status": "blocked",
+        "reason": "Posting requires successful Preview Posting and expected ledger/subledger trace."
+      },
+      {
+        "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+        "status": "ready-after-current",
+        "reason": "Page 314, VAT, inventory posting and default dimensions remain parked and should be revisited after the first safe master-data write."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked TARGET-036 as done.",
+      "Added TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE as next pending case.",
+      "Replaced broad customer-or-location follow-up with narrow Location-only gate."
+    ],
+    "selectedNextCase": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It is the smallest useful Universaarl master-data write and avoids the template/accounting risk of Customer, Vendor and Item records.",
+    "risksBeforeNextCase": [
+      "Locations can contain warehouse/bin fields that must not be changed in the first write.",
+      "The New action must be scoped to Locations, not a generic create flow.",
+      "No Preview Posting or Posting may be inferred from a saved Location."
+    ],
+    "requiredPreparation": [
+      "Confirm playthru / UNIVERSAARL-DE before clicking New.",
+      "Use screenshot QA on before/card/reopen states.",
+      "Stop if any unsafe dialog or unrelated page appears."
+    ]
+  }
 }

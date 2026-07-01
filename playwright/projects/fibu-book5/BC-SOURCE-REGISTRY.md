@@ -360,6 +360,24 @@ TARGET-031 hat Page 16 und Page 110 read-only geoeffnet und damit gezeigt: `1200
 
 TARGET-031A hat diesen Schritt in `playthru` / `UNIVERSAARL-DE` ausgefuehrt. Nach Reopen zeigt der Kontenplan `1200 Forderungen aus Lieferungen und Leistungen`, `Bilanz`, Kontoart `Buchung`. `1800 Bank Saarland` bleibt als separates Bankkonto sichtbar. Damit ist nur das Forderungskonto als Voraussetzung fuer die Debitorenbuchungsgruppe bewiesen. Nicht bewiesen sind Debitorenbuchungsgruppe, Buchungsmatrix, USt-Setup, Stammdaten, Preview Posting, Buchung oder steuerliche Finalkorrektheit.
 
+## TARGET-036 First Master-Data Write Source Decision
+
+Microsoft Learn trennt die Anlage von Kunden, Lieferanten, Artikeln und Lagerorten fachlich:
+
+- Debitoren/Kunden koennen beim Anlegen mit Customer Templates vorbelegt werden.
+- Kreditoren/Lieferanten koennen beim Anlegen mit Vendor Templates vorbelegt werden.
+- Artikel koennen beim Anlegen mit Item Templates und lager-/buchungsrelevanten Feldern vorbelegt werden.
+- Lagerorte beschreiben Orte, an denen Bestand gekauft, gelagert, bewegt und spaeter in Beleg-/Artikelzeilen verwendet wird.
+
+TARGET-035 hat in `playthru` / `UNIVERSAARL-DE` die leeren Listen fuer Debitoren, Kreditoren, Artikel und Lagerorte nur lesend gezeigt. TARGET-036 entscheidet deshalb:
+
+- Erster kontrollierter Write wird ein einfacher Lagerort `SAAR-HL` / `Saarbruecken Hauptlager`.
+- Erlaubt sind im naechsten Case nur `Location.Code` und `Location.Name`.
+- Debitoren, Kreditoren und Artikel bleiben bis zur Template-/Pflichtfeld-Discovery gesperrt.
+- Warehouse-Felder, Posting Setup, USt, Belege, Preview Posting und Posting bleiben gesperrt.
+
+Diese Entscheidung ist ein Produkt-/UI-Quellenclaim plus Universaarl-Evidence-Grenze. Sie beweist noch keinen gespeicherten Lagerort und keine Buchungsfaehigkeit.
+
 ## TARGET-031B Debitorenbuchungsgruppe INLAND
 
 TARGET-031B hat Page 110 `Debitorenbuchungsgruppen` in `playthru` / `UNIVERSAARL-DE` genutzt. Die Gruppe `INLAND` ist nach Reopen sichtbar mit Beschreibung `Inlaendische Kunden` und `Debitorensammelkonto 1200`.

@@ -3110,7 +3110,7 @@
     {
       "id": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
       "order": 10120,
-      "status": "pending",
+      "status": "done",
       "priority": "high",
       "area": "universaarl-master-data",
       "category": "master-data-write-decision",
@@ -3122,10 +3122,32 @@
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
       "caseFile": ".agent/state/cases/target-036-master-data-first-controlled-write-decision.json",
-      "blockedBy": []
+      "blockedBy": [],
+      "completedAt": "2026-07-01T09:25:00.000Z",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-036-master-data-first-controlled-write-decision/TARGET-036-result.json",
+      "result": "No-write decision selected Location SAAR-HL as the first controlled master-data write route.",
+      "nextCase": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE"
+    },
+    {
+      "id": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
+      "order": 10130,
+      "status": "pending",
+      "priority": "high",
+      "area": "universaarl-master-data",
+      "category": "first-location-controlled-write-gate",
+      "expectedImpact": "first-master-data-write-with-reopen-proof",
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": true,
+      "goal": "Create or verify only Location SAAR-HL / Saarbruecken Hauptlager with Code and Name, then reopen proof.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "caseFile": ".agent/state/cases/target-036a-first-location-controlled-write-gate.json",
+      "blockedBy": [],
+      "lookaheadStatus": "ready-next"
     }
   ],
-  "lastUpdated": "2026-07-01T09:03:36.035Z",
+  "lastUpdated": "2026-07-01T09:25:00.000Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -3232,52 +3254,63 @@
       ]
     }
   },
-  "updatedAt": "2026-07-01T09:03:36.035Z",
-  "lastCompletedCase": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
-  "nextCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
+  "updatedAt": "2026-07-01T09:25:00.000Z",
+  "lastCompletedCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
+  "nextCase": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
-    "plannedNextCaseBeforeReview": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
-    "lastEvidenceSummary": "TARGET-034 classified Foundation as partial and allowed only read-only master-data card/template preflight.",
+    "currentCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
+    "lastEvidenceSummary": "TARGET-035 showed Customers, Vendors, Items and Locations list surfaces read-only in playthru / UNIVERSAARL-DE; no New, template, save, setup, Preview Posting or Posting occurred.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Master-data list surfaces must be visible and screenshot-qualified before any controlled New/template/create case can be attempted.",
+    "reason": "A no-write decision was still required before any first master-data record because Customer, Vendor and Item creation can involve templates and posting-related fields.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
-        "status": "needs-source-check-first",
-        "reason": "The next step must decide which first record can be created and which fields/templates stay locked."
+        "caseId": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
+        "status": "ready-next",
+        "reason": "Location is useful for inventory/warehouse context and can be constrained to Code and Name."
+      },
+      {
+        "caseId": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+        "status": "ready-after-current",
+        "reason": "Customer, Vendor and Item creation need template and mandatory-field discovery before any save."
       },
       {
         "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
         "status": "blocked",
-        "reason": "Preview remains blocked until real master data, accepted VAT/posting boundaries and expected entry traces exist."
+        "reason": "Preview requires real master data plus accepted VAT/posting boundaries and expected entry trace."
       },
       {
         "caseId": "TARGET-038-FIRST-POSTING-GATE",
         "status": "blocked",
-        "reason": "Posting remains blocked until preview evidence and expected ledger/subledger traces exist."
+        "reason": "Posting requires successful Preview Posting and expected ledger/subledger trace."
       },
       {
         "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
         "status": "ready-after-current",
-        "reason": "Parked Page 314, VAT matrix, inventory posting and default-dimension blockers can be revisited after the first master-data route decision."
+        "reason": "Page 314, VAT, inventory posting and default dimensions remain parked and should be revisited after the first safe master-data write."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
-    "whySelectedNextCaseIsBest": "The first controlled write decision must choose one low-risk record family and keep templates/save actions gated.",
+    "queueChangesMade": [
+      "Marked TARGET-036 as done.",
+      "Added TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE as next pending case.",
+      "Replaced broad customer-or-location follow-up with narrow Location-only gate."
+    ],
+    "selectedNextCase": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It is the smallest useful Universaarl master-data write and avoids the template/accounting risk of Customer, Vendor and Item records.",
     "risksBeforeNextCase": [
-      "New/template actions can create records if confirmed blindly.",
-      "No master-data creation should occur before setup-field decisions are explicit."
+      "Locations can contain warehouse/bin fields that must not be changed in the first write.",
+      "The New action must be scoped to Locations, not a generic create flow.",
+      "No Preview Posting or Posting may be inferred from a saved Location."
     ],
     "requiredPreparation": [
-      "Keep New/Create/Save dialogs cancel-safe.",
-      "Do not treat list visibility as proof of mandatory field completeness."
+      "Confirm playthru / UNIVERSAARL-DE before clicking New.",
+      "Use screenshot QA on before/card/reopen states.",
+      "Stop if any unsafe dialog or unrelated page appears."
     ]
   },
-  "nextStep": "Run TARGET-036 as no-write decision gate before any master-data creation.",
+  "nextStep": "Run TARGET-036A as a controlled Location write gate.",
   "openItems": [
-    "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION"
+    "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE"
   ],
-  "nextQueueItem": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION"
+  "nextQueueItem": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE"
 }

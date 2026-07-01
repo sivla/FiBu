@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T09:05:00.000Z",
+  "updatedAt": "2026-07-01T09:25:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-master-data-write-decision",
-  "activeCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
-  "active_case_file": ".agent/state/cases/target-036-master-data-first-controlled-write-decision.json",
+  "activeArea": "universaarl-master-data-location-write-gate",
+  "activeCase": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
+  "active_case_file": ".agent/state/cases/target-036a-first-location-controlled-write-gate.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -21,34 +21,44 @@
   "allowedActions": [
     "open-playthru-business-central",
     "confirm-UNIVERSAARL-DE-context",
-    "open-customer-vendor-item-location-pages-readonly",
-    "inspect-visible-fields-actions-and-template-prompts",
+    "open-locations-page",
+    "close-teaching-tip-if-visible",
+    "inspect-locations-list-before-write",
+    "click-new-location-only-in-locations-context",
+    "fill-location-code-and-name-only",
+    "leave-warehouse-and-bin-fields-unchanged",
+    "save-or-leave-card-naturally",
+    "reopen-locations-and-prove-SAAR-HL",
     "capture-screenshot-qa",
     "write-result-json-and-next-step-decision"
   ],
   "forbiddenActions": [
     "leave-instance",
     "company-switch",
-    "click-new-to-create-record",
-    "confirm-template-dialog",
-    "fill-master-data-fields",
-    "save-record",
-    "change-setup",
-    "create-master-data",
+    "create-customer",
+    "create-vendor",
+    "create-item",
+    "confirm-customer-vendor-item-template-dialog",
+    "change-inventory-setup",
+    "change-posting-setup",
+    "change-vat-setup",
+    "change-warehouse-require-receive",
+    "change-warehouse-require-shipment",
+    "change-bin-mandatory",
     "create-document-or-draft",
     "preview-posting",
     "post",
     "payment",
     "api-shortcut",
     "claim-master-data-readiness",
-    "claim-posting-readiness",
+    "claim-warehouse-readiness",
     "commit-secrets",
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence"
   ],
-  "nextCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
-  "nextStep": "Run TARGET-036 as a no-write decision gate: choose the first controlled Universaarl master-data write route after TARGET-035; do not create records yet.",
+  "nextCase": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
+  "nextStep": "Run TARGET-036A: create or verify only Location SAAR-HL with Code and Name, then reopen proof; keep customers, vendors, items, setup, Preview Posting and Posting locked.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -231,7 +241,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "TARGET-035 observed Customers, Vendors, Items and Locations read-only in playthru / UNIVERSAARL-DE. First controlled master-data write now needs a decision gate; Preview Posting and Posting remain locked.",
+  "currentCoverageFocus": "TARGET-036 selected Location as first controlled master-data write route after TARGET-035; Customer, Vendor and Item creation need template discovery first.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -1353,7 +1363,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "universaarl-skr04-balance-sheet-accounts-fit",
-  "lastCompletedCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+  "lastCompletedCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3723,54 +3733,54 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
-    "plannedNextCaseBeforeReview": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
-    "lastEvidenceSummary": "TARGET-033 revalidated starter dimensions and values; TARGET-032F parked Page 314; TARGET-027D24 parked VAT matrix; TARGET-030/031B proved customer/vendor posting groups.",
+    "currentCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
+    "lastEvidenceSummary": "TARGET-035 showed Customers, Vendors, Items and Locations list surfaces read-only in playthru / UNIVERSAARL-DE; no New, template, save, setup, Preview Posting or Posting occurred.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "A local checkpoint prevents overclaiming and defines whether any master data work can begin.",
+    "reason": "A no-write decision was still required before any first master-data record because Customer, Vendor and Item creation can involve templates and posting-related fields.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+        "caseId": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
         "status": "ready-next",
-        "reason": "The previous W1 evidence is sufficient for a local classification without BC."
+        "reason": "Location is useful for inventory/warehouse context and can be constrained to Code and Name."
       },
       {
-        "caseId": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
-        "status": "ready-next",
-        "reason": "Read-only inspection of customer, vendor, item and location cards/templates can proceed without creating records."
-      },
-      {
-        "caseId": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
-        "status": "needs-setup-first",
-        "reason": "Actual creation depends on TARGET-035 required-field/template evidence and the explicit acceptance of parked VAT/Page314 boundaries."
+        "caseId": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+        "status": "ready-after-current",
+        "reason": "Customer, Vendor and Item creation need template and mandatory-field discovery before any save."
       },
       {
         "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
         "status": "blocked",
-        "reason": "Preview requires master data plus accepted posting/VAT boundaries."
+        "reason": "Preview requires real master data plus accepted VAT/posting boundaries and expected entry trace."
       },
       {
         "caseId": "TARGET-038-FIRST-POSTING-GATE",
         "status": "blocked",
-        "reason": "Posting requires Preview evidence and expected entry trace."
+        "reason": "Posting requires successful Preview Posting and expected ledger/subledger trace."
+      },
+      {
+        "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+        "status": "ready-after-current",
+        "reason": "Page 314, VAT, inventory posting and default dimensions remain parked and should be revisited after the first safe master-data write."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-034 done as a no-BC foundation checkpoint.",
-      "Added TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT as read-only next case.",
-      "Kept actual master data creation, Preview Posting and Posting locked."
+      "Marked TARGET-036 as done.",
+      "Added TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE as next pending case.",
+      "Replaced broad customer-or-location follow-up with narrow Location-only gate."
     ],
-    "selectedNextCase": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
-    "whySelectedNextCaseIsBest": "It advances toward beginner-friendly master data chapters without writing records while Page 314 and VAT setup remain parked.",
+    "selectedNextCase": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It is the smallest useful Universaarl master-data write and avoids the template/accounting risk of Customer, Vendor and Item records.",
     "risksBeforeNextCase": [
-      "Do not click New if it would create a record.",
-      "Do not accept template dialogs.",
-      "Do not fill or save fields.",
-      "Do not claim posting readiness from card/template visibility."
+      "Locations can contain warehouse/bin fields that must not be changed in the first write.",
+      "The New action must be scoped to Locations, not a generic create flow.",
+      "No Preview Posting or Posting may be inferred from a saved Location."
     ],
     "requiredPreparation": [
-      "Inspect only read-only card/list/template surfaces for customers, vendors, items and locations.",
-      "Capture required fields, visible posting group fields, template prompts and abort rules."
+      "Confirm playthru / UNIVERSAARL-DE before clicking New.",
+      "Use screenshot QA on before/card/reopen states.",
+      "Stop if any unsafe dialog or unrelated page appears."
     ]
   },
   "permissionBlocker": {
@@ -7273,7 +7283,7 @@
     "currentVisibleText": "1200 Forderungen aus Lieferungen und Leistungen Bilanz Buchung",
     "correctedReason": "SKR04-oriented Universaarl foundation must not create a new 1400 receivables account; 1400 belongs to the wrong mapping context for this target."
   },
-  "nextQueueItem": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
+  "nextQueueItem": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
   "openItems": 1,
   "latestCustomerReceivablesSourceCorrection": {
     "caseId": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
@@ -7656,5 +7666,25 @@
     },
     "nextCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
     "updatedAt": "2026-07-01T09:03:36.035Z"
+  },
+  "latestTarget036MasterDataWriteDecision": {
+    "caseId": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
+    "status": "source-backed-decision-no-write",
+    "completedAt": "2026-07-01T09:25:00.000Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-036-master-data-first-controlled-write-decision/TARGET-036-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "selectedFirstWriteRoute": "Location",
+    "selectedLocation": {
+      "code": "SAAR-HL",
+      "name": "Saarbruecken Hauptlager"
+    },
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "nextCase": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE"
   }
 }

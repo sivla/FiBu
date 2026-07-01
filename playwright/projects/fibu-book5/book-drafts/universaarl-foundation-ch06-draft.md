@@ -232,4 +232,15 @@ Die Aktion `Neu` ist auf allen vier Seiten sichtbar. Sie wird noch nicht verwend
 
 Die eingeblendeten Info-Karten und Teaching-Tips sind hilfreich fuer die Orientierung. Fuer ein endgueltiges Buchbild sollten sie aber entweder bewusst erklaert oder vor dem Screenshot geschlossen werden, damit wichtige Spalten und Felder nicht verdeckt werden.
 
-Der naechste sichere Schritt ist deshalb kein Beleg und keine Buchung. Zuerst wird entschieden, welcher erste Stammdatensatz mit welchen Feldern kontrolliert angelegt werden darf. Erst wenn dieser Datensatz nach erneutem Oeffnen sichtbar ist, kann er als Grundlage fuer Belege, Vorschau und Postenspur dienen.
+Der naechste sichere Stammdatenschritt ist ein einfacher Lagerort. Ein Lagerort trennt Bestandsorte, ohne sofort einen Kunden, Lieferanten oder Artikel mit Vorlagen- und Buchungsgruppenlogik anzulegen. Fuer die Universaarl GmbH wird zuerst `SAAR-HL` mit dem Namen `Saarbruecken Hauptlager` vorbereitet.
+
+Auf der Seite `Lagerorte` sind dafuer nur zwei Felder wichtig:
+
+| Feld | Bedeutung |
+| --- | --- |
+| `Code` | Kurzbezeichnung des Lagerorts. Dieser Code erscheint spaeter in Artikel-, Einkaufs-, Verkaufs- und Lagerzeilen. |
+| `Name` | Lesbarer Name des Lagerorts. Er hilft, den Code im Alltag zu verstehen. |
+
+Andere Felder auf der Lagerortkarte koennen spaeter wichtig werden, zum Beispiel fuer Wareneingang, Warenausgang, Lagerplaetze oder erweiterte Warehouse-Prozesse. Sie werden beim ersten Lagerort noch nicht veraendert. So bleibt der erste Stammdatensatz klein und kontrollierbar.
+
+Debitoren, Kreditoren und Artikel folgen erst danach. Dort koennen Vorlagen, Buchungsgruppen, USt-Gruppen und weitere Pflichtfelder sofort fachliche Wirkung haben. Deshalb werden diese Stammdaten zuerst mit einer eigenen Vorlagen- und Pflichtfeldpruefung vorbereitet.

@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "First Location controlled write gate",
+  "purpose": "Create or verify exactly one simple Universaarl location as the first low-risk master-data write after TARGET-036.",
+  "sourceCases": [
+    "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
+    "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION"
+  ],
+  "effectiveBcActionsAllowed": true,
+  "mayRunPlaywright": true,
+  "taskClass": "wizard_work",
+  "smartDecisionRequired": true,
+  "targetRecord": {
+    "page": "Locations",
+    "pageId": 15,
+    "code": "SAAR-HL",
+    "name": "Saarbruecken Hauptlager"
+  },
+  "allowedActions": [
+    "open-playthru-business-central",
+    "confirm-UNIVERSAARL-DE-context",
+    "open-locations-page",
+    "close-teaching-tip-if-visible",
+    "inspect-locations-list-before-write",
+    "click-new-location-only-in-locations-context",
+    "fill-location-code-and-name-only",
+    "leave-warehouse-and-bin-fields-unchanged",
+    "save-or-leave-card-naturally",
+    "reopen-locations-and-prove-SAAR-HL",
+    "capture-screenshot-qa",
+    "write-result-json-and-next-step-decision"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "create-customer",
+    "create-vendor",
+    "create-item",
+    "confirm-customer-vendor-item-template-dialog",
+    "change-inventory-setup",
+    "change-posting-setup",
+    "change-vat-setup",
+    "change-warehouse-require-receive",
+    "change-warehouse-require-shipment",
+    "change-bin-mandatory",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-master-data-readiness",
+    "claim-warehouse-readiness",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "fieldsAllowedToChange": [
+    {
+      "field": "Location.Code",
+      "value": "SAAR-HL"
+    },
+    {
+      "field": "Location.Name",
+      "value": "Saarbruecken Hauptlager"
+    }
+  ],
+  "fieldsExplicitlyLocked": [
+    "Require Receive",
+    "Require Shipment",
+    "Require Put-away",
+    "Require Pick",
+    "Bin Mandatory",
+    "Directed Put-away and Pick",
+    "Inventory Posting Group",
+    "Any posting setup field"
+  ],
+  "entryCriteria": [
+    "TARGET-036 result exists and selects Location as first controlled master-data write route.",
+    "Business Central context is playthru / UNIVERSAARL-DE.",
+    "Locations page opens without company switch.",
+    "No Customer, Vendor or Item template dialog is involved."
+  ],
+  "stopIf": [
+    "The active instance is not playthru.",
+    "The active company is not UNIVERSAARL-DE.",
+    "Locations page cannot be identified.",
+    "New opens an unrelated page, document, setup wizard or template flow.",
+    "A dialog asks to confirm data creation outside the Location card.",
+    "Required fields beyond Code and Name are unclear.",
+    "SAAR-HL already exists with different meaning or unsafe settings."
+  ],
+  "acceptanceCriteria": [
+    "Before screenshot shows Locations page context.",
+    "If SAAR-HL does not exist, only Code and Name are entered.",
+    "If SAAR-HL already exists, no duplicate is created and existing record is documented.",
+    "Reopen proof shows SAAR-HL and Saarbruecken Hauptlager in playthru / UNIVERSAARL-DE.",
+    "No setup, document draft, Preview Posting, Posting, Payment, API shortcut or company switch occurs.",
+    "Result JSON includes screenshot QA and a Next-Step Decision Card."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-036 selected Location as the first controlled master-data write because Customers, Vendors and Items have template and posting-field risk.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A simple Location with Code and Name gives useful inventory/warehouse context with lower accounting risk than Customer, Vendor or Item creation.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+        "status": "ready-after-current",
+        "reason": "Customer, Vendor and Item creation still needs template and mandatory-field discovery."
+      },
+      {
+        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
+        "status": "blocked",
+        "reason": "Preview requires master data plus accepted VAT/posting boundaries and expected entry trace."
+      },
+      {
+        "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+        "status": "ready-after-current",
+        "reason": "Parked Page 314, VAT and default-dimension blockers remain relevant after the first safe master-data write."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It is the smallest useful data write for Universaarl and avoids the template mechanics of customers, vendors and items.",
+    "risksBeforeNextCase": [
+      "Do not change warehouse/posting fields on the Location card.",
+      "Do not create customers, vendors or items.",
+      "Do not create documents, preview or post."
+    ],
+    "requiredPreparation": [
+      "Use screenshot QA before and after the write.",
+      "Stop if New does not clearly open a Location card."
+    ]
+  },
+  "createdAt": "2026-07-01T09:25:00.000Z"
+}
