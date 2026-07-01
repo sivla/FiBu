@@ -127,13 +127,22 @@ export async function searchFor(page: Page, term: string) {
 
   const scopes = [page, ...page.frames()];
   for (const scope of scopes) {
-    const textbox = scope
-      .getByRole('textbox', { name: /Was m.chten Sie tun|Wie m.chten Sie weiter verfahren|Tell me|Search|Suchen/i })
-      .first();
-    if (await textbox.isVisible({ timeout: 500 }).catch(() => false)) {
-      await textbox.fill(term);
-      await page.waitForTimeout(2500);
-      return;
+    const textboxCandidates = [
+      scope.getByRole('textbox', { name: /Was m.chten Sie tun|Wie m.chten Sie weiter verfahren|Tell me|Search|Suchen/i }).first(),
+      scope.locator('[role="dialog"] input:visible, [aria-modal="true"] input:visible').first(),
+      scope.locator('input[type="search"]:visible, input[type="text"]:visible, textarea:visible').first()
+    ];
+
+    for (const textbox of textboxCandidates) {
+      if (await textbox.isVisible({ timeout: 500 }).catch(() => false)) {
+        await textbox.click({ timeout: 1000 }).catch(() => undefined);
+        await textbox.fill(term).catch(async () => {
+          await page.keyboard.press(process.platform === 'darwin' ? 'Meta+A' : 'Control+A').catch(() => undefined);
+          await page.keyboard.type(term);
+        });
+        await page.waitForTimeout(2500);
+        return;
+      }
     }
   }
 

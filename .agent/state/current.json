@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T00:03:30.348Z",
+  "updatedAt": "2026-07-01T02:25:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "activeArea": "universaarl-vat-page-surface-recovery",
-  "activeCase": "TARGET-027C2-VAT-PAGE-SURFACE-RECOVERY",
-  "active_case_file": ".agent/state/cases/target-027c2-vat-page-surface-recovery.json",
-  "lastReferenceCase": "WAREHOUSE-031-WAREHOUSE-SOURCE-ROUTE-PARK-OR-SETUP-FIT-DECISION",
-  "lastReferenceCaseFile": ".agent/state/cases/warehouse-031-warehouse-source-route-park-or-setup-fit-decision.json",
+  "activeCase": "TARGET-027C3-TELL-ME-INPUT-FOCUS-RECOVERY",
+  "active_case_file": ".agent/state/cases/target-027c3-tell-me-input-focus-recovery.json",
+  "lastReferenceCase": "TARGET-027C2-VAT-PAGE-SURFACE-RECOVERY",
+  "lastReferenceCaseFile": ".agent/state/cases/target-027c2-vat-page-surface-recovery.json",
   "mode": "universaarl-target-execution",
   "requiresStrongModel": true,
   "requiredPreflightChecks": [
@@ -40,8 +40,8 @@
     "api-shortcut",
     "claim-german-19-percent-vat-final-proof"
   ],
-  "nextCase": "TARGET-027C2-VAT-PAGE-SURFACE-RECOVERY",
-  "nextStep": "Recover a visible VAT page surface for Page 470/471 before retrying any INLAND/VAT19 write.",
+  "nextCase": "TARGET-027C3-TELL-ME-INPUT-FOCUS-RECOVERY",
+  "nextStep": "Recover the visible Tell-Me search textbox input route before retrying VAT page navigation or VAT group setup writes.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -224,7 +224,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "universaarl-skr04-account-cleanup-and-setup-gate",
+  "currentCoverageFocus": "Universaarl VAT setup remains blocked before write; next focus is Business Central Tell-Me input/focus recovery.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -6474,5 +6474,17 @@
     ],
     "screenshotQa": "Rejected screenshots show Role Center / generic UI, not accepted VAT page surface.",
     "nextCase": "TARGET-027C2-VAT-PAGE-SURFACE-RECOVERY"
+  },
+  "latestVatPageSurfaceRecovery": {
+    "caseId": "TARGET-027C2-VAT-PAGE-SURFACE-RECOVERY",
+    "status": "blocked",
+    "updatedAt": "2026-07-01T02:25:00.000+02:00",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027c2-vat-page-surface-recovery/TARGET-027C2-result.json",
+    "summary": "Read-only run stayed in playthru / UNIVERSAARL-DE but rejected all VAT page surfaces. Screenshots show Role Center or an empty Tell-Me search textbox, so VAT setup writes remain locked.",
+    "helperLearning": "Tell-Me/search overlay can open while the visible textbox remains empty; recover focus/input before accepting search-route evidence.",
+    "noSetupChange": true,
+    "noPreview": true,
+    "noPosting": true,
+    "nextCase": "TARGET-027C3-TELL-ME-INPUT-FOCUS-RECOVERY"
   }
 }

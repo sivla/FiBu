@@ -483,6 +483,16 @@ TARGET-027S ist kein Setup-Fortschritt, sondern ein wichtiges Playwright-Learnin
 | `target-027c-001-business-before.png` | Role Center statt sichtbarer Page 470 | `playthru` / `UNIVERSAARL-DE` | Vorherbild fuer INLAND-Write-Gate | Role Center/generische Shell, keine MwSt.-Geschaeftsbuchungsgruppen-Liste | Der Write-Gate blockiert korrekt, wenn keine sichtbare VAT-Listenoberflaeche akzeptiert wurde | `INLAND`, Page-470-Sichtbarkeit, VAT-Setup, 19-Prozent-USt | `rejected-role-center`, `blocked-before-write` |
 | `target-027c-002-product-before.png` | Role Center statt sichtbarer Page 471 | `playthru` / `UNIVERSAARL-DE` | Vorherbild fuer VAT19-Write-Gate | Role Center/generische Shell, keine MwSt.-Produktbuchungsgruppen-Liste | Der Write-Gate blockiert korrekt, wenn keine sichtbare VAT-Listenoberflaeche akzeptiert wurde | `VAT19`, Page-471-Sichtbarkeit, VAT-Setup, 19-Prozent-USt | `rejected-role-center`, `blocked-before-write` |
 
+## Universaarl VAT Page Surface Recovery TARGET-027C2
+
+| Screenshot | Page / Kontext | Company | Zweck | Sichtbar | Interner Beweis | Nicht bewiesen | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-027c2-001-business-direct-standard.png` | Role Center statt Page 470 | `playthru` / `UNIVERSAARL-DE` | Direct-Page-470-Surface-Check | Universaarl Role Center, kein sichtbarer MwSt.-Listenbereich | Direkte URL-Route liefert keinen akzeptierten Page-470-Screenshot fuer diesen Helperlauf | `INLAND`, VAT Business Posting Groups, VAT Setup, 19-Prozent-USt | `rejected-role-center`, `blocked` |
+| `target-027c2-003-business-search-overlay-mwst-geschaeftsbuchungsgruppen.png` | Tell-Me-Dialog / Suchoverlay | `playthru` / `UNIVERSAARL-DE` | Suchfallback nach MwSt.-Geschaeftsbuchungsgruppen | Suchdialog ist offen, das Suchfeld bleibt sichtbar leer, Role Center liegt im Hintergrund | Der aktuelle Such-/Fokuspfad befuellt die sichtbare Tell-Me-Textbox nicht verlaesslich | keine Zielseite, keine Gruppe, keine Setup-Freigabe | `rejected-search-overlay`, `helper-fix-needed` |
+| `target-027c2-003-product-search-overlay-mwst-produktbuchungsgruppen.png` | Tell-Me-Dialog / Suchoverlay | `playthru` / `UNIVERSAARL-DE` | Suchfallback nach MwSt.-Produktbuchungsgruppen | Suchdialog ist offen, das Suchfeld bleibt sichtbar leer, Role Center liegt im Hintergrund | Der gleiche Fokusblocker betrifft auch Page 471 | keine Zielseite, keine Gruppe, keine Setup-Freigabe | `rejected-search-overlay`, `helper-fix-needed` |
+
+TARGET-027C2 ist bewusst keine USt-Setup-Evidence. Der Lauf beweist nur den sicheren Abbruch: Keine VAT-Gruppen, keine Matrixzeile, keine Stammdaten, keine Preview und keine Buchung wurden ausgefuehrt. Das naechste brauchbare Bild muss entweder ein gefuelltes Tell-Me-Suchfeld mit Treffer oder die sichtbare MwSt.-Listenoberflaeche selbst zeigen.
+
 TARGET-027C hat keine Setup-Aenderung ausgefuehrt. Die After-/Reopen-Bilder bleiben als Blocker-Evidence erhalten, zeigen aber ebenfalls keinen akzeptierten Zielseitenkontext. Fuer den naechsten Lauf gilt: erst eine sichtbare Page-470/Page-471-Oberflaeche recovern, dann erst `Neu` oder `Liste bearbeiten` innerhalb dieser Oberflaeche pruefen.
 
 ## PREP-010 Screenshot-QA-Regel

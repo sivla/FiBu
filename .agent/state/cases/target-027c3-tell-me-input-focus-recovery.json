@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027C3-TELL-ME-INPUT-FOCUS-RECOVERY",
+  "id": "TARGET-027C3-TELL-ME-INPUT-FOCUS-RECOVERY",
+  "status": "pending",
+  "area": "universaarl-playwright-navigation-recovery",
+  "goal": "Recover and prove a visible Business Central Tell-Me search textbox input route before any VAT setup write is retried.",
+  "sourceCompany": "UNIVERSAARL-DE",
+  "targetWorld": "Universaarl",
+  "sourceCases": [
+    "TARGET-027C2-VAT-PAGE-SURFACE-RECOVERY"
+  ],
+  "allowedActions": [
+    "open-business-central-readonly",
+    "open-tell-me-search-readonly",
+    "hover-or-focus-search-input",
+    "type-search-term-readonly",
+    "capture-filled-searchbox-screenshot",
+    "click-only-exact-safe-navigation-result-if-visible",
+    "capture-target-page-surface-if-found",
+    "update-playwright-helper-patterns"
+  ],
+  "forbiddenActions": [
+    "create-or-edit-vat-groups",
+    "create-vat-posting-setup-matrix-row",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-german-19-percent-vat-final-proof"
+  ],
+  "acceptanceCriteria": [
+    "The run stays in playthru / UNIVERSAARL-DE.",
+    "A screenshot proves either a filled Tell-Me search textbox with the intended VAT term or an accepted VAT target page surface.",
+    "If a search result is clicked, it must be an exact visible navigation result and not a background Role Center link.",
+    "No setup write, master data, draft, Preview Posting, Posting or API shortcut is executed."
+  ],
+  "nextIfSuccessful": "TARGET-027C2-VAT-PAGE-SURFACE-RECOVERY-RETRY",
+  "nextIfBlocked": "TARGET-027C4-VAT-NAVIGATION-ALTERNATIVE-ROUTE",
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "createdAt": "2026-07-01T02:25:00.000+02:00"
+}

@@ -1,44 +1,91 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
-  "caseId": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
-  "status": "blocked-before-write",
-  "completedAt": "2026-07-01T00:03:30.348Z",
+  "runId": "TARGET-027C2-VAT-PAGE-SURFACE-RECOVERY",
+  "caseId": "TARGET-027C2-VAT-PAGE-SURFACE-RECOVERY",
+  "status": "blocked-readonly-helper-learning",
+  "completedAt": "2026-07-01T02:25:00.000+02:00",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write/TARGET-027C-result.json",
-  "evidencePath": "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write/",
-  "summary": "TARGET-027C ran Playwright against Page 470/471 but refused VAT group setup writes because the visible target VAT list surface was not confirmed. No setup write, no matrix row, no draft, no preview and no posting.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-027c2-vat-page-surface-recovery/TARGET-027C2-result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/target-027c2-vat-page-surface-recovery/",
+  "summary": "TARGET-027C2 ran read-only Playwright route recovery for VAT Business/Product Posting Groups. It stayed in playthru / UNIVERSAARL-DE and performed no write actions. All VAT surfaces were rejected; screenshots show Role Center or an empty Tell-Me search textbox. The run produced a helper-pattern improvement and locks VAT setup writes until Tell-Me input/focus is recovered.",
   "proved": [
-    "Business Central stayed in playthru / UNIVERSAARL-DE until the route was blocked."
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "No VAT group, VAT matrix row, master data, draft, Preview Posting, Posting or API shortcut was executed.",
+    "The visible Tell-Me search dialog can open while the search textbox remains empty; this is a Playwright focus/input blocker, not VAT setup evidence."
   ],
   "notProved": [
-    "No VAT Posting Setup matrix row is proven.",
-    "No German 19 percent VAT calculation is proven.",
-    "No customer/vendor/item/G/L VAT defaults are proven.",
-    "No Preview Posting, VAT Entry or G/L Entry exists."
+    "No accepted visible VAT Business Posting Groups surface.",
+    "No accepted visible VAT Product Posting Groups surface.",
+    "No INLAND or VAT19 group exists or was changed by this run.",
+    "No VAT Posting Setup matrix row, German 19 percent calculation, VAT Entry or G/L Entry is proven."
   ],
   "blockedBy": [
-    "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups is not visibly open; refusing setup write.",
-    "INLAND with expected description is not visibly confirmed after reopen.",
-    "MwSt.-Produktbuchungsgruppen / VAT Product Posting Groups is not visibly open; refusing setup write.",
-    "VAT19 with expected description is not visibly confirmed after reopen."
+    "Direct Page 470/471 routes returned Role Center screenshots rather than accepted VAT list surfaces.",
+    "Tell-Me/Search overlay screenshots show an empty search textbox after the attempted input route."
   ],
   "warnings": [
-    "This is setup evidence only; it is not a VAT calculation or posting proof.",
-    "If search fallback was used, only the final visible VAT page screenshot counts as proof."
+    "Rejected screenshots are useful UI-debug evidence but not book-ready setup screenshots.",
+    "Do not retry VAT group writes before a visible page surface is accepted."
   ],
   "actionsNotTaken": [
+    "No VAT group create/edit",
     "No VAT Posting Setup matrix row",
-    "No posting groups outside VAT Business/Product groups",
     "No master data",
     "No document draft",
     "No Preview Posting",
     "No Posting",
     "No API shortcut",
     "No Company switch",
-    "No search overlay accepted as proof"
+    "No book claim for German VAT"
   ],
-  "nextCase": "TARGET-027C2-VAT-PAGE-SURFACE-RECOVERY",
-  "nextStep": "Recover accepted VAT page surface screenshots before retrying INLAND/VAT19 group creation."
+  "nextCase": "TARGET-027C3-TELL-ME-INPUT-FOCUS-RECOVERY",
+  "nextStep": "Recover and screenshot-prove the visible Tell-Me search textbox input/focus route before retrying VAT page navigation.",
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-027C2-VAT-PAGE-SURFACE-RECOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-027C2-VAT-PAGE-SURFACE-RECOVERY",
+    "lastEvidenceSummary": "TARGET-027C2 rejected every VAT surface; the strongest new evidence is that Tell-Me opens but the visible search textbox stays empty.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Repeating TARGET-027C2 would repeat the same empty-search-box failure. The dependency is narrower: recover Tell-Me input/focus first.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027C3-TELL-ME-INPUT-FOCUS-RECOVERY",
+        "status": "ready-next",
+        "reason": "It directly addresses the visible empty-search-box blocker from TARGET-027C2."
+      },
+      {
+        "caseId": "TARGET-027C2-VAT-PAGE-SURFACE-RECOVERY-RETRY",
+        "status": "ready-after-current",
+        "reason": "Retry only after the search input route or an alternative navigation route is proven."
+      },
+      {
+        "caseId": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
+        "status": "needs-ui-discovery-first",
+        "reason": "VAT group writes require accepted visible Page 470/471 surfaces."
+      },
+      {
+        "caseId": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
+        "status": "needs-setup-first",
+        "reason": "The matrix row depends on visible INLAND and VAT19 groups first."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Posting groups wait for VAT setup readiness."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked TARGET-027C2 blocked.",
+      "Added TARGET-027C3-TELL-ME-INPUT-FOCUS-RECOVERY as the next active case."
+    ],
+    "selectedNextCase": "TARGET-027C3-TELL-ME-INPUT-FOCUS-RECOVERY",
+    "whySelectedNextCaseIsBest": "It attacks the smallest proven blocker: visible Tell-Me input is not being filled, so VAT page navigation cannot be trusted yet.",
+    "risksBeforeNextCase": [
+      "Do not accept empty Tell-Me overlay as a page-route proof.",
+      "Do not click New/Edit/List actions on VAT pages until the page surface is accepted."
+    ],
+    "requiredPreparation": [
+      "Use screenshot QA to prove the search field contains the intended term or the exact target page is visible."
+    ]
+  }
 }

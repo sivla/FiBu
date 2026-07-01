@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "TARGET-027C2-VAT-PAGE-SURFACE-RECOVERY",
   "id": "TARGET-027C2-VAT-PAGE-SURFACE-RECOVERY",
-  "status": "pending",
+  "status": "blocked",
   "area": "universaarl-vat-setup-playwright-route-recovery",
   "goal": "Recover a visible, screenshot-accepted VAT Business/Product Posting Groups page surface before any INLAND/VAT19 write is retried.",
   "sourceCompany": "UNIVERSAARL-DE",
@@ -33,6 +33,17 @@
     "If no visible VAT surface is recovered, the blocker names the exact route and UI symptom.",
     "No setup write, master data, draft, Preview Posting, Posting or API shortcut is executed."
   ],
+  "resultStatus": "blocked",
+  "completedAt": "2026-07-01T02:17:24.000+02:00",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-027c2-vat-page-surface-recovery/TARGET-027C2-result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/target-027c2-vat-page-surface-recovery/",
+  "result": "Read-only run stayed in playthru / UNIVERSAARL-DE but rejected all VAT page surfaces. Screenshots show Role Center or an empty Tell-Me search field, so VAT setup writes remain locked.",
+  "blockedBy": [
+    "Direct Page 470/471 routes did not produce a visible accepted VAT list surface.",
+    "Tell-Me/Search overlay opened, but the visible search textbox stayed empty in screenshots.",
+    "No VAT Business/Product Posting Groups page surface was accepted for setup write."
+  ],
   "nextIfSuccessful": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
+  "nextCase": "TARGET-027C3-TELL-ME-INPUT-FOCUS-RECOVERY",
   "createdAt": "2026-07-01T00:03:30.348Z"
 }

@@ -111,6 +111,12 @@ Der wichtige Fortschritt ist die strengere Sicherheitsregel: `Neu` oder `Liste b
 
 Der naechste Schritt ist `TARGET-027C2`: erst die sichtbare Page-470/Page-471-Oberflaeche recovern und als Screenshot akzeptieren. Erst danach darf der INLAND/VAT19-Schreibcase wiederholt werden. Die VAT Posting Setup Matrix, Preview Posting, Posting, Stammdaten und Belege bleiben gesperrt.
 
+## Stand nach `TARGET-027C2`
+
+`TARGET-027C2` hat den VAT-Write weiterhin nicht freigegeben. Der Lauf blieb read-only in `playthru / UNIVERSAARL-DE` und erzeugte rejected Screenshots fuer direkte Page-470/Page-471-Routen sowie fuer die Suchfallbacks. Die wichtigste neue Erkenntnis ist kein Steuer-Setup, sondern ein Bedien-/Helper-Blocker: Der Tell-Me-Dialog ist sichtbar, aber das Suchfeld bleibt im Screenshot leer. Damit darf kein Suchergebnis und keine Zielseite behauptet werden.
+
+Fuer den SKR04-Pfad bedeutet das: `1406` und `3806` bleiben nur vorbereitende Sachkonten. `INLAND`, `VAT19`, die 19-Prozent-Matrix, Preview Posting, VAT Entries und G/L Entries sind weiterhin nicht bewiesen. Der naechste kleine Schritt ist `TARGET-027C3-TELL-ME-INPUT-FOCUS-RECOVERY`: erst die sichtbare Suchfeld-/Fokusroute reparieren oder eine andere sichtbare Navigationsroute finden, dann den VAT-Gruppen-Write neu bewerten.
+
 ## Quellenbasis
 
 - DATEV SKR04 Produktseite: https://www.datev.de/web/de/datev-shop/rechnungswesen/skr-04/
