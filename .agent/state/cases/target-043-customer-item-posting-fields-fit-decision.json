@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
   "id": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
-  "status": "planned",
+  "status": "observed",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -92,47 +92,83 @@
   "nextStepDecisionCard": {
     "currentCase": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
     "plannedNextCaseBeforeReview": "TARGET-038-O2C-PREFLIGHT",
-    "lastEvidenceSummary": "TARGET-042 proves U-CUST-100 and U-ITEM-HW100 card contexts read-only. Customer posting/VAT/payment fields were not visible in compact card text; item Base Unit, Lagerbuchungsgruppe, Produktbuchungsgruppe and inventory signals were visible, but no setup value correctness is proven.",
+    "lastEvidenceSummary": "TARGET-042 observed U-CUST-100 and U-ITEM-HW100 card contexts read-only. Customer posting/VAT/payment fields were not visible in compact card text; item Base Unit, Lagerbuchungsgruppe, Produktbuchungsgruppe and inventory signals were visible, but no setup value correctness is proven.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "A direct O2C preflight is still too early because customer posting/VAT fields and item VAT/costing signals need either UI discovery or an explicit setup-fit decision first.",
+    "reason": "A direct O2C preflight and a field-write case are both premature. The safer and more useful next step is read-only UI discovery of hidden/available fields.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY",
         "status": "ready-next",
-        "reason": "TARGET-042 suggests missing fields may be hidden by FastTabs/layout/personalization rather than absent setup; read-only UI discovery should come before a write gate."
+        "reason": "It can inspect FastTabs, layout, FactBoxes, Page Inspection and personalization read-only before any write."
       },
       {
         "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
         "status": "needs-ui-discovery-first",
-        "reason": "A write case needs exact visible fields and intended values."
+        "reason": "A write case needs exact field controls and intended values."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C still depends on customer/item posting fields, VAT boundary and expected entry trace."
+        "reason": "O2C still depends on posting/VAT/inventory setup truth."
       },
       {
         "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
         "status": "blocked",
-        "reason": "Vendor creation remains parked and is separate from customer/item O2C readiness."
+        "reason": "Vendor numbering remains parked and unrelated to this customer/item field discovery."
+      },
+      {
+        "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+        "status": "ready-after-current",
+        "reason": "Useful cross-check before promoting setup claims, but less direct than the current UI field gap."
       }
     ],
     "queueChangesMade": [
-      "TARGET-043 created as a local fit-decision gate after TARGET-042."
+      "TARGET-043 completed as local decision gate.",
+      "TARGET-044 selected as read-only UI discovery before any field/setup write."
     ],
     "selectedNextCase": "TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY",
-    "whySelectedNextCaseIsBest": "It can check hidden FastTabs, personalization and Page Inspection without writing values, reducing the risk of a premature setup write.",
+    "whySelectedNextCaseIsBest": "It improves Playwright/BC understanding of cards, FastTabs and field visibility without risking setup or master-data writes.",
     "risksBeforeNextCase": [
-      "Do not edit customer or item fields from field visibility alone.",
-      "Do not create O2C/P2P documents.",
-      "Do not claim posting readiness until setup values and Preview Posting are proven."
+      "Do not apply personalization changes.",
+      "Do not edit customer or item fields.",
+      "Do not create documents, Preview Posting or Posting.",
+      "Do not claim posting readiness from visibility."
     ],
     "requiredPreparation": [
-      "Use TARGET-042 fieldSummary.",
-      "Inspect card layout/FastTabs/Page Inspection before deciding a field is unavailable.",
-      "Keep Preview Posting and Posting locked."
+      "Use direct filtered Customer Card Page 21 and Item Card Page 30 URLs.",
+      "Capture before/after only for read-only layout states, not data changes.",
+      "If personalization/Page Inspection is unstable, stop with screenshot QA and blocker."
     ]
   },
   "createdAt": "2026-07-01T17:10:00.000Z",
-  "updatedAt": "2026-07-01T17:10:00.000Z"
+  "updatedAt": "2026-07-01T17:35:00.000Z",
+  "completedAt": "2026-07-01T17:35:00.000Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-043-customer-item-posting-fields-fit-decision/TARGET-043-result.json",
+  "selectedRoute": "read-only-ui-discovery-before-any-field-write",
+  "decision": {
+    "selectedRoute": "read-only-ui-discovery-before-any-field-write",
+    "reason": "TARGET-042 shows card contexts and some labels, but missing customer posting/VAT/payment fields and missing item VAT/costing signals may be caused by FastTabs, layout, FactBoxes or personalization. A setup write would be premature.",
+    "rejectedRoutes": [
+      {
+        "route": "customer-item-field-write-now",
+        "reason": "Exact field controls and target values are not yet proven; writing now would risk wrong fields or false posting-readiness."
+      },
+      {
+        "route": "o2c-preflight-now",
+        "reason": "O2C still needs customer/item posting fields, VAT boundary and expected entry trace before documents are safe."
+      },
+      {
+        "route": "vendor-numbering-retry-now",
+        "reason": "Vendor U-VEND route remains separate and blocked; it should not distract from the current customer/item field gap."
+      }
+    ],
+    "target044Scope": [
+      "Open U-CUST-100 and U-ITEM-HW100 read-only in playthru / UNIVERSAARL-DE.",
+      "Inspect FastTabs, visible sections, FactBox influence and page layout without editing.",
+      "Use Page Inspection and/or personalization only as read-only discovery if stable and non-destructive.",
+      "Capture screenshot QA explaining which fields are visible, hidden or not found.",
+      "Do not write customer, item, setup, document, Preview Posting or Posting."
+    ]
+  },
+  "nextCase": "TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY"
 }

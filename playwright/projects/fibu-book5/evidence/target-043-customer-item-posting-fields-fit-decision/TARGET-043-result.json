@@ -1,15 +1,29 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
+  "purpose": "autopilot-result-normalized",
   "caseId": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
-  "status": "observed",
-  "runType": "local-universaarl-customer-item-posting-fields-fit-decision",
+  "source": "local-fit-decision-from-target-042-field-evidence",
+  "resultStatus": "observed",
+  "runPlanId": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "bcRun": false,
-  "playwrightRun": false,
-  "summary": "TARGET-043 rejected immediate O2C and field writes; TARGET-044 read-only UI discovery is the next safe step.",
-  "changedInBC": false,
+  "actionsTaken": [
+    "Read TARGET-042 result and fieldSummary.",
+    "Classified missing customer/item fields as UI-discovery-first rather than setup-write-ready.",
+    "Selected TARGET-044 as the next read-only UI discovery case."
+  ],
+  "actionsNotTaken": [
+    "No Business Central opened.",
+    "No Playwright executed for TARGET-043.",
+    "No setup changed.",
+    "No customer or item changed.",
+    "No document or draft created.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No API shortcut."
+  ],
   "setupChanged": false,
   "setupChangeAttempted": false,
   "masterDataChanged": false,
@@ -28,12 +42,31 @@
     "No field write route is proven safe.",
     "No VAT Posting Setup, Inventory Posting Setup, Preview Posting, Posting or ledger trace is proven."
   ],
-  "blockedBy": [],
-  "warnings": [
-    "Visible labels are not values and do not prove setup correctness.",
-    "TARGET-044 may run Playwright read-only, but must not click New/Edit/Post or change fields.",
-    "If Page Inspection or personalization opens a panel, it must remain read-only and be closed without applying layout changes."
-  ],
+  "target42FieldSummary": {
+    "customer": {
+      "visible": [
+        "blocked"
+      ],
+      "missing": [
+        "customerPostingGroup",
+        "genBusPostingGroup",
+        "vatBusPostingGroup",
+        "paymentTermsCode"
+      ]
+    },
+    "item": {
+      "visible": [
+        "baseUnitOfMeasure",
+        "itemPostingGroup",
+        "genProdPostingGroup",
+        "inventory"
+      ],
+      "missing": [
+        "vatProdPostingGroup",
+        "costingMethod"
+      ]
+    }
+  },
   "decision": {
     "selectedRoute": "read-only-ui-discovery-before-any-field-write",
     "reason": "TARGET-042 shows card contexts and some labels, but missing customer posting/VAT/payment fields and missing item VAT/costing signals may be caused by FastTabs, layout, FactBoxes or personalization. A setup write would be premature.",
@@ -59,10 +92,35 @@
       "Do not write customer, item, setup, document, Preview Posting or Posting."
     ]
   },
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-043-customer-item-posting-fields-fit-decision/TARGET-043-result.json",
-  "nextCase": "TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY",
-  "nextStep": "Run TARGET-044 Customer/Item Posting Field UI Discovery read-only before any field/setup write.",
-  "nextStepDecisionCard": {
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-043-customer-item-posting-fields-fit-decision/TARGET-043-result.json",
+    "playwright/projects/fibu-book5/evidence/target-043-customer-item-posting-fields-fit-decision/README.md",
+    ".agent/state/cases/target-044-customer-item-posting-field-ui-discovery.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-042-customer-item-posting-fields-readonly-preflight/TARGET-042-result.json",
+    "playwright/projects/fibu-book5/evidence/target-043-customer-item-posting-fields-fit-decision/TARGET-043-result.json"
+  ],
+  "warnings": [
+    "Visible labels are not values and do not prove setup correctness.",
+    "TARGET-044 may run Playwright read-only, but must not click New/Edit/Post or change fields.",
+    "If Page Inspection or personalization opens a panel, it must remain read-only and be closed without applying layout changes."
+  ],
+  "blockedBy": [],
+  "flags": {
+    "noBcExecution": true,
+    "noPlaywrightExecution": true,
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true
+  },
+  "nextStepDecision": {
     "currentCase": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
     "plannedNextCaseBeforeReview": "TARGET-038-O2C-PREFLIGHT",
     "lastEvidenceSummary": "TARGET-042 observed U-CUST-100 and U-ITEM-HW100 card contexts read-only. Customer posting/VAT/payment fields were not visible in compact card text; item Base Unit, Lagerbuchungsgruppe, Produktbuchungsgruppe and inventory signals were visible, but no setup value correctness is proven.",
@@ -113,5 +171,21 @@
       "If personalization/Page Inspection is unstable, stop with screenshot QA and blocker."
     ]
   },
-  "updatedAt": "2026-07-01T17:35:00.000Z"
+  "statePatch": {
+    "current": {
+      "activeArea": "universaarl-customer-item-posting-field-ui-discovery",
+      "activeCase": "TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY",
+      "active_case_file": ".agent/state/cases/target-044-customer-item-posting-field-ui-discovery.json",
+      "nextStep": "Run TARGET-044 Customer/Item Posting Field UI Discovery read-only before any field/setup write."
+    },
+    "activeCase": {
+      "status": "observed",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-043-customer-item-posting-fields-fit-decision/TARGET-043-result.json",
+      "nextCase": "TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY"
+    }
+  },
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "Local fit decision completed; next step is read-only UI discovery, not setup/write/document work.",
+  "nextCase": "TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY"
 }

@@ -811,12 +811,12 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-07-01T17:10:00.000Z",
+  "updatedAt": "2026-07-01T17:35:00.000Z",
   "activeArea": "universaarl-master-data-write-decision",
   "currentBlock": "Foundation checkpoint needed before master data: General Posting Setup Page 314 and VAT matrix are parked; Dimensions starter set is visible but Global/Default Dimensions and posting effects are not proven.",
   "latestPracticalCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
   "latestReviewCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
-  "nextCase": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
+  "nextCase": "TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -1037,7 +1037,7 @@
     "playwright/projects/fibu-book5/BC-ERROR-BLOCKER-ATLAS.md",
     "playwright/projects/fibu-book5/BC-PROCESS-COVERAGE-ROADMAP.md"
   ],
-  "currentCoverageFocus": "TARGET-042 proves customer/item card contexts and field visibility gaps; TARGET-043 will choose a narrow fit/discovery route before O2C/P2P.",
+  "currentCoverageFocus": "TARGET-043 selects TARGET-044 read-only UI discovery before any customer/item field or setup write.",
   "latestCoverageUpdate": {
     "at": "2026-06-28T19:28:00.000+02:00",
     "type": "p2p-011-purchase-lines-action-discovery-tested",
@@ -4613,7 +4613,7 @@
     "nextCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
     "updatedAt": "2026-07-01T09:03:36.035Z"
   },
-  "nextQueueItem": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
+  "nextQueueItem": "TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY",
   "latestTarget036MasterDataWriteDecision": {
     "caseId": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
     "status": "source-backed-decision-no-write",
@@ -4894,7 +4894,7 @@
     },
     "nextCase": "TARGET-039-FOUNDATION-BLOCKER-REVISIT"
   },
-  "lastCompletedCase": "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
+  "lastCompletedCase": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
   "latestTarget039FoundationBlockerRevisit": {
     "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
     "status": "observed",
@@ -5042,5 +5042,19 @@
     "status": "planned",
     "nextCase": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
     "reason": "Fit decision from TARGET-042 fieldSummary before any document, Preview Posting or Posting."
+  },
+  "latestTarget043CustomerItemPostingFieldsDecision": {
+    "caseId": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-043-customer-item-posting-fields-fit-decision/TARGET-043-result.json",
+    "selectedRoute": "read-only-ui-discovery-before-any-field-write",
+    "nextCase": "TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY",
+    "reason": "TARGET-042 shows card contexts and some labels, but missing customer posting/VAT/payment fields and missing item VAT/costing signals may be caused by FastTabs, layout, FactBoxes or personalization. A setup write would be premature."
+  },
+  "latestTarget044": {
+    "caseId": "TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY",
+    "status": "planned",
+    "nextCase": "TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY",
+    "reason": "Read-only UI discovery of hidden/available customer and item posting fields before any write."
   }
 }

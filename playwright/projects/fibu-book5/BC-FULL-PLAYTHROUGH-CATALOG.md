@@ -28,8 +28,8 @@ Zero-Open-Questions-Regel: Jeder Bereich in diesem Katalog muss seine offenen Ob
 
 | Prioritaet | Case | Warum |
 | --- | --- | --- |
-| 1 | `TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION` | Aktueller naechster Schritt: TARGET-042 hat die Debitorenkarte `U-CUST-100` und Artikelkarte `U-ITEM-HW100` read-only geoeffnet. Die Debitoren-Buchungs-/VAT-/Zahlungsfelder sind im kompakten Text nicht sichtbar; auf der Artikelkarte sind Basiseinheit, Lagerbuchungsgruppe, Produktbuchungsgruppe und Lagerbestand sichtbar, aber nicht als korrekt eingerichtete Werte bewiesen. |
-| 2 | `TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY` | Wahrscheinlicher Folgefall, falls TARGET-043 entscheidet, dass fehlende Felder erst ueber FastTabs, Personalisieren oder Page Inspection read-only aufgefunden werden muessen. |
+| 1 | `TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY` | Aktueller naechster Schritt: TARGET-043 hat entschieden, dass weder O2C noch Feld-Write sinnvoll ist, bevor die fehlenden Debitoren-/Artikel-Buchungsfelder ueber FastTabs, Layout, FactBox-Kontext, Page Inspection oder Personalisieren read-only aufgefunden sind. |
+| 2 | `TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT` | Folgefall nur, wenn TARGET-044 eine eindeutige, sichere Feldroute und konkrete Zielwerte fuer die fehlenden Posting-/VAT-/Zahlungsfelder liefert. |
 | 3 | `TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE` | Bleibt blockiert, bis fuer `U-VEND` eine neue, nicht wiederholte und sichere Nummernserienroute vorliegt. |
 | 4 | `TARGET-037-FIRST-PREVIEW-GATE` | Bleibt gesperrt, bis Stammdaten vorhanden sind und die offenen Posting-/VAT-Grenzen bewusst akzeptiert oder geloest sind. |
 | 5 | `TARGET-038-FIRST-POSTING-GATE` | Bleibt gesperrt, bis eine Vorschau mit erwarteter Postenspur vorliegt. |

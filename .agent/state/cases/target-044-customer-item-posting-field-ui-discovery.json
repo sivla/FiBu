@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY",
+  "id": "TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Customer and item posting field UI discovery",
+  "purpose": "Inspect hidden/available posting, VAT and inventory-related fields on U-CUST-100 and U-ITEM-HW100 read-only before any setup or master-data write.",
+  "sourceCases": [
+    "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
+    "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": true,
+  "taskClass": "wizard_work",
+  "targetRecords": [
+    {
+      "pageId": 21,
+      "page": "Customer Card / Debitorenkarte",
+      "record": "U-CUST-100",
+      "discoverReadOnly": [
+        "FastTabs and visible sections",
+        "Customer Posting Group / Debitorenbuchungsgruppe",
+        "Gen. Bus. Posting Group / Geschaeftsbuchungsgruppe",
+        "VAT Bus. Posting Group / MwSt.-Geschaeftsbuchungsgruppe",
+        "Payment Terms Code / Zahlungsbedingungscode",
+        "Blocked / Gesperrt"
+      ]
+    },
+    {
+      "pageId": 30,
+      "page": "Item Card / Artikelkarte",
+      "record": "U-ITEM-HW100",
+      "discoverReadOnly": [
+        "FastTabs and visible sections",
+        "Base Unit of Measure / Basiseinheit",
+        "Item Posting Group / Lagerbuchungsgruppe",
+        "Gen. Prod. Posting Group / Produktbuchungsgruppe",
+        "VAT Prod. Posting Group / MwSt.-Produktbuchungsgruppe",
+        "Costing Method / Einstandspreismethode",
+        "Inventory / Lagerbestand"
+      ]
+    }
+  ],
+  "allowedActions": [
+    "open-playthru-business-central",
+    "confirm-UNIVERSAARL-DE-context",
+    "open-U-CUST-100-readonly",
+    "open-U-ITEM-HW100-readonly",
+    "expand-collapse-fasttabs-readonly",
+    "inspect-factbox-layout-readonly",
+    "page-inspection-readonly-if-stable",
+    "personalization-readonly-discovery-if-stable-no-apply",
+    "capture-screenshot-qa",
+    "write-result-json-and-next-step-decision",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "click-new-edit-delete-or-post-actions",
+    "change-customer",
+    "change-item",
+    "change-posting-groups",
+    "change-general-posting-setup",
+    "change-vat-posting-setup",
+    "change-inventory-posting-setup",
+    "apply-personalization-change",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-o2c-readiness-from-field-visibility",
+    "claim-german-vat-final-proof",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-043 selected UI discovery before any field/setup write.",
+    "TARGET-042 fieldSummary is available.",
+    "No setup, master data, document, Preview Posting or Posting has been changed."
+  ],
+  "acceptanceCriteria": [
+    "The run stays in playthru / UNIVERSAARL-DE.",
+    "U-CUST-100 and U-ITEM-HW100 are inspected read-only.",
+    "FastTabs, visible sections and field presence are captured with screenshots and text metadata.",
+    "Page Inspection or personalization is used only if stable and without applying layout/data changes.",
+    "The result either names a precise write/setup candidate for a future case or keeps O2C/P2P blocked."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-038-O2C-PREFLIGHT",
+    "lastEvidenceSummary": "TARGET-042 observed U-CUST-100 and U-ITEM-HW100 card contexts read-only. Customer posting/VAT/payment fields were not visible in compact card text; item Base Unit, Lagerbuchungsgruppe, Produktbuchungsgruppe and inventory signals were visible, but no setup value correctness is proven.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "A direct O2C preflight and a field-write case are both premature. The safer and more useful next step is read-only UI discovery of hidden/available fields.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY",
+        "status": "ready-next",
+        "reason": "It can inspect FastTabs, layout, FactBoxes, Page Inspection and personalization read-only before any write."
+      },
+      {
+        "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+        "status": "needs-ui-discovery-first",
+        "reason": "A write case needs exact field controls and intended values."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C still depends on posting/VAT/inventory setup truth."
+      },
+      {
+        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Vendor numbering remains parked and unrelated to this customer/item field discovery."
+      },
+      {
+        "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+        "status": "ready-after-current",
+        "reason": "Useful cross-check before promoting setup claims, but less direct than the current UI field gap."
+      }
+    ],
+    "queueChangesMade": [
+      "TARGET-043 completed as local decision gate.",
+      "TARGET-044 selected as read-only UI discovery before any field/setup write."
+    ],
+    "selectedNextCase": "TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY",
+    "whySelectedNextCaseIsBest": "It improves Playwright/BC understanding of cards, FastTabs and field visibility without risking setup or master-data writes.",
+    "risksBeforeNextCase": [
+      "Do not apply personalization changes.",
+      "Do not edit customer or item fields.",
+      "Do not create documents, Preview Posting or Posting.",
+      "Do not claim posting readiness from visibility."
+    ],
+    "requiredPreparation": [
+      "Use direct filtered Customer Card Page 21 and Item Card Page 30 URLs.",
+      "Capture before/after only for read-only layout states, not data changes.",
+      "If personalization/Page Inspection is unstable, stop with screenshot QA and blocker."
+    ]
+  },
+  "createdAt": "2026-07-01T17:35:00.000Z",
+  "updatedAt": "2026-07-01T17:35:00.000Z"
+}
