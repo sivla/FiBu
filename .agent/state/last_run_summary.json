@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
-  "caseId": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
-  "completedAt": "2026-07-01T07:15:01.871Z",
-  "summary": "TARGET-032 completed as a local source-backed decision. No BC/Playwright run and no setup write. It selected TARGET-032A read-only/source-backed UI discovery for Page 312, Page 313 and Page 314 before any General Posting Setup write.",
+  "runId": "TARGET-032A-GENERAL-POSTING-GROUPS-SOURCE-AND-UI-DISCOVERY",
+  "caseId": "TARGET-032A-GENERAL-POSTING-GROUPS-SOURCE-AND-UI-DISCOVERY",
+  "completedAt": "2026-07-01T07:22:57.343Z",
+  "summary": "Page 312, Page 313 and Page 314 are visible read-only. TARGET-032B can be prepared as a narrow setup write gate.",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "bcRun": false,
-  "playwrightRun": false,
+  "bcRun": true,
+  "playwrightRun": true,
   "setupChanged": false,
   "masterDataChanged": false,
   "draftCreated": false,
@@ -15,55 +15,64 @@
   "posted": false,
   "apiShortcut": false,
   "changedFiles": [
-    "playwright/projects/fibu-book5/evidence/target-032-general-posting-groups-and-setup-gate/TARGET-032-result.json",
-    "playwright/projects/fibu-book5/evidence/target-032-general-posting-groups-and-setup-gate/README.md",
-    ".agent/state/cases/target-032a-general-posting-groups-source-and-ui-discovery.json"
+    "playwright/projects/fibu-book5/evidence/target-032a-general-posting-groups-source-and-ui-discovery/TARGET-032A-result.json",
+    "playwright/projects/fibu-book5/evidence/target-032a-general-posting-groups-source-and-ui-discovery/*.txt",
+    "playwright/projects/fibu-book5/evidence/target-032a-general-posting-groups-source-and-ui-discovery/*.screenshot.json",
+    "playwright/projects/fibu-book5/img/target-032a-*.png"
   ],
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/target-032-general-posting-groups-and-setup-gate/TARGET-032-result.json",
-    "playwright/projects/fibu-book5/evidence/target-032-general-posting-groups-and-setup-gate/README.md"
+    "playwright/projects/fibu-book5/evidence/target-032a-general-posting-groups-source-and-ui-discovery/TARGET-032A-result.json",
+    "playwright/projects/fibu-book5/img/target-032a-001-general-business-posting-groups.png",
+    "playwright/projects/fibu-book5/img/target-032a-002-general-product-posting-groups.png",
+    "playwright/projects/fibu-book5/img/target-032a-003-general-posting-setup.png",
+    "playwright/projects/fibu-book5/evidence/target-032a-general-posting-groups-source-and-ui-discovery/target-032a-001-general-business-posting-groups.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-032a-general-posting-groups-source-and-ui-discovery/target-032a-002-general-product-posting-groups.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-032a-general-posting-groups-source-and-ui-discovery/target-032a-003-general-posting-setup.screenshot.json"
+  ],
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/target-032a-001-general-business-posting-groups.png",
+    "playwright/projects/fibu-book5/img/target-032a-002-general-product-posting-groups.png",
+    "playwright/projects/fibu-book5/img/target-032a-003-general-posting-setup.png"
   ],
   "proved": [
-    "Specific posting groups alone are not enough for posting readiness.",
-    "A General Posting Setup write needs General Business Posting Group, General Product Posting Group and account field mapping first.",
-    "The next safest case is a read-only/source-backed UI discovery for Pages 312, 313 and 314."
+    "3/3 target pages were accepted as read-only UI proof in playthru/UNIVERSAARL-DE.",
+    "Geschaeftsbuchungsgruppen / Gen. Business Posting Groups is visible with required page signals.",
+    "Produktbuchungsgruppen / Gen. Product Posting Groups is visible with required page signals.",
+    "Buchungsmatrix Einrichtung / General Posting Setup is visible with required page signals.",
+    "No setup value, master data, draft, Preview Posting, Posting or API shortcut was executed."
   ],
   "notProved": [
-    "No General Business Posting Group exists or is assigned in Universaarl evidence.",
-    "No General Product Posting Group exists or is assigned in Universaarl evidence.",
-    "No General Posting Setup row exists for INLAND/WAREN.",
-    "No VAT setup, master data, Preview Posting, Posting or ledger trace is proven.",
+    "No General Business Posting Group INLAND was created or verified as saved.",
+    "No General Product Posting Group WAREN was created or verified as saved.",
+    "No General Posting Setup row INLAND/WAREN with 4400/5400 was created.",
+    "No posting readiness, Preview Posting, G/L Entries, VAT Entries or Value Entries are proven.",
     "No final SKR04, tax advisor or German compliance claim is proven."
   ],
   "blockedBy": [],
   "warnings": [
-    "Do not write Page 314 before Page 312 and Page 313 route/fields are observed.",
-    "Do not infer posting readiness from Customer/Vendor Posting Groups.",
-    "VAT defaults on General Posting Groups are source-visible fields but VAT setup remains parked until its own case."
+    "New/Neu action is visible but was not clicked.",
+    "Edit/List action is visible but was not clicked.",
+    "Visibility of Page 312/313/314 is only a prerequisite for a later controlled setup write.",
+    "Candidate codes INLAND and WAREN plus accounts 4400/5400 remain not written in this case."
   ],
-  "nextStep": "Run TARGET-032A read-only/source-backed UI discovery for Page 312, Page 313 and Page 314. Do not write setup, create master data, Preview Posting or Posting.",
-  "nextCase": "TARGET-032A-GENERAL-POSTING-GROUPS-SOURCE-AND-UI-DISCOVERY",
+  "nextStep": "Run TARGET-032B only as a narrow Smart Decision write gate for INLAND, WAREN and INLAND/WAREN 4400/5400. No master data, Preview Posting or Posting.",
+  "nextCase": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
-    "lastEvidenceSummary": "TARGET-030 proved Vendor Posting Group INLAND/3300 and TARGET-031B proved Customer Posting Group INLAND/1200. General Posting Setup, VAT Setup, master data, Preview Posting and Posting remain unproven.",
+    "currentCase": "TARGET-032A-GENERAL-POSTING-GROUPS-SOURCE-AND-UI-DISCOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-032A-GENERAL-POSTING-GROUPS-SOURCE-AND-UI-DISCOVERY",
+    "lastEvidenceSummary": "TARGET-032 selected read-only/source-backed UI discovery before any General Posting Setup write. TARGET-030 and TARGET-031B already proved specific INLAND vendor/customer posting groups.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "A direct Page 314 write would be too broad. Microsoft Learn separates Gen. Business Posting Groups, Gen. Product Posting Groups and General Posting Setup fields, so the next step must first discover or source-check the exact Page 312/Page 313/Page 314 route and minimal codes.",
+    "reason": "The direct Page 312/313/314 UI context is the missing dependency before deciding whether a small write gate can create INLAND, WAREN and the first INLAND/WAREN Buchungsmatrix row.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-032A-GENERAL-POSTING-GROUPS-SOURCE-AND-UI-DISCOVERY",
-        "status": "ready-next",
-        "reason": "Needs source-backed UI discovery for Gen. Business Posting Groups, Gen. Product Posting Groups and Page 314 before any write."
-      },
-      {
         "caseId": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
-        "status": "needs-ui-discovery-first",
-        "reason": "Only valid after TARGET-032A proves pages, field names and minimal row design."
+        "status": "ready-next",
+        "reason": "All three required setup surfaces are visible read-only and can feed a narrow Smart Decision write gate."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-after-current",
-        "reason": "Dimension recovery can resume after posting group source/setup route is clear."
+        "reason": "Dimensions can resume after posting group setup direction is clear."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
@@ -76,21 +85,18 @@
         "reason": "Master data remains locked until posting groups, VAT and dimensions are sufficient."
       }
     ],
-    "queueChangesMade": [
-      "Marked TARGET-032 as done locally with no BC execution and no setup write.",
-      "Added TARGET-032A-GENERAL-POSTING-GROUPS-SOURCE-AND-UI-DISCOVERY as the next pending queue item."
-    ],
-    "selectedNextCase": "TARGET-032A-GENERAL-POSTING-GROUPS-SOURCE-AND-UI-DISCOVERY",
-    "whySelectedNextCaseIsBest": "It avoids a broad setup write and turns the next action into a bounded read-only/source-backed UI discovery.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It is now safe to design a narrow setup write gate because the required pages were observed without changing data.",
     "risksBeforeNextCase": [
-      "Do not write Page 314 yet.",
       "Do not create master data yet.",
       "Do not run Preview Posting or Posting.",
-      "Do not claim posting readiness from specific posting groups alone."
+      "Do not claim posting readiness from setup page visibility.",
+      "Do not write Page 314 before the write gate defines exact fields and fallback."
     ],
     "requiredPreparation": [
-      "Use Microsoft Learn source boundaries for Gen. Business Posting Group, Gen. Product Posting Group and General Posting Setup.",
-      "Observe Page 312, Page 313 and Page 314 read-only before deciding a write."
+      "Write gate must define exact fields: Code/Description on Page 312, Code/Description on Page 313, and INLAND/WAREN with 4400/5400 on Page 314.",
+      "Write gate must include reopen proof and stop if list-edit controls are ambiguous."
     ]
   }
 }

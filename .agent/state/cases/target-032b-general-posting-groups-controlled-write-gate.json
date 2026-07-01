@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "General Posting Groups controlled write gate",
+  "purpose": "Create or verify only the minimal General Business/Product Posting Groups and first General Posting Setup row needed for the Universaarl starter flow.",
+  "sourceCases": [
+    "TARGET-030-POSTING-GROUPS-VENDOR-INLAND-WRITE-GATE",
+    "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
+    "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
+    "TARGET-032A-GENERAL-POSTING-GROUPS-SOURCE-AND-UI-DISCOVERY"
+  ],
+  "effectiveBcActionsAllowed": true,
+  "mayRunPlaywright": true,
+  "taskClass": "judge_work",
+  "smartDecision": {
+    "whyNow": "TARGET-032A proved the three required setup surfaces read-only. The smallest useful next step is to write only the base groups and first INLAND/WAREN matrix row needed before later master data.",
+    "sourceBackedBy": [
+      "Microsoft Learn finance posting group setup",
+      "Microsoft Learn base application tables 250, 251 and General Posting Setup",
+      "TARGET-032A Page 312/313/314 read-only screenshots"
+    ],
+    "fieldsAllowedToChange": [
+      "Page 312 Code/Description for INLAND",
+      "Page 313 Code/Description for WAREN",
+      "Page 314 Gen. Bus. Posting Group, Gen. Prod. Posting Group, Sales Account 4400, Purch. Account 5400"
+    ],
+    "fieldsNotTouched": [
+      "VAT Posting Setup",
+      "Inventory Posting Setup",
+      "Customer/Vendor Posting Groups already proven unless only read for context",
+      "Master Data",
+      "Documents",
+      "Preview Posting",
+      "Posting"
+    ],
+    "risk": "BC list/grid edit route may be ambiguous. Stop if row editor, active field or reopen proof is not clear.",
+    "fallback": "Block and create a UI diagnosis follow-up; do not guess cells or use API shortcut."
+  },
+  "targetValues": {
+    "generalBusinessPostingGroup": {
+      "pageId": 312,
+      "code": "INLAND",
+      "description": "Inlaendische Geschaeftspartner"
+    },
+    "generalProductPostingGroup": {
+      "pageId": 313,
+      "code": "WAREN",
+      "description": "Waren"
+    },
+    "generalPostingSetup": {
+      "pageId": 314,
+      "genBusPostingGroup": "INLAND",
+      "genProdPostingGroup": "WAREN",
+      "salesAccount": "4400",
+      "purchaseAccount": "5400"
+    }
+  },
+  "allowedActions": [
+    "open-playthru-business-central",
+    "confirm-UNIVERSAARL-DE-context",
+    "open-page-312",
+    "create-or-verify-INLAND-business-group",
+    "open-page-313",
+    "create-or-verify-WAREN-product-group",
+    "open-page-314",
+    "create-or-verify-INLAND-WAREN-4400-5400-row",
+    "reopen-proof",
+    "write-result-json-and-next-step-decision"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "change-vat-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-posting-readiness",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-032A accepted Page 312, Page 313 and Page 314 as read-only UI proof.",
+    "Accounts 4400 and 5400 were proven earlier as GuV/Buchung starter accounts.",
+    "Specific Customer/Vendor Posting Groups INLAND are visible after reopen."
+  ],
+  "acceptanceCriteria": [
+    "Only the allowed target values are created or verified.",
+    "Each changed page has before/after/reopen screenshot QA.",
+    "No VAT setup, master data, draft, Preview Posting, Posting or API shortcut occurs.",
+    "If any list editor is ambiguous, the case blocks without guessing."
+  ],
+  "nextCaseIfDone": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+  "nextCaseIfBlocked": "TARGET-032C-GENERAL-POSTING-GROUPS-WRITE-ROUTE-DIAGNOSIS",
+  "createdAt": "2026-07-01T07:22:57.343Z"
+}
