@@ -46,7 +46,7 @@ Das Ziel ist praktisches Business-Central-Wissen. Am Ende soll dieses Projekt ni
 
 Die redaktionelle Abdeckung der bebilderten Klickanleitungen steht in `BOOK-CLICK-GUIDE-COVERAGE.md`.
 
-Der blockuebergreifende Lab-Fit-Status steht in `LAB-FIT-STATUS.md`. Diese Datei zeigt fuer Foundation, Stammdaten, Posting, Tax/VAT, O2C, P2P, Inventory, Reporting und weitere Buchbereiche, was im aktuellen CRONUS-Labor praktisch geprueft ist, was nur teilweise passt und welcher deutsche Finalnachweis spaeter fehlt.
+Der blockuebergreifende Lab-Fit-Status steht in `LAB-FIT-STATUS.md`. Diese Datei enthaelt historische Laborbefunde und wird schrittweise durch Universaarl-Evidence ersetzt. Alte CRONUS-/RM-DEMO-Befunde sind nur Legacy-Referenz, keine aktive Zielwahrheit.
 
 Die Anfänger-Didaktik steht in `BEGINNER-LEARNING-CHECKLIST.md`. Diese Checkliste ist vor allem für neue Codex-Accounts, Autoren und Consultants wichtig: Ein Klickpfad ist erst fertig, wenn Bedienung, Verständnis, Kontrolle, Fehlerbild und Lösung erklärt sind.
 
@@ -54,7 +54,7 @@ Die Bildfreigabe steht in `SCREENSHOT-QA.md`. Ein grüner Playwright-Lauf bedeut
 
 Technische Projektstandards stehen in `TECHNICAL-OPTIMIZATIONS.md`. Dort wird festgehalten, welche Helper, Evidence-Regeln und Screenshot-Regeln für spätere Projekte und andere Business-Central-Umgebungen wiederverwendet werden.
 
-Der Abgleich gegen Microsoft Learn steht in `MICROSOFT-DOC-VALIDATION.md`. Diese Datei trennt allgemeine Business-Central-Regeln, CRONUS-Laborbefunde und spätere deutsche Zielnachweise.
+Der Abgleich gegen Microsoft Learn steht in `MICROSOFT-DOC-VALIDATION.md`. Diese Datei trennt allgemeine Business-Central-Regeln, Legacy-Laborbefunde und Universaarl-Zielnachweise.
 
 Die Portabilitätsregeln für andere Mandanten und spätere deutsche Umgebungen stehen in `ENVIRONMENT-PORTABILITY.md`.
 
@@ -65,12 +65,14 @@ Der Playwright-MCP-Arbeitsmodus steht in `PLAYWRIGHT-MCP-WORKFLOW.md`. MCP wird 
 | Feld | Wert |
 |---|---|
 | Env-Prefix | `FIBU_BOOK5` |
-| Trainingscompany | `RM-DEMO` |
-| Quelle | `CRONUS USA, Inc.` |
-| Startstand | CRONUS-Kopie |
+| Zielinstanz | `playthru` |
+| Zielcompany | `UNIVERSAARL-DE` |
+| Musterfirma | `Universaarl GmbH` |
+| Quelle | Universaarl-Zielaufbau, keine CRONUS-Finalclaims |
+| Legacy | `RM-DEMO`, Rhein-Main, `MCP_1_20260210` und CRONUS nur als historische Evidence |
 | Sprache im aktuellen Lauf | gemischt Deutsch/Englisch |
 | Playwright-Viewport | `1920x1080` |
-| Finaler Buchlauf | später mit durchgängig deutscher Oberfläche |
+| Finaler Buchlauf | Universaarl-Evidence ersetzt alte Laborbilder Schritt fuer Schritt |
 
 ## Testdaten
 
@@ -83,30 +85,32 @@ playwright/projects/fibu-book5/testdata/
 Aktuell:
 
 ```text
-foundation/rm-demo-company.json
+masterdata/companies.json
 masterdata/dimensions.json
 masterdata/locations.json
 masterdata/customers.json
+masterdata/vendors.json
 masterdata/items.json
 sales/uat-o2c-001.json
+purchase/uat-p2p-001.json
 ```
+
+Dateien mit `rm-` im Namen bleiben historische Labor-Testdaten, bis sie durch Universaarl-Testdaten ersetzt oder archiviert sind.
 
 ## Befehle
 
 ```powershell
-npm run fibu:screenshots:start
-npm run fibu:foundation:company
-npm run fibu:foundation:company-info
-npm run fibu:audit:data
-npm run fibu:masterdata:dimensions
-npm run fibu:masterdata:dimension-values
-npm run fibu:masterdata:locations
-npm run fibu:masterdata:customer-item
-npm run fibu:masterdata:posting-fit
-npm run fibu:masterdata:default-dimensions
-npm run fibu:uat:o2c
-npm run fibu:smoke:bc
+npm run auth:bc
+npm run auth:bc:check
+npm run auth:bc:diagnose
+npm run agent:preflight
+npm run agent:context
+npm run agent:dry-run
+npm run agent:run-plan
+npm run fibu:target:playthru-context
 ```
+
+Live-Universaarl-Tests duerfen erst laufen, wenn `npm run auth:bc:check` gruen ist. Bei rotem Auth-Gate ist Business Central tabu; dann werden nur lokale State-, Doku-, Queue- oder Helper-Fixes gemacht.
 
 `MASTERDATA-005` nutzt Playwright nicht nur für Klicks und Screenshots, sondern auch als authentifizierten technischen Träger für die Business-Central-API. Der Webclient liefert den gültigen Session-Token; die API erzeugt die Stammdaten idempotent. Danach öffnet Playwright die BC-Seiten und erzeugt die Buchscreenshots.
 
