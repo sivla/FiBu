@@ -144,6 +144,19 @@ Fuer Universaarl folgt daraus:
 - `3806` und `1406` sind sichtbare SKR04-orientierte Starterkonten, aber noch nicht als MwSt.-Buchungsmatrix-Konten bewiesen.
 - Naechster Case ist `TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE`; er darf noch keine Matrixzeile, keine Stammdaten, keine Preview und keine Buchung ausfuehren.
 
+## TARGET-027D7 VAT-Matrix-Route-Entscheidung
+
+Microsoft Learn bleibt fuer `TARGET-027D7` die fachliche Produktquelle: VAT Posting Setup kombiniert VAT Business Posting Group und VAT Product Posting Group und enthaelt VAT rate sowie VAT G/L accounts. Diese Quelle begruendet, warum die Universaarl-Zielzeile `INLAND` + `VAT19` fachlich `19`, Sales VAT Account `3806` und Purchase VAT Account `1406` braucht. Sie beweist aber nicht, dass diese Werte in `UNIVERSAARL-DE` bereits gespeichert sind.
+
+Fuer Universaarl folgt daraus:
+
+- `TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE` ist der naechste bounded Execute-Case.
+- Die sichtbare Page-472-Route `Weitere Optionen` / `Liste bearbeiten` wird zuerst als neuer Standard-UI-Weg geprueft.
+- Werte duerfen erst geschrieben werden, wenn echte aktive Editoren fuer `MwSt. %`, `Umsatzsteuerkonto` und `Vorsteuerkonto` sichtbar/technisch belegt sind.
+- D3/D5-Zellklick-, F2-, Enter- und Koordinatenrouten bleiben fuer `3806`/`1406` gesperrt.
+- Cleanup/Delete bleibt Fallback und braucht eine eigene row-scoped Bestaetigungs-Evidence.
+- Keine Preview, keine Buchung, keine Stammdaten und kein deutscher Finalclaim vor Universaarl-Reopen-Proof.
+
 ## TARGET-026D Kontenplan-Quellenentscheidung
 
 TARGET-026B zeigt in `UNIVERSAARL-DE` einen erreichbaren, aber leeren/insufficient Kontenplan ohne sichtbare USt-Konto-Kandidaten. Microsoft Learn `View the chart of accounts` und `Set up or change the chart of accounts` stuetzen die Produktlogik: Der Kontenplan ist das Verzeichnis der Finanzkonten und kann fuer die Company eingerichtet/geaendert werden.

@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T02:27:02.343Z",
+  "updatedAt": "2026-07-01T02:32:26.439Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-vat-matrix-route-decision-after-d6",
-  "activeCase": "TARGET-027D7-VAT-MATRIX-ROUTE-DECISION-AFTER-D6",
-  "active_case_file": ".agent/state/cases/target-027d7-vat-matrix-route-decision-after-d6.json",
-  "lastReferenceCase": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
-  "lastReferenceCaseFile": ".agent/state/cases/target-027d6-vat-matrix-row-action-or-personalize-route.json",
+  "activeArea": "universaarl-vat-matrix-list-edit-action-route",
+  "activeCase": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE",
+  "active_case_file": ".agent/state/cases/target-027d8-vat-matrix-list-edit-action-route.json",
+  "lastReferenceCase": "TARGET-027D7-VAT-MATRIX-ROUTE-DECISION-AFTER-D6",
+  "lastReferenceCaseFile": ".agent/state/cases/target-027d7-vat-matrix-route-decision-after-d6.json",
   "mode": "universaarl-target-execution",
   "requiresStrongModel": true,
   "requiredPreflightChecks": [
@@ -19,10 +19,14 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "review-d4-d5-d6-evidence",
-    "select-source-backed-route",
-    "plan-controlled-completion-or-cleanup-case",
-    "update-queue-and-state"
+    "open-page-472",
+    "capture-before-screenshot",
+    "open-visible-more-options",
+    "click-visible-liste-bearbeiten-action",
+    "probe-true-active-editors-for-vat-percent-sales-vat-account-purchase-vat-account",
+    "write-only-if-all-required-editors-are-proven",
+    "capture-after-and-reopen-proof",
+    "stop-without-write-if-editor-proof-fails"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -30,10 +34,9 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "open-business-central",
-    "playwright-execution",
     "repeat-d3-d5-cell-edit-route",
     "type-3806-or-1406-without-new-editor-proof",
+    "cleanup-delete",
     "create-master-data",
     "create-document-or-draft",
     "preview-posting",
@@ -41,8 +44,8 @@
     "api-shortcut",
     "claim-german-vat-final-proof"
   ],
-  "nextCase": "TARGET-027D7-VAT-MATRIX-ROUTE-DECISION-AFTER-D6",
-  "nextStep": "Decide the next safe non-repeating route for the incomplete INLAND/VAT19 VAT Posting Setup row after D3/D5 cell edits and D6 route discovery.",
+  "nextCase": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE",
+  "nextStep": "Run the Page 472 visible More options -> Liste bearbeiten route and require true editor proof before any VAT matrix value write.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -3722,46 +3725,53 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
-    "plannedNextCaseBeforeReview": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
-    "lastEvidenceSummary": "TARGET-027D5 blocked safely because Sales VAT Account and Purchase VAT Account cells did not expose true active editors.",
+    "currentCase": "TARGET-027D7-VAT-MATRIX-ROUTE-DECISION-AFTER-D6",
+    "plannedNextCaseBeforeReview": "TARGET-027D7-VAT-MATRIX-ROUTE-DECISION-AFTER-D6",
+    "lastEvidenceSummary": "D6 captured Page 472 route evidence: More options and Liste bearbeiten are visible; Personalize went to Role Center; Page Inspection proves VAT Posting Setup page/table but no editor.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The incomplete INLAND/VAT19 VAT Posting Setup row still blocks posting groups, master data and first document cases; D6 tests new UI routes instead of repeating cell edits.",
+    "reason": "A local route decision is required before any further setup write because repeated cell typing already failed and created/left partial setup evidence.",
     "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE",
+        "status": "ready-next",
+        "reason": "Uses a new visible standard UI route from D6 and requires editor proof before typing."
+      },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "VAT matrix row is still incomplete or unproven."
+        "reason": "Posting groups wait for VAT matrix completion or an explicit park decision."
       },
       {
         "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
         "status": "needs-setup-first",
-        "reason": "Master data waits for VAT setup and posting group defaults."
+        "reason": "Master data waits for VAT/posting defaults."
       },
       {
         "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Foundation readiness waits for VAT matrix, posting groups and dimension/default decisions."
+        "reason": "Foundation cannot be ready while the VAT matrix row remains incomplete."
       },
       {
         "caseId": "TARGET-031-FIRST-DOCUMENT-DRAFT-GATE",
         "status": "needs-setup-first",
-        "reason": "First document draft waits for master data and complete setup gates."
+        "reason": "First document draft waits for foundation readiness and master data."
       }
     ],
     "queueChangesMade": [
-      "Keep VAT matrix completion blocked until a follow-up write route is explicitly selected from D6 evidence."
+      "Marked D7 as the local route decision case.",
+      "Added TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE as the next bounded execute case."
     ],
-    "selectedNextCase": "TARGET-027D7-VAT-MATRIX-ROUTE-DECISION-AFTER-D6",
-    "whySelectedNextCaseIsBest": "D6 produced new route evidence but did not write values; the next case must decide the bounded write path from that evidence.",
+    "selectedNextCase": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE",
+    "whySelectedNextCaseIsBest": "It is the first non-repeating, evidence-backed UI route after D6: visible More options -> Liste bearbeiten, then true editor gate for VAT %, Sales VAT Account and Purchase VAT Account.",
     "risksBeforeNextCase": [
-      "Do not claim final German VAT correctness before Preview Posting, VAT Entries and G/L Entries.",
-      "Do not create master data until VAT and posting setup gates are complete.",
-      "Do not repeat D3/D5 list-cell typing for 3806/1406."
+      "Do not type 3806/1406 unless the active editor is proven in Page 472 after visible list-edit activation.",
+      "Do not delete the partial row without a separate row-scoped confirmation proof.",
+      "Do not proceed to master data or documents before VAT matrix status is resolved."
     ],
     "requiredPreparation": [
-      "Review D6 screenshots and Page Inspection/Personalize evidence.",
-      "Decide whether Page 472 can be completed through a new route or whether the partial row must be cleaned/recreated with a different standard UI path."
+      "Use D6 Page 472 reopen proof and menu evidence.",
+      "Start D8 with before screenshot, then visible More options -> Liste bearbeiten, then editor probes.",
+      "If all required editors are true, write only VAT %, Sales VAT Account and Purchase VAT Account; then capture after and reopen proof."
     ]
   },
   "permissionBlocker": {
@@ -6703,5 +6713,19 @@
       "Settings -> Personalize opened Role Center personalization instead of Page 472 personalization; marked as wrong-target evidence."
     ],
     "nextCase": "TARGET-027D7-VAT-MATRIX-ROUTE-DECISION-AFTER-D6"
+  },
+  "latestVatMatrixRouteDecisionAfterD6": {
+    "caseId": "TARGET-027D7-VAT-MATRIX-ROUTE-DECISION-AFTER-D6",
+    "status": "done-route-selected-no-bc",
+    "completedAt": "2026-07-01T02:32:26.439Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d7-vat-matrix-route-decision-after-d6/TARGET-027D7-result.json",
+    "selectedRoute": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE",
+    "sourceBasis": [
+      "https://learn.microsoft.com/en-us/dynamics365/business-central/finance-setup-vat",
+      "https://learn.microsoft.com/en-us/training/modules/set-up-vat-dynamics-365-business-central/"
+    ],
+    "nextCase": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE",
+    "noBcExecution": true,
+    "noPlaywrightExecution": true
   }
 }

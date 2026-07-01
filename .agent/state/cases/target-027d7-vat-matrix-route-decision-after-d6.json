@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-027D7-VAT-MATRIX-ROUTE-DECISION-AFTER-D6",
-  "status": "planned",
+  "status": "done",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -59,48 +59,88 @@
     "Keeps master data, drafts, Preview Posting and Posting locked until VAT matrix is complete or consciously parked."
   ],
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
-    "plannedNextCaseBeforeReview": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
-    "lastEvidenceSummary": "TARGET-027D5 blocked safely because Sales VAT Account and Purchase VAT Account cells did not expose true active editors.",
+    "currentCase": "TARGET-027D7-VAT-MATRIX-ROUTE-DECISION-AFTER-D6",
+    "plannedNextCaseBeforeReview": "TARGET-027D7-VAT-MATRIX-ROUTE-DECISION-AFTER-D6",
+    "lastEvidenceSummary": "D6 captured Page 472 route evidence: More options and Liste bearbeiten are visible; Personalize went to Role Center; Page Inspection proves VAT Posting Setup page/table but no editor.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The incomplete INLAND/VAT19 VAT Posting Setup row still blocks posting groups, master data and first document cases; D6 tests new UI routes instead of repeating cell edits.",
+    "reason": "A local route decision is required before any further setup write because repeated cell typing already failed and created/left partial setup evidence.",
     "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE",
+        "status": "ready-next",
+        "reason": "Uses a new visible standard UI route from D6 and requires editor proof before typing."
+      },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "VAT matrix row is still incomplete or unproven."
+        "reason": "Posting groups wait for VAT matrix completion or an explicit park decision."
       },
       {
         "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
         "status": "needs-setup-first",
-        "reason": "Master data waits for VAT setup and posting group defaults."
+        "reason": "Master data waits for VAT/posting defaults."
       },
       {
         "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Foundation readiness waits for VAT matrix, posting groups and dimension/default decisions."
+        "reason": "Foundation cannot be ready while the VAT matrix row remains incomplete."
       },
       {
         "caseId": "TARGET-031-FIRST-DOCUMENT-DRAFT-GATE",
         "status": "needs-setup-first",
-        "reason": "First document draft waits for master data and complete setup gates."
+        "reason": "First document draft waits for foundation readiness and master data."
       }
     ],
     "queueChangesMade": [
-      "Keep VAT matrix completion blocked until a follow-up write route is explicitly selected from D6 evidence."
+      "Marked D7 as the local route decision case.",
+      "Added TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE as the next bounded execute case."
     ],
-    "selectedNextCase": "TARGET-027D7-VAT-MATRIX-ROUTE-DECISION-AFTER-D6",
-    "whySelectedNextCaseIsBest": "D6 produced new route evidence but did not write values; the next case must decide the bounded write path from that evidence.",
+    "selectedNextCase": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE",
+    "whySelectedNextCaseIsBest": "It is the first non-repeating, evidence-backed UI route after D6: visible More options -> Liste bearbeiten, then true editor gate for VAT %, Sales VAT Account and Purchase VAT Account.",
     "risksBeforeNextCase": [
-      "Do not claim final German VAT correctness before Preview Posting, VAT Entries and G/L Entries.",
-      "Do not create master data until VAT and posting setup gates are complete.",
-      "Do not repeat D3/D5 list-cell typing for 3806/1406."
+      "Do not type 3806/1406 unless the active editor is proven in Page 472 after visible list-edit activation.",
+      "Do not delete the partial row without a separate row-scoped confirmation proof.",
+      "Do not proceed to master data or documents before VAT matrix status is resolved."
     ],
     "requiredPreparation": [
-      "Review D6 screenshots and Page Inspection/Personalize evidence.",
-      "Decide whether Page 472 can be completed through a new route or whether the partial row must be cleaned/recreated with a different standard UI path."
+      "Use D6 Page 472 reopen proof and menu evidence.",
+      "Start D8 with before screenshot, then visible More options -> Liste bearbeiten, then editor probes.",
+      "If all required editors are true, write only VAT %, Sales VAT Account and Purchase VAT Account; then capture after and reopen proof."
     ]
   },
   "createdAt": "2026-07-01T02:24:04.199Z",
-  "updatedAt": "2026-07-01T02:27:02.346Z"
+  "updatedAt": "2026-07-01T02:32:26.439Z",
+  "completedAt": "2026-07-01T02:32:26.439Z",
+  "resultStatus": "done-route-selected-no-bc",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d7-vat-matrix-route-decision-after-d6/TARGET-027D7-result.json",
+  "selectedRoute": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE",
+  "sourceBasis": [
+    {
+      "title": "Set up value-added tax - Business Central - Microsoft Learn",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/finance-setup-vat",
+      "relevance": "Supports VAT posting setup, VAT posting groups, VAT clauses and assignment flow; concrete Universaarl values still need UI evidence."
+    },
+    {
+      "title": "Set up VAT in Dynamics 365 Business Central - Microsoft Learn training",
+      "url": "https://learn.microsoft.com/en-us/training/modules/set-up-vat-dynamics-365-business-central/",
+      "relevance": "Learning objectives explicitly include VAT posting groups, VAT G/L accounts in VAT posting setup, and VAT rates in VAT posting setup."
+    }
+  ],
+  "proved": [
+    "D7 selected a concrete next route from existing Universaarl evidence without opening BC.",
+    "D3/D5 direct cell-edit routes are explicitly rejected for the next execute case.",
+    "D8 must use the visible standard list-edit action route and must prove true active editors before any value write.",
+    "Cleanup/delete remains fallback only, not the next action."
+  ],
+  "notProved": [
+    "No VAT Posting Setup row completion.",
+    "No persisted Sales VAT Account 3806 or Purchase VAT Account 1406 in the INLAND/VAT19 row.",
+    "No German VAT correctness.",
+    "No Preview Posting, VAT Entries, G/L Entries or VAT Statement."
+  ],
+  "warnings": [
+    "D6 Personalize opened Role Center personalization, so Personalize is not selected as the next write route.",
+    "D8 remains a setup-write gate; it must stop if the visible list-edit action does not expose true editors for required fields."
+  ],
+  "nextCase": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE"
 }
