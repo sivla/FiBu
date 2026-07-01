@@ -34,6 +34,8 @@ type OpenBcPageOptions = WaitForBcReadyOptions & {
 
 export const BUSINESS_CENTRAL_AUTH_BLOCKER_RE =
   /Token wurde erwartet|Something went wrong|Token was expected|sign in|Anmelden/i;
+export const BUSINESS_CENTRAL_SHELL_RE =
+  /CRONUS|Meine Firma|My Company|Rollencenter|Role Center|Suche|Tell me|Suchen|Meine Einstellungen|My Settings/i;
 
 export function requireBcUrl(envPrefix?: string) {
   const prefixedKey = envPrefix ? `${envPrefix}_BC_URL` : undefined;
@@ -129,6 +131,10 @@ export async function waitForBusinessCentralShell(page: Page) {
 
 export function isBusinessCentralAuthBlockerText(text: string) {
   return BUSINESS_CENTRAL_AUTH_BLOCKER_RE.test(text);
+}
+
+export function isBusinessCentralShellText(text: string) {
+  return !isBusinessCentralAuthBlockerText(text) && BUSINESS_CENTRAL_SHELL_RE.test(text);
 }
 
 export async function businessCentralAuthBlockerText(page: Page) {

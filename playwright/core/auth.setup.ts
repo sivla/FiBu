@@ -2,6 +2,8 @@ import { chromium } from '@playwright/test';
 import fs from 'node:fs/promises';
 import 'dotenv/config';
 
+import { isBusinessCentralAuthBlockerText, isBusinessCentralShellText } from './bc-helpers';
+
 const authFile = 'playwright/.auth/bc-user.json';
 const bcUrl = process.env.BC_URL;
 
@@ -32,9 +34,7 @@ try {
     () => {
       const isBusinessCentral = window.location.hostname.toLowerCase().includes('businesscentral.dynamics.com');
       const text = document.body?.innerText ?? '';
-      const isAuthBlocker = /Token wurde erwartet|Something went wrong|Token was expected|sign in|Anmelden/i.test(text);
-      const hasAppShell = /CRONUS|Meine Firma|My Company|Rollencenter|Role Center|Suche|Tell me|Suchen|Meine Einstellungen|My Settings/i.test(text);
-      return isBusinessCentral && !isAuthBlocker && hasAppShell;
+      return isBusinessCentral && !isBusinessCentralAuthBlockerText(text) && isBusinessCentralShellText(text);
     },
     undefined,
     { timeout: 10 * 60 * 1000 }
