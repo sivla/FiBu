@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
-  "status": "planned",
+  "status": "blocked",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -88,22 +88,22 @@
     "plannedNextCaseBeforeReview": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
     "lastEvidenceSummary": "D22 selected exact-code cleanup after D21 package metadata blocker.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Cleanup removes the temporary package metadata and reduces risk before deciding a different VAT setup route.",
+    "reason": "Cleanup removes or reviews the temporary package metadata before another VAT setup route.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
-        "status": "ready-after-current",
-        "reason": "After cleanup, choose whether to park VAT matrix setup, retry Page 472 differently, or use another source-backed route."
+        "status": "blocked",
+        "reason": "Cleanup did not prove absence, so review is needed first."
       },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Posting Groups still depend on an explicit VAT matrix route decision or documented park decision."
+        "reason": "Posting Groups still depend on VAT matrix route decision or documented park decision."
       },
       {
         "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
         "status": "needs-setup-first",
-        "reason": "Master data remains locked until VAT/posting defaults are safe enough for process evidence."
+        "reason": "Master data remains locked until VAT/posting defaults are safe enough."
       },
       {
         "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
@@ -112,16 +112,24 @@
       }
     ],
     "queueChangesMade": [],
-    "selectedNextCase": "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
-    "whySelectedNextCaseIsBest": "After cleanup, the project needs a fresh route decision for VAT matrix setup without repeating unsafe package New/Table-ID actions.",
+    "selectedNextCase": "TARGET-027D23B-VAT-PACKAGE-METADATA-CLEANUP-BLOCKER-REVIEW",
+    "whySelectedNextCaseIsBest": "D23 produced a real cleanup blocker; the safest next step is local blocker review before selecting another VAT matrix route.",
     "risksBeforeNextCase": [
-      "Do not continue if exact package code cannot be isolated.",
-      "Do not treat cleanup as VAT setup proof."
+      "Do not treat cleanup as VAT setup proof.",
+      "Do not repeat unsafe package New/Table-ID actions.",
+      "Do not create master data until VAT/posting defaults are ready."
     ],
     "requiredPreparation": [
-      "Run a scoped Playwright cleanup test only if exact-code targeting is implemented."
+      "Use D23 screenshots and reopen proof.",
+      "Choose or park the next VAT matrix route without claiming German VAT correctness."
     ]
   },
-  "nextCase": "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
-  "createdAt": "2026-07-01T13:00:00.000Z"
+  "nextCase": "TARGET-027D23B-VAT-PACKAGE-METADATA-CLEANUP-BLOCKER-REVIEW",
+  "createdAt": "2026-07-01T13:00:00.000Z",
+  "completedAt": "2026-07-01T14:00:00.000Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d23-vat-package-metadata-cleanup-execution/TARGET-027D23-result.json",
+  "result": "Exact U-VAT325-DISC package row was visible, but toolbar and row-inline delete clicks did not expose a trusted delete confirmation dialog; package remained visible after reopen.",
+  "blockedBy": [
+    "Delete click did not expose a visible confirmation dialog."
+  ]
 }

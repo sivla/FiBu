@@ -1,29 +1,42 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
+  "purpose": "autopilot-result-normalized",
   "caseId": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
-  "status": "blocked-package-metadata-cleanup",
-  "completedAt": "2026-07-01T14:00:00.000Z",
+  "source": "playwright-exact-code-package-metadata-cleanup",
+  "resultStatus": "blocked-package-metadata-cleanup",
+  "runPlanId": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d23-vat-package-metadata-cleanup-execution/TARGET-027D23-result.json",
-  "evidencePath": "playwright/projects/fibu-book5/evidence/target-027d23-vat-package-metadata-cleanup-execution/",
-  "summary": "D23 ran live Playwright in playthru / UNIVERSAARL-DE. It proved the exact U-VAT325-DISC configuration package row is visible, but cleanup is blocked: toolbar and row-inline delete clicks did not expose a trusted delete confirmation dialog, and the package remained visible after reopen. No VAT values, master data, Preview Posting, Posting, API shortcut or book change occurred.",
-  "proved": [
-    "Business Central stayed in playthru / UNIVERSAARL-DE.",
-    "The exact package code U-VAT325-DISC was visible before cleanup.",
-    "No delete confirmation was executed.",
-    "U-VAT325-DISC absence after cleanup is not proven."
-  ],
-  "notProved": [
-    "No Table 325 / VAT Posting Setup package line.",
-    "No correct INLAND/VAT19 VAT Posting Setup matrix row.",
-    "No German VAT correctness.",
-    "No Posting Groups readiness.",
-    "No master data readiness.",
-    "No Preview Posting, VAT Entries or G/L Entries."
-  ],
-  "warnings": [],
+  "page": "Page 8615 Configuration Packages / Konfigurationspakete",
+  "sanitizedUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=8615&company=UNIVERSAARL-DE&dc=0",
+  "packageCode": "U-VAT325-DISC",
+  "row": {
+    "text": "U-VAT325-DISC VAT 325 Discovery 0 0 0 0 0",
+    "role": "row",
+    "tag": "tr",
+    "ariaLabel": "",
+    "title": "",
+    "x": 192,
+    "y": 158,
+    "width": 2016,
+    "height": 34,
+    "source": "exact-package-code-visible-element"
+  },
+  "exactMatchCount": 9,
+  "exactRowCount": 1,
+  "dialog": {
+    "visible": false,
+    "text": ""
+  },
+  "confirmResult": {
+    "confirmed": false,
+    "by": "not-run",
+    "label": "not-run"
+  },
+  "packageStillVisible": true,
+  "cleanupDeleteExecuted": false,
   "actionsTaken": [
     "Opened Page 8615 Configuration Packages directly in playthru / UNIVERSAARL-DE.",
     "Focused the visible exact-code package row U-VAT325-DISC.",
@@ -48,9 +61,40 @@
     "No API shortcut",
     "No book change"
   ],
-  "nextCase": "TARGET-027D23B-VAT-PACKAGE-METADATA-CLEANUP-BLOCKER-REVIEW",
-  "nextStep": "Run D23B local blocker review and select a non-repeating VAT matrix route decision.",
-  "nextStepDecisionCard": {
+  "setupChanged": false,
+  "setupChangeAttempted": true,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "bookChanged": false,
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "The exact package code U-VAT325-DISC was visible before cleanup.",
+    "No delete confirmation was executed.",
+    "U-VAT325-DISC absence after cleanup is not proven."
+  ],
+  "notProved": [
+    "No Table 325 / VAT Posting Setup package line.",
+    "No correct INLAND/VAT19 VAT Posting Setup matrix row.",
+    "No German VAT correctness.",
+    "No Posting Groups readiness.",
+    "No master data readiness.",
+    "No Preview Posting, VAT Entries or G/L Entries."
+  ],
+  "screenshots": [
+    "target-027d23-010-before-cleanup.png",
+    "target-027d23-020-after-target-row-focus.png",
+    "target-027d23-030-before-delete-click.png",
+    "target-027d23-040-delete-dialog.png",
+    "target-027d23-050-reopen-proof.png"
+  ],
+  "blockedBy": [
+    "Delete click did not expose a visible confirmation dialog."
+  ],
+  "warnings": [],
+  "nextStepDecision": {
     "currentCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
     "plannedNextCaseBeforeReview": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
     "lastEvidenceSummary": "D22 selected exact-code cleanup after D21 package metadata blocker.",
@@ -80,7 +124,7 @@
     ],
     "queueChangesMade": [],
     "selectedNextCase": "TARGET-027D23B-VAT-PACKAGE-METADATA-CLEANUP-BLOCKER-REVIEW",
-    "whySelectedNextCaseIsBest": "D23 produced a real cleanup blocker; local review should choose the next route without repeating the same delete clicks.",
+    "whySelectedNextCaseIsBest": "Cleanup ambiguity remains; review the blocker before any further setup action.",
     "risksBeforeNextCase": [
       "Do not treat cleanup as VAT setup proof.",
       "Do not repeat unsafe package New/Table-ID actions.",
@@ -91,14 +135,9 @@
       "Choose or park the next VAT matrix route without claiming German VAT correctness."
     ]
   },
-  "setupChanged": false,
-  "setupChangeAttempted": true,
-  "masterDataChanged": false,
-  "draftCreated": false,
-  "previewPosting": false,
-  "posted": false,
-  "apiShortcut": false,
-  "blockedBy": [
-    "Delete click did not expose a visible confirmation dialog."
-  ]
+  "nextCase": "TARGET-027D23B-VAT-PACKAGE-METADATA-CLEANUP-BLOCKER-REVIEW",
+  "safeToFinalizeState": false,
+  "requiresReview": true,
+  "statePatch": {},
+  "reason": "Exact-code cleanup blocked before trusted removal proof."
 }
