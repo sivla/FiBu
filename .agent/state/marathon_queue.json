@@ -2952,7 +2952,7 @@
     {
       "id": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
       "order": 10096,
-      "status": "pending",
+      "status": "blocked",
       "priority": "high",
       "area": "universaarl-general-posting-setup",
       "category": "general-posting-setup-matrix-controlled-write",
@@ -2964,11 +2964,52 @@
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
       "caseFile": ".agent/state/cases/target-032d-general-posting-setup-matrix-controlled-write-gate.json",
-      "nextCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
-      "blockedBy": []
+      "nextCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+      "blockedBy": [
+        "Field-to-input mapping was not trusted after Edit List/New and Ctrl+Insert; stopped before typing setup values."
+      ],
+      "result": "Page 314 General Posting Setup write gate was safely blocked before typing: Edit List/New and Ctrl+Insert did not expose trusted editable inputs for INLAND/WAREN/4400/5400.",
+      "completedAt": "2026-07-01T08:09:30.643Z"
+    },
+    {
+      "id": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+      "caseId": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+      "status": "pending",
+      "priority": "high",
+      "goal": "Find a materially different, screenshot-proven Page 314 route for the INLAND/WAREN/4400/5400 General Posting Setup row after List Edit/New and Ctrl+Insert failed to expose editable inputs.",
+      "reason": "TARGET-032D blocked the list-new route before typing; a different Page 314 route is needed.",
+      "allowedActions": [
+        "open-playthru-business-central",
+        "confirm-UNIVERSAARL-DE-context",
+        "open-page-314",
+        "inspect-page-actions-readonly",
+        "hover-toolbar-actions-and-capture-tooltips",
+        "inspect-personalization-or-page-inspection-if-readonly-safe",
+        "write-result-json-and-next-step-decision"
+      ],
+      "forbiddenActions": [
+        "leave-instance",
+        "company-switch",
+        "repeat-edit-list-new-route-as-write-attempt",
+        "type-INLAND-WAREN-4400-5400",
+        "change-vat-setup",
+        "change-inventory-posting-setup",
+        "create-master-data",
+        "create-document-or-draft",
+        "preview-posting",
+        "post",
+        "payment",
+        "api-shortcut",
+        "claim-posting-readiness",
+        "commit-secrets",
+        "show-env-or-auth",
+        "fake-evidence",
+        "book-claim-without-evidence"
+      ],
+      "nextCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS"
     }
   ],
-  "lastUpdated": "2026-07-01T07:52:18.379Z",
+  "lastUpdated": "2026-07-01T08:09:30.643Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -3075,35 +3116,30 @@
       ]
     }
   },
-  "updatedAt": "2026-07-01T07:52:18.379Z",
-  "lastCompletedCase": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
-  "nextCase": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
+  "updatedAt": "2026-07-01T08:09:30.643Z",
+  "lastCompletedCase": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
+  "nextCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
-    "plannedNextCaseBeforeReview": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
-    "lastEvidenceSummary": "TARGET-032B created/reverified INLAND and WAREN but blocked Page 314 because account column mapping was unsafe.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "Page 314 is the narrow remaining setup route blocker before a controlled General Posting Setup write.",
+    "currentCase": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-032C trusted header geometry, but TARGET-032D showed that visible Edit List/New and Ctrl+Insert still do not reveal editable inputs.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Repeating the same List New route would waste time and risk unsafe blind typing. The best next step is a materially different Page 314 route discovery.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
+        "caseId": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
         "status": "ready-next",
-        "reason": "It directly addresses the remaining Page 314 field-mapping blocker without writing setup."
-      },
-      {
-        "caseId": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
-        "status": "ready-next",
-        "reason": "Header geometry is good enough to prepare a controlled write case."
+        "reason": "Required because the list-new route is blocked and no values were written."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
-        "status": "ready-after-current",
-        "reason": "Dimensions should wait until Page 314 is written or consciously parked."
+        "status": "needs-setup-first",
+        "reason": "Dimensions should wait until Page 314 is either solved or consciously parked."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Foundation still needs matrix/VAT/dimensions status before readiness."
+        "reason": "Foundation cannot be ready while the General Posting Setup matrix row is unresolved."
       },
       {
         "caseId": "TARGET-035-MASTER-DATA-FIRST-CUSTOMER-VENDOR-ITEM",
@@ -3111,20 +3147,21 @@
         "reason": "Master data remains locked until posting groups, VAT and dimensions are sufficient."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
-    "whySelectedNextCaseIsBest": "A controlled Page 314 write gate is now better than more diagnosis because exact target headers are visible.",
+    "queueChangesMade": [
+      "Replaced repeated TARGET-032D execution with TARGET-032E alternative route discovery."
+    ],
+    "selectedNextCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+    "whySelectedNextCaseIsBest": "It attacks the actual blocker with a new UI hypothesis instead of repeating New/Edit/keyboard-new on the empty matrix list.",
     "risksBeforeNextCase": [
-      "Do not create master data yet.",
-      "Do not run Preview Posting or Posting.",
-      "Do not claim posting readiness from posting groups alone.",
-      "Do not type Page 314 account values without before/after/reopen proof."
+      "Do not type 4400/5400 without trusted inputs.",
+      "Do not claim posting readiness.",
+      "Do not create master data, Preview Posting or Posting."
     ],
     "requiredPreparation": [
-      "Use header geometry, not input index, to target Page 314 fields in TARGET-032D."
+      "Review TARGET-032D screenshots and field-plan JSON before selecting a new Page 314 route."
     ]
   },
-  "nextStep": "Run TARGET-032D as controlled Page 314 write gate using header geometry and before/after/reopen proof. Keep VAT, master data, Preview Posting and Posting locked.",
+  "nextStep": "Run TARGET-032E as a Page 314 alternative-route discovery: do not repeat Liste bearbeiten + Neu or Ctrl+Insert; look for a row card, open/view/edit-card, line action, personalize/page-inspection clue or source-backed standard route before any further General Posting Setup write.",
   "openItems": 1,
-  "nextQueueItem": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE"
+  "nextQueueItem": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY"
 }

@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "General Posting Setup card or alternative route discovery",
+  "purpose": "Find a materially different, screenshot-proven Page 314 route for the INLAND/WAREN/4400/5400 General Posting Setup row after List Edit/New and Ctrl+Insert failed to expose editable inputs.",
+  "sourceCases": [
+    "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
+    "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
+    "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": true,
+  "taskClass": "wizard_work",
+  "smartDecision": {
+    "whyNow": "The exact matrix row blocks W1 Foundation, but TARGET-032D proved the list-new route is not safe because no editable inputs appear.",
+    "sourceBackedBy": [
+      "TARGET-032D result and screenshots show no trusted editable row after Edit List/New.",
+      "TARGET-032D Ctrl+Insert fallback also produced no trusted editable inputs.",
+      "Microsoft Learn describes General Posting Setup as combinations that can be maintained line-by-line; a line/card or alternate setup route is plausible but not yet proven in this UI."
+    ],
+    "fieldsAllowedToChange": [],
+    "fieldsNotTouched": [
+      "General Posting Setup values",
+      "VAT Posting Setup",
+      "Inventory Posting Setup",
+      "Master Data",
+      "Documents or drafts",
+      "Preview Posting",
+      "Posting",
+      "Payment",
+      "API shortcut"
+    ],
+    "risk": "Repeating the empty list-new route wastes time and could tempt blind typing. A new route must be identified before values are entered.",
+    "fallback": "If no card/action/personalization/page-inspection route is found, park Page 314 and decide whether VAT/Dimensions can proceed with an explicit boundary."
+  },
+  "allowedActions": [
+    "open-playthru-business-central",
+    "confirm-UNIVERSAARL-DE-context",
+    "open-page-314",
+    "inspect-page-actions-readonly",
+    "hover-toolbar-actions-and-capture-tooltips",
+    "inspect-personalization-or-page-inspection-if-readonly-safe",
+    "write-result-json-and-next-step-decision"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "repeat-edit-list-new-route-as-write-attempt",
+    "type-INLAND-WAREN-4400-5400",
+    "change-vat-setup",
+    "change-inventory-posting-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-posting-readiness",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-032D result exists and is reviewed.",
+    "No setup values were typed in TARGET-032D.",
+    "Page 314 is still the active setup blocker."
+  ],
+  "acceptanceCriteria": [
+    "Business Central stays in playthru / UNIVERSAARL-DE.",
+    "A materially different Page 314 route is identified or the blocker is parked with reason.",
+    "Screenshots explain the route or blocked action surface.",
+    "No setup value, master data, draft, Preview Posting, Posting, Payment or API shortcut occurs."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-032C trusted header geometry, but TARGET-032D showed that visible Edit List/New and Ctrl+Insert still do not reveal editable inputs.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Repeating the same List New route would waste time and risk unsafe blind typing. The best next step is a materially different Page 314 route discovery.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+        "status": "ready-next",
+        "reason": "Required because the list-new route is blocked and no values were written."
+      },
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "needs-setup-first",
+        "reason": "Dimensions should wait until Page 314 is either solved or consciously parked."
+      },
+      {
+        "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation cannot be ready while the General Posting Setup matrix row is unresolved."
+      },
+      {
+        "caseId": "TARGET-035-MASTER-DATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data remains locked until posting groups, VAT and dimensions are sufficient."
+      }
+    ],
+    "queueChangesMade": [
+      "Replaced repeated TARGET-032D execution with TARGET-032E alternative route discovery."
+    ],
+    "selectedNextCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+    "whySelectedNextCaseIsBest": "It attacks the actual blocker with a new UI hypothesis instead of repeating New/Edit/keyboard-new on the empty matrix list.",
+    "risksBeforeNextCase": [
+      "Do not type 4400/5400 without trusted inputs.",
+      "Do not claim posting readiness.",
+      "Do not create master data, Preview Posting or Posting."
+    ],
+    "requiredPreparation": [
+      "Review TARGET-032D screenshots and field-plan JSON before selecting a new Page 314 route."
+    ]
+  },
+  "createdAt": "2026-07-01T08:09:30.643Z"
+}

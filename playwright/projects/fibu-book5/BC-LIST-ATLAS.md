@@ -45,7 +45,7 @@ Der List Atlas beschreibt Business-Central-Listen, die fuer Klickpfade, Suche, F
 | `RO-W0-COMPANIES-357` | Companies / Mandanten | 1 | Spalten, `UNIVERSAARL-DE`-Sichtbarkeit, Split-Button-/Dropdown-Kontext, riskante Actions erfassen | `observed-readonly-prep-031` |
 | `RO-W1-ASSISTED-SETUP` | Assisted Setup / Unterstuetztes Setup | 2 | Assistenten, Status und gefaehrliche Start-/Finish-Punkte sichtbar machen | `ready-for-readonly-playwright` |
 | `RO-W1-NO-SERIES` | No. Series / Nummernserien | 3 | Nummernserien als Listen-/Zeilenkonzept vorbereiten | `requires-universaarl-company` |
-| `RO-W1-POSTING-GROUPS` | Posting Groups / Posting Setup | 4 | Buchungsgruppen- und Matrixlisten fuer Kontenfindung vorbereiten | `columns-mapped`; `INLAND` und `WAREN` sind nach Reopen sichtbar, Page 314 zeigt die Zielspalten fuer `4400` und `5400`; naechster Schritt ist TARGET-032D als kontrollierter Schreib-Gate |
+| `RO-W1-POSTING-GROUPS` | Posting Groups / Posting Setup | 4 | Buchungsgruppen- und Matrixlisten fuer Kontenfindung vorbereiten | `matrix-write-blocked-new-click-no-row`; `INLAND` und `WAREN` sind nach Reopen sichtbar, Page 314 zeigt die Zielspalten fuer `4400` und `5400`, aber `Liste bearbeiten` + `Neu` sowie `Strg+Einfügen` erzeugten keine vertrauenswuerdige Eingabezeile; naechster Schritt ist eine andere Page-314-Route, nicht Wiederholung derselben List-New-Route |
 | `RO-W1-VAT-SETUP` | VAT Posting Setup | 5 | VAT-Buchungsmatrixfelder fuer spaetere USt-Kette vorbereiten | `requires-universaarl-company` |
 | `RO-W1-DIMENSIONS` | Dimensions / Dimension Values | 6 | Dimensionen, Dimensionswerte und spaetere Default-Dimension-Kontexte vorbereiten | `requires-universaarl-company` |
 

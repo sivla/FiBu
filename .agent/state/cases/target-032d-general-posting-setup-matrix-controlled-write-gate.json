@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
-  "status": "planned",
+  "status": "blocked",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -93,44 +93,62 @@
   "nextStepDecision": {
     "currentCase": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
     "plannedNextCaseBeforeReview": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-032C proved Page 314 header geometry for INLAND/WAREN/4400/5400 and changed no setup.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "The remaining Posting Groups foundation blocker is now the actual Page 314 matrix row; more read-only diagnosis would add little value unless the write attempt reveals a new UI blocker.",
+    "lastEvidenceSummary": "TARGET-032C trusted header geometry, but TARGET-032D showed that visible Edit List/New and Ctrl+Insert still do not reveal editable inputs.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Repeating the same List New route would waste time and risk unsafe blind typing. The best next step is a materially different Page 314 route discovery.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
+        "caseId": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
         "status": "ready-next",
-        "reason": "Header route is trusted and prerequisite groups/accounts exist."
+        "reason": "Required because the list-new route is blocked and no values were written."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
-        "status": "ready-after-current",
-        "reason": "Dimensions should follow after Page 314 is saved or consciously parked."
+        "status": "needs-setup-first",
+        "reason": "Dimensions should wait until Page 314 is either solved or consciously parked."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Foundation still needs VAT and dimensions status after posting setup."
+        "reason": "Foundation cannot be ready while the General Posting Setup matrix row is unresolved."
       },
       {
         "caseId": "TARGET-035-MASTER-DATA-FIRST-CUSTOMER-VENDOR-ITEM",
         "status": "needs-setup-first",
-        "reason": "Master data waits for posting groups, VAT and dimensions readiness."
+        "reason": "Master data remains locked until posting groups, VAT and dimensions are sufficient."
       }
     ],
     "queueChangesMade": [
-      "Promoted TARGET-032D after TARGET-032C trusted header route diagnosis."
+      "Do not repeat the same Page 314 Edit List/New or Ctrl+Insert route; select TARGET-032E alternative route discovery."
     ],
-    "selectedNextCase": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
-    "whySelectedNextCaseIsBest": "It converts the route diagnosis into the missing setup row while keeping VAT, master data, Preview Posting and Posting locked.",
+    "selectedNextCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+    "whySelectedNextCaseIsBest": "A materially different Page 314 route is needed because the exact matrix row was not fully proven and no trusted editable inputs appeared.",
     "risksBeforeNextCase": [
-      "Do not click unrelated New/Edit actions outside Page 314.",
-      "Do not type by blind column index.",
-      "Do not claim posting readiness after this row alone."
+      "Do not type 4400/5400 without trusted inputs.",
+      "Do not claim posting readiness.",
+      "Do not create master data, Preview Posting or Posting."
     ],
     "requiredPreparation": [
-      "Use TARGET-032C header x-positions and reopen proof."
+      "Review fieldPlan and screenshots before selecting a row-card, action, personalization, page-inspection or source-backed Page 314 route."
     ]
   },
-  "createdAt": "2026-07-01T07:52:18.379Z"
+  "createdAt": "2026-07-01T07:52:18.379Z",
+  "completedAt": "2026-07-01T08:11:55.440Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-032d-general-posting-setup-matrix-controlled-write-gate/TARGET-032D-result.json",
+  "result": "Blocked safely before typing: Page 314 Edit List/New and Ctrl+Insert did not expose trusted editable inputs for INLAND/WAREN/4400/5400.",
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "writeAttempted": false,
+  "blockedBy": [
+    "Field-to-input mapping was not trusted after Edit List/New and Ctrl+Insert; stopped before typing setup values."
+  ],
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/target-032d-010-before-page314.png",
+    "playwright/projects/fibu-book5/img/target-032d-020-after-edit-list.png",
+    "playwright/projects/fibu-book5/img/target-032d-030-after-new-row-before-values.png",
+    "playwright/projects/fibu-book5/img/target-032d-035-after-keyboard-new-fallback.png",
+    "playwright/projects/fibu-book5/img/target-032d-040-after-write-or-block.png",
+    "playwright/projects/fibu-book5/img/target-032d-050-reopen-proof.png"
+  ],
+  "nextCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY"
 }

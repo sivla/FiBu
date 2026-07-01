@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T07:52:18.379Z",
+  "updatedAt": "2026-07-01T08:11:55.440Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-general-posting-setup-matrix-controlled-write",
-  "activeCase": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
-  "active_case_file": ".agent/state/cases/target-032d-general-posting-setup-matrix-controlled-write-gate.json",
+  "activeArea": "universaarl-general-posting-setup-alternative-route-discovery",
+  "activeCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+  "active_case_file": ".agent/state/cases/target-032e-general-posting-setup-card-or-alternative-route-discovery.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -22,11 +22,8 @@
     "open-playthru-business-central",
     "confirm-UNIVERSAARL-DE-context",
     "open-page-314",
-    "capture-before-state",
-    "create-or-edit-exact-INLAND-WAREN-row-only-if-header-mapping-matches-TARGET-032C",
-    "set-sales-account-4400-and-purchase-account-5400-only",
-    "capture-after-state",
-    "reopen-page-314-and-prove-persisted-row",
+    "inspect-page-314-actions-and-row-card-routes-readonly",
+    "capture-screenshot-qa",
     "write-result-json-and-next-step-decision"
   ],
   "forbiddenActions": [
@@ -41,13 +38,15 @@
     "payment",
     "api-shortcut",
     "claim-posting-readiness",
+    "repeat-page314-list-new-route-without-new-hypothesis",
+    "type-page314-values-without-trusted-inputs",
     "commit-secrets",
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence"
   ],
-  "nextCase": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
-  "nextStep": "Run TARGET-032D as controlled Page 314 write gate: create or verify only INLAND/WAREN with Warenverkaufskonto 4400 and Wareneinkaufskonto 5400 using TARGET-032C header geometry, then reopen proof. No VAT, Inventory Posting Setup, master data, Preview Posting or Posting.",
+  "nextCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+  "nextStep": "Run TARGET-032E as a Page 314 alternative-route discovery: do not repeat Liste bearbeiten + Neu or Ctrl+Insert; look for a row card, open/view/edit-card, line action, personalize/page-inspection clue or source-backed standard route before any further General Posting Setup write.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -230,7 +229,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "TARGET-032C proved Page 314 header geometry for INLAND/WAREN/4400/5400. Next is TARGET-032D controlled write gate with before/after/reopen proof; still no VAT, inventory, master data, Preview Posting or Posting.",
+  "currentCoverageFocus": "TARGET-032D proved Page 314 List Edit/New and Ctrl+Insert do not expose trusted editable inputs for INLAND/WAREN/4400/5400. Next is TARGET-032E alternative route discovery; no VAT, Inventory Posting Setup, master data, Preview Posting or Posting.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -7268,7 +7267,7 @@
     "currentVisibleText": "1200 Forderungen aus Lieferungen und Leistungen Bilanz Buchung",
     "correctedReason": "SKR04-oriented Universaarl foundation must not create a new 1400 receivables account; 1400 belongs to the wrong mapping context for this target."
   },
-  "nextQueueItem": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
+  "nextQueueItem": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
   "openItems": 1,
   "latestCustomerReceivablesSourceCorrection": {
     "caseId": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
@@ -7434,5 +7433,32 @@
       "playwright/projects/fibu-book5/img/target-032c-020-page314-after-header-hover.png"
     ],
     "nextCase": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE"
+  },
+  "latestGeneralPostingSetupMatrixControlledWriteGate": {
+    "caseId": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
+    "status": "blocked",
+    "completedAt": "2026-07-01T08:11:55.440Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-032d-general-posting-setup-matrix-controlled-write-gate/TARGET-032D-result.json",
+    "sourceInstance": "playthru",
+    "sourceCompany": "UNIVERSAARL-DE",
+    "pageId": 314,
+    "setupChanged": false,
+    "setupChangeAttempted": false,
+    "writeAttempted": false,
+    "writeBlockedBeforeTyping": true,
+    "persistedComplete": false,
+    "blockedBy": [
+      "Field-to-input mapping was not trusted after Edit List/New and Ctrl+Insert; stopped before typing setup values."
+    ],
+    "learning": "Page 314 visible Edit List/New and Ctrl+Insert do not create trusted editable matrix inputs in the empty view; do not repeat this route without a new hypothesis.",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-032d-010-before-page314.png",
+      "playwright/projects/fibu-book5/img/target-032d-020-after-edit-list.png",
+      "playwright/projects/fibu-book5/img/target-032d-030-after-new-row-before-values.png",
+      "playwright/projects/fibu-book5/img/target-032d-035-after-keyboard-new-fallback.png",
+      "playwright/projects/fibu-book5/img/target-032d-040-after-write-or-block.png",
+      "playwright/projects/fibu-book5/img/target-032d-050-reopen-proof.png"
+    ],
+    "nextCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY"
   }
 }
