@@ -1,105 +1,44 @@
 {
   "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
   "caseId": "TARGET-027D19-VAT-MATRIX-CONFIG-PACKAGE-READONLY-DISCOVERY",
-  "status": "done",
-  "mode": "universaarl-target-execution",
+  "source": "playwright-readonly-discovery",
+  "resultStatus": "observed-readonly-route-context",
+  "runPlanId": "TARGET-027D19-VAT-MATRIX-CONFIG-PACKAGE-READONLY-DISCOVERY-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "title": "VAT matrix configuration package read-only discovery",
-  "purpose": "Discover whether the Business Central Configuration Packages UI can include VAT Posting Setup / Table 325 as a standard setup-data route before any future import/apply action.",
-  "sourceCases": [
-    "TARGET-027D14-VAT-MATRIX-RECREATE-AFTER-CLEANUP",
-    "TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS",
-    "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION",
-    "TARGET-027D17-VAT-MATRIX-FIRST-FIELDS-LOOKUP-DISCOVERY",
-    "TARGET-027D18-VAT-MATRIX-NON-UI-SETUP-ROUTE-DECISION"
+  "page": "Page 8615 Config. Packages / Configuration Packages",
+  "sanitizedUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=8615&company=UNIVERSAARL-DE&dc=0",
+  "actionsTaken": [
+    "Opened Page 8615 directly with company UNIVERSAARL-DE.",
+    "Captured read-only page context screenshot and compact text.",
+    "Inventoried visible package actions without clicking Import, Export, Validate, Apply, Edit in Excel or New.",
+    "Checked whether Table 325 / VAT Posting Setup is visible without creating a package."
   ],
-  "effectiveBcActionsAllowed": false,
-  "mayRunPlaywright": true,
-  "allowedActions": [
-    "open-configuration-packages-readonly",
-    "prove-playthru-instance",
-    "prove-universaarl-company",
-    "capture-configuration-package-page-context",
-    "inventory-visible-actions-without-clicking-apply-import-or-export",
-    "discover-whether-table-325-can-be-added-or-is-visible-without-saving",
-    "capture-screenshot-qa",
-    "write-result-json"
+  "actionsNotTaken": [
+    "No package creation",
+    "No package import",
+    "No package export",
+    "No package validation",
+    "No package apply",
+    "No Edit in Excel publish",
+    "No INLAND/VAT19 typing",
+    "No VAT matrix write",
+    "No master data",
+    "No document draft",
+    "No Preview Posting",
+    "No Posting",
+    "No API shortcut"
   ],
-  "forbiddenActions": [
-    "commit-secrets",
-    "show-env-or-auth",
-    "fake-evidence",
-    "book-claim-without-evidence",
-    "leave-instance",
-    "company-switch",
-    "create-or-apply-configuration-package",
-    "import-from-excel",
-    "export-to-excel",
-    "validate-package",
-    "apply-package",
-    "edit-in-excel-publish",
-    "type-INLAND-or-VAT19",
-    "write-or-save-vat-matrix-row",
-    "create-master-data",
-    "create-document-or-draft",
-    "preview-posting",
-    "post",
-    "api-shortcut",
-    "claim-german-vat-final-proof"
-  ],
-  "acceptanceCriteria": [
-    "Configuration Packages UI is opened read-only in playthru / UNIVERSAARL-DE or safely blocked.",
-    "The screenshot QA explains visible page, buttons, fields, and which actions are dangerous.",
-    "No package is created, imported, validated, applied, exported or published.",
-    "The result decides whether a later controlled configuration-package write case is realistic."
-  ],
-  "nextStepDecisionCard": {
-    "currentCase": "TARGET-027D19-VAT-MATRIX-CONFIG-PACKAGE-READONLY-DISCOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-027D19-VAT-MATRIX-CONFIG-PACKAGE-READONLY-DISCOVERY",
-    "lastEvidenceSummary": "D18 selected Configuration Packages read-only discovery after D17 blocked Page-472 lookup/select controls.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "D19 is the least invasive standard-route check: direct page context and action inventory without effective package actions.",
-    "lookaheadReviewed": [
-      {
-        "caseId": "TARGET-027D20-VAT-MATRIX-CONFIG-PACKAGE-TABLE-325-ROUTE-DECISION",
-        "status": "needs-ui-discovery-first",
-        "reason": "Table 325 / VAT Posting Setup was not visible without creating a package."
-      },
-      {
-        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "Posting Groups wait for correct VAT matrix or an explicit park decision."
-      },
-      {
-        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
-        "status": "needs-setup-first",
-        "reason": "Master data waits for VAT/posting defaults."
-      },
-      {
-        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
-        "status": "needs-setup-first",
-        "reason": "Foundation readiness waits for VAT matrix, posting groups and dimensions."
-      }
-    ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-027D20-VAT-MATRIX-CONFIG-PACKAGE-TABLE-325-ROUTE-DECISION",
-    "whySelectedNextCaseIsBest": "D19 did not prove Table 325 visibility, so the next step must decide whether adding a package/table is worth a controlled discovery case or whether VAT matrix should be parked.",
-    "risksBeforeNextCase": [
-      "Configuration package actions can become effective if Import, Validate, Apply or Edit in Excel is clicked.",
-      "A future package write case must define exact fields and rollback/reopen proof.",
-      "No German VAT claim is allowed before visible VAT matrix plus Preview/Entries."
-    ],
-    "requiredPreparation": [
-      "Review screenshot QA and visible action inventory.",
-      "Do not create/apply a package without a separate Smart Decision."
-    ]
-  },
-  "createdAt": "2026-07-01T09:00:00.000Z",
-  "completedAt": "2026-07-01T10:00:00.000Z",
-  "resultStatus": "observed-readonly-route-context",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d19-vat-matrix-config-package-readonly-discovery/TARGET-027D19-result.json",
-  "evidencePath": "playwright/projects/fibu-book5/evidence/target-027d19-vat-matrix-config-package-readonly-discovery/",
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
   "screenshots": [
     "target-027d19-010-config-packages-readonly.png"
   ],
@@ -117,10 +56,6 @@
     "No Preview Posting.",
     "No VAT Entries.",
     "No G/L Entries."
-  ],
-  "warnings": [
-    "Table 325 / VAT Posting Setup is not visible in the read-only Configuration Packages list context.",
-    "Dangerous package actions are visible and must remain inventory-only until a later write case unlocks them."
   ],
   "observations": {
     "visibleActions": [
@@ -304,13 +239,53 @@
     "hasTable325Signal": false,
     "hasDangerousVisibleAction": true
   },
-  "setupChanged": false,
-  "setupChangeAttempted": false,
-  "masterDataChanged": false,
-  "draftCreated": false,
-  "previewPosting": false,
-  "posted": false,
-  "apiShortcut": false,
+  "blockedBy": [],
+  "warnings": [
+    "Table 325 / VAT Posting Setup is not visible in the read-only Configuration Packages list context.",
+    "Dangerous package actions are visible and must remain inventory-only until a later write case unlocks them."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-027D19-VAT-MATRIX-CONFIG-PACKAGE-READONLY-DISCOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-027D19-VAT-MATRIX-CONFIG-PACKAGE-READONLY-DISCOVERY",
+    "lastEvidenceSummary": "D18 selected Configuration Packages read-only discovery after D17 blocked Page-472 lookup/select controls.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "D19 is the least invasive standard-route check: direct page context and action inventory without effective package actions.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D20-VAT-MATRIX-CONFIG-PACKAGE-TABLE-325-ROUTE-DECISION",
+        "status": "needs-ui-discovery-first",
+        "reason": "Table 325 / VAT Posting Setup was not visible without creating a package."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Posting Groups wait for correct VAT matrix or an explicit park decision."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for VAT/posting defaults."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness waits for VAT matrix, posting groups and dimensions."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-027D20-VAT-MATRIX-CONFIG-PACKAGE-TABLE-325-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "D19 did not prove Table 325 visibility, so the next step must decide whether adding a package/table is worth a controlled discovery case or whether VAT matrix should be parked.",
+    "risksBeforeNextCase": [
+      "Configuration package actions can become effective if Import, Validate, Apply or Edit in Excel is clicked.",
+      "A future package write case must define exact fields and rollback/reopen proof.",
+      "No German VAT claim is allowed before visible VAT matrix plus Preview/Entries."
+    ],
+    "requiredPreparation": [
+      "Review screenshot QA and visible action inventory.",
+      "Do not create/apply a package without a separate Smart Decision."
+    ]
+  },
   "nextCase": "TARGET-027D20-VAT-MATRIX-CONFIG-PACKAGE-TABLE-325-ROUTE-DECISION",
-  "nextStep": "Run D20 as a local decision before any Configuration Package / Table 325 package metadata is created."
+  "safeToFinalizeState": false,
+  "requiresReview": true
 }

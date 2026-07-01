@@ -269,6 +269,19 @@ Fuer Universaarl folgt daraus:
 - `Import`, `Export`, `Validate`, `Apply`, `Edit in Excel` und Publish bleiben gesperrt, bis ein spaeterer Case sie ausdruecklich mit Gates, Screenshot-QA und Reopen-Proof freigibt.
 - Das ist kein API-Shortcut und kein deutscher USt-Finalbeweis.
 
+## TARGET-027D19 Configuration Packages Read-only Discovery
+
+D19 prueft die in D18 gewaehlte Standardroute in der Universaarl-UI. Page `8615` / `Konfigurationspakete` ist in `playthru` / `UNIVERSAARL-DE` direkt erreichbar. Die Seite zeigt Paketaktionen wie `Neu`, `Paket importieren...`, `Paket exportieren...` und `Tabellen abrufen...`; diese Aktionen wurden nur inventarisiert und nicht geklickt.
+
+Fuer Universaarl folgt daraus:
+
+- Die Konfigurationspaket-Seite ist als UI-Kontext bewiesen.
+- Table `325` / `VAT Posting Setup` ist im leeren read-only Listenbild nicht sichtbar.
+- Eine weitere Discovery wuerde wahrscheinlich Paketmetadaten oder Tabellenzuordnung beruehren und braucht deshalb einen separaten Smart-Decision-Case.
+- Die Info-Kachel unten links darf als Hilfetext gelesen werden; sie ist kein Dialog und kein Beleg fuer ausgefuehrte Import-/Exportaktionen.
+- Der naechste Case ist `TARGET-027D20-VAT-MATRIX-CONFIG-PACKAGE-TABLE-325-ROUTE-DECISION`.
+- Kein API-Shortcut, keine Excel-Publish-Route, kein Import/Export/Validate/Apply und kein deutscher USt-Finalbeweis.
+
 ## TARGET-026D Kontenplan-Quellenentscheidung
 
 TARGET-026B zeigt in `UNIVERSAARL-DE` einen erreichbaren, aber leeren/insufficient Kontenplan ohne sichtbare USt-Konto-Kandidaten. Microsoft Learn `View the chart of accounts` und `Set up or change the chart of accounts` stuetzen die Produktlogik: Der Kontenplan ist das Verzeichnis der Finanzkonten und kann fuer die Company eingerichtet/geaendert werden.

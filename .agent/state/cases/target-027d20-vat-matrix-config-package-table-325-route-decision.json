@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027D20-VAT-MATRIX-CONFIG-PACKAGE-TABLE-325-ROUTE-DECISION",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "VAT matrix configuration package table 325 route decision",
+  "purpose": "Decide whether a controlled Configuration Package/Table-325 discovery case is justified after D19 proved the page context but no visible VAT Posting Setup table line.",
+  "sourceCases": [
+    "TARGET-027D17-VAT-MATRIX-FIRST-FIELDS-LOOKUP-DISCOVERY",
+    "TARGET-027D18-VAT-MATRIX-NON-UI-SETUP-ROUTE-DECISION",
+    "TARGET-027D19-VAT-MATRIX-CONFIG-PACKAGE-READONLY-DISCOVERY"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": false,
+  "allowedActions": [
+    "read-d17-d19-results",
+    "review-configuration-package-source-boundaries",
+    "decide-controlled-package-table-discovery-or-park-vat-matrix",
+    "define-next-case-stop-conditions",
+    "update-source-registry-atlas-queue"
+  ],
+  "forbiddenActions": [
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "leave-instance",
+    "open-business-central",
+    "run-playwright",
+    "create-or-apply-configuration-package",
+    "import-from-excel",
+    "export-to-excel",
+    "validate-package",
+    "apply-package",
+    "edit-in-excel-publish",
+    "type-INLAND-or-VAT19",
+    "write-or-save-vat-matrix-row",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-german-vat-final-proof"
+  ],
+  "acceptanceCriteria": [
+    "D20 decides whether a controlled package/table discovery case is worth the admin-data change risk.",
+    "If a follow-up is created, it must explicitly define whether creating a temporary package record is allowed and how cleanup/reopen proof works.",
+    "D20 may also park VAT matrix setup and move to a different W1 foundation dependency if the route is too advanced for this stage.",
+    "No BC, Playwright, setup, master data, preview or posting occurs in D20."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-027D19-VAT-MATRIX-CONFIG-PACKAGE-READONLY-DISCOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-027D19-VAT-MATRIX-CONFIG-PACKAGE-READONLY-DISCOVERY",
+    "lastEvidenceSummary": "D19 proved Page 8615 Konfigurationspakete in playthru / UNIVERSAARL-DE, visible package actions, and no visible Table 325 / VAT Posting Setup line without creating a package.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The next step must be a local decision because the next Configuration Package move would likely create or alter package metadata.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D20-VAT-MATRIX-CONFIG-PACKAGE-TABLE-325-ROUTE-DECISION",
+        "status": "ready-next",
+        "reason": "D19 did not expose Table 325 without a package, so a decision is needed before any admin-data change."
+      },
+      {
+        "caseId": "TARGET-027D21-VAT-MATRIX-CONTROLLED-PACKAGE-TABLE-DISCOVERY",
+        "status": "needs-source-check-first",
+        "reason": "Only valid if D20 unlocks a temporary package/table discovery with cleanup and no apply/import/export."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Posting Groups wait for correct VAT matrix or an explicit park decision."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for VAT/posting defaults."
+      }
+    ],
+    "queueChangesMade": [
+      "Selected D20 as the next local decision after D19 read-only discovery."
+    ],
+    "selectedNextCase": "TARGET-027D20-VAT-MATRIX-CONFIG-PACKAGE-TABLE-325-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "It prevents a silent jump from read-only package context into package/table creation.",
+    "risksBeforeNextCase": [
+      "Creating a configuration package is an admin-data change and needs its own cleanup plan.",
+      "Import/Export/Validate/Apply/Edit in Excel remain dangerous actions.",
+      "No German VAT claim is allowed before visible VAT matrix plus Preview/Entries."
+    ],
+    "requiredPreparation": [
+      "Review D19 screenshot and action inventory.",
+      "Decide whether package metadata creation is acceptable or VAT setup should be parked."
+    ]
+  },
+  "createdAt": "2026-07-01T10:00:00.000Z"
+}

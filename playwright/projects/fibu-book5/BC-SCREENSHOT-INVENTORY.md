@@ -540,6 +540,14 @@ TARGET-027C4 schliesst den Page-470-Oberflaechenblocker. Das Bild ist gut fuer d
 
 TARGET-027C hat keine Setup-Aenderung ausgefuehrt. Die After-/Reopen-Bilder bleiben als Blocker-Evidence erhalten, zeigen aber ebenfalls keinen akzeptierten Zielseitenkontext. Fuer den naechsten Lauf gilt: erst eine sichtbare Page-470/Page-471-Oberflaeche recovern, dann erst `Neu` oder `Liste bearbeiten` innerhalb dieser Oberflaeche pruefen.
 
+## Universaarl VAT Matrix Configuration Packages TARGET-027D19
+
+| Screenshot | Page / Kontext | Company | Zweck | Sichtbar | Interner Beweis | Nicht bewiesen | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-027d19-010-config-packages-readonly.png` | Konfigurationspakete, Page 8615 | `playthru` / `UNIVERSAARL-DE` | Read-only Standardroute fuer moegliche VAT-Setup-Daten pruefen | Titel `Konfigurationspakete`, Umgebung `Playthru`, Company `Universaarl GmbH`, Toolbar mit `Neu`, `Paket importieren...`, `Paket`, `Paket exportieren...`, `Tabellen abrufen...`, leere Liste und Info-Kachel | Page 8615 ist direkt erreichbar; Playwright hat keine Paketaktion geklickt; die sichtbaren Paketaktionen sind als wirksamkeitsnah/dangerous fuer spaetere Gates erkannt | keine Table-325-/VAT-Posting-Setup-Zeile, kein Paket, kein Import/Export/Validate/Apply, keine Matrixwerte, keine Preview, keine VAT Entries, keine G/L Entries | `universaarl-readonly-page-proof`, `route-discovery`, `not-setup-proof` |
+
+TARGET-027D19 ist ein gutes Screenshot-QA-Bild fuer das Kapitel zu Konfigurationspaketen und fuer den internen VAT-Matrix-Route-Entscheid. Es zeigt nicht, dass die USt-Matrix eingerichtet ist. Der naechste Schritt muss entscheiden, ob eine kontrollierte Paket-/Tabellen-Discovery vertretbar ist oder ob die USt-Matrix vorerst geparkt wird.
+
 ## Universaarl VAT Matrix Route Discovery TARGET-027D6
 
 | Screenshot | Page / Kontext | Company | Zweck | Sichtbar | Interner Beweis | Nicht bewiesen | Status |
