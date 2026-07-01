@@ -244,6 +244,16 @@ Diese Bilder werden erst erzeugt, wenn `UNIVERSAARL-DE` existiert und genug sinn
 
 Screenshot-QA zu TARGET-016M: Die Nummern sind im Grid eng dargestellt. Der Bildbeweis zaehlt deshalb zusammen mit den `.txt`-/Snapshot-Dateien, die je Code denselben Zielwert im richtigen `Nr.-Serienzeilen`-Kontext enthalten. Dieser Block ist ein Linien-Reife-Beweis, kein Setup-Zuweisungs- oder Belegnummern-Compliance-Beweis.
 
+## Universaarl Foundation - U-VEND Checkboxroute TARGET-036D2
+
+| Screenshot | Page | Company/Kontext | Schritt | Was man sehen soll | Interner Beweis | Beweist nicht | Status |
+|---|---|---|---|---|---|---|---|
+| `target-036d2-010-u-vend-before.png` | Nummernserie / No. Series, Page 456 | `playthru` / `UNIVERSAARL-DE`, `U-VEND` | Vor Checkbox-Fit | `U-VEND` ist markiert; `Standardnr.` und `Manuelle Anz.` sind als Spalten sichtbar und nicht aktiv; rechts sind die U-VEND-Zeilen sichtbar | Der Kreditoren-Nummernserienkopf und die relevanten Checkbox-Spalten sind sichtbar | keine aktive Standardnummer, keine manuelle Nummernfreigabe, kein Kreditor | `setup-before`, `blocked-route-context` |
+| `target-036d2-020-u-vend-after-attempt.png` | Nummernserie / No. Series, Page 456 | `playthru` / `UNIVERSAARL-DE` | Nach sichtbarem row-scoped Klickversuch | Die Liste bleibt auf Nummernserien, aber der Fokus ist nicht mehr sauber an `U-VEND` gebunden; `Standardnr.` ist fuer `U-VEND` nicht aktiv | Der getestete sichtbare Klickweg ist fuer Playwright nicht vertrauenswuerdig genug | keine persistierte U-VEND-Setupaenderung, keine Freigabe fuer Kreditoranlage | `blocked`, `do-not-repeat-route` |
+| `target-036d2-030-u-vend-reopen-proof.png` | Nummernserie / No. Series, Page 456 | `playthru` / `UNIVERSAARL-DE` | Reopen-Proof | Nach erneutem Oeffnen bleibt `U-VEND` sichtbar, aber `Standardnr.` ist weiterhin nicht aktiv | Die Checkboxaenderung wurde nicht sichtbar gespeichert | keine automatische Kreditorennummernvergabe, keine manuelle `U-VEND-100`-Route, kein Stammdaten-Erfolg | `blocked-reopen-proof`, `next-route-recovery-required` |
+
+Screenshot-QA zu TARGET-036D2: Die Vorheraufnahme ist brauchbar fuer das Buch, weil sie die Nummernserie `U-VEND`, die Spalten `Standardnr.` und `Manuelle Anz.` sowie die Nummernserienzeilen zusammen zeigt. Der Nachher- und Reopen-Beweis ist ein Blockerbeweis: Der sichtbare row-scoped Klickweg darf nicht als Setup-Erfolg verwendet werden.
+
 ## Universaarl Foundation - Nummernserien TARGET-017
 
 | Screenshot | Page | Company/Kontext | Schritt | Was man sehen soll | Interner Beweis | Beweist nicht | Status |

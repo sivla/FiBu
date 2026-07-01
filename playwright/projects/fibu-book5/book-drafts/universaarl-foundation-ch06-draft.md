@@ -87,6 +87,7 @@ Auf der Seite `Nummernserien` sind besonders wichtig:
 - Startnummer,
 - Endnummer,
 - letzte verwendete Nummer,
+- Standardnummern erlaubt ja/nein,
 - manuelle Nummern erlaubt ja/nein,
 - Beziehungen zwischen Nummernserien.
 
@@ -262,3 +263,7 @@ Beim ersten Kreditor zeigt Business Central eine wichtige Nummernserienregel. Di
 Darum ist die Kreditoranlage an dieser Stelle noch kein Stammdaten-Erfolg, sondern ein sauberer Setup-Hinweis: Vor dem ersten Lieferanten muss die Nummernserie `U-VEND` so eingestellt sein, dass sie zur gewuenschten Arbeitsweise passt. Fuer eine automatische Vergabe braucht die Serie eine Standardnummernlogik. Fuer bewusst lesbare Buchcodes wie `U-VEND-100` muss die manuelle Nummernvergabe erlaubt sein. Erst danach wird der erste Kreditor erneut angelegt und wieder ueber die Kreditorenliste geprueft.
 
 Fuer Anfaenger ist diese Stelle wichtig, weil der Fehler nicht auf der Kreditorenkarte geloest wird. Die Karte zeigt nur die Folge: Die Nummer kann nicht gespeichert werden. Die Ursache liegt in der Nummernserie. Der richtige Weg ist deshalb: erst Nummernserie pruefen, dann Kreditor anlegen, danach die Liste erneut oeffnen und den gespeicherten Kreditor sichtbar kontrollieren.
+
+Auf der Seite `Nummernserie` sieht man bei `U-VEND` die Start- und Endnummern fuer Lieferanten. Daneben stehen eigene Kontrollkaestchen. `Standardnr.` steuert, ob Business Central automatisch die naechste Nummer vergibt. `Manuelle Anz.` steuert, ob man eine Nummer selbst eintippen darf. Beide Felder gehoeren zur Nummernserie selbst, nicht zur Kreditorenkarte.
+
+Eine Aenderung an diesen Kontrollkaestchen zaehlt erst dann als erledigt, wenn sie nach erneutem Oeffnen der Nummernserie noch sichtbar ist. Bei `U-VEND` ist `Standardnr.` noch nicht verlaesslich aktiv. Deshalb bleibt der erste Kreditor gesperrt, bis diese Nummernserienroute sauber kontrolliert wurde. Das ist ein guter Sicherheitsmechanismus: Business Central verhindert so, dass Stammdaten mit einer unklaren Nummernlogik entstehen.
