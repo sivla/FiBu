@@ -157,6 +157,18 @@ Fuer Universaarl folgt daraus:
 - Cleanup/Delete bleibt Fallback und braucht eine eigene row-scoped Bestaetigungs-Evidence.
 - Keine Preview, keine Buchung, keine Stammdaten und kein deutscher Finalclaim vor Universaarl-Reopen-Proof.
 
+## TARGET-027D9 VAT-Matrix-Cleanup-Entscheidung
+
+Microsoft Learn `Set up VAT` bleibt die Produktquelle fuer die fachliche Notwendigkeit der Kombination aus VAT Business Posting Group, VAT Product Posting Group, VAT %, Calculation Type und VAT G/L Accounts. Die Quelle sagt aber nicht, wie eine bereits falsch angelegte `UNIVERSAARL-DE`-Zeile sicher korrigiert oder geloescht wird. Diese UI-Wahrheit muss aus eigener Evidence kommen.
+
+Fuer Universaarl folgt daraus:
+
+- D3/D5/D8 sind fuer direkte Zell-/Listen-Edit-Routen gesperrt, weil sie `3806` und `1406` nicht als sichere aktive Editorwerte belegen.
+- Eine zweite korrekte Matrixzeile mit denselben Gruppen ist voraussichtlich kein sauberer Standardweg, weil `INLAND` + `VAT19` die fachliche Kombination ist.
+- Cleanup ist nur erlaubt, wenn zuerst row-scoped bewiesen wird, welche Zeile betroffen ist und ob Business Central einen Bestaetigungsdialog zeigt.
+- Der naechste Execute-Case ist deshalb keine Loeschung, sondern `TARGET-027D10-VAT-MATRIX-ROW-ACTION-INVENTORY-NO-DELETE`.
+- Master Data, Posting Groups, Preview Posting, Posting und finaler deutscher USt-Claim bleiben gesperrt.
+
 ## TARGET-026D Kontenplan-Quellenentscheidung
 
 TARGET-026B zeigt in `UNIVERSAARL-DE` einen erreichbaren, aber leeren/insufficient Kontenplan ohne sichtbare USt-Konto-Kandidaten. Microsoft Learn `View the chart of accounts` und `Set up or change the chart of accounts` stuetzen die Produktlogik: Der Kontenplan ist das Verzeichnis der Finanzkonten und kann fuer die Company eingerichtet/geaendert werden.

@@ -2310,7 +2310,7 @@
     {
       "id": "TARGET-027D9-VAT-MATRIX-CLEANUP-OR-ALTERNATIVE-ROUTE-DECISION",
       "order": 10066,
-      "status": "pending",
+      "status": "done",
       "category": "vat-matrix-cleanup-or-alternative-route-decision",
       "expectedImpact": "choose-non-repeating-vat-matrix-recovery-route-after-d8-blocker",
       "mayRunPlaywright": false,
@@ -2321,10 +2321,47 @@
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
       "reason": "D8 proved visible list-edit route but blocked before VAT account writes because required editors were missing.",
       "sourceCase": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE",
+      "lookaheadStatus": "ready-next",
+      "completedAt": "2026-07-01T02:56:49.809Z",
+      "result": "Selected D10 no-delete row/action inventory based on D4-D8 evidence and Microsoft Learn VAT setup source.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-027d9-vat-matrix-cleanup-or-alternative-route-decision/TARGET-027D9-result.json",
+      "nextCase": "TARGET-027D10-VAT-MATRIX-ROW-ACTION-INVENTORY-NO-DELETE",
+      "blockedBy": []
+    },
+    {
+      "id": "TARGET-027D10-VAT-MATRIX-ROW-ACTION-INVENTORY-NO-DELETE",
+      "order": 10067,
+      "status": "done",
+      "category": "vat-matrix-row-action-inventory-no-delete",
+      "expectedImpact": "prove-visible-row-delete-action-without-cleanup-effect",
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "completedAt": "2026-07-01T02:56:49.809Z",
+      "result": "Observed Page 472 row/action inventory; visible Loeschen action exists, but no cleanup/delete was clicked and the row remains after reopen.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-027d10-vat-matrix-row-action-inventory-no-delete/TARGET-027D10-result.json",
+      "nextCase": "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE",
+      "blockedBy": []
+    },
+    {
+      "id": "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE",
+      "order": 10068,
+      "status": "pending",
+      "category": "vat-matrix-row-scoped-delete-dialog-cancel-probe",
+      "expectedImpact": "prove-or-reject-row-scoped-delete-dialog-without-confirming-delete",
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "reason": "D10 found a visible Loeschen action; the next safe step is dialog-cancel proof, not cleanup execution.",
+      "sourceCase": "TARGET-027D10-VAT-MATRIX-ROW-ACTION-INVENTORY-NO-DELETE",
       "lookaheadStatus": "ready-next"
     }
   ],
-  "lastUpdated": "2026-07-01T02:43:29.166Z",
+  "lastUpdated": "2026-07-01T02:56:49.809Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -2436,15 +2473,20 @@
     }
   },
   "updatedAt": "2026-07-01T02:43:29.166Z",
-  "lastCompletedCase": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE",
-  "nextCase": "TARGET-027D9-VAT-MATRIX-CLEANUP-OR-ALTERNATIVE-ROUTE-DECISION",
+  "lastCompletedCase": "TARGET-027D10-VAT-MATRIX-ROW-ACTION-INVENTORY-NO-DELETE",
+  "nextCase": "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE",
-    "plannedNextCaseBeforeReview": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE",
-    "lastEvidenceSummary": "D7 selected the visible Page-472 More options / Liste bearbeiten route after D6 proved Personalize was wrong-target and D3/D5 cell routes were unsafe.",
+    "currentCase": "TARGET-027D10-VAT-MATRIX-ROW-ACTION-INVENTORY-NO-DELETE",
+    "plannedNextCaseBeforeReview": "TARGET-027D10-VAT-MATRIX-ROW-ACTION-INVENTORY-NO-DELETE",
+    "lastEvidenceSummary": "D9 selected row-scoped cleanup feasibility as the next non-repeating path after D8 proved list-edit cannot expose VAT account editors.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The incomplete INLAND/VAT19 VAT Posting Setup row still blocks posting groups, master data and first documents.",
+    "reason": "The partial INLAND/VAT19 row blocks Foundation; cleanup/recreate may be required, but delete must not be clicked before row-scoped action inventory and dialog-cancel proof.",
     "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE",
+        "status": "ready-next",
+        "reason": "A cleanup/delete-like action is visible enough to justify a separate dialog-cancel probe."
+      },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
@@ -2459,26 +2501,22 @@
         "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
         "reason": "Foundation cannot be ready until VAT/posting/dimension gates are settled."
-      },
-      {
-        "caseId": "TARGET-031-FIRST-DOCUMENT-DRAFT-GATE",
-        "status": "needs-setup-first",
-        "reason": "Document drafts wait for foundation readiness and master data."
       }
     ],
     "queueChangesMade": [
-      "Mark D8 blocked and insert a non-repeating cleanup-or-alternative-route decision before any more VAT matrix writes."
+      "Select TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE based on safe row-action inventory; no cleanup/delete was executed in D10."
     ],
-    "selectedNextCase": "TARGET-027D9-VAT-MATRIX-CLEANUP-OR-ALTERNATIVE-ROUTE-DECISION",
-    "whySelectedNextCaseIsBest": "Another direct list-edit run would repeat the same failure pattern; the next step must decide cleanup/recreate or a different standard route.",
+    "selectedNextCase": "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE",
+    "whySelectedNextCaseIsBest": "A separate dialog-cancel probe is the narrowest safe way to prove whether cleanup can be row-scoped without deleting data.",
     "risksBeforeNextCase": [
-      "Do not claim final German VAT correctness before Preview Posting, VAT Entries and G/L Entries.",
-      "Do not create master data until posting groups/defaults are ready.",
-      "Do not delete the partial VAT row without a row-scoped confirmation case."
+      "Do not click or confirm delete without a dedicated row-scoped dialog-cancel case.",
+      "Do not create master data until VAT/posting defaults are ready.",
+      "Do not claim final German VAT correctness before Preview Posting, VAT Entries and G/L Entries."
     ],
     "requiredPreparation": [
-      "Review D8 screenshots and editor diagnostics; choose cleanup/recreate or another standard UI route, not D3/D5/D8 repetition."
+      "Use D10 action inventory and screenshots.",
+      "Keep D3/D5/D8 list/cell typing routes forbidden."
     ]
   },
-  "nextStep": "Do not repeat list-edit route; decide controlled cleanup/recreate or alternative Page-472 route."
+  "nextStep": "Probe only the row-scoped delete confirmation and cancel it; do not confirm cleanup."
 }

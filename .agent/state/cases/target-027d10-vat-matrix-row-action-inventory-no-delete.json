@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027D10-VAT-MATRIX-ROW-ACTION-INVENTORY-NO-DELETE",
+  "status": "observed-row-action-inventory-no-delete",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "VAT matrix row action inventory without delete",
+  "purpose": "Inventory visible Page 472 row/actions for the partial INLAND/VAT19 row without clicking cleanup/delete or confirming any dialog.",
+  "sourceCases": [
+    "TARGET-027D9-VAT-MATRIX-CLEANUP-OR-ALTERNATIVE-ROUTE-DECISION",
+    "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE"
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d10-vat-matrix-row-action-inventory-no-delete/TARGET-027D10-result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/target-027d10-vat-matrix-row-action-inventory-no-delete/",
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "deleteActionVisible": true,
+  "visibleDangerousActions": [
+    "Löschen",
+    "Löschen",
+    "Löschen"
+  ],
+  "screenshots": [
+    "target-027d10-010-before-action-inventory.png",
+    "target-027d10-020-after-row-focus.png",
+    "target-027d10-030-after-more-options.png",
+    "target-027d10-040-reopen-no-delete-proof.png"
+  ],
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Page 472 and the INLAND/VAT19 partial row were visible before action inventory.",
+    "The run collected visible row/command/menu actions without clicking cleanup/delete.",
+    "The row was still visible after reopen; no delete/cleanup effect was executed.",
+    "No Preview Posting, Posting, master data, document draft or API shortcut was executed."
+  ],
+  "notProved": [
+    "No complete VAT Posting Setup row.",
+    "No safe cleanup/delete route yet.",
+    "No final German VAT correctness.",
+    "No Preview Posting.",
+    "No VAT Entries.",
+    "No G/L Entries.",
+    "No VAT Statement.",
+    "No tax advisor approval."
+  ],
+  "blockedBy": [],
+  "completedAt": "2026-07-01T02:56:49.809Z",
+  "nextCase": "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE"
+}

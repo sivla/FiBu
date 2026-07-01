@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-027D9-VAT-MATRIX-CLEANUP-OR-ALTERNATIVE-ROUTE-DECISION",
+  "source": "local-source-backed-decision",
+  "resultStatus": "done-route-selected-no-bc",
+  "runPlanId": "TARGET-027D9-VAT-MATRIX-CLEANUP-OR-ALTERNATIVE-ROUTE-DECISION-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix Einr.",
+  "sourceBasis": [
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/finance-setup-vat",
+    "https://learn.microsoft.com/en-us/training/modules/set-up-vat-dynamics-365-business-central/"
+  ],
+  "decision": {
+    "selectedRoute": "TARGET-027D10-VAT-MATRIX-ROW-ACTION-INVENTORY-NO-DELETE",
+    "selectedRouteType": "row-action-inventory-no-delete",
+    "rejectedRoutes": [
+      "repeat-d3-d5-d8-cell-or-list-edit-route",
+      "immediate-cleanup-delete",
+      "second-duplicate-INLAND-VAT19-row",
+      "master-data-before-vat-matrix"
+    ],
+    "reason": "D8 proved visible list-edit but no true VAT account editors. Microsoft Learn supports the need for VAT Posting Setup fields, but does not prove a safe correction path for this partial row. Cleanup can only be considered after row/action proof without deleting."
+  },
+  "actionsTaken": [
+    "Reviewed D4-D8 Page 472 evidence.",
+    "Reviewed Microsoft Learn VAT setup source for VAT Posting Setup field dependency.",
+    "Rejected repeated direct cell/list-edit routes for 3806/1406.",
+    "Selected a no-delete row/action inventory as the next safe practical case."
+  ],
+  "actionsNotTaken": [
+    "No Business Central execution in D9",
+    "No Playwright execution in D9",
+    "No cleanup/delete",
+    "No master data",
+    "No document draft",
+    "No Preview Posting",
+    "No Posting",
+    "No API shortcut",
+    "No Company switch",
+    "No VAT final claim"
+  ],
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "proved": [
+    "D9 selected the next route based on D4-D8 evidence and source review.",
+    "The selected next route is non-destructive and forbids cleanup/delete execution.",
+    "Posting Groups, master data, Preview Posting and Posting remain blocked until the VAT matrix is resolved."
+  ],
+  "notProved": [
+    "No complete VAT Posting Setup row.",
+    "No safe cleanup/delete route yet.",
+    "No final German VAT correctness.",
+    "No Preview Posting, VAT Entries or G/L Entries."
+  ],
+  "screenshots": [],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-027d9-vat-matrix-cleanup-or-alternative-route-decision/TARGET-027D9-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d9-vat-matrix-cleanup-or-alternative-route-decision/README.md",
+    "playwright/projects/fibu-book5/evidence/target-027d8-vat-matrix-list-edit-action-route/TARGET-027D8-result.json"
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-027d9-vat-matrix-cleanup-or-alternative-route-decision/TARGET-027D9-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d9-vat-matrix-cleanup-or-alternative-route-decision/README.md",
+    ".agent/state/cases/target-027d9-vat-matrix-cleanup-or-alternative-route-decision.json",
+    ".agent/state/cases/target-027d10-vat-matrix-row-action-inventory-no-delete.json",
+    ".agent/state/cases/target-027d11-vat-matrix-row-scoped-delete-dialog-cancel-probe.json",
+    ".agent/state/current.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/marathon_queue.json",
+    "playwright/projects/fibu-book5/BC-SOURCE-REGISTRY.md"
+  ],
+  "blockedBy": [],
+  "warnings": [
+    "D9 is a decision case only; D10 provides the UI action inventory evidence."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-027D9-VAT-MATRIX-CLEANUP-OR-ALTERNATIVE-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-027D9-VAT-MATRIX-CLEANUP-OR-ALTERNATIVE-ROUTE-DECISION",
+    "lastEvidenceSummary": "D8 proved the visible list-edit route, but Sales/Purchase VAT Account did not expose true active editors and no setup value was written.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A non-repeating route decision is needed before any further Page 472 action.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D10-VAT-MATRIX-ROW-ACTION-INVENTORY-NO-DELETE",
+        "status": "ready-next",
+        "reason": "Safest practical step: inventory row/actions without delete."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "VAT matrix row remains incomplete."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for VAT/posting defaults."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation cannot be ready before VAT/posting/dimension gates."
+      }
+    ],
+    "queueChangesMade": [
+      "Select TARGET-027D10-VAT-MATRIX-ROW-ACTION-INVENTORY-NO-DELETE as bounded no-delete UI inventory."
+    ],
+    "selectedNextCase": "TARGET-027D10-VAT-MATRIX-ROW-ACTION-INVENTORY-NO-DELETE",
+    "whySelectedNextCaseIsBest": "It produces practical UI evidence for cleanup feasibility without deleting or changing setup.",
+    "risksBeforeNextCase": [
+      "Do not click or confirm delete in D10.",
+      "Do not repeat direct list/cell typing routes.",
+      "Do not unlock master data, Preview Posting or Posting."
+    ],
+    "requiredPreparation": [
+      "Use D4-D8 evidence; capture screenshot QA for row/action visibility."
+    ]
+  },
+  "safeToFinalizeState": true,
+  "requiresReview": false,
+  "nextCase": "TARGET-027D10-VAT-MATRIX-ROW-ACTION-INVENTORY-NO-DELETE",
+  "reason": "D9 selected a no-delete row/action inventory as the safest next practical route."
+}

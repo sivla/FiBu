@@ -560,6 +560,17 @@ Screenshot-QA zu TARGET-027D6: Die Bilder sind Diagnose- und Entscheidungsbilder
 
 Screenshot-QA zu TARGET-027D8: Der Lauf beweist nicht, dass die MwSt.-Buchungsmatrix fertig ist. Er beweist, dass auch die sichtbare `Weitere Optionen`-/`Liste bearbeiten`-Route fuer die Steuerkonto-Felder keinen sicheren Schreibeditor liefert. Deshalb darf der naechste Lauf nicht erneut dieselbe Listen-Edit-Route testen, sondern muss kontrolliert entscheiden: row-scoped Cleanup/Recreate oder eine andere Standard-UI-Route.
 
+## Universaarl VAT Matrix Row Action Inventory TARGET-027D10
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Interner Beweis | Beweist nicht | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-027d10-010-before-action-inventory.png` | MwSt.-Buchungsmatrix Einr., Page 472 | `playthru` / `UNIVERSAARL-DE` | Vor Row-Action-Inventur | Die unvollstaendige `INLAND`/`VAT19`-Zeile ist sichtbar; `MwSt. %` bleibt `0`, Steuerkonto-Spalten sind leer | Richtiger Ausgangskontext fuer die Cleanup-Entscheidung | keine fertige Matrix, keine Korrektur, kein Cleanup | `setup-before`, `partial-row-proof` |
+| `target-027d10-020-after-row-focus.png` | MwSt.-Buchungsmatrix Einr., Page 472 | `playthru` / `UNIVERSAARL-DE` | Nach Zeilenfokus | Die Zielzeile ist fokussiert; in der Aktionsleiste ist `Löschen` sichtbar | Es gibt eine row-nahe Delete-Aktion, die separat geprueft werden kann | kein geloeschter Datensatz, kein Dialog, keine Bestaetigung | `action-inventory`, `no-delete` |
+| `target-027d10-030-after-more-options.png` | MwSt.-Buchungsmatrix Einr., Page 472 | `playthru` / `UNIVERSAARL-DE` | Nach `Weitere Optionen` | Das Menue zeigt `Löschen` als sichtbare Aktion; der Test sammelt die Aktion nur und klickt sie nicht | More-Options-Inventur findet einen potenziellen Cleanup-Pfad | keine sichere Cleanup-Route, keine Dialogantwort, keine Setup-Aenderung | `action-inventory`, `dialog-probe-needed` |
+| `target-027d10-040-reopen-no-delete-proof.png` | MwSt.-Buchungsmatrix Einr., Page 472 | `playthru` / `UNIVERSAARL-DE` | Reopen nach Inventur | Die `INLAND`/`VAT19`-Zeile ist weiter sichtbar | Der D10-Lauf hat nicht geloescht und keine verdeckte Aenderung erzeugt | keine Vervollstaendigung, keine USt-Berechnung, keine VAT Entries | `reopen-proof`, `no-delete` |
+
+Screenshot-QA zu TARGET-027D10: Die Bilder zeigen einen echten Fortschritt gegenueber D8, weil die Oberflaeche jetzt eine row-nahe Delete-Aktion sichtbar macht. Sie beweisen aber bewusst keinen Cleanup. Der naechste sichere Schritt ist deshalb nicht sofortiges Loeschen, sondern ein enger Dialog-Cancel-Probe: Zielzeile fokussieren, `Löschen` nur als Dialogausloeser klicken, Dialog fotografieren und mit `Abbrechen`/Schliessen beenden. Erst danach kann entschieden werden, ob ein spaeterer expliziter Cleanup-Case fachlich vertretbar ist.
+
 ## PREP-010 Screenshot-QA-Regel
 
 Vor jeder Buch- oder Clickguide-Nutzung muss der Screenshot gegen die konkrete Behauptung geprueft werden:

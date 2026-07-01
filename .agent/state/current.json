@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T02:42:57.587Z",
+  "updatedAt": "2026-07-01T02:56:49.809Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-vat-matrix-cleanup-or-alternative-route-decision",
-  "activeCase": "TARGET-027D9-VAT-MATRIX-CLEANUP-OR-ALTERNATIVE-ROUTE-DECISION",
-  "active_case_file": ".agent/state/cases/target-027d9-vat-matrix-cleanup-or-alternative-route-decision.json",
-  "lastReferenceCase": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE",
+  "activeArea": "universaarl-vat-matrix-delete-dialog-cancel-probe",
+  "activeCase": "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE",
+  "active_case_file": ".agent/state/cases/target-027d11-vat-matrix-row-scoped-delete-dialog-cancel-probe.json",
+  "lastReferenceCase": "TARGET-027D10-VAT-MATRIX-ROW-ACTION-INVENTORY-NO-DELETE",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d7-vat-matrix-route-decision-after-d6.json",
   "mode": "universaarl-target-execution",
   "requiresStrongModel": true,
@@ -20,13 +20,12 @@
   ],
   "allowedActions": [
     "open-page-472",
+    "focus-visible-INLAND-VAT19-row",
     "capture-before-screenshot",
-    "open-visible-more-options",
-    "click-visible-liste-bearbeiten-action",
-    "probe-true-active-editors-for-vat-percent-sales-vat-account-purchase-vat-account",
-    "write-only-if-all-required-editors-are-proven",
-    "capture-after-and-reopen-proof",
-    "stop-without-write-if-editor-proof-fails"
+    "click-visible-delete-action-only-if-row-is-focused-and-screenshot-proves-context",
+    "capture-confirmation-dialog-if-opened",
+    "cancel-or-close-confirmation-dialog",
+    "reopen-page-472-and-prove-row-still-visible"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -34,9 +33,11 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "repeat-d3-d5-cell-edit-route",
+    "confirm-delete",
+    "press-yes-or-ja-or-ok-on-delete-dialog",
+    "cleanup-delete-effect",
+    "repeat-d3-d5-d8-cell-or-list-edit-route",
     "type-3806-or-1406-without-new-editor-proof",
-    "cleanup-delete",
     "create-master-data",
     "create-document-or-draft",
     "preview-posting",
@@ -44,8 +45,8 @@
     "api-shortcut",
     "claim-german-vat-final-proof"
   ],
-  "nextCase": "TARGET-027D9-VAT-MATRIX-CLEANUP-OR-ALTERNATIVE-ROUTE-DECISION",
-  "nextStep": "Do not repeat list-edit route; decide controlled cleanup/recreate or alternative Page-472 route.",
+  "nextCase": "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE",
+  "nextStep": "Probe only the row-scoped delete confirmation and cancel it; do not confirm cleanup.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -1350,7 +1351,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "universaarl-skr04-balance-sheet-accounts-fit",
-  "lastCompletedCase": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
+  "lastCompletedCase": "TARGET-027D10-VAT-MATRIX-ROW-ACTION-INVENTORY-NO-DELETE",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3725,21 +3726,21 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-027D7-VAT-MATRIX-ROUTE-DECISION-AFTER-D6",
-    "plannedNextCaseBeforeReview": "TARGET-027D7-VAT-MATRIX-ROUTE-DECISION-AFTER-D6",
-    "lastEvidenceSummary": "D6 captured Page 472 route evidence: More options and Liste bearbeiten are visible; Personalize went to Role Center; Page Inspection proves VAT Posting Setup page/table but no editor.",
+    "currentCase": "TARGET-027D10-VAT-MATRIX-ROW-ACTION-INVENTORY-NO-DELETE",
+    "plannedNextCaseBeforeReview": "TARGET-027D10-VAT-MATRIX-ROW-ACTION-INVENTORY-NO-DELETE",
+    "lastEvidenceSummary": "D9 selected row-scoped cleanup feasibility as the next non-repeating path after D8 proved list-edit cannot expose VAT account editors.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "A local route decision is required before any further setup write because repeated cell typing already failed and created/left partial setup evidence.",
+    "reason": "The partial INLAND/VAT19 row blocks Foundation; cleanup/recreate may be required, but delete must not be clicked before row-scoped action inventory and dialog-cancel proof.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE",
+        "caseId": "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE",
         "status": "ready-next",
-        "reason": "Uses a new visible standard UI route from D6 and requires editor proof before typing."
+        "reason": "A cleanup/delete-like action is visible enough to justify a separate dialog-cancel probe."
       },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Posting groups wait for VAT matrix completion or an explicit park decision."
+        "reason": "VAT matrix row remains incomplete or unproven."
       },
       {
         "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
@@ -3749,29 +3750,22 @@
       {
         "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Foundation cannot be ready while the VAT matrix row remains incomplete."
-      },
-      {
-        "caseId": "TARGET-031-FIRST-DOCUMENT-DRAFT-GATE",
-        "status": "needs-setup-first",
-        "reason": "First document draft waits for foundation readiness and master data."
+        "reason": "Foundation cannot be ready until VAT/posting/dimension gates are settled."
       }
     ],
     "queueChangesMade": [
-      "Marked D7 as the local route decision case.",
-      "Added TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE as the next bounded execute case."
+      "Select TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE based on safe row-action inventory; no cleanup/delete was executed in D10."
     ],
-    "selectedNextCase": "TARGET-027D8-VAT-MATRIX-LIST-EDIT-ACTION-ROUTE",
-    "whySelectedNextCaseIsBest": "It is the first non-repeating, evidence-backed UI route after D6: visible More options -> Liste bearbeiten, then true editor gate for VAT %, Sales VAT Account and Purchase VAT Account.",
+    "selectedNextCase": "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE",
+    "whySelectedNextCaseIsBest": "A separate dialog-cancel probe is the narrowest safe way to prove whether cleanup can be row-scoped without deleting data.",
     "risksBeforeNextCase": [
-      "Do not type 3806/1406 unless the active editor is proven in Page 472 after visible list-edit activation.",
-      "Do not delete the partial row without a separate row-scoped confirmation proof.",
-      "Do not proceed to master data or documents before VAT matrix status is resolved."
+      "Do not click or confirm delete without a dedicated row-scoped dialog-cancel case.",
+      "Do not create master data until VAT/posting defaults are ready.",
+      "Do not claim final German VAT correctness before Preview Posting, VAT Entries and G/L Entries."
     ],
     "requiredPreparation": [
-      "Use D6 Page 472 reopen proof and menu evidence.",
-      "Start D8 with before screenshot, then visible More options -> Liste bearbeiten, then editor probes.",
-      "If all required editors are true, write only VAT %, Sales VAT Account and Purchase VAT Account; then capture after and reopen proof."
+      "Use D10 action inventory and screenshots.",
+      "Keep D3/D5/D8 list/cell typing routes forbidden."
     ]
   },
   "permissionBlocker": {
@@ -6762,5 +6756,37 @@
       "target-027d8-050-reopen-proof.png"
     ],
     "nextCase": "TARGET-027D9-VAT-MATRIX-CLEANUP-OR-ALTERNATIVE-ROUTE-DECISION"
+  },
+  "latestVatMatrixCleanupDecision": {
+    "caseId": "TARGET-027D9-VAT-MATRIX-CLEANUP-OR-ALTERNATIVE-ROUTE-DECISION",
+    "status": "done-route-selected-no-bc",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d9-vat-matrix-cleanup-or-alternative-route-decision/TARGET-027D9-result.json",
+    "selectedRoute": "TARGET-027D10-VAT-MATRIX-ROW-ACTION-INVENTORY-NO-DELETE",
+    "noBcExecution": true,
+    "noPlaywrightExecution": true,
+    "nextCase": "TARGET-027D10-VAT-MATRIX-ROW-ACTION-INVENTORY-NO-DELETE"
+  },
+  "latestVatMatrixRowActionInventory": {
+    "caseId": "TARGET-027D10-VAT-MATRIX-ROW-ACTION-INVENTORY-NO-DELETE",
+    "status": "observed-row-action-inventory-no-delete",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d10-vat-matrix-row-action-inventory-no-delete/TARGET-027D10-result.json",
+    "sourceInstance": "playthru",
+    "sourceCompany": "UNIVERSAARL-DE",
+    "setupChanged": false,
+    "setupChangeAttempted": false,
+    "cleanupDeleteExecuted": false,
+    "deleteActionVisible": true,
+    "visibleDangerousActions": [
+      "Löschen",
+      "Löschen",
+      "Löschen"
+    ],
+    "screenshots": [
+      "target-027d10-010-before-action-inventory.png",
+      "target-027d10-020-after-row-focus.png",
+      "target-027d10-030-after-more-options.png",
+      "target-027d10-040-reopen-no-delete-proof.png"
+    ],
+    "nextCase": "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE"
   }
 }
