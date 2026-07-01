@@ -7,8 +7,8 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "bcRun": false,
-  "playwrightRun": true,
-  "summary": "D2F blocked before effective BC action: Error: Business Central auth/token blocker detected during Business Central shell wait. Refresh playwright/.auth/bc-user.json before retry.",
+  "playwrightRun": false,
+  "summary": "D2F blocked before Business Central open by auth shell-validation preflight: shell-validation-meta-missing-or-invalid.",
   "changedInBC": false,
   "setupChanged": false,
   "setupChangeAttempted": false,
@@ -20,7 +20,7 @@
   "apiShortcut": false,
   "screenshots": [],
   "proved": [
-    "The D2F route did not reach Business Central because the Playwright session/token is missing or expired.",
+    "The D2F route did not open Business Central because local auth shell-validation metadata is missing or invalid.",
     "No setup, master data, document, Preview Posting, Posting, payment, API shortcut or company switch occurred."
   ],
   "notProved": [
@@ -29,25 +29,25 @@
     "No automatic numbering behavior, Preview Posting, Posting, ledger entry or VAT effect is proven."
   ],
   "warnings": [
-    "Auth/token failure is an execution blocker, not a Business Central setup finding."
+    "Auth shell-validation failure is an execution blocker, not a Business Central setup finding."
   ],
   "blockedBy": [
-    "D2F blocked before effective BC action: Error: Business Central auth/token blocker detected during Business Central shell wait. Refresh playwright/.auth/bc-user.json before retry."
+    "D2F blocked before Business Central open by auth shell-validation preflight: shell-validation-meta-missing-or-invalid."
   ],
   "resultPath": "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/TARGET-036D2F-result.json",
   "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-  "nextStep": "The next useful step is to refresh Playwright BC authentication and rerun the same narrow D2F route.",
+  "nextStep": "Run npm run auth:bc, complete Login/MFA until the Business Central shell is visible, confirm npm run auth:bc:check is green, then rerun the same narrow D2F route.",
   "nextStepDecisionCard": {
     "currentCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
     "plannedNextCaseBeforeReview": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
     "lastEvidenceSummary": "TARGET-036D2E did not persist U-VEND Manual Nos after an unfiltered/cell-coordinate route.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "D2F blocked before effective BC action: Error: Business Central auth/token blocker detected during Business Central shell wait. Refresh playwright/.auth/bc-user.json before retry.",
+    "reason": "D2F blocked before Business Central open by auth shell-validation preflight: shell-validation-meta-missing-or-invalid.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
         "status": "blocked",
-        "reason": "Playwright storageState/auth token must be refreshed before retry."
+        "reason": "Stored auth must have shell-validation metadata; run npm run auth:bc until the BC shell is visible, then require npm run auth:bc:check to pass before retry."
       },
       {
         "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
@@ -67,14 +67,14 @@
     ],
     "queueChangesMade": [],
     "selectedNextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-    "whySelectedNextCaseIsBest": "The next useful step is to refresh Playwright BC authentication and rerun the same narrow D2F route.",
+    "whySelectedNextCaseIsBest": "Run npm run auth:bc, complete Login/MFA until the Business Central shell is visible, confirm npm run auth:bc:check is green, then rerun the same narrow D2F route.",
     "risksBeforeNextCase": [
       "Do not create vendor/customer/item records until U-VEND Manual Nos is proven active."
     ],
     "requiredPreparation": [
-      "Run auth refresh for playwright/.auth/bc-user.json in the normal local workflow, then rerun D2F."
+      "Run npm run auth:bc, complete Login/MFA until the Business Central shell is visible, then require npm run auth:bc:check to pass before rerunning D2F."
     ]
   },
-  "updatedAt": "2026-07-01T17:38:17.235Z",
+  "updatedAt": "2026-07-01T18:15:51.584Z",
   "activeCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY"
 }

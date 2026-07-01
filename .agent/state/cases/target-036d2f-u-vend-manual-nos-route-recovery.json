@@ -86,7 +86,7 @@
     "The route focuses U-SO or another row.",
     "Manual Nos. cannot be proven active after reopen.",
     "Any dialog asks to save unrelated setup, create a record, post, preview, delete or switch company.",
-    "Playwright storageState/auth token is missing or expired. Refresh auth before retry."
+    "Playwright stored auth lacks shell-validation metadata. Run npm run auth:bc until the BC shell is visible, then require npm run auth:bc:check to pass before retry."
   ],
   "acceptanceCriteria": [
     "A new route signal is used, not the D2/D2B/D2E failed routes.",
@@ -100,12 +100,12 @@
     "plannedNextCaseBeforeReview": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
     "lastEvidenceSummary": "TARGET-036D2E did not persist U-VEND Manual Nos after an unfiltered/cell-coordinate route.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "D2F blocked before effective BC action: Error: Business Central auth/token blocker detected during Business Central shell wait. Refresh playwright/.auth/bc-user.json before retry.",
+    "reason": "D2F blocked before Business Central open by auth shell-validation preflight: shell-validation-meta-missing-or-invalid.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
         "status": "blocked",
-        "reason": "Playwright storageState/auth token must be refreshed before retry."
+        "reason": "Stored auth must have shell-validation metadata; run npm run auth:bc until the BC shell is visible, then require npm run auth:bc:check to pass before retry."
       },
       {
         "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
@@ -125,23 +125,23 @@
     ],
     "queueChangesMade": [],
     "selectedNextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-    "whySelectedNextCaseIsBest": "The next useful step is to refresh Playwright BC authentication and rerun the same narrow D2F route.",
+    "whySelectedNextCaseIsBest": "Run npm run auth:bc, complete Login/MFA until the Business Central shell is visible, confirm npm run auth:bc:check is green, then rerun the same narrow D2F route.",
     "risksBeforeNextCase": [
       "Do not create vendor/customer/item records until U-VEND Manual Nos is proven active."
     ],
     "requiredPreparation": [
-      "Run auth refresh for playwright/.auth/bc-user.json in the normal local workflow, then rerun D2F."
+      "Run npm run auth:bc, complete Login/MFA until the Business Central shell is visible, then require npm run auth:bc:check to pass before rerunning D2F."
     ]
   },
   "createdAt": "2026-07-01T11:31:24.302Z",
-  "updatedAt": "2026-07-01T17:38:17.235Z",
-  "classification": "blocked-auth-token-fast-detected-no-effective-bc-action",
+  "updatedAt": "2026-07-01T18:15:51.596Z",
+  "classification": "blocked-auth-shell-validation-meta-missing-no-bc-open",
   "resultPath": "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/TARGET-036D2F-result.json",
   "completedAt": "2026-07-01T17:38:17.235Z",
   "lastRun": {
     "resultStatus": "blocked",
     "bcRun": false,
-    "playwrightRun": true,
+    "playwrightRun": false,
     "setupChanged": false,
     "setupChangeAttempted": false,
     "masterDataChanged": false,
@@ -150,13 +150,13 @@
     "posted": false,
     "apiShortcut": false,
     "blockedBy": [
-      "D2F blocked before effective BC action: Error: Business Central auth/token blocker detected during Business Central shell wait. Refresh playwright/.auth/bc-user.json before retry."
+      "D2F blocked before Business Central open by auth shell-validation preflight: shell-validation-meta-missing-or-invalid."
     ],
     "warnings": [
-      "Auth/token failure is an execution blocker, not a Business Central setup finding."
+      "Auth shell-validation failure is an execution blocker, not a Business Central setup finding."
     ],
     "actionsTaken": [
-      "Tried to open Page 456 Number Series with URL filter restricted to U-VEND in playthru / UNIVERSAARL-DE."
+      "Ran local auth shell-validation preflight before opening Business Central."
     ],
     "actionsNotTaken": [
       "No company switch.",

@@ -47,7 +47,7 @@
     "No automatic numbering behavior, Preview Posting, Posting, ledger entry or VAT effect is proven."
   ],
   "warnings": [
-    "Auth/token failure is an execution blocker, not a Business Central setup finding."
+    "Auth shell-validation failure is an execution blocker, not a Business Central setup finding."
   ],
   "blockedBy": [
     "D2F blocked before Business Central open by auth shell-validation preflight: shell-validation-meta-missing-or-invalid."
@@ -72,7 +72,7 @@
       {
         "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
         "status": "blocked",
-        "reason": "Playwright storageState/auth token must be refreshed before retry."
+        "reason": "Stored auth must have shell-validation metadata; run npm run auth:bc until the BC shell is visible, then require npm run auth:bc:check to pass before retry."
       },
       {
         "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
@@ -92,12 +92,12 @@
     ],
     "queueChangesMade": [],
     "selectedNextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-    "whySelectedNextCaseIsBest": "The next useful step is to refresh Playwright BC authentication and rerun the same narrow D2F route.",
+    "whySelectedNextCaseIsBest": "Run npm run auth:bc, complete Login/MFA until the Business Central shell is visible, confirm npm run auth:bc:check is green, then rerun the same narrow D2F route.",
     "risksBeforeNextCase": [
       "Do not create vendor/customer/item records until U-VEND Manual Nos is proven active."
     ],
     "requiredPreparation": [
-      "Run auth refresh for playwright/.auth/bc-user.json in the normal local workflow, then rerun D2F."
+      "Run npm run auth:bc, complete Login/MFA until the Business Central shell is visible, then require npm run auth:bc:check to pass before rerunning D2F."
     ]
   },
   "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
@@ -115,7 +115,7 @@
       "active_case_file": ".agent/state/cases/target-036d2f-u-vend-manual-nos-route-recovery.json",
       "lastCompletedCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
       "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-      "nextStep": "The next useful step is to refresh Playwright BC authentication and rerun the same narrow D2F route."
+      "nextStep": "Run npm run auth:bc, complete Login/MFA until the Business Central shell is visible, confirm npm run auth:bc:check is green, then rerun the same narrow D2F route."
     },
     "activeCase": {
       "status": "blocked",
@@ -139,5 +139,6 @@
       "summary": "D2F blocked before Business Central open by auth shell-validation preflight: shell-validation-meta-missing-or-invalid."
     }
   },
-  "reason": "D2F blocked before Business Central open by auth shell-validation preflight: shell-validation-meta-missing-or-invalid."
+  "reason": "D2F blocked before Business Central open by auth shell-validation preflight: shell-validation-meta-missing-or-invalid.",
+  "updatedAt": "2026-07-01T18:15:51.597Z"
 }
