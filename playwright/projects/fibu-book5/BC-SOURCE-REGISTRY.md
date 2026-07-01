@@ -483,6 +483,17 @@ TARGET-046 laeuft ohne Business-Central- und ohne Playwright-Ausfuehrung. Der La
 
 Fuer Universaarl folgt daraus: `U-ITEM-HW100` darf noch keine Lagerbuchungsgruppe erhalten. Erst muss TARGET-047 source-backed entscheiden, welcher Lagerbuchungsgruppencode, welche `SAAR-HL`-Kombination und welches SKR04-orientierte Lagerkonto fachlich passen. Daraus entsteht noch kein Inventory-Posting-Erfolg; Preview Posting, Posting, Item Ledger Entries, Value Entries und Sachposten bleiben gesperrt.
 
+## TARGET-047 Inventory Posting Setup Entscheidung
+
+TARGET-047 laeuft ohne Business-Central- und ohne Playwright-Ausfuehrung. Der Lauf verbindet TARGET-046 mit dem sichtbaren Kontenplan-Checkpoint TARGET-026O und dem Universaarl-SKR04-Minimalmapping:
+
+- `SAAR-HL` ist als erster Universaarl-Lagerort nur ein Kandidat fuer die spaetere Inventory-Posting-Setup-Kombination.
+- Der aktuelle Starterkontenplan enthaelt kein freigegebenes Lagerbewertungskonto.
+- `5400 Wareneingang / Materialaufwand` ist ein GuV-Aufwandskonto fuer Einkaufs-/Materiallogik und darf nicht still als Inventory Account verwendet werden.
+- `WAREN` darf nicht automatisch von der allgemeinen Produktbuchungsgruppe in eine Lagerbuchungsgruppe umgedeutet werden.
+
+Fuer Universaarl folgt daraus: Der naechste Schritt ist `TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE`. Erst wenn ein Lagerbewertungskonto und danach ein Inventory-Posting-Group-Code source-backed entschieden sind, darf ein kontrollierter Schreibcase fuer Item Posting Groups oder Inventory Posting Setup geplant werden. Daraus entsteht weiterhin kein Posting-Erfolg; Preview Posting, Posting, Item Ledger Entries, Value Entries und Sachposten bleiben gesperrt.
+
 ## URLs
 
 - https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company

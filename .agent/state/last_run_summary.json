@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
-  "caseId": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
+  "runId": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+  "caseId": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
   "status": "observed",
-  "runType": "playwright-readonly-universaarl-customer-item-field-route",
+  "runType": "local-decision-universaarl-item-inventory-posting-setup",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "bcRun": true,
-  "playwrightRun": true,
-  "summary": "TARGET-046 mapped the missing Item Posting Group / Inventory Posting Setup dependency without BC or Playwright execution. No write was unlocked; TARGET-047 is now selected to decide source-backed inventory posting setup target values.",
+  "bcRun": false,
+  "playwrightRun": false,
+  "summary": "TARGET-047 completed the no-write decision: inventory posting setup remains blocked until TARGET-048 selects or blocks a SKR04 inventory valuation account.",
   "changedInBC": false,
   "setupChanged": false,
   "setupChangeAttempted": false,
@@ -18,32 +18,30 @@
   "posted": false,
   "payment": false,
   "apiShortcut": false,
-  "screenshots": [
-    "playwright/projects/fibu-book5/img/target-045b-010-customer-expanded-standard-page-route.png",
-    "playwright/projects/fibu-book5/img/target-045b-020-item-expanded-standard-page-route.png"
-  ],
+  "screenshots": [],
   "proved": [
-    "Item Posting Group is a separate item/inventory setup dependency and not a safe blind field write from the Item Card.",
-    "Inventory Posting Setup depends on Location Code, Invt. Posting Group Code and Inventory Account context.",
-    "Existing Universaarl evidence proves only page surfaces for Item Posting Groups and Inventory Posting Setup, not rows or account correctness.",
-    "TARGET-047 should be a source-backed item inventory posting setup decision before any item or setup write."
+    "The current Universaarl starter account list does not contain a released inventory valuation account.",
+    "5400 Wareneingang / Materialaufwand is not safe as Inventory Posting Setup inventory account without a separate source-backed decision.",
+    "SAAR-HL can be treated only as a candidate location for the later Inventory Posting Setup key.",
+    "No Inventory Posting Group code is source-backed yet.",
+    "No item, setup, document, Preview Posting or Posting write is unlocked."
   ],
   "notProved": [
-    "No Item Posting Group value is proven on U-ITEM-HW100.",
-    "No Inventory Posting Group row exists or is correct in UNIVERSAARL-DE.",
-    "No Inventory Posting Setup row for SAAR-HL plus a group is proven.",
-    "No SKR04 inventory account is selected or created.",
-    "No inventory posting readiness, item ledger entry, value entry, G/L entry, O2C, P2P, Preview Posting or Posting is proven."
+    "No SKR04 inventory valuation account is selected.",
+    "No Inventory Posting Group code is selected.",
+    "No Inventory Posting Setup row for SAAR-HL exists or is correct.",
+    "No item posting field value is saved on U-ITEM-HW100.",
+    "No inventory posting readiness, Item Ledger Entry, Value Entry, G/L Entry, O2C, P2P, Preview Posting or Posting is proven."
   ],
   "warnings": [
-    "Visible terms are not posting readiness.",
-    "This case intentionally does not write target values.",
-    "TARGET-045 remains locked unless exact values and Smart Decision are prepared."
+    "This is a decision gate, not setup proof.",
+    "Do not use 5400 as inventory balance account without TARGET-048.",
+    "Do not silently reuse WAREN as Inventory Posting Group just because it is a general product posting group candidate."
   ],
   "blockedBy": [],
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-046-item-inventory-posting-group-source-mapping/TARGET-046-result.json",
-  "nextCase": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
-  "nextStep": "Run TARGET-047 item inventory posting setup decision before any item posting group or Inventory Posting Setup write.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-047-item-inventory-posting-setup-decision/TARGET-047-result.json",
+  "nextCase": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+  "nextStep": "Run TARGET-048 inventory account SKR04 source gate before any Item Posting Group or Inventory Posting Setup write.",
   "nextStepDecisionCard": {
     "currentCase": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
     "plannedNextCaseBeforeReview": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
@@ -93,7 +91,7 @@
       "Keep customer/item field writes, O2C/P2P documents, Preview Posting and Posting locked."
     ]
   },
-  "updatedAt": "2026-07-02T00:30:00.000Z",
+  "updatedAt": "2026-07-02T01:15:00.000Z",
   "activeCase": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
   "authUnblock": {
     "status": "blocked-attended-login-required",
@@ -117,77 +115,77 @@
     "rawTenantOrAuthDetailsCommitted": false,
     "nextRequiredAction": "Complete attended Login/MFA in the auth browser until Business Central Role Center/Search/My Settings is visible; then run npm run auth:bc:check before rerunning D2F. If sign-in stalls or times out, run npm run auth:bc:diagnose for a short redacted diagnosis."
   },
-  "completedAt": "2026-07-01T22:19:47.605Z",
+  "completedAt": "2026-07-02T01:15:00.000Z",
   "nextStepDecision": {
-    "currentCase": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
-    "plannedNextCaseBeforeReview": "TARGET-047-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT-AFTER-SOURCES",
-    "lastEvidenceSummary": "TARGET-045B showed U-ITEM-HW100 read-only but did not expose Lagerbuchungsgruppe / Item Posting Group. TARGET-040 showed Item Posting Groups and Inventory Posting Setup surfaces but no rows or account correctness.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "A direct customer/item field write would still be premature because the item posting group and inventory posting setup target values are not decided.",
+    "currentCase": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+    "lastEvidenceSummary": "TARGET-046 mapped Inventory Posting Setup as requiring Location Code, Inventory Posting Group Code and Inventory Account; TARGET-026O proves no currently released inventory valuation account.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The missing SKR04 inventory account is the smallest prerequisite before an inventory posting group or Inventory Posting Setup write.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-047-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT-AFTER-SOURCES",
-        "status": "needs-setup-first",
-        "reason": "Customer/item field writes need inventory, general posting and VAT setup decisions first."
+        "caseId": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+        "status": "ready-next",
+        "reason": "Needed before any Inventory Posting Setup row can be written."
       },
       {
-        "caseId": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
-        "status": "ready-next",
-        "reason": "Source mapping shows no rows or target values; decide target values before any write."
+        "caseId": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Needs inventory group code and inventory account decision first."
+      },
+      {
+        "caseId": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Needs group row plus inventory account before SAAR-HL combination write."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C still needs customer posting fields, item posting fields, VAT setup and general posting setup."
+        "reason": "O2C still waits for item/customer posting fields, VAT setup and general posting setup boundaries."
       },
       {
         "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
         "status": "ready-after-current",
-        "reason": "VAT setup remains a separate foundation lane; do not mix it into inventory setup."
-      },
-      {
-        "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-        "status": "blocked",
-        "reason": "Vendor numbering is parked and separate from this item inventory dependency."
+        "reason": "VAT is separate from inventory posting and should not be mixed into this account-source gate."
       }
     ],
     "queueChangesMade": [
-      "Replace premature controlled customer/item field fit with TARGET-047 item inventory posting setup decision.",
-      "Keep O2C/P2P/Preview/Posting locked."
+      "Keep TARGET-048 as the only open next queue item.",
+      "Keep TARGET-049, TARGET-050, O2C, Preview Posting and Posting locked."
     ],
-    "selectedNextCase": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
-    "whySelectedNextCaseIsBest": "It turns the source dependency into concrete target values and gates before the first item posting field or inventory setup write.",
+    "selectedNextCase": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+    "whySelectedNextCaseIsBest": "It prevents using 5400 or any legacy/CRONUS inventory account as a silent inventory valuation account.",
     "risksBeforeNextCase": [
-      "Do not reuse CRONUS/RM inventory posting group values.",
-      "Do not use an inventory account that is not in the Universaarl SKR04 starter mapping.",
-      "Do not claim inventory posting readiness without reopen proof and later posting/entry trace."
+      "Do not invent a SKR04 inventory account.",
+      "Do not derive inventory valuation from CRONUS or RM-DEMO.",
+      "Do not write Item Posting Group or Inventory Posting Setup before a source-backed account is chosen."
     ],
     "requiredPreparation": [
-      "Read UNIVERSAARL-SKR04-MINIMAL-ACCOUNT-MAPPING.md.",
-      "Decide whether a separate inventory account must be added before Inventory Posting Setup.",
-      "Keep Business Central and Playwright locked in the decision case unless the active case explicitly unlocks read-only UI."
+      "Check existing source registry entries for SKR04 account sources.",
+      "Use an explicit source gate for inventory valuation account candidates.",
+      "Return with either a selected candidate account or a blocked decision."
     ]
   },
   "resultStatus": "observed",
   "actionsTaken": [
-    "Read TARGET-045A source-field map.",
-    "Read TARGET-045B read-only standard page result.",
-    "Read TARGET-040 item/inventory setup read-only evidence.",
-    "Checked Microsoft Learn posting group and inventory posting sources.",
-    "Mapped Item Posting Group and Inventory Posting Setup dependency before any write."
+    "Read TARGET-046 source map.",
+    "Read Universaarl SKR04 minimal account mapping.",
+    "Read TARGET-026O chart checkpoint and account findings.",
+    "Compared the required Inventory Posting Setup fields with current Universaarl account foundation.",
+    "Selected TARGET-048 as the next narrow source gate."
   ],
   "actionsNotTaken": [
     "No Business Central execution.",
     "No Playwright execution.",
+    "No company switch.",
     "No item edit.",
-    "No inventory posting group edit.",
-    "No inventory posting setup edit.",
-    "No setup value changed.",
-    "No master data changed.",
-    "No document or draft created.",
+    "No Item Posting Group edit.",
+    "No Inventory Posting Setup edit.",
+    "No setup change.",
+    "No master data change.",
+    "No document or draft.",
     "No Preview Posting.",
     "No Posting.",
-    "No API shortcut.",
-    "No company switch."
+    "No API shortcut."
   ]
 }

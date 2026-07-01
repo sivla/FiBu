@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "purpose": "decide item inventory posting setup target readiness before any item or setup write",
+  "sourceBasis": [
+    {
+      "type": "universaarl-evidence",
+      "ref": "playwright/projects/fibu-book5/evidence/target-046-item-inventory-posting-group-source-mapping/source-map.json",
+      "finding": "Item Posting Group and Inventory Posting Setup are separate setup dependencies. TARGET-046 did not unlock any item or setup write."
+    },
+    {
+      "type": "universaarl-evidence",
+      "ref": "playwright/projects/fibu-book5/evidence/target-026o-chart-of-accounts-visible-screenshot-recovery/TARGET-026O-result.json",
+      "finding": "Visible starter accounts are 1200, 1406, 1800, 3300, 3806, 4400 and 5400. None is classified as inventory valuation / Bestand / Lagerbewertung account."
+    },
+    {
+      "type": "universaarl-mapping",
+      "ref": "playwright/projects/fibu-book5/UNIVERSAARL-SKR04-MINIMAL-ACCOUNT-MAPPING.md",
+      "finding": "The mapping explicitly keeps Bestand / Lagerbewertung unreleased because Inventory Posting Setup needs its own article, location and valuation decision."
+    },
+    {
+      "type": "microsoft-learn",
+      "ref": "https://learn.microsoft.com/en-us/dynamics365/business-central/finance-posting-groups",
+      "finding": "Inventory posting groups are assigned to item accounts through Inventory Posting Setup."
+    },
+    {
+      "type": "microsoft-learn",
+      "ref": "https://learn.microsoft.com/en-us/dynamics365/business-central/application/base-application/table/microsoft.inventory.item.inventory-posting-setup",
+      "finding": "Inventory Posting Setup table 5813 contains Location Code, Invt. Posting Group Code and Inventory Account."
+    }
+  ],
+  "targetDecision": {
+    "inventoryAccountMissing": true,
+    "inventoryAccountDecision": {
+      "status": "blocked-needs-source-gate",
+      "selectedAccountNo": null,
+      "reason": "No Universaarl SKR04 starter account is currently released for inventory valuation. 5400 is Wareneingang / Materialaufwand and cannot be used as an inventory balance account without a separate source-backed decision."
+    },
+    "locationDecision": {
+      "status": "candidate-selected-not-write-ready",
+      "candidateLocationCode": "SAAR-HL",
+      "reason": "SAAR-HL is the first Universaarl warehouse/location context from the Foundation route, but it still needs to be paired with a valid inventory posting group and inventory account before setup write."
+    },
+    "inventoryPostingGroupDecision": {
+      "status": "blocked-needs-source-gate",
+      "candidateCode": null,
+      "reason": "No source-backed Inventory Posting Group code is selected. The existing general product posting candidate WAREN must not be silently reused as Inventory Posting Group."
+    },
+    "inventoryPostingSetupKeyDecision": {
+      "status": "blocked",
+      "candidateKey": {
+        "locationCode": "SAAR-HL",
+        "invtPostingGroupCode": null
+      },
+      "reason": "The key is not complete until an inventory posting group code and inventory account are source-backed."
+    }
+  },
+  "unlockDecision": {
+    "itemWriteUnlocked": false,
+    "itemPostingGroupWriteUnlocked": false,
+    "inventoryPostingGroupWriteUnlocked": false,
+    "inventoryPostingSetupWriteUnlocked": false,
+    "o2cUnlocked": false,
+    "p2pUnlocked": false,
+    "previewPostingUnlocked": false,
+    "postingUnlocked": false,
+    "nextCase": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE"
+  },
+  "nextStepDecision": {
+    "currentCase": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+    "lastEvidenceSummary": "TARGET-046 mapped Inventory Posting Setup as requiring Location Code, Inventory Posting Group Code and Inventory Account; TARGET-026O proves no currently released inventory valuation account.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The missing SKR04 inventory account is the smallest prerequisite before an inventory posting group or Inventory Posting Setup write.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+        "status": "ready-next",
+        "reason": "Needed before any Inventory Posting Setup row can be written."
+      },
+      {
+        "caseId": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Needs inventory group code and inventory account decision first."
+      },
+      {
+        "caseId": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Needs group row plus inventory account before SAAR-HL combination write."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C still waits for item/customer posting fields, VAT setup and general posting setup boundaries."
+      },
+      {
+        "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
+        "status": "ready-after-current",
+        "reason": "VAT is separate from inventory posting and should not be mixed into this account-source gate."
+      }
+    ],
+    "queueChangesMade": [
+      "Keep TARGET-048 as the only open next queue item.",
+      "Keep TARGET-049, TARGET-050, O2C, Preview Posting and Posting locked."
+    ],
+    "selectedNextCase": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+    "whySelectedNextCaseIsBest": "It prevents using 5400 or any legacy/CRONUS inventory account as a silent inventory valuation account.",
+    "risksBeforeNextCase": [
+      "Do not invent a SKR04 inventory account.",
+      "Do not derive inventory valuation from CRONUS or RM-DEMO.",
+      "Do not write Item Posting Group or Inventory Posting Setup before a source-backed account is chosen."
+    ],
+    "requiredPreparation": [
+      "Check existing source registry entries for SKR04 account sources.",
+      "Use an explicit source gate for inventory valuation account candidates.",
+      "Return with either a selected candidate account or a blocked decision."
+    ]
+  },
+  "updatedAt": "2026-07-02T01:15:00.000Z"
+}

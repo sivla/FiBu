@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+  "status": "ready-next",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Inventory account SKR04 source gate",
+  "purpose": "Choose or block a source-backed SKR04-oriented inventory valuation account before any Item Posting Group or Inventory Posting Setup write.",
+  "sourceCases": [
+    "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
+    "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
+    "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": false,
+  "taskClass": "wizard_work",
+  "allowedActions": [
+    "read-target-047-decision",
+    "read-skr04-minimal-account-mapping",
+    "read-source-registry",
+    "check-existing-official-or-registered-skr04-source",
+    "write-inventory-account-source-decision",
+    "write-next-step-decision",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "open-business-central",
+    "run-playwright",
+    "enter-edit-mode",
+    "create-gl-account",
+    "change-gl-account",
+    "create-item-posting-group",
+    "change-item-posting-group",
+    "create-inventory-posting-setup",
+    "change-inventory-posting-setup",
+    "change-item",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-inventory-posting-readiness",
+    "claim-german-compliance-final-proof",
+    "book-claim-without-evidence",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-047 result exists and selects this case.",
+    "TARGET-047 blocks Inventory Posting Setup because no inventory valuation account is selected.",
+    "The existing Universaarl starter account list has no released inventory valuation account."
+  ],
+  "acceptanceCriteria": [
+    "A source-backed candidate inventory valuation account is selected, or the path is explicitly blocked.",
+    "The decision does not use CRONUS, RM-DEMO or old laboratory values as active target truth.",
+    "The decision distinguishes inventory balance account from purchase/material expense account.",
+    "No Business Central or Playwright execution occurs.",
+    "No G/L account, item posting group, item, setup, document, preview, posting or API change occurs.",
+    "The next case is either a narrow G/L account write/source gate or a narrow Item Posting Group write gate."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+    "lastEvidenceSummary": "TARGET-047 blocks Inventory Posting Setup because Location SAAR-HL alone is insufficient and no inventory account or inventory posting group code is selected.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Inventory Posting Setup cannot be written before an inventory balance account is source-backed.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+        "status": "ready-next",
+        "reason": "Smallest local decision before any write."
+      },
+      {
+        "caseId": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Needs account/source decision first."
+      },
+      {
+        "caseId": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Needs selected account plus group code."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Still blocked by posting/VAT/item field readiness."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+    "whySelectedNextCaseIsBest": "It prevents a false inventory setup write using an expense account or legacy inventory account.",
+    "risksBeforeNextCase": [
+      "Do not invent account numbers.",
+      "Do not use CRONUS/RM-DEMO as active target truth.",
+      "Do not claim SKR04 completeness or tax advisor approval."
+    ],
+    "requiredPreparation": [
+      "Read TARGET-047 decision.",
+      "Check registered SKR04 sources.",
+      "Keep BC and Playwright locked unless a later case explicitly unlocks read-only evidence."
+    ]
+  },
+  "createdAt": "2026-07-02T01:15:00.000Z"
+}

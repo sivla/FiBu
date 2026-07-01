@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+  "source": "local-decision",
+  "resultStatus": "observed",
+  "runPlanId": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "url": "",
+  "page": "",
+  "bcRun": false,
+  "playwrightRun": false,
+  "actionsTaken": [
+    "Read TARGET-046 source map.",
+    "Read Universaarl SKR04 minimal account mapping.",
+    "Read TARGET-026O chart checkpoint and account findings.",
+    "Compared the required Inventory Posting Setup fields with current Universaarl account foundation.",
+    "Selected TARGET-048 as the next narrow source gate."
+  ],
+  "actionsNotTaken": [
+    "No Business Central execution.",
+    "No Playwright execution.",
+    "No company switch.",
+    "No item edit.",
+    "No Item Posting Group edit.",
+    "No Inventory Posting Setup edit.",
+    "No setup change.",
+    "No master data change.",
+    "No document or draft.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No API shortcut."
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "screenshots": [],
+  "proved": [
+    "The current Universaarl starter account list does not contain a released inventory valuation account.",
+    "5400 Wareneingang / Materialaufwand is not safe as Inventory Posting Setup inventory account without a separate source-backed decision.",
+    "SAAR-HL can be treated only as a candidate location for the later Inventory Posting Setup key.",
+    "No Inventory Posting Group code is source-backed yet.",
+    "No item, setup, document, Preview Posting or Posting write is unlocked."
+  ],
+  "notProved": [
+    "No SKR04 inventory valuation account is selected.",
+    "No Inventory Posting Group code is selected.",
+    "No Inventory Posting Setup row for SAAR-HL exists or is correct.",
+    "No item posting field value is saved on U-ITEM-HW100.",
+    "No inventory posting readiness, Item Ledger Entry, Value Entry, G/L Entry, O2C, P2P, Preview Posting or Posting is proven."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-047-item-inventory-posting-setup-decision/decision.json",
+    "playwright/projects/fibu-book5/evidence/target-047-item-inventory-posting-setup-decision/TARGET-047-result.json",
+    "playwright/projects/fibu-book5/evidence/target-047-item-inventory-posting-setup-decision/README.md",
+    ".agent/state/cases/target-047-item-inventory-posting-setup-decision.json",
+    ".agent/state/cases/target-048-inventory-account-skr04-source-gate.json",
+    ".agent/state/current.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/marathon_queue.json",
+    ".agent/state/coverage_state.json",
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
+    "playwright/projects/fibu-book5/BC-SOURCE-REGISTRY.md"
+  ],
+  "statePatch": {
+    "current": {
+      "updatedAt": "2026-07-02T01:15:00.000Z",
+      "activeArea": "universaarl-inventory-account-skr04-source-gate",
+      "activeCase": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+      "active_case_file": ".agent/state/cases/target-048-inventory-account-skr04-source-gate.json",
+      "nextCase": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+      "nextStep": "Run TARGET-048 inventory account SKR04 source gate before any Item Posting Group or Inventory Posting Setup write."
+    },
+    "activeCase": {
+      "status": "done",
+      "completedAt": "2026-07-02T01:15:00.000Z",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-047-item-inventory-posting-setup-decision/TARGET-047-result.json",
+      "nextCase": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE"
+    }
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-047-item-inventory-posting-setup-decision/decision.json",
+    "playwright/projects/fibu-book5/evidence/target-047-item-inventory-posting-setup-decision/TARGET-047-result.json"
+  ],
+  "warnings": [
+    "This is a decision gate, not setup proof.",
+    "Do not use 5400 as inventory balance account without TARGET-048.",
+    "Do not silently reuse WAREN as Inventory Posting Group just because it is a general product posting group candidate."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "TARGET-047 narrows the next step to a source-backed inventory valuation account decision.",
+  "nextStepDecision": {
+    "currentCase": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+    "lastEvidenceSummary": "TARGET-046 mapped Inventory Posting Setup as requiring Location Code, Inventory Posting Group Code and Inventory Account; TARGET-026O proves no currently released inventory valuation account.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The missing SKR04 inventory account is the smallest prerequisite before an inventory posting group or Inventory Posting Setup write.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+        "status": "ready-next",
+        "reason": "Needed before any Inventory Posting Setup row can be written."
+      },
+      {
+        "caseId": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Needs inventory group code and inventory account decision first."
+      },
+      {
+        "caseId": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Needs group row plus inventory account before SAAR-HL combination write."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C still waits for item/customer posting fields, VAT setup and general posting setup boundaries."
+      },
+      {
+        "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
+        "status": "ready-after-current",
+        "reason": "VAT is separate from inventory posting and should not be mixed into this account-source gate."
+      }
+    ],
+    "queueChangesMade": [
+      "Keep TARGET-048 as the only open next queue item.",
+      "Keep TARGET-049, TARGET-050, O2C, Preview Posting and Posting locked."
+    ],
+    "selectedNextCase": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+    "whySelectedNextCaseIsBest": "It prevents using 5400 or any legacy/CRONUS inventory account as a silent inventory valuation account.",
+    "risksBeforeNextCase": [
+      "Do not invent a SKR04 inventory account.",
+      "Do not derive inventory valuation from CRONUS or RM-DEMO.",
+      "Do not write Item Posting Group or Inventory Posting Setup before a source-backed account is chosen."
+    ],
+    "requiredPreparation": [
+      "Check existing source registry entries for SKR04 account sources.",
+      "Use an explicit source gate for inventory valuation account candidates.",
+      "Return with either a selected candidate account or a blocked decision."
+    ]
+  },
+  "nextCase": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+  "updatedAt": "2026-07-02T01:15:00.000Z",
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:context",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/target-047-item-inventory-posting-setup-decision/TARGET-047-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/target-047-item-inventory-posting-setup-decision/TARGET-047-result.json",
+    "npm run check:encoding",
+    "git diff --check"
+  ]
+}
