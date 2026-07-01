@@ -7,6 +7,7 @@ import { BUSINESS_CENTRAL_AUTH_BLOCKER_RE, BUSINESS_CENTRAL_SHELL_RE } from './b
 const authFile = 'playwright/.auth/bc-user.json';
 const authMetaFile = 'playwright/.auth/bc-user.meta.json';
 const bcUrl = process.env.BC_URL;
+const authTimeoutMs = Number(process.env.BC_AUTH_TIMEOUT_MS ?? 10 * 60 * 1000);
 
 if (!bcUrl) {
   throw new Error('BC_URL fehlt. Lege eine .env mit BC_URL=https://businesscentral.dynamics.com/... an.');
@@ -52,7 +53,7 @@ try {
       shellSource: BUSINESS_CENTRAL_SHELL_RE.source,
       shellFlags: BUSINESS_CENTRAL_SHELL_RE.flags
     },
-    { timeout: 10 * 60 * 1000 }
+    { timeout: authTimeoutMs }
   );
   const shellValidation = await shellValidationHandle.jsonValue();
 
@@ -80,9 +81,39 @@ try {
   );
   console.log(`Login-State gespeichert: ${authFile}`);
 } catch (error) {
+  const shellDiagnosis = await page.evaluate(
+    ({ authBlockerSource, authBlockerFlags, shellSource, shellFlags }) => {
+      const url = new URL(window.location.href);
+      const text = document.body?.innerText ?? '';
+      const authBlockerRe = new RegExp(authBlockerSource, authBlockerFlags);
+      const shellRe = new RegExp(shellSource, shellFlags);
+
+      return {
+        host: url.hostname,
+        pathname: url.pathname,
+        hasCompanyParam: url.searchParams.has('company'),
+        company: url.searchParams.get('company') ?? '',
+        title: document.title,
+        bodyTextLength: text.length,
+        authBlockerDetected: authBlockerRe.test(text),
+        shellSignalDetected: shellRe.test(text),
+        matchedShellSignal: text.match(shellRe)?.[0] ?? ''
+      };
+    },
+    {
+      authBlockerSource: BUSINESS_CENTRAL_AUTH_BLOCKER_RE.source,
+      authBlockerFlags: BUSINESS_CENTRAL_AUTH_BLOCKER_RE.flags,
+      shellSource: BUSINESS_CENTRAL_SHELL_RE.source,
+      shellFlags: BUSINESS_CENTRAL_SHELL_RE.flags
+    }
+  ).catch(error => ({
+    diagnosisError: error instanceof Error ? error.message : String(error)
+  }));
+
   console.error('');
   console.error('Business-Central-Shell wurde nicht bestaetigt. Login-State wurde nicht gespeichert.');
   console.error('Bitte Login/MFA abschliessen und warten, bis Suche/Rollencenter/My Settings sichtbar ist.');
+  console.error(`Shell-Diagnose: ${JSON.stringify(shellDiagnosis)}`);
   throw error;
 } finally {
   await browser.close().catch(() => undefined);
