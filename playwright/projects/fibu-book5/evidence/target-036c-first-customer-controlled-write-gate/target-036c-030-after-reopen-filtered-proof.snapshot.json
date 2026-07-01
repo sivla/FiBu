@@ -1,0 +1,225 @@
+{
+  "step": "After reopening Customers filtered to U-CUST-100.",
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=22&company=UNIVERSAARL-DE&filter=Customer.%27No.%27+IS+%27U-CUST-100%27",
+  "title": "Debitoren",
+  "compact": "Debitoren:\nKontakte können automatisch aus neu erstellten Debitoren erstellt werden.\nKontakte aus Debitoren erstellen\nNr.\nName\nTelefonnr.\nU-CUST-100\nUniversaarl Kunde 100 0,00 0,00 0,00 0,00\nDebitorennr.\nDebitoren-Abonnementverträge\nNr., Sortierreihenfolge Aufsteigend",
+  "visible": {
+    "pageContext": true,
+    "targetNo": true,
+    "targetName": true,
+    "applyTemplateAction": false,
+    "postingGroupSignal": false,
+    "hardForbiddenSignal": false
+  },
+  "targetCustomer": {
+    "preferredNo": "U-CUST-100",
+    "name": "Universaarl Kunde 100"
+  },
+  "writeAttempt": {
+    "changed": true,
+    "status": "created-or-edited",
+    "reason": "Filled labelled No. and Name fields.",
+    "fill": {
+      "changedNo": true,
+      "changedName": true,
+      "changed": true,
+      "fieldsChanged": [
+        "No=U-CUST-100",
+        "Name=Universaarl Kunde 100"
+      ],
+      "fieldsNotTouched": [
+        "Vorlage anwenden / Apply Template",
+        "Debitorenbuchungsgruppe / Customer Posting Group",
+        "Geschaeftsbuchungsgruppe / Gen. Bus. Posting Group",
+        "USt-Geschaeftsbuchungsgruppe / VAT Bus. Posting Group",
+        "Zahlungsbedingungen / Payment Terms",
+        "Kreditlimit / Credit Limit",
+        "Gesperrt / Blocked"
+      ],
+      "reason": "Filled labelled No. and Name fields."
+    }
+  },
+  "steps": [
+    {
+      "step": "smart-decision",
+      "whyNow": "TARGET-036B proved that Customer New opens a direct card with Vorlage anwenden visible but not clicked; Customer is the smallest accounting master-data write before vendor and item.",
+      "sourceBasis": [
+        "Microsoft Learn: Register new customers says customers can be added manually on the Customer Card or by using templates.",
+        "TARGET-036B: Customer New route is card-with-apply-template-action."
+      ],
+      "fieldsChangedOnlyIfSafe": [
+        "Customer.No=U-CUST-100 if editable",
+        "Customer.Name=Universaarl Kunde 100"
+      ],
+      "fieldsNotTouched": [
+        "Vorlage anwenden / Apply Template",
+        "Customer Posting Group",
+        "Gen. Bus. Posting Group",
+        "VAT Bus. Posting Group",
+        "Payment Terms",
+        "Credit Limit",
+        "Blocked"
+      ],
+      "risk": "A customer without posting/VAT fields is not posting-ready; this case proves only first customer master-data persistence.",
+      "fallback": "Abort and document screenshots if the Customer Card, field route, context, save/reopen route or template behavior is unclear."
+    },
+    {
+      "step": "click-scoped-new-on-customers",
+      "newClicked": true
+    },
+    {
+      "step": "editable-inputs-after-new-customer-card",
+      "inspected": [
+        {
+          "index": 0,
+          "visible": true,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "index": 1,
+          "visible": true,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "index": 2,
+          "visible": true,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": "0,00"
+        },
+        {
+          "index": 3,
+          "visible": true,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "index": 4,
+          "visible": true,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "index": 5,
+          "visible": true,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "index": 6,
+          "visible": true,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "index": 7,
+          "visible": false,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "index": 8,
+          "visible": true,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "index": 9,
+          "visible": true,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "index": 10,
+          "visible": true,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "index": 11,
+          "visible": true,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "index": 12,
+          "visible": true,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "index": 13,
+          "visible": true,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "step": "fill-customer-approved-fields-only",
+      "fill": {
+        "changedNo": true,
+        "changedName": true,
+        "changed": true,
+        "fieldsChanged": [
+          "No=U-CUST-100",
+          "Name=Universaarl Kunde 100"
+        ],
+        "fieldsNotTouched": [
+          "Vorlage anwenden / Apply Template",
+          "Debitorenbuchungsgruppe / Customer Posting Group",
+          "Geschaeftsbuchungsgruppe / Gen. Bus. Posting Group",
+          "USt-Geschaeftsbuchungsgruppe / VAT Bus. Posting Group",
+          "Zahlungsbedingungen / Payment Terms",
+          "Kreditlimit / Credit Limit",
+          "Gesperrt / Blocked"
+        ],
+        "reason": "Filled labelled No. and Name fields."
+      }
+    }
+  ],
+  "reopenProofRoute": "direct Page 22 URL with Customer No. filter"
+}

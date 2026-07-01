@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-036D-FIRST-VENDOR-CONTROLLED-WRITE-GATE",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "First vendor controlled write gate",
+  "purpose": "Create or verify exactly one first vendor only after TARGET-036C proved the first customer write/reopen route and TARGET-036B proved the Vendor Card route with Vorlage anwenden visible but not clicked.",
+  "sourceCases": [
+    "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+    "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE"
+  ],
+  "effectiveBcActionsAllowed": true,
+  "mayRunPlaywright": true,
+  "taskClass": "wizard_work",
+  "smartDecisionRequired": true,
+  "targetRecord": {
+    "table": "Vendor",
+    "suggestedNo": "U-VEND-100",
+    "suggestedName": "Universaarl Lieferant 100",
+    "scope": "one-vendor-only"
+  },
+  "allowedActions": [
+    "open-playthru-business-central",
+    "confirm-UNIVERSAARL-DE-context",
+    "open-vendors-page",
+    "open-vendor-card-via-scoped-new",
+    "inspect-vendor-card-fields-before-writing",
+    "write-only-approved-vendor-fields-if-visible-and-trusted",
+    "close-and-reopen-vendors-list-for-proof",
+    "write-result-json-and-next-step-decision"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "create-customer",
+    "create-item",
+    "confirm-unknown-template-dialog",
+    "apply-template-without-explicit-case-permission",
+    "change-posting-setup",
+    "change-vat-setup",
+    "change-inventory-setup",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-master-data-readiness",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-036C result exists and shows U-CUST-100 / Universaarl Kunde 100 after reopen.",
+    "TARGET-036B routeSummary.vendors is card-with-apply-template-action.",
+    "Business Central context is playthru / UNIVERSAARL-DE.",
+    "Vendor Card Page 26 shows Nr., Name and Vorlage anwenden before any write."
+  ],
+  "stopIf": [
+    "The active instance is not playthru.",
+    "The active company is not UNIVERSAARL-DE.",
+    "Vendor Card route is not visible or not safely reopenable.",
+    "Vorlage anwenden would be required before the field list is understood.",
+    "A customer, item, document, Preview Posting or Posting route appears.",
+    "A save/confirm dialog appears with unclear effect."
+  ],
+  "acceptanceCriteria": [
+    "At most one vendor is created or verified.",
+    "Before/after/reopen screenshots show the vendor route and visible result.",
+    "No customer or item is created.",
+    "No template is applied unless a nested Smart Decision explicitly approves it.",
+    "No setup, document, Preview Posting, Posting, Payment, API shortcut or company switch occurs.",
+    "Result JSON states which fields were changed and which remained untouched."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-036B showed Customer/Vendor/Item New routes open direct cards with Vorlage anwenden visible but not clicked.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Customer is the smallest accounting-relevant master-data write after the card route discovery; vendor and item remain locked.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-036D-FIRST-VENDOR-CONTROLLED-WRITE-GATE",
+        "status": "ready-next",
+        "reason": "Vendor route can reuse the card/write/reopen discipline but needs its own field list."
+      },
+      {
+        "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Item creation touches Base Unit, Item Type, inventory and product posting logic."
+      },
+      {
+        "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+        "status": "ready-after-current",
+        "reason": "Parked Page 314, VAT matrix, inventory posting and default-dimension blockers remain relevant before first document flow."
+      },
+      {
+        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
+        "status": "blocked",
+        "reason": "Preview requires more master data and accepted setup boundaries."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-036D-FIRST-VENDOR-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "The next useful step is a similarly narrow vendor write gate; item remains later because it carries more inventory/setup impact.",
+    "risksBeforeNextCase": [
+      "Do not treat one saved customer as sales or posting readiness.",
+      "Do not click Apply Template unless a nested Smart Decision explicitly approves it.",
+      "Do not create vendor or item in the same case."
+    ],
+    "requiredPreparation": [
+      "Prepare vendor field list and safe reopen proof; keep item locked."
+    ]
+  },
+  "createdAt": "2026-07-01T09:56:03.259Z"
+}

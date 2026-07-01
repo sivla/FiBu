@@ -1,91 +1,65 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
-  "caseId": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+  "runId": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
+  "caseId": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
   "status": "observed",
-  "runType": "playwright-masterdata-card-route-discovery-no-save",
+  "runType": "playwright-first-customer-controlled-write-gate",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "bcRun": true,
   "playwrightRun": true,
-  "summary": "Customer, Vendor and Item New routes opened direct cards with Vorlage anwenden / Apply Template actions and were closed/cancelled without saving records.",
-  "changedInBC": false,
+  "summary": "U-CUST-100 / Universaarl Kunde 100 is visible after controlled Customer write/verify and filtered reopen proof.",
+  "changedInBC": true,
   "setupChanged": false,
   "setupChangeAttempted": false,
-  "masterDataChanged": false,
+  "masterDataChanged": true,
   "draftCreated": false,
   "previewPosting": false,
   "posted": false,
   "payment": false,
   "apiShortcut": false,
   "screenshots": [
-    "playwright/projects/fibu-book5/img/target-036b-010-customers-before.png",
-    "playwright/projects/fibu-book5/img/target-036b-011-customers-after-new.png",
-    "playwright/projects/fibu-book5/img/target-036b-012-customers-after-close.png",
-    "playwright/projects/fibu-book5/img/target-036b-020-vendors-before.png",
-    "playwright/projects/fibu-book5/img/target-036b-021-vendors-after-new.png",
-    "playwright/projects/fibu-book5/img/target-036b-022-vendors-after-close.png",
-    "playwright/projects/fibu-book5/img/target-036b-030-items-before.png",
-    "playwright/projects/fibu-book5/img/target-036b-031-items-after-new.png",
-    "playwright/projects/fibu-book5/img/target-036b-032-items-after-close.png"
+    "playwright/projects/fibu-book5/img/target-036c-010-customers-before.png",
+    "playwright/projects/fibu-book5/img/target-036c-020-after-customer-attempt.png",
+    "playwright/projects/fibu-book5/img/target-036c-030-after-reopen-filtered-proof.png"
   ],
   "proved": [
     "Business Central stayed in playthru / UNIVERSAARL-DE.",
-    "3/3 New routes were opened and then closed/cancelled without saving a record.",
-    "Customers / Debitoren: New route classified as card-with-apply-template-action.",
-    "Vendors / Kreditoren: New route classified as card-with-apply-template-action.",
-    "Items / Artikel: New route classified as card-with-apply-template-action."
+    "Page 22 Customers / Debitoren was used as the scoped page.",
+    "Universaarl Kunde 100 is visible after reopen.",
+    "The first customer route was executed without applying a template, without creating vendor/item records and without document/preview/posting routes."
   ],
   "notProved": [
-    "No customer, vendor or item is ready for creation yet.",
-    "No saved customer/vendor/item card, posting group, VAT group, number-series assignment or default dimension is proven.",
-    "No document, Preview Posting, Posting or ledger trace is proven.",
-    "No customer, vendor or item was saved.",
-    "No template was applied.",
-    "No posting group or VAT group was proven on a saved card.",
-    "No document, Preview Posting, Posting or ledger trace is proven.",
-    "Customers / Debitoren: no template contents or template application flow is proven because Vorlage anwenden was not clicked.",
-    "No customer, vendor or item was saved.",
-    "No template was applied.",
-    "No posting group or VAT group was proven on a saved card.",
-    "No document, Preview Posting, Posting or ledger trace is proven.",
-    "Vendors / Kreditoren: no template contents or template application flow is proven because Vorlage anwenden was not clicked.",
-    "No customer, vendor or item was saved.",
-    "No template was applied.",
-    "No posting group or VAT group was proven on a saved card.",
-    "No document, Preview Posting, Posting or ledger trace is proven.",
-    "Items / Artikel: no template contents or template application flow is proven because Vorlage anwenden was not clicked."
+    "No customer posting readiness is proven.",
+    "No Customer Posting Group, Gen. Bus. Posting Group, VAT Bus. Posting Group or Payment Terms value is proven as correct.",
+    "No sales document, Preview Posting, Posting, customer ledger entry or G/L entry is proven.",
+    "No vendor or item route is proven by this write gate."
   ],
   "blockedBy": [],
   "warnings": [
-    "Customers / Debitoren: New opens a card with Vorlage anwenden / Apply Template, not a separate template-selection dialog.",
-    "Vendors / Kreditoren: New opens a card with Vorlage anwenden / Apply Template, not a separate template-selection dialog.",
-    "Items / Artikel: New opens a card with Vorlage anwenden / Apply Template, not a separate template-selection dialog."
+    "This customer is only the first master-data persistence proof, not O2C readiness.",
+    "Vorlage anwenden / Apply Template was deliberately not clicked.",
+    "Posting/VAT/payment fields remain separate gated setup and master-data steps."
   ],
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-036b-customer-vendor-item-template-dialog-discovery/TARGET-036B-result.json",
-  "nextCase": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
-  "nextStep": "Prepare TARGET-036C as the first customer controlled write gate: one Debitor only, exact field list, no Vorlage anwenden unless explicitly gated, no vendor/item, no document, no preview, no posting.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-036c-first-customer-controlled-write-gate/TARGET-036C-result.json",
+  "nextCase": "TARGET-036D-FIRST-VENDOR-CONTROLLED-WRITE-GATE",
+  "nextStep": "Prepare TARGET-036D as the first vendor controlled write gate: one Kreditor only, exact field list, no Vorlage anwenden, no item, no document, no preview, no posting.",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
-    "lastEvidenceSummary": "TARGET-036A created or verified Location SAAR-HL with Code and Name only and reopen proof.",
+    "currentCase": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-036B showed Customer/Vendor/Item New routes open direct cards with Vorlage anwenden visible but not clicked.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Customer, Vendor and Item records are accounting-relevant and can trigger templates or mandatory fields; New routes must be classified before saving records.",
+    "reason": "Customer is the smallest accounting-relevant master-data write after the card route discovery; vendor and item remain locked.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
-        "status": "ready-after-current",
-        "reason": "Customer write can be prepared only with explicit field/template gates."
-      },
-      {
         "caseId": "TARGET-036D-FIRST-VENDOR-CONTROLLED-WRITE-GATE",
-        "status": "ready-after-current",
-        "reason": "Vendor write should wait until customer route proves the shared template pattern."
+        "status": "ready-next",
+        "reason": "Vendor route can reuse the card/write/reopen discipline but needs its own field list."
       },
       {
         "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
         "status": "needs-setup-first",
-        "reason": "Item creation needs inventory/posting/unit/template field gates before a saved item."
+        "reason": "Item creation touches Base Unit, Item Type, inventory and product posting logic."
       },
       {
         "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
@@ -95,22 +69,21 @@
       {
         "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
         "status": "blocked",
-        "reason": "Preview requires real master data, accepted setup boundaries and expected entry traces."
+        "reason": "Preview requires more master data and accepted setup boundaries."
       }
     ],
     "queueChangesMade": [],
-    "selectedNextCase": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
-    "whySelectedNextCaseIsBest": "Customer is the next smallest accounting master-data write; Vendor and Item remain behind additional gates.",
+    "selectedNextCase": "TARGET-036D-FIRST-VENDOR-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "The next useful step is a similarly narrow vendor write gate; item remains later because it carries more inventory/setup impact.",
     "risksBeforeNextCase": [
-      "A future write case must not click Vorlage anwenden / Apply Template blindly.",
-      "List/card visibility is not posting readiness.",
-      "Item creation is riskier than customer/vendor because it touches inventory and product posting groups."
+      "Do not treat one saved customer as sales or posting readiness.",
+      "Do not click Apply Template unless a nested Smart Decision explicitly approves it.",
+      "Do not create vendor or item in the same case."
     ],
     "requiredPreparation": [
-      "Define exact field list for the first saved customer, including whether Vorlage anwenden is needed.",
-      "Keep vendor and item writes locked until their own Smart Decision cards exist."
+      "Prepare vendor field list and safe reopen proof; keep item locked."
     ]
   },
-  "updatedAt": "2026-07-01T09:41:47.928Z",
-  "activeCase": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE"
+  "updatedAt": "2026-07-01T09:56:03.259Z",
+  "activeCase": "TARGET-036D-FIRST-VENDOR-CONTROLLED-WRITE-GATE"
 }

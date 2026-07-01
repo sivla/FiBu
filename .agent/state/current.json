@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T09:41:47.928Z",
+  "updatedAt": "2026-07-01T09:56:03.259Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-first-customer-controlled-write",
-  "activeCase": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
-  "active_case_file": ".agent/state/cases/target-036c-first-customer-controlled-write-gate.json",
+  "activeArea": "universaarl-first-vendor-controlled-write",
+  "activeCase": "TARGET-036D-FIRST-VENDOR-CONTROLLED-WRITE-GATE",
+  "active_case_file": ".agent/state/cases/target-036d-first-vendor-controlled-write-gate.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -21,16 +21,17 @@
   "allowedActions": [
     "open-playthru-business-central",
     "confirm-UNIVERSAARL-DE-context",
-    "open-customers-page",
-    "open-customer-card-via-scoped-new",
-    "write-one-customer-only-if-field-list-and-close-route-are-trusted",
-    "capture-before-after-reopen-screenshots",
+    "open-vendors-page",
+    "open-vendor-card-via-scoped-new",
+    "inspect-vendor-card-fields-before-writing",
+    "write-only-approved-vendor-fields-if-visible-and-trusted",
+    "close-and-reopen-vendors-list-for-proof",
     "write-result-json-and-next-step-decision"
   ],
   "forbiddenActions": [
     "leave-instance",
     "company-switch",
-    "create-vendor",
+    "create-customer",
     "create-item",
     "confirm-unknown-template-dialog",
     "apply-template-without-explicit-case-permission",
@@ -48,8 +49,8 @@
     "fake-evidence",
     "book-claim-without-evidence"
   ],
-  "nextCase": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
-  "nextStep": "Prepare TARGET-036C as the first customer controlled write gate: one Debitor only, exact field list, no Vorlage anwenden unless explicitly gated, no vendor/item, no document, no preview, no posting.",
+  "nextCase": "TARGET-036D-FIRST-VENDOR-CONTROLLED-WRITE-GATE",
+  "nextStep": "Prepare TARGET-036D as the first vendor controlled write gate: one Kreditor only, exact field list, no Vorlage anwenden, no item, no document, no preview, no posting.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -232,7 +233,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "TARGET-036B showed Debitor/Kreditor/Artikel Neu opens direct cards with Vorlage anwenden; no records/templates saved. Next narrow gate is one customer only.",
+  "currentCoverageFocus": "TARGET-036C created or verified Debitor U-CUST-100 / Universaarl Kunde 100 with Nr. and Name only and reopen proof; no template, posting/VAT/payment fields, preview or posting.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -1354,7 +1355,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "universaarl-skr04-balance-sheet-accounts-fit",
-  "lastCompletedCase": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+  "lastCompletedCase": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3724,26 +3725,21 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
-    "lastEvidenceSummary": "TARGET-036A created or verified Location SAAR-HL with Code and Name only and reopen proof.",
+    "currentCase": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-036B showed Customer/Vendor/Item New routes open direct cards with Vorlage anwenden visible but not clicked.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Customer, Vendor and Item records are accounting-relevant and can trigger templates or mandatory fields; New routes must be classified before saving records.",
+    "reason": "Customer is the smallest accounting-relevant master-data write after the card route discovery; vendor and item remain locked.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
-        "status": "ready-after-current",
-        "reason": "Customer write can be prepared only with explicit field/template gates."
-      },
-      {
         "caseId": "TARGET-036D-FIRST-VENDOR-CONTROLLED-WRITE-GATE",
-        "status": "ready-after-current",
-        "reason": "Vendor write should wait until customer route proves the shared template pattern."
+        "status": "ready-next",
+        "reason": "Vendor route can reuse the card/write/reopen discipline but needs its own field list."
       },
       {
         "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
         "status": "needs-setup-first",
-        "reason": "Item creation needs inventory/posting/unit/template field gates before a saved item."
+        "reason": "Item creation touches Base Unit, Item Type, inventory and product posting logic."
       },
       {
         "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
@@ -3753,20 +3749,19 @@
       {
         "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
         "status": "blocked",
-        "reason": "Preview requires real master data, accepted setup boundaries and expected entry traces."
+        "reason": "Preview requires more master data and accepted setup boundaries."
       }
     ],
     "queueChangesMade": [],
-    "selectedNextCase": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
-    "whySelectedNextCaseIsBest": "Customer is the next smallest accounting master-data write; Vendor and Item remain behind additional gates.",
+    "selectedNextCase": "TARGET-036D-FIRST-VENDOR-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "The next useful step is a similarly narrow vendor write gate; item remains later because it carries more inventory/setup impact.",
     "risksBeforeNextCase": [
-      "A future write case must not click Vorlage anwenden / Apply Template blindly.",
-      "List/card visibility is not posting readiness.",
-      "Item creation is riskier than customer/vendor because it touches inventory and product posting groups."
+      "Do not treat one saved customer as sales or posting readiness.",
+      "Do not click Apply Template unless a nested Smart Decision explicitly approves it.",
+      "Do not create vendor or item in the same case."
     ],
     "requiredPreparation": [
-      "Define exact field list for the first saved customer, including whether Vorlage anwenden is needed.",
-      "Keep vendor and item writes locked until their own Smart Decision cards exist."
+      "Prepare vendor field list and safe reopen proof; keep item locked."
     ]
   },
   "permissionBlocker": {
@@ -7269,9 +7264,9 @@
     "currentVisibleText": "1200 Forderungen aus Lieferungen und Leistungen Bilanz Buchung",
     "correctedReason": "SKR04-oriented Universaarl foundation must not create a new 1400 receivables account; 1400 belongs to the wrong mapping context for this target."
   },
-  "nextQueueItem": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
+  "nextQueueItem": "TARGET-036D-FIRST-VENDOR-CONTROLLED-WRITE-GATE",
   "openItems": [
-    "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE"
+    "TARGET-036D-FIRST-VENDOR-CONTROLLED-WRITE-GATE"
   ],
   "latestCustomerReceivablesSourceCorrection": {
     "caseId": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
@@ -7730,5 +7725,28 @@
     ],
     "screenshotQa": "Visual QA checked: Customer, Vendor and Item after-New screenshots show direct cards with Vorlage anwenden / Apply Template; after-close screenshots show the empty lists again. No saved customer/vendor/item is visible.",
     "nextCase": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE"
+  },
+  "latestTarget036CFirstCustomer": {
+    "caseId": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
+    "status": "observed",
+    "completedAt": "2026-07-01T09:56:03.259Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-036c-first-customer-controlled-write-gate/TARGET-036C-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "preferredNo": "U-CUST-100",
+    "name": "Universaarl Kunde 100",
+    "setupChanged": false,
+    "masterDataChanged": true,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-036c-010-customers-before.png",
+      "playwright/projects/fibu-book5/img/target-036c-020-after-customer-attempt.png",
+      "playwright/projects/fibu-book5/img/target-036c-030-after-reopen-filtered-proof.png"
+    ],
+    "screenshotQa": "Visual QA checked: before list was empty, after-write Customer Card shows U-CUST-100 / Universaarl Kunde 100 and status Gespeichert, reopen list shows the customer row. Factoring/payment FastTabs remain separate gates.",
+    "nextCase": "TARGET-036D-FIRST-VENDOR-CONTROLLED-WRITE-GATE"
   }
 }
