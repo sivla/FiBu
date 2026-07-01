@@ -539,6 +539,18 @@ TARGET-027C4 schliesst den Page-470-Oberflaechenblocker. Das Bild ist gut fuer d
 
 TARGET-027C hat keine Setup-Aenderung ausgefuehrt. Die After-/Reopen-Bilder bleiben als Blocker-Evidence erhalten, zeigen aber ebenfalls keinen akzeptierten Zielseitenkontext. Fuer den naechsten Lauf gilt: erst eine sichtbare Page-470/Page-471-Oberflaeche recovern, dann erst `Neu` oder `Liste bearbeiten` innerhalb dieser Oberflaeche pruefen.
 
+## Universaarl VAT Matrix Route Discovery TARGET-027D6
+
+| Screenshot | Page / Kontext | Company | Zweck | Sichtbar | Interner Beweis | Nicht bewiesen | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-027d6-010-page-472-before-route-discovery.png` | MwSt.-Buchungsmatrix Einr., Page 472 | `playthru` / `UNIVERSAARL-DE` | Ausgangslage vor neuer Routenpruefung | Die INLAND/VAT19-Zeile ist sichtbar; Steuerkonten sind nicht als gefuellt bewiesen | Page 472 ist der richtige Zielkontext fuer die Matrixdiagnose | keine vollstaendige VAT-Matrix, keine 19-Prozent-Finalwahrheit | `diagnostic-before`, `not-book-success` |
+| `target-027d6-030-more-options-state.png` | Page 472 / Weitere Optionen | `playthru` / `UNIVERSAARL-DE` | Menue-/Aktionsflaeche statt Zell-Edit pruefen | Page 472 bleibt sichtbar, `Weitere Optionen` ist als UI-Route dokumentiert | Der Lauf wiederholt nicht die D3/D5-Zelltypingroute | kein neuer Schreibeditor, keine Kontenwerte | `route-discovery`, `not-write-proof` |
+| `target-027d6-060-personalize-state.png` | Role Center Personalisierung | `playthru` / `UNIVERSAARL-DE` | Falsches Personalize-Ziel sichtbar machen | `Wird personalisiert: Geschaeftsfuehrer`, nicht Page 472 | Der Settings-Personalize-Pfad kann auf die falsche Shell-/Role-Center-Ebene springen | keine Page-472-Personalisierung, kein Schreibhebel | `rejected-wrong-target`, `learning-evidence` |
+| `target-027d6-065-page-472-reopened-after-wrong-target-personalize.png` | MwSt.-Buchungsmatrix Einr., Page 472 | `playthru` / `UNIVERSAARL-DE` | Korrektur nach falschem Personalize-Ziel | Page 472 ist erneut sichtbar, Spalten fuer Steuerkonten sind vorhanden | Der Helper erkennt falschen Zielkontext und stellt die Zielseite wieder her | keine Matrixkorrektur, keine Kontenwerte | `target-recovered`, `diagnostic` |
+| `target-027d6-070-page-inspection-after-target-row-focus.png` | Page 472 + Seitenueberpruefung | `playthru` / `UNIVERSAARL-DE` | Technische Page-/Table-Wahrheit nach Zeilenfokus | Page Inspection zeigt `VAT Posting Setup (472, List)` und Tabelle `VAT Posting Setup (325)`; INLAND/VAT19 ist sichtbar | Technischer Kontext fuer die Matrixzeile ist belegt | kein Editor fuer `3806`/`1406`, keine Persistenz, keine Preview/Buchung | `field-truth`, `decision-input` |
+
+Screenshot-QA zu TARGET-027D6: Die Bilder sind Diagnose- und Entscheidungsbilder, keine Buch-Erfolgsbilder fuer fertiges Umsatzsteuer-Setup. Besonders wichtig ist das rejected Bild `target-027d6-060-personalize-state.png`: Es zeigt, dass `Personalisieren` nicht automatisch die sichtbare Setup-Page betrifft. Fuer das Buch kann daraus eine Debugging-Regel entstehen, aber die VAT-Matrix bleibt bis zu einem kontrollierten Completion- oder Cleanup-Case offen.
+
 ## PREP-010 Screenshot-QA-Regel
 
 Vor jeder Buch- oder Clickguide-Nutzung muss der Screenshot gegen die konkrete Behauptung geprueft werden:

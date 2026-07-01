@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T02:12:00.643Z",
+  "updatedAt": "2026-07-01T02:27:02.343Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-vat-matrix-row-action-or-personalize-route",
-  "activeCase": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
-  "active_case_file": ".agent/state/cases/target-027d6-vat-matrix-row-action-or-personalize-route.json",
-  "lastReferenceCase": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
-  "lastReferenceCaseFile": ".agent/state/cases/target-027d5-vat-matrix-correction-or-cleanup.json",
+  "activeArea": "universaarl-vat-matrix-route-decision-after-d6",
+  "activeCase": "TARGET-027D7-VAT-MATRIX-ROUTE-DECISION-AFTER-D6",
+  "active_case_file": ".agent/state/cases/target-027d7-vat-matrix-route-decision-after-d6.json",
+  "lastReferenceCase": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
+  "lastReferenceCaseFile": ".agent/state/cases/target-027d6-vat-matrix-row-action-or-personalize-route.json",
   "mode": "universaarl-target-execution",
   "requiresStrongModel": true,
   "requiredPreflightChecks": [
@@ -19,12 +19,10 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-page-472",
-    "capture-row-action-menu",
-    "capture-personalize-field-availability",
-    "capture-tooltip-or-page-inspection-for-vat-account-fields",
-    "write-only-if-a-new-route-proves-true-editors-for-sales-and-purchase-vat-account",
-    "capture-after-and-reopen-proof"
+    "review-d4-d5-d6-evidence",
+    "select-source-backed-route",
+    "plan-controlled-completion-or-cleanup-case",
+    "update-queue-and-state"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -32,18 +30,19 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
+    "open-business-central",
+    "playwright-execution",
+    "repeat-d3-d5-cell-edit-route",
+    "type-3806-or-1406-without-new-editor-proof",
     "create-master-data",
     "create-document-or-draft",
     "preview-posting",
     "post",
     "api-shortcut",
-    "repeat-blind-grid-tab-flow",
-    "repeat-target-027d3-or-target-027d5-cell-edit-route",
-    "cleanup-delete-without-row-scoped-confirmation-proof",
-    "claim-german-19-percent-vat-final-proof"
+    "claim-german-vat-final-proof"
   ],
-  "nextCase": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
-  "nextStep": "Recover Page 472 via row actions, Personalize, or a field-level UI route; do not repeat D3/D5 cell-edit typing for VAT accounts.",
+  "nextCase": "TARGET-027D7-VAT-MATRIX-ROUTE-DECISION-AFTER-D6",
+  "nextStep": "Decide the next safe non-repeating route for the incomplete INLAND/VAT19 VAT Posting Setup row after D3/D5 cell edits and D6 route discovery.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -1348,7 +1347,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "universaarl-skr04-balance-sheet-accounts-fit",
-  "lastCompletedCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
+  "lastCompletedCase": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3723,53 +3722,46 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY",
-    "lastEvidenceSummary": "TARGET-027C3 recovered the visible Tell-Me input and TARGET-027C2 accepted Page 471. TARGET-027C4 now accepts Page 470 after exact result locator/geometry click.",
+    "currentCase": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
+    "plannedNextCaseBeforeReview": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
+    "lastEvidenceSummary": "TARGET-027D5 blocked safely because Sales VAT Account and Purchase VAT Account cells did not expose true active editors.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "C4 was the narrow remaining UI-route blocker before retrying the bounded VAT group write case. It is now completed as read-only navigation evidence.",
+    "reason": "The incomplete INLAND/VAT19 VAT Posting Setup row still blocks posting groups, master data and first document cases; D6 tests new UI routes instead of repeating cell edits.",
     "lookaheadReviewed": [
-      {
-        "caseId": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
-        "status": "ready-next",
-        "reason": "Page 470 and Page 471 now have accepted read-only surfaces; INLAND/VAT19 write retry can be scoped to those pages only."
-      },
-      {
-        "caseId": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
-        "status": "needs-setup-first",
-        "reason": "Depends on visible INLAND and VAT19 groups after controlled write/reopen proof."
-      },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "General posting/customer/vendor/item setup should wait until VAT group and matrix prerequisites are done."
+        "reason": "VAT matrix row is still incomplete or unproven."
       },
       {
         "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
         "status": "needs-setup-first",
-        "reason": "Master data waits for posting groups, VAT defaults and dimensions; no card creation should start from a VAT route recovery."
+        "reason": "Master data waits for VAT setup and posting group defaults."
       },
       {
         "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
-        "status": "ready-after-current",
-        "reason": "Only after VAT and posting-group setup checkpoints can the foundation be called ready for master data."
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness waits for VAT matrix, posting groups and dimension/default decisions."
+      },
+      {
+        "caseId": "TARGET-031-FIRST-DOCUMENT-DRAFT-GATE",
+        "status": "needs-setup-first",
+        "reason": "First document draft waits for master data and complete setup gates."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-027C4 as observed/read-only route recovery.",
-      "Added TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY as the next bounded setup-write queue item."
+      "Keep VAT matrix completion blocked until a follow-up write route is explicitly selected from D6 evidence."
     ],
-    "selectedNextCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
-    "whySelectedNextCaseIsBest": "The route blocker is removed; the smallest practical W1 Foundation step is to create or confirm only INLAND and VAT19 with before/after/reopen proof.",
+    "selectedNextCase": "TARGET-027D7-VAT-MATRIX-ROUTE-DECISION-AFTER-D6",
+    "whySelectedNextCaseIsBest": "D6 produced new route evidence but did not write values; the next case must decide the bounded write path from that evidence.",
     "risksBeforeNextCase": [
-      "Do not click New/Edit/List actions unless Page 470 or Page 471 screenshot QA has accepted the target surface in the same write case.",
-      "Do not create the VAT Posting Setup matrix row in the group-write retry.",
-      "Do not claim German VAT correctness before matrix, Preview Posting, VAT Entries and G/L Entries exist."
+      "Do not claim final German VAT correctness before Preview Posting, VAT Entries and G/L Entries.",
+      "Do not create master data until VAT and posting setup gates are complete.",
+      "Do not repeat D3/D5 list-cell typing for 3806/1406."
     ],
     "requiredPreparation": [
-      "Reuse the C4 smallest-normalized-result-row click pattern for Page 470.",
-      "Keep Page 471 direct accepted-surface proof as the product-group prerequisite.",
-      "Capture before, after and reopen proof for INLAND and VAT19 if the write case proceeds."
+      "Review D6 screenshots and Page Inspection/Personalize evidence.",
+      "Decide whether Page 472 can be completed through a new route or whether the partial row must be cleaned/recreated with a different standard UI path."
     ]
   },
   "permissionBlocker": {
@@ -6636,5 +6628,80 @@
       "Reopen screenshot still shows the INLAND/VAT19 row incomplete: Beschreibung 19, MwSt. % 0 and no visible VAT account values."
     ],
     "nextCase": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE"
+  },
+  "latestVatMatrixRowActionOrPersonalizeRoute": {
+    "caseId": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
+    "status": "observed-ui-discovery-no-write",
+    "completedAt": "2026-07-01T02:24:04.199Z",
+    "sourceInstance": "playthru",
+    "sourceCompany": "UNIVERSAARL-DE",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d6-vat-matrix-row-action-or-personalize-route/TARGET-027D6-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/target-027d6-vat-matrix-row-action-or-personalize-route/",
+    "setupChanged": false,
+    "setupChangeAttempted": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "routeObservations": {
+      "beforeSignals": {
+        "page472Visible": true,
+        "inlandVat19Visible": true,
+        "personalizationVisible": false,
+        "pageInspectionVisible": false,
+        "dangerousDialogVisible": false
+      },
+      "contextMenuSignals": {
+        "page472Visible": true,
+        "inlandVat19Visible": true,
+        "personalizationVisible": false,
+        "pageInspectionVisible": false,
+        "dangerousDialogVisible": false
+      },
+      "moreOptionsSignals": {
+        "page472Visible": true,
+        "inlandVat19Visible": true,
+        "personalizationVisible": false,
+        "pageInspectionVisible": false,
+        "dangerousDialogVisible": false
+      },
+      "salesHoverSignals": {
+        "page472Visible": true,
+        "inlandVat19Visible": true,
+        "personalizationVisible": false,
+        "pageInspectionVisible": false,
+        "dangerousDialogVisible": false
+      },
+      "purchaseHoverSignals": {
+        "page472Visible": false,
+        "inlandVat19Visible": false,
+        "personalizationVisible": false,
+        "pageInspectionVisible": false,
+        "dangerousDialogVisible": false
+      },
+      "personalizeSignals": {
+        "page472Visible": false,
+        "inlandVat19Visible": false,
+        "personalizationVisible": true,
+        "pageInspectionVisible": false,
+        "dangerousDialogVisible": false
+      },
+      "inspectionSignals": {
+        "page472Visible": true,
+        "inlandVat19Visible": true,
+        "personalizationVisible": false,
+        "pageInspectionVisible": true,
+        "dangerousDialogVisible": false
+      },
+      "personalizeOpened": true,
+      "personalizeLeft": true,
+      "personalizeWrongTarget": true,
+      "moreOptionsClicked": true,
+      "routeShowsAccountFields": true,
+      "pageInspectionWorks": true
+    },
+    "warnings": [
+      "Settings -> Personalize opened Role Center personalization instead of Page 472 personalization; marked as wrong-target evidence."
+    ],
+    "nextCase": "TARGET-027D7-VAT-MATRIX-ROUTE-DECISION-AFTER-D6"
   }
 }

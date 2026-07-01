@@ -1,25 +1,31 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
-  "caseId": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
-  "status": "blocked",
+  "runId": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
+  "caseId": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
+  "status": "observed-ui-discovery-no-write",
   "completedAt": "2026-07-01T02:12:00.643Z",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d5-vat-matrix-correction-or-cleanup/TARGET-027D5-result.json",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d6-vat-matrix-row-action-or-personalize-route/TARGET-027D6-result.json",
   "rawResultPath": "playwright/projects/fibu-book5/evidence/target-027d5-vat-matrix-correction-or-cleanup/TARGET-027D5-result.json",
   "evidencePath": "playwright/projects/fibu-book5/evidence/target-027d5-vat-matrix-correction-or-cleanup/",
-  "summary": "D5 blocked safely: Page 472 stayed in playthru / UNIVERSAARL-DE; description/MwSt.-percent cell probes found editors, but Sales VAT Account 3806 and Purchase VAT Account 1406 did not expose true active editors. Reopen screenshot still shows Beschreibung 19, MwSt. % 0 and empty account fields.",
+  "summary": "D6 captured row action, More options, tooltip, Personalize and Page Inspection routes without writing setup values.",
   "proved": [
     "Business Central stayed in playthru / UNIVERSAARL-DE.",
-    "D5 required true active editor detection before typing and refused VAT account fields without editors.",
-    "Screenshot QA confirms the INLAND/VAT19 matrix row remains incomplete."
+    "Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix remained the scoped page.",
+    "The run did not repeat D3/D5 cell-edit typing for VAT account fields.",
+    "Row context, More options, hover/tooltip, Personalize and Page Inspection routes were captured as separate UI hypotheses.",
+    "No master data, document draft, Preview Posting, Posting or API shortcut was executed."
   ],
   "notProved": [
-    "No complete INLAND/VAT19 VAT Posting Setup row.",
-    "No VAT % 19 setup proof.",
-    "No Sales VAT Account 3806 or Purchase VAT Account 1406 on the matrix row.",
-    "No Preview Posting, VAT Entries or G/L Entries."
+    "No VAT Posting Setup matrix completion.",
+    "No persisted Sales VAT Account 3806 or Purchase VAT Account 1406 in the INLAND/VAT19 row.",
+    "No final German VAT correctness.",
+    "No Preview Posting.",
+    "No VAT Entries.",
+    "No G/L Entries.",
+    "No VAT Statement.",
+    "No tax advisor approval."
   ],
   "blockedBy": [
     "No true active editor detected for sales-vat-account; refusing to type 3806.",
@@ -27,8 +33,7 @@
     "Reopen screenshot still shows the INLAND/VAT19 row incomplete: Beschreibung 19, MwSt. % 0 and no visible VAT account values."
   ],
   "warnings": [
-    "Do not repeat D3/D5 cell-click routes for Umsatzsteuerkonto/Vorsteuerkonto.",
-    "Use row action, Personalize, tooltip or Page Inspection route before any further VAT account write."
+    "Settings -> Personalize opened Role Center personalization instead of Page 472 personalization; marked as wrong-target evidence."
   ],
   "actionsNotTaken": [
     "No cleanup/delete",
@@ -40,51 +45,59 @@
     "No Company switch"
   ],
   "screenshots": [
-    "playwright/projects/fibu-book5/evidence/target-027d5-vat-matrix-correction-or-cleanup/target-027d5-010-before-correction.png",
-    "playwright/projects/fibu-book5/evidence/target-027d5-vat-matrix-correction-or-cleanup/target-027d5-020-after-correction-attempt.png",
-    "playwright/projects/fibu-book5/evidence/target-027d5-vat-matrix-correction-or-cleanup/target-027d5-030-reopen-proof.png"
+    "target-027d6-010-page-472-before-route-discovery.png",
+    "target-027d6-020-row-context-click-state.png",
+    "target-027d6-030-more-options-state.png",
+    "target-027d6-040-sales-vat-account-hover.png",
+    "target-027d6-050-purchase-vat-account-hover.png",
+    "target-027d6-060-personalize-state.png",
+    "target-027d6-065-page-472-reopened-after-wrong-target-personalize.png",
+    "target-027d6-070-page-inspection-after-target-row-focus.png"
   ],
-  "nextCase": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
+  "nextCase": "TARGET-027D7-VAT-MATRIX-ROUTE-DECISION-AFTER-D6",
   "nextStep": "Recover Page 472 via row actions, Personalize, or a field-level UI route; do not repeat D3/D5 cell-edit typing for VAT accounts.",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
-    "plannedNextCaseBeforeReview": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
-    "lastEvidenceSummary": "TARGET-027D4 mapped Page 472 and proved that the INLAND/VAT19 row exists but remains incomplete.",
+    "currentCase": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
+    "plannedNextCaseBeforeReview": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
+    "lastEvidenceSummary": "TARGET-027D5 blocked safely because Sales VAT Account and Purchase VAT Account cells did not expose true active editors.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The partial VAT Posting Setup row blocks posting groups and master data; correcting or blocking it is still the narrowest dependency.",
+    "reason": "The incomplete INLAND/VAT19 VAT Posting Setup row still blocks posting groups, master data and first document cases; D6 tests new UI routes instead of repeating cell edits.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "VAT matrix row remains incomplete or unproven."
+        "reason": "VAT matrix row is still incomplete or unproven."
       },
       {
         "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
         "status": "needs-setup-first",
-        "reason": "Master data waits for VAT and posting group defaults."
+        "reason": "Master data waits for VAT setup and posting group defaults."
       },
       {
         "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Foundation readiness waits for VAT matrix, posting groups and dimensions/defaults."
+        "reason": "Foundation readiness waits for VAT matrix, posting groups and dimension/default decisions."
       },
       {
         "caseId": "TARGET-031-FIRST-DOCUMENT-DRAFT-GATE",
         "status": "needs-setup-first",
-        "reason": "Document drafts wait for master data and complete setup defaults."
+        "reason": "First document draft waits for master data and complete setup gates."
       }
     ],
     "queueChangesMade": [
-      "Select a new row-action/personalize route instead of repeating cell edits."
+      "Keep VAT matrix completion blocked until a follow-up write route is explicitly selected from D6 evidence."
     ],
-    "selectedNextCase": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
-    "whySelectedNextCaseIsBest": "The next useful step is a new UI route such as row actions or Personalize, not another cell-click write.",
+    "selectedNextCase": "TARGET-027D7-VAT-MATRIX-ROUTE-DECISION-AFTER-D6",
+    "whySelectedNextCaseIsBest": "D6 produced new route evidence but did not write values; the next case must decide the bounded write path from that evidence.",
     "risksBeforeNextCase": [
       "Do not claim final German VAT correctness before Preview Posting, VAT Entries and G/L Entries.",
-      "Do not create master data until posting groups/defaults are ready."
+      "Do not create master data until VAT and posting setup gates are complete.",
+      "Do not repeat D3/D5 list-cell typing for 3806/1406."
     ],
     "requiredPreparation": [
-      "Use row action, Personalize or another field discovery route; do not repeat D3/D5 cell typing."
+      "Review D6 screenshots and Page Inspection/Personalize evidence.",
+      "Decide whether Page 472 can be completed through a new route or whether the partial row must be cleaned/recreated with a different standard UI path."
     ]
-  }
+  },
+  "updatedAt": "2026-07-01T02:24:04.199Z"
 }

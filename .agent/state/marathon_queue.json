@@ -2243,14 +2243,38 @@
     {
       "id": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
       "order": 10063,
-      "status": "pending",
+      "status": "done",
       "category": "vat-matrix-row-action-or-personalize-route",
       "expectedImpact": "recover-vat-matrix-account-field-route",
       "reason": "D5 blocked VAT account cell typing because true active editors were not detected for 3806/1406.",
-      "sourceCase": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP"
+      "sourceCase": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
+      "completedAt": "2026-07-01T02:24:04.199Z",
+      "result": "Observed row action, More options, hover/tooltip, wrong-target Personalize and accepted Page Inspection route without setup write.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-027d6-vat-matrix-row-action-or-personalize-route/TARGET-027D6-result.json",
+      "nextCase": "TARGET-027D7-VAT-MATRIX-ROUTE-DECISION-AFTER-D6",
+      "blockedBy": [],
+      "warnings": [
+        "Settings -> Personalize opened Role Center personalization instead of Page 472 personalization; marked as wrong-target evidence."
+      ]
+    },
+    {
+      "id": "TARGET-027D7-VAT-MATRIX-ROUTE-DECISION-AFTER-D6",
+      "order": 10064,
+      "status": "pending",
+      "category": "vat-matrix-route-decision-after-d6",
+      "expectedImpact": "select-safe-vat-matrix-completion-or-cleanup-route",
+      "mayRunPlaywright": false,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Use D4/D5/D6 evidence to decide the next non-repeating route for the incomplete INLAND/VAT19 VAT Posting Setup row before any further setup write.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "reason": "D6 produced Page Inspection and wrong-target Personalize evidence but no setup write; next step must choose a source-backed completion, alternate UI route, or cleanup/recreate decision instead of more blind cell edits.",
+      "sourceCase": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
+      "lookaheadStatus": "ready-next"
     }
   ],
-  "lastUpdated": "2026-07-01T02:12:00.643Z",
+  "lastUpdated": "2026-07-01T02:26:33.120Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -2361,49 +2385,51 @@
       ]
     }
   },
-  "updatedAt": "2026-07-01T02:12:00.643Z",
-  "lastCompletedCase": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
-  "nextCase": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
+  "updatedAt": "2026-07-01T02:26:33.120Z",
+  "lastCompletedCase": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
+  "nextCase": "TARGET-027D7-VAT-MATRIX-ROUTE-DECISION-AFTER-D6",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
-    "plannedNextCaseBeforeReview": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
-    "lastEvidenceSummary": "TARGET-027D4 mapped Page 472 and proved that the INLAND/VAT19 row exists but remains incomplete.",
+    "currentCase": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
+    "plannedNextCaseBeforeReview": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
+    "lastEvidenceSummary": "TARGET-027D5 blocked safely because Sales VAT Account and Purchase VAT Account cells did not expose true active editors.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The partial VAT Posting Setup row blocks posting groups and master data; correcting or blocking it is still the narrowest dependency.",
+    "reason": "The incomplete INLAND/VAT19 VAT Posting Setup row still blocks posting groups, master data and first document cases; D6 tests new UI routes instead of repeating cell edits.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "VAT matrix row remains incomplete or unproven."
+        "reason": "VAT matrix row is still incomplete or unproven."
       },
       {
         "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
         "status": "needs-setup-first",
-        "reason": "Master data waits for VAT and posting group defaults."
+        "reason": "Master data waits for VAT setup and posting group defaults."
       },
       {
         "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Foundation readiness waits for VAT matrix, posting groups and dimensions/defaults."
+        "reason": "Foundation readiness waits for VAT matrix, posting groups and dimension/default decisions."
       },
       {
         "caseId": "TARGET-031-FIRST-DOCUMENT-DRAFT-GATE",
         "status": "needs-setup-first",
-        "reason": "Document drafts wait for master data and complete setup defaults."
+        "reason": "First document draft waits for master data and complete setup gates."
       }
     ],
     "queueChangesMade": [
-      "Select a new row-action/personalize route instead of repeating cell edits."
+      "Keep VAT matrix completion blocked until a follow-up write route is explicitly selected from D6 evidence."
     ],
-    "selectedNextCase": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
-    "whySelectedNextCaseIsBest": "The next useful step is a new UI route such as row actions or Personalize, not another cell-click write.",
+    "selectedNextCase": "TARGET-027D7-VAT-MATRIX-ROUTE-DECISION-AFTER-D6",
+    "whySelectedNextCaseIsBest": "D6 produced new route evidence but did not write values; the next case must decide the bounded write path from that evidence.",
     "risksBeforeNextCase": [
       "Do not claim final German VAT correctness before Preview Posting, VAT Entries and G/L Entries.",
-      "Do not create master data until posting groups/defaults are ready."
+      "Do not create master data until VAT and posting setup gates are complete.",
+      "Do not repeat D3/D5 list-cell typing for 3806/1406."
     ],
     "requiredPreparation": [
-      "Use row action, Personalize or another field discovery route; do not repeat D3/D5 cell typing."
+      "Review D6 screenshots and Page Inspection/Personalize evidence.",
+      "Decide whether Page 472 can be completed through a new route or whether the partial row must be cleaned/recreated with a different standard UI path."
     ]
   },
-  "nextStep": "Recover Page 472 via row actions, Personalize, or a field-level UI route; do not repeat D3/D5 cell-edit typing for VAT accounts."
+  "nextStep": "Decide the next safe non-repeating route for the incomplete INLAND/VAT19 VAT Posting Setup row after D3/D5 cell edits and D6 route discovery."
 }

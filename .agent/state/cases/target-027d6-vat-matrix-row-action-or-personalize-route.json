@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
   "id": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
-  "status": "planned",
+  "status": "done",
   "area": "universaarl-vat-setup",
   "goal": "Recover a safe Page 472 route for the Sales VAT Account and Purchase VAT Account fields using row actions, Personalize, tooltip/Page Inspection, or another visible UI route instead of repeating cell edits.",
   "sourceCompany": "UNIVERSAARL-DE",
@@ -49,5 +49,29 @@
     "No master data, document draft, Preview Posting, Posting or API shortcut is executed."
   ],
   "nextIfSuccessful": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
-  "createdAt": "2026-07-01T02:12:00.643Z"
+  "createdAt": "2026-07-01T02:12:00.643Z",
+  "completedAt": "2026-07-01T02:24:04.199Z",
+  "resultStatus": "observed-ui-discovery-no-write",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d6-vat-matrix-row-action-or-personalize-route/TARGET-027D6-result.json",
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix remained the scoped page.",
+    "The run did not repeat D3/D5 cell-edit typing for VAT account fields.",
+    "Row context, More options, hover/tooltip, Personalize and Page Inspection routes were captured as separate UI hypotheses.",
+    "No master data, document draft, Preview Posting, Posting or API shortcut was executed."
+  ],
+  "notProved": [
+    "No VAT Posting Setup matrix completion.",
+    "No persisted Sales VAT Account 3806 or Purchase VAT Account 1406 in the INLAND/VAT19 row.",
+    "No final German VAT correctness.",
+    "No Preview Posting.",
+    "No VAT Entries.",
+    "No G/L Entries.",
+    "No VAT Statement.",
+    "No tax advisor approval."
+  ],
+  "warnings": [
+    "Settings -> Personalize opened Role Center personalization instead of Page 472 personalization; marked as wrong-target evidence."
+  ],
+  "nextCase": "TARGET-027D7-VAT-MATRIX-ROUTE-DECISION-AFTER-D6"
 }
