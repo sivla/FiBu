@@ -232,7 +232,7 @@ Die Aktion `Neu` ist auf allen vier Seiten sichtbar. Sie wird noch nicht verwend
 
 Die eingeblendeten Info-Karten und Teaching-Tips sind hilfreich fuer die Orientierung. Fuer ein endgueltiges Buchbild sollten sie aber entweder bewusst erklaert oder vor dem Screenshot geschlossen werden, damit wichtige Spalten und Felder nicht verdeckt werden.
 
-Der naechste sichere Stammdatenschritt ist ein einfacher Lagerort. Ein Lagerort trennt Bestandsorte, ohne sofort einen Kunden, Lieferanten oder Artikel mit Vorlagen- und Buchungsgruppenlogik anzulegen. Fuer die Universaarl GmbH wird zuerst `SAAR-HL` mit dem Namen `Saarbruecken Hauptlager` vorbereitet.
+Der erste einfache Stammdatensatz ist ein Lagerort. Ein Lagerort trennt Bestandsorte, ohne sofort einen Kunden, Lieferanten oder Artikel mit Vorlagen- und Buchungsgruppenlogik anzulegen. Fuer die Universaarl GmbH wird zuerst `SAAR-HL` mit dem Namen `Saarbruecken Hauptlager` angelegt.
 
 Auf der Seite `Lagerorte` sind dafuer nur zwei Felder wichtig:
 
@@ -242,5 +242,7 @@ Auf der Seite `Lagerorte` sind dafuer nur zwei Felder wichtig:
 | `Name` | Lesbarer Name des Lagerorts. Er hilft, den Code im Alltag zu verstehen. |
 
 Andere Felder auf der Lagerortkarte koennen spaeter wichtig werden, zum Beispiel fuer Wareneingang, Warenausgang, Lagerplaetze oder erweiterte Warehouse-Prozesse. Sie werden beim ersten Lagerort noch nicht veraendert. So bleibt der erste Stammdatensatz klein und kontrollierbar.
+
+Nach dem erneuten Oeffnen der Seite `Lagerorte` ist `SAAR-HL` in der Liste sichtbar. Damit ist der Lagerort als einfacher Stammdatensatz vorhanden. Das reicht fuer eine erste Orientierung in Lager- und Artikelprozessen, aber noch nicht fuer Warehouse-Prozesse. Wareneingangspflicht, Warenausgangspflicht, Lagerplatzpflicht, Lagerbuchungseinrichtung und Artikelbewegungen werden in eigenen Schritten eingerichtet und geprueft.
 
 Debitoren, Kreditoren und Artikel folgen erst danach. Dort koennen Vorlagen, Buchungsgruppen, USt-Gruppen und weitere Pflichtfelder sofort fachliche Wirkung haben. Deshalb werden diese Stammdaten zuerst mit einer eigenen Vorlagen- und Pflichtfeldpruefung vorbereitet.

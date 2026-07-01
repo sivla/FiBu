@@ -1,0 +1,140 @@
+{
+  "fileName": "target-036a-020-after-location-attempt.png",
+  "imagePath": "C:\\Users\\kkali\\.codex\\worktrees\\b8d6\\FiBu\\playwright\\projects\\fibu-book5\\img\\target-036a-020-after-location-attempt.png",
+  "project": "fibu-book5",
+  "caseId": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "pageId": 15,
+  "page": "Locations / Lagerorte",
+  "step": "After Location write or verify attempt.",
+  "visibleLearning": [
+    "Ein Lagerort ist ein Stammdatensatz fuer Waren- und Lagerprozesse.",
+    "In diesem Gate werden nur Code und Name fuer SAAR-HL bearbeitet.",
+    "Warehouse-, Lagerplatz-, Posting-, Stammdaten- und Belegfelder bleiben unberuehrt."
+  ],
+  "importantUi": [
+    "Locations/Lagerorte Liste oder Karte",
+    "Code",
+    "Name",
+    "New/Neu"
+  ],
+  "internallyProves": "SAAR-HL / Saarbruecken Hauptlager ist im Locations-Kontext sichtbar.",
+  "doesNotProve": [
+    "Keine Warehouse-Einrichtung.",
+    "Keine Lagerplatzpflicht.",
+    "Keine Inventory Posting Setup Zeile.",
+    "Keine Kunden, Kreditoren, Artikel, Belege, Preview Posting oder Buchung."
+  ],
+  "finalScreenshotStatus": "universaarl-masterdata-evidence",
+  "targetLocation": {
+    "code": "SAAR-HL",
+    "name": "Saarbruecken Hauptlager"
+  },
+  "writeAttempt": {
+    "changed": true,
+    "status": "created",
+    "reason": "SAAR-HL / Saarbruecken Hauptlager entered with Code and Name only."
+  },
+  "steps": [
+    {
+      "step": "smart-decision",
+      "whyNow": "TARGET-036 selected Location as the first controlled master-data write because it can be constrained to Code and Name and avoids customer/vendor/item template risk.",
+      "supportedBy": [
+        "TARGET-035 Locations read-only preflight",
+        "TARGET-036 first-write decision"
+      ],
+      "fieldsChangedOnlyIfSafe": [
+        "Location.Code=SAAR-HL",
+        "Location.Name=Saarbruecken Hauptlager"
+      ],
+      "fieldsNotTouched": [
+        "Require Receive",
+        "Require Shipment",
+        "Require Put-away",
+        "Require Pick",
+        "Bin Mandatory",
+        "Directed Put-away and Pick",
+        "Inventory Posting Setup",
+        "Customers",
+        "Vendors",
+        "Items",
+        "Documents",
+        "Preview Posting",
+        "Posting"
+      ],
+      "fallback": "Abort and document screenshots if Locations context, New route or Code/Name inputs are not trusted."
+    },
+    {
+      "step": "click-scoped-new-on-locations",
+      "newClicked": true
+    },
+    {
+      "step": "editable-inputs-after-new",
+      "inspected": [
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "step": "fill-location-code-name-only",
+      "fill": {
+        "changed": true,
+        "reason": "Filled labelled Code and Name fields."
+      }
+    }
+  ]
+}

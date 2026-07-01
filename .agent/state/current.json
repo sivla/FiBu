@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T09:25:00.000Z",
+  "updatedAt": "2026-07-01T09:23:41.766Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-master-data-location-write-gate",
-  "activeCase": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
-  "active_case_file": ".agent/state/cases/target-036a-first-location-controlled-write-gate.json",
+  "activeArea": "universaarl-master-data-template-dialog-discovery",
+  "activeCase": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+  "active_case_file": ".agent/state/cases/target-036b-customer-vendor-item-template-dialog-discovery.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -21,15 +21,10 @@
   "allowedActions": [
     "open-playthru-business-central",
     "confirm-UNIVERSAARL-DE-context",
-    "open-locations-page",
-    "close-teaching-tip-if-visible",
-    "inspect-locations-list-before-write",
-    "click-new-location-only-in-locations-context",
-    "fill-location-code-and-name-only",
-    "leave-warehouse-and-bin-fields-unchanged",
-    "save-or-leave-card-naturally",
-    "reopen-locations-and-prove-SAAR-HL",
-    "capture-screenshot-qa",
+    "open-customers-vendors-items-pages",
+    "inspect-new-actions-readonly-or-dialog-cancel-safe",
+    "capture-template-dialog-screenshots-without-confirming",
+    "cancel-or-close-any-template-dialog",
     "write-result-json-and-next-step-decision"
   ],
   "forbiddenActions": [
@@ -39,26 +34,24 @@
     "create-vendor",
     "create-item",
     "confirm-customer-vendor-item-template-dialog",
+    "apply-template",
+    "save-record",
     "change-inventory-setup",
     "change-posting-setup",
     "change-vat-setup",
-    "change-warehouse-require-receive",
-    "change-warehouse-require-shipment",
-    "change-bin-mandatory",
     "create-document-or-draft",
     "preview-posting",
     "post",
     "payment",
     "api-shortcut",
     "claim-master-data-readiness",
-    "claim-warehouse-readiness",
     "commit-secrets",
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence"
   ],
-  "nextCase": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
-  "nextStep": "Run TARGET-036A: create or verify only Location SAAR-HL with Code and Name, then reopen proof; keep customers, vendors, items, setup, Preview Posting and Posting locked.",
+  "nextCase": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+  "nextStep": "Run TARGET-036B as read-only/dialog-cancel-safe discovery for Customer, Vendor and Item New/template routes. Do not create customer/vendor/item records yet.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -241,7 +234,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "TARGET-036 selected Location as first controlled master-data write route after TARGET-035; Customer, Vendor and Item creation need template discovery first.",
+  "currentCoverageFocus": "TARGET-036A created Location SAAR-HL / Saarbruecken Hauptlager with Code and Name only and reopen proof; Customer, Vendor and Item creation remain locked until template/dialog discovery.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -3733,54 +3726,43 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
-    "lastEvidenceSummary": "TARGET-035 showed Customers, Vendors, Items and Locations list surfaces read-only in playthru / UNIVERSAARL-DE; no New, template, save, setup, Preview Posting or Posting occurred.",
+    "currentCase": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-036 selected Location SAAR-HL as the first controlled master-data write after read-only master-data preflight.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "A no-write decision was still required before any first master-data record because Customer, Vendor and Item creation can involve templates and posting-related fields.",
+    "reason": "Location remains the smallest useful master-data write: it has a clear Code/Name route and avoids accounting/template fields.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
-        "status": "ready-next",
-        "reason": "Location is useful for inventory/warehouse context and can be constrained to Code and Name."
-      },
-      {
         "caseId": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
-        "status": "ready-after-current",
-        "reason": "Customer, Vendor and Item creation need template and mandatory-field discovery before any save."
+        "status": "ready-next",
+        "reason": "After the first simple Location exists, the next risky master-data family should be discovered read-only before creation."
       },
       {
         "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
         "status": "blocked",
-        "reason": "Preview requires real master data plus accepted VAT/posting boundaries and expected entry trace."
+        "reason": "Preview still needs real customer/vendor/item master data and accepted VAT/posting boundaries."
       },
       {
         "caseId": "TARGET-038-FIRST-POSTING-GATE",
         "status": "blocked",
-        "reason": "Posting requires successful Preview Posting and expected ledger/subledger trace."
+        "reason": "Posting remains blocked until Preview Posting and expected entry traces exist."
       },
       {
         "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
         "status": "ready-after-current",
-        "reason": "Page 314, VAT, inventory posting and default dimensions remain parked and should be revisited after the first safe master-data write."
+        "reason": "Parked VAT, Page 314, inventory posting and default-dimension blockers should be revisited before first document flow."
       }
     ],
-    "queueChangesMade": [
-      "Marked TARGET-036 as done.",
-      "Added TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE as next pending case.",
-      "Replaced broad customer-or-location follow-up with narrow Location-only gate."
-    ],
-    "selectedNextCase": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
-    "whySelectedNextCaseIsBest": "It is the smallest useful Universaarl master-data write and avoids the template/accounting risk of Customer, Vendor and Item records.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+    "whySelectedNextCaseIsBest": "The next high-value step is to understand Customer/Vendor/Item template dialogs before any accounting-relevant master-data write.",
     "risksBeforeNextCase": [
-      "Locations can contain warehouse/bin fields that must not be changed in the first write.",
-      "The New action must be scoped to Locations, not a generic create flow.",
-      "No Preview Posting or Posting may be inferred from a saved Location."
+      "Do not create customers, vendors or items before template/dialog discovery.",
+      "Do not treat SAAR-HL as warehouse readiness.",
+      "Do not run Preview Posting or Posting."
     ],
     "requiredPreparation": [
-      "Confirm playthru / UNIVERSAARL-DE before clicking New.",
-      "Use screenshot QA on before/card/reopen states.",
-      "Stop if any unsafe dialog or unrelated page appears."
+      "Keep the next case read-only or dialog-cancel-safe for Customer, Vendor and Item New routes."
     ]
   },
   "permissionBlocker": {
@@ -7283,8 +7265,10 @@
     "currentVisibleText": "1200 Forderungen aus Lieferungen und Leistungen Bilanz Buchung",
     "correctedReason": "SKR04-oriented Universaarl foundation must not create a new 1400 receivables account; 1400 belongs to the wrong mapping context for this target."
   },
-  "nextQueueItem": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
-  "openItems": 1,
+  "nextQueueItem": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+  "openItems": [
+    "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY"
+  ],
   "latestCustomerReceivablesSourceCorrection": {
     "caseId": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
     "status": "source-corrected-before-execution",
@@ -7686,5 +7670,29 @@
     "posted": false,
     "apiShortcut": false,
     "nextCase": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE"
+  },
+  "latestTarget036AFirstLocationWriteGate": {
+    "caseId": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
+    "status": "observed",
+    "completedAt": "2026-07-01T09:23:41.766Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-036a-first-location-controlled-write-gate/TARGET-036A-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "pageId": 15,
+    "code": "SAAR-HL",
+    "name": "Saarbruecken Hauptlager",
+    "setupChanged": false,
+    "masterDataChanged": true,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-036a-010-locations-before.png",
+      "playwright/projects/fibu-book5/img/target-036a-020-after-location-attempt.png",
+      "playwright/projects/fibu-book5/img/target-036a-030-after-reopen-filtered-proof.png"
+    ],
+    "screenshotQa": "Visual QA checked: SAAR-HL row is visible in after/reopen screenshots; bottom-left Locations teaching tip remains visible but does not hide the row. Future final book image should close or deliberately explain the teaching tip.",
+    "nextCase": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY"
   }
 }

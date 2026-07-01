@@ -1,0 +1,531 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
+  "source": "playwright-universaarl-first-location-controlled-write-gate",
+  "resultStatus": "observed",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "Locations / Lagerorte",
+  "pageId": 15,
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=15&company=UNIVERSAARL-DE&filter=Location.Code+IS+%27SAAR-HL%27",
+  "actionsTaken": [
+    "Opened Business Central in playthru / UNIVERSAARL-DE.",
+    "Opened Page 15 Locations / Lagerorte.",
+    "Captured before screenshot QA.",
+    "Created Location SAAR-HL by filling Code and Name only.",
+    "Reopened Page 15 with a Location Code filter for persistence proof.",
+    "Captured after/reopen screenshot QA."
+  ],
+  "actionsNotTaken": [
+    "No Customer, Vendor or Item was created.",
+    "No template dialog was confirmed.",
+    "No warehouse/bin requirement field was changed.",
+    "No Inventory Posting Setup was changed.",
+    "No document or draft was created.",
+    "No Preview Posting was executed.",
+    "No Posting was executed.",
+    "No payment was executed.",
+    "No API shortcut was used.",
+    "No company switch was executed."
+  ],
+  "setupChanged": false,
+  "masterDataChanged": true,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/target-036a-010-locations-before.png",
+    "playwright/projects/fibu-book5/img/target-036a-020-after-location-attempt.png",
+    "playwright/projects/fibu-book5/img/target-036a-030-after-reopen-filtered-proof.png"
+  ],
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Page 15 Locations / Lagerorte was used as the scoped page.",
+    "SAAR-HL / Saarbruecken Hauptlager is visible after reopen.",
+    "Only the first simple Location master-data route was used; no customer, vendor, item, document, preview or posting route was used."
+  ],
+  "notProved": [
+    "No warehouse setup readiness is proven.",
+    "No bin/put-away/pick/receive/shipment requirement is proven.",
+    "No inventory posting setup is proven.",
+    "No customer, vendor or item template route is proven.",
+    "No document, Preview Posting, Posting or ledger trace is proven."
+  ],
+  "blockedBy": [],
+  "warnings": [
+    "A Location with Code and Name is useful master data, but it does not make inventory or warehouse processes ready.",
+    "Warehouse fields were intentionally not changed in this case.",
+    "Customer, Vendor and Item creation remains locked until template/dialog discovery."
+  ],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCustomerCreated": true,
+    "noVendorCreated": true,
+    "noItemCreated": true,
+    "noTemplateConfirmed": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true,
+    "locationMasterDataChanged": true
+  },
+  "targetLocation": {
+    "code": "SAAR-HL",
+    "name": "Saarbruecken Hauptlager"
+  },
+  "before": {
+    "step": "Before first Location write gate.",
+    "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=15&company=UNIVERSAARL-DE",
+    "title": "Lagerorte",
+    "compact": "Lagerorte:\nNeu\nLagerort\nCode\nName\nInfo über Lagerorte\nRichten Sie Lager und andere Lagerorte ein, und verwalten Sie sie, konfigurieren Sie Lagerrichtlinien und Lagerplatzeinstellungen, und verfolgen Sie Artikelverfügbarkeit sowie Umlagerungen zwischen Lagerorten.\nCode, Sortierreihenfolge Aufsteigend\ncacheLocation: \"sessionStorage\",",
+    "visible": {
+      "pageContext": true,
+      "targetCode": false,
+      "targetName": false,
+      "newAction": true,
+      "warehouseFieldsMentioned": true
+    },
+    "targetLocation": {
+      "code": "SAAR-HL",
+      "name": "Saarbruecken Hauptlager"
+    }
+  },
+  "afterAttempt": {
+    "step": "After Location write or verify attempt.",
+    "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=15&company=UNIVERSAARL-DE",
+    "title": "Lagerorte",
+    "compact": "Lagerorte:\nNeu\nLagerort\nCode\nName\nSAAR-HL\nSaarbruecken Hauptlager\nInfo über Lagerorte\nRichten Sie Lager und andere Lagerorte ein, und verwalten Sie sie, konfigurieren Sie Lagerrichtlinien und Lagerplatzeinstellungen, und verfolgen Sie Artikelverfügbarkeit sowie Umlagerungen zwischen Lagerorten.\nCode, Sortierreihenfolge Aufsteigend\nListe mit Titel „Lagerorte“ hat jetzt einen Artikel\ncacheLocation: \"sessionStorage\",",
+    "visible": {
+      "pageContext": true,
+      "targetCode": true,
+      "targetName": true,
+      "newAction": true,
+      "warehouseFieldsMentioned": true
+    },
+    "targetLocation": {
+      "code": "SAAR-HL",
+      "name": "Saarbruecken Hauptlager"
+    },
+    "writeAttempt": {
+      "changed": true,
+      "status": "created",
+      "reason": "SAAR-HL / Saarbruecken Hauptlager entered with Code and Name only."
+    },
+    "steps": [
+      {
+        "step": "smart-decision",
+        "whyNow": "TARGET-036 selected Location as the first controlled master-data write because it can be constrained to Code and Name and avoids customer/vendor/item template risk.",
+        "supportedBy": [
+          "TARGET-035 Locations read-only preflight",
+          "TARGET-036 first-write decision"
+        ],
+        "fieldsChangedOnlyIfSafe": [
+          "Location.Code=SAAR-HL",
+          "Location.Name=Saarbruecken Hauptlager"
+        ],
+        "fieldsNotTouched": [
+          "Require Receive",
+          "Require Shipment",
+          "Require Put-away",
+          "Require Pick",
+          "Bin Mandatory",
+          "Directed Put-away and Pick",
+          "Inventory Posting Setup",
+          "Customers",
+          "Vendors",
+          "Items",
+          "Documents",
+          "Preview Posting",
+          "Posting"
+        ],
+        "fallback": "Abort and document screenshots if Locations context, New route or Code/Name inputs are not trusted."
+      },
+      {
+        "step": "click-scoped-new-on-locations",
+        "newClicked": true
+      },
+      {
+        "step": "editable-inputs-after-new",
+        "inspected": [
+          {
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "aria": "",
+            "title": "",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "step": "fill-location-code-name-only",
+        "fill": {
+          "changed": true,
+          "reason": "Filled labelled Code and Name fields."
+        }
+      }
+    ]
+  },
+  "afterReopen": {
+    "step": "After reopening Locations filtered to SAAR-HL.",
+    "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=15&company=UNIVERSAARL-DE&filter=Location.Code+IS+%27SAAR-HL%27",
+    "title": "Lagerorte",
+    "compact": "Lagerorte:\nNeu\nLagerort\nCode\nName\nSAAR-HL\nSaarbruecken Hauptlager\nInfo über Lagerorte\nRichten Sie Lager und andere Lagerorte ein, und verwalten Sie sie, konfigurieren Sie Lagerrichtlinien und Lagerplatzeinstellungen, und verfolgen Sie Artikelverfügbarkeit sowie Umlagerungen zwischen Lagerorten.\nListe mit Titel „Lagerorte“ hat jetzt einen Artikel\nCode, Sortierreihenfolge Aufsteigend\ncacheLocation: \"sessionStorage\",",
+    "visible": {
+      "pageContext": true,
+      "targetCode": true,
+      "targetName": true,
+      "newAction": true,
+      "warehouseFieldsMentioned": true
+    },
+    "targetLocation": {
+      "code": "SAAR-HL",
+      "name": "Saarbruecken Hauptlager"
+    },
+    "writeAttempt": {
+      "changed": true,
+      "status": "created",
+      "reason": "SAAR-HL / Saarbruecken Hauptlager entered with Code and Name only."
+    },
+    "steps": [
+      {
+        "step": "smart-decision",
+        "whyNow": "TARGET-036 selected Location as the first controlled master-data write because it can be constrained to Code and Name and avoids customer/vendor/item template risk.",
+        "supportedBy": [
+          "TARGET-035 Locations read-only preflight",
+          "TARGET-036 first-write decision"
+        ],
+        "fieldsChangedOnlyIfSafe": [
+          "Location.Code=SAAR-HL",
+          "Location.Name=Saarbruecken Hauptlager"
+        ],
+        "fieldsNotTouched": [
+          "Require Receive",
+          "Require Shipment",
+          "Require Put-away",
+          "Require Pick",
+          "Bin Mandatory",
+          "Directed Put-away and Pick",
+          "Inventory Posting Setup",
+          "Customers",
+          "Vendors",
+          "Items",
+          "Documents",
+          "Preview Posting",
+          "Posting"
+        ],
+        "fallback": "Abort and document screenshots if Locations context, New route or Code/Name inputs are not trusted."
+      },
+      {
+        "step": "click-scoped-new-on-locations",
+        "newClicked": true
+      },
+      {
+        "step": "editable-inputs-after-new",
+        "inspected": [
+          {
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "aria": "",
+            "title": "",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "step": "fill-location-code-name-only",
+        "fill": {
+          "changed": true,
+          "reason": "Filled labelled Code and Name fields."
+        }
+      }
+    ],
+    "reopenProofRoute": "direct Page 15 URL with Location Code filter"
+  },
+  "writeAttempt": {
+    "changed": true,
+    "status": "created",
+    "reason": "SAAR-HL / Saarbruecken Hauptlager entered with Code and Name only."
+  },
+  "steps": [
+    {
+      "step": "smart-decision",
+      "whyNow": "TARGET-036 selected Location as the first controlled master-data write because it can be constrained to Code and Name and avoids customer/vendor/item template risk.",
+      "supportedBy": [
+        "TARGET-035 Locations read-only preflight",
+        "TARGET-036 first-write decision"
+      ],
+      "fieldsChangedOnlyIfSafe": [
+        "Location.Code=SAAR-HL",
+        "Location.Name=Saarbruecken Hauptlager"
+      ],
+      "fieldsNotTouched": [
+        "Require Receive",
+        "Require Shipment",
+        "Require Put-away",
+        "Require Pick",
+        "Bin Mandatory",
+        "Directed Put-away and Pick",
+        "Inventory Posting Setup",
+        "Customers",
+        "Vendors",
+        "Items",
+        "Documents",
+        "Preview Posting",
+        "Posting"
+      ],
+      "fallback": "Abort and document screenshots if Locations context, New route or Code/Name inputs are not trusted."
+    },
+    {
+      "step": "click-scoped-new-on-locations",
+      "newClicked": true
+    },
+    {
+      "step": "editable-inputs-after-new",
+      "inspected": [
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "step": "fill-location-code-name-only",
+      "fill": {
+        "changed": true,
+        "reason": "Filled labelled Code and Name fields."
+      }
+    }
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-036 selected Location SAAR-HL as the first controlled master-data write after read-only master-data preflight.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Location remains the smallest useful master-data write: it has a clear Code/Name route and avoids accounting/template fields.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+        "status": "ready-next",
+        "reason": "After the first simple Location exists, the next risky master-data family should be discovered read-only before creation."
+      },
+      {
+        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
+        "status": "blocked",
+        "reason": "Preview still needs real customer/vendor/item master data and accepted VAT/posting boundaries."
+      },
+      {
+        "caseId": "TARGET-038-FIRST-POSTING-GATE",
+        "status": "blocked",
+        "reason": "Posting remains blocked until Preview Posting and expected entry traces exist."
+      },
+      {
+        "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+        "status": "ready-after-current",
+        "reason": "Parked VAT, Page 314, inventory posting and default-dimension blockers should be revisited before first document flow."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+    "whySelectedNextCaseIsBest": "The next high-value step is to understand Customer/Vendor/Item template dialogs before any accounting-relevant master-data write.",
+    "risksBeforeNextCase": [
+      "Do not create customers, vendors or items before template/dialog discovery.",
+      "Do not treat SAAR-HL as warehouse readiness.",
+      "Do not run Preview Posting or Posting."
+    ],
+    "requiredPreparation": [
+      "Keep the next case read-only or dialog-cancel-safe for Customer, Vendor and Item New routes."
+    ]
+  },
+  "nextCase": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-036a-first-location-controlled-write-gate/TARGET-036A-result.json",
+    "playwright/projects/fibu-book5/evidence/target-036a-first-location-controlled-write-gate/README.md",
+    "playwright/projects/fibu-book5/evidence/target-036a-first-location-controlled-write-gate/*.txt",
+    "playwright/projects/fibu-book5/evidence/target-036a-first-location-controlled-write-gate/*.snapshot.json",
+    "playwright/projects/fibu-book5/evidence/target-036a-first-location-controlled-write-gate/*.screenshot.json",
+    "playwright/projects/fibu-book5/img/target-036a-*.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-036a-first-location-controlled-write-gate/TARGET-036A-result.json",
+    "playwright/projects/fibu-book5/img/target-036a-010-locations-before.png",
+    "playwright/projects/fibu-book5/img/target-036a-020-after-location-attempt.png",
+    "playwright/projects/fibu-book5/img/target-036a-030-after-reopen-filtered-proof.png"
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+      "active_case_file": ".agent/state/cases/target-036b-customer-vendor-item-template-dialog-discovery.json",
+      "activeArea": "universaarl-master-data-template-dialog-discovery",
+      "nextStep": "Run TARGET-036B as read-only/dialog-cancel-safe discovery for Customer, Vendor and Item New/template routes. Do not create customer/vendor/item records yet."
+    },
+    "activeCase": {
+      "status": "done",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-036a-first-location-controlled-write-gate/TARGET-036A-result.json",
+      "nextCase": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY"
+    },
+    "coverage": {
+      "latestFirstLocationMasterDataFit": {
+        "caseId": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
+        "status": "observed",
+        "pageId": 15,
+        "code": "SAAR-HL",
+        "name": "Saarbruecken Hauptlager",
+        "resultPath": "playwright/projects/fibu-book5/evidence/target-036a-first-location-controlled-write-gate/TARGET-036A-result.json"
+      }
+    }
+  },
+  "reason": "SAAR-HL / Saarbruecken Hauptlager is visible after controlled Location write/verify and filtered reopen proof."
+}

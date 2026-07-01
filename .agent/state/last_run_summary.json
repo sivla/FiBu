@@ -1,94 +1,90 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
-  "caseId": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
-  "status": "source-backed-decision-no-write",
-  "runType": "local-source-and-evidence-decision",
+  "runId": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
+  "caseId": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
+  "status": "observed",
+  "runType": "playwright-controlled-master-data-write",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "bcRun": false,
-  "playwrightRun": false,
-  "summary": "TARGET-036 selected Location SAAR-HL as the first controlled master-data write candidate. Customers, Vendors and Items stay locked until template/mandatory-field discovery.",
-  "changedInBC": false,
+  "bcRun": true,
+  "playwrightRun": true,
+  "summary": "SAAR-HL / Saarbruecken Hauptlager is visible after controlled Location write/verify and filtered reopen proof.",
+  "changedInBC": true,
   "setupChanged": false,
   "setupChangeAttempted": false,
-  "masterDataChanged": false,
+  "masterDataChanged": true,
   "draftCreated": false,
   "previewPosting": false,
   "posted": false,
   "payment": false,
   "apiShortcut": false,
-  "screenshots": [],
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/target-036a-010-locations-before.png",
+    "playwright/projects/fibu-book5/img/target-036a-020-after-location-attempt.png",
+    "playwright/projects/fibu-book5/img/target-036a-030-after-reopen-filtered-proof.png"
+  ],
   "proved": [
-    "Location is selected as the first controlled master-data write route.",
-    "Customers, Vendors and Items remain locked until template/mandatory-field discovery.",
-    "TARGET-036A is prepared as a narrow Location Code/Name write gate."
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Page 15 Locations / Lagerorte was used as the scoped page.",
+    "SAAR-HL / Saarbruecken Hauptlager is visible after reopen.",
+    "Only the first simple Location master-data route was used; no customer, vendor, item, document, preview or posting route was used."
   ],
   "notProved": [
-    "SAAR-HL is not yet saved or reopened.",
-    "No Customer, Vendor or Item template dialog is proven.",
-    "No Preview Posting, Posting or ledger/subledger entries are proven."
+    "No warehouse setup readiness is proven.",
+    "No bin/put-away/pick/receive/shipment requirement is proven.",
+    "No inventory posting setup is proven.",
+    "No customer, vendor or item template route is proven.",
+    "No document, Preview Posting, Posting or ledger trace is proven."
   ],
   "blockedBy": [],
   "warnings": [
-    "TARGET-036A may only fill Location Code and Name.",
-    "Warehouse, bin, posting and setup fields remain locked.",
-    "No master-data readiness or posting readiness claim follows from TARGET-036."
+    "A Location with Code and Name is useful master data, but it does not make inventory or warehouse processes ready.",
+    "Warehouse fields were intentionally not changed in this case.",
+    "Customer, Vendor and Item creation remains locked until template/dialog discovery."
   ],
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-036-master-data-first-controlled-write-decision/TARGET-036-result.json",
-  "nextCase": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
-  "nextStep": "Run TARGET-036A as a controlled Location write gate.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-036a-first-location-controlled-write-gate/TARGET-036A-result.json",
+  "nextCase": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+  "nextStep": "Run TARGET-036B as read-only/dialog-cancel-safe discovery for Customer, Vendor and Item New/template routes. Do not create customer/vendor/item records yet.",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
-    "lastEvidenceSummary": "TARGET-035 showed Customers, Vendors, Items and Locations list surfaces read-only in playthru / UNIVERSAARL-DE; no New, template, save, setup, Preview Posting or Posting occurred.",
+    "currentCase": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-036 selected Location SAAR-HL as the first controlled master-data write after read-only master-data preflight.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "A no-write decision was still required before any first master-data record because Customer, Vendor and Item creation can involve templates and posting-related fields.",
+    "reason": "Location remains the smallest useful master-data write: it has a clear Code/Name route and avoids accounting/template fields.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
-        "status": "ready-next",
-        "reason": "Location is useful for inventory/warehouse context and can be constrained to Code and Name."
-      },
-      {
         "caseId": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
-        "status": "ready-after-current",
-        "reason": "Customer, Vendor and Item creation need template and mandatory-field discovery before any save."
+        "status": "ready-next",
+        "reason": "After the first simple Location exists, the next risky master-data family should be discovered read-only before creation."
       },
       {
         "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
         "status": "blocked",
-        "reason": "Preview requires real master data plus accepted VAT/posting boundaries and expected entry trace."
+        "reason": "Preview still needs real customer/vendor/item master data and accepted VAT/posting boundaries."
       },
       {
         "caseId": "TARGET-038-FIRST-POSTING-GATE",
         "status": "blocked",
-        "reason": "Posting requires successful Preview Posting and expected ledger/subledger trace."
+        "reason": "Posting remains blocked until Preview Posting and expected entry traces exist."
       },
       {
         "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
         "status": "ready-after-current",
-        "reason": "Page 314, VAT, inventory posting and default dimensions remain parked and should be revisited after the first safe master-data write."
+        "reason": "Parked VAT, Page 314, inventory posting and default-dimension blockers should be revisited before first document flow."
       }
     ],
-    "queueChangesMade": [
-      "Marked TARGET-036 as done.",
-      "Added TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE as next pending case.",
-      "Replaced broad customer-or-location follow-up with narrow Location-only gate."
-    ],
-    "selectedNextCase": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
-    "whySelectedNextCaseIsBest": "It is the smallest useful Universaarl master-data write and avoids the template/accounting risk of Customer, Vendor and Item records.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+    "whySelectedNextCaseIsBest": "The next high-value step is to understand Customer/Vendor/Item template dialogs before any accounting-relevant master-data write.",
     "risksBeforeNextCase": [
-      "Locations can contain warehouse/bin fields that must not be changed in the first write.",
-      "The New action must be scoped to Locations, not a generic create flow.",
-      "No Preview Posting or Posting may be inferred from a saved Location."
+      "Do not create customers, vendors or items before template/dialog discovery.",
+      "Do not treat SAAR-HL as warehouse readiness.",
+      "Do not run Preview Posting or Posting."
     ],
     "requiredPreparation": [
-      "Confirm playthru / UNIVERSAARL-DE before clicking New.",
-      "Use screenshot QA on before/card/reopen states.",
-      "Stop if any unsafe dialog or unrelated page appears."
+      "Keep the next case read-only or dialog-cancel-safe for Customer, Vendor and Item New routes."
     ]
   },
-  "updatedAt": "2026-07-01T09:25:00.000Z",
-  "activeCase": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE"
+  "updatedAt": "2026-07-01T09:23:41.766Z",
+  "activeCase": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY"
 }

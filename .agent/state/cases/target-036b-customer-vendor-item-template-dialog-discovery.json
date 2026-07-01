@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Customer, Vendor and Item template dialog discovery",
+  "purpose": "Inspect the New/template routes for Customers, Vendors and Items without confirming templates or saving records.",
+  "sourceCases": [
+    "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
+    "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
+    "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": true,
+  "taskClass": "wizard_work",
+  "smartDecisionRequired": true,
+  "allowedActions": [
+    "open-playthru-business-central",
+    "confirm-UNIVERSAARL-DE-context",
+    "open-customers-page-readonly",
+    "open-vendors-page-readonly",
+    "open-items-page-readonly",
+    "inspect-new-action-dialog-cancel-safe",
+    "capture-template-dialog-screenshot-if-opened",
+    "cancel-or-close-template-dialog",
+    "write-result-json-and-next-step-decision"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "create-customer",
+    "create-vendor",
+    "create-item",
+    "confirm-customer-vendor-item-template-dialog",
+    "apply-template",
+    "save-record",
+    "change-posting-setup",
+    "change-vat-setup",
+    "change-inventory-setup",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-master-data-readiness",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-036A result exists and proves SAAR-HL with Code and Name after reopen.",
+    "Business Central context is playthru / UNIVERSAARL-DE.",
+    "Customers, Vendors and Items pages are reachable from TARGET-035 read-only evidence."
+  ],
+  "stopIf": [
+    "The active instance is not playthru.",
+    "The active company is not UNIVERSAARL-DE.",
+    "A dialog cannot be safely cancelled.",
+    "New directly creates a record before a template or mandatory-field route is understood.",
+    "A save/create/apply/OK action would be required to continue.",
+    "A customer, vendor or item record would be persisted."
+  ],
+  "acceptanceCriteria": [
+    "Customers, Vendors and Items New/template routes are classified as safe/blocked without creating records.",
+    "Every opened dialog or card is screenshot-qualified and then closed/cancelled.",
+    "No customer, vendor or item is saved.",
+    "No setup, document draft, Preview Posting, Posting, Payment, API shortcut or company switch occurs.",
+    "Result JSON includes next-step decision for the first accounting-relevant master-data write."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+    "lastEvidenceSummary": "TARGET-036A created or verified Location SAAR-HL with Code and Name only and reopen proof.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Customer, Vendor and Item records can trigger templates, posting groups and mandatory fields; their New routes need dialog discovery before any save.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
+        "status": "blocked",
+        "reason": "Preview requires real accounting-relevant master data and accepted VAT/posting boundaries."
+      },
+      {
+        "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+        "status": "ready-after-current",
+        "reason": "VAT, Page 314, inventory posting and default dimensions remain parked and may affect first documents."
+      },
+      {
+        "caseId": "TARGET-040-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
+        "status": "needs-ui-discovery-first",
+        "reason": "Customer creation must wait for this template/dialog discovery."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+    "whySelectedNextCaseIsBest": "It reduces the main remaining master-data risk before customer, vendor or item creation.",
+    "risksBeforeNextCase": [
+      "Do not confirm Apply Template or OK.",
+      "Do not save a customer, vendor or item card.",
+      "Do not infer posting readiness from a dialog screenshot."
+    ],
+    "requiredPreparation": [
+      "Keep every New route cancel-safe.",
+      "Capture screenshot QA for each dialog/card state before closing."
+    ]
+  },
+  "createdAt": "2026-07-01T10:00:00.000Z"
+}

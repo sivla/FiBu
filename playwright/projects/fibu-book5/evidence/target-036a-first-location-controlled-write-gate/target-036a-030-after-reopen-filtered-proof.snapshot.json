@@ -1,0 +1,124 @@
+{
+  "step": "After reopening Locations filtered to SAAR-HL.",
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=15&company=UNIVERSAARL-DE&filter=Location.Code+IS+%27SAAR-HL%27",
+  "title": "Lagerorte",
+  "compact": "Lagerorte:\nNeu\nLagerort\nCode\nName\nSAAR-HL\nSaarbruecken Hauptlager\nInfo über Lagerorte\nRichten Sie Lager und andere Lagerorte ein, und verwalten Sie sie, konfigurieren Sie Lagerrichtlinien und Lagerplatzeinstellungen, und verfolgen Sie Artikelverfügbarkeit sowie Umlagerungen zwischen Lagerorten.\nListe mit Titel „Lagerorte“ hat jetzt einen Artikel\nCode, Sortierreihenfolge Aufsteigend\ncacheLocation: \"sessionStorage\",",
+  "visible": {
+    "pageContext": true,
+    "targetCode": true,
+    "targetName": true,
+    "newAction": true,
+    "warehouseFieldsMentioned": true
+  },
+  "targetLocation": {
+    "code": "SAAR-HL",
+    "name": "Saarbruecken Hauptlager"
+  },
+  "writeAttempt": {
+    "changed": true,
+    "status": "created",
+    "reason": "SAAR-HL / Saarbruecken Hauptlager entered with Code and Name only."
+  },
+  "steps": [
+    {
+      "step": "smart-decision",
+      "whyNow": "TARGET-036 selected Location as the first controlled master-data write because it can be constrained to Code and Name and avoids customer/vendor/item template risk.",
+      "supportedBy": [
+        "TARGET-035 Locations read-only preflight",
+        "TARGET-036 first-write decision"
+      ],
+      "fieldsChangedOnlyIfSafe": [
+        "Location.Code=SAAR-HL",
+        "Location.Name=Saarbruecken Hauptlager"
+      ],
+      "fieldsNotTouched": [
+        "Require Receive",
+        "Require Shipment",
+        "Require Put-away",
+        "Require Pick",
+        "Bin Mandatory",
+        "Directed Put-away and Pick",
+        "Inventory Posting Setup",
+        "Customers",
+        "Vendors",
+        "Items",
+        "Documents",
+        "Preview Posting",
+        "Posting"
+      ],
+      "fallback": "Abort and document screenshots if Locations context, New route or Code/Name inputs are not trusted."
+    },
+    {
+      "step": "click-scoped-new-on-locations",
+      "newClicked": true
+    },
+    {
+      "step": "editable-inputs-after-new",
+      "inspected": [
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "step": "fill-location-code-name-only",
+      "fill": {
+        "changed": true,
+        "reason": "Filled labelled Code and Name fields."
+      }
+    }
+  ],
+  "reopenProofRoute": "direct Page 15 URL with Location Code filter"
+}
