@@ -396,3 +396,8 @@ Regeln:
 - A blank Chart of Accounts grid is strong foundation evidence. It proves page reachability and missing visible account rows, but it does not prove account correctness, VAT account mappings, posting readiness or a final German account plan.
 - Hover tooltips on column headers can be useful beginner explanations, but they are hover-state truth. For book or setup-gate screenshots, capture a second image after `Escape`/mouse-move so the claim is about the page, not the hover.
 - Visible actions such as `Neu`, `Liste bearbeiten`, `Buchen` or `Bericht` must be recorded as visible-but-not-clicked during read-only preflight. They do not unlock account creation, VAT setup or posting.
+
+## VAT Configuration Packages
+
+- TARGET-027D22 parks the configuration-package route after `U-VAT325-DISC` was left as temporary metadata. A package code that contains `325` is not proof of Table `325` or VAT Posting Setup. Cleanup must target the exact package code only, and it must stop if the row or confirmation target is ambiguous.
+- Cleanup evidence is only admin-metadata evidence. It does not prove VAT correctness, Posting Groups readiness, Preview Posting readiness, VAT Entries or G/L Entries.

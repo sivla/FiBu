@@ -305,6 +305,17 @@ D21 nutzt keine neue externe Quelle. Die bestehende Microsoft-Learn-Basis bleibt
 - Deshalb ist D21 blockiert, bevor `Tabellen-ID 325` geschrieben oder eine Aktion bestaetigt wird.
 - Der naechste Case ist `TARGET-027D22-VAT-MATRIX-PACKAGE-ROUTE-PARK-OR-CLEANUP-DECISION`.
 
+## TARGET-027D22 Konfigurationspaket-Route geparkt
+
+D22 nutzt keine neue externe Quelle, sondern bewertet die D21-UI-Evidence gegen die bereits registrierten Microsoft-Learn-Grenzen zu VAT Setup und Company Configuration Packages. Ergebnis: `U-VAT325-DISC` ist nur temporaere Konfigurationspaket-Metadaten. Es ist kein Table-325-Beweis, keine USt-Matrix und keine Grundlage fuer Posting Groups oder Stammdaten.
+
+Fuer Universaarl folgt daraus:
+
+- Die Konfigurationspaket-Route wird geparkt.
+- Der naechste sinnvolle Schritt ist exact-code Cleanup von `U-VAT325-DISC`.
+- Cleanup darf nur den exakten Paketcode betreffen und muss bei Mehrdeutigkeit blockieren.
+- Danach braucht die USt-Matrix eine neue Standardroute oder eine bewusst dokumentierte Parkentscheidung.
+
 ## TARGET-026D Kontenplan-Quellenentscheidung
 
 TARGET-026B zeigt in `UNIVERSAARL-DE` einen erreichbaren, aber leeren/insufficient Kontenplan ohne sichtbare USt-Konto-Kandidaten. Microsoft Learn `View the chart of accounts` und `Set up or change the chart of accounts` stuetzen die Produktlogik: Der Kontenplan ist das Verzeichnis der Finanzkonten und kann fuer die Company eingerichtet/geaendert werden.
