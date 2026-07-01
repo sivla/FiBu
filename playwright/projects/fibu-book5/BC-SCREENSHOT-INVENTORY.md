@@ -818,6 +818,10 @@ Screenshot-QA zu TARGET-032B: Die ersten beiden Reopen-Bilder sind Buchkandidate
 
 Screenshot-QA zu TARGET-032C: Die Bilder sind kein Erfolgsnachweis fuer die Buchungsmatrix. Sie sind ein Bediennachweis fuer die naechste sichere Aktion. Der wichtige Lernpunkt ist die Spaltenlogik: **Wareneinkaufskonto** liegt nicht direkt neben **Warenverkaufskonto**, sondern nach weiteren Spalten. Der naechste Write-Gate muss deshalb mit Before-/After-/Reopen-Beweis arbeiten und darf nach dem Eintragen nicht sofort Master Data, Preview Posting oder Posting freigeben.
 
+## Universaarl Number Series Auth Blocker TARGET-036D2F
+
+TARGET-036D2F erzeugte bewusst keinen Buch-/Setup-Screenshot, weil Business Central vor dem Shell-Kontext auf einer Token-/Auth-Fehlerseite stoppte. Der Playwright-Fehlerscreenshot aus `test-results/` wird nicht als Evidence-Bild in das Projektinventar uebernommen: Er zeigt keinen Business-Central-Setupzustand, keine `U-VEND`-Zeile und keine fachliche Page-Wahrheit. Das verwertbare Artefakt ist deshalb das kompakte Result JSON mit der Grenze: keine wirksame BC-Aktion, keine Setup-Aenderung, keine Stammdatenanlage, kein Draft, keine Preview und keine Buchung. Nach Auth-Refresh muss D2F mit neuen Page-456-/U-VEND-Screenshots wiederholt werden.
+
 ## Universaarl General Posting Setup Matrix Write Gate TARGET-032D
 
 | Screenshot | Page | Company | Schritt | Was sieht man? | Interner Beweis | Beweist nicht | Status |

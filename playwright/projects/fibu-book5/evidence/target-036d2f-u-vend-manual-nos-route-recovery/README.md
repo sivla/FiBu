@@ -1,23 +1,27 @@
-# TARGET-036D2F - U-VEND Manual Nos route recovery
+# TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY
 
-Status: `blocked-parked`
+Status: blocked
+Instanz: playthru
+Company: UNIVERSAARL-DE
 
-This is a local decision case. Business Central and Playwright were not opened in this run. The decision is based on the immediately preceding live evidence from TARGET-036D2E.
+## Ergebnis
 
-## Decision
+D2F blocked before effective BC action: Error: expect(locator).toBeVisible() failed
 
-The U-VEND Manual Nos route stays parked. The earlier list checkbox, DOM checkbox and screenshot-coordinate routes did not prove `Manuelle Anz.` active after reopen. Repeating those routes would not improve the evidence.
+Locator: getByRole('button', { name: /Suchen|Search/i })
+Expected: visible
+Timeout: 120000ms
+Error: element(s) not found
 
-## Boundaries
+Call log:
+  - Expect "toBeVisible" with timeout 120000ms
+  - waiting for getByRole('button', { name: /Suchen|Search/i })
 
-- Instance target remains `playthru`.
-- Company target remains `UNIVERSAARL-DE`.
-- No setup change was made in this D2F run.
-- No customer, vendor or item was created.
-- No draft, Preview Posting, Posting, payment or API shortcut occurred.
 
-## Next case
+## Grenze
 
-`TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT`
+Business Central wurde nicht wirksam erreicht. Es gab keine Einrichtungsaenderung, keine Stammdatenanlage, keinen Draft, keine Buchungsvorschau, keine Buchung und keinen API Shortcut.
 
-The checkpoint should classify what is truly ready after `SAAR-HL` and `U-CUST-100`, keep the vendor route blocked, and choose the next write gate only after the readiness picture is clear.
+## Naechster Schritt
+
+Playwright-Authentifizierung aktualisieren und denselben engen D2F-Case erneut ausfuehren.

@@ -28,9 +28,9 @@ Zero-Open-Questions-Regel: Jeder Bereich in diesem Katalog muss seine offenen Ob
 
 | Prioritaet | Case | Warum |
 | --- | --- | --- |
-| 1 | `TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE` | Aktueller naechster Schritt: TARGET-044C hat die no-apply-Personalisieren-Route als blockiert klassifiziert, ohne Daten oder Layout zu aendern. Jetzt wird eine andere sichtbare Standard-Page-Route fuer Debitoren-/Artikel-Postingfelder gesucht; TARGET-045 bleibt gesperrt. |
-| 2 | `TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT` | Folgefall nur, wenn TARGET-044C eine eindeutige, sichere Feldroute und konkrete Zielwerte fuer die fehlenden Posting-/VAT-/Zahlungsfelder liefert. |
-| 3 | `TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE` | Bleibt blockiert, bis fuer `U-VEND` eine neue, nicht wiederholte und sichere Nummernserienroute vorliegt. |
+| 1 | `TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY` | Aktueller naechster Schritt: Playwright erreicht Business Central gerade wegen fehlendem/abgelaufenem Token nicht. Nach Auth-Refresh wird derselbe enge, gefilterte `U-VEND`-Manual-Nos-Case erneut ausgefuehrt; keine Stammdaten- oder Belegarbeit davor. |
+| 2 | `TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE` | Folgefall nur, wenn `U-VEND` `Manuelle Anz. / Manual Nos.` nach Reopen sichtbar aktiv ist. |
+| 3 | `TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT` | Bleibt gesperrt: TARGET-044D fand Standardseiten-Signale, aber keine sichere Wert-/Schreibroute fuer Debitoren-/Artikel-Postingfelder. |
 | 4 | `TARGET-037-FIRST-PREVIEW-GATE` | Bleibt gesperrt, bis Stammdaten vorhanden sind und die offenen Posting-/VAT-Grenzen bewusst akzeptiert oder geloest sind. |
 | 5 | `TARGET-038-FIRST-POSTING-GATE` | Bleibt gesperrt, bis eine Vorschau mit erwarteter Postenspur vorliegt. |
 | 6 | `PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING` | Quellen bleiben als Unterstuetzung aktiv, ersetzen aber keine Universaarl-UI- und Posting-Evidence. |

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-  "status": "planned",
+  "status": "blocked",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -85,7 +85,8 @@
     "U-VEND row is not uniquely visible.",
     "The route focuses U-SO or another row.",
     "Manual Nos. cannot be proven active after reopen.",
-    "Any dialog asks to save unrelated setup, create a record, post, preview, delete or switch company."
+    "Any dialog asks to save unrelated setup, create a record, post, preview, delete or switch company.",
+    "Playwright storageState/auth token is missing or expired. Refresh auth before retry."
   ],
   "acceptanceCriteria": [
     "A new route signal is used, not the D2/D2B/D2E failed routes.",
@@ -95,43 +96,80 @@
     "No vendor/customer/item/document is created."
   ],
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-036D2D selected Manual Nos for explicit U-VEND-100-style vendor numbers based on Microsoft Learn and Page 456 field evidence.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "The first vendor cannot be created with the planned manual number until U-VEND Manual Nos is active after reopen proof.",
+    "currentCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-036D2E did not persist U-VEND Manual Nos after an unfiltered/cell-coordinate route.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "D2F blocked before effective BC action: Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('button', { name: /Suchen|Search/i })\nExpected: visible\nTimeout: 120000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 120000ms\n  - waiting for getByRole('button', { name: /Suchen|Search/i })\n",
     "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+        "status": "blocked",
+        "reason": "Playwright storageState/auth token must be refreshed before retry."
+      },
       {
         "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
         "status": "blocked",
-        "reason": "Vendor write remains blocked until U-VEND Manual Nos is active."
+        "reason": "Vendor creation remains blocked until U-VEND Manual Nos is proven active."
       },
       {
-        "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
-        "status": "ready-after-current",
-        "reason": "Item setup can continue after vendor numbering no longer blocks vendor foundation."
-      },
-      {
-        "caseId": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
-        "status": "ready-after-current",
-        "reason": "Checkpoint is useful only after vendor and item foundation are resolved."
+        "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+        "status": "needs-ui-discovery-first",
+        "reason": "Still unrelated to the active vendor-numbering blocker."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Sales process needs master data and posting setup readiness before documents."
+        "reason": "O2C must wait for master data and posting/VAT readiness."
       }
     ],
     "queueChangesMade": [],
     "selectedNextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-    "whySelectedNextCaseIsBest": "The setup route is still not proven; recovery must inspect a safer UI route before any vendor attempt.",
+    "whySelectedNextCaseIsBest": "The next useful step is to refresh Playwright BC authentication and rerun the same narrow D2F route.",
     "risksBeforeNextCase": [
-      "Manual Nos route remains ambiguous."
+      "Do not create vendor/customer/item records until U-VEND Manual Nos is proven active."
     ],
     "requiredPreparation": [
-      "Inspect row/card/personalization route without changing other number series."
+      "Run auth refresh for playwright/.auth/bc-user.json in the normal local workflow, then rerun D2F."
     ]
   },
   "createdAt": "2026-07-01T11:31:24.302Z",
-  "updatedAt": "2026-07-01T11:31:24.302Z"
+  "updatedAt": "2026-07-01T17:22:26.596Z",
+  "classification": "blocked-auth-token-no-effective-bc-action",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/TARGET-036D2F-result.json",
+  "completedAt": "2026-07-01T17:22:26.596Z",
+  "lastRun": {
+    "resultStatus": "blocked",
+    "bcRun": false,
+    "playwrightRun": true,
+    "setupChanged": false,
+    "setupChangeAttempted": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "blockedBy": [
+      "D2F blocked before effective BC action: Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('button', { name: /Suchen|Search/i })\nExpected: visible\nTimeout: 120000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 120000ms\n  - waiting for getByRole('button', { name: /Suchen|Search/i })\n"
+    ],
+    "warnings": [
+      "Auth/token failure is an execution blocker, not a Business Central setup finding."
+    ],
+    "actionsTaken": [
+      "Tried to open Page 456 Number Series with URL filter restricted to U-VEND in playthru / UNIVERSAARL-DE."
+    ],
+    "actionsNotTaken": [
+      "No company switch.",
+      "No customer, vendor or item card was created.",
+      "No sales or purchase document draft was created.",
+      "No Preview Posting.",
+      "No Posting.",
+      "No payment.",
+      "No API shortcut.",
+      "No setup field was changed.",
+      "No number-series lines were changed."
+    ],
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/TARGET-036D2F-result.json"
+  },
+  "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY"
 }

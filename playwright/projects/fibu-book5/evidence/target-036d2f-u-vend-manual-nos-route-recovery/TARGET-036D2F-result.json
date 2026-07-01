@@ -1,36 +1,32 @@
 {
   "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
   "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-  "source": "local-route-recovery-decision",
-  "resultStatus": "blocked-parked",
+  "source": "playwright-universaarl-filtered-u-vend-manual-nos-route-recovery",
+  "resultStatus": "blocked",
+  "runPlanId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "url": "not-opened-this-run",
-  "page": "No. Series / Nummernserie",
-  "pageId": 456,
-  "table": "No. Series",
-  "tableId": 308,
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=456&company=UNIVERSAARL-DE&filter=No.+Series.%27Code%27+IS+%27U-VEND%27",
+  "page": "Business Central auth/token error page",
   "actionsTaken": [
-    "Reviewed TARGET-036D2E result and the prior D2/D2B/D2C/D2D number-series evidence.",
-    "Rejected another blind U-VEND checkbox attempt because no new safer card, personalization or Page-Inspection-backed write route is available in the current evidence.",
-    "Parked first-vendor creation until U-VEND Manual Nos. can be proven by a new, non-repeated route.",
-    "Selected a local master-data foundation checkpoint before any further customer, vendor or item writes."
+    "Tried to open Page 456 Number Series with URL filter restricted to U-VEND in playthru / UNIVERSAARL-DE."
   ],
   "actionsNotTaken": [
-    "No Business Central UI was opened in this D2F decision run.",
-    "No Playwright run was executed in this D2F decision run.",
     "No company switch.",
-    "No setup field was changed.",
     "No customer, vendor or item card was created.",
     "No sales or purchase document draft was created.",
     "No Preview Posting.",
     "No Posting.",
     "No payment.",
-    "No API shortcut."
+    "No API shortcut.",
+    "No setup field was changed.",
+    "No number-series lines were changed."
   ],
   "setupChanged": false,
   "setupChangeAttempted": false,
-  "changedFields": [],
   "masterDataChanged": false,
   "draftCreated": false,
   "previewPosting": false,
@@ -39,38 +35,25 @@
   "apiShortcut": false,
   "screenshots": [],
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/target-036d2e-u-vend-manual-nos-controlled-write-gate/TARGET-036D2E-result.json",
-    "playwright/projects/fibu-book5/img/target-036d2e-010-before-u-vend-manual-nos.png",
-    "playwright/projects/fibu-book5/img/target-036d2e-020-after-u-vend-manual-nos-attempt.png",
-    "playwright/projects/fibu-book5/img/target-036d2e-030-reopen-proof.png"
+    "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/TARGET-036D2F-result.json"
   ],
   "proved": [
-    "D2E already proved Business Central stayed in playthru / UNIVERSAARL-DE during the last live U-VEND Manual Nos. attempt.",
-    "D2E did not prove U-VEND Manual Nos. active after reopen.",
-    "D2/D2B/D2E checkbox and coordinate routes must not be repeated without a new UI signal.",
-    "First vendor creation remains blocked because the intended manual vendor number U-VEND-100 cannot be used until U-VEND Manual Nos. is proven active."
+    "The D2F route did not reach Business Central because the Playwright session/token is missing or expired.",
+    "No setup, master data, document, Preview Posting, Posting, payment, API shortcut or company switch occurred."
   ],
   "notProved": [
-    "U-VEND Manual Nos. / Manuelle Anz. is not active.",
-    "U-VEND Default Nos. / Standardnr. is not active.",
-    "No safer No. Series card or personalization write route is proven.",
-    "No vendor U-VEND-100 exists.",
-    "No item is created.",
-    "No posting group, VAT, document, Preview Posting or Posting behavior is proven from this case."
-  ],
-  "blockedBy": [
-    "No new safer Business Central route for U-VEND Manual Nos. is available after D2E; repeating the failed list/checkbox routes would not improve evidence."
+    "U-VEND Manual Nos. is not proven active.",
+    "No vendor exists from this case.",
+    "No automatic numbering behavior, Preview Posting, Posting, ledger entry or VAT effect is proven."
   ],
   "warnings": [
-    "A blocked setup recovery is not a reason to create the vendor anyway.",
-    "Item creation should also wait for a checkpoint because item setup and posting fields are higher risk than the already proven simple Location and Customer writes.",
-    "The book may explain the number-series blocker, but it must not claim vendor master-data readiness."
+    "Auth/token failure is an execution blocker, not a Business Central setup finding."
+  ],
+  "blockedBy": [
+    "D2F blocked before effective BC action: Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('button', { name: /Suchen|Search/i })\nExpected: visible\nTimeout: 120000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 120000ms\n  - waiting for getByRole('button', { name: /Suchen|Search/i })\n"
   ],
   "flags": {
-    "noBcRunThisCase": true,
-    "noPlaywrightRunThisCase": true,
     "noCompanySwitch": true,
-    "noSetupChange": true,
     "noMasterDataChange": true,
     "noDraft": true,
     "noPreview": true,
@@ -78,82 +61,83 @@
     "noPayment": true,
     "noApiShortcut": true
   },
+  "visibleTextSample": "Business Central token/auth error page; raw screenshot intentionally not committed.",
   "nextStepDecision": {
     "currentCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-    "lastEvidenceSummary": "TARGET-036D2E attempted a controlled U-VEND Manual Nos. write gate in playthru / UNIVERSAARL-DE, but Manual Nos. was not active after reopen and no setup change was accepted.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "D2F is still sensible as a recovery decision, but not as another blind UI write. The safest useful outcome is to park the vendor numbering route until a new UI signal exists.",
+    "plannedNextCaseBeforeReview": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-036D2E did not persist U-VEND Manual Nos after an unfiltered/cell-coordinate route.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "D2F blocked before effective BC action: Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('button', { name: /Suchen|Search/i })\nExpected: visible\nTimeout: 120000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 120000ms\n  - waiting for getByRole('button', { name: /Suchen|Search/i })\n",
     "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+        "status": "blocked",
+        "reason": "Playwright storageState/auth token must be refreshed before retry."
+      },
       {
         "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
         "status": "blocked",
-        "reason": "Vendor write remains blocked because U-VEND Manual Nos. is not active."
+        "reason": "Vendor creation remains blocked until U-VEND Manual Nos is proven active."
       },
       {
-        "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
-        "status": "needs-setup-first",
-        "reason": "Item creation touches Base Unit, Item Type, posting groups and inventory setup; it should not be the immediate fallback while numbering/setup boundaries are unresolved."
-      },
-      {
-        "caseId": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
-        "status": "ready-next",
-        "reason": "A checkpoint can classify what is truly ready after SAAR-HL and U-CUST-100, what remains blocked, and which next write gate is lowest risk."
+        "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+        "status": "needs-ui-discovery-first",
+        "reason": "Still unrelated to the active vendor-numbering blocker."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Sales process needs customer/item/VAT/posting setup readiness before any document or preview."
-      },
-      {
-        "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
-        "status": "ready-after-current",
-        "reason": "Useful after TARGET-037 if the checkpoint shows a specific setup blocker should be revisited before more master data."
+        "reason": "O2C must wait for master data and posting/VAT readiness."
       }
     ],
-    "queueChangesMade": [
-      "Marked TARGET-036D2F as blocked-parked instead of repeating failed checkbox routes.",
-      "Inserted TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT as the next safe case."
-    ],
-    "selectedNextCase": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
-    "whySelectedNextCaseIsBest": "It creates a clean stop-and-check point after the first Location and Customer success and before another master-data write, while the vendor numbering route remains blocked.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+    "whySelectedNextCaseIsBest": "The next useful step is to refresh Playwright BC authentication and rerun the same narrow D2F route.",
     "risksBeforeNextCase": [
-      "Do not create vendor or item records during the checkpoint.",
-      "Do not treat parked U-VEND Manual Nos. as solved.",
-      "Do not unlock Preview Posting, Posting or documents from master-data evidence alone."
+      "Do not create vendor/customer/item records until U-VEND Manual Nos is proven active."
     ],
     "requiredPreparation": [
-      "Read the D2E/D2F results.",
-      "Classify Location, Customer, Vendor and Item readiness separately.",
-      "Choose the next write gate only after the checkpoint."
+      "Run auth refresh for playwright/.auth/bc-user.json in the normal local workflow, then rerun D2F."
     ]
   },
-  "nextCase": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
-  "timestamp": "2026-07-01T12:05:00.000Z",
+  "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/TARGET-036D2F-result.json",
+    "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/README.md"
+  ],
+  "timestamp": "2026-07-01T17:22:26.596Z",
   "safeToFinalizeState": true,
   "requiresReview": false,
   "statePatch": {
     "current": {
-      "activeCase": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
-      "activeArea": "universaarl-masterdata-foundation-checkpoint",
-      "nextStep": "Run TARGET-037 as a no-write checkpoint before any further master-data write; vendor remains blocked until U-VEND Manual Nos. is proven active."
+      "activeArea": "universaarl-vendor-number-series-route-recovery",
+      "activeCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+      "active_case_file": ".agent/state/cases/target-036d2f-u-vend-manual-nos-route-recovery.json",
+      "lastCompletedCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+      "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+      "nextStep": "The next useful step is to refresh Playwright BC authentication and rerun the same narrow D2F route."
+    },
+    "activeCase": {
+      "status": "blocked",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/TARGET-036D2F-result.json",
+      "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY"
     },
     "lastRunSummary": {
       "runId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-      "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-      "completedAt": "2026-07-01T12:05:00.000Z",
-      "status": "blocked-parked",
+      "completedAt": "2026-07-01T17:22:26.596Z",
+      "status": "blocked",
       "instance": "playthru",
       "company": "UNIVERSAARL-DE",
       "bcRun": false,
-      "playwrightRun": false,
       "setupChanged": false,
       "masterDataChanged": false,
       "draftCreated": false,
       "previewPosting": false,
       "posted": false,
-      "nextCase": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
-      "summary": "U-VEND Manual Nos route recovery was parked after repeated failed checkbox/list routes; next safe step is a no-write master-data foundation checkpoint."
+      "apiShortcut": false,
+      "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+      "summary": "D2F blocked before effective BC action: Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('button', { name: /Suchen|Search/i })\nExpected: visible\nTimeout: 120000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 120000ms\n  - waiting for getByRole('button', { name: /Suchen|Search/i })\n"
     }
-  }
+  },
+  "reason": "D2F blocked before effective BC action: Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('button', { name: /Suchen|Search/i })\nExpected: visible\nTimeout: 120000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 120000ms\n  - waiting for getByRole('button', { name: /Suchen|Search/i })\n"
 }

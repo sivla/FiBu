@@ -3390,13 +3390,18 @@
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
       "lookaheadStatus": "blocked",
-      "completedAt": "2026-07-01T12:05:00.000Z",
-      "result": "Parked: no new safer route for U-VEND Manual Nos after D2E; no BC/Playwright run and no setup/masterdata change in D2F.",
+      "completedAt": "2026-07-01T17:22:26.596Z",
+      "result": "Blocked before effective BC action: Playwright storageState/auth token is missing or expired. No setup, master data, draft, preview, posting or API action occurred.",
       "resultPath": "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/TARGET-036D2F-result.json",
       "blockedBy": [
-        "No new safer Business Central route for U-VEND Manual Nos. is available after D2E; repeating the failed list/checkbox routes would not improve evidence."
+        "D2F blocked before effective BC action: Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('button', { name: /Suchen|Search/i })\nExpected: visible\nTimeout: 120000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 120000ms\n  - waiting for getByRole('button', { name: /Suchen|Search/i })\n"
       ],
-      "nextCase": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT"
+      "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+      "setupChanged": false,
+      "masterDataChanged": false,
+      "previewPosting": false,
+      "posted": false,
+      "apiShortcut": false
     },
     {
       "id": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
@@ -3716,7 +3721,7 @@
       "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY"
     }
   ],
-  "lastUpdated": "2026-07-01T17:08:21.837Z",
+  "lastUpdated": "2026-07-01T17:22:26.596Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -3827,74 +3832,47 @@
     }
   },
   "updatedAt": "2026-07-01T17:08:21.837Z",
-  "lastCompletedCase": "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE",
+  "lastCompletedCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
   "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE",
-    "plannedNextCaseBeforeReview": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
-    "lastEvidenceSummary": "TARGET-044C blocked the Personalize route before stable target-card field discovery.",
+    "currentCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-036D2E did not persist U-VEND Manual Nos after an unfiltered/cell-coordinate route.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "Expanded standard pages did not expose enough customer and item posting/VAT field terms for a safe write; chart, VAT and posting-group setup chains are already classified, so the next useful Foundation step is the planned U-VEND Manual Nos route recovery.",
+    "reason": "D2F blocked before effective BC action: Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('button', { name: /Suchen|Search/i })\nExpected: visible\nTimeout: 120000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 120000ms\n  - waiting for getByRole('button', { name: /Suchen|Search/i })\n",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
-        "status": "needs-ui-discovery-first",
-        "reason": "Still missing enough visible route/value truth."
-      },
-      {
-        "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
-        "status": "blocked",
-        "reason": "Already blocked by screenshot truth gate; do not reactivate it as next case."
-      },
-      {
-        "caseId": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
-        "status": "ready-after-current",
-        "reason": "Already completed with visible chart screenshot recovery; it supports the next VAT preflight."
-      },
-      {
-        "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
-        "status": "blocked",
-        "reason": "The VAT route has already progressed through follow-ups and is parked by TARGET-027D24."
-      },
-      {
-        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
-        "status": "ready-after-current",
-        "reason": "Already completed; not a valid active fallback after TARGET-044D."
-      },
-      {
         "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-        "status": "ready-next",
-        "reason": "Only planned open Foundation recovery case: vendor creation remains blocked until U-VEND Manual Nos is proven safely."
-      },
-      {
-        "caseId": "TARGET-038-O2C-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "O2C remains blocked until posting/VAT/payment field readiness is proven."
+        "status": "blocked",
+        "reason": "Playwright storageState/auth token must be refreshed before retry."
       },
       {
         "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
         "status": "blocked",
-        "reason": "Vendor numbering remains parked and unrelated."
+        "reason": "Vendor creation remains blocked until U-VEND Manual Nos is proven active."
+      },
+      {
+        "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+        "status": "needs-ui-discovery-first",
+        "reason": "Still unrelated to the active vendor-numbering blocker."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C must wait for master data and posting/VAT readiness."
       }
     ],
-    "queueChangesMade": [
-      "TARGET-044D ran as expanded standard-page read-only discovery.",
-      "Selected TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY as next case."
-    ],
+    "queueChangesMade": [],
     "selectedNextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-    "whySelectedNextCaseIsBest": "It avoids another customer/item write attempt and follows the established W1 sequence after chart and VAT route decisions.",
+    "whySelectedNextCaseIsBest": "The next useful step is to refresh Playwright BC authentication and rerun the same narrow D2F route.",
     "risksBeforeNextCase": [
-      "Do not claim posting readiness from field visibility.",
-      "Do not edit customer, item or setup fields without exact target values.",
-      "Keep Preview Posting and Posting false."
+      "Do not create vendor/customer/item records until U-VEND Manual Nos is proven active."
     ],
     "requiredPreparation": [
-      "Read TARGET-036D2E and TARGET-036D2F before attempting the number-series route.",
-      "Only U-VEND Manual Nos may be touched if the active case proves a safer route.",
-      "Keep customer/item field writes, O2C/P2P documents, Preview Posting and Posting locked."
+      "Run auth refresh for playwright/.auth/bc-user.json in the normal local workflow, then rerun D2F."
     ]
   },
-  "nextStep": "Run TARGET-036D2F U-VEND Manual Nos route recovery before retrying vendor creation.",
+  "nextStep": "The next useful step is to refresh Playwright BC authentication and rerun the same narrow D2F route.",
   "openItems": [
     "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY"
   ],
@@ -3907,68 +3885,41 @@
     "TARGET-040-FOUNDATION-READY-RECHECK"
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE",
-    "plannedNextCaseBeforeReview": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
-    "lastEvidenceSummary": "TARGET-044C blocked the Personalize route before stable target-card field discovery.",
+    "currentCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-036D2E did not persist U-VEND Manual Nos after an unfiltered/cell-coordinate route.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "Expanded standard pages did not expose enough customer and item posting/VAT field terms for a safe write; chart, VAT and posting-group setup chains are already classified, so the next useful Foundation step is the planned U-VEND Manual Nos route recovery.",
+    "reason": "D2F blocked before effective BC action: Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('button', { name: /Suchen|Search/i })\nExpected: visible\nTimeout: 120000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" with timeout 120000ms\n  - waiting for getByRole('button', { name: /Suchen|Search/i })\n",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
-        "status": "needs-ui-discovery-first",
-        "reason": "Still missing enough visible route/value truth."
-      },
-      {
-        "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
-        "status": "blocked",
-        "reason": "Already blocked by screenshot truth gate; do not reactivate it as next case."
-      },
-      {
-        "caseId": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
-        "status": "ready-after-current",
-        "reason": "Already completed with visible chart screenshot recovery; it supports the next VAT preflight."
-      },
-      {
-        "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
-        "status": "blocked",
-        "reason": "The VAT route has already progressed through follow-ups and is parked by TARGET-027D24."
-      },
-      {
-        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
-        "status": "ready-after-current",
-        "reason": "Already completed; not a valid active fallback after TARGET-044D."
-      },
-      {
         "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-        "status": "ready-next",
-        "reason": "Only planned open Foundation recovery case: vendor creation remains blocked until U-VEND Manual Nos is proven safely."
-      },
-      {
-        "caseId": "TARGET-038-O2C-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "O2C remains blocked until posting/VAT/payment field readiness is proven."
+        "status": "blocked",
+        "reason": "Playwright storageState/auth token must be refreshed before retry."
       },
       {
         "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
         "status": "blocked",
-        "reason": "Vendor numbering remains parked and unrelated."
+        "reason": "Vendor creation remains blocked until U-VEND Manual Nos is proven active."
+      },
+      {
+        "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+        "status": "needs-ui-discovery-first",
+        "reason": "Still unrelated to the active vendor-numbering blocker."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C must wait for master data and posting/VAT readiness."
       }
     ],
-    "queueChangesMade": [
-      "TARGET-044D ran as expanded standard-page read-only discovery.",
-      "Selected TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY as next case."
-    ],
+    "queueChangesMade": [],
     "selectedNextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-    "whySelectedNextCaseIsBest": "It avoids another customer/item write attempt and follows the established W1 sequence after chart and VAT route decisions.",
+    "whySelectedNextCaseIsBest": "The next useful step is to refresh Playwright BC authentication and rerun the same narrow D2F route.",
     "risksBeforeNextCase": [
-      "Do not claim posting readiness from field visibility.",
-      "Do not edit customer, item or setup fields without exact target values.",
-      "Keep Preview Posting and Posting false."
+      "Do not create vendor/customer/item records until U-VEND Manual Nos is proven active."
     ],
     "requiredPreparation": [
-      "Read TARGET-036D2E and TARGET-036D2F before attempting the number-series route.",
-      "Only U-VEND Manual Nos may be touched if the active case proves a safer route.",
-      "Keep customer/item field writes, O2C/P2P documents, Preview Posting and Posting locked."
+      "Run auth refresh for playwright/.auth/bc-user.json in the normal local workflow, then rerun D2F."
     ]
   }
 }
