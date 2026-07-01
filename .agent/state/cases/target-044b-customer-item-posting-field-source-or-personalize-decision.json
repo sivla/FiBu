@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-044B-CUSTOMER-ITEM-POSTING-FIELD-SOURCE-OR-PERSONALIZE-DECISION",
+  "id": "TARGET-044B-CUSTOMER-ITEM-POSTING-FIELD-SOURCE-OR-PERSONALIZE-DECISION",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Customer and item posting field source or personalize decision",
+  "purpose": "Use TARGET-044 UI evidence to decide the next safe source-backed route before any customer/item/setup write.",
+  "sourceCases": [
+    "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
+    "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
+    "TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": false,
+  "taskClass": "judge_work",
+  "targetRecords": [
+    {
+      "pageId": 21,
+      "page": "Customer Card / Debitorenkarte",
+      "record": "U-CUST-100",
+      "fieldsToDecideBeforeWrite": [
+        "Customer Posting Group / Debitorenbuchungsgruppe",
+        "Gen. Bus. Posting Group / Geschaeftsbuchungsgruppe",
+        "VAT Bus. Posting Group / MwSt.-Geschaeftsbuchungsgruppe",
+        "Payment Terms Code / Zahlungsbedingungscode"
+      ]
+    },
+    {
+      "pageId": 30,
+      "page": "Item Card / Artikelkarte",
+      "record": "U-ITEM-HW100",
+      "fieldsToDecideBeforeWrite": [
+        "Item Posting Group / Lagerbuchungsgruppe",
+        "Gen. Prod. Posting Group / Produktbuchungsgruppe",
+        "VAT Prod. Posting Group / MwSt.-Produktbuchungsgruppe",
+        "Costing Method / Einstandspreismethode"
+      ]
+    }
+  ],
+  "allowedActions": [
+    "read-target-044-result-and-ui-maps",
+    "read-source-registry-and-claim-rules",
+    "classify-field-target-values",
+    "choose-next-route",
+    "write-result-json-and-next-step-decision",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "open-business-central",
+    "run-playwright",
+    "company-switch",
+    "click-new-edit-delete-or-post-actions",
+    "change-customer",
+    "change-item",
+    "change-posting-groups",
+    "change-general-posting-setup",
+    "change-vat-posting-setup",
+    "change-inventory-posting-setup",
+    "apply-personalization-change",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-o2c-readiness-from-field-visibility",
+    "claim-german-vat-final-proof",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-044 result exists and says no sufficient active-card write candidate was proven.",
+    "TARGET-044 screenshots and UI maps exist.",
+    "No setup, master data, document, Preview Posting or Posting has been changed by TARGET-044."
+  ],
+  "decisionOptions": [
+    {
+      "option": "target-values-ready-for-controlled-fit",
+      "nextCase": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+      "allowedOnlyIf": [
+        "exact field targets are named",
+        "target values are source-backed",
+        "a safe field route is chosen",
+        "Smart Decision Gate unlocks a future write case"
+      ]
+    },
+    {
+      "option": "no-apply-personalize-discovery-needed",
+      "nextCase": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
+      "allowedOnlyIf": [
+        "field remains hidden on the card",
+        "Personalize can be opened read-only",
+        "no personalization change is applied"
+      ]
+    },
+    {
+      "option": "alternative-setup-page-route-needed",
+      "nextCase": "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE",
+      "allowedOnlyIf": [
+        "card field route remains insufficient",
+        "a standard setup/list page is a better source of truth",
+        "future write stays separately gated"
+      ]
+    },
+    {
+      "option": "park-o2c-p2p-until-foundation-checkpoint",
+      "nextCase": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+      "allowedOnlyIf": [
+        "field targets or setup dependencies remain unclear",
+        "no safe customer/item write route exists"
+      ]
+    }
+  ],
+  "acceptanceCriteria": [
+    "The case makes no BC or Playwright call.",
+    "The decision states why TARGET-045 is or is not ready.",
+    "The result names one next case and explains the next 3-5 lookahead statuses.",
+    "O2C/P2P remain blocked unless the required setup and field targets are explicitly proven."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+    "lastEvidenceSummary": "TARGET-044 observed U-CUST-100 and U-ITEM-HW100 read-only and captured UI maps/screenshots, but no sufficient active-card write candidate was proven.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "A direct field-write case needs exact field targets, target values and a safe route. TARGET-044 did not provide enough for that.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-044B-CUSTOMER-ITEM-POSTING-FIELD-SOURCE-OR-PERSONALIZE-DECISION",
+        "status": "ready-next",
+        "reason": "It can decide the next safe route from existing evidence without BC changes."
+      },
+      {
+        "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+        "status": "needs-source-check-first",
+        "reason": "Future write case only after exact field targets and values are source-backed."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C needs posting/VAT/payment readiness before any document draft."
+      },
+      {
+        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Vendor numbering remains a separate parked route."
+      },
+      {
+        "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+        "status": "ready-after-current",
+        "reason": "Useful fallback checkpoint if customer/item field route remains parked."
+      }
+    ],
+    "queueChangesMade": [
+      "TARGET-044 completed as read-only UI discovery.",
+      "TARGET-044B selected before any field write."
+    ],
+    "selectedNextCase": "TARGET-044B-CUSTOMER-ITEM-POSTING-FIELD-SOURCE-OR-PERSONALIZE-DECISION",
+    "whySelectedNextCaseIsBest": "It keeps the Autopilot evidence-driven and avoids the previous pattern of writing before the BC UI route is actually understood.",
+    "risksBeforeNextCase": [
+      "Do not apply personalization changes.",
+      "Do not edit customer or item fields.",
+      "Do not claim posting readiness from field visibility."
+    ],
+    "requiredPreparation": [
+      "Read TARGET-044 result, UI maps and screenshot metadata.",
+      "Map fields to source-backed target values.",
+      "Select exactly one next route."
+    ]
+  },
+  "createdAt": "2026-07-01T17:55:00.000Z",
+  "updatedAt": "2026-07-01T17:55:00.000Z"
+}

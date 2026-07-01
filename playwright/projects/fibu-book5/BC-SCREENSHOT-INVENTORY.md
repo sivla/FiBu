@@ -104,6 +104,15 @@ Diese Screenshots gehoeren zur aktiven Zielwelt `playthru`. Seit TARGET-009 ist 
 | `target-036c-020-after-customer-attempt.png` | Debitorenkarte, Page 21 | `playthru` / `UNIVERSAARL-DE` | Nach Feldwerten | Karte `U-CUST-100 - Universaarl Kunde 100`, Status `Gespeichert`, Aktion `Vorlage anwenden`, FastTabs `Fakturierung`/`Zahlungen` | Erster Debitor wurde mit `Nr.` und `Name` gespeichert; Vorlage wurde nicht geklickt | keine Buchungsgruppe, keine USt-Gruppe, keine Zahlungsbedingung, keine Verkaufsbuchung | `universaarl-masterdata-evidence` |
 | `target-036c-030-after-reopen-filtered-proof.png` | Debitoren, Page 22 | `playthru` / `UNIVERSAARL-DE` | Reopen-Proof | Liste zeigt `U-CUST-100` und `Universaarl Kunde 100` | Debitor ist nach erneutem Oeffnen sichtbar | keine O2C-Reife, keine Posten, kein Beleg | `universaarl-reopen-proof` |
 
+## Universaarl Customer/Item Posting Field UI Discovery TARGET-044
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Beweist intern | Beweist nicht | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-044-010-customer-baseline.png` | Debitorenkarte, Page 21 | `playthru` / `UNIVERSAARL-DE` | Read-only UI-Baseline fuer `U-CUST-100` | Debitorenkarte mit `Allgemein`, `Mehr anzeigen`, sichtbaren FastTabs und FactBox-Kontext | Kartenkontext und Layout fuer Screenshot-QA; kein Schreibversuch | keine Debitorenbuchungsgruppe, keine USt-/Zahlungsgruppe, keine O2C-Reife | `universaarl-readonly-evidence`, `not-final-book-image` |
+| `target-044-010-customer-page-inspection.png` | Debitorenkarte/Page-Inspection-Kontext | `playthru` / `UNIVERSAARL-DE` | Technische Debug-Probe | Page-Inspection-/Debug-Signale und Kartenkontext | technischer Page-/Table-Kontext als Debug-Hinweis | kein finaler Buchscreenshot, keine Feldwerte, keine Buchungsreife | `debug-evidence`, `not-final-book-image` |
+| `target-044-020-item-baseline.png` | Artikelkarte, Page 30 | `playthru` / `UNIVERSAARL-DE` | Read-only UI-Baseline fuer `U-ITEM-HW100` | Artikelkarte mit `STK`, FastTabs, `Einstandspreise und Buchung`, leeren Detail-Buttons fuer Produkt-/Lagerbuchungsgruppe | Kartenkontext und sichtbare leere Buchungsgruppenfelder | keine korrekte Posting-Gruppe, keine USt-/Costing-Reife, kein Lagerposten | `universaarl-readonly-evidence`, `not-final-book-image` |
+| `target-044-020-item-page-inspection.png` | Artikelkarte/Page-Inspection-Kontext | `playthru` / `UNIVERSAARL-DE` | Technische Debug-Probe | Page-Inspection-/Debug-Signale und Artikelkartenkontext | technischer Page-/Table-Kontext als Debug-Hinweis | kein finaler Buchscreenshot, keine Feldwerte, keine Inventory Posting Setup Reife | `debug-evidence`, `not-final-book-image` |
+
 ## Universaarl First Vendor Blocker TARGET-036D
 
 | Screenshot | Page | Company | Schritt | Was sieht man? | Beweist intern | Beweist nicht | Status |
