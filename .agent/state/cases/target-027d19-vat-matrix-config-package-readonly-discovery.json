@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027D19-VAT-MATRIX-CONFIG-PACKAGE-READONLY-DISCOVERY",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "VAT matrix configuration package read-only discovery",
+  "purpose": "Discover whether the Business Central Configuration Packages UI can include VAT Posting Setup / Table 325 as a standard setup-data route before any future import/apply action.",
+  "sourceCases": [
+    "TARGET-027D14-VAT-MATRIX-RECREATE-AFTER-CLEANUP",
+    "TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS",
+    "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION",
+    "TARGET-027D17-VAT-MATRIX-FIRST-FIELDS-LOOKUP-DISCOVERY",
+    "TARGET-027D18-VAT-MATRIX-NON-UI-SETUP-ROUTE-DECISION"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": true,
+  "allowedActions": [
+    "open-configuration-packages-readonly",
+    "prove-playthru-instance",
+    "prove-universaarl-company",
+    "capture-configuration-package-page-context",
+    "inventory-visible-actions-without-clicking-apply-import-or-export",
+    "discover-whether-table-325-can-be-added-or-is-visible-without-saving",
+    "capture-screenshot-qa",
+    "write-result-json"
+  ],
+  "forbiddenActions": [
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "leave-instance",
+    "company-switch",
+    "create-or-apply-configuration-package",
+    "import-from-excel",
+    "export-to-excel",
+    "validate-package",
+    "apply-package",
+    "edit-in-excel-publish",
+    "type-INLAND-or-VAT19",
+    "write-or-save-vat-matrix-row",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-german-vat-final-proof"
+  ],
+  "acceptanceCriteria": [
+    "Configuration Packages UI is opened read-only in playthru / UNIVERSAARL-DE or safely blocked.",
+    "The screenshot QA explains visible page, buttons, fields, and which actions are dangerous.",
+    "No package is created, imported, validated, applied, exported or published.",
+    "The result decides whether a later controlled configuration-package write case is realistic."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-027D18-VAT-MATRIX-NON-UI-SETUP-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-027D18-VAT-MATRIX-NON-UI-SETUP-ROUTE-DECISION",
+    "lastEvidenceSummary": "D18 selected read-only Configuration Packages discovery as the next non-grid standard route after D17 blocked lookup/select controls.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Configuration Packages are source-backed for setup data including VAT Posting Setup, but must be discovered read-only before any write.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D19-VAT-MATRIX-CONFIG-PACKAGE-READONLY-DISCOVERY",
+        "status": "ready-next",
+        "reason": "Read-only discovery can test the selected route without setup changes."
+      },
+      {
+        "caseId": "TARGET-027D20-VAT-MATRIX-CONFIG-PACKAGE-WRITE-DECISION",
+        "status": "needs-ui-discovery-first",
+        "reason": "Only valid if D19 proves the required UI route, table/field visibility and stop conditions."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Posting Groups wait for a correct VAT matrix row or a conscious park decision."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for VAT/posting defaults."
+      }
+    ],
+    "queueChangesMade": [
+      "Selected D19 as the next read-only route discovery after D18."
+    ],
+    "selectedNextCase": "TARGET-027D19-VAT-MATRIX-CONFIG-PACKAGE-READONLY-DISCOVERY",
+    "whySelectedNextCaseIsBest": "It tests a Microsoft-documented standard setup-data route without repeating fragile Page-472 grid writes.",
+    "risksBeforeNextCase": [
+      "Configuration Packages can become effective if import/validate/apply actions are clicked.",
+      "Edit in Excel can publish changes and is forbidden in D19.",
+      "Screenshots must show the actual Configuration Packages page, not Tell-Me/search overlay."
+    ],
+    "requiredPreparation": [
+      "Use direct safe navigation if a known page route exists; otherwise stop on ambiguous Tell-Me overlay.",
+      "Classify Import, Export, Validate, Apply and Edit in Excel as dangerous visible actions."
+    ]
+  },
+  "createdAt": "2026-07-01T09:00:00.000Z"
+}

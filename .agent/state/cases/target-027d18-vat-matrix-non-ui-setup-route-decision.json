@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027D18-VAT-MATRIX-NON-UI-SETUP-ROUTE-DECISION",
+  "status": "done",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "VAT matrix non-UI standard setup route decision",
+  "purpose": "Decide whether a standard non-grid setup route such as configuration package/import worksheet/manual assisted setup path is safer than another Page-472 grid write attempt.",
+  "sourceCases": [
+    "TARGET-027D14-VAT-MATRIX-RECREATE-AFTER-CLEANUP",
+    "TARGET-027D15-VAT-MATRIX-RECREATE-ROUTE-DIAGNOSIS",
+    "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION",
+    "TARGET-027D17-VAT-MATRIX-FIRST-FIELDS-LOOKUP-DISCOVERY"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": false,
+  "allowedActions": [
+    "read-d14-d17-results",
+    "review-microsoft-learn-vat-setup-source",
+    "review-standard-setup-import-or-configuration-package-options",
+    "decide-next-non-ui-route-or-park-vat-matrix",
+    "create-next-narrow-case-only-if-route-and-stop-conditions-are-clear",
+    "update-source-registry-atlas-queue"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright",
+    "type-INLAND-or-VAT19",
+    "type-19-3806-1406",
+    "select-INLAND-or-VAT19",
+    "write-or-save-vat-matrix-row",
+    "delete-row",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-german-vat-final-proof"
+  ],
+  "acceptanceCriteria": [
+    "D18 explains why Page-472 grid typing and lookup probes are parked.",
+    "D18 selects exactly one standard non-UI route or parks VAT matrix setup with consequences.",
+    "D18 may create a future write case only if source, route, fields, stop conditions and rollback/reopen proof are concrete.",
+    "No BC, Playwright, setup, master data, preview or posting occurs in D18."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-027D18-VAT-MATRIX-NON-UI-SETUP-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-027D18-VAT-MATRIX-NON-UI-SETUP-ROUTE-DECISION",
+    "lastEvidenceSummary": "D17 proved no safe lookup/select affordance for Page 472 and no target row persisted after reopen.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A source-backed standard route decision is needed and was completed locally without BC execution.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D19-VAT-MATRIX-CONFIG-PACKAGE-READONLY-DISCOVERY",
+        "status": "ready-next",
+        "reason": "Read-only Configuration Packages discovery can test the selected non-grid route without setup changes."
+      },
+      {
+        "caseId": "TARGET-027D20-VAT-MATRIX-CONFIG-PACKAGE-WRITE-DECISION",
+        "status": "needs-ui-discovery-first",
+        "reason": "Only valid if D19 proves the UI route and table/field visibility."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Waits for correct VAT matrix or an explicit park decision."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for VAT/posting defaults."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness waits for VAT matrix, posting groups and dimensions."
+      }
+    ],
+    "queueChangesMade": [
+      "Selected D19 as the next read-only Configuration Packages discovery case."
+    ],
+    "selectedNextCase": "TARGET-027D19-VAT-MATRIX-CONFIG-PACKAGE-READONLY-DISCOVERY",
+    "whySelectedNextCaseIsBest": "It tests a Microsoft-documented setup-data route without repeating fragile Page-472 grid writes.",
+    "risksBeforeNextCase": [
+      "Configuration Packages can become effective if import/validate/apply actions are clicked.",
+      "Edit in Excel can publish changes and is forbidden in D19.",
+      "Screenshots must show the actual Configuration Packages page, not Tell-Me/search overlay."
+    ],
+    "requiredPreparation": [
+      "Classify Import, Export, Validate, Apply and Edit in Excel as dangerous visible actions."
+    ]
+  },
+  "createdAt": "2026-07-01T08:00:00.000Z",
+  "completedAt": "2026-07-01T09:00:00.000Z",
+  "resultStatus": "observed-route-selected",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d18-vat-matrix-non-ui-setup-route-decision/TARGET-027D18-result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/target-027d18-vat-matrix-non-ui-setup-route-decision/",
+  "proved": [
+    "D18 did not open Business Central or run Playwright.",
+    "D18 parks Page-472 grid typing, Alt+ArrowDown and first-field lookup probes after D17 found no safe lookup/select affordance.",
+    "Microsoft Learn documents configuration packages as a standard Business Central setup-data route and explicitly includes VAT Posting Setup among setup tables.",
+    "The selected next route is read-only Configuration Packages discovery, not an API shortcut and not an immediate setup write."
+  ],
+  "notProved": [
+    "No correct INLAND/VAT19 VAT Posting Setup matrix row.",
+    "No Configuration Package UI route has been opened in playthru yet.",
+    "No Excel export/import/validate/apply action has been executed.",
+    "No final German VAT correctness.",
+    "No Preview Posting.",
+    "No VAT Entries.",
+    "No G/L Entries."
+  ],
+  "nextCase": "TARGET-027D19-VAT-MATRIX-CONFIG-PACKAGE-READONLY-DISCOVERY",
+  "nextStep": "Run read-only Configuration Packages UI discovery for VAT Posting Setup / Table 325; do not import, validate, apply, export or publish data.",
+  "decision": {
+    "selectedRoute": "configuration-packages-readonly-discovery-before-write",
+    "nextCase": "TARGET-027D19-VAT-MATRIX-CONFIG-PACKAGE-READONLY-DISCOVERY",
+    "routeBoundary": "read-only UI discovery only; no package apply/import/export/validate and no setup write"
+  }
+}

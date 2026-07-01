@@ -245,6 +245,30 @@ Fuer Universaarl folgt daraus:
 - Eine kuenftige Matrix-Schreibung ist erst vertretbar, wenn D17 echte Controls, Stopbedingungen und Reopen-Proof liefert.
 - Keine Stammdaten, keine Preview, keine Buchung und kein finaler deutscher USt-Claim vor korrekter Matrix plus Buchungs-/Postennachweis.
 
+## TARGET-027D17 VAT-Matrix Lookup Discovery
+
+D17 nutzt keine neue externe Produktquelle. Die neue Wahrheit stammt aus Universaarl-UI-Evidence: Page 472 blieb in `playthru` / `UNIVERSAARL-DE`; nach `Liste bearbeiten` und `Neu` wurde die erste Kandidatenzelle per Hover, Klick und `Alt+ArrowDown` no-write geprueft. Es erschien kein sicherer Listbox-/Dialog-/Select-Kontext fuer die ersten Pflichtfelder. Nach Reopen war keine `INLAND`/`VAT19`-Zeile sichtbar.
+
+Fuer Universaarl folgt daraus:
+
+- D17 beweist keinen Setup-Erfolg, sondern einen gesperrten Page-472-Gridpfad.
+- `Alt+ArrowDown` und erster Pflichtfeld-Klick duerfen nicht nochmals als neue Route gelten.
+- Die naechste Entscheidung muss eine Standardroute ausserhalb dieses fragilen Gridpfads pruefen, zum Beispiel quellenbasiert ueber Setup-/Import-/Konfigurationspaket-Optionen oder eine andere von Microsoft dokumentierte UI-Route.
+- Diese Alternative darf kein API-Shortcut werden und darf keine Matrixwerte schreiben, bevor der neue Pfad als Case mit Gates, Evidence und Reopen-Proof beschrieben ist.
+- Der naechste Case ist `TARGET-027D18-VAT-MATRIX-NON-UI-SETUP-ROUTE-DECISION`.
+
+## TARGET-027D18 VAT-Matrix Non-UI Setup Route Decision
+
+D18 nutzt Microsoft Learn als Quellenbasis fuer eine andere Standardroute: Die Dokumentation zu Company Configuration Packages nennt Setup-Tabellen wie `VAT Posting Setup` als moeglichen Inhalt eines Konfigurationspakets. Die Import-Dokumentation beschreibt den Arbeitsweg ueber Konfigurationspakete mit Excel-Export, Import, Validierung und Anwendung. Das ist Standard-Business-Central-Funktionalitaet, aber fortgeschritten und potentiell wirksam.
+
+Fuer Universaarl folgt daraus:
+
+- Page-472-Gridtyping, erster Pflichtfeld-Klick und `Alt+ArrowDown` sind nach D14-D17 geparkt.
+- Die naechste Route ist `TARGET-027D19-VAT-MATRIX-CONFIG-PACKAGE-READONLY-DISCOVERY`.
+- D19 darf nur die Configuration-Packages-UI lesen und fotografieren.
+- `Import`, `Export`, `Validate`, `Apply`, `Edit in Excel` und Publish bleiben gesperrt, bis ein spaeterer Case sie ausdruecklich mit Gates, Screenshot-QA und Reopen-Proof freigibt.
+- Das ist kein API-Shortcut und kein deutscher USt-Finalbeweis.
+
 ## TARGET-026D Kontenplan-Quellenentscheidung
 
 TARGET-026B zeigt in `UNIVERSAARL-DE` einen erreichbaren, aber leeren/insufficient Kontenplan ohne sichtbare USt-Konto-Kandidaten. Microsoft Learn `View the chart of accounts` und `Set up or change the chart of accounts` stuetzen die Produktlogik: Der Kontenplan ist das Verzeichnis der Finanzkonten und kann fuer die Company eingerichtet/geaendert werden.

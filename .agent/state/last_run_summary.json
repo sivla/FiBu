@@ -1,69 +1,72 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION",
-  "caseId": "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION",
-  "status": "observed",
-  "completedAt": "2026-07-01T07:00:00.000Z",
+  "runId": "TARGET-027D18-VAT-MATRIX-NON-UI-SETUP-ROUTE-DECISION",
+  "caseId": "TARGET-027D18-VAT-MATRIX-NON-UI-SETUP-ROUTE-DECISION",
+  "status": "observed-route-selected",
+  "completedAt": "2026-07-01T09:00:00.000Z",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d16-vat-matrix-route-decision/TARGET-027D16-result.json",
-  "evidencePath": "playwright/projects/fibu-book5/evidence/target-027d16-vat-matrix-route-decision/",
-  "summary": "D16 made a local/source/UI route decision after D14/D15. It selected first-field lookup/detail/select discovery as the next non-repeating Page 472 route and did not run BC or Playwright.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d18-vat-matrix-non-ui-setup-route-decision/TARGET-027D18-result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/target-027d18-vat-matrix-non-ui-setup-route-decision/",
+  "summary": "D18 locally selected read-only Configuration Packages discovery as the next standard non-grid VAT matrix route after D17 blocked Page-472 lookup/select controls. No BC, Playwright, setup write, preview or posting occurred.",
   "proved": [
-    "D16 selected a non-repeating next route: first-field lookup/detail/select discovery.",
-    "D16 reviewed D14/D15 no-write diagnostics and Microsoft Learn VAT setup source.",
-    "D16 did not open BC, run Playwright, write setup, create master data, preview or post."
+    "D18 did not open Business Central or run Playwright.",
+    "D18 parks Page-472 grid typing, Alt+ArrowDown and first-field lookup probes after D17 found no safe lookup/select affordance.",
+    "Microsoft Learn documents configuration packages as a standard Business Central setup-data route and explicitly includes VAT Posting Setup among setup tables.",
+    "The selected next route is read-only Configuration Packages discovery, not an API shortcut and not an immediate setup write."
   ],
   "notProved": [
     "No correct INLAND/VAT19 VAT Posting Setup matrix row.",
-    "No safe write route for Page 472 yet.",
+    "No Configuration Package UI route has been opened in playthru yet.",
+    "No Excel export/import/validate/apply action has been executed.",
     "No final German VAT correctness.",
-    "No VAT Entries or G/L Entries."
-  ],
-  "actionsTaken": [
-    "Reviewed D15 no-write result.",
-    "Reviewed Microsoft Learn VAT setup source and VAT Posting Setup table fields.",
-    "Selected D17 lookup/detail/select discovery before any write.",
-    "Updated state, queue, source registry, blocker atlas, Playwright patterns and catalog."
-  ],
-  "actionsNotTaken": [
-    "No Business Central execution",
-    "No Playwright execution",
-    "No setup write",
-    "No master data",
-    "No document draft",
-    "No Preview Posting",
-    "No Posting",
-    "No API shortcut",
-    "No book master change"
+    "No Preview Posting.",
+    "No VAT Entries.",
+    "No G/L Entries."
   ],
   "warnings": [
-    "D17 remains no-write until lookup/select controls are proven.",
-    "Do not treat Page Inspection as a write route."
+    "Configuration Packages are advanced functionality; D19 must remain read-only and beginner-explainable.",
+    "No setup write is unlocked by D18."
   ],
-  "nextCase": "TARGET-027D17-VAT-MATRIX-FIRST-FIELDS-LOOKUP-DISCOVERY",
-  "nextStep": "Run a no-write Page 472 lookup/detail/select discovery for the first two VAT Posting Setup fields before any future matrix write.",
+  "actionsTaken": [
+    "Reviewed D14-D17 route failures.",
+    "Reviewed Microsoft Learn source anchors for VAT setup and configuration packages.",
+    "Rejected repeat Page-472 grid typing, immediate Edit in Excel and API shortcut routes.",
+    "Created D19 as read-only Configuration Packages UI discovery."
+  ],
+  "actionsNotTaken": [
+    "No BC execution",
+    "No Playwright execution",
+    "No setup change",
+    "No master data",
+    "No draft",
+    "No Preview Posting",
+    "No Posting",
+    "No API shortcut"
+  ],
+  "nextCase": "TARGET-027D19-VAT-MATRIX-CONFIG-PACKAGE-READONLY-DISCOVERY",
+  "nextStep": "Run read-only Configuration Packages UI discovery for VAT Posting Setup / Table 325; do not import, validate, apply, export or publish data.",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION",
-    "lastEvidenceSummary": "D15 proved Page 472/Table 325 field truth and no persisted INLAND/VAT19 row, but did not prove a safe write route.",
+    "currentCase": "TARGET-027D18-VAT-MATRIX-NON-UI-SETUP-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-027D18-VAT-MATRIX-NON-UI-SETUP-ROUTE-DECISION",
+    "lastEvidenceSummary": "D17 proved no safe lookup/select affordance for Page 472 and no target row persisted after reopen.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "A local route decision is the required gate before any future VAT matrix write.",
+    "reason": "A source-backed standard route decision is needed and was completed locally without BC execution.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027D17-VAT-MATRIX-FIRST-FIELDS-LOOKUP-DISCOVERY",
+        "caseId": "TARGET-027D19-VAT-MATRIX-CONFIG-PACKAGE-READONLY-DISCOVERY",
         "status": "ready-next",
-        "reason": "New UI hypothesis: prove lookup/detail/select controls for the first two VAT group fields without typing values."
+        "reason": "Read-only Configuration Packages discovery can test the selected non-grid route without setup changes."
       },
       {
-        "caseId": "TARGET-027D18-VAT-MATRIX-CONTROLLED-WRITE-IF-LOOKUP-PROVEN",
-        "status": "ready-after-current",
-        "reason": "Only sensible if D17 proves exact controls and stop conditions."
+        "caseId": "TARGET-027D20-VAT-MATRIX-CONFIG-PACKAGE-WRITE-DECISION",
+        "status": "needs-ui-discovery-first",
+        "reason": "Only valid if D19 proves the UI route and table/field visibility."
       },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Posting Groups wait for a correct VAT Posting Setup matrix row."
+        "reason": "Waits for correct VAT matrix or an explicit park decision."
       },
       {
         "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
@@ -73,26 +76,21 @@
       {
         "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Foundation readiness waits for VAT matrix and Posting Groups."
+        "reason": "Foundation readiness waits for VAT matrix, posting groups and dimensions."
       }
     ],
     "queueChangesMade": [
-      "Marked D16 done.",
-      "Inserted D17 as the next pending no-write lookup discovery case."
+      "Selected D19 as the next read-only Configuration Packages discovery case."
     ],
-    "selectedNextCase": "TARGET-027D17-VAT-MATRIX-FIRST-FIELDS-LOOKUP-DISCOVERY",
-    "whySelectedNextCaseIsBest": "It avoids blocked list/card/grid typing routes and targets the first unresolved UI fact: whether the key VAT group fields expose safe lookup/select controls.",
+    "selectedNextCase": "TARGET-027D19-VAT-MATRIX-CONFIG-PACKAGE-READONLY-DISCOVERY",
+    "whySelectedNextCaseIsBest": "It tests a Microsoft-documented setup-data route without repeating fragile Page-472 grid writes.",
     "risksBeforeNextCase": [
-      "A transient row may disappear without persistence.",
-      "Lookup/detail buttons may navigate to related records instead of selecting field values.",
-      "D17 must stop before typing or saving if safe controls are not visible."
+      "Configuration Packages can become effective if import/validate/apply actions are clicked.",
+      "Edit in Excel can publish changes and is forbidden in D19.",
+      "Screenshots must show the actual Configuration Packages page, not Tell-Me/search overlay."
     ],
     "requiredPreparation": [
-      "Open Page 472 only in playthru / UNIVERSAARL-DE.",
-      "Capture before state and row absence.",
-      "Use Liste bearbeiten and Neu only as a discovery surface.",
-      "Probe lookup/detail/select controls for the first two fields without typing target values."
+      "Classify Import, Export, Validate, Apply and Edit in Excel as dangerous visible actions."
     ]
-  },
-  "updatedAt": "2026-07-01T07:00:00.000Z"
+  }
 }

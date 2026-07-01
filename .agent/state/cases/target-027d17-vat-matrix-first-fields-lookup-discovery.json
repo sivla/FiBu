@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-027D17-VAT-MATRIX-FIRST-FIELDS-LOOKUP-DISCOVERY",
-  "status": "planned",
+  "status": "done",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -51,46 +51,78 @@
     "If no safe lookup/select route appears, D17 blocks and recommends a non-UI setup route decision instead of repeating grid typing."
   ],
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-027D16-VAT-MATRIX-RECREATE-CARD-OR-INSPECTION-ROUTE-DECISION",
-    "lastEvidenceSummary": "D16 selected the lookup/detail/select discovery route because D14/D15 did not prove a true editor or card route.",
+    "currentCase": "TARGET-027D17-VAT-MATRIX-FIRST-FIELDS-LOOKUP-DISCOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-027D17-VAT-MATRIX-FIRST-FIELDS-LOOKUP-DISCOVERY",
+    "lastEvidenceSummary": "D16 selected no-write lookup/detail/select discovery after D14/D15 blocked blind typing and Bearbeiten/list routes.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The first unresolved UI fact is whether VAT Bus. Posting Group and VAT Prod. Posting Group can be chosen through safe controls instead of blind typing.",
+    "reason": "The unresolved UI question is whether Page 472 exposes safe lookup/select controls for the first two mandatory VAT group fields.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027D17-VAT-MATRIX-FIRST-FIELDS-LOOKUP-DISCOVERY",
-        "status": "ready-next",
-        "reason": "No-write discovery is the safest new route."
-      },
-      {
-        "caseId": "TARGET-027D18-VAT-MATRIX-CONTROLLED-WRITE-IF-LOOKUP-PROVEN",
-        "status": "ready-after-current",
-        "reason": "Only after D17 proves exact controls and stop conditions."
+        "caseId": "TARGET-027D18-VAT-MATRIX-NON-UI-SETUP-ROUTE-DECISION",
+        "status": "replace-with-better-case",
+        "reason": "If no lookup affordance is proven, the next route should be a non-UI setup-route decision rather than another grid probe."
       },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Waits for correct VAT matrix setup."
+        "reason": "Posting Groups wait for a correct VAT Posting Setup matrix row."
       },
       {
         "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
         "status": "needs-setup-first",
-        "reason": "Waits for VAT/posting defaults."
+        "reason": "Master data waits for VAT/posting defaults."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness waits for VAT matrix and Posting Groups."
       }
     ],
     "queueChangesMade": [],
-    "selectedNextCase": "TARGET-027D17-VAT-MATRIX-FIRST-FIELDS-LOOKUP-DISCOVERY",
-    "whySelectedNextCaseIsBest": "It is a new bounded UI hypothesis and prevents another blind Page-472 write attempt.",
+    "selectedNextCase": "TARGET-027D18-VAT-MATRIX-NON-UI-SETUP-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "The no-write probe did not prove a safe lookup route, so another UI write attempt would be waste.",
     "risksBeforeNextCase": [
-      "Lookup probes could navigate instead of selecting.",
-      "The row may be transient.",
-      "Any write must stay locked."
+      "Do not select or type INLAND/VAT19 from this evidence alone unless the control binding is explicit.",
+      "Do not claim VAT setup readiness before a row with 19/3806/1406 is visible after reopen.",
+      "Do not start master data before VAT/posting setup is ready."
     ],
     "requiredPreparation": [
-      "Use screenshot QA after each control probe.",
-      "Stop if the active control is shell/header/rowheader text.",
-      "Do not type target setup values."
+      "Decide a non-UI standard setup route or park VAT matrix setup; do not repeat grid typing."
     ]
   },
-  "createdAt": "2026-07-01T07:00:00.000Z"
+  "createdAt": "2026-07-01T07:00:00.000Z",
+  "completedAt": "2026-07-01T08:00:00.000Z",
+  "resultStatus": "observed-no-safe-lookup-affordance",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d17-vat-matrix-first-fields-lookup-discovery/TARGET-027D17-result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/target-027d17-vat-matrix-first-fields-lookup-discovery/",
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "D17 captured Page 472 first-field hover/click/Alt+ArrowDown lookup diagnostics without typing or selecting target values.",
+    "No INLAND/VAT19 row is visible after reopen; the discovery did not persist the target matrix row.",
+    "No safe lookup/select affordance was proven in this no-write probe."
+  ],
+  "notProved": [
+    "No correct INLAND/VAT19 VAT Posting Setup matrix row.",
+    "No safe write route is unlocked yet.",
+    "No final German VAT correctness.",
+    "No Preview Posting.",
+    "No VAT Entries.",
+    "No G/L Entries.",
+    "No VAT Statement."
+  ],
+  "blockedBy": [],
+  "warnings": [
+    "Transient new row was no longer visible after cell 0; later candidate cells were not probed."
+  ],
+  "nextCase": "TARGET-027D18-VAT-MATRIX-NON-UI-SETUP-ROUTE-DECISION",
+  "nextStep": "Run a local/source decision for a non-UI standard setup route; do not repeat Page-472 grid typing or lookup probes.",
+  "discoveryOutcome": {
+    "noSafeLookupAffordance": true,
+    "transientRowDisappearedAfterFirstProbe": true,
+    "targetRowPersisted": false,
+    "setupChanged": false,
+    "previewPosting": false,
+    "posted": false,
+    "evidencePath": "playwright/projects/fibu-book5/evidence/target-027d17-vat-matrix-first-fields-lookup-discovery/"
+  }
 }
