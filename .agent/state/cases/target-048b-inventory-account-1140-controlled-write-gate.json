@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+  "status": "ready-next",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Controlled Chart of Accounts write gate for 1140 Waren (Bestand)",
+  "purpose": "Create or verify account 1140 Waren (Bestand) as Bilanz/Buchung before any Inventory Posting Setup write.",
+  "sourceCases": [
+    "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
+    "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+    "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE"
+  ],
+  "effectiveBcActionsAllowed": true,
+  "mayRunPlaywright": true,
+  "taskClass": "wizard_work",
+  "allowedActions": [
+    "open-business-central-playthru",
+    "confirm-company-universaarl-de",
+    "open-chart-of-accounts",
+    "check-account-1140-before",
+    "create-or-verify-account-1140-only",
+    "set-account-1140-name-waren-bestand",
+    "set-account-1140-balance-sheet",
+    "set-account-1140-posting-account",
+    "reopen-proof-account-1140",
+    "write-evidence-result",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "create-or-change-any-account-except-1140",
+    "change-vat-posting-setup",
+    "change-general-posting-setup",
+    "create-item-posting-group",
+    "change-item-posting-group",
+    "create-inventory-posting-setup",
+    "change-inventory-posting-setup",
+    "change-item",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-inventory-posting-readiness",
+    "claim-skr04-complete",
+    "claim-tax-advisor-approved",
+    "book-claim-without-evidence",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence"
+  ],
+  "smartDecision": {
+    "whyNow": "TARGET-048 selected 1140 Waren (Bestand) as source-backed candidate, but the account is not yet visible in UNIVERSAARL-DE.",
+    "fieldsToChangeIfMissing": [
+      "No. = 1140",
+      "Name = Waren (Bestand)",
+      "Income/Balance = Bilanz",
+      "Account Type = Buchung"
+    ],
+    "fieldsNotToTouch": [
+      "VAT Posting Setup",
+      "General Posting Setup",
+      "Item Posting Groups",
+      "Inventory Posting Setup",
+      "Item Card",
+      "Documents",
+      "Preview Posting",
+      "Posting"
+    ],
+    "fallback": "If account 1140 already exists, do not duplicate; capture reopen proof. If the UI route is ambiguous, stop with screenshot QA and do not write."
+  },
+  "entryCriteria": [
+    "TARGET-048 result exists and selects 1140 Waren (Bestand).",
+    "Auth and company context are valid for playthru / UNIVERSAARL-DE.",
+    "No dirty worktree or pull blocker."
+  ],
+  "acceptanceCriteria": [
+    "Business Central remains in playthru / UNIVERSAARL-DE.",
+    "Account 1140 is either visible before write or created exactly once.",
+    "If created or corrected, 1140 is visible after reopen as Waren (Bestand), Bilanz and Buchung.",
+    "No other G/L account is created or changed.",
+    "No Item Posting Group, Inventory Posting Setup, item, document, Preview Posting, Posting or API shortcut occurs.",
+    "Result JSON records before/after/reopen proof and notProved boundaries."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-048 selected 1140 Waren (Bestand) as source-backed candidate but did not run BC.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The candidate must be proven as a visible Universaarl G/L account before inventory setup uses it.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+        "status": "ready-next",
+        "reason": "Narrow one-account write/verify gate."
+      },
+      {
+        "caseId": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+        "status": "ready-after-current",
+        "reason": "Only after account 1140 is proven or consciously blocked."
+      },
+      {
+        "caseId": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Needs inventory posting group code plus account 1140 visible."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Still blocked by posting/VAT/item field readiness."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It is the smallest effective step that converts the source decision into Universaarl setup evidence.",
+    "risksBeforeNextCase": [
+      "Do not accidentally edit another account.",
+      "Do not open setup writes beyond Chart of Accounts.",
+      "Do not claim posting readiness from account visibility."
+    ],
+    "requiredPreparation": [
+      "Run standard preflight.",
+      "Confirm playthru / UNIVERSAARL-DE in UI.",
+      "Use screenshot QA for before and reopen proof."
+    ]
+  },
+  "createdAt": "2026-07-02T02:00:00.000Z"
+}

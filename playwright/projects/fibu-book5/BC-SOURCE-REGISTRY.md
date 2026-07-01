@@ -494,6 +494,18 @@ TARGET-047 laeuft ohne Business-Central- und ohne Playwright-Ausfuehrung. Der La
 
 Fuer Universaarl folgt daraus: Der naechste Schritt ist `TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE`. Erst wenn ein Lagerbewertungskonto und danach ein Inventory-Posting-Group-Code source-backed entschieden sind, darf ein kontrollierter Schreibcase fuer Item Posting Groups oder Inventory Posting Setup geplant werden. Daraus entsteht weiterhin kein Posting-Erfolg; Preview Posting, Posting, Item Ledger Entries, Value Entries und Sachposten bleiben gesperrt.
 
+## TARGET-048 SKR04 Lagerkonto-Quellengate
+
+TARGET-048 laeuft ohne Business-Central- und ohne Playwright-Ausfuehrung. Der Lauf nutzt den registrierten SKR04-Kontenrahmen 2026 von Collmex als Quellenbasis fuer den ersten Waren-/Hardwarefall:
+
+- Der SKR04-Kontenrahmen fuehrt die Kontenklasse `Vorraete` und darin `Fertige Erzeugnisse und Waren`.
+- Innerhalb dieser Gruppe liegt `1140-1179 Waren (Bestand)`.
+- Fuer den ersten Universaarl-Warenfall ist deshalb `1140 Waren (Bestand)` der source-backed Kandidat fuer ein Lagerbewertungskonto.
+- `5400 Wareneingang / Materialaufwand` bleibt ein GuV-Aufwandskonto und darf nicht still als Inventory Account verwendet werden.
+- Das alte CRONUS-/RM-DEMO-Konto `14140` bleibt historische Laborreferenz und ist keine aktive Universaarl-Zielwahrheit.
+
+Fuer Universaarl folgt daraus: Der naechste Schritt ist `TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE`. Dort darf ausschliesslich `1140 Waren (Bestand)` als `Bilanz`/`Buchung` geprueft oder angelegt und nach erneutem Oeffnen bewiesen werden. Item Posting Groups, Inventory Posting Setup, Artikel, Belege, Preview Posting und Posting bleiben gesperrt.
+
 ## URLs
 
 - https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company
@@ -504,6 +516,7 @@ Fuer Universaarl folgt daraus: Der naechste Schritt ist `TARGET-048-INVENTORY-AC
 - https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/tenant-admin-center-environments
 - https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/whatsnew/overview
 - https://learn.microsoft.com/en-us/dynamics365/business-central/ui-enter-criteria-filters
+- https://www.collmex.de/skr04.pdf
 - https://learn.microsoft.com/en-us/dynamics365/business-central/analysis-mode
 - https://learn.microsoft.com/en-us/dynamics365/business-central/ui-personalization-user
 - https://learn.microsoft.com/en-us/dynamics365/business-central/ui-create-number-series

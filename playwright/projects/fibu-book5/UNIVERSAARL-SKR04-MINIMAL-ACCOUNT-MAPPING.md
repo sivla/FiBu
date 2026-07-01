@@ -19,6 +19,7 @@ Dieses Mapping ist noch kein vollstaendiger Kontenplan und keine Steuerberaterfr
 | Konto | Name fuer Universaarl | Kontenfamilie | Bilanz/GuV | Verwendung im naechsten Setup | Status |
 | --- | --- | --- | --- | --- | --- |
 | `1200` | Forderungen aus Lieferungen und Leistungen | Debitoren/Forderungen | Bilanz | Customer Posting Group spaeter | `wrong-bank-path-classified`; bestehendes Konto `1200 Bank Saarland` ist sichtbar, darf aber nicht als Bank-/Payment-/VAT-/Posting-Ziel genutzt werden |
+| `1140` | Waren (Bestand) | Vorraete/Warenbestand | Bilanz | Inventory Posting Setup Inventory Account spaeter | `source-selected-not-created`; in `TARGET-048` aus SKR04-Quelle als Kandidat gewaehlt, aber noch kein Business-Central-Reopen-Proof |
 | `1800` | Bank Saarland | Bank | Bilanz | Bankkonto, Zahlungsjournal, Bankabstimmung spaeter | `universaarl-proven`; in `TARGET-026J` sichtbar nach Reopen |
 | `1406` | Abziehbare Vorsteuer 19 Prozent | Vorsteuer | Bilanz | Purchase VAT Account spaeter | `universaarl-proven`; in `TARGET-026K` sichtbar nach kontrolliertem Fit und Reopen |
 | `3300` | Verbindlichkeiten aus Lieferungen und Leistungen | Kreditoren/Verbindlichkeiten | Bilanz | Vendor Posting Group spaeter | `universaarl-proven`; in `TARGET-026L` sichtbar nach kontrolliertem Fit und Reopen |
@@ -31,7 +32,7 @@ Dieses Mapping ist noch kein vollstaendiger Kontenplan und keine Steuerberaterfr
 | Bereich | Warum noch nicht |
 | --- | --- |
 | Eigenkapital / Opening Balances | Opening-Balance- und Cutover-Logik braucht eigenen Migrations-/Eroeffnungsfall. |
-| Bestand / Lagerbewertung | Inventory Posting Setup braucht Artikel-/Lager-/Bewertungsentscheidung und darf nicht aus dem alten CRONUS-Konto `14140` abgeleitet werden. |
+| Bestand / Lagerbewertung | `TARGET-048` waehlt `1140 Waren (Bestand)` als source-backed Kandidat. Dieses Konto ist aber noch nicht in `UNIVERSAARL-DE` sichtbar/reopened bewiesen. Inventory Posting Setup darf erst nach `TARGET-048B` weitergehen und darf nicht aus dem alten CRONUS-Konto `14140` abgeleitet werden. |
 | Anlagen | Fixed Assets brauchen Anlagenbuchungsgruppen, AfA-Buch und deutsche Sachkontenlogik als eigene Strecke. |
 | Abschreibungen | AfA-Aufwand wird erst mit Anlagen-Setup und AfA-Preview/Posten festgelegt. |
 | Sonstige Aufwendungen | Nur anlegen, wenn ein konkreter Beleg- oder Fehlerfall es braucht. |
@@ -72,6 +73,12 @@ Der naechste Schritt ist deshalb noch kein VAT Setup und keine Stammdatenanlage,
 `TARGET-026O` hat den sichtbaren Kontenplan-Checkpoint wiederhergestellt. Die direkte Page-16-URL zeigte zunaechst nicht belastbar genug den fachlichen Inhalt. Der stabile Read-only-Pfad war deshalb: in der sichtbaren Business-Central-Oberflaeche den Link `Kontenplan` verwenden und danach das sichtbare BC-Iframe fotografieren. Das Bild `target-026o-010-visible-chart-iframe.png` zeigt die Konten `1200`, `1406`, `1800`, `3300`, `3806`, `4400` und `5400` mit `GuV/Bilanz` und `Kontoart`.
 
 Damit ist der Starter-Kontenplan als Universaarl-Foundation-Kontext sichtbar genug fuer den naechsten Read-only-Schritt `TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT`. Nicht bewiesen sind weiterhin ein vollstaendiger SKR04-Kontenplan, Steuerberaterfreigabe, VAT Posting Setup, Posting Groups, Stammdaten, Belege, Preview Posting oder Buchungen. Die Doppelung `1200 Bank Saarland` und `1800 Bank Saarland` bleibt fuer Bank- und Zahlungsprozesse gesperrt, bis sie fachlich entschieden ist.
+
+## Stand nach `TARGET-048`
+
+`TARGET-048` hat keine Business-Central-Aktion ausgefuehrt. Der Lauf hat nur die Quellenfrage fuer das Lagerbewertungskonto entschieden: Fuer den ersten Waren-/Hardwarefall ist `1140 Waren (Bestand)` der source-backed Kandidat. `5400 Wareneingang / Materialaufwand` bleibt ein GuV-Aufwandskonto fuer Einkaufs-/Materiallogik und darf nicht still als Inventory-Posting-Setup-Konto verwendet werden.
+
+Der naechste enge Schritt ist `TARGET-048B`: In `playthru / UNIVERSAARL-DE` wird ausschliesslich geprueft, ob `1140` bereits als Sachkonto sichtbar ist, oder es wird genau dieses eine Konto als `Bilanz`/`Buchung` angelegt und nach erneutem Oeffnen bewiesen. Item Posting Groups, Inventory Posting Setup, Artikel, Belege, Preview Posting und Posting bleiben dabei gesperrt.
 
 ## Stand nach `TARGET-027`
 

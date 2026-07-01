@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "purpose": "select or block a SKR04-oriented inventory valuation account before inventory setup write",
+  "sourceBasis": [
+    {
+      "type": "universaarl-evidence",
+      "ref": "playwright/projects/fibu-book5/evidence/target-047-item-inventory-posting-setup-decision/decision.json",
+      "finding": "TARGET-047 blocks Inventory Posting Setup because no SKR04 inventory valuation account is released."
+    },
+    {
+      "type": "universaarl-evidence",
+      "ref": "playwright/projects/fibu-book5/evidence/target-026o-chart-of-accounts-visible-screenshot-recovery/TARGET-026O-result.json",
+      "finding": "The current visible starter accounts are 1200, 1406, 1800, 3300, 3806, 4400 and 5400; account 1140 is not proven visible."
+    },
+    {
+      "type": "registered-skr04-source",
+      "ref": "https://www.collmex.de/skr04.pdf",
+      "finding": "The SKR04 source lists 1140 under Vorräte / Fertige Erzeugnisse und Waren as Waren (Bestand)."
+    },
+    {
+      "type": "registered-skr04-source",
+      "ref": "https://www.collmex.de/skr04.pdf",
+      "finding": "The same SKR04 source separates Roh-, Hilfs- und Betriebsstoffe (Bestand) 1000-1039, Fertige Erzeugnisse 1110-1139 and Waren (Bestand) 1140-1179."
+    }
+  ],
+  "candidateDecision": {
+    "selectedCandidate": {
+      "accountNo": "1140",
+      "name": "Waren (Bestand)",
+      "accountFamily": "Vorräte / Warenbestand",
+      "balanceOrIncomeStatement": "Bilanz",
+      "bcAccountType": "Buchung",
+      "useFor": "Inventory Posting Setup Inventory Account candidate for trading goods / hardware item inventory valuation",
+      "status": "source-selected-not-created"
+    },
+    "whyNot5400": "5400 Wareneingang / Materialaufwand is an expense / purchase-material account in the Universaarl starter mapping and is not a safe inventory balance account.",
+    "whyNotLegacy14140": "14140 is legacy CRONUS/RM-DEMO laboratory evidence and must not become active Universaarl target truth.",
+    "whyNot1100Yet": "1100 is broader Fertige Erzeugnisse und Waren; 1140 is the narrower Waren (Bestand) candidate for the first hardware/trading-goods path."
+  },
+  "unlockDecision": {
+    "glAccountWriteUnlocked": false,
+    "glAccountWriteCandidate": "1140 Waren (Bestand)",
+    "itemPostingGroupWriteUnlocked": false,
+    "inventoryPostingSetupWriteUnlocked": false,
+    "itemWriteUnlocked": false,
+    "previewPostingUnlocked": false,
+    "postingUnlocked": false,
+    "nextCase": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE"
+  },
+  "nextStepDecision": {
+    "currentCase": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-047 proved that Inventory Posting Setup needs an inventory account and that no current Universaarl starter account is released for inventory valuation.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "An Item Posting Group write is still premature because the selected inventory account 1140 is not yet created/proven in UNIVERSAARL-DE.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+        "status": "ready-next",
+        "reason": "Smallest write gate: create or verify 1140 as Bilanz/Buchung before inventory setup."
+      },
+      {
+        "caseId": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Needs 1140 visible/reopened or consciously parked."
+      },
+      {
+        "caseId": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Needs Inventory Posting Group code and 1140 visible as inventory account."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C still waits for customer/item posting fields, VAT setup, general posting setup and inventory setup boundaries."
+      },
+      {
+        "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
+        "status": "ready-after-current",
+        "reason": "VAT remains a separate blocked foundation lane and should not be mixed with inventory account setup."
+      }
+    ],
+    "queueChangesMade": [
+      "Insert TARGET-048B before TARGET-049.",
+      "Keep TARGET-049, TARGET-050, O2C, Preview Posting and Posting locked."
+    ],
+    "selectedNextCase": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It turns the source-backed account candidate into a visible Universaarl G/L account before any inventory posting setup row uses it.",
+    "risksBeforeNextCase": [
+      "Do not claim SKR04 completeness or tax advisor approval.",
+      "Do not change Inventory Posting Setup in the same run.",
+      "Do not use 1140 for manufacturing finished goods without a separate goods/fertigwaren decision."
+    ],
+    "requiredPreparation": [
+      "Open Chart of Accounts in playthru / UNIVERSAARL-DE.",
+      "Check whether 1140 already exists.",
+      "If missing and case unlocks it, create only 1140 Waren (Bestand) as Bilanz/Buchung with reopen proof.",
+      "Do not touch Item Posting Groups, Inventory Posting Setup, items, documents, Preview Posting or Posting."
+    ]
+  },
+  "updatedAt": "2026-07-02T02:00:00.000Z"
+}

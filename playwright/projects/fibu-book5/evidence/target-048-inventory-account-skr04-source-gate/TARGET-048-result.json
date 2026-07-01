@@ -1,0 +1,166 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+  "source": "local-source-decision",
+  "resultStatus": "observed",
+  "runPlanId": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "url": "",
+  "page": "",
+  "bcRun": false,
+  "playwrightRun": false,
+  "actionsTaken": [
+    "Read TARGET-047 inventory posting setup decision.",
+    "Read Universaarl SKR04 minimal account mapping.",
+    "Read TARGET-026O visible chart checkpoint.",
+    "Checked registered SKR04 source for inventory / Waren (Bestand) account candidates.",
+    "Selected 1140 Waren (Bestand) as source-backed candidate for the first Universaarl hardware/trading-goods inventory valuation path.",
+    "Inserted TARGET-048B as controlled write gate before Item Posting Group or Inventory Posting Setup writes."
+  ],
+  "actionsNotTaken": [
+    "No Business Central execution.",
+    "No Playwright execution.",
+    "No company switch.",
+    "No G/L account created or changed.",
+    "No Item Posting Group created or changed.",
+    "No Inventory Posting Setup created or changed.",
+    "No item changed.",
+    "No document or draft.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No API shortcut."
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "screenshots": [],
+  "proved": [
+    "A registered SKR04 source lists 1140 Waren (Bestand) as a Warenbestand / inventory balance candidate.",
+    "The existing Universaarl chart checkpoint does not prove account 1140 visible.",
+    "5400 Wareneingang / Materialaufwand remains unsuitable as Inventory Posting Setup inventory account without a separate accounting decision.",
+    "Legacy RM-DEMO/CRONUS account 14140 is rejected as active Universaarl target truth.",
+    "The next practical step is a narrow Chart of Accounts write/verify gate for 1140 only."
+  ],
+  "notProved": [
+    "Account 1140 does not yet exist in UNIVERSAARL-DE as visible/reopened account.",
+    "No tax advisor approval or complete SKR04 chart is proven.",
+    "No Inventory Posting Group code is selected.",
+    "No Inventory Posting Setup row for SAAR-HL exists or is correct.",
+    "No item posting field value is saved on U-ITEM-HW100.",
+    "No inventory posting readiness, Item Ledger Entry, Value Entry, G/L Entry, O2C, P2P, Preview Posting or Posting is proven."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-048-inventory-account-skr04-source-gate/decision.json",
+    "playwright/projects/fibu-book5/evidence/target-048-inventory-account-skr04-source-gate/TARGET-048-result.json",
+    "playwright/projects/fibu-book5/evidence/target-048-inventory-account-skr04-source-gate/README.md",
+    ".agent/state/cases/target-048-inventory-account-skr04-source-gate.json",
+    ".agent/state/cases/target-048b-inventory-account-1140-controlled-write-gate.json",
+    ".agent/state/current.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/marathon_queue.json",
+    ".agent/state/coverage_state.json",
+    "playwright/projects/fibu-book5/UNIVERSAARL-SKR04-MINIMAL-ACCOUNT-MAPPING.md",
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
+    "playwright/projects/fibu-book5/BC-SOURCE-REGISTRY.md"
+  ],
+  "statePatch": {
+    "current": {
+      "updatedAt": "2026-07-02T02:00:00.000Z",
+      "activeArea": "universaarl-inventory-account-1140-controlled-write-gate",
+      "activeCase": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+      "active_case_file": ".agent/state/cases/target-048b-inventory-account-1140-controlled-write-gate.json",
+      "nextCase": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+      "nextStep": "Run TARGET-048B to create or verify 1140 Waren (Bestand) in the Chart of Accounts before inventory setup writes."
+    },
+    "activeCase": {
+      "status": "done",
+      "completedAt": "2026-07-02T02:00:00.000Z",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-048-inventory-account-skr04-source-gate/TARGET-048-result.json",
+      "nextCase": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE"
+    }
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-048-inventory-account-skr04-source-gate/decision.json",
+    "playwright/projects/fibu-book5/evidence/target-048-inventory-account-skr04-source-gate/TARGET-048-result.json",
+    "https://www.collmex.de/skr04.pdf"
+  ],
+  "warnings": [
+    "This is a source gate, not Business Central setup proof.",
+    "1140 is selected as candidate only; it still needs visible Universaarl account proof.",
+    "Do not use 1140 for finished goods/manufacturing without a later separate finished-goods decision."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "TARGET-048 selected 1140 Waren (Bestand) as source-backed candidate and narrowed the next step to a one-account write/verify gate.",
+  "nextStepDecision": {
+    "currentCase": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-047 proved that Inventory Posting Setup needs an inventory account and that no current Universaarl starter account is released for inventory valuation.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "An Item Posting Group write is still premature because the selected inventory account 1140 is not yet created/proven in UNIVERSAARL-DE.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+        "status": "ready-next",
+        "reason": "Smallest write gate: create or verify 1140 as Bilanz/Buchung before inventory setup."
+      },
+      {
+        "caseId": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Needs 1140 visible/reopened or consciously parked."
+      },
+      {
+        "caseId": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Needs Inventory Posting Group code and 1140 visible as inventory account."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C still waits for customer/item posting fields, VAT setup, general posting setup and inventory setup boundaries."
+      },
+      {
+        "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
+        "status": "ready-after-current",
+        "reason": "VAT remains a separate blocked foundation lane and should not be mixed with inventory account setup."
+      }
+    ],
+    "queueChangesMade": [
+      "Insert TARGET-048B before TARGET-049.",
+      "Keep TARGET-049, TARGET-050, O2C, Preview Posting and Posting locked."
+    ],
+    "selectedNextCase": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It turns the source-backed account candidate into a visible Universaarl G/L account before any inventory posting setup row uses it.",
+    "risksBeforeNextCase": [
+      "Do not claim SKR04 completeness or tax advisor approval.",
+      "Do not change Inventory Posting Setup in the same run.",
+      "Do not use 1140 for manufacturing finished goods without a separate goods/fertigwaren decision."
+    ],
+    "requiredPreparation": [
+      "Open Chart of Accounts in playthru / UNIVERSAARL-DE.",
+      "Check whether 1140 already exists.",
+      "If missing and case unlocks it, create only 1140 Waren (Bestand) as Bilanz/Buchung with reopen proof.",
+      "Do not touch Item Posting Groups, Inventory Posting Setup, items, documents, Preview Posting or Posting."
+    ]
+  },
+  "nextCase": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+  "updatedAt": "2026-07-02T02:00:00.000Z",
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:context",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/target-048-inventory-account-skr04-source-gate/TARGET-048-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/target-048-inventory-account-skr04-source-gate/TARGET-048-result.json",
+    "npm run check:encoding",
+    "git diff --check"
+  ]
+}

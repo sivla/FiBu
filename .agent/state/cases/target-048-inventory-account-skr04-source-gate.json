@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
-  "status": "ready-next",
+  "status": "done",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -64,45 +64,82 @@
   ],
   "nextStepDecision": {
     "currentCase": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
-    "lastEvidenceSummary": "TARGET-047 blocks Inventory Posting Setup because Location SAAR-HL alone is insufficient and no inventory account or inventory posting group code is selected.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "Inventory Posting Setup cannot be written before an inventory balance account is source-backed.",
+    "plannedNextCaseBeforeReview": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-047 proved that Inventory Posting Setup needs an inventory account and that no current Universaarl starter account is released for inventory valuation.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "An Item Posting Group write is still premature because the selected inventory account 1140 is not yet created/proven in UNIVERSAARL-DE.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+        "caseId": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
         "status": "ready-next",
-        "reason": "Smallest local decision before any write."
+        "reason": "Smallest write gate: create or verify 1140 as Bilanz/Buchung before inventory setup."
       },
       {
         "caseId": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
         "status": "needs-setup-first",
-        "reason": "Needs account/source decision first."
+        "reason": "Needs 1140 visible/reopened or consciously parked."
       },
       {
         "caseId": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
         "status": "needs-setup-first",
-        "reason": "Needs selected account plus group code."
+        "reason": "Needs Inventory Posting Group code and 1140 visible as inventory account."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Still blocked by posting/VAT/item field readiness."
+        "reason": "O2C still waits for customer/item posting fields, VAT setup, general posting setup and inventory setup boundaries."
+      },
+      {
+        "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
+        "status": "ready-after-current",
+        "reason": "VAT remains a separate blocked foundation lane and should not be mixed with inventory account setup."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
-    "whySelectedNextCaseIsBest": "It prevents a false inventory setup write using an expense account or legacy inventory account.",
+    "queueChangesMade": [
+      "Insert TARGET-048B before TARGET-049.",
+      "Keep TARGET-049, TARGET-050, O2C, Preview Posting and Posting locked."
+    ],
+    "selectedNextCase": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It turns the source-backed account candidate into a visible Universaarl G/L account before any inventory posting setup row uses it.",
     "risksBeforeNextCase": [
-      "Do not invent account numbers.",
-      "Do not use CRONUS/RM-DEMO as active target truth.",
-      "Do not claim SKR04 completeness or tax advisor approval."
+      "Do not claim SKR04 completeness or tax advisor approval.",
+      "Do not change Inventory Posting Setup in the same run.",
+      "Do not use 1140 for manufacturing finished goods without a separate goods/fertigwaren decision."
     ],
     "requiredPreparation": [
-      "Read TARGET-047 decision.",
-      "Check registered SKR04 sources.",
-      "Keep BC and Playwright locked unless a later case explicitly unlocks read-only evidence."
+      "Open Chart of Accounts in playthru / UNIVERSAARL-DE.",
+      "Check whether 1140 already exists.",
+      "If missing and case unlocks it, create only 1140 Waren (Bestand) as Bilanz/Buchung with reopen proof.",
+      "Do not touch Item Posting Groups, Inventory Posting Setup, items, documents, Preview Posting or Posting."
     ]
   },
-  "createdAt": "2026-07-02T01:15:00.000Z"
+  "createdAt": "2026-07-02T01:15:00.000Z",
+  "completedAt": "2026-07-02T02:00:00.000Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-048-inventory-account-skr04-source-gate/TARGET-048-result.json",
+  "decisionPath": "playwright/projects/fibu-book5/evidence/target-048-inventory-account-skr04-source-gate/decision.json",
+  "selectedCandidate": {
+    "accountNo": "1140",
+    "name": "Waren (Bestand)",
+    "accountFamily": "Vorräte / Warenbestand",
+    "balanceOrIncomeStatement": "Bilanz",
+    "bcAccountType": "Buchung",
+    "useFor": "Inventory Posting Setup Inventory Account candidate for trading goods / hardware item inventory valuation",
+    "status": "source-selected-not-created"
+  },
+  "proved": [
+    "A registered SKR04 source lists 1140 Waren (Bestand) as a Warenbestand / inventory balance candidate.",
+    "The existing Universaarl chart checkpoint does not prove account 1140 visible.",
+    "5400 Wareneingang / Materialaufwand remains unsuitable as Inventory Posting Setup inventory account without a separate accounting decision.",
+    "Legacy RM-DEMO/CRONUS account 14140 is rejected as active Universaarl target truth.",
+    "The next practical step is a narrow Chart of Accounts write/verify gate for 1140 only."
+  ],
+  "notProved": [
+    "Account 1140 does not yet exist in UNIVERSAARL-DE as visible/reopened account.",
+    "No tax advisor approval or complete SKR04 chart is proven.",
+    "No Inventory Posting Group code is selected.",
+    "No Inventory Posting Setup row for SAAR-HL exists or is correct.",
+    "No item posting field value is saved on U-ITEM-HW100.",
+    "No inventory posting readiness, Item Ledger Entry, Value Entry, G/L Entry, O2C, P2P, Preview Posting or Posting is proven."
+  ],
+  "nextCase": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE"
 }

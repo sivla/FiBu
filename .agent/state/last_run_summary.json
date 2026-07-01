@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
-  "caseId": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+  "runId": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+  "caseId": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
   "status": "observed",
-  "runType": "local-decision-universaarl-item-inventory-posting-setup",
+  "runType": "local-source-decision-universaarl-inventory-account-skr04",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "bcRun": false,
   "playwrightRun": false,
-  "summary": "TARGET-047 completed the no-write decision: inventory posting setup remains blocked until TARGET-048 selects or blocks a SKR04 inventory valuation account.",
+  "summary": "TARGET-048 selected 1140 Waren (Bestand) as source-backed SKR04-oriented inventory balance candidate. No BC write occurred; TARGET-048B must prove/create 1140 before inventory setup writes.",
   "changedInBC": false,
   "setupChanged": false,
   "setupChangeAttempted": false,
@@ -20,28 +20,29 @@
   "apiShortcut": false,
   "screenshots": [],
   "proved": [
-    "The current Universaarl starter account list does not contain a released inventory valuation account.",
-    "5400 Wareneingang / Materialaufwand is not safe as Inventory Posting Setup inventory account without a separate source-backed decision.",
-    "SAAR-HL can be treated only as a candidate location for the later Inventory Posting Setup key.",
-    "No Inventory Posting Group code is source-backed yet.",
-    "No item, setup, document, Preview Posting or Posting write is unlocked."
+    "A registered SKR04 source lists 1140 Waren (Bestand) as a Warenbestand / inventory balance candidate.",
+    "The existing Universaarl chart checkpoint does not prove account 1140 visible.",
+    "5400 Wareneingang / Materialaufwand remains unsuitable as Inventory Posting Setup inventory account without a separate accounting decision.",
+    "Legacy RM-DEMO/CRONUS account 14140 is rejected as active Universaarl target truth.",
+    "The next practical step is a narrow Chart of Accounts write/verify gate for 1140 only."
   ],
   "notProved": [
-    "No SKR04 inventory valuation account is selected.",
+    "Account 1140 does not yet exist in UNIVERSAARL-DE as visible/reopened account.",
+    "No tax advisor approval or complete SKR04 chart is proven.",
     "No Inventory Posting Group code is selected.",
     "No Inventory Posting Setup row for SAAR-HL exists or is correct.",
     "No item posting field value is saved on U-ITEM-HW100.",
     "No inventory posting readiness, Item Ledger Entry, Value Entry, G/L Entry, O2C, P2P, Preview Posting or Posting is proven."
   ],
   "warnings": [
-    "This is a decision gate, not setup proof.",
-    "Do not use 5400 as inventory balance account without TARGET-048.",
-    "Do not silently reuse WAREN as Inventory Posting Group just because it is a general product posting group candidate."
+    "This is a source gate, not Business Central setup proof.",
+    "1140 is selected as candidate only; it still needs visible Universaarl account proof.",
+    "Do not use 1140 for finished goods/manufacturing without a later separate finished-goods decision."
   ],
   "blockedBy": [],
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-047-item-inventory-posting-setup-decision/TARGET-047-result.json",
-  "nextCase": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
-  "nextStep": "Run TARGET-048 inventory account SKR04 source gate before any Item Posting Group or Inventory Posting Setup write.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-048-inventory-account-skr04-source-gate/TARGET-048-result.json",
+  "nextCase": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+  "nextStep": "Run TARGET-048B to create or verify 1140 Waren (Bestand) in the Chart of Accounts before inventory setup writes.",
   "nextStepDecisionCard": {
     "currentCase": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
     "plannedNextCaseBeforeReview": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
@@ -91,7 +92,7 @@
       "Keep customer/item field writes, O2C/P2P documents, Preview Posting and Posting locked."
     ]
   },
-  "updatedAt": "2026-07-02T01:15:00.000Z",
+  "updatedAt": "2026-07-02T02:00:00.000Z",
   "activeCase": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
   "authUnblock": {
     "status": "blocked-attended-login-required",
@@ -115,74 +116,75 @@
     "rawTenantOrAuthDetailsCommitted": false,
     "nextRequiredAction": "Complete attended Login/MFA in the auth browser until Business Central Role Center/Search/My Settings is visible; then run npm run auth:bc:check before rerunning D2F. If sign-in stalls or times out, run npm run auth:bc:diagnose for a short redacted diagnosis."
   },
-  "completedAt": "2026-07-02T01:15:00.000Z",
+  "completedAt": "2026-07-02T02:00:00.000Z",
   "nextStepDecision": {
-    "currentCase": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
-    "lastEvidenceSummary": "TARGET-046 mapped Inventory Posting Setup as requiring Location Code, Inventory Posting Group Code and Inventory Account; TARGET-026O proves no currently released inventory valuation account.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "The missing SKR04 inventory account is the smallest prerequisite before an inventory posting group or Inventory Posting Setup write.",
+    "currentCase": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-047 proved that Inventory Posting Setup needs an inventory account and that no current Universaarl starter account is released for inventory valuation.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "An Item Posting Group write is still premature because the selected inventory account 1140 is not yet created/proven in UNIVERSAARL-DE.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+        "caseId": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
         "status": "ready-next",
-        "reason": "Needed before any Inventory Posting Setup row can be written."
+        "reason": "Smallest write gate: create or verify 1140 as Bilanz/Buchung before inventory setup."
       },
       {
         "caseId": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
         "status": "needs-setup-first",
-        "reason": "Needs inventory group code and inventory account decision first."
+        "reason": "Needs 1140 visible/reopened or consciously parked."
       },
       {
         "caseId": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
         "status": "needs-setup-first",
-        "reason": "Needs group row plus inventory account before SAAR-HL combination write."
+        "reason": "Needs Inventory Posting Group code and 1140 visible as inventory account."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C still waits for item/customer posting fields, VAT setup and general posting setup boundaries."
+        "reason": "O2C still waits for customer/item posting fields, VAT setup, general posting setup and inventory setup boundaries."
       },
       {
         "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
         "status": "ready-after-current",
-        "reason": "VAT is separate from inventory posting and should not be mixed into this account-source gate."
+        "reason": "VAT remains a separate blocked foundation lane and should not be mixed with inventory account setup."
       }
     ],
     "queueChangesMade": [
-      "Keep TARGET-048 as the only open next queue item.",
+      "Insert TARGET-048B before TARGET-049.",
       "Keep TARGET-049, TARGET-050, O2C, Preview Posting and Posting locked."
     ],
-    "selectedNextCase": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
-    "whySelectedNextCaseIsBest": "It prevents using 5400 or any legacy/CRONUS inventory account as a silent inventory valuation account.",
+    "selectedNextCase": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It turns the source-backed account candidate into a visible Universaarl G/L account before any inventory posting setup row uses it.",
     "risksBeforeNextCase": [
-      "Do not invent a SKR04 inventory account.",
-      "Do not derive inventory valuation from CRONUS or RM-DEMO.",
-      "Do not write Item Posting Group or Inventory Posting Setup before a source-backed account is chosen."
+      "Do not claim SKR04 completeness or tax advisor approval.",
+      "Do not change Inventory Posting Setup in the same run.",
+      "Do not use 1140 for manufacturing finished goods without a separate goods/fertigwaren decision."
     ],
     "requiredPreparation": [
-      "Check existing source registry entries for SKR04 account sources.",
-      "Use an explicit source gate for inventory valuation account candidates.",
-      "Return with either a selected candidate account or a blocked decision."
+      "Open Chart of Accounts in playthru / UNIVERSAARL-DE.",
+      "Check whether 1140 already exists.",
+      "If missing and case unlocks it, create only 1140 Waren (Bestand) as Bilanz/Buchung with reopen proof.",
+      "Do not touch Item Posting Groups, Inventory Posting Setup, items, documents, Preview Posting or Posting."
     ]
   },
   "resultStatus": "observed",
   "actionsTaken": [
-    "Read TARGET-046 source map.",
+    "Read TARGET-047 inventory posting setup decision.",
     "Read Universaarl SKR04 minimal account mapping.",
-    "Read TARGET-026O chart checkpoint and account findings.",
-    "Compared the required Inventory Posting Setup fields with current Universaarl account foundation.",
-    "Selected TARGET-048 as the next narrow source gate."
+    "Read TARGET-026O visible chart checkpoint.",
+    "Checked registered SKR04 source for inventory / Waren (Bestand) account candidates.",
+    "Selected 1140 Waren (Bestand) as source-backed candidate for the first Universaarl hardware/trading-goods inventory valuation path.",
+    "Inserted TARGET-048B as controlled write gate before Item Posting Group or Inventory Posting Setup writes."
   ],
   "actionsNotTaken": [
     "No Business Central execution.",
     "No Playwright execution.",
     "No company switch.",
-    "No item edit.",
-    "No Item Posting Group edit.",
-    "No Inventory Posting Setup edit.",
-    "No setup change.",
-    "No master data change.",
+    "No G/L account created or changed.",
+    "No Item Posting Group created or changed.",
+    "No Inventory Posting Setup created or changed.",
+    "No item changed.",
     "No document or draft.",
     "No Preview Posting.",
     "No Posting.",

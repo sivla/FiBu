@@ -15,7 +15,7 @@
     "lookAndFeelFiltering": {
       "chapter": "Kapitel 2/3",
       "status": "planned",
-      "currentBlock": "target-046-source-map-shows-item-posting-group-and-inventory-posting-setup-target-values-still-needed",
+      "currentBlock": "target-048-selected-1140-inventory-account-candidate-but-bc-reopen-proof-needed",
       "latestPlanningCase": "TARGET-DATA-001-UNIVERSAARL-DATA-RICHNESS-PLAN",
       "planPath": "playwright/projects/fibu-book5/UNIVERSAARL-DATA-RICHNESS-PLAN.md",
       "bookDraft": "playwright/projects/fibu-book5/book-drafts/universaarl-look-and-feel-filtering-draft.md",
@@ -33,7 +33,7 @@
         "TARGET-045B: Customer Posting Group, Gen. Bus. Posting Group, VAT Bus. Posting Group, Item Posting Group, Gen. Prod. Posting Group, VAT Prod. Posting Group and Costing Method were not visible enough for a write.",
         "No Inventory Posting Group row, Inventory Posting Setup row, SKR04 inventory account, item posting readiness, Preview Posting or Posting is proven from TARGET-046."
       ],
-      "nextCase": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+      "nextCase": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
       "plannedCases": [
         "TARGET-DATA-001-UNIVERSAARL-DATA-RICHNESS-PLAN",
         "TARGET-DATA-009-FILTERING-READY-CHECK",
@@ -820,7 +820,7 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-07-02T01:15:00.000Z",
+  "updatedAt": "2026-07-02T02:00:00.000Z",
   "activeArea": "universaarl-master-data-write-decision",
   "currentBlock": "Foundation checkpoint needed before master data: General Posting Setup Page 314 and VAT matrix are parked; Dimensions starter set is visible but Global/Default Dimensions and posting effects are not proven.",
   "latestPracticalCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
@@ -5232,9 +5232,37 @@
     "summary": "Inventory account and Inventory Posting Group remain blocked pending SKR04 source gate; no write unlocked."
   },
   "currentFoundationBoundary": {
-    "caseId": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
-    "status": "observed-no-write-unlocked",
-    "boundary": "Inventory Posting Setup requires source-backed inventory account and inventory posting group code before write.",
-    "nextCase": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE"
+    "caseId": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+    "status": "observed-source-selected-not-bc-proven",
+    "boundary": "1140 Waren (Bestand) is selected as SKR04-oriented inventory balance candidate, but it is not yet visible/reopened in Business Central and no Inventory Posting Setup write is unlocked.",
+    "nextCase": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE"
+  },
+  "latestTarget048InventoryAccountSkr04SourceGate": {
+    "caseId": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+    "status": "observed",
+    "completedAt": "2026-07-02T02:00:00.000Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-048-inventory-account-skr04-source-gate/TARGET-048-result.json",
+    "decisionPath": "playwright/projects/fibu-book5/evidence/target-048-inventory-account-skr04-source-gate/decision.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "bcRun": false,
+    "playwrightRun": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "selectedAccountCandidate": {
+      "accountNo": "1140",
+      "name": "Waren (Bestand)",
+      "accountFamily": "Vorräte / Warenbestand",
+      "balanceOrIncomeStatement": "Bilanz",
+      "bcAccountType": "Buchung",
+      "useFor": "Inventory Posting Setup Inventory Account candidate for trading goods / hardware item inventory valuation",
+      "status": "source-selected-not-created"
+    },
+    "selectedNextCase": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+    "summary": "1140 Waren (Bestand) selected as source-backed SKR04-oriented inventory balance candidate; no Business Central account proof yet."
   }
 }

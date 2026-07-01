@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-02T01:15:00.000Z",
+  "updatedAt": "2026-07-02T02:00:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-inventory-account-skr04-source-gate",
-  "activeCase": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
-  "active_case_file": ".agent/state/cases/target-048-inventory-account-skr04-source-gate.json",
+  "activeArea": "universaarl-inventory-account-1140-controlled-write-gate",
+  "activeCase": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+  "active_case_file": ".agent/state/cases/target-048b-inventory-account-1140-controlled-write-gate.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -19,22 +19,24 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-target-047-decision",
-    "read-skr04-minimal-account-mapping",
-    "read-source-registry",
-    "check-existing-official-or-registered-skr04-source",
-    "write-inventory-account-source-decision",
-    "write-next-step-decision",
+    "open-business-central-playthru",
+    "confirm-company-universaarl-de",
+    "open-chart-of-accounts",
+    "check-account-1140-before",
+    "create-or-verify-account-1140-only",
+    "set-account-1140-name-waren-bestand",
+    "set-account-1140-balance-sheet",
+    "set-account-1140-posting-account",
+    "reopen-proof-account-1140",
+    "write-evidence-result",
     "update-state-and-queue"
   ],
   "forbiddenActions": [
     "leave-instance",
     "company-switch",
-    "open-business-central",
-    "run-playwright",
-    "enter-edit-mode",
-    "create-gl-account",
-    "change-gl-account",
+    "create-or-change-any-account-except-1140",
+    "change-vat-posting-setup",
+    "change-general-posting-setup",
     "create-item-posting-group",
     "change-item-posting-group",
     "create-inventory-posting-setup",
@@ -46,14 +48,15 @@
     "payment",
     "api-shortcut",
     "claim-inventory-posting-readiness",
-    "claim-german-compliance-final-proof",
+    "claim-skr04-complete",
+    "claim-tax-advisor-approved",
     "book-claim-without-evidence",
     "commit-secrets",
     "show-env-or-auth",
     "fake-evidence"
   ],
-  "nextCase": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
-  "nextStep": "Run TARGET-048 inventory account SKR04 source gate before any Item Posting Group or Inventory Posting Setup write.",
+  "nextCase": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+  "nextStep": "Run TARGET-048B to create or verify 1140 Waren (Bestand) in the Chart of Accounts before inventory setup writes.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -1358,7 +1361,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "universaarl-skr04-balance-sheet-accounts-fit",
-  "lastCompletedCase": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+  "lastCompletedCase": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -7286,9 +7289,13 @@
     "currentVisibleText": "1200 Forderungen aus Lieferungen und Leistungen Bilanz Buchung",
     "correctedReason": "SKR04-oriented Universaarl foundation must not create a new 1400 receivables account; 1400 belongs to the wrong mapping context for this target."
   },
-  "nextQueueItem": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
+  "nextQueueItem": {
+    "id": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+    "status": "pending",
+    "caseFile": ".agent/state/cases/target-048b-inventory-account-1140-controlled-write-gate.json"
+  },
   "openItems": [
-    "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY"
+    "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE"
   ],
   "latestCustomerReceivablesSourceCorrection": {
     "caseId": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
@@ -7928,11 +7935,11 @@
     "updatedAt": "2026-07-01T11:31:24.302Z"
   },
   "nextCases": [
-    "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
-    "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
-    "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
-    "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
-    "TARGET-038-O2C-PREFLIGHT"
+    "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+    "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+    "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+    "TARGET-038-O2C-PREFLIGHT",
+    "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING"
   ],
   "latestTarget036D2F": {
     "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
@@ -7973,53 +7980,54 @@
     "uiLearning": "BC Page 456 URL filters require quoted table/field syntax for table names with punctuation; the filtered U-VEND list shows checkbox columns, but the write locator still must be source-backed or assisted before toggling Manual Nos."
   },
   "nextStepDecision": {
-    "currentCase": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
-    "lastEvidenceSummary": "TARGET-046 mapped Inventory Posting Setup as requiring Location Code, Inventory Posting Group Code and Inventory Account; TARGET-026O proves no currently released inventory valuation account.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "The missing SKR04 inventory account is the smallest prerequisite before an inventory posting group or Inventory Posting Setup write.",
+    "currentCase": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-047 proved that Inventory Posting Setup needs an inventory account and that no current Universaarl starter account is released for inventory valuation.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "An Item Posting Group write is still premature because the selected inventory account 1140 is not yet created/proven in UNIVERSAARL-DE.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+        "caseId": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
         "status": "ready-next",
-        "reason": "Needed before any Inventory Posting Setup row can be written."
+        "reason": "Smallest write gate: create or verify 1140 as Bilanz/Buchung before inventory setup."
       },
       {
         "caseId": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
         "status": "needs-setup-first",
-        "reason": "Needs inventory group code and inventory account decision first."
+        "reason": "Needs 1140 visible/reopened or consciously parked."
       },
       {
         "caseId": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
         "status": "needs-setup-first",
-        "reason": "Needs group row plus inventory account before SAAR-HL combination write."
+        "reason": "Needs Inventory Posting Group code and 1140 visible as inventory account."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C still waits for item/customer posting fields, VAT setup and general posting setup boundaries."
+        "reason": "O2C still waits for customer/item posting fields, VAT setup, general posting setup and inventory setup boundaries."
       },
       {
         "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
         "status": "ready-after-current",
-        "reason": "VAT is separate from inventory posting and should not be mixed into this account-source gate."
+        "reason": "VAT remains a separate blocked foundation lane and should not be mixed with inventory account setup."
       }
     ],
     "queueChangesMade": [
-      "Keep TARGET-048 as the only open next queue item.",
+      "Insert TARGET-048B before TARGET-049.",
       "Keep TARGET-049, TARGET-050, O2C, Preview Posting and Posting locked."
     ],
-    "selectedNextCase": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
-    "whySelectedNextCaseIsBest": "It prevents using 5400 or any legacy/CRONUS inventory account as a silent inventory valuation account.",
+    "selectedNextCase": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It turns the source-backed account candidate into a visible Universaarl G/L account before any inventory posting setup row uses it.",
     "risksBeforeNextCase": [
-      "Do not invent a SKR04 inventory account.",
-      "Do not derive inventory valuation from CRONUS or RM-DEMO.",
-      "Do not write Item Posting Group or Inventory Posting Setup before a source-backed account is chosen."
+      "Do not claim SKR04 completeness or tax advisor approval.",
+      "Do not change Inventory Posting Setup in the same run.",
+      "Do not use 1140 for manufacturing finished goods without a separate goods/fertigwaren decision."
     ],
     "requiredPreparation": [
-      "Check existing source registry entries for SKR04 account sources.",
-      "Use an explicit source gate for inventory valuation account candidates.",
-      "Return with either a selected candidate account or a blocked decision."
+      "Open Chart of Accounts in playthru / UNIVERSAARL-DE.",
+      "Check whether 1140 already exists.",
+      "If missing and case unlocks it, create only 1140 Waren (Bestand) as Bilanz/Buchung with reopen proof.",
+      "Do not touch Item Posting Groups, Inventory Posting Setup, items, documents, Preview Posting or Posting."
     ]
   },
   "latestTarget037MasterdataFoundationCheckpoint": {
@@ -8392,7 +8400,7 @@
     "updatedAt": "2026-07-01T14:02:31.619Z"
   },
   "lastRunSummaryPath": "playwright/projects/fibu-book5/evidence/target-044d-customer-item-posting-fields-alternative-page-route/TARGET-044D-result.json",
-  "lastEvidenceSummary": "TARGET-047 decided that no Inventory Posting Setup write is safe yet: SAAR-HL is only a location candidate, no Inventory Posting Group code is source-backed, and no SKR04 inventory valuation account is released.",
+  "lastEvidenceSummary": "TARGET-048 selected 1140 Waren (Bestand) as source-backed inventory valuation candidate, but no BC write occurred; 1140 still needs visible Universaarl Reopen-Proof.",
   "authUnblock": {
     "status": "resolved-local-shell-validation-present",
     "lastCheckedAt": "2026-07-01T21:25:00.977Z",
@@ -8438,7 +8446,7 @@
       "apiShortcut": false
     }
   ],
-  "lastCompletedResultPath": "playwright/projects/fibu-book5/evidence/target-047-item-inventory-posting-setup-decision/TARGET-047-result.json",
+  "lastCompletedResultPath": "playwright/projects/fibu-book5/evidence/target-048-inventory-account-skr04-source-gate/TARGET-048-result.json",
   "latestTarget045B": {
     "caseId": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
     "resultPath": "playwright/projects/fibu-book5/evidence/target-045b-customer-item-posting-fields-readonly-route-retry/TARGET-045B-result.json",
@@ -8523,5 +8531,33 @@
     "apiShortcut": false,
     "selectedNextCase": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
     "summary": "Inventory account and Inventory Posting Group remain blocked pending SKR04 source gate; no write unlocked."
+  },
+  "latestTarget048InventoryAccountSkr04SourceGate": {
+    "caseId": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+    "status": "observed",
+    "completedAt": "2026-07-02T02:00:00.000Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-048-inventory-account-skr04-source-gate/TARGET-048-result.json",
+    "decisionPath": "playwright/projects/fibu-book5/evidence/target-048-inventory-account-skr04-source-gate/decision.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "bcRun": false,
+    "playwrightRun": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "selectedAccountCandidate": {
+      "accountNo": "1140",
+      "name": "Waren (Bestand)",
+      "accountFamily": "Vorräte / Warenbestand",
+      "balanceOrIncomeStatement": "Bilanz",
+      "bcAccountType": "Buchung",
+      "useFor": "Inventory Posting Setup Inventory Account candidate for trading goods / hardware item inventory valuation",
+      "status": "source-selected-not-created"
+    },
+    "selectedNextCase": "TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE",
+    "summary": "1140 Waren (Bestand) selected as source-backed SKR04-oriented inventory balance candidate; no Business Central account proof yet."
   }
 }
