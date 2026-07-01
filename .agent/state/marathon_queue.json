@@ -3439,7 +3439,7 @@
     {
       "id": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
       "order": 10166.6,
-      "status": "pending",
+      "status": "done",
       "priority": "high",
       "area": "universaarl-number-series",
       "category": "vendor-number-series-route-decision",
@@ -3454,7 +3454,20 @@
       "lookaheadStatus": "ready-next",
       "dependsOn": [
         "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION"
-      ]
+      ],
+      "resultStatus": "observed-parked",
+      "completedAt": "2026-07-01T21:52:18.265Z",
+      "result": "Observed-parked: U-VEND Manual Nos. is not proven active by Page Inspection; vendor creation remains blocked.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-036d2h-u-vend-manual-nos-park-or-pageinspection-decision/TARGET-036D2H-result.json",
+      "blockedBy": [
+        "Manual Nos active value was not proven by Page Inspection or reopen evidence."
+      ],
+      "nextCase": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+      "setupChanged": false,
+      "masterDataChanged": false,
+      "previewPosting": false,
+      "posted": false,
+      "apiShortcut": false
     },
     {
       "id": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
@@ -3772,6 +3785,22 @@
       "result": "Expanded standard page route observed for U-CUST-100 and U-ITEM-HW100; visible terms are insufficient for safe posting/VAT field writes.",
       "resultPath": "playwright/projects/fibu-book5/evidence/target-044d-customer-item-posting-fields-alternative-page-route/TARGET-044D-result.json",
       "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY"
+    },
+    {
+      "id": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+      "order": 10180,
+      "status": "pending",
+      "priority": "high",
+      "category": "customer-item-posting-field-fit-decision",
+      "expectedImpact": "avoid-blind-customer-item-field-write",
+      "sourceCase": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
+      "caseFile": ".agent/state/cases/target-045-customer-item-posting-fields-controlled-fit.json",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "sourceInstance": "playthru",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "lookaheadStatus": "ready-next",
+      "reason": "D2H parked U-VEND vendor numbering; TARGET-045 is the next no-write decision gate for customer/item posting field fit from TARGET-044D evidence."
     }
   ],
   "lastUpdated": "2026-07-01T21:42:45.647Z",
@@ -3884,62 +3913,76 @@
       ]
     }
   },
-  "updatedAt": "2026-07-01T21:42:45.647Z",
-  "lastCompletedCase": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
-  "nextCase": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
+  "updatedAt": "2026-07-01T21:53:29.266Z",
+  "lastCompletedCase": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
+  "nextCase": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-036D2E did not persist U-VEND Manual Nos after an unfiltered/cell-coordinate route.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "D2F blocked before Business Central open by auth shell-validation preflight: shell-validation-meta-missing-or-invalid. Complete attended Login/MFA until the Business Central shell is visible, then require npm run auth:bc:check before rerunning D2F.",
+    "currentCase": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
+    "lastEvidenceSummary": "D2G proved source basis and visible U-VEND checkbox columns, but no unique Playwright Manual Nos checkbox candidate.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Page Inspection did not prove Manual Nos active for U-VEND, so first-vendor manual-numbering stays parked.",
     "lookaheadReviewed": [
-      {
-        "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-        "status": "blocked",
-        "reason": "Stored auth must have shell-validation metadata; complete attended Login/MFA until the BC shell is visible, then require npm run auth:bc:check before retry. Use npm run auth:bc:diagnose if sign-in stalls or times out."
-      },
       {
         "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
         "status": "blocked",
-        "reason": "Vendor creation remains blocked until U-VEND Manual Nos is proven active."
+        "reason": "Manual Nos is not proven active for U-VEND after Page Inspection."
+      },
+      {
+        "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+        "status": "obsolete",
+        "reason": "Already blocked and superseded by later 026O/028/029/034/039 foundation evidence."
       },
       {
         "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
-        "status": "needs-ui-discovery-first",
-        "reason": "Still unrelated to the active vendor-numbering blocker."
+        "status": "ready-next",
+        "reason": "Best current no-write route after U-VEND is parked: decide customer/item posting field fit from 044D evidence instead of creating a vendor."
+      },
+      {
+        "caseId": "TARGET-027D-VAT-POSTING-SETUP",
+        "status": "blocked",
+        "reason": "VAT matrix was parked by later D24 evidence and must not be mixed into number-series recovery."
+      },
+      {
+        "caseId": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "Already done; item retry must wait for remaining Foundation checkpoint decisions."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C must wait for master data and posting/VAT readiness."
+        "reason": "O2C needs customer/item/posting/VAT readiness."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-    "whySelectedNextCaseIsBest": "The next useful step is attended BC authentication recovery, followed by a green npm run auth:bc:check, before rerunning the same narrow D2F route.",
+    "queueChangesMade": [
+      "Selected TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT after D2H."
+    ],
+    "selectedNextCase": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+    "whySelectedNextCaseIsBest": "U-VEND manual vendor numbering is parked; the fastest useful next step is a no-write controlled-fit decision for customer/item posting fields based on existing 044D evidence.",
     "risksBeforeNextCase": [
-      "Do not create vendor/customer/item records until U-VEND Manual Nos is proven active."
+      "Do not create a vendor while U-VEND Manual Nos remains unproven.",
+      "Do not repeat broad checkbox or coordinate routes.",
+      "Keep VAT, posting, documents and API locked."
     ],
     "requiredPreparation": [
-      "Run npm run auth:bc attended until the Business Central shell is visible, then require npm run auth:bc:check to pass before rerunning D2F. If sign-in stalls or times out, run npm run auth:bc:diagnose for a short redacted diagnosis."
+      "Read TARGET-044D and prepare exact source-backed customer/item posting-field values before any later write gate."
     ]
   },
-  "nextStep": "no-write-until-dom-or-page-inspection-route-exposes-a-unique-u-vend-manual-nos-checkbox",
+  "nextStep": "U-VEND manual vendor numbering is parked; the fastest useful next step is a no-write controlled-fit decision for customer/item posting fields based on existing 044D evidence.",
   "openItems": [
-    "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION"
+    "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT"
   ],
   "nextQueueItem": {
-    "id": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
+    "id": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
     "status": "pending",
-    "caseFile": ".agent/state/cases/target-036d2h-u-vend-manual-nos-park-or-pageinspection-decision.json"
+    "caseFile": ".agent/state/cases/target-045-customer-item-posting-fields-controlled-fit.json"
   },
   "nextCases": [
-    "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
-    "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-    "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
     "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
-    "TARGET-038-O2C-PREFLIGHT"
+    "TARGET-045A-CUSTOMER-ITEM-FIELD-SOURCE-MAPPING",
+    "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
+    "TARGET-038-O2C-PREFLIGHT",
+    "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE"
   ],
   "nextStepDecision": {
     "currentCase": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",

@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
+  "source": "playwright-universaarl-u-vend-manual-nos-pageinspection-park-decision",
+  "resultStatus": "observed-parked",
+  "runPlanId": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION-PLAN",
+  "selectedTaskClass": "monkey_work",
+  "selectedModelClass": "gpt-4-mini-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=456&company=UNIVERSAARL-DE&filter=%27No.+Series%27.Code+IS+%27U-VEND%27",
+  "page": "No. Series / Nummernserie",
+  "pageId": 456,
+  "table": "No. Series",
+  "tableId": 308,
+  "actionsTaken": [
+    "Opened Page 456 Number Series with a U-VEND-only filter in playthru / UNIVERSAARL-DE.",
+    "Captured baseline screenshot QA.",
+    "Attempted Ctrl+Alt+F1 Page Inspection read-only.",
+    "Parked U-VEND manual vendor numbering for now."
+  ],
+  "actionsNotTaken": [
+    "No company switch.",
+    "No customer, vendor or item card was created.",
+    "No sales or purchase document draft was created.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No payment.",
+    "No API shortcut.",
+    "No setup field was changed.",
+    "No number-series lines were changed.",
+    "No Standard Nos. checkbox was toggled.",
+    "No Manual Nos. checkbox was toggled."
+  ],
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/target-036d2h-010-u-vend-baseline.png",
+    "playwright/projects/fibu-book5/img/target-036d2h-020-page-inspection-attempt.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-036d2h-u-vend-manual-nos-park-or-pageinspection-decision/TARGET-036D2H-result.json",
+    "playwright/projects/fibu-book5/evidence/target-036d2h-u-vend-manual-nos-park-or-pageinspection-decision/target-036d2h-010-u-vend-baseline.snapshot.json",
+    "playwright/projects/fibu-book5/evidence/target-036d2h-u-vend-manual-nos-park-or-pageinspection-decision/target-036d2h-020-page-inspection-attempt.snapshot.json"
+  ],
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Page 456 was opened with a U-VEND-only filter.",
+    "Page Inspection exposed technical No. Series / Manual Nos context.",
+    "U-VEND manual vendor numbering is consciously parked instead of repeating failed checkbox routes.",
+    "No setup, master data, document, Preview Posting, Posting, payment, API shortcut or company switch occurred."
+  ],
+  "notProved": [
+    "U-VEND Manual Nos. is not proven active after reopen.",
+    "No vendor exists from this case.",
+    "No automatic numbering behavior, posting group, VAT, ledger entry, Preview Posting or Posting behavior is proven."
+  ],
+  "warnings": [
+    "Page Inspection is technical/debug context, not a beginner-facing final screenshot.",
+    "A visible unchecked checkbox column is not a safe Playwright write route."
+  ],
+  "blockedBy": [
+    "Manual Nos active value was not proven by Page Inspection or reopen evidence."
+  ],
+  "flags": {
+    "noCompanySwitch": true,
+    "noMasterDataChange": true,
+    "noDraft": true,
+    "noPreview": true,
+    "noPost": true,
+    "noPayment": true,
+    "noApiShortcut": true,
+    "noSetupChange": true
+  },
+  "pageInspection": {
+    "attempted": true,
+    "opened": true,
+    "fieldSignals": {
+      "page456": true,
+      "table308": true,
+      "manualNosField": true,
+      "defaultNosField": true,
+      "uVendValue": true,
+      "manualNosTrue": false
+    }
+  },
+  "snapshotRefs": [
+    "playwright/projects/fibu-book5/evidence/target-036d2h-u-vend-manual-nos-park-or-pageinspection-decision/target-036d2h-010-u-vend-baseline.snapshot.json",
+    "playwright/projects/fibu-book5/evidence/target-036d2h-u-vend-manual-nos-park-or-pageinspection-decision/target-036d2h-020-page-inspection-attempt.snapshot.json"
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
+    "lastEvidenceSummary": "D2G proved source basis and visible U-VEND checkbox columns, but no unique Playwright Manual Nos checkbox candidate.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Page Inspection did not prove Manual Nos active for U-VEND, so first-vendor manual-numbering stays parked.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Manual Nos is not proven active for U-VEND after Page Inspection."
+      },
+      {
+        "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+        "status": "obsolete",
+        "reason": "Already blocked and superseded by later 026O/028/029/034/039 foundation evidence."
+      },
+      {
+        "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+        "status": "ready-next",
+        "reason": "Best current no-write route after U-VEND is parked: decide customer/item posting field fit from 044D evidence instead of creating a vendor."
+      },
+      {
+        "caseId": "TARGET-027D-VAT-POSTING-SETUP",
+        "status": "blocked",
+        "reason": "VAT matrix was parked by later D24 evidence and must not be mixed into number-series recovery."
+      },
+      {
+        "caseId": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "Already done; item retry must wait for remaining Foundation checkpoint decisions."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C needs customer/item/posting/VAT readiness."
+      }
+    ],
+    "queueChangesMade": [
+      "Selected TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT after D2H."
+    ],
+    "selectedNextCase": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+    "whySelectedNextCaseIsBest": "U-VEND manual vendor numbering is parked; the fastest useful next step is a no-write controlled-fit decision for customer/item posting fields based on existing 044D evidence.",
+    "risksBeforeNextCase": [
+      "Do not create a vendor while U-VEND Manual Nos remains unproven.",
+      "Do not repeat broad checkbox or coordinate routes.",
+      "Keep VAT, posting, documents and API locked."
+    ],
+    "requiredPreparation": [
+      "Read TARGET-044D and prepare exact source-backed customer/item posting-field values before any later write gate."
+    ]
+  },
+  "nextCase": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-036d2h-u-vend-manual-nos-park-or-pageinspection-decision/TARGET-036D2H-result.json",
+    "playwright/projects/fibu-book5/evidence/target-036d2h-u-vend-manual-nos-park-or-pageinspection-decision/README.md",
+    "playwright/projects/fibu-book5/evidence/target-036d2h-u-vend-manual-nos-park-or-pageinspection-decision/*.snapshot.json",
+    "playwright/projects/fibu-book5/evidence/target-036d2h-u-vend-manual-nos-park-or-pageinspection-decision/*.screenshot.json",
+    "playwright/projects/fibu-book5/img/target-036d2h-*.png"
+  ],
+  "timestamp": "2026-07-01T21:52:18.265Z",
+  "safeToFinalizeState": true,
+  "requiresReview": false,
+  "statePatch": {
+    "current": {
+      "activeArea": "universaarl-customer-item-posting-field-fit",
+      "activeCase": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+      "active_case_file": ".agent/state/cases/target-045-customer-item-posting-fields-controlled-fit.json",
+      "lastCompletedCase": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
+      "nextCase": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+      "nextStep": "U-VEND manual vendor numbering is parked; the fastest useful next step is a no-write controlled-fit decision for customer/item posting fields based on existing 044D evidence."
+    },
+    "activeCase": {
+      "status": "observed-parked",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-036d2h-u-vend-manual-nos-park-or-pageinspection-decision/TARGET-036D2H-result.json",
+      "nextCase": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT"
+    },
+    "lastRunSummary": {
+      "runId": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
+      "completedAt": "2026-07-01T21:52:18.265Z",
+      "status": "observed-parked",
+      "instance": "playthru",
+      "company": "UNIVERSAARL-DE",
+      "bcRun": true,
+      "setupChanged": false,
+      "masterDataChanged": false,
+      "draftCreated": false,
+      "previewPosting": false,
+      "posted": false,
+      "apiShortcut": false,
+      "nextCase": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+      "summary": "D2H parked U-VEND manual vendor numbering after Page Inspection did not prove Manual Nos active."
+    }
+  },
+  "reason": "U-VEND manual vendor numbering parked; move to Foundation checkpoint instead of repeating checkbox routes."
+}

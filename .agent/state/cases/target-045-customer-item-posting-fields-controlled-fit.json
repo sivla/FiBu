@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+  "status": "ready-next",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Customer and item posting fields controlled fit decision",
+  "purpose": "Decide the next safe customer/item posting-field route after TARGET-044D exposed some standard card context but did not prove enough visible field/value truth for a write.",
+  "sourceCases": [
+    "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE",
+    "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": false,
+  "taskClass": "judge_work",
+  "allowedActions": [
+    "read-target-044d-result",
+    "read-posting-group-and-vat-boundary-results",
+    "map-exact-customer-item-fields-needed-before-o2c",
+    "classify-field-fit-as-ready-or-blocked",
+    "write-result-json-and-next-step-decision",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "open-business-central-for-write",
+    "change-customer",
+    "change-item",
+    "change-posting-groups",
+    "change-general-posting-setup",
+    "change-vat-posting-setup",
+    "change-inventory-posting-setup",
+    "create-customer",
+    "create-vendor",
+    "create-item",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-o2c-readiness-from-field-visibility",
+    "claim-german-vat-final-proof",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-044D exists and states readyForControlledFit=false.",
+    "TARGET-036D2H has parked vendor numbering or selected a separate vendor gate.",
+    "U-CUST-100 and U-ITEM-HW100 exist as basic records, but posting/VAT/O2C readiness is not proven."
+  ],
+  "acceptanceCriteria": [
+    "No Business Central or Playwright execution occurs in this decision case.",
+    "The decision names exact customer/item fields that would need values before O2C/P2P.",
+    "The decision separates field visibility from field correctness.",
+    "The next case is either a materially new read-only UI/source route or a small controlled write gate with exact field/value scope.",
+    "Preview Posting, Posting and documents remain locked."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+    "plannedNextCaseBeforeReview": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+    "lastEvidenceSummary": "TARGET-044D observed U-CUST-100 and U-ITEM-HW100 via expanded standard pages, but did not expose enough posting/VAT field truth for a write. TARGET-036D2H is expected to park vendor numbering if Manual Nos remains unproven.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A no-write fit decision is the smallest safe next step before any customer/item posting field write, O2C draft, Preview Posting or Posting.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-045A-CUSTOMER-ITEM-FIELD-SOURCE-MAPPING",
+        "status": "ready-after-current",
+        "reason": "If exact field/value targets are still missing, a source mapping case is the safest follow-up."
+      },
+      {
+        "caseId": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
+        "status": "needs-source-check-first",
+        "reason": "Only useful if TARGET-045 identifies exact missing fields and a materially different route from 044C/044D."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C remains blocked until customer/item posting fields, VAT and expected posting traces are explicit."
+      },
+      {
+        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Vendor creation remains blocked if U-VEND Manual Nos is parked by D2H."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+    "whySelectedNextCaseIsBest": "It prevents another blind customer/item field write and keeps documents, Preview Posting and Posting locked.",
+    "risksBeforeNextCase": [
+      "Do not treat card field visibility as posting readiness.",
+      "Do not create or edit any master data in this decision case.",
+      "Do not revive U-VEND vendor creation while Manual Nos is parked."
+    ],
+    "requiredPreparation": [
+      "Read TARGET-044D result and screenshots.",
+      "Read posting-group and VAT park boundaries.",
+      "List exact field/value gaps before selecting any write route."
+    ]
+  },
+  "createdAt": "2026-07-01T22:00:00.000+02:00"
+}

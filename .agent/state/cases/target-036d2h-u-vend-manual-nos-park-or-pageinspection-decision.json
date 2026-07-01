@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
-  "status": "ready-next",
+  "status": "done",
   "area": "universaarl-vendor-number-series-route-recovery",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -75,38 +75,92 @@
   "nextStepDecision": {
     "currentCase": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
     "plannedNextCaseBeforeReview": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
-    "lastEvidenceSummary": "D2G proved source basis for Manual Nos but blocked because no unique U-VEND Manual Nos checkbox candidate was exposed read-only.",
+    "lastEvidenceSummary": "D2G proved source basis and visible U-VEND checkbox columns, but no unique Playwright Manual Nos checkbox candidate.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "This case prevents another blind write attempt and forces either technical field proof or an explicit park decision.",
+    "reason": "Page Inspection did not prove Manual Nos active for U-VEND, so first-vendor manual-numbering stays parked.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
         "status": "blocked",
-        "reason": "Vendor creation remains blocked until U-VEND Manual Nos is active after reopen."
+        "reason": "Manual Nos is not proven active for U-VEND after Page Inspection."
       },
       {
         "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
-        "status": "ready-after-current",
-        "reason": "Useful fallback if U-VEND manual-numbering is parked."
+        "status": "obsolete",
+        "reason": "Already blocked and superseded by later 026O/028/029/034/039 foundation evidence."
+      },
+      {
+        "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+        "status": "ready-next",
+        "reason": "Best current no-write route after U-VEND is parked: decide customer/item posting field fit from 044D evidence instead of creating a vendor."
       },
       {
         "caseId": "TARGET-027D-VAT-POSTING-SETUP",
         "status": "blocked",
-        "reason": "VAT matrix remains separate and must not be mixed into number-series recovery."
+        "reason": "VAT matrix was parked by later D24 evidence and must not be mixed into number-series recovery."
+      },
+      {
+        "caseId": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "Already done; item retry must wait for remaining Foundation checkpoint decisions."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C needs customer/item/posting/VAT readiness."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
-    "whySelectedNextCaseIsBest": "It resolves whether U-VEND manual numbering should continue or be parked before any vendor retry.",
+    "queueChangesMade": [
+      "Selected TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT after D2H."
+    ],
+    "selectedNextCase": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+    "whySelectedNextCaseIsBest": "U-VEND manual vendor numbering is parked; the fastest useful next step is a no-write controlled-fit decision for customer/item posting fields based on existing 044D evidence.",
     "risksBeforeNextCase": [
-      "Wrong checkbox toggle",
-      "False vendor-readiness claim",
-      "Unnecessary time spent on repeated BC grid routes"
+      "Do not create a vendor while U-VEND Manual Nos remains unproven.",
+      "Do not repeat broad checkbox or coordinate routes.",
+      "Keep VAT, posting, documents and API locked."
     ],
     "requiredPreparation": [
-      "Use D2G diagnostics and screenshots.",
-      "Keep all BC actions read-only."
+      "Read TARGET-044D and prepare exact source-backed customer/item posting-field values before any later write gate."
     ]
   },
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-036d2h-u-vend-manual-nos-park-or-pageinspection-decision/TARGET-036D2H-result.json"
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-036d2h-u-vend-manual-nos-park-or-pageinspection-decision/TARGET-036D2H-result.json",
+  "resultStatus": "observed-parked",
+  "completedAt": "2026-07-01T21:52:18.265Z",
+  "updatedAt": "2026-07-01T21:53:29.266Z",
+  "result": "Observed-parked: Page Inspection exposed No. Series Page 456 / Table 308 and Manual Nos. field, but U-VEND Manual Nos is Nein/not proven active; vendor numbering stays parked.",
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Page 456 was opened with a U-VEND-only filter.",
+    "Page Inspection exposed technical No. Series / Manual Nos context.",
+    "U-VEND manual vendor numbering is consciously parked instead of repeating failed checkbox routes.",
+    "No setup, master data, document, Preview Posting, Posting, payment, API shortcut or company switch occurred."
+  ],
+  "notProved": [
+    "U-VEND Manual Nos. is not proven active after reopen.",
+    "No vendor exists from this case.",
+    "No automatic numbering behavior, posting group, VAT, ledger entry, Preview Posting or Posting behavior is proven."
+  ],
+  "blockedBy": [
+    "Manual Nos active value was not proven by Page Inspection or reopen evidence."
+  ],
+  "warnings": [
+    "Page Inspection is technical/debug context, not a beginner-facing final screenshot.",
+    "A visible unchecked checkbox column is not a safe Playwright write route."
+  ],
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/target-036d2h-010-u-vend-baseline.png",
+    "playwright/projects/fibu-book5/img/target-036d2h-020-page-inspection-attempt.png"
+  ],
+  "nextCase": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+  "flags": {
+    "noCompanySwitch": true,
+    "noMasterDataChange": true,
+    "noDraft": true,
+    "noPreview": true,
+    "noPost": true,
+    "noPayment": true,
+    "noApiShortcut": true,
+    "noSetupChange": true
+  }
 }

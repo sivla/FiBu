@@ -28,9 +28,9 @@ Zero-Open-Questions-Regel: Jeder Bereich in diesem Katalog muss seine offenen Ob
 
 | Prioritaet | Case | Warum |
 | --- | --- | --- |
-| 1 | `TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION` | Aktueller naechster Schritt: TARGET-036D2F erreicht Business Central wieder, beweist Page 456 im U-VEND-Filter und stoppt ohne Setupaenderung. Jetzt braucht es eine source-backed oder assistierte Route; keine Stammdaten- oder Belegarbeit davor. |
-| 2 | `TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE` | Folgefall nur, wenn `U-VEND` `Manuelle Anz. / Manual Nos.` nach Reopen sichtbar aktiv ist. |
-| 3 | `TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT` | Bleibt gesperrt: TARGET-044D fand Standardseiten-Signale, aber keine sichere Wert-/Schreibroute fuer Debitoren-/Artikel-Postingfelder. |
+| 1 | `TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT` | Aktueller naechster Schritt: TARGET-036D2H parkt Vendor-Nummerierung, weil Page Inspection `Manual Nos. = Nein` fuer `U-VEND` zeigt. TARGET-045 ist deshalb ein no-write Fit-/Entscheidungsgate fuer Debitoren-/Artikel-Postingfelder auf Basis von TARGET-044D. |
+| 2 | `TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE` | Bleibt gesperrt, solange `U-VEND` `Manuelle Anz. / Manual Nos.` nicht aktiv nachgewiesen ist. |
+| 3 | `TARGET-045A-CUSTOMER-ITEM-FIELD-SOURCE-MAPPING` | Folgefall, falls TARGET-045 noch keine exakten Feld-/Werteziele fuer einen spaeteren kontrollierten Schreibfall freigibt. |
 | 4 | `TARGET-037-FIRST-PREVIEW-GATE` | Bleibt gesperrt, bis Stammdaten vorhanden sind und die offenen Posting-/VAT-Grenzen bewusst akzeptiert oder geloest sind. |
 | 5 | `TARGET-038-FIRST-POSTING-GATE` | Bleibt gesperrt, bis eine Vorschau mit erwarteter Postenspur vorliegt. |
 | 6 | `PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING` | Quellen bleiben als Unterstuetzung aktiv, ersetzen aber keine Universaarl-UI- und Posting-Evidence. |

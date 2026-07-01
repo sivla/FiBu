@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+  "runId": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
   "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-  "status": "blocked",
+  "status": "observed-parked",
   "runType": "playwright-universaarl-u-vend-manual-nos-route-recovery",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "bcRun": true,
   "playwrightRun": true,
-  "summary": "D2G proved source basis but no unique U-VEND Manual Nos checkbox candidate; next is park/Page Inspection decision.",
+  "summary": "D2H parked U-VEND manual vendor numbering: Page Inspection exposed Manual Nos., but value is not proven active; no setup/master data/document/preview/post/API occurred.",
   "changedInBC": false,
   "setupChanged": false,
   "setupChangeAttempted": false,
@@ -27,8 +27,8 @@
   "proved": [
     "Business Central stayed in playthru / UNIVERSAARL-DE.",
     "Page 456 was opened with a U-VEND-only filter.",
-    "Microsoft source basis supports Manual Nos. as a real No. Series checkbox for manual numbers.",
-    "Read-only diagnostics did not justify a setup write.",
+    "Page Inspection exposed technical No. Series / Manual Nos context.",
+    "U-VEND manual vendor numbering is consciously parked instead of repeating failed checkbox routes.",
     "No setup, master data, document, Preview Posting, Posting, payment, API shortcut or company switch occurred."
   ],
   "notProved": [
@@ -38,11 +38,11 @@
   ],
   "warnings": [],
   "blockedBy": [
-    "Read-only DOM diagnostics did not expose a unique U-VEND Manual Nos checkbox candidate."
+    "Manual Nos active value was not proven by Page Inspection or reopen evidence."
   ],
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-036d2g-u-vend-manual-nos-source-or-assisted-route-decision/TARGET-036D2G-result.json",
-  "nextCase": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
-  "nextStep": "It avoids repeating the failed list/cell routes and forces a source-backed route decision.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-036d2h-u-vend-manual-nos-park-or-pageinspection-decision/TARGET-036D2H-result.json",
+  "nextCase": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+  "nextStep": "U-VEND manual vendor numbering is parked; the fastest useful next step is a no-write controlled-fit decision for customer/item posting fields based on existing 044D evidence.",
   "nextStepDecisionCard": {
     "currentCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
     "plannedNextCaseBeforeReview": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
@@ -89,7 +89,7 @@
     ]
   },
   "updatedAt": "2026-07-01T21:25:00.977Z",
-  "activeCase": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+  "activeCase": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
   "authUnblock": {
     "status": "blocked-attended-login-required",
     "lastAttemptAt": "2026-07-01T18:45:25.720Z",
@@ -112,53 +112,58 @@
     "rawTenantOrAuthDetailsCommitted": false,
     "nextRequiredAction": "Complete attended Login/MFA in the auth browser until Business Central Role Center/Search/My Settings is visible; then run npm run auth:bc:check before rerunning D2F. If sign-in stalls or times out, run npm run auth:bc:diagnose for a short redacted diagnosis."
   },
-  "completedAt": "2026-07-01T21:42:45.647Z",
+  "completedAt": "2026-07-01T21:52:18.265Z",
   "nextStepDecision": {
-    "currentCase": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
-    "lastEvidenceSummary": "TARGET-036D2F reached playthru / UNIVERSAARL-DE and filtered U-VEND, but the Manual Nos checkbox locator returned zero row/header/candidate matches.",
+    "currentCase": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
+    "lastEvidenceSummary": "D2G proved source basis and visible U-VEND checkbox columns, but no unique Playwright Manual Nos checkbox candidate.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "D2G is read-only and addresses the exact D2F blocker by combining Microsoft source basis with DOM/screenshot route diagnostics.",
+    "reason": "Page Inspection did not prove Manual Nos active for U-VEND, so first-vendor manual-numbering stays parked.",
     "lookaheadReviewed": [
-      {
-        "caseId": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
-        "status": "ready-next",
-        "reason": "No unique candidate exists; the next step must park or use Page Inspection, not write."
-      },
       {
         "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
         "status": "blocked",
-        "reason": "First vendor must wait until U-VEND Manual Nos is proven active after reopen."
+        "reason": "Manual Nos is not proven active for U-VEND after Page Inspection."
       },
       {
         "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
-        "status": "ready-after-current",
-        "reason": "Useful as a cross-check, but SKR04 starter-account evidence is already recorded; it does not unblock U-VEND directly."
+        "status": "obsolete",
+        "reason": "Already blocked and superseded by later 026O/028/029/034/039 foundation evidence."
+      },
+      {
+        "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+        "status": "ready-next",
+        "reason": "Best current no-write route after U-VEND is parked: decide customer/item posting field fit from 044D evidence instead of creating a vendor."
       },
       {
         "caseId": "TARGET-027D-VAT-POSTING-SETUP",
         "status": "blocked",
-        "reason": "VAT matrix remains a separate setup blocker and must not be mixed into vendor-numbering route recovery."
+        "reason": "VAT matrix was parked by later D24 evidence and must not be mixed into number-series recovery."
+      },
+      {
+        "caseId": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "Already done; item retry must wait for remaining Foundation checkpoint decisions."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C requires customer/item/posting/VAT readiness and must not jump ahead of Foundation blockers."
+        "reason": "O2C needs customer/item/posting/VAT readiness."
       }
     ],
     "queueChangesMade": [
-      "Selected TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION after D2G."
+      "Selected TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT after D2H."
     ],
-    "selectedNextCase": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
-    "whySelectedNextCaseIsBest": "no-write-until-dom-or-page-inspection-route-exposes-a-unique-u-vend-manual-nos-checkbox",
+    "selectedNextCase": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+    "whySelectedNextCaseIsBest": "U-VEND manual vendor numbering is parked; the fastest useful next step is a no-write controlled-fit decision for customer/item posting fields based on existing 044D evidence.",
     "risksBeforeNextCase": [
-      "Do not create a vendor before U-VEND Manual Nos is proven active after reopen.",
-      "Do not toggle any checkbox unless the next case proves row, header and candidate identity.",
-      "Do not use API shortcuts."
+      "Do not create a vendor while U-VEND Manual Nos remains unproven.",
+      "Do not repeat broad checkbox or coordinate routes.",
+      "Keep VAT, posting, documents and API locked."
     ],
     "requiredPreparation": [
-      "Use D2G DOM diagnostics and screenshot QA to repair the row/checkbox locator.",
-      "Keep the write case limited to U-VEND Manual Nos only, with reopen proof."
+      "Read TARGET-044D and prepare exact source-backed customer/item posting-field values before any later write gate."
     ]
-  }
+  },
+  "resultStatus": "observed-parked"
 }
