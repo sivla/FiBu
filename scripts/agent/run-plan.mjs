@@ -47,6 +47,10 @@ function runAuthCheck() {
   }
 }
 
+const authUnblockStep =
+  'Run npm run auth:bc and complete Login/MFA until the Business Central shell is visible. ' +
+  'If it stays on Microsoft sign-in or times out, run npm run auth:bc:diagnose for a short redacted diagnosis.';
+
 function step(type, fields) {
   return {
     type,
@@ -107,7 +111,7 @@ if (needsBusinessCentralAuth) {
     reason: 'Validate local Business Central storageState shape and shell-validation metadata before any later Playwright/BC execution.',
     allowed: true,
     requiredBefore: ['execute-playwright', 'execute-business-central'],
-    expectedFailureMeans: 'Run npm run auth:bc and complete Login/MFA until the Business Central shell is visible.',
+    expectedFailureMeans: authUnblockStep,
   }));
 }
 
@@ -202,7 +206,7 @@ const runPlan = {
         authFile: authCheck.output?.authFile ?? 'playwright/.auth/bc-user.json',
         authMetaFile: authCheck.output?.authMetaFile ?? 'playwright/.auth/bc-user.meta.json',
         hasShellValidationMeta: authCheck.output?.hasShellValidationMeta ?? false,
-        nextStep: authCheck.output?.nextStep ?? 'Run npm run auth:bc and complete Login/MFA until the Business Central shell is visible.',
+        nextStep: authCheck.output?.nextStep ?? authUnblockStep,
       }
     : null,
   canProceed: canProceedWithAuth,
@@ -225,7 +229,7 @@ const runPlan = {
   nextSafeAction: canProceedWithAuth
     ? 'Execute only the allowed local-analysis steps. Do not run Playwright or Business Central.'
     : authBlockedBy.length
-      ? 'Run npm run auth:bc and complete Login/MFA until the Business Central shell is visible.'
+      ? authUnblockStep
       : 'Resolve dry-run stopConditions before local analysis.',
 };
 
