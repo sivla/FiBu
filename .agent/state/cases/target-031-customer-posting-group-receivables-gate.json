@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-031-CUSTOMER-POSTING-GROUP-RECEIVABLES-GATE",
-  "status": "planned",
+  "status": "blocked",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -66,5 +66,23 @@
   ],
   "nextCaseIfDone": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
   "nextCaseIfBlocked": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
-  "createdAt": "2026-07-01T06:32:05.116Z"
+  "createdAt": "2026-07-01T06:32:05.116Z",
+  "completedAt": "2026-07-01T06:41:26.165Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-031-customer-posting-group-receivables-gate/TARGET-031-result.json",
+  "blockedBy": [
+    "Account 1400 Forderungen aus Lieferungen und Leistungen is mapped as a candidate but not visibly proven in the current read-only Chart of Accounts screenshot/text."
+  ],
+  "nextCase": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
+  "actualResult": {
+    "resultStatus": "blocked",
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "candidateReceivablesAccount": "1400",
+    "accountVisible": false,
+    "reason": "The mapped receivables account 1400 is not visibly proven in current Universaarl evidence, so a write gate would be premature."
+  }
 }

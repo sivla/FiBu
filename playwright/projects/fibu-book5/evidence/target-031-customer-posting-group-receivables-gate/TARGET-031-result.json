@@ -1,0 +1,222 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-031-CUSTOMER-POSTING-GROUP-RECEIVABLES-GATE",
+  "source": "playwright-universaarl-customer-posting-group-receivables-gate",
+  "resultStatus": "blocked",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "Kontenplan Page 16 and Debitorenbuchungsgruppen Page 110",
+  "pageIds": [
+    16,
+    110
+  ],
+  "url": {
+    "chartOfAccounts": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=16&company=UNIVERSAARL-DE",
+    "customerPostingGroups": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=110&company=UNIVERSAARL-DE"
+  },
+  "candidate": {
+    "customerPostingGroup": "INLAND",
+    "receivablesAccount": "1400",
+    "receivablesAccountName": "Forderungen aus Lieferungen und Leistungen"
+  },
+  "actionsTaken": [
+    "Opened Business Central in playthru / UNIVERSAARL-DE.",
+    "Opened Chart of Accounts Page 16 read-only.",
+    "Captured screenshot/text for receivables account candidate check.",
+    "Opened Customer Posting Groups Page 110 read-only.",
+    "Captured screenshot/text for Customer Posting Groups write-gate decision.",
+    "Blocked Customer Posting Group write because the receivables account needs a separate visible account proof."
+  ],
+  "actionsNotTaken": [
+    "No Customer Posting Group value was written.",
+    "No G/L Account was created or changed.",
+    "No General Posting Setup changed.",
+    "No Inventory Posting Setup changed.",
+    "No VAT Posting Setup changed.",
+    "No master data created.",
+    "No document or draft created.",
+    "No Preview Posting executed.",
+    "No Posting executed.",
+    "No API shortcut used."
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/target-031-010-chart-of-accounts-receivables-check.png",
+    "playwright/projects/fibu-book5/img/target-031-020-customer-posting-groups-readonly.png"
+  ],
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Chart of Accounts Page 16 opened read-only for the receivables gate.",
+    "Customer Posting Groups Page 110 opened read-only.",
+    "No Customer Posting Group, G/L Account, master data, draft, Preview Posting, Posting or API shortcut was executed."
+  ],
+  "notProved": [
+    "Account 1400 Forderungen aus Lieferungen und Leistungen is not accepted as visibly proven from this run unless visible.has1400 and visible.hasReceivablesName are both true.",
+    "No Customer Posting Group INLAND exists or is assigned.",
+    "No receivables posting readiness is proven.",
+    "No General Posting Setup, VAT Posting Setup, master data, Preview Posting or ledger trace is proven."
+  ],
+  "blockedBy": [
+    "Account 1400 Forderungen aus Lieferungen und Leistungen is mapped as a candidate but not visibly proven in the current read-only Chart of Accounts screenshot/text."
+  ],
+  "warnings": [
+    "Do not use 1406 as receivables account; it is tracked as Vorsteuer / purchase VAT starter account.",
+    "Customer Posting Group write must wait for a visible receivables G/L account proof."
+  ],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true,
+    "noSetupChange": true,
+    "noCustomerPostingGroupChange": true
+  },
+  "snapshots": {
+    "chartOfAccounts": {
+      "step": "Read-only receivables account candidate check before Customer Posting Group decision.",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=16&company=UNIVERSAARL-DE",
+      "title": "Kontenplan",
+      "compact": "Kontenplan:\nNr.\nName\nGuV/Bilanz\nKontoart\nKostenartnr.\n1200\nBank Saarland Bilanz Buchung\nBilanz Buchung\n1800\n3300\nBilanz Verbindlichkeiten Kurzfristige Verbindlichkeiten Buchung\n3806\n4400\nGuV Buchung\n5400\nListe mit Titel „Kontenplan“ hat jetzt 7 Artikel",
+      "visible": {
+        "has1400": false,
+        "hasReceivablesName": false,
+        "hasCustomerPostingGroups": false,
+        "hasReceivablesField": false
+      }
+    },
+    "customerPostingGroups": {
+      "step": "Read-only Customer Posting Groups context before write-gate decision.",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=110&company=UNIVERSAARL-DE",
+      "title": "Debitorenbuchungsgruppen",
+      "compact": "Debitorenbuchungsgruppen:\nNeu\nListe bearbeiten\nCode\nBeschreibung\nDebitorensammelkonto\nCode, Sortierreihenfolge Aufsteigend",
+      "visible": {
+        "has1400": false,
+        "hasReceivablesName": false,
+        "hasCustomerPostingGroups": true,
+        "hasReceivablesField": true
+      }
+    }
+  },
+  "steps": [
+    {
+      "step": "smart-decision",
+      "whyNow": "TARGET-030 proved Vendor Posting Group INLAND/3300. Before writing Customer Posting Groups, the receivables account must be visible and current in Universaarl evidence.",
+      "supportedBy": [
+        "TARGET-030 INLAND Vendor Posting Group proof",
+        "TARGET-028 Customer Posting Groups read-only page proof",
+        "TARGET-026I local SKR04 mapping lists account 1400 as receivables candidate"
+      ],
+      "fieldsChanged": [],
+      "fieldsNotTouched": [
+        "Customer Posting Groups",
+        "General Posting Setup",
+        "Inventory Posting Setup",
+        "VAT Posting Setup",
+        "Bank Posting Groups",
+        "Master Data",
+        "Documents",
+        "Preview Posting",
+        "Posting"
+      ],
+      "fallback": "If account 1400 is not visibly proven, block Customer Posting Group write and create a receivables-account recovery case."
+    }
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-031-CUSTOMER-POSTING-GROUP-RECEIVABLES-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-030 proved Vendor Posting Group INLAND/3300, but Customer Posting Groups still need a receivables account proof.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The mapped receivables account 1400 is not visibly proven in current Universaarl evidence, so a write gate would be premature.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
+        "status": "ready-next",
+        "reason": "Required before Customer Posting Group write."
+      },
+      {
+        "caseId": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Needs 1400 visible/reopen proof first."
+      },
+      {
+        "caseId": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
+        "status": "needs-source-check-first",
+        "reason": "Requires General Business/Product Posting Groups and sales/purchase account mapping."
+      },
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "ready-after-current",
+        "reason": "Can resume after posting-group route status is clear."
+      },
+      {
+        "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation still lacks customer posting group, general setup, VAT matrix and dimensions status."
+      }
+    ],
+    "queueChangesMade": [
+      "Selected TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY before Customer Posting Group write."
+    ],
+    "selectedNextCase": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
+    "whySelectedNextCaseIsBest": "It prevents writing Customer Posting Groups against an unproven or wrong receivables account.",
+    "risksBeforeNextCase": [
+      "Do not use 1406 as receivables account.",
+      "Do not create customer master data yet.",
+      "Do not run Preview Posting or Posting."
+    ],
+    "requiredPreparation": [
+      "Create or visibly confirm 1400 as Bilanz/Buchung account with reopen proof."
+    ]
+  },
+  "nextCase": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-031-customer-posting-group-receivables-gate/TARGET-031-result.json",
+    "playwright/projects/fibu-book5/evidence/target-031-customer-posting-group-receivables-gate/*.txt",
+    "playwright/projects/fibu-book5/evidence/target-031-customer-posting-group-receivables-gate/*.snapshot.json",
+    "playwright/projects/fibu-book5/evidence/target-031-customer-posting-group-receivables-gate/*.screenshot.json",
+    "playwright/projects/fibu-book5/img/target-031-*.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-031-customer-posting-group-receivables-gate/TARGET-031-result.json",
+    "playwright/projects/fibu-book5/img/target-031-010-chart-of-accounts-receivables-check.png",
+    "playwright/projects/fibu-book5/img/target-031-020-customer-posting-groups-readonly.png"
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
+      "active_case_file": ".agent/state/cases/target-031a-receivables-account-recovery.json",
+      "activeArea": "universaarl-receivables-account-recovery",
+      "nextStep": "Run TARGET-031A to create or visibly confirm account 1400 Forderungen aus Lieferungen und Leistungen before Customer Posting Group write."
+    },
+    "activeCase": {
+      "status": "blocked",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-031-customer-posting-group-receivables-gate/TARGET-031-result.json",
+      "nextCase": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY"
+    },
+    "coverage": {
+      "latestCustomerPostingGroupReceivablesGate": {
+        "caseId": "TARGET-031-CUSTOMER-POSTING-GROUP-RECEIVABLES-GATE",
+        "status": "blocked",
+        "pageIds": [
+          16,
+          110
+        ],
+        "candidateReceivablesAccount": "1400",
+        "accountVisible": false,
+        "resultPath": "playwright/projects/fibu-book5/evidence/target-031-customer-posting-group-receivables-gate/TARGET-031-result.json",
+        "nextCase": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY"
+      }
+    }
+  }
+}
