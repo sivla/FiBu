@@ -87,10 +87,14 @@ try {
       const text = document.body?.innerText ?? '';
       const authBlockerRe = new RegExp(authBlockerSource, authBlockerFlags);
       const shellRe = new RegExp(shellSource, shellFlags);
+      const redactedPathname = url.pathname.replace(
+        /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/gi,
+        '{tenant-guid}'
+      );
 
       return {
         host: url.hostname,
-        pathname: url.pathname,
+        pathname: redactedPathname,
         hasCompanyParam: url.searchParams.has('company'),
         company: url.searchParams.get('company') ?? '',
         title: document.title,

@@ -101,12 +101,12 @@
     "plannedNextCaseBeforeReview": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
     "lastEvidenceSummary": "TARGET-036D2E did not persist U-VEND Manual Nos after an unfiltered/cell-coordinate route.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "Interactive npm run auth:bc was attempted for 10 minutes, but the Business Central shell was not confirmed; no shell-validation metadata was saved.",
+    "reason": "Short auth diagnosis stayed on Microsoft sign-in page; Business Central shell signal was false and no shell-validation metadata was saved.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
         "status": "blocked",
-        "reason": "Requires attended Login/MFA and a green auth:bc:check before any BC/Playwright execution."
+        "reason": "Still on Microsoft sign-in page; attended Login/MFA must reach Business Central shell first."
       },
       {
         "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
@@ -126,16 +126,16 @@
     ],
     "queueChangesMade": [],
     "selectedNextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-    "whySelectedNextCaseIsBest": "Auth refresh now requires attended Login/MFA: run npm run auth:bc, keep the browser open until the Business Central Role Center/Search/My Settings shell is visible, then require npm run auth:bc:check to pass before rerunning D2F.",
+    "whySelectedNextCaseIsBest": "Complete attended Login/MFA in the auth browser until Business Central Role Center/Search/My Settings is visible; then run npm run auth:bc:check before rerunning D2F.",
     "risksBeforeNextCase": [
       "Do not create vendor/customer/item records until U-VEND Manual Nos is proven active."
     ],
     "requiredPreparation": [
-      "Auth refresh now requires attended Login/MFA: run npm run auth:bc, keep the browser open until the Business Central Role Center/Search/My Settings shell is visible, then require npm run auth:bc:check to pass before rerunning D2F."
+      "Complete attended Login/MFA in the auth browser until Business Central Role Center/Search/My Settings is visible; then run npm run auth:bc:check before rerunning D2F."
     ]
   },
   "createdAt": "2026-07-01T11:31:24.302Z",
-  "updatedAt": "2026-07-01T18:28:55.210Z",
+  "updatedAt": "2026-07-01T18:45:25.720Z",
   "classification": "blocked-auth-shell-validation-meta-missing-no-bc-open",
   "resultPath": "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/TARGET-036D2F-result.json",
   "completedAt": "2026-07-01T17:38:17.235Z",
@@ -152,15 +152,18 @@
     "apiShortcut": false,
     "blockedBy": [
       "D2F blocked before Business Central open by auth shell-validation preflight: shell-validation-meta-missing-or-invalid.",
-      "Interactive npm run auth:bc was attempted for 10 minutes, but the Business Central shell was not confirmed; no shell-validation metadata was saved."
+      "Interactive npm run auth:bc was attempted for 10 minutes, but the Business Central shell was not confirmed; no shell-validation metadata was saved.",
+      "Short auth diagnosis stayed on Microsoft sign-in page; Business Central shell signal was false and no shell-validation metadata was saved."
     ],
     "warnings": [
       "Auth shell-validation failure is an execution blocker, not a Business Central setup finding.",
-      "A later unattended auth refresh attempt timed out without shell validation."
+      "A later unattended auth refresh attempt timed out without shell validation.",
+      "Short auth diagnosis stayed on Microsoft sign-in page."
     ],
     "actionsTaken": [
       "Ran local auth shell-validation preflight before opening Business Central.",
-      "Attempted interactive auth refresh with npm run auth:bc; it timed out without confirmed Business Central shell."
+      "Attempted interactive auth refresh with npm run auth:bc; it timed out without confirmed Business Central shell.",
+      "Ran short auth diagnosis; it stayed on Microsoft sign-in and did not save auth metadata."
     ],
     "actionsNotTaken": [
       "No company switch.",
@@ -178,13 +181,30 @@
   "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
   "authUnblock": {
     "status": "blocked-attended-login-required",
-    "lastAttemptAt": "2026-07-01T18:28:55.210Z",
+    "lastAttemptAt": "2026-07-01T18:45:25.720Z",
     "command": "npm run auth:bc",
-    "outcome": "timeout-no-business-central-shell-validation-meta",
+    "outcome": "microsoft-sign-in-page-no-business-central-shell",
     "authCheckBlockedBy": [
       "shell-validation-meta-missing-or-invalid"
     ],
     "doNotRepeatUnattended": true,
-    "nextRequiredAction": "Auth refresh now requires attended Login/MFA: run npm run auth:bc, keep the browser open until the Business Central Role Center/Search/My Settings shell is visible, then require npm run auth:bc:check to pass before rerunning D2F."
-  }
+    "nextRequiredAction": "Complete attended Login/MFA in the auth browser until Business Central Role Center/Search/My Settings is visible; then run npm run auth:bc:check before rerunning D2F."
+  },
+  "authDiagnosis": {
+    "status": "blocked-on-microsoft-sign-in-page",
+    "lastAttemptAt": "2026-07-01T18:45:25.720Z",
+    "command": "BC_AUTH_TIMEOUT_MS=90000 npm run auth:bc",
+    "host": "login.microsoftonline.com",
+    "pageTitle": "Bei Ihrem Konto anmelden",
+    "shellSignalDetected": false,
+    "authBlockerDetected": true,
+    "rawTenantOrAuthDetailsCommitted": false,
+    "nextRequiredAction": "Complete attended Login/MFA in the auth browser until Business Central Role Center/Search/My Settings is visible; then run npm run auth:bc:check before rerunning D2F."
+  },
+  "blockedBy": [
+    "Short auth diagnosis stayed on Microsoft sign-in page; Business Central shell signal was false and no shell-validation metadata was saved."
+  ],
+  "warnings": [
+    "Auth diagnosis must not commit raw tenant, cookie, token or account details."
+  ]
 }
