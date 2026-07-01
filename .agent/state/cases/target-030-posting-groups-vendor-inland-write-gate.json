@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-030-POSTING-GROUPS-VENDOR-INLAND-WRITE-GATE",
-  "status": "planned",
+  "status": "done",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -88,5 +88,54 @@
   ],
   "nextCaseIfDone": "TARGET-031-CUSTOMER-POSTING-GROUP-RECEIVABLES-GATE",
   "nextCaseIfBlocked": "TARGET-030B-VENDOR-POSTING-GROUP-EDITOR-ROUTE-RECOVERY",
-  "createdAt": "2026-07-01T06:22:55.160Z"
+  "createdAt": "2026-07-01T06:22:55.160Z",
+  "completedAt": "2026-07-01T06:32:05.116Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-030-posting-groups-vendor-inland-write-gate/TARGET-030-result.json",
+  "nextCase": "TARGET-031-CUSTOMER-POSTING-GROUP-RECEIVABLES-GATE",
+  "actualResult": {
+    "setupChanged": true,
+    "code": "INLAND",
+    "payablesAccount": "3300",
+    "pageId": 111
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-030-POSTING-GROUPS-VENDOR-INLAND-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-031-CUSTOMER-POSTING-GROUP-RECEIVABLES-GATE",
+    "lastEvidenceSummary": "TARGET-030 proved the single Vendor Posting Group INLAND with account 3300 after reopen.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Customer Posting Groups are the next specific posting-group family, but receivables must be revalidated first.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-031-CUSTOMER-POSTING-GROUP-RECEIVABLES-GATE",
+        "status": "ready-next",
+        "reason": "Vendor Posting Group is now the first completed specific posting group; customer side can be gated next."
+      },
+      {
+        "caseId": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
+        "status": "needs-source-check-first",
+        "reason": "Needs General Business/Product Posting Groups and sales/purchase account mapping before Page 314 writes."
+      },
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "ready-after-current",
+        "reason": "Dimensions can resume after posting-group route status is clear."
+      },
+      {
+        "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation checkpoint still needs customer/general/VAT/dimension status."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-031-CUSTOMER-POSTING-GROUP-RECEIVABLES-GATE",
+    "whySelectedNextCaseIsBest": "It continues the W1 Foundation in the next smallest posting-group family.",
+    "risksBeforeNextCase": [
+      "Do not create master data yet.",
+      "Do not run Preview Posting or Posting.",
+      "Do not claim full posting readiness from one specific posting group."
+    ],
+    "requiredPreparation": [
+      "Revalidate the receivables account before writing a customer posting group."
+    ]
+  }
 }

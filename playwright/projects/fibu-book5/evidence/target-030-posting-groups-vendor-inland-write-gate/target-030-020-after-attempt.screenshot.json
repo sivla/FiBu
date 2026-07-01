@@ -1,0 +1,97 @@
+{
+  "fileName": "target-030-020-after-attempt.png",
+  "imagePath": "C:\\Users\\kkali\\.codex\\worktrees\\b8d6\\FiBu\\playwright\\projects\\fibu-book5\\img\\target-030-020-after-attempt.png",
+  "project": "fibu-book5",
+  "caseId": "TARGET-030-POSTING-GROUPS-VENDOR-INLAND-WRITE-GATE",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "pageId": 111,
+  "page": "Kreditorenbuchungsgruppen / Vendor Posting Groups",
+  "step": "After Vendor Posting Group INLAND write attempt.",
+  "visibleLearning": [
+    "Die Seite verbindet Kreditorenposten mit einem Verbindlichkeitenkonto.",
+    "TARGET-030 darf nur die Gruppe INLAND und das Konto 3300 bearbeiten."
+  ],
+  "importantUi": [
+    "Code",
+    "Beschreibung",
+    "Verbindlichkeiten-Konto"
+  ],
+  "internallyProves": "Page 111 context and INLAND/3300 row state in playthru / UNIVERSAARL-DE.",
+  "doesNotProve": [
+    "No customer posting group.",
+    "No general posting setup.",
+    "No VAT setup.",
+    "No master data.",
+    "No Preview Posting.",
+    "No Posting."
+  ],
+  "finalScreenshotStatus": "foundation-evidence",
+  "writeAttempt": {
+    "changed": true,
+    "reason": "Filled visible card fields as Code, Beschreibung and Verbindlichkeiten-Konto."
+  },
+  "steps": [
+    {
+      "step": "smart-decision",
+      "whyNow": "Vendor Posting Groups Page 111 is verified and account 3300 is the smallest safe next posting-group dependency before master data.",
+      "supportedBy": [
+        "TARGET-028 read-only Page 111 context",
+        "TARGET-029 controlled setup decision",
+        "TARGET-026L account 3300 visibility"
+      ],
+      "fieldsChangedOnlyIfSafe": [
+        "Code",
+        "Beschreibung",
+        "Verbindlichkeiten-Konto"
+      ],
+      "fieldsNotTouched": [
+        "Customer Posting Groups",
+        "General Posting Setup",
+        "Inventory Posting Setup",
+        "VAT Posting Setup",
+        "Bank Posting Groups",
+        "Master Data",
+        "Documents",
+        "Preview Posting",
+        "Posting"
+      ],
+      "fallback": "Abort and document editor diagnostics if Page 111 or visible row inputs are not safe."
+    },
+    {
+      "step": "click-new",
+      "newClicked": true
+    },
+    {
+      "step": "card-inputs-before-fill",
+      "inspected": [
+        {
+          "aria": "",
+          "title": "",
+          "role": "textbox",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "role": "textbox",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "role": "combobox",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "step": "filled-card-inputs",
+      "values": [
+        "INLAND",
+        "Inlaendische Lieferanten",
+        "3300"
+      ]
+    }
+  ]
+}

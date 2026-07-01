@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-031-CUSTOMER-POSTING-GROUP-RECEIVABLES-GATE",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Customer Posting Group receivables gate after vendor posting group fit",
+  "purpose": "Revalidate the Universaarl receivables account and decide the smallest safe Debitorenbuchungsgruppe write gate, without master data, VAT setup, documents, Preview Posting or Posting.",
+  "sourceCases": [
+    "TARGET-030-POSTING-GROUPS-VENDOR-INLAND-WRITE-GATE",
+    "TARGET-026I-SKR04-MINIMAL-ACCOUNT-MAPPING",
+    "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": true,
+  "taskClass": "judge_work",
+  "targetPages": [
+    {
+      "pageId": 110,
+      "page": "Debitorenbuchungsgruppen / Customer Posting Groups"
+    },
+    {
+      "pageId": 16,
+      "page": "Kontenplan / Chart of Accounts"
+    }
+  ],
+  "allowedActions": [
+    "open-playthru-business-central",
+    "confirm-UNIVERSAARL-DE-context",
+    "revalidate-receivables-account-readonly",
+    "open-customer-posting-groups-page-110-readonly",
+    "write-smart-decision-card",
+    "select-next-bounded-customer-posting-group-case"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "change-customer-posting-groups",
+    "change-general-posting-setup",
+    "change-inventory-posting-setup",
+    "change-vat-posting-setup",
+    "change-bank-posting-groups",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-posting-readiness-from-single-row",
+    "claim-german-vat-final-proof",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-030 proved INLAND Vendor Posting Group with Verbindlichkeiten-Konto 3300 after reopen.",
+    "No master data, document, Preview Posting or Posting has started."
+  ],
+  "acceptanceCriteria": [
+    "The run confirms or rejects the receivables account candidate with current Universaarl evidence.",
+    "No Customer Posting Group value is written in this decision case.",
+    "The result names the next safe customer posting group write gate or parks it with a blocker.",
+    "The lookahead keeps General Posting Setup, VAT, Dimensions and Foundation Checkpoint classified."
+  ],
+  "nextCaseIfDone": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
+  "nextCaseIfBlocked": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
+  "createdAt": "2026-07-01T06:32:05.116Z"
+}

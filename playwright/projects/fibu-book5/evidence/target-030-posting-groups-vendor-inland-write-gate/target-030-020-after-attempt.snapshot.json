@@ -1,0 +1,80 @@
+{
+  "step": "After Vendor Posting Group INLAND write attempt.",
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=149&company=UNIVERSAARL-DE",
+  "title": "Neu - Kreditorenbuchungsgruppen-Karte",
+  "compact": "Payables Agent\nKreditorenbuchungsgruppen:\nNeu\nListe bearbeiten\nCode\nBeschreibung\nVerbindlichkeiten-Konto\nINLAND\n3300\nGespeichert\nKreditorenbuchungsgruppen-Karte\nCode, Sortierreihenfolge Aufsteigend\nListe mit Titel „Kreditorenbuchungsgruppen“ hat jetzt einen Artikel",
+  "visible": {
+    "pageContext": true,
+    "code": true,
+    "description": true,
+    "payablesAccount": true,
+    "payablesField": true
+  },
+  "writeAttempt": {
+    "changed": true,
+    "reason": "Filled visible card fields as Code, Beschreibung and Verbindlichkeiten-Konto."
+  },
+  "steps": [
+    {
+      "step": "smart-decision",
+      "whyNow": "Vendor Posting Groups Page 111 is verified and account 3300 is the smallest safe next posting-group dependency before master data.",
+      "supportedBy": [
+        "TARGET-028 read-only Page 111 context",
+        "TARGET-029 controlled setup decision",
+        "TARGET-026L account 3300 visibility"
+      ],
+      "fieldsChangedOnlyIfSafe": [
+        "Code",
+        "Beschreibung",
+        "Verbindlichkeiten-Konto"
+      ],
+      "fieldsNotTouched": [
+        "Customer Posting Groups",
+        "General Posting Setup",
+        "Inventory Posting Setup",
+        "VAT Posting Setup",
+        "Bank Posting Groups",
+        "Master Data",
+        "Documents",
+        "Preview Posting",
+        "Posting"
+      ],
+      "fallback": "Abort and document editor diagnostics if Page 111 or visible row inputs are not safe."
+    },
+    {
+      "step": "click-new",
+      "newClicked": true
+    },
+    {
+      "step": "card-inputs-before-fill",
+      "inspected": [
+        {
+          "aria": "",
+          "title": "",
+          "role": "textbox",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "role": "textbox",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "role": "combobox",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "step": "filled-card-inputs",
+      "values": [
+        "INLAND",
+        "Inlaendische Lieferanten",
+        "3300"
+      ]
+    }
+  ]
+}

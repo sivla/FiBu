@@ -661,3 +661,13 @@ Vor jeder Buch- oder Clickguide-Nutzung muss der Screenshot gegen die konkrete B
 - Wurde ein falscher Klickpfad als `rejected-path` markiert?
 
 Ein Screenshot, der nur den allgemeinen Page-Kontext oder einen DOM-/ARIA-Treffer stuetzt, bleibt Debugging-Evidence. Er darf nicht als Buchbeweis fuer einen konkreten Code, Button, Menueintrag, Wert oder erfolgreichen Schritt verwendet werden.
+
+## Universaarl Vendor Posting Group Write Gate TARGET-030
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Interner Beweis | Beweist nicht | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-030-010-before-vendor-posting-groups.png` | Kreditorenbuchungsgruppen, Page 111 | `playthru` / `UNIVERSAARL-DE` | Vor kontrollierter Anlage | Leere bzw. noch nicht mit `INLAND` gefuellte Kreditorenbuchungsgruppenliste mit sichtbarer Aktionsleiste | Richtiger Startkontext fuer den Write-Gate | keine gespeicherte Gruppe, keine Buchung, keine Stammdaten | `setup-before`, `universaarl-target` |
+| `target-030-020-after-attempt.png` | Kreditorenbuchungsgruppen-Karte, Page 149 | `playthru` / `UNIVERSAARL-DE` | Nach `Neu` | Business Central oeffnet eine Karte mit den Feldern `Code`, `Beschreibung` und `Verbindlichkeiten-Konto`; das Konto-Feld ist als Auswahl-/Combobox-Feld sichtbar | Der richtige UI-Pfad ist Kartenpflege, nicht blindes Inline-Grid-Schreiben | keine Reopen-Persistenz, keine Vendor Card, keine Eingangsrechnung | `card-route-proof`, `ui-learning` |
+| `target-030-030-after-reopen.png` | Kreditorenbuchungsgruppen, Page 111 | `playthru` / `UNIVERSAARL-DE` | Reopen nach Anlage | Die Zeile `INLAND`, Beschreibung `Inlaendische Lieferanten` und Verbindlichkeiten-Konto `3300` sind sichtbar | Kreditorenbuchungsgruppe `INLAND` ist in der Zielcompany sichtbar und mit Konto `3300` verbunden | keine Debitorenbuchungsgruppe, keine Buchungsmatrix, keine USt, keine Stammdaten, keine Preview, keine Buchung | `universaarl-setup-proof`, `book-candidate`, `no-posting` |
+
+Screenshot-QA zu TARGET-030: Der entscheidende Fortschritt ist die Korrektur des UI-Modells. `Neu` auf Page 111 fuehrt in Business Central zu einer Karte und nicht zu einer direkt beschreibbaren Listenzeile. Der Buchkandidat ist deshalb der Reopen-Screenshot der Liste: Er zeigt den fachlichen Zielwert `INLAND` mit Verbindlichkeiten-Konto `3300`. Die Bilder duerfen nicht als Nachweis fuer Lieferantenanlage, Einkaufsbeleg, USt, Preview Posting oder Kreditorenposten verwendet werden.
