@@ -2692,7 +2692,7 @@
     {
       "order": 10083,
       "id": "TARGET-027D23B-VAT-PACKAGE-METADATA-CLEANUP-BLOCKER-REVIEW",
-      "status": "pending",
+      "status": "done",
       "category": "vat-package-metadata-cleanup-blocker-review",
       "expectedImpact": "high-impact-foundation-route-decision",
       "mayRunPlaywright": false,
@@ -2704,7 +2704,20 @@
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
       "lookaheadStatus": "ready-next",
       "resultPath": null,
-      "nextCase": "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION"
+      "nextCase": "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
+      "completedAt": "2026-07-01T05:47:05.184Z",
+      "result": "D23 cleanup blocker reviewed locally; package route parked; D24 alternative standard route decision selected. No BC or Playwright execution.",
+      "resultFile": "playwright/projects/fibu-book5/evidence/target-027d23b-vat-package-metadata-cleanup-blocker-review/TARGET-027D23B-result.json",
+      "blockedBy": []
+    },
+    {
+      "id": "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
+      "status": "pending",
+      "priority": "high",
+      "area": "universaarl-vat",
+      "goal": "Choose an alternative standard VAT setup route or explicit VAT park boundary after package cleanup blocked.",
+      "caseFile": ".agent/state/cases/target-027d24-vat-matrix-alternative-standard-route-decision.json",
+      "nextCase": "TARGET-028-POSTING-GROUPS-PREFLIGHT-OR-VAT-ROUTE-EXECUTE-CASE"
     }
   ],
   "lastUpdated": "2026-07-01T11:00:00.000Z",
@@ -2818,49 +2831,54 @@
       ]
     }
   },
-  "updatedAt": "2026-07-01T14:00:00.000Z",
+  "updatedAt": "2026-07-01T05:47:05.184Z",
   "lastCompletedCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
-  "nextCase": "TARGET-027D23B-VAT-PACKAGE-METADATA-CLEANUP-BLOCKER-REVIEW",
+  "nextCase": "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
-    "plannedNextCaseBeforeReview": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
-    "lastEvidenceSummary": "D22 selected exact-code cleanup after D21 package metadata blocker.",
+    "currentCase": "TARGET-027D23B-VAT-PACKAGE-METADATA-CLEANUP-BLOCKER-REVIEW",
+    "plannedNextCaseBeforeReview": "TARGET-027D23B-VAT-PACKAGE-METADATA-CLEANUP-BLOCKER-REVIEW",
+    "lastEvidenceSummary": "D23 proved playthru / UNIVERSAARL-DE context and exact U-VAT325-DISC row visibility. Toolbar and row-inline delete attempts did not expose a trusted delete confirmation dialog; the package remained visible after reopen.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Cleanup removes or reviews the temporary package metadata before another VAT setup route.",
+    "reason": "D23B is the needed local blocker review: the package residue must be classified before the VAT matrix route continues.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
-        "status": "blocked",
-        "reason": "Cleanup did not prove absence, so review is needed first."
+        "status": "ready-next",
+        "reason": "The package route is now classified as blocked/parked, so the next useful step is a source- and evidence-backed decision for an alternative standard VAT setup route or explicit VAT park decision."
       },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Posting Groups still depend on VAT matrix route decision or documented park decision."
+        "reason": "Posting groups need either a safe VAT matrix route or a documented VAT park boundary before they can be meaningful for the book and setup."
       },
       {
         "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
         "status": "needs-setup-first",
-        "reason": "Master data remains locked until VAT/posting defaults are safe enough."
+        "reason": "Customer, vendor and item creation should not start until posting and VAT defaults are sufficiently understood or consciously parked."
       },
       {
         "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Foundation readiness cannot be claimed while VAT matrix and Posting Groups remain unresolved."
+        "reason": "Foundation readiness cannot be claimed while VAT matrix route, posting groups and master data remain unresolved."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-027D23B-VAT-PACKAGE-METADATA-CLEANUP-BLOCKER-REVIEW",
-    "whySelectedNextCaseIsBest": "D23 produced a real cleanup blocker; local review should choose the next route without repeating the same delete clicks.",
+    "queueChangesMade": [
+      "Marked TARGET-027D23B as done in marathon queue.",
+      "Added TARGET-027D24 as the next pending local route-decision case."
+    ],
+    "selectedNextCase": "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "It prevents repeating the same blocked package cleanup clicks and forces a deliberate route choice before any further VAT, posting group or master data action.",
     "risksBeforeNextCase": [
-      "Do not treat cleanup as VAT setup proof.",
-      "Do not repeat unsafe package New/Table-ID actions.",
-      "Do not create master data until VAT/posting defaults are ready."
+      "U-VAT325-DISC is still visible as configuration-package metadata and must not be treated as VAT setup proof.",
+      "No German VAT matrix, posting groups, master data, preview or ledger trace is proven yet.",
+      "A future cleanup route must be materially different from the D23 toolbar/row-inline delete clicks."
     ],
     "requiredPreparation": [
-      "Use D23 screenshots and reopen proof.",
-      "Choose or park the next VAT matrix route without claiming German VAT correctness."
+      "Use D21-D23 evidence only as blocker and route-selection input.",
+      "Review Microsoft/source notes and existing BC patterns before selecting a new standard route.",
+      "Do not run BC or Playwright in D24 unless the route decision explicitly creates a later execute case."
     ]
   },
-  "nextStep": "Run D23B local blocker review; do not repeat the same package delete clicks."
+  "nextStep": "Run D23B local blocker review; do not repeat the same package delete clicks.",
+  "openItems": 1
 }

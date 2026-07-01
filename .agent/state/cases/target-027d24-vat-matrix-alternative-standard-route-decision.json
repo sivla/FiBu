@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "VAT matrix alternative standard route decision",
+  "purpose": "Choose the next source-backed VAT setup route after Page 472 grid editing, card/list editing and Configuration Package cleanup routes failed or were parked. This is a local decision case, not a setup-write case.",
+  "sourceCases": [
+    "TARGET-027D13C-VAT-MATRIX-PARTIAL-ROW-CLEANUP",
+    "TARGET-027D14-VAT-MATRIX-CARD-ROUTE-DISCOVERY",
+    "TARGET-027D18-VAT-MATRIX-ROUTE-RESET-DECISION",
+    "TARGET-027D21-VAT-MATRIX-CONTROLLED-PACKAGE-TABLE-DISCOVERY",
+    "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
+    "TARGET-027D23B-VAT-PACKAGE-METADATA-CLEANUP-BLOCKER-REVIEW"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": false,
+  "allowedActions": [
+    "read-prior-vat-evidence",
+    "read-source-registry",
+    "classify-available-vat-routes",
+    "select-next-vat-route-or-park-decision",
+    "write-local-result-json",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "open-business-central",
+    "run-playwright",
+    "click-new",
+    "click-delete",
+    "click-get-tables",
+    "open-configuration-package-card",
+    "import-from-excel",
+    "export-to-excel",
+    "validate-package",
+    "apply-package",
+    "edit-in-excel-publish",
+    "write-or-save-vat-matrix-values",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-german-vat-final-proof"
+  ],
+  "routeOptionsToEvaluate": [
+    {
+      "route": "park-vat-matrix-and-continue-foundation-with-clear-no-vat-posting-boundary",
+      "allowedIf": "Book/setup can proceed only with explicit no-final-VAT and no-posting-readiness boundary."
+    },
+    {
+      "route": "assisted-setup-or-manual-setup-standard-ui-discovery",
+      "allowedIf": "The case can define a read-only discovery first, without writing VAT values."
+    },
+    {
+      "route": "configuration-package-route-later-with-materially-different-cleanup-or-existing-record-route",
+      "allowedIf": "A later case has a new confirmation-safe cleanup or existing-record route; not a repeat of D21/D23."
+    }
+  ],
+  "acceptanceCriteria": [
+    "D24 does not run BC or Playwright.",
+    "D24 does not repeat Page 472 grid typing, VAT card save attempts, Configuration Package New/Table-ID/Get Tables actions, or D23 delete clicks.",
+    "D24 selects one next executable case or consciously parks VAT matrix setup with a clear book/setup boundary.",
+    "Lookahead reviews TARGET-028, TARGET-029 and TARGET-030 before activation."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
+    "lastEvidenceSummary": "D23B parked the package cleanup route after D23 left U-VAT325-DISC visible and unproven as VAT setup.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A route decision is needed before any posting-group, master-data or posting-preflight case can safely continue.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Ready only after D24 either chooses a VAT route or explicitly parks VAT with boundaries."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Depends on posting-group and VAT boundary readiness."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Depends on VAT/posting/master-data status."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "It is the smallest safe step that prevents another blind UI retry and prepares a useful execute case.",
+    "risksBeforeNextCase": [
+      "If VAT is parked too loosely, later book/setup claims may overstate readiness.",
+      "If another live route is chosen without source/context review, it may repeat prior UI mistakes."
+    ],
+    "requiredPreparation": [
+      "Read D13C-D23B VAT route evidence.",
+      "Read BC-SOURCE-REGISTRY VAT and configuration-package notes.",
+      "Write a result with explicit next executable case or explicit park boundary."
+    ]
+  },
+  "nextCase": "TARGET-028-POSTING-GROUPS-PREFLIGHT-OR-VAT-ROUTE-EXECUTE-CASE",
+  "createdAt": "2026-07-01T05:47:05.184Z"
+}

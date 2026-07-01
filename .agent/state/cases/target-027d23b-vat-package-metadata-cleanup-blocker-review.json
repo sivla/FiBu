@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-027D23B-VAT-PACKAGE-METADATA-CLEANUP-BLOCKER-REVIEW",
-  "status": "planned",
+  "status": "done",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -52,44 +52,67 @@
   "nextStepDecisionCard": {
     "currentCase": "TARGET-027D23B-VAT-PACKAGE-METADATA-CLEANUP-BLOCKER-REVIEW",
     "plannedNextCaseBeforeReview": "TARGET-027D23B-VAT-PACKAGE-METADATA-CLEANUP-BLOCKER-REVIEW",
-    "lastEvidenceSummary": "D23 proved playthru / UNIVERSAARL-DE context and exact U-VAT325-DISC row visibility. Toolbar and row-inline delete clicks did not expose a trusted delete confirmation dialog; the package remained visible.",
+    "lastEvidenceSummary": "D23 proved playthru / UNIVERSAARL-DE context and exact U-VAT325-DISC row visibility. Toolbar and row-inline delete attempts did not expose a trusted delete confirmation dialog; the package remained visible after reopen.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "A local decision is needed before repeating cleanup or moving to another VAT setup route.",
+    "reason": "D23B is the needed local blocker review: the package residue must be classified before the VAT matrix route continues.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
-        "status": "ready-after-current",
-        "reason": "After blocker review, the package route can be parked and a different VAT setup route can be selected."
+        "status": "ready-next",
+        "reason": "The package route is now classified as blocked/parked, so the next useful step is a source- and evidence-backed decision for an alternative standard VAT setup route or explicit VAT park decision."
       },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Posting Groups depend on explicit VAT matrix park/route decision."
+        "reason": "Posting groups need either a safe VAT matrix route or a documented VAT park boundary before they can be meaningful for the book and setup."
       },
       {
         "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
         "status": "needs-setup-first",
-        "reason": "Master data remains locked until VAT/posting defaults are safe enough."
+        "reason": "Customer, vendor and item creation should not start until posting and VAT defaults are sufficiently understood or consciously parked."
       },
       {
         "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Foundation readiness cannot be claimed while VAT matrix and Posting Groups remain unresolved."
+        "reason": "Foundation readiness cannot be claimed while VAT matrix route, posting groups and master data remain unresolved."
       }
     ],
-    "queueChangesMade": [],
+    "queueChangesMade": [
+      "Marked TARGET-027D23B as done in marathon queue.",
+      "Added TARGET-027D24 as the next pending local route-decision case."
+    ],
     "selectedNextCase": "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
-    "whySelectedNextCaseIsBest": "The fastest useful next step is a local route decision that stops repeating package cleanup clicks and chooses the next standard VAT setup route or explicit park decision.",
+    "whySelectedNextCaseIsBest": "It prevents repeating the same blocked package cleanup clicks and forces a deliberate route choice before any further VAT, posting group or master data action.",
     "risksBeforeNextCase": [
-      "Do not treat U-VAT325-DISC as VAT setup evidence.",
-      "Do not repeat toolbar or row-menu Delete clicks unless a new route is explicitly justified.",
-      "Do not create master data before VAT/posting defaults are resolved or consciously parked."
+      "U-VAT325-DISC is still visible as configuration-package metadata and must not be treated as VAT setup proof.",
+      "No German VAT matrix, posting groups, master data, preview or ledger trace is proven yet.",
+      "A future cleanup route must be materially different from the D23 toolbar/row-inline delete clicks."
     ],
     "requiredPreparation": [
-      "Use D23 screenshots and result JSON.",
-      "Classify the package route as blocked or parked before D24."
+      "Use D21-D23 evidence only as blocker and route-selection input.",
+      "Review Microsoft/source notes and existing BC patterns before selecting a new standard route.",
+      "Do not run BC or Playwright in D24 unless the route decision explicitly creates a later execute case."
     ]
   },
   "nextCase": "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
-  "createdAt": "2026-07-01T14:00:00.000Z"
+  "createdAt": "2026-07-01T14:00:00.000Z",
+  "completedAt": "2026-07-01T05:47:05.184Z",
+  "resultStatus": "done-package-cleanup-blocker-reviewed-route-selected-no-bc",
+  "resultFile": "playwright/projects/fibu-book5/evidence/target-027d23b-vat-package-metadata-cleanup-blocker-review/TARGET-027D23B-result.json",
+  "result": "D23 cleanup blocker reviewed locally; package route parked; D24 alternative standard route decision selected. No BC or Playwright execution.",
+  "proved": [
+    "D23 is classified as a UI cleanup blocker, not VAT setup proof.",
+    "The exact package code U-VAT325-DISC remains visible after the tested cleanup route; absence is not proven.",
+    "Toolbar Delete and row-inline Delete attempts from D23 must not be repeated without a materially different cleanup route.",
+    "The package route is parked before another VAT matrix action is attempted."
+  ],
+  "notProved": [
+    "No Table 325 / VAT Posting Setup package line was proven.",
+    "No correct INLAND/VAT19 VAT Posting Setup matrix row was proven.",
+    "No German VAT correctness was proven.",
+    "No posting group readiness was proven.",
+    "No master data readiness was proven.",
+    "No Preview Posting, Posting, VAT Entries or G/L Entries were created."
+  ],
+  "blockedBy": []
 }
