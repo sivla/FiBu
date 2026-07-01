@@ -6,17 +6,7 @@ Company: UNIVERSAARL-DE
 
 ## Ergebnis
 
-D2F blocked before effective BC action: Error: expect(locator).toBeVisible() failed
-
-Locator: getByRole('button', { name: /Suchen|Search/i })
-Expected: visible
-Timeout: 120000ms
-Error: element(s) not found
-
-Call log:
-  - Expect "toBeVisible" with timeout 120000ms
-  - waiting for getByRole('button', { name: /Suchen|Search/i })
-
+D2F blocked before effective BC action: Error: Business Central auth/token blocker detected during initial page load. Refresh playwright/.auth/bc-user.json before retry.
 
 ## Grenze
 
