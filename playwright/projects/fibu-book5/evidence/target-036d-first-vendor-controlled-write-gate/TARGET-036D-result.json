@@ -1,0 +1,867 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-036D-FIRST-VENDOR-CONTROLLED-WRITE-GATE",
+  "source": "playwright-universaarl-first-vendor-controlled-write-gate",
+  "resultStatus": "blocked",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "Vendors / Kreditoren",
+  "pageId": 27,
+  "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=27&company=UNIVERSAARL-DE&filter=Vendor.Name+IS+%27Universaarl+Lieferant+100%27",
+  "sourceRefs": [
+    {
+      "title": "Microsoft Learn: Register a new vendor",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/purchasing-how-register-new-vendors",
+      "claim": "Vendors can be added manually by filling out the Vendor Card or by using templates."
+    },
+    {
+      "title": "Microsoft Learn: Create number series",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/ui-create-number-series",
+      "claim": "Default Nos. allows automatic numbering; Manual Nos. allows manual number entry."
+    }
+  ],
+  "actionsTaken": [
+    "Opened Business Central in playthru / UNIVERSAARL-DE.",
+    "Opened Page 27 Vendors / Kreditoren.",
+    "Captured before screenshot QA.",
+    "Opened Vendor Card via scoped New and attempted only approved vendor fields.",
+    "Reopened Page 27 with a Vendor Name filter for persistence proof.",
+    "Captured after/reopen screenshot QA."
+  ],
+  "actionsNotTaken": [
+    "No Vorlage anwenden / Apply Template action was clicked.",
+    "No customer was created.",
+    "No item was created.",
+    "No setup field was changed.",
+    "No purchase/sales document or draft was created.",
+    "No Preview Posting was executed.",
+    "No Posting was executed.",
+    "No payment was executed.",
+    "No API shortcut was used.",
+    "No company switch was executed.",
+    "No number-series setup was changed to allow manual vendor numbers."
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/target-036d-010-vendors-before.png",
+    "playwright/projects/fibu-book5/img/target-036d-020-after-vendor-attempt.png",
+    "playwright/projects/fibu-book5/img/target-036d-030-after-reopen-filtered-proof.png"
+  ],
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Page 27 Vendors / Kreditoren was opened and screenshot QA was captured.",
+    "Vendor creation is blocked by U-VEND number-series checkbox settings before a vendor can be saved."
+  ],
+  "notProved": [
+    "No vendor posting readiness is proven.",
+    "No Vendor Posting Group, Gen. Bus. Posting Group, VAT Bus. Posting Group, Payment Terms or bank account value is proven as correct.",
+    "No purchase document, Preview Posting, Posting, vendor ledger entry or G/L entry is proven.",
+    "No item route is proven by this write gate.",
+    "Preferred manual No. U-VEND-100 is not proven; Business Central number series controls the vendor number.",
+    "U-VEND number series does not allow automatic Default Nos. / Standardnr.; manual U-VEND-100 is also not proven without Manual Nos."
+  ],
+  "blockedBy": [
+    "U-VEND number series does not allow automatic Default Nos. / Standardnr.; manual U-VEND-100 is also not proven without Manual Nos."
+  ],
+  "warnings": [
+    "This vendor is only the first master-data persistence proof, not P2P readiness.",
+    "Manual vendor number U-VEND-100 is blocked by number-series setup unless Manual Nos. is enabled; this case deliberately does not change that setup.",
+    "Vorlage anwenden / Apply Template was deliberately not clicked.",
+    "Posting/VAT/payment fields remain separate gated setup and master-data steps."
+  ],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCustomerCreated": true,
+    "noItemCreated": true,
+    "noTemplateApplied": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true,
+    "vendorMasterDataChanged": false
+  },
+  "targetVendor": {
+    "preferredNo": "U-VEND-100",
+    "name": "Universaarl Lieferant 100"
+  },
+  "before": {
+    "step": "Before first Vendor write gate.",
+    "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=27&company=UNIVERSAARL-DE",
+    "title": "Kreditoren",
+    "compact": "Kreditoren:\nEs sind noch keine Daten vorhanden. Möchten Sie Kreditoren importieren?\nNr.\nName\nTelefonnr.\nKreditorenstatistik\nKreditorennr.\nKreditoren-Abonnementverträge\nNr., Sortierreihenfolge Aufsteigend",
+    "visible": {
+      "pageContext": true,
+      "targetNo": false,
+      "targetName": false,
+      "applyTemplateAction": false,
+      "postingGroupSignal": false,
+      "hardForbiddenSignal": false
+    },
+    "targetVendor": {
+      "preferredNo": "U-VEND-100",
+      "name": "Universaarl Lieferant 100"
+    }
+  },
+  "afterAttempt": {
+    "step": "After Vendor write or verify attempt.",
+    "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=26&company=UNIVERSAARL-DE",
+    "title": "Neu - Kreditorenkarte",
+    "compact": "Kreditoren:\nEs sind noch keine Daten vorhanden. Möchten Sie Kreditoren importieren?\nNr.\nName\nTelefonnr.\nKreditorenstatistik\nKreditorennr.\nKreditoren-Abonnementverträge\nKreditorenkarte\nVorlage anwenden\nMobiltelefonnr.\nUnsere Kontonr.\nEs ist nicht möglich, Nummern automatisch zuzuweisen. Wenn das Programm Nummern automatisch zuweisen soll, aktivieren Sie Standardnr. in Nummernserie U-VEND.\nNr., Sortierreihenfolge Aufsteigend",
+    "visible": {
+      "pageContext": true,
+      "targetNo": false,
+      "targetName": false,
+      "applyTemplateAction": true,
+      "postingGroupSignal": false,
+      "hardForbiddenSignal": false
+    },
+    "targetVendor": {
+      "preferredNo": "U-VEND-100",
+      "name": "Universaarl Lieferant 100"
+    },
+    "writeAttempt": {
+      "changed": true,
+      "status": "created-or-edited",
+      "reason": "Filled Name while No. stayed controlled by Business Central number series.",
+      "fill": {
+        "changedNo": false,
+        "changedName": true,
+        "changed": true,
+        "fieldsChanged": [
+          "Name=Universaarl Lieferant 100"
+        ],
+        "fieldsNotTouched": [
+          "Vorlage anwenden / Apply Template",
+          "Kreditorenbuchungsgruppe / Vendor Posting Group",
+          "Geschaeftsbuchungsgruppe / Gen. Bus. Posting Group",
+          "USt-Geschaeftsbuchungsgruppe / VAT Bus. Posting Group",
+          "Zahlungsbedingungen / Payment Terms",
+          "Gesperrt / Blocked",
+          "Bankkonto / Bank Account"
+        ],
+        "reason": "Filled Name while No. stayed controlled by Business Central number series."
+      }
+    },
+    "steps": [
+      {
+        "step": "smart-decision",
+        "whyNow": "TARGET-036C proved the first customer write/reopen route; TARGET-036B showed Vendor New opens a direct card with Vorlage anwenden visible but not clicked. Vendor is the next narrow accounting master-data write before item.",
+        "sourceBasis": [
+          "Microsoft Learn: Register a new vendor says vendors can be added manually by filling out the Vendor Card or by using templates.",
+          "TARGET-036B: Vendor New route is card-with-apply-template-action.",
+          "TARGET-036C: Customer write/reopen proof worked with Nr. and Name only."
+        ],
+        "fieldsChangedOnlyIfSafe": [
+          "Vendor.Name=Universaarl Lieferant 100",
+          "Vendor.No left blank because the active vendor number series controls the number"
+        ],
+        "fieldsNotTouched": [
+          "Vorlage anwenden / Apply Template",
+          "Vendor Posting Group",
+          "Gen. Bus. Posting Group",
+          "VAT Bus. Posting Group",
+          "Payment Terms",
+          "Blocked",
+          "Bank Account"
+        ],
+        "risk": "A vendor without posting/VAT/payment fields is not posting-ready; this case proves only first vendor master-data persistence.",
+        "fallback": "Abort and document screenshots if the Vendor Card, field route, context, save/reopen route or template behavior is unclear."
+      },
+      {
+        "step": "click-scoped-new-on-vendors",
+        "newClicked": true
+      },
+      {
+        "step": "editable-inputs-after-new-vendor-card",
+        "inspected": [
+          {
+            "index": 0,
+            "visible": true,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "index": 1,
+            "visible": true,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "index": 2,
+            "visible": true,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "index": 3,
+            "visible": true,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "index": 4,
+            "visible": true,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "index": 5,
+            "visible": true,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "index": 6,
+            "visible": false,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "index": 7,
+            "visible": true,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "index": 8,
+            "visible": true,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "index": 9,
+            "visible": true,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "index": 10,
+            "visible": true,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "index": 11,
+            "visible": true,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "index": 12,
+            "visible": true,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "index": 13,
+            "visible": true,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "index": 14,
+            "visible": true,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "step": "vendor-number-series-decision",
+        "decision": "leave-no-field-blank",
+        "reason": "Screenshot QA showed that manual No. U-VEND-100 is rejected unless Manual Nos. is enabled for the vendor number series. TARGET-036D does not allow number-series setup changes, so Business Central must assign the vendor number."
+      },
+      {
+        "step": "fill-vendor-approved-fields-only",
+        "fill": {
+          "changedNo": false,
+          "changedName": true,
+          "changed": true,
+          "fieldsChanged": [
+            "Name=Universaarl Lieferant 100"
+          ],
+          "fieldsNotTouched": [
+            "Vorlage anwenden / Apply Template",
+            "Kreditorenbuchungsgruppe / Vendor Posting Group",
+            "Geschaeftsbuchungsgruppe / Gen. Bus. Posting Group",
+            "USt-Geschaeftsbuchungsgruppe / VAT Bus. Posting Group",
+            "Zahlungsbedingungen / Payment Terms",
+            "Gesperrt / Blocked",
+            "Bankkonto / Bank Account"
+          ],
+          "reason": "Filled Name while No. stayed controlled by Business Central number series."
+        }
+      }
+    ]
+  },
+  "afterReopen": {
+    "step": "After reopening Vendors filtered to Universaarl Lieferant 100.",
+    "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=27&company=UNIVERSAARL-DE&filter=Vendor.Name+IS+%27Universaarl+Lieferant+100%27",
+    "title": "Kreditoren",
+    "compact": "Kreditoren:\nEs sind noch keine Daten vorhanden. Möchten Sie Kreditoren importieren?\nNr.\nName\nTelefonnr.\nKreditorenstatistik\nKreditorennr.\nKreditoren-Abonnementverträge\nNr., Sortierreihenfolge Aufsteigend",
+    "visible": {
+      "pageContext": true,
+      "targetNo": false,
+      "targetName": false,
+      "applyTemplateAction": false,
+      "postingGroupSignal": false,
+      "hardForbiddenSignal": false
+    },
+    "targetVendor": {
+      "preferredNo": "U-VEND-100",
+      "name": "Universaarl Lieferant 100"
+    },
+    "writeAttempt": {
+      "changed": true,
+      "status": "created-or-edited",
+      "reason": "Filled Name while No. stayed controlled by Business Central number series.",
+      "fill": {
+        "changedNo": false,
+        "changedName": true,
+        "changed": true,
+        "fieldsChanged": [
+          "Name=Universaarl Lieferant 100"
+        ],
+        "fieldsNotTouched": [
+          "Vorlage anwenden / Apply Template",
+          "Kreditorenbuchungsgruppe / Vendor Posting Group",
+          "Geschaeftsbuchungsgruppe / Gen. Bus. Posting Group",
+          "USt-Geschaeftsbuchungsgruppe / VAT Bus. Posting Group",
+          "Zahlungsbedingungen / Payment Terms",
+          "Gesperrt / Blocked",
+          "Bankkonto / Bank Account"
+        ],
+        "reason": "Filled Name while No. stayed controlled by Business Central number series."
+      }
+    },
+    "steps": [
+      {
+        "step": "smart-decision",
+        "whyNow": "TARGET-036C proved the first customer write/reopen route; TARGET-036B showed Vendor New opens a direct card with Vorlage anwenden visible but not clicked. Vendor is the next narrow accounting master-data write before item.",
+        "sourceBasis": [
+          "Microsoft Learn: Register a new vendor says vendors can be added manually by filling out the Vendor Card or by using templates.",
+          "TARGET-036B: Vendor New route is card-with-apply-template-action.",
+          "TARGET-036C: Customer write/reopen proof worked with Nr. and Name only."
+        ],
+        "fieldsChangedOnlyIfSafe": [
+          "Vendor.Name=Universaarl Lieferant 100",
+          "Vendor.No left blank because the active vendor number series controls the number"
+        ],
+        "fieldsNotTouched": [
+          "Vorlage anwenden / Apply Template",
+          "Vendor Posting Group",
+          "Gen. Bus. Posting Group",
+          "VAT Bus. Posting Group",
+          "Payment Terms",
+          "Blocked",
+          "Bank Account"
+        ],
+        "risk": "A vendor without posting/VAT/payment fields is not posting-ready; this case proves only first vendor master-data persistence.",
+        "fallback": "Abort and document screenshots if the Vendor Card, field route, context, save/reopen route or template behavior is unclear."
+      },
+      {
+        "step": "click-scoped-new-on-vendors",
+        "newClicked": true
+      },
+      {
+        "step": "editable-inputs-after-new-vendor-card",
+        "inspected": [
+          {
+            "index": 0,
+            "visible": true,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "index": 1,
+            "visible": true,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "index": 2,
+            "visible": true,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "index": 3,
+            "visible": true,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "index": 4,
+            "visible": true,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "index": 5,
+            "visible": true,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "index": 6,
+            "visible": false,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "index": 7,
+            "visible": true,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "index": 8,
+            "visible": true,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "index": 9,
+            "visible": true,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "index": 10,
+            "visible": true,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "index": 11,
+            "visible": true,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "index": 12,
+            "visible": true,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "index": 13,
+            "visible": true,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          },
+          {
+            "index": 14,
+            "visible": true,
+            "disabled": false,
+            "editable": true,
+            "aria": "",
+            "title": "",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "step": "vendor-number-series-decision",
+        "decision": "leave-no-field-blank",
+        "reason": "Screenshot QA showed that manual No. U-VEND-100 is rejected unless Manual Nos. is enabled for the vendor number series. TARGET-036D does not allow number-series setup changes, so Business Central must assign the vendor number."
+      },
+      {
+        "step": "fill-vendor-approved-fields-only",
+        "fill": {
+          "changedNo": false,
+          "changedName": true,
+          "changed": true,
+          "fieldsChanged": [
+            "Name=Universaarl Lieferant 100"
+          ],
+          "fieldsNotTouched": [
+            "Vorlage anwenden / Apply Template",
+            "Kreditorenbuchungsgruppe / Vendor Posting Group",
+            "Geschaeftsbuchungsgruppe / Gen. Bus. Posting Group",
+            "USt-Geschaeftsbuchungsgruppe / VAT Bus. Posting Group",
+            "Zahlungsbedingungen / Payment Terms",
+            "Gesperrt / Blocked",
+            "Bankkonto / Bank Account"
+          ],
+          "reason": "Filled Name while No. stayed controlled by Business Central number series."
+        }
+      }
+    ],
+    "reopenProofRoute": "direct Page 27 URL with Vendor Name filter"
+  },
+  "writeAttempt": {
+    "changed": true,
+    "status": "created-or-edited",
+    "reason": "Filled Name while No. stayed controlled by Business Central number series.",
+    "fill": {
+      "changedNo": false,
+      "changedName": true,
+      "changed": true,
+      "fieldsChanged": [
+        "Name=Universaarl Lieferant 100"
+      ],
+      "fieldsNotTouched": [
+        "Vorlage anwenden / Apply Template",
+        "Kreditorenbuchungsgruppe / Vendor Posting Group",
+        "Geschaeftsbuchungsgruppe / Gen. Bus. Posting Group",
+        "USt-Geschaeftsbuchungsgruppe / VAT Bus. Posting Group",
+        "Zahlungsbedingungen / Payment Terms",
+        "Gesperrt / Blocked",
+        "Bankkonto / Bank Account"
+      ],
+      "reason": "Filled Name while No. stayed controlled by Business Central number series."
+    }
+  },
+  "steps": [
+    {
+      "step": "smart-decision",
+      "whyNow": "TARGET-036C proved the first customer write/reopen route; TARGET-036B showed Vendor New opens a direct card with Vorlage anwenden visible but not clicked. Vendor is the next narrow accounting master-data write before item.",
+      "sourceBasis": [
+        "Microsoft Learn: Register a new vendor says vendors can be added manually by filling out the Vendor Card or by using templates.",
+        "TARGET-036B: Vendor New route is card-with-apply-template-action.",
+        "TARGET-036C: Customer write/reopen proof worked with Nr. and Name only."
+      ],
+      "fieldsChangedOnlyIfSafe": [
+        "Vendor.Name=Universaarl Lieferant 100",
+        "Vendor.No left blank because the active vendor number series controls the number"
+      ],
+      "fieldsNotTouched": [
+        "Vorlage anwenden / Apply Template",
+        "Vendor Posting Group",
+        "Gen. Bus. Posting Group",
+        "VAT Bus. Posting Group",
+        "Payment Terms",
+        "Blocked",
+        "Bank Account"
+      ],
+      "risk": "A vendor without posting/VAT/payment fields is not posting-ready; this case proves only first vendor master-data persistence.",
+      "fallback": "Abort and document screenshots if the Vendor Card, field route, context, save/reopen route or template behavior is unclear."
+    },
+    {
+      "step": "click-scoped-new-on-vendors",
+      "newClicked": true
+    },
+    {
+      "step": "editable-inputs-after-new-vendor-card",
+      "inspected": [
+        {
+          "index": 0,
+          "visible": true,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "index": 1,
+          "visible": true,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "index": 2,
+          "visible": true,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "index": 3,
+          "visible": true,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "index": 4,
+          "visible": true,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "index": 5,
+          "visible": true,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "index": 6,
+          "visible": false,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "index": 7,
+          "visible": true,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "index": 8,
+          "visible": true,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "index": 9,
+          "visible": true,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "index": 10,
+          "visible": true,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "index": 11,
+          "visible": true,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "index": 12,
+          "visible": true,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "index": 13,
+          "visible": true,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "index": 14,
+          "visible": true,
+          "disabled": false,
+          "editable": true,
+          "aria": "",
+          "title": "",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "step": "vendor-number-series-decision",
+      "decision": "leave-no-field-blank",
+      "reason": "Screenshot QA showed that manual No. U-VEND-100 is rejected unless Manual Nos. is enabled for the vendor number series. TARGET-036D does not allow number-series setup changes, so Business Central must assign the vendor number."
+    },
+    {
+      "step": "fill-vendor-approved-fields-only",
+      "fill": {
+        "changedNo": false,
+        "changedName": true,
+        "changed": true,
+        "fieldsChanged": [
+          "Name=Universaarl Lieferant 100"
+        ],
+        "fieldsNotTouched": [
+          "Vorlage anwenden / Apply Template",
+          "Kreditorenbuchungsgruppe / Vendor Posting Group",
+          "Geschaeftsbuchungsgruppe / Gen. Bus. Posting Group",
+          "USt-Geschaeftsbuchungsgruppe / VAT Bus. Posting Group",
+          "Zahlungsbedingungen / Payment Terms",
+          "Gesperrt / Blocked",
+          "Bankkonto / Bank Account"
+        ],
+        "reason": "Filled Name while No. stayed controlled by Business Central number series."
+      }
+    }
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-036D-FIRST-VENDOR-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-036D-FIRST-VENDOR-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-036C proved U-CUST-100 after controlled Customer write/reopen proof; TARGET-036B showed Vendor New opens a direct card with Vorlage anwenden visible but not clicked.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Vendor is the next narrow accounting-relevant master-data write before item; it mirrors the Customer route but needs its own proof and field boundaries.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Do not create an item until the first vendor write route is recovered."
+      },
+      {
+        "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+        "status": "ready-after-current",
+        "reason": "Parked Page 314, VAT matrix, inventory posting and default-dimension blockers remain relevant before first document flow."
+      },
+      {
+        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
+        "status": "blocked",
+        "reason": "Preview requires customer, vendor, item and setup readiness that is not proven by this vendor-only gate."
+      },
+      {
+        "caseId": "TARGET-040-FIRST-P2P-DRAFT-GATE",
+        "status": "blocked",
+        "reason": "P2P draft must wait for item and posting/VAT setup acceptance."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-036D2-VENDOR-NUMBER-SERIES-CHECKBOX-FIT",
+    "whySelectedNextCaseIsBest": "Fit the U-VEND number-series checkboxes before repeating the vendor write route; BC explicitly blocked automatic and manual numbering.",
+    "risksBeforeNextCase": [
+      "Do not treat one saved vendor as purchase or posting readiness.",
+      "Do not click Apply Template unless a nested Smart Decision explicitly approves it.",
+      "Do not create item in the same case."
+    ],
+    "requiredPreparation": [
+      "Inspect U-VEND Standardnr. / Default Nos. and Manuelle Anz. / Manual Nos. on the Number Series page; change only approved U-VEND checkboxes if visually scoped."
+    ]
+  },
+  "nextCase": "TARGET-036D2-VENDOR-NUMBER-SERIES-CHECKBOX-FIT",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-036d-first-vendor-controlled-write-gate/TARGET-036D-result.json",
+    "playwright/projects/fibu-book5/evidence/target-036d-first-vendor-controlled-write-gate/README.md",
+    "playwright/projects/fibu-book5/evidence/target-036d-first-vendor-controlled-write-gate/*.txt",
+    "playwright/projects/fibu-book5/evidence/target-036d-first-vendor-controlled-write-gate/*.snapshot.json",
+    "playwright/projects/fibu-book5/evidence/target-036d-first-vendor-controlled-write-gate/*.screenshot.json",
+    "playwright/projects/fibu-book5/img/target-036d-*.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-036d-first-vendor-controlled-write-gate/TARGET-036D-result.json",
+    "playwright/projects/fibu-book5/img/target-036d-010-vendors-before.png",
+    "playwright/projects/fibu-book5/img/target-036d-020-after-vendor-attempt.png",
+    "playwright/projects/fibu-book5/img/target-036d-030-after-reopen-filtered-proof.png"
+  ],
+  "requiresReview": true,
+  "safeToFinalizeState": false,
+  "statePatch": {},
+  "reason": "Controlled Vendor write gate blocked: U-VEND number series does not allow automatic Default Nos. / Standardnr.; manual U-VEND-100 is also not proven without Manual Nos."
+}

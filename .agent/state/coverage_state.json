@@ -788,12 +788,12 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-07-01T09:56:03.259Z",
+  "updatedAt": "2026-07-01T10:12:04.952Z",
   "activeArea": "universaarl-master-data-write-decision",
   "currentBlock": "Foundation checkpoint needed before master data: General Posting Setup Page 314 and VAT matrix are parked; Dimensions starter set is visible but Global/Default Dimensions and posting effects are not proven.",
   "latestPracticalCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
   "latestReviewCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
-  "nextCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
+  "nextCase": "TARGET-036D2-VENDOR-NUMBER-SERIES-CHECKBOX-FIT",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -4697,5 +4697,33 @@
     ],
     "screenshotQa": "Visual QA checked: before list was empty, after-write Customer Card shows U-CUST-100 / Universaarl Kunde 100 and status Gespeichert, reopen list shows the customer row. Factoring/payment FastTabs remain separate gates.",
     "nextCase": "TARGET-036D-FIRST-VENDOR-CONTROLLED-WRITE-GATE"
-  }
+  },
+  "latestTarget036DFirstVendor": {
+    "caseId": "TARGET-036D-FIRST-VENDOR-CONTROLLED-WRITE-GATE",
+    "status": "blocked-number-series-checkboxes",
+    "completedAt": "2026-07-01T10:12:04.952Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-036d-first-vendor-controlled-write-gate/TARGET-036D-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "pageId": 27,
+    "attemptedRecord": {
+      "preferredNo": "U-VEND-100",
+      "name": "Universaarl Lieferant 100"
+    },
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "blocker": "U-VEND number series does not allow automatic Default Nos. and does not allow manual U-VEND-100 in the current state.",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-036d-010-vendors-before.png",
+      "playwright/projects/fibu-book5/img/target-036d-020-after-vendor-attempt.png",
+      "playwright/projects/fibu-book5/img/target-036d-030-after-reopen-filtered-proof.png"
+    ],
+    "screenshotQa": "Visual QA checked: after-attempt screenshot shows the vendor card error about Standardnr. in U-VEND; reopen-filtered screenshot shows no persisted vendor.",
+    "nextCase": "TARGET-036D2-VENDOR-NUMBER-SERIES-CHECKBOX-FIT"
+  },
+  "masterDataStatus": "first-location-and-first-customer-proven-vendor-numbering-blocked"
 }

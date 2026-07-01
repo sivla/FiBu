@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-036D2-VENDOR-NUMBER-SERIES-CHECKBOX-FIT",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Vendor number series Default/Manual Nos. fit",
+  "purpose": "Fix the proven TARGET-036D vendor blocker by inspecting and, if safe, setting only the required U-VEND number-series checkboxes before retrying first vendor creation.",
+  "sourceCases": [
+    "TARGET-016M-NUMBER-SERIES-REMAINING-LINES-CONTROLLED-FIT",
+    "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
+    "TARGET-036D-FIRST-VENDOR-CONTROLLED-WRITE-GATE"
+  ],
+  "sourceRefs": [
+    {
+      "title": "Microsoft Learn: Create number series",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/ui-create-number-series",
+      "claim": "Default Nos. enables automatic numbering; Manual Nos. enables users to enter numbers manually."
+    }
+  ],
+  "effectiveBcActionsAllowed": true,
+  "mayRunPlaywright": true,
+  "taskClass": "wizard_work",
+  "smartDecisionRequired": true,
+  "targetRecord": {
+    "table": "No. Series",
+    "code": "U-VEND",
+    "intendedUse": "Vendor Nos. / Kreditorennummern",
+    "requiredCheckboxes": [
+      "Default Nos. / Standardnr.",
+      "Manual Nos. / Manuelle Anz. only if the book keeps explicit U-VEND-100 style vendor numbers"
+    ]
+  },
+  "allowedActions": [
+    "open-playthru-business-central",
+    "confirm-UNIVERSAARL-DE-context",
+    "open-number-series-page",
+    "filter-or-select-U-VEND-row",
+    "inspect-default-nos-and-manual-nos-checkboxes",
+    "hover-checkboxes-for-tooltip-or-field-name",
+    "change-only-approved-U-VEND-checkboxes-if-visible-and-trusted",
+    "close-and-reopen-number-series-for-proof",
+    "write-result-json-and-next-step-decision"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "create-customer",
+    "create-vendor",
+    "create-item",
+    "change-number-series-lines",
+    "change-non-U-VEND-series",
+    "change-sales-or-purchase-doc-number-series",
+    "change-posting-setup",
+    "change-vat-setup",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-036D result exists and shows the vendor card blocker: automatic numbering requires Standardnr. in U-VEND.",
+    "TARGET-016M proves U-VEND lines exist with U-VEND00001 to U-VEND99999.",
+    "TARGET-017 proves Purchases & Payables Setup / Vendor Nos. contains U-VEND.",
+    "Business Central context is playthru / UNIVERSAARL-DE."
+  ],
+  "stopIf": [
+    "The active instance is not playthru.",
+    "The active company is not UNIVERSAARL-DE.",
+    "U-VEND row is not uniquely visible.",
+    "Default Nos. / Standardnr. and Manual Nos. / Manuelle Anz. cannot be mapped to the U-VEND row.",
+    "The UI tries to change another number series.",
+    "A posting, document, template or unrelated setup route appears."
+  ],
+  "acceptanceCriteria": [
+    "Before screenshot shows U-VEND row and checkbox state.",
+    "Only U-VEND checkbox state is changed, if any change is needed.",
+    "After/reopen screenshot shows the resulting U-VEND Default/Manual Nos. state.",
+    "No master data, document, Preview Posting, Posting, Payment, API shortcut or company switch occurs.",
+    "Result JSON states whether the next vendor write retry should use automatic numbering or explicit U-VEND-100."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-036D-FIRST-VENDOR-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-036D reached the Vendor Card but BC rejected both manual U-VEND-100 and blank automatic numbering because U-VEND number-series checkboxes are not enabled for the intended route.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Item creation is not the next dependency. The vendor route blocker is a number-series setup issue and must be fixed before continuing master-data sequence.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-036D2-VENDOR-NUMBER-SERIES-CHECKBOX-FIT",
+        "status": "ready-next",
+        "reason": "Directly addresses the proven U-VEND checkbox blocker."
+      },
+      {
+        "caseId": "TARGET-036D3-FIRST-VENDOR-CONTROLLED-WRITE-RETRY",
+        "status": "ready-after-current",
+        "reason": "Retry vendor creation only after U-VEND Default/Manual Nos. state is visible after reopen."
+      },
+      {
+        "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Item creation should wait until vendor blocker is closed and item number-series/base-unit route is checked."
+      },
+      {
+        "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+        "status": "ready-after-current",
+        "reason": "Foundation blockers remain relevant before any document flow."
+      }
+    ],
+    "queueChangesMade": [
+      "Insert TARGET-036D2 before TARGET-036E."
+    ],
+    "selectedNextCase": "TARGET-036D2-VENDOR-NUMBER-SERIES-CHECKBOX-FIT",
+    "whySelectedNextCaseIsBest": "It fixes the exact field-level Business Central blocker proven by TARGET-036D instead of moving to unrelated master data.",
+    "risksBeforeNextCase": [
+      "Do not change all number series in bulk.",
+      "Do not change number-series lines.",
+      "Do not create a vendor inside the checkbox-fit case."
+    ],
+    "requiredPreparation": [
+      "Open Number Series Page 456 directly.",
+      "Use screenshot QA so Standardnr. and Manuelle Anz. are visibly tied to the U-VEND row."
+    ]
+  },
+  "createdAt": "2026-07-01T10:20:00.000Z"
+}

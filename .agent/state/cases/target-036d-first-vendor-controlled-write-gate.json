@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-036D-FIRST-VENDOR-CONTROLLED-WRITE-GATE",
-  "status": "planned",
+  "status": "blocked",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -75,44 +75,65 @@
     "Result JSON states which fields were changed and which remained untouched."
   ],
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-036B showed Customer/Vendor/Item New routes open direct cards with Vorlage anwenden visible but not clicked.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "Customer is the smallest accounting-relevant master-data write after the card route discovery; vendor and item remain locked.",
+    "currentCase": "TARGET-036D-FIRST-VENDOR-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-036D reached the Vendor Card in playthru / UNIVERSAARL-DE but Business Central blocked vendor creation because number series U-VEND does not allow automatic Default Nos. and the preferred manual U-VEND-100 is not allowed without Manual Nos.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The next dependency is not Item creation. The first vendor route exposed a precise U-VEND number-series checkbox blocker that must be fixed before continuing master data.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-036D-FIRST-VENDOR-CONTROLLED-WRITE-GATE",
+        "caseId": "TARGET-036D2-VENDOR-NUMBER-SERIES-CHECKBOX-FIT",
         "status": "ready-next",
-        "reason": "Vendor route can reuse the card/write/reopen discipline but needs its own field list."
+        "reason": "Directly addresses the proven U-VEND Default Nos. / Manual Nos. blocker."
+      },
+      {
+        "caseId": "TARGET-036D3-FIRST-VENDOR-CONTROLLED-WRITE-RETRY",
+        "status": "ready-after-current",
+        "reason": "Retry vendor creation only after U-VEND checkbox state is visible after reopen."
       },
       {
         "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
         "status": "needs-setup-first",
-        "reason": "Item creation touches Base Unit, Item Type, inventory and product posting logic."
+        "reason": "Item creation must wait until vendor route is closed and item number-series/base-unit logic is checked."
       },
       {
         "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
         "status": "ready-after-current",
-        "reason": "Parked Page 314, VAT matrix, inventory posting and default-dimension blockers remain relevant before first document flow."
-      },
-      {
-        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
-        "status": "blocked",
-        "reason": "Preview requires more master data and accepted setup boundaries."
+        "reason": "Foundation blockers remain relevant before any document, preview or posting flow."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-036D-FIRST-VENDOR-CONTROLLED-WRITE-GATE",
-    "whySelectedNextCaseIsBest": "The next useful step is a similarly narrow vendor write gate; item remains later because it carries more inventory/setup impact.",
+    "queueChangesMade": [
+      "Inserted TARGET-036D2 before TARGET-036E."
+    ],
+    "selectedNextCase": "TARGET-036D2-VENDOR-NUMBER-SERIES-CHECKBOX-FIT",
+    "whySelectedNextCaseIsBest": "It fixes the exact Business Central setup blocker observed on the vendor card instead of moving to unrelated master data.",
     "risksBeforeNextCase": [
-      "Do not treat one saved customer as sales or posting readiness.",
-      "Do not click Apply Template unless a nested Smart Decision explicitly approves it.",
-      "Do not create vendor or item in the same case."
+      "Do not change all number series in bulk.",
+      "Do not change number-series lines.",
+      "Do not create a vendor inside the checkbox-fit case.",
+      "Do not click Apply Template."
     ],
     "requiredPreparation": [
-      "Prepare vendor field list and safe reopen proof; keep item locked."
+      "Open Number Series Page 456 directly.",
+      "Tie Standardnr. and Manuelle Anz. visually to U-VEND using screenshot QA before any checkbox change."
     ]
   },
-  "createdAt": "2026-07-01T09:56:03.259Z"
+  "createdAt": "2026-07-01T09:56:03.259Z",
+  "completedAt": "2026-07-01T10:12:04.952Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-036d-first-vendor-controlled-write-gate/TARGET-036D-result.json",
+  "blockedBy": [
+    "Universaarl Lieferant 100 is not visible after filtered reopen."
+  ],
+  "result": "Controlled Vendor write gate blocked: Universaarl Lieferant 100 is not visible after filtered reopen.",
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/target-036d-010-vendors-before.png",
+    "playwright/projects/fibu-book5/img/target-036d-020-after-vendor-attempt.png",
+    "playwright/projects/fibu-book5/img/target-036d-030-after-reopen-filtered-proof.png"
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "nextCase": "TARGET-036D2-VENDOR-NUMBER-SERIES-CHECKBOX-FIT"
 }
