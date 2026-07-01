@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "purpose": "customer-item-posting-field-controlled-fit-map",
+  "sourceCases": [
+    "TARGET-031B",
+    "TARGET-032B",
+    "TARGET-032F",
+    "TARGET-027D24",
+    "TARGET-040",
+    "TARGET-044D"
+  ],
+  "sourceReferences": [
+    {
+      "title": "Microsoft Learn: Posting group setup",
+      "url": "https://learn.microsoft.com/en-au/dynamics365/business-central/finance-posting-groups",
+      "relevance": "Posting groups are the Business Central mechanism that maps customers, vendors, items and documents to G/L accounts."
+    },
+    {
+      "title": "Microsoft Learn: Set up value-added tax",
+      "url": "https://learn.microsoft.com/en-gb/dynamics365/business-central/finance-setup-vat",
+      "relevance": "VAT posting setup combines VAT business and product posting groups and stores VAT %, calculation type and VAT G/L accounts."
+    }
+  ],
+  "customer": {
+    "recordNo": "U-CUST-100",
+    "currentProof": "Basic customer exists; TARGET-044D standard card route did not prove posting/VAT/payment field values.",
+    "requiredFieldsBeforeO2C": [
+      {
+        "field": "Customer Posting Group",
+        "germanField": "Debitorenbuchungsgruppe",
+        "candidateValue": "INLAND",
+        "status": "source-backed-prerequisite-only",
+        "reason": "TARGET-031B proves INLAND customer posting group with receivables account 1200, but U-CUST-100 field value was not proven."
+      },
+      {
+        "field": "Gen. Bus. Posting Group",
+        "germanField": "Geschaeftsbuchungsgruppe",
+        "candidateValue": "INLAND",
+        "status": "source-backed-prerequisite-only",
+        "reason": "TARGET-032B proves INLAND general business posting group; General Posting Setup remains parked by TARGET-032F."
+      },
+      {
+        "field": "VAT Bus. Posting Group",
+        "germanField": "MwSt.-Geschaeftsbuchungsgruppe",
+        "candidateValue": "INLAND",
+        "status": "blocked-by-vat-matrix-boundary",
+        "reason": "TARGET-027D24 parks VAT matrix; candidate code is not VAT posting proof."
+      },
+      {
+        "field": "Payment Terms Code",
+        "germanField": "Zahlungsbedingungscode",
+        "candidateValue": null,
+        "status": "needs-source-and-ui-route",
+        "reason": "No exact Universaarl payment terms target/value route is proven for U-CUST-100."
+      }
+    ]
+  },
+  "item": {
+    "recordNo": "U-ITEM-HW100",
+    "currentProof": "Basic item exists with Basiseinheit STK; TARGET-044D did not prove posting/VAT/costing field values.",
+    "requiredFieldsBeforeO2C": [
+      {
+        "field": "Base Unit of Measure",
+        "germanField": "Basiseinheit",
+        "candidateValue": "STK",
+        "status": "already-proven-basic-field",
+        "reason": "TARGET-036E2 and TARGET-044D show the item with Basiseinheit STK."
+      },
+      {
+        "field": "Item Posting Group",
+        "germanField": "Artikelbuchungsgruppe/Lagerbuchungsgruppe",
+        "candidateValue": null,
+        "status": "blocked-by-inventory-setup-boundary",
+        "reason": "TARGET-040 shows item/inventory pages read-only, but no item posting group or inventory posting setup correctness is proven."
+      },
+      {
+        "field": "Gen. Prod. Posting Group",
+        "germanField": "Produktbuchungsgruppe",
+        "candidateValue": "WAREN",
+        "status": "source-backed-prerequisite-only",
+        "reason": "TARGET-032B proves WAREN general product posting group; General Posting Setup remains parked by TARGET-032F."
+      },
+      {
+        "field": "VAT Prod. Posting Group",
+        "germanField": "MwSt.-Produktbuchungsgruppe",
+        "candidateValue": "VAT19",
+        "status": "blocked-by-vat-matrix-boundary",
+        "reason": "TARGET-027D24 parks VAT matrix; VAT19 is not a saved item field or VAT posting proof."
+      },
+      {
+        "field": "Costing Method",
+        "germanField": "Einstandspreismethode/Lagerabgangsmethode",
+        "candidateValue": null,
+        "status": "needs-source-and-ui-route",
+        "reason": "No exact Universaarl costing method target/value route is proven for U-ITEM-HW100."
+      }
+    ]
+  },
+  "decision": {
+    "writeUnlocked": false,
+    "o2cUnlocked": false,
+    "previewPostingUnlocked": false,
+    "postingUnlocked": false,
+    "selectedNextCase": "TARGET-045A-CUSTOMER-ITEM-FIELD-SOURCE-MAPPING",
+    "reason": "The prerequisites are partly proven, but the exact customer/item field values and route are not complete enough for a write or document case."
+  },
+  "updatedAt": "2026-07-01T22:02:47.300Z"
+}

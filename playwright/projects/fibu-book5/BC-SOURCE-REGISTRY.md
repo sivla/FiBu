@@ -442,6 +442,20 @@ Microsoft Learn beschreibt `No. Series` als Standardseite fuer Nummernserien und
 - Die Quelle ersetzt keinen UI-Beweis. In `TARGET-036D2G` blieb der Schreibweg blockiert, weil die Zeile `U-VEND` und die Checkbox `Manual Nos.` nicht eindeutig genug als ein row-scoped Playwright-Ziel verbunden waren.
 - Vor der ersten Kreditorenanlage bleibt `U-VEND` deshalb gesperrt, bis Page Inspection, ein verbesserter Helper oder eine bewusst dokumentierte Park-Entscheidung den Weg klaert.
 
+## TARGET-045 Debitor-/Artikel-Feldfit vor O2C
+
+TARGET-045 nutzt keine neue Business-Central-Ausfuehrung. Die Entscheidung verknuepft vorhandene Universaarl-Evidence mit den Microsoft-Learn-Grenzen zu Posting Groups und VAT Setup:
+
+- Microsoft Learn `Posting group setup` stuetzt die Produktlogik, dass Buchungsgruppen Kunden, Lieferanten, Artikel und Belege mit Sachkonten verbinden.
+- Microsoft Learn `Set up VAT` stuetzt die Produktlogik, dass VAT Business Posting Group, VAT Product Posting Group und VAT Posting Setup gemeinsam die USt-Berechnung und USt-Konten bestimmen.
+- TARGET-031B beweist `INLAND` als Debitorenbuchungsgruppe mit Sammelkonto `1200`.
+- TARGET-032B beweist `INLAND` und `WAREN` als einzelne allgemeine Buchungsgruppen.
+- TARGET-032F parkt die gespeicherte General-Posting-Setup-Zeile `INLAND` + `WAREN` mit `4400`/`5400`.
+- TARGET-027D24 parkt die VAT Posting Setup Matrix und damit alle finalen USt-/VAT-Field-Claims.
+- TARGET-044D zeigt `U-CUST-100` und `U-ITEM-HW100` auf Standardkarten, aber nicht die benoetigten Posting-/VAT-/Payment-/Costing-Werte.
+
+Fuer Universaarl folgt daraus: Debitoren- und Artikelfelder duerfen nicht aus sichtbaren Kartentexten heraus blind geschrieben werden. Vor jedem Schreibfall braucht TARGET-045A eine exakte Feld-/Wertekarte: welche Felder wirklich auf `U-CUST-100` und `U-ITEM-HW100` gesetzt werden sollen, welche Zielwerte nur vorbereitete Kandidaten sind und welche Felder durch geparkte Setup-Grenzen blockiert bleiben.
+
 ## URLs
 
 - https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company
