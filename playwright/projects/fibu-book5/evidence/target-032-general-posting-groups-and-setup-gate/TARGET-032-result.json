@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
+  "source": "local-source-backed-decision",
+  "resultStatus": "observed",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "bcRun": false,
+  "playwrightRun": false,
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "sourceRefs": [
+    {
+      "label": "Microsoft Learn - Financial management",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/finance",
+      "claim": "Business Central finance setup can be changed to suit the business, and standard posting groups help assign default G/L posting accounts."
+    },
+    {
+      "label": "Microsoft Learn - Gen. Business Posting Group table",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/application/base-application/table/microsoft.finance.generalledger.setup.gen.-business-posting-group",
+      "claim": "Gen. Business Posting Group has Code, Description and Def. VAT Bus. Posting Group fields and lookup Page 312."
+    },
+    {
+      "label": "Microsoft Learn - Gen. Product Posting Group table",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/application/base-application/table/microsoft.finance.generalledger.setup.gen.-product-posting-group",
+      "claim": "Gen. Product Posting Group has Code, Description and Def. VAT Prod. Posting Group fields and lookup Page 313."
+    },
+    {
+      "label": "Microsoft Learn - General Posting Setup table",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/application/base-application/table/microsoft.finance.generalledger.setup.general-posting-setup",
+      "claim": "General Posting Setup combines Gen. Bus. Posting Group and Gen. Prod. Posting Group with Sales Account, Purch. Account and other posting account fields."
+    },
+    {
+      "label": "Microsoft Learn Germany - G/L Setup Information report",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/localfunctionality/germany/how-to-print-general-ledger-setup-information",
+      "claim": "German setup information separates Posting Groups, Posting Matrix and VAT Setup as review areas."
+    }
+  ],
+  "selectedRoute": "TARGET-032A-GENERAL-POSTING-GROUPS-SOURCE-AND-UI-DISCOVERY",
+  "candidateDesign": {
+    "genBusinessPostingGroup": {
+      "code": "INLAND",
+      "description": "Inlaendische Geschaeftspartner",
+      "status": "candidate-needs-ui-proof",
+      "reason": "Matches Universaarl domestic customer/vendor context but must be checked on Page 312 before write."
+    },
+    "genProductPostingGroups": [
+      {
+        "code": "WAREN",
+        "description": "Waren",
+        "firstAccounts": [
+          "4400 Umsatzerloese Inland 19 Prozent",
+          "5400 Wareneingang / Materialaufwand"
+        ],
+        "status": "candidate-needs-ui-proof"
+      }
+    ],
+    "generalPostingSetup": {
+      "pageId": 314,
+      "firstCandidateRow": {
+        "genBusPostingGroup": "INLAND",
+        "genProdPostingGroup": "WAREN",
+        "salesAccount": "4400",
+        "purchaseAccount": "5400"
+      },
+      "status": "do-not-write-before-032A-readonly-ui-discovery"
+    }
+  },
+  "actionsTaken": [
+    "Read current state, queue, TARGET-032 case file, TARGET-031B result and TARGET-030 result.",
+    "Checked Microsoft Learn source boundaries for general business/product posting groups and General Posting Setup.",
+    "Selected a narrower read-only/source-backed UI discovery case before any Page 314 write."
+  ],
+  "actionsNotTaken": [
+    "No Business Central opened.",
+    "No Playwright run.",
+    "No setup changed.",
+    "No master data created.",
+    "No document or draft created.",
+    "No Preview Posting executed.",
+    "No Posting executed.",
+    "No API shortcut used."
+  ],
+  "proved": [
+    "Specific posting groups alone are not enough for posting readiness.",
+    "A General Posting Setup write needs General Business Posting Group, General Product Posting Group and account field mapping first.",
+    "The next safest case is a read-only/source-backed UI discovery for Pages 312, 313 and 314."
+  ],
+  "notProved": [
+    "No General Business Posting Group exists or is assigned in Universaarl evidence.",
+    "No General Product Posting Group exists or is assigned in Universaarl evidence.",
+    "No General Posting Setup row exists for INLAND/WAREN.",
+    "No VAT setup, master data, Preview Posting, Posting or ledger trace is proven.",
+    "No final SKR04, tax advisor or German compliance claim is proven."
+  ],
+  "blockedBy": [],
+  "warnings": [
+    "Do not write Page 314 before Page 312 and Page 313 route/fields are observed.",
+    "Do not infer posting readiness from Customer/Vendor Posting Groups.",
+    "VAT defaults on General Posting Groups are source-visible fields but VAT setup remains parked until its own case."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
+    "lastEvidenceSummary": "TARGET-030 proved Vendor Posting Group INLAND/3300 and TARGET-031B proved Customer Posting Group INLAND/1200. General Posting Setup, VAT Setup, master data, Preview Posting and Posting remain unproven.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A direct Page 314 write would be too broad. Microsoft Learn separates Gen. Business Posting Groups, Gen. Product Posting Groups and General Posting Setup fields, so the next step must first discover or source-check the exact Page 312/Page 313/Page 314 route and minimal codes.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-032A-GENERAL-POSTING-GROUPS-SOURCE-AND-UI-DISCOVERY",
+        "status": "ready-next",
+        "reason": "Needs source-backed UI discovery for Gen. Business Posting Groups, Gen. Product Posting Groups and Page 314 before any write."
+      },
+      {
+        "caseId": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
+        "status": "needs-ui-discovery-first",
+        "reason": "Only valid after TARGET-032A proves pages, field names and minimal row design."
+      },
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "ready-after-current",
+        "reason": "Dimension recovery can resume after posting group source/setup route is clear."
+      },
+      {
+        "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation still lacks General Posting Setup, VAT matrix and dimensions status."
+      },
+      {
+        "caseId": "TARGET-035-MASTER-DATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data remains locked until posting groups, VAT and dimensions are sufficient."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked TARGET-032 as done locally with no BC execution and no setup write.",
+      "Added TARGET-032A-GENERAL-POSTING-GROUPS-SOURCE-AND-UI-DISCOVERY as the next pending queue item."
+    ],
+    "selectedNextCase": "TARGET-032A-GENERAL-POSTING-GROUPS-SOURCE-AND-UI-DISCOVERY",
+    "whySelectedNextCaseIsBest": "It avoids a broad setup write and turns the next action into a bounded read-only/source-backed UI discovery.",
+    "risksBeforeNextCase": [
+      "Do not write Page 314 yet.",
+      "Do not create master data yet.",
+      "Do not run Preview Posting or Posting.",
+      "Do not claim posting readiness from specific posting groups alone."
+    ],
+    "requiredPreparation": [
+      "Use Microsoft Learn source boundaries for Gen. Business Posting Group, Gen. Product Posting Group and General Posting Setup.",
+      "Observe Page 312, Page 313 and Page 314 read-only before deciding a write."
+    ]
+  },
+  "nextCase": "TARGET-032A-GENERAL-POSTING-GROUPS-SOURCE-AND-UI-DISCOVERY",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-032-general-posting-groups-and-setup-gate/TARGET-032-result.json",
+    "playwright/projects/fibu-book5/evidence/target-032-general-posting-groups-and-setup-gate/README.md",
+    ".agent/state/cases/target-032a-general-posting-groups-source-and-ui-discovery.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-032-general-posting-groups-and-setup-gate/TARGET-032-result.json",
+    "playwright/projects/fibu-book5/evidence/target-032-general-posting-groups-and-setup-gate/README.md"
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "TARGET-032A-GENERAL-POSTING-GROUPS-SOURCE-AND-UI-DISCOVERY",
+      "active_case_file": ".agent/state/cases/target-032a-general-posting-groups-source-and-ui-discovery.json",
+      "activeArea": "universaarl-general-posting-groups-source-ui-discovery",
+      "nextStep": "Run TARGET-032A read-only/source-backed UI discovery for Page 312, Page 313 and Page 314. Do not write setup, create master data, Preview Posting or Posting."
+    },
+    "activeCase": {
+      "status": "done",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-032-general-posting-groups-and-setup-gate/TARGET-032-result.json",
+      "nextCase": "TARGET-032A-GENERAL-POSTING-GROUPS-SOURCE-AND-UI-DISCOVERY"
+    },
+    "coverage": {
+      "latestGeneralPostingSetupDecision": {
+        "caseId": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
+        "status": "source-backed-decision-no-write",
+        "selectedNextCase": "TARGET-032A-GENERAL-POSTING-GROUPS-SOURCE-AND-UI-DISCOVERY",
+        "resultPath": "playwright/projects/fibu-book5/evidence/target-032-general-posting-groups-and-setup-gate/TARGET-032-result.json"
+      }
+    }
+  }
+}

@@ -370,6 +370,18 @@ TARGET-031B hat Page 110 `Debitorenbuchungsgruppen` in `playthru` / `UNIVERSAARL
 - Bewiesen ist nur die Debitorenbuchungsgruppe als Forderungs-Kontenfindung.
 - Nicht bewiesen sind Buchungsmatrix, USt-Setup, Stammdaten, Verkaufsbelege, Preview Posting, Buchung, Sachposten oder steuerliche Finalkorrektheit.
 
+## TARGET-032 Allgemeine Buchungsmatrix-Entscheidung
+
+Microsoft Learn trennt die allgemeine Kontenfindung in mehrere Ebenen:
+
+- Die Finanzuebersicht beschreibt Standard-Buchungsgruppen als Mechanismus, um Standard-Sachkonten fuer Kunden, Lieferanten und Artikel effizient zuzuordnen.
+- `Gen. Business Posting Group` enthaelt u. a. `Code`, `Description` und eine optionale Default-VAT-Business-Posting-Group.
+- `Gen. Product Posting Group` enthaelt u. a. `Code`, `Description` und eine optionale Default-VAT-Product-Posting-Group.
+- `General Posting Setup` kombiniert `Gen. Bus. Posting Group` und `Gen. Prod. Posting Group` mit Kontenfeldern wie `Sales Account` und `Purch. Account`.
+- Die deutsche Seite zum Bericht `G/L Setup Information` trennt `Posting Groups`, `Posting Matrix` und `VAT Setup` als pruefbare Setupbereiche.
+
+Fuer Universaarl folgt daraus: Page 314 darf nicht direkt breit geschrieben werden. Vorher muessen Page 312, Page 313 und Page 314 read-only/source-backed geprueft werden. Kandidaten fuer den ersten Warenfall sind `INLAND` als Geschaeftsbuchungsgruppe, `WAREN` als Produktbuchungsgruppe, `4400` als Verkaufskonto und `5400` als Einkaufskonto. Diese Werte sind noch keine gespeicherte Buchungsmatrix, kein Preview-Beweis und keine Buchungsfaehigkeit.
+
 ## URLs
 
 - https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company

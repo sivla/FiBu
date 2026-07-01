@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-032A-GENERAL-POSTING-GROUPS-SOURCE-AND-UI-DISCOVERY",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "General Posting Groups source and UI discovery",
+  "purpose": "Open and inspect General Business Posting Groups, General Product Posting Groups and General Posting Setup read-only before any controlled write.",
+  "sourceCases": [
+    "TARGET-030-POSTING-GROUPS-VENDOR-INLAND-WRITE-GATE",
+    "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
+    "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": true,
+  "taskClass": "judge_work",
+  "targetPages": [
+    {
+      "pageId": 312,
+      "page": "Geschaeftsbuchungsgruppen / Gen. Business Posting Groups"
+    },
+    {
+      "pageId": 313,
+      "page": "Produktbuchungsgruppen / Gen. Product Posting Groups"
+    },
+    {
+      "pageId": 314,
+      "page": "Buchungsmatrix Einrichtung / General Posting Setup"
+    }
+  ],
+  "allowedActions": [
+    "open-playthru-business-central",
+    "confirm-UNIVERSAARL-DE-context",
+    "open-page-312-readonly",
+    "open-page-313-readonly",
+    "open-page-314-readonly",
+    "capture-field-action-screenshot-qa",
+    "write-result-json-and-next-step-decision"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "new-row",
+    "edit-list",
+    "write-setup",
+    "change-general-posting-groups",
+    "change-general-posting-setup",
+    "change-vat-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-posting-readiness",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-030 proved Vendor Posting Group INLAND/3300.",
+    "TARGET-031B proved Customer Posting Group INLAND/1200.",
+    "TARGET-032 selected source-backed read-only UI discovery before any General Posting Setup write."
+  ],
+  "acceptanceCriteria": [
+    "Pages 312, 313 and 314 are opened read-only in playthru / UNIVERSAARL-DE.",
+    "Visible field/action inventory is captured with screenshot QA.",
+    "No setup write, master data, draft, Preview Posting, Posting or API shortcut occurs.",
+    "Next write case is selected only if UI route and source-backed minimal codes are clear."
+  ],
+  "nextCaseIfDone": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
+  "nextCaseIfBlocked": "TARGET-032A-GENERAL-POSTING-GROUPS-SOURCE-AND-UI-DISCOVERY-FOLLOWUP",
+  "createdAt": "2026-07-01T07:15:01.871Z"
+}

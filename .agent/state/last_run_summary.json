@@ -1,77 +1,74 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
-  "caseId": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
-  "completedAt": "2026-07-01T07:08:19.390Z",
-  "summary": "TARGET-031B ran Playwright in playthru / UNIVERSAARL-DE and created the Customer Posting Group INLAND with Debitorensammelkonto 1200 on Page 110. Reopen proof shows INLAND and 1200. General Posting Setup, VAT Setup, master data, drafts, Preview Posting and Posting were not touched.",
+  "runId": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
+  "caseId": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
+  "completedAt": "2026-07-01T07:15:01.871Z",
+  "summary": "TARGET-032 completed as a local source-backed decision. No BC/Playwright run and no setup write. It selected TARGET-032A read-only/source-backed UI discovery for Page 312, Page 313 and Page 314 before any General Posting Setup write.",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "bcRun": true,
-  "playwrightRun": true,
-  "setupChanged": true,
+  "bcRun": false,
+  "playwrightRun": false,
+  "setupChanged": false,
   "masterDataChanged": false,
   "draftCreated": false,
   "previewPosting": false,
   "posted": false,
   "apiShortcut": false,
   "changedFiles": [
-    "playwright/projects/fibu-book5/tests/target-031b-customer-posting-group-inland-write-gate.spec.ts",
-    "package.json",
-    "playwright/projects/fibu-book5/evidence/target-031b-customer-posting-group-inland-write-gate/TARGET-031B-result.json",
-    "playwright/projects/fibu-book5/evidence/target-031b-customer-posting-group-inland-write-gate/",
-    "playwright/projects/fibu-book5/img/target-031b-010-before-customer-posting-groups.png",
-    "playwright/projects/fibu-book5/img/target-031b-020-after-attempt.png",
-    "playwright/projects/fibu-book5/img/target-031b-030-after-reopen.png",
-    ".agent/state/cases/target-032-general-posting-groups-and-setup-gate.json"
+    "playwright/projects/fibu-book5/evidence/target-032-general-posting-groups-and-setup-gate/TARGET-032-result.json",
+    "playwright/projects/fibu-book5/evidence/target-032-general-posting-groups-and-setup-gate/README.md",
+    ".agent/state/cases/target-032a-general-posting-groups-source-and-ui-discovery.json"
   ],
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/target-031b-customer-posting-group-inland-write-gate/TARGET-031B-result.json",
-    "playwright/projects/fibu-book5/img/target-031b-010-before-customer-posting-groups.png",
-    "playwright/projects/fibu-book5/img/target-031b-020-after-attempt.png",
-    "playwright/projects/fibu-book5/img/target-031b-030-after-reopen.png"
+    "playwright/projects/fibu-book5/evidence/target-032-general-posting-groups-and-setup-gate/TARGET-032-result.json",
+    "playwright/projects/fibu-book5/evidence/target-032-general-posting-groups-and-setup-gate/README.md"
   ],
   "proved": [
-    "Business Central stayed in playthru / UNIVERSAARL-DE.",
-    "Page 110 Debitorenbuchungsgruppen was used as the scoped setup page.",
-    "INLAND is visible after reopen with Debitorensammelkonto 1200.",
-    "No master data, document draft, Preview Posting, Posting or API shortcut was executed."
+    "Specific posting groups alone are not enough for posting readiness.",
+    "A General Posting Setup write needs General Business Posting Group, General Product Posting Group and account field mapping first.",
+    "The next safest case is a read-only/source-backed UI discovery for Pages 312, 313 and 314."
   ],
   "notProved": [
-    "No General Posting Setup is proven.",
-    "No Inventory Posting Setup is proven.",
-    "No VAT Posting Setup is proven.",
-    "No Customer, Sales Document, Preview Posting or Posting is proven.",
+    "No General Business Posting Group exists or is assigned in Universaarl evidence.",
+    "No General Product Posting Group exists or is assigned in Universaarl evidence.",
+    "No General Posting Setup row exists for INLAND/WAREN.",
+    "No VAT setup, master data, Preview Posting, Posting or ledger trace is proven.",
     "No final SKR04, tax advisor or German compliance claim is proven."
   ],
   "blockedBy": [],
   "warnings": [
-    "A single Customer Posting Group does not make the company posting-ready.",
-    "Account 1200 is a Universaarl starter account, not a final tax-advisor-approved setup.",
-    "Master data remains locked until further posting group and VAT gates pass."
+    "Do not write Page 314 before Page 312 and Page 313 route/fields are observed.",
+    "Do not infer posting readiness from Customer/Vendor Posting Groups.",
+    "VAT defaults on General Posting Groups are source-visible fields but VAT setup remains parked until its own case."
   ],
-  "nextStep": "Run TARGET-032 as a source-backed General Posting Groups / General Posting Setup decision gate. Do not change setup, create master data, documents, Preview Posting or Posting.",
-  "nextCase": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
+  "nextStep": "Run TARGET-032A read-only/source-backed UI discovery for Page 312, Page 313 and Page 314. Do not write setup, create master data, Preview Posting or Posting.",
+  "nextCase": "TARGET-032A-GENERAL-POSTING-GROUPS-SOURCE-AND-UI-DISCOVERY",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-031B proved the single Customer Posting Group INLAND with account 1200 after reopen.",
+    "currentCase": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
+    "lastEvidenceSummary": "TARGET-030 proved Vendor Posting Group INLAND/3300 and TARGET-031B proved Customer Posting Group INLAND/1200. General Posting Setup, VAT Setup, master data, Preview Posting and Posting remain unproven.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Customer and Vendor Posting Groups have the first INLAND groups; the next useful gate is General Posting Groups / General Posting Setup source and write decision.",
+    "reason": "A direct Page 314 write would be too broad. Microsoft Learn separates Gen. Business Posting Groups, Gen. Product Posting Groups and General Posting Setup fields, so the next step must first discover or source-check the exact Page 312/Page 313/Page 314 route and minimal codes.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
-        "status": "needs-source-check-first",
-        "reason": "Requires General Business/Product Posting Groups and sales/purchase account mapping before Page 314 writes."
+        "caseId": "TARGET-032A-GENERAL-POSTING-GROUPS-SOURCE-AND-UI-DISCOVERY",
+        "status": "ready-next",
+        "reason": "Needs source-backed UI discovery for Gen. Business Posting Groups, Gen. Product Posting Groups and Page 314 before any write."
+      },
+      {
+        "caseId": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
+        "status": "needs-ui-discovery-first",
+        "reason": "Only valid after TARGET-032A proves pages, field names and minimal row design."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-after-current",
-        "reason": "Dimensions can resume after posting-group route status is clear."
+        "reason": "Dimension recovery can resume after posting group source/setup route is clear."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Foundation checkpoint still needs general setup, VAT matrix and dimensions status."
+        "reason": "Foundation still lacks General Posting Setup, VAT matrix and dimensions status."
       },
       {
         "caseId": "TARGET-035-MASTER-DATA-FIRST-CUSTOMER-VENDOR-ITEM",
@@ -79,16 +76,21 @@
         "reason": "Master data remains locked until posting groups, VAT and dimensions are sufficient."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
-    "whySelectedNextCaseIsBest": "It moves from specific posting groups to the broader General Posting Setup only after both sides have narrow evidence.",
+    "queueChangesMade": [
+      "Marked TARGET-032 as done locally with no BC execution and no setup write.",
+      "Added TARGET-032A-GENERAL-POSTING-GROUPS-SOURCE-AND-UI-DISCOVERY as the next pending queue item."
+    ],
+    "selectedNextCase": "TARGET-032A-GENERAL-POSTING-GROUPS-SOURCE-AND-UI-DISCOVERY",
+    "whySelectedNextCaseIsBest": "It avoids a broad setup write and turns the next action into a bounded read-only/source-backed UI discovery.",
     "risksBeforeNextCase": [
+      "Do not write Page 314 yet.",
       "Do not create master data yet.",
       "Do not run Preview Posting or Posting.",
-      "Do not claim full posting readiness from one specific posting group."
+      "Do not claim posting readiness from specific posting groups alone."
     ],
     "requiredPreparation": [
-      "Source-check General Business/Product Posting Groups and Page 314 field mapping before any write."
+      "Use Microsoft Learn source boundaries for Gen. Business Posting Group, Gen. Product Posting Group and General Posting Setup.",
+      "Observe Page 312, Page 313 and Page 314 read-only before deciding a write."
     ]
   }
 }
