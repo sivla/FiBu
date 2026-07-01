@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Item and inventory Foundation read-only preflight",
+  "purpose": "Inspect item/inventory setup prerequisites before any first item write: Base Units, Item Posting Groups, Inventory Posting Setup, Inventory Setup and U-ITEM setup assignment.",
+  "sourceCases": [
+    "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
+    "TARGET-039-FOUNDATION-BLOCKER-REVISIT"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": true,
+  "taskClass": "wizard_work",
+  "smartDecisionRequired": true,
+  "allowedActions": [
+    "confirm-playthru-instance",
+    "confirm-universaarl-company",
+    "open-readonly-setup-pages",
+    "capture-page-context",
+    "capture-screenshot-qa",
+    "write-result-json-and-next-step-decision",
+    "update-coverage-and-catalog"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "create-customer",
+    "create-vendor",
+    "create-item",
+    "change-number-series",
+    "change-posting-setup",
+    "change-vat-setup",
+    "change-inventory-setup",
+    "change-dimensions",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-039 selected item/inventory read-only preflight as solve-next.",
+    "TARGET-037 keeps first item creation locked.",
+    "Preview Posting and Posting remain false."
+  ],
+  "pagesToInspectReadOnly": [
+    "Inventory Setup",
+    "Inventory Posting Setup",
+    "Item Posting Groups",
+    "Base Units of Measure",
+    "Items list/card only if no New/Edit action is used",
+    "relevant Sales & Receivables / Inventory no-series assignment only if read-only"
+  ],
+  "acceptanceCriteria": [
+    "playthru / UNIVERSAARL-DE is confirmed before navigation.",
+    "At least the Inventory Setup, Inventory Posting Setup or Item Posting Groups page is inspected read-only, or the navigation blocker is documented.",
+    "No item, setup value, number series, document, Preview Posting or Posting is created or changed.",
+    "Result JSON classifies whether first item write can be planned, needs setup first or remains blocked.",
+    "Screenshot QA explains page, company, important fields, what is proven and what is not proven."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+    "plannedNextCaseBeforeReview": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-039 classifies item/inventory setup as the next missing Foundation evidence before item write.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Item write depends on item/inventory setup context.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+        "status": "ready-next",
+        "reason": "Read-only setup inspection is the safe next step."
+      },
+      {
+        "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Wait for item/inventory setup evidence."
+      },
+      {
+        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
+        "status": "ready-after-current",
+        "reason": "Run after item/inventory preflight."
+      }
+    ],
+    "queueChangesMade": [
+      "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT inserted before first item write."
+    ],
+    "selectedNextCase": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+    "whySelectedNextCaseIsBest": "It prevents a premature item write and keeps W1 Foundation evidence ordered.",
+    "risksBeforeNextCase": [
+      "No setup write.",
+      "No item write.",
+      "No document, Preview Posting or Posting."
+    ],
+    "requiredPreparation": [
+      "Use direct page routes or trusted navigation.",
+      "Reject search overlay as page proof.",
+      "Record page and field context with screenshot QA."
+    ]
+  },
+  "createdAt": "2026-07-01T12:55:00.000Z",
+  "updatedAt": "2026-07-01T12:55:00.000Z"
+}

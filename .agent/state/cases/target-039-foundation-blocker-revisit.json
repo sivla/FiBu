@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
-  "status": "planned",
+  "status": "done",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -61,40 +61,125 @@
     "No setup or master data is changed."
   ],
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
+    "currentCase": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
     "plannedNextCaseBeforeReview": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-037 classifies SAAR-HL and U-CUST-100 as basic proven records, but keeps Vendor, Item, Preview and Posting locked.",
+    "lastEvidenceSummary": "TARGET-037 proves only SAAR-HL and U-CUST-100 as basic records. Vendor, item, VAT, General Posting Setup, Inventory Posting Setup, documents, Preview and Posting remain unproven.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "Item creation is not the best next step while Foundation blockers remain open.",
+    "reason": "A direct item write would skip item/inventory setup discovery. The next better step is read-only preflight of item and inventory Foundation pages.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+        "caseId": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
         "status": "ready-next",
-        "reason": "Best next step after TARGET-037."
+        "reason": "Inspects Base Units, Item Posting Groups, Inventory Posting Setup, Inventory Setup and U-ITEM assignment without writing data."
       },
       {
         "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
         "status": "needs-setup-first",
-        "reason": "Wait until item setup and posting-impact fields are scoped."
+        "reason": "Wait until TARGET-040 proves which item fields and setup dependencies are safe."
+      },
+      {
+        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
+        "status": "ready-after-current",
+        "reason": "Useful after the item/inventory preflight updates the blocker map."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Requires item and setup readiness."
+        "reason": "O2C needs item, posting groups, VAT and expected posting trace boundaries."
+      },
+      {
+        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Vendor remains blocked until U-VEND Manual Nos. has a new non-repeated route."
       }
     ],
     "queueChangesMade": [
-      "TARGET-039 inserted before item creation."
+      "Marked TARGET-039 as done.",
+      "Inserted TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT before TARGET-036E."
     ],
-    "selectedNextCase": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
-    "whySelectedNextCaseIsBest": "It returns to W1 Foundation priority before more master-data writes.",
+    "selectedNextCase": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+    "whySelectedNextCaseIsBest": "It preserves W1 Foundation order and gathers the missing page/field evidence needed before the first item write.",
     "risksBeforeNextCase": [
-      "Do not write setup in a review case."
+      "Read-only page inspection must not become setup or item creation.",
+      "Do not accept search-overlay screenshots as page proof.",
+      "Do not claim inventory posting readiness from page visibility alone."
     ],
     "requiredPreparation": [
-      "Read parked foundation result summaries."
+      "Confirm playthru / UNIVERSAARL-DE before any read-only UI navigation.",
+      "Capture page context, key fields and screenshot QA for each inspected item/inventory setup page."
     ]
   },
   "createdAt": "2026-07-01T12:30:00.000Z",
-  "updatedAt": "2026-07-01T12:30:00.000Z"
+  "updatedAt": "2026-07-01T12:55:00.000Z",
+  "resultStatus": "observed",
+  "completedAt": "2026-07-01T12:55:00.000Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-039-foundation-blocker-revisit/TARGET-039-result.json",
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "selectedNextCase": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+  "nextCase": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+  "blockerClassification": [
+    {
+      "blocker": "General Posting Setup Page 314",
+      "status": "park-with-boundary",
+      "sourceCases": [
+        "TARGET-032F"
+      ],
+      "reason": "No trusted Page 314 write/card route exists after tested UI routes. INLAND and WAREN are prerequisite groups, but the INLAND/WAREN/4400/5400 matrix row is not proven.",
+      "nextHandling": "Do not retry Page 314 until a materially new card/action/personalization/source-backed UI route exists."
+    },
+    {
+      "blocker": "VAT Posting Setup INLAND/VAT19",
+      "status": "park-with-boundary",
+      "sourceCases": [
+        "TARGET-027D24"
+      ],
+      "reason": "The VAT matrix route is deliberately parked; no correct INLAND/VAT19 VAT Posting Setup row, no 19 percent VAT proof, no VAT Entries and no German VAT final claim are proven.",
+      "nextHandling": "Keep VAT claims and Preview/Post locked; revisit only with a new non-repeating standard route."
+    },
+    {
+      "blocker": "Inventory Posting Setup and item foundation",
+      "status": "solve-next",
+      "sourceCases": [
+        "TARGET-034",
+        "TARGET-037"
+      ],
+      "reason": "Item creation is the tempting next write, but item fields affect Base Unit, Item Type, posting groups, inventory setup and later value entries. This area has not had a dedicated read-only preflight after TARGET-037.",
+      "nextHandling": "Run a read-only preflight for Inventory Setup, Inventory Posting Setup, item posting groups, base units and U-ITEM setup assignment before any item write."
+    },
+    {
+      "blocker": "Global dimensions and default dimensions",
+      "status": "park-with-boundary",
+      "sourceCases": [
+        "TARGET-033"
+      ],
+      "reason": "PRODUCTLINE, COSTCENTER and CHANNEL plus starter values are visible, but global dimension assignments and default dimensions are not proven.",
+      "nextHandling": "Default dimensions wait for concrete master data; global dimensions need a separate route and must not be claimed from TARGET-033."
+    },
+    {
+      "blocker": "Vendor numbering U-VEND Manual Nos.",
+      "status": "blocked",
+      "sourceCases": [
+        "TARGET-036D2E",
+        "TARGET-036D2F",
+        "TARGET-037"
+      ],
+      "reason": "U-VEND Manual Nos. is not proven active after reopen, and repeated checkbox/list routes are explicitly rejected.",
+      "nextHandling": "Do not retry first vendor until a genuinely new non-repeated number-series route exists."
+    },
+    {
+      "blocker": "O2C/P2P/Preview/Post readiness",
+      "status": "blocked",
+      "sourceCases": [
+        "TARGET-034",
+        "TARGET-037"
+      ],
+      "reason": "Only one customer and one location are proven. No item, vendor, posting matrix, VAT matrix, inventory setup or expected entry trace is proven.",
+      "nextHandling": "Keep documents, Preview Posting and Posting locked until Foundation and first item/vendor gates are clean."
+    }
+  ]
 }

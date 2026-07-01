@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T12:30:00.000Z",
+  "updatedAt": "2026-07-01T12:55:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-foundation-blocker-revisit",
-  "activeCase": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
-  "active_case_file": ".agent/state/cases/target-039-foundation-blocker-revisit.json",
+  "activeArea": "universaarl-item-inventory-foundation-preflight",
+  "activeCase": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+  "active_case_file": ".agent/state/cases/target-040-item-inventory-foundation-readonly-preflight.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -19,18 +19,17 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-current-state",
-    "read-recent-foundation-results",
-    "classify-foundation-blockers",
-    "select-one-next-foundation-case",
-    "update-coverage-and-catalog",
-    "write-result-json-and-next-step-decision"
+    "confirm-playthru-instance",
+    "confirm-universaarl-company",
+    "open-readonly-setup-pages",
+    "capture-page-context",
+    "capture-screenshot-qa",
+    "write-result-json-and-next-step-decision",
+    "update-coverage-and-catalog"
   ],
   "forbiddenActions": [
     "leave-instance",
     "company-switch",
-    "open-business-central",
-    "run-playwright",
     "create-customer",
     "create-vendor",
     "create-item",
@@ -49,8 +48,8 @@
     "fake-evidence",
     "book-claim-without-evidence"
   ],
-  "nextCase": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
-  "nextStep": "Run TARGET-039 to classify parked W1 Foundation blockers before any further master-data write.",
+  "nextCase": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+  "nextStep": "Run TARGET-040 read-only to inspect item/inventory Foundation prerequisites before any item write.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -233,7 +232,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "TARGET-037 confirms SAAR-HL and U-CUST-100 as basic proven records, keeps Vendor and Item locked, and sends the queue back to W1 Foundation blockers.",
+  "currentCoverageFocus": "TARGET-039 classifies parked W1 Foundation blockers and selects read-only item/inventory Foundation preflight before any first item write.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -1355,7 +1354,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "universaarl-skr04-balance-sheet-accounts-fit",
-  "lastCompletedCase": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
+  "lastCompletedCase": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3725,49 +3724,52 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-036D2D-VENDOR-NUMBER-SERIES-READONLY-ROUTE-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-036D3-FIRST-VENDOR-CONTROLLED-WRITE-RETRY",
-    "lastEvidenceSummary": "TARGET-036D2C proved U-VEND read-only on Number Series Page 456 and Page Inspection mapped Table 308 fields Default Nos. and Manual Nos.; it did not change setup or prove either checkbox active.",
+    "currentCase": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+    "plannedNextCaseBeforeReview": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-037 proves only SAAR-HL and U-CUST-100 as basic records. Vendor, item, VAT, General Posting Setup, Inventory Posting Setup, documents, Preview and Posting remain unproven.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "Vendor retry is still blocked because U-VEND numbering is unresolved. Since the planned first vendor number is U-VEND-100, Microsoft Learn supports Manual Nos. as the deliberate next numbering strategy; setup must be fitted before vendor creation.",
+    "reason": "A direct item write would skip item/inventory setup discovery. The next better step is read-only preflight of item and inventory Foundation pages.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE",
+        "caseId": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
         "status": "ready-next",
-        "reason": "Smallest source-backed write: enable Manual Nos. only for U-VEND with before/after/reopen proof. No vendor is created in this case."
-      },
-      {
-        "caseId": "TARGET-036D3-FIRST-VENDOR-CONTROLLED-WRITE-RETRY",
-        "status": "ready-after-current",
-        "reason": "Retry becomes sensible only after U-VEND Manual Nos. is visibly active after reopen."
+        "reason": "Inspects Base Units, Item Posting Groups, Inventory Posting Setup, Inventory Setup and U-ITEM assignment without writing data."
       },
       {
         "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
         "status": "needs-setup-first",
-        "reason": "Item creation should wait until the vendor-numbering blocker is closed or explicitly parked."
+        "reason": "Wait until TARGET-040 proves which item fields and setup dependencies are safe."
       },
       {
-        "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
         "status": "ready-after-current",
-        "reason": "Useful after numbering route closure to re-check foundation blockers before broader master data."
+        "reason": "Useful after the item/inventory preflight updates the blocker map."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C needs item, posting groups, VAT and expected posting trace boundaries."
+      },
+      {
+        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Vendor remains blocked until U-VEND Manual Nos. has a new non-repeated route."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-036D2D-VENDOR-NUMBER-SERIES-READONLY-ROUTE-DECISION done as local decision.",
-      "Inserted TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE before vendor retry."
+      "Marked TARGET-039 as done.",
+      "Inserted TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT before TARGET-036E."
     ],
-    "selectedNextCase": "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE",
-    "whySelectedNextCaseIsBest": "It resolves the specific first-vendor blocker with one narrow, source-backed setup field that matches the intended readable vendor number U-VEND-100, while keeping Standard Nos., master data, drafts, Preview and Posting locked.",
+    "selectedNextCase": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+    "whySelectedNextCaseIsBest": "It preserves W1 Foundation order and gathers the missing page/field evidence needed before the first item write.",
     "risksBeforeNextCase": [
-      "Do not toggle Standardnr. / Default Nos. in the manual-numbering case.",
-      "Do not create the vendor in D2E.",
-      "Do not change number-series lines or other number series.",
-      "Do not use row-menu screenshots as value proof without selected-row QA."
+      "Read-only page inspection must not become setup or item creation.",
+      "Do not accept search-overlay screenshots as page proof.",
+      "Do not claim inventory posting readiness from page visibility alone."
     ],
     "requiredPreparation": [
-      "Use Page 456 U-VEND selected-row proof before write.",
-      "Use Liste bearbeiten or another explicit edit affordance only if the U-VEND row and Manual Nos. cell are both mapped.",
-      "Capture before, after and reopen screenshots plus Page Inspection/field context if needed."
+      "Confirm playthru / UNIVERSAARL-DE before any read-only UI navigation.",
+      "Capture page context, key fields and screenshot QA for each inspected item/inventory setup page."
     ]
   },
   "permissionBlocker": {
@@ -7270,7 +7272,7 @@
     "currentVisibleText": "1200 Forderungen aus Lieferungen und Leistungen Bilanz Buchung",
     "correctedReason": "SKR04-oriented Universaarl foundation must not create a new 1400 receivables account; 1400 belongs to the wrong mapping context for this target."
   },
-  "nextQueueItem": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+  "nextQueueItem": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
   "openItems": [
     "TARGET-039-FOUNDATION-BLOCKER-REVISIT"
   ],
@@ -7912,10 +7914,11 @@
     "updatedAt": "2026-07-01T11:31:24.302Z"
   },
   "nextCases": [
-    "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+    "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
     "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
     "TARGET-040-FOUNDATION-READY-RECHECK",
-    "TARGET-038-O2C-PREFLIGHT"
+    "TARGET-038-O2C-PREFLIGHT",
+    "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE"
   ],
   "latestTarget036D2F": {
     "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
@@ -7938,52 +7941,52 @@
     "decision": "Park first-vendor creation until U-VEND Manual Nos. can be proven by a new non-repeated UI route."
   },
   "nextStepDecision": {
-    "currentCase": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
+    "currentCase": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
     "plannedNextCaseBeforeReview": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "SAAR-HL and U-CUST-100 are proven as small master-data records; U-VEND remains blocked because Manual Nos. is not active after reopen; no item exists.",
+    "lastEvidenceSummary": "TARGET-037 proves only SAAR-HL and U-CUST-100 as basic records. Vendor, item, VAT, General Posting Setup, Inventory Posting Setup, documents, Preview and Posting remain unproven.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "A first item write is tempting but not the best next step. Item creation has Base Unit, Item Type, item posting, inventory posting and value-entry implications. The project should first revisit the parked Foundation blockers.",
+    "reason": "A direct item write would skip item/inventory setup discovery. The next better step is read-only preflight of item and inventory Foundation pages.",
     "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+        "status": "ready-next",
+        "reason": "Inspects Base Units, Item Posting Groups, Inventory Posting Setup, Inventory Setup and U-ITEM assignment without writing data."
+      },
       {
         "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
         "status": "needs-setup-first",
-        "reason": "Item fields and posting impact are not scoped enough for a write gate."
-      },
-      {
-        "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
-        "status": "ready-next",
-        "reason": "Best next step: classify Page 314 General Posting Setup, VAT Posting Setup, Inventory Posting Setup, global/default dimensions and U-ITEM numbering before further master data."
-      },
-      {
-        "caseId": "TARGET-038-O2C-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "O2C needs customer plus item plus posting groups plus VAT and should not start from a customer-only proof."
-      },
-      {
-        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
-        "status": "blocked",
-        "reason": "Vendor remains blocked until U-VEND Manual Nos. is proven active by a new route."
+        "reason": "Wait until TARGET-040 proves which item fields and setup dependencies are safe."
       },
       {
         "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
         "status": "ready-after-current",
-        "reason": "Useful after TARGET-039 narrows which Foundation blockers can be solved or consciously parked."
+        "reason": "Useful after the item/inventory preflight updates the blocker map."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C needs item, posting groups, VAT and expected posting trace boundaries."
+      },
+      {
+        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Vendor remains blocked until U-VEND Manual Nos. has a new non-repeated route."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-037 as done.",
-      "Inserted TARGET-039-FOUNDATION-BLOCKER-REVISIT as next case before item creation."
+      "Marked TARGET-039 as done.",
+      "Inserted TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT before TARGET-036E."
     ],
-    "selectedNextCase": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
-    "whySelectedNextCaseIsBest": "It follows the W1 Foundation priority and prevents premature item/document work while setup blockers remain open.",
+    "selectedNextCase": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+    "whySelectedNextCaseIsBest": "It preserves W1 Foundation order and gathers the missing page/field evidence needed before the first item write.",
     "risksBeforeNextCase": [
-      "Do not run live BC in TARGET-039 unless the case explicitly unlocks read-only discovery.",
-      "Do not change VAT, posting setup or dimensions inside a review-only route.",
-      "Do not turn the checkpoint into a false posting-readiness claim."
+      "Read-only page inspection must not become setup or item creation.",
+      "Do not accept search-overlay screenshots as page proof.",
+      "Do not claim inventory posting readiness from page visibility alone."
     ],
     "requiredPreparation": [
-      "Read TARGET-032F, TARGET-027D24, TARGET-033 and TARGET-034 summaries.",
-      "Classify each parked Foundation blocker as solve-next, park-with-boundary or needs-ui-discovery."
+      "Confirm playthru / UNIVERSAARL-DE before any read-only UI navigation.",
+      "Capture page context, key fields and screenshot QA for each inspected item/inventory setup page."
     ]
   },
   "latestTarget037MasterdataFoundationCheckpoint": {
@@ -8041,5 +8044,21 @@
       }
     },
     "nextCase": "TARGET-039-FOUNDATION-BLOCKER-REVISIT"
+  },
+  "latestTarget039FoundationBlockerRevisit": {
+    "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+    "status": "observed",
+    "completedAt": "2026-07-01T12:55:00.000Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-039-foundation-blocker-revisit/TARGET-039-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "selectedNextCase": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+    "summary": "Page 314 and VAT matrix remain parked boundaries; global/default dimensions remain partial; vendor numbering remains blocked; item/inventory setup preflight is selected as solve-next before item creation."
   }
 }
