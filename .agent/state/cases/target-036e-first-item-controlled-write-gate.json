@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
-  "status": "planned",
+  "status": "blocked",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -86,50 +86,86 @@
     "Result JSON classifies the item as created, blocked, or partially completed with a narrow next step."
   ],
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+    "currentCase": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
     "plannedNextCaseBeforeReview": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-040 proved five item/inventory Foundation pages read-only: Inventory Setup, Inventory Posting Setup, Item Posting Groups, Units of Measure and Items. It did not prove item creation or posting readiness.",
+    "lastEvidenceSummary": "TARGET-040 proved item/inventory pages read-only but did not prove a Base Unit value or item creation.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "A first item is now the smallest useful next W1 Foundation record, but only if it avoids setup, posting group and document side effects.",
+    "reason": "The item write gate was still the right next step, but it correctly stopped because a safe Base Unit prerequisite is missing.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+        "caseId": "TARGET-041-BASE-UNIT-OF-MEASURE-CONTROLLED-WRITE-GATE",
         "status": "ready-next",
-        "reason": "Read-only item/inventory page context is available."
+        "reason": "A controlled base-unit setup/master-data gate is the narrow prerequisite before retrying the first item."
+      },
+      {
+        "caseId": "TARGET-036E2-FIRST-ITEM-FIELD-HELPER-RECOVERY",
+        "status": "ready-after-current",
+        "reason": "Needed only if a base unit exists but item-card field filling remains ambiguous."
       },
       {
         "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
         "status": "ready-after-current",
-        "reason": "Run after the item write is created or blocked."
+        "reason": "Useful after item creation or after the base-unit blocker is resolved."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
         "reason": "O2C still needs item, posting groups, VAT and expected entry trace boundaries."
-      },
-      {
-        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
-        "status": "blocked",
-        "reason": "Vendor remains blocked until a new non-repeated U-VEND Manual Nos. route exists."
       }
     ],
-    "queueChangesMade": [
-      "Marked TARGET-040 done.",
-      "Added TARGET-036E as the next narrow controlled first-item write gate."
-    ],
-    "selectedNextCase": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
-    "whySelectedNextCaseIsBest": "It turns the read-only item/inventory preflight into one controlled master-data proof without jumping to setup, documents, Preview Posting or Posting.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-041-BASE-UNIT-OF-MEASURE-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "A base unit is the smallest missing prerequisite for a trustworthy first item.",
     "risksBeforeNextCase": [
-      "The New action can open template prompts.",
-      "Item cards can expose posting group defaults that are not yet approved.",
-      "Saving the wrong fields would create misleading book evidence."
+      "Creating a unit of measure changes setup-like master data and needs its own Smart Decision.",
+      "A later item save must not set posting groups casually.",
+      "No document, Preview Posting or Posting is allowed from this foundation gate."
     ],
     "requiredPreparation": [
-      "Hover or screenshot the New route if ambiguity exists.",
-      "Stop on any template or setup dialog unless explicitly covered by the Smart Decision.",
-      "Use screenshot QA before and after saving or blocking."
+      "Define one Base Unit code for Universaarl, likely STK or PCS, and explain it in beginner language.",
+      "Capture before/after/reopen proof.",
+      "Keep posting groups and VAT fields untouched."
     ]
   },
   "createdAt": "2026-07-01T13:45:00.000Z",
-  "updatedAt": "2026-07-01T13:45:00.000Z"
+  "updatedAt": "2026-07-01T15:05:00.000Z",
+  "completedAt": "2026-07-01T15:05:00.000Z",
+  "resultStatus": "blocked",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-036e-first-item-controlled-write-gate/TARGET-036E-result.json",
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Units of Measure and Items were inspected before the item write.",
+    "The first item was not saved because the required Base Unit route was not safe enough."
+  ],
+  "notProved": [
+    "No item master data persistence is proven unless resultStatus is observed.",
+    "No Base Unit is selected on a saved item.",
+    "No Item Posting Group, Gen. Prod. Posting Group or VAT Prod. Posting Group is proven on an item.",
+    "No sales, purchase, inventory, Preview Posting, Posting, item ledger entry, value entry, G/L entry or VAT entry is proven.",
+    "Units of Measure page did not show PCS or STK. The first item was not saved because Base Unit would be unproven.",
+    "No U-ITEM-HW100 item is visible after filtered reopen."
+  ],
+  "blockedBy": [
+    "Units of Measure page did not show PCS or STK. The first item was not saved because Base Unit would be unproven.",
+    "No U-ITEM-HW100 item is visible after filtered reopen."
+  ],
+  "warnings": [
+    "This is a first item gate, not inventory or O2C/P2P readiness.",
+    "An empty Units of Measure surface blocks a trustworthy item save.",
+    "Posting/VAT/inventory posting fields remain separate gated setup steps."
+  ],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCustomerCreated": true,
+    "noVendorCreated": true,
+    "noTemplateApplied": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true,
+    "itemMasterDataChanged": false
+  },
+  "nextCase": "TARGET-041-BASE-UNIT-OF-MEASURE-CONTROLLED-WRITE-GATE"
 }

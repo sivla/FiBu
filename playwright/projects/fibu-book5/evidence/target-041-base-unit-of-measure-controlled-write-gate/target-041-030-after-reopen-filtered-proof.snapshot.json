@@ -1,0 +1,45 @@
+{
+  "step": "After reopening Units filtered to STK.",
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=209&company=UNIVERSAARL-DE&filter=%27Unit+of+Measure%27.Code+IS+%27STK%27",
+  "title": "Einheiten",
+  "compact": "Einheiten:\nNeu\nCode\nBeschreibung\nInternationaler Standardcode\nSTK\nListe mit Titel „Einheiten“ hat jetzt einen Artikel\nCode, Sortierreihenfolge Aufsteigend",
+  "visible": {
+    "unitsContext": true,
+    "targetCode": true,
+    "targetDescription": false,
+    "hardForbiddenSignal": false
+  },
+  "targetUnit": {
+    "code": "STK",
+    "description": "Stueck"
+  },
+  "writeAttempt": {
+    "changed": false,
+    "status": "already-exists",
+    "reason": "STK already visible before write gate."
+  },
+  "steps": [
+    {
+      "step": "smart-decision",
+      "whyNow": "TARGET-036E blocked first item creation because no PCS/STK base unit was visible. A single unit of measure is the smallest missing prerequisite.",
+      "evidenceBasis": [
+        "TARGET-040: Units of Measure page visible read-only.",
+        "TARGET-036E: first item was not saved because Base Unit was unproven."
+      ],
+      "fieldsChangedOnlyIfSafe": [
+        "Unit.Code=STK",
+        "Unit.Description=Stueck"
+      ],
+      "fieldsNotTouched": [
+        "International Standard Code",
+        "Items",
+        "Inventory Setup",
+        "Posting Groups",
+        "VAT Setup"
+      ],
+      "risk": "A unit of measure is foundational master data; it should not be confused with item, posting or VAT readiness.",
+      "fallback": "Abort and document screenshots if Code/Description inputs are not trusted."
+    }
+  ],
+  "reopenProofRoute": "direct Page 209 URL with Unit of Measure Code filter"
+}

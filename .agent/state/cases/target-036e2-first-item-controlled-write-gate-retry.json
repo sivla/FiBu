@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "First item controlled write gate retry with STK",
+  "purpose": "Retry exactly one first Universaarl item after TARGET-041 proved STK as a Base Unit candidate.",
+  "sourceCases": [
+    "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+    "TARGET-041-BASE-UNIT-OF-MEASURE-CONTROLLED-WRITE-GATE"
+  ],
+  "effectiveBcActionsAllowed": true,
+  "mayRunPlaywright": true,
+  "taskClass": "wizard_work",
+  "smartDecisionRequired": true,
+  "allowedActions": [
+    "confirm-playthru-instance",
+    "confirm-universaarl-company",
+    "open-items-list",
+    "capture-before-screenshot-qa",
+    "open-new-item-card-only-after-smart-decision",
+    "create-one-controlled-item-if-fields-are-clear",
+    "set-only-item-no-description-type-and-base-unit-stk",
+    "reopen-item-card-for-proof",
+    "write-result-json-and-next-step-decision",
+    "update-coverage-and-catalog"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "create-customer",
+    "create-vendor",
+    "change-number-series",
+    "change-posting-setup",
+    "change-vat-setup",
+    "change-inventory-setup",
+    "change-dimensions",
+    "create-document-or-draft",
+    "apply-template-without-explicit-smart-decision",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "candidateRecord": {
+    "itemNo": "U-ITEM-HW100",
+    "description": "Universaarl Hardware 100",
+    "type": "Inventory",
+    "baseUnit": "STK",
+    "fieldsExplicitlyAllowedIfVisible": [
+      "No.",
+      "Description",
+      "Type",
+      "Base Unit of Measure"
+    ],
+    "fieldsNotToSetInThisCase": [
+      "Inventory Posting Group",
+      "Gen. Prod. Posting Group",
+      "VAT Prod. Posting Group",
+      "Costing Method",
+      "Unit Cost",
+      "Unit Price",
+      "Vendor No.",
+      "Replenishment System"
+    ]
+  },
+  "acceptanceCriteria": [
+    "playthru / UNIVERSAARL-DE is confirmed before any New action.",
+    "STK is visible or directly selectable as Base Unit before saving the item.",
+    "At most one item U-ITEM-HW100 is saved, or the route is blocked with a clear reason.",
+    "If saved, the item is reopened and No., Description and Base Unit are visible.",
+    "No posting group, VAT group, setup value, document, Preview Posting, Posting or API shortcut is used."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-041-BASE-UNIT-OF-MEASURE-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-036E blocked because no Base Unit was proven. TARGET-041 now proves STK visible after reopen, while description Stueck remains not proven.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The base-unit blocker is closed enough for a narrow item retry with Base Unit STK.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
+        "status": "ready-next",
+        "reason": "STK is visible and can be used as the Base Unit candidate."
+      },
+      {
+        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
+        "status": "ready-after-current",
+        "reason": "Run after the item is created or blocked again."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C still needs item, posting groups, VAT and expected entry trace boundaries."
+      }
+    ],
+    "queueChangesMade": [
+      "TARGET-036E blocked on missing Base Unit.",
+      "TARGET-041 proved STK visible after reopen.",
+      "TARGET-036E2 inserted as the next narrow item retry."
+    ],
+    "selectedNextCase": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
+    "whySelectedNextCaseIsBest": "It uses the newly proven STK prerequisite without jumping to posting setup, documents or posting.",
+    "risksBeforeNextCase": [
+      "The item retry must not set posting groups casually.",
+      "No document, Preview Posting or Posting is allowed.",
+      "The item save still needs reopen proof."
+    ],
+    "requiredPreparation": [
+      "Use Base Unit STK.",
+      "Set only Item No., Description, Type and Base Unit if fields are trusted.",
+      "Keep posting groups and VAT fields untouched."
+    ]
+  },
+  "createdAt": "2026-07-01T15:05:00.000Z",
+  "updatedAt": "2026-07-01T15:05:00.000Z"
+}

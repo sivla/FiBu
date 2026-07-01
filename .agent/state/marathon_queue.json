@@ -3468,7 +3468,7 @@
     {
       "id": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
       "order": 10170,
-      "status": "pending",
+      "status": "blocked",
       "priority": "high",
       "area": "universaarl-first-item-write-gate",
       "category": "target-masterdata-controlled-write-gate",
@@ -3480,8 +3480,60 @@
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
       "caseFile": ".agent/state/cases/target-036e-first-item-controlled-write-gate.json",
+      "lookaheadStatus": "blocked",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-036e-first-item-controlled-write-gate/TARGET-036E-result.json",
+      "completedAt": "2026-07-01T15:05:00.000Z",
+      "result": "Blocked safely: first item was not saved because no Base Unit was proven; no setup/document/preview/posting.",
+      "nextCase": "TARGET-041-BASE-UNIT-OF-MEASURE-CONTROLLED-WRITE-GATE",
+      "setupChanged": false,
+      "masterDataChanged": false,
+      "previewPosting": false,
+      "posted": false,
+      "apiShortcut": false
+    },
+    {
+      "id": "TARGET-041-BASE-UNIT-OF-MEASURE-CONTROLLED-WRITE-GATE",
+      "order": 10171,
+      "status": "done",
+      "priority": "high",
+      "area": "universaarl-base-unit-foundation",
+      "category": "target-foundation-masterdata-controlled-write-gate",
+      "expectedImpact": "base-unit-prerequisite-for-first-item",
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": true,
+      "goal": "Create or verify STK base unit of measure before retrying first item creation.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "caseFile": ".agent/state/cases/target-041-base-unit-of-measure-controlled-write-gate.json",
+      "lookaheadStatus": "done",
+      "completedAt": "2026-07-01T15:05:00.000Z",
+      "result": "STK is visible after reopen; description Stueck is not proven visible; no item/document/preview/posting.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-041-base-unit-of-measure-controlled-write-gate/TARGET-041-result.json",
+      "nextCase": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
+      "setupChanged": false,
+      "masterDataChanged": true,
+      "previewPosting": false,
+      "posted": false,
+      "apiShortcut": false
+    },
+    {
+      "id": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
+      "order": 10172,
+      "status": "pending",
+      "priority": "high",
+      "area": "universaarl-first-item-write-gate",
+      "category": "target-masterdata-controlled-write-gate",
+      "expectedImpact": "first-item-foundation-masterdata-proof",
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": true,
+      "goal": "Retry exactly one first Universaarl item with Base Unit STK.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "caseFile": ".agent/state/cases/target-036e2-first-item-controlled-write-gate-retry.json",
       "lookaheadStatus": "ready-next",
-      "resultPath": "playwright/projects/fibu-book5/evidence/target-036e-first-item-controlled-write-gate/TARGET-036E-result.json"
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-036e2-first-item-controlled-write-gate-retry/TARGET-036E2-result.json"
     }
   ],
   "lastUpdated": "2026-07-01T12:55:00.000Z",
@@ -3594,102 +3646,102 @@
       ]
     }
   },
-  "updatedAt": "2026-07-01T13:45:00.000Z",
-  "lastCompletedCase": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
-  "nextCase": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+  "updatedAt": "2026-07-01T15:05:00.000Z",
+  "lastCompletedCase": "TARGET-041-BASE-UNIT-OF-MEASURE-CONTROLLED-WRITE-GATE",
+  "nextCase": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
-    "plannedNextCaseBeforeReview": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
-    "lastEvidenceSummary": "TARGET-039 selected read-only item/inventory Foundation preflight before the first item write.",
+    "currentCase": "TARGET-041-BASE-UNIT-OF-MEASURE-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-041-BASE-UNIT-OF-MEASURE-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-036E blocked first item creation because no PCS/STK base unit was visible.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Item creation affects Base Unit, Item Type, inventory posting, item posting and later value entries, so page context must be visible before writing.",
+    "reason": "A single STK unit is the smallest concrete prerequisite before retrying first item creation.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+        "caseId": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
         "status": "ready-next",
-        "reason": "Core item/inventory setup pages and Items list were visible read-only; a narrow item-write gate can be planned next."
+        "reason": "STK exists; retry first item creation with Base Unit STK."
+      },
+      {
+        "caseId": "TARGET-036E2-FIRST-ITEM-FIELD-HELPER-RECOVERY",
+        "status": "ready-after-current",
+        "reason": "Needed only if the next item card fill still cannot target fields safely."
       },
       {
         "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
         "status": "ready-after-current",
-        "reason": "Useful after the first item route is either completed or blocked."
+        "reason": "Useful after item creation is created or blocked again."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C still needs item plus posting/VAT boundaries and expected entry trace."
-      },
-      {
-        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
-        "status": "blocked",
-        "reason": "Vendor remains blocked until a new non-repeated U-VEND Manual Nos. route exists."
+        "reason": "O2C still needs item, posting groups, VAT and expected entry trace boundaries."
       }
     ],
     "queueChangesMade": [],
-    "selectedNextCase": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
-    "whySelectedNextCaseIsBest": "A first item write gate is now the smallest useful next step, with New/Edit/Template still requiring its own Smart Decision.",
+    "selectedNextCase": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
+    "whySelectedNextCaseIsBest": "The base-unit blocker is closed, so the first item can be retried narrowly.",
     "risksBeforeNextCase": [
-      "New/Neu on Items creates a card and must be gated.",
-      "Apply Template/Vorlage anwenden can change defaults and must not be clicked casually.",
-      "Inventory Posting Setup visibility does not prove account correctness."
+      "The item retry must not set posting groups casually.",
+      "No document, Preview Posting or Posting is allowed.",
+      "The item save still needs reopen proof."
     ],
     "requiredPreparation": [
-      "Define one item only for the first write.",
-      "Specify fields to set: No., Description, Type, Base Unit and only visible non-posting defaults.",
-      "Keep posting groups/VAT groups read-only unless a later setup case unlocks them."
+      "Use Base Unit STK on the first item retry.",
+      "Set only Item No., Description, Type and Base Unit if fields are trusted.",
+      "Keep posting groups and VAT fields untouched."
     ]
   },
-  "nextStep": "Run TARGET-036E as the next narrow controlled item write gate after TARGET-040 read-only preflight.",
+  "nextStep": "Retry first item creation with Base Unit STK.",
   "openItems": [
-    "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE"
+    "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY"
   ],
-  "nextQueueItem": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+  "nextQueueItem": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
   "nextCases": [
-    "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+    "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
     "TARGET-040-FOUNDATION-READY-RECHECK",
     "TARGET-038-O2C-PREFLIGHT",
     "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE"
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
-    "plannedNextCaseBeforeReview": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
-    "lastEvidenceSummary": "TARGET-039 selected read-only item/inventory Foundation preflight before the first item write.",
+    "currentCase": "TARGET-041-BASE-UNIT-OF-MEASURE-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-041-BASE-UNIT-OF-MEASURE-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-036E blocked first item creation because no PCS/STK base unit was visible.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Item creation affects Base Unit, Item Type, inventory posting, item posting and later value entries, so page context must be visible before writing.",
+    "reason": "A single STK unit is the smallest concrete prerequisite before retrying first item creation.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+        "caseId": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
         "status": "ready-next",
-        "reason": "Core item/inventory setup pages and Items list were visible read-only; a narrow item-write gate can be planned next."
+        "reason": "STK exists; retry first item creation with Base Unit STK."
+      },
+      {
+        "caseId": "TARGET-036E2-FIRST-ITEM-FIELD-HELPER-RECOVERY",
+        "status": "ready-after-current",
+        "reason": "Needed only if the next item card fill still cannot target fields safely."
       },
       {
         "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
         "status": "ready-after-current",
-        "reason": "Useful after the first item route is either completed or blocked."
+        "reason": "Useful after item creation is created or blocked again."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C still needs item plus posting/VAT boundaries and expected entry trace."
-      },
-      {
-        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
-        "status": "blocked",
-        "reason": "Vendor remains blocked until a new non-repeated U-VEND Manual Nos. route exists."
+        "reason": "O2C still needs item, posting groups, VAT and expected entry trace boundaries."
       }
     ],
     "queueChangesMade": [],
-    "selectedNextCase": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
-    "whySelectedNextCaseIsBest": "A first item write gate is now the smallest useful next step, with New/Edit/Template still requiring its own Smart Decision.",
+    "selectedNextCase": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
+    "whySelectedNextCaseIsBest": "The base-unit blocker is closed, so the first item can be retried narrowly.",
     "risksBeforeNextCase": [
-      "New/Neu on Items creates a card and must be gated.",
-      "Apply Template/Vorlage anwenden can change defaults and must not be clicked casually.",
-      "Inventory Posting Setup visibility does not prove account correctness."
+      "The item retry must not set posting groups casually.",
+      "No document, Preview Posting or Posting is allowed.",
+      "The item save still needs reopen proof."
     ],
     "requiredPreparation": [
-      "Define one item only for the first write.",
-      "Specify fields to set: No., Description, Type, Base Unit and only visible non-posting defaults.",
-      "Keep posting groups/VAT groups read-only unless a later setup case unlocks them."
+      "Use Base Unit STK on the first item retry.",
+      "Set only Item No., Description, Type and Base Unit if fields are trusted.",
+      "Keep posting groups and VAT fields untouched."
     ]
   }
 }

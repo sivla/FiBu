@@ -1,0 +1,97 @@
+{
+  "fileName": "target-036e-030-after-reopen-filtered-proof.png",
+  "imagePath": "C:\\Users\\kkali\\.codex\\worktrees\\b8d6\\FiBu\\playwright\\projects\\fibu-book5\\img\\target-036e-030-after-reopen-filtered-proof.png",
+  "project": "fibu-book5",
+  "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "pageId": 31,
+  "page": "Items / Artikel",
+  "step": "After reopening Items filtered to U-ITEM-HW100.",
+  "visibleLearning": [
+    "Artikel sind Stammdaten fuer Verkauf, Einkauf und Lager.",
+    "Vor einem Artikel braucht Business Central mindestens einen sicheren Kartenkontext und eine Basiseinheit.",
+    "Buchungsgruppen, USt-Gruppen und Lagerbuchungssetup bleiben eigene Gates."
+  ],
+  "importantUi": [
+    "Items/Artikel Liste oder Karte",
+    "Nr./No.",
+    "Beschreibung/Description",
+    "Art/Type",
+    "Basiseinheit/Base Unit"
+  ],
+  "internallyProves": "Artikelkontext vor oder waehrend des kontrollierten Schreibgates.",
+  "doesNotProve": [
+    "Keine Artikelbuchungsgruppe auf einem gebuchten Beleg.",
+    "Keine USt- oder Buchungsmatrix-Wirkung.",
+    "Keine Lager-, Wert-, Sach- oder USt-Posten.",
+    "Keine Vorlage wurde angewendet."
+  ],
+  "finalScreenshotStatus": "setup-or-blocker-evidence",
+  "targetItem": {
+    "itemNo": "U-ITEM-HW100",
+    "description": "Universaarl Hardware 100",
+    "type": "Inventory",
+    "baseUnitCandidates": [
+      "PCS",
+      "STK"
+    ]
+  },
+  "unitReadiness": {
+    "hasRows": true,
+    "availableCandidates": [],
+    "rawSignals": [
+      "Einheiten:",
+      "Code",
+      "Beschreibung",
+      "Internationaler Standardcode",
+      "Code, Sortierreihenfolge Aufsteigend"
+    ]
+  },
+  "writeAttempt": {
+    "changed": false,
+    "status": "blocked",
+    "reason": "Units of Measure page did not show PCS or STK. The first item was not saved because Base Unit would be unproven.",
+    "unitReadiness": {
+      "hasRows": true,
+      "availableCandidates": [],
+      "rawSignals": [
+        "Einheiten:",
+        "Code",
+        "Beschreibung",
+        "Internationaler Standardcode",
+        "Code, Sortierreihenfolge Aufsteigend"
+      ]
+    }
+  },
+  "steps": [
+    {
+      "step": "smart-decision",
+      "whyNow": "TARGET-040 proved the item/inventory Foundation pages read-only. TARGET-036E is allowed to create at most one item, but only if a safe base unit and trusted card fields are visible.",
+      "evidenceBasis": [
+        "TARGET-040: Items, Inventory Setup, Inventory Posting Setup, Item Posting Groups and Units of Measure opened read-only.",
+        "TARGET-036B: Item New route opens an item card with Apply Template visible but not clicked."
+      ],
+      "fieldsChangedOnlyIfSafe": [
+        "Item.No=U-ITEM-HW100",
+        "Item.Description=Universaarl Hardware 100",
+        "Item.Type=Inventory",
+        "Item.Base Unit=PCS or STK if visibly available"
+      ],
+      "fieldsNotTouched": [
+        "Apply Template / Vorlage anwenden",
+        "Inventory Posting Group",
+        "Gen. Prod. Posting Group",
+        "VAT Prod. Posting Group",
+        "Costing Method",
+        "Unit Cost",
+        "Unit Price",
+        "Vendor No.",
+        "Replenishment System"
+      ],
+      "risk": "An item without a valid base unit or posting setup can mislead later O2C/P2P/inventory evidence.",
+      "fallback": "If no base unit is available or the card route is ambiguous, do not save an item; create a separate Units of Measure setup gate."
+    }
+  ],
+  "reopenProofRoute": "direct Page 31 URL with Item No. filter"
+}

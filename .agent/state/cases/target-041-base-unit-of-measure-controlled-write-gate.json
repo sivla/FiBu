@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-041-BASE-UNIT-OF-MEASURE-CONTROLLED-WRITE-GATE",
+  "status": "done",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Base unit of measure controlled write gate",
+  "purpose": "Create or verify exactly one base unit of measure before retrying the first Universaarl item.",
+  "sourceCases": [
+    "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+    "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE"
+  ],
+  "effectiveBcActionsAllowed": true,
+  "mayRunPlaywright": true,
+  "taskClass": "wizard_work",
+  "smartDecisionRequired": true,
+  "allowedActions": [
+    "confirm-playthru-instance",
+    "confirm-universaarl-company",
+    "open-units-of-measure",
+    "capture-before-screenshot-qa",
+    "create-one-controlled-unit-of-measure-if-fields-are-clear",
+    "set-only-code-and-description",
+    "reopen-unit-for-proof",
+    "write-result-json-and-next-step-decision",
+    "update-coverage-and-catalog"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "create-customer",
+    "create-vendor",
+    "create-item",
+    "change-number-series",
+    "change-posting-setup",
+    "change-vat-setup",
+    "change-inventory-setup",
+    "change-dimensions",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "candidateRecord": {
+    "code": "STK",
+    "description": "Stueck",
+    "fieldsExplicitlyAllowedIfVisible": [
+      "Code",
+      "Description"
+    ],
+    "fieldsNotToSetInThisCase": [
+      "International Standard Code",
+      "Item",
+      "Item Posting Group",
+      "Inventory Posting Setup",
+      "VAT fields",
+      "Posting fields"
+    ]
+  },
+  "acceptanceCriteria": [
+    "playthru / UNIVERSAARL-DE is confirmed before any New action.",
+    "Units of Measure page is captured before the write.",
+    "At most one unit of measure STK is saved, or the route is blocked with a clear reason.",
+    "If saved, STK is reopened by list proof and Code/Description are visible.",
+    "No item, setup value, posting group, VAT group, document, Preview Posting, Posting or API shortcut is used."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-041-BASE-UNIT-OF-MEASURE-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-041-BASE-UNIT-OF-MEASURE-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-036E blocked first item creation because no PCS/STK base unit was visible.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A single STK unit is the smallest concrete prerequisite before retrying first item creation.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
+        "status": "ready-next",
+        "reason": "STK exists; retry first item creation with Base Unit STK."
+      },
+      {
+        "caseId": "TARGET-036E2-FIRST-ITEM-FIELD-HELPER-RECOVERY",
+        "status": "ready-after-current",
+        "reason": "Needed only if the next item card fill still cannot target fields safely."
+      },
+      {
+        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
+        "status": "ready-after-current",
+        "reason": "Useful after item creation is created or blocked again."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C still needs item, posting groups, VAT and expected entry trace boundaries."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
+    "whySelectedNextCaseIsBest": "The base-unit blocker is closed, so the first item can be retried narrowly.",
+    "risksBeforeNextCase": [
+      "The item retry must not set posting groups casually.",
+      "No document, Preview Posting or Posting is allowed.",
+      "The item save still needs reopen proof."
+    ],
+    "requiredPreparation": [
+      "Use Base Unit STK on the first item retry.",
+      "Set only Item No., Description, Type and Base Unit if fields are trusted.",
+      "Keep posting groups and VAT fields untouched."
+    ]
+  },
+  "createdAt": "2026-07-01T14:45:00.000Z",
+  "updatedAt": "2026-07-01T15:05:00.000Z",
+  "completedAt": "2026-07-01T15:05:00.000Z",
+  "resultStatus": "observed",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-041-base-unit-of-measure-controlled-write-gate/TARGET-041-result.json",
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Page 209 Units of Measure / Einheiten was used as the scoped page.",
+    "STK is visible after reopen.",
+    "The first timed TARGET-041 attempt likely created or exposed the STK code; the successful rerun verified it without creating a duplicate.",
+    "No item, setup, document, Preview Posting or Posting route was used."
+  ],
+  "notProved": [
+    "No item is created.",
+    "No item card Base Unit value is proven.",
+    "Unit description Stueck is not proven visible.",
+    "No posting group, VAT setup, document, Preview Posting, Posting, item ledger entry, value entry, G/L entry or VAT entry is proven."
+  ],
+  "blockedBy": [],
+  "warnings": [
+    "This is only a unit-of-measure foundation proof.",
+    "The first TARGET-041 execution timed out while entering the list row; the rerun found STK visible before a second write and therefore did not create a duplicate.",
+    "Unit description Stueck is not proven visible.",
+    "The next item case must still set Base Unit on an item card and reopen the item.",
+    "Posting/VAT/inventory posting fields remain separate gated setup steps."
+  ],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCustomerCreated": true,
+    "noVendorCreated": true,
+    "noItemCreated": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true,
+    "unitOfMeasureChanged": true
+  },
+  "nextCase": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY"
+}
