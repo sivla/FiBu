@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T18:15:51.580Z",
+  "updatedAt": "2026-07-01T18:28:55.210Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -57,7 +57,7 @@
     "book-claim-without-evidence"
   ],
   "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-  "nextStep": "Run npm run auth:bc, complete Login/MFA until the Business Central shell is visible, confirm npm run auth:bc:check is green, then rerun the same narrow D2F route.",
+  "nextStep": "Auth refresh now requires attended Login/MFA: run npm run auth:bc, keep the browser open until the Business Central Role Center/Search/My Settings shell is visible, then require npm run auth:bc:check to pass before rerunning D2F.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -7934,25 +7934,37 @@
     "posted": false,
     "apiShortcut": false,
     "blockedBy": [
-      "D2F blocked before Business Central open by auth shell-validation preflight: shell-validation-meta-missing-or-invalid."
+      "D2F blocked before Business Central open by auth shell-validation preflight: shell-validation-meta-missing-or-invalid.",
+      "Interactive npm run auth:bc was attempted for 10 minutes, but the Business Central shell was not confirmed; no shell-validation metadata was saved."
     ],
     "warnings": [
       "Auth shell-validation failure is an execution blocker, not a Business Central setup finding."
     ],
     "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-    "decision": "Run npm run auth:bc, complete Login/MFA until the Business Central shell is visible, confirm npm run auth:bc:check is green, then rerun the same narrow D2F route."
+    "decision": "Auth refresh now requires attended Login/MFA: run npm run auth:bc, keep the browser open until the Business Central Role Center/Search/My Settings shell is visible, then require npm run auth:bc:check to pass before rerunning D2F.",
+    "authUnblock": {
+      "status": "blocked-attended-login-required",
+      "lastAttemptAt": "2026-07-01T18:28:55.210Z",
+      "command": "npm run auth:bc",
+      "outcome": "timeout-no-business-central-shell-validation-meta",
+      "authCheckBlockedBy": [
+        "shell-validation-meta-missing-or-invalid"
+      ],
+      "doNotRepeatUnattended": true,
+      "nextRequiredAction": "Auth refresh now requires attended Login/MFA: run npm run auth:bc, keep the browser open until the Business Central Role Center/Search/My Settings shell is visible, then require npm run auth:bc:check to pass before rerunning D2F."
+    }
   },
   "nextStepDecision": {
     "currentCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
     "plannedNextCaseBeforeReview": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
     "lastEvidenceSummary": "TARGET-036D2E did not persist U-VEND Manual Nos after an unfiltered/cell-coordinate route.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "D2F blocked before Business Central open by auth shell-validation preflight: shell-validation-meta-missing-or-invalid.",
+    "reason": "Interactive npm run auth:bc was attempted for 10 minutes, but the Business Central shell was not confirmed; no shell-validation metadata was saved.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
         "status": "blocked",
-        "reason": "Stored auth must have shell-validation metadata; run npm run auth:bc until the BC shell is visible, then require npm run auth:bc:check to pass before retry."
+        "reason": "Requires attended Login/MFA and a green auth:bc:check before any BC/Playwright execution."
       },
       {
         "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
@@ -7972,12 +7984,13 @@
     ],
     "queueChangesMade": [],
     "selectedNextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-    "whySelectedNextCaseIsBest": "Run npm run auth:bc, complete Login/MFA until the Business Central shell is visible, confirm npm run auth:bc:check is green, then rerun the same narrow D2F route.",
+    "whySelectedNextCaseIsBest": "Auth refresh now requires attended Login/MFA: run npm run auth:bc, keep the browser open until the Business Central Role Center/Search/My Settings shell is visible, then require npm run auth:bc:check to pass before rerunning D2F.",
     "risksBeforeNextCase": [
-      "Do not create vendor/customer/item records until U-VEND Manual Nos is proven active."
+      "Do not create vendor/customer/item records until U-VEND Manual Nos is proven active.",
+      "Do not rerun D2F or unattended auth refresh until auth:bc:check passes."
     ],
     "requiredPreparation": [
-      "Run npm run auth:bc, complete Login/MFA until the Business Central shell is visible, then require npm run auth:bc:check to pass before rerunning D2F."
+      "Auth refresh now requires attended Login/MFA: run npm run auth:bc, keep the browser open until the Business Central Role Center/Search/My Settings shell is visible, then require npm run auth:bc:check to pass before rerunning D2F."
     ]
   },
   "latestTarget037MasterdataFoundationCheckpoint": {
@@ -8350,5 +8363,16 @@
     "updatedAt": "2026-07-01T14:02:31.619Z"
   },
   "lastRunSummaryPath": "playwright/projects/fibu-book5/evidence/target-044d-customer-item-posting-fields-alternative-page-route/TARGET-044D-result.json",
-  "lastEvidenceSummary": "U-CUST-100 and U-ITEM-HW100 were inspected on standard pages in playthru / UNIVERSAARL-DE. Standard FastTabs and Mehr anzeigen/Show more were used as the alternative route instead of Personalize. Visible relevant terms captured: Gesperrt, Basiseinheit, Lagerbestand, Inventory. No setup, master data, document, Preview Posting, Posting, payment, API shortcut, personalization or company switch occurred."
+  "lastEvidenceSummary": "U-CUST-100 and U-ITEM-HW100 were inspected on standard pages in playthru / UNIVERSAARL-DE. Standard FastTabs and Mehr anzeigen/Show more were used as the alternative route instead of Personalize. Visible relevant terms captured: Gesperrt, Basiseinheit, Lagerbestand, Inventory. No setup, master data, document, Preview Posting, Posting, payment, API shortcut, personalization or company switch occurred.",
+  "authUnblock": {
+    "status": "blocked-attended-login-required",
+    "lastAttemptAt": "2026-07-01T18:28:55.210Z",
+    "command": "npm run auth:bc",
+    "outcome": "timeout-no-business-central-shell-validation-meta",
+    "authCheckBlockedBy": [
+      "shell-validation-meta-missing-or-invalid"
+    ],
+    "doNotRepeatUnattended": true,
+    "nextRequiredAction": "Auth refresh now requires attended Login/MFA: run npm run auth:bc, keep the browser open until the Business Central Role Center/Search/My Settings shell is visible, then require npm run auth:bc:check to pass before rerunning D2F."
+  }
 }

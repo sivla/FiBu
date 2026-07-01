@@ -39,7 +39,8 @@
   ],
   "proved": [
     "The D2F route did not open Business Central because local auth shell-validation metadata is missing or invalid.",
-    "No setup, master data, document, Preview Posting, Posting, payment, API shortcut or company switch occurred."
+    "No setup, master data, document, Preview Posting, Posting, payment, API shortcut or company switch occurred.",
+    "Unattended auth refresh cannot complete the current Login/MFA requirement; D2F must wait for attended shell validation."
   ],
   "notProved": [
     "U-VEND Manual Nos. is not proven active.",
@@ -47,10 +48,12 @@
     "No automatic numbering behavior, Preview Posting, Posting, ledger entry or VAT effect is proven."
   ],
   "warnings": [
-    "Auth shell-validation failure is an execution blocker, not a Business Central setup finding."
+    "Auth shell-validation failure is an execution blocker, not a Business Central setup finding.",
+    "A later unattended auth refresh attempt timed out without shell validation."
   ],
   "blockedBy": [
-    "D2F blocked before Business Central open by auth shell-validation preflight: shell-validation-meta-missing-or-invalid."
+    "D2F blocked before Business Central open by auth shell-validation preflight: shell-validation-meta-missing-or-invalid.",
+    "Interactive npm run auth:bc was attempted for 10 minutes, but the Business Central shell was not confirmed; no shell-validation metadata was saved."
   ],
   "flags": {
     "noCompanySwitch": true,
@@ -67,12 +70,12 @@
     "plannedNextCaseBeforeReview": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
     "lastEvidenceSummary": "TARGET-036D2E did not persist U-VEND Manual Nos after an unfiltered/cell-coordinate route.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "D2F blocked before Business Central open by auth shell-validation preflight: shell-validation-meta-missing-or-invalid.",
+    "reason": "Interactive npm run auth:bc was attempted for 10 minutes, but the Business Central shell was not confirmed; no shell-validation metadata was saved.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
         "status": "blocked",
-        "reason": "Stored auth must have shell-validation metadata; run npm run auth:bc until the BC shell is visible, then require npm run auth:bc:check to pass before retry."
+        "reason": "Requires attended Login/MFA and a green auth:bc:check before any BC/Playwright execution."
       },
       {
         "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
@@ -92,12 +95,12 @@
     ],
     "queueChangesMade": [],
     "selectedNextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-    "whySelectedNextCaseIsBest": "Run npm run auth:bc, complete Login/MFA until the Business Central shell is visible, confirm npm run auth:bc:check is green, then rerun the same narrow D2F route.",
+    "whySelectedNextCaseIsBest": "Auth refresh now requires attended Login/MFA: run npm run auth:bc, keep the browser open until the Business Central Role Center/Search/My Settings shell is visible, then require npm run auth:bc:check to pass before rerunning D2F.",
     "risksBeforeNextCase": [
       "Do not create vendor/customer/item records until U-VEND Manual Nos is proven active."
     ],
     "requiredPreparation": [
-      "Run npm run auth:bc, complete Login/MFA until the Business Central shell is visible, then require npm run auth:bc:check to pass before rerunning D2F."
+      "Auth refresh now requires attended Login/MFA: run npm run auth:bc, keep the browser open until the Business Central Role Center/Search/My Settings shell is visible, then require npm run auth:bc:check to pass before rerunning D2F."
     ]
   },
   "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
@@ -115,7 +118,7 @@
       "active_case_file": ".agent/state/cases/target-036d2f-u-vend-manual-nos-route-recovery.json",
       "lastCompletedCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
       "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-      "nextStep": "Run npm run auth:bc, complete Login/MFA until the Business Central shell is visible, confirm npm run auth:bc:check is green, then rerun the same narrow D2F route."
+      "nextStep": "Auth refresh now requires attended Login/MFA: run npm run auth:bc, keep the browser open until the Business Central Role Center/Search/My Settings shell is visible, then require npm run auth:bc:check to pass before rerunning D2F."
     },
     "activeCase": {
       "status": "blocked",
@@ -136,9 +139,20 @@
       "posted": false,
       "apiShortcut": false,
       "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-      "summary": "D2F blocked before Business Central open by auth shell-validation preflight: shell-validation-meta-missing-or-invalid."
+      "summary": "Interactive npm run auth:bc was attempted for 10 minutes, but the Business Central shell was not confirmed; no shell-validation metadata was saved."
     }
   },
-  "reason": "D2F blocked before Business Central open by auth shell-validation preflight: shell-validation-meta-missing-or-invalid.",
-  "updatedAt": "2026-07-01T18:15:51.597Z"
+  "reason": "Interactive npm run auth:bc was attempted for 10 minutes, but the Business Central shell was not confirmed; no shell-validation metadata was saved.",
+  "updatedAt": "2026-07-01T18:28:55.210Z",
+  "authUnblock": {
+    "status": "blocked-attended-login-required",
+    "lastAttemptAt": "2026-07-01T18:28:55.210Z",
+    "command": "npm run auth:bc",
+    "outcome": "timeout-no-business-central-shell-validation-meta",
+    "authCheckBlockedBy": [
+      "shell-validation-meta-missing-or-invalid"
+    ],
+    "doNotRepeatUnattended": true,
+    "nextRequiredAction": "Auth refresh now requires attended Login/MFA: run npm run auth:bc, keep the browser open until the Business Central Role Center/Search/My Settings shell is visible, then require npm run auth:bc:check to pass before rerunning D2F."
+  }
 }
