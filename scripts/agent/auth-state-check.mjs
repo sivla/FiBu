@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 const authFile = path.resolve('playwright/.auth/bc-user.json');
+const authMetaFile = path.resolve('playwright/.auth/bc-user.meta.json');
 const maxAgeHours = Number(process.env.BC_AUTH_MAX_AGE_HOURS ?? 12);
 const now = Date.now();
 
@@ -10,10 +11,13 @@ function result(overrides) {
     schemaVersion: 1,
     purpose: 'business-central-auth-state-check',
     authFile: 'playwright/.auth/bc-user.json',
+    authMetaFile: 'playwright/.auth/bc-user.meta.json',
     canUseStoredAuth: false,
     exists: false,
     readableJson: false,
+    hasShellValidationMeta: false,
     ageHours: null,
+    metaAgeHours: null,
     maxAgeHours,
     cookieCount: 0,
     originCount: 0,
@@ -64,7 +68,31 @@ async function main() {
   const cookies = Array.isArray(parsed.cookies) ? parsed.cookies : [];
   const origins = Array.isArray(parsed.origins) ? parsed.origins : [];
   const blockedBy = [];
+  let metaAgeHours = null;
+  let hasShellValidationMeta = false;
+  let metaMtimeMs = null;
+
+  try {
+    const metaStats = await fs.stat(authMetaFile);
+    metaMtimeMs = metaStats.mtimeMs;
+    metaAgeHours = Math.round(((now - metaStats.mtimeMs) / 36_000) * 10) / 1000;
+    const meta = JSON.parse(await fs.readFile(authMetaFile, 'utf8'));
+    hasShellValidationMeta =
+      meta?.schemaVersion === 1 &&
+      meta?.purpose === 'business-central-auth-shell-validation' &&
+      meta?.shellValidation === true &&
+      typeof meta?.matchedShellSignal === 'string' &&
+      meta.matchedShellSignal.length > 0;
+  } catch {
+    blockedBy.push('shell-validation-meta-missing-or-invalid');
+  }
+
+  if (!hasShellValidationMeta && !blockedBy.includes('shell-validation-meta-missing-or-invalid')) {
+    blockedBy.push('shell-validation-meta-missing-or-invalid');
+  }
+  if (metaMtimeMs !== null && metaMtimeMs + 1000 < stats.mtimeMs) blockedBy.push('shell-validation-meta-older-than-storage-state');
   if (ageHours > maxAgeHours) blockedBy.push('storage-state-too-old');
+  if (metaAgeHours !== null && metaAgeHours > maxAgeHours) blockedBy.push('shell-validation-meta-too-old');
   if (!cookies.length) blockedBy.push('storage-state-has-no-cookies');
 
   console.log(
@@ -73,13 +101,15 @@ async function main() {
         canUseStoredAuth: blockedBy.length === 0,
         exists: true,
         readableJson: true,
+        hasShellValidationMeta,
         ageHours,
+        metaAgeHours,
         cookieCount: cookies.length,
         originCount: origins.length,
         blockedBy,
         nextStep:
           blockedBy.length === 0
-            ? 'Stored auth has a plausible local shape. Live tests must still validate the Business Central shell.'
+            ? 'Stored auth has local shell-validation metadata. Live tests must still validate the Business Central shell.'
             : 'Run npm run auth:bc and complete Login/MFA until the Business Central shell is visible.'
       }),
       null,

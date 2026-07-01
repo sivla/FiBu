@@ -2,9 +2,10 @@ import { chromium } from '@playwright/test';
 import fs from 'node:fs/promises';
 import 'dotenv/config';
 
-import { isBusinessCentralAuthBlockerText, isBusinessCentralShellText } from './bc-helpers';
+import { BUSINESS_CENTRAL_AUTH_BLOCKER_RE, BUSINESS_CENTRAL_SHELL_RE } from './bc-helpers';
 
 const authFile = 'playwright/.auth/bc-user.json';
+const authMetaFile = 'playwright/.auth/bc-user.meta.json';
 const bcUrl = process.env.BC_URL;
 
 if (!bcUrl) {
@@ -30,19 +31,53 @@ console.log('Der Login-State wird automatisch gespeichert, sobald Business Centr
 console.log('');
 
 try {
-  await page.waitForFunction(
-    () => {
+  const shellValidationHandle = await page.waitForFunction(
+    ({ authBlockerSource, authBlockerFlags, shellSource, shellFlags }) => {
       const isBusinessCentral = window.location.hostname.toLowerCase().includes('businesscentral.dynamics.com');
       const text = document.body?.innerText ?? '';
-      return isBusinessCentral && !isBusinessCentralAuthBlockerText(text) && isBusinessCentralShellText(text);
+      const authBlockerRe = new RegExp(authBlockerSource, authBlockerFlags);
+      const shellRe = new RegExp(shellSource, shellFlags);
+      if (!isBusinessCentral || authBlockerRe.test(text) || !shellRe.test(text)) return false;
+
+      return {
+        host: window.location.hostname,
+        pathname: window.location.pathname,
+        company: new URL(window.location.href).searchParams.get('company') ?? '',
+        matchedShellSignal: text.match(shellRe)?.[0] ?? ''
+      };
     },
-    undefined,
+    {
+      authBlockerSource: BUSINESS_CENTRAL_AUTH_BLOCKER_RE.source,
+      authBlockerFlags: BUSINESS_CENTRAL_AUTH_BLOCKER_RE.flags,
+      shellSource: BUSINESS_CENTRAL_SHELL_RE.source,
+      shellFlags: BUSINESS_CENTRAL_SHELL_RE.flags
+    },
     { timeout: 10 * 60 * 1000 }
   );
+  const shellValidation = await shellValidationHandle.jsonValue();
 
   await page.waitForTimeout(5000);
 
   await context.storageState({ path: authFile });
+  await fs.writeFile(
+    authMetaFile,
+    `${JSON.stringify(
+      {
+        schemaVersion: 1,
+        purpose: 'business-central-auth-shell-validation',
+        generatedAt: new Date().toISOString(),
+        authFile,
+        shellValidation: true,
+        host: shellValidation.host,
+        pathname: shellValidation.pathname,
+        company: shellValidation.company,
+        matchedShellSignal: shellValidation.matchedShellSignal
+      },
+      null,
+      2
+    )}\n`,
+    'utf8'
+  );
   console.log(`Login-State gespeichert: ${authFile}`);
 } catch (error) {
   console.error('');
