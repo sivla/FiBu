@@ -10,7 +10,16 @@ npm install
 npx playwright install
 cp .env.example .env
 npm run auth:bc
+npm run auth:bc:check
 ```
+
+Complete Login/MFA in the opened browser and keep it open until the Business Central shell is visible. Safe shell signals are the Role Center, Search/Tell Me, or My Settings. If `npm run auth:bc:check` remains red and the browser is stuck on Microsoft sign-in, run:
+
+```bash
+npm run auth:bc:diagnose
+```
+
+The diagnose command prints only redacted shell signals. Do not commit `.env`, `playwright/.auth/`, screenshots from login pages, traces, tokens, tenant IDs, or account details.
 
 Before running any Business Central workflow, validate the compact agent layer:
 
@@ -47,11 +56,11 @@ Then load only the active case file and relevant skill.
 Active case:
 
 ```text
-FIXEDASSETS-065-PURCHASE-INVOICE-LINE-TYPE-HELPER-DIAGNOSIS
+TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY
 ```
 
 Important limit:
 
 ```text
-No FA-CNC-01 entry, no K30000 entry in Purchase Invoice, no Preview Posting, no Post.
+Target world is playthru / UNIVERSAARL-DE. Do not rerun D2F until npm run auth:bc:check is green. No vendor/customer/item/document creation, no Preview Posting, no Posting, no payment and no API shortcut before the active case gate allows it.
 ```

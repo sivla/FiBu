@@ -21,7 +21,7 @@ Wenn mehrere Projekte im selben Repository liegen, bekommt jedes Projekt eigene 
 Beispiel:
 
 ```text
-FIBU_BOOK5_BC_URL=https://businesscentral.dynamics.com/<tenant>/<environment>?company=RM-DEMO
+FIBU_BOOK5_BC_URL=https://businesscentral.dynamics.com/<tenant>/playthru?company=UNIVERSAARL-DE
 FIBU_BOOK5_BC_LOCALE=de-DE
 FIBU_BOOK5_BC_TIMEZONE=Europe/Berlin
 
@@ -45,9 +45,9 @@ Projekt und Umgebung sind nicht dasselbe.
 | Begriff | Bedeutung | Beispiel |
 |---|---|---|
 | Projekt | fachliche oder redaktionelle Automationsstrecke | `fibu-book5` |
-| Umgebung | technische Business-Central-Instanz | `MCP_1_20260210` |
-| Company | Mandant innerhalb der BC-Umgebung | `RM-DEMO` |
-| Testdatenstand | versionierte fachliche Datenbasis | `foundation/rm-demo-company.json` |
+| Umgebung | technische Business-Central-Instanz | `playthru` |
+| Company | Mandant innerhalb der BC-Umgebung | `UNIVERSAARL-DE` |
+| Testdatenstand | versionierte fachliche Datenbasis | `foundation/universaarl-de-foundation.json` |
 
 Ein Projekt kann später auf eine neue Umgebung umziehen, ohne dass Testfallnamen und Buchlogik geändert werden. Dafür werden technische Details in `.env` und Projekt-README gekapselt.
 
@@ -59,10 +59,10 @@ Für jede genutzte Umgebung wird ein kurzer Steckbrief im jeweiligen Projekt-REA
 |---|---|---|
 | Projekt | `fibu-book5` | Zuordnung zum Buch/Kunden/Use Case |
 | Tenant | nur Kurzbeschreibung, keine Secrets | Orientierung |
-| Environment | `MCP_1_20260210` | technische BC-Umgebung |
-| Company | `RM-DEMO` | aktive Trainingscompany |
+| Environment | `playthru` | technische BC-Umgebung |
+| Company | `UNIVERSAARL-DE` | aktive Zielcompany |
 | Sprache | `de-DE`, gemischt, englisch | wichtig für Suchbegriffe und Screenshots |
-| Datenquelle | `CRONUS USA, Inc.` | Ursprung der Trainingsdaten |
+| Datenquelle | leere/aufgebaute Universaarl-Zielcompany | Ursprung der Trainingsdaten |
 | Login-Methode | manueller Entra-ID-Login + `storageState` | Wiederholbarkeit |
 | Besonderheiten | z. B. Popups, gemischte Sprache | Workarounds |
 
@@ -86,8 +86,10 @@ Regel:
 2. `npm install` ausführen.
 3. `npx playwright install chromium` ausführen, falls Browser fehlen.
 4. `npm run auth:bc` starten.
-5. Im sichtbaren Browser anmelden.
-6. Warten, bis der Login-State gespeichert wurde.
+5. Im sichtbaren Browser anmelden und MFA abschliessen.
+6. Warten, bis die Business-Central-Shell sichtbar ist. Sichere Signale sind Role Center, Suche/Tell Me oder My Settings.
+7. `npm run auth:bc:check` ausfuehren.
+8. Wenn der Check rot bleibt und der Browser auf Microsoft-Sign-in haengt, `npm run auth:bc:diagnose` ausfuehren.
 
 Der gespeicherte Zustand liegt unter:
 
@@ -96,3 +98,4 @@ playwright/.auth/bc-user.json
 ```
 
 Diese Datei bleibt lokal und wird nicht committet.
+Die Diagnose darf keine Cookies, Tokens, Tenant-IDs, Account-Namen oder Login-Screenshots in Evidence schreiben.
