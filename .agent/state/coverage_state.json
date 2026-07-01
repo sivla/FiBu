@@ -755,28 +755,33 @@
     },
     "universaarlVatSetup": {
       "chapter": "W1 Foundation / USt-Setup",
-      "status": "field-map-ready-correction-needed",
-      "latestCase": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
-      "resultPath": "playwright/projects/fibu-book5/evidence/target-027d4-vat-matrix-pageinspection-followup/TARGET-027D4-result.json",
+      "status": "blocked-needs-row-action-or-personalize-route",
+      "latestCase": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-027d5-vat-matrix-correction-or-cleanup/TARGET-027D5-result.json",
       "covered": [
         "VAT Business Posting Group INLAND visible after reopen",
-        "VAT Product Posting Group VAT19 visible after reopen"
+        "VAT Product Posting Group VAT19 visible after reopen",
+        "Page 472 partial INLAND/VAT19 row visible",
+        "D5 true-editor gate prevents unsafe VAT account cell typing"
       ],
       "openLimits": [
-        "VAT Posting Setup matrix row open",
+        "INLAND/VAT19 VAT Posting Setup row is still incomplete",
+        "MwSt. % remains 0 in screenshot QA",
+        "Sales VAT Account 3806 and Purchase VAT Account 1406 are not visible on the row",
         "No German 19 percent VAT calculation",
-        "No Preview Posting, VAT Entries or G/L Entries",
-        "Text extractor gap for active BC grid cells"
+        "No Preview Posting, VAT Entries or G/L Entries"
       ],
-      "nextCase": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
-      "latestResult": "playwright/projects/fibu-book5/evidence/target-027d4-vat-matrix-pageinspection-followup/TARGET-027D4-result.json",
+      "nextCase": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
+      "latestResult": "playwright/projects/fibu-book5/evidence/target-027d5-vat-matrix-correction-or-cleanup/TARGET-027D5-result.json",
       "proved": [
-        "VAT groups INLAND/VAT19 exist by screenshot QA.",
-        "Page 472 / Table 325 is visible in Page Inspection.",
-        "Partial INLAND/VAT19 matrix row exists with VAT % = 0 and empty VAT account fields."
+        "Business Central stayed in playthru / UNIVERSAARL-DE.",
+        "D5 required true active editor detection before typing and refused VAT account fields without editors.",
+        "Screenshot QA confirms the INLAND/VAT19 matrix row remains incomplete."
       ],
       "blockedBy": [
-        "The row must be corrected or cleaned before posting groups, master data, Preview Posting or Posting."
+        "No true active editor detected for sales-vat-account; refusing to type 3806.",
+        "No true active editor detected for purchase-vat-account; refusing to type 1406.",
+        "Reopen screenshot still shows the INLAND/VAT19 row incomplete: Beschreibung 19, MwSt. % 0 and no visible VAT account values."
       ]
     }
   },

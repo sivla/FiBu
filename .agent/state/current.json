@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T01:59:22.501Z",
+  "updatedAt": "2026-07-01T02:12:00.643Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-vat-matrix-correction-or-cleanup",
-  "activeCase": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
-  "active_case_file": ".agent/state/cases/target-027d5-vat-matrix-correction-or-cleanup.json",
-  "lastReferenceCase": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
-  "lastReferenceCaseFile": ".agent/state/cases/target-027d4-vat-matrix-pageinspection-followup.json",
+  "activeArea": "universaarl-vat-matrix-row-action-or-personalize-route",
+  "activeCase": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
+  "active_case_file": ".agent/state/cases/target-027d6-vat-matrix-row-action-or-personalize-route.json",
+  "lastReferenceCase": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
+  "lastReferenceCaseFile": ".agent/state/cases/target-027d5-vat-matrix-correction-or-cleanup.json",
   "mode": "universaarl-target-execution",
   "requiresStrongModel": true,
   "requiredPreflightChecks": [
@@ -20,10 +20,10 @@
   ],
   "allowedActions": [
     "open-page-472",
-    "capture-before-state",
-    "use-field-map-from-target-027d4",
-    "choose-correction-or-cleanup-route",
-    "write-only-fields-needed-for-INLAND-VAT19-if-route-is-unambiguous",
+    "capture-row-action-menu",
+    "capture-personalize-field-availability",
+    "capture-tooltip-or-page-inspection-for-vat-account-fields",
+    "write-only-if-a-new-route-proves-true-editors-for-sales-and-purchase-vat-account",
     "capture-after-and-reopen-proof"
   ],
   "forbiddenActions": [
@@ -38,10 +38,12 @@
     "post",
     "api-shortcut",
     "repeat-blind-grid-tab-flow",
+    "repeat-target-027d3-or-target-027d5-cell-edit-route",
+    "cleanup-delete-without-row-scoped-confirmation-proof",
     "claim-german-19-percent-vat-final-proof"
   ],
-  "nextCase": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
-  "nextStep": "Correct or clean up the partial INLAND/VAT19 VAT Posting Setup row using the Page 472 field map; no Preview Posting or Posting.",
+  "nextCase": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
+  "nextStep": "Recover Page 472 via row actions, Personalize, or a field-level UI route; do not repeat D3/D5 cell-edit typing for VAT accounts.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -6604,5 +6606,35 @@
       "Purchase VAT Account empty"
     ],
     "nextCase": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP"
+  },
+  "latestVatMatrixCorrectionOrCleanup": {
+    "caseId": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
+    "status": "blocked",
+    "completedAt": "2026-07-01T02:12:00.643Z",
+    "sourceInstance": "playthru",
+    "sourceCompany": "UNIVERSAARL-DE",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d5-vat-matrix-correction-or-cleanup/TARGET-027D5-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/target-027d5-vat-matrix-correction-or-cleanup/",
+    "setupChangeAttempted": true,
+    "setupChanged": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "screenshots": [
+      "playwright/projects/fibu-book5/evidence/target-027d5-vat-matrix-correction-or-cleanup/target-027d5-010-before-correction.png",
+      "playwright/projects/fibu-book5/evidence/target-027d5-vat-matrix-correction-or-cleanup/target-027d5-020-after-correction-attempt.png",
+      "playwright/projects/fibu-book5/evidence/target-027d5-vat-matrix-correction-or-cleanup/target-027d5-030-reopen-proof.png"
+    ],
+    "proved": [
+      "Business Central stayed in playthru / UNIVERSAARL-DE.",
+      "D5 required true active editor detection before typing and refused VAT account fields without editors.",
+      "Screenshot QA confirms the INLAND/VAT19 matrix row remains incomplete."
+    ],
+    "blockedBy": [
+      "No true active editor detected for sales-vat-account; refusing to type 3806.",
+      "No true active editor detected for purchase-vat-account; refusing to type 1406.",
+      "Reopen screenshot still shows the INLAND/VAT19 row incomplete: Beschreibung 19, MwSt. % 0 and no visible VAT account values."
+    ],
+    "nextCase": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE"
   }
 }

@@ -2217,7 +2217,7 @@
     {
       "id": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
       "order": 10062,
-      "status": "pending",
+      "status": "blocked",
       "category": "vat-matrix-correction-or-cleanup",
       "expectedImpact": "vat-matrix-unblocks-posting-groups",
       "mayRunPlaywright": true,
@@ -2230,10 +2230,27 @@
         "preview-posting",
         "posting",
         "api-shortcut"
+      ],
+      "completedAt": "2026-07-01T02:12:00.643Z",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-027d5-vat-matrix-correction-or-cleanup/TARGET-027D5-result.json",
+      "nextCase": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
+      "blockedBy": [
+        "No true active editor detected for sales-vat-account; refusing to type 3806.",
+        "No true active editor detected for purchase-vat-account; refusing to type 1406.",
+        "Reopen screenshot still shows the INLAND/VAT19 row incomplete: Beschreibung 19, MwSt. % 0 and no visible VAT account values."
       ]
+    },
+    {
+      "id": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
+      "order": 10063,
+      "status": "pending",
+      "category": "vat-matrix-row-action-or-personalize-route",
+      "expectedImpact": "recover-vat-matrix-account-field-route",
+      "reason": "D5 blocked VAT account cell typing because true active editors were not detected for 3806/1406.",
+      "sourceCase": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP"
     }
   ],
-  "lastUpdated": "2026-07-01T01:43:13.436Z",
+  "lastUpdated": "2026-07-01T02:12:00.643Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -2344,51 +2361,49 @@
       ]
     }
   },
-  "updatedAt": "2026-07-01T01:59:22.501Z",
-  "lastCompletedCase": "TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY",
-  "nextCase": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
+  "updatedAt": "2026-07-01T02:12:00.643Z",
+  "lastCompletedCase": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
+  "nextCase": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-027C3-TELL-ME-INPUT-FOCUS-RECOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-027C3-TELL-ME-INPUT-FOCUS-RECOVERY",
-    "lastEvidenceSummary": "TARGET-027C2 showed empty search input. TARGET-027C3 fixed that. C2 retry accepted Page 471 but not Page 470.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "C3 is completed; repeating it would waste time. The new narrow blocker is Page-470 result click/navigation.",
+    "currentCase": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
+    "plannedNextCaseBeforeReview": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
+    "lastEvidenceSummary": "TARGET-027D4 mapped Page 472 and proved that the INLAND/VAT19 row exists but remains incomplete.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The partial VAT Posting Setup row blocks posting groups and master data; correcting or blocking it is still the narrowest dependency.",
     "lookaheadReviewed": [
-      {
-        "caseId": "TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY",
-        "status": "ready-next",
-        "reason": "It targets the remaining Page-470 result-click blocker only."
-      },
-      {
-        "caseId": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
-        "status": "needs-ui-discovery-first",
-        "reason": "Requires Page 470 and Page 471 accepted surfaces first."
-      },
-      {
-        "caseId": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
-        "status": "needs-setup-first",
-        "reason": "Depends on INLAND and VAT19 groups existing visibly."
-      },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Waits for VAT setup readiness."
+        "reason": "VAT matrix row remains incomplete or unproven."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for VAT and posting group defaults."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness waits for VAT matrix, posting groups and dimensions/defaults."
+      },
+      {
+        "caseId": "TARGET-031-FIRST-DOCUMENT-DRAFT-GATE",
+        "status": "needs-setup-first",
+        "reason": "Document drafts wait for master data and complete setup defaults."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-027C3 done.",
-      "Updated TARGET-027C2 to partially-observed.",
-      "Added TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY as next active case."
+      "Select a new row-action/personalize route instead of repeating cell edits."
     ],
-    "selectedNextCase": "TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY",
-    "whySelectedNextCaseIsBest": "It avoids repeating the solved search-input problem and focuses on the remaining Page-470 navigation proof.",
+    "selectedNextCase": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
+    "whySelectedNextCaseIsBest": "The next useful step is a new UI route such as row actions or Personalize, not another cell-click write.",
     "risksBeforeNextCase": [
-      "Do not click New/Edit/List actions on VAT pages.",
-      "Do not treat Page 471 alone as VAT setup readiness."
+      "Do not claim final German VAT correctness before Preview Posting, VAT Entries and G/L Entries.",
+      "Do not create master data until posting groups/defaults are ready."
     ],
     "requiredPreparation": [
-      "Use screenshot QA to show the exact Page-470 result click path or rejected Role Center state."
+      "Use row action, Personalize or another field discovery route; do not repeat D3/D5 cell typing."
     ]
   },
-  "nextStep": "Recover Page 470 exact Tell-Me result click; Page 471 already accepted read-only."
+  "nextStep": "Recover Page 472 via row actions, Personalize, or a field-level UI route; do not repeat D3/D5 cell-edit typing for VAT accounts."
 }

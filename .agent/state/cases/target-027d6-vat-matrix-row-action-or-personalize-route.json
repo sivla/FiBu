@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
+  "id": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
+  "status": "planned",
+  "area": "universaarl-vat-setup",
+  "goal": "Recover a safe Page 472 route for the Sales VAT Account and Purchase VAT Account fields using row actions, Personalize, tooltip/Page Inspection, or another visible UI route instead of repeating cell edits.",
+  "sourceCompany": "UNIVERSAARL-DE",
+  "targetWorld": "Universaarl",
+  "sourceCases": [
+    "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
+    "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP"
+  ],
+  "prerequisites": [
+    "Partial INLAND/VAT19 row exists on Page 472.",
+    "TARGET-027D5 proved that sales/purchase VAT account cells did not expose true active editors through the tested route.",
+    "Preview Posting, Posting, master data and document drafts remain locked."
+  ],
+  "allowedActions": [
+    "open-page-472",
+    "capture-row-action-menu",
+    "capture-personalize-field-availability",
+    "capture-tooltip-or-page-inspection-for-vat-account-fields",
+    "write-only-if-a-new-route-proves-true-editors-for-sales-and-purchase-vat-account",
+    "capture-after-and-reopen-proof"
+  ],
+  "forbiddenActions": [
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "repeat-blind-grid-tab-flow",
+    "repeat-target-027d3-or-target-027d5-cell-edit-route",
+    "cleanup-delete-without-row-scoped-confirmation-proof",
+    "claim-german-19-percent-vat-final-proof"
+  ],
+  "routeHypotheses": [
+    "Open row-scoped actions or context menu for the INLAND/VAT19 row and look for a card/details/edit route.",
+    "Use Personalize only to document whether VAT account fields/actions are available; do not make personalization changes unless the case explicitly unlocks them.",
+    "Use Page Inspection or tooltip evidence to bind visible account columns to fields before any write.",
+    "If no route exposes true editors for 3806/1406, keep VAT matrix blocked and park master data/posting groups."
+  ],
+  "acceptanceCriteria": [
+    "The run stays in playthru / UNIVERSAARL-DE.",
+    "Before screenshot shows the incomplete INLAND/VAT19 row.",
+    "The route is visibly different from D3/D5 cell typing.",
+    "If values are written, sales and purchase VAT account editors are proved before typing and reopen screenshot shows 3806/1406.",
+    "No master data, document draft, Preview Posting, Posting or API shortcut is executed."
+  ],
+  "nextIfSuccessful": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+  "createdAt": "2026-07-01T02:12:00.643Z"
+}
