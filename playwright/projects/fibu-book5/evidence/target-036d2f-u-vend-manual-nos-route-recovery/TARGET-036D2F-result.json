@@ -10,9 +10,9 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=456&company=UNIVERSAARL-DE&filter=No.+Series.%27Code%27+IS+%27U-VEND%27",
-  "page": "Business Central auth/token error page",
+  "page": "Local auth shell-validation preflight",
   "actionsTaken": [
-    "Tried to open Page 456 Number Series with URL filter restricted to U-VEND in playthru / UNIVERSAARL-DE."
+    "Ran local auth shell-validation preflight before opening Business Central."
   ],
   "actionsNotTaken": [
     "No company switch.",
@@ -38,7 +38,7 @@
     "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/TARGET-036D2F-result.json"
   ],
   "proved": [
-    "The D2F route did not reach Business Central because the Playwright session/token is missing or expired.",
+    "The D2F route did not open Business Central because local auth shell-validation metadata is missing or invalid.",
     "No setup, master data, document, Preview Posting, Posting, payment, API shortcut or company switch occurred."
   ],
   "notProved": [
@@ -50,7 +50,7 @@
     "Auth/token failure is an execution blocker, not a Business Central setup finding."
   ],
   "blockedBy": [
-    "D2F blocked before effective BC action: Error: Business Central auth/token blocker detected during Business Central shell wait. Refresh playwright/.auth/bc-user.json before retry."
+    "D2F blocked before Business Central open by auth shell-validation preflight: shell-validation-meta-missing-or-invalid."
   ],
   "flags": {
     "noCompanySwitch": true,
@@ -61,13 +61,13 @@
     "noPayment": true,
     "noApiShortcut": true
   },
-  "visibleTextSample": "Business Central token/auth error page; raw screenshot intentionally not committed.",
+  "visibleTextSample": "Business Central was not opened. Local auth shell-validation preflight blocked the run before navigation.",
   "nextStepDecision": {
     "currentCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
     "plannedNextCaseBeforeReview": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
     "lastEvidenceSummary": "TARGET-036D2E did not persist U-VEND Manual Nos after an unfiltered/cell-coordinate route.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "D2F blocked before effective BC action: Error: Business Central auth/token blocker detected during Business Central shell wait. Refresh playwright/.auth/bc-user.json before retry.",
+    "reason": "D2F blocked before Business Central open by auth shell-validation preflight: shell-validation-meta-missing-or-invalid.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
@@ -105,7 +105,7 @@
     "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/TARGET-036D2F-result.json",
     "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/README.md"
   ],
-  "timestamp": "2026-07-01T17:38:17.235Z",
+  "timestamp": "2026-07-01T18:07:25.829Z",
   "safeToFinalizeState": true,
   "requiresReview": false,
   "statePatch": {
@@ -124,7 +124,7 @@
     },
     "lastRunSummary": {
       "runId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-      "completedAt": "2026-07-01T17:38:17.235Z",
+      "completedAt": "2026-07-01T18:07:25.829Z",
       "status": "blocked",
       "instance": "playthru",
       "company": "UNIVERSAARL-DE",
@@ -136,8 +136,8 @@
       "posted": false,
       "apiShortcut": false,
       "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-      "summary": "D2F blocked before effective BC action: Error: Business Central auth/token blocker detected during Business Central shell wait. Refresh playwright/.auth/bc-user.json before retry."
+      "summary": "D2F blocked before Business Central open by auth shell-validation preflight: shell-validation-meta-missing-or-invalid."
     }
   },
-  "reason": "D2F blocked before effective BC action: Error: Business Central auth/token blocker detected during Business Central shell wait. Refresh playwright/.auth/bc-user.json before retry."
+  "reason": "D2F blocked before Business Central open by auth shell-validation preflight: shell-validation-meta-missing-or-invalid."
 }

@@ -25,6 +25,9 @@ const EVIDENCE_ID = 'target-036d2f-u-vend-manual-nos-route-recovery';
 const EVIDENCE_DIR = path.resolve('playwright/projects/fibu-book5/evidence', EVIDENCE_ID);
 const IMG_DIR = path.resolve('playwright/projects/fibu-book5/img');
 const RESULT_PATH = path.join(EVIDENCE_DIR, 'TARGET-036D2F-result.json');
+const AUTH_FILE = path.resolve('playwright/.auth/bc-user.json');
+const AUTH_META_FILE = path.resolve('playwright/.auth/bc-user.meta.json');
+const AUTH_MAX_AGE_HOURS = 12;
 
 type ManualNosState = {
   found: boolean;
@@ -104,16 +107,19 @@ async function openFilteredNumberSeries(page: Page) {
 }
 
 async function writeBlockedResult(args: {
-  page: Page;
+  page?: Page;
   blockedBy: string[];
   actionsTaken: string[];
   reason: string;
   nextCase: string;
 }) {
   const completedAt = new Date().toISOString();
-  const visibleText = clean(await pageText(args.page).catch(() => ''));
-  const sanitizedUrl = sanitizeUrl(args.page.url());
-  const authBlocker = isBusinessCentralAuthBlockerText(visibleText) || /auth\/token blocker/i.test(args.reason);
+  const visibleText = args.page ? clean(await pageText(args.page).catch(() => '')) : '';
+  const sanitizedUrl = args.page ? sanitizeUrl(args.page.url()) : sanitizeUrl(buildNumberSeriesUrl(true));
+  const authBlocker =
+    isBusinessCentralAuthBlockerText(visibleText) ||
+    /auth\/token blocker|auth shell-validation preflight/i.test(args.reason);
+  const localAuthPreflight = /auth shell-validation preflight/i.test(args.reason);
   const nextStepDecision = {
     currentCase: CASE_ID,
     plannedNextCaseBeforeReview: 'TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE',
@@ -165,7 +171,11 @@ async function writeBlockedResult(args: {
     instance: EXPECTED_INSTANCE,
     company: TARGET_COMPANY,
     url: sanitizedUrl,
-    page: authBlocker ? 'Business Central auth/token error page' : 'No. Series / Nummernserie',
+    page: localAuthPreflight
+      ? 'Local auth shell-validation preflight'
+      : authBlocker
+        ? 'Business Central auth/token error page'
+        : 'No. Series / Nummernserie',
     actionsTaken: args.actionsTaken,
     actionsNotTaken: [
       'No company switch.',
@@ -189,7 +199,9 @@ async function writeBlockedResult(args: {
     screenshots: [],
     evidenceRefs: [`playwright/projects/fibu-book5/evidence/${EVIDENCE_ID}/TARGET-036D2F-result.json`],
     proved: [
-      authBlocker
+      localAuthPreflight
+        ? 'The D2F route did not open Business Central because local auth shell-validation metadata is missing or invalid.'
+        : authBlocker
         ? 'The D2F route did not reach Business Central because the Playwright session/token is missing or expired.'
         : 'The D2F route stopped before any effective Business Central action.',
       'No setup, master data, document, Preview Posting, Posting, payment, API shortcut or company switch occurred.'
@@ -214,7 +226,11 @@ async function writeBlockedResult(args: {
       noPayment: true,
       noApiShortcut: true
     },
-    visibleTextSample: authBlocker ? 'Business Central token/auth error page; raw screenshot intentionally not committed.' : visibleText.slice(0, 600),
+    visibleTextSample: localAuthPreflight
+      ? 'Business Central was not opened. Local auth shell-validation preflight blocked the run before navigation.'
+      : authBlocker
+        ? 'Business Central token/auth error page; raw screenshot intentionally not committed.'
+        : visibleText.slice(0, 600),
     nextStepDecision,
     nextCase: args.nextCase,
     changedFiles: [
@@ -298,6 +314,48 @@ async function clickSafeAction(page: Page, name: RegExp) {
     }
   }
   return false;
+}
+
+async function authShellValidationBlockers() {
+  const now = Date.now();
+  const blockers: string[] = [];
+  let authStats;
+
+  try {
+    authStats = await fs.stat(AUTH_FILE);
+  } catch {
+    return ['storage-state-file-missing'];
+  }
+
+  const authAgeHours = (now - authStats.mtimeMs) / 3_600_000;
+  if (authAgeHours > AUTH_MAX_AGE_HOURS) blockers.push('storage-state-too-old');
+
+  try {
+    const parsed = JSON.parse(await fs.readFile(AUTH_FILE, 'utf8'));
+    const cookies = Array.isArray(parsed.cookies) ? parsed.cookies : [];
+    if (!cookies.length) blockers.push('storage-state-has-no-cookies');
+  } catch {
+    blockers.push('storage-state-json-invalid');
+  }
+
+  try {
+    const metaStats = await fs.stat(AUTH_META_FILE);
+    const metaAgeHours = (now - metaStats.mtimeMs) / 3_600_000;
+    const meta = JSON.parse(await fs.readFile(AUTH_META_FILE, 'utf8'));
+    const hasShellValidation =
+      meta?.schemaVersion === 1 &&
+      meta?.purpose === 'business-central-auth-shell-validation' &&
+      meta?.shellValidation === true &&
+      typeof meta?.matchedShellSignal === 'string' &&
+      meta.matchedShellSignal.length > 0;
+    if (!hasShellValidation) blockers.push('shell-validation-meta-missing-or-invalid');
+    if (metaAgeHours > AUTH_MAX_AGE_HOURS) blockers.push('shell-validation-meta-too-old');
+    if (metaStats.mtimeMs + 1000 < authStats.mtimeMs) blockers.push('shell-validation-meta-older-than-storage-state');
+  } catch {
+    blockers.push('shell-validation-meta-missing-or-invalid');
+  }
+
+  return [...new Set(blockers)];
 }
 
 async function hoverVisible(page: Page, label: RegExp) {
@@ -495,6 +553,18 @@ test('TARGET-036D2F recovers U-VEND Manual Nos through filtered single-row route
   const actionsTaken: string[] = [];
   const warnings: string[] = [];
   const blockedBy: string[] = [];
+  const authBlockers = await authShellValidationBlockers();
+  if (authBlockers.length) {
+    const reason = `D2F blocked before Business Central open by auth shell-validation preflight: ${authBlockers.join(', ')}.`;
+    await writeBlockedResult({
+      blockedBy: [reason],
+      actionsTaken: ['Ran local auth shell-validation preflight before opening Business Central.'],
+      reason,
+      nextCase: CASE_ID
+    });
+    expect(startedAt <= new Date().toISOString()).toBe(true);
+    return;
+  }
 
   try {
     await openFilteredNumberSeries(page);

@@ -6,7 +6,7 @@ Company: UNIVERSAARL-DE
 
 ## Ergebnis
 
-D2F blocked before effective BC action: Error: Business Central auth/token blocker detected during Business Central shell wait. Refresh playwright/.auth/bc-user.json before retry.
+D2F blocked before Business Central open by auth shell-validation preflight: shell-validation-meta-missing-or-invalid.
 
 ## Grenze
 
