@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T12:55:00.000Z",
+  "updatedAt": "2026-07-01T13:45:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-item-inventory-foundation-preflight",
-  "activeCase": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
-  "active_case_file": ".agent/state/cases/target-040-item-inventory-foundation-readonly-preflight.json",
+  "activeArea": "universaarl-first-item-write-gate",
+  "activeCase": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+  "active_case_file": ".agent/state/cases/target-036e-first-item-controlled-write-gate.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -21,9 +21,12 @@
   "allowedActions": [
     "confirm-playthru-instance",
     "confirm-universaarl-company",
-    "open-readonly-setup-pages",
-    "capture-page-context",
-    "capture-screenshot-qa",
+    "open-items-list",
+    "capture-before-screenshot-qa",
+    "open-new-item-card-only-after-smart-decision",
+    "create-one-controlled-item-if-fields-are-clear",
+    "set-only-approved-item-fields",
+    "reopen-item-card-for-proof",
     "write-result-json-and-next-step-decision",
     "update-coverage-and-catalog"
   ],
@@ -32,7 +35,6 @@
     "company-switch",
     "create-customer",
     "create-vendor",
-    "create-item",
     "change-number-series",
     "change-posting-setup",
     "change-vat-setup",
@@ -48,8 +50,8 @@
     "fake-evidence",
     "book-claim-without-evidence"
   ],
-  "nextCase": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
-  "nextStep": "Run TARGET-040 read-only to inspect item/inventory Foundation prerequisites before any item write.",
+  "nextCase": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+  "nextStep": "Run TARGET-036E as a narrow first-item controlled write gate after TARGET-040 proved the item/inventory pages read-only; no setup, documents, Preview Posting or Posting.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -8060,5 +8062,41 @@
     "apiShortcut": false,
     "selectedNextCase": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
     "summary": "Page 314 and VAT matrix remain parked boundaries; global/default dimensions remain partial; vendor numbering remains blocked; item/inventory setup preflight is selected as solve-next before item creation."
+  },
+  "latestItemInventoryFoundationPreflight": {
+    "caseId": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-040-item-inventory-foundation-readonly-preflight/TARGET-040-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "pagesObserved": [
+      "inventory-setup",
+      "inventory-posting-setup",
+      "item-posting-groups",
+      "base-units",
+      "items-list"
+    ],
+    "flags": {
+      "noWrite": true,
+      "noPost": true,
+      "noPreview": true,
+      "noDraft": true,
+      "noSetupChange": true,
+      "noMasterDataChange": true,
+      "noCompanySwitch": true,
+      "noApiShortcut": true,
+      "noSearch": true,
+      "noBookMasterChange": true,
+      "noTemplateApplied": true,
+      "readOnlyDirectPageRoutes": true
+    },
+    "nextCase": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+    "limits": [
+      "Read-only visibility is not item setup correctness.",
+      "No first item is proven created.",
+      "No Base Unit was selected on an item card.",
+      "No Item Posting Group or Inventory Posting Setup value is proven correct for a future item.",
+      "No Item Ledger Entries, Value Entries, G/L Entries or VAT Entries are proven."
+    ]
   }
 }

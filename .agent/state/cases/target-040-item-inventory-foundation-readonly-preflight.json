@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
-  "status": "planned",
+  "status": "done",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -66,44 +66,126 @@
     "Screenshot QA explains page, company, important fields, what is proven and what is not proven."
   ],
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
-    "plannedNextCaseBeforeReview": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-039 classifies item/inventory setup as the next missing Foundation evidence before item write.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "Item write depends on item/inventory setup context.",
+    "currentCase": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+    "plannedNextCaseBeforeReview": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+    "lastEvidenceSummary": "TARGET-039 selected read-only item/inventory Foundation preflight before the first item write.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Item creation affects Base Unit, Item Type, inventory posting, item posting and later value entries, so page context must be visible before writing.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
-        "status": "ready-next",
-        "reason": "Read-only setup inspection is the safe next step."
-      },
-      {
         "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
-        "status": "needs-setup-first",
-        "reason": "Wait for item/inventory setup evidence."
+        "status": "ready-next",
+        "reason": "Core item/inventory setup pages and Items list were visible read-only; a narrow item-write gate can be planned next."
       },
       {
         "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
         "status": "ready-after-current",
-        "reason": "Run after item/inventory preflight."
+        "reason": "Useful after the first item route is either completed or blocked."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C still needs item plus posting/VAT boundaries and expected entry trace."
+      },
+      {
+        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Vendor remains blocked until a new non-repeated U-VEND Manual Nos. route exists."
       }
     ],
-    "queueChangesMade": [
-      "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT inserted before first item write."
-    ],
-    "selectedNextCase": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
-    "whySelectedNextCaseIsBest": "It prevents a premature item write and keeps W1 Foundation evidence ordered.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "A first item write gate is now the smallest useful next step, with New/Edit/Template still requiring its own Smart Decision.",
     "risksBeforeNextCase": [
-      "No setup write.",
-      "No item write.",
-      "No document, Preview Posting or Posting."
+      "New/Neu on Items creates a card and must be gated.",
+      "Apply Template/Vorlage anwenden can change defaults and must not be clicked casually.",
+      "Inventory Posting Setup visibility does not prove account correctness."
     ],
     "requiredPreparation": [
-      "Use direct page routes or trusted navigation.",
-      "Reject search overlay as page proof.",
-      "Record page and field context with screenshot QA."
+      "Define one item only for the first write.",
+      "Specify fields to set: No., Description, Type, Base Unit and only visible non-posting defaults.",
+      "Keep posting groups/VAT groups read-only unless a later setup case unlocks them."
     ]
   },
   "createdAt": "2026-07-01T12:55:00.000Z",
-  "updatedAt": "2026-07-01T12:55:00.000Z"
+  "updatedAt": "2026-07-01T13:45:00.000Z",
+  "completedAt": "2026-07-01T13:45:00.000Z",
+  "resultStatus": "observed",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-040-item-inventory-foundation-readonly-preflight/TARGET-040-result.json",
+  "proved": [
+    "5/5 item/inventory Foundation pages opened read-only in playthru/UNIVERSAARL-DE.",
+    "No item was created and no setup was changed.",
+    "No document, Preview Posting or Posting occurred.",
+    "Lager Einrichtung / Inventory Setup visible read-only.",
+    "Lagerbuchung Einrichtung / Inventory Posting Setup visible read-only.",
+    "Artikelbuchungsgruppen / Item Posting Groups visible read-only.",
+    "Einheiten / Units of Measure visible read-only.",
+    "Artikel / Items visible read-only."
+  ],
+  "notProved": [
+    "Read-only visibility is not item setup correctness.",
+    "No first item is proven created.",
+    "No Base Unit was selected on an item card.",
+    "No Item Posting Group or Inventory Posting Setup value is proven correct for a future item.",
+    "No Item Ledger Entries, Value Entries, G/L Entries or VAT Entries are proven."
+  ],
+  "blockedBy": [],
+  "warnings": [
+    "Template/Vorlage text may be visible but was not clicked.",
+    "Posting/preview action text may be visible but was not clicked.",
+    "New/Neu action may be visible but was not clicked.",
+    "Edit/Bearbeiten action may be visible but was not clicked."
+  ],
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noSearch": true,
+    "noBookMasterChange": true,
+    "noTemplateApplied": true,
+    "readOnlyDirectPageRoutes": true
+  },
+  "pagesObserved": [
+    {
+      "id": "inventory-setup",
+      "pageId": 461,
+      "label": "Lager Einrichtung / Inventory Setup",
+      "status": "observed",
+      "screenshot": "playwright/projects/fibu-book5/img/target-040-010-inventory-setup.png"
+    },
+    {
+      "id": "inventory-posting-setup",
+      "pageId": 5826,
+      "label": "Lagerbuchung Einrichtung / Inventory Posting Setup",
+      "status": "observed",
+      "screenshot": "playwright/projects/fibu-book5/img/target-040-020-inventory-posting-setup.png"
+    },
+    {
+      "id": "item-posting-groups",
+      "pageId": 112,
+      "label": "Artikelbuchungsgruppen / Item Posting Groups",
+      "status": "observed",
+      "screenshot": "playwright/projects/fibu-book5/img/target-040-030-item-posting-groups.png"
+    },
+    {
+      "id": "base-units",
+      "pageId": 209,
+      "label": "Einheiten / Units of Measure",
+      "status": "observed",
+      "screenshot": "playwright/projects/fibu-book5/img/target-040-040-base-units.png"
+    },
+    {
+      "id": "items-list",
+      "pageId": 31,
+      "label": "Artikel / Items",
+      "status": "observed",
+      "screenshot": "playwright/projects/fibu-book5/img/target-040-050-items-list.png"
+    }
+  ],
+  "nextCase": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE"
 }

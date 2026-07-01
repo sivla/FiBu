@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "First Universaarl item controlled write gate",
+  "purpose": "Create or cleanly block exactly one first Universaarl item after TARGET-040 proved the relevant item and inventory pages read-only.",
+  "sourceCases": [
+    "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+    "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+    "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT"
+  ],
+  "effectiveBcActionsAllowed": true,
+  "mayRunPlaywright": true,
+  "taskClass": "wizard_work",
+  "smartDecisionRequired": true,
+  "allowedActions": [
+    "confirm-playthru-instance",
+    "confirm-universaarl-company",
+    "open-items-list",
+    "capture-before-screenshot-qa",
+    "open-new-item-card-only-after-smart-decision",
+    "create-one-controlled-item-if-fields-are-clear",
+    "set-only-approved-item-fields",
+    "reopen-item-card-for-proof",
+    "write-result-json-and-next-step-decision",
+    "update-coverage-and-catalog"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "create-customer",
+    "create-vendor",
+    "change-number-series",
+    "change-posting-setup",
+    "change-vat-setup",
+    "change-inventory-setup",
+    "change-dimensions",
+    "create-document-or-draft",
+    "apply-template-without-explicit-smart-decision",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-040 observed Inventory Setup, Inventory Posting Setup, Item Posting Groups, Units of Measure and Items read-only in playthru / UNIVERSAARL-DE.",
+    "No setup, item, document, Preview Posting or Posting occurred in TARGET-040.",
+    "The next run must start with a fresh Smart Decision Card before clicking New on Items."
+  ],
+  "candidateRecord": {
+    "itemNo": "U-ITEM-HW100",
+    "description": "Universaarl Hardware 100",
+    "type": "Inventory",
+    "baseUnit": "PCS",
+    "fieldsExplicitlyAllowedIfVisible": [
+      "No.",
+      "Description",
+      "Type",
+      "Base Unit of Measure"
+    ],
+    "fieldsNotToSetInThisCase": [
+      "Inventory Posting Group",
+      "Gen. Prod. Posting Group",
+      "VAT Prod. Posting Group",
+      "Costing Method",
+      "Unit Cost",
+      "Unit Price",
+      "Vendor No.",
+      "Replenishment System"
+    ]
+  },
+  "acceptanceCriteria": [
+    "playthru / UNIVERSAARL-DE is confirmed before any New action.",
+    "The Items list is captured before the write.",
+    "The New item route is captured with screenshot QA and dangerous dialogs are blocked.",
+    "At most one item is saved, or the route is blocked with a clear reason.",
+    "If saved, the item is reopened by list/card proof and the approved fields are visible.",
+    "No setup value, posting group, VAT group, document, Preview Posting, Posting or API shortcut is used.",
+    "Result JSON classifies the item as created, blocked, or partially completed with a narrow next step."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+    "plannedNextCaseBeforeReview": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-040 proved five item/inventory Foundation pages read-only: Inventory Setup, Inventory Posting Setup, Item Posting Groups, Units of Measure and Items. It did not prove item creation or posting readiness.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A first item is now the smallest useful next W1 Foundation record, but only if it avoids setup, posting group and document side effects.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+        "status": "ready-next",
+        "reason": "Read-only item/inventory page context is available."
+      },
+      {
+        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
+        "status": "ready-after-current",
+        "reason": "Run after the item write is created or blocked."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C still needs item, posting groups, VAT and expected entry trace boundaries."
+      },
+      {
+        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Vendor remains blocked until a new non-repeated U-VEND Manual Nos. route exists."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked TARGET-040 done.",
+      "Added TARGET-036E as the next narrow controlled first-item write gate."
+    ],
+    "selectedNextCase": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It turns the read-only item/inventory preflight into one controlled master-data proof without jumping to setup, documents, Preview Posting or Posting.",
+    "risksBeforeNextCase": [
+      "The New action can open template prompts.",
+      "Item cards can expose posting group defaults that are not yet approved.",
+      "Saving the wrong fields would create misleading book evidence."
+    ],
+    "requiredPreparation": [
+      "Hover or screenshot the New route if ambiguity exists.",
+      "Stop on any template or setup dialog unless explicitly covered by the Smart Decision.",
+      "Use screenshot QA before and after saving or blocking."
+    ]
+  },
+  "createdAt": "2026-07-01T13:45:00.000Z",
+  "updatedAt": "2026-07-01T13:45:00.000Z"
+}

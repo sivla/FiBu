@@ -3442,7 +3442,7 @@
     {
       "id": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
       "order": 10169,
-      "status": "pending",
+      "status": "done",
       "priority": "high",
       "area": "universaarl-item-inventory-foundation",
       "category": "target-foundation-readonly-preflight",
@@ -3454,8 +3454,34 @@
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
       "caseFile": ".agent/state/cases/target-040-item-inventory-foundation-readonly-preflight.json",
+      "lookaheadStatus": "done",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-040-item-inventory-foundation-readonly-preflight/TARGET-040-result.json",
+      "completedAt": "2026-07-01T13:45:00.000Z",
+      "result": "Opened Inventory Setup, Inventory Posting Setup, Item Posting Groups, Units of Measure and Items read-only in playthru / UNIVERSAARL-DE; no setup, no item, no document, no Preview Posting, no Posting.",
+      "nextCase": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+      "setupChanged": false,
+      "masterDataChanged": false,
+      "previewPosting": false,
+      "posted": false,
+      "apiShortcut": false
+    },
+    {
+      "id": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+      "order": 10170,
+      "status": "pending",
+      "priority": "high",
+      "area": "universaarl-first-item-write-gate",
+      "category": "target-masterdata-controlled-write-gate",
+      "expectedImpact": "first-item-foundation-masterdata-proof",
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": true,
+      "goal": "Create or cleanly block exactly one first Universaarl item after TARGET-040 proved item/inventory page context read-only.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "caseFile": ".agent/state/cases/target-036e-first-item-controlled-write-gate.json",
       "lookaheadStatus": "ready-next",
-      "resultPath": "playwright/projects/fibu-book5/evidence/target-040-item-inventory-foundation-readonly-preflight/TARGET-040-result.json"
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-036e-first-item-controlled-write-gate/TARGET-036E-result.json"
     }
   ],
   "lastUpdated": "2026-07-01T12:55:00.000Z",
@@ -3568,116 +3594,102 @@
       ]
     }
   },
-  "updatedAt": "2026-07-01T12:55:00.000Z",
-  "lastCompletedCase": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
-  "nextCase": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+  "updatedAt": "2026-07-01T13:45:00.000Z",
+  "lastCompletedCase": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+  "nextCase": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
-    "plannedNextCaseBeforeReview": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-037 proves only SAAR-HL and U-CUST-100 as basic records. Vendor, item, VAT, General Posting Setup, Inventory Posting Setup, documents, Preview and Posting remain unproven.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "A direct item write would skip item/inventory setup discovery. The next better step is read-only preflight of item and inventory Foundation pages.",
+    "currentCase": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+    "plannedNextCaseBeforeReview": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+    "lastEvidenceSummary": "TARGET-039 selected read-only item/inventory Foundation preflight before the first item write.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Item creation affects Base Unit, Item Type, inventory posting, item posting and later value entries, so page context must be visible before writing.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
-        "status": "ready-next",
-        "reason": "Inspects Base Units, Item Posting Groups, Inventory Posting Setup, Inventory Setup and U-ITEM assignment without writing data."
-      },
-      {
         "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
-        "status": "needs-setup-first",
-        "reason": "Wait until TARGET-040 proves which item fields and setup dependencies are safe."
+        "status": "ready-next",
+        "reason": "Core item/inventory setup pages and Items list were visible read-only; a narrow item-write gate can be planned next."
       },
       {
         "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
         "status": "ready-after-current",
-        "reason": "Useful after the item/inventory preflight updates the blocker map."
+        "reason": "Useful after the first item route is either completed or blocked."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C needs item, posting groups, VAT and expected posting trace boundaries."
+        "reason": "O2C still needs item plus posting/VAT boundaries and expected entry trace."
       },
       {
         "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
         "status": "blocked",
-        "reason": "Vendor remains blocked until U-VEND Manual Nos. has a new non-repeated route."
+        "reason": "Vendor remains blocked until a new non-repeated U-VEND Manual Nos. route exists."
       }
     ],
-    "queueChangesMade": [
-      "Marked TARGET-039 as done.",
-      "Inserted TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT before TARGET-036E."
-    ],
-    "selectedNextCase": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
-    "whySelectedNextCaseIsBest": "It preserves W1 Foundation order and gathers the missing page/field evidence needed before the first item write.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "A first item write gate is now the smallest useful next step, with New/Edit/Template still requiring its own Smart Decision.",
     "risksBeforeNextCase": [
-      "Read-only page inspection must not become setup or item creation.",
-      "Do not accept search-overlay screenshots as page proof.",
-      "Do not claim inventory posting readiness from page visibility alone."
+      "New/Neu on Items creates a card and must be gated.",
+      "Apply Template/Vorlage anwenden can change defaults and must not be clicked casually.",
+      "Inventory Posting Setup visibility does not prove account correctness."
     ],
     "requiredPreparation": [
-      "Confirm playthru / UNIVERSAARL-DE before any read-only UI navigation.",
-      "Capture page context, key fields and screenshot QA for each inspected item/inventory setup page."
+      "Define one item only for the first write.",
+      "Specify fields to set: No., Description, Type, Base Unit and only visible non-posting defaults.",
+      "Keep posting groups/VAT groups read-only unless a later setup case unlocks them."
     ]
   },
-  "nextStep": "Run TARGET-040 read-only item/inventory Foundation preflight.",
+  "nextStep": "Run TARGET-036E as the next narrow controlled item write gate after TARGET-040 read-only preflight.",
   "openItems": [
-    "TARGET-039-FOUNDATION-BLOCKER-REVISIT"
+    "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE"
   ],
-  "nextQueueItem": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+  "nextQueueItem": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
   "nextCases": [
-    "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
     "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
     "TARGET-040-FOUNDATION-READY-RECHECK",
-    "TARGET-038-O2C-PREFLIGHT"
+    "TARGET-038-O2C-PREFLIGHT",
+    "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE"
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
-    "plannedNextCaseBeforeReview": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-037 proves only SAAR-HL and U-CUST-100 as basic records. Vendor, item, VAT, General Posting Setup, Inventory Posting Setup, documents, Preview and Posting remain unproven.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "A direct item write would skip item/inventory setup discovery. The next better step is read-only preflight of item and inventory Foundation pages.",
+    "currentCase": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+    "plannedNextCaseBeforeReview": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+    "lastEvidenceSummary": "TARGET-039 selected read-only item/inventory Foundation preflight before the first item write.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Item creation affects Base Unit, Item Type, inventory posting, item posting and later value entries, so page context must be visible before writing.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
-        "status": "ready-next",
-        "reason": "Inspects Base Units, Item Posting Groups, Inventory Posting Setup, Inventory Setup and U-ITEM assignment without writing data."
-      },
-      {
         "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
-        "status": "needs-setup-first",
-        "reason": "Wait until TARGET-040 proves which item fields and setup dependencies are safe."
+        "status": "ready-next",
+        "reason": "Core item/inventory setup pages and Items list were visible read-only; a narrow item-write gate can be planned next."
       },
       {
         "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
         "status": "ready-after-current",
-        "reason": "Useful after the item/inventory preflight updates the blocker map."
+        "reason": "Useful after the first item route is either completed or blocked."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C needs item, posting groups, VAT and expected posting trace boundaries."
+        "reason": "O2C still needs item plus posting/VAT boundaries and expected entry trace."
       },
       {
         "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
         "status": "blocked",
-        "reason": "Vendor remains blocked until U-VEND Manual Nos. has a new non-repeated route."
+        "reason": "Vendor remains blocked until a new non-repeated U-VEND Manual Nos. route exists."
       }
     ],
-    "queueChangesMade": [
-      "Marked TARGET-039 as done.",
-      "Inserted TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT before TARGET-036E."
-    ],
-    "selectedNextCase": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
-    "whySelectedNextCaseIsBest": "It preserves W1 Foundation order and gathers the missing page/field evidence needed before the first item write.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "A first item write gate is now the smallest useful next step, with New/Edit/Template still requiring its own Smart Decision.",
     "risksBeforeNextCase": [
-      "Read-only page inspection must not become setup or item creation.",
-      "Do not accept search-overlay screenshots as page proof.",
-      "Do not claim inventory posting readiness from page visibility alone."
+      "New/Neu on Items creates a card and must be gated.",
+      "Apply Template/Vorlage anwenden can change defaults and must not be clicked casually.",
+      "Inventory Posting Setup visibility does not prove account correctness."
     ],
     "requiredPreparation": [
-      "Confirm playthru / UNIVERSAARL-DE before any read-only UI navigation.",
-      "Capture page context, key fields and screenshot QA for each inspected item/inventory setup page."
+      "Define one item only for the first write.",
+      "Specify fields to set: No., Description, Type, Base Unit and only visible non-posting defaults.",
+      "Keep posting groups/VAT groups read-only unless a later setup case unlocks them."
     ]
   }
 }
