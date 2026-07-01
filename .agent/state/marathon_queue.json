@@ -5,7 +5,7 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "queueId": "TARGET-MARATHON-002-UNIVERSAARL-REPO-READONLY-PREP",
-  "reason": "TARGET-045B completed read-only customer/item field-route retry and selected TARGET-046 source mapping.",
+  "reason": "TARGET-046 completed local source mapping and selected TARGET-047 item inventory posting setup decision.",
   "noEffectiveBusinessCentralActions": false,
   "forbiddenUntilUnblocked": [],
   "unblockCriteria": "Satisfied: UNIVERSAARL-DE exists and active Role Center context / Firmendaten read-only proof is available.",
@@ -3858,7 +3858,7 @@
     {
       "id": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
       "order": 10183,
-      "status": "pending",
+      "status": "done",
       "priority": "high",
       "category": "item-inventory-posting-group-source-mapping",
       "expectedImpact": "resolve-item-posting-group-dependency-before-item-write",
@@ -3869,10 +3869,35 @@
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
       "lookaheadStatus": "ready-next",
-      "reason": "TARGET-045B did not expose Lagerbuchungsgruppe / Item Posting Group on U-ITEM-HW100; source/setup dependency must be mapped before any item field write."
+      "reason": "TARGET-045B did not expose Lagerbuchungsgruppe / Item Posting Group on U-ITEM-HW100; source/setup dependency must be mapped before any item field write.",
+      "completedAt": "2026-07-02T00:30:00.000Z",
+      "result": "Source mapping completed without BC/Playwright: Item Posting Group depends on separate Item Posting Groups and Inventory Posting Setup; no write unlocked.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-046-item-inventory-posting-group-source-mapping/TARGET-046-result.json",
+      "nextCase": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+      "setupChanged": false,
+      "masterDataChanged": false,
+      "previewPosting": false,
+      "posted": false,
+      "apiShortcut": false
+    },
+    {
+      "id": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+      "order": 10184,
+      "status": "pending",
+      "priority": "high",
+      "category": "item-inventory-posting-setup-decision",
+      "expectedImpact": "select-target-values-before-item-inventory-setup-write",
+      "sourceCase": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
+      "caseFile": ".agent/state/cases/target-047-item-inventory-posting-setup-decision.json",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "sourceInstance": "playthru",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "lookaheadStatus": "ready-next",
+      "reason": "TARGET-046 proved rows/account correctness are missing; decide inventory posting group code and inventory account path before write."
     }
   ],
-  "lastUpdated": "2026-07-01T22:19:47.605Z",
+  "lastUpdated": "2026-07-02T00:30:00.000Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -3983,8 +4008,8 @@
     }
   },
   "updatedAt": "2026-07-01T22:19:47.605Z",
-  "lastCompletedCase": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
-  "nextCase": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
+  "lastCompletedCase": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
+  "nextCase": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
   "nextStepDecisionCard": {
     "currentCase": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
     "plannedNextCaseBeforeReview": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
@@ -4034,68 +4059,70 @@
       "Keep customer/item field writes, O2C/P2P documents, Preview Posting and Posting locked."
     ]
   },
-  "nextStep": "Run TARGET-046 Item Posting Group source/setup mapping before any item posting field write.",
+  "nextStep": "Run TARGET-047 item inventory posting setup decision before any item posting group or Inventory Posting Setup write.",
   "openItems": [
-    "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING"
+    "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION"
   ],
   "nextQueueItem": {
-    "id": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
+    "id": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
     "status": "pending",
-    "caseFile": ".agent/state/cases/target-046-item-inventory-posting-group-source-mapping.json"
+    "caseFile": ".agent/state/cases/target-047-item-inventory-posting-setup-decision.json"
   },
   "nextCases": [
-    "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
-    "TARGET-045C-CUSTOMER-ITEM-FIELD-ROUTE-PAGEINSPECTION-DECISION",
-    "TARGET-047-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT-AFTER-SOURCES",
+    "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+    "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+    "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+    "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
     "TARGET-038-O2C-PREFLIGHT"
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
-    "plannedNextCaseBeforeReview": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
-    "lastEvidenceSummary": "TARGET-045A mapped exact customer/item field names and values but kept all writes locked until a read-only route retry proved visibility.",
+    "currentCase": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
+    "plannedNextCaseBeforeReview": "TARGET-047-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT-AFTER-SOURCES",
+    "lastEvidenceSummary": "TARGET-045B showed U-ITEM-HW100 read-only but did not expose Lagerbuchungsgruppe / Item Posting Group. TARGET-040 showed Item Posting Groups and Inventory Posting Setup surfaces but no rows or account correctness.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "The item posting group route remains insufficient; before any item write, the inventory posting group source/setup gap is the smaller and safer next decision.",
+    "reason": "A direct customer/item field write would still be premature because the item posting group and inventory posting setup target values are not decided.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
-        "status": "needs-ui-discovery-first",
-        "reason": "Still missing enough visible route/value truth."
+        "caseId": "TARGET-047-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT-AFTER-SOURCES",
+        "status": "needs-setup-first",
+        "reason": "Customer/item field writes need inventory, general posting and VAT setup decisions first."
       },
       {
-        "caseId": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
+        "caseId": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
         "status": "ready-next",
-        "reason": "The item field map already classified Item Posting Group as blocked by item posting group and inventory posting setup gaps."
-      },
-      {
-        "caseId": "TARGET-045C-CUSTOMER-ITEM-FIELD-ROUTE-PAGEINSPECTION-DECISION",
-        "status": "ready-after-current",
-        "reason": "Use only if standard-page expansion gives partial route truth but not enough safe write confidence."
+        "reason": "Source mapping shows no rows or target values; decide target values before any write."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C remains blocked until posting/VAT/payment field readiness is proven."
+        "reason": "O2C still needs customer posting fields, item posting fields, VAT setup and general posting setup."
       },
       {
-        "caseId": "TARGET-047-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT-AFTER-SOURCES",
-        "status": "needs-setup-first",
-        "reason": "Do not write customer/item posting fields until source/setup dependencies are explicit and the active case unlocks exactly those fields."
+        "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
+        "status": "ready-after-current",
+        "reason": "VAT setup remains a separate foundation lane; do not mix it into inventory setup."
+      },
+      {
+        "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+        "status": "blocked",
+        "reason": "Vendor numbering is parked and separate from this item inventory dependency."
       }
     ],
     "queueChangesMade": [
-      "TARGET-045B ran as exact field-map read-only route retry.",
-      "Selected TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING as next case."
+      "Replace premature controlled customer/item field fit with TARGET-047 item inventory posting setup decision.",
+      "Keep O2C/P2P/Preview/Posting locked."
     ],
-    "selectedNextCase": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
-    "whySelectedNextCaseIsBest": "It resolves the item posting group source/setup dependency before another customer/item write attempt.",
+    "selectedNextCase": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+    "whySelectedNextCaseIsBest": "It turns the source dependency into concrete target values and gates before the first item posting field or inventory setup write.",
     "risksBeforeNextCase": [
-      "Do not claim posting readiness from field visibility.",
-      "Do not edit customer, item or setup fields without exact target values.",
-      "Keep Preview Posting and Posting false."
+      "Do not reuse CRONUS/RM inventory posting group values.",
+      "Do not use an inventory account that is not in the Universaarl SKR04 starter mapping.",
+      "Do not claim inventory posting readiness without reopen proof and later posting/entry trace."
     ],
     "requiredPreparation": [
-      "Map Item Posting Group and Inventory Posting Setup sources before item field write.",
-      "Keep customer/item field writes, O2C/P2P documents, Preview Posting and Posting locked."
+      "Read UNIVERSAARL-SKR04-MINIMAL-ACCOUNT-MAPPING.md.",
+      "Decide whether a separate inventory account must be added before Inventory Posting Setup.",
+      "Keep Business Central and Playwright locked in the decision case unless the active case explicitly unlocks read-only UI."
     ]
   }
 }

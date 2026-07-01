@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+  "status": "ready-next",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Item inventory posting group and Inventory Posting Setup target decision",
+  "purpose": "Choose source-backed target values and prerequisites for U-ITEM-HW100 inventory posting setup before any item or setup write.",
+  "sourceCases": [
+    "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
+    "TARGET-040-FOUNDATION-READY-RECHECK",
+    "TARGET-045A-CUSTOMER-ITEM-FIELD-SOURCE-MAPPING",
+    "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
+    "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": false,
+  "taskClass": "wizard_work",
+  "allowedActions": [
+    "read-target-046-source-map",
+    "read-skr04-minimal-account-mapping",
+    "read-target-026o-chart-checkpoint",
+    "read-microsoft-learn-posting-group-sources",
+    "write-target-values-decision",
+    "write-next-step-decision",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "open-business-central",
+    "run-playwright",
+    "enter-edit-mode",
+    "change-item",
+    "create-item-posting-group",
+    "change-item-posting-group",
+    "create-inventory-posting-setup",
+    "change-inventory-posting-setup",
+    "change-general-posting-setup",
+    "change-vat-posting-setup",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-inventory-posting-readiness",
+    "claim-o2c-readiness",
+    "claim-german-vat-final-proof",
+    "book-claim-without-evidence",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-046 result exists and selects this case.",
+    "TARGET-046 maps Item Posting Group and Inventory Posting Setup as separate dependencies.",
+    "UNIVERSAARL-SKR04-MINIMAL-ACCOUNT-MAPPING.md exists and explicitly has not released inventory valuation accounts."
+  ],
+  "acceptanceCriteria": [
+    "A compact target decision states whether an inventory account is missing before setup write.",
+    "A candidate Inventory Posting Group code is either selected or blocked with reason.",
+    "A candidate Inventory Posting Setup key is either selected or blocked with reason.",
+    "No Business Central or Playwright execution occurs.",
+    "No item, setup, document, preview, posting or API change occurs.",
+    "The next case is either a narrow account/source gate or a narrow UI write gate with exact fields."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+    "lastEvidenceSummary": "TARGET-046 mapped Item Posting Group and Inventory Posting Setup as missing source/setup dependencies.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Before any item or inventory setup write, target code, location and inventory account must be selected or blocked.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+        "status": "ready-next",
+        "reason": "Narrow local setup decision from TARGET-046 source map."
+      },
+      {
+        "caseId": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
+        "status": "ready-after-current",
+        "reason": "Likely needed if no inventory account is currently source-backed."
+      },
+      {
+        "caseId": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Only after a group code and inventory account path are decided."
+      },
+      {
+        "caseId": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Only after group row and inventory account are ready."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C still waits for item/customer fields, VAT setup, general posting setup and inventory setup boundaries."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+    "whySelectedNextCaseIsBest": "It prevents a blind item/setup write by deciding target values first.",
+    "risksBeforeNextCase": [
+      "Do not invent a SKR04 inventory account.",
+      "Do not treat source mapping as UI proof.",
+      "Do not unlock Preview Posting or Posting."
+    ],
+    "requiredPreparation": [
+      "Read TARGET-046 source-map.json.",
+      "Read UNIVERSAARL-SKR04-MINIMAL-ACCOUNT-MAPPING.md.",
+      "Check whether TARGET-026O or later evidence proves a usable inventory account."
+    ]
+  },
+  "createdAt": "2026-07-02T00:30:00.000Z"
+}

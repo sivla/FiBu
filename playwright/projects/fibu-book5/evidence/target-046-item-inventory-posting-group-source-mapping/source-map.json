@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "purpose": "map item inventory posting group and inventory posting setup dependency before any item field write",
+  "sourceBasis": [
+    {
+      "type": "universaarl-evidence",
+      "ref": "playwright/projects/fibu-book5/evidence/target-045a-customer-item-field-source-mapping/source-field-map.json",
+      "finding": "U-ITEM-HW100 has Base Unit STK already proven; Item Posting Group remains unmapped and blocked by item posting group plus inventory posting setup gaps."
+    },
+    {
+      "type": "universaarl-evidence",
+      "ref": "playwright/projects/fibu-book5/evidence/target-045b-customer-item-posting-fields-readonly-route-retry/TARGET-045B-result.json",
+      "finding": "The standard Item Card route shows Basiseinheit, Lagerbestand and Inventory, but not Lagerbuchungsgruppe / Item Posting Group."
+    },
+    {
+      "type": "universaarl-evidence",
+      "ref": "playwright/projects/fibu-book5/evidence/target-040-foundation-ready-recheck/TARGET-040-result.json",
+      "finding": "Item Posting Groups page 112 and Inventory Posting Setup page 5826 are reachable read-only, but only column context is proven; no row or account correctness is proven."
+    },
+    {
+      "type": "microsoft-learn",
+      "ref": "https://learn.microsoft.com/en-us/dynamics365/business-central/finance-posting-groups",
+      "finding": "Posting groups map entities such as items and documents to G/L accounts; inventory posting groups are assigned to item accounts through Inventory Posting Setup."
+    },
+    {
+      "type": "microsoft-learn",
+      "ref": "https://learn.microsoft.com/en-us/dynamics365/business-central/application/base-application/table/microsoft.inventory.item.inventory-posting-setup",
+      "finding": "Inventory Posting Setup table 5813 contains Location Code, Invt. Posting Group Code, Inventory Account and related inventory account fields."
+    },
+    {
+      "type": "microsoft-learn",
+      "ref": "https://learn.microsoft.com/en-us/dynamics365/business-central/design-details-inventory-posting",
+      "finding": "Inventory transactions create item ledger entries and value entries; later reconciliation with G/L entries depends on posting setup and inventory cost posting logic."
+    }
+  ],
+  "mappedObjects": [
+    {
+      "object": "Item Card / Artikelkarte",
+      "pageId": 30,
+      "record": "U-ITEM-HW100",
+      "field": "Item Posting Group",
+      "germanField": "Lagerbuchungsgruppe / Artikelbuchungsgruppe",
+      "currentTargetValue": null,
+      "classification": "not-write-ready",
+      "reason": "The field value is not visible enough on the current standard card route and no target inventory posting group has been created or selected."
+    },
+    {
+      "object": "Item Posting Groups / Lagerbuchungsgruppen",
+      "pageId": 112,
+      "status": "surface-visible-readonly-empty-or-row-not-proven",
+      "requiredBeforeItemWrite": [
+        "Decide a Universaarl inventory posting group code for U-ITEM-HW100.",
+        "Create or confirm the group with visible row proof.",
+        "Do not derive the group from old RM-DEMO or CRONUS values."
+      ]
+    },
+    {
+      "object": "Inventory Posting Setup / Lagerbuchung Einrichtung",
+      "pageId": 5826,
+      "tableId": 5813,
+      "status": "surface-visible-readonly-empty-or-row-not-proven",
+      "requiredBeforePostingReadiness": [
+        "Decide Location Code, probably SAAR-HL for the first hardware item.",
+        "Decide Invt. Posting Group Code after item posting group decision.",
+        "Decide Inventory Account from a source-backed SKR04 inventory account mapping.",
+        "Prove the row after reopen before any item posting readiness claim."
+      ]
+    }
+  ],
+  "dependencyDecision": {
+    "customerItemWriteUnlocked": false,
+    "itemPostingGroupWriteUnlocked": false,
+    "inventoryPostingSetupWriteUnlocked": false,
+    "o2cUnlocked": false,
+    "p2pUnlocked": false,
+    "previewPostingUnlocked": false,
+    "postingUnlocked": false,
+    "reason": "A visible item card field alone is not enough. Business Central needs an inventory posting group and the Inventory Posting Setup combination of location plus inventory posting group with accounts before inventory posting readiness can be claimed."
+  },
+  "nextStepDecision": {
+    "currentCase": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
+    "plannedNextCaseBeforeReview": "TARGET-047-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT-AFTER-SOURCES",
+    "lastEvidenceSummary": "TARGET-045B showed U-ITEM-HW100 read-only but did not expose Lagerbuchungsgruppe / Item Posting Group. TARGET-040 showed Item Posting Groups and Inventory Posting Setup surfaces but no rows or account correctness.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "A direct customer/item field write would still be premature because the item posting group and inventory posting setup target values are not decided.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-047-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT-AFTER-SOURCES",
+        "status": "needs-setup-first",
+        "reason": "Customer/item field writes need inventory, general posting and VAT setup decisions first."
+      },
+      {
+        "caseId": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+        "status": "ready-next",
+        "reason": "The next narrow step is to choose source-backed target values for Item Posting Group and Inventory Posting Setup before any write."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C still needs customer posting fields, item posting fields, VAT setup and general posting setup."
+      },
+      {
+        "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
+        "status": "ready-after-current",
+        "reason": "VAT setup remains a separate blocked foundation lane, but it should not be mixed into the item inventory posting group decision."
+      },
+      {
+        "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+        "status": "blocked",
+        "reason": "Vendor numbering is still a separate parked route and not the best next step for item inventory setup."
+      }
+    ],
+    "queueChangesMade": [
+      "Replace premature controlled customer/item field fit with TARGET-047 item inventory posting setup decision.",
+      "Keep O2C/P2P/Preview/Posting locked."
+    ],
+    "selectedNextCase": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+    "whySelectedNextCaseIsBest": "It turns the source dependency into concrete target values and gates before the first item posting field or inventory setup write.",
+    "risksBeforeNextCase": [
+      "Do not reuse CRONUS/RM inventory posting group values.",
+      "Do not use an inventory account that is not in the Universaarl SKR04 starter mapping.",
+      "Do not claim inventory posting readiness without reopen proof and later posting/entry trace."
+    ],
+    "requiredPreparation": [
+      "Read UNIVERSAARL-SKR04-MINIMAL-ACCOUNT-MAPPING.md.",
+      "Decide whether a separate inventory account must be added before Inventory Posting Setup.",
+      "Keep Business Central and Playwright locked in the decision case unless the active case explicitly unlocks read-only UI."
+    ]
+  },
+  "updatedAt": "2026-07-02T00:30:00.000Z"
+}

@@ -471,6 +471,18 @@ TARGET-045A schliesst die lokale Feldquellenkarte ohne Business-Central- oder Pl
 
 Fuer Universaarl folgt daraus: TARGET-045B darf die genannten Felder nur read-only auf den Karten suchen. Es darf keine Felder schreiben, keine Vorlage anwenden und keine O2C-/P2P-Dokumente erzeugen.
 
+## TARGET-046 Artikel-/Lagerbuchungsgruppen-Quellenkarte
+
+TARGET-046 laeuft ohne Business-Central- und ohne Playwright-Ausfuehrung. Der Lauf verknuepft die vorhandene Universaarl-Evidence mit Microsoft Learn:
+
+- Microsoft Learn `Posting group setup` stuetzt die Produktlogik, dass Posting Groups Stammdaten und Belege mit Sachkonten verbinden.
+- Die Microsoft-Learn-Objektquelle zu `Inventory Posting Setup` trennt `Location Code`, `Invt. Posting Group Code` und `Inventory Account` als eigene Felder.
+- Microsoft Learn `Design details: inventory posting` stuetzt, dass Lagerbuchungen spaeter Item Ledger Entries, Value Entries und G/L Entries beruehren koennen.
+- TARGET-040/TARGET-040R zeigen `Item Posting Groups` und `Inventory Posting Setup` in `UNIVERSAARL-DE` nur read-only als Oberflaechen.
+- TARGET-045B zeigt `U-ITEM-HW100` read-only, aber nicht `Lagerbuchungsgruppe` / `Item Posting Group` als sichere Feldroute.
+
+Fuer Universaarl folgt daraus: `U-ITEM-HW100` darf noch keine Lagerbuchungsgruppe erhalten. Erst muss TARGET-047 source-backed entscheiden, welcher Lagerbuchungsgruppencode, welche `SAAR-HL`-Kombination und welches SKR04-orientierte Lagerkonto fachlich passen. Daraus entsteht noch kein Inventory-Posting-Erfolg; Preview Posting, Posting, Item Ledger Entries, Value Entries und Sachposten bleiben gesperrt.
+
 ## URLs
 
 - https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
-  "status": "ready-next",
+  "status": "done",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -59,40 +59,70 @@
   ],
   "nextStepDecision": {
     "currentCase": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
-    "plannedNextCaseBeforeReview": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
-    "lastEvidenceSummary": "TARGET-045B inspected U-CUST-100 and U-ITEM-HW100 read-only. It exposed Basiseinheit and Lagerbestand, but not Lagerbuchungsgruppe / Item Posting Group.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "Before changing the item card, the inventory posting group and inventory posting setup dependency must be mapped.",
+    "plannedNextCaseBeforeReview": "TARGET-047-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT-AFTER-SOURCES",
+    "lastEvidenceSummary": "TARGET-045B showed U-ITEM-HW100 read-only but did not expose Lagerbuchungsgruppe / Item Posting Group. TARGET-040 showed Item Posting Groups and Inventory Posting Setup surfaces but no rows or account correctness.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "A direct customer/item field write would still be premature because the item posting group and inventory posting setup target values are not decided.",
     "lookaheadReviewed": [
-      {
-        "caseId": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
-        "status": "ready-next",
-        "reason": "Narrow local source mapping from TARGET-045A/TARGET-045B evidence."
-      },
       {
         "caseId": "TARGET-047-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT-AFTER-SOURCES",
         "status": "needs-setup-first",
-        "reason": "Only after source dependencies and target values are explicit."
+        "reason": "Customer/item field writes need inventory, general posting and VAT setup decisions first."
+      },
+      {
+        "caseId": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+        "status": "ready-next",
+        "reason": "Source mapping shows no rows or target values; decide target values before any write."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C needs customer/item fields, General Posting Setup, VAT Posting Setup and posting trace expectations."
+        "reason": "O2C still needs customer posting fields, item posting fields, VAT setup and general posting setup."
+      },
+      {
+        "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
+        "status": "ready-after-current",
+        "reason": "VAT setup remains a separate foundation lane; do not mix it into inventory setup."
+      },
+      {
+        "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+        "status": "blocked",
+        "reason": "Vendor numbering is parked and separate from this item inventory dependency."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
-    "whySelectedNextCaseIsBest": "It resolves the item setup dependency before another master-data write attempt.",
+    "queueChangesMade": [
+      "Replace premature controlled customer/item field fit with TARGET-047 item inventory posting setup decision.",
+      "Keep O2C/P2P/Preview/Posting locked."
+    ],
+    "selectedNextCase": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+    "whySelectedNextCaseIsBest": "It turns the source dependency into concrete target values and gates before the first item posting field or inventory setup write.",
     "risksBeforeNextCase": [
-      "Do not write U-ITEM-HW100 from source mapping alone.",
-      "Do not claim posting readiness from field/source visibility.",
-      "Keep Preview Posting and Posting false."
+      "Do not reuse CRONUS/RM inventory posting group values.",
+      "Do not use an inventory account that is not in the Universaarl SKR04 starter mapping.",
+      "Do not claim inventory posting readiness without reopen proof and later posting/entry trace."
     ],
     "requiredPreparation": [
-      "Read TARGET-045A source-field-map.json.",
-      "Read TARGET-045B result and screenshot QA.",
-      "Inspect existing TARGET-040 / posting setup evidence before selecting a write case."
+      "Read UNIVERSAARL-SKR04-MINIMAL-ACCOUNT-MAPPING.md.",
+      "Decide whether a separate inventory account must be added before Inventory Posting Setup.",
+      "Keep Business Central and Playwright locked in the decision case unless the active case explicitly unlocks read-only UI."
     ]
   },
-  "createdAt": "2026-07-02T00:00:00.000Z"
+  "createdAt": "2026-07-02T00:00:00.000Z",
+  "completedAt": "2026-07-02T00:30:00.000Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-046-item-inventory-posting-group-source-mapping/TARGET-046-result.json",
+  "sourceMapPath": "playwright/projects/fibu-book5/evidence/target-046-item-inventory-posting-group-source-mapping/source-map.json",
+  "nextCase": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+  "proved": [
+    "Item Posting Group is a separate item/inventory setup dependency and not a safe blind field write from the Item Card.",
+    "Inventory Posting Setup depends on Location Code, Invt. Posting Group Code and Inventory Account context.",
+    "Existing Universaarl evidence proves only page surfaces for Item Posting Groups and Inventory Posting Setup, not rows or account correctness.",
+    "TARGET-047 should be a source-backed item inventory posting setup decision before any item or setup write."
+  ],
+  "notProved": [
+    "No Item Posting Group value is proven on U-ITEM-HW100.",
+    "No Inventory Posting Group row exists or is correct in UNIVERSAARL-DE.",
+    "No Inventory Posting Setup row for SAAR-HL plus a group is proven.",
+    "No SKR04 inventory account is selected or created.",
+    "No inventory posting readiness, item ledger entry, value entry, G/L entry, O2C, P2P, Preview Posting or Posting is proven."
+  ]
 }

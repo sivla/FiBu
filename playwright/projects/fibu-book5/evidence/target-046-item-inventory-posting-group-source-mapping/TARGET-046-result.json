@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
+  "source": "local-source-mapping",
+  "resultStatus": "observed",
+  "runPlanId": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "url": "",
+  "page": "Local source mapping; no Business Central page opened",
+  "bcRun": false,
+  "playwrightRun": false,
+  "actionsTaken": [
+    "Read TARGET-045A source-field map.",
+    "Read TARGET-045B read-only standard page result.",
+    "Read TARGET-040 item/inventory setup read-only evidence.",
+    "Checked Microsoft Learn posting group and inventory posting sources.",
+    "Mapped Item Posting Group and Inventory Posting Setup dependency before any write."
+  ],
+  "actionsNotTaken": [
+    "No Business Central execution.",
+    "No Playwright execution.",
+    "No item edit.",
+    "No inventory posting group edit.",
+    "No inventory posting setup edit.",
+    "No setup value changed.",
+    "No master data changed.",
+    "No document or draft created.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No API shortcut.",
+    "No company switch."
+  ],
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "screenshots": [],
+  "proved": [
+    "Item Posting Group is a separate item/inventory setup dependency and not a safe blind field write from the Item Card.",
+    "Inventory Posting Setup depends on Location Code, Invt. Posting Group Code and Inventory Account context.",
+    "Existing Universaarl evidence proves only page surfaces for Item Posting Groups and Inventory Posting Setup, not rows or account correctness.",
+    "TARGET-047 should be a source-backed item inventory posting setup decision before any item or setup write."
+  ],
+  "notProved": [
+    "No Item Posting Group value is proven on U-ITEM-HW100.",
+    "No Inventory Posting Group row exists or is correct in UNIVERSAARL-DE.",
+    "No Inventory Posting Setup row for SAAR-HL plus a group is proven.",
+    "No SKR04 inventory account is selected or created.",
+    "No inventory posting readiness, item ledger entry, value entry, G/L entry, O2C, P2P, Preview Posting or Posting is proven."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-046-item-inventory-posting-group-source-mapping/source-map.json",
+    "playwright/projects/fibu-book5/evidence/target-046-item-inventory-posting-group-source-mapping/TARGET-046-result.json",
+    "playwright/projects/fibu-book5/evidence/target-046-item-inventory-posting-group-source-mapping/README.md",
+    ".agent/state/cases/target-046-item-inventory-posting-group-source-mapping.json",
+    ".agent/state/cases/target-047-item-inventory-posting-setup-decision.json",
+    ".agent/state/current.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/marathon_queue.json",
+    ".agent/state/coverage_state.json",
+    "playwright/projects/fibu-book5/BC-SOURCE-REGISTRY.md",
+    "playwright/projects/fibu-book5/BC-MICROSOFT-LEARN-MAPPING.md",
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
+    "playwright/projects/fibu-book5/BC-CARD-ATLAS.md",
+    "playwright/projects/fibu-book5/BC-COVERAGE-MATRIX.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-046-item-inventory-posting-group-source-mapping/source-map.json",
+    "playwright/projects/fibu-book5/evidence/target-046-item-inventory-posting-group-source-mapping/TARGET-046-result.json"
+  ],
+  "sourceRefs": [
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/finance-posting-groups",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/application/base-application/table/microsoft.inventory.item.inventory-posting-setup",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/design-details-inventory-posting"
+  ],
+  "warnings": [
+    "Source mapping is not setup proof.",
+    "Do not write U-ITEM-HW100 or Inventory Posting Setup until TARGET-047 has selected exact values and gates.",
+    "Do not derive inventory accounts from old RM-DEMO or CRONUS evidence."
+  ],
+  "blockedBy": [],
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true,
+    "noPlaywrightRun": true,
+    "noBcRun": true
+  },
+  "nextStepDecision": {
+    "currentCase": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
+    "plannedNextCaseBeforeReview": "TARGET-047-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT-AFTER-SOURCES",
+    "lastEvidenceSummary": "TARGET-045B showed U-ITEM-HW100 read-only but did not expose Lagerbuchungsgruppe / Item Posting Group. TARGET-040 showed Item Posting Groups and Inventory Posting Setup surfaces but no rows or account correctness.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "A direct customer/item field write would still be premature because the item posting group and inventory posting setup target values are not decided.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-047-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT-AFTER-SOURCES",
+        "status": "needs-setup-first",
+        "reason": "Customer/item field writes need inventory, general posting and VAT setup decisions first."
+      },
+      {
+        "caseId": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+        "status": "ready-next",
+        "reason": "Source mapping shows no rows or target values; decide target values before any write."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C still needs customer posting fields, item posting fields, VAT setup and general posting setup."
+      },
+      {
+        "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
+        "status": "ready-after-current",
+        "reason": "VAT setup remains a separate foundation lane; do not mix it into inventory setup."
+      },
+      {
+        "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+        "status": "blocked",
+        "reason": "Vendor numbering is parked and separate from this item inventory dependency."
+      }
+    ],
+    "queueChangesMade": [
+      "Replace premature controlled customer/item field fit with TARGET-047 item inventory posting setup decision.",
+      "Keep O2C/P2P/Preview/Posting locked."
+    ],
+    "selectedNextCase": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+    "whySelectedNextCaseIsBest": "It turns the source dependency into concrete target values and gates before the first item posting field or inventory setup write.",
+    "risksBeforeNextCase": [
+      "Do not reuse CRONUS/RM inventory posting group values.",
+      "Do not use an inventory account that is not in the Universaarl SKR04 starter mapping.",
+      "Do not claim inventory posting readiness without reopen proof and later posting/entry trace."
+    ],
+    "requiredPreparation": [
+      "Read UNIVERSAARL-SKR04-MINIMAL-ACCOUNT-MAPPING.md.",
+      "Decide whether a separate inventory account must be added before Inventory Posting Setup.",
+      "Keep Business Central and Playwright locked in the decision case unless the active case explicitly unlocks read-only UI."
+    ]
+  },
+  "statePatch": {
+    "current": {
+      "updatedAt": "2026-07-02T00:30:00.000Z",
+      "activeArea": "universaarl-item-inventory-posting-setup-decision",
+      "activeCase": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+      "active_case_file": ".agent/state/cases/target-047-item-inventory-posting-setup-decision.json",
+      "nextCase": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+      "nextStep": "Run TARGET-047 item inventory posting setup decision before any item posting group or Inventory Posting Setup write."
+    },
+    "activeCase": {
+      "status": "done",
+      "completedAt": "2026-07-02T00:30:00.000Z",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-046-item-inventory-posting-group-source-mapping/TARGET-046-result.json",
+      "nextCase": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION"
+    }
+  },
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "Source mapping completed without BC or Playwright execution.",
+  "nextCase": "TARGET-047-ITEM-INVENTORY-POSTING-SETUP-DECISION",
+  "updatedAt": "2026-07-02T00:30:00.000Z"
+}
