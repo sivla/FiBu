@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
-  "status": "planned",
+  "status": "observed",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -82,5 +82,82 @@
   ],
   "nextCaseIfDone": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
   "nextCaseIfBlocked": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS-FOLLOWUP",
-  "createdAt": "2026-07-01T07:34:44.778Z"
+  "createdAt": "2026-07-01T07:34:44.778Z",
+  "completedAt": "2026-07-01T07:52:18.379Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-032c-general-posting-setup-matrix-route-diagnosis/TARGET-032C-result.json",
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "writeRouteStatus": "trusted-future-write-route",
+  "trustedForFutureWrite": true,
+  "hasTargetRow": false,
+  "teachingTipClosed": true,
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/target-032c-010-page314-initial.png",
+    "playwright/projects/fibu-book5/img/target-032c-020-page314-after-header-hover.png"
+  ],
+  "result": "Page 314 required headers are visible and geometrically ordered; future controlled write should use header geometry, not blind input index.",
+  "proved": [
+    "Page 314 opened in playthru / UNIVERSAARL-DE.",
+    "Required headers for General Business Posting Group, General Product Posting Group, Sales Account and Purchase Account are visible and geometrically ordered.",
+    "No setup, master data, document draft, Preview Posting, Posting, Payment or API shortcut occurred."
+  ],
+  "notProved": [
+    "No INLAND/WAREN/4400/5400 matrix row is saved by this case.",
+    "No VAT Posting Setup is proven.",
+    "No Inventory Posting Setup is proven.",
+    "No posting readiness, Preview Posting, G/L Entries, VAT Entries or Value Entries are proven.",
+    "No final SKR04, tax advisor or German compliance claim is proven."
+  ],
+  "blockedBy": [],
+  "nextCase": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
+  "nextStepDecision": {
+    "currentCase": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
+    "plannedNextCaseBeforeReview": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
+    "lastEvidenceSummary": "TARGET-032B created/reverified INLAND and WAREN but blocked Page 314 because account column mapping was unsafe.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Page 314 is the narrow remaining setup route blocker before a controlled General Posting Setup write.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
+        "status": "ready-next",
+        "reason": "It directly addresses the remaining Page 314 field-mapping blocker without writing setup."
+      },
+      {
+        "caseId": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
+        "status": "ready-next",
+        "reason": "Header geometry is good enough to prepare a controlled write case."
+      },
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "ready-after-current",
+        "reason": "Dimensions should wait until Page 314 is written or consciously parked."
+      },
+      {
+        "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation still needs matrix/VAT/dimensions status before readiness."
+      },
+      {
+        "caseId": "TARGET-035-MASTER-DATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data remains locked until posting groups, VAT and dimensions are sufficient."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "A controlled Page 314 write gate is now better than more diagnosis because exact target headers are visible.",
+    "risksBeforeNextCase": [
+      "Do not create master data yet.",
+      "Do not run Preview Posting or Posting.",
+      "Do not claim posting readiness from posting groups alone.",
+      "Do not type Page 314 account values without before/after/reopen proof."
+    ],
+    "requiredPreparation": [
+      "Use header geometry, not input index, to target Page 314 fields in TARGET-032D."
+    ]
+  }
 }

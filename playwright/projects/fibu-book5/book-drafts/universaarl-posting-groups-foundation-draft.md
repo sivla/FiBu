@@ -58,6 +58,8 @@ Die beiden Grundgruppen sind jetzt in der Universaarl-Company vorhanden. Auf der
 
 Die Seite **Buchungsmatrix Einrichtung** bleibt der naechste Schritt. Dort reicht es nicht, einfach von links nach rechts Werte in sichtbare Eingabefelder zu tippen. Zwischen dem **Warenverkaufskonto** und dem **Wareneinkaufskonto** liegen weitere Spalten wie Gutschrift- und Vorauszahlungskonten. Deshalb muss vor dem Eintragen der Kombination **INLAND** + **WAREN** eindeutig klar sein, welches Feld wirklich das Verkaufskonto **4400** und welches Feld wirklich das Einkaufskonto **5400** ist.
 
+In der sichtbaren Matrix liegen die Spalten in einer fachlichen Reihenfolge: zuerst **Geschaeftsbuchungsgruppe** und **Produktbuchungsgruppe**, danach **Warenverkaufskonto**, dann weitere Verkaufsfelder wie Gutschrift und Vorauszahlung, danach **Wareneinkaufskonto** und weitere Einkaufsfelder. Fuer die Einrichtung bedeutet das: Man orientiert sich an den Spaltenueberschriften, nicht an der blossen Reihenfolge der Eingabefelder.
+
 Wenn Business Central beim Bearbeiten einer Matrixzeile eine rote Fehlermeldung anzeigt, ist das noch kein gespeicherter Zielzustand. Dann wird die Seite erneut geoeffnet und geprueft, ob die Zeile wirklich vorhanden ist. Erst eine wieder sichtbar gespeicherte Zeile ist ein brauchbarer Kontrollpunkt.
 
 Bis diese Matrixzeile sichtbar gespeichert ist, bleibt die Company noch nicht buchungsbereit. Die Gruppen **INLAND** und **WAREN** sind nur Bausteine fuer die Kontenfindung. Eine spaetere Verkaufs- oder Einkaufsbelegvorschau darf erst folgen, wenn auch die Buchungsmatrix, die USt-Einrichtung, Lagerlogik und Dimensionslogik passend vorbereitet sind.

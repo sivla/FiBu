@@ -2930,7 +2930,7 @@
     {
       "id": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
       "order": 10095,
-      "status": "pending",
+      "status": "done",
       "priority": "high",
       "area": "universaarl-general-posting-setup",
       "category": "general-posting-setup-matrix-route-diagnosis",
@@ -2943,10 +2943,32 @@
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
       "caseFile": ".agent/state/cases/target-032c-general-posting-setup-matrix-row-route-diagnosis.json",
       "nextCase": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
+      "blockedBy": [],
+      "completedAt": "2026-07-01T07:52:18.379Z",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-032c-general-posting-setup-matrix-route-diagnosis/TARGET-032C-result.json",
+      "result": "Page 314 header geometry for INLAND/WAREN/4400/5400 is trusted for a future controlled write; no setup changed.",
+      "setupChanged": false
+    },
+    {
+      "id": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
+      "order": 10096,
+      "status": "pending",
+      "priority": "high",
+      "area": "universaarl-general-posting-setup",
+      "category": "general-posting-setup-matrix-controlled-write",
+      "expectedImpact": "foundation-setup-progress",
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": true,
+      "goal": "Create or verify Page 314 INLAND/WAREN General Posting Setup row with 4400 sales account and 5400 purchase account using TARGET-032C header geometry and reopen proof.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "caseFile": ".agent/state/cases/target-032d-general-posting-setup-matrix-controlled-write-gate.json",
+      "nextCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
       "blockedBy": []
     }
   ],
-  "lastUpdated": "2026-07-01T07:34:44.778Z",
+  "lastUpdated": "2026-07-01T07:52:18.379Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -2969,26 +2991,26 @@
       "replace-with-better-case"
     ],
     "latestDecisionCard": {
-      "currentCase": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
-      "plannedNextCaseBeforeReview": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
-      "lastEvidenceSummary": "TARGET-032A proved Page 312, Page 313 and Page 314 read-only. TARGET-030/031B proved specific vendor/customer posting groups.",
+      "currentCase": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
+      "plannedNextCaseBeforeReview": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
+      "lastEvidenceSummary": "TARGET-032B created/reverified INLAND and WAREN but blocked Page 314 because account column mapping was unsafe.",
       "isPlannedNextCaseStillSensible": true,
-      "reason": "The next setup dependency is General Business/Product Posting Groups first; Page 314 must not be written unless field-to-column mapping is safe.",
+      "reason": "Page 314 is the narrow remaining setup route blocker before a controlled General Posting Setup write.",
       "lookaheadReviewed": [
-        {
-          "caseId": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
-          "status": "ready-next",
-          "reason": "Page 312/313 simple group setup is ready; Page 314 remains conditional on safe editor mapping."
-        },
         {
           "caseId": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
           "status": "ready-next",
-          "reason": "The groups are proven; the remaining blocker is now only Page 314 field mapping."
+          "reason": "It directly addresses the remaining Page 314 field-mapping blocker without writing setup."
+        },
+        {
+          "caseId": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
+          "status": "ready-next",
+          "reason": "Header geometry is good enough to prepare a controlled write case."
         },
         {
           "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
           "status": "ready-after-current",
-          "reason": "Dimensions can continue only after the Page 314 matrix route is resolved or explicitly parked."
+          "reason": "Dimensions should wait until Page 314 is written or consciously parked."
         },
         {
           "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
@@ -3001,19 +3023,17 @@
           "reason": "Master data remains locked until posting groups, VAT and dimensions are sufficient."
         }
       ],
-      "queueChangesMade": [
-        "Selected TARGET-032C as narrow follow-up for Page 314 instead of skipping to Dimensions."
-      ],
-      "selectedNextCase": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
-      "whySelectedNextCaseIsBest": "Page 312/313 are complete; a narrow Page 314 matrix field-mapping case avoids repeating unsafe cell edits.",
+      "queueChangesMade": [],
+      "selectedNextCase": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
+      "whySelectedNextCaseIsBest": "A controlled Page 314 write gate is now better than more diagnosis because exact target headers are visible.",
       "risksBeforeNextCase": [
         "Do not create master data yet.",
         "Do not run Preview Posting or Posting.",
         "Do not claim posting readiness from posting groups alone.",
-        "Do not type Page 314 account values into unknown columns."
+        "Do not type Page 314 account values without before/after/reopen proof."
       ],
       "requiredPreparation": [
-        "Use Page Inspection, personalization or controlled row field diagnostics on Page 314 before any 4400/5400 write."
+        "Use header geometry, not input index, to target Page 314 fields in TARGET-032D."
       ]
     },
     "lastDecisionCard": {
@@ -3055,30 +3075,30 @@
       ]
     }
   },
-  "updatedAt": "2026-07-01T07:34:44.778Z",
-  "lastCompletedCase": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
-  "nextCase": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
+  "updatedAt": "2026-07-01T07:52:18.379Z",
+  "lastCompletedCase": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
+  "nextCase": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-032A proved Page 312, Page 313 and Page 314 read-only. TARGET-030/031B proved specific vendor/customer posting groups.",
+    "currentCase": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
+    "plannedNextCaseBeforeReview": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
+    "lastEvidenceSummary": "TARGET-032B created/reverified INLAND and WAREN but blocked Page 314 because account column mapping was unsafe.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The next setup dependency is General Business/Product Posting Groups first; Page 314 must not be written unless field-to-column mapping is safe.",
+    "reason": "Page 314 is the narrow remaining setup route blocker before a controlled General Posting Setup write.",
     "lookaheadReviewed": [
-      {
-        "caseId": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
-        "status": "ready-next",
-        "reason": "Page 312/313 simple group setup is ready; Page 314 remains conditional on safe editor mapping."
-      },
       {
         "caseId": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
         "status": "ready-next",
-        "reason": "The groups are proven; the remaining blocker is now only Page 314 field mapping."
+        "reason": "It directly addresses the remaining Page 314 field-mapping blocker without writing setup."
+      },
+      {
+        "caseId": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
+        "status": "ready-next",
+        "reason": "Header geometry is good enough to prepare a controlled write case."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-after-current",
-        "reason": "Dimensions can continue only after the Page 314 matrix route is resolved or explicitly parked."
+        "reason": "Dimensions should wait until Page 314 is written or consciously parked."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
@@ -3091,22 +3111,20 @@
         "reason": "Master data remains locked until posting groups, VAT and dimensions are sufficient."
       }
     ],
-    "queueChangesMade": [
-      "Selected TARGET-032C as narrow follow-up for Page 314 instead of skipping to Dimensions."
-    ],
-    "selectedNextCase": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
-    "whySelectedNextCaseIsBest": "Page 312/313 are complete; a narrow Page 314 matrix field-mapping case avoids repeating unsafe cell edits.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "A controlled Page 314 write gate is now better than more diagnosis because exact target headers are visible.",
     "risksBeforeNextCase": [
       "Do not create master data yet.",
       "Do not run Preview Posting or Posting.",
       "Do not claim posting readiness from posting groups alone.",
-      "Do not type Page 314 account values into unknown columns."
+      "Do not type Page 314 account values without before/after/reopen proof."
     ],
     "requiredPreparation": [
-      "Use Page Inspection, personalization or controlled row field diagnostics on Page 314 before any 4400/5400 write."
+      "Use header geometry, not input index, to target Page 314 fields in TARGET-032D."
     ]
   },
-  "nextStep": "Run TARGET-031B to create or verify only Customer Posting Group INLAND with receivables account 1200. Do not create master data, documents, Preview Posting or Posting.",
+  "nextStep": "Run TARGET-032D as controlled Page 314 write gate using header geometry and before/after/reopen proof. Keep VAT, master data, Preview Posting and Posting locked.",
   "openItems": 1,
-  "nextQueueItem": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS"
+  "nextQueueItem": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE"
 }

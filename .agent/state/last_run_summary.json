@@ -1,88 +1,75 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
-  "caseId": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
-  "completedAt": "2026-07-01T07:34:44.778Z",
-  "summary": "INLAND and WAREN were created/reverified after reopen; Page 314 stopped before unsafe matrix cell mapping and reopen proved no target row persisted.",
+  "runId": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
+  "caseId": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
+  "completedAt": "2026-07-01T07:52:18.379Z",
+  "summary": "Page 314 General Posting Setup header geometry is trusted for a future controlled INLAND/WAREN write; no setup values were changed.",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "bcRun": true,
   "playwrightRun": true,
-  "setupChanged": true,
+  "setupChanged": false,
   "masterDataChanged": false,
   "draftCreated": false,
   "previewPosting": false,
   "posted": false,
   "apiShortcut": false,
   "changedFiles": [
-    "playwright/projects/fibu-book5/evidence/target-032b-general-posting-groups-controlled-write-gate/TARGET-032B-result.json",
-    "playwright/projects/fibu-book5/evidence/target-032b-general-posting-groups-controlled-write-gate/*.txt",
-    "playwright/projects/fibu-book5/evidence/target-032b-general-posting-groups-controlled-write-gate/*.snapshot.json",
-    "playwright/projects/fibu-book5/evidence/target-032b-general-posting-groups-controlled-write-gate/*.screenshot.json",
-    "playwright/projects/fibu-book5/img/target-032b-*.png"
+    "playwright/projects/fibu-book5/evidence/target-032c-general-posting-setup-matrix-route-diagnosis/TARGET-032C-result.json",
+    "playwright/projects/fibu-book5/evidence/target-032c-general-posting-setup-matrix-route-diagnosis/*.txt",
+    "playwright/projects/fibu-book5/evidence/target-032c-general-posting-setup-matrix-route-diagnosis/*.json",
+    "playwright/projects/fibu-book5/img/target-032c-*.png"
   ],
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/target-032b-general-posting-groups-controlled-write-gate/TARGET-032B-result.json",
-    "playwright/projects/fibu-book5/img/target-032b-010-business-group-030-after-reopen.png",
-    "playwright/projects/fibu-book5/img/target-032b-040-product-group-030-after-reopen.png",
-    "playwright/projects/fibu-book5/img/target-032b-100-general-posting-setup-reopen-no-persist.png"
+    "playwright/projects/fibu-book5/evidence/target-032c-general-posting-setup-matrix-route-diagnosis/TARGET-032C-result.json",
+    "playwright/projects/fibu-book5/img/target-032c-010-page314-initial.png",
+    "playwright/projects/fibu-book5/img/target-032c-020-page314-after-header-hover.png"
   ],
   "screenshots": [
-    "playwright/projects/fibu-book5/img/target-032b-010-business-group-010-before.png",
-    "playwright/projects/fibu-book5/img/target-032b-010-business-group-020-after-attempt.png",
-    "playwright/projects/fibu-book5/img/target-032b-010-business-group-030-after-reopen.png",
-    "playwright/projects/fibu-book5/img/target-032b-040-product-group-010-before.png",
-    "playwright/projects/fibu-book5/img/target-032b-040-product-group-020-after-attempt.png",
-    "playwright/projects/fibu-book5/img/target-032b-040-product-group-030-after-reopen.png",
-    "playwright/projects/fibu-book5/img/target-032b-070-general-posting-setup-before.png",
-    "playwright/projects/fibu-book5/img/target-032b-090-general-posting-setup-route-blocked.png",
-    "playwright/projects/fibu-book5/img/target-032b-100-general-posting-setup-reopen-no-persist.png"
+    "playwright/projects/fibu-book5/img/target-032c-010-page314-initial.png",
+    "playwright/projects/fibu-book5/img/target-032c-020-page314-after-header-hover.png"
   ],
   "proved": [
-    "General Business Posting Group INLAND is visible after reopen with description Inlaendische Geschaeftspartner.",
-    "General Product Posting Group WAREN is visible after reopen with description Waren.",
-    "Business Central stayed in playthru / UNIVERSAARL-DE.",
-    "No master data, document draft, Preview Posting, Posting, Payment or API shortcut was executed."
+    "Page 314 opened in playthru / UNIVERSAARL-DE.",
+    "Required headers for General Business Posting Group, General Product Posting Group, Sales Account and Purchase Account are visible and geometrically ordered.",
+    "No setup, master data, document draft, Preview Posting, Posting, Payment or API shortcut occurred."
   ],
   "notProved": [
-    "General Posting Setup row INLAND/WAREN with 4400/5400 is not proven.",
+    "No INLAND/WAREN/4400/5400 matrix row is saved by this case.",
     "No VAT Posting Setup is proven.",
     "No Inventory Posting Setup is proven.",
     "No posting readiness, Preview Posting, G/L Entries, VAT Entries or Value Entries are proven.",
     "No final SKR04, tax advisor or German compliance claim is proven."
   ],
-  "blockedBy": [
-    "General Posting Setup matrix row was not written because visible editable inputs did not provide a trusted field-to-column map for Sales Account 4400 and Purchase Account 5400."
-  ],
+  "blockedBy": [],
   "warnings": [
-    "General Business/Product Posting Groups alone do not make the company posting-ready.",
-    "The Buchungsmatrix / General Posting Setup row remains a separate gate unless proven after reopen.",
-    "Page 314 column order includes intermediate sales credit/prepayment fields; blindly filling the first visible inputs could put 5400 into the wrong column.",
-    "Page 314 produced a transient unsaved/error row during route diagnosis; reopen proof shows it was not accepted as persisted target setup."
+    "This case is read-only diagnosis. A later write case must still use before/after/reopen proof.",
+    "Intermediate credit and prepayment columns are visible or expected around the sales/purchase account fields; do not use blind input index order.",
+    "General Posting Setup alone does not make the company posting-ready."
   ],
-  "nextStep": "Run TARGET-032C as a narrow Page 314 General Posting Setup matrix route diagnosis before any more setup or master data. Do not type 4400/5400 until field-to-column mapping is trusted.",
-  "nextCase": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
+  "nextStep": "Run TARGET-032D as controlled Page 314 write gate using header geometry and before/after/reopen proof. Keep VAT, master data, Preview Posting and Posting locked.",
+  "nextCase": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-032A proved Page 312, Page 313 and Page 314 read-only. TARGET-030/031B proved specific vendor/customer posting groups.",
+    "currentCase": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
+    "plannedNextCaseBeforeReview": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
+    "lastEvidenceSummary": "TARGET-032B created/reverified INLAND and WAREN but blocked Page 314 because account column mapping was unsafe.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The next setup dependency is General Business/Product Posting Groups first; Page 314 must not be written unless field-to-column mapping is safe.",
+    "reason": "Page 314 is the narrow remaining setup route blocker before a controlled General Posting Setup write.",
     "lookaheadReviewed": [
-      {
-        "caseId": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
-        "status": "ready-next",
-        "reason": "Page 312/313 simple group setup is ready; Page 314 remains conditional on safe editor mapping."
-      },
       {
         "caseId": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
         "status": "ready-next",
-        "reason": "The groups are proven; the remaining blocker is now only Page 314 field mapping."
+        "reason": "It directly addresses the remaining Page 314 field-mapping blocker without writing setup."
+      },
+      {
+        "caseId": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
+        "status": "ready-next",
+        "reason": "Header geometry is good enough to prepare a controlled write case."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-after-current",
-        "reason": "Dimensions can continue only after the Page 314 matrix route is resolved or explicitly parked."
+        "reason": "Dimensions should wait until Page 314 is written or consciously parked."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
@@ -95,29 +82,17 @@
         "reason": "Master data remains locked until posting groups, VAT and dimensions are sufficient."
       }
     ],
-    "queueChangesMade": [
-      "Selected TARGET-032C as narrow follow-up for Page 314 instead of skipping to Dimensions."
-    ],
-    "selectedNextCase": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
-    "whySelectedNextCaseIsBest": "Page 312/313 are complete; a narrow Page 314 matrix field-mapping case avoids repeating unsafe cell edits.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "A controlled Page 314 write gate is now better than more diagnosis because exact target headers are visible.",
     "risksBeforeNextCase": [
       "Do not create master data yet.",
       "Do not run Preview Posting or Posting.",
       "Do not claim posting readiness from posting groups alone.",
-      "Do not type Page 314 account values into unknown columns."
+      "Do not type Page 314 account values without before/after/reopen proof."
     ],
     "requiredPreparation": [
-      "Use Page Inspection, personalization or controlled row field diagnostics on Page 314 before any 4400/5400 write."
+      "Use header geometry, not input index, to target Page 314 fields in TARGET-032D."
     ]
-  },
-  "caseRunTruth": {
-    "scope": "TARGET-032B case-level truth",
-    "note": "The initial successful pass in this Codex run created INLAND and WAREN. After adding the Page 314 reopen/no-persist proof, the Playwright test was rerun and reverified those groups as already complete. The current final screenshots therefore show the reverified persisted state, not the empty pre-create state.",
-    "createdInThisRun": [
-      "General Business Posting Group INLAND",
-      "General Product Posting Group WAREN"
-    ],
-    "reverifiedAfterTestPatch": true,
-    "page314TransientRowWasNotAcceptedAsSetup": true
   }
 }
