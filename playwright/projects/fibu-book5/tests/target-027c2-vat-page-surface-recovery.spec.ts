@@ -212,9 +212,17 @@ async function clickExactResult(page: Page, target: TargetPage) {
   return false;
 }
 
-async function capture(page: Page, target: TargetPage, route: string, sequence: number): Promise<Capture> {
-  await page.keyboard.press('Escape').catch(() => undefined);
-  await page.waitForTimeout(500);
+async function capture(
+  page: Page,
+  target: TargetPage,
+  route: string,
+  sequence: number,
+  options: { dismissBeforeCapture?: boolean } = {}
+): Promise<Capture> {
+  if (options.dismissBeforeCapture ?? true) {
+    await page.keyboard.press('Escape').catch(() => undefined);
+    await page.waitForTimeout(500);
+  }
   const text = await compactVisibleText(page, target);
   const frameSignals = await visibleFrameSignals(page, target);
   const titleVisible = target.title.test(text) || frameSignals.some((entry) => entry.title);
@@ -305,7 +313,7 @@ async function runRoutes(page: Page, target: TargetPage) {
   for (const term of target.searchTerms) {
     await searchFor(page, term);
     await page.waitForTimeout(900);
-    captures.push(await capture(page, target, `search-overlay-${term}`, sequence++));
+    captures.push(await capture(page, target, `search-overlay-${term}`, sequence++, { dismissBeforeCapture: false }));
     const clicked = await clickExactResult(page, target);
     await waitForBusinessCentralShell(page);
     await page.waitForTimeout(1800);
@@ -439,7 +447,11 @@ test('TARGET-027C2 recovers visible VAT page surfaces read-only', async ({ page 
       ],
       queueChangesMade: [],
       selectedNextCase:
-        acceptedCaptures.length === 2 ? 'TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY' : 'TARGET-027C3-TELL-ME-INPUT-FOCUS-RECOVERY',
+        acceptedCaptures.length === 2
+          ? 'TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY'
+          : acceptedCaptures.length > 0
+            ? 'TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY'
+            : 'TARGET-027C3-TELL-ME-INPUT-FOCUS-RECOVERY',
       whySelectedNextCaseIsBest:
         acceptedCaptures.length === 2
           ? 'The page-surface blocker is removed; the smallest next practical step is the bounded group write retry.'
@@ -451,12 +463,19 @@ test('TARGET-027C2 recovers visible VAT page surfaces read-only', async ({ page 
       requiredPreparation:
         acceptedCaptures.length === 2
           ? ['Reuse the accepted route names and screenshots when retrying INLAND/VAT19.']
-          : ['Recover the visible Tell-Me search textbox input before retrying VAT page navigation.']
+          : acceptedCaptures.length > 0
+            ? ['Recover the exact Page 470 Tell-Me result click; Page 471 is already accepted read-only.']
+            : ['Recover the visible Tell-Me search textbox input before retrying VAT page navigation.']
     },
     safeToFinalizeState: false,
     requiresReview: status !== 'observed',
     statePatch: {},
-    nextCase: acceptedCaptures.length === 2 ? 'TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY' : 'TARGET-027C3-TELL-ME-INPUT-FOCUS-RECOVERY',
+    nextCase:
+      acceptedCaptures.length === 2
+        ? 'TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY'
+        : acceptedCaptures.length > 0
+          ? 'TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY'
+          : 'TARGET-027C3-TELL-ME-INPUT-FOCUS-RECOVERY',
     reason:
       status === 'observed'
         ? 'VAT group page surfaces recovered read-only; setup write remains separate.'

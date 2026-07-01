@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T02:25:00.000+02:00",
+  "updatedAt": "2026-07-01T03:10:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "activeArea": "universaarl-vat-page-surface-recovery",
-  "activeCase": "TARGET-027C3-TELL-ME-INPUT-FOCUS-RECOVERY",
-  "active_case_file": ".agent/state/cases/target-027c3-tell-me-input-focus-recovery.json",
+  "activeCase": "TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY",
+  "active_case_file": ".agent/state/cases/target-027c4-vat-business-result-click-recovery.json",
   "lastReferenceCase": "TARGET-027C2-VAT-PAGE-SURFACE-RECOVERY",
   "lastReferenceCaseFile": ".agent/state/cases/target-027c2-vat-page-surface-recovery.json",
   "mode": "universaarl-target-execution",
@@ -40,8 +40,8 @@
     "api-shortcut",
     "claim-german-19-percent-vat-final-proof"
   ],
-  "nextCase": "TARGET-027C3-TELL-ME-INPUT-FOCUS-RECOVERY",
-  "nextStep": "Recover the visible Tell-Me search textbox input route before retrying VAT page navigation or VAT group setup writes.",
+  "nextCase": "TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY",
+  "nextStep": "Recover the exact visible Tell-Me result click for Page 470; Page 471 is already accepted read-only.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -224,7 +224,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "Universaarl VAT setup remains blocked before write; next focus is Business Central Tell-Me input/focus recovery.",
+  "currentCoverageFocus": "Universaarl VAT setup remains blocked before write; Page 471 is accepted read-only, Page 470 result-click recovery is next.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -6477,14 +6477,25 @@
   },
   "latestVatPageSurfaceRecovery": {
     "caseId": "TARGET-027C2-VAT-PAGE-SURFACE-RECOVERY",
-    "status": "blocked",
-    "updatedAt": "2026-07-01T02:25:00.000+02:00",
+    "status": "partially-observed",
+    "updatedAt": "2026-07-01T03:10:00.000+02:00",
     "resultPath": "playwright/projects/fibu-book5/evidence/target-027c2-vat-page-surface-recovery/TARGET-027C2-result.json",
-    "summary": "Read-only run stayed in playthru / UNIVERSAARL-DE but rejected all VAT page surfaces. Screenshots show Role Center or an empty Tell-Me search textbox, so VAT setup writes remain locked.",
-    "helperLearning": "Tell-Me/search overlay can open while the visible textbox remains empty; recover focus/input before accepting search-route evidence.",
+    "summary": "After Tell-Me input recovery and capture fix, Page 471 MwSt.-Produktbuchungsgruppen is accepted read-only. Page 470 MwSt.-Geschaeftsbuchungsgruppen remains blocked after exact result click attempt.",
+    "helperLearning": "Do not press Escape before capturing/clicking a Tell-Me overlay; it can destroy the visible result state.",
     "noSetupChange": true,
     "noPreview": true,
     "noPosting": true,
-    "nextCase": "TARGET-027C3-TELL-ME-INPUT-FOCUS-RECOVERY"
+    "nextCase": "TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY"
+  },
+  "latestTellMeInputFocusRecovery": {
+    "caseId": "TARGET-027C3-TELL-ME-INPUT-FOCUS-RECOVERY",
+    "status": "observed",
+    "updatedAt": "2026-07-01T03:10:00.000+02:00",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027c3-tell-me-input-focus-recovery/TARGET-027C3-result.json",
+    "summary": "Tell-Me search input now visibly receives MwSt.-Geschaeftsbuchungsgruppen and shows the exact Verwaltung result.",
+    "noSetupChange": true,
+    "noPreview": true,
+    "noPosting": true,
+    "nextCase": "TARGET-027C2-VAT-PAGE-SURFACE-RECOVERY-RETRY"
   }
 }

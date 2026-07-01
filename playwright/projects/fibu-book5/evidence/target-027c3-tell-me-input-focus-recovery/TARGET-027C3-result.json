@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-027C3-TELL-ME-INPUT-FOCUS-RECOVERY",
+  "source": "playwright-universaarl-tell-me-input-focus-readonly",
+  "resultStatus": "observed",
+  "runPlanId": "TARGET-027C3-TELL-ME-INPUT-FOCUS-RECOVERY-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "actionsTaken": [
+    "Opened Business Central read-only in playthru / UNIVERSAARL-DE.",
+    "Opened Tell-Me/Search and attempted visible textbox input for VAT page search terms.",
+    "Captured screenshot QA and textbox diagnostics.",
+    "Stopped before any New, Edit, VAT setup, master data, draft, Preview Posting or Posting."
+  ],
+  "actionsNotTaken": [
+    "No VAT group create/edit",
+    "No VAT Posting Setup matrix row",
+    "No master data",
+    "No document draft",
+    "No Preview Posting",
+    "No Posting",
+    "No API shortcut",
+    "No Company switch"
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Tell-Me input accepted visible search text for MwSt.-Geschäftsbuchungsgruppen.",
+    "No VAT setup, master data, document draft, Preview Posting, Posting or API shortcut was executed."
+  ],
+  "notProved": [
+    "No VAT Business/Product Posting Groups page surface is accepted by this run.",
+    "No INLAND or VAT19 group exists or was changed by this run.",
+    "No VAT Posting Setup matrix row exists.",
+    "No German 19 percent VAT calculation is proven.",
+    "No VAT Entries or G/L Entries exist."
+  ],
+  "captures": [
+    {
+      "probe": "business-de",
+      "term": "MwSt.-Geschäftsbuchungsgruppen",
+      "status": "accepted",
+      "screenshot": "target-027c3-001-business-de-tell-me-input.png",
+      "screenshotMetadata": "target-027c3-001-business-de.screenshot.json",
+      "textFile": "target-027c3-001-business-de-visible-text.txt",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?company=UNIVERSAARL-DE&dc=0",
+      "targetPageVisible": true,
+      "textboxSignalCount": 1,
+      "filledSignalCount": 1,
+      "filledSignals": [
+        {
+          "frameUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?company=UNIVERSAARL-DE&dc=0",
+          "tag": "input",
+          "role": "textbox",
+          "ariaLabel": "Wie möchten Sie weiter verfahren?",
+          "value": "MwSt.-Geschäftsbuchungsgruppen",
+          "text": "",
+          "rect": {
+            "x": 654,
+            "y": 67,
+            "width": 612,
+            "height": 29
+          }
+        }
+      ],
+      "textSignals": [
+        "Alle Berichte",
+        "Posten suchen ...",
+        "Berichte",
+        "Excel-Berichte",
+        "Power BI-Berichte",
+        "Liste mit Titel Zu Seiten und Aufgaben wechseln weist jetzt einen Artikel fur MwSt.-Geschaftsbuchungsgruppen auf",
+        "Zu Seiten und Aufgaben wechseln",
+        "Liste mit Titel \"Nach MwSt.-Geschaftsbuchungsgruppen suchen\" weist jetzt 2 Artikel fur MwSt.-Geschaftsbuchungsgruppen auf",
+        "Nach MwSt.-Geschaftsbuchungsgruppen suchen",
+        "Unternehmensdaten durchsuchen",
+        "Hilfe durchsuchen",
+        "Sie haben nicht gefunden, wonach Sie gesucht haben? Versuchen Sie, Seiten oder Berichte zu erkunden"
+      ]
+    }
+  ],
+  "screenshots": [
+    "target-027c3-001-business-de-tell-me-input.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-027c3-tell-me-input-focus-recovery/TARGET-027C3-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027c3-tell-me-input-focus-recovery/target-027c3-001-business-de-visible-text.txt",
+    "playwright/projects/fibu-book5/evidence/target-027c3-tell-me-input-focus-recovery/target-027c3-001-business-de-tell-me-input.png",
+    "playwright/projects/fibu-book5/evidence/target-027c3-tell-me-input-focus-recovery/target-027c3-001-business-de.screenshot.json"
+  ],
+  "blockedBy": [],
+  "warnings": [
+    "This run proves only Tell-Me input/focus behavior, not VAT setup correctness.",
+    "A filled search box is navigation evidence; it is not a VAT page or setup proof by itself."
+  ],
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-027C3-TELL-ME-INPUT-FOCUS-RECOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-027C3-TELL-ME-INPUT-FOCUS-RECOVERY",
+    "lastEvidenceSummary": "TARGET-027C2 showed Tell-Me open but the visible search textbox stayed empty; VAT writes remain locked.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Recovering Tell-Me input is the smallest prerequisite before repeating VAT page-surface recovery.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027C2-VAT-PAGE-SURFACE-RECOVERY-RETRY",
+        "status": "ready-next",
+        "reason": "The search input route now has visible proof and can be reused for page-surface recovery."
+      },
+      {
+        "caseId": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
+        "status": "needs-ui-discovery-first",
+        "reason": "VAT group writes require accepted VAT page surfaces, not just a search box."
+      },
+      {
+        "caseId": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
+        "status": "needs-setup-first",
+        "reason": "The matrix row depends on visible INLAND and VAT19 groups first."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Posting groups wait for VAT setup readiness."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-027C2-VAT-PAGE-SURFACE-RECOVERY-RETRY",
+    "whySelectedNextCaseIsBest": "The input blocker is removed; retrying VAT page surface recovery is the next narrow step.",
+    "risksBeforeNextCase": [
+      "Do not treat a filled search box as VAT setup proof.",
+      "Do not click New/Edit/List actions on VAT pages until the target page surface is accepted."
+    ],
+    "requiredPreparation": [
+      "Reuse the accepted Tell-Me input route only for read-only page-surface recovery."
+    ]
+  },
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "statePatch": {},
+  "nextCase": "TARGET-027C2-VAT-PAGE-SURFACE-RECOVERY-RETRY",
+  "reason": "Tell-Me input/focus route recovered read-only; VAT setup remains locked."
+}

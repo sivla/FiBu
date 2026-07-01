@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY",
+  "id": "TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY",
+  "status": "pending",
+  "area": "universaarl-vat-page-470-navigation-recovery",
+  "goal": "Recover the exact Tell-Me result click route for VAT Business Posting Groups / MwSt.-Geschaeftsbuchungsgruppen Page 470 while staying read-only.",
+  "sourceCompany": "UNIVERSAARL-DE",
+  "targetWorld": "Universaarl",
+  "sourceCases": [
+    "TARGET-027C3-TELL-ME-INPUT-FOCUS-RECOVERY",
+    "TARGET-027C2-VAT-PAGE-SURFACE-RECOVERY"
+  ],
+  "allowedActions": [
+    "open-business-central-readonly",
+    "open-tell-me-search-readonly",
+    "type-page-470-search-term-readonly",
+    "click-only-exact-visible-vat-business-result",
+    "capture-target-page-470-surface-if-found",
+    "capture-rejected-click-screenshot-if-role-center-remains",
+    "update-playwright-helper-patterns"
+  ],
+  "forbiddenActions": [
+    "create-or-edit-vat-groups",
+    "create-vat-posting-setup-matrix-row",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-german-19-percent-vat-final-proof"
+  ],
+  "acceptanceCriteria": [
+    "The run stays in playthru / UNIVERSAARL-DE.",
+    "The screenshot shows either Page 470 with title, Code column and Beschreibung column, or a rejected click state with exact cause.",
+    "No New, Edit List, setup write, master data, draft, Preview Posting, Posting or API shortcut is executed.",
+    "The existing Page 471 accepted surface from TARGET-027C2 remains a read-only prerequisite, not a VAT setup claim."
+  ],
+  "nextIfSuccessful": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
+  "nextIfBlocked": "TARGET-027C5-VAT-BUSINESS-ALTERNATIVE-NAVIGATION",
+  "migrationRelevance": "needed-for-german-final",
+  "mustRecreateInFinalSandbox": true,
+  "finalScreenshotNeeded": true,
+  "createdAt": "2026-07-01T03:10:00.000+02:00"
+}

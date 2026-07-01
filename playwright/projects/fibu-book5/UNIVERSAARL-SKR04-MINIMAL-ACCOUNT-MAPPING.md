@@ -117,6 +117,12 @@ Der naechste Schritt ist `TARGET-027C2`: erst die sichtbare Page-470/Page-471-Ob
 
 Fuer den SKR04-Pfad bedeutet das: `1406` und `3806` bleiben nur vorbereitende Sachkonten. `INLAND`, `VAT19`, die 19-Prozent-Matrix, Preview Posting, VAT Entries und G/L Entries sind weiterhin nicht bewiesen. Der naechste kleine Schritt ist `TARGET-027C3-TELL-ME-INPUT-FOCUS-RECOVERY`: erst die sichtbare Suchfeld-/Fokusroute reparieren oder eine andere sichtbare Navigationsroute finden, dann den VAT-Gruppen-Write neu bewerten.
 
+## Stand nach `TARGET-027C3` und C2-Retry
+
+`TARGET-027C3` hat die sichtbare Business-Central-Suche wieder nutzbar gemacht: Der Suchdialog enthaelt den Begriff `MwSt.-Geschaeftsbuchungsgruppen` und zeigt den gleichnamigen Treffer in der Gruppe `Verwaltung`. Das ist Navigations-Evidence, keine USt-Einrichtung.
+
+Der anschliessende read-only C2-Retry hat Page 471 `MwSt.-Produktbuchungsgruppen` sichtbar akzeptiert. Page 470 `MwSt.-Geschaeftsbuchungsgruppen` bleibt dagegen blockiert, weil der Trefferklick noch nicht in eine akzeptierte Listenoberflaeche fuehrt. Der VAT-Schreibcase fuer `INLAND` und `VAT19` bleibt deshalb gesperrt.
+
 ## Quellenbasis
 
 - DATEV SKR04 Produktseite: https://www.datev.de/web/de/datev-shop/rechnungswesen/skr-04/

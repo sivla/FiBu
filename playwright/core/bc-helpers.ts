@@ -125,6 +125,10 @@ export async function searchFor(page: Page, term: string) {
   await page.getByRole('button', { name: /Suchen|Search/i }).click();
   await page.waitForTimeout(500);
 
+  const expected = term
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase();
   const scopes = [page, ...page.frames()];
   for (const scope of scopes) {
     const textboxCandidates = [
@@ -141,9 +145,29 @@ export async function searchFor(page: Page, term: string) {
           await page.keyboard.type(term);
         });
         await page.waitForTimeout(2500);
-        return;
+        const value = await textbox.inputValue({ timeout: 500 }).catch(async () =>
+          textbox
+            .evaluate((element) => `${(element as HTMLInputElement).value ?? element.textContent ?? ''}`)
+            .catch(() => '')
+        );
+        const normalizedValue = value
+          .normalize('NFKD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .toLowerCase();
+        if (normalizedValue.includes(expected)) {
+          return;
+        }
       }
     }
+  }
+
+  const viewport = page.viewportSize();
+  if (viewport) {
+    await page.mouse.click(Math.round(viewport.width / 2), 130).catch(() => undefined);
+    await page.keyboard.press(process.platform === 'darwin' ? 'Meta+A' : 'Control+A').catch(() => undefined);
+    await page.keyboard.type(term).catch(() => undefined);
+    await page.waitForTimeout(2500);
+    return;
   }
 
   await page.keyboard.type(term);
