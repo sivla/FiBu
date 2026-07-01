@@ -29,7 +29,21 @@ Authentication is local and must not be committed.
 npm run auth:bc
 ```
 
-This creates local Playwright auth state under `playwright/.auth/`.
+Complete Login/MFA in the opened browser and wait until the Business Central shell is visible. Safe shell signals are the Role Center, Search/Tell Me, or My Settings. Only then does the script create local Playwright auth state under `playwright/.auth/`.
+
+Check whether the stored state is usable:
+
+```bash
+npm run auth:bc:check
+```
+
+If the check stays red and the browser appears to be stuck on Microsoft sign-in, use the short diagnostic run:
+
+```bash
+npm run auth:bc:diagnose
+```
+
+The diagnostic command uses a shorter timeout and prints non-secret shell signals such as host, path shape, page title, and whether a Business Central shell signal was visible. It must not print cookies, tokens, tenant IDs, account names, or page body text.
 
 ## Normal checks
 

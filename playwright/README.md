@@ -56,6 +56,8 @@ Dieses Repository ist kein einzelner Testordner für ein einzelnes Buch. Es ist 
 
 ```powershell
 npm run auth:bc
+npm run auth:bc:diagnose
+npm run auth:bc:check
 npm run fibu:screenshots:start
 npm run fibu:foundation:company
 npm run fibu:foundation:company-info
