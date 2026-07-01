@@ -571,6 +571,18 @@ Screenshot-QA zu TARGET-027D8: Der Lauf beweist nicht, dass die MwSt.-Buchungsma
 
 Screenshot-QA zu TARGET-027D10: Die Bilder zeigen einen echten Fortschritt gegenueber D8, weil die Oberflaeche jetzt eine row-nahe Delete-Aktion sichtbar macht. Sie beweisen aber bewusst keinen Cleanup. Der naechste sichere Schritt ist deshalb nicht sofortiges Loeschen, sondern ein enger Dialog-Cancel-Probe: Zielzeile fokussieren, `Löschen` nur als Dialogausloeser klicken, Dialog fotografieren und mit `Abbrechen`/Schliessen beenden. Erst danach kann entschieden werden, ob ein spaeterer expliziter Cleanup-Case fachlich vertretbar ist.
 
+## Universaarl VAT Matrix Delete Dialog Cancel Probe TARGET-027D11
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Interner Beweis | Beweist nicht | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-027d11-010-before-delete-dialog-probe.png` | MwSt.-Buchungsmatrix Einr., Page 472 | `playthru` / `UNIVERSAARL-DE` | Vor Delete-Dialog-Probe | Die unvollstaendige `INLAND`/`VAT19`-Zeile ist sichtbar | Richtiger Ausgangskontext vor dem Dialog-Gate | keine fertige Matrix, kein Cleanup | `setup-before`, `partial-row-proof` |
+| `target-027d11-020-after-row-focus.png` | MwSt.-Buchungsmatrix Einr., Page 472 | `playthru` / `UNIVERSAARL-DE` | Nach Zeilenfokus | Die Zielzeile ist fokussiert und die row-nahe Aktionsleiste ist sichtbar | Der Delete-Probe ist an die sichtbare Zielzeile gebunden | kein Dialog, keine Loeschung | `row-focus-proof`, `dialog-probe` |
+| `target-027d11-030-before-delete-click.png` | MwSt.-Buchungsmatrix Einr., Page 472 | `playthru` / `UNIVERSAARL-DE` | Vor Delete-Klick | `Weitere Optionen` ist offen; Delete/Loeschen-Kontext ist sichtbar | Der gefaehrliche Klick wurde erst nach sichtbarem Kontext vorbereitet | kein bestaetigter Delete, kein Setup-Erfolg | `pre-dialog-proof`, `do-not-use-as-cleanup-proof` |
+| `target-027d11-040-after-delete-click-dialog-state.png` | Delete-Bestaetigungsdialog ueber Page 472 | `playthru` / `UNIVERSAARL-DE` | Nach Delete-Klick, vor Abbruch | Dialog `Fortfahren und loeschen?` mit `Ja` und `Nein` | BC schuetzt die Aktion mit einem Dialog; `Ja` ist die gefaehrliche Bestaetigung | keine Loeschung, keine Matrixkorrektur | `dialog-proof`, `cancel-only` |
+| `target-027d11-050-reopen-after-cancel-proof.png` | MwSt.-Buchungsmatrix Einr., Page 472 | `playthru` / `UNIVERSAARL-DE` | Reopen nach `Nein` | Die `INLAND`/`VAT19`-Zeile ist weiter sichtbar | `Nein`/Cancel hat keine Cleanup-Wirkung erzeugt | keine bereinigte Matrix, keine 19-Prozent-USt, keine VAT Entries | `reopen-proof`, `no-delete` |
+
+Screenshot-QA zu TARGET-027D11: Dieser Lauf ist Sicherheits- und UI-Wissen, kein fachlicher USt-Erfolg. Er zeigt, dass ein spaeterer Cleanup technisch dialoggeschuetzt sein koennte. Er erlaubt aber noch nicht, die Zeile zu loeschen oder eine neue Matrixzeile als korrekt zu behaupten. Der naechste Schritt muss entscheiden, ob erst ein Recreate-/Completion-Pfad bewiesen wird oder ob ein eigener kontrollierter Cleanup-Case mit sofortigem Reopen-Proof vertretbar ist.
+
 ## PREP-010 Screenshot-QA-Regel
 
 Vor jeder Buch- oder Clickguide-Nutzung muss der Screenshot gegen die konkrete Behauptung geprueft werden:

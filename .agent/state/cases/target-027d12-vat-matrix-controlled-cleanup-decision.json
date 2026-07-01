@@ -1,55 +1,45 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE",
-  "caseId": "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE",
-  "status": "observed-delete-dialog-cancelled",
-  "completedAt": "2026-07-01T03:08:53.646Z",
+  "caseId": "TARGET-027D12-VAT-MATRIX-CONTROLLED-CLEANUP-DECISION",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d11-vat-matrix-row-scoped-delete-dialog-cancel-probe/TARGET-027D11-result.json",
-  "evidencePath": "playwright/projects/fibu-book5/evidence/target-027d11-vat-matrix-row-scoped-delete-dialog-cancel-probe/",
-  "summary": "D11 opened the row-scoped delete confirmation for the incomplete INLAND/VAT19 VAT matrix row, clicked Nein, and proved the row still visible after reopen.",
-  "proved": [
-    "Business Central stayed in playthru / UNIVERSAARL-DE.",
-    "Page 472 and the INLAND/VAT19 partial row were visible before the delete-dialog probe.",
-    "The visible delete action opens a confirmation dialog that can be captured.",
-    "The dialog/probe was closed without OK/Ja/Yes by button.",
-    "The INLAND/VAT19 row is still visible after reopen; no cleanup effect is proven."
+  "title": "VAT matrix controlled cleanup decision after dialog-cancel proof",
+  "purpose": "Decide whether the incomplete INLAND/VAT19 VAT Posting Setup row should be deleted in a later controlled cleanup case or whether an alternative recreate/complete route must be proven first. No delete execution in this decision case.",
+  "sourceCases": [
+    "TARGET-027D10-VAT-MATRIX-ROW-ACTION-INVENTORY-NO-DELETE",
+    "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE"
   ],
-  "notProved": [
-    "No complete VAT Posting Setup row.",
-    "No controlled cleanup execution.",
-    "No corrected recreate route.",
-    "No final German VAT correctness.",
-    "No Preview Posting.",
-    "No VAT Entries.",
-    "No G/L Entries.",
-    "No VAT Statement.",
-    "No tax advisor approval."
+  "allowedActions": [
+    "read-D10-D11-results",
+    "review-vat-source-rules",
+    "compare-cleanup-vs-recreate-risk",
+    "write-smart-decision-card",
+    "create-next-controlled-case"
   ],
-  "blockedBy": [],
-  "warnings": [],
-  "actionsNotTaken": [
-    "No delete confirmation accepted",
-    "No OK/Ja/Yes clicked",
-    "No intentional cleanup/delete execution",
-    "No master data",
-    "No document draft",
-    "No Preview Posting",
-    "No Posting",
-    "No API shortcut",
-    "No Company switch",
-    "No VAT final claim"
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "confirm-delete",
+    "press-yes-or-ja-or-ok-on-delete-dialog",
+    "cleanup-delete-effect",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-german-vat-final-proof"
   ],
-  "screenshots": [
-    "target-027d11-010-before-delete-dialog-probe.png",
-    "target-027d11-020-after-row-focus.png",
-    "target-027d11-030-before-delete-click.png",
-    "target-027d11-040-after-delete-click-dialog-state.png",
-    "target-027d11-050-reopen-after-cancel-proof.png"
+  "acceptanceCriteria": [
+    "D10 and D11 results are reviewed.",
+    "The decision explains why cleanup is or is not justified before a recreate/complete route exists.",
+    "No BC delete or setup write is executed in this decision case.",
+    "The next case is a narrow controlled cleanup case or a safer recreate/route-discovery case."
   ],
-  "nextCase": "TARGET-027D12-VAT-MATRIX-CONTROLLED-CLEANUP-DECISION",
-  "nextStep": "Decide whether a separate controlled cleanup case is justified or whether an alternative recreate route is safer; do not delete in the decision case.",
   "nextStepDecisionCard": {
     "currentCase": "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE",
     "plannedNextCaseBeforeReview": "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE",
@@ -93,5 +83,5 @@
       "Keep D3/D5/D8 list/cell typing routes forbidden."
     ]
   },
-  "updatedAt": "2026-07-01T03:08:53.646Z"
+  "createdAt": "2026-07-01T03:08:53.646Z"
 }

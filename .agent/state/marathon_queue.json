@@ -2348,7 +2348,7 @@
     {
       "id": "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE",
       "order": 10068,
-      "status": "pending",
+      "status": "done",
       "category": "vat-matrix-row-scoped-delete-dialog-cancel-probe",
       "expectedImpact": "prove-or-reject-row-scoped-delete-dialog-without-confirming-delete",
       "mayRunPlaywright": true,
@@ -2358,7 +2358,24 @@
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
       "reason": "D10 found a visible Loeschen action; the next safe step is dialog-cancel proof, not cleanup execution.",
       "sourceCase": "TARGET-027D10-VAT-MATRIX-ROW-ACTION-INVENTORY-NO-DELETE",
-      "lookaheadStatus": "ready-next"
+      "lookaheadStatus": "ready-next",
+      "completedAt": "2026-07-01T03:08:53.646Z",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-027d11-vat-matrix-row-scoped-delete-dialog-cancel-probe/TARGET-027D11-result.json",
+      "resultStatus": "observed-delete-dialog-cancelled",
+      "nextCase": "TARGET-027D12-VAT-MATRIX-CONTROLLED-CLEANUP-DECISION"
+    },
+    {
+      "id": "TARGET-027D12-VAT-MATRIX-CONTROLLED-CLEANUP-DECISION",
+      "order": 10069,
+      "status": "pending",
+      "category": "vat-matrix-cleanup-or-recreate-decision",
+      "expectedImpact": "decide-controlled-cleanup-versus-safer-recreate-route-after-delete-dialog-cancel-proof",
+      "mayRunPlaywright": false,
+      "effectiveBcActionsAllowed": false,
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "reason": "D11 proved Loeschen opens a Ja/Nein dialog and Nein leaves the row visible; a separate decision is needed before any actual cleanup."
     }
   ],
   "lastUpdated": "2026-07-01T02:56:49.809Z",
@@ -2472,9 +2489,9 @@
       ]
     }
   },
-  "updatedAt": "2026-07-01T02:43:29.166Z",
+  "updatedAt": "2026-07-01T03:08:53.646Z",
   "lastCompletedCase": "TARGET-027D10-VAT-MATRIX-ROW-ACTION-INVENTORY-NO-DELETE",
-  "nextCase": "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE",
+  "nextCase": "TARGET-027D12-VAT-MATRIX-CONTROLLED-CLEANUP-DECISION",
   "nextStepDecisionCard": {
     "currentCase": "TARGET-027D10-VAT-MATRIX-ROW-ACTION-INVENTORY-NO-DELETE",
     "plannedNextCaseBeforeReview": "TARGET-027D10-VAT-MATRIX-ROW-ACTION-INVENTORY-NO-DELETE",

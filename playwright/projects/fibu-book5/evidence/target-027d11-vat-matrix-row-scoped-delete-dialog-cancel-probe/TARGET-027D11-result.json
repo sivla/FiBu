@@ -1,0 +1,180 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE",
+  "source": "playwright-universaarl-vat-matrix-delete-dialog-cancel-probe",
+  "resultStatus": "observed-delete-dialog-cancelled",
+  "runPlanId": "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix Einr.",
+  "row": {
+    "text": "INLAND VAT19 19 0 Normale MwSt.",
+    "role": "row",
+    "tag": "tr",
+    "ariaLabel": "",
+    "title": "",
+    "x": 192,
+    "y": 192,
+    "width": 2016,
+    "height": 34
+  },
+  "moreOptions": {
+    "clicked": true,
+    "by": "button"
+  },
+  "dialog": {
+    "visible": true,
+    "text": "Fortfahren und loschen?\nJa\nNein"
+  },
+  "cancelResult": {
+    "cancelled": true,
+    "by": "button",
+    "label": "Nein"
+  },
+  "rowStillVisible": true,
+  "cleanupDeleteExecuted": false,
+  "actionsTaken": [
+    "Opened Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix in playthru / UNIVERSAARL-DE.",
+    "Opened Weitere Optionen / More options: button.",
+    "Clicked the visible row-scoped delete action only to probe for a confirmation dialog.",
+    "Cancelled/closed the visible dialog with button: Nein."
+  ],
+  "actionsNotTaken": [
+    "No delete confirmation accepted",
+    "No OK/Ja/Yes clicked",
+    "No intentional cleanup/delete execution",
+    "No master data",
+    "No document draft",
+    "No Preview Posting",
+    "No Posting",
+    "No API shortcut",
+    "No Company switch",
+    "No VAT final claim"
+  ],
+  "setupChanged": false,
+  "setupChangeAttempted": true,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Page 472 and the INLAND/VAT19 partial row were visible before the delete-dialog probe.",
+    "The visible delete action opens a confirmation dialog that can be captured.",
+    "The dialog/probe was closed without OK/Ja/Yes by button.",
+    "The INLAND/VAT19 row is still visible after reopen; no cleanup effect is proven."
+  ],
+  "notProved": [
+    "No complete VAT Posting Setup row.",
+    "No controlled cleanup execution.",
+    "No corrected recreate route.",
+    "No final German VAT correctness.",
+    "No Preview Posting.",
+    "No VAT Entries.",
+    "No G/L Entries.",
+    "No VAT Statement.",
+    "No tax advisor approval."
+  ],
+  "screenshots": [
+    "target-027d11-010-before-delete-dialog-probe.png",
+    "target-027d11-020-after-row-focus.png",
+    "target-027d11-030-before-delete-click.png",
+    "target-027d11-040-after-delete-click-dialog-state.png",
+    "target-027d11-050-reopen-after-cancel-proof.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-027d11-vat-matrix-row-scoped-delete-dialog-cancel-probe/TARGET-027D11-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d11-vat-matrix-row-scoped-delete-dialog-cancel-probe/README.md"
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-027d11-vat-matrix-row-scoped-delete-dialog-cancel-probe/TARGET-027D11-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d11-vat-matrix-row-scoped-delete-dialog-cancel-probe/*.txt",
+    "playwright/projects/fibu-book5/evidence/target-027d11-vat-matrix-row-scoped-delete-dialog-cancel-probe/*.png",
+    "playwright/projects/fibu-book5/evidence/target-027d11-vat-matrix-row-scoped-delete-dialog-cancel-probe/*.screenshot.json"
+  ],
+  "blockedBy": [],
+  "warnings": [],
+  "flags": {
+    "noDialogConfirm": true,
+    "noOkJaYes": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true,
+    "noD3D5D8CellRouteRepeat": true
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE",
+    "plannedNextCaseBeforeReview": "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE",
+    "lastEvidenceSummary": "D10 found visible row-scoped delete actions without clicking delete.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The VAT matrix partial row blocks Foundation; D11 is the narrowest proof of whether delete is guarded by a cancellable dialog.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D12-VAT-MATRIX-CONTROLLED-CLEANUP-DECISION",
+        "status": "ready-next",
+        "reason": "The row survived the probe; the next case can decide controlled cleanup versus alternative recreate."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "VAT matrix row remains incomplete or cleanup/recreate is unresolved."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for VAT/posting defaults."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation cannot be ready until VAT/posting/dimension gates are settled."
+      }
+    ],
+    "queueChangesMade": [
+      "Select TARGET-027D12-VAT-MATRIX-CONTROLLED-CLEANUP-DECISION based on D11 dialog-cancel evidence."
+    ],
+    "selectedNextCase": "TARGET-027D12-VAT-MATRIX-CONTROLLED-CLEANUP-DECISION",
+    "whySelectedNextCaseIsBest": "D11 proves the delete action can be probed safely without confirming deletion; a separate decision can now choose cleanup or alternative recreate.",
+    "risksBeforeNextCase": [
+      "Do not confirm delete without a separate controlled cleanup case.",
+      "Do not create master data until VAT/posting defaults are ready.",
+      "Do not claim final German VAT correctness before Preview Posting, VAT Entries and G/L Entries."
+    ],
+    "requiredPreparation": [
+      "Use D11 dialog/reopen screenshots.",
+      "Keep D3/D5/D8 list/cell typing routes forbidden."
+    ]
+  },
+  "safeToFinalizeState": true,
+  "requiresReview": false,
+  "statePatch": {
+    "current": {
+      "activeArea": "universaarl-vat-matrix-cleanup-or-recreate-decision",
+      "activeCase": "TARGET-027D12-VAT-MATRIX-CONTROLLED-CLEANUP-DECISION",
+      "active_case_file": ".agent/state/cases/target-027d12-vat-matrix-controlled-cleanup-decision.json",
+      "lastReferenceCase": "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE",
+      "nextCase": "TARGET-027D12-VAT-MATRIX-CONTROLLED-CLEANUP-DECISION",
+      "nextStep": "Decide whether a separate controlled cleanup case is justified or whether an alternative recreate route is safer."
+    },
+    "lastRunSummary": {
+      "runId": "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE",
+      "caseId": "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE",
+      "status": "observed-delete-dialog-cancelled",
+      "instance": "playthru",
+      "company": "UNIVERSAARL-DE",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-027d11-vat-matrix-row-scoped-delete-dialog-cancel-probe/TARGET-027D11-result.json",
+      "summary": "D11 probed the row-scoped delete action and cancelled/closed it without confirming deletion; the row remains visible after reopen.",
+      "nextCase": "TARGET-027D12-VAT-MATRIX-CONTROLLED-CLEANUP-DECISION"
+    }
+  },
+  "nextCase": "TARGET-027D12-VAT-MATRIX-CONTROLLED-CLEANUP-DECISION",
+  "reason": "Delete can be treated as a guarded route candidate because the row still exists after cancel/close proof."
+}

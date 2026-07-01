@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T02:56:49.809Z",
+  "updatedAt": "2026-07-01T03:08:53.646Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-vat-matrix-delete-dialog-cancel-probe",
-  "activeCase": "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE",
-  "active_case_file": ".agent/state/cases/target-027d11-vat-matrix-row-scoped-delete-dialog-cancel-probe.json",
-  "lastReferenceCase": "TARGET-027D10-VAT-MATRIX-ROW-ACTION-INVENTORY-NO-DELETE",
+  "activeArea": "universaarl-vat-matrix-cleanup-or-recreate-decision",
+  "activeCase": "TARGET-027D12-VAT-MATRIX-CONTROLLED-CLEANUP-DECISION",
+  "active_case_file": ".agent/state/cases/target-027d12-vat-matrix-controlled-cleanup-decision.json",
+  "lastReferenceCase": "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d7-vat-matrix-route-decision-after-d6.json",
   "mode": "universaarl-target-execution",
   "requiresStrongModel": true,
@@ -19,13 +19,11 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-page-472",
-    "focus-visible-INLAND-VAT19-row",
-    "capture-before-screenshot",
-    "click-visible-delete-action-only-if-row-is-focused-and-screenshot-proves-context",
-    "capture-confirmation-dialog-if-opened",
-    "cancel-or-close-confirmation-dialog",
-    "reopen-page-472-and-prove-row-still-visible"
+    "read-D10-D11-results",
+    "review-vat-source-rules",
+    "compare-cleanup-vs-recreate-risk",
+    "write-smart-decision-card",
+    "create-next-controlled-case"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -36,8 +34,6 @@
     "confirm-delete",
     "press-yes-or-ja-or-ok-on-delete-dialog",
     "cleanup-delete-effect",
-    "repeat-d3-d5-d8-cell-or-list-edit-route",
-    "type-3806-or-1406-without-new-editor-proof",
     "create-master-data",
     "create-document-or-draft",
     "preview-posting",
@@ -45,8 +41,8 @@
     "api-shortcut",
     "claim-german-vat-final-proof"
   ],
-  "nextCase": "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE",
-  "nextStep": "Probe only the row-scoped delete confirmation and cancel it; do not confirm cleanup.",
+  "nextCase": "TARGET-027D12-VAT-MATRIX-CONTROLLED-CLEANUP-DECISION",
+  "nextStep": "Decide whether a separate controlled cleanup case is justified or whether an alternative recreate route is safer; do not delete in the decision case.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -6777,9 +6773,9 @@
     "cleanupDeleteExecuted": false,
     "deleteActionVisible": true,
     "visibleDangerousActions": [
-      "Löschen",
-      "Löschen",
-      "Löschen"
+      "Loeschen",
+      "Loeschen",
+      "Loeschen"
     ],
     "screenshots": [
       "target-027d10-010-before-action-inventory.png",
@@ -6788,5 +6784,31 @@
       "target-027d10-040-reopen-no-delete-proof.png"
     ],
     "nextCase": "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE"
+  },
+  "latestVatMatrixDeleteDialogCancelProbe": {
+    "caseId": "TARGET-027D11-VAT-MATRIX-ROW-SCOPED-DELETE-DIALOG-CANCEL-PROBE",
+    "status": "observed-delete-dialog-cancelled",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d11-vat-matrix-row-scoped-delete-dialog-cancel-probe/TARGET-027D11-result.json",
+    "sourceInstance": "playthru",
+    "sourceCompany": "UNIVERSAARL-DE",
+    "setupChanged": false,
+    "setupChangeAttempted": true,
+    "cleanupDeleteExecuted": false,
+    "dialogVisible": true,
+    "dialogText": "Fortfahren und loschen?\nJa\nNein",
+    "cancelledBy": {
+      "cancelled": true,
+      "by": "button",
+      "label": "Nein"
+    },
+    "rowStillVisible": true,
+    "screenshots": [
+      "target-027d11-010-before-delete-dialog-probe.png",
+      "target-027d11-020-after-row-focus.png",
+      "target-027d11-030-before-delete-click.png",
+      "target-027d11-040-after-delete-click-dialog-state.png",
+      "target-027d11-050-reopen-after-cancel-proof.png"
+    ],
+    "nextCase": "TARGET-027D12-VAT-MATRIX-CONTROLLED-CLEANUP-DECISION"
   }
 }
