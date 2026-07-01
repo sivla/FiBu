@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027D13C-VAT-MATRIX-ROW-INLINE-MENU-CLEANUP-ROUTE",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "VAT matrix row inline menu cleanup route",
+  "purpose": "Test the row-level inline ellipsis/menu route for the incomplete INLAND/VAT19 VAT Posting Setup row because the toolbar/menu delete confirmation did not remove the row.",
+  "sourceCases": [
+    "TARGET-027D13-VAT-MATRIX-CONTROLLED-CLEANUP-EXECUTION",
+    "TARGET-027D13B-VAT-MATRIX-CLEANUP-BLOCKER-REVIEW"
+  ],
+  "effectiveBcActionsAllowed": true,
+  "allowedActions": [
+    "open-page-472",
+    "prove-playthru-instance",
+    "prove-universaarl-company",
+    "focus-exact-INLAND-VAT19-row",
+    "capture-before-row-inline-menu",
+    "open-row-inline-ellipsis-menu-only",
+    "capture-row-inline-menu",
+    "click-row-inline-delete-only-if-exact-row-menu-is-visible",
+    "confirm-delete-only-if-dialog-text-matches-D11-pattern",
+    "reopen-page-472",
+    "prove-INLAND-VAT19-row-absent-or-stop"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "repeat-toolbar-delete-route",
+    "delete-any-row-other-than-INLAND-VAT19",
+    "confirm-delete-without-fresh-dialog-proof",
+    "confirm-delete-if-dialog-text-differs",
+    "create-or-recreate-vat-matrix-row",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-german-vat-final-proof"
+  ],
+  "acceptanceCriteria": [
+    "Fresh before screenshot proves Page 472 and exact INLAND/VAT19 row.",
+    "Row-inline ellipsis/menu screenshot proves the action is row-level, not toolbar-only.",
+    "If confirmed, after-reopen screenshot/text proves INLAND/VAT19 row absence.",
+    "If the row remains visible, the case is blocked and no further VAT setup is attempted.",
+    "No recreate/completion is attempted in this case."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-027D13B-VAT-MATRIX-CLEANUP-BLOCKER-REVIEW",
+    "plannedNextCaseBeforeReview": "TARGET-027D13B-VAT-MATRIX-CLEANUP-BLOCKER-REVIEW",
+    "lastEvidenceSummary": "D13 toolbar/menu delete confirmation did not prove row absence.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The row-inline ellipsis is a distinct UI route visible on the target row.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D13C-VAT-MATRIX-ROW-INLINE-MENU-CLEANUP-ROUTE",
+        "status": "ready-next",
+        "reason": "Non-repeating row-level route after toolbar route blocker."
+      },
+      {
+        "caseId": "TARGET-027D14-VAT-MATRIX-RECREATE-AFTER-CLEANUP",
+        "status": "ready-after-current",
+        "reason": "Only after row absence proof."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "VAT matrix remains unresolved."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for VAT/posting defaults."
+      }
+    ],
+    "queueChangesMade": [
+      "D13C is selected as the next row-inline route."
+    ],
+    "selectedNextCase": "TARGET-027D13C-VAT-MATRIX-ROW-INLINE-MENU-CLEANUP-ROUTE",
+    "whySelectedNextCaseIsBest": "It tests a genuinely different UI surface: the row inline ellipsis, visible in the D13 screenshot.",
+    "risksBeforeNextCase": [
+      "Wrong menu scope.",
+      "Unexpected dialog text.",
+      "Row still visible after confirmation."
+    ],
+    "requiredPreparation": [
+      "Do not repeat top toolbar delete.",
+      "Capture screenshot before and after opening the row-inline menu.",
+      "Stop before any recreate/completion."
+    ]
+  },
+  "createdAt": "2026-07-01T04:05:00.000Z"
+}

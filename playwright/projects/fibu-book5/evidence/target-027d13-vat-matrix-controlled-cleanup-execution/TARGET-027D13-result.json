@@ -1,0 +1,181 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-027D13-VAT-MATRIX-CONTROLLED-CLEANUP-EXECUTION",
+  "source": "playwright-universaarl-vat-matrix-controlled-cleanup-execution",
+  "resultStatus": "blocked-controlled-cleanup-execution",
+  "runPlanId": "TARGET-027D13-VAT-MATRIX-CONTROLLED-CLEANUP-EXECUTION-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix Einr.",
+  "row": {
+    "text": "INLAND VAT19 19 0 Normale MwSt.",
+    "role": "row",
+    "tag": "tr",
+    "ariaLabel": "",
+    "title": "",
+    "x": 192,
+    "y": 192,
+    "width": 2016,
+    "height": 34
+  },
+  "moreOptions": {
+    "clicked": true,
+    "by": "button"
+  },
+  "dialog": {
+    "visible": true,
+    "text": "Fortfahren und loschen?\nJa\nNein"
+  },
+  "confirmResult": {
+    "confirmed": true,
+    "by": "button",
+    "label": "Ja"
+  },
+  "rowStillVisible": true,
+  "cleanupDeleteExecuted": false,
+  "actionsTaken": [
+    "Opened Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix in playthru / UNIVERSAARL-DE.",
+    "Opened Weitere Optionen / More options: button.",
+    "Clicked the visible row-scoped delete action after fresh target-row proof.",
+    "Confirmed the expected cleanup dialog with button: Ja."
+  ],
+  "actionsNotTaken": [
+    "Delete confirmation accepted only after expected dialog text.",
+    "Ja clicked only on expected cleanup dialog.",
+    "No proven cleanup/delete execution.",
+    "No master data",
+    "No document draft",
+    "No Preview Posting",
+    "No Posting",
+    "No API shortcut",
+    "No Company switch",
+    "No VAT final claim"
+  ],
+  "setupChanged": false,
+  "setupChangeAttempted": true,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Page 472 and the INLAND/VAT19 partial row were visible before the cleanup execution.",
+    "The visible delete action opened a confirmation dialog that was captured before confirmation.",
+    "The expected cleanup dialog was confirmed with button: Ja.",
+    "The INLAND/VAT19 row absence is not proven after reopen."
+  ],
+  "notProved": [
+    "No complete VAT Posting Setup row.",
+    "No corrected recreate route.",
+    "No final German VAT correctness.",
+    "No Preview Posting.",
+    "No VAT Entries.",
+    "No G/L Entries.",
+    "No VAT Statement.",
+    "No tax advisor approval."
+  ],
+  "screenshots": [
+    "target-027d13-010-before-cleanup.png",
+    "target-027d13-020-after-row-focus.png",
+    "target-027d13-030-before-delete-click.png",
+    "target-027d13-040-before-confirm-dialog-state.png",
+    "target-027d13-050-reopen-after-cleanup-proof.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-027d13-vat-matrix-controlled-cleanup-execution/TARGET-027D13-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d13-vat-matrix-controlled-cleanup-execution/README.md"
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-027d13-vat-matrix-controlled-cleanup-execution/TARGET-027D13-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d13-vat-matrix-controlled-cleanup-execution/*.txt",
+    "playwright/projects/fibu-book5/evidence/target-027d13-vat-matrix-controlled-cleanup-execution/*.png",
+    "playwright/projects/fibu-book5/evidence/target-027d13-vat-matrix-controlled-cleanup-execution/*.screenshot.json"
+  ],
+  "blockedBy": [
+    "After confirmed cleanup, the INLAND/VAT19 row is still visible; cleanup did not prove row absence."
+  ],
+  "warnings": [],
+  "flags": {
+    "noUnexpectedDialogConfirm": true,
+    "noUnexpectedOkJaYes": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true,
+    "noD3D5D8CellRouteRepeat": true
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-027D13-VAT-MATRIX-CONTROLLED-CLEANUP-EXECUTION",
+    "plannedNextCaseBeforeReview": "TARGET-027D13-VAT-MATRIX-CONTROLLED-CLEANUP-EXECUTION",
+    "lastEvidenceSummary": "D12 selected controlled cleanup after D11 proved the guarded Ja/Nein dialog and row survival after Nein.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The incomplete INLAND/VAT19 row blocks correct VAT matrix setup and direct correction routes are exhausted.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D13B-VAT-MATRIX-CLEANUP-BLOCKER-REVIEW",
+        "status": "blocked",
+        "reason": "Controlled cleanup did not prove row absence or stopped before confirmation."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "VAT matrix row remains incomplete or cleanup/recreate is unresolved."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for VAT/posting defaults."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation cannot be ready until VAT/posting/dimension gates are settled."
+      }
+    ],
+    "queueChangesMade": [
+      "Select TARGET-027D13B-VAT-MATRIX-CLEANUP-BLOCKER-REVIEW based on D13 controlled cleanup result."
+    ],
+    "selectedNextCase": "TARGET-027D13B-VAT-MATRIX-CLEANUP-BLOCKER-REVIEW",
+    "whySelectedNextCaseIsBest": "Cleanup did not produce trusted row-absence proof, so blocker review is safer than further setup.",
+    "risksBeforeNextCase": [
+      "Do not recreate the VAT matrix row in the same case.",
+      "Do not create master data until VAT/posting defaults are ready.",
+      "Do not claim final German VAT correctness before Preview Posting, VAT Entries and G/L Entries."
+    ],
+    "requiredPreparation": [
+      "Use D13 cleanup screenshots and row-absence proof if available.",
+      "Keep D3/D5/D8 list/cell typing routes forbidden."
+    ]
+  },
+  "safeToFinalizeState": true,
+  "requiresReview": false,
+  "statePatch": {
+    "current": {
+      "activeArea": "universaarl-vat-matrix-cleanup-blocker-review",
+      "activeCase": "TARGET-027D13B-VAT-MATRIX-CLEANUP-BLOCKER-REVIEW",
+      "active_case_file": ".agent/state/cases/target-027d13b-vat-matrix-cleanup-blocker-review.json",
+      "lastReferenceCase": "TARGET-027D13-VAT-MATRIX-CONTROLLED-CLEANUP-EXECUTION",
+      "nextCase": "TARGET-027D13B-VAT-MATRIX-CLEANUP-BLOCKER-REVIEW",
+      "nextStep": "Review the controlled cleanup blocker before any further VAT matrix setup work."
+    },
+    "lastRunSummary": {
+      "runId": "TARGET-027D13-VAT-MATRIX-CONTROLLED-CLEANUP-EXECUTION",
+      "caseId": "TARGET-027D13-VAT-MATRIX-CONTROLLED-CLEANUP-EXECUTION",
+      "status": "blocked-controlled-cleanup-execution",
+      "instance": "playthru",
+      "company": "UNIVERSAARL-DE",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-027d13-vat-matrix-controlled-cleanup-execution/TARGET-027D13-result.json",
+      "summary": "D13 did not produce trusted cleanup proof; blocker review is required.",
+      "nextCase": "TARGET-027D13B-VAT-MATRIX-CLEANUP-BLOCKER-REVIEW"
+    }
+  },
+  "nextCase": "TARGET-027D13B-VAT-MATRIX-CLEANUP-BLOCKER-REVIEW",
+  "reason": "Stop or review because controlled cleanup did not prove the expected row absence."
+}

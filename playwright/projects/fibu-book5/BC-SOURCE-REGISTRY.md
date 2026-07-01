@@ -185,6 +185,18 @@ Fuer Universaarl folgt daraus:
 - Neuerstellung/Vervollstaendigung der korrekten `INLAND` + `VAT19`-Zeile bleibt ein spaeterer separater Case.
 - Keine Stammdaten, keine Preview, keine Buchung und kein finaler deutscher USt-Claim vor korrekter Matrix plus Buchungs-/Postennachweis.
 
+## TARGET-027D13 VAT-Matrix Cleanup-Wirkungspruefung
+
+D13 nutzt keine neue externe Produktquelle. Die neue Wahrheit stammt aus Universaarl-UI-Evidence: Der erwartete Delete-Dialog wurde nach Zielzeilenfokus bestaetigt, aber der Nachher-Reopen zeigte die `INLAND` + `VAT19`-Zeile weiterhin sichtbar.
+
+Fuer Universaarl folgt daraus:
+
+- Dialogtext und `Ja`-Klick beweisen nur, dass eine gefaehrliche Aktion angeboten und bestaetigt wurde.
+- Ein Setup-Cleanup ist erst bewiesen, wenn der exakte Ziel-Datensatz nach Reopen fehlt.
+- Die getestete toolbar-/More-Options-Delete-Route ist fuer diese Zeile blockiert und darf nicht blind wiederholt werden.
+- Der naechste Execute-Case ist `TARGET-027D13C-VAT-MATRIX-ROW-INLINE-MENU-CLEANUP-ROUTE`.
+- Keine Stammdaten, keine Preview, keine Buchung und kein finaler deutscher USt-Claim vor korrekter Matrix plus Buchungs-/Postennachweis.
+
 ## TARGET-026D Kontenplan-Quellenentscheidung
 
 TARGET-026B zeigt in `UNIVERSAARL-DE` einen erreichbaren, aber leeren/insufficient Kontenplan ohne sichtbare USt-Konto-Kandidaten. Microsoft Learn `View the chart of accounts` und `Set up or change the chart of accounts` stuetzen die Produktlogik: Der Kontenplan ist das Verzeichnis der Finanzkonten und kann fuer die Company eingerichtet/geaendert werden.

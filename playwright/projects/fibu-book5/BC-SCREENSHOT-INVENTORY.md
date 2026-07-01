@@ -583,6 +583,17 @@ Screenshot-QA zu TARGET-027D10: Die Bilder zeigen einen echten Fortschritt gegen
 
 Screenshot-QA zu TARGET-027D11: Dieser Lauf ist Sicherheits- und UI-Wissen, kein fachlicher USt-Erfolg. Er zeigt, dass ein spaeterer Cleanup technisch dialoggeschuetzt sein koennte. Er erlaubt aber noch nicht, die Zeile zu loeschen oder eine neue Matrixzeile als korrekt zu behaupten. Der naechste Schritt muss entscheiden, ob erst ein Recreate-/Completion-Pfad bewiesen wird oder ob ein eigener kontrollierter Cleanup-Case mit sofortigem Reopen-Proof vertretbar ist.
 
+## Universaarl VAT Matrix Cleanup Execution TARGET-027D13
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Interner Beweis | Beweist nicht | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-027d13-010-before-cleanup.png` | MwSt.-Buchungsmatrix Einr., Page 472 | `playthru` / `UNIVERSAARL-DE` | Vor kontrollierter Cleanup-Ausfuehrung | Die unvollstaendige `INLAND`/`VAT19`-Zeile ist sichtbar | Richtiger Ausgangskontext vor dem wirksamen Delete-Versuch | keine fertige Matrix, kein Cleanup | `setup-before`, `partial-row-proof` |
+| `target-027d13-030-before-delete-click.png` | MwSt.-Buchungsmatrix Einr., Page 472 | `playthru` / `UNIVERSAARL-DE` | Vor Delete-Klick | Zielzeile und Delete-Kontext sind sichtbar | Der gefaehrliche Klick wurde erst nach frischem Zielzeilenkontext vorbereitet | kein bewiesener Delete-Effekt | `pre-dialog-proof`, `not-cleanup-proof` |
+| `target-027d13-040-before-confirm-dialog-state.png` | Delete-Bestaetigungsdialog ueber Page 472 | `playthru` / `UNIVERSAARL-DE` | Vor `Ja` | Dialog `Fortfahren und loschen?` mit `Ja` und `Nein` ist sichtbar | Die Route fuehrt in den erwarteten Bestaetigungsdialog | keine geloeschte Zeile, keine Matrixkorrektur | `dialog-proof`, `dangerous-action-confirmed-in-run` |
+| `target-027d13-050-reopen-after-cleanup-proof.png` | MwSt.-Buchungsmatrix Einr., Page 472 | `playthru` / `UNIVERSAARL-DE` | Reopen nach bestaetigtem Cleanup-Versuch | Die `INLAND`/`VAT19`-Zeile ist weiter sichtbar; `MwSt. %` bleibt `0` | Die getestete Delete-Route hat keine Zeilenabwesenheit bewiesen | bereinigte Matrix, korrekte 19-Prozent-USt, Steuerkonten, Preview, VAT Entries | `blocked-after-confirm`, `do-not-repeat-toolbar-delete` |
+
+Screenshot-QA zu TARGET-027D13: Der entscheidende Nachher-Screenshot zeigt weiterhin die Zielzeile. Deshalb ist der Lauf kein Cleanup-Erfolg, obwohl der erwartete Dialog mit `Ja` bestaetigt wurde. Fuer Playwright ist das ein wichtiges Wirkungs-Gate: Gefaehrliche Dialoge muessen nach dem Klick immer durch sichtbare Nachher-Wahrheit geprueft werden. Der naechste Versuch darf nicht dieselbe toolbar-/More-Options-Route wiederholen, sondern muss die sichtbare Row-Inline-Ellipsis direkt an der Zeile als neue Hypothese pruefen.
+
 ## PREP-010 Screenshot-QA-Regel
 
 Vor jeder Buch- oder Clickguide-Nutzung muss der Screenshot gegen die konkrete Behauptung geprueft werden:

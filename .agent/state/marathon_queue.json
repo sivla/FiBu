@@ -2385,7 +2385,7 @@
     {
       "id": "TARGET-027D13-VAT-MATRIX-CONTROLLED-CLEANUP-EXECUTION",
       "order": 10070,
-      "status": "pending",
+      "status": "blocked",
       "category": "vat-matrix-controlled-cleanup-execution",
       "expectedImpact": "remove-incomplete-vat-matrix-row-before-recreate-route",
       "mayRunPlaywright": true,
@@ -2397,10 +2397,50 @@
       "sourceCase": "TARGET-027D12-VAT-MATRIX-CONTROLLED-CLEANUP-DECISION",
       "lookaheadStatus": "ready-next",
       "goal": "Execute only the controlled cleanup of the incomplete INLAND/VAT19 VAT Posting Setup row; prove row absence after reopen; do not recreate in same case.",
+      "blockedBy": [
+        "After confirmed cleanup, the INLAND/VAT19 row is still visible; cleanup did not prove row absence."
+      ],
+      "completedAt": "2026-07-01T04:05:00.000Z",
+      "result": "Expected delete dialog was confirmed, but INLAND/VAT19 row remained visible after reopen; toolbar/menu delete route blocked.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-027d13-vat-matrix-controlled-cleanup-execution/TARGET-027D13-result.json",
+      "nextCase": "TARGET-027D13B-VAT-MATRIX-CLEANUP-BLOCKER-REVIEW"
+    },
+    {
+      "id": "TARGET-027D13B-VAT-MATRIX-CLEANUP-BLOCKER-REVIEW",
+      "order": 10071,
+      "status": "done",
+      "category": "vat-matrix-cleanup-blocker-review",
+      "expectedImpact": "select-non-repeating-cleanup-route-after-toolbar-delete-blocker",
+      "mayRunPlaywright": false,
+      "effectiveBcActionsAllowed": false,
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "completedAt": "2026-07-01T04:05:00.000Z",
+      "result": "Selected row-inline ellipsis/menu route after D13 toolbar/menu delete failed to remove row.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-027d13-vat-matrix-controlled-cleanup-execution/TARGET-027D13-result.json",
+      "nextCase": "TARGET-027D13C-VAT-MATRIX-ROW-INLINE-MENU-CLEANUP-ROUTE",
+      "blockedBy": []
+    },
+    {
+      "id": "TARGET-027D13C-VAT-MATRIX-ROW-INLINE-MENU-CLEANUP-ROUTE",
+      "order": 10072,
+      "status": "pending",
+      "category": "vat-matrix-row-inline-menu-cleanup-route",
+      "expectedImpact": "test-row-inline-cleanup-route-after-toolbar-delete-blocker",
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": true,
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "reason": "D13 screenshot shows a row-level ellipsis; toolbar/menu delete confirmed but did not remove the row.",
+      "sourceCase": "TARGET-027D13B-VAT-MATRIX-CLEANUP-BLOCKER-REVIEW",
+      "lookaheadStatus": "ready-next",
+      "goal": "Use row inline ellipsis/menu only; prove row absence after reopen or block without further setup.",
       "blockedBy": []
     }
   ],
-  "lastUpdated": "2026-07-01T03:35:00.000Z",
+  "lastUpdated": "2026-07-01T04:05:00.000Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -2511,58 +2551,53 @@
       ]
     }
   },
-  "updatedAt": "2026-07-01T03:35:00.000Z",
-  "lastCompletedCase": "TARGET-027D12-VAT-MATRIX-CONTROLLED-CLEANUP-DECISION",
-  "nextCase": "TARGET-027D13-VAT-MATRIX-CONTROLLED-CLEANUP-EXECUTION",
+  "updatedAt": "2026-07-01T04:05:00.000Z",
+  "lastCompletedCase": "TARGET-027D13B-VAT-MATRIX-CLEANUP-BLOCKER-REVIEW",
+  "nextCase": "TARGET-027D13C-VAT-MATRIX-ROW-INLINE-MENU-CLEANUP-ROUTE",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-027D12-VAT-MATRIX-CONTROLLED-CLEANUP-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-027D12-VAT-MATRIX-CONTROLLED-CLEANUP-DECISION",
-    "lastEvidenceSummary": "D11 proved the row-scoped delete action opens a Ja/Nein confirmation and Nein leaves the incomplete INLAND/VAT19 row visible after reopen.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "The current row is incomplete and blocks the VAT matrix foundation; direct correction routes are exhausted, and D11 makes a narrow guarded cleanup execution testable.",
+    "currentCase": "TARGET-027D13-VAT-MATRIX-CONTROLLED-CLEANUP-EXECUTION",
+    "plannedNextCaseBeforeReview": "TARGET-027D13-VAT-MATRIX-CONTROLLED-CLEANUP-EXECUTION",
+    "lastEvidenceSummary": "D13 confirmed the expected delete dialog with Ja, but Page 472 reopen proof still shows the INLAND/VAT19 row.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Repeating the same toolbar/menu delete path is not sensible because it already failed to prove row absence.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027D13-VAT-MATRIX-CONTROLLED-CLEANUP-EXECUTION",
+        "caseId": "TARGET-027D13C-VAT-MATRIX-ROW-INLINE-MENU-CLEANUP-ROUTE",
         "status": "ready-next",
-        "reason": "D10/D11 establish row focus, visible delete action and cancellable dialog. D13 can execute only the cleanup and prove row absence."
+        "reason": "The D13 screenshot shows a row-level ellipsis next to INLAND. That is a distinct row-inline route, not a repeat of top More Options."
       },
       {
         "caseId": "TARGET-027D14-VAT-MATRIX-RECREATE-AFTER-CLEANUP",
-        "status": "ready-after-current",
-        "reason": "Recreate/completion is only sensible after D13 proves the incomplete row is absent."
+        "status": "needs-setup-first",
+        "reason": "Recreate/completion requires row absence first."
       },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Posting Groups must wait until VAT matrix cleanup and recreate/completion are settled."
+        "reason": "Posting Groups wait for a correct VAT matrix row or a documented blocker fallback."
       },
       {
         "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
         "status": "needs-setup-first",
-        "reason": "Master data waits for VAT/posting defaults."
-      },
-      {
-        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
-        "status": "needs-setup-first",
-        "reason": "Foundation cannot be ready until VAT matrix and posting setup gates are closed."
+        "reason": "Master data waits for VAT and posting defaults."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-027D12 done as a no-BC decision case.",
-      "Added TARGET-027D13-VAT-MATRIX-CONTROLLED-CLEANUP-EXECUTION as the next pending case."
+      "Classify TARGET-027D13 as blocked.",
+      "Select TARGET-027D13C as the next non-repeating row-inline cleanup route."
     ],
-    "selectedNextCase": "TARGET-027D13-VAT-MATRIX-CONTROLLED-CLEANUP-EXECUTION",
-    "whySelectedNextCaseIsBest": "It is the smallest non-repeating step that can remove the known wrong row while preserving safety: fresh row proof, fresh confirmation text, confirm only the expected dialog, then immediate reopen proof.",
+    "selectedNextCase": "TARGET-027D13C-VAT-MATRIX-ROW-INLINE-MENU-CLEANUP-ROUTE",
+    "whySelectedNextCaseIsBest": "The row-inline ellipsis is visible in the D13 screenshot and may target the record more precisely than the toolbar/menu delete route.",
     "risksBeforeNextCase": [
-      "A wrong row could be selected if row focus is not freshly proven.",
-      "The dialog text may differ from D11; then D13 must stop.",
-      "Cleanup changes setup and must not be followed by recreate in the same case."
+      "Do not repeat toolbar delete.",
+      "Do not recreate before row absence.",
+      "Stop if row-inline menu does not expose an exact row-scoped action."
     ],
     "requiredPreparation": [
-      "Use D11 row-focus and dialog-cancel screenshots as the route precedent.",
-      "Capture before, dialog and after-reopen proof.",
+      "Use D13 final screenshot as row-inline ellipsis evidence.",
+      "Capture fresh before/dialog/after-reopen screenshots.",
       "Keep Preview Posting, Posting, master data, drafts, API and bookmaster changes locked."
     ]
   },
-  "nextStep": "Execute only the controlled cleanup of the incomplete INLAND/VAT19 VAT Posting Setup row, then prove row absence after reopen. Do not recreate in the same case."
+  "nextStep": "Use the row inline ellipsis/menu route for the incomplete INLAND/VAT19 VAT matrix row; do not repeat toolbar delete and do not recreate in the same case."
 }
