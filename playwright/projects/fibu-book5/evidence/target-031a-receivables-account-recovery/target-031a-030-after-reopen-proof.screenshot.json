@@ -1,0 +1,149 @@
+{
+  "fileName": "target-031a-030-after-reopen-proof.png",
+  "imagePath": "C:\\Users\\kkali\\.codex\\worktrees\\b8d6\\FiBu\\playwright\\projects\\fibu-book5\\img\\target-031a-030-after-reopen-proof.png",
+  "project": "fibu-book5",
+  "caseId": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "pageId": 16,
+  "page": "Kontenplan / Sachkontokarte",
+  "step": "After reopening Chart of Accounts for 1200 proof.",
+  "status": "universaarl-controlled-setup-gate",
+  "visibleLearning": [
+    "Das Forderungskonto ist ein Bilanzkonto und wird spaeter als Debitorensammelkonto verwendet.",
+    "In diesem Gate wird nur Konto 1200 geprueft oder korrigiert.",
+    "Debitorenbuchungsgruppen, Stammdaten, Belege, Preview Posting und Posting bleiben gesperrt."
+  ],
+  "importantUi": [
+    "Nr./No. 1200",
+    "Name",
+    "GuV/Bilanz",
+    "Kontoart"
+  ],
+  "internallyProves": "Konto 1200 ist sichtbar als Forderungen aus Lieferungen und Leistungen, Bilanz, Kontoart Buchung.",
+  "doesNotProve": [
+    "Kein vollstaendiger SKR04-Kontenplan.",
+    "Keine Debitorenbuchungsgruppe.",
+    "Keine Buchungsmatrix.",
+    "Keine Stammdaten, keine Belege, keine Preview, keine Buchung."
+  ],
+  "finalScreenshotStatus": "universaarl-foundation-evidence",
+  "fieldAttempt": {
+    "nameChanged": true,
+    "balanceChanged": false,
+    "typeChanged": false
+  },
+  "steps": [
+    {
+      "step": "smart-decision",
+      "whyNow": "TARGET-031 blocked Customer Posting Group setup because account 1200 is visible with the wrong name. Correcting only account 1200 is the smallest safe prerequisite before Page 110 writes.",
+      "supportedBy": [
+        "TARGET-031 read-only Chart of Accounts screenshot showing 1200 Bank Saarland",
+        "TARGET-031A source correction: SKR04 receivables anchor is 1200, not a new 1400 account"
+      ],
+      "fieldsChangedOnlyIfSafe": [
+        "Name",
+        "GuV/Bilanz",
+        "Kontoart for G/L Account 1200 only"
+      ],
+      "fieldsNotTouched": [
+        "Customer Posting Groups",
+        "General Posting Setup",
+        "Inventory Posting Setup",
+        "VAT Posting Setup",
+        "Bank Posting Groups",
+        "Master Data",
+        "Documents",
+        "Preview Posting",
+        "Posting"
+      ],
+      "fallback": "Abort and document card/input diagnostics if Page 16/17 does not expose a safe 1200 editor."
+    },
+    {
+      "step": "selected-1200-row",
+      "rowText": "1200 \n Bank Saarland Bilanz Buchung"
+    },
+    {
+      "step": "click-edit-action",
+      "editClicked": false
+    },
+    {
+      "step": "open-account-card",
+      "openCard": {
+        "opened": true,
+        "reason": "Sachkontokarte ueber Kontozeilen-Doppelklick geoeffnet."
+      }
+    },
+    {
+      "step": "card-inputs-before-correction",
+      "inspected": [
+        {
+          "aria": "",
+          "title": "",
+          "value": "1200"
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": "Bank Saarland"
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "step": "card-field-correction-attempt",
+      "nameChanged": true,
+      "balanceChanged": false,
+      "typeChanged": false
+    }
+  ]
+}

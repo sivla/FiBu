@@ -17,7 +17,7 @@ const RESULT_PATH = path.join(EVIDENCE_DIR, 'TARGET-031-result.json');
 
 const candidate = {
   customerPostingGroup: 'INLAND',
-  receivablesAccount: '1400',
+  receivablesAccount: '1200',
   receivablesAccountName: 'Forderungen aus Lieferungen und Leistungen'
 };
 
@@ -141,7 +141,7 @@ async function captureState(
     title: clean(await page.title()),
     compact,
     visible: {
-      has1400: /(^|\D)1400(\D|$)/.test(text),
+      has1200: /(^|\D)1200(\D|$)/.test(text),
       hasReceivablesName: /Forderungen aus Lieferungen und Leistungen/i.test(text),
       hasCustomerPostingGroups: /Debitorenbuchungsgruppen|Customer Posting Groups/i.test(text),
       hasReceivablesField: /Debitorensammelkonto|Forderungskonto|Receivables Account/i.test(text)
@@ -173,7 +173,7 @@ test(CASE_ID, async ({ page }) => {
       supportedBy: [
         'TARGET-030 INLAND Vendor Posting Group proof',
         'TARGET-028 Customer Posting Groups read-only page proof',
-        'TARGET-026I local SKR04 mapping lists account 1400 as receivables candidate'
+        'TARGET-031A source correction identifies account 1200 as SKR04 receivables candidate'
       ],
       fieldsChanged: [],
       fieldsNotTouched: [
@@ -187,7 +187,7 @@ test(CASE_ID, async ({ page }) => {
         'Preview Posting',
         'Posting'
       ],
-      fallback: 'If account 1400 is not visibly proven, block Customer Posting Group write and create a receivables-account recovery case.'
+      fallback: 'If account 1200 is not visibly proven, block Customer Posting Group write and create a receivables-account recovery case.'
     }
   ];
 
@@ -196,11 +196,11 @@ test(CASE_ID, async ({ page }) => {
     pageId: 16,
     pageName: 'Kontenplan / Chart of Accounts',
     step: 'Read-only receivables account candidate check before Customer Posting Group decision.',
-    include: [/Kontenplan|Chart of Accounts|Nr\.|No\.|Name|GuV|Bilanz|Kontoart|Account Type|1200|1400|Forderungen|1800|3300|3806|4400|5400/i],
+    include: [/Kontenplan|Chart of Accounts|Nr\.|No\.|Name|GuV|Bilanz|Kontoart|Account Type|1200|1200|Forderungen|1800|3300|3806|4400|5400/i],
     proves: 'The Chart of Accounts page opened read-only in playthru / UNIVERSAARL-DE for the receivables decision.',
     doesNotProve: [
       'It does not prove Customer Posting Group readiness.',
-      'It does not prove account 1400 if the row is not visible in the screenshot/text.',
+      'It does not prove account 1200 if the row is not visible in the screenshot/text.',
       'It does not create or modify any G/L account.'
     ]
   });
@@ -219,7 +219,7 @@ test(CASE_ID, async ({ page }) => {
     ]
   });
 
-  const accountVisible = chart.visible.has1400 && chart.visible.hasReceivablesName;
+  const accountVisible = chart.visible.has1200 && chart.visible.hasReceivablesName;
   const resultStatus = 'blocked';
   const nextCase = accountVisible
     ? 'TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE'
@@ -227,7 +227,7 @@ test(CASE_ID, async ({ page }) => {
   const blockedBy = accountVisible
     ? []
     : [
-        'Account 1400 Forderungen aus Lieferungen und Leistungen is mapped as a candidate but not visibly proven in the current read-only Chart of Accounts screenshot/text.'
+        'Account 1200 Forderungen aus Lieferungen und Leistungen is mapped as a candidate but not visibly proven in the current read-only Chart of Accounts screenshot/text.'
       ];
 
   const result = {
@@ -282,7 +282,7 @@ test(CASE_ID, async ({ page }) => {
       'No Customer Posting Group, G/L Account, master data, draft, Preview Posting, Posting or API shortcut was executed.'
     ],
     notProved: [
-      'Account 1400 Forderungen aus Lieferungen und Leistungen is not accepted as visibly proven from this run unless visible.has1400 and visible.hasReceivablesName are both true.',
+      'Account 1200 Forderungen aus Lieferungen und Leistungen is not accepted as visibly proven from this run unless visible.has1200 and visible.hasReceivablesName are both true.',
       'No Customer Posting Group INLAND exists or is assigned.',
       'No receivables posting readiness is proven.',
       'No General Posting Setup, VAT Posting Setup, master data, Preview Posting or ledger trace is proven.'
@@ -315,17 +315,17 @@ test(CASE_ID, async ({ page }) => {
       isPlannedNextCaseStillSensible: accountVisible,
       reason: accountVisible
         ? 'The receivables account appears in the current Chart of Accounts read-only evidence.'
-        : 'The mapped receivables account 1400 is not visibly proven in current Universaarl evidence, so a write gate would be premature.',
+        : 'The mapped receivables account 1200 is not visibly proven in current Universaarl evidence, so a write gate would be premature.',
       lookaheadReviewed: [
         {
           caseId: 'TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY',
           status: accountVisible ? 'obsolete' : 'ready-next',
-          reason: accountVisible ? '1400 visible proof exists in this run.' : 'Required before Customer Posting Group write.'
+          reason: accountVisible ? '1200 visible proof exists in this run.' : 'Required before Customer Posting Group write.'
         },
         {
           caseId: 'TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE',
           status: accountVisible ? 'ready-next' : 'needs-setup-first',
-          reason: accountVisible ? 'Receivables account proof exists.' : 'Needs 1400 visible/reopen proof first.'
+          reason: accountVisible ? 'Receivables account proof exists.' : 'Needs 1200 visible/reopen proof first.'
         },
         {
           caseId: 'TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE',
@@ -356,8 +356,8 @@ test(CASE_ID, async ({ page }) => {
         'Do not run Preview Posting or Posting.'
       ],
       requiredPreparation: accountVisible
-        ? ['Use Page 110 card/list route only for INLAND + 1400.']
-        : ['Create or visibly confirm 1400 as Bilanz/Buchung account with reopen proof.']
+        ? ['Use Page 110 card/list route only for INLAND + 1200.']
+        : ['Create or visibly confirm 1200 as Bilanz/Buchung account with reopen proof.']
     },
     nextCase,
     changedFiles: [
@@ -384,8 +384,8 @@ test(CASE_ID, async ({ page }) => {
           ? 'universaarl-customer-posting-group-write-gate'
           : 'universaarl-receivables-account-recovery',
         nextStep: accountVisible
-          ? 'Run TARGET-031B to create or verify Customer Posting Group INLAND with receivables account 1400. Do not create master data or run Preview Posting.'
-          : 'Run TARGET-031A to create or visibly confirm account 1400 Forderungen aus Lieferungen und Leistungen before Customer Posting Group write.'
+          ? 'Run TARGET-031B to create or verify Customer Posting Group INLAND with receivables account 1200. Do not create master data or run Preview Posting.'
+          : 'Run TARGET-031A to create or visibly confirm account 1200 Forderungen aus Lieferungen und Leistungen before Customer Posting Group write.'
       },
       activeCase: {
         status: 'blocked',

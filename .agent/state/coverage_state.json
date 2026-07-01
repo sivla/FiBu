@@ -788,7 +788,7 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-07-01T06:46:30.274Z",
+  "updatedAt": "2026-07-01T06:57:17.462Z",
   "activeArea": "universaarl-w1-foundation-global-dimension-assignment",
   "currentBlock": "vat-setup-readiness-next",
   "latestPracticalCase": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
@@ -1014,7 +1014,7 @@
     "playwright/projects/fibu-book5/BC-ERROR-BLOCKER-ATLAS.md",
     "playwright/projects/fibu-book5/BC-PROCESS-COVERAGE-ROADMAP.md"
   ],
-  "currentCoverageFocus": "TARGET-031 blocked Customer Posting Group write. Source check corrected the receivables target from 1400 to SKR04 account 1200; 1200 is visible as Bank Saarland and must be corrected or confirmed as Forderungen aus Lieferungen und Leistungen with reopen proof before Page 110 writes.",
+  "currentCoverageFocus": "TARGET-031A proved account 1200 as Forderungen aus Lieferungen und Leistungen, Bilanz and Kontoart Buchung after reopen. TARGET-031B can now write or verify only Customer Posting Group INLAND with Debitorensammelkonto 1200; master data, documents, Preview Posting and Posting remain locked.",
   "latestCoverageUpdate": {
     "at": "2026-06-28T19:28:00.000+02:00",
     "type": "p2p-011-purchase-lines-action-discovery-tested",
@@ -4213,7 +4213,7 @@
   },
   "latestCustomerPostingGroupReceivablesGate": {
     "caseId": "TARGET-031-CUSTOMER-POSTING-GROUP-RECEIVABLES-GATE",
-    "status": "blocked-source-corrected",
+    "status": "receivables-account-proven",
     "completedAt": "2026-07-01T06:41:26.165Z",
     "resultPath": "playwright/projects/fibu-book5/evidence/target-031-customer-posting-group-receivables-gate/TARGET-031-result.json",
     "sourceInstance": "playthru",
@@ -4230,14 +4230,11 @@
     "previewPosting": false,
     "posted": false,
     "apiShortcut": false,
-    "blockedBy": [
-      "Account 1200 is visible in TARGET-031 as Bank Saarland, not as Forderungen aus Lieferungen und Leistungen; Customer Posting Group write remains blocked until 1200 is visibly corrected/confirmed as Bilanz/Buchung.",
-      "Do not create a new 1400 receivables account for the SKR04-oriented Universaarl target."
-    ],
-    "nextCase": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
+    "blockedBy": [],
+    "nextCase": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
     "previousRejectedCandidate": "1400",
-    "accountNameCurrentlyWrong": true,
-    "currentVisibleText": "1200 Bank Saarland",
+    "accountNameCurrentlyWrong": false,
+    "currentVisibleText": "1200 Forderungen aus Lieferungen und Leistungen Bilanz Buchung",
     "correctedReason": "SKR04-oriented Universaarl foundation must not create a new 1400 receivables account; 1400 belongs to the wrong mapping context for this target."
   },
   "latestCustomerReceivablesSourceCorrection": {
@@ -4253,5 +4250,28 @@
       "https://www.collmex.de/skr04.pdf"
     ],
     "nextCase": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY"
+  },
+  "latestReceivablesAccountRecovery": {
+    "caseId": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
+    "status": "observed",
+    "completedAt": "2026-07-01T06:57:17.462Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-031a-receivables-account-recovery/TARGET-031A-result.json",
+    "sourceInstance": "playthru",
+    "sourceCompany": "UNIVERSAARL-DE",
+    "setupChanged": true,
+    "setupChangedOnlyAccount1200": true,
+    "accountNo": "1200",
+    "accountName": "Forderungen aus Lieferungen und Leistungen",
+    "provedAfterReopen": {
+      "targetName": true,
+      "balanceSheet": true,
+      "accountTypePosting": true
+    },
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-031a-010-before-chart-of-accounts.png",
+      "playwright/projects/fibu-book5/img/target-031a-020-card-before-correction.png",
+      "playwright/projects/fibu-book5/img/target-031a-030-after-reopen-proof.png"
+    ],
+    "nextCase": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE"
   }
 }

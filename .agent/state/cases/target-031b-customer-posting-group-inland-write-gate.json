@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Customer Posting Group INLAND write gate",
+  "purpose": "Create or visibly confirm only Customer Posting Group INLAND with receivables account 1200 after TARGET-031A proved account 1200 as Forderungen aus Lieferungen und Leistungen.",
+  "sourceCases": [
+    "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+    "TARGET-031-CUSTOMER-POSTING-GROUP-RECEIVABLES-GATE",
+    "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY"
+  ],
+  "effectiveBcActionsAllowed": true,
+  "mayRunPlaywright": true,
+  "taskClass": "judge_work",
+  "targetPages": [
+    {
+      "pageId": 110,
+      "page": "Debitorenbuchungsgruppen / Customer Posting Groups"
+    }
+  ],
+  "allowedActions": [
+    "open-playthru-business-central",
+    "confirm-UNIVERSAARL-DE-context",
+    "open-customer-posting-groups-page-110",
+    "create-or-confirm-only-customer-posting-group-INLAND",
+    "set-receivables-account-only-to-1200",
+    "capture-before-after-reopen-proof",
+    "write-result-json-and-next-step-decision"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "change-vendor-posting-groups",
+    "change-general-posting-setup",
+    "change-inventory-posting-setup",
+    "change-vat-posting-setup",
+    "change-bank-posting-groups",
+    "change-account-1200",
+    "create-account-1400-for-skr04-receivables",
+    "use-1406-as-receivables-account",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-posting-readiness-from-posting-group-only",
+    "claim-german-vat-final-proof",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-031A proved account 1200 as Forderungen aus Lieferungen und Leistungen after reopen.",
+    "TARGET-031A proved account 1200 as Bilanz and Kontoart Buchung.",
+    "TARGET-031 read-only proved Page 110 Debitorenbuchungsgruppen is reachable.",
+    "No Customer Posting Group write has been performed yet."
+  ],
+  "targetPostingGroup": {
+    "code": "INLAND",
+    "description": "Inlaendische Kunden",
+    "receivablesAccount": "1200",
+    "receivablesAccountName": "Forderungen aus Lieferungen und Leistungen"
+  },
+  "acceptanceCriteria": [
+    "Customer Posting Group INLAND is visible after reopen with Debitorensammelkonto 1200.",
+    "No master data, document draft, Preview Posting, Posting or API shortcut is executed.",
+    "No account 1400 is created and 1406 is not used as receivables account.",
+    "The next case remains blocked until General Posting Groups / General Posting Setup prerequisites are explicitly reviewed."
+  ],
+  "nextCaseIfDone": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
+  "nextCaseIfBlocked": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE-FOLLOWUP",
+  "createdAt": "2026-07-01T07:05:00.000Z"
+}

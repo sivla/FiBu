@@ -1,0 +1,456 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
+  "source": "playwright-universaarl-receivables-account-recovery",
+  "resultStatus": "observed",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "Kontenplan Page 16 / Sachkontokarte Page 17",
+  "pageIds": [
+    16,
+    17
+  ],
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=16&company=UNIVERSAARL-DE",
+  "targetAccount": {
+    "no": "1200",
+    "oldName": "Bank Saarland",
+    "name": "Forderungen aus Lieferungen und Leistungen",
+    "incomeBalance": "Bilanz",
+    "accountType": "Buchung"
+  },
+  "actionsTaken": [
+    "Opened Business Central in playthru / UNIVERSAARL-DE.",
+    "Opened Chart of Accounts Page 16 directly.",
+    "Selected only account 1200.",
+    "Opened the G/L Account Card for account 1200.",
+    "Attempted only Name, GuV/Bilanz and Kontoart correction for account 1200.",
+    "Reopened Chart of Accounts for persistence proof.",
+    "Captured before/card/reopen screenshot QA and result JSON."
+  ],
+  "actionsNotTaken": [
+    "No account 1400 was created.",
+    "No account 1406 was used as receivables account.",
+    "No Customer Posting Group was changed.",
+    "No General Posting Setup changed.",
+    "No Inventory Posting Setup changed.",
+    "No VAT Posting Setup changed.",
+    "No Bank Posting Groups changed.",
+    "No master data created.",
+    "No document or draft created.",
+    "No Preview Posting executed.",
+    "No Posting executed.",
+    "No API shortcut used."
+  ],
+  "setupChanged": true,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/target-031a-010-before-chart-of-accounts.png",
+    "playwright/projects/fibu-book5/img/target-031a-020-card-before-correction.png",
+    "playwright/projects/fibu-book5/img/target-031a-030-after-reopen-proof.png"
+  ],
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Only account 1200 was targeted.",
+    "After reopen, account 1200 is visible as Forderungen aus Lieferungen und Leistungen.",
+    "After reopen, account 1200 is visible as Bilanz and Kontoart Buchung.",
+    "No account 1400, Customer Posting Group, master data, draft, Preview Posting, Posting or API shortcut was created/executed."
+  ],
+  "notProved": [
+    "No Customer Posting Group INLAND exists or is assigned.",
+    "No receivables posting readiness is proven.",
+    "No General Posting Setup, VAT Posting Setup, master data, Preview Posting or ledger trace is proven.",
+    "No full SKR04 chart of accounts completeness or tax advisor approval is proven."
+  ],
+  "blockedBy": [],
+  "warnings": [
+    "Do not create account 1400 for SKR04 receivables.",
+    "Do not use account 1406 as receivables account.",
+    "Customer Posting Group write remains separate in TARGET-031B."
+  ],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true,
+    "noCustomerPostingGroupChange": true,
+    "setupChangedOnlyAccount1200": true
+  },
+  "snapshots": {
+    "before": {
+      "step": "Before 1200 receivables recovery.",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=16&company=UNIVERSAARL-DE",
+      "title": "Kontenplan",
+      "compact": "Kontenplan:\nNeu\nListe bearbeiten\nNr.\nName\nGuV/Bilanz\nKontoart\nBuchungsart\nGeschäftsbuchungsgruppe\nProduktbuchungsgruppe\nBuchung in Ursprungswährung\nKostenartnr.\n1200\nBank Saarland Bilanz Buchung\nBilanz Buchung\nBank Saarland\nBilanz Verbindlichkeiten Kurzfristige Verbindlichkeiten Buchung\nGuV Buchung\nListe mit Titel „Kontenplan“ hat jetzt 7 Artikel",
+      "visible": {
+        "accountNo": true,
+        "targetName": false,
+        "oldWrongName": true,
+        "balanceSheet": true,
+        "accountTypePosting": true,
+        "editAction": true
+      },
+      "targetAccount": {
+        "no": "1200",
+        "oldName": "Bank Saarland",
+        "name": "Forderungen aus Lieferungen und Leistungen",
+        "incomeBalance": "Bilanz",
+        "accountType": "Buchung"
+      }
+    },
+    "card": {
+      "step": "G/L Account Card for 1200 before correction.",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=17&company=UNIVERSAARL-DE",
+      "title": "Sachkontokarte - 1200 Bank Saarland",
+      "compact": "Kontenplan:\nNeu\nListe bearbeiten\nNr.\nName\nGuV/Bilanz\nKontoart\nBuchungsart\nGeschäftsbuchungsgruppe\nProduktbuchungsgruppe\nBuchung in Ursprungswährung\nKostenartnr.\n1200\nBank Saarland Bilanz Buchung\nBilanz Buchung\nBank Saarland\nBilanz Verbindlichkeiten Kurzfristige Verbindlichkeiten Buchung\nGuV Buchung\nSachkontokarte\n1200 ∙ Bank Saarland\nGuV\nBilanz\nBuchung\nVon-Summe\nBis-Summe\nDirektbuchung\nMwSt.-Geschäftsbuchungsgruppe\nMwSt.-Produktbuchungsgruppe\nVorg.-IC-Partner Sachkontonr.\nNeubewertung\nInformationen zu Sachkontodetails\nWählen Sie die geeigneten Einstellungen für die Transaktionen aus, die auf diesem Sachkonto gebucht werden.\nListe mit Titel „Kontenplan“ hat jetzt 7 Artikel\n1200 ∙ Bank Saarland. Sachkontokarte",
+      "visible": {
+        "accountNo": true,
+        "targetName": false,
+        "oldWrongName": true,
+        "balanceSheet": true,
+        "accountTypePosting": true,
+        "editAction": true
+      },
+      "openCard": {
+        "opened": true,
+        "reason": "Sachkontokarte ueber Kontozeilen-Doppelklick geoeffnet."
+      }
+    },
+    "after": {
+      "step": "After reopening Chart of Accounts for 1200 proof.",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=16&company=UNIVERSAARL-DE",
+      "title": "Kontenplan",
+      "compact": "Kontenplan:\nNeu\nListe bearbeiten\nNr.\nName\nGuV/Bilanz\nKontoart\nBuchungsart\nGeschäftsbuchungsgruppe\nProduktbuchungsgruppe\nBuchung in Ursprungswährung\nKostenartnr.\n1200\nForderungen aus Lieferungen und Leistungen Bilanz Buchung\nBilanz Buchung\nBank Saarland\nBilanz Verbindlichkeiten Kurzfristige Verbindlichkeiten Buchung\nGuV Buchung\nListe mit Titel „Kontenplan“ hat jetzt 7 Artikel",
+      "visible": {
+        "accountNo": true,
+        "targetName": true,
+        "oldWrongName": true,
+        "balanceSheet": true,
+        "accountTypePosting": true,
+        "editAction": true
+      },
+      "fieldAttempt": {
+        "nameChanged": true,
+        "balanceChanged": false,
+        "typeChanged": false
+      },
+      "steps": [
+        {
+          "step": "smart-decision",
+          "whyNow": "TARGET-031 blocked Customer Posting Group setup because account 1200 is visible with the wrong name. Correcting only account 1200 is the smallest safe prerequisite before Page 110 writes.",
+          "supportedBy": [
+            "TARGET-031 read-only Chart of Accounts screenshot showing 1200 Bank Saarland",
+            "TARGET-031A source correction: SKR04 receivables anchor is 1200, not a new 1400 account"
+          ],
+          "fieldsChangedOnlyIfSafe": [
+            "Name",
+            "GuV/Bilanz",
+            "Kontoart for G/L Account 1200 only"
+          ],
+          "fieldsNotTouched": [
+            "Customer Posting Groups",
+            "General Posting Setup",
+            "Inventory Posting Setup",
+            "VAT Posting Setup",
+            "Bank Posting Groups",
+            "Master Data",
+            "Documents",
+            "Preview Posting",
+            "Posting"
+          ],
+          "fallback": "Abort and document card/input diagnostics if Page 16/17 does not expose a safe 1200 editor."
+        },
+        {
+          "step": "selected-1200-row",
+          "rowText": "1200 \n Bank Saarland Bilanz Buchung"
+        },
+        {
+          "step": "click-edit-action",
+          "editClicked": false
+        },
+        {
+          "step": "open-account-card",
+          "openCard": {
+            "opened": true,
+            "reason": "Sachkontokarte ueber Kontozeilen-Doppelklick geoeffnet."
+          }
+        },
+        {
+          "step": "card-inputs-before-correction",
+          "inspected": [
+            {
+              "aria": "",
+              "title": "",
+              "value": "1200"
+            },
+            {
+              "aria": "",
+              "title": "",
+              "value": "Bank Saarland"
+            },
+            {
+              "aria": "",
+              "title": "",
+              "value": ""
+            },
+            {
+              "aria": "",
+              "title": "",
+              "value": ""
+            },
+            {
+              "aria": "",
+              "title": "",
+              "value": ""
+            },
+            {
+              "aria": "",
+              "title": "",
+              "value": ""
+            },
+            {
+              "aria": "",
+              "title": "",
+              "value": ""
+            },
+            {
+              "aria": "",
+              "title": "",
+              "value": ""
+            },
+            {
+              "aria": "",
+              "title": "",
+              "value": ""
+            },
+            {
+              "aria": "",
+              "title": "",
+              "value": ""
+            },
+            {
+              "aria": "",
+              "title": "",
+              "value": ""
+            },
+            {
+              "aria": "",
+              "title": "",
+              "value": ""
+            }
+          ]
+        },
+        {
+          "step": "card-field-correction-attempt",
+          "nameChanged": true,
+          "balanceChanged": false,
+          "typeChanged": false
+        }
+      ]
+    }
+  },
+  "steps": [
+    {
+      "step": "smart-decision",
+      "whyNow": "TARGET-031 blocked Customer Posting Group setup because account 1200 is visible with the wrong name. Correcting only account 1200 is the smallest safe prerequisite before Page 110 writes.",
+      "supportedBy": [
+        "TARGET-031 read-only Chart of Accounts screenshot showing 1200 Bank Saarland",
+        "TARGET-031A source correction: SKR04 receivables anchor is 1200, not a new 1400 account"
+      ],
+      "fieldsChangedOnlyIfSafe": [
+        "Name",
+        "GuV/Bilanz",
+        "Kontoart for G/L Account 1200 only"
+      ],
+      "fieldsNotTouched": [
+        "Customer Posting Groups",
+        "General Posting Setup",
+        "Inventory Posting Setup",
+        "VAT Posting Setup",
+        "Bank Posting Groups",
+        "Master Data",
+        "Documents",
+        "Preview Posting",
+        "Posting"
+      ],
+      "fallback": "Abort and document card/input diagnostics if Page 16/17 does not expose a safe 1200 editor."
+    },
+    {
+      "step": "selected-1200-row",
+      "rowText": "1200 \n Bank Saarland Bilanz Buchung"
+    },
+    {
+      "step": "click-edit-action",
+      "editClicked": false
+    },
+    {
+      "step": "open-account-card",
+      "openCard": {
+        "opened": true,
+        "reason": "Sachkontokarte ueber Kontozeilen-Doppelklick geoeffnet."
+      }
+    },
+    {
+      "step": "card-inputs-before-correction",
+      "inspected": [
+        {
+          "aria": "",
+          "title": "",
+          "value": "1200"
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": "Bank Saarland"
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "step": "card-field-correction-attempt",
+      "nameChanged": true,
+      "balanceChanged": false,
+      "typeChanged": false
+    }
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
+    "lastEvidenceSummary": "TARGET-031 showed account 1200 as Bank Saarland and blocked Page 110 writes.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The 1200 prerequisite is now visibly proven after reopen; Customer Posting Group write can be planned next.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
+        "status": "ready-next",
+        "reason": "1200 Forderungen/Bilanz/Buchung proof exists."
+      },
+      {
+        "caseId": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
+        "status": "needs-source-check-first",
+        "reason": "Requires General Business/Product Posting Groups and sales/purchase account mapping."
+      },
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "ready-after-current",
+        "reason": "Can resume after posting-group route status is clear."
+      },
+      {
+        "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation still lacks customer posting group, general setup, VAT matrix and dimensions status."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It is now the smallest safe setup write after the receivables account proof.",
+    "risksBeforeNextCase": [
+      "Do not create account 1400.",
+      "Do not use 1406 as receivables account.",
+      "Do not create master data yet."
+    ],
+    "requiredPreparation": [
+      "Use Page 110 only for Customer Posting Group INLAND + account 1200."
+    ]
+  },
+  "nextCase": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-031a-receivables-account-recovery/TARGET-031A-result.json",
+    "playwright/projects/fibu-book5/evidence/target-031a-receivables-account-recovery/*.txt",
+    "playwright/projects/fibu-book5/evidence/target-031a-receivables-account-recovery/*.snapshot.json",
+    "playwright/projects/fibu-book5/evidence/target-031a-receivables-account-recovery/*.screenshot.json",
+    "playwright/projects/fibu-book5/img/target-031a-*.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-031a-receivables-account-recovery/TARGET-031A-result.json",
+    "playwright/projects/fibu-book5/img/target-031a-010-before-chart-of-accounts.png",
+    "playwright/projects/fibu-book5/img/target-031a-020-card-before-correction.png",
+    "playwright/projects/fibu-book5/img/target-031a-030-after-reopen-proof.png"
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeCase": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
+      "active_case_file": ".agent/state/cases/target-031b-customer-posting-group-inland-write-gate.json",
+      "activeArea": "universaarl-customer-posting-group-write-gate",
+      "nextStep": "Run TARGET-031B to create or verify Customer Posting Group INLAND with receivables account 1200. Do not create master data or run Preview Posting."
+    },
+    "activeCase": {
+      "status": "observed",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-031a-receivables-account-recovery/TARGET-031A-result.json",
+      "nextCase": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE"
+    },
+    "coverage": {
+      "latestReceivablesAccountRecovery": {
+        "caseId": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
+        "status": "observed",
+        "accountNo": "1200",
+        "accountName": "Forderungen aus Lieferungen und Leistungen",
+        "setupChanged": true,
+        "accountVisibleAfterReopen": true,
+        "targetNameVisibleAfterReopen": true,
+        "balanceSheetVisibleAfterReopen": true,
+        "accountTypePostingVisibleAfterReopen": true,
+        "resultPath": "playwright/projects/fibu-book5/evidence/target-031a-receivables-account-recovery/TARGET-031A-result.json",
+        "nextCase": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE"
+      }
+    }
+  }
+}

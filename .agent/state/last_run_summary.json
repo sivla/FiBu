@@ -1,61 +1,68 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-031A-SOURCE-CORRECTION-BEFORE-EXECUTION",
-  "caseId": "TARGET-031A-SOURCE-CORRECTION-BEFORE-EXECUTION",
-  "completedAt": "2026-07-01T06:46:30.274Z",
-  "summary": "Source check corrected the active receivables recovery target before any BC write: for the SKR04-oriented Universaarl foundation, account 1200 is the receivables account candidate, not a new 1400 account. TARGET-031A remains active but must recover 1200, currently visible as Bank Saarland, before Customer Posting Group writes.",
+  "runId": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
+  "caseId": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
+  "completedAt": "2026-07-01T06:57:17.462Z",
+  "summary": "TARGET-031A ran Playwright in playthru / UNIVERSAARL-DE and corrected only account 1200 from Bank Saarland to Forderungen aus Lieferungen und Leistungen. Reopen proof shows 1200 as Bilanz and Kontoart Buchung. Customer Posting Groups, master data, drafts, Preview Posting and Posting were not touched.",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "bcRun": false,
-  "playwrightRun": false,
-  "setupChanged": false,
+  "bcRun": true,
+  "playwrightRun": true,
+  "setupChanged": true,
+  "setupChangedOnlyAccount1200": true,
   "masterDataChanged": false,
   "draftCreated": false,
   "previewPosting": false,
   "posted": false,
   "apiShortcut": false,
   "changedFiles": [
-    ".agent/state/cases/target-031a-receivables-account-recovery.json",
-    "playwright/projects/fibu-book5/BC-SOURCE-REGISTRY.md",
-    "playwright/projects/fibu-book5/book-drafts/universaarl-posting-groups-foundation-draft.md"
+    "playwright/projects/fibu-book5/tests/target-031a-receivables-account-recovery.spec.ts",
+    "package.json",
+    "playwright/projects/fibu-book5/evidence/target-031a-receivables-account-recovery/TARGET-031A-result.json",
+    "playwright/projects/fibu-book5/evidence/target-031a-receivables-account-recovery/",
+    "playwright/projects/fibu-book5/img/target-031a-010-before-chart-of-accounts.png",
+    "playwright/projects/fibu-book5/img/target-031a-020-card-before-correction.png",
+    "playwright/projects/fibu-book5/img/target-031a-030-after-reopen-proof.png",
+    ".agent/state/cases/target-031b-customer-posting-group-inland-write-gate.json"
   ],
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/target-031-customer-posting-group-receivables-gate/TARGET-031-result.json"
+    "playwright/projects/fibu-book5/evidence/target-031a-receivables-account-recovery/TARGET-031A-result.json",
+    "playwright/projects/fibu-book5/img/target-031a-010-before-chart-of-accounts.png",
+    "playwright/projects/fibu-book5/img/target-031a-020-card-before-correction.png",
+    "playwright/projects/fibu-book5/img/target-031a-030-after-reopen-proof.png"
   ],
   "proved": [
-    "Source check prevents creating a wrong 1400 receivables account for the SKR04-oriented Universaarl target.",
-    "TARGET-031A now targets account 1200 recovery."
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Only account 1200 was targeted.",
+    "After reopen, account 1200 is visible as Forderungen aus Lieferungen und Leistungen.",
+    "After reopen, account 1200 is visible as Bilanz and Kontoart Buchung.",
+    "No account 1400, Customer Posting Group, master data, draft, Preview Posting, Posting or API shortcut was created/executed."
   ],
   "notProved": [
-    "1200 has not yet been corrected in Business Central.",
-    "Customer Posting Group INLAND is not yet written.",
-    "No posting readiness is proven."
+    "No Customer Posting Group INLAND exists or is assigned.",
+    "No receivables posting readiness is proven.",
+    "No General Posting Setup, VAT Posting Setup, master data, Preview Posting or ledger trace is proven.",
+    "No full SKR04 chart of accounts completeness or tax advisor approval is proven."
   ],
-  "blockedBy": [
-    "1200 is currently visible as Bank Saarland and needs a controlled correction/reopen proof before Page 110 writes."
-  ],
+  "blockedBy": [],
   "warnings": [
     "Do not create account 1400 for SKR04 receivables.",
-    "Do not use 1406 as receivables account."
+    "Do not use account 1406 as receivables account.",
+    "Customer Posting Group write remains separate in TARGET-031B."
   ],
-  "nextStep": "Run TARGET-031A to correct or visibly confirm account 1200 Forderungen aus Lieferungen und Leistungen before Customer Posting Group write. Do not create account 1400, do not change Customer Posting Groups, master data, VAT setup, Preview Posting or Posting.",
-  "nextCase": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
+  "nextStep": "Run TARGET-031B to create or verify only Customer Posting Group INLAND with receivables account 1200. Do not create master data, documents, Preview Posting or Posting.",
+  "nextCase": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
   "nextStepDecisionCard": {
     "currentCase": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
     "plannedNextCaseBeforeReview": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
-    "lastEvidenceSummary": "TARGET-031 showed Page 16 with 1200 Bank Saarland and no visible 1400 receivables row; Page 110 is empty read-only.",
+    "lastEvidenceSummary": "TARGET-031A corrected account 1200 from Bank Saarland to Forderungen aus Lieferungen und Leistungen and proved after reopen: Bilanz + Kontoart Buchung.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The case remains correct only after source correction: recover 1200, not 1400, before Customer Posting Group write.",
+    "reason": "The receivables account prerequisite is now proven, so the next smallest useful setup gate is Customer Posting Group INLAND on Page 110 with Debitorensammelkonto 1200.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
-        "status": "ready-next",
-        "reason": "1200 exists but has the wrong visible name; a narrow account correction/reopen proof is needed."
-      },
-      {
         "caseId": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
-        "status": "needs-setup-first",
-        "reason": "Needs 1200 Forderungen/Bilanz/Buchung proof first."
+        "status": "ready-next",
+        "reason": "1200 Forderungen/Bilanz/Buchung proof exists."
       },
       {
         "caseId": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
@@ -74,17 +81,18 @@
       }
     ],
     "queueChangesMade": [
-      "Corrected TARGET-031A from account 1400 to SKR04 account 1200 before execution."
+      "Marked TARGET-031A as done with setupChangedOnlyAccount1200=true.",
+      "Added TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE as the next pending queue item."
     ],
-    "selectedNextCase": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
-    "whySelectedNextCaseIsBest": "It prevents a wrong SKR04 receivables account and fixes the visible 1200 Bank Saarland conflict before Page 110 writes.",
+    "selectedNextCase": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It is now the smallest safe setup write after the receivables account proof.",
     "risksBeforeNextCase": [
       "Do not create account 1400.",
       "Do not use 1406 as receivables account.",
-      "Do not write Customer Posting Groups yet."
+      "Do not create master data yet."
     ],
     "requiredPreparation": [
-      "Use Page 16 / Page 17 only for account 1200, then reopen proof."
+      "Use Page 110 only for Customer Posting Group INLAND + account 1200."
     ]
   }
 }

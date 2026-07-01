@@ -1,0 +1,132 @@
+{
+  "step": "After reopening Chart of Accounts for 1200 proof.",
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=16&company=UNIVERSAARL-DE",
+  "title": "Kontenplan",
+  "compact": "Kontenplan:\nNeu\nListe bearbeiten\nNr.\nName\nGuV/Bilanz\nKontoart\nBuchungsart\nGeschäftsbuchungsgruppe\nProduktbuchungsgruppe\nBuchung in Ursprungswährung\nKostenartnr.\n1200\nForderungen aus Lieferungen und Leistungen Bilanz Buchung\nBilanz Buchung\nBank Saarland\nBilanz Verbindlichkeiten Kurzfristige Verbindlichkeiten Buchung\nGuV Buchung\nListe mit Titel „Kontenplan“ hat jetzt 7 Artikel",
+  "visible": {
+    "accountNo": true,
+    "targetName": true,
+    "oldWrongName": true,
+    "balanceSheet": true,
+    "accountTypePosting": true,
+    "editAction": true
+  },
+  "fieldAttempt": {
+    "nameChanged": true,
+    "balanceChanged": false,
+    "typeChanged": false
+  },
+  "steps": [
+    {
+      "step": "smart-decision",
+      "whyNow": "TARGET-031 blocked Customer Posting Group setup because account 1200 is visible with the wrong name. Correcting only account 1200 is the smallest safe prerequisite before Page 110 writes.",
+      "supportedBy": [
+        "TARGET-031 read-only Chart of Accounts screenshot showing 1200 Bank Saarland",
+        "TARGET-031A source correction: SKR04 receivables anchor is 1200, not a new 1400 account"
+      ],
+      "fieldsChangedOnlyIfSafe": [
+        "Name",
+        "GuV/Bilanz",
+        "Kontoart for G/L Account 1200 only"
+      ],
+      "fieldsNotTouched": [
+        "Customer Posting Groups",
+        "General Posting Setup",
+        "Inventory Posting Setup",
+        "VAT Posting Setup",
+        "Bank Posting Groups",
+        "Master Data",
+        "Documents",
+        "Preview Posting",
+        "Posting"
+      ],
+      "fallback": "Abort and document card/input diagnostics if Page 16/17 does not expose a safe 1200 editor."
+    },
+    {
+      "step": "selected-1200-row",
+      "rowText": "1200 \n Bank Saarland Bilanz Buchung"
+    },
+    {
+      "step": "click-edit-action",
+      "editClicked": false
+    },
+    {
+      "step": "open-account-card",
+      "openCard": {
+        "opened": true,
+        "reason": "Sachkontokarte ueber Kontozeilen-Doppelklick geoeffnet."
+      }
+    },
+    {
+      "step": "card-inputs-before-correction",
+      "inspected": [
+        {
+          "aria": "",
+          "title": "",
+          "value": "1200"
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": "Bank Saarland"
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        },
+        {
+          "aria": "",
+          "title": "",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "step": "card-field-correction-attempt",
+      "nameChanged": true,
+      "balanceChanged": false,
+      "typeChanged": false
+    }
+  ]
+}

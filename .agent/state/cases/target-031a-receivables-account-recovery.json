@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
-  "status": "planned",
+  "status": "observed",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -77,5 +77,27 @@
   ],
   "nextCaseIfDone": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
   "nextCaseIfBlocked": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY-FOLLOWUP",
-  "createdAt": "2026-07-01T06:45:00.000Z"
+  "createdAt": "2026-07-01T06:45:00.000Z",
+  "completedAt": "2026-07-01T06:57:17.462Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-031a-receivables-account-recovery/TARGET-031A-result.json",
+  "setupChanged": true,
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Only account 1200 was targeted.",
+    "After reopen, account 1200 is visible as Forderungen aus Lieferungen und Leistungen.",
+    "After reopen, account 1200 is visible as Bilanz and Kontoart Buchung.",
+    "No account 1400, Customer Posting Group, master data, draft, Preview Posting, Posting or API shortcut was created/executed."
+  ],
+  "notProved": [
+    "No Customer Posting Group INLAND exists or is assigned.",
+    "No receivables posting readiness is proven.",
+    "No General Posting Setup, VAT Posting Setup, master data, Preview Posting or ledger trace is proven.",
+    "No full SKR04 chart of accounts completeness or tax advisor approval is proven."
+  ],
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/target-031a-010-before-chart-of-accounts.png",
+    "playwright/projects/fibu-book5/img/target-031a-020-card-before-correction.png",
+    "playwright/projects/fibu-book5/img/target-031a-030-after-reopen-proof.png"
+  ],
+  "nextCase": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE"
 }
