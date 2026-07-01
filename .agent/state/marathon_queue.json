@@ -3697,7 +3697,7 @@
     {
       "id": "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE",
       "order": 10179,
-      "status": "pending",
+      "status": "observed",
       "priority": "high",
       "area": "universaarl-customer-item-alternative-field-route",
       "category": "target-foundation-readonly-ui-discovery",
@@ -3709,10 +3709,14 @@
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
       "caseFile": ".agent/state/cases/target-044d-customer-item-posting-fields-alternative-page-route.json",
-      "lookaheadStatus": "ready-next"
+      "lookaheadStatus": "done",
+      "completedAt": "2026-07-01T17:08:21.837Z",
+      "result": "Expanded standard page route observed for U-CUST-100 and U-ITEM-HW100; visible terms are insufficient for safe posting/VAT field writes.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-044d-customer-item-posting-fields-alternative-page-route/TARGET-044D-result.json",
+      "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY"
     }
   ],
-  "lastUpdated": "2026-07-01T14:02:31.619Z",
+  "lastUpdated": "2026-07-01T17:08:21.837Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -3822,119 +3826,149 @@
       ]
     }
   },
-  "updatedAt": "2026-07-01T14:02:31.619Z",
-  "lastCompletedCase": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
-  "nextCase": "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE",
+  "updatedAt": "2026-07-01T17:08:21.837Z",
+  "lastCompletedCase": "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE",
+  "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
+    "currentCase": "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE",
     "plannedNextCaseBeforeReview": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
-    "lastEvidenceSummary": "TARGET-044B selected no-apply Personalize discovery because TARGET-044 did not prove a safe field-write route.",
+    "lastEvidenceSummary": "TARGET-044C blocked the Personalize route before stable target-card field discovery.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "Personalize did not produce enough visible field availability to justify a customer/item field write.",
+    "reason": "Expanded standard pages did not expose enough customer and item posting/VAT field terms for a safe write; chart, VAT and posting-group setup chains are already classified, so the next useful Foundation step is the planned U-VEND Manual Nos route recovery.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
         "status": "needs-ui-discovery-first",
-        "reason": "A write case needs exact target fields, target values and a safe active route."
+        "reason": "Still missing enough visible route/value truth."
       },
       {
-        "caseId": "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE",
+        "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+        "status": "blocked",
+        "reason": "Already blocked by screenshot truth gate; do not reactivate it as next case."
+      },
+      {
+        "caseId": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
+        "status": "ready-after-current",
+        "reason": "Already completed with visible chart screenshot recovery; it supports the next VAT preflight."
+      },
+      {
+        "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+        "status": "blocked",
+        "reason": "The VAT route has already progressed through follow-ups and is parked by TARGET-027D24."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "Already completed; not a valid active fallback after TARGET-044D."
+      },
+      {
+        "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
         "status": "ready-next",
-        "reason": "Alternative page route is needed if the card Personalize route does not expose enough fields."
+        "reason": "Only planned open Foundation recovery case: vendor creation remains blocked until U-VEND Manual Nos is proven safely."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C remains blocked until customer/item posting, VAT and payment readiness is proven."
-      },
-      {
-        "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
-        "status": "ready-after-current",
-        "reason": "Foundation checkpoint remains a safe fallback if field routes stay blocked."
+        "reason": "O2C remains blocked until posting/VAT/payment field readiness is proven."
       },
       {
         "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
         "status": "blocked",
-        "reason": "Vendor numbering is unrelated and remains parked."
+        "reason": "Vendor numbering remains parked and unrelated."
       }
     ],
     "queueChangesMade": [
-      "TARGET-044C ran as read-only/no-apply Personalize discovery.",
-      "Selected TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE as next case."
+      "TARGET-044D ran as expanded standard-page read-only discovery.",
+      "Selected TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY as next case."
     ],
-    "selectedNextCase": "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE",
-    "whySelectedNextCaseIsBest": "It avoids a blind field write and moves to a more appropriate standard-page route.",
+    "selectedNextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+    "whySelectedNextCaseIsBest": "It avoids another customer/item write attempt and follows the established W1 sequence after chart and VAT route decisions.",
     "risksBeforeNextCase": [
-      "Do not claim posting readiness from field availability.",
+      "Do not claim posting readiness from field visibility.",
       "Do not edit customer, item or setup fields without exact target values.",
-      "Do not start O2C/P2P documents."
+      "Keep Preview Posting and Posting false."
     ],
     "requiredPreparation": [
-      "Review visible/missing field terms from TARGET-044C.",
-      "Name exact target values before any write.",
-      "Keep Preview Posting and Posting locked."
+      "Read TARGET-036D2E and TARGET-036D2F before attempting the number-series route.",
+      "Only U-VEND Manual Nos may be touched if the active case proves a safer route.",
+      "Keep customer/item field writes, O2C/P2P documents, Preview Posting and Posting locked."
     ]
   },
-  "nextStep": "Run TARGET-044D alternative standard page route before any customer/item field write.",
+  "nextStep": "Run TARGET-036D2F U-VEND Manual Nos route recovery before retrying vendor creation.",
   "openItems": [
-    "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY"
+    "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY"
   ],
-  "nextQueueItem": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
+  "nextQueueItem": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
   "nextCases": [
-    "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
+    "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+    "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
     "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
     "TARGET-038-O2C-PREFLIGHT",
-    "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
-    "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE"
+    "TARGET-040-FOUNDATION-READY-RECHECK"
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
+    "currentCase": "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE",
     "plannedNextCaseBeforeReview": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
-    "lastEvidenceSummary": "TARGET-044B selected no-apply Personalize discovery because TARGET-044 did not prove a safe field-write route.",
+    "lastEvidenceSummary": "TARGET-044C blocked the Personalize route before stable target-card field discovery.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "Personalize did not produce enough visible field availability to justify a customer/item field write.",
+    "reason": "Expanded standard pages did not expose enough customer and item posting/VAT field terms for a safe write; chart, VAT and posting-group setup chains are already classified, so the next useful Foundation step is the planned U-VEND Manual Nos route recovery.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
         "status": "needs-ui-discovery-first",
-        "reason": "A write case needs exact target fields, target values and a safe active route."
+        "reason": "Still missing enough visible route/value truth."
       },
       {
-        "caseId": "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE",
+        "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+        "status": "blocked",
+        "reason": "Already blocked by screenshot truth gate; do not reactivate it as next case."
+      },
+      {
+        "caseId": "TARGET-026O-CHART-OF-ACCOUNTS-VISIBLE-SCREENSHOT-RECOVERY",
+        "status": "ready-after-current",
+        "reason": "Already completed with visible chart screenshot recovery; it supports the next VAT preflight."
+      },
+      {
+        "caseId": "TARGET-027-VAT-POSTING-GROUPS-PREFLIGHT",
+        "status": "blocked",
+        "reason": "The VAT route has already progressed through follow-ups and is parked by TARGET-027D24."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "ready-after-current",
+        "reason": "Already completed; not a valid active fallback after TARGET-044D."
+      },
+      {
+        "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
         "status": "ready-next",
-        "reason": "Alternative page route is needed if the card Personalize route does not expose enough fields."
+        "reason": "Only planned open Foundation recovery case: vendor creation remains blocked until U-VEND Manual Nos is proven safely."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C remains blocked until customer/item posting, VAT and payment readiness is proven."
-      },
-      {
-        "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
-        "status": "ready-after-current",
-        "reason": "Foundation checkpoint remains a safe fallback if field routes stay blocked."
+        "reason": "O2C remains blocked until posting/VAT/payment field readiness is proven."
       },
       {
         "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
         "status": "blocked",
-        "reason": "Vendor numbering is unrelated and remains parked."
+        "reason": "Vendor numbering remains parked and unrelated."
       }
     ],
     "queueChangesMade": [
-      "TARGET-044C ran as read-only/no-apply Personalize discovery.",
-      "Selected TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE as next case."
+      "TARGET-044D ran as expanded standard-page read-only discovery.",
+      "Selected TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY as next case."
     ],
-    "selectedNextCase": "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE",
-    "whySelectedNextCaseIsBest": "It avoids a blind field write and moves to a more appropriate standard-page route.",
+    "selectedNextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+    "whySelectedNextCaseIsBest": "It avoids another customer/item write attempt and follows the established W1 sequence after chart and VAT route decisions.",
     "risksBeforeNextCase": [
-      "Do not claim posting readiness from field availability.",
+      "Do not claim posting readiness from field visibility.",
       "Do not edit customer, item or setup fields without exact target values.",
-      "Do not start O2C/P2P documents."
+      "Keep Preview Posting and Posting false."
     ],
     "requiredPreparation": [
-      "Review visible/missing field terms from TARGET-044C.",
-      "Name exact target values before any write.",
-      "Keep Preview Posting and Posting locked."
+      "Read TARGET-036D2E and TARGET-036D2F before attempting the number-series route.",
+      "Only U-VEND Manual Nos may be touched if the active case proves a safer route.",
+      "Keep customer/item field writes, O2C/P2P documents, Preview Posting and Posting locked."
     ]
   }
 }
