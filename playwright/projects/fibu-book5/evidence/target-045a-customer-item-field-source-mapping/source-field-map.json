@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-045A-CUSTOMER-ITEM-FIELD-SOURCE-MAPPING",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "purpose": "exact-customer-item-field-source-mapping-before-ui-route",
+  "sourceBasis": [
+    "TARGET-031B proves Customer Posting Group INLAND with receivables account 1200, but not the value on U-CUST-100.",
+    "TARGET-032B proves General Business Posting Group INLAND and General Product Posting Group WAREN, but not a General Posting Setup row.",
+    "TARGET-032F parks General Posting Setup INLAND/WAREN with 4400/5400.",
+    "TARGET-027D24 parks VAT Posting Setup INLAND/VAT19.",
+    "TARGET-040 proves item/inventory pages read-only only; no item posting group or inventory posting setup correctness.",
+    "TARGET-044D proves standard card read-only route but not posting/VAT/payment/costing field values."
+  ],
+  "customerRecord": "U-CUST-100",
+  "customerFields": [
+    {
+      "field": "Customer Posting Group",
+      "germanField": "Debitorenbuchungsgruppe",
+      "targetValue": "INLAND",
+      "classification": "ready-value-needs-readonly-route-before-write",
+      "writeAllowedNow": false,
+      "reason": "INLAND exists as Customer Posting Group with 1200, but U-CUST-100 field value and card field route are not proven."
+    },
+    {
+      "field": "Gen. Bus. Posting Group",
+      "germanField": "Geschaeftsbuchungsgruppe",
+      "targetValue": "INLAND",
+      "classification": "candidate-value-blocked-for-posting-by-general-posting-setup",
+      "writeAllowedNow": false,
+      "reason": "INLAND exists as General Business Posting Group, but General Posting Setup INLAND/WAREN remains parked."
+    },
+    {
+      "field": "VAT Bus. Posting Group",
+      "germanField": "MwSt.-Geschaeftsbuchungsgruppe",
+      "targetValue": "INLAND",
+      "classification": "candidate-value-blocked-by-vat-posting-setup",
+      "writeAllowedNow": false,
+      "reason": "INLAND is a VAT/group candidate, but VAT Posting Setup INLAND/VAT19 is not proven."
+    },
+    {
+      "field": "Payment Terms Code",
+      "germanField": "Zahlungsbedingungscode",
+      "targetValue": null,
+      "classification": "not-mapped-needs-source-or-ui-discovery",
+      "writeAllowedNow": false,
+      "reason": "No Universaarl payment terms target code or card route is proven."
+    }
+  ],
+  "itemRecord": "U-ITEM-HW100",
+  "itemFields": [
+    {
+      "field": "Base Unit of Measure",
+      "germanField": "Basiseinheit",
+      "targetValue": "STK",
+      "classification": "already-proven-basic-field",
+      "writeAllowedNow": false,
+      "reason": "The item already shows STK; no rewrite needed."
+    },
+    {
+      "field": "Item Posting Group",
+      "germanField": "Artikelbuchungsgruppe/Lagerbuchungsgruppe",
+      "targetValue": null,
+      "classification": "blocked-by-item-posting-group-and-inventory-posting-setup-gap",
+      "writeAllowedNow": false,
+      "reason": "TARGET-040 saw item posting groups and inventory posting setup read-only, but no target group/account correctness is proven."
+    },
+    {
+      "field": "Gen. Prod. Posting Group",
+      "germanField": "Produktbuchungsgruppe",
+      "targetValue": "WAREN",
+      "classification": "candidate-value-blocked-for-posting-by-general-posting-setup",
+      "writeAllowedNow": false,
+      "reason": "WAREN exists as General Product Posting Group, but General Posting Setup INLAND/WAREN remains parked."
+    },
+    {
+      "field": "VAT Prod. Posting Group",
+      "germanField": "MwSt.-Produktbuchungsgruppe",
+      "targetValue": "VAT19",
+      "classification": "candidate-value-blocked-by-vat-posting-setup",
+      "writeAllowedNow": false,
+      "reason": "VAT19 is a candidate product group, but VAT Posting Setup INLAND/VAT19 is not proven."
+    },
+    {
+      "field": "Costing Method",
+      "germanField": "Einstandspreismethode/Lagerabgangsmethode",
+      "targetValue": null,
+      "classification": "not-mapped-needs-source-or-ui-discovery",
+      "writeAllowedNow": false,
+      "reason": "No Universaarl costing method target or field route is proven."
+    }
+  ],
+  "decision": {
+    "customerItemWriteUnlocked": false,
+    "readOnlyRouteRetryUnlocked": true,
+    "o2cUnlocked": false,
+    "p2pUnlocked": false,
+    "previewPostingUnlocked": false,
+    "postingUnlocked": false,
+    "selectedNextCase": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
+    "reason": "The mapping names candidate fields and values, but all writes remain locked. A read-only route retry can now search for exact field locations without changing data."
+  },
+  "updatedAt": "2026-07-01T22:09:44.675Z"
+}

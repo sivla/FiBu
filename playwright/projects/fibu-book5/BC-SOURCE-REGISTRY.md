@@ -456,6 +456,21 @@ TARGET-045 nutzt keine neue Business-Central-Ausfuehrung. Die Entscheidung verkn
 
 Fuer Universaarl folgt daraus: Debitoren- und Artikelfelder duerfen nicht aus sichtbaren Kartentexten heraus blind geschrieben werden. Vor jedem Schreibfall braucht TARGET-045A eine exakte Feld-/Wertekarte: welche Felder wirklich auf `U-CUST-100` und `U-ITEM-HW100` gesetzt werden sollen, welche Zielwerte nur vorbereitete Kandidaten sind und welche Felder durch geparkte Setup-Grenzen blockiert bleiben.
 
+## TARGET-045A Debitor-/Artikel-Feldquellenkarte
+
+TARGET-045A schliesst die lokale Feldquellenkarte ohne Business-Central- oder Playwright-Ausfuehrung:
+
+- `U-CUST-100`: `Debitorenbuchungsgruppe = INLAND` ist ein fachlicher Zielkandidat, weil TARGET-031B die Debitorenbuchungsgruppe `INLAND` mit Sammelkonto `1200` beweist. Es ist aber noch kein gespeicherter Feldwert auf dem Debitor.
+- `U-CUST-100`: `Geschaeftsbuchungsgruppe = INLAND` ist ein Zielkandidat, bleibt aber fuer Buchungsfaehigkeit durch die geparkte General-Posting-Setup-Zeile blockiert.
+- `U-CUST-100`: `MwSt.-Geschaeftsbuchungsgruppe = INLAND` bleibt durch die geparkte VAT Posting Setup Matrix blockiert.
+- `U-CUST-100`: `Zahlungsbedingungscode` hat noch keinen Universaarl-Zielwert.
+- `U-ITEM-HW100`: `Basiseinheit = STK` ist bereits sichtbar/proven und soll nicht neu geschrieben werden.
+- `U-ITEM-HW100`: `Produktbuchungsgruppe = WAREN` ist ein Zielkandidat, bleibt aber fuer Buchungsfaehigkeit durch die geparkte General-Posting-Setup-Zeile blockiert.
+- `U-ITEM-HW100`: `MwSt.-Produktbuchungsgruppe = VAT19` bleibt durch die geparkte VAT Posting Setup Matrix blockiert.
+- `U-ITEM-HW100`: `Artikelbuchungsgruppe/Lagerbuchungsgruppe` und `Einstandspreismethode` brauchen eigene Quellen-/UI-Route.
+
+Fuer Universaarl folgt daraus: TARGET-045B darf die genannten Felder nur read-only auf den Karten suchen. Es darf keine Felder schreiben, keine Vorlage anwenden und keine O2C-/P2P-Dokumente erzeugen.
+
 ## URLs
 
 - https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company

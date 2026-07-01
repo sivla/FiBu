@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
+  "status": "ready-next",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Customer and item posting fields read-only route retry",
+  "purpose": "Locate the exact customer/item card fields from TARGET-045A without editing or writing values.",
+  "sourceCases": [
+    "TARGET-045A-CUSTOMER-ITEM-FIELD-SOURCE-MAPPING",
+    "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+    "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": true,
+  "taskClass": "wizard_work",
+  "allowedActions": [
+    "open-business-central-readonly",
+    "confirm-instance-playthru",
+    "confirm-company-universaarl-de",
+    "open-u-cust-100-readonly",
+    "open-u-item-hw100-readonly",
+    "expand-fasttabs-and-show-more-readonly",
+    "capture-field-route-screenshots",
+    "write-result-json-and-next-step-decision",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "enter-edit-mode",
+    "change-customer",
+    "change-item",
+    "change-posting-groups",
+    "change-general-posting-setup",
+    "change-vat-posting-setup",
+    "change-inventory-posting-setup",
+    "create-document-or-draft",
+    "apply-template",
+    "confirm-dialog",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-o2c-readiness-from-field-visibility",
+    "claim-german-vat-final-proof",
+    "book-claim-without-evidence",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-045A result exists and selects this case.",
+    "source-field-map.json provides exact fields to search.",
+    "No write is unlocked."
+  ],
+  "acceptanceCriteria": [
+    "Business Central stays in playthru / UNIVERSAARL-DE.",
+    "U-CUST-100 and U-ITEM-HW100 are opened read-only only.",
+    "Screenshots/text evidence show which mapped fields are visible or not visible.",
+    "No customer/item/setup/document/draft/preview/post/API action occurs.",
+    "Next case is selected from actual field-route evidence, not assumption."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
+    "plannedNextCaseBeforeReview": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
+    "lastEvidenceSummary": "TARGET-045A mapped exact customer and item field targets and kept all writes locked.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Read-only field-route discovery is now bounded by an exact field list and can improve Playwright without changing data.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
+        "status": "ready-after-current",
+        "reason": "If item field route finds the Item Posting Group gap, source-map inventory posting group before any item write."
+      },
+      {
+        "caseId": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+        "status": "needs-ui-discovery-first",
+        "reason": "General Posting Setup remains parked; revisit only with a materially new route."
+      },
+      {
+        "caseId": "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
+        "status": "blocked",
+        "reason": "VAT matrix remains parked; do not reopen until a new standard route or explicit strategy exists."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C still needs customer/item fields, General Posting Setup, VAT Posting Setup and posting trace expectations."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
+    "whySelectedNextCaseIsBest": "It is the smallest practical follow-up: use exact field names to improve Playwright/UI understanding while keeping all writes locked.",
+    "risksBeforeNextCase": [
+      "Do not enter edit mode or change U-CUST-100/U-ITEM-HW100.",
+      "Do not treat candidate values as posting readiness.",
+      "Do not create sales/purchase documents, Preview Posting or Posting."
+    ],
+    "requiredPreparation": [
+      "Use source-field-map.json as the field list.",
+      "Capture page/FastTab/field visibility and not-found terms separately.",
+      "Abort if Business Central opens any write, template, apply, edit or confirmation flow."
+    ]
+  },
+  "createdAt": "2026-07-01T22:09:44.675Z"
+}

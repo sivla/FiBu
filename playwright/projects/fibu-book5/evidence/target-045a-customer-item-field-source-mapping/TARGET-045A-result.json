@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-045A-CUSTOMER-ITEM-FIELD-SOURCE-MAPPING",
+  "source": "local-analysis",
+  "sourceResult": "source-field-map",
+  "resultStatus": "done-readonly-route-selected-no-write",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "url": null,
+  "page": null,
+  "actionsTaken": [
+    "Read TARGET-045 field-fit map and source boundaries.",
+    "Classified customer fields for U-CUST-100.",
+    "Classified item fields for U-ITEM-HW100.",
+    "Separated candidate field values from blocked setup boundaries.",
+    "Selected TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY as the next read-only route case."
+  ],
+  "actionsNotTaken": [
+    "No Business Central execution.",
+    "No Playwright execution.",
+    "No customer or item edit.",
+    "No setup change.",
+    "No document or draft creation.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No API shortcut.",
+    "No book content change."
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "screenshots": [],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-045-customer-item-posting-fields-controlled-fit/TARGET-045-result.json",
+    "playwright/projects/fibu-book5/evidence/target-045-customer-item-posting-fields-controlled-fit/field-fit-map.json",
+    "playwright/projects/fibu-book5/evidence/target-045a-customer-item-field-source-mapping/source-field-map.json"
+  ],
+  "proved": [
+    "Customer Posting Group INLAND is the only customer field value currently classified as ready-value-needs-readonly-route-before-write, not write-ready.",
+    "Gen. Bus. Posting Group INLAND and Gen. Prod. Posting Group WAREN are candidate values but blocked for posting by the parked General Posting Setup row.",
+    "VAT Bus. Posting Group INLAND and VAT Prod. Posting Group VAT19 are candidate values but blocked by parked VAT Posting Setup.",
+    "Item Base Unit STK is already proven and should not be rewritten.",
+    "Item Posting Group, Payment Terms Code and Costing Method are not mapped enough for a write.",
+    "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY is the next useful read-only UI route; no write is unlocked."
+  ],
+  "notProved": [
+    "No customer posting field is proven saved on U-CUST-100.",
+    "No item posting field is proven saved on U-ITEM-HW100 except the existing Base Unit STK.",
+    "No General Posting Setup, VAT Posting Setup or Inventory Posting Setup correctness is proven.",
+    "No O2C/P2P readiness, Preview Posting, Posting or ledger entry trace is proven."
+  ],
+  "warnings": [
+    "TARGET-045B must remain read-only and must not become a write case mid-run.",
+    "Candidate values INLAND, WAREN and VAT19 are not complete setup truth."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-045a-customer-item-field-source-mapping/TARGET-045A-result.json",
+    "playwright/projects/fibu-book5/evidence/target-045a-customer-item-field-source-mapping/source-field-map.json",
+    "playwright/projects/fibu-book5/evidence/target-045a-customer-item-field-source-mapping/README.md",
+    ".agent/state/cases/target-045a-customer-item-field-source-mapping.json",
+    ".agent/state/cases/target-045b-customer-item-posting-fields-readonly-route-retry.json",
+    ".agent/state/current.json",
+    ".agent/state/marathon_queue.json",
+    ".agent/state/last_run_summary.json",
+    "playwright/projects/fibu-book5/BC-SOURCE-REGISTRY.md",
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md"
+  ],
+  "statePatch": {
+    "current": {
+      "activeArea": "universaarl-customer-item-readonly-field-route",
+      "activeCase": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
+      "active_case_file": ".agent/state/cases/target-045b-customer-item-posting-fields-readonly-route-retry.json",
+      "nextCase": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
+      "nextStep": "Run a read-only customer/item card field-route retry using the exact TARGET-045A field map; do not write fields."
+    },
+    "lastRunSummary": {
+      "runId": "TARGET-045A-CUSTOMER-ITEM-FIELD-SOURCE-MAPPING",
+      "caseId": "TARGET-045A-CUSTOMER-ITEM-FIELD-SOURCE-MAPPING",
+      "status": "done-readonly-route-selected-no-write",
+      "bcRun": false,
+      "playwrightRun": false,
+      "setupChanged": false,
+      "masterDataChanged": false,
+      "draftCreated": false,
+      "previewPosting": false,
+      "posted": false,
+      "payment": false,
+      "apiShortcut": false,
+      "nextCase": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY"
+    },
+    "activeCase": {
+      "status": "done-readonly-route-selected-no-write",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-045a-customer-item-field-source-mapping/TARGET-045A-result.json",
+      "nextCase": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY"
+    }
+  },
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "nextStepDecision": {
+    "currentCase": "TARGET-045A-CUSTOMER-ITEM-FIELD-SOURCE-MAPPING",
+    "plannedNextCaseBeforeReview": "TARGET-045A-CUSTOMER-ITEM-FIELD-SOURCE-MAPPING",
+    "lastEvidenceSummary": "TARGET-045 established that customer/item posting-field writes are not unlocked by field visibility. TARGET-045A mapped exact field candidates and unresolved setup blockers without BC or Playwright.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The mapping is needed before any UI route or write. It confirms a write is still unsafe, but a read-only field-route retry is now focused enough to be useful.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
+        "status": "ready-next",
+        "reason": "Use the exact field list from TARGET-045A to locate customer/item fields read-only; no edit/write."
+      },
+      {
+        "caseId": "TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING",
+        "status": "ready-after-current",
+        "reason": "If item field route finds the Item Posting Group gap, source-map inventory posting group before any item write."
+      },
+      {
+        "caseId": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+        "status": "needs-ui-discovery-first",
+        "reason": "General Posting Setup remains parked; revisit only with a materially new route."
+      },
+      {
+        "caseId": "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
+        "status": "blocked",
+        "reason": "VAT matrix remains parked; do not reopen until a new standard route or explicit strategy exists."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C still needs customer/item fields, General Posting Setup, VAT Posting Setup and posting trace expectations."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked TARGET-045A done as local source mapping.",
+      "Added TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY as the next pending read-only route case."
+    ],
+    "selectedNextCase": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
+    "whySelectedNextCaseIsBest": "It is the smallest practical follow-up: use exact field names to improve Playwright/UI understanding while keeping all writes locked.",
+    "risksBeforeNextCase": [
+      "Do not enter edit mode or change U-CUST-100/U-ITEM-HW100.",
+      "Do not treat candidate values as posting readiness.",
+      "Do not create sales/purchase documents, Preview Posting or Posting."
+    ],
+    "requiredPreparation": [
+      "Use source-field-map.json as the field list.",
+      "Capture page/FastTab/field visibility and not-found terms separately.",
+      "Abort if Business Central opens any write, template, apply, edit or confirmation flow."
+    ]
+  },
+  "nextCase": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
+  "updatedAt": "2026-07-01T22:09:44.675Z"
+}
