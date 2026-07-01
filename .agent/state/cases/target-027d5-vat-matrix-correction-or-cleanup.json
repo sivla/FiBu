@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
+  "id": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
+  "status": "planned",
+  "area": "universaarl-vat-setup",
+  "goal": "Correct or clean up the partial INLAND + VAT19 VAT Posting Setup row using the Page 472 field map from TARGET-027D4.",
+  "sourceCompany": "UNIVERSAARL-DE",
+  "targetWorld": "Universaarl",
+  "sourceCases": [
+    "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
+    "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP"
+  ],
+  "prerequisites": [
+    "Page 472 / Table 325 field map exists.",
+    "Partial INLAND + VAT19 row exists.",
+    "Page Inspection shows VAT % = 0 and Sales/Purchase VAT Account empty."
+  ],
+  "allowedActions": [
+    "open-page-472",
+    "capture-before-state",
+    "use-field-map-from-target-027d4",
+    "choose-correction-or-cleanup-route",
+    "write-only-fields-needed-for-INLAND-VAT19-if-route-is-unambiguous",
+    "capture-after-and-reopen-proof"
+  ],
+  "forbiddenActions": [
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "repeat-blind-grid-tab-flow",
+    "claim-german-19-percent-vat-final-proof"
+  ],
+  "targetValues": {
+    "vatBusinessPostingGroup": "INLAND",
+    "vatProductPostingGroup": "VAT19",
+    "vatPercent": "19",
+    "vatCalculationType": "Normale MwSt.",
+    "salesVatAccount": "3806",
+    "purchaseVatAccount": "1406"
+  },
+  "acceptanceCriteria": [
+    "The run stays in playthru / UNIVERSAARL-DE.",
+    "Before screenshot shows the partial row.",
+    "The chosen correction or cleanup route is documented before the write.",
+    "After/reopen proof shows the row either correctly completed or safely cleaned/blocked.",
+    "No master data, document draft, Preview Posting, Posting or API shortcut is executed."
+  ],
+  "nextIfSuccessful": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+  "createdAt": "2026-07-01T01:59:22.501Z"
+}

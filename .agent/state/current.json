@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T01:49:43.201Z",
+  "updatedAt": "2026-07-01T01:59:22.501Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-vat-matrix-field-mapping",
-  "activeCase": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
-  "active_case_file": ".agent/state/cases/target-027d4-vat-matrix-pageinspection-followup.json",
-  "lastReferenceCase": "TARGET-027D3-VAT-MATRIX-LIST-CELL-CORRECTION",
-  "lastReferenceCaseFile": ".agent/state/cases/target-027d-vat-posting-setup-matrix-write.json",
+  "activeArea": "universaarl-vat-matrix-correction-or-cleanup",
+  "activeCase": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
+  "active_case_file": ".agent/state/cases/target-027d5-vat-matrix-correction-or-cleanup.json",
+  "lastReferenceCase": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
+  "lastReferenceCaseFile": ".agent/state/cases/target-027d4-vat-matrix-pageinspection-followup.json",
   "mode": "universaarl-target-execution",
   "requiresStrongModel": true,
   "requiredPreflightChecks": [
@@ -19,11 +19,12 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-page-472-readonly",
-    "capture-visible-row-and-columns",
-    "page-inspection-or-field-control-map-if-available",
-    "document-correction-vs-cleanup-decision",
-    "no-value-write-until-field-route-is-known"
+    "open-page-472",
+    "capture-before-state",
+    "use-field-map-from-target-027d4",
+    "choose-correction-or-cleanup-route",
+    "write-only-fields-needed-for-INLAND-VAT19-if-route-is-unambiguous",
+    "capture-after-and-reopen-proof"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -36,11 +37,11 @@
     "preview-posting",
     "post",
     "api-shortcut",
-    "repeat-grid-tab-flow",
+    "repeat-blind-grid-tab-flow",
     "claim-german-19-percent-vat-final-proof"
   ],
-  "nextCase": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
-  "nextStep": "Map Page 472 field/control values for the partial INLAND + VAT19 VAT matrix row before correction, cleanup, posting-group setup or master data.",
+  "nextCase": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
+  "nextStep": "Correct or clean up the partial INLAND/VAT19 VAT Posting Setup row using the Page 472 field map; no Preview Posting or Posting.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -6588,5 +6589,20 @@
     "noMasterData": true,
     "noDraft": true,
     "nextCase": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP"
+  },
+  "latestVatMatrixFieldMap": {
+    "caseId": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
+    "status": "observed-field-map-no-write",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d4-vat-matrix-pageinspection-followup/TARGET-027D4-result.json",
+    "screenshot": "playwright/projects/fibu-book5/evidence/target-027d4-vat-matrix-pageinspection-followup/target-027d4-020-after-page-inspection-shortcut.png",
+    "page": "VAT Posting Setup (472, List)",
+    "table": "VAT Posting Setup (325)",
+    "currentRowFacts": [
+      "INLAND + VAT19 row visible",
+      "VAT % = 0",
+      "Sales VAT Account empty",
+      "Purchase VAT Account empty"
+    ],
+    "nextCase": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP"
   }
 }

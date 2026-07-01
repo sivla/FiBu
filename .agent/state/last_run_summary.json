@@ -1,35 +1,36 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-027D3-VAT-MATRIX-LIST-CELL-CORRECTION",
-  "caseId": "TARGET-027D3-VAT-MATRIX-LIST-CELL-CORRECTION",
-  "status": "blocked-partial-row-needs-field-mapping",
-  "completedAt": "2026-07-01T01:49:43.201Z",
+  "runId": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
+  "caseId": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
+  "status": "observed-field-map-no-write",
+  "completedAt": "2026-07-01T01:59:22.501Z",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d3-vat-matrix-list-cell-correction/TARGET-027D3-result.json",
-  "rawResultPath": "playwright/projects/fibu-book5/evidence/target-027d-vat-posting-setup-matrix-write/TARGET-027D-result.json",
-  "evidencePath": "playwright/projects/fibu-book5/evidence/target-027d3-vat-matrix-list-cell-correction/",
-  "summary": "Page 472 is visible and a partial INLAND/VAT19 row exists, but the row is not complete: VAT percent/accounts are not proven. Grid tab-flow, card route and list-cell correction are blocked; next is Page Inspection/field mapping.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d4-vat-matrix-pageinspection-followup/TARGET-027D4-result.json",
+  "rawResultPath": "playwright/projects/fibu-book5/evidence/target-027d4-vat-matrix-pageinspection-followup/TARGET-027D4-result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/target-027d4-vat-matrix-pageinspection-followup/",
+  "summary": "Page 472 field/control mapping captured the partial INLAND/VAT19 row and Page Inspection shows VAT Posting Setup (472, List), table 325, VAT % = 0 and empty sales/purchase VAT accounts. No values were written.",
   "proved": [
-    "playthru / UNIVERSAARL-DE stayed active.",
-    "Page 472 VAT Posting Setup is visible.",
-    "Partial INLAND/VAT19 row is visible."
+    "Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix is visible in playthru / UNIVERSAARL-DE.",
+    "Partial INLAND + VAT19 row is visible.",
+    "Page Inspection shows VAT Posting Setup (472, List) and table VAT Posting Setup (325).",
+    "Page Inspection shows VAT % = 0, Sales VAT Account empty and Purchase VAT Account empty on the selected row."
   ],
   "notProved": [
-    "Complete VAT Posting Setup row.",
-    "German 19 percent VAT calculation.",
-    "Preview Posting, VAT Entries, G/L Entries or Posting."
+    "No corrected VAT Posting Setup row.",
+    "No VAT % 19 proof.",
+    "No account values 3806/1406 on the matrix row.",
+    "No Preview Posting, VAT Entries or G/L Entries."
   ],
   "blockedBy": [
-    "The grid tab-flow shifted values: 19 landed in Beschreibung, VAT % remained 0, and 3806/1406 were not proven after reopen.",
-    "The attempted card route did not actually open a usable card surface.",
-    "The list-cell correction route still did not persist or visibly prove 3806/1406."
+    "The row still needs correction or cleanup before broader foundation work."
   ],
   "warnings": [
-    "Do not repeat blind grid tab-flow on Page 472.",
-    "Do not start posting groups or master data until the partial matrix row is corrected or cleaned up."
+    "Do not repeat blind grid tab-flow or unverified list-cell value writes on Page 472."
   ],
   "actionsNotTaken": [
+    "No value write",
+    "No cleanup/delete",
     "No master data",
     "No document draft",
     "No Preview Posting",
@@ -38,53 +39,48 @@
     "No Company switch"
   ],
   "screenshots": [
-    "playwright/projects/fibu-book5/evidence/target-027d-vat-posting-setup-matrix-write/target-027d-030-reopen-matrix-proof.png",
-    "playwright/projects/fibu-book5/evidence/target-027d3-vat-matrix-list-cell-correction/target-027d3-030-reopen-list.png"
+    "playwright/projects/fibu-book5/evidence/target-027d4-vat-matrix-pageinspection-followup/target-027d4-010-page472-before-inspection.png",
+    "playwright/projects/fibu-book5/evidence/target-027d4-vat-matrix-pageinspection-followup/target-027d4-020-after-page-inspection-shortcut.png"
   ],
-  "nextCase": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
-  "nextStep": "Run Page 472 field/control mapping for the partial INLAND/VAT19 row before correction or cleanup.",
+  "nextCase": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
+  "nextStep": "Use TARGET-027D4 field map to correct or clean up the partial VAT matrix row; no Preview Posting or Posting.",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-027D3-VAT-MATRIX-LIST-CELL-CORRECTION",
-    "plannedNextCaseBeforeReview": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
-    "lastEvidenceSummary": "TARGET-027D created a partial INLAND/VAT19 VAT matrix row, but TARGET-027D2 and TARGET-027D3 did not correct it. VAT %, sales VAT account and purchase VAT account remain unproven.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "The original matrix write has already run and left a partial row. Repeating it would risk more setup drift; Page 472 needs field/control mapping first.",
+    "currentCase": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
+    "plannedNextCaseBeforeReview": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
+    "lastEvidenceSummary": "TARGET-027D3 left the VAT matrix row incomplete; Page 472 needed field/control mapping before any correction.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "This run is diagnostic and prevents repeated blind writes on a partially wrong setup row.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
-        "status": "ready-next",
-        "reason": "It is the safest next step because it is diagnostic and blocks additional writes until the fields are mapped."
-      },
-      {
         "caseId": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
-        "status": "ready-after-current",
-        "reason": "Only sensible after Page Inspection or an equivalent control map identifies the correct fields."
+        "status": "ready-next",
+        "reason": "Visible row/header mapping is now available."
       },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Posting groups should wait until the partial VAT matrix row is corrected or cleaned up."
+        "reason": "Posting groups wait until the partial VAT matrix row is corrected or cleaned up."
       },
       {
-        "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
         "status": "needs-setup-first",
-        "reason": "Master data with VAT defaults is premature while VAT setup is incomplete."
+        "reason": "Master data waits for posting groups and VAT defaults."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness waits for VAT/posting-group status."
       }
     ],
-    "queueChangesMade": [
-      "Marked TARGET-027D blocked.",
-      "Added TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP as the next pending diagnostic case."
-    ],
-    "selectedNextCase": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
-    "whySelectedNextCaseIsBest": "It prevents another blind Page 472 write and produces the field/control truth needed for correction or cleanup.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
+    "whySelectedNextCaseIsBest": "The next useful step is one controlled correction-or-cleanup case, not more diagnosis.",
     "risksBeforeNextCase": [
-      "Partial INLAND/VAT19 row remains in Page 472.",
-      "Further blind writes could make the setup harder to repair."
+      "The partial INLAND/VAT19 row remains incomplete until corrected or cleaned."
     ],
     "requiredPreparation": [
-      "Open Page 472 read-only.",
-      "Capture the partial row and visible columns.",
-      "Use Page Inspection or equivalent field/control mapping before any correction."
+      "Use the row/header map from TARGET-027D4.",
+      "Define whether to correct the existing row or clean and recreate it."
     ]
   }
 }

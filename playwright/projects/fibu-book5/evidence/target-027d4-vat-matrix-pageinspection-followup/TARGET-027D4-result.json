@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
+  "source": "playwright-universaarl-vat-matrix-pageinspection-followup",
+  "resultStatus": "observed-field-map-no-write",
+  "runPlanId": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": {
+    "id": 472,
+    "name": "MwSt.-Buchungsmatrix Einr. / VAT Posting Setup",
+    "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=472&company=UNIVERSAARL-DE&dc=0"
+  },
+  "actionsTaken": [
+    "Opened Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix read-only.",
+    "Captured visible row/header/control map without editing values.",
+    "Attempted Ctrl+Alt+F1 Page Inspection shortcut."
+  ],
+  "actionsNotTaken": [
+    "No value write",
+    "No cleanup/delete",
+    "No master data",
+    "No document draft",
+    "No Preview Posting",
+    "No Posting",
+    "No API shortcut",
+    "No Company switch",
+    "No VAT final claim"
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "proved": [
+    "The partial INLAND/VAT19 row is visible on Page 472.",
+    "The relevant Page 472 headers Beschreibung, MwSt. %, Umsatzsteuerkonto and Vorsteuerkonto are visible in the field-control map.",
+    "Page Inspection / technical inspection context became visible for Page 472."
+  ],
+  "notProved": [
+    "No complete VAT Posting Setup row.",
+    "No German 19 percent VAT calculation.",
+    "No Preview Posting.",
+    "No VAT Entries.",
+    "No G/L Entries.",
+    "No VAT Statement.",
+    "No tax advisor approval."
+  ],
+  "screenshots": [
+    "target-027d4-010-page472-before-inspection.png",
+    "target-027d4-020-after-page-inspection-shortcut.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-027d4-vat-matrix-pageinspection-followup/TARGET-027D4-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d4-vat-matrix-pageinspection-followup/target-027d4-field-control-map.json",
+    "playwright/projects/fibu-book5/evidence/target-027d4-vat-matrix-pageinspection-followup/README.md"
+  ],
+  "fieldControlMapSummary": {
+    "targetRowVisible": true,
+    "mappedRequiredHeaders": true,
+    "pageInspectionVisible": true,
+    "doNotRepeat": [
+      "blind grid tab-flow",
+      "unverified card route",
+      "unverified list-cell value write"
+    ],
+    "recommendedNextRoute": "Use the visible row/header map to design exactly one correction-or-cleanup case, with before/after/reopen proof."
+  },
+  "blockedBy": [],
+  "warnings": [],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
+    "plannedNextCaseBeforeReview": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
+    "lastEvidenceSummary": "TARGET-027D3 left the VAT matrix row incomplete; Page 472 needed field/control mapping before any correction.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "This run is diagnostic and prevents repeated blind writes on a partially wrong setup row.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
+        "status": "ready-next",
+        "reason": "Visible row/header mapping is now available."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Posting groups wait until the partial VAT matrix row is corrected or cleaned up."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for posting groups and VAT defaults."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness waits for VAT/posting-group status."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
+    "whySelectedNextCaseIsBest": "The next useful step is one controlled correction-or-cleanup case, not more diagnosis.",
+    "risksBeforeNextCase": [
+      "The partial INLAND/VAT19 row remains incomplete until corrected or cleaned."
+    ],
+    "requiredPreparation": [
+      "Use the row/header map from TARGET-027D4.",
+      "Define whether to correct the existing row or clean and recreate it."
+    ]
+  },
+  "safeToFinalizeState": true,
+  "requiresReview": false,
+  "statePatch": {
+    "current": {
+      "activeArea": "universaarl-vat-matrix-correction-or-cleanup",
+      "activeCase": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
+      "active_case_file": ".agent/state/cases/target-027d5-vat-matrix-correction-or-cleanup.json",
+      "lastReferenceCase": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
+      "nextCase": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
+      "nextStep": "Use the Page 472 row/header map to correct or clean up the partial INLAND/VAT19 VAT matrix row; no Preview Posting or Posting."
+    },
+    "lastRunSummary": {
+      "runId": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
+      "caseId": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
+      "status": "observed-field-map-no-write",
+      "instance": "playthru",
+      "company": "UNIVERSAARL-DE",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-027d4-vat-matrix-pageinspection-followup/TARGET-027D4-result.json",
+      "summary": "Page 472 field/control mapping captured the partial INLAND/VAT19 row and relevant VAT matrix headers without writing values.",
+      "nextCase": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP"
+    }
+  },
+  "nextCase": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
+  "reason": "Page 472 row/header mapping is sufficient to design one controlled correction-or-cleanup case."
+}

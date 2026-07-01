@@ -151,6 +151,17 @@ Weiter offen bleibt die eigentliche MwSt.-Buchungsmatrix auf Page 472. `1406` un
 
 Damit ist der aktuelle USt-Stand `blocked-partial-vat-matrix-row`. `INLAND` und `VAT19` sind als Gruppen belegt, aber die MwSt.-Buchungsmatrix ist nicht fertig. Vor Stammdaten, Preview Posting oder Posting muss `TARGET-027D4` zuerst Page Inspection bzw. ein feldgebundenes Control-Mapping fuer Page 472 liefern. Erst danach darf entschieden werden, ob die partielle Zeile korrigiert oder sauber bereinigt und neu angelegt wird.
 
+## Stand nach `TARGET-027D4`
+
+`TARGET-027D4` hat keine Werte geschrieben. Der Lauf hat die unvollstaendige Page-472-Zeile technisch sichtbar gemacht:
+
+- Page: `VAT Posting Setup (472, List)` / `MwSt.-Buchungsmatrix Einr.`
+- Tabelle: `VAT Posting Setup (325)`
+- Zeile: `INLAND` + `VAT19`
+- aktueller Befund: Beschreibung `19`, `VAT % = 0`, `Sales VAT Account = (Leer)`, `Purchase VAT Account = (Leer)`
+
+Damit ist die naechste Entscheidung enger: Entweder wird genau diese bestehende Zeile korrigiert, oder sie wird sauber bereinigt und anschliessend neu angelegt. Beides braucht Vorher-/Nachher-/Reopen-Proof. `1406` und `3806` bleiben vorbereitete SKR04-Sachkonten; sie sind noch nicht als USt-Konten in der Matrix bewiesen. Preview Posting, VAT Entries, Sachposten, Stammdaten und Belege bleiben gesperrt.
+
 ## Quellenbasis
 
 - DATEV SKR04 Produktseite: https://www.datev.de/web/de/datev-shop/rechnungswesen/skr-04/
