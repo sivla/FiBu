@@ -29,11 +29,29 @@ function unique(values) {
   return [...new Set(values.filter(Boolean))];
 }
 
+function caseMayNeedBusinessCentralAuth(activeCase, dryRun) {
+  const haystack = [
+    activeCase.caseId,
+    activeCase.title,
+    activeCase.purpose,
+    activeCase.goal,
+    ...(activeCase.allowedActions ?? []),
+    ...(activeCase.stopIf ?? []),
+    ...(dryRun.allowedActions ?? []),
+    ...(dryRun.stopConditions ?? []),
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  return /business central|playwright|open-playthru|open-number-series|confirm-UNIVERSAARL-DE|storageState|auth/i.test(haystack);
+}
+
 const current = readJson('.agent/state/current.json');
 const activeCase = current.active_case_file && existsSync(current.active_case_file)
   ? readJson(current.active_case_file)
   : {};
 const dryRun = runDryRun();
+const needsBusinessCentralAuth = caseMayNeedBusinessCentralAuth(activeCase, dryRun);
 
 const blockedLiveActions = unique([
   ...(dryRun.forbiddenActions ?? []),
@@ -51,6 +69,16 @@ steps.push(step('run-command', {
   reason: 'Validate state, budgets, safety, routing, capabilities and skills before any agent work.',
   allowed: true,
 }));
+
+if (needsBusinessCentralAuth) {
+  steps.push(step('run-command', {
+    command: 'npm run auth:bc:check',
+    reason: 'Validate local Business Central storageState shape and shell-validation metadata before any later Playwright/BC execution.',
+    allowed: true,
+    requiredBefore: ['execute-playwright', 'execute-business-central'],
+    expectedFailureMeans: 'Run npm run auth:bc and complete Login/MFA until the Business Central shell is visible.',
+  }));
+}
 
 for (const path of dryRun.filesToRead ?? []) {
   steps.push(step('read-file', {
@@ -133,6 +161,7 @@ const runPlan = {
     budgetProfile: dryRun.budgetProfile,
     requiresHumanApproval: dryRun.requiresHumanApproval,
   },
+  needsBusinessCentralAuth,
   canProceed,
   steps,
   blockedLiveActions,
@@ -143,6 +172,7 @@ const runPlan = {
     'npm run agent:preflight',
     'npm run agent:dry-run',
     'npm run agent:run-plan',
+    ...(needsBusinessCentralAuth ? ['npm run auth:bc:check'] : []),
     'npm run check:encoding',
     'git diff --check',
   ],
