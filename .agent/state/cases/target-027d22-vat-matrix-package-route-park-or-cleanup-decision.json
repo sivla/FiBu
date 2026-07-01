@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027D22-VAT-MATRIX-PACKAGE-ROUTE-PARK-OR-CLEANUP-DECISION",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "VAT matrix package route park or cleanup decision",
+  "purpose": "Decide the next safe route after D21 created/observed temporary package metadata but did not prove a safe Table 325 package-table path.",
+  "sourceCases": [
+    "TARGET-027D21-VAT-MATRIX-CONTROLLED-PACKAGE-TABLE-DISCOVERY"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": false,
+  "allowedActions": [
+    "read-d21-result-and-screenshots-metadata",
+    "classify-temporary-package-metadata",
+    "decide-cleanup-keep-or-park-route",
+    "define-next-narrow-case",
+    "update-state-queue-atlas-catalog"
+  ],
+  "forbiddenActions": [
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "leave-instance",
+    "company-switch",
+    "open-business-central",
+    "run-playwright",
+    "import-from-excel",
+    "export-to-excel",
+    "validate-package",
+    "apply-package",
+    "edit-in-excel-publish",
+    "type-INLAND-or-VAT19",
+    "type-19-3806-or-1406",
+    "write-or-save-vat-matrix-values",
+    "delete-package-without-cleanup-case",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-german-vat-final-proof"
+  ],
+  "smartDecision": {
+    "whyNow": "D21 proved that temporary package metadata exists and that the New route can lead to a blank duplicate/package-table context without a safe Table 325 edit. Continuing live would risk duplicate metadata or unsafe table edits.",
+    "evidenceBasis": [
+      "playwright/projects/fibu-book5/evidence/target-027d21-vat-matrix-controlled-package-table-discovery/TARGET-027D21-result.json"
+    ],
+    "fieldsOrRecordsMayChange": [],
+    "fieldsOrRecordsMustNotChange": [
+      "Configuration Package data",
+      "VAT Posting Setup values",
+      "master data",
+      "documents",
+      "journals"
+    ],
+    "fallback": "If no safe cleanup or route exists, park the Configuration Package route and return to a different standard UI/source route for VAT setup.",
+    "screenshotMustProve": [
+      "D21 screenshots show package metadata context and blocker"
+    ],
+    "screenshotMustNotBeUsedToClaim": [
+      "Table 325 setup",
+      "VAT correctness",
+      "Preview Posting readiness"
+    ]
+  },
+  "acceptanceCriteria": [
+    "No Business Central or Playwright execution in D22.",
+    "Temporary package metadata U-VAT325-DISC is classified as keep, cleanup-needed or cleanup-case-required.",
+    "No VAT matrix values, Preview Posting, Posting, master data or API shortcut are used.",
+    "Next live case is narrower than D21 and does not repeat the unsafe New/blank-card route."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-027D21-VAT-MATRIX-CONTROLLED-PACKAGE-TABLE-DISCOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-027D21-VAT-MATRIX-CONTROLLED-PACKAGE-TABLE-DISCOVERY",
+    "lastEvidenceSummary": "D20 selected controlled package/table discovery after D19 proved Page 8615 but not Table 325 visibility.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "D21 is the narrowest remaining VAT matrix route before either field-mapping decision or parking the matrix.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D22-VAT-MATRIX-PACKAGE-FIELD-MAPPING-DECISION",
+        "status": "replace-with-better-case",
+        "reason": "If Table 325 is still not visible, the next step should decide cleanup/park/alternative route instead of field mapping."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Posting Groups wait for correct VAT matrix or an explicit park/replacement decision."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for VAT/posting defaults."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness waits for VAT matrix, Posting Groups and dimensions/defaults."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-027D22-VAT-MATRIX-PACKAGE-ROUTE-PARK-OR-CLEANUP-DECISION",
+    "whySelectedNextCaseIsBest": "D21 did not surface Table 325 clearly; the next useful step is a route/cleanup/park decision instead of another package click.",
+    "risksBeforeNextCase": [
+      "Temporary configuration-package metadata may remain and must be classified or cleaned only in a separate case.",
+      "No package data may be imported, exported, validated, applied or published.",
+      "No VAT matrix values may be typed until a later explicit write case unlocks them."
+    ],
+    "requiredPreparation": [
+      "Review D21 screenshots and action inventory.",
+      "Do not treat package metadata as VAT setup.",
+      "Create a cleanup/park decision if the temporary package remains."
+    ]
+  },
+  "createdAt": "2026-07-01T12:00:00.000Z"
+}

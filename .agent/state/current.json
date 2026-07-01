@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T11:00:00.000Z",
+  "updatedAt": "2026-07-01T12:00:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-vat-matrix-controlled-package-table-discovery",
-  "activeCase": "TARGET-027D21-VAT-MATRIX-CONTROLLED-PACKAGE-TABLE-DISCOVERY",
-  "active_case_file": ".agent/state/cases/target-027d21-vat-matrix-controlled-package-table-discovery.json",
-  "lastReferenceCase": "TARGET-027D20-VAT-MATRIX-CONFIG-PACKAGE-TABLE-325-ROUTE-DECISION",
-  "lastReferenceCaseFile": ".agent/state/cases/target-027d20-vat-matrix-config-package-table-325-route-decision.json",
+  "activeArea": "universaarl-vat-matrix-package-route-park-or-cleanup-decision",
+  "activeCase": "TARGET-027D22-VAT-MATRIX-PACKAGE-ROUTE-PARK-OR-CLEANUP-DECISION",
+  "active_case_file": ".agent/state/cases/target-027d22-vat-matrix-package-route-park-or-cleanup-decision.json",
+  "lastReferenceCase": "TARGET-027D21-VAT-MATRIX-CONTROLLED-PACKAGE-TABLE-DISCOVERY",
+  "lastReferenceCaseFile": ".agent/state/cases/target-027d21-vat-matrix-controlled-package-table-discovery.json",
   "mode": "universaarl-target-execution",
   "requiresStrongModel": true,
   "requiredPreflightChecks": [
@@ -19,16 +19,11 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-configuration-packages-page-8615",
-    "prove-playthru-instance",
-    "prove-universaarl-company",
-    "capture-before-screenshot-qa",
-    "create-temporary-configuration-package-metadata-if-required",
-    "attempt-table-325-discovery-without-import-export-validate-apply",
-    "capture-package-table-field-context",
-    "capture-after-or-blocked-screenshot-qa",
-    "decide-cleanup-or-keep-temporary-package-with-reason",
-    "write-result-json"
+    "read-d21-result-and-screenshots-metadata",
+    "classify-temporary-package-metadata",
+    "decide-cleanup-keep-or-park-route",
+    "define-next-narrow-case",
+    "update-state-queue-atlas-catalog"
   ],
   "forbiddenActions": [
     "commit-secrets",
@@ -37,6 +32,8 @@
     "book-claim-without-evidence",
     "leave-instance",
     "company-switch",
+    "open-business-central",
+    "run-playwright",
     "import-from-excel",
     "export-to-excel",
     "validate-package",
@@ -45,6 +42,7 @@
     "type-INLAND-or-VAT19",
     "type-19-3806-or-1406",
     "write-or-save-vat-matrix-values",
+    "delete-package-without-cleanup-case",
     "create-master-data",
     "create-document-or-draft",
     "preview-posting",
@@ -52,8 +50,8 @@
     "api-shortcut",
     "claim-german-vat-final-proof"
   ],
-  "nextCase": "TARGET-027D21-VAT-MATRIX-CONTROLLED-PACKAGE-TABLE-DISCOVERY",
-  "nextStep": "Run D21 controlled Configuration Package/Table 325 discovery with screenshot QA, no import/export/validate/apply/Edit-in-Excel and no VAT matrix values.",
+  "nextCase": "TARGET-027D22-VAT-MATRIX-PACKAGE-ROUTE-PARK-OR-CLEANUP-DECISION",
+  "nextStep": "Run local D22 decision: classify U-VAT325-DISC metadata and decide cleanup/keep/park or another standard VAT route before any further live package action.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -236,7 +234,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "D20 selected a controlled D21 Configuration Package/Table-325 discovery as the next bounded route. D21 may only touch temporary package metadata if needed; it must not import, export, validate, apply, publish, type VAT matrix values, preview or post.",
+  "currentCoverageFocus": "D21 created/observed temporary configuration-package metadata U-VAT325-DISC and stopped before unsafe Table ID edit. No Table 325/VAT Posting Setup route is proven; D22 must decide cleanup/keep/park/alternative route.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -3733,26 +3731,21 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-027D20-VAT-MATRIX-CONFIG-PACKAGE-TABLE-325-ROUTE-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-027D20-VAT-MATRIX-CONFIG-PACKAGE-TABLE-325-ROUTE-DECISION",
-    "lastEvidenceSummary": "D19 proved Page 8615 Konfigurationspakete and dangerous package actions, but no visible Table 325 / VAT Posting Setup line without package metadata.",
+    "currentCase": "TARGET-027D21-VAT-MATRIX-CONTROLLED-PACKAGE-TABLE-DISCOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-027D21-VAT-MATRIX-CONTROLLED-PACKAGE-TABLE-DISCOVERY",
+    "lastEvidenceSummary": "D20 selected controlled package/table discovery after D19 proved Page 8615 but not Table 325 visibility.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "D20 is the required decision point before moving from read-only page context to temporary package/table metadata.",
+    "reason": "D21 is the narrowest remaining VAT matrix route before either field-mapping decision or parking the matrix.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027D21-VAT-MATRIX-CONTROLLED-PACKAGE-TABLE-DISCOVERY",
-        "status": "ready-next",
-        "reason": "One bounded UI discovery can prove whether Table 325 can be added without import/apply/export/publish."
-      },
-      {
         "caseId": "TARGET-027D22-VAT-MATRIX-PACKAGE-FIELD-MAPPING-DECISION",
-        "status": "ready-after-current",
-        "reason": "Only valid if D21 proves package/table context and captures fields safely."
+        "status": "replace-with-better-case",
+        "reason": "If Table 325 is still not visible, the next step should decide cleanup/park/alternative route instead of field mapping."
       },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Posting Groups wait for correct VAT matrix or a documented park/replacement decision."
+        "reason": "Posting Groups wait for correct VAT matrix or an explicit park/replacement decision."
       },
       {
         "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
@@ -3765,23 +3758,18 @@
         "reason": "Foundation readiness waits for VAT matrix, Posting Groups and dimensions/defaults."
       }
     ],
-    "queueChangesMade": [
-      "Selected TARGET-027D21 as controlled package/table discovery.",
-      "Kept TARGET-028, TARGET-029 and TARGET-030 blocked behind VAT/setup readiness."
-    ],
-    "selectedNextCase": "TARGET-027D21-VAT-MATRIX-CONTROLLED-PACKAGE-TABLE-DISCOVERY",
-    "whySelectedNextCaseIsBest": "It advances the VAT setup blocker without jumping directly to import/apply/write actions.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-027D22-VAT-MATRIX-PACKAGE-ROUTE-PARK-OR-CLEANUP-DECISION",
+    "whySelectedNextCaseIsBest": "D21 did not surface Table 325 clearly; the next useful step is a route/cleanup/park decision instead of another package click.",
     "risksBeforeNextCase": [
-      "Creating a configuration package or package-table row is admin metadata and needs before/after/reopen evidence.",
+      "Temporary configuration-package metadata may remain and must be classified or cleaned only in a separate case.",
       "No package data may be imported, exported, validated, applied or published.",
-      "No VAT matrix values may be typed in D21 unless a later case explicitly unlocks value writing.",
-      "A temporary package must either be cleaned up with proof or intentionally kept with reason and status."
+      "No VAT matrix values may be typed until a later explicit write case unlocks them."
     ],
     "requiredPreparation": [
-      "Use Page 8615 direct route from D19.",
-      "Capture screenshot QA before clicking any action.",
-      "If Neu creates a package card/list row, use a clearly scoped package code such as U-VAT325-DISCOVERY.",
-      "Stop immediately if BC opens import/export/apply/validate/Edit-in-Excel surfaces."
+      "Review D21 screenshots and action inventory.",
+      "Do not treat package metadata as VAT setup.",
+      "Create a cleanup/park decision if the temporary package remains."
     ]
   },
   "permissionBlocker": {
@@ -7055,5 +7043,28 @@
     "selectedRoute": "TARGET-027D21-VAT-MATRIX-CONTROLLED-PACKAGE-TABLE-DISCOVERY",
     "reason": "The VAT matrix blocks Posting Groups and master data. D19 proved the Configuration Packages page but not Table 325 visibility. The next useful step is one bounded UI discovery that may create temporary package metadata only if the page, action, and cleanup/keep boundaries are explicit.",
     "nextCase": "TARGET-027D21-VAT-MATRIX-CONTROLLED-PACKAGE-TABLE-DISCOVERY"
+  },
+  "latestVatMatrixPackageRouteDiscovery": {
+    "caseId": "TARGET-027D21-VAT-MATRIX-CONTROLLED-PACKAGE-TABLE-DISCOVERY",
+    "status": "blocked-controlled-package-discovery",
+    "completedAt": "2026-07-01T12:00:00.000Z",
+    "sourceInstance": "playthru",
+    "sourceCompany": "UNIVERSAARL-DE",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d21-vat-matrix-controlled-package-table-discovery/TARGET-027D21-result.json",
+    "evidencePath": "playwright/projects/fibu-book5/evidence/target-027d21-vat-matrix-controlled-package-table-discovery/",
+    "packageCode": "U-VAT325-DISC",
+    "packageName": "VAT 325 Discovery",
+    "setupChanged": true,
+    "setupChangeAttempted": true,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "blockedBy": [
+      "Temporary package metadata U-VAT325-DISC is already visible, but New opened a blank card/table context; stop before duplicate package or unsafe Table ID edit."
+    ],
+    "hasTable325Signal": false,
+    "nextCase": "TARGET-027D22-VAT-MATRIX-PACKAGE-ROUTE-PARK-OR-CLEANUP-DECISION"
   }
 }

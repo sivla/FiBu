@@ -294,6 +294,17 @@ Fuer Universaarl folgt daraus:
 - D21 darf keine VAT-Matrixwerte schreiben und darf kein Paket importieren, exportieren, validieren, anwenden oder per Excel veroeffentlichen.
 - Eine Paket-/Tabellen-Metadatenzeile ist noch kein USt-Setup-Erfolg. Erfolg ist nur: Table 325/Feldkontext sichtbar oder sauber blockiert, mit Screenshot-QA und Cleanup-/Keep-Entscheidung.
 
+## TARGET-027D21 Configuration Package Metadata Discovery
+
+D21 nutzt keine neue externe Quelle. Die bestehende Microsoft-Learn-Basis bleibt gueltig: Configuration Packages sind ein Standardmechanismus fuer Setup-/Tabellendaten, aber Import, Export, Validate, Apply und Excel-Pfade koennen wirksam werden. Die neue Wahrheit stammt aus Universaarl-UI-Evidence:
+
+- `U-VAT325-DISC` / `VAT 325 Discovery` ist als temporaere Paketmetadaten sichtbar.
+- Der sichtbare Text `325` im Paketcode ist kein Table-325-Beweis.
+- Die aktive Paketkarte kann nach `Neu` einen leeren/zweiten Kontext zeigen, waehrend die bestehende Paketzeile im Hintergrund sichtbar ist.
+- Die Paketkarte zeigt weiterhin wirksame Aktionen wie Paket uebernehmen, Paket pruefen, Excel-Import/Export und Tabellen abrufen.
+- Deshalb ist D21 blockiert, bevor `Tabellen-ID 325` geschrieben oder eine Aktion bestaetigt wird.
+- Der naechste Case ist `TARGET-027D22-VAT-MATRIX-PACKAGE-ROUTE-PARK-OR-CLEANUP-DECISION`.
+
 ## TARGET-026D Kontenplan-Quellenentscheidung
 
 TARGET-026B zeigt in `UNIVERSAARL-DE` einen erreichbaren, aber leeren/insufficient Kontenplan ohne sichtbare USt-Konto-Kandidaten. Microsoft Learn `View the chart of accounts` und `Set up or change the chart of accounts` stuetzen die Produktlogik: Der Kontenplan ist das Verzeichnis der Finanzkonten und kann fuer die Company eingerichtet/geaendert werden.
