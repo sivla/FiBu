@@ -348,6 +348,16 @@ Die Universaarl-Evidence D14-D23B zeigt keinen sicheren Standardweg, der eine ko
 - `TARGET-028` darf Posting-Group-Seiten nur read-only revalidieren.
 - Posting Groups, Stammdaten, Preview Posting und Posting bleiben bis zu eigenen Cases gesperrt.
 
+## TARGET-031A SKR04 Forderungskonto-Korrektur
+
+TARGET-031 hat Page 16 und Page 110 read-only geoeffnet und damit gezeigt: `1200` ist in `UNIVERSAARL-DE` sichtbar, aber als `Bank Saarland` benannt. `1400 Forderungen aus Lieferungen und Leistungen` ist nicht sichtbar. Der nachgelagerte Quellencheck korrigiert die naechste Aktion:
+
+- Fuer die SKR04-orientierte Universaarl-Struktur ist `1200 Forderungen aus Lieferungen und Leistungen` der Forderungsanker.
+- `1400` darf nicht als neues SKR04-Forderungskonto angelegt werden; das waere eine Vermischung mit SKR03-/Falschmapping-Sprache.
+- `1406` bleibt Vorsteuer und darf nicht als Debitorensammelkonto verwendet werden.
+- TARGET-031A muss deshalb `1200` korrigieren oder sichtbar bestaetigen: Name `Forderungen aus Lieferungen und Leistungen`, `Bilanz`, Kontoart `Buchung`, Reopen-Proof.
+- Erst danach darf ein separater Customer-Posting-Group-Write-Gate Page 110 beschreiben.
+
 ## URLs
 
 - https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company
@@ -374,6 +384,8 @@ Die Universaarl-Evidence D14-D23B zeigt keinen sicheren Standardweg, der eine ko
 - https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/testing-strategy-planning
 - https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/testing-strategy-test-types
 - https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/prepare-to-go-live
+- https://help-center.apps.datev.de/documents/1029628
+- https://www.collmex.de/skr04.pdf
 - https://www.gesetze-im-internet.de/ustg_1980/__14.html
 - https://www.gesetze-im-internet.de/ustg_1980/__14b.html
 - https://www.gesetze-im-internet.de/ao_1977/__146.html

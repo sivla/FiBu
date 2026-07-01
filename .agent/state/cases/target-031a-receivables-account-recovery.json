@@ -5,8 +5,8 @@
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "title": "Receivables account 1400 recovery before customer posting group write",
-  "purpose": "Create or visibly confirm account 1400 Forderungen aus Lieferungen und Leistungen as Bilanz/Buchung with reopen proof before any Customer Posting Group setup write.",
+  "title": "Receivables account 1200 recovery before customer posting group write",
+  "purpose": "Correct or visibly confirm account 1200 Forderungen aus Lieferungen und Leistungen as Bilanz/Buchung with reopen proof before any Customer Posting Group setup write.",
   "sourceCases": [
     "TARGET-031-CUSTOMER-POSTING-GROUP-RECEIVABLES-GATE",
     "TARGET-026I-SKR04-MINIMAL-ACCOUNT-MAPPING"
@@ -28,8 +28,8 @@
     "open-playthru-business-central",
     "confirm-UNIVERSAARL-DE-context",
     "open-chart-of-accounts-page-16",
-    "create-or-confirm-only-account-1400",
-    "set-bilanz-and-buchung-only-for-account-1400-if-needed",
+    "correct-or-confirm-only-account-1200",
+    "set-bilanz-and-buchung-only-for-account-1200-if-needed",
     "capture-before-after-reopen-proof",
     "write-result-json-and-next-step-decision"
   ],
@@ -47,6 +47,7 @@
     "post",
     "payment",
     "api-shortcut",
+    "create-account-1400-for-skr04-receivables",
     "use-1406-as-receivables-account",
     "claim-posting-readiness-from-account-only",
     "claim-german-vat-final-proof",
@@ -57,19 +58,20 @@
   ],
   "entryCriteria": [
     "TARGET-031 opened Chart of Accounts Page 16 and Customer Posting Groups Page 110 read-only.",
-    "TARGET-031 did not find visible account 1400 in the current chart screenshot/text.",
-    "Customer Posting Group write is blocked until a receivables G/L account is visibly proven."
+    "TARGET-031 found account 1200 visible but named Bank Saarland, which is not acceptable as receivables account evidence.",
+    "Source check confirms SKR04 receivables belong to the 1200 range, not a new 1400 account.",
+    "Customer Posting Group write is blocked until the receivables G/L account is visibly proven."
   ],
   "targetAccount": {
-    "no": "1400",
+    "no": "1200",
     "name": "Forderungen aus Lieferungen und Leistungen",
     "incomeBalance": "Bilanz",
     "accountType": "Buchung",
-    "purpose": "Debitorensammelkonto candidate for Customer Posting Groups"
+    "purpose": "SKR04 Debitorensammelkonto candidate for Customer Posting Groups"
   },
   "acceptanceCriteria": [
-    "Account 1400 is visible after reopen with name Forderungen aus Lieferungen und Leistungen.",
-    "Account 1400 is visible as Bilanz and Kontoart Buchung.",
+    "Account 1200 is visible after reopen with name Forderungen aus Lieferungen und Leistungen.",
+    "Account 1200 is visible as Bilanz and Kontoart Buchung.",
     "No Customer Posting Group, master data, document draft, Preview Posting, Posting or API shortcut is executed.",
     "The next case is TARGET-031B only if the account is visibly proven."
   ],
