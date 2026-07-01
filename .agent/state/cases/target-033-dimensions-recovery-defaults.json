@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Dimensions recovery and defaults boundary",
+  "purpose": "Continue W1 Foundation with a narrow Dimensions recovery/defaults case after the General Posting Setup Page 314 route was parked.",
+  "sourceCases": [
+    "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
+    "TARGET-021-DIMENSIONS-FOUNDATION-READONLY",
+    "TARGET-023B-DIMENSION-VALUES-REOPEN-PROOF",
+    "TARGET-024H-GLOBAL-DIMENSIONS-PARK-AND-MASTERDATA-SEQUENCE"
+  ],
+  "effectiveBcActionsAllowed": true,
+  "mayRunPlaywright": true,
+  "taskClass": "wizard_work",
+  "smartDecision": {
+    "whyNow": "Dimensions are a separate W1 Foundation dependency and can be recovered without repeating the blocked Page 314 route.",
+    "fieldsAllowedToChange": [
+      "Only explicitly selected dimension fields or dimension values if the case narrows them after source/evidence review."
+    ],
+    "fieldsNotTouched": [
+      "General Posting Setup",
+      "VAT Posting Setup",
+      "Inventory Posting Setup",
+      "Master Data",
+      "Documents or drafts",
+      "Preview Posting",
+      "Posting",
+      "Payment",
+      "API shortcut"
+    ],
+    "risk": "Repeating previously blocked global dimension assignment routes would create churn without proof.",
+    "fallback": "If the dimension route is unclear, capture read-only UI diagnostics and park defaults before master data."
+  },
+  "allowedActions": [
+    "review-existing-dimension-evidence",
+    "open-playthru-business-central-if-needed",
+    "confirm-UNIVERSAARL-DE-context",
+    "inspect-dimensions-pages",
+    "write-narrow-result-json-and-next-step-decision"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "change-general-posting-setup",
+    "change-vat-setup",
+    "change-inventory-posting-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-posting-readiness",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-032F parked the Page 314 General Posting Setup route.",
+    "Existing TARGET-021 to TARGET-024H dimension evidence is reviewed before any write."
+  ],
+  "acceptanceCriteria": [
+    "Dimensions recovery/defaults route is either proven with reopen proof or parked with a specific blocker.",
+    "No General Posting Setup, VAT, master data, draft, Preview Posting or Posting occurs.",
+    "Next-step decision keeps Foundation Ready and Master Data locked unless explicit gates are met."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+    "lastEvidenceSummary": "TARGET-032F parked Page 314 General Posting Setup route without BC execution.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Dimensions are independent from the blocked Page 314 write route and remain a W1 Foundation prerequisite.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "ready-next",
+        "reason": "Dimensions can continue as a separate W1 Foundation dependency while Page 314 remains a documented boundary."
+      },
+      {
+        "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation cannot be ready while General Posting Setup and VAT setup are parked or incomplete."
+      },
+      {
+        "caseId": "TARGET-035-MASTER-DATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data remains locked until posting groups, VAT and dimensions have explicit boundaries or proven setup."
+      },
+      {
+        "caseId": "TARGET-036-FIRST-PREVIEW-GATE",
+        "status": "blocked",
+        "reason": "No Preview Posting before setup and master data gates are deliberately satisfied."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+    "whySelectedNextCaseIsBest": "It avoids another unsafe Page 314 retry and advances an independent Foundation dependency that is already known from prior Universaarl dimension evidence.",
+    "risksBeforeNextCase": [
+      "Do not claim posting readiness while Page 314 remains parked.",
+      "Do not create master data, Preview Posting or Posting from dimension setup alone.",
+      "Do not assign global dimensions by repeating previously blocked Page 577/Page 118 routes without a new hypothesis."
+    ],
+    "requiredPreparation": [
+      "Review existing TARGET-021 to TARGET-024H dimension evidence.",
+      "Use only a narrow Dimensions recovery/defaults case before any master data."
+    ]
+  },
+  "createdAt": "2026-07-01T08:33:32.134Z"
+}

@@ -1,19 +1,34 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
-  "status": "done-page314-parked",
-  "runType": "local-decision-no-bc",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "TARGET-032F parked the Page 314 General Posting Setup write route after TARGET-032D and TARGET-032E failed to prove a trusted INLAND/WAREN/4400/5400 route. No BC, Playwright, setup change, master data, draft, Preview Posting, Posting, Payment or API shortcut occurred.",
-  "changedInBC": false,
+  "source": "local-decision",
+  "resultStatus": "done-page314-parked",
+  "page": "General Posting Setup / Buchungsmatrix Einrichtung Page 314",
+  "actionsTaken": [
+    "Reviewed TARGET-032B/032C/032D/032E result summaries.",
+    "Selected park decision for the Page 314 INLAND/WAREN/4400/5400 write route.",
+    "Selected Dimensions recovery/defaults as the next bounded W1 Foundation case."
+  ],
+  "actionsNotTaken": [
+    "No Business Central UI opened.",
+    "No Playwright run executed.",
+    "No Page 314 edit route repeated.",
+    "No Page 315 route used as General Posting Setup card.",
+    "No setup value typed or changed.",
+    "No master data, draft, Preview Posting, Posting, Payment or API shortcut."
+  ],
   "setupChanged": false,
+  "setupChangeAttempted": false,
   "masterDataChanged": false,
   "draftCreated": false,
   "previewPosting": false,
   "posted": false,
   "payment": false,
   "apiShortcut": false,
+  "companySwitch": false,
+  "screenshots": [],
   "proved": [
     "The current safest decision is to park the Page 314 General Posting Setup write route until a genuinely new, source-backed route exists.",
     "INLAND and WAREN remain proven prerequisite posting groups from TARGET-032B, but not a complete General Posting Setup matrix row.",
@@ -35,10 +50,11 @@
     "Future Page 314 work needs a materially new route such as a verified card/action path, personalization/page inspection proof, or source-backed UI discovery.",
     "Dimensions may proceed only as an independent Foundation dependency; it does not unlock master data or posting by itself."
   ],
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-032f-general-posting-setup-park-or-source-route-decision/TARGET-032F-result.json",
-  "nextCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
-  "nextStep": "Run TARGET-033 as a narrow Dimensions recovery/defaults case after Page 314 General Posting Setup was parked; do not unlock master data, Preview Posting or Posting.",
-  "nextStepDecisionCard": {
+  "migrationRelevance": "needed-for-german-final",
+  "sourceCompany": "UNIVERSAARL-DE",
+  "targetGermanCompanyImpact": "Universaarl final track keeps Page 314 as a visible setup boundary until a safe route or separate setup mechanism is proven.",
+  "finalScreenshotNeeded": true,
+  "nextStepDecision": {
     "currentCase": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
     "plannedNextCaseBeforeReview": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
     "lastEvidenceSummary": "TARGET-032B proved INLAND and WAREN posting groups after reopen; TARGET-032C mapped Page 314 headers; TARGET-032D and TARGET-032E blocked the tested Page 314 write/card routes without changing setup.",
@@ -87,6 +103,9 @@
       "Use only a narrow Dimensions recovery/defaults case before any master data."
     ]
   },
-  "updatedAt": "2026-07-01T08:33:32.134Z",
-  "runId": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION"
+  "nextCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "statePatch": {},
+  "createdAt": "2026-07-01T08:33:32.134Z"
 }

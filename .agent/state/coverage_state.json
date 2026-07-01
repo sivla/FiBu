@@ -789,11 +789,11 @@
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
   "updatedAt": "2026-07-01T08:24:32.854Z",
-  "activeArea": "universaarl-general-posting-setup-park-or-source-route-decision",
-  "currentBlock": "General Posting Setup Page 314 target row remains blocked: TARGET-032E rejected More Options, Ctrl+Alt+F1 and direct Page 315 as safe write/card routes.",
+  "activeArea": "universaarl-dimensions-recovery-defaults",
+  "currentBlock": "General Posting Setup Page 314 target row is parked after TARGET-032F: no trusted route for INLAND/WAREN/4400/5400 is proven; posting readiness remains locked.",
   "latestPracticalCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
   "latestReviewCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
-  "nextCase": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
+  "nextCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -1894,7 +1894,7 @@
     "nextCase": "FIXEDASSETS-298-FA-DEPRECIATION-BLOCKER-BOOK-SYNC",
     "updatedAt": "2026-06-29T07:09:31.588Z"
   },
-  "nextStep": "Recover visible VAT setup page routes before VAT setup write-gate decision.",
+  "nextStep": "Run TARGET-033 Dimensions recovery/defaults with Page 314 General Posting Setup explicitly parked.",
   "warehouse": {
     "chapter": "Kapitel 13",
     "status": "in-progress",
@@ -2344,8 +2344,8 @@
     "finalScreenshotNeeded": true,
     "updatedAt": "2026-06-29T23:59:00+02:00"
   },
-  "activeCase": "PREP-032-CH04-ERP-BASICS-UNIVERSAARL-REWRITE",
-  "active_case_file": ".agent/state/cases/prep-032-ch04-erp-basics-universaarl-rewrite.json",
+  "activeCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+  "active_case_file": ".agent/state/cases/target-033-dimensions-recovery-defaults.json",
   "latestManufacturing005": {
     "caseId": "MANUFACTURING-005-CHAPTER14-LAB-VS-TARGET-CLEANUP",
     "status": [
@@ -3046,49 +3046,52 @@
     "resultPath": "playwright/projects/fibu-book5/evidence/prep-046-bookmaster-starter-data-universaarl-cleanup/PREP-046-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
-    "plannedNextCaseBeforeReview": "TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT",
-    "lastEvidenceSummary": "TARGET-016M proved all U-* Number Series Lines with Startnr./Endnr. after reopen.",
+    "currentCase": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
+    "lastEvidenceSummary": "TARGET-032B proved INLAND and WAREN posting groups after reopen; TARGET-032C mapped Page 314 headers; TARGET-032D and TARGET-032E blocked the tested Page 314 write/card routes without changing setup.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Setup assignment is the direct prerequisite before master data or document setup can use Universaarl numbering.",
+    "reason": "The repeated Page 314 routes did not produce a trusted saved INLAND/WAREN/4400/5400 matrix row. A park decision is safer than another blind UI retry.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
-        "status": "needs-ui-discovery-first",
-        "reason": "Blocked assignment fields need UI diagnostics before setup can be considered complete."
+        "caseId": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
+        "status": "ready-next",
+        "reason": "Local decision case; no BC or setup change needed."
       },
       {
-        "caseId": "TARGET-018-CUSTOMER-MASTERDATA-PREFLIGHT",
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "ready-next",
+        "reason": "Dimensions can continue as a separate W1 Foundation dependency while Page 314 remains a documented boundary."
+      },
+      {
+        "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Master data waits for posting groups, VAT and dimensions after numbering."
+        "reason": "Foundation cannot be ready while General Posting Setup and VAT setup are parked or incomplete."
       },
       {
-        "caseId": "TARGET-020-VAT-SETUP-READINESS",
-        "status": "ready-after-current",
-        "reason": "VAT setup follows posting group preflight before any document preview."
-      },
-      {
-        "caseId": "TARGET-021-DIMENSIONS-FOUNDATION",
-        "status": "ready-after-current",
-        "reason": "Dimensions should be available before rich process evidence."
-      },
-      {
-        "caseId": "TARGET-022-CORE-MASTERDATA-PLAN",
+        "caseId": "TARGET-035-MASTER-DATA-FIRST-CUSTOMER-VENDOR-ITEM",
         "status": "needs-setup-first",
-        "reason": "Customers, vendors and items should use final setup mappings."
+        "reason": "Master data remains locked until posting groups, VAT and dimensions have explicit boundaries or proven setup."
+      },
+      {
+        "caseId": "TARGET-036-FIRST-PREVIEW-GATE",
+        "status": "blocked",
+        "reason": "No Preview Posting before setup and master data gates are deliberately satisfied."
       }
     ],
     "queueChangesMade": [
-      "Selected TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY based on TARGET-017 assignment result."
+      "Marked TARGET-032F done as a no-BC park decision.",
+      "Added TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS as the next planned Foundation case."
     ],
-    "selectedNextCase": "TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY",
-    "whySelectedNextCaseIsBest": "The safest next step is field discovery for hidden or ambiguous setup fields, not master data.",
+    "selectedNextCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+    "whySelectedNextCaseIsBest": "It avoids another unsafe Page 314 retry and advances an independent Foundation dependency that is already known from prior Universaarl dimension evidence.",
     "risksBeforeNextCase": [
-      "Do not create customers/vendors/items until numbering and posting setup are known.",
-      "Do not claim legal numbering compliance from this technical setup alone."
+      "Do not claim posting readiness while Page 314 remains parked.",
+      "Do not create master data, Preview Posting or Posting from dimension setup alone.",
+      "Do not assign global dimensions by repeating previously blocked Page 577/Page 118 routes without a new hypothesis."
     ],
     "requiredPreparation": [
-      "Use Page Inspection, Personalize or field diagnostics for only the blocked setup fields."
+      "Review existing TARGET-021 to TARGET-024H dimension evidence.",
+      "Use only a narrow Dimensions recovery/defaults case before any master data."
     ]
   },
   "latestTarget009CompanyCreation": {
@@ -4467,5 +4470,26 @@
       "playwright/projects/fibu-book5/img/target-032e-050-page315-card-candidate.png"
     ],
     "nextCase": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION"
+  },
+  "latestGeneralPostingSetupParkDecision": {
+    "caseId": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
+    "status": "done-page314-parked",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "decision": "park-page314-general-posting-setup-write-route",
+    "provenPrerequisites": [
+      "General Business Posting Group INLAND",
+      "General Product Posting Group WAREN"
+    ],
+    "parkedBoundary": "No trusted Page 314 write/card route for INLAND/WAREN/4400/5400 after TARGET-032D and TARGET-032E.",
+    "notProved": [
+      "No INLAND/WAREN General Posting Setup row with Sales Account 4400 and Purchase Account 5400 is saved or reopened.",
+      "No VAT Posting Setup is proven.",
+      "No Inventory Posting Setup is proven.",
+      "No posting readiness, Preview Posting, G/L Entries, VAT Entries or Value Entries are proven.",
+      "No final SKR04, tax advisor, German VAT or compliance claim is proven."
+    ],
+    "nextCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+    "updatedAt": "2026-07-01T08:33:32.134Z"
   }
 }

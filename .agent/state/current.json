@@ -5,9 +5,9 @@
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-general-posting-setup-park-or-source-route-decision",
-  "activeCase": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
-  "active_case_file": ".agent/state/cases/target-032f-general-posting-setup-park-or-source-route-decision.json",
+  "activeArea": "universaarl-dimensions-recovery-defaults",
+  "activeCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+  "active_case_file": ".agent/state/cases/target-033-dimensions-recovery-defaults.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -45,8 +45,8 @@
     "fake-evidence",
     "book-claim-without-evidence"
   ],
-  "nextCase": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
-  "nextStep": "Run TARGET-032F as a no-BC decision: park Page 314 write route or select a source-backed alternative; do not repeat List Edit/New, Ctrl+Insert or Page 315.",
+  "nextCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+  "nextStep": "Run TARGET-033 as a narrow Dimensions recovery/defaults case after Page 314 General Posting Setup was parked; do not unlock master data, Preview Posting or Posting.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -229,7 +229,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "TARGET-032E proved that the tested Page 314 alternative probes did not produce a safe card/write route: More options only widened the command bar, Ctrl+Alt+F1 did not provide a stable Page 314 technical proof, and direct Page 315 is MwSt.-Posten/VAT Entries, not General Posting Setup.",
+  "currentCoverageFocus": "TARGET-032F parks the Page 314 INLAND/WAREN/4400/5400 General Posting Setup route. INLAND and WAREN groups remain proven prerequisites, but no General Posting Setup row or posting readiness is proven.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -1351,7 +1351,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "universaarl-skr04-balance-sheet-accounts-fit",
-  "lastCompletedCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+  "lastCompletedCase": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3721,48 +3721,52 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
-    "lastEvidenceSummary": "TARGET-032D proved that Page 314 Edit List/New and Ctrl+Insert do not expose trusted editable inputs and no values were typed.",
+    "currentCase": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
+    "lastEvidenceSummary": "TARGET-032B proved INLAND and WAREN posting groups after reopen; TARGET-032C mapped Page 314 headers; TARGET-032D and TARGET-032E blocked the tested Page 314 write/card routes without changing setup.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The case tests a materially different Page 314 route before any further write attempt.",
+    "reason": "The repeated Page 314 routes did not produce a trusted saved INLAND/WAREN/4400/5400 matrix row. A park decision is safer than another blind UI retry.",
     "lookaheadReviewed": [
-      {
-        "caseId": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
-        "status": "blocked",
-        "reason": "No route candidate was good enough."
-      },
       {
         "caseId": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
         "status": "ready-next",
-        "reason": "A park/source-route decision is needed to avoid repeating weak UI routes."
+        "reason": "Local decision case; no BC or setup change needed."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
-        "status": "needs-setup-first",
-        "reason": "Dimensions should wait until Page 314 is solved or consciously parked."
+        "status": "ready-next",
+        "reason": "Dimensions can continue as a separate W1 Foundation dependency while Page 314 remains a documented boundary."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Foundation cannot be ready while the General Posting Setup matrix row is unresolved."
+        "reason": "Foundation cannot be ready while General Posting Setup and VAT setup are parked or incomplete."
       },
       {
         "caseId": "TARGET-035-MASTER-DATA-FIRST-CUSTOMER-VENDOR-ITEM",
         "status": "needs-setup-first",
-        "reason": "Master data remains locked until posting groups, VAT and dimensions are sufficient."
+        "reason": "Master data remains locked until posting groups, VAT and dimensions have explicit boundaries or proven setup."
+      },
+      {
+        "caseId": "TARGET-036-FIRST-PREVIEW-GATE",
+        "status": "blocked",
+        "reason": "No Preview Posting before setup and master data gates are deliberately satisfied."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
-    "whySelectedNextCaseIsBest": "It prevents another blind UI retry and forces a park/source-route decision.",
+    "queueChangesMade": [
+      "Marked TARGET-032F done as a no-BC park decision.",
+      "Added TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS as the next planned Foundation case."
+    ],
+    "selectedNextCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+    "whySelectedNextCaseIsBest": "It avoids another unsafe Page 314 retry and advances an independent Foundation dependency that is already known from prior Universaarl dimension evidence.",
     "risksBeforeNextCase": [
-      "Do not type 4400/5400 without a trusted card or field route.",
-      "Do not claim posting readiness.",
-      "Do not create master data, Preview Posting or Posting."
+      "Do not claim posting readiness while Page 314 remains parked.",
+      "Do not create master data, Preview Posting or Posting from dimension setup alone.",
+      "Do not assign global dimensions by repeating previously blocked Page 577/Page 118 routes without a new hypothesis."
     ],
     "requiredPreparation": [
-      "Review 032E action inventory, tooltip screenshots, Page Inspection and Page 315 card-candidate screenshot."
+      "Review existing TARGET-021 to TARGET-024H dimension evidence.",
+      "Use only a narrow Dimensions recovery/defaults case before any master data."
     ]
   },
   "permissionBlocker": {
@@ -7265,7 +7269,7 @@
     "currentVisibleText": "1200 Forderungen aus Lieferungen und Leistungen Bilanz Buchung",
     "correctedReason": "SKR04-oriented Universaarl foundation must not create a new 1400 receivables account; 1400 belongs to the wrong mapping context for this target."
   },
-  "nextQueueItem": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
+  "nextQueueItem": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
   "openItems": 1,
   "latestCustomerReceivablesSourceCorrection": {
     "caseId": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
@@ -7500,5 +7504,26 @@
       "playwright/projects/fibu-book5/img/target-032e-050-page315-card-candidate.png"
     ],
     "nextCase": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION"
+  },
+  "latestGeneralPostingSetupParkDecision": {
+    "caseId": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
+    "status": "done-page314-parked",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "decision": "park-page314-general-posting-setup-write-route",
+    "provenPrerequisites": [
+      "General Business Posting Group INLAND",
+      "General Product Posting Group WAREN"
+    ],
+    "parkedBoundary": "No trusted Page 314 write/card route for INLAND/WAREN/4400/5400 after TARGET-032D and TARGET-032E.",
+    "notProved": [
+      "No INLAND/WAREN General Posting Setup row with Sales Account 4400 and Purchase Account 5400 is saved or reopened.",
+      "No VAT Posting Setup is proven.",
+      "No Inventory Posting Setup is proven.",
+      "No posting readiness, Preview Posting, G/L Entries, VAT Entries or Value Entries are proven.",
+      "No final SKR04, tax advisor, German VAT or compliance claim is proven."
+    ],
+    "nextCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+    "updatedAt": "2026-07-01T08:33:32.134Z"
   }
 }

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
-  "status": "planned",
+  "status": "done",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -83,49 +83,68 @@
     "No setup value, master data, draft, Preview Posting, Posting, Payment or API shortcut occurs."
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
-    "lastEvidenceSummary": "TARGET-032D proved that Page 314 Edit List/New and Ctrl+Insert do not expose trusted editable inputs and no values were typed.",
+    "currentCase": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
+    "lastEvidenceSummary": "TARGET-032B proved INLAND and WAREN posting groups after reopen; TARGET-032C mapped Page 314 headers; TARGET-032D and TARGET-032E blocked the tested Page 314 write/card routes without changing setup.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The case tests a materially different Page 314 route before any further write attempt.",
+    "reason": "The repeated Page 314 routes did not produce a trusted saved INLAND/WAREN/4400/5400 matrix row. A park decision is safer than another blind UI retry.",
     "lookaheadReviewed": [
-      {
-        "caseId": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
-        "status": "blocked",
-        "reason": "No route candidate was good enough."
-      },
       {
         "caseId": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
         "status": "ready-next",
-        "reason": "A park/source-route decision is needed to avoid repeating weak UI routes."
+        "reason": "Local decision case; no BC or setup change needed."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
-        "status": "needs-setup-first",
-        "reason": "Dimensions should wait until Page 314 is solved or consciously parked."
+        "status": "ready-next",
+        "reason": "Dimensions can continue as a separate W1 Foundation dependency while Page 314 remains a documented boundary."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Foundation cannot be ready while the General Posting Setup matrix row is unresolved."
+        "reason": "Foundation cannot be ready while General Posting Setup and VAT setup are parked or incomplete."
       },
       {
         "caseId": "TARGET-035-MASTER-DATA-FIRST-CUSTOMER-VENDOR-ITEM",
         "status": "needs-setup-first",
-        "reason": "Master data remains locked until posting groups, VAT and dimensions are sufficient."
+        "reason": "Master data remains locked until posting groups, VAT and dimensions have explicit boundaries or proven setup."
+      },
+      {
+        "caseId": "TARGET-036-FIRST-PREVIEW-GATE",
+        "status": "blocked",
+        "reason": "No Preview Posting before setup and master data gates are deliberately satisfied."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
-    "whySelectedNextCaseIsBest": "It prevents another blind UI retry and forces a park/source-route decision.",
+    "queueChangesMade": [
+      "Marked TARGET-032F done as a no-BC park decision.",
+      "Added TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS as the next planned Foundation case."
+    ],
+    "selectedNextCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+    "whySelectedNextCaseIsBest": "It avoids another unsafe Page 314 retry and advances an independent Foundation dependency that is already known from prior Universaarl dimension evidence.",
     "risksBeforeNextCase": [
-      "Do not type 4400/5400 without a trusted card or field route.",
-      "Do not claim posting readiness.",
-      "Do not create master data, Preview Posting or Posting."
+      "Do not claim posting readiness while Page 314 remains parked.",
+      "Do not create master data, Preview Posting or Posting from dimension setup alone.",
+      "Do not assign global dimensions by repeating previously blocked Page 577/Page 118 routes without a new hypothesis."
     ],
     "requiredPreparation": [
-      "Review 032E action inventory, tooltip screenshots, Page Inspection and Page 315 card-candidate screenshot."
+      "Review existing TARGET-021 to TARGET-024H dimension evidence.",
+      "Use only a narrow Dimensions recovery/defaults case before any master data."
     ]
   },
-  "createdAt": "2026-07-01T08:24:32.854Z"
+  "createdAt": "2026-07-01T08:24:32.854Z",
+  "completedAt": "2026-07-01T08:33:32.134Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-032f-general-posting-setup-park-or-source-route-decision/TARGET-032F-result.json",
+  "result": "Page 314 General Posting Setup write route parked; no source-backed alternative selected in 032F.",
+  "decision": "park-page314-general-posting-setup-write-route",
+  "selectedNextCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "blockedBy": [
+    "No trusted Page 314 write/card route exists after the tested Edit List/New, Ctrl+Insert, More Options, Page Inspection shortcut and Page 315 alternatives."
+  ]
 }

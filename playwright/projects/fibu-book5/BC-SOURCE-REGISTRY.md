@@ -393,6 +393,17 @@ TARGET-032E prueft die Microsoft-Learn-Aussage, dass General Posting Setup Kombi
 
 Fuer Universaarl folgt daraus: Der naechste Schritt ist keine weitere Wiederholung von `Neu`, `Liste bearbeiten`, `Strg+Einfuegen` oder Page `315`, sondern eine bewusste Park-/Source-Route-Entscheidung.
 
+## TARGET-032F General Posting Setup Park-Entscheidung
+
+TARGET-032F parkt die Page-314-Schreibroute fuer die Kombination `INLAND` + `WAREN` mit `4400` und `5400`. Die Park-Entscheidung ist kein Setup-Erfolg. Sie bedeutet:
+
+- `INLAND` und `WAREN` bleiben als einzelne Buchungsgruppen bewiesene Voraussetzungen.
+- Die gespeicherte `General Posting Setup`-/Buchungsmatrixzeile ist nicht bewiesen.
+- Page `315` bleibt als Route verworfen, weil sie `MwSt.-Posten` / VAT Entries zeigt.
+- Es darf keine Posting-Readiness, kein Preview-Posting und keine Sachpostenwirkung aus diesem Stand abgeleitet werden.
+
+Fuer Universaarl folgt daraus: Ein spaeterer General-Posting-Setup-Schreibfall braucht eine neue, belastbare Route. Bis dahin duerfen andere W1-Grundlagen wie Dimensionen nur mit dieser Grenze weiterlaufen.
+
 ## URLs
 
 - https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company
