@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE",
+  "id": "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Customer and item posting fields via alternative standard page route",
+  "purpose": "Find a non-mutating Business Central standard page route for customer and item posting/VAT/payment fields after the card Personalize route stayed blocked.",
+  "sourceCases": [
+    "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
+    "TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY",
+    "TARGET-044B-CUSTOMER-ITEM-POSTING-FIELD-SOURCE-OR-PERSONALIZE-DECISION",
+    "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": true,
+  "taskClass": "wizard_work",
+  "allowedActions": [
+    "open-playthru-business-central",
+    "confirm-UNIVERSAARL-DE-context",
+    "open-customers-list-readonly",
+    "open-items-list-readonly",
+    "open-customer-card-readonly-if-safe",
+    "open-item-card-readonly-if-safe",
+    "open-related-standard-setup-or-statistics-pages-readonly-if-safe",
+    "use-page-inspection-readonly",
+    "hover-buttons-and-capture-tooltips-readonly",
+    "capture-screenshot-qa",
+    "write-result-json-and-next-step-decision",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "click-new-edit-delete-or-post-actions",
+    "change-customer",
+    "change-item",
+    "change-posting-groups",
+    "change-general-posting-setup",
+    "change-vat-posting-setup",
+    "change-inventory-posting-setup",
+    "save-or-apply-personalization",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-o2c-readiness-from-field-visibility",
+    "claim-german-vat-final-proof",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-044C result exists and is blocked without data, setup, personalization, Preview Posting or Posting changes.",
+    "The next route must be materially different from card Personalize.",
+    "The route must start from visible Business Central UI context, not from an unverified stale frame.",
+    "No customer/item/setup write is allowed in this case."
+  ],
+  "targetQuestions": [
+    "Can the Customer list or Customer Card expose posting/VAT/payment fields through a standard read-only page, related page, FactBox or Page Inspection route?",
+    "Can the Item list or Item Card expose item posting, product posting, VAT product posting or costing fields through a standard read-only page, related page, FactBox or Page Inspection route?",
+    "If fields remain hidden, is TARGET-045 still obsolete and should the project return to a setup-first checkpoint instead?"
+  ],
+  "acceptanceCriteria": [
+    "Business Central stays in playthru / UNIVERSAARL-DE.",
+    "Screenshots show the actual target page, not only the Role Center.",
+    "The result separates visible captions, visible values and missing values.",
+    "No customer, item, setup, personalization, document, Preview Posting, Posting, payment or API action occurs.",
+    "The next step is either a source-backed controlled fit case with exact values or a setup/checkpoint fallback."
+  ],
+  "stopConditions": [
+    "Wrong instance or wrong company is visible.",
+    "Only Role Center is visible while the result would claim a target page.",
+    "A dialog asks to save, apply, create, delete, preview, post or edit.",
+    "Any field becomes editable and a value change would be required.",
+    "The route repeats TARGET-044C card Personalize without a new hypothesis."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+    "lastEvidenceSummary": "TARGET-044C tested direct card URL, Role Center list link and filtered list fallback for no-apply Personalize discovery. It stayed blocked before stable target card personalization, with no write or setup change.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "A field write remains premature because Personalize did not prove field availability or target values.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE",
+        "status": "ready-next",
+        "reason": "It is a materially different read-only route after the Personalize blocker."
+      },
+      {
+        "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+        "status": "needs-ui-discovery-first",
+        "reason": "Needs exact fields, target values and a proven write route."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C depends on posting/VAT/payment readiness."
+      },
+      {
+        "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+        "status": "ready-after-current",
+        "reason": "Safe fallback if customer/item field route remains blocked."
+      },
+      {
+        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Vendor numbering remains parked."
+      }
+    ],
+    "queueChangesMade": [
+      "TARGET-044C classified as blocked without data changes.",
+      "TARGET-044D inserted as a read-only alternative route before TARGET-045."
+    ],
+    "selectedNextCase": "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE",
+    "whySelectedNextCaseIsBest": "It keeps learning Business Central UI routes without making a blind customer/item/setup write.",
+    "risksBeforeNextCase": [
+      "Do not repeat the card Personalize route without a new target-page hypothesis.",
+      "Do not claim field value correctness from page visibility.",
+      "Keep Preview Posting and Posting false."
+    ],
+    "requiredPreparation": [
+      "Use TARGET-044C blocked screenshot and result.",
+      "Use TARGET-042/TARGET-044 known working card/list proof.",
+      "Prefer page-visible evidence over hidden DOM text."
+    ]
+  },
+  "createdAt": "2026-07-01T14:05:16.621Z",
+  "updatedAt": "2026-07-01T14:05:16.621Z"
+}

@@ -3668,7 +3668,7 @@
     {
       "id": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
       "order": 10178,
-      "status": "pending",
+      "status": "blocked",
       "priority": "high",
       "area": "universaarl-customer-item-personalize-field-discovery",
       "category": "target-foundation-ui-discovery",
@@ -3680,10 +3680,39 @@
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
       "caseFile": ".agent/state/cases/target-044c-customer-item-fields-personalize-no-apply-discovery.json",
+      "lookaheadStatus": "ready-next",
+      "completedAt": "2026-07-01T14:02:31.619Z",
+      "result": "No-apply Personalize discovery stayed in/returned to Role Center before stable customer card field discovery; no data, setup or personalization changed.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-044c-customer-item-fields-personalize-no-apply-discovery/TARGET-044C-result.json",
+      "nextCase": "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE",
+      "setupChanged": false,
+      "masterDataChanged": false,
+      "previewPosting": false,
+      "posted": false,
+      "apiShortcut": false,
+      "blockedBy": [
+        "customer-u-cust-100: Error: expect(received).toMatch(expected)\n\nExpected pattern: /U-CUST-100|Universaarl Kunde 100/i\nReceived string: {redacted-page-text}"
+      ]
+    },
+    {
+      "id": "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE",
+      "order": 10179,
+      "status": "pending",
+      "priority": "high",
+      "area": "universaarl-customer-item-alternative-field-route",
+      "category": "target-foundation-readonly-ui-discovery",
+      "expectedImpact": "avoid-blind-customer-item-field-write-after-personalize-blocker",
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Find a non-mutating standard page route for customer/item posting fields after card Personalize stayed blocked.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "caseFile": ".agent/state/cases/target-044d-customer-item-posting-fields-alternative-page-route.json",
       "lookaheadStatus": "ready-next"
     }
   ],
-  "lastUpdated": "2026-07-01T18:25:00.000Z",
+  "lastUpdated": "2026-07-01T14:02:31.619Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -3793,60 +3822,60 @@
       ]
     }
   },
-  "updatedAt": "2026-07-01T18:25:00.000Z",
-  "lastCompletedCase": "TARGET-044B-CUSTOMER-ITEM-POSTING-FIELD-SOURCE-OR-PERSONALIZE-DECISION",
-  "nextCase": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
+  "updatedAt": "2026-07-01T14:02:31.619Z",
+  "lastCompletedCase": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
+  "nextCase": "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-044B-CUSTOMER-ITEM-POSTING-FIELD-SOURCE-OR-PERSONALIZE-DECISION",
+    "currentCase": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
-    "lastEvidenceSummary": "TARGET-044 observed U-CUST-100 and U-ITEM-HW100 read-only and captured UI maps/screenshots, but no sufficient active-card write candidate was proven. TARGET-044B selected no-apply Personalize discovery before any write.",
+    "lastEvidenceSummary": "TARGET-044B selected no-apply Personalize discovery because TARGET-044 did not prove a safe field-write route.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "A direct field-write case is still premature. The next safe practical step is to inspect whether the relevant card fields are available through Personalize without applying layout or data changes.",
+    "reason": "Personalize did not produce enough visible field availability to justify a customer/item field write.",
     "lookaheadReviewed": [
-      {
-        "caseId": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
-        "status": "ready-next",
-        "reason": "It answers the hidden-field question without writing data or saving personalization."
-      },
       {
         "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
         "status": "needs-ui-discovery-first",
-        "reason": "Needs exact target values and a proven route before any customer/item field write."
+        "reason": "A write case needs exact target fields, target values and a safe active route."
+      },
+      {
+        "caseId": "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE",
+        "status": "ready-next",
+        "reason": "Alternative page route is needed if the card Personalize route does not expose enough fields."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C still depends on customer/item posting, VAT and payment readiness."
+        "reason": "O2C remains blocked until customer/item posting, VAT and payment readiness is proven."
       },
       {
         "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
         "status": "ready-after-current",
-        "reason": "Useful fallback if Personalize does not expose the needed fields."
+        "reason": "Foundation checkpoint remains a safe fallback if field routes stay blocked."
       },
       {
         "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
         "status": "blocked",
-        "reason": "Vendor numbering remains parked and is not the current direct blocker."
+        "reason": "Vendor numbering is unrelated and remains parked."
       }
     ],
     "queueChangesMade": [
-      "TARGET-044B completed as a local no-BC/no-Playwright decision.",
-      "TARGET-044C selected as the next active case before TARGET-045."
+      "TARGET-044C ran as read-only/no-apply Personalize discovery.",
+      "Selected TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE as next case."
     ],
-    "selectedNextCase": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
-    "whySelectedNextCaseIsBest": "It improves BC UI understanding and Playwright field discovery while keeping customer, item, setup and personalization unchanged.",
+    "selectedNextCase": "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE",
+    "whySelectedNextCaseIsBest": "It avoids a blind field write and moves to a more appropriate standard-page route.",
     "risksBeforeNextCase": [
-      "Do not save or apply personalization.",
-      "Do not edit customer or item fields.",
-      "Do not claim posting readiness from field availability."
+      "Do not claim posting readiness from field availability.",
+      "Do not edit customer, item or setup fields without exact target values.",
+      "Do not start O2C/P2P documents."
     ],
     "requiredPreparation": [
-      "Confirm playthru / UNIVERSAARL-DE before opening cards.",
-      "Use TARGET-044 card routes.",
-      "Capture screenshots/tooltips of Personalize mode and exit without saving."
+      "Review visible/missing field terms from TARGET-044C.",
+      "Name exact target values before any write.",
+      "Keep Preview Posting and Posting locked."
     ]
   },
-  "nextStep": "Run TARGET-044C no-apply Personalize discovery before TARGET-045 field write.",
+  "nextStep": "Run TARGET-044D alternative standard page route before any customer/item field write.",
   "openItems": [
     "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY"
   ],
@@ -3859,53 +3888,53 @@
     "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE"
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-044B-CUSTOMER-ITEM-POSTING-FIELD-SOURCE-OR-PERSONALIZE-DECISION",
+    "currentCase": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
-    "lastEvidenceSummary": "TARGET-044 observed U-CUST-100 and U-ITEM-HW100 read-only and captured UI maps/screenshots, but no sufficient active-card write candidate was proven. TARGET-044B selected no-apply Personalize discovery before any write.",
+    "lastEvidenceSummary": "TARGET-044B selected no-apply Personalize discovery because TARGET-044 did not prove a safe field-write route.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "A direct field-write case is still premature. The next safe practical step is to inspect whether the relevant card fields are available through Personalize without applying layout or data changes.",
+    "reason": "Personalize did not produce enough visible field availability to justify a customer/item field write.",
     "lookaheadReviewed": [
-      {
-        "caseId": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
-        "status": "ready-next",
-        "reason": "It answers the hidden-field question without writing data or saving personalization."
-      },
       {
         "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
         "status": "needs-ui-discovery-first",
-        "reason": "Needs exact target values and a proven route before any customer/item field write."
+        "reason": "A write case needs exact target fields, target values and a safe active route."
+      },
+      {
+        "caseId": "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE",
+        "status": "ready-next",
+        "reason": "Alternative page route is needed if the card Personalize route does not expose enough fields."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C still depends on customer/item posting, VAT and payment readiness."
+        "reason": "O2C remains blocked until customer/item posting, VAT and payment readiness is proven."
       },
       {
         "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
         "status": "ready-after-current",
-        "reason": "Useful fallback if Personalize does not expose the needed fields."
+        "reason": "Foundation checkpoint remains a safe fallback if field routes stay blocked."
       },
       {
         "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
         "status": "blocked",
-        "reason": "Vendor numbering remains parked and is not the current direct blocker."
+        "reason": "Vendor numbering is unrelated and remains parked."
       }
     ],
     "queueChangesMade": [
-      "TARGET-044B completed as a local no-BC/no-Playwright decision.",
-      "TARGET-044C selected as the next active case before TARGET-045."
+      "TARGET-044C ran as read-only/no-apply Personalize discovery.",
+      "Selected TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE as next case."
     ],
-    "selectedNextCase": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
-    "whySelectedNextCaseIsBest": "It improves BC UI understanding and Playwright field discovery while keeping customer, item, setup and personalization unchanged.",
+    "selectedNextCase": "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE",
+    "whySelectedNextCaseIsBest": "It avoids a blind field write and moves to a more appropriate standard-page route.",
     "risksBeforeNextCase": [
-      "Do not save or apply personalization.",
-      "Do not edit customer or item fields.",
-      "Do not claim posting readiness from field availability."
+      "Do not claim posting readiness from field availability.",
+      "Do not edit customer, item or setup fields without exact target values.",
+      "Do not start O2C/P2P documents."
     ],
     "requiredPreparation": [
-      "Confirm playthru / UNIVERSAARL-DE before opening cards.",
-      "Use TARGET-044 card routes.",
-      "Capture screenshots/tooltips of Personalize mode and exit without saving."
+      "Review visible/missing field terms from TARGET-044C.",
+      "Name exact target values before any write.",
+      "Keep Preview Posting and Posting locked."
     ]
   }
 }

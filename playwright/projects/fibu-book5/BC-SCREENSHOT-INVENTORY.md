@@ -659,6 +659,14 @@ TARGET-027D19 ist ein gutes Screenshot-QA-Bild fuer das Kapitel zu Konfiguration
 
 Screenshot-QA zu TARGET-027D6: Die Bilder sind Diagnose- und Entscheidungsbilder, keine Buch-Erfolgsbilder fuer fertiges Umsatzsteuer-Setup. Besonders wichtig ist das rejected Bild `target-027d6-060-personalize-state.png`: Es zeigt, dass `Personalisieren` nicht automatisch die sichtbare Setup-Page betrifft. Fuer das Buch kann daraus eine Debugging-Regel entstehen, aber die VAT-Matrix bleibt bis zu einem kontrollierten Completion- oder Cleanup-Case offen.
 
+## Universaarl Customer/Item Personalize Route TARGET-044C
+
+| Screenshot | Page / Kontext | Company | Zweck | Sichtbar | Interner Beweis | Nicht bewiesen | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-044c-000-customer-u-cust-100-blocked-route.png` | Role Center statt Debitorenkarte | `playthru` / `UNIVERSAARL-DE` | No-apply Personalize-Route fuer `U-CUST-100` pruefen | Der Role Center bleibt sichtbar; keine stabile Debitorenkarte und kein verwertbarer Personalisieren-Kontext | Der Lauf blockiert korrekt ohne Feld-, Setup-, Draft-, Preview- oder Posting-Aenderung | keine Feldverfuegbarkeit, keine Posting-Gruppen, keine O2C/P2P-Reife | `blocked-route`, `do-not-use-as-book-proof` |
+
+Screenshot-QA zu TARGET-044C: Das Bild ist ein Lern- und Blockerbild. Es darf nicht als Buchbild fuer die Debitorenkarte oder fuer verfuegbare Posting-Felder verwendet werden. Der naechste Schritt muss eine andere Standard-Page-Route pruefen, statt denselben Personalize-Pfad zu wiederholen.
+
 ## Universaarl VAT Matrix List Edit Route TARGET-027D8
 
 | Screenshot | Page | Company | Schritt | Was sieht man? | Interner Beweis | Beweist nicht | Status |

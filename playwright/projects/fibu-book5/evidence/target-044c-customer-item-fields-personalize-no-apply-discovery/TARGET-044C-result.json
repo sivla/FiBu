@@ -1,15 +1,36 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
+  "purpose": "autopilot-result-normalized",
   "caseId": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
-  "status": "blocked",
-  "runType": "playwright-readonly-universaarl-customer-item-personalize-no-apply-discovery",
+  "source": "playwright-readonly-personalize-discovery",
+  "resultStatus": "blocked",
+  "runPlanId": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "bcRun": true,
-  "playwrightRun": true,
-  "summary": "TARGET-044C tested direct card URL, Role Center list link and filtered list fallback for no-apply Personalize discovery. The route stayed blocked before stable target-card field discovery; no data, setup, personalization, draft, Preview Posting or Posting changed.",
-  "changedInBC": false,
+  "url": "",
+  "page": "Customer Card and Item Card Personalize no-apply discovery",
+  "actionsTaken": [
+    "Attempted direct filtered card URL for U-CUST-100/U-ITEM-HW100.",
+    "If direct card context was not stable, attempted Role Center list link fallback.",
+    "If Role Center list link fallback was not sufficient, attempted filtered list URL fallback.",
+    "Captured blocked-route screenshot after read-only route failure."
+  ],
+  "actionsNotTaken": [
+    "No New action clicked.",
+    "No Edit action clicked.",
+    "No customer field changed.",
+    "No item field changed.",
+    "No setup value changed.",
+    "No field was added, moved, hidden, saved or applied through Personalize.",
+    "No document or draft created.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No payment.",
+    "No API shortcut.",
+    "No company switch."
+  ],
   "setupChanged": false,
   "setupChangeAttempted": false,
   "masterDataChanged": false,
@@ -32,6 +53,20 @@
     "No customer or item field write route is proven.",
     "No VAT Posting Setup, General Posting Setup, Inventory Posting Setup, document, Preview Posting, Posting, ledger entry or VAT entry is proven."
   ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-044c-customer-item-fields-personalize-no-apply-discovery/TARGET-044C-result.json",
+    "playwright/projects/fibu-book5/evidence/target-044c-customer-item-fields-personalize-no-apply-discovery/README.md",
+    "playwright/projects/fibu-book5/evidence/target-044c-customer-item-fields-personalize-no-apply-discovery/*.json",
+    "playwright/projects/fibu-book5/evidence/target-044c-customer-item-fields-personalize-no-apply-discovery/*.txt",
+    "playwright/projects/fibu-book5/img/target-044c-*.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-044c-customer-item-fields-personalize-no-apply-discovery/TARGET-044C-result.json",
+    "playwright/projects/fibu-book5/img/target-044c-000-customer-u-cust-100-blocked-route.png"
+  ],
+  "pages": [],
+  "visibleFieldTerms": [],
+  "missingFieldTerms": [],
   "warnings": [
     "Field availability is not posting readiness.",
     "A personalized field offer is user/profile/layout dependent.",
@@ -40,10 +75,19 @@
   "blockedBy": [
     "customer-u-cust-100: Error: expect(received).toMatch(expected)\n\nExpected pattern: /U-CUST-100|Universaarl Kunde 100/i\nReceived string: {redacted-page-text}"
   ],
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-044c-customer-item-fields-personalize-no-apply-discovery/TARGET-044C-result.json",
-  "nextCase": "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE",
-  "nextStep": "Run TARGET-044D alternative standard page route; TARGET-045 remains locked.",
-  "nextStepDecisionCard": {
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true,
+    "noPersonalizationApplied": true
+  },
+  "nextStepDecision": {
     "currentCase": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
     "lastEvidenceSummary": "TARGET-044B selected no-apply Personalize discovery because TARGET-044 did not prove a safe field-write route.",
@@ -93,6 +137,21 @@
       "Keep Preview Posting and Posting locked."
     ]
   },
-  "updatedAt": "2026-07-01T14:02:31.619Z",
-  "activeCase": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY"
+  "statePatch": {
+    "current": {
+      "activeArea": "universaarl-customer-item-alternative-field-route",
+      "activeCase": "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE",
+      "active_case_file": ".agent/state/cases/target-044d-customer-item-posting-fields-alternative-page-route.json",
+      "nextStep": "Prepare TARGET-044D alternative standard page route before any customer/item write."
+    },
+    "activeCase": {
+      "status": "blocked",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-044c-customer-item-fields-personalize-no-apply-discovery/TARGET-044C-result.json",
+      "nextCase": "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE"
+    }
+  },
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "reason": "No-apply Personalize discovery blocked: customer-u-cust-100: Error: expect(received).toMatch(expected)\n\nExpected pattern: /U-CUST-100|Universaarl Kunde 100/i\nReceived string: {redacted-page-text}",
+  "nextCase": "TARGET-044D-CUSTOMER-ITEM-POSTING-FIELDS-ALTERNATIVE-PAGE-ROUTE"
 }
