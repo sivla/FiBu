@@ -811,12 +811,12 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-07-01T16:30:00.000Z",
+  "updatedAt": "2026-07-01T17:10:00.000Z",
   "activeArea": "universaarl-master-data-write-decision",
   "currentBlock": "Foundation checkpoint needed before master data: General Posting Setup Page 314 and VAT matrix are parked; Dimensions starter set is visible but Global/Default Dimensions and posting effects are not proven.",
   "latestPracticalCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
   "latestReviewCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
-  "nextCase": "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
+  "nextCase": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -1037,7 +1037,7 @@
     "playwright/projects/fibu-book5/BC-ERROR-BLOCKER-ATLAS.md",
     "playwright/projects/fibu-book5/BC-PROCESS-COVERAGE-ROADMAP.md"
   ],
-  "currentCoverageFocus": "TARGET-040 proves location/customer/item foundation records read-only; TARGET-042 will inspect concrete customer/item posting fields before O2C/P2P.",
+  "currentCoverageFocus": "TARGET-042 proves customer/item card contexts and field visibility gaps; TARGET-043 will choose a narrow fit/discovery route before O2C/P2P.",
   "latestCoverageUpdate": {
     "at": "2026-06-28T19:28:00.000+02:00",
     "type": "p2p-011-purchase-lines-action-discovery-tested",
@@ -4613,7 +4613,7 @@
     "nextCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
     "updatedAt": "2026-07-01T09:03:36.035Z"
   },
-  "nextQueueItem": "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
+  "nextQueueItem": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
   "latestTarget036MasterDataWriteDecision": {
     "caseId": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
     "status": "source-backed-decision-no-write",
@@ -4894,7 +4894,7 @@
     },
     "nextCase": "TARGET-039-FOUNDATION-BLOCKER-REVISIT"
   },
-  "lastCompletedCase": "TARGET-040-FOUNDATION-READY-RECHECK",
+  "lastCompletedCase": "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
   "latestTarget039FoundationBlockerRevisit": {
     "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
     "status": "observed",
@@ -4979,5 +4979,68 @@
     "status": "planned",
     "reason": "Needed before O2C/P2P because customer/item posting, VAT and inventory-related fields are not yet proven on U-CUST-100 and U-ITEM-HW100.",
     "nextCase": "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT"
+  },
+  "latestTarget042CustomerItemPostingFields": {
+    "caseId": "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
+    "status": "observed",
+    "completedAt": "2026-07-01T17:10:00.000Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-042-customer-item-posting-fields-readonly-preflight/TARGET-042-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "previewPosting": false,
+    "posted": false,
+    "fieldSummary": {
+      "customer": {
+        "visible": [
+          "blocked"
+        ],
+        "missing": [
+          "customerPostingGroup",
+          "genBusPostingGroup",
+          "vatBusPostingGroup",
+          "paymentTermsCode"
+        ]
+      },
+      "item": {
+        "visible": [
+          "baseUnitOfMeasure",
+          "itemPostingGroup",
+          "genProdPostingGroup",
+          "inventory"
+        ],
+        "missing": [
+          "vatProdPostingGroup",
+          "costingMethod"
+        ]
+      }
+    },
+    "proved": [
+      "U-CUST-100 customer card context is visible read-only.",
+      "U-ITEM-HW100 item card context is visible read-only.",
+      "Customer card visible field signals: blocked.",
+      "Item card visible field signals: baseUnitOfMeasure, itemPostingGroup, genProdPostingGroup, inventory.",
+      "No customer, item, setup, document, Preview Posting, Posting, payment, API shortcut or company switch occurred."
+    ],
+    "notProved": [
+      "Customer card field signals not visible in compact read-only text: customerPostingGroup, genBusPostingGroup, vatBusPostingGroup, paymentTermsCode.",
+      "Item card field signals not visible in compact read-only text: vatProdPostingGroup, costingMethod.",
+      "No Customer Posting Group, Gen. Bus. Posting Group, VAT Bus. Posting Group, Item Posting Group, Gen. Prod. Posting Group or VAT Prod. Posting Group is proven correct by visibility alone.",
+      "No VAT Posting Setup correctness is proven.",
+      "No Inventory Posting Setup correctness is proven.",
+      "No O2C, P2P, Preview Posting, Posting, Customer Ledger Entry, Item Ledger Entry, Value Entry, G/L Entry or VAT Entry is proven."
+    ],
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-042-010-customer-card-u-cust-100.png",
+      "playwright/projects/fibu-book5/img/target-042-020-item-card-u-item-hw100.png"
+    ],
+    "nextCase": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION"
+  },
+  "latestTarget043": {
+    "caseId": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
+    "status": "planned",
+    "nextCase": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
+    "reason": "Fit decision from TARGET-042 fieldSummary before any document, Preview Posting or Posting."
   }
 }

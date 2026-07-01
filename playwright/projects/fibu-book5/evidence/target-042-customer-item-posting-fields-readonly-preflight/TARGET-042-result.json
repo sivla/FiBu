@@ -1,0 +1,322 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
+  "source": "playwright-readonly-card-field-preflight",
+  "resultStatus": "observed",
+  "runPlanId": "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=30&company=UNIVERSAARL-DE&filter=Item.%27No.%27+IS+%27%40*U-ITEM-HW100*%27",
+  "page": "Customer Card and Item Card field preflight",
+  "actionsTaken": [
+    "Opened direct filtered Customer Card Page 21 for U-CUST-100 read-only.",
+    "Opened direct filtered Item Card Page 30 for U-ITEM-HW100 read-only.",
+    "Captured compact field text and screenshot QA metadata.",
+    "Classified visible and missing posting/VAT/inventory-related field signals."
+  ],
+  "actionsNotTaken": [
+    "No New action clicked.",
+    "No Edit action clicked.",
+    "No customer field changed.",
+    "No item field changed.",
+    "No setup value changed.",
+    "No document or draft created.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No payment.",
+    "No API shortcut.",
+    "No company switch."
+  ],
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/target-042-010-customer-card-u-cust-100.png",
+    "playwright/projects/fibu-book5/img/target-042-020-item-card-u-item-hw100.png"
+  ],
+  "proved": [
+    "U-CUST-100 customer card context is visible read-only.",
+    "U-ITEM-HW100 item card context is visible read-only.",
+    "Customer card visible field signals: blocked.",
+    "Item card visible field signals: baseUnitOfMeasure, itemPostingGroup, genProdPostingGroup, inventory.",
+    "No customer, item, setup, document, Preview Posting, Posting, payment, API shortcut or company switch occurred."
+  ],
+  "notProved": [
+    "Customer card field signals not visible in compact read-only text: customerPostingGroup, genBusPostingGroup, vatBusPostingGroup, paymentTermsCode.",
+    "Item card field signals not visible in compact read-only text: vatProdPostingGroup, costingMethod.",
+    "No Customer Posting Group, Gen. Bus. Posting Group, VAT Bus. Posting Group, Item Posting Group, Gen. Prod. Posting Group or VAT Prod. Posting Group is proven correct by visibility alone.",
+    "No VAT Posting Setup correctness is proven.",
+    "No Inventory Posting Setup correctness is proven.",
+    "No O2C, P2P, Preview Posting, Posting, Customer Ledger Entry, Item Ledger Entry, Value Entry, G/L Entry or VAT Entry is proven."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-042-customer-item-posting-fields-readonly-preflight/TARGET-042-result.json",
+    "playwright/projects/fibu-book5/evidence/target-042-customer-item-posting-fields-readonly-preflight/README.md",
+    "playwright/projects/fibu-book5/evidence/target-042-customer-item-posting-fields-readonly-preflight/*.txt",
+    "playwright/projects/fibu-book5/evidence/target-042-customer-item-posting-fields-readonly-preflight/*.screenshot.json",
+    "playwright/projects/fibu-book5/img/target-042-*.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-042-customer-item-posting-fields-readonly-preflight/TARGET-042-result.json",
+    "playwright/projects/fibu-book5/img/target-042-010-customer-card-u-cust-100.png",
+    "playwright/projects/fibu-book5/img/target-042-020-item-card-u-item-hw100.png"
+  ],
+  "pages": [
+    {
+      "id": "customer-u-cust-100",
+      "pageId": 21,
+      "pageName": "Customer Card / Debitorenkarte",
+      "recordNo": "U-CUST-100",
+      "status": "observed",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=21&company=UNIVERSAARL-DE&filter=Customer.%27No.%27+IS+%27%40*U-CUST-100*%27",
+      "screenshot": "playwright/projects/fibu-book5/img/target-042-010-customer-card-u-cust-100.png",
+      "textFile": "playwright/projects/fibu-book5/evidence/target-042-customer-item-posting-fields-readonly-preflight/customer-u-cust-100.txt",
+      "fieldSignals": [
+        {
+          "key": "customerPostingGroup",
+          "label": "Customer Posting Group / Debitorenbuchungsgruppe",
+          "visible": false,
+          "evidenceLine": null
+        },
+        {
+          "key": "genBusPostingGroup",
+          "label": "Gen. Bus. Posting Group / Geschaeftsbuchungsgruppe",
+          "visible": false,
+          "evidenceLine": null
+        },
+        {
+          "key": "vatBusPostingGroup",
+          "label": "VAT Bus. Posting Group / MwSt.-Geschaeftsbuchungsgruppe",
+          "visible": false,
+          "evidenceLine": null
+        },
+        {
+          "key": "paymentTermsCode",
+          "label": "Payment Terms Code / Zahlungsbedingungscode",
+          "visible": false,
+          "evidenceLine": null
+        },
+        {
+          "key": "blocked",
+          "label": "Blocked / Gesperrt",
+          "visible": true,
+          "evidenceLine": "Gesperrt"
+        }
+      ],
+      "compactSignals": [
+        "Dynamics 365 Business Central",
+        "Debitorenkarte",
+        "U-CUST-100 Universaarl Kunde 100",
+        "Kontakte konnen automatisch aus neu erstellten Debitoren erstellt werden.",
+        "Kontakte aus Debitoren erstellen",
+        "Debitor",
+        "U-CUST-100",
+        "Universaarl Kunde 100",
+        "Gesperrt",
+        "Gesamtumsatz - Geschaftsjahr",
+        "Fakturierung",
+        "Debitor-Bild",
+        "Debitorennr.U-CUST-100",
+        "Debitoren-Abonnementvertrage",
+        "U-CUST-100 Universaarl Kunde 100. Debitorenkarte"
+      ],
+      "visibleWarnings": [
+        "New/Neu action may be visible but was not clicked.",
+        "Edit/Bearbeiten action may be visible but was not clicked.",
+        "Template/Vorlage action may be visible but was not clicked."
+      ],
+      "reason": "Target card record text is visible read-only."
+    },
+    {
+      "id": "item-u-item-hw100",
+      "pageId": 30,
+      "pageName": "Item Card / Artikelkarte",
+      "recordNo": "U-ITEM-HW100",
+      "status": "observed",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=30&company=UNIVERSAARL-DE&filter=Item.%27No.%27+IS+%27%40*U-ITEM-HW100*%27",
+      "screenshot": "playwright/projects/fibu-book5/img/target-042-020-item-card-u-item-hw100.png",
+      "textFile": "playwright/projects/fibu-book5/evidence/target-042-customer-item-posting-fields-readonly-preflight/item-u-item-hw100.txt",
+      "fieldSignals": [
+        {
+          "key": "baseUnitOfMeasure",
+          "label": "Base Unit of Measure / Basiseinheit",
+          "visible": true,
+          "evidenceLine": "Basiseinheit"
+        },
+        {
+          "key": "itemPostingGroup",
+          "label": "Item Posting Group / Lagerbuchungsgruppe",
+          "visible": true,
+          "evidenceLine": "Lagerbuchungsgruppe"
+        },
+        {
+          "key": "genProdPostingGroup",
+          "label": "Gen. Prod. Posting Group / Produktbuchungsgruppe",
+          "visible": true,
+          "evidenceLine": "Produktbuchungsgruppe"
+        },
+        {
+          "key": "vatProdPostingGroup",
+          "label": "VAT Prod. Posting Group / MwSt.-Produktbuchungsgruppe",
+          "visible": false,
+          "evidenceLine": null
+        },
+        {
+          "key": "inventory",
+          "label": "Inventory / Lagerbestand",
+          "visible": true,
+          "evidenceLine": "U-ITEM-HW100 Universaarl Hardware 100Inventory"
+        },
+        {
+          "key": "costingMethod",
+          "label": "Costing Method / Einstandspreismethode",
+          "visible": false,
+          "evidenceLine": null
+        }
+      ],
+      "compactSignals": [
+        "Artikelkarte",
+        "U-ITEM-HW100 Universaarl Hardware 100Inventory",
+        "Artikel",
+        "Artikel kopieren",
+        "U-ITEM-HW100",
+        "Universaarl Hardware 100Inventory",
+        "Basiseinheit",
+        "STK",
+        "Artikelkategoriencode",
+        "Lagerbestand",
+        "Einstandspreise und Buchung",
+        "Einstandspreis (fest)",
+        "Einstandspreis",
+        "Einstandspreis ist reguliert",
+        "Produktbuchungsgruppe",
+        "Lagerbuchungsgruppe",
+        "Artikelverfolgung",
+        "Entwurf erstellen basierend auf den Attributen dieses Artikels.",
+        "Artikelattribute",
+        "StatusDie Umsatzplanung fur diesen Artikel nicht verfugbar.",
+        "U-ITEM-HW100 Universaarl Hardware 100Inventory. Artikelkarte"
+      ],
+      "visibleWarnings": [
+        "New/Neu action may be visible but was not clicked.",
+        "Edit/Bearbeiten action may be visible but was not clicked.",
+        "Template/Vorlage action may be visible but was not clicked."
+      ],
+      "reason": "Target card record text is visible read-only."
+    }
+  ],
+  "fieldSummary": {
+    "customer": {
+      "visible": [
+        "blocked"
+      ],
+      "missing": [
+        "customerPostingGroup",
+        "genBusPostingGroup",
+        "vatBusPostingGroup",
+        "paymentTermsCode"
+      ]
+    },
+    "item": {
+      "visible": [
+        "baseUnitOfMeasure",
+        "itemPostingGroup",
+        "genProdPostingGroup",
+        "inventory"
+      ],
+      "missing": [
+        "vatProdPostingGroup",
+        "costingMethod"
+      ]
+    }
+  },
+  "warnings": [
+    "New/Neu action may be visible but was not clicked.",
+    "Edit/Bearbeiten action may be visible but was not clicked.",
+    "Template/Vorlage action may be visible but was not clicked.",
+    "Visible field labels are not enough to prove posting readiness.",
+    "TARGET-043 must decide whether to fit missing fields, inspect via Page Inspection/personalization, or keep O2C blocked."
+  ],
+  "blockedBy": [],
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true
+  },
+  "nextStepDecision": {
+    "currentCase": "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
+    "plannedNextCaseBeforeReview": "TARGET-038-O2C-PREFLIGHT",
+    "lastEvidenceSummary": "TARGET-040 proved U-CUST-100 and U-ITEM-HW100/STK as visible read-only records but not their posting/VAT/inventory field readiness.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "O2C/P2P documents still depend on concrete posting/VAT/inventory fields. TARGET-042 reads those fields without changing anything.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
+        "status": "ready-next",
+        "reason": "The read-only field preflight now gives the exact visible/missing field signals for the next fit decision."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C still needs an explicit fit decision before documents are safe."
+      },
+      {
+        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Vendor creation remains parked; this customer/item preflight does not solve U-VEND numbering."
+      },
+      {
+        "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+        "status": "ready-after-current",
+        "reason": "Chart of Accounts remains a useful cross-check before setup claims are promoted."
+      }
+    ],
+    "queueChangesMade": [
+      "TARGET-042 completed as read-only field preflight.",
+      "TARGET-043 selected as the next narrow fit decision before O2C/P2P."
+    ],
+    "selectedNextCase": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
+    "whySelectedNextCaseIsBest": "It converts field visibility/missing signals into a controlled decision instead of creating documents too early.",
+    "risksBeforeNextCase": [
+      "Do not edit customer or item fields without a TARGET-043 Smart Decision.",
+      "Do not claim posting readiness from visible labels.",
+      "Keep Preview Posting and Posting locked."
+    ],
+    "requiredPreparation": [
+      "Use TARGET-042 fieldSummary.",
+      "If fields are missing because FastTabs or personalization hide them, run UI discovery instead of writing.",
+      "If setup fields are visible but blank, name exact fields and intended values before any write."
+    ]
+  },
+  "statePatch": {
+    "current": {
+      "activeArea": "universaarl-customer-item-posting-fields-fit-decision",
+      "activeCase": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
+      "active_case_file": ".agent/state/cases/target-043-customer-item-posting-fields-fit-decision.json",
+      "nextStep": "Run TARGET-043 Customer/Item Posting Fields Fit Decision before O2C/P2P; no documents, Preview Posting or Posting."
+    },
+    "activeCase": {
+      "status": "observed",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-042-customer-item-posting-fields-readonly-preflight/TARGET-042-result.json",
+      "nextCase": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION"
+    }
+  },
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "Customer and item card contexts were read-only observed; next decision remains gated.",
+  "nextCase": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION"
+}

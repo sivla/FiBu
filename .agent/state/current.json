@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T16:30:00.000Z",
+  "updatedAt": "2026-07-01T17:10:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-customer-item-posting-fields-preflight",
-  "activeCase": "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
-  "active_case_file": ".agent/state/cases/target-042-customer-item-posting-fields-readonly-preflight.json",
+  "activeArea": "universaarl-customer-item-posting-fields-fit-decision",
+  "activeCase": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
+  "active_case_file": ".agent/state/cases/target-043-customer-item-posting-fields-fit-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -19,18 +19,18 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "confirm-playthru-instance",
-    "confirm-universaarl-company",
-    "open-U-CUST-100-readonly",
-    "open-U-ITEM-HW100-readonly",
-    "capture-posting-field-screenshots",
-    "capture-screenshot-qa",
-    "write-result-json-and-next-step-decision",
+    "read-target-042-result",
+    "read-relevant-foundation-case-summaries",
+    "classify-missing-fields",
+    "select-next-narrow-case",
+    "update-state-and-queue",
     "update-coverage-and-catalog"
   ],
   "forbiddenActions": [
     "leave-instance",
     "company-switch",
+    "open-business-central",
+    "run-playwright",
     "click-new-edit-delete-or-post-actions",
     "change-customer",
     "change-item",
@@ -50,8 +50,8 @@
     "fake-evidence",
     "book-claim-without-evidence"
   ],
-  "nextCase": "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
-  "nextStep": "Run TARGET-042 Customer/Item Posting Fields Read-only Preflight before O2C/P2P; keep documents, Preview Posting and Posting locked.",
+  "nextCase": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
+  "nextStep": "Run TARGET-043 Customer/Item Posting Fields Fit Decision before O2C/P2P; no documents, Preview Posting or Posting.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -1356,7 +1356,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "universaarl-skr04-balance-sheet-accounts-fit",
-  "lastCompletedCase": "TARGET-040-FOUNDATION-READY-RECHECK",
+  "lastCompletedCase": "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -7916,8 +7916,8 @@
     "updatedAt": "2026-07-01T11:31:24.302Z"
   },
   "nextCases": [
-    "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
     "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
+    "TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY",
     "TARGET-038-O2C-PREFLIGHT",
     "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE"
   ],
@@ -7942,54 +7942,48 @@
     "decision": "Park first-vendor creation until U-VEND Manual Nos. can be proven by a new non-repeated UI route."
   },
   "nextStepDecision": {
-    "currentCase": "TARGET-040-FOUNDATION-READY-RECHECK",
-    "plannedNextCaseBeforeReview": "TARGET-040-FOUNDATION-READY-RECHECK",
-    "lastEvidenceSummary": "TARGET-036E2 proved U-ITEM-HW100 / Universaarl Hardware 100 with Base Unit STK after filtered reopen.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "A read-only checkpoint is still the best step after item creation because O2C/P2P need posting groups, VAT and inventory setup boundaries before any document or posting.",
+    "currentCase": "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
+    "plannedNextCaseBeforeReview": "TARGET-038-O2C-PREFLIGHT",
+    "lastEvidenceSummary": "TARGET-040 proved U-CUST-100 and U-ITEM-HW100/STK as visible read-only records but not their posting/VAT/inventory field readiness.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "O2C/P2P documents still depend on concrete posting/VAT/inventory fields. TARGET-042 reads those fields without changing anything.",
     "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
+        "status": "ready-next",
+        "reason": "The read-only field preflight now gives the exact visible/missing field signals for the next fit decision."
+      },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C should not start before VAT, customer/item posting groups and expected entry traces are prepared."
-      },
-      {
-        "caseId": "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
-        "status": "ready-next",
-        "reason": "The starter customer and item exist; their posting/VAT/product fields must be inspected read-only before O2C/P2P or further setup writes."
-      },
-      {
-        "caseId": "TARGET-030-POSTING-GROUPS-VENDOR-INLAND-WRITE-GATE",
-        "status": "obsolete",
-        "reason": "Already completed; Vendor Posting Group INLAND/3300 is historical context, not the next action."
+        "reason": "O2C still needs an explicit fit decision before documents are safe."
       },
       {
         "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
         "status": "blocked",
-        "reason": "Vendor creation remains parked until a new non-repeated U-VEND numbering route is proven."
+        "reason": "Vendor creation remains parked; this customer/item preflight does not solve U-VEND numbering."
       },
       {
         "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
         "status": "ready-after-current",
-        "reason": "Chart of Accounts remains a useful cross-check before VAT/posting setup claims are promoted."
+        "reason": "Chart of Accounts remains a useful cross-check before setup claims are promoted."
       }
     ],
     "queueChangesMade": [
-      "TARGET-040 Foundation Ready Recheck marked as the current checkpoint.",
-      "TARGET-038 O2C preflight kept behind VAT/posting setup dependencies.",
-      "TARGET-042 Customer/Item Posting Fields Read-only Preflight selected as the best next foundation step."
+      "TARGET-042 completed as read-only field preflight.",
+      "TARGET-043 selected as the next narrow fit decision before O2C/P2P."
     ],
-    "selectedNextCase": "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
-    "whySelectedNextCaseIsBest": "The concrete customer and item now exist, but their posting, VAT and inventory-related fields are not proven; inspecting them is safer and more useful than jumping into O2C documents.",
+    "selectedNextCase": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
+    "whySelectedNextCaseIsBest": "It converts field visibility/missing signals into a controlled decision instead of creating documents too early.",
     "risksBeforeNextCase": [
-      "Do not mark the company as posting-ready.",
-      "Do not create sales or purchase documents from this checkpoint.",
-      "Do not change VAT setup without a dedicated Smart Decision and setup evidence."
+      "Do not edit customer or item fields without a TARGET-043 Smart Decision.",
+      "Do not claim posting readiness from visible labels.",
+      "Keep Preview Posting and Posting locked."
     ],
     "requiredPreparation": [
-      "Read TARGET-027 prior VAT preflight/result state before changing any VAT field.",
-      "Keep Preview Posting and Posting locked.",
-      "If VAT route is unclear, run read-only UI discovery instead of a write gate."
+      "Use TARGET-042 fieldSummary.",
+      "If fields are missing because FastTabs or personalization hide them, run UI discovery instead of writing.",
+      "If setup fields are visible but blank, name exact fields and intended values before any write."
     ]
   },
   "latestTarget037MasterdataFoundationCheckpoint": {
@@ -8224,5 +8218,62 @@
       "Vendors / Kreditoren: Expected read-only page or record text was not visible."
     ],
     "nextCase": "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT"
+  },
+  "latestTarget042CustomerItemPostingFields": {
+    "caseId": "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
+    "status": "observed",
+    "completedAt": "2026-07-01T17:10:00.000Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-042-customer-item-posting-fields-readonly-preflight/TARGET-042-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "previewPosting": false,
+    "posted": false,
+    "fieldSummary": {
+      "customer": {
+        "visible": [
+          "blocked"
+        ],
+        "missing": [
+          "customerPostingGroup",
+          "genBusPostingGroup",
+          "vatBusPostingGroup",
+          "paymentTermsCode"
+        ]
+      },
+      "item": {
+        "visible": [
+          "baseUnitOfMeasure",
+          "itemPostingGroup",
+          "genProdPostingGroup",
+          "inventory"
+        ],
+        "missing": [
+          "vatProdPostingGroup",
+          "costingMethod"
+        ]
+      }
+    },
+    "proved": [
+      "U-CUST-100 customer card context is visible read-only.",
+      "U-ITEM-HW100 item card context is visible read-only.",
+      "Customer card visible field signals: blocked.",
+      "Item card visible field signals: baseUnitOfMeasure, itemPostingGroup, genProdPostingGroup, inventory.",
+      "No customer, item, setup, document, Preview Posting, Posting, payment, API shortcut or company switch occurred."
+    ],
+    "notProved": [
+      "Customer card field signals not visible in compact read-only text: customerPostingGroup, genBusPostingGroup, vatBusPostingGroup, paymentTermsCode.",
+      "Item card field signals not visible in compact read-only text: vatProdPostingGroup, costingMethod.",
+      "No Customer Posting Group, Gen. Bus. Posting Group, VAT Bus. Posting Group, Item Posting Group, Gen. Prod. Posting Group or VAT Prod. Posting Group is proven correct by visibility alone.",
+      "No VAT Posting Setup correctness is proven.",
+      "No Inventory Posting Setup correctness is proven.",
+      "No O2C, P2P, Preview Posting, Posting, Customer Ledger Entry, Item Ledger Entry, Value Entry, G/L Entry or VAT Entry is proven."
+    ],
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-042-010-customer-card-u-cust-100.png",
+      "playwright/projects/fibu-book5/img/target-042-020-item-card-u-item-hw100.png"
+    ],
+    "nextCase": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION"
   }
 }

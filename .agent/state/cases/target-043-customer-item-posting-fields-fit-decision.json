@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
+  "id": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Customer and item posting fields fit decision",
+  "purpose": "Decide the next narrow W1 Foundation step from TARGET-042 field evidence before any O2C/P2P document, Preview Posting or Posting.",
+  "sourceCases": [
+    "TARGET-040-FOUNDATION-READY-RECHECK",
+    "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": false,
+  "taskClass": "wizard_work",
+  "inputEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-042-customer-item-posting-fields-readonly-preflight/TARGET-042-result.json"
+  ],
+  "decisionInputs": {
+    "customer": {
+      "record": "U-CUST-100",
+      "visibleSignals": [
+        "blocked"
+      ],
+      "missingSignals": [
+        "customerPostingGroup",
+        "genBusPostingGroup",
+        "vatBusPostingGroup",
+        "paymentTermsCode"
+      ]
+    },
+    "item": {
+      "record": "U-ITEM-HW100",
+      "visibleSignals": [
+        "baseUnitOfMeasure",
+        "itemPostingGroup",
+        "genProdPostingGroup",
+        "inventory"
+      ],
+      "missingSignals": [
+        "vatProdPostingGroup",
+        "costingMethod"
+      ]
+    }
+  },
+  "allowedActions": [
+    "read-target-042-result",
+    "read-relevant-foundation-case-summaries",
+    "classify-missing-fields",
+    "select-next-narrow-case",
+    "update-state-and-queue",
+    "update-coverage-and-catalog"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "open-business-central",
+    "run-playwright",
+    "click-new-edit-delete-or-post-actions",
+    "change-customer",
+    "change-item",
+    "change-posting-groups",
+    "change-general-posting-setup",
+    "change-vat-posting-setup",
+    "change-inventory-posting-setup",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-o2c-readiness-from-field-visibility",
+    "claim-german-vat-final-proof",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-042 observed U-CUST-100 and U-ITEM-HW100 card contexts read-only in playthru / UNIVERSAARL-DE.",
+    "TARGET-042 produced fieldSummary for customer and item.",
+    "No setup, master data, document, Preview Posting or Posting was changed by TARGET-042."
+  ],
+  "acceptanceCriteria": [
+    "The decision names exactly one next narrow case.",
+    "The decision does not unlock O2C/P2P documents.",
+    "The decision separates field visibility, missing UI fields and actual setup correctness.",
+    "If field visibility is insufficient, the next case is UI/Page Inspection/personalization discovery rather than a write gate.",
+    "If setup writes become necessary later, they require a separate Smart Decision with exact fields and values."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-038-O2C-PREFLIGHT",
+    "lastEvidenceSummary": "TARGET-042 proves U-CUST-100 and U-ITEM-HW100 card contexts read-only. Customer posting/VAT/payment fields were not visible in compact card text; item Base Unit, Lagerbuchungsgruppe, Produktbuchungsgruppe and inventory signals were visible, but no setup value correctness is proven.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "A direct O2C preflight is still too early because customer posting/VAT fields and item VAT/costing signals need either UI discovery or an explicit setup-fit decision first.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY",
+        "status": "ready-next",
+        "reason": "TARGET-042 suggests missing fields may be hidden by FastTabs/layout/personalization rather than absent setup; read-only UI discovery should come before a write gate."
+      },
+      {
+        "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+        "status": "needs-ui-discovery-first",
+        "reason": "A write case needs exact visible fields and intended values."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C still depends on customer/item posting fields, VAT boundary and expected entry trace."
+      },
+      {
+        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Vendor creation remains parked and is separate from customer/item O2C readiness."
+      }
+    ],
+    "queueChangesMade": [
+      "TARGET-043 created as a local fit-decision gate after TARGET-042."
+    ],
+    "selectedNextCase": "TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY",
+    "whySelectedNextCaseIsBest": "It can check hidden FastTabs, personalization and Page Inspection without writing values, reducing the risk of a premature setup write.",
+    "risksBeforeNextCase": [
+      "Do not edit customer or item fields from field visibility alone.",
+      "Do not create O2C/P2P documents.",
+      "Do not claim posting readiness until setup values and Preview Posting are proven."
+    ],
+    "requiredPreparation": [
+      "Use TARGET-042 fieldSummary.",
+      "Inspect card layout/FastTabs/Page Inspection before deciding a field is unavailable.",
+      "Keep Preview Posting and Posting locked."
+    ]
+  },
+  "createdAt": "2026-07-01T17:10:00.000Z",
+  "updatedAt": "2026-07-01T17:10:00.000Z"
+}
