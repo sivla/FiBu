@@ -28,8 +28,8 @@ Zero-Open-Questions-Regel: Jeder Bereich in diesem Katalog muss seine offenen Ob
 
 | Prioritaet | Case | Warum |
 | --- | --- | --- |
-| 1 | `TARGET-044B-CUSTOMER-ITEM-POSTING-FIELD-SOURCE-OR-PERSONALIZE-DECISION` | Aktueller naechster Schritt: TARGET-044 hat Karten, FastTabs, UI-Maps und Screenshots read-only erfasst, aber keine sichere aktive Schreibroute fuer Buchungsfelder bewiesen. Vor jedem Feldwrite braucht es Zielwerte, Quelle und eine sichere Route. |
-| 2 | `TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT` | Folgefall nur, wenn TARGET-044B eine eindeutige, sichere Feldroute und konkrete Zielwerte fuer die fehlenden Posting-/VAT-/Zahlungsfelder liefert. |
+| 1 | `TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY` | Aktueller naechster Schritt: TARGET-044B hat TARGET-045 als voreiligen Write-Case abgelehnt. Jetzt werden Debitoren- und Artikelkarte ueber Personalisieren nur lesend auf verfuegbare Felder geprueft; keine Personalisierung speichern. |
+| 2 | `TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT` | Folgefall nur, wenn TARGET-044C eine eindeutige, sichere Feldroute und konkrete Zielwerte fuer die fehlenden Posting-/VAT-/Zahlungsfelder liefert. |
 | 3 | `TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE` | Bleibt blockiert, bis fuer `U-VEND` eine neue, nicht wiederholte und sichere Nummernserienroute vorliegt. |
 | 4 | `TARGET-037-FIRST-PREVIEW-GATE` | Bleibt gesperrt, bis Stammdaten vorhanden sind und die offenen Posting-/VAT-Grenzen bewusst akzeptiert oder geloest sind. |
 | 5 | `TARGET-038-FIRST-POSTING-GATE` | Bleibt gesperrt, bis eine Vorschau mit erwarteter Postenspur vorliegt. |

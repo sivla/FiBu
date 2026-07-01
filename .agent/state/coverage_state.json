@@ -811,12 +811,12 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-07-01T17:35:00.000Z",
+  "updatedAt": "2026-07-01T18:25:00.000Z",
   "activeArea": "universaarl-master-data-write-decision",
   "currentBlock": "Foundation checkpoint needed before master data: General Posting Setup Page 314 and VAT matrix are parked; Dimensions starter set is visible but Global/Default Dimensions and posting effects are not proven.",
   "latestPracticalCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
   "latestReviewCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
-  "nextCase": "TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY",
+  "nextCase": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -1037,7 +1037,7 @@
     "playwright/projects/fibu-book5/BC-ERROR-BLOCKER-ATLAS.md",
     "playwright/projects/fibu-book5/BC-PROCESS-COVERAGE-ROADMAP.md"
   ],
-  "currentCoverageFocus": "TARGET-043 selects TARGET-044 read-only UI discovery before any customer/item field or setup write.",
+  "currentCoverageFocus": "TARGET-044B selected TARGET-044C no-apply Personalize discovery before any customer/item field write.",
   "latestCoverageUpdate": {
     "at": "2026-06-28T19:28:00.000+02:00",
     "type": "p2p-011-purchase-lines-action-discovery-tested",
@@ -4613,7 +4613,7 @@
     "nextCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
     "updatedAt": "2026-07-01T09:03:36.035Z"
   },
-  "nextQueueItem": "TARGET-044B-CUSTOMER-ITEM-POSTING-FIELD-SOURCE-OR-PERSONALIZE-DECISION",
+  "nextQueueItem": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
   "latestTarget036MasterDataWriteDecision": {
     "caseId": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
     "status": "source-backed-decision-no-write",
@@ -4894,7 +4894,7 @@
     },
     "nextCase": "TARGET-039-FOUNDATION-BLOCKER-REVISIT"
   },
-  "lastCompletedCase": "TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY",
+  "lastCompletedCase": "TARGET-044B-CUSTOMER-ITEM-POSTING-FIELD-SOURCE-OR-PERSONALIZE-DECISION",
   "latestTarget039FoundationBlockerRevisit": {
     "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
     "status": "observed",
@@ -5078,5 +5078,26 @@
     "status": "planned",
     "nextCase": "TARGET-044B-CUSTOMER-ITEM-POSTING-FIELD-SOURCE-OR-PERSONALIZE-DECISION",
     "reason": "Needed before TARGET-045 because TARGET-044 did not prove exact field targets, target values or a safe write route."
+  },
+  "latestTarget044BDecision": {
+    "caseId": "TARGET-044B-CUSTOMER-ITEM-POSTING-FIELD-SOURCE-OR-PERSONALIZE-DECISION",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-044b-customer-item-posting-field-source-or-personalize-decision/TARGET-044B-result.json",
+    "selectedNextCase": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
+    "proved": [
+      "Direct TARGET-045 field write is premature.",
+      "No-apply Personalize discovery is the next safe UI route."
+    ],
+    "notProved": [
+      "No customer or item posting field value is proven correct.",
+      "No write route is proven."
+    ],
+    "nextCase": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY"
+  },
+  "latestTarget044CPersonalizeDiscovery": {
+    "caseId": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
+    "status": "planned",
+    "reason": "Needed to inspect hidden customer/item card fields without applying personalization before any write case.",
+    "nextCaseAfterIfSuccessful": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT"
   }
 }

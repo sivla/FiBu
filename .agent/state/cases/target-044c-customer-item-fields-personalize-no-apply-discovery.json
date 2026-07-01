@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
+  "id": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Customer and item field availability via no-apply Personalize discovery",
+  "purpose": "Open customer and item cards in UNIVERSAARL-DE and inspect available fields through Personalize without applying any layout, data or setup changes.",
+  "sourceCases": [
+    "TARGET-042-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-PREFLIGHT",
+    "TARGET-043-CUSTOMER-ITEM-POSTING-FIELDS-FIT-DECISION",
+    "TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY",
+    "TARGET-044B-CUSTOMER-ITEM-POSTING-FIELD-SOURCE-OR-PERSONALIZE-DECISION"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": true,
+  "taskClass": "wizard_work",
+  "targetRecords": [
+    {
+      "pageId": 21,
+      "page": "Customer Card / Debitorenkarte",
+      "record": "U-CUST-100",
+      "fieldsToInspect": [
+        "Customer Posting Group / Debitorenbuchungsgruppe",
+        "Gen. Bus. Posting Group / Geschaeftsbuchungsgruppe",
+        "VAT Bus. Posting Group / MwSt.-Geschaeftsbuchungsgruppe",
+        "Payment Terms Code / Zahlungsbedingungscode"
+      ]
+    },
+    {
+      "pageId": 30,
+      "page": "Item Card / Artikelkarte",
+      "record": "U-ITEM-HW100",
+      "fieldsToInspect": [
+        "Inventory Posting Group / Lagerbuchungsgruppe",
+        "Gen. Prod. Posting Group / Produktbuchungsgruppe",
+        "VAT Prod. Posting Group / MwSt.-Produktbuchungsgruppe",
+        "Costing Method / Einstandspreismethode"
+      ]
+    }
+  ],
+  "allowedActions": [
+    "open-playthru-business-central",
+    "confirm-UNIVERSAARL-DE-context",
+    "open-U-CUST-100-readonly",
+    "open-U-ITEM-HW100-readonly",
+    "open-personalize-mode-readonly",
+    "hover-relevant-buttons-and-capture-tooltips",
+    "inspect-available-fields-without-adding-or-moving",
+    "capture-screenshot-qa",
+    "close-personalize-mode-without-saving",
+    "write-result-json-and-next-step-decision",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "click-new-edit-delete-or-post-actions",
+    "change-customer",
+    "change-item",
+    "change-posting-groups",
+    "change-general-posting-setup",
+    "change-vat-posting-setup",
+    "change-inventory-posting-setup",
+    "add-field-through-personalization",
+    "move-field-through-personalization",
+    "save-or-apply-personalization",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-o2c-readiness-from-field-visibility",
+    "claim-german-vat-final-proof",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-044B result exists and selects no-apply Personalize discovery.",
+    "TARGET-044 proved U-CUST-100 and U-ITEM-HW100 card contexts are reachable read-only.",
+    "The Playwright route must confirm playthru / UNIVERSAARL-DE before opening cards.",
+    "The test must be able to exit Personalize mode without applying any change."
+  ],
+  "acceptanceCriteria": [
+    "Business Central opens only in playthru / UNIVERSAARL-DE.",
+    "Customer and item card contexts are confirmed before Personalize mode.",
+    "Personalize mode is opened only for field availability discovery.",
+    "No add, move, hide, save or apply personalization action occurs.",
+    "Screenshots show the card context and Personalize mode/tooltips clearly enough for QA.",
+    "The result states which target fields are available, unavailable or still unclear.",
+    "The next step is either TARGET-045 controlled fit or a more specific alternative route."
+  ],
+  "stopConditions": [
+    "Wrong instance or wrong company is visible.",
+    "A dialog asks to save/apply personalization.",
+    "A button/action would add, move, hide, edit, create, delete, post or preview.",
+    "Customer or item field values become editable unexpectedly.",
+    "Personalize mode cannot be closed without saving changes."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-044B-CUSTOMER-ITEM-POSTING-FIELD-SOURCE-OR-PERSONALIZE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+    "lastEvidenceSummary": "TARGET-044 showed read-only customer and item card contexts but no safe write route; TARGET-044B selected no-apply Personalize discovery before any field write.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "TARGET-045 remains premature until hidden or unavailable fields are mapped without applying personalization.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
+        "status": "ready-next",
+        "reason": "It directly answers the hidden-field question without changing data or layout."
+      },
+      {
+        "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+        "status": "needs-ui-discovery-first",
+        "reason": "Write case only after exact field route and target values are proven."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C depends on customer/item posting, VAT and payment readiness."
+      },
+      {
+        "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+        "status": "ready-after-current",
+        "reason": "Good fallback if Personalize does not expose the needed fields."
+      },
+      {
+        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Vendor numbering remains parked and should not interrupt customer/item field discovery."
+      }
+    ],
+    "queueChangesMade": [
+      "TARGET-044B completed as a local decision.",
+      "TARGET-044C selected before any field write."
+    ],
+    "selectedNextCase": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
+    "whySelectedNextCaseIsBest": "It teaches Playwright and the book project how Business Central exposes hidden card fields while staying non-mutating.",
+    "risksBeforeNextCase": [
+      "Do not save/apply personalization.",
+      "Do not write customer/item/setup fields.",
+      "Do not confuse available fields with correct setup values."
+    ],
+    "requiredPreparation": [
+      "Use the TARGET-044 card routes.",
+      "Capture tooltip/dropdown evidence where relevant.",
+      "Close Personalize mode safely and document the exit route."
+    ]
+  },
+  "createdAt": "2026-07-01T18:25:00.000Z",
+  "updatedAt": "2026-07-01T18:25:00.000Z"
+}

@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY",
+  "runId": "TARGET-044B-CUSTOMER-ITEM-POSTING-FIELD-SOURCE-OR-PERSONALIZE-DECISION",
   "caseId": "TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY",
   "status": "observed",
   "runType": "playwright-readonly-universaarl-customer-item-posting-field-ui-discovery",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "bcRun": true,
-  "playwrightRun": true,
-  "summary": "TARGET-044 observed U-CUST-100 and U-ITEM-HW100 cards read-only, captured UI maps and screenshots, and selected TARGET-044B because no sufficient active-card write candidate was proven.",
+  "bcRun": false,
+  "playwrightRun": false,
+  "summary": "TARGET-044B rejected direct customer/item field write and selected TARGET-044C no-apply Personalize discovery as the next safe UI route.",
   "changedInBC": false,
   "setupChanged": false,
   "setupChangeAttempted": false,
@@ -40,57 +40,58 @@
     "Personalization was not applied."
   ],
   "resultPath": "playwright/projects/fibu-book5/evidence/target-044-customer-item-posting-field-ui-discovery/TARGET-044-result.json",
-  "nextCase": "TARGET-044B-CUSTOMER-ITEM-POSTING-FIELD-SOURCE-OR-PERSONALIZE-DECISION",
-  "nextStep": "Decide source-backed field targets or a no-apply Personalize/alternative-page route before any customer/item field write.",
+  "nextCase": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
+  "nextStep": "Run TARGET-044C with playthru / UNIVERSAARL-DE confirmed; inspect available fields and tooltips without saving personalization.",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-044-CUSTOMER-ITEM-POSTING-FIELD-UI-DISCOVERY",
+    "currentCase": "TARGET-044B-CUSTOMER-ITEM-POSTING-FIELD-SOURCE-OR-PERSONALIZE-DECISION",
     "plannedNextCaseBeforeReview": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
-    "lastEvidenceSummary": "TARGET-044 observed U-CUST-100 and U-ITEM-HW100 read-only and captured UI maps/screenshots, but no sufficient active-card write candidate was proven.",
+    "lastEvidenceSummary": "TARGET-044 observed U-CUST-100 and U-ITEM-HW100 read-only and captured UI maps/screenshots, but no sufficient active-card write candidate was proven. TARGET-044B selected no-apply Personalize discovery before any write.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "A direct field-write case needs exact target values and a proven route. TARGET-044 only produced read-only visibility and debug evidence.",
+    "reason": "A direct field-write case is still premature. The next safe practical step is to inspect whether the relevant card fields are available through Personalize without applying layout or data changes.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-044B-CUSTOMER-ITEM-POSTING-FIELD-SOURCE-OR-PERSONALIZE-DECISION",
+        "caseId": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
         "status": "ready-next",
-        "reason": "It can decide the next safe route from existing evidence without BC changes."
+        "reason": "It answers the hidden-field question without writing data or saving personalization."
       },
       {
         "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
-        "status": "needs-source-check-first",
-        "reason": "Future write case only after exact field targets and values are source-backed."
+        "status": "needs-ui-discovery-first",
+        "reason": "Needs exact target values and a proven route before any customer/item field write."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C needs posting/VAT/payment readiness before any document draft."
-      },
-      {
-        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
-        "status": "blocked",
-        "reason": "Vendor numbering remains a separate parked route."
+        "reason": "O2C still depends on customer/item posting, VAT and payment readiness."
       },
       {
         "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
         "status": "ready-after-current",
-        "reason": "Useful fallback checkpoint if customer/item field route remains parked."
+        "reason": "Useful fallback if Personalize does not expose the needed fields."
+      },
+      {
+        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Vendor numbering remains parked and is not the current direct blocker."
       }
     ],
     "queueChangesMade": [
-      "TARGET-044 completed as read-only UI discovery.",
-      "TARGET-044B selected before any field write."
+      "TARGET-044B completed as a local no-BC/no-Playwright decision.",
+      "TARGET-044C selected as the next active case before TARGET-045."
     ],
-    "selectedNextCase": "TARGET-044B-CUSTOMER-ITEM-POSTING-FIELD-SOURCE-OR-PERSONALIZE-DECISION",
-    "whySelectedNextCaseIsBest": "It keeps the next action evidence-driven and prevents blind customer/item/setup writes.",
+    "selectedNextCase": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
+    "whySelectedNextCaseIsBest": "It improves BC UI understanding and Playwright field discovery while keeping customer, item, setup and personalization unchanged.",
     "risksBeforeNextCase": [
-      "Do not apply personalization changes.",
+      "Do not save or apply personalization.",
       "Do not edit customer or item fields.",
-      "Do not claim posting readiness from field visibility."
+      "Do not claim posting readiness from field availability."
     ],
     "requiredPreparation": [
-      "Read TARGET-044 result, UI maps and screenshot metadata.",
-      "Map fields to source-backed target values.",
-      "Select exactly one next route."
+      "Confirm playthru / UNIVERSAARL-DE before opening cards.",
+      "Use TARGET-044 card routes.",
+      "Capture screenshots/tooltips of Personalize mode and exit without saving."
     ]
   },
-  "updatedAt": "2026-07-01T17:55:00.000Z"
+  "updatedAt": "2026-07-01T18:25:00.000Z",
+  "activeCase": "TARGET-044B-CUSTOMER-ITEM-POSTING-FIELD-SOURCE-OR-PERSONALIZE-DECISION"
 }

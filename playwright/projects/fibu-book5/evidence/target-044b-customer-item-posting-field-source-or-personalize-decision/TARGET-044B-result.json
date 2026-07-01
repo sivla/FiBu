@@ -1,0 +1,180 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-044B-CUSTOMER-ITEM-POSTING-FIELD-SOURCE-OR-PERSONALIZE-DECISION",
+  "source": "local-decision",
+  "resultStatus": "observed",
+  "runPlanId": "TARGET-044B-CUSTOMER-ITEM-POSTING-FIELD-SOURCE-OR-PERSONALIZE-DECISION-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "url": "not-opened-local-decision",
+  "page": "not-opened-local-decision",
+  "actionsTaken": [
+    "Read TARGET-044 result and current state summaries.",
+    "Rejected TARGET-045 as the immediate next step because exact target values and a safe write route are not proven.",
+    "Selected TARGET-044C as a no-apply Personalize discovery before any customer, item or setup write.",
+    "Updated state and queue to make TARGET-044C the next active case."
+  ],
+  "actionsNotTaken": [
+    "Business Central was not opened.",
+    "Playwright was not run.",
+    "No customer field was changed.",
+    "No item field was changed.",
+    "No setup field was changed.",
+    "No personalization was applied.",
+    "No document or draft was created.",
+    "No Preview Posting, Posting, payment or API shortcut occurred.",
+    "No bookmaster content was changed."
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "screenshots": [],
+  "proved": [
+    "TARGET-044 did not prove a sufficient active-card write candidate for customer or item posting fields.",
+    "TARGET-045 controlled field fitting is not ready as the immediate next case.",
+    "The next safest practical route is a no-apply Personalize discovery that only inspects available fields and exits without saving layout or data changes.",
+    "O2C and P2P remain blocked until customer/item posting, VAT, payment and item/inventory field readiness is proven."
+  ],
+  "notProved": [
+    "No Customer Posting Group, Gen. Bus. Posting Group, VAT Bus. Posting Group or Payment Terms Code value is proven correct.",
+    "No Item Posting Group, Gen. Prod. Posting Group, VAT Prod. Posting Group or Costing Method value is proven correct.",
+    "No customer or item field write route is proven.",
+    "No VAT Posting Setup, General Posting Setup, Inventory Posting Setup, document, Preview Posting, Posting, ledger entry or VAT entry is proven by this decision case."
+  ],
+  "changedFiles": [
+    ".agent/state/current.json",
+    ".agent/state/marathon_queue.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/cases/target-044b-customer-item-posting-field-source-or-personalize-decision.json",
+    ".agent/state/cases/target-044c-customer-item-fields-personalize-no-apply-discovery.json",
+    "playwright/projects/fibu-book5/evidence/target-044b-customer-item-posting-field-source-or-personalize-decision/README.md",
+    "playwright/projects/fibu-book5/evidence/target-044b-customer-item-posting-field-source-or-personalize-decision/TARGET-044B-result.json",
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
+    "playwright/projects/fibu-book5/BC-COVERAGE-MATRIX.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-044-customer-item-posting-field-ui-discovery/TARGET-044-result.json",
+    "playwright/projects/fibu-book5/evidence/target-044b-customer-item-posting-field-source-or-personalize-decision/TARGET-044B-result.json"
+  ],
+  "warnings": [
+    "Do not confuse field visibility with posting readiness.",
+    "TARGET-044C must not apply personalization changes.",
+    "TARGET-045 must remain blocked until exact values and write route are proven."
+  ],
+  "blockedBy": [],
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true,
+    "noPersonalizationApplied": true
+  },
+  "decision": {
+    "selectedOption": "no-apply-personalize-discovery-needed",
+    "selectedNextCase": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
+    "rejectedOptions": [
+      {
+        "option": "target-values-ready-for-controlled-fit",
+        "rejectedBecause": "TARGET-044 did not prove exact values or a safe active-card write route."
+      },
+      {
+        "option": "alternative-setup-page-route-needed",
+        "rejectedBecause": "The card-level field availability question should be answered first with no-apply Personalize discovery."
+      },
+      {
+        "option": "park-o2c-p2p-until-foundation-checkpoint",
+        "rejectedBecause": "A narrow, non-writing UI route still exists and is more direct than parking the field gap."
+      }
+    ]
+  },
+  "nextStepDecision": {
+    "currentCase": "TARGET-044B-CUSTOMER-ITEM-POSTING-FIELD-SOURCE-OR-PERSONALIZE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+    "lastEvidenceSummary": "TARGET-044 observed U-CUST-100 and U-ITEM-HW100 read-only and captured UI maps/screenshots, but no sufficient active-card write candidate was proven.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "A field-write case is still premature. The next useful step is to inspect whether the relevant customer and item fields are available via Personalize without applying any changes.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
+        "status": "ready-next",
+        "reason": "It checks hidden-field availability without writing data or saving personalization."
+      },
+      {
+        "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+        "status": "needs-ui-discovery-first",
+        "reason": "A controlled write needs a proven route and exact values."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C still depends on customer/item posting, VAT and payment readiness."
+      },
+      {
+        "caseId": "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+        "status": "ready-after-current",
+        "reason": "Useful fallback checkpoint if the field discovery remains blocked."
+      },
+      {
+        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Vendor numbering is unrelated to the current customer/item field route and remains parked."
+      }
+    ],
+    "queueChangesMade": [
+      "TARGET-044B marked observed/done.",
+      "TARGET-044C inserted as the next active case before TARGET-045."
+    ],
+    "selectedNextCase": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
+    "whySelectedNextCaseIsBest": "It improves Business Central UI understanding and Playwright field discovery without risking data, setup or layout changes.",
+    "risksBeforeNextCase": [
+      "Personalization mode must be exited without saving or applying changes.",
+      "Do not edit customer or item fields.",
+      "Do not treat field availability as setup correctness."
+    ],
+    "requiredPreparation": [
+      "Open only playthru / UNIVERSAARL-DE.",
+      "Capture screenshots of Personalize mode on customer and item cards.",
+      "Record available fields, unavailable fields, tooltips and exit path."
+    ]
+  },
+  "statePatch": {
+    "current": {
+      "activeCase": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY",
+      "active_case_file": ".agent/state/cases/target-044c-customer-item-fields-personalize-no-apply-discovery.json",
+      "activeArea": "universaarl-customer-item-personalize-field-discovery",
+      "nextCase": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY"
+    },
+    "lastRunSummary": {
+      "runId": "TARGET-044B-CUSTOMER-ITEM-POSTING-FIELD-SOURCE-OR-PERSONALIZE-DECISION",
+      "status": "observed",
+      "bcRun": false,
+      "playwrightRun": false,
+      "summary": "TARGET-044B rejected direct field write and selected TARGET-044C no-apply Personalize discovery as the next safe UI route."
+    },
+    "activeCase": {
+      "status": "observed",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-044b-customer-item-posting-field-source-or-personalize-decision/TARGET-044B-result.json",
+      "nextCase": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY"
+    },
+    "coverage": {
+      "nextCase": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY"
+    }
+  },
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "Local decision only. It prevents blind writes and prepares a narrow no-apply UI discovery route.",
+  "nextCase": "TARGET-044C-CUSTOMER-ITEM-FIELDS-PERSONALIZE-NO-APPLY-DISCOVERY"
+}
