@@ -18,6 +18,35 @@ function runDryRun() {
   return JSON.parse(output);
 }
 
+function runAuthCheck() {
+  try {
+    const output = execSync('npm run --silent auth:bc:check', {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    return {
+      canUseStoredAuth: true,
+      exitCode: 0,
+      output: JSON.parse(output),
+    };
+  } catch (error) {
+    const rawOutput = `${error.stdout ?? ''}`.trim();
+    let output = null;
+    try {
+      output = rawOutput ? JSON.parse(rawOutput) : null;
+    } catch {
+      output = null;
+    }
+
+    return {
+      canUseStoredAuth: false,
+      exitCode: typeof error.status === 'number' ? error.status : 1,
+      output,
+      blockedBy: output?.blockedBy ?? ['auth-check-failed'],
+    };
+  }
+}
+
 function step(type, fields) {
   return {
     type,
@@ -52,6 +81,8 @@ const activeCase = current.active_case_file && existsSync(current.active_case_fi
   : {};
 const dryRun = runDryRun();
 const needsBusinessCentralAuth = caseMayNeedBusinessCentralAuth(activeCase, dryRun);
+const authCheck = needsBusinessCentralAuth ? runAuthCheck() : null;
+const authBlockedBy = authCheck && !authCheck.canUseStoredAuth ? authCheck.blockedBy ?? [] : [];
 
 const blockedLiveActions = unique([
   ...(dryRun.forbiddenActions ?? []),
@@ -110,7 +141,7 @@ for (const capability of dryRun.selectedCapabilities ?? []) {
 steps.push(step('local-analysis', {
   caseId: activeCase.caseId ?? current.activeCase ?? '',
   reason: activeCase.goal ?? current.nextStep ?? 'Perform the selected local analysis only.',
-  allowed: dryRun.canProceed === true,
+  allowed: dryRun.canProceed === true && authBlockedBy.length === 0,
 }));
 
 steps.push(step('propose-playwright-change', {
@@ -149,6 +180,7 @@ if (dryRun.requiresHumanApproval) {
 approvalRequiredBefore.push('playwright', 'business-central', 'posting', 'book-edit');
 
 const canProceed = dryRun.canProceed === true;
+const canProceedWithAuth = canProceed && authBlockedBy.length === 0;
 const runPlan = {
   schemaVersion: 1,
   purpose: 'autopilot-run-plan',
@@ -162,12 +194,26 @@ const runPlan = {
     requiresHumanApproval: dryRun.requiresHumanApproval,
   },
   needsBusinessCentralAuth,
-  canProceed,
+  authCheck: authCheck
+    ? {
+        canUseStoredAuth: authCheck.canUseStoredAuth,
+        exitCode: authCheck.exitCode,
+        blockedBy: authBlockedBy,
+        authFile: authCheck.output?.authFile ?? 'playwright/.auth/bc-user.json',
+        authMetaFile: authCheck.output?.authMetaFile ?? 'playwright/.auth/bc-user.meta.json',
+        hasShellValidationMeta: authCheck.output?.hasShellValidationMeta ?? false,
+        nextStep: authCheck.output?.nextStep ?? 'Run npm run auth:bc and complete Login/MFA until the Business Central shell is visible.',
+      }
+    : null,
+  canProceed: canProceedWithAuth,
   steps,
   blockedLiveActions,
   approvalRequiredBefore: unique(approvalRequiredBefore),
   safetyGates: dryRun.safetyGates ?? [],
-  stopConditions: dryRun.stopConditions ?? [],
+  stopConditions: unique([
+    ...(dryRun.stopConditions ?? []),
+    ...authBlockedBy.map((blocker) => `auth:${blocker}`),
+  ]),
   validationCommands: [
     'npm run agent:preflight',
     'npm run agent:dry-run',
@@ -176,9 +222,11 @@ const runPlan = {
     'npm run check:encoding',
     'git diff --check',
   ],
-  nextSafeAction: canProceed
+  nextSafeAction: canProceedWithAuth
     ? 'Execute only the allowed local-analysis steps. Do not run Playwright or Business Central.'
-    : 'Resolve dry-run stopConditions before local analysis.',
+    : authBlockedBy.length
+      ? 'Run npm run auth:bc and complete Login/MFA until the Business Central shell is visible.'
+      : 'Resolve dry-run stopConditions before local analysis.',
 };
 
 console.log(JSON.stringify(runPlan, null, 2));
