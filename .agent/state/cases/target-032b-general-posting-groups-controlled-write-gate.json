@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
-  "status": "planned",
+  "status": "partially-completed",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -99,6 +99,35 @@
     "If any list editor is ambiguous, the case blocks without guessing."
   ],
   "nextCaseIfDone": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
-  "nextCaseIfBlocked": "TARGET-032C-GENERAL-POSTING-GROUPS-WRITE-ROUTE-DIAGNOSIS",
-  "createdAt": "2026-07-01T07:22:57.343Z"
+  "nextCaseIfBlocked": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
+  "createdAt": "2026-07-01T07:22:57.343Z",
+  "completedAt": "2026-07-01T07:34:44.778Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-032b-general-posting-groups-controlled-write-gate/TARGET-032B-result.json",
+  "completedScope": [
+    "Page 312 INLAND business posting group",
+    "Page 313 WAREN product posting group"
+  ],
+  "remainingScope": [
+    "Page 314 INLAND/WAREN matrix route with trusted Sales Account and Purchase Account field mapping"
+  ],
+  "blockedBy": [
+    "General Posting Setup matrix row was not written because visible editable inputs did not provide a trusted field-to-column map for Sales Account 4400 and Purchase Account 5400."
+  ],
+  "nextCase": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
+  "setupChanged": true,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "caseRunTruth": {
+    "scope": "TARGET-032B case-level truth",
+    "note": "The initial successful pass in this Codex run created INLAND and WAREN. After adding the Page 314 reopen/no-persist proof, the Playwright test was rerun and reverified those groups as already complete. The current final screenshots therefore show the reverified persisted state, not the empty pre-create state.",
+    "createdInThisRun": [
+      "General Business Posting Group INLAND",
+      "General Product Posting Group WAREN"
+    ],
+    "reverifiedAfterTestPatch": true,
+    "page314TransientRowWasNotAcceptedAsSetup": true
+  },
+  "page314NoTargetRowPersisted": true,
+  "setupChangedOnlyAllowedScope": true
 }

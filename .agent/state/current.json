@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T07:22:57.343Z",
+  "updatedAt": "2026-07-01T07:34:44.778Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-general-posting-groups-controlled-write-gate",
-  "activeCase": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
-  "active_case_file": ".agent/state/cases/target-032b-general-posting-groups-controlled-write-gate.json",
+  "activeArea": "universaarl-general-posting-setup-matrix-route-diagnosis",
+  "activeCase": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
+  "active_case_file": ".agent/state/cases/target-032c-general-posting-setup-matrix-row-route-diagnosis.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -21,19 +21,19 @@
   "allowedActions": [
     "open-playthru-business-central",
     "confirm-UNIVERSAARL-DE-context",
-    "open-page-312",
-    "create-or-verify-general-business-posting-group-INLAND",
-    "open-page-313",
-    "create-or-verify-general-product-posting-group-WAREN",
     "open-page-314",
-    "create-or-verify-general-posting-setup-INLAND-WAREN-4400-5400",
-    "capture-before-after-reopen-screenshot-qa",
+    "capture-current-matrix-context",
+    "hover-or-inspect-column-headers",
+    "page-inspection-or-personalization-readonly-diagnosis",
+    "capture-screenshot-qa",
     "write-result-json-and-next-step-decision"
   ],
   "forbiddenActions": [
     "leave-instance",
     "company-switch",
+    "write-general-posting-setup-value",
     "change-vat-setup",
+    "change-inventory-posting-setup",
     "create-master-data",
     "create-document-or-draft",
     "preview-posting",
@@ -46,8 +46,8 @@
     "fake-evidence",
     "book-claim-without-evidence"
   ],
-  "nextCase": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
-  "nextStep": "Run TARGET-032B as a narrow Smart Decision write gate: create/verify General Business Posting Group INLAND, General Product Posting Group WAREN, and first General Posting Setup row INLAND/WAREN with 4400/5400 only if list-edit controls are unambiguous. No master data, Preview Posting or Posting.",
+  "nextCase": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
+  "nextStep": "Run TARGET-032C as a narrow Page 314 General Posting Setup matrix route diagnosis before any more setup or master data. Do not type 4400/5400 until field-to-column mapping is trusted.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -230,7 +230,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "TARGET-032A proved read-only UI context for Page 312 General Business Posting Groups, Page 313 General Product Posting Groups and Page 314 General Posting Setup in playthru / UNIVERSAARL-DE. TARGET-032B is now the narrow write gate for INLAND, WAREN and INLAND/WAREN 4400/5400 only; no master data, Preview Posting or Posting.",
+  "currentCoverageFocus": "TARGET-032B proved Page 312 INLAND and Page 313 WAREN after reopen in playthru / UNIVERSAARL-DE. Page 314 INLAND/WAREN 4400/5400 remains blocked until TARGET-032C proves a trusted matrix field route.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -7268,7 +7268,7 @@
     "currentVisibleText": "1200 Forderungen aus Lieferungen und Leistungen Bilanz Buchung",
     "correctedReason": "SKR04-oriented Universaarl foundation must not create a new 1400 receivables account; 1400 belongs to the wrong mapping context for this target."
   },
-  "nextQueueItem": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
+  "nextQueueItem": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
   "openItems": 1,
   "latestCustomerReceivablesSourceCorrection": {
     "caseId": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
@@ -7372,5 +7372,40 @@
       }
     ],
     "nextCase": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE"
+  },
+  "latestGeneralPostingGroupsControlledWriteGate": {
+    "caseId": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
+    "status": "partially-completed",
+    "completedAt": "2026-07-01T07:34:44.778Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-032b-general-posting-groups-controlled-write-gate/TARGET-032B-result.json",
+    "sourceInstance": "playthru",
+    "sourceCompany": "UNIVERSAARL-DE",
+    "setupChanged": true,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "businessGroup": "changed-and-proven",
+    "productGroup": "changed-and-proven",
+    "generalPostingSetup": "blocked",
+    "completedScope": [
+      "Page 312 INLAND business posting group",
+      "Page 313 WAREN product posting group"
+    ],
+    "remainingScope": [
+      "Page 314 INLAND/WAREN matrix route with trusted Sales Account and Purchase Account field mapping"
+    ],
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-032b-010-business-group-010-before.png",
+      "playwright/projects/fibu-book5/img/target-032b-010-business-group-020-after-attempt.png",
+      "playwright/projects/fibu-book5/img/target-032b-010-business-group-030-after-reopen.png",
+      "playwright/projects/fibu-book5/img/target-032b-040-product-group-010-before.png",
+      "playwright/projects/fibu-book5/img/target-032b-040-product-group-020-after-attempt.png",
+      "playwright/projects/fibu-book5/img/target-032b-040-product-group-030-after-reopen.png",
+      "playwright/projects/fibu-book5/img/target-032b-070-general-posting-setup-before.png",
+      "playwright/projects/fibu-book5/img/target-032b-090-general-posting-setup-route-blocked.png"
+    ],
+    "nextCase": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS"
   }
 }

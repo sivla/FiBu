@@ -2900,7 +2900,7 @@
     {
       "id": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
       "order": 10094,
-      "status": "pending",
+      "status": "done",
       "priority": "high",
       "area": "universaarl-general-posting-setup",
       "category": "general-posting-groups-controlled-write-gate",
@@ -2912,10 +2912,41 @@
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
       "caseFile": ".agent/state/cases/target-032b-general-posting-groups-controlled-write-gate.json",
-      "nextCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS"
+      "nextCase": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
+      "completedAt": "2026-07-01T07:34:44.778Z",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-032b-general-posting-groups-controlled-write-gate/TARGET-032B-result.json",
+      "result": "General Business Posting Group INLAND and General Product Posting Group WAREN were created/verified after reopen. General Posting Setup Page 314 remains blocked before unsafe 4400/5400 column mapping.",
+      "completedScope": [
+        "Page 312 INLAND business posting group",
+        "Page 313 WAREN product posting group"
+      ],
+      "remainingScope": [
+        "Page 314 INLAND/WAREN matrix route with trusted Sales Account and Purchase Account field mapping"
+      ],
+      "blockedBy": [
+        "General Posting Setup matrix row was not written because visible editable inputs did not provide a trusted field-to-column map for Sales Account 4400 and Purchase Account 5400."
+      ]
+    },
+    {
+      "id": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
+      "order": 10095,
+      "status": "pending",
+      "priority": "high",
+      "area": "universaarl-general-posting-setup",
+      "category": "general-posting-setup-matrix-route-diagnosis",
+      "expectedImpact": "foundation-setup-route-diagnosis",
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Diagnose Page 314 field-to-column mapping for INLAND/WAREN with 4400/5400 before any matrix write.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "caseFile": ".agent/state/cases/target-032c-general-posting-setup-matrix-row-route-diagnosis.json",
+      "nextCase": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
+      "blockedBy": []
     }
   ],
-  "lastUpdated": "2026-07-01T07:22:57.343Z",
+  "lastUpdated": "2026-07-01T07:34:44.778Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -2938,46 +2969,51 @@
       "replace-with-better-case"
     ],
     "latestDecisionCard": {
-      "currentCase": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
-      "plannedNextCaseBeforeReview": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
-      "lastEvidenceSummary": "TARGET-031A corrected account 1200 from Bank Saarland to Forderungen aus Lieferungen und Leistungen and proved after reopen: Bilanz + Kontoart Buchung.",
+      "currentCase": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
+      "plannedNextCaseBeforeReview": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
+      "lastEvidenceSummary": "TARGET-032A proved Page 312, Page 313 and Page 314 read-only. TARGET-030/031B proved specific vendor/customer posting groups.",
       "isPlannedNextCaseStillSensible": true,
-      "reason": "The receivables account prerequisite is now proven, so the next smallest useful setup gate is Customer Posting Group INLAND on Page 110 with Debitorensammelkonto 1200.",
+      "reason": "The next setup dependency is General Business/Product Posting Groups first; Page 314 must not be written unless field-to-column mapping is safe.",
       "lookaheadReviewed": [
         {
-          "caseId": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
+          "caseId": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
           "status": "ready-next",
-          "reason": "1200 Forderungen/Bilanz/Buchung proof exists."
+          "reason": "Page 312/313 simple group setup is ready; Page 314 remains conditional on safe editor mapping."
         },
         {
-          "caseId": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
-          "status": "needs-source-check-first",
-          "reason": "Requires General Business/Product Posting Groups and sales/purchase account mapping."
+          "caseId": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
+          "status": "ready-next",
+          "reason": "The groups are proven; the remaining blocker is now only Page 314 field mapping."
         },
         {
           "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
           "status": "ready-after-current",
-          "reason": "Can resume after posting-group route status is clear."
+          "reason": "Dimensions can continue only after the Page 314 matrix route is resolved or explicitly parked."
         },
         {
           "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
           "status": "needs-setup-first",
-          "reason": "Foundation still lacks customer posting group, general setup, VAT matrix and dimensions status."
+          "reason": "Foundation still needs matrix/VAT/dimensions status before readiness."
+        },
+        {
+          "caseId": "TARGET-035-MASTER-DATA-FIRST-CUSTOMER-VENDOR-ITEM",
+          "status": "needs-setup-first",
+          "reason": "Master data remains locked until posting groups, VAT and dimensions are sufficient."
         }
       ],
       "queueChangesMade": [
-        "Marked TARGET-031A as done with setupChangedOnlyAccount1200=true.",
-        "Added TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE as the next pending queue item."
+        "Selected TARGET-032C as narrow follow-up for Page 314 instead of skipping to Dimensions."
       ],
-      "selectedNextCase": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
-      "whySelectedNextCaseIsBest": "It is now the smallest safe setup write after the receivables account proof.",
+      "selectedNextCase": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
+      "whySelectedNextCaseIsBest": "Page 312/313 are complete; a narrow Page 314 matrix field-mapping case avoids repeating unsafe cell edits.",
       "risksBeforeNextCase": [
-        "Do not create account 1400.",
-        "Do not use 1406 as receivables account.",
-        "Do not create master data yet."
+        "Do not create master data yet.",
+        "Do not run Preview Posting or Posting.",
+        "Do not claim posting readiness from posting groups alone.",
+        "Do not type Page 314 account values into unknown columns."
       ],
       "requiredPreparation": [
-        "Use Page 110 only for Customer Posting Group INLAND + account 1200."
+        "Use Page Inspection, personalization or controlled row field diagnostics on Page 314 before any 4400/5400 write."
       ]
     },
     "lastDecisionCard": {
@@ -3019,57 +3055,58 @@
       ]
     }
   },
-  "updatedAt": "2026-07-01T06:57:17.462Z",
-  "lastCompletedCase": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
-  "nextCase": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
+  "updatedAt": "2026-07-01T07:34:44.778Z",
+  "lastCompletedCase": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
+  "nextCase": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
-    "lastEvidenceSummary": "TARGET-031 showed Page 16 with 1200 Bank Saarland and no visible 1400 receivables row; Page 110 is empty read-only.",
+    "currentCase": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-032A proved Page 312, Page 313 and Page 314 read-only. TARGET-030/031B proved specific vendor/customer posting groups.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The case remains correct only after source correction: recover 1200, not 1400, before Customer Posting Group write.",
+    "reason": "The next setup dependency is General Business/Product Posting Groups first; Page 314 must not be written unless field-to-column mapping is safe.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
+        "caseId": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
         "status": "ready-next",
-        "reason": "1200 exists but has the wrong visible name; a narrow account correction/reopen proof is needed."
+        "reason": "Page 312/313 simple group setup is ready; Page 314 remains conditional on safe editor mapping."
       },
       {
-        "caseId": "TARGET-031B-CUSTOMER-POSTING-GROUP-INLAND-WRITE-GATE",
-        "status": "needs-setup-first",
-        "reason": "Needs 1200 Forderungen/Bilanz/Buchung proof first."
-      },
-      {
-        "caseId": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
-        "status": "needs-source-check-first",
-        "reason": "Requires General Business/Product Posting Groups and sales/purchase account mapping."
+        "caseId": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
+        "status": "ready-next",
+        "reason": "The groups are proven; the remaining blocker is now only Page 314 field mapping."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-after-current",
-        "reason": "Can resume after posting-group route status is clear."
+        "reason": "Dimensions can continue only after the Page 314 matrix route is resolved or explicitly parked."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Foundation still lacks customer posting group, general setup, VAT matrix and dimensions status."
+        "reason": "Foundation still needs matrix/VAT/dimensions status before readiness."
+      },
+      {
+        "caseId": "TARGET-035-MASTER-DATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data remains locked until posting groups, VAT and dimensions are sufficient."
       }
     ],
     "queueChangesMade": [
-      "Corrected TARGET-031A from account 1400 to SKR04 account 1200 before execution."
+      "Selected TARGET-032C as narrow follow-up for Page 314 instead of skipping to Dimensions."
     ],
-    "selectedNextCase": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
-    "whySelectedNextCaseIsBest": "It prevents a wrong SKR04 receivables account and fixes the visible 1200 Bank Saarland conflict before Page 110 writes.",
+    "selectedNextCase": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
+    "whySelectedNextCaseIsBest": "Page 312/313 are complete; a narrow Page 314 matrix field-mapping case avoids repeating unsafe cell edits.",
     "risksBeforeNextCase": [
-      "Do not create account 1400.",
-      "Do not use 1406 as receivables account.",
-      "Do not write Customer Posting Groups yet."
+      "Do not create master data yet.",
+      "Do not run Preview Posting or Posting.",
+      "Do not claim posting readiness from posting groups alone.",
+      "Do not type Page 314 account values into unknown columns."
     ],
     "requiredPreparation": [
-      "Use Page 16 / Page 17 only for account 1200, then reopen proof."
+      "Use Page Inspection, personalization or controlled row field diagnostics on Page 314 before any 4400/5400 write."
     ]
   },
   "nextStep": "Run TARGET-031B to create or verify only Customer Posting Group INLAND with receivables account 1200. Do not create master data, documents, Preview Posting or Posting.",
   "openItems": 1,
-  "nextQueueItem": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE"
+  "nextQueueItem": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS"
 }

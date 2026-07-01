@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "General Posting Setup matrix row route diagnosis",
+  "purpose": "Find a trusted UI route for Page 314 INLAND/WAREN with Sales Account 4400 and Purchase Account 5400 before any matrix write.",
+  "sourceCases": [
+    "TARGET-032A-GENERAL-POSTING-GROUPS-SOURCE-AND-UI-DISCOVERY",
+    "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": true,
+  "taskClass": "judge_work",
+  "smartDecision": {
+    "whyNow": "TARGET-032B proved Page 312 INLAND and Page 313 WAREN after reopen, but stopped Page 314 before unsafe account-column mapping.",
+    "sourceBackedBy": [
+      "TARGET-032B result JSON and screenshots",
+      "TARGET-032A Page 314 read-only screenshot",
+      "Earlier 4400/5400 G/L Account proof"
+    ],
+    "fieldsAllowedToChange": [],
+    "fieldsNotTouched": [
+      "General Posting Setup values",
+      "VAT Posting Setup",
+      "Inventory Posting Setup",
+      "Master Data",
+      "Documents",
+      "Preview Posting",
+      "Posting"
+    ],
+    "risk": "Page 314 has intermediate sales credit/prepayment fields; typing account values without field mapping can put 5400 into the wrong column.",
+    "fallback": "Use Page Inspection, personalization, tooltip/column-header hover or card/detail route discovery; if still ambiguous, keep matrix blocked."
+  },
+  "targetValues": {
+    "pageId": 314,
+    "genBusPostingGroup": "INLAND",
+    "genProdPostingGroup": "WAREN",
+    "salesAccount": "4400",
+    "purchaseAccount": "5400"
+  },
+  "allowedActions": [
+    "open-playthru-business-central",
+    "confirm-UNIVERSAARL-DE-context",
+    "open-page-314",
+    "capture-current-matrix-context",
+    "hover-or-inspect-column-headers",
+    "page-inspection-or-personalization-readonly-diagnosis",
+    "capture-screenshot-qa",
+    "write-result-json-and-next-step-decision"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "write-general-posting-setup-value",
+    "change-vat-setup",
+    "change-inventory-posting-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-posting-readiness",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-032B proved INLAND General Business Posting Group after reopen.",
+    "TARGET-032B proved WAREN General Product Posting Group after reopen.",
+    "TARGET-032B blocked Page 314 before account value typing."
+  ],
+  "acceptanceCriteria": [
+    "Page 314 is confirmed in playthru / UNIVERSAARL-DE.",
+    "Field-to-column mapping for Gen. Bus., Gen. Prod., Sales Account and Purchase Account is either trusted or explicitly still blocked.",
+    "No matrix values, VAT setup, Inventory setup, master data, draft, Preview Posting, Posting or API shortcut occur.",
+    "If a future write route is proposed, it names exact fields and visible proof requirements."
+  ],
+  "nextCaseIfDone": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
+  "nextCaseIfBlocked": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS-FOLLOWUP",
+  "createdAt": "2026-07-01T07:34:44.778Z"
+}

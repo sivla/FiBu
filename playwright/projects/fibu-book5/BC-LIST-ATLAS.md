@@ -45,7 +45,7 @@ Der List Atlas beschreibt Business-Central-Listen, die fuer Klickpfade, Suche, F
 | `RO-W0-COMPANIES-357` | Companies / Mandanten | 1 | Spalten, `UNIVERSAARL-DE`-Sichtbarkeit, Split-Button-/Dropdown-Kontext, riskante Actions erfassen | `observed-readonly-prep-031` |
 | `RO-W1-ASSISTED-SETUP` | Assisted Setup / Unterstuetztes Setup | 2 | Assistenten, Status und gefaehrliche Start-/Finish-Punkte sichtbar machen | `ready-for-readonly-playwright` |
 | `RO-W1-NO-SERIES` | No. Series / Nummernserien | 3 | Nummernserien als Listen-/Zeilenkonzept vorbereiten | `requires-universaarl-company` |
-| `RO-W1-POSTING-GROUPS` | Posting Groups / Posting Setup | 4 | Buchungsgruppen- und Matrixlisten fuer Kontenfindung vorbereiten | `requires-universaarl-company` |
+| `RO-W1-POSTING-GROUPS` | Posting Groups / Posting Setup | 4 | Buchungsgruppen- und Matrixlisten fuer Kontenfindung vorbereiten | `tested-effective-action-partial`; `INLAND` und `WAREN` sind nach Reopen sichtbar, Page 314-Matrixroute bleibt `blocked` bis TARGET-032C |
 | `RO-W1-VAT-SETUP` | VAT Posting Setup | 5 | VAT-Buchungsmatrixfelder fuer spaetere USt-Kette vorbereiten | `requires-universaarl-company` |
 | `RO-W1-DIMENSIONS` | Dimensions / Dimension Values | 6 | Dimensionen, Dimensionswerte und spaetere Default-Dimension-Kontexte vorbereiten | `requires-universaarl-company` |
 

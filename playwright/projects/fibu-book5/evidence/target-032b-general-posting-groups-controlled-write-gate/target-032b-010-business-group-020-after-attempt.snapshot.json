@@ -1,0 +1,43 @@
+{
+  "step": "After INLAND write attempt.",
+  "pageId": 312,
+  "page": "Geschaeftsbuchungsgruppen / Gen. Business Posting Groups",
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=312&company=UNIVERSAARL-DE",
+  "title": "Geschaftsbuchungsgruppen",
+  "compact": "Neu\nListe bearbeiten\nCode\nBeschreibung\nINLAND\nInlaendische Geschaeftspartner\nCode, Sortierreihenfolge Aufsteigend",
+  "hasDangerousDialog": false,
+  "beforeVisible": {
+    "code": true,
+    "description": true
+  },
+  "writeAttempt": {
+    "changed": false,
+    "reason": "INLAND was already visible with description."
+  },
+  "steps": [
+    {
+      "step": "smart-decision",
+      "whyNow": "TARGET-032A proved Page 312, Page 313 and Page 314 read-only. The smallest useful write is INLAND and WAREN before attempting the Page 314 matrix.",
+      "supportedBy": [
+        "TARGET-032 source-backed decision",
+        "TARGET-032A read-only screenshots for Page 312/313/314",
+        "Earlier Universaarl account proof for 4400 and 5400"
+      ],
+      "fieldsChangedOnlyIfSafe": [
+        "Page 312 Code/Description for INLAND",
+        "Page 313 Code/Description for WAREN",
+        "Page 314 only if field-to-column route is trusted"
+      ],
+      "fieldsNotTouched": [
+        "VAT Posting Setup",
+        "Inventory Posting Setup",
+        "Master Data",
+        "Documents",
+        "Preview Posting",
+        "Posting",
+        "API shortcut"
+      ],
+      "fallback": "Block Page 314 and create a narrow matrix route diagnosis if column mapping is not trusted."
+    }
+  ]
+}
