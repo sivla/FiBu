@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-027D3-VAT-MATRIX-LIST-CELL-CORRECTION",
+  "source": "playwright-universaarl-vat-matrix-list-cell-correction",
+  "resultStatus": "blocked",
+  "runPlanId": "TARGET-027D3-VAT-MATRIX-LIST-CELL-CORRECTION-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "targetValues": {
+    "vatBusinessPostingGroup": "INLAND",
+    "vatProductPostingGroup": "VAT19",
+    "description": "Inland 19 Prozent",
+    "vatPercent": "19",
+    "salesVatAccount": "3806",
+    "purchaseVatAccount": "1406"
+  },
+  "actionsTaken": [
+    "Opened Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix.",
+    "Used visible column headers and the INLAND/VAT19 row to target list cells.",
+    "Attempted to correct Beschreibung, MwSt. %, Umsatzsteuerkonto and Vorsteuerkonto.",
+    "Captured before, after and reopen screenshots.",
+    "Stopped before master data, document draft, Preview Posting and Posting."
+  ],
+  "actionsNotTaken": [
+    "No master data",
+    "No document draft",
+    "No Preview Posting",
+    "No Posting",
+    "No API shortcut",
+    "No Company switch",
+    "No VAT final claim"
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "The targeted list-cell correction was attempted and documented."
+  ],
+  "notProved": [
+    "No final German VAT correctness.",
+    "No Preview Posting.",
+    "No VAT Entries.",
+    "No G/L Entries.",
+    "No VAT Statement.",
+    "No tax advisor approval."
+  ],
+  "screenshots": [
+    "target-027d3-010-before-list.png",
+    "target-027d3-020-after-list-cell-correction.png",
+    "target-027d3-030-reopen-list.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-027d3-vat-matrix-list-cell-correction/TARGET-027D3-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d3-vat-matrix-list-cell-correction/README.md"
+  ],
+  "blockedBy": [
+    "Reopen list still does not visibly show complete target values INLAND/VAT19/Inland 19 Prozent/19/3806/1406."
+  ],
+  "warnings": [],
+  "steps": [
+    {
+      "step": "edit-list",
+      "route": "clicked-by-geometry"
+    },
+    {
+      "step": "located-list-cells",
+      "y": 209,
+      "descriptionX": 676,
+      "vatPercentX": 1056,
+      "salesVatX": 1457,
+      "purchaseVatX": 1611
+    },
+    {
+      "step": "description",
+      "value": "Inland 19 Prozent",
+      "x": 676,
+      "y": 209
+    },
+    {
+      "step": "vat-percent",
+      "value": "19",
+      "x": 1056,
+      "y": 209
+    },
+    {
+      "step": "sales-vat-account",
+      "value": "3806",
+      "x": 1457,
+      "y": 209
+    },
+    {
+      "step": "purchase-vat-account",
+      "value": "1406",
+      "x": 1611,
+      "y": 209
+    }
+  ],
+  "flags": {
+    "setupChangeAttempted": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-027D3-VAT-MATRIX-LIST-CELL-CORRECTION",
+    "plannedNextCaseBeforeReview": "TARGET-027D2-VAT-POSTING-SETUP-CARD-CORRECTION",
+    "lastEvidenceSummary": "TARGET-027D2 showed the card route did not actually open a card. TARGET-027D3 uses visible list columns instead.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The partially created matrix row must be corrected or explicitly blocked before broader setup.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "VAT matrix row remains incomplete."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for posting groups and VAT defaults."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness waits for posting groups and defaults."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
+    "whySelectedNextCaseIsBest": "Page 472 needs Page Inspection or a record-card route; do not repeat list cells blindly.",
+    "risksBeforeNextCase": [
+      "Do not claim final VAT correctness before Preview Posting, VAT Entries and G/L Entries."
+    ],
+    "requiredPreparation": [
+      "Inspect Page 472 field/control mapping."
+    ]
+  },
+  "safeToFinalizeState": false,
+  "requiresReview": true,
+  "statePatch": {},
+  "nextCase": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
+  "reason": "VAT matrix list-cell correction is still blocked: Reopen list still does not visibly show complete target values INLAND/VAT19/Inland 19 Prozent/19/3806/1406."
+}

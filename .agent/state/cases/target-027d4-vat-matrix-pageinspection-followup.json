@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
+  "id": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
+  "status": "planned",
+  "area": "universaarl-vat-setup",
+  "goal": "Map Page 472 VAT Posting Setup field/control values for the partial INLAND + VAT19 row before any further correction or cleanup.",
+  "sourceCompany": "UNIVERSAARL-DE",
+  "targetWorld": "Universaarl",
+  "sourceCases": [
+    "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
+    "TARGET-027D2-VAT-POSTING-SETUP-CARD-CORRECTION",
+    "TARGET-027D3-VAT-MATRIX-LIST-CELL-CORRECTION"
+  ],
+  "prerequisites": [
+    "Partial INLAND + VAT19 row is visible on Page 472."
+  ],
+  "allowedActions": [
+    "open-page-472-readonly",
+    "capture-visible-row-and-columns",
+    "page-inspection-or-field-control-map-if-available",
+    "document-correction-vs-cleanup-decision",
+    "no-value-write-until-field-route-is-known"
+  ],
+  "forbiddenActions": [
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "repeat-grid-tab-flow",
+    "claim-german-19-percent-vat-final-proof"
+  ],
+  "acceptanceCriteria": [
+    "The run stays in playthru / UNIVERSAARL-DE.",
+    "Page 472 and the partial INLAND + VAT19 row are visibly captured.",
+    "Field/control mapping explains where Beschreibung, VAT %, Sales VAT Account and Purchase VAT Account are controlled.",
+    "The next correction or cleanup route is explicit; no blind tab-flow is repeated.",
+    "No master data, document draft, Preview Posting, Posting or API shortcut is executed."
+  ],
+  "nextIfSuccessful": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
+  "createdAt": "2026-07-01T01:43:13.436Z"
+}

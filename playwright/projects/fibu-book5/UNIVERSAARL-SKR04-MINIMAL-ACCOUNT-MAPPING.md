@@ -140,6 +140,17 @@ Die akzeptierte Evidenz sind die Reopen-Screenshots. Der rohe Text-Extractor hat
 
 Weiter offen bleibt die eigentliche MwSt.-Buchungsmatrix auf Page 472. `1406` und `3806` sind vorbereitete SKR04-Sachkonten, aber noch nicht in einer `INLAND` + `VAT19` Matrixzeile verwendet. Es gibt weiterhin keine 19-Prozent-USt-Berechnung, keine Preview, keine VAT Entries und keine Sachposten.
 
+## Stand nach `TARGET-027D/D2/D3`
+
+`TARGET-027D` hat Page 472 `MwSt.-Buchungsmatrix Einr.` wirksam beruehrt, aber nicht fachlich erfolgreich abgeschlossen. Nach Reopen ist eine partielle Zeile `INLAND` + `VAT19` sichtbar. Die Screenshot-QA zeigt jedoch, dass die Werte aus dem Tab-/Feldfluss verrutscht sind: `19` steht als Beschreibung, `MwSt. %` ist nicht als `19` bewiesen, und die Steuerkonten `3806` und `1406` sind nicht sichtbar zugeordnet.
+
+`TARGET-027D2` und `TARGET-027D3` haben zwei Korrekturrouten geprueft:
+
+- Karten-/Detailroute: blockiert, weil keine eindeutig geoeffnete Karte mit Feldlabels sichtbar wurde.
+- Listen-Zellkorrektur: blockiert, weil die Zielwerte nach Reopen nicht sichtbar in derselben Matrixzeile persistiert sind.
+
+Damit ist der aktuelle USt-Stand `blocked-partial-vat-matrix-row`. `INLAND` und `VAT19` sind als Gruppen belegt, aber die MwSt.-Buchungsmatrix ist nicht fertig. Vor Stammdaten, Preview Posting oder Posting muss `TARGET-027D4` zuerst Page Inspection bzw. ein feldgebundenes Control-Mapping fuer Page 472 liefern. Erst danach darf entschieden werden, ob die partielle Zeile korrigiert oder sauber bereinigt und neu angelegt wird.
+
 ## Quellenbasis
 
 - DATEV SKR04 Produktseite: https://www.datev.de/web/de/datev-shop/rechnungswesen/skr-04/

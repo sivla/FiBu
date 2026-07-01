@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-027D2-VAT-POSTING-SETUP-CARD-CORRECTION",
+  "source": "playwright-universaarl-vat-posting-setup-card-correction",
+  "resultStatus": "blocked",
+  "runPlanId": "TARGET-027D2-VAT-POSTING-SETUP-CARD-CORRECTION-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "targetValues": {
+    "vatBusinessPostingGroup": "INLAND",
+    "vatProductPostingGroup": "VAT19",
+    "description": "Inland 19 Prozent",
+    "vatPercent": "19",
+    "salesVatAccount": "3806",
+    "purchaseVatAccount": "1406"
+  },
+  "actionsTaken": [
+    "Opened Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix.",
+    "Opened the visible INLAND/VAT19 row as a card.",
+    "Attempted card-field correction by labels: Beschreibung, MwSt. %, Umsatzsteuerkonto, Vorsteuerkonto.",
+    "Captured before-card, after-card and reopen-list screenshots.",
+    "Stopped before master data, document draft, Preview Posting and Posting."
+  ],
+  "actionsNotTaken": [
+    "No master data",
+    "No document draft",
+    "No Preview Posting",
+    "No Posting",
+    "No API shortcut",
+    "No Company switch",
+    "No VAT final claim"
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "The matrix card route was attempted and documented with screenshots.",
+    "The run stopped before master data, document draft, Preview Posting and Posting."
+  ],
+  "notProved": [
+    "No final German VAT correctness.",
+    "No Preview Posting.",
+    "No VAT Entries.",
+    "No G/L Entries.",
+    "No VAT Statement.",
+    "No tax advisor approval or compliance final proof."
+  ],
+  "screenshots": [
+    "target-027d2-010-before-list.png",
+    "target-027d2-020-before-card.png",
+    "target-027d2-030-after-card.png",
+    "target-027d2-040-reopen-list.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-027d2-vat-posting-setup-card-correction/TARGET-027D2-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d2-vat-posting-setup-card-correction/README.md"
+  ],
+  "blockedBy": [
+    "Could not locate field label /^Beschreibung$/i."
+  ],
+  "warnings": [],
+  "steps": [
+    {
+      "step": "opened-card",
+      "route": "double-click-row",
+      "row": {
+        "text": "0 Normale MwSt. INLAND VAT19 19 0 Normale MwSt.",
+        "role": "div",
+        "x": 192,
+        "y": 158,
+        "width": 2016,
+        "height": 1118
+      }
+    }
+  ],
+  "flags": {
+    "setupChangeAttempted": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-027D2-VAT-POSTING-SETUP-CARD-CORRECTION",
+    "plannedNextCaseBeforeReview": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
+    "lastEvidenceSummary": "TARGET-027D grid-tab flow created a partial row and showed that Page 472 switches to a card; 19 was placed in Description and 1406 in VAT %. This follow-up uses card labels instead.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A correction is necessary before posting groups or master data can start.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "VAT matrix row still needs correction/discovery."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for posting groups and VAT defaults."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness waits for posting groups and defaults."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-027D3-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
+    "whySelectedNextCaseIsBest": "The exact Page 472 field controls need Page Inspection or a more precise field-control route.",
+    "risksBeforeNextCase": [
+      "Do not claim final VAT correctness before Preview Posting, VAT Entries and G/L Entries."
+    ],
+    "requiredPreparation": [
+      "Inspect Page 472 fields and card control values."
+    ]
+  },
+  "safeToFinalizeState": false,
+  "requiresReview": true,
+  "statePatch": {},
+  "nextCase": "TARGET-027D3-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
+  "reason": "VAT matrix card correction is still blocked: Could not locate field label /^Beschreibung$/i."
+}

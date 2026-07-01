@@ -5,7 +5,7 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "queueId": "TARGET-MARATHON-002-UNIVERSAARL-REPO-READONLY-PREP",
-  "reason": "TARGET-027C retry confirmed INLAND and VAT19 by screenshot QA; next is controlled VAT Posting Setup matrix row.",
+  "reason": "TARGET-027D created a partial VAT matrix row; correction routes are blocked, so next is field/control mapping before broader W1 Foundation work.",
   "noEffectiveBusinessCentralActions": false,
   "forbiddenUntilUnblocked": [],
   "unblockCriteria": "Satisfied: UNIVERSAARL-DE exists and active Role Center context / Firmendaten read-only proof is available.",
@@ -2175,7 +2175,7 @@
     {
       "id": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
       "order": 10060,
-      "status": "pending",
+      "status": "blocked",
       "category": "controlled-setup-write",
       "expectedImpact": "vat-posting-setup-matrix-prerequisite",
       "mayWorkEffectively": true,
@@ -2185,10 +2185,34 @@
       "sourceCompany": "UNIVERSAARL-DE",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "lookaheadStatus": "ready-next",
+      "completedAt": "2026-07-01T01:43:13.436Z",
+      "result": "Blocked with partial INLAND/VAT19 row; field/control mapping required before correction or cleanup.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-027d-vat-posting-setup-matrix-write/TARGET-027D-result.json",
+      "nextCase": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
+      "blockedBy": [
+        "The grid tab-flow shifted values: 19 landed in Beschreibung, VAT % remained 0, and 3806/1406 were not proven after reopen.",
+        "The attempted card route did not actually open a usable card surface.",
+        "The list-cell correction route still did not persist or visibly prove 3806/1406."
+      ]
+    },
+    {
+      "id": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
+      "order": 10061,
+      "status": "pending",
+      "category": "field-mapping-diagnosis",
+      "expectedImpact": "vat-matrix-correction-unblocker",
+      "mayWorkEffectively": false,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Map Page 472 VAT Posting Setup field/control values for the partial INLAND + VAT19 row before any further correction or cleanup.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
       "lookaheadStatus": "ready-next"
     }
   ],
-  "lastUpdated": "2026-07-01T03:55:00.000+02:00",
+  "lastUpdated": "2026-07-01T01:43:13.436Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -2301,7 +2325,7 @@
   },
   "updatedAt": "2026-07-01T03:55:00.000+02:00",
   "lastCompletedCase": "TARGET-027C4-VAT-BUSINESS-RESULT-CLICK-RECOVERY",
-  "nextCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
+  "nextCase": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
   "nextStepDecisionCard": {
     "currentCase": "TARGET-027C3-TELL-ME-INPUT-FOCUS-RECOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027C3-TELL-ME-INPUT-FOCUS-RECOVERY",

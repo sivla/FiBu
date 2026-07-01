@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T01:21:03.007Z",
+  "updatedAt": "2026-07-01T01:49:43.201Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-vat-posting-setup-matrix-write",
-  "activeCase": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
-  "active_case_file": ".agent/state/cases/target-027d-vat-posting-setup-matrix-write.json",
-  "lastReferenceCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
-  "lastReferenceCaseFile": ".agent/state/cases/target-027c4-vat-business-result-click-recovery.json",
+  "activeArea": "universaarl-vat-matrix-field-mapping",
+  "activeCase": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
+  "active_case_file": ".agent/state/cases/target-027d4-vat-matrix-pageinspection-followup.json",
+  "lastReferenceCase": "TARGET-027D3-VAT-MATRIX-LIST-CELL-CORRECTION",
+  "lastReferenceCaseFile": ".agent/state/cases/target-027d-vat-posting-setup-matrix-write.json",
   "mode": "universaarl-target-execution",
   "requiresStrongModel": true,
   "requiredPreflightChecks": [
@@ -19,12 +19,11 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-vat-posting-setup-page-472",
-    "capture-before-state",
-    "run-source-backed-smart-decision-gate-for-INLAND-VAT19-matrix",
-    "create-or-confirm-one-vat-posting-setup-matrix-row-INLAND-VAT19-if-gate-passes",
-    "capture-after-and-reopen-proof",
-    "stop-before-master-data-preview-posting"
+    "open-page-472-readonly",
+    "capture-visible-row-and-columns",
+    "page-inspection-or-field-control-map-if-available",
+    "document-correction-vs-cleanup-decision",
+    "no-value-write-until-field-route-is-known"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -37,11 +36,11 @@
     "preview-posting",
     "post",
     "api-shortcut",
-    "claim-german-19-percent-vat-final-proof",
-    "change-vat-groups-INLAND-or-VAT19-again-without-reopen-blocker"
+    "repeat-grid-tab-flow",
+    "claim-german-19-percent-vat-final-proof"
   ],
-  "nextCase": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
-  "nextStep": "Create a controlled Page 472 VAT Posting Setup matrix case for INLAND + VAT19 only after decision/source gate; no master data, draft, Preview Posting or Posting.",
+  "nextCase": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
+  "nextStep": "Map Page 472 field/control values for the partial INLAND + VAT19 VAT matrix row before correction, cleanup, posting-group setup or master data.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -6564,5 +6563,30 @@
       "No German 19 percent VAT final proof.",
       "Raw text extraction missed active BC grid values; use screenshot QA/value-aware helper."
     ]
+  },
+  "latestVatMatrixSetupAttempt": {
+    "caseId": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
+    "status": "blocked-partial-row-needs-field-mapping",
+    "sourceInstance": "playthru",
+    "sourceCompany": "UNIVERSAARL-DE",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d-vat-posting-setup-matrix-write/TARGET-027D-result.json",
+    "followupResults": [
+      "playwright/projects/fibu-book5/evidence/target-027d2-vat-posting-setup-card-correction/TARGET-027D2-result.json",
+      "playwright/projects/fibu-book5/evidence/target-027d3-vat-matrix-list-cell-correction/TARGET-027D3-result.json"
+    ],
+    "proved": [
+      "Page 472 is visible.",
+      "A partial INLAND + VAT19 row exists."
+    ],
+    "blockedBy": [
+      "The grid tab-flow shifted values: 19 landed in Beschreibung, VAT % remained 0, and 3806/1406 were not proven after reopen.",
+      "The attempted card route did not actually open a usable card surface.",
+      "The list-cell correction route still did not persist or visibly prove 3806/1406."
+    ],
+    "noPreview": true,
+    "noPosting": true,
+    "noMasterData": true,
+    "noDraft": true,
+    "nextCase": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP"
   }
 }

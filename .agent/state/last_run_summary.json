@@ -1,93 +1,90 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
-  "caseId": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
-  "status": "observed-screenshot-qa-with-extractor-gap",
-  "completedAt": "2026-07-01T01:21:03.007Z",
+  "runId": "TARGET-027D3-VAT-MATRIX-LIST-CELL-CORRECTION",
+  "caseId": "TARGET-027D3-VAT-MATRIX-LIST-CELL-CORRECTION",
+  "status": "blocked-partial-row-needs-field-mapping",
+  "completedAt": "2026-07-01T01:49:43.201Z",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/TARGET-027C-RETRY-screenshot-reviewed-result.json",
-  "rawResultPath": "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/TARGET-027C-RETRY-result.json",
-  "evidencePath": "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/",
-  "summary": "INLAND and VAT19 are visible after reopen by screenshot QA; the raw text extractor missed active BC grid values. No VAT matrix, master data, Preview Posting or Posting.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d3-vat-matrix-list-cell-correction/TARGET-027D3-result.json",
+  "rawResultPath": "playwright/projects/fibu-book5/evidence/target-027d-vat-posting-setup-matrix-write/TARGET-027D-result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/target-027d3-vat-matrix-list-cell-correction/",
+  "summary": "Page 472 is visible and a partial INLAND/VAT19 row exists, but the row is not complete: VAT percent/accounts are not proven. Grid tab-flow, card route and list-cell correction are blocked; next is Page Inspection/field mapping.",
   "proved": [
-    "Business Central stayed in playthru / UNIVERSAARL-DE.",
-    "Screenshot QA shows VAT Business Posting Group INLAND with description Inland Deutschland after reopen on Page 470.",
-    "Screenshot QA shows VAT Product Posting Group VAT19 with description USt 19 Prozent after reopen on Page 471.",
-    "No VAT Posting Setup matrix row, master data, document draft, Preview Posting, Posting or API shortcut was executed."
+    "playthru / UNIVERSAARL-DE stayed active.",
+    "Page 472 VAT Posting Setup is visible.",
+    "Partial INLAND/VAT19 row is visible."
   ],
   "notProved": [
-    "No VAT Posting Setup matrix row is proven.",
-    "No German 19 percent VAT calculation is proven.",
-    "No customer/vendor/item/G/L VAT defaults are proven.",
-    "No Preview Posting, VAT Entry or G/L Entry exists.",
-    "The automated text extractor missed active Business Central grid cell values; the accepted proof is screenshot QA plus metadata review."
+    "Complete VAT Posting Setup row.",
+    "German 19 percent VAT calculation.",
+    "Preview Posting, VAT Entries, G/L Entries or Posting."
   ],
-  "blockedBy": [],
+  "blockedBy": [
+    "The grid tab-flow shifted values: 19 landed in Beschreibung, VAT % remained 0, and 3806/1406 were not proven after reopen.",
+    "The attempted card route did not actually open a usable card surface.",
+    "The list-cell correction route still did not persist or visibly prove 3806/1406."
+  ],
   "warnings": [
-    "Raw Playwright result stayed blocked because active BC grid cell values were not extracted reliably from DOM text.",
-    "A repeated write attempt displayed a duplicate/non-saved error before reopen; the final reopen screenshots show one persisted INLAND row and one persisted VAT19 row.",
-    "This remains prerequisite setup evidence only, not VAT calculation or posting proof."
+    "Do not repeat blind grid tab-flow on Page 472.",
+    "Do not start posting groups or master data until the partial matrix row is corrected or cleaned up."
   ],
   "actionsNotTaken": [
-    "No VAT Posting Setup matrix row",
-    "No posting groups outside VAT Business/Product groups",
     "No master data",
     "No document draft",
     "No Preview Posting",
     "No Posting",
     "No API shortcut",
-    "No Company switch",
-    "No search overlay accepted as proof"
+    "No Company switch"
   ],
   "screenshots": [
-    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/target-027c-001-business-reopen.png",
-    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/target-027c-002-product-reopen.png"
+    "playwright/projects/fibu-book5/evidence/target-027d-vat-posting-setup-matrix-write/target-027d-030-reopen-matrix-proof.png",
+    "playwright/projects/fibu-book5/evidence/target-027d3-vat-matrix-list-cell-correction/target-027d3-030-reopen-list.png"
   ],
-  "nextCase": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
-  "nextStep": "Prepare and run the controlled VAT Posting Setup matrix row case for INLAND + VAT19 only.",
+  "nextCase": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
+  "nextStep": "Run Page 472 field/control mapping for the partial INLAND/VAT19 row before correction or cleanup.",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE",
-    "plannedNextCaseBeforeReview": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY",
-    "lastEvidenceSummary": "TARGET-027C4 recovered Page 470. TARGET-027C retry wrote/confirmed INLAND and VAT19; visual reopen screenshots show both values, while raw text extraction missed active grid values.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "INLAND and VAT19 are prerequisite records before the Page 472 VAT Posting Setup matrix can be entered.",
+    "currentCase": "TARGET-027D3-VAT-MATRIX-LIST-CELL-CORRECTION",
+    "plannedNextCaseBeforeReview": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
+    "lastEvidenceSummary": "TARGET-027D created a partial INLAND/VAT19 VAT matrix row, but TARGET-027D2 and TARGET-027D3 did not correct it. VAT %, sales VAT account and purchase VAT account remain unproven.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The original matrix write has already run and left a partial row. Repeating it would risk more setup drift; Page 472 needs field/control mapping first.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
+        "caseId": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
         "status": "ready-next",
-        "reason": "Prerequisite VAT Business/Product groups are visible after reopen by screenshot QA."
+        "reason": "It is the safest next step because it is diagnostic and blocks additional writes until the fields are mapped."
+      },
+      {
+        "caseId": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
+        "status": "ready-after-current",
+        "reason": "Only sensible after Page Inspection or an equivalent control map identifies the correct fields."
       },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
-        "status": "ready-after-current",
-        "reason": "General posting groups should wait until the VAT matrix row exists."
+        "status": "needs-setup-first",
+        "reason": "Posting groups should wait until the partial VAT matrix row is corrected or cleaned up."
       },
       {
-        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "caseId": "TARGET-024-CORE-MASTERDATA-PLAN",
         "status": "needs-setup-first",
-        "reason": "Master data waits for VAT matrix, posting groups and defaults."
-      },
-      {
-        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
-        "status": "needs-setup-first",
-        "reason": "Foundation readiness waits for matrix/posting-group checkpoints."
+        "reason": "Master data with VAT defaults is premature while VAT setup is incomplete."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY done by screenshot QA review.",
-      "Added TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE as next pending W1 Foundation case."
+      "Marked TARGET-027D blocked.",
+      "Added TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP as the next pending diagnostic case."
     ],
-    "selectedNextCase": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
-    "whySelectedNextCaseIsBest": "The smallest next dependency is the VAT Posting Setup matrix row linking INLAND + VAT19 to SKR04 VAT accounts; no master data should start before that.",
+    "selectedNextCase": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
+    "whySelectedNextCaseIsBest": "It prevents another blind Page 472 write and produces the field/control truth needed for correction or cleanup.",
     "risksBeforeNextCase": [
-      "Do not claim German 19 percent VAT correctness before matrix, Preview Posting, VAT Entries and G/L Entries.",
-      "Use screenshot QA plus DOM/value-aware helper for BC grids; pageText alone can miss active cell values.",
-      "Avoid repeating the INLAND/VAT19 write now that reopen screenshots show the groups."
+      "Partial INLAND/VAT19 row remains in Page 472.",
+      "Further blind writes could make the setup harder to repair."
     ],
     "requiredPreparation": [
-      "Create target-027d case file for Page 472 matrix only.",
-      "Use INLAND + VAT19 and planned SKR04 VAT accounts 1406/3806 only after source/decision gate."
+      "Open Page 472 read-only.",
+      "Capture the partial row and visible columns.",
+      "Use Page Inspection or equivalent field/control mapping before any correction."
     ]
   }
 }

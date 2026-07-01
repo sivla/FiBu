@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
   "id": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
-  "status": "planned",
+  "status": "blocked-partial-row-needs-field-mapping",
   "area": "universaarl-vat-setup",
   "goal": "Create or confirm only the VAT Posting Setup matrix row for INLAND + VAT19 after source/decision gate.",
   "sourceCompany": "UNIVERSAARL-DE",
@@ -37,6 +37,28 @@
     "No master data, document draft, Preview Posting, Posting or API shortcut is executed.",
     "The result clearly states that final German VAT proof still requires Preview Posting, VAT Entries and G/L Entries."
   ],
-  "nextIfSuccessful": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
-  "createdAt": "2026-07-01T01:21:03.007Z"
+  "nextIfSuccessful": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP",
+  "createdAt": "2026-07-01T01:21:03.007Z",
+  "updatedAt": "2026-07-01T01:43:13.436Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d-vat-posting-setup-matrix-write/TARGET-027D-result.json",
+  "followupResults": [
+    "playwright/projects/fibu-book5/evidence/target-027d2-vat-posting-setup-card-correction/TARGET-027D2-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d3-vat-matrix-list-cell-correction/TARGET-027D3-result.json"
+  ],
+  "proved": [
+    "Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix is visibly reachable in playthru / UNIVERSAARL-DE.",
+    "A partial INLAND + VAT19 matrix row is visible after the first controlled UI attempt."
+  ],
+  "blockedBy": [
+    "The grid tab-flow shifted values: 19 landed in Beschreibung, VAT % remained 0, and 3806/1406 were not proven after reopen.",
+    "The attempted card route did not actually open a usable card surface.",
+    "The list-cell correction route still did not persist or visibly prove 3806/1406."
+  ],
+  "notProved": [
+    "No complete VAT Posting Setup row for INLAND + VAT19.",
+    "No German 19 percent VAT calculation proof.",
+    "No VAT Entries or G/L Entries.",
+    "No Preview Posting or Posting."
+  ],
+  "nextCase": "TARGET-027D4-VAT-MATRIX-PAGEINSPECTION-FOLLOWUP"
 }
