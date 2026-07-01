@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027D14-VAT-MATRIX-RECREATE-AFTER-CLEANUP",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "VAT matrix recreate after cleanup",
+  "purpose": "Create the correct INLAND/VAT19 VAT Posting Setup row only after D13C proved the incomplete row is absent.",
+  "sourceCases": [
+    "TARGET-027D13C-VAT-MATRIX-ROW-INLINE-MENU-CLEANUP-ROUTE"
+  ],
+  "effectiveBcActionsAllowed": true,
+  "allowedActions": [
+    "open-page-472",
+    "prove-playthru-instance",
+    "prove-universaarl-company",
+    "prove-INLAND-VAT19-row-absent-before-write",
+    "create-single-INLAND-VAT19-row",
+    "set-vat-percent-19-only-if-editor-visible",
+    "set-vat-calculation-type-normal-vat-only-if-editor-visible",
+    "set-sales-vat-account-3806-only-if-editor-visible",
+    "set-purchase-vat-account-1406-only-if-editor-visible",
+    "reopen-page-472",
+    "prove-complete-row-or-stop"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "delete-row",
+    "repeat-D3-D5-D8-cell-edit-route",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-german-vat-final-proof"
+  ],
+  "acceptanceCriteria": [
+    "Before screenshot/text proves no existing INLAND/VAT19 row.",
+    "Exactly one INLAND/VAT19 row is created or completed.",
+    "Reopen proof shows INLAND, VAT19, VAT % 19, Normal VAT/Normale MwSt., Sales VAT Account 3806 and Purchase VAT Account 1406 or the case blocks before false success.",
+    "No Preview Posting, Posting, master data or document draft is created.",
+    "If any required editor is not proven, stop and document the next route instead of guessing."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-027D13C-VAT-MATRIX-ROW-INLINE-MENU-CLEANUP-ROUTE",
+    "plannedNextCaseBeforeReview": "TARGET-027D13C-VAT-MATRIX-ROW-INLINE-MENU-CLEANUP-ROUTE",
+    "lastEvidenceSummary": "D13C used the row-inline ellipsis route, confirmed the expected delete dialog with Ja, and Page 472 reopen proof shows no INLAND/VAT19 row.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The wrong partial row is absent; the smallest useful W1 Foundation step is to recreate exactly one correct VAT Posting Setup row in a separate case.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D14-VAT-MATRIX-RECREATE-AFTER-CLEANUP",
+        "status": "ready-next",
+        "reason": "Prerequisite row-absence proof exists from D13C."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Posting Groups wait for the complete INLAND/VAT19 VAT matrix row or a documented blocker."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for VAT/posting defaults."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation cannot be ready until VAT, posting groups and dimension gates are settled."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked TARGET-027D13C done with row-absence proof.",
+      "Added TARGET-027D14 as the next separate recreate/completion case."
+    ],
+    "selectedNextCase": "TARGET-027D14-VAT-MATRIX-RECREATE-AFTER-CLEANUP",
+    "whySelectedNextCaseIsBest": "It is the narrow non-repeating follow-up after cleanup: create the correct VAT matrix row, with no preview/posting/master data.",
+    "risksBeforeNextCase": [
+      "Do not recreate if row absence is not freshly proven at start.",
+      "Do not repeat rejected D3/D5/D8 cell-edit guessing.",
+      "Do not claim German VAT final proof before Preview Posting, VAT Entries and G/L Entries."
+    ],
+    "requiredPreparation": [
+      "Use D13C row-absence proof as prerequisite only, not as VAT setup success.",
+      "Capture before, editor, after and reopen screenshots.",
+      "Stop if true editors for 19/3806/1406 are not proven."
+    ]
+  },
+  "createdAt": "2026-07-01T04:45:00.000Z"
+}

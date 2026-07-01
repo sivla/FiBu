@@ -594,6 +594,17 @@ Screenshot-QA zu TARGET-027D11: Dieser Lauf ist Sicherheits- und UI-Wissen, kein
 
 Screenshot-QA zu TARGET-027D13: Der entscheidende Nachher-Screenshot zeigt weiterhin die Zielzeile. Deshalb ist der Lauf kein Cleanup-Erfolg, obwohl der erwartete Dialog mit `Ja` bestaetigt wurde. Fuer Playwright ist das ein wichtiges Wirkungs-Gate: Gefaehrliche Dialoge muessen nach dem Klick immer durch sichtbare Nachher-Wahrheit geprueft werden. Der naechste Versuch darf nicht dieselbe toolbar-/More-Options-Route wiederholen, sondern muss die sichtbare Row-Inline-Ellipsis direkt an der Zeile als neue Hypothese pruefen.
 
+## Universaarl VAT Matrix Row-Inline Cleanup TARGET-027D13C
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Interner Beweis | Beweist nicht | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-027d13c-010-before-row-inline-cleanup.png` | MwSt.-Buchungsmatrix Einr., Page 472 | `playthru` / `UNIVERSAARL-DE` | Vor Row-Inline-Cleanup | Die unvollstaendige `INLAND`/`VAT19`-Zeile ist sichtbar | Richtiger Ausgangskontext vor der neuen Zeilenmenue-Hypothese | keine fertige Matrix, kein Cleanup | `setup-before`, `partial-row-proof` |
+| `target-027d13c-030-row-inline-menu-open.png` | MwSt.-Buchungsmatrix Einr., Page 472 | `playthru` / `UNIVERSAARL-DE` | Row-Inline-Menue geoeffnet | Das Zeilenmenue liegt direkt auf Hoehe der Zielzeile; kein Toolbar-Retry | Der neue UI-Pfad ist row-inline und nicht die blockierte Toolbar-Route | noch keine geloeschte Zeile | `row-inline-route-proof`, `pre-dialog-proof` |
+| `target-027d13c-040-before-confirm-dialog-state.png` | Delete-Bestaetigungsdialog ueber Page 472 | `playthru` / `UNIVERSAARL-DE` | Vor `Ja` | Dialog `Fortfahren und loschen?` mit `Ja` und `Nein` ist sichtbar | Die Row-Inline-Route fuehrt in den erwarteten Bestaetigungsdialog | keine USt-Matrix, keine Buchungswirkung | `dialog-proof`, `dangerous-action-confirmed-in-run` |
+| `target-027d13c-050-reopen-after-row-inline-cleanup-proof.png` | MwSt.-Buchungsmatrix Einr., Page 472 | `playthru` / `UNIVERSAARL-DE` | Reopen nach Row-Inline-Cleanup | Die Liste ist leer bzw. zeigt keine `INLAND`/`VAT19`-Zeile mehr | Die falsche partielle Zeile wurde entfernt | korrekte `INLAND`/`VAT19`-Matrix, `19`, `3806`, `1406`, Preview, VAT Entries | `cleanup-proven`, `recreate-needed` |
+
+Screenshot-QA zu TARGET-027D13C: Dieses Bildpaket beweist einen echten UI-Lernfortschritt. Die Zeilen-Ellipsis direkt an der Zielzeile funktioniert anders als die toolbar-nahe Loeschroute aus D13. Der Nachher-Screenshot zeigt die Zielzeile nicht mehr. Trotzdem ist das noch kein fachlicher USt-Erfolg: Die korrekte Matrixzeile muss in TARGET-027D14 separat und mit eigenem Reopen-Proof neu entstehen.
+
 ## PREP-010 Screenshot-QA-Regel
 
 Vor jeder Buch- oder Clickguide-Nutzung muss der Screenshot gegen die konkrete Behauptung geprueft werden:
