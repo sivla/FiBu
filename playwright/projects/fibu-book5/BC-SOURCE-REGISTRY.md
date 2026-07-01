@@ -382,6 +382,17 @@ Microsoft Learn trennt die allgemeine Kontenfindung in mehrere Ebenen:
 
 Fuer Universaarl folgt daraus: Page 314 darf nicht direkt breit geschrieben werden. Vorher muessen Page 312, Page 313 und Page 314 read-only/source-backed geprueft werden. Kandidaten fuer den ersten Warenfall sind `INLAND` als Geschaeftsbuchungsgruppe, `WAREN` als Produktbuchungsgruppe, `4400` als Verkaufskonto und `5400` als Einkaufskonto. Diese Werte sind noch keine gespeicherte Buchungsmatrix, kein Preview-Beweis und keine Buchungsfaehigkeit.
 
+## TARGET-032E General Posting Setup Alternativroute abgelehnt
+
+TARGET-032E prueft die Microsoft-Learn-Aussage, dass General Posting Setup Kombinationen fachlich als Zeilen bzw. einzelne Setup-Kontexte gepflegt werden koennen, gegen die sichtbare Universaarl-Oberflaeche. Das Ergebnis ist eine Grenze, kein Setup-Erfolg:
+
+- `Weitere Optionen` erweitert die Befehlsleiste, zeigt aber keinen belastbaren Karten-/Oeffnen-Pfad fuer die Zielzeile.
+- `Ctrl+Alt+F1` liefert in diesem Lauf keinen stabilen technischen Page-314-Nachweis.
+- Direkte Page `315` ist sichtbar `MwSt.-Posten` / VAT Entries und wird als General-Posting-Setup-Kartenroute verworfen.
+- Die Kombination `INLAND` + `WAREN` mit `4400` und `5400` ist weiterhin nicht gespeichert bewiesen.
+
+Fuer Universaarl folgt daraus: Der naechste Schritt ist keine weitere Wiederholung von `Neu`, `Liste bearbeiten`, `Strg+Einfuegen` oder Page `315`, sondern eine bewusste Park-/Source-Route-Entscheidung.
+
 ## URLs
 
 - https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company

@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "General Posting Setup park or source route decision",
+  "purpose": "Decide whether to park the Page 314 INLAND/WAREN/4400/5400 matrix row until a better supported UI/source route exists, or choose one materially new, source-backed route without writing values in the decision case.",
+  "sourceCases": [
+    "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
+    "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
+    "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
+    "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": false,
+  "taskClass": "judge_work",
+  "smartDecision": {
+    "whyNow": "Four Page 314-related runs have not produced a trusted saved INLAND/WAREN/4400/5400 row. Repeating the same UI writes would be slower and riskier than an explicit park/source decision.",
+    "sourceBackedBy": [
+      {
+        "title": "Microsoft Learn - Understand the general ledger and Chart of Accounts / General Posting Setup page",
+        "url": "https://learn.microsoft.com/en-au/dynamics365/business-central/finance-general-ledger",
+        "use": "General Posting Setup lines combine business and product posting groups; each line can also be opened in its own posting setup card."
+      },
+      {
+        "title": "Microsoft Learn - Posting group setup",
+        "url": "https://learn.microsoft.com/en-au/dynamics365/business-central/finance-posting-groups",
+        "use": "General Posting Setups combine business and product posting groups and choose G/L accounts."
+      }
+    ],
+    "fieldsAllowedToChange": [],
+    "fieldsNotTouched": [
+      "General Posting Setup values",
+      "VAT Posting Setup",
+      "Inventory Posting Setup",
+      "Master Data",
+      "Documents or drafts",
+      "Preview Posting",
+      "Posting",
+      "Payment",
+      "API shortcut"
+    ],
+    "risk": "Proceeding to master data or posting claims while Page 314 remains unresolved would make the Foundation look more complete than it is.",
+    "fallback": "Park General Posting Setup as unresolved, keep INLAND/WAREN groups as proven prerequisites, and continue only with a consciously bounded next setup dependency."
+  },
+  "allowedActions": [
+    "read-target-032e-evidence",
+    "review-source-refs",
+    "update-queue-state-bookdraft-atlas-with-boundary",
+    "select-next-case-with-lookahead"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "repeat-page314-edit-list-new-route",
+    "open-page315-as-general-posting-setup-card",
+    "type-INLAND-WAREN-4400-5400",
+    "change-vat-setup",
+    "change-inventory-posting-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-posting-readiness",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-032E result exists and is reviewed visually.",
+    "No setup value was written in TARGET-032E.",
+    "Page 315 is rejected as General Posting Setup route."
+  ],
+  "acceptanceCriteria": [
+    "A decision is recorded: park Page 314 or select a genuinely new route.",
+    "The bookdraft explains the Page 314 boundary in beginner language.",
+    "Queue no longer points to another blind Page 314 retry.",
+    "No setup value, master data, draft, Preview Posting, Posting, Payment or API shortcut occurs."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+    "lastEvidenceSummary": "TARGET-032D proved that Page 314 Edit List/New and Ctrl+Insert do not expose trusted editable inputs and no values were typed.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The case tests a materially different Page 314 route before any further write attempt.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+        "status": "blocked",
+        "reason": "No route candidate was good enough."
+      },
+      {
+        "caseId": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
+        "status": "ready-next",
+        "reason": "A park/source-route decision is needed to avoid repeating weak UI routes."
+      },
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "needs-setup-first",
+        "reason": "Dimensions should wait until Page 314 is solved or consciously parked."
+      },
+      {
+        "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation cannot be ready while the General Posting Setup matrix row is unresolved."
+      },
+      {
+        "caseId": "TARGET-035-MASTER-DATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data remains locked until posting groups, VAT and dimensions are sufficient."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "It prevents another blind UI retry and forces a park/source-route decision.",
+    "risksBeforeNextCase": [
+      "Do not type 4400/5400 without a trusted card or field route.",
+      "Do not claim posting readiness.",
+      "Do not create master data, Preview Posting or Posting."
+    ],
+    "requiredPreparation": [
+      "Review 032E action inventory, tooltip screenshots, Page Inspection and Page 315 card-candidate screenshot."
+    ]
+  },
+  "createdAt": "2026-07-01T08:24:32.854Z"
+}

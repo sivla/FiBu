@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
-  "caseId": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
-  "completedAt": "2026-07-01T08:11:55.440Z",
-  "summary": "Page 314 General Posting Setup write gate was safely blocked before typing: Edit List/New and Ctrl+Insert did not expose trusted editable inputs for INLAND/WAREN/4400/5400.",
+  "runId": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+  "caseId": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+  "completedAt": "2026-07-01T08:24:32.854Z",
+  "summary": "TARGET-032E rejected the remaining tested Page 314 alternative routes without changing setup: More options did not expose a card route, Ctrl+Alt+F1 was not stable Page 314 technical proof, and direct Page 315 is MwSt.-Posten/VAT Entries, not a General Posting Setup card.",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "bcRun": true,
@@ -16,63 +16,68 @@
   "posted": false,
   "apiShortcut": false,
   "changedFiles": [
-    "playwright/projects/fibu-book5/evidence/target-032d-general-posting-setup-matrix-controlled-write-gate/TARGET-032D-result.json",
-    "playwright/projects/fibu-book5/evidence/target-032d-general-posting-setup-matrix-controlled-write-gate/*.txt",
-    "playwright/projects/fibu-book5/evidence/target-032d-general-posting-setup-matrix-controlled-write-gate/*.json",
-    "playwright/projects/fibu-book5/img/target-032d-*.png"
+    "playwright/projects/fibu-book5/evidence/target-032e-general-posting-setup-alternative-route-discovery/TARGET-032E-result.json",
+    "playwright/projects/fibu-book5/evidence/target-032e-general-posting-setup-alternative-route-discovery/*.txt",
+    "playwright/projects/fibu-book5/evidence/target-032e-general-posting-setup-alternative-route-discovery/*.json",
+    "playwright/projects/fibu-book5/img/target-032e-*.png"
   ],
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/target-032d-general-posting-setup-matrix-controlled-write-gate/TARGET-032D-result.json",
-    "playwright/projects/fibu-book5/img/target-032d-010-before-page314.png",
-    "playwright/projects/fibu-book5/img/target-032d-050-reopen-proof.png"
+    "playwright/projects/fibu-book5/evidence/target-032e-general-posting-setup-alternative-route-discovery/TARGET-032E-result.json",
+    "playwright/projects/fibu-book5/img/target-032e-010-page314-start.png",
+    "playwright/projects/fibu-book5/img/target-032e-050-page315-card-candidate.png"
   ],
   "screenshots": [
-    "playwright/projects/fibu-book5/img/target-032d-010-before-page314.png",
-    "playwright/projects/fibu-book5/img/target-032d-020-after-edit-list.png",
-    "playwright/projects/fibu-book5/img/target-032d-030-after-new-row-before-values.png",
-    "playwright/projects/fibu-book5/img/target-032d-035-after-keyboard-new-fallback.png",
-    "playwright/projects/fibu-book5/img/target-032d-040-after-write-or-block.png",
-    "playwright/projects/fibu-book5/img/target-032d-050-reopen-proof.png"
+    "playwright/projects/fibu-book5/img/target-032e-010-page314-start.png",
+    "playwright/projects/fibu-book5/img/target-032e-020-action-tooltip-qa.png",
+    "playwright/projects/fibu-book5/img/target-032e-030-more-options-state.png",
+    "playwright/projects/fibu-book5/img/target-032e-040-page-inspection-context.png",
+    "playwright/projects/fibu-book5/img/target-032e-050-page315-card-candidate.png"
   ],
   "proved": [
-    "Page 314 opened in playthru / UNIVERSAARL-DE.",
-    "No master data, document draft, Preview Posting, Posting, Payment or API shortcut occurred.",
-    "Page 314 List Edit/New and Ctrl+Insert did not expose trusted editable inputs in this view."
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Page 314 was opened without typing setup values.",
+    "Page 314 action inventory and tooltip/More-options/Page-Inspection probes were captured.",
+    "No master data, document draft, Preview Posting, Posting, Payment or API shortcut occurred."
   ],
   "notProved": [
     "No complete INLAND/WAREN/4400/5400 matrix row is proven after reopen.",
+    "No General Posting Setup value is written by this case.",
     "No VAT Posting Setup is proven.",
     "No Inventory Posting Setup is proven.",
     "No posting readiness, Preview Posting, G/L Entries, VAT Entries or Value Entries are proven.",
     "No final SKR04, tax advisor or German compliance claim is proven."
   ],
   "blockedBy": [
-    "Field-to-input mapping was not trusted after Edit List/New and Ctrl+Insert; stopped before typing setup values."
+    "No materially different Page 314 route was proven beyond action inventory and blocked list-new evidence."
   ],
   "warnings": [
-    "General Posting Setup alone does not make the company posting-ready.",
-    "VAT, inventory, dimensions and master data remain separate gates.",
-    "Do not use this result as Preview Posting or Posting proof.",
-    "Do not repeat the same Page 314 List New route; use a materially different row-card, action, personalization, page-inspection or source-backed route."
+    "Page Inspection shortcut did not produce a clear Page Inspection text surface.",
+    "Direct Page 315 did not prove a General Posting Setup card route in this run.",
+    "Direct Page 315 opened MwSt.-Posten/VAT Entries and is rejected as a General Posting Setup card route."
   ],
-  "nextStep": "Run TARGET-032E as a Page 314 alternative-route discovery: do not repeat Liste bearbeiten + Neu or Ctrl+Insert; look for a row card, open/view/edit-card, line action, personalize/page-inspection clue or source-backed standard route before any further General Posting Setup write.",
-  "nextCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+  "nextStep": "Run TARGET-032F as a no-BC decision: park Page 314 write route or select a source-backed alternative; do not repeat List Edit/New, Ctrl+Insert or Page 315.",
+  "nextCase": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-032C trusted header geometry, but TARGET-032D showed that visible Edit List/New and Ctrl+Insert still do not reveal editable inputs.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "Repeating the same List New route would waste time and risk unsafe blind typing. The best next step is a materially different Page 314 route discovery.",
+    "currentCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+    "lastEvidenceSummary": "TARGET-032D proved that Page 314 Edit List/New and Ctrl+Insert do not expose trusted editable inputs and no values were typed.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The case tests a materially different Page 314 route before any further write attempt.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+        "status": "blocked",
+        "reason": "No route candidate was good enough."
+      },
+      {
+        "caseId": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
         "status": "ready-next",
-        "reason": "Required because the list-new route is blocked and no values were written."
+        "reason": "A park/source-route decision is needed to avoid repeating weak UI routes."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "needs-setup-first",
-        "reason": "Dimensions should wait until Page 314 is either solved or consciously parked."
+        "reason": "Dimensions should wait until Page 314 is solved or consciously parked."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
@@ -85,18 +90,16 @@
         "reason": "Master data remains locked until posting groups, VAT and dimensions are sufficient."
       }
     ],
-    "queueChangesMade": [
-      "Do not repeat the same Page 314 Edit List/New or Ctrl+Insert route; select TARGET-032E alternative route discovery."
-    ],
-    "selectedNextCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
-    "whySelectedNextCaseIsBest": "A materially different Page 314 route is needed because the exact matrix row was not fully proven and no trusted editable inputs appeared.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "It prevents another blind UI retry and forces a park/source-route decision.",
     "risksBeforeNextCase": [
-      "Do not type 4400/5400 without trusted inputs.",
+      "Do not type 4400/5400 without a trusted card or field route.",
       "Do not claim posting readiness.",
       "Do not create master data, Preview Posting or Posting."
     ],
     "requiredPreparation": [
-      "Review fieldPlan and screenshots before selecting a row-card, action, personalization, page-inspection or source-backed Page 314 route."
+      "Review 032E action inventory, tooltip screenshots, Page Inspection and Page 315 card-candidate screenshot."
     ]
   }
 }

@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T08:11:55.440Z",
+  "updatedAt": "2026-07-01T08:24:32.854Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-general-posting-setup-alternative-route-discovery",
-  "activeCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
-  "active_case_file": ".agent/state/cases/target-032e-general-posting-setup-card-or-alternative-route-discovery.json",
+  "activeArea": "universaarl-general-posting-setup-park-or-source-route-decision",
+  "activeCase": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
+  "active_case_file": ".agent/state/cases/target-032f-general-posting-setup-park-or-source-route-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -19,16 +19,18 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-playthru-business-central",
-    "confirm-UNIVERSAARL-DE-context",
-    "open-page-314",
-    "inspect-page-314-actions-and-row-card-routes-readonly",
-    "capture-screenshot-qa",
+    "read-target-032e-evidence",
+    "review-microsoft-learn-general-posting-setup-source",
+    "decide-page314-park-or-source-route",
+    "update-bookdraft-atlas-coverage-and-queue",
     "write-result-json-and-next-step-decision"
   ],
   "forbiddenActions": [
     "leave-instance",
     "company-switch",
+    "repeat-page314-edit-list-new-route",
+    "open-page315-as-general-posting-setup-card",
+    "type-INLAND-WAREN-4400-5400",
     "change-vat-setup",
     "change-inventory-posting-setup",
     "create-master-data",
@@ -38,15 +40,13 @@
     "payment",
     "api-shortcut",
     "claim-posting-readiness",
-    "repeat-page314-list-new-route-without-new-hypothesis",
-    "type-page314-values-without-trusted-inputs",
     "commit-secrets",
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence"
   ],
-  "nextCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
-  "nextStep": "Run TARGET-032E as a Page 314 alternative-route discovery: do not repeat Liste bearbeiten + Neu or Ctrl+Insert; look for a row card, open/view/edit-card, line action, personalize/page-inspection clue or source-backed standard route before any further General Posting Setup write.",
+  "nextCase": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
+  "nextStep": "Run TARGET-032F as a no-BC decision: park Page 314 write route or select a source-backed alternative; do not repeat List Edit/New, Ctrl+Insert or Page 315.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -229,7 +229,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "TARGET-032D proved Page 314 List Edit/New and Ctrl+Insert do not expose trusted editable inputs for INLAND/WAREN/4400/5400. Next is TARGET-032E alternative route discovery; no VAT, Inventory Posting Setup, master data, Preview Posting or Posting.",
+  "currentCoverageFocus": "TARGET-032E proved that the tested Page 314 alternative probes did not produce a safe card/write route: More options only widened the command bar, Ctrl+Alt+F1 did not provide a stable Page 314 technical proof, and direct Page 315 is MwSt.-Posten/VAT Entries, not General Posting Setup.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -1351,7 +1351,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "universaarl-skr04-balance-sheet-accounts-fit",
-  "lastCompletedCase": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
+  "lastCompletedCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3437,31 +3437,31 @@
       "replace-with-better-case"
     ],
     "latestDecisionCard": {
-      "currentCase": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
-      "plannedNextCaseBeforeReview": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
-      "lastEvidenceSummary": "TARGET-032B created/reverified INLAND and WAREN but blocked Page 314 because account column mapping was unsafe.",
+      "currentCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+      "plannedNextCaseBeforeReview": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+      "lastEvidenceSummary": "TARGET-032D proved that Page 314 Edit List/New and Ctrl+Insert do not expose trusted editable inputs and no values were typed.",
       "isPlannedNextCaseStillSensible": true,
-      "reason": "Page 314 is the narrow remaining setup route blocker before a controlled General Posting Setup write.",
+      "reason": "The case tests a materially different Page 314 route before any further write attempt.",
       "lookaheadReviewed": [
         {
-          "caseId": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
-          "status": "ready-next",
-          "reason": "It directly addresses the remaining Page 314 field-mapping blocker without writing setup."
+          "caseId": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+          "status": "blocked",
+          "reason": "No route candidate was good enough."
         },
         {
-          "caseId": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
+          "caseId": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
           "status": "ready-next",
-          "reason": "Header geometry is good enough to prepare a controlled write case."
+          "reason": "A park/source-route decision is needed to avoid repeating weak UI routes."
         },
         {
           "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
-          "status": "ready-after-current",
-          "reason": "Dimensions should wait until Page 314 is written or consciously parked."
+          "status": "needs-setup-first",
+          "reason": "Dimensions should wait until Page 314 is solved or consciously parked."
         },
         {
           "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
           "status": "needs-setup-first",
-          "reason": "Foundation still needs matrix/VAT/dimensions status before readiness."
+          "reason": "Foundation cannot be ready while the General Posting Setup matrix row is unresolved."
         },
         {
           "caseId": "TARGET-035-MASTER-DATA-FIRST-CUSTOMER-VENDOR-ITEM",
@@ -3470,16 +3470,15 @@
         }
       ],
       "queueChangesMade": [],
-      "selectedNextCase": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
-      "whySelectedNextCaseIsBest": "A controlled Page 314 write gate is now better than more diagnosis because exact target headers are visible.",
+      "selectedNextCase": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
+      "whySelectedNextCaseIsBest": "It prevents another blind UI retry and forces a park/source-route decision.",
       "risksBeforeNextCase": [
-        "Do not create master data yet.",
-        "Do not run Preview Posting or Posting.",
-        "Do not claim posting readiness from posting groups alone.",
-        "Do not type Page 314 account values without before/after/reopen proof."
+        "Do not type 4400/5400 without a trusted card or field route.",
+        "Do not claim posting readiness.",
+        "Do not create master data, Preview Posting or Posting."
       ],
       "requiredPreparation": [
-        "Use header geometry, not input index, to target Page 314 fields in TARGET-032D."
+        "Review 032E action inventory, tooltip screenshots, Page Inspection and Page 315 card-candidate screenshot."
       ]
     },
     "lastDecisionCard": {
@@ -3722,31 +3721,31 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
-    "plannedNextCaseBeforeReview": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
-    "lastEvidenceSummary": "TARGET-032B created/reverified INLAND and WAREN but blocked Page 314 because account column mapping was unsafe.",
+    "currentCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+    "lastEvidenceSummary": "TARGET-032D proved that Page 314 Edit List/New and Ctrl+Insert do not expose trusted editable inputs and no values were typed.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Page 314 is the narrow remaining setup route blocker before a controlled General Posting Setup write.",
+    "reason": "The case tests a materially different Page 314 route before any further write attempt.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-032C-GENERAL-POSTING-SETUP-MATRIX-ROW-ROUTE-DIAGNOSIS",
-        "status": "ready-next",
-        "reason": "It directly addresses the remaining Page 314 field-mapping blocker without writing setup."
+        "caseId": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+        "status": "blocked",
+        "reason": "No route candidate was good enough."
       },
       {
-        "caseId": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
+        "caseId": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
         "status": "ready-next",
-        "reason": "Header geometry is good enough to prepare a controlled write case."
+        "reason": "A park/source-route decision is needed to avoid repeating weak UI routes."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
-        "status": "ready-after-current",
-        "reason": "Dimensions should wait until Page 314 is written or consciously parked."
+        "status": "needs-setup-first",
+        "reason": "Dimensions should wait until Page 314 is solved or consciously parked."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Foundation still needs matrix/VAT/dimensions status before readiness."
+        "reason": "Foundation cannot be ready while the General Posting Setup matrix row is unresolved."
       },
       {
         "caseId": "TARGET-035-MASTER-DATA-FIRST-CUSTOMER-VENDOR-ITEM",
@@ -3755,16 +3754,15 @@
       }
     ],
     "queueChangesMade": [],
-    "selectedNextCase": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-CONTROLLED-WRITE-GATE",
-    "whySelectedNextCaseIsBest": "A controlled Page 314 write gate is now better than more diagnosis because exact target headers are visible.",
+    "selectedNextCase": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "It prevents another blind UI retry and forces a park/source-route decision.",
     "risksBeforeNextCase": [
-      "Do not create master data yet.",
-      "Do not run Preview Posting or Posting.",
-      "Do not claim posting readiness from posting groups alone.",
-      "Do not type Page 314 account values without before/after/reopen proof."
+      "Do not type 4400/5400 without a trusted card or field route.",
+      "Do not claim posting readiness.",
+      "Do not create master data, Preview Posting or Posting."
     ],
     "requiredPreparation": [
-      "Use header geometry, not input index, to target Page 314 fields in TARGET-032D."
+      "Review 032E action inventory, tooltip screenshots, Page Inspection and Page 315 card-candidate screenshot."
     ]
   },
   "permissionBlocker": {
@@ -7267,7 +7265,7 @@
     "currentVisibleText": "1200 Forderungen aus Lieferungen und Leistungen Bilanz Buchung",
     "correctedReason": "SKR04-oriented Universaarl foundation must not create a new 1400 receivables account; 1400 belongs to the wrong mapping context for this target."
   },
-  "nextQueueItem": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+  "nextQueueItem": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
   "openItems": 1,
   "latestCustomerReceivablesSourceCorrection": {
     "caseId": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
@@ -7460,5 +7458,47 @@
       "playwright/projects/fibu-book5/img/target-032d-050-reopen-proof.png"
     ],
     "nextCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY"
+  },
+  "latestGeneralPostingSetupAlternativeRouteDiscovery": {
+    "caseId": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+    "status": "blocked",
+    "completedAt": "2026-07-01T08:24:32.854Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-032e-general-posting-setup-alternative-route-discovery/TARGET-032E-result.json",
+    "sourceInstance": "playthru",
+    "sourceCompany": "UNIVERSAARL-DE",
+    "pageId": 314,
+    "setupChanged": false,
+    "setupChangeAttempted": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "routeSignals": {
+      "sourceMentionsOwnCard": "Microsoft Learn: General Posting Setup lines can be opened in their own posting setup card; this case probes whether Page 314 exposes that route in this UI.",
+      "actionInventoryHasCardSignal": true,
+      "moreOptionsHasCardSignal": false,
+      "pageInspectionOpened": false,
+      "pageInspectionStayedOnPage314": false,
+      "page315LooksLikeVatEntries": true,
+      "page315HasCardCandidateSignal": false
+    },
+    "blockedBy": [
+      "No materially different Page 314 route was proven beyond action inventory and blocked list-new evidence."
+    ],
+    "warnings": [
+      "Page Inspection shortcut did not produce a clear Page Inspection text surface.",
+      "Direct Page 315 did not prove a General Posting Setup card route in this run.",
+      "Direct Page 315 opened MwSt.-Posten/VAT Entries and is rejected as a General Posting Setup card route."
+    ],
+    "learning": "Direct Page 315 is MwSt.-Posten/VAT Entries and must not be treated as a General Posting Setup card route; More options expands command-bar state but did not expose a card/open route; Page Inspection shortcut was not accepted as a stable Page 314 proof in this run.",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-032e-010-page314-start.png",
+      "playwright/projects/fibu-book5/img/target-032e-020-action-tooltip-qa.png",
+      "playwright/projects/fibu-book5/img/target-032e-030-more-options-state.png",
+      "playwright/projects/fibu-book5/img/target-032e-040-page-inspection-context.png",
+      "playwright/projects/fibu-book5/img/target-032e-050-page315-card-candidate.png"
+    ],
+    "nextCase": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION"
   }
 }
