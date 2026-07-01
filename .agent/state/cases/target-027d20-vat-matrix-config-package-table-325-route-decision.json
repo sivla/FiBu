@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-027D20-VAT-MATRIX-CONFIG-PACKAGE-TABLE-325-ROUTE-DECISION",
-  "status": "planned",
+  "status": "done",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -51,47 +51,113 @@
     "No BC, Playwright, setup, master data, preview or posting occurs in D20."
   ],
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-027D19-VAT-MATRIX-CONFIG-PACKAGE-READONLY-DISCOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-027D19-VAT-MATRIX-CONFIG-PACKAGE-READONLY-DISCOVERY",
-    "lastEvidenceSummary": "D19 proved Page 8615 Konfigurationspakete in playthru / UNIVERSAARL-DE, visible package actions, and no visible Table 325 / VAT Posting Setup line without creating a package.",
+    "currentCase": "TARGET-027D20-VAT-MATRIX-CONFIG-PACKAGE-TABLE-325-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-027D20-VAT-MATRIX-CONFIG-PACKAGE-TABLE-325-ROUTE-DECISION",
+    "lastEvidenceSummary": "D19 proved Page 8615 Konfigurationspakete and dangerous package actions, but no visible Table 325 / VAT Posting Setup line without package metadata.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The next step must be a local decision because the next Configuration Package move would likely create or alter package metadata.",
+    "reason": "D20 is the required decision point before moving from read-only page context to temporary package/table metadata.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027D20-VAT-MATRIX-CONFIG-PACKAGE-TABLE-325-ROUTE-DECISION",
+        "caseId": "TARGET-027D21-VAT-MATRIX-CONTROLLED-PACKAGE-TABLE-DISCOVERY",
         "status": "ready-next",
-        "reason": "D19 did not expose Table 325 without a package, so a decision is needed before any admin-data change."
+        "reason": "One bounded UI discovery can prove whether Table 325 can be added without import/apply/export/publish."
       },
       {
-        "caseId": "TARGET-027D21-VAT-MATRIX-CONTROLLED-PACKAGE-TABLE-DISCOVERY",
-        "status": "needs-source-check-first",
-        "reason": "Only valid if D20 unlocks a temporary package/table discovery with cleanup and no apply/import/export."
+        "caseId": "TARGET-027D22-VAT-MATRIX-PACKAGE-FIELD-MAPPING-DECISION",
+        "status": "ready-after-current",
+        "reason": "Only valid if D21 proves package/table context and captures fields safely."
       },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Posting Groups wait for correct VAT matrix or an explicit park decision."
+        "reason": "Posting Groups wait for correct VAT matrix or a documented park/replacement decision."
       },
       {
         "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
         "status": "needs-setup-first",
         "reason": "Master data waits for VAT/posting defaults."
+      },
+      {
+        "caseId": "TARGET-030-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness waits for VAT matrix, Posting Groups and dimensions/defaults."
       }
     ],
     "queueChangesMade": [
-      "Selected D20 as the next local decision after D19 read-only discovery."
+      "Selected TARGET-027D21 as controlled package/table discovery.",
+      "Kept TARGET-028, TARGET-029 and TARGET-030 blocked behind VAT/setup readiness."
     ],
-    "selectedNextCase": "TARGET-027D20-VAT-MATRIX-CONFIG-PACKAGE-TABLE-325-ROUTE-DECISION",
-    "whySelectedNextCaseIsBest": "It prevents a silent jump from read-only package context into package/table creation.",
+    "selectedNextCase": "TARGET-027D21-VAT-MATRIX-CONTROLLED-PACKAGE-TABLE-DISCOVERY",
+    "whySelectedNextCaseIsBest": "It advances the VAT setup blocker without jumping directly to import/apply/write actions.",
     "risksBeforeNextCase": [
-      "Creating a configuration package is an admin-data change and needs its own cleanup plan.",
-      "Import/Export/Validate/Apply/Edit in Excel remain dangerous actions.",
-      "No German VAT claim is allowed before visible VAT matrix plus Preview/Entries."
+      "Creating a configuration package or package-table row is admin metadata and needs before/after/reopen evidence.",
+      "No package data may be imported, exported, validated, applied or published.",
+      "No VAT matrix values may be typed in D21 unless a later case explicitly unlocks value writing.",
+      "A temporary package must either be cleaned up with proof or intentionally kept with reason and status."
     ],
     "requiredPreparation": [
-      "Review D19 screenshot and action inventory.",
-      "Decide whether package metadata creation is acceptable or VAT setup should be parked."
+      "Use Page 8615 direct route from D19.",
+      "Capture screenshot QA before clicking any action.",
+      "If Neu creates a package card/list row, use a clearly scoped package code such as U-VAT325-DISCOVERY.",
+      "Stop immediately if BC opens import/export/apply/validate/Edit-in-Excel surfaces."
     ]
   },
-  "createdAt": "2026-07-01T10:00:00.000Z"
+  "createdAt": "2026-07-01T10:00:00.000Z",
+  "completedAt": "2026-07-01T11:00:00.000Z",
+  "resultStatus": "done-controlled-discovery-selected-no-bc",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d20-vat-matrix-config-package-table-325-route-decision/TARGET-027D20-result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/target-027d20-vat-matrix-config-package-table-325-route-decision/",
+  "bcRun": false,
+  "playwrightRun": false,
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "decision": {
+    "selectedRoute": "TARGET-027D21-VAT-MATRIX-CONTROLLED-PACKAGE-TABLE-DISCOVERY",
+    "reason": "The VAT matrix blocks Posting Groups and master data. D19 proved the Configuration Packages page but not Table 325 visibility. The next useful step is one bounded UI discovery that may create temporary package metadata only if the page, action, and cleanup/keep boundaries are explicit.",
+    "rejectedRoutes": [
+      {
+        "route": "park-vat-matrix-now",
+        "reason": "Parking VAT now would unblock nothing meaningful; Posting Groups and master data still need a VAT matrix or an explicit later replacement."
+      },
+      {
+        "route": "configuration-package-import-export-validate-apply",
+        "reason": "Microsoft Learn describes these as effective import/apply operations; they are too risky before table/field route discovery."
+      },
+      {
+        "route": "edit-in-excel-publish",
+        "reason": "Publishing from Excel can write back to Business Central and remains outside the current case."
+      },
+      {
+        "route": "api-shortcut",
+        "reason": "Project rules forbid API shortcuts for setup unless explicitly unlocked in a separate case."
+      }
+    ]
+  },
+  "proved": [
+    "D20 did not open Business Central or run Playwright.",
+    "D19 proved Page 8615 Configuration Packages read-only in playthru / UNIVERSAARL-DE.",
+    "D19 did not prove Table 325 visibility without package metadata.",
+    "Configuration Packages remain a standard Business Central setup/data route, but apply/import/validate/publish actions are effective and remain locked."
+  ],
+  "notProved": [
+    "No correct INLAND/VAT19 VAT Posting Setup matrix row.",
+    "No controlled temporary package record.",
+    "No Table 325 package-table line.",
+    "No package export/import/validate/apply path.",
+    "No final German VAT correctness.",
+    "No Preview Posting.",
+    "No VAT Entries.",
+    "No G/L Entries."
+  ],
+  "warnings": [
+    "D21 may touch configuration-package metadata but must not touch VAT Posting Setup values.",
+    "No German VAT final claim is allowed before visible matrix setup plus Preview Posting, VAT Entries and G/L Entries."
+  ],
+  "nextCase": "TARGET-027D21-VAT-MATRIX-CONTROLLED-PACKAGE-TABLE-DISCOVERY",
+  "nextStep": "Run controlled D21 package/table discovery; no import/export/validate/apply/Edit-in-Excel and no VAT matrix value writes."
 }

@@ -282,6 +282,18 @@ Fuer Universaarl folgt daraus:
 - Der naechste Case ist `TARGET-027D20-VAT-MATRIX-CONFIG-PACKAGE-TABLE-325-ROUTE-DECISION`.
 - Kein API-Shortcut, keine Excel-Publish-Route, kein Import/Export/Validate/Apply und kein deutscher USt-Finalbeweis.
 
+## TARGET-027D20 Configuration Package Table-325 Route Decision
+
+D20 nutzt erneut Microsoft Learn zu Company Configuration Packages und VAT Setup. Die Quellen stuetzen, dass Konfigurationspakete ein Standardweg fuer Setup-/Tabellendaten sein koennen und dass VAT Posting Setup fachlich aus VAT Business Posting Group, VAT Product Posting Group, VAT %, Calculation Type und Steuerkonten besteht. Gleichzeitig machen die Quellen klar, dass Import, Export, Validate, Apply und Excel-/Publish-Routen wirksame Datenpfade sind und nicht als harmlose UI-Navigation behandelt werden duerfen.
+
+Fuer Universaarl folgt daraus:
+
+- Die VAT-Matrix wird nicht geparkt, weil sie Posting Groups, Stammdaten und erste Buchungsfaelle blockiert.
+- Der naechste Case ist `TARGET-027D21-VAT-MATRIX-CONTROLLED-PACKAGE-TABLE-DISCOVERY`.
+- D21 darf nur eine eng begrenzte Paket-/Tabellen-Metadaten-Discovery versuchen, um Table `325` / `VAT Posting Setup` sichtbar zu machen.
+- D21 darf keine VAT-Matrixwerte schreiben und darf kein Paket importieren, exportieren, validieren, anwenden oder per Excel veroeffentlichen.
+- Eine Paket-/Tabellen-Metadatenzeile ist noch kein USt-Setup-Erfolg. Erfolg ist nur: Table 325/Feldkontext sichtbar oder sauber blockiert, mit Screenshot-QA und Cleanup-/Keep-Entscheidung.
+
 ## TARGET-026D Kontenplan-Quellenentscheidung
 
 TARGET-026B zeigt in `UNIVERSAARL-DE` einen erreichbaren, aber leeren/insufficient Kontenplan ohne sichtbare USt-Konto-Kandidaten. Microsoft Learn `View the chart of accounts` und `Set up or change the chart of accounts` stuetzen die Produktlogik: Der Kontenplan ist das Verzeichnis der Finanzkonten und kann fuer die Company eingerichtet/geaendert werden.
@@ -317,6 +329,8 @@ Die operative Zuordnung steht in `UNIVERSAARL-IMPLEMENTATION-GUIDE-MAPPING.md`. 
 - https://learn.microsoft.com/en-us/dynamics365/business-central/analysis-mode
 - https://learn.microsoft.com/en-us/dynamics365/business-central/ui-personalization-user
 - https://learn.microsoft.com/en-us/dynamics365/business-central/finance-setup-vat
+- https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/set-up-standard-company-configuration-packages
+- https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/apply-company-configuration-packages
 - https://learn.microsoft.com/en-us/training/modules/set-up-vat-dynamics-365-business-central/
 - https://learn.microsoft.com/en-us/dynamics365/business-central/reports-bi-reporting
 - https://learn.microsoft.com/en-us/dynamics365/release-plans/

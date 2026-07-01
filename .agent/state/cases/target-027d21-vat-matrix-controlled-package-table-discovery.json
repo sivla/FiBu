@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027D21-VAT-MATRIX-CONTROLLED-PACKAGE-TABLE-DISCOVERY",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "VAT matrix controlled configuration package table discovery",
+  "purpose": "Discover whether a tightly scoped temporary Configuration Package can expose Table 325 / VAT Posting Setup fields without importing, applying, exporting, validating or publishing data.",
+  "sourceCases": [
+    "TARGET-027D19-VAT-MATRIX-CONFIG-PACKAGE-READONLY-DISCOVERY",
+    "TARGET-027D20-VAT-MATRIX-CONFIG-PACKAGE-TABLE-325-ROUTE-DECISION"
+  ],
+  "effectiveBcActionsAllowed": true,
+  "mayRunPlaywright": true,
+  "allowedActions": [
+    "open-configuration-packages-page-8615",
+    "prove-playthru-instance",
+    "prove-universaarl-company",
+    "capture-before-screenshot-qa",
+    "create-temporary-configuration-package-metadata-if-required",
+    "attempt-table-325-discovery-without-import-export-validate-apply",
+    "capture-package-table-field-context",
+    "capture-after-or-blocked-screenshot-qa",
+    "decide-cleanup-or-keep-temporary-package-with-reason",
+    "write-result-json"
+  ],
+  "forbiddenActions": [
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "leave-instance",
+    "company-switch",
+    "import-from-excel",
+    "export-to-excel",
+    "validate-package",
+    "apply-package",
+    "edit-in-excel-publish",
+    "type-INLAND-or-VAT19",
+    "type-19-3806-or-1406",
+    "write-or-save-vat-matrix-values",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-german-vat-final-proof"
+  ],
+  "smartDecision": {
+    "whyNow": "VAT matrix setup blocks Posting Groups and master data. D19 proved Page 8615 but no Table 325 visibility without package metadata.",
+    "evidenceBasis": [
+      "TARGET-027D17: Page 472 lookup/select route blocked.",
+      "TARGET-027D18: Configuration Packages selected as source-backed standard route.",
+      "TARGET-027D19: Page 8615 visible read-only, Table 325 not visible in empty list."
+    ],
+    "sourceBasis": [
+      "Microsoft Learn: Set Up Company Configuration Packages",
+      "Microsoft Learn: Apply Company Configuration Packages",
+      "Microsoft Learn: Set up value-added tax"
+    ],
+    "fieldsOrRecordsMayChange": [
+      "Configuration Package header metadata for temporary discovery package",
+      "Configuration Package table-selection metadata for Table 325 only if required"
+    ],
+    "fieldsOrRecordsMustNotChange": [
+      "VAT Posting Setup row values",
+      "VAT Business Posting Groups",
+      "VAT Product Posting Groups",
+      "G/L Accounts",
+      "Posting Groups",
+      "Master data",
+      "Documents or journals"
+    ],
+    "fallback": "Stop as blocked if the UI path requires import, export, validate, apply, Edit in Excel publish, or cannot isolate Table 325 without risky effects.",
+    "screenshotMustProve": [
+      "Page 8615 or package card/list context",
+      "temporary package/table metadata state if created",
+      "Table 325 presence or absence",
+      "no import/export/validate/apply dialog"
+    ],
+    "screenshotMustNotBeUsedToClaim": [
+      "German VAT correctness",
+      "completed VAT Posting Setup",
+      "Preview Posting readiness",
+      "VAT Entries or G/L Entries"
+    ]
+  },
+  "acceptanceCriteria": [
+    "Business Central remains in playthru / UNIVERSAARL-DE.",
+    "If a temporary package is created, its code, purpose, keep/cleanup status and screenshot proof are documented.",
+    "Table 325 / VAT Posting Setup is either visible in the package-table context or the route is blocked with reason.",
+    "No package import/export/validate/apply/Edit-in-Excel publish occurs.",
+    "No VAT matrix values are typed or saved.",
+    "No master data, draft, Preview Posting, Posting or API shortcut occurs."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-027D20-VAT-MATRIX-CONFIG-PACKAGE-TABLE-325-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-027D20-VAT-MATRIX-CONFIG-PACKAGE-TABLE-325-ROUTE-DECISION",
+    "lastEvidenceSummary": "D20 selected controlled package/table discovery after D19 proved Page 8615 but not Table 325 visibility.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The next useful step is a bounded UI discovery before any value write or posting setup claim.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D21-VAT-MATRIX-CONTROLLED-PACKAGE-TABLE-DISCOVERY",
+        "status": "ready-next",
+        "reason": "D21 has explicit gates for temporary package metadata and forbids import/apply/value writes."
+      },
+      {
+        "caseId": "TARGET-027D22-VAT-MATRIX-PACKAGE-FIELD-MAPPING-DECISION",
+        "status": "ready-after-current",
+        "reason": "Only meaningful if D21 proves Table 325 field context."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Posting Groups wait for VAT matrix or explicit park decision."
+      },
+      {
+        "caseId": "TARGET-029-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data waits for VAT/posting defaults."
+      }
+    ],
+    "queueChangesMade": [
+      "D21 is the next active execute/discovery case after D20."
+    ],
+    "selectedNextCase": "TARGET-027D21-VAT-MATRIX-CONTROLLED-PACKAGE-TABLE-DISCOVERY",
+    "whySelectedNextCaseIsBest": "It advances the VAT blocker while preserving strict no-import/no-apply/no-value-write boundaries.",
+    "risksBeforeNextCase": [
+      "Temporary configuration-package metadata may remain if cleanup is not possible.",
+      "Package actions can become effective; import/export/validate/apply/Edit in Excel remain forbidden.",
+      "No VAT setup claim may be made from package metadata alone."
+    ],
+    "requiredPreparation": [
+      "Use direct Page 8615 route.",
+      "Capture before screenshot.",
+      "Stop on any import/export/validate/apply/Edit-in-Excel surface.",
+      "Document keep/cleanup status for any temporary package metadata."
+    ]
+  },
+  "createdAt": "2026-07-01T11:00:00.000Z"
+}

@@ -1,33 +1,27 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-027D20-VAT-MATRIX-CONFIG-PACKAGE-TABLE-325-ROUTE-DECISION",
+  "purpose": "autopilot-result-normalized",
   "caseId": "TARGET-027D20-VAT-MATRIX-CONFIG-PACKAGE-TABLE-325-ROUTE-DECISION",
-  "status": "done-controlled-discovery-selected-no-bc",
-  "completedAt": "2026-07-01T11:00:00.000Z",
+  "source": "local-source-decision",
+  "resultStatus": "done-controlled-discovery-selected-no-bc",
+  "runPlanId": "TARGET-027D20-VAT-MATRIX-CONFIG-PACKAGE-TABLE-325-ROUTE-DECISION-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d20-vat-matrix-config-package-table-325-route-decision/TARGET-027D20-result.json",
-  "evidencePath": "playwright/projects/fibu-book5/evidence/target-027d20-vat-matrix-config-package-table-325-route-decision/",
-  "summary": "D20 locally selected a controlled Configuration Package/Table-325 discovery case after D19 proved Page 8615 read-only but no Table 325 visibility. No BC, Playwright, setup, master data, preview, posting or API shortcut occurred.",
-  "proved": [
-    "D20 did not open Business Central or run Playwright.",
-    "D19 proved Page 8615 Configuration Packages read-only in playthru / UNIVERSAARL-DE.",
-    "D19 did not prove Table 325 visibility without package metadata.",
-    "Configuration Packages remain a standard Business Central setup/data route, but apply/import/validate/publish actions are effective and remain locked."
-  ],
-  "notProved": [
-    "No correct INLAND/VAT19 VAT Posting Setup matrix row.",
-    "No controlled temporary package record.",
-    "No Table 325 package-table line.",
-    "No package export/import/validate/apply path.",
-    "No final German VAT correctness.",
-    "No Preview Posting.",
-    "No VAT Entries.",
-    "No G/L Entries."
-  ],
-  "warnings": [
-    "D21 may touch configuration-package metadata but must not touch VAT Posting Setup values.",
-    "No German VAT final claim is allowed before visible matrix setup plus Preview Posting, VAT Entries and G/L Entries."
+  "bcRun": false,
+  "playwrightRun": false,
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "sourceUrls": [
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/set-up-standard-company-configuration-packages",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/apply-company-configuration-packages",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/finance-setup-vat"
   ],
   "actionsTaken": [
     "Reviewed D17, D18 and D19 results.",
@@ -53,6 +47,22 @@
     "No Posting",
     "No API shortcut"
   ],
+  "proved": [
+    "D20 did not open Business Central or run Playwright.",
+    "D19 proved Page 8615 Configuration Packages read-only in playthru / UNIVERSAARL-DE.",
+    "D19 did not prove Table 325 visibility without package metadata.",
+    "Configuration Packages remain a standard Business Central setup/data route, but apply/import/validate/publish actions are effective and remain locked."
+  ],
+  "notProved": [
+    "No correct INLAND/VAT19 VAT Posting Setup matrix row.",
+    "No controlled temporary package record.",
+    "No Table 325 package-table line.",
+    "No package export/import/validate/apply path.",
+    "No final German VAT correctness.",
+    "No Preview Posting.",
+    "No VAT Entries.",
+    "No G/L Entries."
+  ],
   "decision": {
     "selectedRoute": "TARGET-027D21-VAT-MATRIX-CONTROLLED-PACKAGE-TABLE-DISCOVERY",
     "reason": "The VAT matrix blocks Posting Groups and master data. D19 proved the Configuration Packages page but not Table 325 visibility. The next useful step is one bounded UI discovery that may create temporary package metadata only if the page, action, and cleanup/keep boundaries are explicit.",
@@ -76,8 +86,7 @@
     ]
   },
   "nextCase": "TARGET-027D21-VAT-MATRIX-CONTROLLED-PACKAGE-TABLE-DISCOVERY",
-  "nextStep": "Run D21 controlled package/table discovery with no import/export/validate/apply/Edit-in-Excel and no VAT matrix value writes.",
-  "nextStepDecisionCard": {
+  "nextStepDecision": {
     "currentCase": "TARGET-027D20-VAT-MATRIX-CONFIG-PACKAGE-TABLE-325-ROUTE-DECISION",
     "plannedNextCaseBeforeReview": "TARGET-027D20-VAT-MATRIX-CONFIG-PACKAGE-TABLE-325-ROUTE-DECISION",
     "lastEvidenceSummary": "D19 proved Page 8615 Konfigurationspakete and dangerous package actions, but no visible Table 325 / VAT Posting Setup line without package metadata.",
@@ -128,5 +137,21 @@
       "If Neu creates a package card/list row, use a clearly scoped package code such as U-VAT325-DISCOVERY.",
       "Stop immediately if BC opens import/export/apply/validate/Edit-in-Excel surfaces."
     ]
-  }
+  },
+  "warnings": [
+    "D21 may touch configuration-package metadata but must not touch VAT Posting Setup values.",
+    "No German VAT final claim is allowed before visible matrix setup plus Preview Posting, VAT Entries and G/L Entries."
+  ],
+  "blockedBy": [],
+  "safeToFinalizeState": false,
+  "requiresReview": true,
+  "statePatch": {},
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-027d20-vat-matrix-config-package-table-325-route-decision/TARGET-027D20-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d20-vat-matrix-config-package-table-325-route-decision/README.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-027d20-vat-matrix-config-package-table-325-route-decision/TARGET-027D20-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d20-vat-matrix-config-package-table-325-route-decision/README.md"
+  ]
 }
