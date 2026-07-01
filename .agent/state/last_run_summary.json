@@ -1,122 +1,94 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
-  "caseId": "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
-  "status": "done-vat-matrix-parked-posting-groups-preflight-selected-no-bc",
+  "runId": "RUN-TARGET-028-POSTING-GROUPS-PREFLIGHT",
+  "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+  "completedAt": "2026-07-01T06:09:50.743Z",
+  "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "bcRun": false,
-  "playwrightRun": false,
-  "summary": "D24 completed locally. The VAT matrix remains blocked/not proven and is now consciously parked with no-final-VAT/no-preview/no-posting boundaries. The next active case is TARGET-028 Posting Groups Preflight, read-only only.",
+  "summary": "TARGET-028 ran Playwright read-only and observed 5/5 posting-group/VAT setup page contexts in playthru / UNIVERSAARL-DE. Screenshot QA corrected the old wrong Vendor Posting Groups Page 93 assumption to Page 111.",
   "proved": [
-    "VAT matrix setup is deliberately parked after repeated Universaarl UI routes failed or were blocked.",
-    "U-VAT325-DISC remains configuration-package metadata only and is not a VAT Posting Setup proof.",
-    "The next safe W1 Foundation step is read-only Posting Groups Preflight, not master data, preview or posting.",
-    "D24 did not open BC, run Playwright, change setup, create master data, create drafts, preview or post."
+    "5/5 posting-group or VAT setup pages opened read-only in playthru/UNIVERSAARL-DE.",
+    "No setup value, master data, document draft, preview posting or posting was executed.",
+    "Buchungsmatrix / General Posting Setup visible read-only.",
+    "Debitorenbuchungsgruppen / Customer Posting Groups visible read-only.",
+    "Kreditorenbuchungsgruppen / Vendor Posting Groups visible read-only.",
+    "Lagerbuchung Einrichtung / Inventory Posting Setup visible read-only.",
+    "USt-Buchungsmatrix / VAT Posting Setup visible read-only."
   ],
   "notProved": [
-    "No correct INLAND/VAT19 VAT Posting Setup matrix row exists as proven Universaarl evidence.",
-    "No German 19 percent VAT correctness is proven.",
-    "No VAT Entries, G/L Entries, VAT Statement or Preview Posting evidence exists.",
-    "No posting groups or general posting setup values are proven complete.",
-    "No master data readiness is proven."
-  ],
-  "changedFiles": [
-    "playwright/projects/fibu-book5/evidence/target-027d24-vat-matrix-alternative-standard-route-decision/TARGET-027D24-result.json",
-    "playwright/projects/fibu-book5/evidence/target-027d24-vat-matrix-alternative-standard-route-decision/README.md",
-    ".agent/state/cases/target-027d24-vat-matrix-alternative-standard-route-decision.json",
-    ".agent/state/cases/target-028-posting-groups-preflight.json",
-    ".agent/state/current.json",
-    ".agent/state/marathon_queue.json",
-    ".agent/state/last_run_summary.json",
-    "playwright/projects/fibu-book5/BC-SOURCE-REGISTRY.md",
-    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md"
-  ],
-  "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/target-027d24-vat-matrix-alternative-standard-route-decision/TARGET-027D24-result.json",
-    "playwright/projects/fibu-book5/evidence/target-027d23b-vat-package-metadata-cleanup-blocker-review/TARGET-027D23B-result.json",
-    "playwright/projects/fibu-book5/evidence/target-027d23-vat-package-metadata-cleanup-execution/TARGET-027D23-result.json",
-    "playwright/projects/fibu-book5/evidence/target-027d17-vat-matrix-first-fields-lookup-discovery/TARGET-027D17-result.json",
-    "playwright/projects/fibu-book5/evidence/target-027d15-vat-matrix-recreate-route-diagnosis/TARGET-027D15-result.json",
-    "playwright/projects/fibu-book5/evidence/target-027d13c-vat-matrix-row-inline-menu-cleanup-route/TARGET-027D13C-result.json",
-    "playwright/projects/fibu-book5/evidence/target-019b-posting-groups-readonly-preflight/TARGET-019B-result.json"
-  ],
-  "sourceRefs": [
-    {
-      "label": "Microsoft Learn - Set up value-added tax",
-      "url": "https://learn.microsoft.com/en-gb/dynamics365/business-central/finance-setup-vat",
-      "use": "Product-source boundary: VAT Business Posting Groups, VAT Product Posting Groups and VAT Posting Setup are distinct setup concepts; this does not prove Universaarl values."
-    },
-    {
-      "label": "Microsoft Learn - Set Up Company Configuration Packages",
-      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/set-up-standard-company-configuration-packages",
-      "use": "Product-source boundary: configuration packages can include setup tables such as VAT Posting Setup, but package import/export/validate/apply are effective data routes."
-    },
-    {
-      "label": "Microsoft Learn - Posting group setup",
-      "url": "https://learn.microsoft.com/en-au/dynamics365/business-central/finance-posting-groups",
-      "use": "Product-source boundary: posting groups map entities and documents to general ledger accounts; visibility does not prove posting readiness."
-    }
+    "Posting group completeness is not proven.",
+    "Account correctness is not proven.",
+    "German VAT correctness is not proven.",
+    "No Preview Posting or ledger trace exists."
   ],
   "warnings": [
-    "VAT matrix park is a boundary, not a setup success.",
-    "TARGET-028 may inspect posting-group pages read-only only; setup writes require a later explicit write case.",
-    "No German final VAT, posting readiness, master data readiness or book final claim may be made from D24."
+    "New/Neu action may be visible but was not clicked.",
+    "Edit/Bearbeiten action may be visible but was not clicked."
   ],
-  "blockedBy": [],
-  "nextCase": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
-  "nextStep": "Run TARGET-028 Posting Groups Preflight read-only in playthru / UNIVERSAARL-DE. Do not write posting groups, VAT setup, master data, drafts, preview or posting.",
-  "nextAction": "Run TARGET-028 Posting Groups Preflight read-only in playthru / UNIVERSAARL-DE. Do not write posting groups, VAT setup, master data, drafts, preview or posting.",
+  "changedBusinessCentral": {
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "companySwitch": false,
+    "apiShortcut": false
+  },
+  "evidence": [
+    "playwright/projects/fibu-book5/evidence/target-028-posting-groups-preflight/TARGET-028-result.json",
+    "playwright/projects/fibu-book5/img/target-028-001-general-posting-setup.png",
+    "playwright/projects/fibu-book5/img/target-028-002-customer-posting-groups.png",
+    "playwright/projects/fibu-book5/img/target-028-003-vendor-posting-groups.png",
+    "playwright/projects/fibu-book5/img/target-028-004-inventory-posting-setup.png",
+    "playwright/projects/fibu-book5/img/target-028-005-vat-posting-setup.png"
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-028-posting-groups-preflight/TARGET-028-result.json",
+    "playwright/projects/fibu-book5/evidence/target-028-posting-groups-preflight/*.txt",
+    "playwright/projects/fibu-book5/evidence/target-028-posting-groups-preflight/*.screenshot.json",
+    "playwright/projects/fibu-book5/img/target-028-*.png"
+  ],
+  "nextCase": "TARGET-029-POSTING-GROUPS-CONTROLLED-SETUP-DECISION",
+  "nextStep": "Run TARGET-029 Posting Groups controlled setup decision locally. Do not write posting groups, VAT setup, master data, drafts, preview or posting in the decision case.",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
-    "lastEvidenceSummary": "D21-D23B show that Page 472 grid/card/lookup routes and Configuration Package routes did not produce a correct INLAND/VAT19 VAT Posting Setup row. U-VAT325-DISC remains package metadata only.",
+    "currentCase": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+    "plannedNextCaseBeforeReview": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+    "lastEvidenceSummary": "TARGET-027D24 parked the blocked VAT matrix route with explicit no-final/no-preview/no-posting boundary.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The blocked VAT matrix must not cause another blind UI-write attempt. A local route decision is the smallest safe step before continuing foundation setup.",
+    "reason": "Posting groups are the next W1 Foundation dependency before master data and any Preview Posting.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
-        "status": "ready-next",
-        "reason": "Can inspect posting-group setup pages read-only after VAT matrix is parked with explicit no-posting/no-final-VAT boundaries."
-      },
-      {
         "caseId": "TARGET-029-POSTING-GROUPS-CONTROLLED-SETUP-DECISION",
-        "status": "ready-after-current",
-        "reason": "Only after read-only preflight maps required groups/accounts can a write decision be scoped."
+        "status": "ready-next",
+        "reason": "A controlled setup decision follows only after current posting-group page context is visible and risks are scoped."
       },
       {
         "caseId": "TARGET-030-DIMENSIONS-RECOVERY-DEFAULTS",
-        "status": "needs-setup-first",
-        "reason": "Dimension defaults are useful after posting/VAT boundaries are clear enough for master data."
+        "status": "ready-after-current",
+        "reason": "Dimensions can continue after posting-group direction is known and VAT remains explicitly parked."
       },
       {
         "caseId": "TARGET-031-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Foundation readiness requires posting groups, VAT boundary, dimensions and no hidden blockers."
+        "reason": "The foundation checkpoint needs posting-group, VAT and dimension status before master data."
       },
       {
         "caseId": "TARGET-032-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
         "status": "needs-setup-first",
-        "reason": "Master data stays locked until foundation setup and explicit VAT/posting boundaries are ready."
+        "reason": "First customer/vendor/item remains locked until foundation setup gates are explicit."
       }
     ],
-    "queueChangesMade": [
-      "Marked TARGET-027D24 as done.",
-      "Added TARGET-028-POSTING-GROUPS-PREFLIGHT as the next pending read-only foundation case.",
-      "Parked VAT matrix setup with explicit no-final-VAT/no-preview/no-posting boundary."
-    ],
-    "selectedNextCase": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
-    "whySelectedNextCaseIsBest": "It advances W1 Foundation without pretending the VAT matrix is solved: Posting Groups can be mapped read-only while VAT matrix write remains locked until a later materially different route exists.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-029-POSTING-GROUPS-CONTROLLED-SETUP-DECISION",
+    "whySelectedNextCaseIsBest": "Posting group page contexts are visible enough for a controlled setup decision case.",
     "risksBeforeNextCase": [
-      "Do not claim VAT setup readiness or German 19 percent correctness from the park decision.",
-      "Do not create master data, drafts, preview or posting before posting groups and VAT boundaries are explicit.",
-      "Do not repeat D14-D23 VAT matrix write/package cleanup routes without a new route hypothesis."
+      "Do not edit posting groups until a separate setup-change case defines values and accounts.",
+      "Do not create master data yet.",
+      "Do not claim posting readiness from visibility alone."
     ],
     "requiredPreparation": [
-      "Use Microsoft Learn VAT Setup and Posting Groups pages as product-source boundaries.",
-      "Use TARGET-019B read-only posting-group page evidence as old context only, then revalidate if needed in the current case.",
-      "Open only read-only posting group pages in TARGET-028 unless a later write case unlocks setup."
+      "Use TARGET-028 screenshots as read-only context, not setup correctness proof."
     ]
-  },
-  "updatedAt": "2026-07-01T05:54:10.322Z"
+  }
 }

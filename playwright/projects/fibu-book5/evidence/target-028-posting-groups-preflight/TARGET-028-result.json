@@ -1,0 +1,259 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+  "source": "playwright-universaarl-w1-posting-groups-preflight",
+  "resultStatus": "observed",
+  "runPlanId": "TARGET-028-POSTING-GROUPS-PREFLIGHT-PLAN",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-medium",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "proved": [
+    "5/5 posting-group or VAT setup pages opened read-only in playthru/UNIVERSAARL-DE.",
+    "No setup value, master data, document draft, preview posting or posting was executed.",
+    "Buchungsmatrix / General Posting Setup visible read-only.",
+    "Debitorenbuchungsgruppen / Customer Posting Groups visible read-only.",
+    "Kreditorenbuchungsgruppen / Vendor Posting Groups visible read-only.",
+    "Lagerbuchung Einrichtung / Inventory Posting Setup visible read-only.",
+    "USt-Buchungsmatrix / VAT Posting Setup visible read-only."
+  ],
+  "notProved": [
+    "Posting group completeness is not proven.",
+    "Account correctness is not proven.",
+    "German VAT correctness is not proven.",
+    "No Preview Posting or ledger trace exists."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-028-posting-groups-preflight/TARGET-028-result.json",
+    "playwright/projects/fibu-book5/evidence/target-028-posting-groups-preflight/*.txt",
+    "playwright/projects/fibu-book5/evidence/target-028-posting-groups-preflight/*.screenshot.json",
+    "playwright/projects/fibu-book5/img/target-028-*.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-028-posting-groups-preflight/TARGET-028-result.json",
+    "playwright/projects/fibu-book5/img/target-028-001-general-posting-setup.png",
+    "playwright/projects/fibu-book5/img/target-028-002-customer-posting-groups.png",
+    "playwright/projects/fibu-book5/img/target-028-003-vendor-posting-groups.png",
+    "playwright/projects/fibu-book5/img/target-028-004-inventory-posting-setup.png",
+    "playwright/projects/fibu-book5/img/target-028-005-vat-posting-setup.png"
+  ],
+  "pages": [
+    {
+      "id": "general-posting-setup",
+      "pageId": 314,
+      "label": "Buchungsmatrix / General Posting Setup",
+      "status": "observed",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=314&company=UNIVERSAARL-DE",
+      "screenshot": "playwright/projects/fibu-book5/img/target-028-001-general-posting-setup.png",
+      "textFile": "playwright/projects/fibu-book5/evidence/target-028-posting-groups-preflight/general-posting-setup.txt",
+      "textSignals": [
+        "Verkauf",
+        "Einkauf",
+        "Verkaufsauftragsagent",
+        "Buchungsmatrix Einrichtung:",
+        "Geschäftsbuchungsgruppe",
+        "Produktbuchungsgruppe",
+        "Warenverkaufskonto",
+        "Verk.-Gutschriftskonto",
+        "Verkaufsvorauszahlungs-Konto",
+        "Wareneinkaufskonto",
+        "Eink.-Gutschriftskonto",
+        "Einkaufsvorauszahlungs-Konto",
+        "Lagerverbrauchskonto",
+        "Lagerverbrauchskonto (Interim)",
+        "Lagerkorrekturkonto",
+        "Lagerzugangskonto (Interim)",
+        "Direkte Kosten Verrech.-Konto",
+        "Gemeinkostenverrechnungskonto",
+        "Einkaufsabweichungskonto",
+        "Eink.-Anlagenrabattkonto",
+        "Debitoren-Abonnementvertrags-Konto",
+        "Abgrenzungskonto für Debitoren-Abonnement",
+        "Konto für Kreditoren-Abonnementvertrag",
+        "Abgrenzungskonto für Kreditoren-Abonnement",
+        "Info über Buchungsmatrix",
+        "Konfigurieren Sie, wie Verkäufe, Einkäufe und Lagerbuchungen auf Sachkonten gebucht werden, indem Sie Kombinationen aus Geschäftsbuchungs- und Produktbuchungsgruppen definieren....",
+        "Geschäftsbuchungsgruppe, Sortierreihenfolge Aufsteigend",
+        "Produktbuchungsgruppe, Sortierreihenfolge Aufsteigend"
+      ],
+      "visibleWarnings": [
+        "New/Neu action may be visible but was not clicked.",
+        "Edit/Bearbeiten action may be visible but was not clicked."
+      ],
+      "reason": "Expected posting-group page text is visible."
+    },
+    {
+      "id": "customer-posting-groups",
+      "pageId": 110,
+      "label": "Debitorenbuchungsgruppen / Customer Posting Groups",
+      "status": "observed",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=110&company=UNIVERSAARL-DE",
+      "screenshot": "playwright/projects/fibu-book5/img/target-028-002-customer-posting-groups.png",
+      "textFile": "playwright/projects/fibu-book5/evidence/target-028-posting-groups-preflight/customer-posting-groups.txt",
+      "textSignals": [
+        "Debitorenbuchungsgruppen:",
+        "Code",
+        "Beschreibung",
+        "Debitorensammelkonto",
+        "Servicegebührenkonto",
+        "Sollrundungskonto",
+        "Habenrundungskonto",
+        "Code, Sortierreihenfolge Aufsteigend"
+      ],
+      "visibleWarnings": [
+        "New/Neu action may be visible but was not clicked.",
+        "Edit/Bearbeiten action may be visible but was not clicked."
+      ],
+      "reason": "Expected posting-group page text is visible."
+    },
+    {
+      "id": "vendor-posting-groups",
+      "pageId": 111,
+      "label": "Kreditorenbuchungsgruppen / Vendor Posting Groups",
+      "status": "observed",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=111&company=UNIVERSAARL-DE",
+      "screenshot": "playwright/projects/fibu-book5/img/target-028-003-vendor-posting-groups.png",
+      "textFile": "playwright/projects/fibu-book5/evidence/target-028-posting-groups-preflight/vendor-posting-groups.txt",
+      "textSignals": [
+        "Payables Agent",
+        "Kreditorenbuchungsgruppen:",
+        "Code",
+        "Beschreibung",
+        "Verbindlichkeiten-Konto",
+        "Servicegebührenkonto",
+        "Sollrundungskonto",
+        "Habenrundungskonto",
+        "Code, Sortierreihenfolge Aufsteigend"
+      ],
+      "visibleWarnings": [
+        "New/Neu action may be visible but was not clicked.",
+        "Edit/Bearbeiten action may be visible but was not clicked."
+      ],
+      "reason": "Expected posting-group page text is visible."
+    },
+    {
+      "id": "inventory-posting-setup",
+      "pageId": 5826,
+      "label": "Lagerbuchung Einrichtung / Inventory Posting Setup",
+      "status": "observed",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=5826&company=UNIVERSAARL-DE",
+      "screenshot": "playwright/projects/fibu-book5/img/target-028-004-inventory-posting-setup.png",
+      "textFile": "playwright/projects/fibu-book5/evidence/target-028-posting-groups-preflight/inventory-posting-setup.txt",
+      "textSignals": [
+        "Lagerbuchung Einrichtung:",
+        "Lagerortcode",
+        "Lagerbuchungsgruppencode",
+        "Lagerkonto",
+        "Lagerkonto (Interim)",
+        "Unf.-Arbeit-Konto",
+        "Materialabweichungskonto",
+        "Kapazitätsabweichungskonto",
+        "Kap.-Gemeinkostenabw.-Konto",
+        "Prod.-Gemeinkostenabw.-Konto",
+        "Material – Abweichungskonto für Nicht-Lagerbestände",
+        "Lagerortcode, Sortierreihenfolge Aufsteigend",
+        "Lagerbuchungsgruppencode, Sortierreihenfolge Aufsteigend"
+      ],
+      "visibleWarnings": [
+        "New/Neu action may be visible but was not clicked.",
+        "Edit/Bearbeiten action may be visible but was not clicked."
+      ],
+      "reason": "Expected posting-group page text is visible."
+    },
+    {
+      "id": "vat-posting-setup",
+      "pageId": 472,
+      "label": "USt-Buchungsmatrix / VAT Posting Setup",
+      "status": "observed",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=472&company=UNIVERSAARL-DE",
+      "screenshot": "playwright/projects/fibu-book5/img/target-028-005-vat-posting-setup.png",
+      "textFile": "playwright/projects/fibu-book5/evidence/target-028-posting-groups-preflight/vat-posting-setup.txt",
+      "textSignals": [
+        "MwSt.-Buchungsmatrix Einr.:",
+        "MwSt.-Geschäftsbuchungsgruppe",
+        "MwSt.-Produktbuchungsgruppe",
+        "MwSt.-Kennzeichen",
+        "MwSt. %",
+        "MwSt.-Berechnungsart",
+        "Unreal. MwSt.-Art",
+        "Skonto berichtigen",
+        "Umsatzsteuerkonto",
+        "Unreal. Umsatzsteuerkonto",
+        "Vorsteuerkonto",
+        "Unreal. Vorsteuerkonto",
+        "Erwerbssteuerkonto",
+        "Unreal. Erwerbssteuerkonto",
+        "MwSt.-Klauselcode",
+        "MwSt.-Geschäftsbuchungsgruppe, Sortierreihenfolge Aufsteigend",
+        "MwSt.-Produktbuchungsgruppe, Sortierreihenfolge Aufsteigend"
+      ],
+      "visibleWarnings": [
+        "New/Neu action may be visible but was not clicked.",
+        "Edit/Bearbeiten action may be visible but was not clicked."
+      ],
+      "reason": "Expected posting-group page text is visible."
+    }
+  ],
+  "blockedBy": [],
+  "warnings": [
+    "New/Neu action may be visible but was not clicked.",
+    "Edit/Bearbeiten action may be visible but was not clicked."
+  ],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noSearch": true,
+    "noBookMasterChange": true,
+    "noSetupChange": true,
+    "readOnlyDirectPageRoutes": true
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+    "plannedNextCaseBeforeReview": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+    "lastEvidenceSummary": "TARGET-027D24 parked the blocked VAT matrix route with explicit no-final/no-preview/no-posting boundary.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Posting groups are the next W1 Foundation dependency before master data and any Preview Posting.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-029-POSTING-GROUPS-CONTROLLED-SETUP-DECISION",
+        "status": "ready-next",
+        "reason": "A controlled setup decision follows only after current posting-group page context is visible and risks are scoped."
+      },
+      {
+        "caseId": "TARGET-030-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "ready-after-current",
+        "reason": "Dimensions can continue after posting-group direction is known and VAT remains explicitly parked."
+      },
+      {
+        "caseId": "TARGET-031-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "The foundation checkpoint needs posting-group, VAT and dimension status before master data."
+      },
+      {
+        "caseId": "TARGET-032-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "First customer/vendor/item remains locked until foundation setup gates are explicit."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-029-POSTING-GROUPS-CONTROLLED-SETUP-DECISION",
+    "whySelectedNextCaseIsBest": "Posting group page contexts are visible enough for a controlled setup decision case.",
+    "risksBeforeNextCase": [
+      "Do not edit posting groups until a separate setup-change case defines values and accounts.",
+      "Do not create master data yet.",
+      "Do not claim posting readiness from visibility alone."
+    ],
+    "requiredPreparation": [
+      "Use TARGET-028 screenshots as read-only context, not setup correctness proof."
+    ]
+  },
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "statePatch": {},
+  "reason": "Posting Groups read-only preflight observed without setup changes."
+}

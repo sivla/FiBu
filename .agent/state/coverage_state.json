@@ -788,7 +788,7 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-07-01T01:59:22.501Z",
+  "updatedAt": "2026-07-01T06:09:50.743Z",
   "activeArea": "universaarl-w1-foundation-global-dimension-assignment",
   "currentBlock": "vat-setup-readiness-next",
   "latestPracticalCase": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
@@ -4120,5 +4120,62 @@
     "screenshotStatus": "page-470-accepted-after-smallest-normalized-result-row-click",
     "coverageImpact": "VAT group write retry is now route-ready, but VAT setup correctness remains unproven.",
     "nextCase": "TARGET-027C-VAT-GROUPS-CONTROLLED-WRITE-RETRY"
+  },
+  "latestPostingGroupsPreflight": {
+    "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-028-posting-groups-preflight/TARGET-028-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "proved": [
+      "5/5 posting-group or VAT setup pages opened read-only in playthru/UNIVERSAARL-DE.",
+      "No setup value, master data, document draft, preview posting or posting was executed.",
+      "Buchungsmatrix / General Posting Setup visible read-only.",
+      "Debitorenbuchungsgruppen / Customer Posting Groups visible read-only.",
+      "Kreditorenbuchungsgruppen / Vendor Posting Groups visible read-only.",
+      "Lagerbuchung Einrichtung / Inventory Posting Setup visible read-only.",
+      "USt-Buchungsmatrix / VAT Posting Setup visible read-only."
+    ],
+    "notProved": [
+      "Posting group completeness is not proven.",
+      "Account correctness is not proven.",
+      "German VAT correctness is not proven.",
+      "No Preview Posting or ledger trace exists."
+    ],
+    "pages": [
+      {
+        "id": "general-posting-setup",
+        "pageId": 314,
+        "label": "Buchungsmatrix / General Posting Setup",
+        "status": "observed"
+      },
+      {
+        "id": "customer-posting-groups",
+        "pageId": 110,
+        "label": "Debitorenbuchungsgruppen / Customer Posting Groups",
+        "status": "observed"
+      },
+      {
+        "id": "vendor-posting-groups",
+        "pageId": 111,
+        "label": "Kreditorenbuchungsgruppen / Vendor Posting Groups",
+        "status": "observed"
+      },
+      {
+        "id": "inventory-posting-setup",
+        "pageId": 5826,
+        "label": "Lagerbuchung Einrichtung / Inventory Posting Setup",
+        "status": "observed"
+      },
+      {
+        "id": "vat-posting-setup",
+        "pageId": 472,
+        "label": "USt-Buchungsmatrix / VAT Posting Setup",
+        "status": "observed"
+      }
+    ],
+    "screenshotQaLearning": "TARGET-028 rejects the older Page 93 Vendor Posting Groups assumption; current accepted route is Page 111 with visible Kreditorenbuchungsgruppen and Verbindlichkeiten-Konto.",
+    "nextCase": "TARGET-029-POSTING-GROUPS-CONTROLLED-SETUP-DECISION",
+    "updatedAt": "2026-07-01T06:09:50.743Z"
   }
 }

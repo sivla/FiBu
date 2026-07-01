@@ -27,13 +27,18 @@ Die Page-Atlas-Datei enthaelt gute Legacy-Muster, aber die aktive Universaarl-Re
 | `RO-W1-COMPANY-INFORMATION` | Company Information | `requires-universaarl-company` | Firmenstammdatenkarte spaeter als erster Universaarl-Firmennachweis | kein Edit, kein Speichern, kein Logo-Upload |
 | `RO-W1-ASSISTED-SETUP` | Assisted Setup / Unterstuetztes Setup | `ready-for-readonly-playwright` | Assistentenliste und Status lesen, ohne Setup zu starten | kein `Weiter`, `OK`, `Finish`, keine Setup-Aenderung |
 | `RO-W1-NO-SERIES` | No. Series / Nummernserien | `requires-universaarl-company` | Belegnummernlisten und Spalten fuer spaetere Foundation erklaeren | keine neue Serie, kein Edit List, keine Zeilenbearbeitung |
-| `RO-W1-POSTING-GROUPS` | Posting Groups / Posting Setup | `requires-universaarl-company` | Kontenfindungsseiten und Matrixfelder spaeter read-only erfassen | keine neue Gruppe, keine Matrixaenderung |
+| `RO-W1-POSTING-GROUPS` | Posting Groups / Posting Setup | `universaarl-readonly-observed` | TARGET-028 erfasst General Posting Setup `314`, Customer Posting Groups `110`, Vendor Posting Groups `111`, Inventory Posting Setup `5826` und VAT Posting Setup `472` read-only; Page `93` ist als Vendor-Posting-Groups-Route verworfen | keine neue Gruppe, keine Matrixaenderung, keine Setup-Bereitschaft aus leerer Liste ableiten |
 | `RO-W1-VAT-SETUP` | VAT Posting Setup | `requires-universaarl-company` | VAT-Matrixfelder fuer spaetere deutsche USt-Kette vorbereiten | keine neue Zeile, kein Konto-/Prozentsatzwechsel |
 | `RO-W1-DIMENSIONS` | Dimensions / Dimension Values | `requires-universaarl-company` | Dimensionen und Dimensionswerte fuer Reportingbasis erfassen | keine neue Dimension, keine Default-Dimension speichern |
 
 | Page / Kontext | Page ID falls bekannt | Bereich | Belegte Nutzung | Evidence | Grenze |
 |---|---:|---|---|---|---|
 | Purchase Orders | `9307` | P2P | P2P-004 oeffnet Liste, `New` oeffnet Purchase Order Card | `evidence/p2p-004/` | kein finaler Teil-WE, keine Zeile |
+| General Posting Setup | `314` | Foundation/Posting Groups | TARGET-028 oeffnet Buchungsmatrix Einrichtung read-only in `playthru` / `UNIVERSAARL-DE` | `evidence/target-028-posting-groups-preflight/` | leere Liste; keine Kontenrichtigkeit, keine Preview, keine Buchung |
+| Customer Posting Groups | `110` | Foundation/Posting Groups | TARGET-028 oeffnet Debitorenbuchungsgruppen read-only in `playthru` / `UNIVERSAARL-DE` | `evidence/target-028-posting-groups-preflight/` | leere Liste; keine Debitoren-/Forderungsbuchung |
+| Vendor Posting Groups | `111` | Foundation/Posting Groups | TARGET-028 oeffnet Kreditorenbuchungsgruppen read-only und korrigiert die alte Page-93-Annahme | `evidence/target-028-posting-groups-preflight/` | leere Liste; keine Kreditoren-/Verbindlichkeitsbuchung |
+| Inventory Posting Setup | `5826` | Foundation/Posting Groups | TARGET-028 oeffnet Lagerbuchung Einrichtung read-only in `playthru` / `UNIVERSAARL-DE` | `evidence/target-028-posting-groups-preflight/` | leere Liste; keine Bestandskonto-Richtigkeit |
+| VAT Posting Setup | `472` | Foundation/VAT | TARGET-028 oeffnet MwSt.-Buchungsmatrix Einrichtung read-only als Grenze fuer spaetere USt | `evidence/target-028-posting-groups-preflight/` | keine 19-Prozent-USt, keine Steuerkonten, keine VAT Entries |
 | Purchase Order Card | n/a | P2P | Draft `106002`, Vendor `K10000`, Lines-Kontext sichtbar | `evidence/p2p-004/030-after-vendor-controls.json` | Zeilenwerte noch offen |
 | Posted Purchase Invoice | n/a | P2P | Rechnung `108219` sichtbar | `evidence/p2p-001/` | CRONUS-USA Labor |
 | Vendor Ledger Entries | n/a | P2P/Payments | Rechnung `108219`, Zahlung `PAYP2P-108219`, Remaining Amount `0,00` | `evidence/p2p-003/` | kein deutscher Finalnachweis |

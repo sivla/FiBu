@@ -6,19 +6,20 @@ import { compactPageText, pageText, requireBcUrl, waitForBusinessCentralShell } 
 
 test.use({ storageState: 'playwright/.auth/bc-user.json' });
 
-const CASE_ID = 'TARGET-019B-POSTING-GROUPS-READONLY-PREFLIGHT';
+const CASE_ID = 'TARGET-028-POSTING-GROUPS-PREFLIGHT';
 const EXPECTED_INSTANCE = 'playthru';
 const TARGET_COMPANY = 'UNIVERSAARL-DE';
 const PROJECT = 'fibu-book5';
-const EVIDENCE_ID = 'target-019b-posting-groups-readonly-preflight';
+const EVIDENCE_ID = 'target-028-posting-groups-preflight';
 const EVIDENCE_DIR = path.resolve('playwright/projects/fibu-book5/evidence', EVIDENCE_ID);
 const IMG_DIR = path.resolve('playwright/projects/fibu-book5/img');
-const RESULT_PATH = path.join(EVIDENCE_DIR, 'TARGET-019B-result.json');
+const RESULT_PATH = path.join(EVIDENCE_DIR, 'TARGET-028-result.json');
 
 type Probe = {
   id: string;
   pageId: number;
   label: string;
+  title: RegExp;
   expectedText: RegExp;
   include: RegExp;
   purpose: string;
@@ -42,7 +43,8 @@ const probes: Probe[] = [
     id: 'general-posting-setup',
     pageId: 314,
     label: 'Buchungsmatrix / General Posting Setup',
-    expectedText: /General Posting Setup|Buchungsmatrix|Gen\. Bus\. Posting Group|Geschaeftsbuchungsgruppe|Sales Account|Purchase Account|Verkaufskonto|Einkaufskonto/i,
+    title: /General Posting Setup|Buchungsmatrix/i,
+    expectedText: /Gen\. Bus\. Posting Group|Geschaeftsbuchungsgruppe|Geschäftsbuchungsgruppe|Sales Account|Purchase Account|Warenverkaufskonto|Wareneinkaufskonto/i,
     include: /General Posting Setup|Buchungsmatrix|Gen\.|Posting Group|Buchungsgruppe|Sales Account|Purchase Account|Verkauf|Einkauf|Code|Account|Konto/i,
     purpose: 'General Posting Setup controls which G/L accounts are used for business/product posting group combinations.'
   },
@@ -50,15 +52,17 @@ const probes: Probe[] = [
     id: 'customer-posting-groups',
     pageId: 110,
     label: 'Debitorenbuchungsgruppen / Customer Posting Groups',
-    expectedText: /Customer Posting Groups|Debitorenbuchungsgruppen|Receivables Account|Forderungskonto|Code|Description|Beschreibung/i,
+    title: /Customer Posting Groups|Debitorenbuchungsgruppen/i,
+    expectedText: /Receivables Account|Forderungskonto|Debitorensammelkonto/i,
     include: /Customer Posting Groups|Debitorenbuchungsgruppen|Receivables|Forderung|Service Charge|Payment Disc|Code|Description|Beschreibung|Account|Konto/i,
     purpose: 'Customer Posting Groups connect customer ledger entries to receivables and related G/L accounts.'
   },
   {
     id: 'vendor-posting-groups',
-    pageId: 93,
+    pageId: 111,
     label: 'Kreditorenbuchungsgruppen / Vendor Posting Groups',
-    expectedText: /Vendor Posting Groups|Kreditorenbuchungsgruppen|Payables Account|Verbindlichkeitskonto|Code|Description|Beschreibung/i,
+    title: /Vendor Posting Groups|Kreditorenbuchungsgruppen/i,
+    expectedText: /Payables Account|Verbindlichkeitskonto|Verbindlichkeiten-Konto|Kreditorensammelkonto/i,
     include: /Vendor Posting Groups|Kreditorenbuchungsgruppen|Payables|Verbindlichkeit|Payment Disc|Code|Description|Beschreibung|Account|Konto/i,
     purpose: 'Vendor Posting Groups connect vendor ledger entries to payables and related G/L accounts.'
   },
@@ -66,7 +70,8 @@ const probes: Probe[] = [
     id: 'inventory-posting-setup',
     pageId: 5826,
     label: 'Lagerbuchung Einrichtung / Inventory Posting Setup',
-    expectedText: /Inventory Posting Setup|Lagerbuchung Einrichtung|Inventory Account|Bestandskonto|Location Code|Lagerortcode|Invt\. Posting Group/i,
+    title: /Inventory Posting Setup|Lagerbuchung Einrichtung/i,
+    expectedText: /Inventory Account|Bestandskonto|Lagerkonto|Location Code|Lagerortcode|Lagerort/i,
     include: /Inventory Posting Setup|Lagerbuchung|Inventory Account|Bestand|Location Code|Lagerort|Posting Group|Buchungsgruppe|Code|Account|Konto/i,
     purpose: 'Inventory Posting Setup connects locations and inventory posting groups to inventory G/L accounts.'
   },
@@ -74,7 +79,8 @@ const probes: Probe[] = [
     id: 'vat-posting-setup',
     pageId: 472,
     label: 'USt-Buchungsmatrix / VAT Posting Setup',
-    expectedText: /VAT Posting Setup|USt-Buchungsmatrix|MwSt|VAT Bus\. Posting Group|VAT Prod\. Posting Group|VAT %|USt/i,
+    title: /VAT Posting Setup|USt-Buchungsmatrix|MwSt\.-Buchungsmatrix/i,
+    expectedText: /VAT Bus\. Posting Group|VAT Prod\. Posting Group|VAT %|MwSt\.-Geschäftsbuchungsgruppe|MwSt\.-Produktbuchungsgruppe|MwSt\. %|USt/i,
     include: /VAT Posting Setup|USt|MwSt|VAT|Posting Group|Buchungsgruppe|VAT %|Sales VAT|Purchase VAT|Konto|Account/i,
     purpose: 'VAT Posting Setup is read together with posting groups before German VAT claims or document previews.'
   }
@@ -173,14 +179,14 @@ async function probePage(page: Page, probe: Probe, index: number): Promise<Probe
   const currentUrl = page.url();
   const safeContext = instancePathIsTarget(currentUrl) && companyParamIsTarget(currentUrl);
   const dangerousDialog = containsDangerousDialog(text);
-  const matchedExpectedText = probe.expectedText.test(text);
+  const matchedExpectedText = probe.title.test(text) && probe.expectedText.test(text);
   const status = !safeContext || dangerousDialog ? 'blocked' : matchedExpectedText ? 'observed' : 'rejected';
   const compact = await compactPageText(page, {
     include: [probe.include],
     maxLines: 80,
     maxLineLength: 180
   });
-  const screenshot = `target-019b-${String(index).padStart(3, '0')}-${probe.id}.png`;
+  const screenshot = `target-028-${String(index).padStart(3, '0')}-${probe.id}.png`;
   const textFile = `${probe.id}.txt`;
   const textSignals = compact
     .split('\n')
@@ -228,7 +234,7 @@ async function probePage(page: Page, probe: Probe, index: number): Promise<Probe
   };
 }
 
-test('TARGET-019B read-only Posting Groups preflight', async ({ page }) => {
+test('TARGET-028 read-only Posting Groups preflight', async ({ page }) => {
   await fs.mkdir(EVIDENCE_DIR, { recursive: true });
   await fs.mkdir(IMG_DIR, { recursive: true });
 
@@ -243,7 +249,7 @@ test('TARGET-019B read-only Posting Groups preflight', async ({ page }) => {
     schemaVersion: 1,
     purpose: 'autopilot-result-normalized',
     caseId: CASE_ID,
-    source: 'playwright-universaarl-posting-groups-readonly-preflight',
+    source: 'playwright-universaarl-w1-posting-groups-preflight',
     resultStatus: blocked.length ? 'blocked' : 'observed',
     runPlanId: `${CASE_ID}-PLAN`,
     selectedTaskClass: 'wizard_work',
@@ -263,13 +269,13 @@ test('TARGET-019B read-only Posting Groups preflight', async ({ page }) => {
       ...blocked.map((entry) => `${entry.label}: ${entry.reason}`)
     ],
     changedFiles: [
-      `playwright/projects/fibu-book5/evidence/${EVIDENCE_ID}/TARGET-019B-result.json`,
+      `playwright/projects/fibu-book5/evidence/${EVIDENCE_ID}/TARGET-028-result.json`,
       `playwright/projects/fibu-book5/evidence/${EVIDENCE_ID}/*.txt`,
       `playwright/projects/fibu-book5/evidence/${EVIDENCE_ID}/*.screenshot.json`,
-      'playwright/projects/fibu-book5/img/target-019b-*.png'
+      'playwright/projects/fibu-book5/img/target-028-*.png'
     ],
     evidenceRefs: [
-      `playwright/projects/fibu-book5/evidence/${EVIDENCE_ID}/TARGET-019B-result.json`,
+      `playwright/projects/fibu-book5/evidence/${EVIDENCE_ID}/TARGET-028-result.json`,
       ...results.map((entry) => entry.screenshot)
     ],
     pages: results,
@@ -290,36 +296,36 @@ test('TARGET-019B read-only Posting Groups preflight', async ({ page }) => {
     nextStepDecisionCard: {
       currentCase: CASE_ID,
       plannedNextCaseBeforeReview: CASE_ID,
-      lastEvidenceSummary: 'TARGET-019 parked unresolved numbering setup gaps for now and unlocked read-only Posting Groups preflight.',
+      lastEvidenceSummary: 'TARGET-027D24 parked the blocked VAT matrix route with explicit no-final/no-preview/no-posting boundary.',
       isPlannedNextCaseStillSensible: true,
-      reason: 'Posting groups are the next foundation dependency before master data and any Preview Posting.',
+      reason: 'Posting groups are the next W1 Foundation dependency before master data and any Preview Posting.',
       lookaheadReviewed: [
         {
-          caseId: 'TARGET-020-VAT-SETUP-READINESS',
+          caseId: 'TARGET-029-POSTING-GROUPS-CONTROLLED-SETUP-DECISION',
           status: blocked.length ? 'ready-after-current' : 'ready-next',
-          reason: 'VAT setup follows posting group page preflight before document preview.'
+          reason: 'A controlled setup decision follows only after current posting-group page context is visible and risks are scoped.'
         },
         {
-          caseId: 'TARGET-021-DIMENSIONS-FOUNDATION',
+          caseId: 'TARGET-030-DIMENSIONS-RECOVERY-DEFAULTS',
           status: 'ready-after-current',
-          reason: 'Dimensions can be prepared after posting/VAT setup sequencing.'
+          reason: 'Dimensions can continue after posting-group direction is known and VAT remains explicitly parked.'
         },
         {
-          caseId: 'TARGET-022-CORE-MASTERDATA-PLAN',
+          caseId: 'TARGET-031-FOUNDATION-READY-CHECKPOINT',
           status: 'needs-setup-first',
-          reason: 'Customers, vendors and items need posting groups, VAT and dimensions.'
+          reason: 'The foundation checkpoint needs posting-group, VAT and dimension status before master data.'
         },
         {
-          caseId: 'TARGET-023-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT',
+          caseId: 'TARGET-032-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM',
           status: 'needs-setup-first',
-          reason: 'Templates depend on the setup defaults observed in foundation cases.'
+          reason: 'First customer/vendor/item remains locked until foundation setup gates are explicit.'
         }
       ],
       queueChangesMade: [],
-      selectedNextCase: blocked.length ? 'TARGET-019C-POSTING-GROUPS-PAGE-ROUTE-FOLLOWUP' : 'TARGET-020-VAT-SETUP-READINESS',
+      selectedNextCase: blocked.length ? 'TARGET-028B-POSTING-GROUPS-PAGE-ROUTE-FOLLOWUP' : 'TARGET-029-POSTING-GROUPS-CONTROLLED-SETUP-DECISION',
       whySelectedNextCaseIsBest: blocked.length
-        ? 'At least one target page route did not produce safe proof; resolve only the missing route before VAT.'
-        : 'Posting group page contexts are visible enough for the VAT readiness case.',
+        ? 'At least one target page route did not produce safe proof; resolve only the missing route before setup decisions.'
+        : 'Posting group page contexts are visible enough for a controlled setup decision case.',
       risksBeforeNextCase: [
         'Do not edit posting groups until a separate setup-change case defines values and accounts.',
         'Do not create master data yet.',
@@ -327,7 +333,7 @@ test('TARGET-019B read-only Posting Groups preflight', async ({ page }) => {
       ],
       requiredPreparation: blocked.length
         ? ['Review rejected/blocked page routes and use a non-search direct route or Page Inspection follow-up.']
-        : ['Use TARGET-019B screenshots as read-only context, not setup correctness proof.']
+        : ['Use TARGET-028 screenshots as read-only context, not setup correctness proof.']
     },
     requiresReview: blocked.length > 0,
     safeToFinalizeState: false,
@@ -341,7 +347,7 @@ test('TARGET-019B read-only Posting Groups preflight', async ({ page }) => {
   await fs.writeFile(
     path.join(EVIDENCE_DIR, 'README.md'),
     [
-      '# TARGET-019B Posting Groups Read-only Preflight',
+      '# TARGET-028 Posting Groups Read-only Preflight',
       '',
       `Instanz: ${EXPECTED_INSTANCE}`,
       `Company: ${TARGET_COMPANY}`,

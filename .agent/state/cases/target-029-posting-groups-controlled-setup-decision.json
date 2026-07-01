@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-029-POSTING-GROUPS-CONTROLLED-SETUP-DECISION",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Posting Groups controlled setup decision after read-only preflight",
+  "purpose": "Decide the smallest safe setup route for Universaarl posting groups after TARGET-028 proved current page contexts, without writing setup values in this decision case.",
+  "sourceCases": [
+    "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+    "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": false,
+  "taskClass": "judge_work",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-028-posting-groups-preflight/TARGET-028-result.json"
+  ],
+  "learnedPageRoutes": [
+    {
+      "id": "general-posting-setup",
+      "pageId": 314,
+      "page": "Buchungsmatrix / General Posting Setup"
+    },
+    {
+      "id": "customer-posting-groups",
+      "pageId": 110,
+      "page": "Debitorenbuchungsgruppen / Customer Posting Groups"
+    },
+    {
+      "id": "vendor-posting-groups",
+      "pageId": 111,
+      "page": "Kreditorenbuchungsgruppen / Vendor Posting Groups",
+      "correction": "TARGET-028 screenshot QA replaced the old wrong Page 93 assumption."
+    },
+    {
+      "id": "inventory-posting-setup",
+      "pageId": 5826,
+      "page": "Lagerbuchung Einrichtung / Inventory Posting Setup"
+    },
+    {
+      "id": "vat-posting-setup",
+      "pageId": 472,
+      "page": "USt-Buchungsmatrix / VAT Posting Setup read-only boundary"
+    }
+  ],
+  "allowedActions": [
+    "read-target-028-result",
+    "review-skr04-account-foundation",
+    "define-minimal-posting-group-values",
+    "write-smart-decision-card",
+    "select-next-bounded-setup-case"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central-for-write",
+    "change-posting-groups",
+    "change-vat-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-posting-readiness-from-page-visibility",
+    "claim-german-vat-final-proof"
+  ],
+  "entryCriteria": [
+    "TARGET-028 observed the required posting-group setup pages read-only in playthru / UNIVERSAARL-DE.",
+    "No setup value, master data, draft, Preview Posting or Posting was executed by TARGET-028.",
+    "Vendor Posting Groups route must use Page 111, not the old Page 93 assumption."
+  ],
+  "acceptanceCriteria": [
+    "The decision names which posting-group setup value family is next, or parks it with a clear reason.",
+    "The decision does not write any setup values.",
+    "The decision keeps VAT matrix correctness, master data, Preview Posting and Posting locked until separate cases unlock them.",
+    "The decision includes a lookahead card for the next 3-5 foundation steps."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-029-POSTING-GROUPS-CONTROLLED-SETUP-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-029-POSTING-GROUPS-CONTROLLED-SETUP-DECISION",
+    "lastEvidenceSummary": "TARGET-028 proved 5/5 posting-group/VAT setup page contexts read-only and corrected Vendor Posting Groups to Page 111. It did not prove setup completeness or account correctness.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A setup decision is the next safest step before any write because the pages are visible but values and completeness are not yet defined.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-030-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "ready-after-current",
+        "reason": "Dimensions can resume after posting-group direction and VAT boundary are explicit."
+      },
+      {
+        "caseId": "TARGET-031-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation checkpoint needs posting-group/VAT/dimension status, not just page visibility."
+      },
+      {
+        "caseId": "TARGET-032-MASTERDATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data remains locked until posting groups, VAT and dimensions have explicit decisions."
+      },
+      {
+        "caseId": "TARGET-033-FIRST-PREVIEW-GATE",
+        "status": "needs-setup-first",
+        "reason": "Preview requires master data and posting setup; it is not next."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-029-POSTING-GROUPS-CONTROLLED-SETUP-DECISION",
+    "whySelectedNextCaseIsBest": "It converts read-only page context into a bounded setup strategy instead of jumping to master data or repeating VAT matrix writes.",
+    "risksBeforeNextCase": [
+      "Do not write posting groups from a decision case.",
+      "Do not treat empty setup lists as correct setup.",
+      "Do not create customers/vendors/items before posting group values and VAT boundaries are explicit."
+    ],
+    "requiredPreparation": [
+      "Read TARGET-028 result and screenshot metadata.",
+      "Use SKR04 starter accounts already proven in Universaarl as candidate account references only where appropriate.",
+      "Keep VAT Posting Setup matrix parked unless a materially different route is selected."
+    ]
+  },
+  "createdAt": "2026-07-01T06:09:50.743Z"
+}
