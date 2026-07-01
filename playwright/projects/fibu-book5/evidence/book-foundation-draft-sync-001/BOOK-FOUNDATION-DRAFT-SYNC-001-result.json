@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "BOOK-FOUNDATION-DRAFT-SYNC-001",
+  "source": "local-bookdraft-sync-from-existing-universaarl-evidence",
+  "resultStatus": "observed",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "local book draft update only",
+  "url": "",
+  "actionsTaken": [
+    "Checked active state and queue.",
+    "Checked auth gate before any live action.",
+    "Read existing Universaarl result JSON for TARGET-036E2, TARGET-040 and TARGET-044D.",
+    "Updated the Universaarl Foundation chapter draft with the current item/customer/vendor readiness boundary."
+  ],
+  "actionsNotTaken": [
+    "No Business Central page was opened.",
+    "No Playwright live test was run.",
+    "No setup value was changed.",
+    "No master data was changed.",
+    "No document or draft was created.",
+    "No Preview Posting was executed.",
+    "No Posting was executed.",
+    "No payment was executed.",
+    "No API shortcut was used.",
+    "No company switch was executed."
+  ],
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "screenshots": [],
+  "proved": [
+    "Existing Universaarl evidence supports reader-facing draft text that SAAR-HL, U-CUST-100 and U-ITEM-HW100 with STK are visible foundation records.",
+    "Existing Universaarl evidence supports the boundary that U-VEND-100 remains blocked until U-VEND Manual Nos. is safely proven.",
+    "Existing Universaarl evidence supports the boundary that customer and item posting/VAT fields are not yet proven correct.",
+    "Auth remains blocked by missing shell-validation metadata, so no live BC or Playwright execution was attempted."
+  ],
+  "notProved": [
+    "No new Business Central state was observed in this run.",
+    "No vendor creation, setup write, Preview Posting, Posting or ledger trace was proven.",
+    "The Foundation chapter draft is not a final posting-readiness claim."
+  ],
+  "blockedBy": [
+    "auth:bc:check reports shell-validation-meta-missing-or-invalid for live BC execution."
+  ],
+  "warnings": [
+    "Do not use this local bookdraft sync as a substitute for new BC evidence.",
+    "D2F remains the active live blocker once attended auth is restored."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/book-drafts/universaarl-foundation-ch06-draft.md",
+    "playwright/projects/fibu-book5/evidence/book-foundation-draft-sync-001/BOOK-FOUNDATION-DRAFT-SYNC-001-result.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-036e2-first-item-controlled-write-gate-retry/TARGET-036E2-result.json",
+    "playwright/projects/fibu-book5/evidence/target-040-foundation-ready-recheck/TARGET-040-result.json",
+    "playwright/projects/fibu-book5/evidence/target-044d-customer-item-posting-fields-alternative-page-route/TARGET-044D-result.json"
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+    "lastEvidenceSummary": "TARGET-044D selected D2F as the next open Foundation blocker; the latest auth check still blocks live execution.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "D2F remains the correct live next case, but only after attended auth restores Business Central shell validation.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+        "status": "blocked",
+        "reason": "Live execution requires green auth:bc:check first."
+      },
+      {
+        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Vendor creation must wait until U-VEND Manual Nos. is proven active."
+      },
+      {
+        "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+        "status": "needs-ui-discovery-first",
+        "reason": "TARGET-044D did not expose enough posting/VAT field truth for a safe write."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C requires posting/VAT/master-data readiness before any document."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+    "whySelectedNextCaseIsBest": "It is the narrow blocker that unlocks the first vendor path without jumping into documents or posting.",
+    "risksBeforeNextCase": [
+      "Do not run Playwright/BC live while auth shell validation is red.",
+      "Do not create vendor/customer/item records until the active case unlocks the specific action."
+    ],
+    "requiredPreparation": [
+      "Complete attended npm run auth:bc until the Business Central shell is visible.",
+      "Run npm run auth:bc:check and require canUseStoredAuth=true before D2F."
+    ]
+  },
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "statePatch": {},
+  "reason": "Local bookdraft sync from already committed Universaarl evidence; live BC remains blocked by auth.",
+  "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY"
+}
