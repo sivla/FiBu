@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Foundation ready checkpoint after SKR04, posting groups, VAT and dimensions boundaries",
+  "purpose": "Classify W1 Foundation after SKR04 starter accounts, posting group prerequisites, parked General Posting Setup route, parked VAT matrix and revalidated Dimensions starter set.",
+  "sourceCases": [
+    "TARGET-026N-CHART-OF-ACCOUNTS-FOUNDATION-CHECKPOINT",
+    "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
+    "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
+    "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": false,
+  "taskClass": "judge_work",
+  "smartDecision": {
+    "whyNow": "The visible W1 Foundation building blocks have either been proven, parked, or blocked. Before master data, the project needs a checkpoint that prevents overclaiming posting readiness.",
+    "fieldsAllowedToChange": [],
+    "fieldsNotTouched": [
+      "General Posting Setup",
+      "VAT Posting Setup",
+      "Inventory Posting Setup",
+      "Master Data",
+      "Documents or drafts",
+      "Preview Posting",
+      "Posting",
+      "Payment",
+      "API shortcut"
+    ],
+    "risk": "Moving to master data without a checkpoint could hide parked setup gaps.",
+    "fallback": "If the checkpoint finds a hard blocker, create the next narrow setup case instead of unlocking master data."
+  },
+  "allowedActions": [
+    "review-foundation-results",
+    "classify-proven-parked-blocked-gates",
+    "update-catalog-coverage-state-bookdraft",
+    "select-next-case-with-lookahead"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "change-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-posting-readiness",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-033 result exists and is reviewed.",
+    "No setup write, master data, Preview Posting or Posting occurred in TARGET-033."
+  ],
+  "acceptanceCriteria": [
+    "Foundation status is classified as ready, ready-with-parked-boundaries, or blocked.",
+    "Master Data remains locked unless the checkpoint explicitly unlocks it with boundaries.",
+    "No BC or Playwright execution is needed for the checkpoint."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+    "plannedNextCaseBeforeReview": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+    "lastEvidenceSummary": "TARGET-033 revalidated starter dimensions and parked Global/Default Dimensions.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A checkpoint is the safest next step before deciding whether master data can start with known parked boundaries.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+        "status": "ready-next",
+        "reason": "The dimensions starter set is visible; checkpoint can classify remaining parked setup gaps."
+      },
+      {
+        "caseId": "TARGET-035-MASTER-DATA-FIRST-CUSTOMER-VENDOR-ITEM",
+        "status": "needs-setup-first",
+        "reason": "Master data remains locked until Foundation checkpoint accepts the remaining parked boundaries."
+      },
+      {
+        "caseId": "TARGET-036-FIRST-PREVIEW-GATE",
+        "status": "blocked",
+        "reason": "No Preview Posting before master data and posting/VAT boundaries are deliberately accepted."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+    "whySelectedNextCaseIsBest": "The starter dimensions are visible; the next value is a Foundation checkpoint that states exactly what is proven, parked and still blocked.",
+    "risksBeforeNextCase": [
+      "Do not claim Global Dimension Code 1/2 are assigned.",
+      "Do not claim Default Dimensions exist for customers, vendors or items.",
+      "Do not unlock master data, Preview Posting or Posting without the Foundation checkpoint."
+    ],
+    "requiredPreparation": [
+      "Review Page 314 and VAT parked boundaries before checkpoint."
+    ]
+  },
+  "createdAt": "2026-07-01T08:43:26.535Z"
+}

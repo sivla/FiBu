@@ -47,7 +47,7 @@ Der List Atlas beschreibt Business-Central-Listen, die fuer Klickpfade, Suche, F
 | `RO-W1-NO-SERIES` | No. Series / Nummernserien | 3 | Nummernserien als Listen-/Zeilenkonzept vorbereiten | `requires-universaarl-company` |
 | `RO-W1-POSTING-GROUPS` | Posting Groups / Posting Setup | 4 | Buchungsgruppen- und Matrixlisten fuer Kontenfindung vorbereiten | `matrix-route-parked-blocked-not-proven`; `INLAND` und `WAREN` sind nach Reopen sichtbar, Page 314 zeigt die Zielspalten fuer `4400` und `5400`, aber `Liste bearbeiten` + `Neu` sowie `Strg+Einfuegen` erzeugten keine vertrauenswuerdige Eingabezeile. TARGET-032E zeigt zusaetzlich: `Weitere Optionen` liefert keinen Kartenpfad, `Ctrl+Alt+F1` ist hier kein stabiler Page-314-Beweis, und Page 315 ist `MwSt.-Posten`, nicht die Buchungsmatrix-Karte. TARGET-032F parkt diese Route; keine Posting-Readiness. |
 | `RO-W1-VAT-SETUP` | VAT Posting Setup | 5 | VAT-Buchungsmatrixfelder fuer spaetere USt-Kette vorbereiten | `requires-universaarl-company` |
-| `RO-W1-DIMENSIONS` | Dimensions / Dimension Values | 6 | Dimensionen, Dimensionswerte und spaetere Default-Dimension-Kontexte vorbereiten | `requires-universaarl-company` |
+| `RO-W1-DIMENSIONS` | Dimensions / Dimension Values | 6 | Dimensionen, Dimensionswerte und spaetere Default-Dimension-Kontexte vorbereiten | `starter-values-visible-defaults-parked`; TARGET-033 zeigt `PRODUCTLINE`, `COSTCENTER`, `CHANNEL` und die Starterwerte read-only in `playthru` / `UNIVERSAARL-DE`. Global Dimension Code 1/2, Default Dimensions, Dimension Set Entries und Postenwirkung bleiben offen. |
 
 ## Zero-Open-Questions-Regel
 

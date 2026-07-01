@@ -44,7 +44,7 @@ Eine Dimension besteht nicht nur aus dem Dimensionscode. Die Werte sind genauso 
 
 Eine angelegte Dimension beweist noch keine Auswertung. Die Auswertung entsteht erst, wenn ein Beleg mit Dimensionen gebucht wurde und die Dimensionen in den Posten oder Berichten sichtbar sind.
 
-Vor den ersten Stammdaten wird noch festgelegt, welche Dimensionen als globale Dimensionen besonders sichtbar in Posten und Auswertungen erscheinen. Fuer den Start sind `PRODUCTLINE` und `COSTCENTER` die Kandidaten.
+Vor den ersten Stammdaten wird noch festgelegt, ob und wie Dimensionen als globale Dimensionen besonders sichtbar in Posten und Auswertungen erscheinen. Fuer den Start sind `PRODUCTLINE` und `COSTCENTER` die Kandidaten.
 
 Auf der Seite `Finanzbuchhaltung Einrichtung` stehen die Felder `Globaler Dimensionscode 1` und `Globaler Dimensionscode 2` im Abschnitt `Dimensionen`. In der aktuellen Universaarl-Company sind diese beiden Felder noch leer.
 
@@ -52,6 +52,8 @@ Der Button `Globale Dimensionen aendern...` oeffnet eine eigene Seite. Dort sieh
 
 Diese Seite ist ein wichtiger Unterschied zu einer normalen Stammdatenkarte: Ein sichtbares Eingabefeld bedeutet noch nicht, dass der Wert bereits gespeichert ist. `Fortlaufend` ist zunaechst nur der Reiter fuer die Verarbeitungsart. Erst die Aktion `Starten` loest die Verarbeitung aus. Danach muss die `Finanzbuchhaltung Einrichtung` erneut geoeffnet werden. Nur wenn die Werte dort sichtbar bleiben, gilt die globale Dimension als gesetzt.
 
-Fuer die ersten Stammdaten heisst das: Die Dimensionen und ihre Werte sind vorhanden, aber `PRODUCTLINE` und `COSTCENTER` sind noch nicht als globale Dimensionen gespeichert. Der naechste sinnvolle Bedienweg fuehrt wieder zur Seite `Finanzbuchhaltung Einrichtung` selbst. Dort muessen die beiden Felder im Abschnitt `Dimensionen` direkt gefunden, ausgefuellt und nach erneutem Oeffnen geprueft werden. Erst danach kann man im Buch so schreiben, dass `PRODUCTLINE` und `COSTCENTER` als globale Dimensionen der Universaarl GmbH eingerichtet sind.
+Fuer die ersten Stammdaten heisst das: Die Dimensionen und ihre Werte sind vorhanden, aber `PRODUCTLINE` und `COSTCENTER` sind noch nicht als globale Dimensionen gespeichert. Auf der Seite `Finanzbuchhaltung Einrichtung` ist der Dimensionsbereich zwar erreichbar, aber die bisher geprueften Wege haben keine dauerhaft gespeicherte Zuordnung gezeigt. Deshalb wird dieser Punkt nicht erzwungen.
 
-Wenn dieser direkte Weg nicht funktioniert, wird die globale Dimension nicht heimlich angenommen. Dann laufen die ersten Stammdaten zunaechst mit normalen Dimensionen weiter oder der Schritt wird bewusst verschoben. Der Unterschied ist wichtig: Eine normale Dimension kann auf Belegen und Stammdaten genutzt werden. Eine globale Dimension ist besonders prominent fuer Posten, Filter und Auswertungen vorbereitet.
+Die ersten Stammdaten koennen zunaechst mit normalen Dimensionen vorbereitet werden, solange klar bleibt, was das bedeutet. Eine normale Dimension kann auf Belegen und Stammdaten genutzt werden. Eine globale Dimension ist besonders prominent fuer Posten, Filter und Auswertungen vorbereitet. Diese besondere globale Zuordnung bleibt in der Universaarl-Foundation offen, bis ein sauberer Bedienweg gefunden und nach erneutem Oeffnen geprueft ist.
+
+Standarddimensionen werden ebenfalls noch nicht gesetzt. Sie gehoeren auf konkrete Stammdaten wie Debitoren, Kreditoren, Artikel oder Sachkonten. Solange diese Stammdaten noch nicht angelegt sind, gibt es keinen sinnvollen Ziel-Datensatz fuer eine Standarddimension. Der richtige Ablauf ist deshalb: erst die Dimensionscodes und Werte sichtbar haben, dann die Stammdaten anlegen, danach Standarddimensionen gezielt auf die passenden Karten setzen.

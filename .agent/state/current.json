@@ -5,9 +5,9 @@
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-dimensions-recovery-defaults",
-  "activeCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
-  "active_case_file": ".agent/state/cases/target-033-dimensions-recovery-defaults.json",
+  "activeArea": "universaarl-foundation-ready-checkpoint",
+  "activeCase": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+  "active_case_file": ".agent/state/cases/target-034-foundation-ready-checkpoint.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -19,20 +19,15 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-target-032e-evidence",
-    "review-microsoft-learn-general-posting-setup-source",
-    "decide-page314-park-or-source-route",
-    "update-bookdraft-atlas-coverage-and-queue",
-    "write-result-json-and-next-step-decision"
+    "review-foundation-results",
+    "classify-proven-parked-blocked-gates",
+    "update-catalog-coverage-state-bookdraft",
+    "select-next-case-with-lookahead"
   ],
   "forbiddenActions": [
     "leave-instance",
     "company-switch",
-    "repeat-page314-edit-list-new-route",
-    "open-page315-as-general-posting-setup-card",
-    "type-INLAND-WAREN-4400-5400",
-    "change-vat-setup",
-    "change-inventory-posting-setup",
+    "change-setup",
     "create-master-data",
     "create-document-or-draft",
     "preview-posting",
@@ -45,8 +40,8 @@
     "fake-evidence",
     "book-claim-without-evidence"
   ],
-  "nextCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
-  "nextStep": "Run TARGET-033 as a narrow Dimensions recovery/defaults case after Page 314 General Posting Setup was parked; do not unlock master data, Preview Posting or Posting.",
+  "nextCase": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+  "nextStep": "Run TARGET-034 as a no-BC Foundation checkpoint: classify proven, parked and blocked W1 setup before any master data.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -229,7 +224,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "TARGET-032F parks the Page 314 INLAND/WAREN/4400/5400 General Posting Setup route. INLAND and WAREN groups remain proven prerequisites, but no General Posting Setup row or posting readiness is proven.",
+  "currentCoverageFocus": "TARGET-033 revalidated PRODUCTLINE, COSTCENTER and CHANNEL plus starter values in playthru / UNIVERSAARL-DE. Global Dimension Code 1/2, Default Dimensions, Dimension Set Entries and posting/reporting effects remain unproven.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -1351,7 +1346,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "universaarl-skr04-balance-sheet-accounts-fit",
-  "lastCompletedCase": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
+  "lastCompletedCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3721,52 +3716,43 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
-    "lastEvidenceSummary": "TARGET-032B proved INLAND and WAREN posting groups after reopen; TARGET-032C mapped Page 314 headers; TARGET-032D and TARGET-032E blocked the tested Page 314 write/card routes without changing setup.",
+    "currentCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+    "plannedNextCaseBeforeReview": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+    "lastEvidenceSummary": "TARGET-023B proved starter Dimension Values; TARGET-024H parked global dimension assignment and default dimensions until better route or concrete master data exists.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The repeated Page 314 routes did not produce a trusted saved INLAND/WAREN/4400/5400 matrix row. A park decision is safer than another blind UI retry.",
+    "reason": "Dimensions are independent from the parked Page 314 General Posting Setup route and can be revalidated read-only before the Foundation checkpoint.",
     "lookaheadReviewed": [
-      {
-        "caseId": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
-        "status": "ready-next",
-        "reason": "Local decision case; no BC or setup change needed."
-      },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-next",
-        "reason": "Dimensions can continue as a separate W1 Foundation dependency while Page 314 remains a documented boundary."
+        "reason": "Read-only revalidation of starter dimension codes and values is safe and useful."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
-        "status": "needs-setup-first",
-        "reason": "Foundation cannot be ready while General Posting Setup and VAT setup are parked or incomplete."
+        "status": "ready-next",
+        "reason": "The dimensions starter set is visible; checkpoint can classify remaining parked setup gaps."
       },
       {
         "caseId": "TARGET-035-MASTER-DATA-FIRST-CUSTOMER-VENDOR-ITEM",
         "status": "needs-setup-first",
-        "reason": "Master data remains locked until posting groups, VAT and dimensions have explicit boundaries or proven setup."
+        "reason": "Master data remains locked until Foundation checkpoint accepts the remaining parked boundaries."
       },
       {
         "caseId": "TARGET-036-FIRST-PREVIEW-GATE",
         "status": "blocked",
-        "reason": "No Preview Posting before setup and master data gates are deliberately satisfied."
+        "reason": "No Preview Posting before master data and posting/VAT boundaries are deliberately accepted."
       }
     ],
-    "queueChangesMade": [
-      "Marked TARGET-032F done as a no-BC park decision.",
-      "Added TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS as the next planned Foundation case."
-    ],
-    "selectedNextCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
-    "whySelectedNextCaseIsBest": "It avoids another unsafe Page 314 retry and advances an independent Foundation dependency that is already known from prior Universaarl dimension evidence.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+    "whySelectedNextCaseIsBest": "The starter dimensions are visible; the next value is a Foundation checkpoint that states exactly what is proven, parked and still blocked.",
     "risksBeforeNextCase": [
-      "Do not claim posting readiness while Page 314 remains parked.",
-      "Do not create master data, Preview Posting or Posting from dimension setup alone.",
-      "Do not assign global dimensions by repeating previously blocked Page 577/Page 118 routes without a new hypothesis."
+      "Do not claim Global Dimension Code 1/2 are assigned.",
+      "Do not claim Default Dimensions exist for customers, vendors or items.",
+      "Do not unlock master data, Preview Posting or Posting without the Foundation checkpoint."
     ],
     "requiredPreparation": [
-      "Review existing TARGET-021 to TARGET-024H dimension evidence.",
-      "Use only a narrow Dimensions recovery/defaults case before any master data."
+      "Review Page 314 and VAT parked boundaries before checkpoint."
     ]
   },
   "permissionBlocker": {
@@ -7269,7 +7255,7 @@
     "currentVisibleText": "1200 Forderungen aus Lieferungen und Leistungen Bilanz Buchung",
     "correctedReason": "SKR04-oriented Universaarl foundation must not create a new 1400 receivables account; 1400 belongs to the wrong mapping context for this target."
   },
-  "nextQueueItem": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+  "nextQueueItem": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
   "openItems": 1,
   "latestCustomerReceivablesSourceCorrection": {
     "caseId": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
@@ -7525,5 +7511,41 @@
     ],
     "nextCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
     "updatedAt": "2026-07-01T08:33:32.134Z"
+  },
+  "latestTarget033DimensionsRecovery": {
+    "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+    "status": "observed-dimensions-starter-visible-defaults-parked",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-033-001-dimensions-list.png",
+      "playwright/projects/fibu-book5/img/target-033-002-productline-values.png",
+      "playwright/projects/fibu-book5/img/target-033-003-costcenter-values.png",
+      "playwright/projects/fibu-book5/img/target-033-004-channel-values.png",
+      "playwright/projects/fibu-book5/img/target-033-005-general-ledger-global-dimensions.png"
+    ],
+    "proved": [
+      "PRODUCTLINE, COSTCENTER and CHANNEL are visible in playthru / UNIVERSAARL-DE.",
+      "PRODUCTLINE values SOFTWARE, SERVICE and TRAINING are visible.",
+      "COSTCENTER values ADMIN, SALES and OPERATIONS are visible.",
+      "CHANNEL values DIRECT and PARTNER are visible.",
+      "General Ledger Setup dimension context is reachable read-only.",
+      "Default Dimensions are deliberately parked until concrete master data exists."
+    ],
+    "notProved": [
+      "PRODUCTLINE is not proven as Global Dimension Code 1.",
+      "COSTCENTER is not proven as Global Dimension Code 2.",
+      "No Default Dimensions for customers, vendors, items or accounts are proven.",
+      "No Dimension Set Entries, posted entries, report filters, Preview Posting or Posting are proven.",
+      "No full Foundation readiness or posting readiness is proven."
+    ],
+    "warnings": [
+      "This is a read-only revalidation, not a setup write.",
+      "Starter dimension values support later master data design, but do not unlock master data by themselves.",
+      "Global dimensions and default dimensions remain separate gates."
+    ],
+    "screenshotQa": "The Dimensions list screenshot includes a bottom-left info card that does not hide the dimension rows; values screenshots clearly show the relevant rows.",
+    "nextCase": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+    "updatedAt": "2026-07-01T08:43:26.535Z"
   }
 }
