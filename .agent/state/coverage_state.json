@@ -786,8 +786,8 @@
     },
     "itemInventoryFoundation": {
       "chapter": "Kapitel 10/13",
-      "status": "in-progress",
-      "currentBlock": "first-item-retry-ready-with-stk",
+      "status": "first-item-masterdata-proven-not-posting-ready",
+      "currentBlock": "posting-groups-vat-inventory-posting-not-proven",
       "latestPracticalCase": "TARGET-041-BASE-UNIT-OF-MEASURE-CONTROLLED-WRITE-GATE",
       "resultPath": "playwright/projects/fibu-book5/evidence/target-041-base-unit-of-measure-controlled-write-gate/TARGET-041-result.json",
       "sourceCompany": "UNIVERSAARL-DE",
@@ -797,11 +797,15 @@
         "TARGET-041 proves STK visible after reopen on Units of Measure."
       ],
       "openLimits": [
-        "No item is created yet.",
-        "Unit description Stueck is not proven visible.",
-        "No item posting group, VAT product posting group, document, Preview Posting, Posting, Item Ledger Entry, Value Entry, G/L Entry or VAT Entry is proven."
+        "No Item Posting Group, Gen. Prod. Posting Group or VAT Prod. Posting Group is proven on the item.",
+        "No Inventory Posting Setup, document, Preview Posting, Posting, Item Ledger Entry, Value Entry, G/L Entry or VAT Entry is proven."
       ],
-      "nextCase": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY"
+      "nextCase": "TARGET-040-FOUNDATION-READY-RECHECK",
+      "latestCase": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
+      "proven": [
+        "U-ITEM-HW100 / Universaarl Hardware 100 visible after reopen.",
+        "Base Unit STK visible on the item list after reopen."
+      ]
     }
   },
   "hardExclusions": {
@@ -4906,5 +4910,34 @@
     "apiShortcut": false,
     "selectedNextCase": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
     "summary": "Page 314 and VAT matrix remain parked boundaries; global/default dimensions remain partial; vendor numbering remains blocked; item/inventory setup preflight is selected as solve-next before item creation."
+  },
+  "latestTarget036E2FirstItem": {
+    "caseId": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
+    "status": "observed",
+    "completedAt": "2026-07-01T15:45:00.000Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-036e2-first-item-controlled-write-gate-retry/TARGET-036E2-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "itemNo": "U-ITEM-HW100",
+    "description": "Universaarl Hardware 100",
+    "type": "Inventory",
+    "baseUnit": "STK",
+    "setupChanged": false,
+    "masterDataChanged": true,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-036e2-005-units-before-item-write.png",
+      "playwright/projects/fibu-book5/img/target-036e2-010-items-before.png",
+      "playwright/projects/fibu-book5/img/target-036e2-020-after-item-attempt.png",
+      "playwright/projects/fibu-book5/img/target-036e2-030-after-reopen-filtered-proof.png"
+    ],
+    "nextCase": "TARGET-040-FOUNDATION-READY-RECHECK",
+    "limits": [
+      "No item posting group, product posting group or VAT product posting group is proven.",
+      "No inventory posting setup, document, Preview Posting, Posting, Item Ledger Entry, Value Entry, G/L Entry or VAT Entry is proven."
+    ]
   }
 }

@@ -1,0 +1,89 @@
+{
+  "fileName": "target-036e2-030-after-reopen-filtered-proof.png",
+  "imagePath": "C:\\Users\\kkali\\.codex\\worktrees\\b8d6\\FiBu\\playwright\\projects\\fibu-book5\\img\\target-036e2-030-after-reopen-filtered-proof.png",
+  "project": "fibu-book5",
+  "caseId": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "pageId": 31,
+  "page": "Items / Artikel",
+  "step": "After reopening Items filtered to U-ITEM-HW100.",
+  "visibleLearning": [
+    "Artikel sind Stammdaten fuer Verkauf, Einkauf und Lager.",
+    "Vor einem Artikel braucht Business Central mindestens einen sicheren Kartenkontext und eine Basiseinheit.",
+    "Buchungsgruppen, USt-Gruppen und Lagerbuchungssetup bleiben eigene Gates."
+  ],
+  "importantUi": [
+    "Items/Artikel Liste oder Karte",
+    "Nr./No.",
+    "Beschreibung/Description",
+    "Art/Type",
+    "Basiseinheit/Base Unit"
+  ],
+  "internallyProves": "Der erste Universaarl-Artikel ist im Artikelkontext sichtbar.",
+  "doesNotProve": [
+    "Keine Artikelbuchungsgruppe auf einem gebuchten Beleg.",
+    "Keine USt- oder Buchungsmatrix-Wirkung.",
+    "Keine Lager-, Wert-, Sach- oder USt-Posten.",
+    "Keine Vorlage wurde angewendet."
+  ],
+  "finalScreenshotStatus": "universaarl-masterdata-evidence",
+  "targetItem": {
+    "itemNo": "U-ITEM-HW100",
+    "description": "Universaarl Hardware 100",
+    "type": "Inventory",
+    "baseUnitCandidates": [
+      "STK"
+    ]
+  },
+  "unitReadiness": {
+    "hasRows": true,
+    "availableCandidates": [
+      "STK"
+    ],
+    "rawSignals": [
+      "Einheiten:",
+      "Code",
+      "Beschreibung",
+      "Internationaler Standardcode",
+      " STK ",
+      "Liste mit Titel Einheiten hat jetzt einen Artikel",
+      "Code, Sortierreihenfolge Aufsteigend"
+    ]
+  },
+  "writeAttempt": {
+    "changed": false,
+    "status": "already-exists",
+    "reason": "U-ITEM-HW100 or Universaarl Hardware 100 already visible before write gate."
+  },
+  "steps": [
+    {
+      "step": "smart-decision",
+      "whyNow": "TARGET-041 proved STK visible on Units of Measure after reopen. TARGET-036E2 retries the first item with only No., Description, Type and Base Unit STK unlocked.",
+      "evidenceBasis": [
+        "TARGET-036E: first item was blocked because no Base Unit was proven.",
+        "TARGET-041: STK is visible after reopen on Page 209 Units of Measure."
+      ],
+      "fieldsChangedOnlyIfSafe": [
+        "Item.No=U-ITEM-HW100",
+        "Item.Description=Universaarl Hardware 100",
+        "Item.Type=Inventory",
+        "Item.Base Unit=STK if visibly available"
+      ],
+      "fieldsNotTouched": [
+        "Apply Template / Vorlage anwenden",
+        "Inventory Posting Group",
+        "Gen. Prod. Posting Group",
+        "VAT Prod. Posting Group",
+        "Costing Method",
+        "Unit Cost",
+        "Unit Price",
+        "Vendor No.",
+        "Replenishment System"
+      ],
+      "risk": "An item without a valid base unit or posting setup can mislead later O2C/P2P/inventory evidence.",
+      "fallback": "If STK is not available or the card route is ambiguous, do not save an item; document a field-helper recovery case."
+    }
+  ],
+  "reopenProofRoute": "direct Page 31 URL with Item No. filter"
+}

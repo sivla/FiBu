@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Universaarl foundation readiness checkpoint after first item",
+  "purpose": "Recheck W1 Foundation after the first item exists, without creating documents, setup changes, Preview Posting or Posting.",
+  "sourceCases": [
+    "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
+    "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
+    "TARGET-041-BASE-UNIT-OF-MEASURE-CONTROLLED-WRITE-GATE",
+    "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": true,
+  "taskClass": "wizard_work",
+  "smartDecisionRequired": false,
+  "allowedActions": [
+    "confirm-playthru-instance",
+    "confirm-universaarl-company",
+    "open-foundation-pages-readonly",
+    "verify-location-customer-item-readonly",
+    "verify-no-preview-posting-or-posting",
+    "write-result-json-and-next-step-decision",
+    "update-coverage-and-catalog"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "create-customer",
+    "create-vendor",
+    "create-item",
+    "change-number-series",
+    "change-posting-setup",
+    "change-vat-setup",
+    "change-inventory-setup",
+    "change-dimensions",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "acceptanceCriteria": [
+    "playthru / UNIVERSAARL-DE is confirmed.",
+    "SAAR-HL, U-CUST-100 and U-ITEM-HW100 are checked read-only.",
+    "Known gaps remain explicit: vendor blocked, posting groups/VAT/inventory posting not proven, no documents or entries.",
+    "Next case is selected by lookahead instead of blindly jumping to O2C."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
+    "plannedNextCaseBeforeReview": "TARGET-040-FOUNDATION-READY-RECHECK",
+    "lastEvidenceSummary": "TARGET-036E2 proves the first item U-ITEM-HW100 with Base Unit STK after reopen.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "After adding the first item, the safest next step is a read-only checkpoint before VAT, posting groups or process documents.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
+        "status": "ready-next",
+        "reason": "Checks current Foundation truth without new writes."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C still needs posting groups, VAT and item posting readiness."
+      },
+      {
+        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Vendor numbering remains parked until a new non-repeated route is available."
+      }
+    ],
+    "queueChangesMade": [
+      "TARGET-040-FOUNDATION-READY-RECHECK case file created as the next active read-only checkpoint."
+    ],
+    "selectedNextCase": "TARGET-040-FOUNDATION-READY-RECHECK",
+    "whySelectedNextCaseIsBest": "It prevents a blind jump from master data into documents or posting setup.",
+    "risksBeforeNextCase": [
+      "Do not mark Foundation ready if posting groups or VAT remain missing.",
+      "Do not create documents during the checkpoint."
+    ],
+    "requiredPreparation": [
+      "Use read-only direct page routes where possible.",
+      "Keep all write gates locked."
+    ]
+  },
+  "createdAt": "2026-07-01T15:45:00.000Z",
+  "updatedAt": "2026-07-01T15:45:00.000Z"
+}

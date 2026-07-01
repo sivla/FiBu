@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-036E-041-ITEM-BASE-UNIT-GATES",
-  "caseId": "TARGET-041-BASE-UNIT-OF-MEASURE-CONTROLLED-WRITE-GATE",
-  "status": "observed-with-prior-blocker",
-  "runType": "playwright-universaarl-item-base-unit-foundation-gates",
+  "runId": "TARGET-036E2-FIRST-ITEM-WRITE-GATE",
+  "caseId": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
+  "status": "observed",
+  "runType": "playwright-universaarl-first-item-controlled-write-gate",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "bcRun": true,
   "playwrightRun": true,
-  "summary": "TARGET-036E correctly blocked first item creation because no Base Unit was proven. TARGET-041 then established STK as visible after reopen; the next safe case is TARGET-036E2 item retry with Base Unit STK.",
+  "summary": "Created and then idempotently verified U-ITEM-HW100 / Universaarl Hardware 100 with Base Unit STK. No setup, document, Preview Posting or Posting was used.",
   "changedInBC": true,
   "setupChanged": false,
   "setupChangeAttempted": false,
@@ -19,78 +19,58 @@
   "payment": false,
   "apiShortcut": false,
   "screenshots": [
-    "playwright/projects/fibu-book5/img/target-036e-005-units-before-item-write.png",
-    "playwright/projects/fibu-book5/img/target-036e-010-items-before.png",
-    "playwright/projects/fibu-book5/img/target-036e-020-after-item-attempt.png",
-    "playwright/projects/fibu-book5/img/target-036e-030-after-reopen-filtered-proof.png",
-    "playwright/projects/fibu-book5/img/target-041-010-units-before.png",
-    "playwright/projects/fibu-book5/img/target-041-020-after-unit-attempt.png",
-    "playwright/projects/fibu-book5/img/target-041-030-after-reopen-filtered-proof.png"
+    "playwright/projects/fibu-book5/img/target-036e2-005-units-before-item-write.png",
+    "playwright/projects/fibu-book5/img/target-036e2-010-items-before.png",
+    "playwright/projects/fibu-book5/img/target-036e2-020-after-item-attempt.png",
+    "playwright/projects/fibu-book5/img/target-036e2-030-after-reopen-filtered-proof.png"
   ],
   "proved": [
     "Business Central stayed in playthru / UNIVERSAARL-DE.",
-    "Units of Measure and Items were inspected before the item write.",
-    "The first item was not saved because the required Base Unit route was not safe enough.",
-    "Business Central stayed in playthru / UNIVERSAARL-DE.",
-    "Page 209 Units of Measure / Einheiten was used as the scoped page.",
-    "STK is visible after reopen.",
-    "The first timed TARGET-041 attempt likely created or exposed the STK code; the successful rerun verified it without creating a duplicate.",
-    "No item, setup, document, Preview Posting or Posting route was used."
+    "Items / Artikel was used as the scoped page.",
+    "U-ITEM-HW100 / Universaarl Hardware 100 is visible after reopen.",
+    "No template, setup, document, Preview Posting or Posting route was used.",
+    "U-ITEM-HW100 uses Base Unit STK in the filtered Items reopen proof.",
+    "The first TARGET-036E2 run changed item master data; the rerun verified the same item without creating a duplicate."
   ],
   "notProved": [
-    "No item master data persistence is proven unless resultStatus is observed.",
-    "No Base Unit is selected on a saved item.",
     "No Item Posting Group, Gen. Prod. Posting Group or VAT Prod. Posting Group is proven on an item.",
-    "No sales, purchase, inventory, Preview Posting, Posting, item ledger entry, value entry, G/L entry or VAT entry is proven.",
-    "Units of Measure page did not show PCS or STK. The first item was not saved because Base Unit would be unproven.",
-    "No U-ITEM-HW100 item is visible after filtered reopen.",
-    "No item is created.",
-    "No item card Base Unit value is proven.",
-    "Unit description Stueck is not proven visible.",
-    "No posting group, VAT setup, document, Preview Posting, Posting, item ledger entry, value entry, G/L entry or VAT entry is proven."
+    "No sales, purchase, inventory, Preview Posting, Posting, item ledger entry, value entry, G/L entry or VAT entry is proven."
   ],
-  "blockedBy": [
-    "Units of Measure page did not show PCS or STK. The first item was not saved because Base Unit would be unproven.",
-    "No U-ITEM-HW100 item is visible after filtered reopen."
-  ],
+  "blockedBy": [],
   "warnings": [
     "This is a first item gate, not inventory or O2C/P2P readiness.",
-    "An empty Units of Measure surface blocks a trustworthy item save.",
     "Posting/VAT/inventory posting fields remain separate gated setup steps.",
-    "This is only a unit-of-measure foundation proof.",
-    "The first TARGET-041 execution timed out while entering the list row; the rerun found STK visible before a second write and therefore did not create a duplicate.",
-    "Unit description Stueck is not proven visible.",
-    "The next item case must still set Base Unit on an item card and reopen the item.",
-    "Posting/VAT/inventory posting fields remain separate gated setup steps."
+    "This result contains a create-then-verify sequence from the same controlled case; future reruns should be treated as idempotent verification."
   ],
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-041-base-unit-of-measure-controlled-write-gate/TARGET-041-result.json",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-036e2-first-item-controlled-write-gate-retry/TARGET-036E2-result.json",
   "relatedResults": [
     "playwright/projects/fibu-book5/evidence/target-036e-first-item-controlled-write-gate/TARGET-036E-result.json",
-    "playwright/projects/fibu-book5/evidence/target-041-base-unit-of-measure-controlled-write-gate/TARGET-041-result.json"
+    "playwright/projects/fibu-book5/evidence/target-041-base-unit-of-measure-controlled-write-gate/TARGET-041-result.json",
+    "playwright/projects/fibu-book5/evidence/target-036e2-first-item-controlled-write-gate-retry/TARGET-036E2-result.json"
   ],
-  "nextCase": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
-  "nextStep": "Retry first item creation with Base Unit STK only; keep posting groups, VAT, documents, Preview Posting and Posting locked.",
+  "nextCase": "TARGET-040-FOUNDATION-READY-RECHECK",
+  "nextStep": "Run a read-only Foundation Ready Recheck before any VAT, posting group, document, Preview Posting or Posting case.",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-041-BASE-UNIT-OF-MEASURE-CONTROLLED-WRITE-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-041-BASE-UNIT-OF-MEASURE-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-036E blocked first item creation because no PCS/STK base unit was visible.",
+    "currentCase": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
+    "plannedNextCaseBeforeReview": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
+    "lastEvidenceSummary": "TARGET-036E blocked item creation because no Base Unit was proven; TARGET-041 proved STK visible after reopen.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "A single STK unit is the smallest concrete prerequisite before retrying first item creation.",
+    "reason": "The item write retry was the right next step because STK was available and U-ITEM-HW100 is now visible after reopen.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
-        "status": "ready-next",
-        "reason": "STK exists; retry first item creation with Base Unit STK."
+        "caseId": "TARGET-041-BASE-UNIT-OF-MEASURE-CONTROLLED-WRITE-GATE",
+        "status": "obsolete",
+        "reason": "Not needed if the item exists."
       },
       {
-        "caseId": "TARGET-036E2-FIRST-ITEM-FIELD-HELPER-RECOVERY",
+        "caseId": "TARGET-036E3-FIRST-ITEM-FIELD-HELPER-RECOVERY",
         "status": "ready-after-current",
-        "reason": "Needed only if the next item card fill still cannot target fields safely."
+        "reason": "Needed only if a base unit exists but item-card field filling remains ambiguous."
       },
       {
         "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
-        "status": "ready-after-current",
-        "reason": "Useful after item creation is created or blocked again."
+        "status": "ready-next",
+        "reason": "Useful after item creation or after the base-unit blocker is resolved."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
@@ -98,18 +78,22 @@
         "reason": "O2C still needs item, posting groups, VAT and expected entry trace boundaries."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
-    "whySelectedNextCaseIsBest": "The base-unit blocker is closed, so the first item can be retried narrowly.",
+    "queueChangesMade": [
+      "TARGET-036E2 marked done.",
+      "TARGET-040-FOUNDATION-READY-RECHECK selected as read-only checkpoint."
+    ],
+    "selectedNextCase": "TARGET-040-FOUNDATION-READY-RECHECK",
+    "whySelectedNextCaseIsBest": "The selected case follows directly from the observed item gate result.",
     "risksBeforeNextCase": [
-      "The item retry must not set posting groups casually.",
-      "No document, Preview Posting or Posting is allowed.",
-      "The item save still needs reopen proof."
+      "The saved item is still not posting-ready.",
+      "Later item updates must not set posting groups casually.",
+      "No document, Preview Posting or Posting is allowed from this foundation gate."
     ],
     "requiredPreparation": [
-      "Use Base Unit STK on the first item retry.",
-      "Set only Item No., Description, Type and Base Unit if fields are trusted.",
+      "Use only Base Unit STK.",
+      "Capture before/after/reopen proof.",
       "Keep posting groups and VAT fields untouched."
     ]
-  }
+  },
+  "updatedAt": "2026-07-01T15:45:00.000Z"
 }

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
-  "status": "planned",
+  "status": "done",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -119,5 +119,38 @@
     ]
   },
   "createdAt": "2026-07-01T15:05:00.000Z",
-  "updatedAt": "2026-07-01T15:05:00.000Z"
+  "updatedAt": "2026-07-01T15:45:00.000Z",
+  "completedAt": "2026-07-01T15:45:00.000Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-036e2-first-item-controlled-write-gate-retry/TARGET-036E2-result.json",
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Items / Artikel was used as the scoped page.",
+    "U-ITEM-HW100 / Universaarl Hardware 100 is visible after reopen.",
+    "No template, setup, document, Preview Posting or Posting route was used.",
+    "U-ITEM-HW100 uses Base Unit STK in the filtered Items reopen proof.",
+    "The first TARGET-036E2 run changed item master data; the rerun verified the same item without creating a duplicate."
+  ],
+  "notProved": [
+    "No Item Posting Group, Gen. Prod. Posting Group or VAT Prod. Posting Group is proven on an item.",
+    "No sales, purchase, inventory, Preview Posting, Posting, item ledger entry, value entry, G/L entry or VAT entry is proven."
+  ],
+  "warnings": [
+    "This is a first item gate, not inventory or O2C/P2P readiness.",
+    "Posting/VAT/inventory posting fields remain separate gated setup steps.",
+    "This result contains a create-then-verify sequence from the same controlled case; future reruns should be treated as idempotent verification."
+  ],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCustomerCreated": true,
+    "noVendorCreated": true,
+    "noTemplateApplied": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true,
+    "itemMasterDataChanged": true
+  },
+  "nextCase": "TARGET-040-FOUNDATION-READY-RECHECK"
 }

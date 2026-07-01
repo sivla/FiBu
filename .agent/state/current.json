@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T15:05:00.000Z",
+  "updatedAt": "2026-07-01T15:45:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-first-item-write-gate",
-  "activeCase": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
-  "active_case_file": ".agent/state/cases/target-036e2-first-item-controlled-write-gate-retry.json",
+  "activeArea": "universaarl-foundation-ready-recheck",
+  "activeCase": "TARGET-040-FOUNDATION-READY-RECHECK",
+  "active_case_file": ".agent/state/cases/target-040-foundation-ready-recheck.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -50,8 +50,8 @@
     "fake-evidence",
     "book-claim-without-evidence"
   ],
-  "nextCase": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
-  "nextStep": "Retry first item creation now that STK is visible as Base Unit candidate; no setup, documents, Preview Posting or Posting.",
+  "nextCase": "TARGET-040-FOUNDATION-READY-RECHECK",
+  "nextStep": "Run a read-only Foundation Ready Recheck after first item U-ITEM-HW100 was proven with Base Unit STK; do not create documents, Preview Posting or Posting.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -7916,8 +7916,6 @@
     "updatedAt": "2026-07-01T11:31:24.302Z"
   },
   "nextCases": [
-    "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
-    "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
     "TARGET-040-FOUNDATION-READY-RECHECK",
     "TARGET-038-O2C-PREFLIGHT",
     "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE"
@@ -7943,52 +7941,48 @@
     "decision": "Park first-vendor creation until U-VEND Manual Nos. can be proven by a new non-repeated UI route."
   },
   "nextStepDecision": {
-    "currentCase": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
-    "plannedNextCaseBeforeReview": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-037 proves only SAAR-HL and U-CUST-100 as basic records. Vendor, item, VAT, General Posting Setup, Inventory Posting Setup, documents, Preview and Posting remain unproven.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "A direct item write would skip item/inventory setup discovery. The next better step is read-only preflight of item and inventory Foundation pages.",
+    "currentCase": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
+    "plannedNextCaseBeforeReview": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
+    "lastEvidenceSummary": "TARGET-036E blocked item creation because no Base Unit was proven; TARGET-041 proved STK visible after reopen.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The item write retry was the right next step because STK was available and U-ITEM-HW100 is now visible after reopen.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
-        "status": "ready-next",
-        "reason": "Inspects Base Units, Item Posting Groups, Inventory Posting Setup, Inventory Setup and U-ITEM assignment without writing data."
+        "caseId": "TARGET-041-BASE-UNIT-OF-MEASURE-CONTROLLED-WRITE-GATE",
+        "status": "obsolete",
+        "reason": "Not needed if the item exists."
       },
       {
-        "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
-        "status": "needs-setup-first",
-        "reason": "Wait until TARGET-040 proves which item fields and setup dependencies are safe."
+        "caseId": "TARGET-036E3-FIRST-ITEM-FIELD-HELPER-RECOVERY",
+        "status": "ready-after-current",
+        "reason": "Needed only if a base unit exists but item-card field filling remains ambiguous."
       },
       {
         "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
-        "status": "ready-after-current",
-        "reason": "Useful after the item/inventory preflight updates the blocker map."
+        "status": "ready-next",
+        "reason": "Useful after item creation or after the base-unit blocker is resolved."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C needs item, posting groups, VAT and expected posting trace boundaries."
-      },
-      {
-        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
-        "status": "blocked",
-        "reason": "Vendor remains blocked until U-VEND Manual Nos. has a new non-repeated route."
+        "reason": "O2C still needs item, posting groups, VAT and expected entry trace boundaries."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-039 as done.",
-      "Inserted TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT before TARGET-036E."
+      "TARGET-036E2 marked done.",
+      "TARGET-040-FOUNDATION-READY-RECHECK selected as read-only checkpoint."
     ],
-    "selectedNextCase": "TARGET-040-ITEM-INVENTORY-FOUNDATION-READONLY-PREFLIGHT",
-    "whySelectedNextCaseIsBest": "It preserves W1 Foundation order and gathers the missing page/field evidence needed before the first item write.",
+    "selectedNextCase": "TARGET-040-FOUNDATION-READY-RECHECK",
+    "whySelectedNextCaseIsBest": "The selected case follows directly from the observed item gate result.",
     "risksBeforeNextCase": [
-      "Read-only page inspection must not become setup or item creation.",
-      "Do not accept search-overlay screenshots as page proof.",
-      "Do not claim inventory posting readiness from page visibility alone."
+      "The saved item is still not posting-ready.",
+      "Later item updates must not set posting groups casually.",
+      "No document, Preview Posting or Posting is allowed from this foundation gate."
     ],
     "requiredPreparation": [
-      "Confirm playthru / UNIVERSAARL-DE before any read-only UI navigation.",
-      "Capture page context, key fields and screenshot QA for each inspected item/inventory setup page."
+      "Use only Base Unit STK.",
+      "Capture before/after/reopen proof.",
+      "Keep posting groups and VAT fields untouched."
     ]
   },
   "latestTarget037MasterdataFoundationCheckpoint": {
@@ -8143,5 +8137,34 @@
       "noBookMasterChange": true,
       "unitOfMeasureChanged": true
     }
+  },
+  "latestTarget036E2FirstItem": {
+    "caseId": "TARGET-036E2-FIRST-ITEM-CONTROLLED-WRITE-GATE-RETRY",
+    "status": "observed",
+    "completedAt": "2026-07-01T15:45:00.000Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-036e2-first-item-controlled-write-gate-retry/TARGET-036E2-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "itemNo": "U-ITEM-HW100",
+    "description": "Universaarl Hardware 100",
+    "type": "Inventory",
+    "baseUnit": "STK",
+    "setupChanged": false,
+    "masterDataChanged": true,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-036e2-005-units-before-item-write.png",
+      "playwright/projects/fibu-book5/img/target-036e2-010-items-before.png",
+      "playwright/projects/fibu-book5/img/target-036e2-020-after-item-attempt.png",
+      "playwright/projects/fibu-book5/img/target-036e2-030-after-reopen-filtered-proof.png"
+    ],
+    "nextCase": "TARGET-040-FOUNDATION-READY-RECHECK",
+    "limits": [
+      "No item posting group, product posting group or VAT product posting group is proven.",
+      "No inventory posting setup, document, Preview Posting, Posting, Item Ledger Entry, Value Entry, G/L Entry or VAT Entry is proven."
+    ]
   }
 }

@@ -1,0 +1,73 @@
+{
+  "step": "After reopening Items filtered to U-ITEM-HW100.",
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=31&company=UNIVERSAARL-DE&filter=Item.%27No.%27+IS+%27U-ITEM-HW100%27",
+  "title": "Artikel",
+  "compact": "Artikel:\nStart\nArtikel\nNr.\nBeschreibung\nArt\nLagerbestand\nErsatzartikel vorhanden\nBasiseinheit\nKreditorennr.\nU-ITEM-HW100\nUniversaarl Hardware 100Inventory Bestand 0 Nein Nein STK\nArtikeldetails - Fakturierung\nArtikelnr.\nArtikeldetails - Planung\nMeldebestand\nMaximalbestand\nSicherheitsbestand\nArtikelattribute\nNr., Sortierreihenfolge Aufsteigend",
+  "visible": {
+    "itemsContext": true,
+    "targetNo": true,
+    "targetDescription": true,
+    "baseUnitSignal": true,
+    "templateSignal": false,
+    "postingGroupSignal": false,
+    "hardForbiddenSignal": false
+  },
+  "targetItem": {
+    "itemNo": "U-ITEM-HW100",
+    "description": "Universaarl Hardware 100",
+    "type": "Inventory",
+    "baseUnitCandidates": [
+      "STK"
+    ]
+  },
+  "unitReadiness": {
+    "hasRows": true,
+    "availableCandidates": [
+      "STK"
+    ],
+    "rawSignals": [
+      "Einheiten:",
+      "Code",
+      "Beschreibung",
+      "Internationaler Standardcode",
+      " STK ",
+      "Liste mit Titel Einheiten hat jetzt einen Artikel",
+      "Code, Sortierreihenfolge Aufsteigend"
+    ]
+  },
+  "writeAttempt": {
+    "changed": false,
+    "status": "already-exists",
+    "reason": "U-ITEM-HW100 or Universaarl Hardware 100 already visible before write gate."
+  },
+  "steps": [
+    {
+      "step": "smart-decision",
+      "whyNow": "TARGET-041 proved STK visible on Units of Measure after reopen. TARGET-036E2 retries the first item with only No., Description, Type and Base Unit STK unlocked.",
+      "evidenceBasis": [
+        "TARGET-036E: first item was blocked because no Base Unit was proven.",
+        "TARGET-041: STK is visible after reopen on Page 209 Units of Measure."
+      ],
+      "fieldsChangedOnlyIfSafe": [
+        "Item.No=U-ITEM-HW100",
+        "Item.Description=Universaarl Hardware 100",
+        "Item.Type=Inventory",
+        "Item.Base Unit=STK if visibly available"
+      ],
+      "fieldsNotTouched": [
+        "Apply Template / Vorlage anwenden",
+        "Inventory Posting Group",
+        "Gen. Prod. Posting Group",
+        "VAT Prod. Posting Group",
+        "Costing Method",
+        "Unit Cost",
+        "Unit Price",
+        "Vendor No.",
+        "Replenishment System"
+      ],
+      "risk": "An item without a valid base unit or posting setup can mislead later O2C/P2P/inventory evidence.",
+      "fallback": "If STK is not available or the card route is ambiguous, do not save an item; document a field-helper recovery case."
+    }
+  ],
+  "reopenProofRoute": "direct Page 31 URL with Item No. filter"
+}
