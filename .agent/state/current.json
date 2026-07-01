@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T09:23:41.766Z",
+  "updatedAt": "2026-07-01T09:41:47.928Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-master-data-template-dialog-discovery",
-  "activeCase": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
-  "active_case_file": ".agent/state/cases/target-036b-customer-vendor-item-template-dialog-discovery.json",
+  "activeArea": "universaarl-first-customer-controlled-write",
+  "activeCase": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
+  "active_case_file": ".agent/state/cases/target-036c-first-customer-controlled-write-gate.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -21,24 +21,22 @@
   "allowedActions": [
     "open-playthru-business-central",
     "confirm-UNIVERSAARL-DE-context",
-    "open-customers-vendors-items-pages",
-    "inspect-new-actions-readonly-or-dialog-cancel-safe",
-    "capture-template-dialog-screenshots-without-confirming",
-    "cancel-or-close-any-template-dialog",
+    "open-customers-page",
+    "open-customer-card-via-scoped-new",
+    "write-one-customer-only-if-field-list-and-close-route-are-trusted",
+    "capture-before-after-reopen-screenshots",
     "write-result-json-and-next-step-decision"
   ],
   "forbiddenActions": [
     "leave-instance",
     "company-switch",
-    "create-customer",
     "create-vendor",
     "create-item",
-    "confirm-customer-vendor-item-template-dialog",
-    "apply-template",
-    "save-record",
-    "change-inventory-setup",
+    "confirm-unknown-template-dialog",
+    "apply-template-without-explicit-case-permission",
     "change-posting-setup",
     "change-vat-setup",
+    "change-inventory-setup",
     "create-document-or-draft",
     "preview-posting",
     "post",
@@ -50,8 +48,8 @@
     "fake-evidence",
     "book-claim-without-evidence"
   ],
-  "nextCase": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
-  "nextStep": "Run TARGET-036B as read-only/dialog-cancel-safe discovery for Customer, Vendor and Item New/template routes. Do not create customer/vendor/item records yet.",
+  "nextCase": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
+  "nextStep": "Prepare TARGET-036C as the first customer controlled write gate: one Debitor only, exact field list, no Vorlage anwenden unless explicitly gated, no vendor/item, no document, no preview, no posting.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -234,7 +232,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "TARGET-036A created Location SAAR-HL / Saarbruecken Hauptlager with Code and Name only and reopen proof; Customer, Vendor and Item creation remain locked until template/dialog discovery.",
+  "currentCoverageFocus": "TARGET-036B showed Debitor/Kreditor/Artikel Neu opens direct cards with Vorlage anwenden; no records/templates saved. Next narrow gate is one customer only.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -1356,7 +1354,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "universaarl-skr04-balance-sheet-accounts-fit",
-  "lastCompletedCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
+  "lastCompletedCase": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3726,43 +3724,49 @@
     "resultFile": "playwright/projects/fibu-book5/evidence/prep-020-universaarl-dataset-blueprint/PREP-020-result.json"
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-036 selected Location SAAR-HL as the first controlled master-data write after read-only master-data preflight.",
+    "currentCase": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+    "lastEvidenceSummary": "TARGET-036A created or verified Location SAAR-HL with Code and Name only and reopen proof.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Location remains the smallest useful master-data write: it has a clear Code/Name route and avoids accounting/template fields.",
+    "reason": "Customer, Vendor and Item records are accounting-relevant and can trigger templates or mandatory fields; New routes must be classified before saving records.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
-        "status": "ready-next",
-        "reason": "After the first simple Location exists, the next risky master-data family should be discovered read-only before creation."
+        "caseId": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
+        "status": "ready-after-current",
+        "reason": "Customer write can be prepared only with explicit field/template gates."
       },
       {
-        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
-        "status": "blocked",
-        "reason": "Preview still needs real customer/vendor/item master data and accepted VAT/posting boundaries."
+        "caseId": "TARGET-036D-FIRST-VENDOR-CONTROLLED-WRITE-GATE",
+        "status": "ready-after-current",
+        "reason": "Vendor write should wait until customer route proves the shared template pattern."
       },
       {
-        "caseId": "TARGET-038-FIRST-POSTING-GATE",
-        "status": "blocked",
-        "reason": "Posting remains blocked until Preview Posting and expected entry traces exist."
+        "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Item creation needs inventory/posting/unit/template field gates before a saved item."
       },
       {
         "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
         "status": "ready-after-current",
-        "reason": "Parked VAT, Page 314, inventory posting and default-dimension blockers should be revisited before first document flow."
+        "reason": "Parked Page 314, VAT matrix, inventory posting and default-dimension blockers remain relevant before first document flow."
+      },
+      {
+        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
+        "status": "blocked",
+        "reason": "Preview requires real master data, accepted setup boundaries and expected entry traces."
       }
     ],
     "queueChangesMade": [],
-    "selectedNextCase": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
-    "whySelectedNextCaseIsBest": "The next high-value step is to understand Customer/Vendor/Item template dialogs before any accounting-relevant master-data write.",
+    "selectedNextCase": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "Customer is the next smallest accounting master-data write; Vendor and Item remain behind additional gates.",
     "risksBeforeNextCase": [
-      "Do not create customers, vendors or items before template/dialog discovery.",
-      "Do not treat SAAR-HL as warehouse readiness.",
-      "Do not run Preview Posting or Posting."
+      "A future write case must not click Vorlage anwenden / Apply Template blindly.",
+      "List/card visibility is not posting readiness.",
+      "Item creation is riskier than customer/vendor because it touches inventory and product posting groups."
     ],
     "requiredPreparation": [
-      "Keep the next case read-only or dialog-cancel-safe for Customer, Vendor and Item New routes."
+      "Define exact field list for the first saved customer, including whether Vorlage anwenden is needed.",
+      "Keep vendor and item writes locked until their own Smart Decision cards exist."
     ]
   },
   "permissionBlocker": {
@@ -7265,9 +7269,9 @@
     "currentVisibleText": "1200 Forderungen aus Lieferungen und Leistungen Bilanz Buchung",
     "correctedReason": "SKR04-oriented Universaarl foundation must not create a new 1400 receivables account; 1400 belongs to the wrong mapping context for this target."
   },
-  "nextQueueItem": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+  "nextQueueItem": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
   "openItems": [
-    "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY"
+    "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE"
   ],
   "latestCustomerReceivablesSourceCorrection": {
     "caseId": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
@@ -7694,5 +7698,37 @@
     ],
     "screenshotQa": "Visual QA checked: SAAR-HL row is visible in after/reopen screenshots; bottom-left Locations teaching tip remains visible but does not hide the row. Future final book image should close or deliberately explain the teaching tip.",
     "nextCase": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY"
+  },
+  "latestTarget036BTemplateDialogDiscovery": {
+    "caseId": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+    "status": "observed",
+    "completedAt": "2026-07-01T09:41:47.928Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-036b-customer-vendor-item-template-dialog-discovery/TARGET-036B-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "routeSummary": {
+      "customers": "card-with-apply-template-action",
+      "vendors": "card-with-apply-template-action",
+      "items": "card-with-apply-template-action"
+    },
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-036b-010-customers-before.png",
+      "playwright/projects/fibu-book5/img/target-036b-011-customers-after-new.png",
+      "playwright/projects/fibu-book5/img/target-036b-012-customers-after-close.png",
+      "playwright/projects/fibu-book5/img/target-036b-020-vendors-before.png",
+      "playwright/projects/fibu-book5/img/target-036b-021-vendors-after-new.png",
+      "playwright/projects/fibu-book5/img/target-036b-022-vendors-after-close.png",
+      "playwright/projects/fibu-book5/img/target-036b-030-items-before.png",
+      "playwright/projects/fibu-book5/img/target-036b-031-items-after-new.png",
+      "playwright/projects/fibu-book5/img/target-036b-032-items-after-close.png"
+    ],
+    "screenshotQa": "Visual QA checked: Customer, Vendor and Item after-New screenshots show direct cards with Vorlage anwenden / Apply Template; after-close screenshots show the empty lists again. No saved customer/vendor/item is visible.",
+    "nextCase": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE"
   }
 }

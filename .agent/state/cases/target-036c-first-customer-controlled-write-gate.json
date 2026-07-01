@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
+  "status": "planned",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "First customer controlled write gate",
+  "purpose": "Create or verify exactly one first customer only after TARGET-036B proved the Customer Card route with Vorlage anwenden visible but not clicked.",
+  "sourceCases": [
+    "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
+    "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY"
+  ],
+  "effectiveBcActionsAllowed": true,
+  "mayRunPlaywright": true,
+  "taskClass": "wizard_work",
+  "smartDecisionRequired": true,
+  "targetRecord": {
+    "table": "Customer",
+    "suggestedNo": "U-CUST-100",
+    "suggestedName": "Universaarl Kunde 100",
+    "scope": "one-customer-only"
+  },
+  "allowedActions": [
+    "open-playthru-business-central",
+    "confirm-UNIVERSAARL-DE-context",
+    "open-customers-page",
+    "open-customer-card-via-scoped-new",
+    "inspect-customer-card-fields-before-writing",
+    "write-only-approved-customer-fields-if-visible-and-trusted",
+    "close-and-reopen-customers-list-for-proof",
+    "write-result-json-and-next-step-decision"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "create-vendor",
+    "create-item",
+    "click-vorlage-anwenden-without-explicit-subgate",
+    "change-posting-setup",
+    "change-vat-setup",
+    "change-inventory-setup",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-master-data-readiness",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "entryCriteria": [
+    "TARGET-036B result exists and routeSummary.customers is card-with-apply-template-action.",
+    "Business Central context is playthru / UNIVERSAARL-DE.",
+    "Customer Card Page 21 shows Nr., Name and Vorlage anwenden before any write."
+  ],
+  "stopIf": [
+    "The active instance is not playthru.",
+    "The active company is not UNIVERSAARL-DE.",
+    "Customer Card route is not visible or not safely closable.",
+    "Vorlage anwenden would be required before the field list is understood.",
+    "A vendor, item, document, Preview Posting or Posting route appears.",
+    "A save/confirm dialog appears with unclear effect."
+  ],
+  "acceptanceCriteria": [
+    "At most one customer is created or verified.",
+    "Before/after/reopen screenshots show the customer route and visible result.",
+    "No vendor or item is created.",
+    "No template is applied unless a nested Smart Decision explicitly approves it.",
+    "No setup, document, Preview Posting, Posting, Payment, API shortcut or company switch occurs.",
+    "Result JSON states which fields were changed and which remained untouched."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+    "lastEvidenceSummary": "TARGET-036A created or verified Location SAAR-HL with Code and Name only and reopen proof.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Customer, Vendor and Item records are accounting-relevant and can trigger templates or mandatory fields; New routes must be classified before saving records.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
+        "status": "ready-after-current",
+        "reason": "Customer write can be prepared only with explicit field/template gates."
+      },
+      {
+        "caseId": "TARGET-036D-FIRST-VENDOR-CONTROLLED-WRITE-GATE",
+        "status": "ready-after-current",
+        "reason": "Vendor write should wait until customer route proves the shared template pattern."
+      },
+      {
+        "caseId": "TARGET-036E-FIRST-ITEM-CONTROLLED-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Item creation needs inventory/posting/unit/template field gates before a saved item."
+      },
+      {
+        "caseId": "TARGET-039-FOUNDATION-BLOCKER-REVISIT",
+        "status": "ready-after-current",
+        "reason": "Parked Page 314, VAT matrix, inventory posting and default-dimension blockers remain relevant before first document flow."
+      },
+      {
+        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
+        "status": "blocked",
+        "reason": "Preview requires real master data, accepted setup boundaries and expected entry traces."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "Customer is the next smallest accounting master-data write; Vendor and Item remain behind additional gates.",
+    "risksBeforeNextCase": [
+      "A future write case must not click Vorlage anwenden / Apply Template blindly.",
+      "List/card visibility is not posting readiness.",
+      "Item creation is riskier than customer/vendor because it touches inventory and product posting groups."
+    ],
+    "requiredPreparation": [
+      "Define exact field list for the first saved customer, including whether Vorlage anwenden is needed.",
+      "Keep vendor and item writes locked until their own Smart Decision cards exist."
+    ]
+  },
+  "createdAt": "2026-07-01T09:41:47.928Z"
+}

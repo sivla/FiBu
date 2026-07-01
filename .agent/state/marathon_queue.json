@@ -3158,23 +3158,50 @@
     {
       "id": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
       "order": 10140,
-      "status": "pending",
+      "status": "done",
       "priority": "high",
       "area": "universaarl-master-data",
-      "category": "customer-vendor-item-template-dialog-discovery",
-      "expectedImpact": "template-dialog-risk-reduction-before-accounting-masterdata",
+      "category": "customer-vendor-item-card-route-discovery",
+      "expectedImpact": "card-route-and-apply-template-action-risk-reduction-before-accounting-masterdata",
       "mayRunPlaywright": true,
       "effectiveBcActionsAllowed": false,
-      "goal": "Discover Customer, Vendor and Item New/template dialogs without confirming templates or saving records.",
+      "goal": "Discover whether Customer, Vendor and Item New routes open cards or dialogs; do not apply templates or save records.",
       "sourceCompany": "UNIVERSAARL-DE",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
       "caseFile": ".agent/state/cases/target-036b-customer-vendor-item-template-dialog-discovery.json",
       "blockedBy": [],
+      "lookaheadStatus": "ready-next",
+      "completedAt": "2026-07-01T09:41:47.928Z",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-036b-customer-vendor-item-template-dialog-discovery/TARGET-036B-result.json",
+      "result": "Customer, Vendor and Item New routes opened direct cards with Vorlage anwenden / Apply Template actions and were closed/cancelled without saving records.",
+      "setupChanged": false,
+      "masterDataChanged": false,
+      "previewPosting": false,
+      "posted": false,
+      "apiShortcut": false,
+      "nextCase": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE"
+    },
+    {
+      "id": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
+      "order": 10150,
+      "status": "pending",
+      "priority": "high",
+      "area": "universaarl-master-data",
+      "category": "first-customer-controlled-write-gate",
+      "expectedImpact": "first-accounting-master-data-write-with-reopen-proof",
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": true,
+      "goal": "Create or verify exactly one first customer after card route discovery, with before/after/reopen proof and no vendor/item/document/preview/posting.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "caseFile": ".agent/state/cases/target-036c-first-customer-controlled-write-gate.json",
+      "blockedBy": [],
       "lookaheadStatus": "ready-next"
     }
   ],
-  "lastUpdated": "2026-07-01T09:23:41.766Z",
+  "lastUpdated": "2026-07-01T09:41:47.928Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -3282,8 +3309,8 @@
     }
   },
   "updatedAt": "2026-07-01T09:23:41.766Z",
-  "lastCompletedCase": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
-  "nextCase": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+  "lastCompletedCase": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY",
+  "nextCase": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE",
   "nextStepDecisionCard": {
     "currentCase": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
     "plannedNextCaseBeforeReview": "TARGET-036A-FIRST-LOCATION-CONTROLLED-WRITE-GATE",
@@ -3326,7 +3353,7 @@
   },
   "nextStep": "Run TARGET-036B as read-only/dialog-cancel-safe discovery for Customer, Vendor and Item New/template routes. Do not create customer/vendor/item records yet.",
   "openItems": [
-    "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY"
+    "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE"
   ],
-  "nextQueueItem": "TARGET-036B-CUSTOMER-VENDOR-ITEM-TEMPLATE-DIALOG-DISCOVERY"
+  "nextQueueItem": "TARGET-036C-FIRST-CUSTOMER-CONTROLLED-WRITE-GATE"
 }

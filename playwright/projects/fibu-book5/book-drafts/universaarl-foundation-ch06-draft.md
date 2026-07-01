@@ -246,3 +246,9 @@ Andere Felder auf der Lagerortkarte koennen spaeter wichtig werden, zum Beispiel
 Nach dem erneuten Oeffnen der Seite `Lagerorte` ist `SAAR-HL` in der Liste sichtbar. Damit ist der Lagerort als einfacher Stammdatensatz vorhanden. Das reicht fuer eine erste Orientierung in Lager- und Artikelprozessen, aber noch nicht fuer Warehouse-Prozesse. Wareneingangspflicht, Warenausgangspflicht, Lagerplatzpflicht, Lagerbuchungseinrichtung und Artikelbewegungen werden in eigenen Schritten eingerichtet und geprueft.
 
 Debitoren, Kreditoren und Artikel folgen erst danach. Dort koennen Vorlagen, Buchungsgruppen, USt-Gruppen und weitere Pflichtfelder sofort fachliche Wirkung haben. Deshalb werden diese Stammdaten zuerst mit einer eigenen Vorlagen- und Pflichtfeldpruefung vorbereitet.
+
+Bei Debitoren, Kreditoren und Artikeln fuehrt `Neu` nicht zu einer einfachen Listenzeile. Business Central oeffnet jeweils eine Karte. Auf der Debitorenkarte und der Kreditorenkarte sieht man oben die Aktion `Vorlage anwenden`. Im Bereich `Allgemein` stehen `Nr.` und `Name`; beim Namen ist ein roter Stern sichtbar. Der Stern zeigt: Ohne Name ist der Stammdatensatz nicht vollstaendig.
+
+Die Artikelkarte ist umfangreicher. Neben `Nr.` und `Beschreibung` sieht man `Basiseinheit`, `Art`, Lagerbestandsfelder und mehrere FastTabs wie `Einstandspreise und Buchung`, `Beschaffung`, `Planung`, `Artikelverfolgung`, `Lager` und `Indirekte Steuer`. Deshalb ist ein Artikel fachlich riskanter als ein einfacher Kunde: Schon die Basiseinheit, die Artikelart und spaetere Buchungsgruppen beeinflussen Einkauf, Verkauf, Lager und Wertposten.
+
+Fuer den ersten gespeicherten Debitor wird deshalb zuerst eine sehr kleine Feldliste festgelegt. `Vorlage anwenden` wird nicht nebenbei geklickt. Wenn eine Vorlage verwendet wird, muss vorher klar sein, welche Felder sie setzt und welche Buchungsgruppen oder Zahlungsbedingungen dadurch entstehen. Kreditoren und Artikel bleiben bis dahin gesperrt.
