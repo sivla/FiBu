@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-01T18:57:18.900Z",
+  "updatedAt": "2026-07-01T21:27:29.569Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "activeArea": "universaarl-vendor-number-series-route-recovery",
-  "activeCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-  "active_case_file": ".agent/state/cases/target-036d2f-u-vend-manual-nos-route-recovery.json",
+  "activeCase": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+  "active_case_file": ".agent/state/cases/target-036d2g-u-vend-manual-nos-source-or-assisted-route-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -21,12 +21,10 @@
   "allowedActions": [
     "open-playthru-business-central",
     "confirm-UNIVERSAARL-DE-context",
-    "open-number-series-page-456",
-    "select-or-filter-U-VEND-row",
-    "capture-screenshot-qa-before-any-action",
-    "inspect-card-details-personalize-page-inspection-or-supported-edit-route",
-    "toggle-only-u-vend-manual-nos-if-a-new-safer-route-is-proven",
-    "capture-after-and-reopen-proof",
+    "open-number-series-page-456-readonly",
+    "use-supported-filter-syntax-for-U-VEND",
+    "capture-screenshot-qa",
+    "inspect-page-inspection-personalize-or-assisted-setup-route-readonly",
     "write-result-json-and-next-step-decision"
   ],
   "forbiddenActions": [
@@ -35,10 +33,10 @@
     "create-customer",
     "create-vendor",
     "create-item",
-    "change-number-series-lines",
     "toggle-standard-nos",
+    "toggle-manual-nos",
+    "change-number-series-lines",
     "change-non-U-VEND-series",
-    "change-sales-or-purchase-doc-number-series",
     "change-posting-setup",
     "change-vat-setup",
     "create-document-or-draft",
@@ -46,17 +44,14 @@
     "post",
     "payment",
     "api-shortcut",
-    "repeat-target-036d2-row-scoped-coordinate-click-route",
-    "repeat-target-036d2b-untrusted-dom-checkbox-route",
-    "repeat-target-036d2e-screenshot-coordinate-fallback-without-new-signal",
-    "treat-more-options-row-menu-as-u-vend-value-proof",
+    "repeat-target-036d2f-header-only-checkbox-fallback-without-dom-proof",
     "commit-secrets",
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence"
   ],
-  "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-  "nextStep": "Complete attended Login/MFA in the auth browser until Business Central Role Center/Search/My Settings is visible; then run npm run auth:bc:check before rerunning D2F. If sign-in stalls or times out, run npm run auth:bc:diagnose for a short redacted diagnosis.",
+  "nextCase": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+  "nextStep": "It avoids repeating the failed list/cell routes and forces a source-backed route decision.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -7927,13 +7922,11 @@
   "latestTarget036D2F": {
     "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
     "status": "blocked",
-    "classification": "blocked-auth-shell-validation-meta-missing-no-bc-open",
-    "completedAt": "2026-07-01T17:38:17.235Z",
+    "completedAt": "2026-07-01T21:22:47.849Z",
     "resultPath": "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/TARGET-036D2F-result.json",
     "instance": "playthru",
     "company": "UNIVERSAARL-DE",
-    "bcRun": false,
-    "playwrightRun": true,
+    "bcRun": true,
     "setupChanged": false,
     "setupChangeAttempted": false,
     "masterDataChanged": false,
@@ -7941,38 +7934,28 @@
     "previewPosting": false,
     "posted": false,
     "apiShortcut": false,
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-036d2f-010-filtered-u-vend-before.png",
+      "playwright/projects/fibu-book5/img/target-036d2f-020-filtered-u-vend-edit-mode.png",
+      "playwright/projects/fibu-book5/img/target-036d2f-030-after-manual-nos-route-attempt.png",
+      "playwright/projects/fibu-book5/img/target-036d2f-040-reopen-proof.png"
+    ],
+    "proved": [
+      "Business Central stayed in playthru / UNIVERSAARL-DE.",
+      "Page 456 was opened with a U-VEND-only filter before the Manual Nos route attempt.",
+      "No master data, document, Preview Posting, Posting, payment, API shortcut or company switch occurred."
+    ],
+    "notProved": [
+      "U-VEND Manual Nos. is not proven active after reopen.",
+      "No vendor exists yet.",
+      "No automatic numbering behavior, Preview Posting, Posting, ledger entry or VAT effect is proven."
+    ],
     "blockedBy": [
-      "D2F blocked before Business Central open by auth shell-validation preflight: shell-validation-meta-missing-or-invalid.",
-      "Interactive npm run auth:bc was attempted for 10 minutes, but the Business Central shell was not confirmed; no shell-validation metadata was saved.",
-      "Short auth diagnosis stayed on Microsoft sign-in page; Business Central shell signal was false and no shell-validation metadata was saved."
+      "No unique filtered U-VEND Manual Nos checkbox was available after Edit List: u-vend-row-count-0-cell-count-0-fallback-candidates-0.",
+      "U-VEND Manual Nos is not proven active after reopen: u-vend-row-count-0-cell-count-0-fallback-candidates-0."
     ],
-    "warnings": [
-      "Auth shell-validation failure is an execution blocker, not a Business Central setup finding."
-    ],
-    "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-    "decision": "Complete attended Login/MFA in the auth browser until Business Central Role Center/Search/My Settings is visible; then run npm run auth:bc:check before rerunning D2F. If sign-in stalls or times out, run npm run auth:bc:diagnose for a short redacted diagnosis.",
-    "authUnblock": {
-      "status": "blocked-attended-login-required",
-      "lastAttemptAt": "2026-07-01T18:28:55.210Z",
-      "command": "npm run auth:bc",
-      "outcome": "timeout-no-business-central-shell-validation-meta",
-      "authCheckBlockedBy": [
-        "shell-validation-meta-missing-or-invalid"
-      ],
-      "doNotRepeatUnattended": true,
-      "nextRequiredAction": "Auth refresh now requires attended Login/MFA: run npm run auth:bc, keep the browser open until the Business Central Role Center/Search/My Settings shell is visible, then require npm run auth:bc:check to pass before rerunning D2F. If sign-in stalls or times out, run npm run auth:bc:diagnose for a short redacted diagnosis."
-    },
-    "authDiagnosis": {
-      "status": "blocked-on-microsoft-sign-in-page",
-      "lastAttemptAt": "2026-07-01T18:45:25.720Z",
-      "command": "BC_AUTH_TIMEOUT_MS=90000 npm run auth:bc",
-      "host": "login.microsoftonline.com",
-      "pageTitle": "Bei Ihrem Konto anmelden",
-      "shellSignalDetected": false,
-      "authBlockerDetected": true,
-      "rawTenantOrAuthDetailsCommitted": false,
-      "nextRequiredAction": "Complete attended Login/MFA in the auth browser until Business Central Role Center/Search/My Settings is visible; then run npm run auth:bc:check before rerunning D2F. If sign-in stalls or times out, run npm run auth:bc:diagnose for a short redacted diagnosis."
-    }
+    "nextCase": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+    "uiLearning": "BC Page 456 URL filters require quoted table/field syntax for table names with punctuation; the filtered U-VEND list shows checkbox columns, but the write locator still must be source-backed or assisted before toggling Manual Nos."
   },
   "nextStepDecision": {
     "currentCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
@@ -8383,17 +8366,12 @@
     "updatedAt": "2026-07-01T14:02:31.619Z"
   },
   "lastRunSummaryPath": "playwright/projects/fibu-book5/evidence/target-044d-customer-item-posting-fields-alternative-page-route/TARGET-044D-result.json",
-  "lastEvidenceSummary": "U-CUST-100 and U-ITEM-HW100 were inspected on standard pages in playthru / UNIVERSAARL-DE. Standard FastTabs and Mehr anzeigen/Show more were used as the alternative route instead of Personalize. Visible relevant terms captured: Gesperrt, Basiseinheit, Lagerbestand, Inventory. No setup, master data, document, Preview Posting, Posting, payment, API shortcut, personalization or company switch occurred.",
+  "lastEvidenceSummary": "TARGET-036D2F now reaches Business Central in playthru / UNIVERSAARL-DE and opens Page 456 with a U-VEND-only filter. It proves the previous token error was caused by malformed filter syntax, captures screenshot QA, and still blocks because Manual Nos. is not safely proven active after reopen.",
   "authUnblock": {
-    "status": "blocked-attended-login-required",
-    "lastAttemptAt": "2026-07-01T18:45:25.720Z",
-    "command": "npm run auth:bc",
-    "outcome": "microsoft-sign-in-page-no-business-central-shell",
-    "authCheckBlockedBy": [
-      "shell-validation-meta-missing-or-invalid"
-    ],
-    "doNotRepeatUnattended": true,
-    "nextRequiredAction": "Complete attended Login/MFA in the auth browser until Business Central Role Center/Search/My Settings is visible; then run npm run auth:bc:check before rerunning D2F. If sign-in stalls or times out, run npm run auth:bc:diagnose for a short redacted diagnosis."
+    "status": "resolved-local-shell-validation-present",
+    "lastCheckedAt": "2026-07-01T21:25:00.977Z",
+    "command": "npm run auth:bc:check",
+    "outcome": "stored auth has shell-validation metadata for playthru / UNIVERSAARL-DE"
   },
   "authDiagnosis": {
     "status": "blocked-on-microsoft-sign-in-page",

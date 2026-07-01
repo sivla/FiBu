@@ -44,7 +44,7 @@ function buildNumberSeriesUrl(filtered = true) {
   url.pathname = url.pathname.replace(/\/MCP_1_20260210(\/|$)/i, '/playthru$1');
   url.searchParams.set('company', TARGET_COMPANY);
   url.searchParams.set('page', '456');
-  if (filtered) url.searchParams.set('filter', `No. Series.'Code' IS '${TARGET_SERIES}'`);
+  if (filtered) url.searchParams.set('filter', `'No. Series'.'Code' IS '${TARGET_SERIES}'`);
   return url.toString();
 }
 
@@ -428,19 +428,91 @@ async function manualNosState(page: Page): Promise<ManualNosState> {
           if (ariaChecked === 'false') return false;
           return null;
         };
+        const textOf = (element: HTMLElement) =>
+          norm(
+            element.innerText ||
+              element.textContent ||
+              (element instanceof HTMLInputElement ? element.value : '') ||
+              element.getAttribute('aria-label') ||
+              element.getAttribute('title')
+          );
 
         const rows = Array.from(document.querySelectorAll<HTMLElement>('[role="row"],tr'))
           .filter(visible)
-          .map((element) => ({ element, text: norm(element.innerText || element.textContent), rect: element.getBoundingClientRect() }))
-          .filter((entry) => new RegExp(`\\b${targetSeries}\\b`, 'i').test(entry.text));
+          .map((element) => ({ element, text: textOf(element), rect: element.getBoundingClientRect() }))
+          .filter((entry) => entry.text.includes(targetSeries) && entry.rect.y > 120);
         const uniqueRows = rows.filter((entry, index, list) => index === list.findIndex((other) => other.text === entry.text && Math.abs(other.rect.y - entry.rect.y) < 2));
-        if (uniqueRows.length !== 1) {
-          return { found: false, checked: null, reason: `u-vend-row-count-${uniqueRows.length}`, rowText: uniqueRows.map((entry) => entry.text).join(' | ').slice(0, 260), headerText: '', candidateCount: 0, rect: null };
+        const cellCandidates = Array.from(document.querySelectorAll<HTMLElement>('input,td,div,span,a,[role="gridcell"],[role="textbox"]'))
+          .filter(visible)
+          .map((element) => ({ element, text: textOf(element), rect: element.getBoundingClientRect() }))
+          .filter((entry) => entry.text === targetSeries && entry.rect.y > 120);
+        const uniqueCells = cellCandidates.filter(
+          (entry, index, list) =>
+            index ===
+            list.findIndex((other) => Math.abs(other.rect.x - entry.rect.x) < 3 && Math.abs(other.rect.y - entry.rect.y) < 3)
+        );
+        if (uniqueRows.length !== 1 && uniqueCells.length !== 1) {
+          const visibleText = textOf(document.body as HTMLElement);
+          const oneFilteredRecord =
+            visibleText.includes(targetSeries) && /Liste mit Titel .Nummernserie. hat jetzt einen Artikel/i.test(visibleText);
+          const fallbackHeader = Array.from(document.querySelectorAll<HTMLElement>('[role="columnheader"],th,span,div,a'))
+            .filter(visible)
+            .map((element) => ({ element, text: textOf(element), rect: element.getBoundingClientRect() }))
+            .filter((entry) => /Manuelle\s*Anz|Manual Nos/i.test(entry.text) && entry.text.length <= 100)
+            .sort((left, right) => left.rect.y - right.rect.y)[0];
+          const fallbackCandidates = fallbackHeader
+            ? Array.from(document.querySelectorAll<HTMLElement>('input[type="checkbox"],[role="checkbox"]'))
+                .filter(visible)
+                .map((element) => {
+                  const rect = element.getBoundingClientRect();
+                  const columnDistance = Math.abs(centerX(rect) - centerX(fallbackHeader.rect));
+                  const belowHeader = rect.y > fallbackHeader.rect.y + fallbackHeader.rect.height - 5;
+                  return {
+                    element,
+                    rect,
+                    checked: checkedOf(element),
+                    score: (belowHeader ? 60 : 0) + (columnDistance <= 80 ? 60 : 0) + (typeof checkedOf(element) === 'boolean' ? 30 : 0) - Math.min(columnDistance / 10, 30)
+                  };
+                })
+                .filter((entry) => entry.score >= 115)
+                .sort((left, right) => right.score - left.score)
+            : [];
+          if (oneFilteredRecord && fallbackHeader && fallbackCandidates.length === 1) {
+            const chosen = fallbackCandidates[0];
+            chosen.element.setAttribute('data-codex-u-vend-manual-nos', 'true');
+            return {
+              found: true,
+              checked: chosen.checked,
+              reason: 'filtered-single-record-header-checkbox-candidate',
+              rowText: targetSeries,
+              headerText: fallbackHeader.text,
+              candidateCount: 1,
+              rect: rectJson(chosen.rect)
+            };
+          }
+          return {
+            found: false,
+            checked: null,
+            reason: `u-vend-row-count-${uniqueRows.length}-cell-count-${uniqueCells.length}-fallback-candidates-${fallbackCandidates.length}`,
+            rowText: uniqueRows.map((entry) => entry.text).join(' | ').slice(0, 260),
+            headerText: fallbackHeader?.text ?? '',
+            candidateCount: fallbackCandidates.length,
+            rect: fallbackCandidates[0] ? rectJson(fallbackCandidates[0].rect) : null
+          };
         }
-        const row = uniqueRows[0];
+        const row = uniqueRows[0] ?? {
+          element: uniqueCells[0].element,
+          text: targetSeries,
+          rect: {
+            x: 0,
+            y: uniqueCells[0].rect.y - 4,
+            width: window.innerWidth,
+            height: Math.max(uniqueCells[0].rect.height + 10, 28)
+          } as DOMRect
+        };
         const header = Array.from(document.querySelectorAll<HTMLElement>('[role="columnheader"],th,span,div'))
           .filter(visible)
-          .map((element) => ({ element, text: norm(element.innerText || element.textContent || element.getAttribute('aria-label')), rect: element.getBoundingClientRect() }))
+          .map((element) => ({ element, text: textOf(element), rect: element.getBoundingClientRect() }))
           .filter((entry) => /Manuelle\s*Anz|Manual Nos/i.test(entry.text) && entry.rect.y < row.rect.y && entry.text.length <= 100)
           .sort((left, right) => Math.abs(centerX(left.rect) - centerX(row.rect)) - Math.abs(centerX(right.rect) - centerX(row.rect)))[0];
         if (!header) {

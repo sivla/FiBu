@@ -33,7 +33,7 @@ type OpenBcPageOptions = WaitForBcReadyOptions & {
 };
 
 export const BUSINESS_CENTRAL_AUTH_BLOCKER_RE =
-  /Token wurde erwartet|Something went wrong|Token was expected|sign in|Anmelden/i;
+  /Token wurde erwartet|Something went wrong|Token was expected|Sign in to your account|Bei Ihrem Konto anmelden|You are not signed in|Sie sind nicht angemeldet|AADSTS/i;
 export const BUSINESS_CENTRAL_SHELL_RE =
   /Business Central|UNIVERSAARL-DE|Universaarl|Environment|Umgebung|Company|Firma|CRONUS|Meine Firma|My Company|Rollencenter|Role Center|Suche|Tell me|Suchen|Meine Einstellungen|My Settings/i;
 

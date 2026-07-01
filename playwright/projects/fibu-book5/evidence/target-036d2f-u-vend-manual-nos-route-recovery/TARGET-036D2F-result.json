@@ -9,10 +9,21 @@
   "selectedModelClass": "gpt-4-medium",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=456&company=UNIVERSAARL-DE&filter=No.+Series.%27Code%27+IS+%27U-VEND%27",
-  "page": "Local auth shell-validation preflight",
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=456&company=UNIVERSAARL-DE&filter=%27No.+Series%27.Code+IS+%27U-VEND%27",
+  "page": "No. Series / Nummernserie",
+  "pageId": 456,
+  "table": "No. Series",
+  "tableId": 308,
+  "sourceBasis": [
+    {
+      "title": "Microsoft Learn: Create number series",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/ui-create-number-series",
+      "claim": "Manual Nos. allows manually entered numbers for the records/documents using a number series."
+    }
+  ],
   "actionsTaken": [
-    "Ran local auth shell-validation preflight before opening Business Central."
+    "Opened Page 456 Number Series with URL filter restricted to U-VEND in playthru / UNIVERSAARL-DE.",
+    "Clicked Liste bearbeiten / Edit List after U-VEND-only filter proof."
   ],
   "actionsNotTaken": [
     "No company switch.",
@@ -22,41 +33,44 @@
     "No Posting.",
     "No payment.",
     "No API shortcut.",
-    "No setup field was changed.",
-    "No number-series lines were changed."
+    "No number-series lines were changed.",
+    "No non-U-VEND number series was intentionally changed.",
+    "U-VEND Default Nos. / Standardnr. was not intentionally changed."
   ],
   "setupChanged": false,
   "setupChangeAttempted": false,
+  "changedFields": [],
   "masterDataChanged": false,
   "draftCreated": false,
   "previewPosting": false,
   "posted": false,
   "payment": false,
   "apiShortcut": false,
-  "screenshots": [],
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/target-036d2f-010-filtered-u-vend-before.png",
+    "playwright/projects/fibu-book5/img/target-036d2f-020-filtered-u-vend-edit-mode.png",
+    "playwright/projects/fibu-book5/img/target-036d2f-030-after-manual-nos-route-attempt.png",
+    "playwright/projects/fibu-book5/img/target-036d2f-040-reopen-proof.png"
+  ],
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/TARGET-036D2F-result.json"
+    "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/TARGET-036D2F-result.json",
+    "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/target-036d2f-010-filtered-u-vend-before.snapshot.json",
+    "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/target-036d2f-040-reopen-proof.snapshot.json"
   ],
   "proved": [
-    "The D2F route did not open Business Central because local auth shell-validation metadata is missing or invalid.",
-    "No setup, master data, document, Preview Posting, Posting, payment, API shortcut or company switch occurred.",
-    "Unattended auth refresh cannot complete the current Login/MFA requirement; D2F must wait for attended shell validation.",
-    "Auth diagnosis reached Microsoft sign-in, not the Business Central shell."
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Page 456 was opened with a U-VEND-only filter before the Manual Nos route attempt.",
+    "No master data, document, Preview Posting, Posting, payment, API shortcut or company switch occurred."
   ],
   "notProved": [
-    "U-VEND Manual Nos. is not proven active.",
-    "No vendor exists from this case.",
+    "U-VEND Manual Nos. is not proven active after reopen.",
+    "No vendor exists yet.",
     "No automatic numbering behavior, Preview Posting, Posting, ledger entry or VAT effect is proven."
   ],
-  "warnings": [
-    "Auth shell-validation failure is an execution blocker, not a Business Central setup finding.",
-    "A later unattended auth refresh attempt timed out without shell validation.",
-    "Auth diagnosis must not commit raw tenant, cookie, token or account details."
-  ],
+  "warnings": [],
   "blockedBy": [
-    "D2F blocked before Business Central open by auth shell-validation preflight: shell-validation-meta-missing-or-invalid.",
-    "Interactive npm run auth:bc was attempted for 10 minutes, but the Business Central shell was not confirmed; no shell-validation metadata was saved.",
-    "Short auth diagnosis stayed on Microsoft sign-in page; Business Central shell signal was false and no shell-validation metadata was saved."
+    "No unique filtered U-VEND Manual Nos checkbox was available after Edit List: u-vend-row-count-0-cell-count-0-fallback-candidates-0.",
+    "U-VEND Manual Nos is not proven active after reopen: u-vend-row-count-0-cell-count-0-fallback-candidates-0."
   ],
   "flags": {
     "noCompanySwitch": true,
@@ -67,106 +81,488 @@
     "noPayment": true,
     "noApiShortcut": true
   },
-  "visibleTextSample": "Business Central was not opened. Local auth shell-validation preflight blocked the run before navigation.",
+  "before": {
+    "step": "Before filtered U-VEND Manual Nos route recovery.",
+    "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=456&company=UNIVERSAARL-DE&filter=%27No.+Series%27.Code+IS+%27U-VEND%27",
+    "title": "Nummernserie",
+    "compact": "Nummernserie:\nListe bearbeiten\nWeitere Optionen\nCode\nBeschreibung\nStandardnr.\nManuelle Anz.\nU-VEND\nUniversaarl Vendor Nos. U-VEND00001 U-VEND99999\nU-VEND00001\nU-VEND99999\nSeriencode\nSerienbeschreibung\nLegt fest, dass Sie Nummern manuell eingeben können, anstatt diese Nummernserien zu verwenden.\nListe mit Titel „Nummernserie“ hat jetzt einen Artikel\nCode, Sortierreihenfolge Aufsteigend\nSeriencode, Sortierreihenfolge Aufsteigend",
+    "manualNosState": {
+      "found": false,
+      "checked": null,
+      "reason": "u-vend-row-count-0-cell-count-0-fallback-candidates-0",
+      "rowText": "",
+      "headerText": "",
+      "candidateCount": 0,
+      "rect": null
+    },
+    "actionInventory": [
+      {
+        "text": "Neu",
+        "aria": "Neu",
+        "title": "Erstellen Sie einen neuen Eintrag.",
+        "role": "menuitem"
+      },
+      {
+        "text": "Liste bearbeiten",
+        "aria": "Liste bearbeiten",
+        "title": "Änderungen auf der Seite vornehmen",
+        "role": "menuitem"
+      },
+      {
+        "text": "Zeilen",
+        "aria": "Zeilen",
+        "title": "Zeigen Sie zusätzliche Informationen über die Nummernserienzeilen an, oder bearbeiten Sie sie.",
+        "role": "menuitem"
+      },
+      {
+        "text": "Weitere Optionen",
+        "aria": "",
+        "title": "Sekundäre Aktionen anzeigen",
+        "role": "menuitem"
+      },
+      {
+        "text": "",
+        "aria": "Filter umschalten",
+        "title": "Filterbereich anzeigen",
+        "role": "menuitemcheckbox"
+      },
+      {
+        "text": "Standardnr.",
+        "aria": "",
+        "title": "Sortieren nach 'Standardnr.'",
+        "role": "button"
+      },
+      {
+        "text": "",
+        "aria": "Menü für Standardnr. öffnen",
+        "title": "Menü öffnen",
+        "role": "button"
+      },
+      {
+        "text": "Manuelle Anz.",
+        "aria": "",
+        "title": "Sortieren nach 'Manuelle Anz.'",
+        "role": "button"
+      },
+      {
+        "text": "",
+        "aria": "Menü für Manuelle Anz. öffnen",
+        "title": "Menü öffnen",
+        "role": "button"
+      },
+      {
+        "text": "",
+        "aria": "",
+        "title": "Weitere Optionen anzeigen",
+        "role": "button"
+      },
+      {
+        "text": "U-VEND00001",
+        "aria": "",
+        "title": "Datensatz „U-VEND00001“ öffnen",
+        "role": "button"
+      },
+      {
+        "text": "U-VEND99999",
+        "aria": "",
+        "title": "Datensatz „U-VEND99999“ öffnen",
+        "role": "button"
+      },
+      {
+        "text": "Offene Zeilen",
+        "aria": "",
+        "title": "Aktionen für Offene Zeilen",
+        "role": "button"
+      }
+    ],
+    "hoveredManual": true
+  },
+  "editMode": {
+    "step": "Filtered U-VEND route after Edit List attempt.",
+    "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=456&company=UNIVERSAARL-DE&filter=%27No.+Series%27.Code+IS+%27U-VEND%27",
+    "title": "Nummernserie",
+    "compact": "Nummernserie:\nListe bearbeiten\nWeitere Optionen\nCode\nBeschreibung\nStandardnr.\nManuelle Anz.\nU-VEND\nUniversaarl Vendor Nos. U-VEND00001 U-VEND99999\nU-VEND00001\nU-VEND99999\nSeriencode\nSerienbeschreibung\nNummernserie\nListe mit Titel „Nummernserie“ hat jetzt einen Artikel\nCode, Sortierreihenfolge Aufsteigend\nSeriencode, Sortierreihenfolge Aufsteigend\nListe mit Titel „Nummernserie“ hat jetzt 2 Artikel",
+    "manualNosState": {
+      "found": false,
+      "checked": null,
+      "reason": "u-vend-row-count-0-cell-count-0-fallback-candidates-0",
+      "rowText": "",
+      "headerText": "",
+      "candidateCount": 0,
+      "rect": null
+    },
+    "actionInventory": [
+      {
+        "text": "Neu",
+        "aria": "Neu",
+        "title": "Erstellen Sie einen neuen Eintrag.",
+        "role": "menuitem"
+      },
+      {
+        "text": "Liste bearbeiten",
+        "aria": "Liste bearbeiten",
+        "title": "Änderungen auf der Seite vornehmen",
+        "role": "menuitem"
+      },
+      {
+        "text": "Zeilen",
+        "aria": "Zeilen",
+        "title": "Zeigen Sie zusätzliche Informationen über die Nummernserienzeilen an, oder bearbeiten Sie sie.",
+        "role": "menuitem"
+      },
+      {
+        "text": "Weitere Optionen",
+        "aria": "",
+        "title": "Sekundäre Aktionen anzeigen",
+        "role": "menuitem"
+      },
+      {
+        "text": "",
+        "aria": "Filter umschalten",
+        "title": "Filterbereich anzeigen",
+        "role": "menuitemcheckbox"
+      },
+      {
+        "text": "Standardnr.",
+        "aria": "",
+        "title": "Sortieren nach 'Standardnr.'",
+        "role": "button"
+      },
+      {
+        "text": "",
+        "aria": "Menü für Standardnr. öffnen",
+        "title": "Menü öffnen",
+        "role": "button"
+      },
+      {
+        "text": "Manuelle Anz.",
+        "aria": "",
+        "title": "Sortieren nach 'Manuelle Anz.'",
+        "role": "button"
+      },
+      {
+        "text": "",
+        "aria": "Menü für Manuelle Anz. öffnen",
+        "title": "Menü öffnen",
+        "role": "button"
+      },
+      {
+        "text": "",
+        "aria": "",
+        "title": "Weitere Optionen anzeigen",
+        "role": "button"
+      },
+      {
+        "text": "U-VEND00001",
+        "aria": "",
+        "title": "Datensatz „U-VEND00001“ öffnen",
+        "role": "button"
+      },
+      {
+        "text": "U-VEND99999",
+        "aria": "",
+        "title": "Datensatz „U-VEND99999“ öffnen",
+        "role": "button"
+      },
+      {
+        "text": "Offene Zeilen",
+        "aria": "",
+        "title": "Aktionen für Offene Zeilen",
+        "role": "button"
+      },
+      {
+        "text": "",
+        "aria": "Diese Seite wird in diesem Fenster geschlossen und öffnet sich in einem Popupfenster.",
+        "title": "Diese Seite in einem neuen Fenster öffnen",
+        "role": "button"
+      }
+    ],
+    "editListClicked": true
+  },
+  "afterAttempt": {
+    "step": "After filtered U-VEND Manual Nos route attempt.",
+    "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=456&company=UNIVERSAARL-DE&filter=%27No.+Series%27.Code+IS+%27U-VEND%27",
+    "title": "Nummernserie",
+    "compact": "Nummernserie:\nListe bearbeiten\nWeitere Optionen\nCode\nBeschreibung\nStandardnr.\nManuelle Anz.\nU-VEND\nUniversaarl Vendor Nos. U-VEND00001 U-VEND99999\nU-VEND00001\nU-VEND99999\nSeriencode\nSerienbeschreibung\nNummernserie\nListe mit Titel „Nummernserie“ hat jetzt einen Artikel\nCode, Sortierreihenfolge Aufsteigend\nSeriencode, Sortierreihenfolge Aufsteigend\nListe mit Titel „Nummernserie“ hat jetzt 2 Artikel",
+    "manualNosState": {
+      "found": false,
+      "checked": null,
+      "reason": "u-vend-row-count-0-cell-count-0-fallback-candidates-0",
+      "rowText": "",
+      "headerText": "",
+      "candidateCount": 0,
+      "rect": null
+    },
+    "actionInventory": [
+      {
+        "text": "Neu",
+        "aria": "Neu",
+        "title": "Erstellen Sie einen neuen Eintrag.",
+        "role": "menuitem"
+      },
+      {
+        "text": "Liste bearbeiten",
+        "aria": "Liste bearbeiten",
+        "title": "Änderungen auf der Seite vornehmen",
+        "role": "menuitem"
+      },
+      {
+        "text": "Zeilen",
+        "aria": "Zeilen",
+        "title": "Zeigen Sie zusätzliche Informationen über die Nummernserienzeilen an, oder bearbeiten Sie sie.",
+        "role": "menuitem"
+      },
+      {
+        "text": "Weitere Optionen",
+        "aria": "",
+        "title": "Sekundäre Aktionen anzeigen",
+        "role": "menuitem"
+      },
+      {
+        "text": "",
+        "aria": "Filter umschalten",
+        "title": "Filterbereich anzeigen",
+        "role": "menuitemcheckbox"
+      },
+      {
+        "text": "Standardnr.",
+        "aria": "",
+        "title": "Sortieren nach 'Standardnr.'",
+        "role": "button"
+      },
+      {
+        "text": "",
+        "aria": "Menü für Standardnr. öffnen",
+        "title": "Menü öffnen",
+        "role": "button"
+      },
+      {
+        "text": "Manuelle Anz.",
+        "aria": "",
+        "title": "Sortieren nach 'Manuelle Anz.'",
+        "role": "button"
+      },
+      {
+        "text": "",
+        "aria": "Menü für Manuelle Anz. öffnen",
+        "title": "Menü öffnen",
+        "role": "button"
+      },
+      {
+        "text": "",
+        "aria": "",
+        "title": "Weitere Optionen anzeigen",
+        "role": "button"
+      },
+      {
+        "text": "U-VEND00001",
+        "aria": "",
+        "title": "Datensatz „U-VEND00001“ öffnen",
+        "role": "button"
+      },
+      {
+        "text": "U-VEND99999",
+        "aria": "",
+        "title": "Datensatz „U-VEND99999“ öffnen",
+        "role": "button"
+      },
+      {
+        "text": "Offene Zeilen",
+        "aria": "",
+        "title": "Aktionen für Offene Zeilen",
+        "role": "button"
+      },
+      {
+        "text": "",
+        "aria": "Diese Seite wird in diesem Fenster geschlossen und öffnet sich in einem Popupfenster.",
+        "title": "Diese Seite in einem neuen Fenster öffnen",
+        "role": "button"
+      }
+    ],
+    "clickedManualNos": false
+  },
+  "reopen": {
+    "step": "Reopen proof for filtered U-VEND Manual Nos route.",
+    "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=456&company=UNIVERSAARL-DE&filter=%27No.+Series%27.Code+IS+%27U-VEND%27",
+    "title": "Nummernserie",
+    "compact": "Nummernserie:\nListe bearbeiten\nWeitere Optionen\nCode\nBeschreibung\nStandardnr.\nManuelle Anz.\nU-VEND\nUniversaarl Vendor Nos. U-VEND00001 U-VEND99999\nU-VEND00001\nU-VEND99999\nSeriencode\nSerienbeschreibung\nListe mit Titel „Nummernserie“ hat jetzt einen Artikel\nCode, Sortierreihenfolge Aufsteigend\nSeriencode, Sortierreihenfolge Aufsteigend",
+    "manualNosState": {
+      "found": false,
+      "checked": null,
+      "reason": "u-vend-row-count-0-cell-count-0-fallback-candidates-0",
+      "rowText": "",
+      "headerText": "",
+      "candidateCount": 0,
+      "rect": null
+    },
+    "actionInventory": [
+      {
+        "text": "Neu",
+        "aria": "Neu",
+        "title": "Erstellen Sie einen neuen Eintrag.",
+        "role": "menuitem"
+      },
+      {
+        "text": "Liste bearbeiten",
+        "aria": "Liste bearbeiten",
+        "title": "Änderungen auf der Seite vornehmen",
+        "role": "menuitem"
+      },
+      {
+        "text": "Zeilen",
+        "aria": "Zeilen",
+        "title": "Zeigen Sie zusätzliche Informationen über die Nummernserienzeilen an, oder bearbeiten Sie sie.",
+        "role": "menuitem"
+      },
+      {
+        "text": "Weitere Optionen",
+        "aria": "",
+        "title": "Sekundäre Aktionen anzeigen",
+        "role": "menuitem"
+      },
+      {
+        "text": "",
+        "aria": "Filter umschalten",
+        "title": "Filterbereich anzeigen",
+        "role": "menuitemcheckbox"
+      },
+      {
+        "text": "Standardnr.",
+        "aria": "",
+        "title": "Sortieren nach 'Standardnr.'",
+        "role": "button"
+      },
+      {
+        "text": "",
+        "aria": "Menü für Standardnr. öffnen",
+        "title": "Menü öffnen",
+        "role": "button"
+      },
+      {
+        "text": "Manuelle Anz.",
+        "aria": "",
+        "title": "Sortieren nach 'Manuelle Anz.'",
+        "role": "button"
+      },
+      {
+        "text": "",
+        "aria": "Menü für Manuelle Anz. öffnen",
+        "title": "Menü öffnen",
+        "role": "button"
+      },
+      {
+        "text": "",
+        "aria": "",
+        "title": "Weitere Optionen anzeigen",
+        "role": "button"
+      },
+      {
+        "text": "U-VEND00001",
+        "aria": "",
+        "title": "Datensatz „U-VEND00001“ öffnen",
+        "role": "button"
+      },
+      {
+        "text": "U-VEND99999",
+        "aria": "",
+        "title": "Datensatz „U-VEND99999“ öffnen",
+        "role": "button"
+      },
+      {
+        "text": "Offene Zeilen",
+        "aria": "",
+        "title": "Aktionen für Offene Zeilen",
+        "role": "button"
+      }
+    ],
+    "clickedManualNos": false
+  },
   "nextStepDecision": {
     "currentCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
     "plannedNextCaseBeforeReview": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
     "lastEvidenceSummary": "TARGET-036D2E did not persist U-VEND Manual Nos after an unfiltered/cell-coordinate route.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "Short auth diagnosis stayed on Microsoft sign-in page; Business Central shell signal was false and no shell-validation metadata was saved.",
+    "reason": "Vendor creation remains blocked because Manual Nos is not proven active after a new filtered route.",
     "lookaheadReviewed": [
-      {
-        "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-        "status": "blocked",
-        "reason": "Still on Microsoft sign-in page; attended Login/MFA must reach Business Central shell first."
-      },
       {
         "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
         "status": "blocked",
-        "reason": "Vendor creation remains blocked until U-VEND Manual Nos is proven active."
+        "reason": "Do not create vendor while U-VEND Manual Nos is still unproven."
+      },
+      {
+        "caseId": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+        "status": "ready-next",
+        "reason": "The next useful step is a source-backed or assisted setup route, not another blind checkbox click."
       },
       {
         "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
         "status": "needs-ui-discovery-first",
-        "reason": "Still unrelated to the active vendor-numbering blocker."
+        "reason": "Customer/item posting fields are unrelated to the vendor-numbering blocker and still lack a safe write route."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C must wait for master data and posting/VAT readiness."
+        "reason": "O2C needs customer/item/posting/VAT readiness; it must not start from a number-series recovery case."
+      },
+      {
+        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
+        "status": "blocked",
+        "reason": "Foundation ready check would still hide the vendor-numbering blocker."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-    "whySelectedNextCaseIsBest": "Complete attended Login/MFA in the auth browser until Business Central Role Center/Search/My Settings is visible; then run npm run auth:bc:check before rerunning D2F.",
+    "queueChangesMade": [
+      "Selected TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION after D2F."
+    ],
+    "selectedNextCase": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "It avoids repeating the failed list/cell routes and forces a source-backed route decision.",
     "risksBeforeNextCase": [
-      "Do not create vendor/customer/item records until U-VEND Manual Nos is proven active."
+      "Another UI write attempt may change the wrong number series unless a stronger route is found first."
     ],
     "requiredPreparation": [
-      "Complete attended Login/MFA in the auth browser until Business Central Role Center/Search/My Settings is visible; then run npm run auth:bc:check before rerunning D2F."
+      "Check Microsoft Learn/source-backed setup route or assisted setup route before any further U-VEND checkbox write."
     ]
   },
-  "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+  "nextCase": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
   "changedFiles": [
     "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/TARGET-036D2F-result.json",
-    "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/README.md"
+    "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/README.md",
+    "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/*.snapshot.json",
+    "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/*.screenshot.json",
+    "playwright/projects/fibu-book5/img/target-036d2f-*.png"
   ],
-  "timestamp": "2026-07-01T18:07:25.829Z",
+  "timestamp": "2026-07-01T21:22:47.849Z",
   "safeToFinalizeState": true,
   "requiresReview": false,
   "statePatch": {
     "current": {
       "activeArea": "universaarl-vendor-number-series-route-recovery",
-      "activeCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-      "active_case_file": ".agent/state/cases/target-036d2f-u-vend-manual-nos-route-recovery.json",
+      "activeCase": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+      "active_case_file": ".agent/state/cases/target-036d2g-u-vend-manual-nos-source-or-assisted-route-decision.json",
       "lastCompletedCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-      "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-      "nextStep": "Complete attended Login/MFA in the auth browser until Business Central Role Center/Search/My Settings is visible; then run npm run auth:bc:check before rerunning D2F."
+      "nextCase": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+      "nextStep": "It avoids repeating the failed list/cell routes and forces a source-backed route decision."
     },
     "activeCase": {
       "status": "blocked",
       "resultPath": "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/TARGET-036D2F-result.json",
-      "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY"
+      "nextCase": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION"
     },
     "lastRunSummary": {
       "runId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-      "completedAt": "2026-07-01T18:07:25.829Z",
+      "completedAt": "2026-07-01T21:22:47.849Z",
       "status": "blocked",
       "instance": "playthru",
       "company": "UNIVERSAARL-DE",
-      "bcRun": false,
+      "bcRun": true,
       "setupChanged": false,
       "masterDataChanged": false,
       "draftCreated": false,
       "previewPosting": false,
       "posted": false,
       "apiShortcut": false,
-      "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-      "summary": "Short auth diagnosis stayed on Microsoft sign-in page; Business Central shell signal was false and no shell-validation metadata was saved."
+      "nextCase": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+      "summary": "Filtered U-VEND route blocked: No unique filtered U-VEND Manual Nos checkbox was available after Edit List: u-vend-row-count-0-cell-count-0-fallback-candidates-0.; U-VEND Manual Nos is not proven active after reopen: u-vend-row-count-0-cell-count-0-fallback-candidates-0."
     }
   },
-  "reason": "Short auth diagnosis stayed on Microsoft sign-in page; Business Central shell signal was false and no shell-validation metadata was saved.",
-  "updatedAt": "2026-07-01T18:45:25.720Z",
-  "authUnblock": {
-    "status": "blocked-attended-login-required",
-    "lastAttemptAt": "2026-07-01T18:45:25.720Z",
-    "command": "npm run auth:bc",
-    "outcome": "microsoft-sign-in-page-no-business-central-shell",
-    "authCheckBlockedBy": [
-      "shell-validation-meta-missing-or-invalid"
-    ],
-    "doNotRepeatUnattended": true,
-    "nextRequiredAction": "Complete attended Login/MFA in the auth browser until Business Central Role Center/Search/My Settings is visible; then run npm run auth:bc:check before rerunning D2F."
-  },
-  "authDiagnosis": {
-    "status": "blocked-on-microsoft-sign-in-page",
-    "lastAttemptAt": "2026-07-01T18:45:25.720Z",
-    "command": "BC_AUTH_TIMEOUT_MS=90000 npm run auth:bc",
-    "host": "login.microsoftonline.com",
-    "pageTitle": "Bei Ihrem Konto anmelden",
-    "shellSignalDetected": false,
-    "authBlockerDetected": true,
-    "rawTenantOrAuthDetailsCommitted": false,
-    "nextRequiredAction": "Complete attended Login/MFA in the auth browser until Business Central Role Center/Search/My Settings is visible; then run npm run auth:bc:check before rerunning D2F."
-  }
+  "reason": "Filtered single-row route did not prove U-VEND Manual Nos: No unique filtered U-VEND Manual Nos checkbox was available after Edit List: u-vend-row-count-0-cell-count-0-fallback-candidates-0.; U-VEND Manual Nos is not proven active after reopen: u-vend-row-count-0-cell-count-0-fallback-candidates-0."
 }

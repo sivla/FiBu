@@ -3390,18 +3390,39 @@
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
       "lookaheadStatus": "blocked",
-      "completedAt": "2026-07-01T17:38:17.235Z",
-      "result": "Core helper auth-blocker detection confirmed: stored Playwright auth cannot be used because Business Central shell-validation metadata is missing.",
+      "completedAt": "2026-07-01T21:22:47.849Z",
+      "result": "Filtered single-row route did not prove U-VEND Manual Nos: No unique filtered U-VEND Manual Nos checkbox was available after Edit List: u-vend-row-count-0-cell-count-0-fallback-candidates-0.; U-VEND Manual Nos is not proven active after reopen: u-vend-row-count-0-cell-count-0-fallback-candidates-0.",
       "resultPath": "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/TARGET-036D2F-result.json",
       "blockedBy": [
-        "D2F blocked before Business Central open by auth shell-validation preflight: shell-validation-meta-missing-or-invalid. Complete attended Login/MFA until the Business Central shell is visible, then require npm run auth:bc:check before rerunning D2F. If sign-in stalls or times out, run npm run auth:bc:diagnose for a short redacted diagnosis."
+        "No unique filtered U-VEND Manual Nos checkbox was available after Edit List: u-vend-row-count-0-cell-count-0-fallback-candidates-0.",
+        "U-VEND Manual Nos is not proven active after reopen: u-vend-row-count-0-cell-count-0-fallback-candidates-0."
       ],
-      "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+      "nextCase": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
       "setupChanged": false,
       "masterDataChanged": false,
       "previewPosting": false,
       "posted": false,
       "apiShortcut": false
+    },
+    {
+      "id": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+      "order": 10166.5,
+      "status": "pending",
+      "priority": "high",
+      "area": "universaarl-number-series",
+      "category": "vendor-number-series-route-decision",
+      "expectedImpact": "avoid-repeating-failed-u-vend-checkbox-routes",
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Decide the next safe source-backed or assisted route for U-VEND Manual Nos without setup change.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "caseFile": ".agent/state/cases/target-036d2g-u-vend-manual-nos-source-or-assisted-route-decision.json",
+      "lookaheadStatus": "ready-next",
+      "dependsOn": [
+        "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY"
+      ]
     },
     {
       "id": "TARGET-037-MASTERDATA-FOUNDATION-CHECKPOINT",
@@ -3876,7 +3897,7 @@
   "openItems": [
     "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY"
   ],
-  "nextQueueItem": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+  "nextQueueItem": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
   "nextCases": [
     "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
     "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",

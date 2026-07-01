@@ -101,48 +101,55 @@
     "plannedNextCaseBeforeReview": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
     "lastEvidenceSummary": "TARGET-036D2E did not persist U-VEND Manual Nos after an unfiltered/cell-coordinate route.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "Short auth diagnosis stayed on Microsoft sign-in page; Business Central shell signal was false and no shell-validation metadata was saved.",
+    "reason": "Vendor creation remains blocked because Manual Nos is not proven active after a new filtered route.",
     "lookaheadReviewed": [
-      {
-        "caseId": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-        "status": "blocked",
-        "reason": "Still on Microsoft sign-in page; attended Login/MFA must reach Business Central shell first."
-      },
       {
         "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
         "status": "blocked",
-        "reason": "Vendor creation remains blocked until U-VEND Manual Nos is proven active."
+        "reason": "Do not create vendor while U-VEND Manual Nos is still unproven."
+      },
+      {
+        "caseId": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+        "status": "ready-next",
+        "reason": "The next useful step is a source-backed or assisted setup route, not another blind checkbox click."
       },
       {
         "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
         "status": "needs-ui-discovery-first",
-        "reason": "Still unrelated to the active vendor-numbering blocker."
+        "reason": "Customer/item posting fields are unrelated to the vendor-numbering blocker and still lack a safe write route."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C must wait for master data and posting/VAT readiness."
+        "reason": "O2C needs customer/item/posting/VAT readiness; it must not start from a number-series recovery case."
+      },
+      {
+        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
+        "status": "blocked",
+        "reason": "Foundation ready check would still hide the vendor-numbering blocker."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
-    "whySelectedNextCaseIsBest": "Complete attended Login/MFA in the auth browser until Business Central Role Center/Search/My Settings is visible; then run npm run auth:bc:check before rerunning D2F. If sign-in stalls or times out, run npm run auth:bc:diagnose for a short redacted diagnosis.",
+    "queueChangesMade": [
+      "Selected TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION after D2F."
+    ],
+    "selectedNextCase": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "It avoids repeating the failed list/cell routes and forces a source-backed route decision.",
     "risksBeforeNextCase": [
-      "Do not create vendor/customer/item records until U-VEND Manual Nos is proven active."
+      "Another UI write attempt may change the wrong number series unless a stronger route is found first."
     ],
     "requiredPreparation": [
-      "Complete attended Login/MFA in the auth browser until Business Central Role Center/Search/My Settings is visible; then run npm run auth:bc:check before rerunning D2F. If sign-in stalls or times out, run npm run auth:bc:diagnose for a short redacted diagnosis."
+      "Check Microsoft Learn/source-backed setup route or assisted setup route before any further U-VEND checkbox write."
     ]
   },
   "createdAt": "2026-07-01T11:31:24.302Z",
-  "updatedAt": "2026-07-01T18:45:25.720Z",
-  "classification": "blocked-auth-shell-validation-meta-missing-no-bc-open",
+  "updatedAt": "2026-07-01T21:25:00.977Z",
+  "classification": "blocked-ui-grid-checkbox-route-no-setup-change",
   "resultPath": "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/TARGET-036D2F-result.json",
-  "completedAt": "2026-07-01T17:38:17.235Z",
+  "completedAt": "2026-07-01T21:22:47.849Z",
   "lastRun": {
     "resultStatus": "blocked",
-    "bcRun": false,
-    "playwrightRun": false,
+    "bcRun": true,
+    "playwrightRun": true,
     "setupChanged": false,
     "setupChangeAttempted": false,
     "masterDataChanged": false,
@@ -150,20 +157,9 @@
     "previewPosting": false,
     "posted": false,
     "apiShortcut": false,
-    "blockedBy": [
-      "D2F blocked before Business Central open by auth shell-validation preflight: shell-validation-meta-missing-or-invalid.",
-      "Interactive npm run auth:bc was attempted for 10 minutes, but the Business Central shell was not confirmed; no shell-validation metadata was saved.",
-      "Short auth diagnosis stayed on Microsoft sign-in page; Business Central shell signal was false and no shell-validation metadata was saved."
-    ],
-    "warnings": [
-      "Auth shell-validation failure is an execution blocker, not a Business Central setup finding.",
-      "A later unattended auth refresh attempt timed out without shell validation.",
-      "Short auth diagnosis stayed on Microsoft sign-in page."
-    ],
     "actionsTaken": [
-      "Ran local auth shell-validation preflight before opening Business Central.",
-      "Attempted interactive auth refresh with npm run auth:bc; it timed out without confirmed Business Central shell.",
-      "Ran short auth diagnosis; it stayed on Microsoft sign-in and did not save auth metadata."
+      "Opened Page 456 Number Series with URL filter restricted to U-VEND in playthru / UNIVERSAARL-DE.",
+      "Clicked Liste bearbeiten / Edit List after U-VEND-only filter proof."
     ],
     "actionsNotTaken": [
       "No company switch.",
@@ -173,22 +169,26 @@
       "No Posting.",
       "No payment.",
       "No API shortcut.",
-      "No setup field was changed.",
-      "No number-series lines were changed."
+      "No number-series lines were changed.",
+      "No non-U-VEND number series was intentionally changed.",
+      "U-VEND Default Nos. / Standardnr. was not intentionally changed."
+    ],
+    "blockedBy": [
+      "No unique filtered U-VEND Manual Nos checkbox was available after Edit List: u-vend-row-count-0-cell-count-0-fallback-candidates-0.",
+      "U-VEND Manual Nos is not proven active after reopen: u-vend-row-count-0-cell-count-0-fallback-candidates-0."
+    ],
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-036d2f-010-filtered-u-vend-before.png",
+      "playwright/projects/fibu-book5/img/target-036d2f-020-filtered-u-vend-edit-mode.png",
+      "playwright/projects/fibu-book5/img/target-036d2f-030-after-manual-nos-route-attempt.png",
+      "playwright/projects/fibu-book5/img/target-036d2f-040-reopen-proof.png"
     ],
     "resultPath": "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/TARGET-036D2F-result.json"
   },
-  "nextCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+  "nextCase": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
   "authUnblock": {
-    "status": "blocked-attended-login-required",
-    "lastAttemptAt": "2026-07-01T18:45:25.720Z",
-    "command": "npm run auth:bc",
-    "outcome": "microsoft-sign-in-page-no-business-central-shell",
-    "authCheckBlockedBy": [
-      "shell-validation-meta-missing-or-invalid"
-    ],
-    "doNotRepeatUnattended": true,
-    "nextRequiredAction": "Complete attended Login/MFA in the auth browser until Business Central Role Center/Search/My Settings is visible; then run npm run auth:bc:check before rerunning D2F. If sign-in stalls or times out, run npm run auth:bc:diagnose for a short redacted diagnosis."
+    "status": "resolved-local-shell-validation-present",
+    "lastCheckedAt": "2026-07-01T21:25:00.977Z"
   },
   "authDiagnosis": {
     "status": "blocked-on-microsoft-sign-in-page",
@@ -202,9 +202,8 @@
     "nextRequiredAction": "Complete attended Login/MFA in the auth browser until Business Central Role Center/Search/My Settings is visible; then run npm run auth:bc:check before rerunning D2F. If sign-in stalls or times out, run npm run auth:bc:diagnose for a short redacted diagnosis."
   },
   "blockedBy": [
-    "Short auth diagnosis stayed on Microsoft sign-in page; Business Central shell signal was false and no shell-validation metadata was saved."
+    "No unique filtered U-VEND Manual Nos checkbox was available after Edit List: u-vend-row-count-0-cell-count-0-fallback-candidates-0.",
+    "U-VEND Manual Nos is not proven active after reopen: u-vend-row-count-0-cell-count-0-fallback-candidates-0."
   ],
-  "warnings": [
-    "Auth diagnosis must not commit raw tenant, cookie, token or account details."
-  ]
+  "warnings": []
 }

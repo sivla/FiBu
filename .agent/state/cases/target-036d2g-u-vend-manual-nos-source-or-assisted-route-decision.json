@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+  "status": "ready-next",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "title": "Decide source-backed or assisted route for U-VEND Manual Nos",
+  "purpose": "Avoid repeating failed checkbox/list routes; inspect a source-backed, assisted or stronger BC UI route before any U-VEND Manual Nos write.",
+  "sourceCases": [
+    "TARGET-036D2E-U-VEND-MANUAL-NOS-CONTROLLED-WRITE-GATE",
+    "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY"
+  ],
+  "effectiveBcActionsAllowed": false,
+  "mayRunPlaywright": true,
+  "taskClass": "wizard_work",
+  "smartDecisionRequired": true,
+  "allowedActions": [
+    "open-playthru-business-central",
+    "confirm-UNIVERSAARL-DE-context",
+    "open-number-series-page-456-readonly",
+    "use-supported-filter-syntax-for-U-VEND",
+    "capture-screenshot-qa",
+    "inspect-page-inspection-personalize-or-assisted-setup-route-readonly",
+    "write-result-json-and-next-step-decision"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "create-customer",
+    "create-vendor",
+    "create-item",
+    "toggle-standard-nos",
+    "toggle-manual-nos",
+    "change-number-series-lines",
+    "change-non-U-VEND-series",
+    "change-posting-setup",
+    "change-vat-setup",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "repeat-target-036d2f-header-only-checkbox-fallback-without-dom-proof",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "smartDecision": {
+    "whyNow": "D2F proved BC context and U-VEND filter syntax, but did not prove a safe Manual Nos write or active reopen state.",
+    "evidenceBasis": [
+      "playwright/projects/fibu-book5/evidence/target-036d2f-u-vend-manual-nos-route-recovery/TARGET-036D2F-result.json"
+    ],
+    "sourceBasis": [
+      "Microsoft Learn Create number series"
+    ],
+    "fieldsToChange": [],
+    "fieldsToLeaveUntouched": [
+      "U-VEND Manual Nos.",
+      "U-VEND Default Nos.",
+      "No. Series Lines",
+      "all master data and documents"
+    ],
+    "risk": "Repeating visual checkbox clicks can change the wrong value or create false proof.",
+    "fallback": "If no stronger route is found, park vendor creation and choose another Foundation dependency.",
+    "screenshotProof": "Screenshots must show Page 456, U-VEND filter, relevant action/field route and why it is or is not safe.",
+    "bookExplanation": "The book may explain Manual Nos. as a prerequisite for readable manual vendor numbers, but must not claim vendor readiness until the setup is proven."
+  },
+  "entryCriteria": [
+    "D2F result exists and is blocked without setup change.",
+    "auth:bc:check passes for playthru / UNIVERSAARL-DE.",
+    "No vendor creation retry is attempted before Manual Nos. is proven active."
+  ],
+  "stopIf": [
+    "The active instance is not playthru.",
+    "The active company is not UNIVERSAARL-DE.",
+    "Any route asks to create master data or documents.",
+    "Any route requires toggling U-VEND before a stronger proof path is documented.",
+    "A dialog asks to save unrelated setup, post, preview, delete or switch company."
+  ],
+  "acceptanceCriteria": [
+    "A source-backed, assisted or stronger route decision is documented.",
+    "Failed D2/D2B/D2E/D2F routes are not repeated.",
+    "No setup, master data, document, Preview Posting or Posting occurs.",
+    "The next case is either a safe U-VEND write gate or a different Foundation dependency with rationale."
+  ],
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-036D2F-U-VEND-MANUAL-NOS-ROUTE-RECOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-036D2E did not persist U-VEND Manual Nos after an unfiltered/cell-coordinate route.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Vendor creation remains blocked because Manual Nos is not proven active after a new filtered route.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-036D3-FIRST-VENDOR-MANUAL-NUMBER-CONTROLLED-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Do not create vendor while U-VEND Manual Nos is still unproven."
+      },
+      {
+        "caseId": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+        "status": "ready-next",
+        "reason": "The next useful step is a source-backed or assisted setup route, not another blind checkbox click."
+      },
+      {
+        "caseId": "TARGET-045-CUSTOMER-ITEM-POSTING-FIELDS-CONTROLLED-FIT",
+        "status": "needs-ui-discovery-first",
+        "reason": "Customer/item posting fields are unrelated to the vendor-numbering blocker and still lack a safe write route."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C needs customer/item/posting/VAT readiness; it must not start from a number-series recovery case."
+      },
+      {
+        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
+        "status": "blocked",
+        "reason": "Foundation ready check would still hide the vendor-numbering blocker."
+      }
+    ],
+    "queueChangesMade": [
+      "Selected TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION after D2F."
+    ],
+    "selectedNextCase": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "It avoids repeating the failed list/cell routes and forces a source-backed route decision.",
+    "risksBeforeNextCase": [
+      "Another UI write attempt may change the wrong number series unless a stronger route is found first."
+    ],
+    "requiredPreparation": [
+      "Check Microsoft Learn/source-backed setup route or assisted setup route before any further U-VEND checkbox write."
+    ]
+  },
+  "createdAt": "2026-07-01T21:25:00.977Z",
+  "updatedAt": "2026-07-01T21:25:00.977Z",
+  "resultPath": null,
+  "nextCase": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION"
+}
