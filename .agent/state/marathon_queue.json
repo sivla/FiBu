@@ -5,7 +5,7 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "queueId": "TARGET-MARATHON-002-UNIVERSAARL-REPO-READONLY-PREP",
-  "reason": "TARGET-049 proved WARE / Warenbestand as Item Posting Group; TARGET-050 is now the next narrow Inventory Posting Setup gate.",
+  "reason": "TARGET-050 proved SAAR-HL + WARE + 1140 in Inventory Posting Setup; TARGET-051 is now the next narrow item field gate.",
   "noEffectiveBusinessCentralActions": false,
   "forbiddenUntilUnblocked": [],
   "unblockCriteria": "Satisfied: UNIVERSAARL-DE exists and active Role Center context / Firmendaten read-only proof is available.",
@@ -4008,7 +4008,7 @@
     {
       "id": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
       "order": 10188,
-      "status": "pending",
+      "status": "done",
       "priority": "high",
       "category": "inventory-posting-setup-controlled-write-gate",
       "expectedImpact": "connect-proven-location-item-posting-group-and-inventory-account-before-item-assignment",
@@ -4019,10 +4019,36 @@
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
       "lookaheadStatus": "ready-next",
-      "reason": "SAAR-HL, WARE and 1140 are individually proven; create or verify exactly one Inventory Posting Setup row next."
+      "reason": "SAAR-HL, WARE and 1140 are individually proven; create or verify exactly one Inventory Posting Setup row next.",
+      "completedAt": "2026-07-02T00:00:45.149Z",
+      "result": "SAAR-HL + WARE + Warenbestand + Lagerkonto 1140 visible after Page 5826 reopen.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-050-inventory-posting-setup-controlled-write-gate/TARGET-050-result.json",
+      "nextCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
+      "setupChanged": true,
+      "masterDataChanged": false,
+      "previewPosting": false,
+      "posted": false,
+      "apiShortcut": false,
+      "blockedBy": []
+    },
+    {
+      "id": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
+      "order": 10189,
+      "status": "pending",
+      "priority": "high",
+      "category": "item-posting-fields-controlled-assignment-gate",
+      "expectedImpact": "assign-proven-item-posting-group-before-process-preflight",
+      "sourceCase": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+      "caseFile": ".agent/state/cases/target-051-item-posting-fields-controlled-assignment-gate.json",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "sourceInstance": "playthru",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "lookaheadStatus": "ready-next",
+      "reason": "Inventory Posting Setup SAAR-HL + WARE + 1140 is now proven; assign only WARE to U-ITEM-HW100 if visible and safe."
     }
   ],
-  "lastUpdated": "2026-07-01T23:40:39.709Z",
+  "lastUpdated": "2026-07-02T00:00:45.149Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -4132,25 +4158,25 @@
       ]
     }
   },
-  "updatedAt": "2026-07-01T23:40:39.709Z",
-  "lastCompletedCase": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
-  "nextCase": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+  "updatedAt": "2026-07-02T00:00:45.149Z",
+  "lastCompletedCase": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+  "nextCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "WARE / Warenbestand is visible on Page 112 after reopen; 1140 Waren (Bestand) was already proven as Bilanz/Buchung in TARGET-048C.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "The next smallest dependency is Inventory Posting Setup for SAAR-HL + WARE + 1140.",
+    "currentCase": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-038-O2C-PREFLIGHT",
+    "lastEvidenceSummary": "SAAR-HL + WARE + 1140 is visible on Page 5826 after reopen.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "O2C is still too early; the next narrow step is assigning proven posting fields to the item, not a process document.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+        "caseId": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
         "status": "ready-next",
-        "reason": "Needs WARE plus 1140 and location SAAR-HL."
+        "reason": "Setup dependencies are individually and jointly proven."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C still waits for Inventory Posting Setup, VAT and General Posting Setup."
+        "reason": "O2C still waits for item field assignment, VAT and General Posting Setup."
       },
       {
         "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
@@ -4160,54 +4186,54 @@
       {
         "caseId": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
         "status": "blocked",
-        "reason": "Vendor numbering remains a separate parked blocker."
+        "reason": "Vendor numbering remains parked and separate."
       }
     ],
     "queueChangesMade": [
-      "Mark TARGET-049 done and activate TARGET-050."
+      "Mark TARGET-050 done and insert TARGET-051 item posting-field assignment gate."
     ],
-    "selectedNextCase": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
-    "whySelectedNextCaseIsBest": "It combines already proven SAAR-HL, WARE and 1140 in the next narrow Inventory Posting Setup gate.",
+    "selectedNextCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
+    "whySelectedNextCaseIsBest": "The item now has enough inventory setup dependencies to attempt a narrow field assignment later.",
     "risksBeforeNextCase": [
-      "Do not claim inventory posting readiness before Inventory Posting Setup reopen proof.",
-      "Do not assign WARE to an item before the item-field case unlocks it.",
+      "Do not claim inventory posting readiness before item field assignment and Preview Posting.",
+      "Keep VAT and General Posting Setup as separate lanes.",
       "Keep Preview Posting and Posting false."
     ],
     "requiredPreparation": [
-      "Keep Inventory Posting Setup as its own case; use 1140 only as proven Bilanz/Buchung account candidate."
+      "Create a narrow item posting-fields assignment case for U-ITEM-HW100 only after reviewing TARGET-045B field visibility."
     ]
   },
-  "nextStep": "Run TARGET-050 to create or verify one Inventory Posting Setup row for SAAR-HL + WARE + 1140.",
+  "nextStep": "Run TARGET-051 item posting-fields assignment gate before O2C/P2P or Preview Posting.",
   "openItems": [
-    "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE"
+    "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE"
   ],
   "nextQueueItem": {
-    "id": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+    "id": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
     "status": "pending",
-    "caseFile": ".agent/state/cases/target-050-inventory-posting-setup-controlled-write-gate.json"
+    "caseFile": ".agent/state/cases/target-051-item-posting-fields-controlled-assignment-gate.json"
   },
   "nextCases": [
-    "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+    "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
     "TARGET-038-O2C-PREFLIGHT",
     "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
     "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION"
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-049-ITEM-POSTING-GROUP-CONTROLLED-WRITE-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "WARE / Warenbestand is visible on Page 112 after reopen; 1140 Waren (Bestand) was already proven as Bilanz/Buchung in TARGET-048C.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "The next smallest dependency is Inventory Posting Setup for SAAR-HL + WARE + 1140.",
+    "currentCase": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-038-O2C-PREFLIGHT",
+    "lastEvidenceSummary": "SAAR-HL + WARE + 1140 is visible on Page 5826 after reopen.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "O2C is still too early; the next narrow step is assigning proven posting fields to the item, not a process document.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+        "caseId": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
         "status": "ready-next",
-        "reason": "Needs WARE plus 1140 and location SAAR-HL."
+        "reason": "Setup dependencies are individually and jointly proven."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C still waits for Inventory Posting Setup, VAT and General Posting Setup."
+        "reason": "O2C still waits for item field assignment, VAT and General Posting Setup."
       },
       {
         "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
@@ -4217,21 +4243,21 @@
       {
         "caseId": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
         "status": "blocked",
-        "reason": "Vendor numbering remains a separate parked blocker."
+        "reason": "Vendor numbering remains parked and separate."
       }
     ],
     "queueChangesMade": [
-      "Mark TARGET-049 done and activate TARGET-050."
+      "Mark TARGET-050 done and insert TARGET-051 item posting-field assignment gate."
     ],
-    "selectedNextCase": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
-    "whySelectedNextCaseIsBest": "It combines already proven SAAR-HL, WARE and 1140 in the next narrow Inventory Posting Setup gate.",
+    "selectedNextCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
+    "whySelectedNextCaseIsBest": "The item now has enough inventory setup dependencies to attempt a narrow field assignment later.",
     "risksBeforeNextCase": [
-      "Do not claim inventory posting readiness before Inventory Posting Setup reopen proof.",
-      "Do not assign WARE to an item before the item-field case unlocks it.",
+      "Do not claim inventory posting readiness before item field assignment and Preview Posting.",
+      "Keep VAT and General Posting Setup as separate lanes.",
       "Keep Preview Posting and Posting false."
     ],
     "requiredPreparation": [
-      "Keep Inventory Posting Setup as its own case; use 1140 only as proven Bilanz/Buchung account candidate."
+      "Create a narrow item posting-fields assignment case for U-ITEM-HW100 only after reviewing TARGET-045B field visibility."
     ]
   }
 }

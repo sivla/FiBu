@@ -1,0 +1,992 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+  "source": "playwright-controlled-setup-write",
+  "resultStatus": "observed",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": {
+    "pageId": 5826,
+    "name": "Lagerbuchung Einrichtung / Inventory Posting Setup",
+    "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=5826&company=UNIVERSAARL-DE"
+  },
+  "targetSetup": {
+    "locationCode": "SAAR-HL",
+    "inventoryPostingGroupCode": "WARE",
+    "inventoryAccount": "1140",
+    "inventoryAccountName": "Waren (Bestand)",
+    "purpose": "Minimale Inventory-Posting-Setup-Zeile fuer den ersten Universaarl-Warenbestand."
+  },
+  "actionsTaken": [
+    "Opened Page 5826 Lagerbuchung Einrichtung / Inventory Posting Setup in playthru / UNIVERSAARL-DE.",
+    "Create-or-verify route outcome: cleaned-existing-row-description.",
+    "Reopened Page 5826 for visible row proof.",
+    "Cleaned Beschreibung from the misplaced account value to Warenbestand after screenshot QA, then reopened the page for final proof."
+  ],
+  "actionsNotTaken": [
+    "No G/L account was changed.",
+    "No Item Posting Group row was changed.",
+    "No Location row was changed.",
+    "No item card was changed.",
+    "No item was created.",
+    "No VAT Posting Setup was changed.",
+    "No General Posting Setup was changed.",
+    "No document or draft was created.",
+    "No Preview Posting was run.",
+    "No Posting was run.",
+    "No API shortcut was used."
+  ],
+  "setupChanged": true,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/target-050-010-before-inventory-posting-setup.png",
+    "playwright/projects/fibu-book5/img/target-050-020-after-inventory-posting-setup-route.png",
+    "playwright/projects/fibu-book5/img/target-050-030-reopen-proof.png"
+  ],
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Page 5826 Lagerbuchung Einrichtung / Inventory Posting Setup was opened.",
+    "SAAR-HL + WARE + 1140 is visible after Page 5826 reopen.",
+    "Screenshot QA caught that the first route had placed 1140 in Beschreibung instead of Lagerkonto; the final reopen proof shows Beschreibung Warenbestand and Lagerkonto 1140.",
+    "A controlled UI write was attempted only for the SAAR-HL + WARE + 1140 Inventory Posting Setup row.",
+    "No item, VAT setup, General Posting Setup, document, Preview Posting, Posting or API shortcut occurred."
+  ],
+  "notProved": [
+    "No item card assignment is proven.",
+    "No inventory posting readiness is proven.",
+    "No Preview Posting is proven.",
+    "No Posting is proven.",
+    "No Item Ledger Entry, Value Entry, G/L Entry or VAT Entry is proven.",
+    "No complete SKR04 chart, tax-advisor approval or legal compliance is proven."
+  ],
+  "blockedBy": [],
+  "warnings": [],
+  "steps": [
+    {
+      "step": "description-editor-cleanup-scan",
+      "inspectedTextboxes": [
+        {
+          "index": 0,
+          "value": "1140",
+          "visible": true,
+          "x": 735,
+          "y": 235,
+          "w": 209,
+          "h": 27
+        }
+      ],
+      "selectedIndex": 0
+    },
+    {
+      "step": "cleanup-existing-row-description",
+      "reason": "Lagerkonto was already correct, but Beschreibung still contained the misplaced account value from the earlier route.",
+      "editListClicked": true,
+      "descriptionCleaned": true,
+      "beforeColumns": {
+        "targetRowFound": true,
+        "targetAccountInInventoryAccountColumn": true,
+        "targetAccountInDescriptionColumn": true,
+        "rowY": 174,
+        "cells": [
+          {
+            "text": "SAAR-HL",
+            "x": 193,
+            "y": 174,
+            "w": 117,
+            "h": 34
+          },
+          {
+            "text": "SAAR-HL",
+            "x": 194,
+            "y": 179,
+            "w": 61,
+            "h": 25
+          },
+          {
+            "text": "Weitere Optionen anzeigen",
+            "x": 311,
+            "y": 175,
+            "w": 32,
+            "h": 32
+          },
+          {
+            "text": "WARE",
+            "x": 344,
+            "y": 174,
+            "w": 131,
+            "h": 34
+          },
+          {
+            "text": "WARE",
+            "x": 345,
+            "y": 179,
+            "w": 42,
+            "h": 25
+          },
+          {
+            "text": "1140",
+            "x": 475,
+            "y": 174,
+            "w": 241,
+            "h": 34
+          },
+          {
+            "text": "1140",
+            "x": 778,
+            "y": 174,
+            "w": 131,
+            "h": 34
+          },
+          {
+            "text": "(Leer)",
+            "x": 1027,
+            "y": 179,
+            "w": 5,
+            "h": 25
+          },
+          {
+            "text": "(Leer)",
+            "x": 1144,
+            "y": 179,
+            "w": 5,
+            "h": 25
+          },
+          {
+            "text": "(Leer)",
+            "x": 1261,
+            "y": 179,
+            "w": 5,
+            "h": 25
+          },
+          {
+            "text": "(Leer)",
+            "x": 1378,
+            "y": 179,
+            "w": 5,
+            "h": 25
+          }
+        ],
+        "columns": {
+          "location": {
+            "text": "Lagerortcode",
+            "x": 198,
+            "y": 150,
+            "w": 70,
+            "h": 16
+          },
+          "group": {
+            "text": "Lagerbuchungsgruppencode",
+            "x": 349,
+            "y": 134,
+            "w": 152,
+            "h": 16
+          },
+          "description": {
+            "text": "Beschreibung",
+            "x": 480,
+            "y": 150,
+            "w": 72,
+            "h": 16
+          },
+          "inventoryAccount": {
+            "text": "Lagerkonto",
+            "x": 783,
+            "y": 150,
+            "w": 60,
+            "h": 16
+          },
+          "nextAfterInventoryAccount": {
+            "text": "Lagerkonto (Interim)",
+            "x": 914,
+            "y": 134,
+            "w": 60,
+            "h": 32
+          }
+        },
+        "repairClick": {
+          "description": {
+            "x": 508,
+            "y": 191
+          },
+          "inventoryAccount": {
+            "x": 811,
+            "y": 191
+          }
+        }
+      }
+    }
+  ],
+  "snapshots": {
+    "before": {
+      "step": "before-create-or-verify",
+      "targetSetup": {
+        "locationCode": "SAAR-HL",
+        "inventoryPostingGroupCode": "WARE",
+        "inventoryAccount": "1140",
+        "inventoryAccountName": "Waren (Bestand)",
+        "purpose": "Minimale Inventory-Posting-Setup-Zeile fuer den ersten Universaarl-Warenbestand."
+      },
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=5826&company=UNIVERSAARL-DE",
+      "title": "Lagerbuchung Einrichtung",
+      "text": "Lagerbuchung Einrichtung:\nNeu\nListe bearbeiten\nLagerortcode\nLagerbuchungsgruppencode\nLagerkonto\nLagerkonto (Interim)\nSAAR-HL\nWARE 1140\n1140\nListe mit Titel Lagerbuchung Einrichtung hat jetzt einen Artikel\nLagerortcode, Sortierreihenfolge Aufsteigend\nLagerbuchungsgruppencode, Sortierreihenfolge Aufsteigend",
+      "visible": {
+        "pageContextVisible": true,
+        "targetLocationVisible": true,
+        "targetGroupVisible": true,
+        "targetAccountVisible": true,
+        "rowSnippet": "SAAR-HL WARE 1140 1140 Liste mit Titel Lagerbuchung Einrichtung hat jetzt einen Artikel Lagerortcode, Sortierreihenfolge Aufsteigend Lagerbuchungsgruppencode, Sortierreihenfolge Aufsteigend",
+        "dangerousTextVisible": false,
+        "targetRowFound": true,
+        "targetAccountInInventoryAccountColumn": true,
+        "targetAccountInDescriptionColumn": true
+      },
+      "columnAware": {
+        "targetRowFound": true,
+        "targetAccountInInventoryAccountColumn": true,
+        "targetAccountInDescriptionColumn": true,
+        "rowY": 174,
+        "cells": [
+          {
+            "text": "SAAR-HL",
+            "x": 193,
+            "y": 174,
+            "w": 117,
+            "h": 34
+          },
+          {
+            "text": "SAAR-HL",
+            "x": 194,
+            "y": 179,
+            "w": 61,
+            "h": 25
+          },
+          {
+            "text": "Weitere Optionen anzeigen",
+            "x": 311,
+            "y": 175,
+            "w": 32,
+            "h": 32
+          },
+          {
+            "text": "WARE",
+            "x": 344,
+            "y": 174,
+            "w": 131,
+            "h": 34
+          },
+          {
+            "text": "WARE",
+            "x": 345,
+            "y": 179,
+            "w": 42,
+            "h": 25
+          },
+          {
+            "text": "1140",
+            "x": 475,
+            "y": 174,
+            "w": 241,
+            "h": 34
+          },
+          {
+            "text": "1140",
+            "x": 778,
+            "y": 174,
+            "w": 131,
+            "h": 34
+          },
+          {
+            "text": "(Leer)",
+            "x": 1027,
+            "y": 179,
+            "w": 5,
+            "h": 25
+          },
+          {
+            "text": "(Leer)",
+            "x": 1144,
+            "y": 179,
+            "w": 5,
+            "h": 25
+          },
+          {
+            "text": "(Leer)",
+            "x": 1261,
+            "y": 179,
+            "w": 5,
+            "h": 25
+          },
+          {
+            "text": "(Leer)",
+            "x": 1378,
+            "y": 179,
+            "w": 5,
+            "h": 25
+          }
+        ],
+        "columns": {
+          "location": {
+            "text": "Lagerortcode",
+            "x": 198,
+            "y": 150,
+            "w": 70,
+            "h": 16
+          },
+          "group": {
+            "text": "Lagerbuchungsgruppencode",
+            "x": 349,
+            "y": 134,
+            "w": 152,
+            "h": 16
+          },
+          "description": {
+            "text": "Beschreibung",
+            "x": 480,
+            "y": 150,
+            "w": 72,
+            "h": 16
+          },
+          "inventoryAccount": {
+            "text": "Lagerkonto",
+            "x": 783,
+            "y": 150,
+            "w": 60,
+            "h": 16
+          },
+          "nextAfterInventoryAccount": {
+            "text": "Lagerkonto (Interim)",
+            "x": 914,
+            "y": 134,
+            "w": 60,
+            "h": 32
+          }
+        },
+        "repairClick": {
+          "description": {
+            "x": 508,
+            "y": 191
+          },
+          "inventoryAccount": {
+            "x": 811,
+            "y": 191
+          }
+        }
+      }
+    },
+    "after": {
+      "step": "after-create-or-verify",
+      "targetSetup": {
+        "locationCode": "SAAR-HL",
+        "inventoryPostingGroupCode": "WARE",
+        "inventoryAccount": "1140",
+        "inventoryAccountName": "Waren (Bestand)",
+        "purpose": "Minimale Inventory-Posting-Setup-Zeile fuer den ersten Universaarl-Warenbestand."
+      },
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=5826&company=UNIVERSAARL-DE",
+      "title": "Lagerbuchung Einrichtung",
+      "text": "Lagerbuchung Einrichtung:\nNeu\nListe bearbeiten\nLagerortcode\nLagerbuchungsgruppencode\nLagerkonto\nLagerkonto (Interim)\nSAAR-HL\nWARE Warenbestand\n1140\nLagerbuchung Einrichtung\nListe mit Titel Lagerbuchung Einrichtung hat jetzt einen Artikel\nLagerortcode, Sortierreihenfolge Aufsteigend\nLagerbuchungsgruppencode, Sortierreihenfolge Aufsteigend\nListe mit Titel Lagerbuchung Einrichtung hat jetzt 2 Artikel",
+      "visible": {
+        "pageContextVisible": true,
+        "targetLocationVisible": true,
+        "targetGroupVisible": true,
+        "targetAccountVisible": true,
+        "rowSnippet": "SAAR-HL WARE Warenbestand 1140 Lagerbuchung Einrichtung Liste mit Titel Lagerbuchung Einrichtung hat jetzt einen Artikel Lagerortcode, Sortierreihenfolge Aufsteigend Lagerbuchungsgruppencode, Sortierreihenfolge Aufsteigend Liste mit Titel Lagerbuchung Einrichtung hat jetzt 2 Artikel",
+        "dangerousTextVisible": false,
+        "targetRowFound": true,
+        "targetAccountInInventoryAccountColumn": true,
+        "targetAccountInDescriptionColumn": false
+      },
+      "columnAware": {
+        "targetRowFound": true,
+        "targetAccountInInventoryAccountColumn": true,
+        "targetAccountInDescriptionColumn": false,
+        "rowY": 174,
+        "cells": [
+          {
+            "text": "SAAR-HL",
+            "x": 193,
+            "y": 174,
+            "w": 117,
+            "h": 34
+          },
+          {
+            "text": "SAAR-HL",
+            "x": 194,
+            "y": 179,
+            "w": 61,
+            "h": 25
+          },
+          {
+            "text": "Weitere Optionen anzeigen",
+            "x": 311,
+            "y": 175,
+            "w": 32,
+            "h": 32
+          },
+          {
+            "text": "WARE",
+            "x": 344,
+            "y": 174,
+            "w": 131,
+            "h": 34
+          },
+          {
+            "text": "WARE",
+            "x": 345,
+            "y": 179,
+            "w": 42,
+            "h": 25
+          },
+          {
+            "text": "Warenbestand",
+            "x": 475,
+            "y": 174,
+            "w": 241,
+            "h": 34
+          },
+          {
+            "text": "1140",
+            "x": 778,
+            "y": 174,
+            "w": 131,
+            "h": 34
+          },
+          {
+            "text": "(Leer)",
+            "x": 1027,
+            "y": 179,
+            "w": 5,
+            "h": 25
+          },
+          {
+            "text": "(Leer)",
+            "x": 1144,
+            "y": 179,
+            "w": 5,
+            "h": 25
+          },
+          {
+            "text": "(Leer)",
+            "x": 1261,
+            "y": 179,
+            "w": 5,
+            "h": 25
+          },
+          {
+            "text": "(Leer)",
+            "x": 1378,
+            "y": 179,
+            "w": 5,
+            "h": 25
+          },
+          {
+            "text": "Menü für Lagerortcode öffnen",
+            "x": 575,
+            "y": 162,
+            "w": 12,
+            "h": 16
+          },
+          {
+            "text": "Menü für Lagerbuchungsgruppencode öffnen",
+            "x": 719,
+            "y": 162,
+            "w": 12,
+            "h": 16
+          },
+          {
+            "text": "Beschreibung",
+            "x": 740,
+            "y": 162,
+            "w": 72,
+            "h": 16
+          },
+          {
+            "text": "Menü für Beschreibung öffnen",
+            "x": 929,
+            "y": 162,
+            "w": 12,
+            "h": 16
+          },
+          {
+            "text": "Menü für Alle Konten in Lookup anzeigen öffnen",
+            "x": 983,
+            "y": 162,
+            "w": 12,
+            "h": 16
+          },
+          {
+            "text": "Lagerkonto",
+            "x": 1004,
+            "y": 162,
+            "w": 60,
+            "h": 16
+          },
+          {
+            "text": "Menü für Lagerkonto öffnen",
+            "x": 1097,
+            "y": 162,
+            "w": 12,
+            "h": 16
+          },
+          {
+            "text": "Menü für Lagerkonto (Interim) öffnen",
+            "x": 1199,
+            "y": 162,
+            "w": 12,
+            "h": 16
+          },
+          {
+            "text": "Menü für Unf.-Arbeit-Konto öffnen",
+            "x": 1301,
+            "y": 162,
+            "w": 12,
+            "h": 16
+          },
+          {
+            "text": "Materialabweichungskonto",
+            "x": 1322,
+            "y": 162,
+            "w": 143,
+            "h": 16
+          },
+          {
+            "text": "Weitere Optionen anzeigen",
+            "x": 591,
+            "y": 188,
+            "w": 29,
+            "h": 25
+          }
+        ],
+        "columns": {
+          "location": {
+            "text": "Lagerortcode",
+            "x": 198,
+            "y": 150,
+            "w": 70,
+            "h": 16
+          },
+          "group": {
+            "text": "Lagerbuchungsgruppencode",
+            "x": 349,
+            "y": 134,
+            "w": 152,
+            "h": 16
+          },
+          "description": {
+            "text": "Beschreibung",
+            "x": 480,
+            "y": 150,
+            "w": 72,
+            "h": 16
+          },
+          "inventoryAccount": {
+            "text": "Lagerkonto",
+            "x": 783,
+            "y": 150,
+            "w": 60,
+            "h": 16
+          },
+          "nextAfterInventoryAccount": {
+            "text": "Lagerkonto (Interim)",
+            "x": 914,
+            "y": 134,
+            "w": 60,
+            "h": 32
+          }
+        },
+        "repairClick": {
+          "description": {
+            "x": 508,
+            "y": 191
+          },
+          "inventoryAccount": {
+            "x": 811,
+            "y": 191
+          }
+        }
+      },
+      "writeOutcome": {
+        "changed": true,
+        "status": "cleaned-existing-row-description",
+        "reason": "Cleaned Beschreibung after confirming 1140 was already in the Lagerkonto column.",
+        "descriptionCleaned": true,
+        "beforeClassified": {
+          "pageContextVisible": true,
+          "targetLocationVisible": true,
+          "targetGroupVisible": true,
+          "targetAccountVisible": true,
+          "rowSnippet": "SAAR-HL WARE 1140 1140 Verwenden Sie die NACH-LINKS- und NACH-RECHTS-TASTE, um die Gro e anzupassen. Verwenden Sie die ESC-Taste, um den Vorgang ruckgangig zu machen, oder die EINGABETASTE, um zu akzeptieren. Liste mit Titel Lagerbuchung Einrichtung hat jetzt einen Artikel Lagerortcode, Sortierreihenfolge Aufsteigend Lagerbuchungsgruppencode, Sortierreihenfolge Aufsteigend var requestExecutorSettings = {",
+          "dangerousTextVisible": false
+        },
+        "beforeColumns": {
+          "targetRowFound": true,
+          "targetAccountInInventoryAccountColumn": true,
+          "targetAccountInDescriptionColumn": true,
+          "rowY": 174,
+          "cells": [
+            {
+              "text": "SAAR-HL",
+              "x": 193,
+              "y": 174,
+              "w": 117,
+              "h": 34
+            },
+            {
+              "text": "SAAR-HL",
+              "x": 194,
+              "y": 179,
+              "w": 61,
+              "h": 25
+            },
+            {
+              "text": "Weitere Optionen anzeigen",
+              "x": 311,
+              "y": 175,
+              "w": 32,
+              "h": 32
+            },
+            {
+              "text": "WARE",
+              "x": 344,
+              "y": 174,
+              "w": 131,
+              "h": 34
+            },
+            {
+              "text": "WARE",
+              "x": 345,
+              "y": 179,
+              "w": 42,
+              "h": 25
+            },
+            {
+              "text": "1140",
+              "x": 475,
+              "y": 174,
+              "w": 241,
+              "h": 34
+            },
+            {
+              "text": "1140",
+              "x": 778,
+              "y": 174,
+              "w": 131,
+              "h": 34
+            },
+            {
+              "text": "(Leer)",
+              "x": 1027,
+              "y": 179,
+              "w": 5,
+              "h": 25
+            },
+            {
+              "text": "(Leer)",
+              "x": 1144,
+              "y": 179,
+              "w": 5,
+              "h": 25
+            },
+            {
+              "text": "(Leer)",
+              "x": 1261,
+              "y": 179,
+              "w": 5,
+              "h": 25
+            },
+            {
+              "text": "(Leer)",
+              "x": 1378,
+              "y": 179,
+              "w": 5,
+              "h": 25
+            }
+          ],
+          "columns": {
+            "location": {
+              "text": "Lagerortcode",
+              "x": 198,
+              "y": 150,
+              "w": 70,
+              "h": 16
+            },
+            "group": {
+              "text": "Lagerbuchungsgruppencode",
+              "x": 349,
+              "y": 134,
+              "w": 152,
+              "h": 16
+            },
+            "description": {
+              "text": "Beschreibung",
+              "x": 480,
+              "y": 150,
+              "w": 72,
+              "h": 16
+            },
+            "inventoryAccount": {
+              "text": "Lagerkonto",
+              "x": 783,
+              "y": 150,
+              "w": 60,
+              "h": 16
+            },
+            "nextAfterInventoryAccount": {
+              "text": "Lagerkonto (Interim)",
+              "x": 914,
+              "y": 134,
+              "w": 60,
+              "h": 32
+            }
+          },
+          "repairClick": {
+            "description": {
+              "x": 508,
+              "y": 191
+            },
+            "inventoryAccount": {
+              "x": 811,
+              "y": 191
+            }
+          }
+        }
+      }
+    },
+    "reopen": {
+      "step": "reopen-proof",
+      "targetSetup": {
+        "locationCode": "SAAR-HL",
+        "inventoryPostingGroupCode": "WARE",
+        "inventoryAccount": "1140",
+        "inventoryAccountName": "Waren (Bestand)",
+        "purpose": "Minimale Inventory-Posting-Setup-Zeile fuer den ersten Universaarl-Warenbestand."
+      },
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=5826&company=UNIVERSAARL-DE",
+      "title": "Lagerbuchung Einrichtung",
+      "text": "Lagerbuchung Einrichtung:\nNeu\nListe bearbeiten\nLagerortcode\nLagerbuchungsgruppencode\nLagerkonto\nLagerkonto (Interim)\nSAAR-HL\nWARE Warenbestand\n1140\nListe mit Titel Lagerbuchung Einrichtung hat jetzt einen Artikel\nLagerortcode, Sortierreihenfolge Aufsteigend\nLagerbuchungsgruppencode, Sortierreihenfolge Aufsteigend",
+      "visible": {
+        "pageContextVisible": true,
+        "targetLocationVisible": true,
+        "targetGroupVisible": true,
+        "targetAccountVisible": true,
+        "rowSnippet": "SAAR-HL WARE Warenbestand 1140 Liste mit Titel Lagerbuchung Einrichtung hat jetzt einen Artikel Lagerortcode, Sortierreihenfolge Aufsteigend Lagerbuchungsgruppencode, Sortierreihenfolge Aufsteigend",
+        "dangerousTextVisible": false,
+        "targetRowFound": true,
+        "targetAccountInInventoryAccountColumn": true,
+        "targetAccountInDescriptionColumn": false
+      },
+      "columnAware": {
+        "targetRowFound": true,
+        "targetAccountInInventoryAccountColumn": true,
+        "targetAccountInDescriptionColumn": false,
+        "rowY": 174,
+        "cells": [
+          {
+            "text": "SAAR-HL",
+            "x": 193,
+            "y": 174,
+            "w": 117,
+            "h": 34
+          },
+          {
+            "text": "SAAR-HL",
+            "x": 194,
+            "y": 179,
+            "w": 61,
+            "h": 25
+          },
+          {
+            "text": "Weitere Optionen anzeigen",
+            "x": 311,
+            "y": 175,
+            "w": 32,
+            "h": 32
+          },
+          {
+            "text": "WARE",
+            "x": 344,
+            "y": 174,
+            "w": 131,
+            "h": 34
+          },
+          {
+            "text": "WARE",
+            "x": 345,
+            "y": 179,
+            "w": 42,
+            "h": 25
+          },
+          {
+            "text": "Warenbestand",
+            "x": 475,
+            "y": 174,
+            "w": 241,
+            "h": 34
+          },
+          {
+            "text": "1140",
+            "x": 778,
+            "y": 174,
+            "w": 131,
+            "h": 34
+          },
+          {
+            "text": "(Leer)",
+            "x": 1027,
+            "y": 179,
+            "w": 5,
+            "h": 25
+          },
+          {
+            "text": "(Leer)",
+            "x": 1144,
+            "y": 179,
+            "w": 5,
+            "h": 25
+          },
+          {
+            "text": "(Leer)",
+            "x": 1261,
+            "y": 179,
+            "w": 5,
+            "h": 25
+          },
+          {
+            "text": "(Leer)",
+            "x": 1378,
+            "y": 179,
+            "w": 5,
+            "h": 25
+          }
+        ],
+        "columns": {
+          "location": {
+            "text": "Lagerortcode",
+            "x": 198,
+            "y": 150,
+            "w": 70,
+            "h": 16
+          },
+          "group": {
+            "text": "Lagerbuchungsgruppencode",
+            "x": 349,
+            "y": 134,
+            "w": 152,
+            "h": 16
+          },
+          "description": {
+            "text": "Beschreibung",
+            "x": 480,
+            "y": 150,
+            "w": 72,
+            "h": 16
+          },
+          "inventoryAccount": {
+            "text": "Lagerkonto",
+            "x": 783,
+            "y": 150,
+            "w": 60,
+            "h": 16
+          },
+          "nextAfterInventoryAccount": {
+            "text": "Lagerkonto (Interim)",
+            "x": 914,
+            "y": 134,
+            "w": 60,
+            "h": 32
+          }
+        },
+        "repairClick": {
+          "description": {
+            "x": 508,
+            "y": 191
+          },
+          "inventoryAccount": {
+            "x": 811,
+            "y": 191
+          }
+        }
+      }
+    }
+  },
+  "nextStepDecision": {
+    "currentCase": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-038-O2C-PREFLIGHT",
+    "lastEvidenceSummary": "SAAR-HL + WARE + 1140 is visible on Page 5826 after reopen.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "O2C is still too early; the next narrow step is assigning proven posting fields to the item, not a process document.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
+        "status": "ready-next",
+        "reason": "Setup dependencies are individually and jointly proven."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C still waits for item field assignment, VAT and General Posting Setup."
+      },
+      {
+        "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
+        "status": "ready-after-current",
+        "reason": "VAT remains a separate foundation lane and must not be mixed with inventory setup."
+      },
+      {
+        "caseId": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+        "status": "blocked",
+        "reason": "Vendor numbering remains parked and separate."
+      }
+    ],
+    "queueChangesMade": [
+      "Mark TARGET-050 done and insert TARGET-051 item posting-field assignment gate."
+    ],
+    "selectedNextCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
+    "whySelectedNextCaseIsBest": "The item now has enough inventory setup dependencies to attempt a narrow field assignment later.",
+    "risksBeforeNextCase": [
+      "Do not claim inventory posting readiness before item field assignment and Preview Posting.",
+      "Keep VAT and General Posting Setup as separate lanes.",
+      "Keep Preview Posting and Posting false."
+    ],
+    "requiredPreparation": [
+      "Create a narrow item posting-fields assignment case for U-ITEM-HW100 only after reviewing TARGET-045B field visibility."
+    ]
+  },
+  "nextCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
+  "statePatch": {
+    "current": {
+      "activeArea": "universaarl-item-posting-fields-controlled-assignment-gate",
+      "activeCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
+      "active_case_file": ".agent/state/cases/target-051-item-posting-fields-controlled-assignment-gate.json",
+      "nextCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE"
+    },
+    "lastRunSummary": {
+      "caseId": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+      "status": "observed",
+      "instance": "playthru",
+      "company": "UNIVERSAARL-DE",
+      "summary": "TARGET-050 proved SAAR-HL + WARE + Beschreibung Warenbestand + Lagerkonto 1140 as Inventory Posting Setup row after Page 5826 reopen. Screenshot QA caught and corrected the earlier misplaced Beschreibung value. Item assignment, Preview Posting and Posting remain locked.",
+      "nextCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE"
+    },
+    "activeCase": {
+      "status": "done",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-050-inventory-posting-setup-controlled-write-gate/TARGET-050-result.json",
+      "completedAt": "2026-07-01T23:58:56.891Z",
+      "nextCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE"
+    }
+  },
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run fibu:target:inventory-posting-setup-write-gate",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/target-050-inventory-posting-setup-controlled-write-gate/TARGET-050-result.json",
+    "npm run check:encoding",
+    "git diff --check"
+  ],
+  "uiLearning": "Business Central Page 5826 needs Liste bearbeiten for the editable matrix controls. Text-only row matching is not enough: screenshot QA and DOM geometry must verify that account values sit in the Lagerkonto column, not Beschreibung."
+}

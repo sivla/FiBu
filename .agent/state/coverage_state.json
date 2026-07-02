@@ -820,12 +820,12 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-07-02T00:00:00.000Z",
-  "activeArea": "universaarl-inventory-posting-setup-controlled-write-gate",
+  "updatedAt": "2026-07-02T00:00:45.149Z",
+  "activeArea": "universaarl-item-posting-fields-controlled-assignment-gate",
   "currentBlock": "Foundation checkpoint needed before master data: General Posting Setup Page 314 and VAT matrix are parked; Dimensions starter set is visible but Global/Default Dimensions and posting effects are not proven.",
-  "latestPracticalCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+  "latestPracticalCase": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
   "latestReviewCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
-  "nextCase": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+  "nextCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -1046,7 +1046,7 @@
     "playwright/projects/fibu-book5/BC-ERROR-BLOCKER-ATLAS.md",
     "playwright/projects/fibu-book5/BC-PROCESS-COVERAGE-ROADMAP.md"
   ],
-  "currentCoverageFocus": "TARGET-044B selected TARGET-044C no-apply Personalize discovery before any customer/item field write.",
+  "currentCoverageFocus": "TARGET-050 proved one Inventory Posting Setup row SAAR-HL + WARE + 1140 after Page 5826 reopen; TARGET-051 is next for U-ITEM-HW100 item posting-field assignment. No VAT, General Posting Setup, Preview Posting or Posting is proven.",
   "latestCoverageUpdate": {
     "at": "2026-06-28T19:28:00.000+02:00",
     "type": "p2p-011-purchase-lines-action-discovery-tested",
@@ -2376,7 +2376,7 @@
     "finalScreenshotNeeded": true,
     "updatedAt": "2026-06-29T23:59:00+02:00"
   },
-  "activeCase": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+  "activeCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
   "active_case_file": ".agent/state/cases/target-036-master-data-first-controlled-write-decision.json",
   "latestManufacturing005": {
     "caseId": "MANUFACTURING-005-CHAPTER14-LAB-VS-TARGET-CLEANUP",
@@ -4649,7 +4649,7 @@
     "nextCase": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
     "updatedAt": "2026-07-01T09:03:36.035Z"
   },
-  "nextQueueItem": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+  "nextQueueItem": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
   "latestTarget036MasterDataWriteDecision": {
     "caseId": "TARGET-036-MASTER-DATA-FIRST-CONTROLLED-WRITE-DECISION",
     "status": "source-backed-decision-no-write",
@@ -5313,5 +5313,49 @@
     "apiShortcut": false,
     "summary": "WARE / Warenbestand is visible on Page 112 Lagerbuchungsgruppen after reopen. This proves only the Item Posting Group row, not Inventory Posting Setup or posting readiness.",
     "nextCase": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE"
+  },
+  "latestTarget050InventoryPostingSetupControlledWriteGate": {
+    "caseId": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+    "status": "observed",
+    "completedAt": "2026-07-02T00:00:45.149Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-050-inventory-posting-setup-controlled-write-gate/TARGET-050-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "pageId": 5826,
+    "targetSetup": {
+      "locationCode": "SAAR-HL",
+      "inventoryPostingGroupCode": "WARE",
+      "inventoryAccount": "1140",
+      "inventoryAccountName": "Waren (Bestand)",
+      "purpose": "Minimale Inventory-Posting-Setup-Zeile fuer den ersten Universaarl-Warenbestand."
+    },
+    "setupChanged": true,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-050-010-before-inventory-posting-setup.png",
+      "playwright/projects/fibu-book5/img/target-050-020-after-inventory-posting-setup-route.png",
+      "playwright/projects/fibu-book5/img/target-050-030-reopen-proof.png"
+    ],
+    "proved": [
+      "Business Central stayed in playthru / UNIVERSAARL-DE.",
+      "Page 5826 Lagerbuchung Einrichtung / Inventory Posting Setup was opened.",
+      "SAAR-HL + WARE + 1140 is visible after Page 5826 reopen.",
+      "A controlled UI write was attempted only for the SAAR-HL + WARE + 1140 Inventory Posting Setup row.",
+      "No item, VAT setup, General Posting Setup, document, Preview Posting, Posting or API shortcut occurred."
+    ],
+    "notProved": [
+      "No item card assignment is proven.",
+      "No inventory posting readiness is proven.",
+      "No Preview Posting is proven.",
+      "No Posting is proven.",
+      "No Item Ledger Entry, Value Entry, G/L Entry or VAT Entry is proven.",
+      "No complete SKR04 chart, tax-advisor approval or legal compliance is proven."
+    ],
+    "uiLearning": "Page 5826 list editing needs Liste bearbeiten; in edit mode the row uses shifted input controls. The test now verifies 1140 by Lagerkonto column geometry and cleans a misplaced Beschreibung value before accepting evidence.",
+    "nextCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE"
   }
 }

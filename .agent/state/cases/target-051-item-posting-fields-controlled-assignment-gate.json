@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
+  "status": "ready-next",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "sourceCase": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+  "targetWorld": "Universaarl",
+  "activeArea": "universaarl-item-posting-fields-controlled-assignment-gate",
+  "purpose": "Use the newly proven inventory setup dependency only to attempt a narrow item posting-field assignment on U-ITEM-HW100, without VAT, General Posting Setup, document, Preview Posting or Posting.",
+  "targetItem": {
+    "no": "U-ITEM-HW100",
+    "knownName": "Universaarl Hardware 100",
+    "baseUnitOfMeasure": "STK",
+    "candidateItemPostingGroup": "WARE"
+  },
+  "sourceEvidence": [
+    "TARGET-036E2 proves U-ITEM-HW100 / Universaarl Hardware 100 with Base Unit STK after reopen.",
+    "TARGET-049 proves WARE / Warenbestand as Item Posting Group after reopen.",
+    "TARGET-050 proves Inventory Posting Setup SAAR-HL + WARE + 1140 after reopen."
+  ],
+  "allowedActions": [
+    "open-business-central-playthru",
+    "confirm-company-universaarl-de",
+    "open-item-card-u-item-hw100",
+    "inspect-item-posting-fields",
+    "write-only-the-item-posting-group-field-if-visible-and-clear",
+    "reopen-proof-item-card",
+    "write-evidence-result",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "create-item",
+    "change-item-number-or-name",
+    "change-base-unit-of-measure",
+    "change-gen-prod-posting-group",
+    "change-vat-prod-posting-group",
+    "change-costing-method",
+    "change-inventory-posting-setup",
+    "change-vat-posting-setup",
+    "change-general-posting-setup",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-inventory-posting-readiness",
+    "claim-posting-readiness",
+    "claim-tax-advisor-approved",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "smartDecision": {
+    "whyNow": "TARGET-050 removed the smallest inventory setup dependency. The next narrow useful step is to see whether U-ITEM-HW100 can carry the proven Item Posting Group WARE without touching VAT or General Posting Setup.",
+    "fieldsToChangeOnlyIfClear": [
+      "Item Posting Group / Lagerbuchungsgruppe = WARE"
+    ],
+    "fieldsNotToTouch": [
+      "No.",
+      "Description/Name",
+      "Base Unit of Measure",
+      "Gen. Prod. Posting Group",
+      "VAT Prod. Posting Group",
+      "Costing Method",
+      "Inventory Posting Setup",
+      "VAT Posting Setup",
+      "General Posting Setup"
+    ],
+    "fallback": "If the Item Posting Group field is not visibly and safely editable, stop with UI diagnostics and no write."
+  },
+  "acceptanceCriteria": [
+    "Business Central remains in playthru / UNIVERSAARL-DE.",
+    "U-ITEM-HW100 item card is visible.",
+    "Only WARE is assigned to the Lagerbuchungsgruppe/Item Posting Group field, or the case blocks before change.",
+    "No VAT Product Posting Group, Gen. Product Posting Group, costing method, document, Preview Posting, Posting or API shortcut occurs.",
+    "Reopen proof and screenshot QA show what is visible and what remains not proven."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-038-O2C-PREFLIGHT",
+    "lastEvidenceSummary": "SAAR-HL + WARE + 1140 is visible on Page 5826 after reopen.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "O2C remains premature; item field assignment is the next narrow dependency after Inventory Posting Setup.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
+        "status": "ready-next",
+        "reason": "Setup dependencies are individually and jointly proven."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C still waits for item field assignment, VAT and General Posting Setup."
+      },
+      {
+        "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
+        "status": "ready-after-current",
+        "reason": "VAT remains a separate foundation lane and must not be mixed with inventory setup."
+      },
+      {
+        "caseId": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+        "status": "blocked",
+        "reason": "Vendor numbering remains parked and separate."
+      }
+    ],
+    "queueChangesMade": [
+      "Activate TARGET-051 after TARGET-050 completed."
+    ],
+    "selectedNextCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
+    "whySelectedNextCaseIsBest": "The item now has enough inventory setup dependencies to attempt a narrow field assignment later.",
+    "risksBeforeNextCase": [
+      "Do not claim inventory posting readiness before item field assignment and Preview Posting.",
+      "Keep VAT and General Posting Setup as separate lanes.",
+      "Keep Preview Posting and Posting false."
+    ],
+    "requiredPreparation": [
+      "Create a narrow item posting-fields assignment case for U-ITEM-HW100 only after reviewing TARGET-045B field visibility."
+    ]
+  },
+  "updatedAt": "2026-07-02T00:03:20.818Z"
+}
