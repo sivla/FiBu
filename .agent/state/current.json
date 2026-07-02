@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-02T00:17:42.893Z",
+  "updatedAt": "2026-07-02T00:31:01.710Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-item-posting-fields-foundation-checkpoint",
-  "activeCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
-  "active_case_file": ".agent/state/cases/target-052-item-posting-fields-foundation-checkpoint.json",
+  "activeArea": "universaarl-item-product-vat-posting-fields-source-decision",
+  "activeCase": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+  "active_case_file": ".agent/state/cases/target-053-item-product-vat-posting-fields-source-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -19,12 +19,11 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central-playthru",
-    "confirm-company-universaarl-de",
-    "open-item-card-u-item-hw100",
-    "read-item-posting-fields",
-    "screenshot-qa",
-    "write-evidence-result",
+    "read-existing-evidence",
+    "read-microsoft-learn-and-source-registry",
+    "classify-target-values",
+    "write-decision-json",
+    "write-case-result",
     "update-state-and-queue"
   ],
   "forbiddenActions": [
@@ -53,8 +52,8 @@
     "fake-evidence",
     "book-claim-without-evidence"
   ],
-  "nextCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
-  "nextStep": "Run TARGET-052 as a narrow checkpoint for U-ITEM-HW100 posting-field completeness before VAT, General Posting Setup, documents, Preview Posting or Posting.",
+  "nextCase": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+  "nextStep": "Run TARGET-053 as a source-backed decision for U-ITEM-HW100 Product Posting Group and VAT Product Posting Group target values before any write.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -7969,45 +7968,50 @@
     "uiLearning": "BC Page 456 URL filters require quoted table/field syntax for table names with punctuation; the filtered U-VEND list shows checkbox columns, but the write locator still must be source-backed or assisted before toggling Manual Nos."
   },
   "nextStepDecision": {
-    "currentCase": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-038-O2C-PREFLIGHT",
-    "lastEvidenceSummary": "SAAR-HL + WARE + 1140 is visible on Page 5826 after reopen.",
+    "currentCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
+    "plannedNextCaseBeforeReview": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
+    "lastEvidenceSummary": "TARGET-051 proved WARE on U-ITEM-HW100 after reopen. TARGET-052 checked the current item card without writes.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "O2C is still too early; the next narrow step is assigning proven posting fields to the item, not a process document.",
+    "reason": "VAT matrix work is still too broad. The next useful step is a source decision for the item Product Posting Group and VAT Product Posting Group target values before any write.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
+        "caseId": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
         "status": "ready-next",
-        "reason": "Setup dependencies are individually and jointly proven."
-      },
-      {
-        "caseId": "TARGET-038-O2C-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "O2C still waits for item field assignment, VAT and General Posting Setup."
+        "reason": "The exact remaining item fields are visible, but values must be source-backed before a write."
       },
       {
         "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
         "status": "ready-after-current",
-        "reason": "VAT remains a separate foundation lane and must not be mixed with inventory setup."
+        "reason": "VAT Posting Setup remains relevant, but item VAT product value should be decided first."
+      },
+      {
+        "caseId": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "General Posting Setup should follow source-backed business/product group values."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C needs item/customer posting fields plus VAT and general posting setup readiness."
       },
       {
         "caseId": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
         "status": "blocked",
-        "reason": "Vendor numbering remains parked and separate."
+        "reason": "Vendor manual number-series checkbox remains parked and unrelated to this item foundation lane."
       }
     ],
     "queueChangesMade": [
-      "Mark TARGET-050 done and insert TARGET-051 item posting-field assignment gate."
+      "Selected TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION after TARGET-052 checkpoint."
     ],
-    "selectedNextCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
-    "whySelectedNextCaseIsBest": "The item now has enough inventory setup dependencies to attempt a narrow field assignment later.",
+    "selectedNextCase": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+    "whySelectedNextCaseIsBest": "It resolves the next narrow item-card dependency without jumping to VAT setup, documents or posting.",
     "risksBeforeNextCase": [
-      "Do not claim inventory posting readiness before item field assignment and Preview Posting.",
-      "Keep VAT and General Posting Setup as separate lanes.",
+      "Do not claim item posting readiness from WARE alone.",
+      "Do not set Product Posting Group or VAT Product Posting Group without a source-backed target value.",
       "Keep Preview Posting and Posting false."
     ],
     "requiredPreparation": [
-      "Create a narrow item posting-fields assignment case for U-ITEM-HW100 only after reviewing TARGET-045B field visibility."
+      "Use Microsoft Learn and existing Universaarl setup evidence to choose source-backed product/VAT product target values."
     ]
   },
   "latestTarget037MasterdataFoundationCheckpoint": {
@@ -8380,7 +8384,7 @@
     "updatedAt": "2026-07-01T14:02:31.619Z"
   },
   "lastRunSummaryPath": "playwright/projects/fibu-book5/evidence/target-044d-customer-item-posting-fields-alternative-page-route/TARGET-044D-result.json",
-  "lastEvidenceSummary": "TARGET-050 proved Page 5826 Inventory Posting Setup row SAAR-HL + WARE + 1140 after reopen in playthru / UNIVERSAARL-DE. Description was cleaned to Warenbestand. No item, VAT setup, General Posting Setup, document, Preview Posting, Posting or API shortcut occurred.",
+  "lastEvidenceSummary": "TARGET-052 proved U-ITEM-HW100 in playthru / UNIVERSAARL-DE read-only with STK, FIFO, WARE, and visible but empty Product Posting Group and VAT Product Posting Group fields. No setup, master data, document, Preview Posting, Posting or API shortcut occurred.",
   "authUnblock": {
     "status": "resolved-local-shell-validation-present",
     "lastCheckedAt": "2026-07-01T21:25:00.977Z",
@@ -8426,7 +8430,7 @@
       "apiShortcut": false
     }
   ],
-  "lastCompletedResultPath": "playwright/projects/fibu-book5/evidence/target-050-inventory-posting-setup-controlled-write-gate/TARGET-050-result.json",
+  "lastCompletedResultPath": "playwright/projects/fibu-book5/evidence/target-052-item-posting-fields-foundation-checkpoint/TARGET-052-result.json",
   "latestTarget045B": {
     "caseId": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
     "resultPath": "playwright/projects/fibu-book5/evidence/target-045b-customer-item-posting-fields-readonly-route-retry/TARGET-045B-result.json",
@@ -8686,5 +8690,62 @@
       "apiShortcut": false
     },
     "nextCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT"
+  },
+  "latestTarget052": {
+    "caseId": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-052-item-posting-fields-foundation-checkpoint/TARGET-052-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "summary": "TARGET-052 proved U-ITEM-HW100 in playthru / UNIVERSAARL-DE read-only with STK, FIFO, WARE, and visible but empty Product Posting Group and VAT Product Posting Group fields. No setup, master data, document, Preview Posting, Posting or API shortcut occurred.",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-052-010-item-posting-fields-checkpoint.png"
+    ],
+    "fieldCheckpoint": {
+      "visibleTerms": [
+        "Basiseinheit",
+        "Lagerbuchungsgruppe",
+        "Produktbuchungsgruppe",
+        "MwSt.-Produktbuchungsgruppe",
+        "Lagerabgangsmethode",
+        "FIFO",
+        "WARE",
+        "STK"
+      ],
+      "missingTerms": [],
+      "visible": {
+        "itemCardContext": true,
+        "targetItemNo": true,
+        "targetItemName": true,
+        "baseUnitStk": true,
+        "itemPostingGroupWare": true,
+        "productPostingGroupTerm": true,
+        "vatProductPostingGroupTerm": true,
+        "costingFifo": true,
+        "forbiddenSignals": false
+      },
+      "fieldWindow": [
+        "U-ITEM-HW100 Universaarl Hardware 100Inventory",
+        "U-ITEM-HW100",
+        "Universaarl Hardware 100Inventory",
+        "STK",
+        "UNIVERSAARL HARDWARE 100INVENTORY",
+        "Lagerabgangsmethode",
+        "FIFO",
+        "Produktbuchungsgruppe",
+        "MwSt.-Produktbuchungsgruppe",
+        "Lagerbuchungsgruppe",
+        "WARE",
+        "U-ITEM-HW100 Universaarl Hardware 100Inventory. Artikelkarte"
+      ]
+    },
+    "changed": {
+      "setupChanged": false,
+      "masterDataChanged": false,
+      "previewPosting": false,
+      "posted": false,
+      "apiShortcut": false
+    },
+    "nextCase": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION"
   }
 }

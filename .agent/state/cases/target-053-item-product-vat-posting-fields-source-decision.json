@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+  "status": "ready-next",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "sourceCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
+  "targetWorld": "Universaarl",
+  "activeArea": "universaarl-item-product-vat-posting-fields-source-decision",
+  "purpose": "Decide source-backed target values for U-ITEM-HW100 Product Posting Group and VAT Product Posting Group before any item-card write, VAT setup, General Posting Setup, document, Preview Posting or Posting.",
+  "targetItem": {
+    "no": "U-ITEM-HW100",
+    "knownName": "Universaarl Hardware 100",
+    "baseUnitOfMeasure": "STK",
+    "itemPostingGroup": "WARE",
+    "openFields": [
+      "Product Posting Group / Produktbuchungsgruppe",
+      "VAT Product Posting Group / MwSt.-Produktbuchungsgruppe"
+    ]
+  },
+  "sourceEvidence": [
+    "TARGET-036E2 proves U-ITEM-HW100 / Universaarl Hardware 100 with Base Unit STK after reopen.",
+    "TARGET-049 proves WARE / Warenbestand as Item Posting Group after reopen.",
+    "TARGET-050 proves Inventory Posting Setup SAAR-HL + WARE + 1140 after reopen.",
+    "TARGET-051 proves WARE visible on U-ITEM-HW100 after reopen.",
+    "TARGET-052 proves Product Posting Group and VAT Product Posting Group field terms are visible on U-ITEM-HW100, but values remain unproven and unassigned."
+  ],
+  "allowedActions": [
+    "read-existing-evidence",
+    "read-microsoft-learn-and-source-registry",
+    "classify-target-values",
+    "write-decision-json",
+    "write-case-result",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "create-item",
+    "change-item-number-or-name",
+    "change-base-unit-of-measure",
+    "change-item-posting-group",
+    "change-gen-prod-posting-group",
+    "change-vat-prod-posting-group",
+    "change-costing-method",
+    "change-inventory-posting-setup",
+    "change-vat-posting-setup",
+    "change-general-posting-setup",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-inventory-posting-readiness",
+    "claim-posting-readiness",
+    "claim-tax-advisor-approved",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "smartDecision": {
+    "whyNow": "TARGET-052 shows the remaining item-card posting fields. Writing values without a source-backed decision would make later VAT and General Posting Setup evidence weaker.",
+    "fieldsToChangeOnlyIfClear": [],
+    "fieldsNotToTouch": [
+      "Item Posting Group / Lagerbuchungsgruppe",
+      "Gen. Prod. Posting Group / Produktbuchungsgruppe",
+      "VAT Prod. Posting Group / MwSt.-Produktbuchungsgruppe",
+      "Costing Method / Lagerabgangsmethode",
+      "Inventory Posting Setup",
+      "VAT Posting Setup",
+      "General Posting Setup"
+    ],
+    "fallback": "If target values cannot be source-backed, park item writes and run a source/UI discovery case instead."
+  },
+  "acceptanceCriteria": [
+    "No Business Central write occurs.",
+    "Candidate Product Posting Group and VAT Product Posting Group values are selected or explicitly blocked.",
+    "Decision cites existing Universaarl evidence and source registry / Microsoft Learn mapping.",
+    "The next write case is created only if field values and boundaries are clear.",
+    "No setup, master data, document, Preview Posting or Posting occurs."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
+    "plannedNextCaseBeforeReview": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
+    "lastEvidenceSummary": "TARGET-052 proved U-ITEM-HW100 with STK, FIFO, WARE and visible Product/VAT Product Posting Group field terms. Values for Product and VAT Product Posting Group remain unproven.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "VAT matrix work is still too broad until item product/VAT product target values are source-backed.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+        "status": "ready-next",
+        "reason": "It chooses values before any item-card write."
+      },
+      {
+        "caseId": "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
+        "status": "ready-after-current",
+        "reason": "Only valid if TARGET-053 selects source-backed values."
+      },
+      {
+        "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
+        "status": "ready-after-current",
+        "reason": "VAT setup remains necessary after item VAT product value decision."
+      },
+      {
+        "caseId": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "General Posting Setup needs source-backed product group values first."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C remains locked until item/customer posting fields plus VAT/general setup are ready."
+      }
+    ],
+    "queueChangesMade": [
+      "TARGET-052 completed; TARGET-053 selected as next narrow source decision."
+    ],
+    "selectedNextCase": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+    "whySelectedNextCaseIsBest": "It prevents a blind write into the two visible-but-empty item posting fields.",
+    "risksBeforeNextCase": [
+      "Do not treat WARE as full posting readiness.",
+      "Do not infer VAT or product posting values without sources.",
+      "Keep Preview Posting and Posting false."
+    ],
+    "requiredPreparation": [
+      "Read TARGET-045A field source map and current source registry.",
+      "Map candidate values such as WAREN and VAT19 to actual setup state before any write."
+    ]
+  },
+  "updatedAt": "2026-07-02T00:31:01.710Z"
+}

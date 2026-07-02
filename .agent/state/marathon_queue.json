@@ -5,7 +5,7 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "queueId": "TARGET-MARATHON-002-UNIVERSAARL-REPO-READONLY-PREP",
-  "reason": "TARGET-050 proved SAAR-HL + WARE + 1140 in Inventory Posting Setup; TARGET-051 is now the next narrow item field gate.",
+  "reason": "TARGET-052 proved item-card field visibility after WARE assignment; TARGET-053 is now the next source-backed item product/VAT product field decision.",
   "noEffectiveBusinessCentralActions": false,
   "forbiddenUntilUnblocked": [],
   "unblockCriteria": "Satisfied: UNIVERSAARL-DE exists and active Role Center context / Firmendaten read-only proof is available.",
@@ -4060,7 +4060,7 @@
     {
       "id": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
       "order": 10190,
-      "status": "pending",
+      "status": "done",
       "priority": "high",
       "category": "item-posting-fields-foundation-checkpoint",
       "expectedImpact": "classify-complete-and-open-item-posting-fields-before-vat-general-posting-or-documents",
@@ -4071,7 +4071,26 @@
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
       "lookaheadStatus": "ready-next",
-      "reason": "TARGET-051 changed item master data; checkpoint WARE, STK and remaining posting fields before broader setup or documents."
+      "reason": "TARGET-051 changed item master data; checkpoint WARE, STK and remaining posting fields before broader setup or documents.",
+      "completedAt": "2026-07-02T00:32:34.949Z",
+      "result": "Read-only item card checkpoint proved STK, FIFO, WARE and visible empty Product/VAT Product Posting Group fields.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-052-item-posting-fields-foundation-checkpoint/TARGET-052-result.json",
+      "nextCase": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION"
+    },
+    {
+      "id": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+      "order": 10191,
+      "status": "pending",
+      "category": "item-product-vat-posting-fields-source-decision",
+      "expectedImpact": "choose-source-backed-product-and-vat-product-posting-group-values-before-any-item-write",
+      "mayWorkEffectively": false,
+      "mayRunPlaywright": false,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Decide Product Posting Group and VAT Product Posting Group target values for U-ITEM-HW100 from sources and existing Universaarl evidence before any write.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "lookaheadStatus": "ready-next"
     }
   ],
   "lastUpdated": "2026-07-02T00:15:33.349Z",

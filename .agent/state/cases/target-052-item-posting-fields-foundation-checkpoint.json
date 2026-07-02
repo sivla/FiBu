@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
-  "status": "ready-next",
+  "status": "done",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -79,51 +79,73 @@
     "Next case is chosen from evidence, not queue inertia."
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-038-O2C-PREFLIGHT",
-    "lastEvidenceSummary": "TARGET-051 proved WARE on U-ITEM-HW100 after reopen, but no VAT Product Posting Group, Gen. Product Posting Group, document, Preview Posting or Posting occurred.",
+    "currentCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
+    "plannedNextCaseBeforeReview": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
+    "lastEvidenceSummary": "TARGET-051 proved WARE on U-ITEM-HW100 after reopen. TARGET-052 checked the current item card without writes.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "O2C/P2P remain too early; a checkpoint must classify remaining item and posting setup dependencies first.",
+    "reason": "VAT matrix work is still too broad. The next useful step is a source decision for the item Product Posting Group and VAT Product Posting Group target values before any write.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
+        "caseId": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
         "status": "ready-next",
-        "reason": "Directly validates the changed item card and remaining setup gaps."
+        "reason": "The exact remaining item fields are visible, but values must be source-backed before a write."
       },
       {
         "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
         "status": "ready-after-current",
-        "reason": "VAT lane may follow after the item checkpoint confirms no regression."
+        "reason": "VAT Posting Setup remains relevant, but item VAT product value should be decided first."
       },
       {
         "caseId": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-WRITE-GATE",
         "status": "needs-setup-first",
-        "reason": "General Posting Setup should be revisited only with precise matrix fields and no item-card ambiguity."
+        "reason": "General Posting Setup should follow source-backed business/product group values."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Needs item, customer, VAT and general posting setup readiness."
+        "reason": "O2C needs item/customer posting fields plus VAT and general posting setup readiness."
       },
       {
         "caseId": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
         "status": "blocked",
-        "reason": "Vendor numbering remains separate and parked."
+        "reason": "Vendor manual number-series checkbox remains parked and unrelated to this item foundation lane."
       }
     ],
     "queueChangesMade": [
-      "TARGET-051 done; TARGET-052 inserted as ready-next checkpoint."
+      "Selected TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION after TARGET-052 checkpoint."
     ],
-    "selectedNextCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
-    "whySelectedNextCaseIsBest": "It prevents a premature jump to documents and turns the item-card change into a stable foundation checkpoint.",
+    "selectedNextCase": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+    "whySelectedNextCaseIsBest": "It resolves the next narrow item-card dependency without jumping to VAT setup, documents or posting.",
     "risksBeforeNextCase": [
-      "Do not claim posting readiness.",
-      "Do not change VAT or General Posting Setup inside TARGET-052.",
+      "Do not claim item posting readiness from WARE alone.",
+      "Do not set Product Posting Group or VAT Product Posting Group without a source-backed target value.",
       "Keep Preview Posting and Posting false."
     ],
     "requiredPreparation": [
-      "Use only read-only item card inspection and screenshot QA."
+      "Use Microsoft Learn and existing Universaarl setup evidence to choose source-backed product/VAT product target values."
     ]
   },
-  "updatedAt": "2026-07-02T00:15:33.349Z"
+  "updatedAt": "2026-07-02T00:31:01.710Z",
+  "completedAt": "2026-07-02T00:31:01.710Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-052-item-posting-fields-foundation-checkpoint/TARGET-052-result.json",
+  "resultStatus": "observed",
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/target-052-010-item-posting-fields-checkpoint.png"
+  ],
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "U-ITEM-HW100 item card was visible read-only.",
+    "Base Unit STK and Item Posting Group WARE are visible on the item card checkpoint.",
+    "Product Posting Group and VAT Product Posting Group field terms are visible as open dependencies.",
+    "No item, setup, document, Preview Posting, Posting, payment or API shortcut occurred."
+  ],
+  "notProved": [
+    "No Product Posting Group value is proven or assigned.",
+    "No VAT Product Posting Group value is proven or assigned.",
+    "No General Posting Setup readiness is proven.",
+    "No VAT Posting Setup readiness is proven.",
+    "No O2C, P2P, document, Preview Posting, Posting, Item Ledger Entry, Value Entry, G/L Entry or VAT Entry is proven.",
+    "WARE on the item card is only a foundation signal, not posting readiness."
+  ],
+  "nextCase": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION"
 }

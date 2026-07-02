@@ -1,0 +1,273 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
+  "source": "playwright-readonly-foundation-checkpoint",
+  "resultStatus": "observed",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": {
+    "pageId": 30,
+    "name": "Artikelkarte / Item Card",
+    "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=30&company=UNIVERSAARL-DE&filter=Item.%27No.%27+IS+%27%40*U-ITEM-HW100*%27"
+  },
+  "targetItem": {
+    "no": "U-ITEM-HW100",
+    "name": "Universaarl Hardware 100",
+    "baseUnit": "STK",
+    "itemPostingGroup": "WARE"
+  },
+  "actionsTaken": [
+    "Opened Page 30 Artikelkarte / Item Card directly for U-ITEM-HW100.",
+    "Confirmed playthru / UNIVERSAARL-DE from URL context.",
+    "Expanded safe read-only card areas and captured field visibility.",
+    "Captured screenshot QA and compact text evidence.",
+    "Classified completed and remaining item posting-field dependencies."
+  ],
+  "actionsNotTaken": [
+    "No item was created.",
+    "No item field was changed.",
+    "No Item Posting Group was changed.",
+    "No Gen. Prod. Posting Group was changed.",
+    "No VAT Prod. Posting Group was changed.",
+    "No Costing Method was changed.",
+    "No Inventory Posting Setup was changed.",
+    "No VAT Posting Setup was changed.",
+    "No General Posting Setup was changed.",
+    "No document or draft was created.",
+    "No Preview Posting was run.",
+    "No Posting was run.",
+    "No payment was run.",
+    "No API shortcut was used.",
+    "No company switch was executed."
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/target-052-010-item-posting-fields-checkpoint.png"
+  ],
+  "fieldCheckpoint": {
+    "visibleTerms": [
+      "Basiseinheit",
+      "Lagerbuchungsgruppe",
+      "Produktbuchungsgruppe",
+      "MwSt.-Produktbuchungsgruppe",
+      "Lagerabgangsmethode",
+      "FIFO",
+      "WARE",
+      "STK"
+    ],
+    "missingTerms": [],
+    "visible": {
+      "itemCardContext": true,
+      "targetItemNo": true,
+      "targetItemName": true,
+      "baseUnitStk": true,
+      "itemPostingGroupWare": true,
+      "productPostingGroupTerm": true,
+      "vatProductPostingGroupTerm": true,
+      "costingFifo": true,
+      "forbiddenSignals": false
+    },
+    "fieldWindow": [
+      "U-ITEM-HW100 Universaarl Hardware 100Inventory",
+      "U-ITEM-HW100",
+      "Universaarl Hardware 100Inventory",
+      "STK",
+      "UNIVERSAARL HARDWARE 100INVENTORY",
+      "Lagerabgangsmethode",
+      "FIFO",
+      "Produktbuchungsgruppe",
+      "MwSt.-Produktbuchungsgruppe",
+      "Lagerbuchungsgruppe",
+      "WARE",
+      "U-ITEM-HW100 Universaarl Hardware 100Inventory. Artikelkarte"
+    ]
+  },
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "U-ITEM-HW100 item card was visible read-only.",
+    "Base Unit STK and Item Posting Group WARE are visible on the item card checkpoint.",
+    "Product Posting Group and VAT Product Posting Group field terms are visible as open dependencies.",
+    "No item, setup, document, Preview Posting, Posting, payment or API shortcut occurred."
+  ],
+  "notProved": [
+    "No Product Posting Group value is proven or assigned.",
+    "No VAT Product Posting Group value is proven or assigned.",
+    "No General Posting Setup readiness is proven.",
+    "No VAT Posting Setup readiness is proven.",
+    "No O2C, P2P, document, Preview Posting, Posting, Item Ledger Entry, Value Entry, G/L Entry or VAT Entry is proven.",
+    "WARE on the item card is only a foundation signal, not posting readiness."
+  ],
+  "blockedBy": [],
+  "warnings": [
+    "The next step must be a source decision for remaining item product/VAT product fields, not a blind write.",
+    "VAT and General Posting Setup remain separate gated lanes."
+  ],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true
+  },
+  "steps": [
+    {
+      "step": "smart-decision",
+      "whyNow": "TARGET-051 changed and proved WARE on U-ITEM-HW100; before continuing to VAT/General Posting/Document work, the remaining item-card dependencies must be classified read-only.",
+      "fieldsToChangeOnlyIfClear": [],
+      "fieldsNotToTouch": [
+        "Item Posting Group / Lagerbuchungsgruppe",
+        "Gen. Prod. Posting Group / Produktbuchungsgruppe",
+        "VAT Prod. Posting Group / MwSt.-Produktbuchungsgruppe",
+        "Costing Method / Lagerabgangsmethode",
+        "Inventory Posting Setup",
+        "VAT Posting Setup",
+        "General Posting Setup"
+      ],
+      "risk": "Moving directly to VAT, General Posting Setup or O2C would hide remaining item-card gaps.",
+      "fallback": "If read-only checkpoint is incomplete, create TARGET-052B UI recovery instead of writing any field."
+    },
+    {
+      "step": "read-only-reveal",
+      "clicks": [
+        "show-more-0",
+        "show-more-1",
+        "show-more-2"
+      ]
+    }
+  ],
+  "snapshot": {
+    "step": "read-only-checkpoint",
+    "targetItem": {
+      "no": "U-ITEM-HW100",
+      "name": "Universaarl Hardware 100",
+      "baseUnit": "STK",
+      "itemPostingGroup": "WARE"
+    },
+    "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=30&company=UNIVERSAARL-DE&filter=Item.%27No.%27+IS+%27%40*U-ITEM-HW100*%27",
+    "title": "Artikelkarte - U-ITEM-HW100 Universaarl Hardware 100Inventory",
+    "text": "Artikelkarte\nU-ITEM-HW100 Universaarl Hardware 100Inventory\nLagerhaltungsdaten erstellen\nU-ITEM-HW100\nUniversaarl Hardware 100Inventory\nBasiseinheit\nSTK\nLagerbestand\nUNIVERSAARL HARDWARE 100INVENTORY\nNegativen Lagerbestand verhindern\nEinstandspreise und Buchung\nLagerabgangsmethode\nFIFO\nBuchungsdetails\nProduktbuchungsgruppe\nMwSt.-Produktbuchungsgruppe\nLagerbuchungsgruppe\nWARE\nLager\nU-ITEM-HW100 Universaarl Hardware 100Inventory. Artikelkarte",
+    "visibleTerms": [
+      "Basiseinheit",
+      "Lagerbuchungsgruppe",
+      "Produktbuchungsgruppe",
+      "MwSt.-Produktbuchungsgruppe",
+      "Lagerabgangsmethode",
+      "FIFO",
+      "WARE",
+      "STK"
+    ],
+    "missingTerms": [],
+    "fieldWindow": [
+      "U-ITEM-HW100 Universaarl Hardware 100Inventory",
+      "U-ITEM-HW100",
+      "Universaarl Hardware 100Inventory",
+      "STK",
+      "UNIVERSAARL HARDWARE 100INVENTORY",
+      "Lagerabgangsmethode",
+      "FIFO",
+      "Produktbuchungsgruppe",
+      "MwSt.-Produktbuchungsgruppe",
+      "Lagerbuchungsgruppe",
+      "WARE",
+      "U-ITEM-HW100 Universaarl Hardware 100Inventory. Artikelkarte"
+    ],
+    "visible": {
+      "itemCardContext": true,
+      "targetItemNo": true,
+      "targetItemName": true,
+      "baseUnitStk": true,
+      "itemPostingGroupWare": true,
+      "productPostingGroupTerm": true,
+      "vatProductPostingGroupTerm": true,
+      "costingFifo": true,
+      "forbiddenSignals": false
+    },
+    "clicks": [
+      "show-more-0",
+      "show-more-1",
+      "show-more-2"
+    ]
+  },
+  "nextStepDecision": {
+    "currentCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
+    "plannedNextCaseBeforeReview": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
+    "lastEvidenceSummary": "TARGET-051 proved WARE on U-ITEM-HW100 after reopen. TARGET-052 checked the current item card without writes.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "VAT matrix work is still too broad. The next useful step is a source decision for the item Product Posting Group and VAT Product Posting Group target values before any write.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+        "status": "ready-next",
+        "reason": "The exact remaining item fields are visible, but values must be source-backed before a write."
+      },
+      {
+        "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
+        "status": "ready-after-current",
+        "reason": "VAT Posting Setup remains relevant, but item VAT product value should be decided first."
+      },
+      {
+        "caseId": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "General Posting Setup should follow source-backed business/product group values."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C needs item/customer posting fields plus VAT and general posting setup readiness."
+      },
+      {
+        "caseId": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+        "status": "blocked",
+        "reason": "Vendor manual number-series checkbox remains parked and unrelated to this item foundation lane."
+      }
+    ],
+    "queueChangesMade": [
+      "Selected TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION after TARGET-052 checkpoint."
+    ],
+    "selectedNextCase": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+    "whySelectedNextCaseIsBest": "It resolves the next narrow item-card dependency without jumping to VAT setup, documents or posting.",
+    "risksBeforeNextCase": [
+      "Do not claim item posting readiness from WARE alone.",
+      "Do not set Product Posting Group or VAT Product Posting Group without a source-backed target value.",
+      "Keep Preview Posting and Posting false."
+    ],
+    "requiredPreparation": [
+      "Use Microsoft Learn and existing Universaarl setup evidence to choose source-backed product/VAT product target values."
+    ]
+  },
+  "nextCase": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+  "statePatch": {
+    "current": {
+      "activeArea": "universaarl-item-product-vat-posting-fields-source-decision",
+      "activeCase": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+      "active_case_file": ".agent/state/cases/target-053-item-product-vat-posting-fields-source-decision.json",
+      "nextCase": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+      "nextStep": "Run TARGET-053 as a source-backed decision for U-ITEM-HW100 Product Posting Group and VAT Product Posting Group target values before any write."
+    },
+    "activeCase": {
+      "status": "done",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-052-item-posting-fields-foundation-checkpoint/TARGET-052-result.json",
+      "nextCase": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION"
+    }
+  },
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "TARGET-052 checkpoint proved the current item-card foundation signal and remaining item posting-field gaps without writes.",
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run fibu:target:item-posting-fields-foundation-checkpoint",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/target-052-item-posting-fields-foundation-checkpoint/TARGET-052-result.json",
+    "npm run check:encoding",
+    "git diff --check"
+  ]
+}

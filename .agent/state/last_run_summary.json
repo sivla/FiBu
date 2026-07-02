@@ -1,97 +1,97 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
-  "caseId": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
+  "runId": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
+  "caseId": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
   "status": "observed",
-  "runType": "playwright-controlled-masterdata-field-write",
+  "runType": "playwright-readonly-foundation-checkpoint",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "bcRun": true,
   "playwrightRun": true,
-  "summary": "TARGET-051 assigned WARE to U-ITEM-HW100 Lagerbuchungsgruppe on Page 30 and proved the value after reopen. No setup page, document, Preview Posting, Posting, payment or API shortcut was used.",
-  "changedInBC": true,
+  "summary": "TARGET-052 proved U-ITEM-HW100 in playthru / UNIVERSAARL-DE read-only with STK, FIFO, WARE, and visible but empty Product Posting Group and VAT Product Posting Group fields. No setup, master data, document, Preview Posting, Posting or API shortcut occurred.",
+  "changedInBC": false,
   "setupChanged": false,
   "setupChangeAttempted": false,
-  "masterDataChanged": true,
+  "masterDataChanged": false,
   "draftCreated": false,
   "previewPosting": false,
   "posted": false,
   "payment": false,
   "apiShortcut": false,
   "screenshots": [
-    "playwright/projects/fibu-book5/img/target-051-010-before-item-posting-field-assignment.png",
-    "playwright/projects/fibu-book5/img/target-051-020-after-item-posting-field-assignment-route.png",
-    "playwright/projects/fibu-book5/img/target-051-030-reopen-proof.png"
+    "playwright/projects/fibu-book5/img/target-052-010-item-posting-fields-checkpoint.png"
   ],
   "proved": [
     "Business Central stayed in playthru / UNIVERSAARL-DE.",
-    "U-ITEM-HW100 item card was visible.",
-    "WARE is visible on the item card after reopen.",
-    "No VAT Product Posting Group, Gen. Product Posting Group, Costing Method, document, Preview Posting, Posting or API shortcut occurred."
+    "U-ITEM-HW100 item card was visible read-only.",
+    "Base Unit STK and Item Posting Group WARE are visible on the item card checkpoint.",
+    "Product Posting Group and VAT Product Posting Group field terms are visible as open dependencies.",
+    "No item, setup, document, Preview Posting, Posting, payment or API shortcut occurred."
   ],
   "notProved": [
-    "Item posting group assignment is not proven unless WARE is visible after reopen.",
-    "No VAT Product Posting Group assignment is proven.",
-    "No Gen. Product Posting Group assignment is proven.",
-    "No inventory posting readiness is proven.",
-    "No document, Preview Posting, Posting, Item Ledger Entry, Value Entry, G/L Entry or VAT Entry is proven."
+    "No Product Posting Group value is proven or assigned.",
+    "No VAT Product Posting Group value is proven or assigned.",
+    "No General Posting Setup readiness is proven.",
+    "No VAT Posting Setup readiness is proven.",
+    "No O2C, P2P, document, Preview Posting, Posting, Item Ledger Entry, Value Entry, G/L Entry or VAT Entry is proven.",
+    "WARE on the item card is only a foundation signal, not posting readiness."
   ],
   "warnings": [
-    "WARE on the item card is still only a foundation signal, not posting readiness.",
-    "VAT and General Posting Setup remain separate gated steps."
+    "The next step must be a source decision for remaining item product/VAT product fields, not a blind write.",
+    "VAT and General Posting Setup remain separate gated lanes."
   ],
   "blockedBy": [],
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-051-item-posting-fields-controlled-assignment-gate/TARGET-051-result.json",
-  "nextCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
-  "nextStep": "Run TARGET-052 as a narrow checkpoint for U-ITEM-HW100 posting-field completeness before VAT, General Posting Setup, documents, Preview Posting or Posting.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-052-item-posting-fields-foundation-checkpoint/TARGET-052-result.json",
+  "nextCase": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+  "nextStep": "Run TARGET-053 as a source-backed decision for U-ITEM-HW100 Product Posting Group and VAT Product Posting Group target values before any write.",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-038-O2C-PREFLIGHT",
-    "lastEvidenceSummary": "TARGET-050 proved SAAR-HL + WARE + 1140 in Inventory Posting Setup; item assignment was the next narrow dependency.",
+    "currentCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
+    "plannedNextCaseBeforeReview": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
+    "lastEvidenceSummary": "TARGET-051 proved WARE on U-ITEM-HW100 after reopen. TARGET-052 checked the current item card without writes.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "O2C is still too early; the next safe step is a foundation checkpoint that confirms which item posting fields are now complete and which VAT/general posting fields remain open.",
+    "reason": "VAT matrix work is still too broad. The next useful step is a source decision for the item Product Posting Group and VAT Product Posting Group target values before any write.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
+        "caseId": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
         "status": "ready-next",
-        "reason": "Reopen proof should be converted into a narrow foundation checkpoint before broader setup."
+        "reason": "The exact remaining item fields are visible, but values must be source-backed before a write."
       },
       {
         "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
         "status": "ready-after-current",
-        "reason": "VAT remains a separate lane after the item posting group checkpoint."
+        "reason": "VAT Posting Setup remains relevant, but item VAT product value should be decided first."
       },
       {
         "caseId": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-WRITE-GATE",
         "status": "needs-setup-first",
-        "reason": "General Posting Setup should wait until item/customer/vendor posting field checkpoints are clear."
+        "reason": "General Posting Setup should follow source-backed business/product group values."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C needs item assignment, VAT, General Posting Setup and customer posting-field readiness first."
+        "reason": "O2C needs item/customer posting fields plus VAT and general posting setup readiness."
       },
       {
         "caseId": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
         "status": "blocked",
-        "reason": "Vendor numbering remains parked and separate from the inventory item lane."
+        "reason": "Vendor manual number-series checkbox remains parked and unrelated to this item foundation lane."
       }
     ],
     "queueChangesMade": [
-      "Selected TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT from TARGET-051 result."
+      "Selected TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION after TARGET-052 checkpoint."
     ],
-    "selectedNextCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
-    "whySelectedNextCaseIsBest": "It checks the completed and remaining foundation dependencies without jumping to documents.",
+    "selectedNextCase": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+    "whySelectedNextCaseIsBest": "It resolves the next narrow item-card dependency without jumping to VAT setup, documents or posting.",
     "risksBeforeNextCase": [
-      "Do not claim inventory posting readiness from item field visibility alone.",
-      "Keep VAT and General Posting Setup separate.",
+      "Do not claim item posting readiness from WARE alone.",
+      "Do not set Product Posting Group or VAT Product Posting Group without a source-backed target value.",
       "Keep Preview Posting and Posting false."
     ],
     "requiredPreparation": [
-      "Read item card after reopen and list open posting/VAT/general setup fields."
+      "Use Microsoft Learn and existing Universaarl setup evidence to choose source-backed product/VAT product target values."
     ]
   },
-  "updatedAt": "2026-07-02T00:15:33.349Z",
+  "updatedAt": "2026-07-02T00:31:01.710Z",
   "activeCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
   "authUnblock": {
     "status": "blocked-attended-login-required",
@@ -115,7 +115,7 @@
     "rawTenantOrAuthDetailsCommitted": false,
     "nextRequiredAction": "Complete attended Login/MFA in the auth browser until Business Central Role Center/Search/My Settings is visible; then run npm run auth:bc:check before rerunning D2F. If sign-in stalls or times out, run npm run auth:bc:diagnose for a short redacted diagnosis."
   },
-  "completedAt": "2026-07-02T00:15:33.349Z",
+  "completedAt": "2026-07-02T00:31:01.710Z",
   "nextStepDecision": {
     "currentCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
     "plannedNextCaseBeforeReview": "TARGET-038-O2C-PREFLIGHT",
@@ -166,14 +166,15 @@
   "resultStatus": "observed",
   "actionsTaken": [
     "Opened Page 30 Artikelkarte / Item Card directly for U-ITEM-HW100.",
-    "Expanded safe FastTabs and Mehr anzeigen where visible.",
-    "Captured before screenshot QA and field candidates.",
-    "Attempted to set only Item Posting Group / Lagerbuchungsgruppe = WARE through a labelled editable field.",
-    "Reopened the item card and captured proof screenshot QA."
+    "Confirmed playthru / UNIVERSAARL-DE from URL context.",
+    "Expanded safe read-only card areas and captured field visibility.",
+    "Captured screenshot QA and compact text evidence.",
+    "Classified completed and remaining item posting-field dependencies."
   ],
   "actionsNotTaken": [
     "No item was created.",
-    "No item number, description or base unit was changed.",
+    "No item field was changed.",
+    "No Item Posting Group was changed.",
     "No Gen. Prod. Posting Group was changed.",
     "No VAT Prod. Posting Group was changed.",
     "No Costing Method was changed.",
