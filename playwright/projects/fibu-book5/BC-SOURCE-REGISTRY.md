@@ -541,6 +541,17 @@ TARGET-027D25 laeuft ohne Business-Central- und ohne Playwright-Ausfuehrung. Der
 
 Fuer Universaarl folgt daraus: Die VAT-Matrix bleibt geparkt, bis ein materiell neuer Standardweg oder eine sicherere Setup-Route belegt ist. Der naechste sinnvolle Foundation-Schritt ist die andere Matrixabhaengigkeit: General Posting Setup `INLAND` + `WAREN` mit den Konten `4400` und `5400` als eigener lokaler Reopen-Entscheidungsfall.
 
+## TARGET-032G General Posting Setup nach Artikel-WAREN
+
+TARGET-032G laeuft ohne Business-Central- und ohne Playwright-Ausfuehrung. Der Lauf bewertet TARGET-054 gegen die geparkte allgemeine Buchungsmatrixroute:
+
+- `WAREN` auf `U-ITEM-HW100` ist ein echter Artikelkarten-Nachweis.
+- Dieser Nachweis erzeugt aber keine `INLAND`/`WAREN`-Matrixzeile.
+- Warenverkaufskonto `4400` und Wareneinkaufskonto `5400` bleiben in der allgemeinen Buchungsmatrix unbewiesen.
+- Die alten Page-314-Blocker werden durch den Artikelwert nicht geloest.
+
+Fuer Universaarl folgt daraus: Die General-Posting-Setup-Route bleibt geparkt. Der naechste sinnvolle Schritt ist keine Wiederholung von `Liste bearbeiten` + `Neu`, `Strg+Einfuegen` oder Page `315`, sondern TARGET-032H als read-only Alternative-Route-Discovery mit Screenshot-QA, Tooltip-/Action-Inventar und klarer Stop-Regel vor jeder Datenanlage.
+
 ## URLs
 
 - https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company

@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-02T00:57:25.377Z",
+  "updatedAt": "2026-07-02T01:25:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-general-posting-setup-route-reopen-decision",
-  "activeCase": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
-  "active_case_file": ".agent/state/cases/target-032g-general-posting-setup-route-reopen-decision.json",
+  "activeArea": "universaarl-general-posting-setup-alternative-route-discovery",
+  "activeCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+  "active_case_file": ".agent/state/cases/target-032h-general-posting-setup-alternative-route-discovery.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -19,11 +19,15 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-prior-general-posting-setup-evidence",
-    "read-target-054-evidence",
-    "read-source-registry",
-    "classify-general-posting-route-as-reopen-or-park",
-    "write-local-decision-result",
+    "open-business-central-readonly",
+    "confirm-instance-playthru",
+    "confirm-company-universaarl-de",
+    "open-general-posting-setup-readonly",
+    "capture-page-and-action-inventory",
+    "hover-action-tooltips",
+    "inspect-more-options-readonly",
+    "inspect-personalize-or-page-inspection-if-safe",
+    "write-evidence-result",
     "update-state-and-queue"
   ],
   "forbiddenActions": [
@@ -32,10 +36,9 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "open-business-central",
-    "run-playwright",
     "company-switch",
-    "click-new",
+    "click-new-if-it-creates-row",
+    "type-values",
     "write-general-posting-setup",
     "write-vat-posting-setup",
     "change-item",
@@ -47,8 +50,8 @@
     "claim-posting-readiness",
     "claim-tax-advisor-approved"
   ],
-  "nextCase": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
-  "nextStep": "Run TARGET-032G as a local General Posting Setup route decision; do not open Business Central or write setup.",
+  "nextCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+  "nextStep": "Run TARGET-032H as read-only Page 314 alternative-route discovery; do not write setup, do not click New if it creates a row.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -231,7 +234,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "TARGET-039 classifies parked W1 Foundation blockers and selects read-only item/inventory Foundation preflight before any first item write.",
+  "currentCoverageFocus": "TARGET-032G keeps General Posting Setup Page 314 parked after item-card WAREN proof; next is TARGET-032H read-only alternative route discovery before any setup write.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -8820,5 +8823,18 @@
     "apiShortcut": false,
     "selectedRoute": "keep-vat-matrix-parked-after-item-vat19-proof",
     "nextCase": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION"
+  },
+  "latestGeneralPostingSetupRouteDecision": {
+    "caseId": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+    "status": "done-general-posting-setup-kept-parked-new-discovery-selected",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-032g-general-posting-setup-route-reopen-decision/TARGET-032G-result.json",
+    "bcRun": false,
+    "playwrightRun": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "previewPosting": false,
+    "posted": false,
+    "selectedNextCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+    "reason": "WAREN on U-ITEM-HW100 is item-card truth, not an INLAND/WAREN General Posting Setup matrix row."
   }
 }

@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+  "status": "ready-next",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "targetWorld": "Universaarl",
+  "activeArea": "universaarl-general-posting-setup-alternative-route-discovery",
+  "purpose": "Discover a materially new, read-only standard UI route for General Posting Setup Page 314 before any INLAND/WAREN/4400/5400 setup write.",
+  "sourceCases": [
+    "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
+    "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+    "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE"
+  ],
+  "sourceEvidence": [
+    "TARGET-032F parked old Page 314 write/card routes.",
+    "TARGET-032G kept the route parked after TARGET-054 because item-card WAREN is not a matrix row.",
+    "TARGET-054 proved WAREN on U-ITEM-HW100 after reopen."
+  ],
+  "allowedActions": [
+    "open-business-central-readonly",
+    "confirm-instance-playthru",
+    "confirm-company-universaarl-de",
+    "open-general-posting-setup-readonly",
+    "capture-page-and-action-inventory",
+    "hover-action-tooltips",
+    "inspect-more-options-readonly",
+    "inspect-personalize-or-page-inspection-if-safe",
+    "write-evidence-result",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "company-switch",
+    "click-new-if-it-creates-row",
+    "type-values",
+    "write-general-posting-setup",
+    "write-vat-posting-setup",
+    "change-item",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-posting-readiness",
+    "claim-tax-advisor-approved"
+  ],
+  "smartDecision": {
+    "whyNow": "TARGET-032G proved that TARGET-054 does not unlock the old Page 314 write route. A new route must be discovered before setup values are written.",
+    "fieldsToChangeOnlyIfClear": [],
+    "fieldsNotToTouch": [
+      "General Posting Setup",
+      "VAT Posting Setup",
+      "Items",
+      "Customers",
+      "Vendors",
+      "Documents",
+      "Journals"
+    ],
+    "risk": "Read-only UI discovery can accidentally create a transient setup row if the wrong New action is clicked.",
+    "fallback": "If a command is ambiguous, capture screenshot QA and stop without clicking it."
+  },
+  "acceptanceCriteria": [
+    "Business Central stays in playthru / UNIVERSAARL-DE.",
+    "Page 314 is inspected read-only.",
+    "No setup row is created or changed.",
+    "Action inventory distinguishes safe read-only observations from write actions.",
+    "Result states whether a materially new route exists before any future write case."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+    "lastEvidenceSummary": "TARGET-032G kept General Posting Setup parked after item-card WAREN proof; old Page 314 write routes remain blocked.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A read-only route discovery is the safest next step before any setup write.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+        "status": "ready-next",
+        "reason": "It tests new route visibility without writing setup."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C still needs General Posting Setup and VAT boundaries."
+      },
+      {
+        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
+        "status": "blocked",
+        "reason": "No document and no full posting setup."
+      },
+      {
+        "caseId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+        "status": "ready-after-current",
+        "reason": "VAT matrix route discovery is separate and can follow Page 314 discovery."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+    "whySelectedNextCaseIsBest": "It keeps Foundation work practical while respecting the parked setup-write boundary.",
+    "risksBeforeNextCase": [
+      "New action can create a row.",
+      "Action menus may contain write actions.",
+      "Personalization/Page Inspection must not be mistaken for table truth alone."
+    ],
+    "requiredPreparation": [
+      "Use screenshot QA for visible actions and tooltips.",
+      "Stop before any data-changing dialog or row creation.",
+      "Explain the UI learning in atlas/evidence, not as final posting readiness."
+    ]
+  },
+  "updatedAt": "2026-07-02T01:25:00.000Z"
+}

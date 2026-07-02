@@ -4173,7 +4173,7 @@
     {
       "id": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
       "order": 10194,
-      "status": "pending",
+      "status": "done",
       "priority": "high",
       "category": "general-posting-setup-route-reopen-decision",
       "expectedImpact": "decide-whether-general-posting-setup-route-should-reopen-after-item-waren-proof",
@@ -4190,10 +4190,34 @@
         "TARGET-032F-GENERAL-POSTING-SETUP-PARK-DECISION",
         "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
         "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION"
+      ],
+      "completedAt": "2026-07-02T01:25:00.000Z",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-032g-general-posting-setup-route-reopen-decision/TARGET-032G-result.json",
+      "result": "Kept General Posting Setup parked; selected TARGET-032H read-only alternative route discovery.",
+      "nextCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY"
+    },
+    {
+      "id": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+      "order": 10195,
+      "status": "pending",
+      "priority": "high",
+      "category": "general-posting-setup-alternative-route-discovery",
+      "expectedImpact": "discover-materially-new-readonly-page314-route-before-any-general-posting-setup-write",
+      "mayWorkEffectively": false,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Inspect General Posting Setup Page 314 read-only for a materially new route without creating or changing setup rows.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "caseFile": ".agent/state/cases/target-032h-general-posting-setup-alternative-route-discovery.json",
+      "lookaheadStatus": "ready-next",
+      "dependsOn": [
+        "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION"
       ]
     }
   ],
-  "lastUpdated": "2026-07-02T00:59:58.055Z",
+  "lastUpdated": "2026-07-02T01:25:00.000Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -4303,107 +4327,116 @@
       ]
     }
   },
-  "updatedAt": "2026-07-02T00:59:58.055Z",
-  "lastCompletedCase": "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
-  "nextCase": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+  "updatedAt": "2026-07-02T01:25:00.000Z",
+  "lastCompletedCase": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+  "nextCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-038-O2C-PREFLIGHT",
-    "lastEvidenceSummary": "TARGET-051 proved WARE on U-ITEM-HW100 after reopen, but no VAT Product Posting Group, Gen. Product Posting Group, document, Preview Posting or Posting occurred.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "O2C/P2P remain too early; a checkpoint must classify remaining item and posting setup dependencies first.",
-    "lookaheadReviewed": [
-      {
-        "caseId": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
-        "status": "ready-next",
-        "reason": "Directly validates the changed item card and remaining setup gaps."
-      },
-      {
-        "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
-        "status": "ready-after-current",
-        "reason": "VAT lane may follow after the item checkpoint confirms no regression."
-      },
-      {
-        "caseId": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-WRITE-GATE",
-        "status": "needs-setup-first",
-        "reason": "General Posting Setup should be revisited only with precise matrix fields and no item-card ambiguity."
-      },
-      {
-        "caseId": "TARGET-038-O2C-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "Needs item, customer, VAT and general posting setup readiness."
-      },
-      {
-        "caseId": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
-        "status": "blocked",
-        "reason": "Vendor numbering remains separate and parked."
-      }
-    ],
-    "queueChangesMade": [
-      "TARGET-051 done; TARGET-052 inserted as ready-next checkpoint."
-    ],
-    "selectedNextCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
-    "whySelectedNextCaseIsBest": "It prevents a premature jump to documents and turns the item-card change into a stable foundation checkpoint.",
-    "risksBeforeNextCase": [
-      "Do not claim posting readiness.",
-      "Do not change VAT or General Posting Setup inside TARGET-052.",
-      "Keep Preview Posting and Posting false."
-    ],
-    "requiredPreparation": [
-      "Use only read-only item card inspection and screenshot QA."
-    ]
-  },
-  "nextStep": "Run TARGET-032G local General Posting Setup route reopen decision; no BC or Playwright.",
-  "openItems": 1,
-  "nextQueueItem": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
-  "nextCases": [
-    "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
-    "TARGET-038-O2C-PREFLIGHT",
-    "TARGET-037-FIRST-PREVIEW-GATE"
-  ],
-  "nextStepDecision": {
-    "currentCase": "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
-    "lastEvidenceSummary": "TARGET-054 proved WAREN and VAT19 on U-ITEM-HW100 after reopen. TARGET-027D24 had parked VAT Posting Setup because no safe write route for INLAND/VAT19 was proven.",
+    "currentCase": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+    "lastEvidenceSummary": "TARGET-054 proved WAREN and VAT19 on U-ITEM-HW100 after reopen. TARGET-032F had parked Page 314 because no safe write/card route for INLAND/WAREN with 4400/5400 was proven.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The local decision is still necessary because item-card VAT19 can be mistaken for VAT setup readiness.",
+    "reason": "The local decision is still necessary because item-card WAREN can be mistaken for General Posting Setup readiness.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
+        "caseId": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
         "status": "ready-next",
         "reason": "Completed locally in this run."
       },
       {
-        "caseId": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+        "caseId": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
         "status": "ready-next",
-        "reason": "WAREN is now visible on U-ITEM-HW100, but INLAND/WAREN with 4400/5400 is not proven."
+        "reason": "A read-only UI/action discovery can look for a materially new route without writing setup."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C needs VAT and General Posting Setup boundaries first."
+        "reason": "O2C remains blocked until VAT and General Posting Setup boundaries are resolved."
       },
       {
         "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
         "status": "blocked",
-        "reason": "No document and no full posting setup."
+        "reason": "Preview Posting is blocked without full posting setup and a document."
+      },
+      {
+        "caseId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+        "status": "ready-after-current",
+        "reason": "VAT matrix still needs a separate route, but Page 314 is the next queue dependency."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-027D25 as done.",
-      "Added TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION as next local decision."
+      "Marked TARGET-032G as done.",
+      "Added TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY as the next read-only route discovery."
     ],
-    "selectedNextCase": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
-    "whySelectedNextCaseIsBest": "It addresses the other matrix dependency created by Product Posting Group WAREN without pretending VAT is solved.",
+    "selectedNextCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+    "whySelectedNextCaseIsBest": "It avoids treating item WAREN as posting setup truth and avoids another blind Page 314 write retry.",
     "risksBeforeNextCase": [
-      "Do not write Page 314 without a materially new route.",
-      "Do not create O2C/P2P documents before matrix boundaries are resolved.",
-      "Keep Preview Posting and Posting false."
+      "Do not click New if it creates a setup row.",
+      "Do not type INLAND, WAREN, 4400 or 5400.",
+      "Do not proceed to O2C/P2P documents before matrix boundaries are resolved."
     ],
     "requiredPreparation": [
-      "Read TARGET-032F parked route evidence.",
-      "Read TARGET-054 item-card WAREN proof.",
-      "Decide reopen, park or replacement route explicitly."
+      "Open Page 314 read-only only after confirming playthru / UNIVERSAARL-DE.",
+      "Inspect command bar, More Options, hover tooltips, personalization/page inspection if safe.",
+      "Capture screenshot QA that explains visible actions and what they do not prove."
+    ]
+  },
+  "nextStep": "Run TARGET-032H read-only Page 314 alternative-route discovery; no setup write.",
+  "openItems": 1,
+  "nextQueueItem": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+  "nextCases": [
+    "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+    "TARGET-038-O2C-PREFLIGHT",
+    "TARGET-037-FIRST-PREVIEW-GATE",
+    "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY"
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+    "lastEvidenceSummary": "TARGET-054 proved WAREN and VAT19 on U-ITEM-HW100 after reopen. TARGET-032F had parked Page 314 because no safe write/card route for INLAND/WAREN with 4400/5400 was proven.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The local decision is still necessary because item-card WAREN can be mistaken for General Posting Setup readiness.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+        "status": "ready-next",
+        "reason": "Completed locally in this run."
+      },
+      {
+        "caseId": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+        "status": "ready-next",
+        "reason": "A read-only UI/action discovery can look for a materially new route without writing setup."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C remains blocked until VAT and General Posting Setup boundaries are resolved."
+      },
+      {
+        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
+        "status": "blocked",
+        "reason": "Preview Posting is blocked without full posting setup and a document."
+      },
+      {
+        "caseId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+        "status": "ready-after-current",
+        "reason": "VAT matrix still needs a separate route, but Page 314 is the next queue dependency."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked TARGET-032G as done.",
+      "Added TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY as the next read-only route discovery."
+    ],
+    "selectedNextCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+    "whySelectedNextCaseIsBest": "It avoids treating item WAREN as posting setup truth and avoids another blind Page 314 write retry.",
+    "risksBeforeNextCase": [
+      "Do not click New if it creates a setup row.",
+      "Do not type INLAND, WAREN, 4400 or 5400.",
+      "Do not proceed to O2C/P2P documents before matrix boundaries are resolved."
+    ],
+    "requiredPreparation": [
+      "Open Page 314 read-only only after confirming playthru / UNIVERSAARL-DE.",
+      "Inspect command bar, More Options, hover tooltips, personalization/page inspection if safe.",
+      "Capture screenshot QA that explains visible actions and what they do not prove."
     ]
   }
 }

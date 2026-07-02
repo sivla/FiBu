@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
-  "status": "ready-next",
+  "status": "done-general-posting-setup-kept-parked-new-discovery-selected",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -71,16 +71,21 @@
     "No setup, item, document, Preview Posting, Posting or API action is performed."
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
+    "currentCase": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
     "plannedNextCaseBeforeReview": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
-    "lastEvidenceSummary": "TARGET-054 proved WAREN and VAT19 on U-ITEM-HW100. TARGET-027D25 kept VAT Posting Setup parked because item VAT19 does not create a VAT matrix row.",
+    "lastEvidenceSummary": "TARGET-054 proved WAREN and VAT19 on U-ITEM-HW100 after reopen. TARGET-032F had parked Page 314 because no safe write/card route for INLAND/WAREN with 4400/5400 was proven.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The item Product Posting Group WAREN now exists, but INLAND + WAREN with 4400/5400 is still not proven.",
+    "reason": "The local decision is still necessary because item-card WAREN can be mistaken for General Posting Setup readiness.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
         "status": "ready-next",
-        "reason": "Local evidence decision only; no BC execution required."
+        "reason": "Completed locally in this run."
+      },
+      {
+        "caseId": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+        "status": "ready-next",
+        "reason": "A read-only UI/action discovery can look for a materially new route without writing setup."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
@@ -90,22 +95,33 @@
       {
         "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
         "status": "blocked",
-        "reason": "Preview Posting is blocked without complete posting setup and a document."
+        "reason": "Preview Posting is blocked without full posting setup and a document."
+      },
+      {
+        "caseId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+        "status": "ready-after-current",
+        "reason": "VAT matrix still needs a separate route, but Page 314 is the next queue dependency."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
-    "whySelectedNextCaseIsBest": "It protects against treating WAREN on the item as posting setup truth.",
+    "queueChangesMade": [
+      "Marked TARGET-032G as done.",
+      "Added TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY as the next read-only route discovery."
+    ],
+    "selectedNextCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+    "whySelectedNextCaseIsBest": "It avoids treating item WAREN as posting setup truth and avoids another blind Page 314 write retry.",
     "risksBeforeNextCase": [
-      "Confusing Product Posting Group on the item with General Posting Setup readiness.",
-      "Skipping VAT boundaries before O2C/P2P.",
-      "Repeating old Page-314 failed routes without a new hypothesis."
+      "Do not click New if it creates a setup row.",
+      "Do not type INLAND, WAREN, 4400 or 5400.",
+      "Do not proceed to O2C/P2P documents before matrix boundaries are resolved."
     ],
     "requiredPreparation": [
-      "Read TARGET-032F and TARGET-054 results.",
-      "Compare old Page-314 blockers with the new item-card state.",
-      "Choose reopen, park or replacement route explicitly."
+      "Open Page 314 read-only only after confirming playthru / UNIVERSAARL-DE.",
+      "Inspect command bar, More Options, hover tooltips, personalization/page inspection if safe.",
+      "Capture screenshot QA that explains visible actions and what they do not prove."
     ]
   },
-  "updatedAt": "2026-07-02T00:57:25.377Z"
+  "updatedAt": "2026-07-02T01:25:00.000Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-032g-general-posting-setup-route-reopen-decision/TARGET-032G-result.json",
+  "result": "TARGET-032G kept General Posting Setup Page 314 parked after item-card WAREN proof and selected TARGET-032H as read-only alternative route discovery.",
+  "nextCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY"
 }
