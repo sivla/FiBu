@@ -820,12 +820,12 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-07-02T00:00:45.149Z",
-  "activeArea": "universaarl-item-posting-fields-controlled-assignment-gate",
+  "updatedAt": "2026-07-02T00:15:33.349Z",
+  "activeArea": "universaarl-item-posting-fields-foundation-checkpoint",
   "currentBlock": "Foundation checkpoint needed before master data: General Posting Setup Page 314 and VAT matrix are parked; Dimensions starter set is visible but Global/Default Dimensions and posting effects are not proven.",
-  "latestPracticalCase": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+  "latestPracticalCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
   "latestReviewCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
-  "nextCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
+  "nextCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -1046,7 +1046,7 @@
     "playwright/projects/fibu-book5/BC-ERROR-BLOCKER-ATLAS.md",
     "playwright/projects/fibu-book5/BC-PROCESS-COVERAGE-ROADMAP.md"
   ],
-  "currentCoverageFocus": "TARGET-050 proved one Inventory Posting Setup row SAAR-HL + WARE + 1140 after Page 5826 reopen; TARGET-051 is next for U-ITEM-HW100 item posting-field assignment. No VAT, General Posting Setup, Preview Posting or Posting is proven.",
+  "currentCoverageFocus": "U-ITEM-HW100 now has WARE as Lagerbuchungsgruppe; VAT Product Posting Group, Gen. Product Posting Group, Costing Method, documents, Preview Posting and Posting remain unproven.",
   "latestCoverageUpdate": {
     "at": "2026-06-28T19:28:00.000+02:00",
     "type": "p2p-011-purchase-lines-action-discovery-tested",
@@ -2376,7 +2376,7 @@
     "finalScreenshotNeeded": true,
     "updatedAt": "2026-06-29T23:59:00+02:00"
   },
-  "activeCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
+  "activeCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
   "active_case_file": ".agent/state/cases/target-036-master-data-first-controlled-write-decision.json",
   "latestManufacturing005": {
     "caseId": "MANUFACTURING-005-CHAPTER14-LAB-VS-TARGET-CLEANUP",
@@ -5357,5 +5357,73 @@
     ],
     "uiLearning": "Page 5826 list editing needs Liste bearbeiten; in edit mode the row uses shifted input controls. The test now verifies 1140 by Lagerkonto column geometry and cleans a misplaced Beschreibung value before accepting evidence.",
     "nextCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE"
+  },
+  "latestTarget051": {
+    "caseId": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-051-item-posting-fields-controlled-assignment-gate/TARGET-051-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "summary": "TARGET-051 assigned WARE to U-ITEM-HW100 Item Posting Group / Lagerbuchungsgruppe through the item card edit mode and proved WARE after reopen. VAT Product Posting Group, Gen. Product Posting Group, Costing Method, documents, Preview Posting and Posting remain untouched.",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-051-010-before-item-posting-field-assignment.png",
+      "playwright/projects/fibu-book5/img/target-051-020-after-item-posting-field-assignment-route.png",
+      "playwright/projects/fibu-book5/img/target-051-030-reopen-proof.png"
+    ],
+    "changed": {
+      "setupChanged": false,
+      "masterDataChanged": true,
+      "previewPosting": false,
+      "posted": false,
+      "apiShortcut": false
+    },
+    "nextCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT"
+  },
+  "nextStepDecision": {
+    "currentCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-038-O2C-PREFLIGHT",
+    "lastEvidenceSummary": "TARGET-050 proved SAAR-HL + WARE + 1140 in Inventory Posting Setup; item assignment was the next narrow dependency.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "O2C is still too early; the next safe step is a foundation checkpoint that confirms which item posting fields are now complete and which VAT/general posting fields remain open.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
+        "status": "ready-next",
+        "reason": "Reopen proof should be converted into a narrow foundation checkpoint before broader setup."
+      },
+      {
+        "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
+        "status": "ready-after-current",
+        "reason": "VAT remains a separate lane after the item posting group checkpoint."
+      },
+      {
+        "caseId": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "General Posting Setup should wait until item/customer/vendor posting field checkpoints are clear."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C needs item assignment, VAT, General Posting Setup and customer posting-field readiness first."
+      },
+      {
+        "caseId": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+        "status": "blocked",
+        "reason": "Vendor numbering remains parked and separate from the inventory item lane."
+      }
+    ],
+    "queueChangesMade": [
+      "Selected TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT from TARGET-051 result."
+    ],
+    "selectedNextCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
+    "whySelectedNextCaseIsBest": "It checks the completed and remaining foundation dependencies without jumping to documents.",
+    "risksBeforeNextCase": [
+      "Do not claim inventory posting readiness from item field visibility alone.",
+      "Keep VAT and General Posting Setup separate.",
+      "Keep Preview Posting and Posting false."
+    ],
+    "requiredPreparation": [
+      "Read item card after reopen and list open posting/VAT/general setup fields."
+    ]
   }
 }

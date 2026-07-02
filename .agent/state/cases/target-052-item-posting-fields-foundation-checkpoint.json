@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
+  "status": "ready-next",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "sourceCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
+  "targetWorld": "Universaarl",
+  "activeArea": "universaarl-item-posting-fields-foundation-checkpoint",
+  "purpose": "Checkpoint the U-ITEM-HW100 item card after TARGET-051: prove what is complete, what remains open, and which setup lane should follow before any document, Preview Posting or Posting.",
+  "targetItem": {
+    "no": "U-ITEM-HW100",
+    "knownName": "Universaarl Hardware 100",
+    "baseUnitOfMeasure": "STK",
+    "itemPostingGroup": "WARE"
+  },
+  "sourceEvidence": [
+    "TARGET-036E2 proves U-ITEM-HW100 / Universaarl Hardware 100 with Base Unit STK after reopen.",
+    "TARGET-049 proves WARE / Warenbestand as Item Posting Group after reopen.",
+    "TARGET-050 proves Inventory Posting Setup SAAR-HL + WARE + 1140 after reopen.",
+    "TARGET-051 proves WARE visible on U-ITEM-HW100 after reopen."
+  ],
+  "allowedActions": [
+    "open-business-central-playthru",
+    "confirm-company-universaarl-de",
+    "open-item-card-u-item-hw100",
+    "read-item-posting-fields",
+    "screenshot-qa",
+    "write-evidence-result",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "create-item",
+    "change-item-number-or-name",
+    "change-base-unit-of-measure",
+    "change-item-posting-group",
+    "change-gen-prod-posting-group",
+    "change-vat-prod-posting-group",
+    "change-costing-method",
+    "change-inventory-posting-setup",
+    "change-vat-posting-setup",
+    "change-general-posting-setup",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-inventory-posting-readiness",
+    "claim-posting-readiness",
+    "claim-tax-advisor-approved",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "smartDecision": {
+    "whyNow": "A checkpoint prevents a jump from one successful item field write to O2C/P2P. The item still lacks VAT Product Posting Group, Gen. Product Posting Group and broader posting-readiness proof.",
+    "fieldsToChangeOnlyIfClear": [],
+    "fieldsNotToTouch": [
+      "Item Posting Group / Lagerbuchungsgruppe",
+      "Gen. Prod. Posting Group",
+      "VAT Prod. Posting Group",
+      "Costing Method",
+      "Inventory Posting Setup",
+      "VAT Posting Setup",
+      "General Posting Setup"
+    ],
+    "fallback": "If the item card cannot prove WARE after reopen, route back to TARGET-051B recovery instead of moving to VAT or document work."
+  },
+  "acceptanceCriteria": [
+    "Business Central remains in playthru / UNIVERSAARL-DE.",
+    "U-ITEM-HW100 item card is visible.",
+    "STK and WARE are visible or the case blocks with screenshot QA.",
+    "Open fields are classified without changing them: Gen. Product Posting Group, VAT Product Posting Group, Costing Method, VAT/General Posting Setup dependencies.",
+    "No setup, master data, document, Preview Posting, Posting or API shortcut occurs.",
+    "Next case is chosen from evidence, not queue inertia."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-038-O2C-PREFLIGHT",
+    "lastEvidenceSummary": "TARGET-051 proved WARE on U-ITEM-HW100 after reopen, but no VAT Product Posting Group, Gen. Product Posting Group, document, Preview Posting or Posting occurred.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "O2C/P2P remain too early; a checkpoint must classify remaining item and posting setup dependencies first.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
+        "status": "ready-next",
+        "reason": "Directly validates the changed item card and remaining setup gaps."
+      },
+      {
+        "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
+        "status": "ready-after-current",
+        "reason": "VAT lane may follow after the item checkpoint confirms no regression."
+      },
+      {
+        "caseId": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "General Posting Setup should be revisited only with precise matrix fields and no item-card ambiguity."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Needs item, customer, VAT and general posting setup readiness."
+      },
+      {
+        "caseId": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+        "status": "blocked",
+        "reason": "Vendor numbering remains separate and parked."
+      }
+    ],
+    "queueChangesMade": [
+      "TARGET-051 done; TARGET-052 inserted as ready-next checkpoint."
+    ],
+    "selectedNextCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
+    "whySelectedNextCaseIsBest": "It prevents a premature jump to documents and turns the item-card change into a stable foundation checkpoint.",
+    "risksBeforeNextCase": [
+      "Do not claim posting readiness.",
+      "Do not change VAT or General Posting Setup inside TARGET-052.",
+      "Keep Preview Posting and Posting false."
+    ],
+    "requiredPreparation": [
+      "Use only read-only item card inspection and screenshot QA."
+    ]
+  },
+  "updatedAt": "2026-07-02T00:15:33.349Z"
+}

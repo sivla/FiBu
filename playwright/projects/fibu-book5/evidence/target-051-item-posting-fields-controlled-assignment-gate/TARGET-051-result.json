@@ -1,0 +1,618 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
+  "source": "playwright-controlled-masterdata-field-write",
+  "resultStatus": "observed",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": {
+    "pageId": 30,
+    "name": "Artikelkarte / Item Card",
+    "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=30&company=UNIVERSAARL-DE&filter=Item.%27No.%27+IS+%27%40*U-ITEM-HW100*%27"
+  },
+  "targetItem": {
+    "no": "U-ITEM-HW100",
+    "name": "Universaarl Hardware 100",
+    "baseUnit": "STK",
+    "itemPostingGroup": "WARE"
+  },
+  "actionsTaken": [
+    "Opened Page 30 Artikelkarte / Item Card directly for U-ITEM-HW100.",
+    "Expanded safe FastTabs and Mehr anzeigen where visible.",
+    "Captured before screenshot QA and field candidates.",
+    "Attempted to set only Item Posting Group / Lagerbuchungsgruppe = WARE through a labelled editable field.",
+    "Reopened the item card and captured proof screenshot QA."
+  ],
+  "actionsNotTaken": [
+    "No item was created.",
+    "No item number, description or base unit was changed.",
+    "No Gen. Prod. Posting Group was changed.",
+    "No VAT Prod. Posting Group was changed.",
+    "No Costing Method was changed.",
+    "No Inventory Posting Setup was changed.",
+    "No VAT Posting Setup was changed.",
+    "No General Posting Setup was changed.",
+    "No document or draft was created.",
+    "No Preview Posting was run.",
+    "No Posting was run.",
+    "No payment was run.",
+    "No API shortcut was used.",
+    "No company switch was executed."
+  ],
+  "setupChanged": false,
+  "masterDataChanged": true,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/target-051-010-before-item-posting-field-assignment.png",
+    "playwright/projects/fibu-book5/img/target-051-020-after-item-posting-field-assignment-route.png",
+    "playwright/projects/fibu-book5/img/target-051-030-reopen-proof.png"
+  ],
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "U-ITEM-HW100 item card was visible.",
+    "WARE is visible on the item card after reopen.",
+    "No VAT Product Posting Group, Gen. Product Posting Group, Costing Method, document, Preview Posting, Posting or API shortcut occurred."
+  ],
+  "notProved": [
+    "Item posting group assignment is not proven unless WARE is visible after reopen.",
+    "No VAT Product Posting Group assignment is proven.",
+    "No Gen. Product Posting Group assignment is proven.",
+    "No inventory posting readiness is proven.",
+    "No document, Preview Posting, Posting, Item Ledger Entry, Value Entry, G/L Entry or VAT Entry is proven."
+  ],
+  "blockedBy": [],
+  "warnings": [
+    "WARE on the item card is still only a foundation signal, not posting readiness.",
+    "VAT and General Posting Setup remain separate gated steps."
+  ],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true
+  },
+  "steps": [
+    {
+      "step": "smart-decision",
+      "whyNow": "TARGET-036E2 proved U-ITEM-HW100 with base unit STK, TARGET-049 proved WARE, and TARGET-050 proved SAAR-HL + WARE + 1140 in Inventory Posting Setup.",
+      "fieldsToChangeOnlyIfClear": [
+        "Item Posting Group / Lagerbuchungsgruppe = WARE"
+      ],
+      "fieldsNotToTouch": [
+        "No.",
+        "Description",
+        "Base Unit of Measure",
+        "Gen. Prod. Posting Group",
+        "VAT Prod. Posting Group",
+        "Costing Method",
+        "Inventory Posting Setup",
+        "VAT Posting Setup",
+        "General Posting Setup"
+      ],
+      "risk": "A wrong field write could confuse later posting evidence.",
+      "fallback": "If no visibly labelled editable Item Posting Group field exists, stop with UI diagnostics and no write."
+    },
+    {
+      "step": "reveal-item-posting-fields",
+      "clicks": [
+        {
+          "clicked": "Mehr anzeigen / Show more",
+          "attempt": 0
+        },
+        {
+          "clicked": "Mehr anzeigen / Show more",
+          "attempt": 1
+        },
+        {
+          "clicked": "Mehr anzeigen / Show more",
+          "attempt": 2
+        },
+        {
+          "clicked": "Einstandspreise und Buchung|Costs and Posting"
+        },
+        {
+          "clicked": "Lager|Inventory"
+        },
+        {
+          "clicked": "Indirekte Steuer|Indirect Tax"
+        }
+      ]
+    },
+    {
+      "step": "enter-item-card-edit-mode",
+      "result": {
+        "clicked": true,
+        "chosen": {
+          "text": "",
+          "aria": "",
+          "title": "Änderungen auf der Seite vornehmen",
+          "x": 1088,
+          "y": 14,
+          "w": 38,
+          "h": 38
+        },
+        "candidates": [
+          {
+            "text": "",
+            "aria": "",
+            "title": "Änderungen auf der Seite vornehmen",
+            "x": 1088,
+            "y": 14,
+            "w": 38,
+            "h": 38
+          }
+        ]
+      }
+    },
+    {
+      "step": "reveal-item-posting-fields",
+      "clicks": [
+        {
+          "clicked": "Einstandspreise und Buchung|Costs and Posting"
+        },
+        {
+          "clicked": "Lager|Inventory"
+        },
+        {
+          "clicked": "Indirekte Steuer|Indirect Tax"
+        }
+      ]
+    },
+    {
+      "step": "editable-item-posting-group-field-found",
+      "beforeValue": ""
+    },
+    {
+      "step": "reveal-item-posting-fields",
+      "clicks": [
+        {
+          "clicked": "Einstandspreise und Buchung|Costs and Posting"
+        },
+        {
+          "clicked": "Lager|Inventory"
+        },
+        {
+          "clicked": "Indirekte Steuer|Indirect Tax"
+        }
+      ]
+    }
+  ],
+  "snapshots": {
+    "before": {
+      "step": "before-assignment",
+      "targetItem": {
+        "no": "U-ITEM-HW100",
+        "name": "Universaarl Hardware 100",
+        "baseUnit": "STK",
+        "itemPostingGroup": "WARE"
+      },
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=30&company=UNIVERSAARL-DE&filter=Item.%27No.%27+IS+%27%40*U-ITEM-HW100*%27",
+      "title": "Artikelkarte - U-ITEM-HW100 Universaarl Hardware 100Inventory",
+      "text": "Artikelkarte\nU-ITEM-HW100 Universaarl Hardware 100Inventory\nLagerhaltungsdaten erstellen\nU-ITEM-HW100\nUniversaarl Hardware 100Inventory\nSTK\nLagerbestand\nEinstandspreise und Buchung\nLager\nU-ITEM-HW100 Universaarl Hardware 100Inventory. Artikelkarte",
+      "visible": {
+        "itemCardContext": true,
+        "targetItemNo": true,
+        "targetItemName": true,
+        "baseUnit": true,
+        "itemPostingGroupTerm": false,
+        "itemPostingGroupValue": false,
+        "forbiddenSignals": false
+      },
+      "candidates": []
+    },
+    "after": {
+      "step": "after-assignment",
+      "targetItem": {
+        "no": "U-ITEM-HW100",
+        "name": "Universaarl Hardware 100",
+        "baseUnit": "STK",
+        "itemPostingGroup": "WARE"
+      },
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=30&company=UNIVERSAARL-DE&filter=Item.%27No.%27+IS+%27%40*U-ITEM-HW100*%27",
+      "title": "Artikelkarte - U-ITEM-HW100 Universaarl Hardware 100Inventory",
+      "text": "Artikelkarte\nU-ITEM-HW100 Universaarl Hardware 100Inventory\nLagerhaltungsdaten erstellen\nLagerbestand\nNegativen Lagerbestand verhindern\nEinstandspreise und Buchung\nLagerabgangsmethode\nBuchungsdetails\nProduktbuchungsgruppe\nMwSt.-Produktbuchungsgruppe\nLagerbuchungsgruppe\nLager\nU-ITEM-HW100 Universaarl Hardware 100Inventory. Artikelkarte",
+      "visible": {
+        "itemCardContext": true,
+        "targetItemNo": true,
+        "targetItemName": true,
+        "baseUnit": false,
+        "itemPostingGroupTerm": true,
+        "itemPostingGroupValue": false,
+        "forbiddenSignals": false
+      },
+      "candidates": [
+        {
+          "tag": "DIV",
+          "role": "",
+          "text": "  Artikelkarte     Gespeichert   U-ITEM-HW100 ∙ Universaarl Hardware 100Inventory Start Genehmigung anfordern Artikel Preise und Rabatte Weitere Optionen  Artikel kopieren Bestand anpassen Lagerhaltungsdaten erstellen Vorlage anwenden  Artikel Weniger anzeigen Nr. Beschreibung Gesperrt Art Bestand Service kein Bestand Basiseinheit Geändert am 02.07.2026 GTIN Artikelkategoriencode Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Automat. Textbaustein Gemeinsame Artikelnr. Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Einkaufscode Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Variante obligatorisch, falls vorhanden Standard (Nein) Nein Ja Lagerbestand Weniger anzeigen Regalnr. Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Aus Katalogartikel erstellt Suchbegriff Lagerbestand 0 Menge in Bestellung 0 Menge in Auftrag 0 Menge in Projektauftrag 0 Menge in Montageauftrag 0 Menge in Montagekomponente 0 Bestandswarnung Standard (Ja) Nein Ja Negativen Lagerbestand verhindern Standard (Nein) Nein Ja Nettogewicht Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Bruttogewicht Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Volumen Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Eingangsüberschusscode Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Einstandspreise und Buchung Weniger anzeigen Kostendetails Lagerabgangsmethode FIFO LIFO Spezifisch Durchschnitt Standard Einstandspreis (fest) Einstandspreis Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Indirekte Kosten % Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Direkte Kosten (neueste) Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Fakturierter Bestand 0 Einstandspreis ist reguliert Einstandspreis ist auf Sachkonten gebucht Einkaufspreise und Rabatte Neue erstellen... Buchungsdetails Produktbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. MwSt.-Produktbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Withholding Tax Prod. Post. Group Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Lagerbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Standard-Abgrenzungsvorlage Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Außenhandel Zollpos. Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Code Ursprungsland/-region Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Aus Intrastat-Bericht ausschließen Besondere Einheit Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Preise und Verkauf 0,00 Beschaffung Einkauf Planung Keine Artikelverfolgung Lager Indirekte Steuer Zusammenfassung Vorschauversion Copilot nutzt KI, um wertvolle Erkenntnisse aus Daten zu gewinnen, auf die Sie bereits Zugriff haben. Nutzungsbedingungen anzeigenWeitere Informationen Zusammenfassung beginnen Details Anhänge (0) Bild Marketingtext Bearbeiten Entwurf mit Copilot Entwurf erstellen basierend auf den Attributen dieses Artikels. Artikelattribute Attribut Wert (In dieser Ansicht kann nichts angezeigt werden) Planung StatusDie Umsatzplanung für diesen Artikel nicht verfügbar. Abonnementpakete Beschreibung Standard (In dieser Ansicht kann nichts angezeigt werden) ",
+          "aria": "",
+          "title": "",
+          "value": "",
+          "editable": false,
+          "disabled": false,
+          "x": 0,
+          "y": 0,
+          "w": 2400,
+          "h": 1352,
+          "frameUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=30&company=UNIVERSAARL-DE&filter=Item.%27No.%27+IS+%27U-ITEM-HW100%27"
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "text": "  Artikelkarte     Gespeichert   U-ITEM-HW100 ∙ Universaarl Hardware 100Inventory Start Genehmigung anfordern Artikel Preise und Rabatte Weitere Optionen  Artikel kopieren Bestand anpassen Lagerhaltungsdaten erstellen Vorlage anwenden  Artikel Weniger anzeigen Nr. Beschreibung Gesperrt Art Bestand Service kein Bestand Basiseinheit Geändert am 02.07.2026 GTIN Artikelkategoriencode Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Automat. Textbaustein Gemeinsame Artikelnr. Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Einkaufscode Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Variante obligatorisch, falls vorhanden Standard (Nein) Nein Ja Lagerbestand Weniger anzeigen Regalnr. Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Aus Katalogartikel erstellt Suchbegriff Lagerbestand 0 Menge in Bestellung 0 Menge in Auftrag 0 Menge in Projektauftrag 0 Menge in Montageauftrag 0 Menge in Montagekomponente 0 Bestandswarnung Standard (Ja) Nein Ja Negativen Lagerbestand verhindern Standard (Nein) Nein Ja Nettogewicht Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Bruttogewicht Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Volumen Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Eingangsüberschusscode Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Einstandspreise und Buchung Weniger anzeigen Kostendetails Lagerabgangsmethode FIFO LIFO Spezifisch Durchschnitt Standard Einstandspreis (fest) Einstandspreis Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Indirekte Kosten % Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Direkte Kosten (neueste) Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Fakturierter Bestand 0 Einstandspreis ist reguliert Einstandspreis ist auf Sachkonten gebucht Einkaufspreise und Rabatte Neue erstellen... Buchungsdetails Produktbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. MwSt.-Produktbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Withholding Tax Prod. Post. Group Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Lagerbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Standard-Abgrenzungsvorlage Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Außenhandel Zollpos. Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Code Ursprungsland/-region Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Aus Intrastat-Bericht ausschließen Besondere Einheit Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Preise und Verkauf 0,00 Beschaffung Einkauf Planung Keine Artikelverfolgung Lager Indirekte Steuer Zusammenfassung Vorschauversion Copilot nutzt KI, um wertvolle Erkenntnisse aus Daten zu gewinnen, auf die Sie bereits Zugriff haben. Nutzungsbedingungen anzeigenWeitere Informationen Zusammenfassung beginnen Details Anhänge (0) Bild Marketingtext Bearbeiten Entwurf mit Copilot Entwurf erstellen basierend auf den Attributen dieses Artikels. Artikelattribute Attribut Wert (In dieser Ansicht kann nichts angezeigt werden) Planung StatusDie Umsatzplanung für diesen Artikel nicht verfügbar. Abonnementpakete Beschreibung Standard (In dieser Ansicht kann nichts angezeigt werden) ",
+          "aria": "",
+          "title": "",
+          "value": "",
+          "editable": false,
+          "disabled": false,
+          "x": 0,
+          "y": 0,
+          "w": 2400,
+          "h": 1352,
+          "frameUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=30&company=UNIVERSAARL-DE&filter=Item.%27No.%27+IS+%27U-ITEM-HW100%27"
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "text": " Artikelkarte     Gespeichert   U-ITEM-HW100 ∙ Universaarl Hardware 100Inventory Start Genehmigung anfordern Artikel Preise und Rabatte Weitere Optionen  Artikel kopieren Bestand anpassen Lagerhaltungsdaten erstellen Vorlage anwenden  Artikel Weniger anzeigen Nr. Beschreibung Gesperrt Art Bestand Service kein Bestand Basiseinheit Geändert am 02.07.2026 GTIN Artikelkategoriencode Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Automat. Textbaustein Gemeinsame Artikelnr. Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Einkaufscode Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Variante obligatorisch, falls vorhanden Standard (Nein) Nein Ja Lagerbestand Weniger anzeigen Regalnr. Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Aus Katalogartikel erstellt Suchbegriff Lagerbestand 0 Menge in Bestellung 0 Menge in Auftrag 0 Menge in Projektauftrag 0 Menge in Montageauftrag 0 Menge in Montagekomponente 0 Bestandswarnung Standard (Ja) Nein Ja Negativen Lagerbestand verhindern Standard (Nein) Nein Ja Nettogewicht Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Bruttogewicht Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Volumen Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Eingangsüberschusscode Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Einstandspreise und Buchung Weniger anzeigen Kostendetails Lagerabgangsmethode FIFO LIFO Spezifisch Durchschnitt Standard Einstandspreis (fest) Einstandspreis Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Indirekte Kosten % Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Direkte Kosten (neueste) Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Fakturierter Bestand 0 Einstandspreis ist reguliert Einstandspreis ist auf Sachkonten gebucht Einkaufspreise und Rabatte Neue erstellen... Buchungsdetails Produktbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. MwSt.-Produktbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Withholding Tax Prod. Post. Group Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Lagerbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Standard-Abgrenzungsvorlage Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Außenhandel Zollpos. Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Code Ursprungsland/-region Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Aus Intrastat-Bericht ausschließen Besondere Einheit Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Preise und Verkauf 0,00 Beschaffung Einkauf Planung Keine Artikelverfolgung Lager Indirekte Steuer Zusammenfassung Vorschauversion Copilot nutzt KI, um wertvolle Erkenntnisse aus Daten zu gewinnen, auf die Sie bereits Zugriff haben. Nutzungsbedingungen anzeigenWeitere Informationen Zusammenfassung beginnen Details Anhänge (0) Bild Marketingtext Bearbeiten Entwurf mit Copilot Entwurf erstellen basierend auf den Attributen dieses Artikels. Artikelattribute Attribut Wert (In dieser Ansicht kann nichts angezeigt werden) Planung StatusDie Umsatzplanung für diesen Artikel nicht verfügbar. Abonnementpakete Beschreibung Standard (In dieser Ansicht kann nichts angezeigt werden)",
+          "aria": "",
+          "title": "",
+          "value": "",
+          "editable": false,
+          "disabled": false,
+          "x": 404,
+          "y": 0,
+          "w": 1592,
+          "h": 1352,
+          "frameUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=30&company=UNIVERSAARL-DE&filter=Item.%27No.%27+IS+%27U-ITEM-HW100%27"
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "text": "Artikel Weniger anzeigen Nr. Beschreibung Gesperrt Art Bestand Service kein Bestand Basiseinheit Geändert am 02.07.2026 GTIN Artikelkategoriencode Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Automat. Textbaustein Gemeinsame Artikelnr. Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Einkaufscode Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Variante obligatorisch, falls vorhanden Standard (Nein) Nein Ja Lagerbestand Weniger anzeigen Regalnr. Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Aus Katalogartikel erstellt Suchbegriff Lagerbestand 0 Menge in Bestellung 0 Menge in Auftrag 0 Menge in Projektauftrag 0 Menge in Montageauftrag 0 Menge in Montagekomponente 0 Bestandswarnung Standard (Ja) Nein Ja Negativen Lagerbestand verhindern Standard (Nein) Nein Ja Nettogewicht Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Bruttogewicht Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Volumen Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Eingangsüberschusscode Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Einstandspreise und Buchung Weniger anzeigen Kostendetails Lagerabgangsmethode FIFO LIFO Spezifisch Durchschnitt Standard Einstandspreis (fest) Einstandspreis Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Indirekte Kosten % Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Direkte Kosten (neueste) Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Fakturierter Bestand 0 Einstandspreis ist reguliert Einstandspreis ist auf Sachkonten gebucht Einkaufspreise und Rabatte Neue erstellen... Buchungsdetails Produktbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. MwSt.-Produktbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Withholding Tax Prod. Post. Group Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Lagerbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Standard-Abgrenzungsvorlage Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Außenhandel Zollpos. Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Code Ursprungsland/-region Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Aus Intrastat-Bericht ausschließen Besondere Einheit Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Preise und Verkauf 0,00 Beschaffung Einkauf Planung Keine Artikelverfolgung Lager Indirekte Steuer Zusammenfassung Vorschauversion Copilot nutzt KI, um wertvolle Erkenntnisse aus Daten zu gewinnen, auf die Sie bereits Zugriff haben. Nutzungsbedingungen anzeigenWeitere Informationen Zusammenfassung beginnen Details Anhänge (0) Bild Marketingtext Bearbeiten Entwurf mit Copilot Entwurf erstellen basierend auf den Attributen dieses Artikels. Artikelattribute Attribut Wert (In dieser Ansicht kann nichts angezeigt werden) Planung StatusDie Umsatzplanung für diesen Artikel nicht verfügbar. Abonnementpakete Beschreibung Standard (In dieser Ansicht kann nichts angezeigt werden)",
+          "aria": "",
+          "title": "",
+          "value": "",
+          "editable": false,
+          "disabled": false,
+          "x": 404,
+          "y": 204,
+          "w": 1592,
+          "h": 1148,
+          "frameUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=30&company=UNIVERSAARL-DE&filter=Item.%27No.%27+IS+%27U-ITEM-HW100%27"
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "text": "Artikel Weniger anzeigen Nr. Beschreibung Gesperrt Art Bestand Service kein Bestand Basiseinheit Geändert am 02.07.2026 GTIN Artikelkategoriencode Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Automat. Textbaustein Gemeinsame Artikelnr. Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Einkaufscode Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Variante obligatorisch, falls vorhanden Standard (Nein) Nein Ja Lagerbestand Weniger anzeigen Regalnr. Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Aus Katalogartikel erstellt Suchbegriff Lagerbestand 0 Menge in Bestellung 0 Menge in Auftrag 0 Menge in Projektauftrag 0 Menge in Montageauftrag 0 Menge in Montagekomponente 0 Bestandswarnung Standard (Ja) Nein Ja Negativen Lagerbestand verhindern Standard (Nein) Nein Ja Nettogewicht Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Bruttogewicht Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Volumen Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Eingangsüberschusscode Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Einstandspreise und Buchung Weniger anzeigen Kostendetails Lagerabgangsmethode FIFO LIFO Spezifisch Durchschnitt Standard Einstandspreis (fest) Einstandspreis Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Indirekte Kosten % Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Direkte Kosten (neueste) Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Fakturierter Bestand 0 Einstandspreis ist reguliert Einstandspreis ist auf Sachkonten gebucht Einkaufspreise und Rabatte Neue erstellen... Buchungsdetails Produktbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. MwSt.-Produktbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Withholding Tax Prod. Post. Group Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Lagerbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Standard-Abgrenzungsvorlage Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Außenhandel Zollpos. Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Code Ursprungsland/-region Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Aus Intrastat-Bericht ausschließen Besondere Einheit Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Preise und Verkauf 0,00 Beschaffung Einkauf Planung Keine Artikelverfolgung Lager Indirekte Steuer Zusammenfassung Vorschauversion Copilot nutzt KI, um wertvolle Erkenntnisse aus Daten zu gewinnen, auf die Sie bereits Zugriff haben. Nutzungsbedingungen anzeigenWeitere Informationen Zusammenfassung beginnen Details Anhänge (0) Bild Marketingtext Bearbeiten Entwurf mit Copilot Entwurf erstellen basierend auf den Attributen dieses Artikels. Artikelattribute Attribut Wert (In dieser Ansicht kann nichts angezeigt werden) Planung StatusDie Umsatzplanung für diesen Artikel nicht verfügbar. Abonnementpakete Beschreibung Standard (In dieser Ansicht kann nichts angezeigt werden)",
+          "aria": "",
+          "title": "",
+          "value": "",
+          "editable": false,
+          "disabled": false,
+          "x": 472,
+          "y": 204,
+          "w": 1456,
+          "h": 1148,
+          "frameUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=30&company=UNIVERSAARL-DE&filter=Item.%27No.%27+IS+%27U-ITEM-HW100%27"
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "text": "Artikel Weniger anzeigen Nr. Beschreibung Gesperrt Art Bestand Service kein Bestand Basiseinheit Geändert am 02.07.2026 GTIN Artikelkategoriencode Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Automat. Textbaustein Gemeinsame Artikelnr. Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Einkaufscode Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Variante obligatorisch, falls vorhanden Standard (Nein) Nein Ja Lagerbestand Weniger anzeigen Regalnr. Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Aus Katalogartikel erstellt Suchbegriff Lagerbestand 0 Menge in Bestellung 0 Menge in Auftrag 0 Menge in Projektauftrag 0 Menge in Montageauftrag 0 Menge in Montagekomponente 0 Bestandswarnung Standard (Ja) Nein Ja Negativen Lagerbestand verhindern Standard (Nein) Nein Ja Nettogewicht Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Bruttogewicht Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Volumen Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Eingangsüberschusscode Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Einstandspreise und Buchung Weniger anzeigen Kostendetails Lagerabgangsmethode FIFO LIFO Spezifisch Durchschnitt Standard Einstandspreis (fest) Einstandspreis Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Indirekte Kosten % Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Direkte Kosten (neueste) Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Fakturierter Bestand 0 Einstandspreis ist reguliert Einstandspreis ist auf Sachkonten gebucht Einkaufspreise und Rabatte Neue erstellen... Buchungsdetails Produktbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. MwSt.-Produktbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Withholding Tax Prod. Post. Group Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Lagerbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Standard-Abgrenzungsvorlage Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Außenhandel Zollpos. Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Code Ursprungsland/-region Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Aus Intrastat-Bericht ausschließen Besondere Einheit Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Preise und Verkauf 0,00 Beschaffung Einkauf Planung Keine Artikelverfolgung Lager Indirekte Steuer",
+          "aria": "",
+          "title": "",
+          "value": "",
+          "editable": false,
+          "disabled": false,
+          "x": 472,
+          "y": 214,
+          "w": 992,
+          "h": 1138,
+          "frameUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=30&company=UNIVERSAARL-DE&filter=Item.%27No.%27+IS+%27U-ITEM-HW100%27"
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "text": "Artikel Weniger anzeigen Nr. Beschreibung Gesperrt Art Bestand Service kein Bestand Basiseinheit Geändert am 02.07.2026 GTIN Artikelkategoriencode Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Automat. Textbaustein Gemeinsame Artikelnr. Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Einkaufscode Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Variante obligatorisch, falls vorhanden Standard (Nein) Nein Ja Lagerbestand Weniger anzeigen Regalnr. Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Aus Katalogartikel erstellt Suchbegriff Lagerbestand 0 Menge in Bestellung 0 Menge in Auftrag 0 Menge in Projektauftrag 0 Menge in Montageauftrag 0 Menge in Montagekomponente 0 Bestandswarnung Standard (Ja) Nein Ja Negativen Lagerbestand verhindern Standard (Nein) Nein Ja Nettogewicht Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Bruttogewicht Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Volumen Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Eingangsüberschusscode Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Einstandspreise und Buchung Weniger anzeigen Kostendetails Lagerabgangsmethode FIFO LIFO Spezifisch Durchschnitt Standard Einstandspreis (fest) Einstandspreis Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Indirekte Kosten % Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Direkte Kosten (neueste) Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Fakturierter Bestand 0 Einstandspreis ist reguliert Einstandspreis ist auf Sachkonten gebucht Einkaufspreise und Rabatte Neue erstellen... Buchungsdetails Produktbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. MwSt.-Produktbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Withholding Tax Prod. Post. Group Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Lagerbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Standard-Abgrenzungsvorlage Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Außenhandel Zollpos. Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Code Ursprungsland/-region Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Aus Intrastat-Bericht ausschließen Besondere Einheit Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Preise und Verkauf 0,00 Beschaffung Einkauf Planung Keine Artikelverfolgung Lager Indirekte Steuer",
+          "aria": "",
+          "title": "",
+          "value": "",
+          "editable": false,
+          "disabled": false,
+          "x": 472,
+          "y": -257,
+          "w": 959,
+          "h": 1130,
+          "frameUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=30&company=UNIVERSAARL-DE&filter=Item.%27No.%27+IS+%27U-ITEM-HW100%27"
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "text": "Artikel Weniger anzeigen Nr. Beschreibung Gesperrt Art Bestand Service kein Bestand Basiseinheit Geändert am 02.07.2026 GTIN Artikelkategoriencode Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Automat. Textbaustein Gemeinsame Artikelnr. Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Einkaufscode Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Variante obligatorisch, falls vorhanden Standard (Nein) Nein Ja Lagerbestand Weniger anzeigen Regalnr. Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Aus Katalogartikel erstellt Suchbegriff Lagerbestand 0 Menge in Bestellung 0 Menge in Auftrag 0 Menge in Projektauftrag 0 Menge in Montageauftrag 0 Menge in Montagekomponente 0 Bestandswarnung Standard (Ja) Nein Ja Negativen Lagerbestand verhindern Standard (Nein) Nein Ja Nettogewicht Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Bruttogewicht Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Volumen Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Eingangsüberschusscode Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Einstandspreise und Buchung Weniger anzeigen Kostendetails Lagerabgangsmethode FIFO LIFO Spezifisch Durchschnitt Standard Einstandspreis (fest) Einstandspreis Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Indirekte Kosten % Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Direkte Kosten (neueste) Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Fakturierter Bestand 0 Einstandspreis ist reguliert Einstandspreis ist auf Sachkonten gebucht Einkaufspreise und Rabatte Neue erstellen... Buchungsdetails Produktbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. MwSt.-Produktbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Withholding Tax Prod. Post. Group Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Lagerbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Standard-Abgrenzungsvorlage Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Außenhandel Zollpos. Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Code Ursprungsland/-region Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Aus Intrastat-Bericht ausschließen Besondere Einheit Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Preise und Verkauf 0,00 Beschaffung Einkauf Planung Keine Artikelverfolgung Lager Indirekte Steuer",
+          "aria": "",
+          "title": "",
+          "value": "",
+          "editable": false,
+          "disabled": false,
+          "x": 472,
+          "y": -257,
+          "w": 959,
+          "h": 1130,
+          "frameUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=30&company=UNIVERSAARL-DE&filter=Item.%27No.%27+IS+%27U-ITEM-HW100%27"
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "text": "Einstandspreise und Buchung Weniger anzeigen Kostendetails Lagerabgangsmethode FIFO LIFO Spezifisch Durchschnitt Standard Einstandspreis (fest) Einstandspreis Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Indirekte Kosten % Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Direkte Kosten (neueste) Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Fakturierter Bestand 0 Einstandspreis ist reguliert Einstandspreis ist auf Sachkonten gebucht Einkaufspreise und Rabatte Neue erstellen... Buchungsdetails Produktbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. MwSt.-Produktbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Withholding Tax Prod. Post. Group Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Lagerbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Standard-Abgrenzungsvorlage Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Außenhandel Zollpos. Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Code Ursprungsland/-region Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Aus Intrastat-Bericht ausschließen Besondere Einheit Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren.",
+          "aria": "",
+          "title": "",
+          "value": "",
+          "editable": false,
+          "disabled": false,
+          "x": 472,
+          "y": 442,
+          "w": 959,
+          "h": 490,
+          "frameUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=30&company=UNIVERSAARL-DE&filter=Item.%27No.%27+IS+%27U-ITEM-HW100%27"
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "text": "Kostendetails Lagerabgangsmethode FIFO LIFO Spezifisch Durchschnitt Standard Einstandspreis (fest) Einstandspreis Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Indirekte Kosten % Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Direkte Kosten (neueste) Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Fakturierter Bestand 0 Einstandspreis ist reguliert Einstandspreis ist auf Sachkonten gebucht Einkaufspreise und Rabatte Neue erstellen... Buchungsdetails Produktbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. MwSt.-Produktbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Withholding Tax Prod. Post. Group Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Lagerbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Standard-Abgrenzungsvorlage Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Außenhandel Zollpos. Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Code Ursprungsland/-region Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Aus Intrastat-Bericht ausschließen Besondere Einheit Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren.",
+          "aria": "",
+          "title": "",
+          "value": "",
+          "editable": false,
+          "disabled": false,
+          "x": 472,
+          "y": 470,
+          "w": 959,
+          "h": 420,
+          "frameUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=30&company=UNIVERSAARL-DE&filter=Item.%27No.%27+IS+%27U-ITEM-HW100%27"
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "text": "Kostendetails Lagerabgangsmethode FIFO LIFO Spezifisch Durchschnitt Standard Einstandspreis (fest) Einstandspreis Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Indirekte Kosten % Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Direkte Kosten (neueste) Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Fakturierter Bestand 0 Einstandspreis ist reguliert Einstandspreis ist auf Sachkonten gebucht Einkaufspreise und Rabatte Neue erstellen... Buchungsdetails Produktbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. MwSt.-Produktbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Withholding Tax Prod. Post. Group Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Lagerbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Standard-Abgrenzungsvorlage Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Außenhandel Zollpos. Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Code Ursprungsland/-region Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Aus Intrastat-Bericht ausschließen Besondere Einheit Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren.",
+          "aria": "",
+          "title": "",
+          "value": "",
+          "editable": false,
+          "disabled": false,
+          "x": 472,
+          "y": 470,
+          "w": 959,
+          "h": 420,
+          "frameUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=30&company=UNIVERSAARL-DE&filter=Item.%27No.%27+IS+%27U-ITEM-HW100%27"
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "text": "Kostendetails Lagerabgangsmethode FIFO LIFO Spezifisch Durchschnitt Standard Einstandspreis (fest) Einstandspreis Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Indirekte Kosten % Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Direkte Kosten (neueste) Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Fakturierter Bestand 0 Einstandspreis ist reguliert Einstandspreis ist auf Sachkonten gebucht Einkaufspreise und Rabatte Neue erstellen... Buchungsdetails Produktbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. MwSt.-Produktbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Withholding Tax Prod. Post. Group Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Lagerbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Standard-Abgrenzungsvorlage Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Außenhandel Zollpos. Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Code Ursprungsland/-region Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Aus Intrastat-Bericht ausschließen Besondere Einheit Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren.",
+          "aria": "",
+          "title": "",
+          "value": "",
+          "editable": false,
+          "disabled": false,
+          "x": 472,
+          "y": 488,
+          "w": 959,
+          "h": 402,
+          "frameUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=30&company=UNIVERSAARL-DE&filter=Item.%27No.%27+IS+%27U-ITEM-HW100%27"
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "text": "Buchungsdetails Produktbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. MwSt.-Produktbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Withholding Tax Prod. Post. Group Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Lagerbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Standard-Abgrenzungsvorlage Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren.",
+          "aria": "",
+          "title": "",
+          "value": "",
+          "editable": false,
+          "disabled": false,
+          "x": 972,
+          "y": 488,
+          "w": 460,
+          "h": 215,
+          "frameUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=30&company=UNIVERSAARL-DE&filter=Item.%27No.%27+IS+%27U-ITEM-HW100%27"
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "text": "Produktbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. MwSt.-Produktbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Withholding Tax Prod. Post. Group Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Lagerbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren. Standard-Abgrenzungsvorlage Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren.",
+          "aria": "",
+          "title": "",
+          "value": "",
+          "editable": false,
+          "disabled": false,
+          "x": 972,
+          "y": 522,
+          "w": 460,
+          "h": 181,
+          "frameUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=30&company=UNIVERSAARL-DE&filter=Item.%27No.%27+IS+%27U-ITEM-HW100%27"
+        },
+        {
+          "tag": "DIV",
+          "role": "",
+          "text": "Lagerbuchungsgruppe Drücken Sie ALT+I, um einen Vorschlag für dieses Feld zu generieren.",
+          "aria": "",
+          "title": "",
+          "value": "",
+          "editable": false,
+          "disabled": false,
+          "x": 972,
+          "y": 636,
+          "w": 460,
+          "h": 29,
+          "frameUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=30&company=UNIVERSAARL-DE&filter=Item.%27No.%27+IS+%27U-ITEM-HW100%27"
+        },
+        {
+          "tag": "A",
+          "role": "button",
+          "text": "Lagerbuchungsgruppe",
+          "aria": "",
+          "title": "",
+          "value": "",
+          "editable": false,
+          "disabled": false,
+          "x": 972,
+          "y": 636,
+          "w": 147,
+          "h": 29,
+          "frameUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=30&company=UNIVERSAARL-DE&filter=Item.%27No.%27+IS+%27U-ITEM-HW100%27"
+        },
+        {
+          "tag": "A",
+          "role": "button",
+          "text": "",
+          "aria": "Wählen Sie einen Wert für Lagerbuchungsgruppe",
+          "title": "Wählen Sie einen Wert für Lagerbuchungsgruppe",
+          "value": "",
+          "editable": false,
+          "disabled": false,
+          "x": 1404,
+          "y": 637,
+          "w": 26,
+          "h": 27,
+          "frameUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=30&company=UNIVERSAARL-DE&filter=Item.%27No.%27+IS+%27U-ITEM-HW100%27"
+        }
+      ],
+      "writeOutcome": {
+        "changed": true,
+        "status": "attempted-assignment",
+        "beforeValue": "",
+        "reason": "Filled only the visibly labelled Item Posting Group / Lagerbuchungsgruppe field."
+      }
+    },
+    "reopen": {
+      "step": "reopen-proof",
+      "targetItem": {
+        "no": "U-ITEM-HW100",
+        "name": "Universaarl Hardware 100",
+        "baseUnit": "STK",
+        "itemPostingGroup": "WARE"
+      },
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=30&company=UNIVERSAARL-DE&filter=Item.%27No.%27+IS+%27%40*U-ITEM-HW100*%27",
+      "title": "Artikelkarte - U-ITEM-HW100 Universaarl Hardware 100Inventory",
+      "text": "Artikelkarte\nU-ITEM-HW100 Universaarl Hardware 100Inventory\nLagerhaltungsdaten erstellen\nU-ITEM-HW100\nUniversaarl Hardware 100Inventory\nSTK\nLagerbestand\nEinstandspreise und Buchung\nWARE\nLager\nU-ITEM-HW100 Universaarl Hardware 100Inventory. Artikelkarte",
+      "visible": {
+        "itemCardContext": true,
+        "targetItemNo": true,
+        "targetItemName": true,
+        "baseUnit": true,
+        "itemPostingGroupTerm": false,
+        "itemPostingGroupValue": true,
+        "forbiddenSignals": false
+      },
+      "candidates": [
+        {
+          "tag": "DIV",
+          "role": "",
+          "text": "WARE",
+          "aria": "",
+          "title": "Lagerbuchungsgruppe: WARE",
+          "value": "",
+          "editable": false,
+          "disabled": false,
+          "x": 1385,
+          "y": 602,
+          "w": 61,
+          "h": 27,
+          "frameUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=30&company=UNIVERSAARL-DE&filter=Item.%27No.%27+IS+%27U-ITEM-HW100%27"
+        }
+      ],
+      "writeOutcome": {
+        "changed": true,
+        "status": "attempted-assignment",
+        "beforeValue": "",
+        "reason": "Filled only the visibly labelled Item Posting Group / Lagerbuchungsgruppe field."
+      }
+    }
+  },
+  "writeOutcome": {
+    "changed": true,
+    "status": "attempted-assignment",
+    "beforeValue": "",
+    "reason": "Filled only the visibly labelled Item Posting Group / Lagerbuchungsgruppe field."
+  },
+  "nextStepDecision": {
+    "currentCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-038-O2C-PREFLIGHT",
+    "lastEvidenceSummary": "TARGET-050 proved SAAR-HL + WARE + 1140 in Inventory Posting Setup; item assignment was the next narrow dependency.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "O2C is still too early; the next safe step is a foundation checkpoint that confirms which item posting fields are now complete and which VAT/general posting fields remain open.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
+        "status": "ready-next",
+        "reason": "Reopen proof should be converted into a narrow foundation checkpoint before broader setup."
+      },
+      {
+        "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
+        "status": "ready-after-current",
+        "reason": "VAT remains a separate lane after the item posting group checkpoint."
+      },
+      {
+        "caseId": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "General Posting Setup should wait until item/customer/vendor posting field checkpoints are clear."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C needs item assignment, VAT, General Posting Setup and customer posting-field readiness first."
+      },
+      {
+        "caseId": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+        "status": "blocked",
+        "reason": "Vendor numbering remains parked and separate from the inventory item lane."
+      }
+    ],
+    "queueChangesMade": [
+      "Selected TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT from TARGET-051 result."
+    ],
+    "selectedNextCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
+    "whySelectedNextCaseIsBest": "It checks the completed and remaining foundation dependencies without jumping to documents.",
+    "risksBeforeNextCase": [
+      "Do not claim inventory posting readiness from item field visibility alone.",
+      "Keep VAT and General Posting Setup separate.",
+      "Keep Preview Posting and Posting false."
+    ],
+    "requiredPreparation": [
+      "Read item card after reopen and list open posting/VAT/general setup fields."
+    ]
+  },
+  "nextCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
+  "statePatch": {
+    "current": {
+      "activeArea": "universaarl-item-posting-fields-foundation-checkpoint",
+      "activeCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
+      "active_case_file": ".agent/state/cases/target-052-item-posting-fields-foundation-checkpoint.json",
+      "nextCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
+      "nextStep": "Run TARGET-052 as a narrow checkpoint for U-ITEM-HW100 posting-field completeness before VAT, General Posting Setup or document work."
+    },
+    "activeCase": {
+      "status": "done",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-051-item-posting-fields-controlled-assignment-gate/TARGET-051-result.json",
+      "nextCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT"
+    }
+  },
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "WARE is visible after reopen on U-ITEM-HW100.",
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run fibu:target:item-posting-fields-assignment-gate",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/target-051-item-posting-fields-controlled-assignment-gate/TARGET-051-result.json",
+    "npm run check:encoding",
+    "git diff --check"
+  ]
+}

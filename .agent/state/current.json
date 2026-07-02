@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-02T00:03:01.454Z",
+  "updatedAt": "2026-07-02T00:17:42.893Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-item-posting-fields-controlled-assignment-gate",
-  "activeCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
-  "active_case_file": ".agent/state/cases/target-051-item-posting-fields-controlled-assignment-gate.json",
+  "activeArea": "universaarl-item-posting-fields-foundation-checkpoint",
+  "activeCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
+  "active_case_file": ".agent/state/cases/target-052-item-posting-fields-foundation-checkpoint.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -22,9 +22,8 @@
     "open-business-central-playthru",
     "confirm-company-universaarl-de",
     "open-item-card-u-item-hw100",
-    "inspect-item-posting-fields",
-    "write-only-the-item-posting-group-field-if-visible-and-clear",
-    "reopen-proof-item-card",
+    "read-item-posting-fields",
+    "screenshot-qa",
     "write-evidence-result",
     "update-state-and-queue"
   ],
@@ -34,6 +33,7 @@
     "create-item",
     "change-item-number-or-name",
     "change-base-unit-of-measure",
+    "change-item-posting-group",
     "change-gen-prod-posting-group",
     "change-vat-prod-posting-group",
     "change-costing-method",
@@ -53,8 +53,8 @@
     "fake-evidence",
     "book-claim-without-evidence"
   ],
-  "nextCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
-  "nextStep": "Run TARGET-051 as a narrow item posting-fields assignment gate for U-ITEM-HW100 after TARGET-050 proved SAAR-HL + WARE + 1140 in Inventory Posting Setup; keep VAT, General Posting Setup, documents, Preview Posting and Posting locked.",
+  "nextCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
+  "nextStep": "Run TARGET-052 as a narrow checkpoint for U-ITEM-HW100 posting-field completeness before VAT, General Posting Setup, documents, Preview Posting or Posting.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -8665,5 +8665,26 @@
     ],
     "uiLearning": "Page 5826 list editing needs Liste bearbeiten; in edit mode the row uses shifted input controls. The test now verifies 1140 by Lagerkonto column geometry and cleans a misplaced Beschreibung value before accepting evidence.",
     "nextCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE"
+  },
+  "latestTarget051": {
+    "caseId": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-051-item-posting-fields-controlled-assignment-gate/TARGET-051-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "summary": "TARGET-051 assigned WARE to U-ITEM-HW100 Item Posting Group / Lagerbuchungsgruppe through the item card edit mode and proved WARE after reopen. VAT Product Posting Group, Gen. Product Posting Group, Costing Method, documents, Preview Posting and Posting remain untouched.",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-051-010-before-item-posting-field-assignment.png",
+      "playwright/projects/fibu-book5/img/target-051-020-after-item-posting-field-assignment-route.png",
+      "playwright/projects/fibu-book5/img/target-051-030-reopen-proof.png"
+    ],
+    "changed": {
+      "setupChanged": false,
+      "masterDataChanged": true,
+      "previewPosting": false,
+      "posted": false,
+      "apiShortcut": false
+    },
+    "nextCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT"
   }
 }
