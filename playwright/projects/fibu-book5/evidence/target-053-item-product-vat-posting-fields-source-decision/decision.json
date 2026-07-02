@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "targetItem": {
+    "no": "U-ITEM-HW100",
+    "name": "Universaarl Hardware 100"
+  },
+  "decisionType": "source-backed-field-target-decision-no-write",
+  "sourceBasis": [
+    {
+      "type": "universaarl-evidence",
+      "ref": "TARGET-032B",
+      "summary": "General Product Posting Group WAREN is visible after reopen."
+    },
+    {
+      "type": "universaarl-evidence",
+      "ref": "TARGET-027C",
+      "summary": "VAT Product Posting Group VAT19 is visible in the Universaarl VAT setup lane."
+    },
+    {
+      "type": "universaarl-evidence",
+      "ref": "TARGET-045A",
+      "summary": "U-ITEM-HW100 target candidates were mapped as Gen. Prod. Posting Group WAREN and VAT Prod. Posting Group VAT19, but both remained blocked for posting readiness by setup-matrix boundaries."
+    },
+    {
+      "type": "universaarl-evidence",
+      "ref": "TARGET-052",
+      "summary": "U-ITEM-HW100 shows STK, FIFO, WARE and visible but empty Product Posting Group and VAT Product Posting Group fields."
+    },
+    {
+      "type": "microsoft-learn",
+      "ref": "https://learn.microsoft.com/en-au/dynamics365/business-central/finance-posting-groups",
+      "summary": "General Product Posting Groups identify what is sold or bought; General Posting Setup combines business and product posting groups for G/L account selection."
+    },
+    {
+      "type": "microsoft-learn",
+      "ref": "https://learn.microsoft.com/en-gb/dynamics365/business-central/finance-setup-vat",
+      "summary": "VAT Product Posting Groups identify what is sold or bought for VAT calculation; VAT Posting Setup combines VAT business and product posting groups with VAT percent and VAT accounts."
+    },
+    {
+      "type": "microsoft-learn-object",
+      "ref": "https://learn.microsoft.com/en-us/dynamics365/business-central/application/base-application/table/microsoft.finance.generalledger.setup.gen.-product-posting-group",
+      "summary": "The Gen. Product Posting Group table has a default VAT product posting group field, which supports the product-to-VAT relationship without proving Universaarl setup values by itself."
+    }
+  ],
+  "selectedValues": {
+    "productPostingGroup": {
+      "field": "Gen. Prod. Posting Group / Produktbuchungsgruppe",
+      "targetValue": "WAREN",
+      "decision": "selected-for-narrow-item-write-gate",
+      "writeAllowedNow": false,
+      "reason": "WAREN is already proven as a General Product Posting Group and matches the Universaarl goods/hardware starter item. It is not enough to claim General Posting Setup or posting readiness."
+    },
+    "vatProductPostingGroup": {
+      "field": "VAT Prod. Posting Group / MwSt.-Produktbuchungsgruppe",
+      "targetValue": "VAT19",
+      "decision": "selected-for-narrow-item-write-gate",
+      "writeAllowedNow": false,
+      "reason": "VAT19 is the source-backed 19 percent VAT product-group candidate and is visible from the VAT setup lane. It is not enough to claim VAT Posting Setup, VAT calculation or VAT entry readiness."
+    }
+  },
+  "lockedBoundaries": [
+    "Do not change Item Posting Group / Lagerbuchungsgruppe.",
+    "Do not change Base Unit of Measure.",
+    "Do not change Costing Method.",
+    "Do not create or change General Posting Setup.",
+    "Do not create or change VAT Posting Setup.",
+    "Do not create documents or drafts.",
+    "Do not run Preview Posting.",
+    "Do not post.",
+    "Do not use API shortcuts."
+  ],
+  "nextWriteGate": {
+    "caseId": "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
+    "allowedFieldChangesOnly": [
+      {
+        "field": "Gen. Prod. Posting Group / Produktbuchungsgruppe",
+        "value": "WAREN"
+      },
+      {
+        "field": "VAT Prod. Posting Group / MwSt.-Produktbuchungsgruppe",
+        "value": "VAT19"
+      }
+    ],
+    "requiresBeforeWrite": [
+      "Confirm playthru / UNIVERSAARL-DE in URL and visible page context.",
+      "Open U-ITEM-HW100 Item Card.",
+      "Open the Price/Posting or Cost/Posting FastTab where both target fields are visible.",
+      "Take a before screenshot with both fields visible.",
+      "Stop if fields are not visible, if another item is open, or if a dialog/wizard appears."
+    ],
+    "requiresAfterWrite": [
+      "Reopen U-ITEM-HW100.",
+      "Capture a reopen screenshot showing WAREN and VAT19 on the item card.",
+      "Keep setupChanged=false, draftCreated=false, previewPosting=false and posted=false."
+    ]
+  },
+  "notProved": [
+    "Product Posting Group WAREN is not yet saved on U-ITEM-HW100.",
+    "VAT Product Posting Group VAT19 is not yet saved on U-ITEM-HW100.",
+    "General Posting Setup INLAND/WAREN with 4400/5400 is not proven.",
+    "VAT Posting Setup INLAND/VAT19 with 19 percent and VAT accounts is not proven.",
+    "No O2C or P2P posting readiness is proven.",
+    "No Preview Posting, Posting, Item Ledger Entry, Value Entry, G/L Entry or VAT Entry is proven."
+  ],
+  "updatedAt": "2026-07-02T00:39:13.503Z"
+}

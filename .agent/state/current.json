@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-02T00:31:01.710Z",
+  "updatedAt": "2026-07-02T00:39:13.503Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-item-product-vat-posting-fields-source-decision",
-  "activeCase": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
-  "active_case_file": ".agent/state/cases/target-053-item-product-vat-posting-fields-source-decision.json",
+  "activeArea": "universaarl-item-product-vat-posting-fields-controlled-write-gate",
+  "activeCase": "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
+  "active_case_file": ".agent/state/cases/target-054-item-product-vat-posting-fields-controlled-write-gate.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -19,11 +19,17 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-existing-evidence",
-    "read-microsoft-learn-and-source-registry",
-    "classify-target-values",
-    "write-decision-json",
-    "write-case-result",
+    "open-business-central",
+    "confirm-instance-playthru",
+    "confirm-company-universaarl-de",
+    "open-item-card-u-item-hw100",
+    "capture-before-screenshot",
+    "enter-product-posting-group-waren",
+    "enter-vat-product-posting-group-vat19",
+    "save-by-standard-card-navigation",
+    "reopen-item-card",
+    "capture-reopen-proof-screenshot",
+    "write-result-json",
     "update-state-and-queue"
   ],
   "forbiddenActions": [
@@ -33,8 +39,6 @@
     "change-item-number-or-name",
     "change-base-unit-of-measure",
     "change-item-posting-group",
-    "change-gen-prod-posting-group",
-    "change-vat-prod-posting-group",
     "change-costing-method",
     "change-inventory-posting-setup",
     "change-vat-posting-setup",
@@ -52,8 +56,8 @@
     "fake-evidence",
     "book-claim-without-evidence"
   ],
-  "nextCase": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
-  "nextStep": "Run TARGET-053 as a source-backed decision for U-ITEM-HW100 Product Posting Group and VAT Product Posting Group target values before any write.",
+  "nextCase": "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
+  "nextStep": "Run TARGET-054 as a narrow item-card write gate: set only Product Posting Group WAREN and VAT Product Posting Group VAT19 on U-ITEM-HW100 if both controls are visible, then reopen-proof.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -8747,5 +8751,28 @@
       "apiShortcut": false
     },
     "nextCase": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION"
+  },
+  "latestSourceDecision": {
+    "caseId": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-053-item-product-vat-posting-fields-source-decision/TARGET-053-result.json",
+    "selectedValues": {
+      "productPostingGroup": {
+        "field": "Gen. Prod. Posting Group / Produktbuchungsgruppe",
+        "targetValue": "WAREN",
+        "decision": "selected-for-narrow-item-write-gate",
+        "writeAllowedNow": false,
+        "reason": "WAREN is already proven as a General Product Posting Group and matches the Universaarl goods/hardware starter item. It is not enough to claim General Posting Setup or posting readiness."
+      },
+      "vatProductPostingGroup": {
+        "field": "VAT Prod. Posting Group / MwSt.-Produktbuchungsgruppe",
+        "targetValue": "VAT19",
+        "decision": "selected-for-narrow-item-write-gate",
+        "writeAllowedNow": false,
+        "reason": "VAT19 is the source-backed 19 percent VAT product-group candidate and is visible from the VAT setup lane. It is not enough to claim VAT Posting Setup, VAT calculation or VAT entry readiness."
+      }
+    },
+    "status": "done-source-decision-no-write",
+    "noWrite": true,
+    "updatedAt": "2026-07-02T00:39:13.503Z"
   }
 }

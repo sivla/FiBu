@@ -15,7 +15,7 @@
     "lookAndFeelFiltering": {
       "chapter": "Kapitel 2/3",
       "status": "planned",
-      "currentBlock": "target-052-item-card-shows-ware-but-product-and-vat-product-values-open",
+      "currentBlock": "target-053-selected-item-product-and-vat-product-values-for-next-write-gate",
       "latestPlanningCase": "TARGET-DATA-001-UNIVERSAARL-DATA-RICHNESS-PLAN",
       "planPath": "playwright/projects/fibu-book5/UNIVERSAARL-DATA-RICHNESS-PLAN.md",
       "bookDraft": "playwright/projects/fibu-book5/book-drafts/universaarl-look-and-feel-filtering-draft.md",
@@ -24,7 +24,8 @@
         "Book draft skeleton for Role Center, lists, cards, FastTabs, FactBoxes, filters, report request pages and Analysis Mode",
         "Atlas placeholders for search, sort, filter list by, filter totals by, report filters and ledger entry filtering",
         "TARGET-045B read-only card route retry: Customer Card and Item Card inspected in playthru / UNIVERSAARL-DE without writes.",
-        "TARGET-046 source mapping: Item Posting Group and Inventory Posting Setup dependency classified before any item/setup write."
+        "TARGET-046 source mapping: Item Posting Group and Inventory Posting Setup dependency classified before any item/setup write.",
+        "TARGET-053 source decision: WAREN and VAT19 selected for U-ITEM-HW100, with VAT and General Posting Setup still separated."
       ],
       "openLimits": [
         "No Universaarl master data family exists yet.",
@@ -33,7 +34,7 @@
         "TARGET-045B: Customer Posting Group, Gen. Bus. Posting Group, VAT Bus. Posting Group, Item Posting Group, Gen. Prod. Posting Group, VAT Prod. Posting Group and Costing Method were not visible enough for a write.",
         "No Inventory Posting Group row, Inventory Posting Setup row, SKR04 inventory account, item posting readiness, Preview Posting or Posting is proven from TARGET-046."
       ],
-      "nextCase": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+      "nextCase": "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
       "plannedCases": [
         "TARGET-DATA-001-UNIVERSAARL-DATA-RICHNESS-PLAN",
         "TARGET-DATA-009-FILTERING-READY-CHECK",
@@ -820,12 +821,12 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-07-02T00:15:33.349Z",
+  "updatedAt": "2026-07-02T00:41:44.387Z",
   "activeArea": "universaarl-item-posting-fields-foundation-checkpoint",
   "currentBlock": "Foundation checkpoint needed before master data: General Posting Setup Page 314 and VAT matrix are parked; Dimensions starter set is visible but Global/Default Dimensions and posting effects are not proven.",
   "latestPracticalCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
   "latestReviewCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
-  "nextCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
+  "nextCase": "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -1046,7 +1047,7 @@
     "playwright/projects/fibu-book5/BC-ERROR-BLOCKER-ATLAS.md",
     "playwright/projects/fibu-book5/BC-PROCESS-COVERAGE-ROADMAP.md"
   ],
-  "currentCoverageFocus": "U-ITEM-HW100 now has WARE as Lagerbuchungsgruppe; VAT Product Posting Group, Gen. Product Posting Group, Costing Method, documents, Preview Posting and Posting remain unproven.",
+  "currentCoverageFocus": "U-ITEM-HW100 has STK, FIFO and WARE; TARGET-053 selected WAREN and VAT19 as source-backed Product/VAT Product target values for a narrow write gate. General Posting Setup, VAT Posting Setup, documents, Preview Posting and Posting remain unproven.",
   "latestCoverageUpdate": {
     "at": "2026-06-28T19:28:00.000+02:00",
     "type": "p2p-011-purchase-lines-action-discovery-tested",
@@ -2376,7 +2377,7 @@
     "finalScreenshotNeeded": true,
     "updatedAt": "2026-06-29T23:59:00+02:00"
   },
-  "activeCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
+  "activeCase": "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
   "active_case_file": ".agent/state/cases/target-036-master-data-first-controlled-write-decision.json",
   "latestManufacturing005": {
     "caseId": "MANUFACTURING-005-CHAPTER14-LAB-VS-TARGET-CLEANUP",
@@ -5462,5 +5463,40 @@
       "WARE on the item card is only a foundation signal, not posting readiness."
     ],
     "nextCase": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION"
+  },
+  "target053SourceDecision": {
+    "caseId": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-053-item-product-vat-posting-fields-source-decision/TARGET-053-result.json",
+    "status": "done-source-decision-no-write",
+    "selectedValues": {
+      "productPostingGroup": {
+        "field": "Gen. Prod. Posting Group / Produktbuchungsgruppe",
+        "targetValue": "WAREN",
+        "decision": "selected-for-narrow-item-write-gate",
+        "writeAllowedNow": false,
+        "reason": "WAREN is already proven as a General Product Posting Group and matches the Universaarl goods/hardware starter item. It is not enough to claim General Posting Setup or posting readiness."
+      },
+      "vatProductPostingGroup": {
+        "field": "VAT Prod. Posting Group / MwSt.-Produktbuchungsgruppe",
+        "targetValue": "VAT19",
+        "decision": "selected-for-narrow-item-write-gate",
+        "writeAllowedNow": false,
+        "reason": "VAT19 is the source-backed 19 percent VAT product-group candidate and is visible from the VAT setup lane. It is not enough to claim VAT Posting Setup, VAT calculation or VAT entry readiness."
+      }
+    },
+    "sourceRefs": [
+      "https://learn.microsoft.com/en-au/dynamics365/business-central/finance-posting-groups",
+      "https://learn.microsoft.com/en-gb/dynamics365/business-central/finance-setup-vat",
+      "https://learn.microsoft.com/en-us/dynamics365/business-central/application/base-application/table/microsoft.finance.generalledger.setup.gen.-product-posting-group"
+    ],
+    "notProved": [
+      "WAREN is not yet saved in the Product Posting Group field on U-ITEM-HW100.",
+      "VAT19 is not yet saved in the VAT Product Posting Group field on U-ITEM-HW100.",
+      "No General Posting Setup row INLAND/WAREN with 4400/5400 is proven.",
+      "No VAT Posting Setup row INLAND/VAT19 with 19 percent and VAT accounts is proven.",
+      "No O2C/P2P readiness, Preview Posting, Posting or ledger entry trace is proven."
+    ],
+    "nextCase": "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
+    "updatedAt": "2026-07-02T00:39:13.503Z"
   }
 }

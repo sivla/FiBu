@@ -5,7 +5,7 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "queueId": "TARGET-MARATHON-002-UNIVERSAARL-REPO-READONLY-PREP",
-  "reason": "TARGET-052 proved item-card field visibility after WARE assignment; TARGET-053 is now the next source-backed item product/VAT product field decision.",
+  "reason": "TARGET-053 selected WAREN and VAT19 as source-backed values without writing; TARGET-054 is now the next narrow item-card write gate.",
   "noEffectiveBusinessCentralActions": false,
   "forbiddenUntilUnblocked": [],
   "unblockCriteria": "Satisfied: UNIVERSAARL-DE exists and active Role Center context / Firmendaten read-only proof is available.",
@@ -4080,7 +4080,7 @@
     {
       "id": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
       "order": 10191,
-      "status": "pending",
+      "status": "done",
       "category": "item-product-vat-posting-fields-source-decision",
       "expectedImpact": "choose-source-backed-product-and-vat-product-posting-group-values-before-any-item-write",
       "mayWorkEffectively": false,
@@ -4090,7 +4090,37 @@
       "sourceCompany": "UNIVERSAARL-DE",
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
-      "lookaheadStatus": "ready-next"
+      "lookaheadStatus": "ready-next",
+      "completedAt": "2026-07-02T00:39:13.503Z",
+      "result": "Selected WAREN and VAT19 as source-backed target values for U-ITEM-HW100; no write, setup, document, Preview Posting or Posting occurred.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-053-item-product-vat-posting-fields-source-decision/TARGET-053-result.json",
+      "nextCase": "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
+      "setupChanged": false,
+      "masterDataChanged": false,
+      "previewPosting": false,
+      "posted": false,
+      "apiShortcut": false,
+      "blockedBy": []
+    },
+    {
+      "id": "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
+      "order": 10192,
+      "status": "pending",
+      "priority": "high",
+      "category": "item-product-vat-posting-fields-controlled-write-gate",
+      "expectedImpact": "assign-source-backed-product-and-vat-product-posting-fields-before-vat-general-posting-or-documents",
+      "mayWorkEffectively": true,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": true,
+      "goal": "Set only Product Posting Group WAREN and VAT Product Posting Group VAT19 on U-ITEM-HW100, then prove the values after item-card reopen.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "caseFile": ".agent/state/cases/target-054-item-product-vat-posting-fields-controlled-write-gate.json",
+      "lookaheadStatus": "ready-next",
+      "dependsOn": [
+        "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION"
+      ]
     }
   ],
   "lastUpdated": "2026-07-02T00:15:33.349Z",

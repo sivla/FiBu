@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
+  "status": "ready-next",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "sourceCase": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+  "targetWorld": "Universaarl",
+  "activeArea": "universaarl-item-product-vat-posting-fields-controlled-write-gate",
+  "purpose": "Set only the source-backed Product Posting Group WAREN and VAT Product Posting Group VAT19 fields on U-ITEM-HW100 if both controls are visible, then prove the values after reopening the item card.",
+  "targetItem": {
+    "no": "U-ITEM-HW100",
+    "knownName": "Universaarl Hardware 100",
+    "allowedFieldChanges": [
+      {
+        "field": "Gen. Prod. Posting Group / Produktbuchungsgruppe",
+        "value": "WAREN"
+      },
+      {
+        "field": "VAT Prod. Posting Group / MwSt.-Produktbuchungsgruppe",
+        "value": "VAT19"
+      }
+    ],
+    "mustRemainUnchanged": [
+      "No.",
+      "Description",
+      "Base Unit of Measure / Basiseinheit",
+      "Item Posting Group / Lagerbuchungsgruppe",
+      "Costing Method / Lagerabgangsmethode"
+    ]
+  },
+  "sourceEvidence": [
+    "TARGET-052 proves U-ITEM-HW100 with visible empty Product Posting Group and VAT Product Posting Group fields.",
+    "TARGET-053 selects WAREN and VAT19 as source-backed target values but does not write them.",
+    "Microsoft Learn separates item-card posting groups from General Posting Setup and VAT Posting Setup readiness."
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "confirm-instance-playthru",
+    "confirm-company-universaarl-de",
+    "open-item-card-u-item-hw100",
+    "capture-before-screenshot",
+    "enter-product-posting-group-waren",
+    "enter-vat-product-posting-group-vat19",
+    "save-by-standard-card-navigation",
+    "reopen-item-card",
+    "capture-reopen-proof-screenshot",
+    "write-result-json",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "create-item",
+    "change-item-number-or-name",
+    "change-base-unit-of-measure",
+    "change-item-posting-group",
+    "change-costing-method",
+    "change-inventory-posting-setup",
+    "change-vat-posting-setup",
+    "change-general-posting-setup",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-inventory-posting-readiness",
+    "claim-posting-readiness",
+    "claim-tax-advisor-approved",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence"
+  ],
+  "smartDecision": {
+    "whyNow": "TARGET-053 selected WAREN and VAT19 from source-backed evidence. The next useful foundation step is to assign only those two item-card fields and prove them after reopen before returning to separate VAT and General Posting Setup lanes.",
+    "fieldsToChangeOnlyIfClear": [
+      "Gen. Prod. Posting Group / Produktbuchungsgruppe = WAREN",
+      "VAT Prod. Posting Group / MwSt.-Produktbuchungsgruppe = VAT19"
+    ],
+    "fieldsNotToTouch": [
+      "Item Posting Group / Lagerbuchungsgruppe",
+      "Base Unit of Measure / Basiseinheit",
+      "Costing Method / Lagerabgangsmethode",
+      "Inventory Posting Setup",
+      "VAT Posting Setup",
+      "General Posting Setup",
+      "Any document or journal"
+    ],
+    "risk": "The item can look closer to posting-ready after field assignment, but VAT Posting Setup and General Posting Setup remain unproven.",
+    "fallback": "If either field is hidden, disabled, ambiguous, or opens an unexpected dialog, stop and create a UI diagnosis case instead of writing."
+  },
+  "acceptanceCriteria": [
+    "Business Central stays in playthru / UNIVERSAARL-DE.",
+    "Before screenshot shows U-ITEM-HW100 and the two target fields before write.",
+    "Only Product Posting Group WAREN and VAT Product Posting Group VAT19 are changed.",
+    "Reopen screenshot shows WAREN and VAT19 saved on U-ITEM-HW100.",
+    "No setup page is changed.",
+    "No document, draft, Preview Posting, Posting, payment or API shortcut occurs.",
+    "Result JSON states that posting readiness remains not proven."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-053 selected WAREN and VAT19 as source-backed target values, with setup and posting boundaries locked.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A narrow item-card assignment is the smallest practical next step before broader VAT or General Posting Setup work.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
+        "status": "ready-next",
+        "reason": "Field values and boundaries are clear."
+      },
+      {
+        "caseId": "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
+        "status": "ready-after-current",
+        "reason": "VAT setup remains separate after item field assignment."
+      },
+      {
+        "caseId": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+        "status": "ready-after-current",
+        "reason": "General Posting Setup remains separate after item field assignment."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C still needs VAT and General Posting Setup gates."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It is the smallest evidence-producing BC step now that the values are source-backed.",
+    "risksBeforeNextCase": [
+      "Wrong company or wrong item.",
+      "Hidden or disabled field controls.",
+      "Unexpected dialog or wizard.",
+      "Accidental setup or document action."
+    ],
+    "requiredPreparation": [
+      "Open U-ITEM-HW100 directly.",
+      "Expand the relevant FastTab.",
+      "Use screenshot QA before and after."
+    ]
+  },
+  "updatedAt": "2026-07-02T00:39:13.503Z"
+}

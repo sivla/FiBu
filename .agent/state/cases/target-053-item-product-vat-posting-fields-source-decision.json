@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
-  "status": "ready-next",
+  "status": "done-source-decision-no-write",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -82,52 +82,74 @@
     "No setup, master data, document, Preview Posting or Posting occurs."
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
-    "plannedNextCaseBeforeReview": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
-    "lastEvidenceSummary": "TARGET-052 proved U-ITEM-HW100 with STK, FIFO, WARE and visible Product/VAT Product Posting Group field terms. Values for Product and VAT Product Posting Group remain unproven.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "VAT matrix work is still too broad until item product/VAT product target values are source-backed.",
+    "currentCase": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+    "lastEvidenceSummary": "TARGET-052 showed U-ITEM-HW100 with STK, FIFO, WARE and visible but empty Product Posting Group and VAT Product Posting Group fields. TARGET-045A had already mapped WAREN and VAT19 as candidates with setup boundaries.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The item-card write must not happen until WAREN and VAT19 are source-backed and their setup limitations are documented.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
-        "status": "ready-next",
-        "reason": "It chooses values before any item-card write."
-      },
-      {
         "caseId": "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
-        "status": "ready-after-current",
-        "reason": "Only valid if TARGET-053 selects source-backed values."
+        "status": "ready-next",
+        "reason": "The two target values are now selected, but only for a narrow item-card write with before/after screenshot and reopen proof."
       },
       {
-        "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
+        "caseId": "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
         "status": "ready-after-current",
-        "reason": "VAT setup remains necessary after item VAT product value decision."
+        "reason": "VAT Posting Setup remains required after item VAT product value assignment; it must not be merged into TARGET-054."
       },
       {
-        "caseId": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-WRITE-GATE",
-        "status": "needs-setup-first",
-        "reason": "General Posting Setup needs source-backed product group values first."
+        "caseId": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+        "status": "ready-after-current",
+        "reason": "General Posting Setup INLAND/WAREN remains required after item product value assignment; it must not be merged into TARGET-054."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C remains locked until item/customer posting fields plus VAT/general setup are ready."
+        "reason": "O2C remains blocked until customer/item posting fields plus VAT and General Posting Setup are ready enough for a preflight."
+      },
+      {
+        "caseId": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
+        "status": "blocked",
+        "reason": "Vendor numbering is parked and unrelated to the current item foundation lane."
       }
     ],
     "queueChangesMade": [
-      "TARGET-052 completed; TARGET-053 selected as next narrow source decision."
+      "Marked TARGET-053 done.",
+      "Added TARGET-054 as the next narrow controlled item-card write gate."
     ],
-    "selectedNextCase": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
-    "whySelectedNextCaseIsBest": "It prevents a blind write into the two visible-but-empty item posting fields.",
+    "selectedNextCase": "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It converts the source decision into exactly one bounded field assignment step before returning to VAT and General Posting Setup lanes.",
     "risksBeforeNextCase": [
-      "Do not treat WARE as full posting readiness.",
-      "Do not infer VAT or product posting values without sources.",
-      "Keep Preview Posting and Posting false."
+      "Do not change setup pages in TARGET-054.",
+      "Do not create documents or run Preview Posting.",
+      "Do not claim posting readiness after setting item fields."
     ],
     "requiredPreparation": [
-      "Read TARGET-045A field source map and current source registry.",
-      "Map candidate values such as WAREN and VAT19 to actual setup state before any write."
+      "Use the item card route from TARGET-052.",
+      "Capture before screenshot with both empty fields visible.",
+      "Stop if the wrong item, wrong company, search overlay, wizard, dialog or hidden field state appears."
     ]
   },
-  "updatedAt": "2026-07-02T00:31:01.710Z"
+  "updatedAt": "2026-07-02T00:41:44.387Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-053-item-product-vat-posting-fields-source-decision/TARGET-053-result.json",
+  "selectedValues": {
+    "productPostingGroup": {
+      "field": "Gen. Prod. Posting Group / Produktbuchungsgruppe",
+      "targetValue": "WAREN",
+      "decision": "selected-for-narrow-item-write-gate",
+      "writeAllowedNow": false,
+      "reason": "WAREN is already proven as a General Product Posting Group and matches the Universaarl goods/hardware starter item. It is not enough to claim General Posting Setup or posting readiness."
+    },
+    "vatProductPostingGroup": {
+      "field": "VAT Prod. Posting Group / MwSt.-Produktbuchungsgruppe",
+      "targetValue": "VAT19",
+      "decision": "selected-for-narrow-item-write-gate",
+      "writeAllowedNow": false,
+      "reason": "VAT19 is the source-backed 19 percent VAT product-group candidate and is visible from the VAT setup lane. It is not enough to claim VAT Posting Setup, VAT calculation or VAT entry readiness."
+    }
+  },
+  "nextCase": "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
+  "completedAt": "2026-07-02T00:39:13.503Z",
+  "blockedBy": []
 }

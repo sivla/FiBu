@@ -506,6 +506,19 @@ TARGET-048 laeuft ohne Business-Central- und ohne Playwright-Ausfuehrung. Der La
 
 Fuer Universaarl folgt daraus: Der naechste Schritt ist `TARGET-048B-INVENTORY-ACCOUNT-1140-CONTROLLED-WRITE-GATE`. Dort darf ausschliesslich `1140 Waren (Bestand)` als `Bilanz`/`Buchung` geprueft oder angelegt und nach erneutem Oeffnen bewiesen werden. Item Posting Groups, Inventory Posting Setup, Artikel, Belege, Preview Posting und Posting bleiben gesperrt.
 
+## TARGET-053 Artikel-Produkt-/MwSt.-Produktbuchungsgruppen-Entscheidung
+
+TARGET-053 laeuft ohne Business-Central- und ohne Playwright-Ausfuehrung. Der Lauf verbindet die vorhandene Universaarl-Evidence mit Microsoft Learn:
+
+- Microsoft Learn `Posting group setup` stuetzt die Produktlogik, dass allgemeine Produktbuchungsgruppen beschreiben, was verkauft oder gekauft wird, und dass die allgemeine Buchungsmatrix erst aus der Kombination von Geschaefts- und Produktbuchungsgruppe die Sachkonten bestimmt.
+- Microsoft Learn `Set up VAT` stuetzt die Produktlogik, dass MwSt.-Produktbuchungsgruppen beschreiben, welche Art von Artikeln/Ressourcen fuer die MwSt.-Berechnung verwendet wird, und dass die MwSt.-Buchungsmatrix erst aus MwSt.-Geschaefts- und MwSt.-Produktbuchungsgruppe Steuersatz und Steuerkonten bestimmt.
+- Die Objektquelle `Gen. Product Posting Group` zeigt zusaetzlich, dass eine allgemeine Produktbuchungsgruppe einen Default fuer die MwSt.-Produktbuchungsgruppe haben kann. Das ist eine Strukturgrenze, aber kein Universaarl-Speicherbeweis.
+- TARGET-032B beweist `WAREN` als allgemeine Produktbuchungsgruppe.
+- TARGET-027C beweist `VAT19` als sichtbare MwSt.-Produktbuchungsgruppe.
+- TARGET-052 beweist auf `U-ITEM-HW100` die sichtbaren, noch leeren Felder `Produktbuchungsgruppe` und `MwSt.-Produktbuchungsgruppe`.
+
+Fuer Universaarl folgt daraus: `WAREN` und `VAT19` sind die source-backed Zielwerte fuer den naechsten engen Artikelkarten-Schreibcase. TARGET-054 darf nur diese beiden Felder auf `U-ITEM-HW100` setzen und nach erneutem Oeffnen beweisen. Daraus entsteht noch keine Buchungsfaehigkeit: General Posting Setup `INLAND` + `WAREN`, VAT Posting Setup `INLAND` + `VAT19`, Belege, Preview Posting, Posting und Posten bleiben eigene Gates.
+
 ## URLs
 
 - https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company
@@ -521,7 +534,9 @@ Fuer Universaarl folgt daraus: Der naechste Schritt ist `TARGET-048B-INVENTORY-A
 - https://learn.microsoft.com/en-us/dynamics365/business-central/ui-personalization-user
 - https://learn.microsoft.com/en-us/dynamics365/business-central/ui-create-number-series
 - https://learn.microsoft.com/en-us/dynamics365/business-central/admin-integrate-field-service
+- https://learn.microsoft.com/en-us/dynamics365/business-central/finance-posting-groups
 - https://learn.microsoft.com/en-us/dynamics365/business-central/finance-setup-vat
+- https://learn.microsoft.com/en-us/dynamics365/business-central/application/base-application/table/microsoft.finance.generalledger.setup.gen.-product-posting-group
 - https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/set-up-standard-company-configuration-packages
 - https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/apply-company-configuration-packages
 - https://learn.microsoft.com/en-us/training/modules/set-up-vat-dynamics-365-business-central/

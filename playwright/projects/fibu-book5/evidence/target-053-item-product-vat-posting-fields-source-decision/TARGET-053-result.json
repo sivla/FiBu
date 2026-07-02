@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+  "source": "local-source-decision",
+  "sourceResult": "playwright/projects/fibu-book5/evidence/target-053-item-product-vat-posting-fields-source-decision/decision.json",
+  "resultStatus": "done-source-decision-no-write",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "url": null,
+  "page": null,
+  "actionsTaken": [
+    "Read TARGET-052 item card checkpoint evidence.",
+    "Read TARGET-045A field source mapping.",
+    "Checked existing source registry and Microsoft Learn mapping.",
+    "Reviewed Microsoft Learn posting group and VAT setup sources.",
+    "Selected WAREN and VAT19 as source-backed candidate values for the next narrow item-card write gate.",
+    "Kept all Business Central writes locked in this case."
+  ],
+  "actionsNotTaken": [
+    "No Business Central execution.",
+    "No Playwright execution.",
+    "No item field was changed.",
+    "No setup was changed.",
+    "No document or draft was created.",
+    "No Preview Posting was run.",
+    "No Posting was run.",
+    "No payment was run.",
+    "No API shortcut was used.",
+    "No book content was changed."
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "screenshots": [],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-052-item-posting-fields-foundation-checkpoint/TARGET-052-result.json",
+    "playwright/projects/fibu-book5/evidence/target-045a-customer-item-field-source-mapping/source-field-map.json",
+    "playwright/projects/fibu-book5/evidence/target-053-item-product-vat-posting-fields-source-decision/decision.json",
+    "playwright/projects/fibu-book5/BC-SOURCE-REGISTRY.md",
+    "playwright/projects/fibu-book5/BC-MICROSOFT-LEARN-MAPPING.md"
+  ],
+  "sourceRefs": [
+    "https://learn.microsoft.com/en-au/dynamics365/business-central/finance-posting-groups",
+    "https://learn.microsoft.com/en-gb/dynamics365/business-central/finance-setup-vat",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/application/base-application/table/microsoft.finance.generalledger.setup.gen.-product-posting-group"
+  ],
+  "proved": [
+    "TARGET-053 did not run Business Central or Playwright.",
+    "WAREN is the selected source-backed target value for U-ITEM-HW100 Product Posting Group.",
+    "VAT19 is the selected source-backed target value for U-ITEM-HW100 VAT Product Posting Group.",
+    "The selected values are only unlocked for a future narrow item-card write gate, not for setup, documents, Preview Posting or Posting.",
+    "Microsoft Learn and Universaarl evidence both support keeping General Posting Setup and VAT Posting Setup as separate gated dependencies."
+  ],
+  "notProved": [
+    "WAREN is not yet saved in the Product Posting Group field on U-ITEM-HW100.",
+    "VAT19 is not yet saved in the VAT Product Posting Group field on U-ITEM-HW100.",
+    "No General Posting Setup row INLAND/WAREN with 4400/5400 is proven.",
+    "No VAT Posting Setup row INLAND/VAT19 with 19 percent and VAT accounts is proven.",
+    "No O2C/P2P readiness, Preview Posting, Posting or ledger entry trace is proven."
+  ],
+  "warnings": [
+    "TARGET-054 must touch only the two item card fields WAREN and VAT19 if both controls are visible.",
+    "Do not claim posting readiness from item-card field assignment alone.",
+    "General Posting Setup and VAT Posting Setup remain separate blocked lanes."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-053-item-product-vat-posting-fields-source-decision/decision.json",
+    "playwright/projects/fibu-book5/evidence/target-053-item-product-vat-posting-fields-source-decision/TARGET-053-result.json",
+    "playwright/projects/fibu-book5/evidence/target-053-item-product-vat-posting-fields-source-decision/README.md",
+    ".agent/state/cases/target-053-item-product-vat-posting-fields-source-decision.json",
+    ".agent/state/cases/target-054-item-product-vat-posting-fields-controlled-write-gate.json",
+    ".agent/state/current.json",
+    ".agent/state/marathon_queue.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/coverage_state.json",
+    "playwright/projects/fibu-book5/BC-SOURCE-REGISTRY.md",
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md"
+  ],
+  "statePatch": {
+    "current": {
+      "activeArea": "universaarl-item-product-vat-posting-fields-controlled-write-gate",
+      "activeCase": "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
+      "active_case_file": ".agent/state/cases/target-054-item-product-vat-posting-fields-controlled-write-gate.json",
+      "nextCase": "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
+      "nextStep": "Run TARGET-054 as a narrow item-card write gate: set only Product Posting Group WAREN and VAT Product Posting Group VAT19 on U-ITEM-HW100 if both controls are visible, then reopen-proof."
+    },
+    "lastRunSummary": {
+      "runId": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+      "caseId": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+      "status": "done-source-decision-no-write",
+      "bcRun": false,
+      "playwrightRun": false,
+      "setupChanged": false,
+      "masterDataChanged": false,
+      "draftCreated": false,
+      "previewPosting": false,
+      "posted": false,
+      "payment": false,
+      "apiShortcut": false,
+      "nextCase": "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE"
+    },
+    "activeCase": {
+      "status": "done-source-decision-no-write",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-053-item-product-vat-posting-fields-source-decision/TARGET-053-result.json",
+      "nextCase": "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE"
+    }
+  },
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "nextStepDecision": {
+    "currentCase": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+    "lastEvidenceSummary": "TARGET-052 showed U-ITEM-HW100 with STK, FIFO, WARE and visible but empty Product Posting Group and VAT Product Posting Group fields. TARGET-045A had already mapped WAREN and VAT19 as candidates with setup boundaries.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The item-card write must not happen until WAREN and VAT19 are source-backed and their setup limitations are documented.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
+        "status": "ready-next",
+        "reason": "The two target values are now selected, but only for a narrow item-card write with before/after screenshot and reopen proof."
+      },
+      {
+        "caseId": "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
+        "status": "ready-after-current",
+        "reason": "VAT Posting Setup remains required after item VAT product value assignment; it must not be merged into TARGET-054."
+      },
+      {
+        "caseId": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+        "status": "ready-after-current",
+        "reason": "General Posting Setup INLAND/WAREN remains required after item product value assignment; it must not be merged into TARGET-054."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C remains blocked until customer/item posting fields plus VAT and General Posting Setup are ready enough for a preflight."
+      },
+      {
+        "caseId": "TARGET-036D2H-U-VEND-MANUAL-NOS-PARK-OR-PAGEINSPECTION-DECISION",
+        "status": "blocked",
+        "reason": "Vendor numbering is parked and unrelated to the current item foundation lane."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked TARGET-053 done.",
+      "Added TARGET-054 as the next narrow controlled item-card write gate."
+    ],
+    "selectedNextCase": "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It converts the source decision into exactly one bounded field assignment step before returning to VAT and General Posting Setup lanes.",
+    "risksBeforeNextCase": [
+      "Do not change setup pages in TARGET-054.",
+      "Do not create documents or run Preview Posting.",
+      "Do not claim posting readiness after setting item fields."
+    ],
+    "requiredPreparation": [
+      "Use the item card route from TARGET-052.",
+      "Capture before screenshot with both empty fields visible.",
+      "Stop if the wrong item, wrong company, search overlay, wizard, dialog or hidden field state appears."
+    ]
+  },
+  "updatedAt": "2026-07-02T00:39:13.503Z"
+}
