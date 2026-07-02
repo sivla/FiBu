@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+  "status": "ready-next",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "targetWorld": "Universaarl",
+  "activeArea": "universaarl-general-posting-setup-route-reopen-decision",
+  "purpose": "Decide whether the parked General Posting Setup route for INLAND + WAREN should be reopened now that U-ITEM-HW100 visibly carries Product Posting Group WAREN.",
+  "sourceCases": [
+    "TARGET-032F-GENERAL-POSTING-SETUP-PARK-DECISION",
+    "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+    "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
+    "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION"
+  ],
+  "sourceEvidence": [
+    "TARGET-032F parked the General Posting Setup write route because no safe standard route for INLAND + WAREN with 4400/5400 was proven.",
+    "TARGET-053 selected WAREN as the source-backed Product Posting Group target value for U-ITEM-HW100.",
+    "TARGET-054 proved WAREN visible on U-ITEM-HW100 after reopening the item card.",
+    "TARGET-027D25 kept VAT Posting Setup parked and separated from General Posting Setup."
+  ],
+  "allowedActions": [
+    "read-prior-general-posting-setup-evidence",
+    "read-target-054-evidence",
+    "read-source-registry",
+    "classify-general-posting-route-as-reopen-or-park",
+    "write-local-decision-result",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "company-switch",
+    "click-new",
+    "write-general-posting-setup",
+    "write-vat-posting-setup",
+    "change-item",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-posting-readiness",
+    "claim-tax-advisor-approved"
+  ],
+  "smartDecision": {
+    "whyNow": "TARGET-054 changed the item-side Product Posting Group from empty to WAREN. Before any O2C/P2P preflight, the Autopilot must decide whether the parked INLAND + WAREN setup route can be reopened or needs a different discovery path.",
+    "fieldsToChangeOnlyIfClear": [],
+    "fieldsNotToTouch": [
+      "General Posting Setup",
+      "VAT Posting Setup",
+      "U-ITEM-HW100",
+      "Customers",
+      "Vendors",
+      "Documents",
+      "Journals"
+    ],
+    "risk": "WAREN on the item can be mistaken for a completed INLAND + WAREN posting matrix. It is only one prerequisite.",
+    "fallback": "If no materially new route exists, keep General Posting Setup parked and choose a read-only source/UI discovery case before any setup write."
+  },
+  "acceptanceCriteria": [
+    "No Business Central or Playwright execution occurs.",
+    "Prior General Posting Setup blockers are reviewed against the new TARGET-054 item-card state.",
+    "The decision clearly says reopen General Posting Setup route, keep parked, or replace with a better discovery route.",
+    "No setup, item, document, Preview Posting, Posting or API action is performed."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+    "lastEvidenceSummary": "TARGET-054 proved WAREN and VAT19 on U-ITEM-HW100. TARGET-027D25 kept VAT Posting Setup parked because item VAT19 does not create a VAT matrix row.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The item Product Posting Group WAREN now exists, but INLAND + WAREN with 4400/5400 is still not proven.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+        "status": "ready-next",
+        "reason": "Local evidence decision only; no BC execution required."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C remains blocked until VAT and General Posting Setup boundaries are resolved."
+      },
+      {
+        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
+        "status": "blocked",
+        "reason": "Preview Posting is blocked without complete posting setup and a document."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+    "whySelectedNextCaseIsBest": "It protects against treating WAREN on the item as posting setup truth.",
+    "risksBeforeNextCase": [
+      "Confusing Product Posting Group on the item with General Posting Setup readiness.",
+      "Skipping VAT boundaries before O2C/P2P.",
+      "Repeating old Page-314 failed routes without a new hypothesis."
+    ],
+    "requiredPreparation": [
+      "Read TARGET-032F and TARGET-054 results.",
+      "Compare old Page-314 blockers with the new item-card state.",
+      "Choose reopen, park or replacement route explicitly."
+    ]
+  },
+  "updatedAt": "2026-07-02T00:57:25.377Z"
+}

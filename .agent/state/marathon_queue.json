@@ -4105,7 +4105,7 @@
     {
       "id": "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
       "order": 10192,
-      "status": "pending",
+      "status": "done",
       "priority": "high",
       "category": "item-product-vat-posting-fields-controlled-write-gate",
       "expectedImpact": "assign-source-backed-product-and-vat-product-posting-fields-before-vat-general-posting-or-documents",
@@ -4120,10 +4120,80 @@
       "lookaheadStatus": "ready-next",
       "dependsOn": [
         "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION"
+      ],
+      "completedAt": "2026-07-02T00:51:13.540Z",
+      "result": "WAREN and VAT19 were set on U-ITEM-HW100 and proved visible after reopen; setup, documents, Preview Posting, Posting and API stayed false.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-054-item-product-vat-posting-fields-controlled-write-gate/TARGET-054-result.json",
+      "nextCase": "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
+      "setupChanged": false,
+      "masterDataChanged": true,
+      "draftCreated": false,
+      "previewPosting": false,
+      "posted": false,
+      "apiShortcut": false,
+      "blockedBy": [],
+      "screenshots": [
+        "playwright/projects/fibu-book5/img/target-054-010-before-product-vat-field-assignment.png",
+        "playwright/projects/fibu-book5/img/target-054-020-after-product-vat-field-assignment-route.png",
+        "playwright/projects/fibu-book5/img/target-054-030-reopen-proof.png"
+      ]
+    },
+    {
+      "id": "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
+      "order": 10193,
+      "status": "done",
+      "priority": "high",
+      "category": "vat-matrix-route-reopen-decision",
+      "expectedImpact": "decide-whether-vat-posting-setup-route-should-reopen-after-item-vat19-proof",
+      "mayWorkEffectively": false,
+      "mayRunPlaywright": false,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Review prior VAT matrix blockers and TARGET-054 item-card VAT19 proof, then choose reopen, park or replacement route before any VAT setup write.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "caseFile": ".agent/state/cases/target-027d25-vat-matrix-route-reopen-decision.json",
+      "lookaheadStatus": "ready-next",
+      "dependsOn": [
+        "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
+        "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE"
+      ],
+      "completedAt": "2026-07-02T00:57:25.377Z",
+      "result": "VAT matrix kept parked after TARGET-054; item VAT19 is prerequisite evidence only.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-027d25-vat-matrix-route-reopen-decision/TARGET-027D25-result.json",
+      "nextCase": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+      "setupChanged": false,
+      "masterDataChanged": false,
+      "draftCreated": false,
+      "previewPosting": false,
+      "posted": false,
+      "apiShortcut": false,
+      "blockedBy": []
+    },
+    {
+      "id": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+      "order": 10194,
+      "status": "pending",
+      "priority": "high",
+      "category": "general-posting-setup-route-reopen-decision",
+      "expectedImpact": "decide-whether-general-posting-setup-route-should-reopen-after-item-waren-proof",
+      "mayWorkEffectively": false,
+      "mayRunPlaywright": false,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Review prior General Posting Setup blockers and TARGET-054 item-card WAREN proof, then choose reopen, park or replacement route before any setup write.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "caseFile": ".agent/state/cases/target-032g-general-posting-setup-route-reopen-decision.json",
+      "lookaheadStatus": "ready-next",
+      "dependsOn": [
+        "TARGET-032F-GENERAL-POSTING-SETUP-PARK-DECISION",
+        "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
+        "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION"
       ]
     }
   ],
-  "lastUpdated": "2026-07-02T00:15:33.349Z",
+  "lastUpdated": "2026-07-02T00:59:58.055Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -4233,9 +4303,9 @@
       ]
     }
   },
-  "updatedAt": "2026-07-02T00:15:33.349Z",
-  "lastCompletedCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
-  "nextCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
+  "updatedAt": "2026-07-02T00:59:58.055Z",
+  "lastCompletedCase": "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
+  "nextCase": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
   "nextStepDecisionCard": {
     "currentCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
     "plannedNextCaseBeforeReview": "TARGET-038-O2C-PREFLIGHT",
@@ -4283,62 +4353,57 @@
       "Use only read-only item card inspection and screenshot QA."
     ]
   },
-  "nextStep": "Run TARGET-052 checkpoint before VAT, General Posting Setup or O2C/P2P.",
-  "openItems": [
-    "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT"
-  ],
-  "nextQueueItem": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
+  "nextStep": "Run TARGET-032G local General Posting Setup route reopen decision; no BC or Playwright.",
+  "openItems": 1,
+  "nextQueueItem": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
   "nextCases": [
-    "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
-    "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
-    "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-WRITE-GATE",
-    "TARGET-038-O2C-PREFLIGHT"
+    "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+    "TARGET-038-O2C-PREFLIGHT",
+    "TARGET-037-FIRST-PREVIEW-GATE"
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-038-O2C-PREFLIGHT",
-    "lastEvidenceSummary": "TARGET-051 proved WARE on U-ITEM-HW100 after reopen, but no VAT Product Posting Group, Gen. Product Posting Group, document, Preview Posting or Posting occurred.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "O2C/P2P remain too early; a checkpoint must classify remaining item and posting setup dependencies first.",
+    "currentCase": "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
+    "lastEvidenceSummary": "TARGET-054 proved WAREN and VAT19 on U-ITEM-HW100 after reopen. TARGET-027D24 had parked VAT Posting Setup because no safe write route for INLAND/VAT19 was proven.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The local decision is still necessary because item-card VAT19 can be mistaken for VAT setup readiness.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
+        "caseId": "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
         "status": "ready-next",
-        "reason": "Directly validates the changed item card and remaining setup gaps."
+        "reason": "Completed locally in this run."
       },
       {
-        "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
-        "status": "ready-after-current",
-        "reason": "VAT lane may follow after the item checkpoint confirms no regression."
-      },
-      {
-        "caseId": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-WRITE-GATE",
-        "status": "needs-setup-first",
-        "reason": "General Posting Setup should be revisited only with precise matrix fields and no item-card ambiguity."
+        "caseId": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+        "status": "ready-next",
+        "reason": "WAREN is now visible on U-ITEM-HW100, but INLAND/WAREN with 4400/5400 is not proven."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Needs item, customer, VAT and general posting setup readiness."
+        "reason": "O2C needs VAT and General Posting Setup boundaries first."
       },
       {
-        "caseId": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
         "status": "blocked",
-        "reason": "Vendor numbering remains separate and parked."
+        "reason": "No document and no full posting setup."
       }
     ],
     "queueChangesMade": [
-      "TARGET-051 done; TARGET-052 inserted as ready-next checkpoint."
+      "Marked TARGET-027D25 as done.",
+      "Added TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION as next local decision."
     ],
-    "selectedNextCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
-    "whySelectedNextCaseIsBest": "It prevents a premature jump to documents and turns the item-card change into a stable foundation checkpoint.",
+    "selectedNextCase": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+    "whySelectedNextCaseIsBest": "It addresses the other matrix dependency created by Product Posting Group WAREN without pretending VAT is solved.",
     "risksBeforeNextCase": [
-      "Do not claim posting readiness.",
-      "Do not change VAT or General Posting Setup inside TARGET-052.",
+      "Do not write Page 314 without a materially new route.",
+      "Do not create O2C/P2P documents before matrix boundaries are resolved.",
       "Keep Preview Posting and Posting false."
     ],
     "requiredPreparation": [
-      "Use only read-only item card inspection and screenshot QA."
+      "Read TARGET-032F parked route evidence.",
+      "Read TARGET-054 item-card WAREN proof.",
+      "Decide reopen, park or replacement route explicitly."
     ]
   }
 }

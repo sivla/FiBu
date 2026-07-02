@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
+  "status": "done",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "targetWorld": "Universaarl",
+  "activeArea": "universaarl-vat-matrix-route-reopen-decision",
+  "purpose": "Decide whether the parked VAT Posting Setup route should be reopened now that U-ITEM-HW100 visibly carries VAT Product Posting Group VAT19, without changing Business Central.",
+  "sourceCases": [
+    "TARGET-027D24-VAT-MATRIX-ALTERNATIVE-STANDARD-ROUTE-DECISION",
+    "TARGET-032F-GENERAL-POSTING-SETUP-PARK-DECISION",
+    "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
+    "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+    "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE"
+  ],
+  "sourceEvidence": [
+    "TARGET-027D24 parked the VAT Posting Setup matrix because no safe standard write route for INLAND + VAT19 was proven.",
+    "TARGET-053 selected VAT19 as the source-backed VAT Product Posting Group target value for U-ITEM-HW100.",
+    "TARGET-054 proved VAT19 visible on U-ITEM-HW100 after reopening the item card.",
+    "TARGET-054 did not prove VAT Posting Setup, VAT calculation, VAT Entries, documents, Preview Posting or Posting."
+  ],
+  "allowedActions": [
+    "read-prior-vat-evidence",
+    "read-target-054-evidence",
+    "read-source-registry",
+    "read-full-playthrough-catalog",
+    "classify-vat-route-as-reopen-or-park",
+    "write-local-decision-result",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "company-switch",
+    "click-new",
+    "write-vat-posting-setup",
+    "write-general-posting-setup",
+    "change-item",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-vat-readiness",
+    "claim-posting-readiness",
+    "claim-tax-advisor-approved"
+  ],
+  "smartDecision": {
+    "whyNow": "TARGET-054 changed the item-side VAT product value from empty to VAT19. Before any VAT matrix write is retried, the Autopilot must decide whether this new state removes a dependency or whether the earlier matrix blocker remains unchanged.",
+    "fieldsToChangeOnlyIfClear": [],
+    "fieldsNotToTouch": [
+      "VAT Posting Setup",
+      "General Posting Setup",
+      "U-ITEM-HW100",
+      "Customers",
+      "Vendors",
+      "Documents",
+      "Journals"
+    ],
+    "risk": "A visible VAT19 item value can be mistaken for VAT readiness. It is only one prerequisite and does not create a VAT Posting Setup matrix row.",
+    "fallback": "If the evidence still shows no safe VAT matrix write route, keep VAT matrix parked and choose the General Posting Setup route decision or another read-only UI/source discovery case."
+  },
+  "acceptanceCriteria": [
+    "No Business Central or Playwright execution occurs.",
+    "Prior VAT matrix blockers are reviewed against the new TARGET-054 item-card state.",
+    "The decision clearly says reopen VAT matrix route, keep parked, or replace with a better setup route.",
+    "No VAT, General Posting Setup, item, document, Preview Posting, Posting or API action is performed.",
+    "Next-step decision reviews at least VAT matrix, General Posting Setup, O2C preflight and first Preview gate."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
+    "lastEvidenceSummary": "TARGET-054 proved WAREN and VAT19 saved on U-ITEM-HW100 after reopen; VAT Posting Setup and General Posting Setup remain unproven.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The VAT route was previously parked. The new item-side VAT19 value changes the dependency picture but does not itself prove VAT setup, so a local route decision is safer than immediate setup writing.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
+        "status": "ready-next",
+        "reason": "Local evidence decision only; no BC execution required."
+      },
+      {
+        "caseId": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+        "status": "ready-after-current",
+        "reason": "General Posting Setup INLAND/WAREN is still required after item Product Posting Group WAREN."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C remains blocked until VAT and General Posting Setup are consciously resolved or parked with a clear preflight boundary."
+      },
+      {
+        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
+        "status": "blocked",
+        "reason": "Preview Posting is still blocked because no document and no complete posting setup are proven."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
+    "whySelectedNextCaseIsBest": "It protects against treating item-card VAT19 as VAT setup truth and keeps the next action source/evidence-driven.",
+    "risksBeforeNextCase": [
+      "Confusing VAT Product Posting Group on the item with VAT Posting Setup readiness.",
+      "Reopening a previously blocked matrix write route without a new route hypothesis.",
+      "Skipping General Posting Setup INLAND/WAREN before O2C/P2P preflight."
+    ],
+    "requiredPreparation": [
+      "Read TARGET-027D24 and TARGET-054 results.",
+      "Compare VAT matrix blockers with the new item-card state.",
+      "Choose reopen, park or replacement route explicitly."
+    ]
+  },
+  "updatedAt": "2026-07-02T00:57:25.377Z",
+  "completedAt": "2026-07-02T00:57:25.377Z",
+  "resultStatus": "done-vat-matrix-kept-parked-general-posting-decision-selected-no-bc",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d25-vat-matrix-route-reopen-decision/TARGET-027D25-result.json",
+  "selectedRoute": "keep-vat-matrix-parked-after-item-vat19-proof",
+  "nextCase": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION"
+}

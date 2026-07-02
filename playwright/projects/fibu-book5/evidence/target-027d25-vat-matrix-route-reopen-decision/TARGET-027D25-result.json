@@ -1,10 +1,9 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
+  "purpose": "autopilot-result-normalized",
   "caseId": "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
-  "status": "done-vat-matrix-kept-parked-general-posting-decision-selected-no-bc",
-  "completedAt": "2026-07-02T00:57:25.377Z",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d25-vat-matrix-route-reopen-decision/TARGET-027D25-result.json",
+  "source": "local-evidence-route-decision",
+  "resultStatus": "done-vat-matrix-kept-parked-general-posting-decision-selected-no-bc",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "bcRun": false,
@@ -15,7 +14,15 @@
   "previewPosting": false,
   "posted": false,
   "apiShortcut": false,
-  "summary": "TARGET-027D25 kept VAT Posting Setup parked after TARGET-054: VAT19 on U-ITEM-HW100 is item-card prerequisite evidence, not VAT matrix readiness. TARGET-032G is next for General Posting Setup route decision.",
+  "bookChanged": false,
+  "selectedRoute": "keep-vat-matrix-parked-after-item-vat19-proof",
+  "selectedNextCase": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+  "vatMatrixStatus": "parked-blocked-not-proven",
+  "sourceEvidence": [
+    "TARGET-027D24 kept VAT Posting Setup parked after repeated Page 472 and configuration-package route blockers.",
+    "TARGET-054 proves VAT19 visible on U-ITEM-HW100 after reopen.",
+    "VAT19 on an item is not a VAT Posting Setup matrix row and does not define VAT %, calculation type or VAT accounts."
+  ],
   "proved": [
     "TARGET-054 changes the item-card dependency picture but does not remove the VAT Posting Setup write-route blocker.",
     "The correct VAT Posting Setup combination INLAND + VAT19 remains unproven in UNIVERSAARL-DE.",
@@ -32,9 +39,26 @@
     "Do not treat VAT19 on the item card as VAT setup readiness.",
     "Do not repeat old VAT matrix write/package routes without a materially new route hypothesis."
   ],
-  "nextCase": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
-  "nextCaseFile": ".agent/state/cases/target-032g-general-posting-setup-route-reopen-decision.json",
-  "nextStep": "Run TARGET-032G as a local route decision for General Posting Setup INLAND/WAREN; do not open BC or write setup.",
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {},
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-027d25-vat-matrix-route-reopen-decision/TARGET-027D25-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d25-vat-matrix-route-reopen-decision/README.md",
+    ".agent/state/cases/target-027d25-vat-matrix-route-reopen-decision.json",
+    ".agent/state/cases/target-032g-general-posting-setup-route-reopen-decision.json",
+    ".agent/state/current.json",
+    ".agent/state/marathon_queue.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/coverage_state.json",
+    "playwright/projects/fibu-book5/BC-SOURCE-REGISTRY.md",
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-027d24-vat-matrix-alternative-standard-route-decision/TARGET-027D24-result.json",
+    "playwright/projects/fibu-book5/evidence/target-054-item-product-vat-posting-fields-controlled-write-gate/TARGET-054-result.json"
+  ],
   "nextStepDecision": {
     "currentCase": "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
     "plannedNextCaseBeforeReview": "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
@@ -79,5 +103,8 @@
       "Read TARGET-054 item-card WAREN proof.",
       "Decide reopen, park or replacement route explicitly."
     ]
-  }
+  },
+  "nextCase": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+  "reason": "Local decision completed: item VAT19 is useful prerequisite evidence, but VAT Posting Setup remains parked; move to General Posting Setup route decision.",
+  "createdAt": "2026-07-02T00:57:25.377Z"
 }

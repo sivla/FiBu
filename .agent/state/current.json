@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-02T00:39:13.503Z",
+  "updatedAt": "2026-07-02T00:57:25.377Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-item-product-vat-posting-fields-controlled-write-gate",
-  "activeCase": "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
-  "active_case_file": ".agent/state/cases/target-054-item-product-vat-posting-fields-controlled-write-gate.json",
+  "activeArea": "universaarl-general-posting-setup-route-reopen-decision",
+  "activeCase": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+  "active_case_file": ".agent/state/cases/target-032g-general-posting-setup-route-reopen-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -19,45 +19,36 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central",
-    "confirm-instance-playthru",
-    "confirm-company-universaarl-de",
-    "open-item-card-u-item-hw100",
-    "capture-before-screenshot",
-    "enter-product-posting-group-waren",
-    "enter-vat-product-posting-group-vat19",
-    "save-by-standard-card-navigation",
-    "reopen-item-card",
-    "capture-reopen-proof-screenshot",
-    "write-result-json",
+    "read-prior-general-posting-setup-evidence",
+    "read-target-054-evidence",
+    "read-source-registry",
+    "classify-general-posting-route-as-reopen-or-park",
+    "write-local-decision-result",
     "update-state-and-queue"
   ],
   "forbiddenActions": [
     "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
     "company-switch",
-    "create-item",
-    "change-item-number-or-name",
-    "change-base-unit-of-measure",
-    "change-item-posting-group",
-    "change-costing-method",
-    "change-inventory-posting-setup",
-    "change-vat-posting-setup",
-    "change-general-posting-setup",
+    "click-new",
+    "write-general-posting-setup",
+    "write-vat-posting-setup",
+    "change-item",
     "create-document-or-draft",
     "preview-posting",
     "post",
     "payment",
     "api-shortcut",
-    "claim-inventory-posting-readiness",
     "claim-posting-readiness",
-    "claim-tax-advisor-approved",
-    "commit-secrets",
-    "show-env-or-auth",
-    "fake-evidence",
-    "book-claim-without-evidence"
+    "claim-tax-advisor-approved"
   ],
-  "nextCase": "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
-  "nextStep": "Run TARGET-054 as a narrow item-card write gate: set only Product Posting Group WAREN and VAT Product Posting Group VAT19 on U-ITEM-HW100 if both controls are visible, then reopen-proof.",
+  "nextCase": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+  "nextStep": "Run TARGET-032G as a local General Posting Setup route decision; do not open Business Central or write setup.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -8388,7 +8379,7 @@
     "updatedAt": "2026-07-01T14:02:31.619Z"
   },
   "lastRunSummaryPath": "playwright/projects/fibu-book5/evidence/target-044d-customer-item-posting-fields-alternative-page-route/TARGET-044D-result.json",
-  "lastEvidenceSummary": "TARGET-052 proved U-ITEM-HW100 in playthru / UNIVERSAARL-DE read-only with STK, FIFO, WARE, and visible but empty Product Posting Group and VAT Product Posting Group fields. No setup, master data, document, Preview Posting, Posting or API shortcut occurred.",
+  "lastEvidenceSummary": "TARGET-027D25 kept VAT Posting Setup parked: VAT19 on U-ITEM-HW100 is prerequisite evidence, not an INLAND/VAT19 matrix row. Next decision is General Posting Setup INLAND/WAREN.",
   "authUnblock": {
     "status": "resolved-local-shell-validation-present",
     "lastCheckedAt": "2026-07-01T21:25:00.977Z",
@@ -8434,7 +8425,7 @@
       "apiShortcut": false
     }
   ],
-  "lastCompletedResultPath": "playwright/projects/fibu-book5/evidence/target-052-item-posting-fields-foundation-checkpoint/TARGET-052-result.json",
+  "lastCompletedResultPath": "playwright/projects/fibu-book5/evidence/target-027d25-vat-matrix-route-reopen-decision/TARGET-027D25-result.json",
   "latestTarget045B": {
     "caseId": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
     "resultPath": "playwright/projects/fibu-book5/evidence/target-045b-customer-item-posting-fields-readonly-route-retry/TARGET-045B-result.json",
@@ -8774,5 +8765,60 @@
     "status": "done-source-decision-no-write",
     "noWrite": true,
     "updatedAt": "2026-07-02T00:39:13.503Z"
+  },
+  "latestTarget054ItemProductVatPostingFieldsWriteGate": {
+    "caseId": "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
+    "status": "observed",
+    "completedAt": "2026-07-02T00:51:13.540Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-054-item-product-vat-posting-fields-controlled-write-gate/TARGET-054-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "itemNo": "U-ITEM-HW100",
+    "changedFields": {
+      "productPostingGroup": "WAREN",
+      "vatProductPostingGroup": "VAT19"
+    },
+    "setupChanged": false,
+    "masterDataChanged": true,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-054-010-before-product-vat-field-assignment.png",
+      "playwright/projects/fibu-book5/img/target-054-020-after-product-vat-field-assignment-route.png",
+      "playwright/projects/fibu-book5/img/target-054-030-reopen-proof.png"
+    ],
+    "proved": [
+      "Business Central stayed in playthru / UNIVERSAARL-DE.",
+      "U-ITEM-HW100 item card was visible.",
+      "Product Posting Group WAREN is visible on U-ITEM-HW100 after reopen.",
+      "VAT Product Posting Group VAT19 is visible on U-ITEM-HW100 after reopen.",
+      "No setup, document, Preview Posting, Posting, payment or API shortcut occurred."
+    ],
+    "notProved": [
+      "No General Posting Setup row INLAND/WAREN with 4400/5400 is proven.",
+      "No VAT Posting Setup row INLAND/VAT19 with 19 percent and VAT accounts is proven.",
+      "No O2C/P2P readiness is proven.",
+      "No document, Preview Posting, Posting, Item Ledger Entry, Value Entry, G/L Entry or VAT Entry is proven."
+    ],
+    "nextCase": "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION"
+  },
+  "latestTarget027D25VatMatrixRouteReopenDecision": {
+    "caseId": "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
+    "status": "done-vat-matrix-kept-parked-general-posting-decision-selected-no-bc",
+    "completedAt": "2026-07-02T00:57:25.377Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d25-vat-matrix-route-reopen-decision/TARGET-027D25-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "bcRun": false,
+    "playwrightRun": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "selectedRoute": "keep-vat-matrix-parked-after-item-vat19-proof",
+    "nextCase": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION"
   }
 }

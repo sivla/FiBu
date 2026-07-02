@@ -519,6 +519,28 @@ TARGET-053 laeuft ohne Business-Central- und ohne Playwright-Ausfuehrung. Der La
 
 Fuer Universaarl folgt daraus: `WAREN` und `VAT19` sind die source-backed Zielwerte fuer den naechsten engen Artikelkarten-Schreibcase. TARGET-054 darf nur diese beiden Felder auf `U-ITEM-HW100` setzen und nach erneutem Oeffnen beweisen. Daraus entsteht noch keine Buchungsfaehigkeit: General Posting Setup `INLAND` + `WAREN`, VAT Posting Setup `INLAND` + `VAT19`, Belege, Preview Posting, Posting und Posten bleiben eigene Gates.
 
+## TARGET-054 Artikel-Produkt-/MwSt.-Produktbuchungsgruppen-Schreibgate
+
+TARGET-054 laeuft mit Business Central und Playwright in `playthru` / `UNIVERSAARL-DE`. Der Lauf setzt auf der Artikelkarte `U-ITEM-HW100` nur zwei zuvor entschiedene Werte:
+
+- `Produktbuchungsgruppe = WAREN`
+- `MwSt.-Produktbuchungsgruppe = VAT19`
+
+Der Reopen-Proof zeigt beide Werte zusammen mit `Lagerbuchungsgruppe=WARE`, `Lagerabgangsmethode=FIFO` und `Basiseinheit=STK` auf der Artikelkarte. Damit ist die Item-Card-Seite fuer den ersten Warenartikel fachlich weiter vorbereitet.
+
+Die Grenze bleibt hart: TARGET-054 beweist keine `INLAND`/`VAT19`-Zeile in der MwSt.-Buchungsmatrix, keine `INLAND`/`WAREN`-Zeile in der allgemeinen Buchungsmatrix, keine Steuerberechnung, keine Belege, keine Preview Posting, keine Buchung und keine Posten. Der naechste Schritt ist deshalb eine lokale Entscheidung, ob die geparkte VAT-Matrixroute mit dieser neuen Artikelkartenlage wieder geoeffnet werden soll.
+
+## TARGET-027D25 VAT-Matrix nach Artikel-VAT19
+
+TARGET-027D25 laeuft ohne Business-Central- und ohne Playwright-Ausfuehrung. Der Lauf bewertet TARGET-054 gegen die geparkte MwSt.-Buchungsmatrixroute:
+
+- `VAT19` auf `U-ITEM-HW100` ist ein echter Artikelkarten-Nachweis.
+- Dieser Nachweis erzeugt aber keine `INLAND`/`VAT19`-Matrixzeile.
+- Steuersatz, Berechnungsart, Umsatzsteuerkonto und Vorsteuerkonto bleiben in der MwSt.-Buchungsmatrix unbewiesen.
+- Die alten Page-472- und Configuration-Package-Blocker werden durch den Artikelwert nicht geloest.
+
+Fuer Universaarl folgt daraus: Die VAT-Matrix bleibt geparkt, bis ein materiell neuer Standardweg oder eine sicherere Setup-Route belegt ist. Der naechste sinnvolle Foundation-Schritt ist die andere Matrixabhaengigkeit: General Posting Setup `INLAND` + `WAREN` mit den Konten `4400` und `5400` als eigener lokaler Reopen-Entscheidungsfall.
+
 ## URLs
 
 - https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company
