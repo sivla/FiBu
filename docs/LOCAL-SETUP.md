@@ -41,6 +41,14 @@ npm run auth:bc:check
 
 The check must return `canUseStoredAuth=true` before any Business Central workflow or read-only evidence run starts.
 
+For a compact go/no-go decision that also points to the last recorded auth blocker, run:
+
+```bash
+npm run auth:bc:doctor
+```
+
+The doctor does not open Business Central. It only summarizes whether target workflows may run or whether the Playwright auth window must be refreshed first.
+
 If the check stays red and the browser appears to be stuck on Microsoft sign-in, use the short diagnostic run:
 
 ```bash

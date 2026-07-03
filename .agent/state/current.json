@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-03T09:15:00.000Z",
+  "updatedAt": "2026-07-03T09:28:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -47,7 +47,7 @@
     "api-shortcut"
   ],
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "nextStep": "Refresh Business Central auth for playthru / UNIVERSAARL-DE, require npm run auth:bc:check canUseStoredAuth=true, then rerun D31 read-only Assisted VAT Setup discovery.",
+  "nextStep": "Run npm run auth:bc:doctor first; if it reports canRunBusinessCentralWorkflows=false, run npm run auth:bc and complete Login/MFA in the Playwright browser until Business Central shell is visible. Only then rerun D31 read-only discovery.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -7953,19 +7953,19 @@
   "nextStepDecision": {
     "currentCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "lastEvidenceSummary": "A fresh auth:bc attempt again stayed on Microsoft sign-in for 600000 ms and saved no Playwright storage state.",
+    "lastEvidenceSummary": "auth:bc:doctor now summarizes auth:bc:check plus the last D31 auth refresh blocker without opening BC. It confirms target playthru / UNIVERSAARL-DE but blocks because storage state is older than 12 hours.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The active blocker is still Playwright shell auth, not VAT UI or setup logic.",
+    "reason": "D31 remains blocked by auth, but future runs can avoid repeated 10-minute timeouts by using the doctor go/no-go first.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-        "status": "blocked",
-        "reason": "Needs manual Login/MFA completion inside the Playwright auth browser until BC shell appears."
+        "status": "ready-next",
+        "reason": "Use auth:bc:doctor, then auth:bc only if green state is missing and user can complete Playwright login."
       },
       {
         "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
         "status": "blocked",
-        "reason": "Requires auth:bc:check canUseStoredAuth=true first."
+        "reason": "Requires auth:bc:check canUseStoredAuth=true."
       },
       {
         "caseId": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
@@ -7975,7 +7975,7 @@
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-after-current",
-        "reason": "Can resume after VAT auth/discovery is resolved or intentionally parked."
+        "reason": "Can resume after VAT auth/discovery is resolved or parked."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
@@ -7983,17 +7983,18 @@
         "reason": "Requires VAT and dimensions status."
       }
     ],
-    "queueChangesMade": [],
+    "queueChangesMade": [
+      "Added auth:bc:doctor as fast go/no-go before expensive auth retries."
+    ],
     "selectedNextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "whySelectedNextCaseIsBest": "It is the remaining gate that prevents false BC evidence and unsafe VAT discovery.",
+    "whySelectedNextCaseIsBest": "It is still the single open gate; the doctor reduces repeat timeout risk while preserving the safety boundary.",
     "risksBeforeNextCase": [
-      "Repeated auth attempts will keep timing out if Login/MFA is not completed in the Playwright auth browser.",
-      "Running BC tests with stale storageState would only create misleading evidence."
+      "Repeating auth:bc without completing Login/MFA in the Playwright browser will time out again."
     ],
     "requiredPreparation": [
-      "Complete Login/MFA in the Playwright-opened browser window, not only in normal Chrome/Codex.",
-      "Wait until Role Center, Search/Tell Me, My Settings or another Business Central shell signal is visible.",
-      "Run npm run auth:bc:check and require canUseStoredAuth=true."
+      "Run npm run auth:bc:doctor.",
+      "If blocked, complete Login/MFA in the Playwright auth browser.",
+      "Require npm run auth:bc:check canUseStoredAuth=true."
     ]
   },
   "latestTarget037MasterdataFoundationCheckpoint": {
@@ -9063,5 +9064,15 @@
     "previewPosting": false,
     "posted": false
   },
-  "latestTarget027D31AuthRefreshResult": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json"
+  "latestTarget027D31AuthRefreshResult": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
+  "latestAuthDoctor": {
+    "at": "2026-07-03T09:28:00.000Z",
+    "command": "npm run auth:bc:doctor",
+    "decision": "do-not-run-business-central-workflows-refresh-playwright-auth-first",
+    "canRunBusinessCentralWorkflows": false,
+    "expectedInstance": "playthru",
+    "expectedCompany": "UNIVERSAARL-DE",
+    "lastAuthRefreshResult": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
+    "purpose": "Fast non-interactive go/no-go gate before rerunning D31 or any BC workflow."
+  }
 }
