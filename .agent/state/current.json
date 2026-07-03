@@ -49,7 +49,7 @@
     "api-shortcut"
   ],
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "nextStep": "Dry-run npm run auth:bc:reset-profile. Use -- --confirm only to intentionally remove stale local Playwright auth artifacts, then run npm run auth:bc:interactive.",
+  "nextStep": "Auth profile has been reset. Run npm run auth:bc:interactive and complete Login/MFA in the Playwright-opened browser window until Business Central shell is visible; then require npm run auth:bc:check canUseStoredAuth=true.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -9260,5 +9260,32 @@
     "posted": false,
     "apiShortcut": false,
     "nextSafeAction": "Dry-run npm run auth:bc:reset-profile. Use -- --confirm only to intentionally remove stale local Playwright auth artifacts, then run npm run auth:bc:interactive."
+  },
+  "latestAuthProfileResetExecution": {
+    "at": "2026-07-03T10:59:25.617Z",
+    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
+    "resetCommand": "npm run auth:bc:reset-profile -- --confirm",
+    "authCommand": "npm run auth:bc:interactive",
+    "resultStatus": "blocked-auth-before-bc-shell",
+    "blockedBy": [
+      "auth:playwright-window-stayed-before-business-central-shell",
+      "auth:shell-signal-not-detected",
+      "auth:storage-state-not-refreshed",
+      "auth:storage-state-file-missing-after-reset-until-successful-login"
+    ],
+    "resetRemovedLocalIgnoredAuthArtifacts": true,
+    "shellSignalDetected": false,
+    "savedState": false,
+    "timeoutMs": 1800000,
+    "bcRun": false,
+    "playwrightRun": true,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "nextSafeAction": "Auth profile has been reset. Run npm run auth:bc:interactive and complete Login/MFA in the Playwright-opened browser window until Business Central shell is visible; then require npm run auth:bc:check canUseStoredAuth=true."
   }
 }

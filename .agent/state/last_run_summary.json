@@ -7,8 +7,9 @@
   "mode": "universaarl-target-execution",
   "activeArea": "universaarl-vat-assisted-setup-readonly-discovery",
   "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
-  "summary": "Added a guarded auth:bc:reset-profile fallback for repeated Microsoft sign-in loops. The command is dry-run by default and only removes ignored local Playwright auth artifacts with -- --confirm.",
+  "summary": "Confirmed reset of ignored local Playwright auth artifacts, then ran auth:bc:interactive for 1800000 ms. The fresh profile still stayed on Microsoft sign-in, no Business Central shell signal appeared and no storage state was saved.",
   "proved": [
+    "auth:bc:reset-profile -- --confirm removed only ignored local Playwright auth artifacts.",
     "The auth refresh command uses the intended playthru / UNIVERSAARL-DE target override.",
     "No Business Central shell signal was reached during this attempt.",
     "No Playwright storage state was refreshed or saved.",
@@ -20,9 +21,10 @@
     "No VAT setup readiness, posting readiness, VAT Entries or G/L Entries are proven."
   ],
   "blockedBy": [
-    "auth:storage-state-too-old",
-    "auth:shell-validation-meta-too-old",
-    "auth:operator-action-required"
+    "auth:playwright-window-stayed-before-business-central-shell",
+    "auth:shell-signal-not-detected",
+    "auth:storage-state-not-refreshed",
+    "auth:storage-state-file-missing-after-reset-until-successful-login"
   ],
   "warnings": [
     "Do not run D31 or other BC workflows while auth:bc:doctor reports canRunBusinessCentralWorkflows=false."
@@ -36,7 +38,7 @@
   "apiShortcut": false,
   "screenshots": [],
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "nextStep": "Dry-run npm run auth:bc:reset-profile. Use -- --confirm only to intentionally remove stale local Playwright auth artifacts, then run npm run auth:bc:interactive.",
+  "nextStep": "Auth profile has been reset. Run npm run auth:bc:interactive and complete Login/MFA in the Playwright-opened browser window until Business Central shell is visible; then require npm run auth:bc:check canUseStoredAuth=true.",
   "nextStepDecision": {
     "currentCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
@@ -83,10 +85,10 @@
       "Run npm run auth:bc:check and require canUseStoredAuth=true."
     ]
   },
-  "runId": "TARGET-027D31-AUTH-RESET-FALLBACK-ADDED",
+  "runId": "TARGET-027D31-AUTH-RESET-AND-FRESH-INTERACTIVE-BLOCKED",
   "completedAt": "2026-07-03T11:55:00.000Z",
   "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "resultStatus": "blocked-auth-reset-fallback-added",
+  "resultStatus": "blocked-auth-after-profile-reset",
   "latestTarget027D31AuthRefreshAttempt": {
     "at": "2026-07-03T10:35:00.000Z",
     "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
@@ -117,17 +119,18 @@
     "apiShortcut": false,
     "nextSafeAction": "Run npm run auth:bc:interactive and finish Login/MFA inside the Playwright auth window until a Business Central shell signal is visible, require auth:bc:check canUseStoredAuth=true, then rerun D31 read-only discovery."
   },
-  "updatedAt": "2026-07-03T10:24:59.943Z",
+  "updatedAt": "2026-07-03T10:59:25.617Z",
   "actionsTaken": [
-    "Confirmed auth:bc:check remains red because stored shell validation metadata is older than 12 hours.",
-    "Added scripts/agent/auth-bc-reset-profile.mjs.",
-    "Added package script auth:bc:reset-profile.",
-    "Updated auth doctor and run-plan to expose the reset only as an explicit fallback before auth:bc:interactive."
+    "Ran git status --short and git pull --ff-only; repository was up to date.",
+    "Ran auth:bc:check and confirmed stored auth was unusable.",
+    "Ran auth:bc:reset-profile as a dry run, then with -- --confirm.",
+    "Removed ignored local Playwright auth profile and storage-state files.",
+    "Ran auth:bc:interactive for a fresh login attempt; Business Central shell was not reached."
   ],
   "actionsNotTaken": [
-    "Did not run auth:bc:reset-profile -- --confirm.",
-    "No Business Central workflow ran.",
-    "No setup, master data, document, Preview Posting, Posting, payment or API shortcut occurred.",
+    "No D31 VAT Assisted Setup or Manual Setup page was opened.",
+    "No setup values were typed.",
+    "No master data, document, Preview Posting, Posting, payment or API shortcut occurred.",
     "No bookmaster change was made."
   ],
   "latestAuthContextGate": {
@@ -256,5 +259,32 @@
     "posted": false,
     "apiShortcut": false,
     "nextSafeAction": "Dry-run npm run auth:bc:reset-profile. Use -- --confirm only to intentionally remove stale local Playwright auth artifacts, then run npm run auth:bc:interactive."
+  },
+  "latestAuthProfileResetExecution": {
+    "at": "2026-07-03T10:59:25.617Z",
+    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
+    "resetCommand": "npm run auth:bc:reset-profile -- --confirm",
+    "authCommand": "npm run auth:bc:interactive",
+    "resultStatus": "blocked-auth-before-bc-shell",
+    "blockedBy": [
+      "auth:playwright-window-stayed-before-business-central-shell",
+      "auth:shell-signal-not-detected",
+      "auth:storage-state-not-refreshed",
+      "auth:storage-state-file-missing-after-reset-until-successful-login"
+    ],
+    "resetRemovedLocalIgnoredAuthArtifacts": true,
+    "shellSignalDetected": false,
+    "savedState": false,
+    "timeoutMs": 1800000,
+    "bcRun": false,
+    "playwrightRun": true,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "nextSafeAction": "Auth profile has been reset. Run npm run auth:bc:interactive and complete Login/MFA in the Playwright-opened browser window until Business Central shell is visible; then require npm run auth:bc:check canUseStoredAuth=true."
   }
 }

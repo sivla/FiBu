@@ -10,7 +10,7 @@ const authUnblockStep =
   'Run npm run auth:bc:interactive and complete Login/MFA until the Business Central shell is visible. ' +
   'If it stays on Microsoft sign-in or times out, run npm run auth:bc:probe for a short redacted diagnosis.';
 
-function result(overrides) {
+function result(overrides, target = {}) {
   return {
     schemaVersion: 1,
     purpose: 'business-central-auth-state-check',
@@ -23,8 +23,8 @@ function result(overrides) {
     ageHours: null,
     metaAgeHours: null,
     maxAgeHours,
-    expectedInstance: '',
-    expectedCompany: '',
+    expectedInstance: target.expectedInstance ?? '',
+    expectedCompany: target.expectedCompany ?? '',
     shellValidationMeta: null,
     cookieCount: 0,
     originCount: 0,
@@ -45,6 +45,8 @@ async function main() {
     // Auth can still report storage-state shape, but target context validation will stay unavailable.
   }
 
+  const target = { expectedInstance, expectedCompany };
+
   let stats;
   try {
     stats = await fs.stat(authFile);
@@ -52,8 +54,10 @@ async function main() {
     console.log(
       JSON.stringify(
         result({
+          expectedInstance,
+          expectedCompany,
           blockedBy: ['storage-state-file-missing']
-        }),
+        }, target),
         null,
         2
       )
@@ -70,10 +74,12 @@ async function main() {
     console.log(
       JSON.stringify(
         result({
+          expectedInstance,
+          expectedCompany,
           exists: true,
           ageHours,
           blockedBy: ['storage-state-json-invalid']
-        }),
+        }, target),
         null,
         2
       )
