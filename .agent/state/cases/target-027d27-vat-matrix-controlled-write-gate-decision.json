@@ -1,50 +1,70 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
-  "caseId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
-  "status": "observed",
-  "completedAt": "2026-07-03T06:38:15.008Z",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d26-vat-matrix-alternative-route-discovery/TARGET-027D26-result.json",
+  "caseId": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
+  "status": "ready-next",
+  "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "bcRun": true,
-  "playwrightRun": true,
-  "setupChanged": false,
-  "masterDataChanged": false,
-  "draftCreated": false,
-  "previewPosting": false,
-  "posted": false,
-  "apiShortcut": false,
-  "summary": "TARGET-027D26 proved Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix visible read-only via justified Tell-Me fallback; no VAT values were written or proven.",
-  "proved": [
-    "Business Central stayed in playthru / UNIVERSAARL-DE.",
-    "Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix is reachable read-only.",
-    "The run did not repeat prior VAT matrix cell-edit routes.",
-    "VAT Posting Setup remains a separate prerequisite from item VAT product assignment and General Posting Setup.",
-    "No master data, document draft, Preview Posting, Posting or API shortcut was executed."
+  "targetWorld": "Universaarl",
+  "activeArea": "universaarl-vat-matrix-write-gate-decision",
+  "purpose": "Decide whether a controlled VAT Posting Setup write gate is justified after TARGET-027D26 proved Page 472 visibility but not INLAND/VAT19 values.",
+  "sourceCases": [
+    "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
+    "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+    "TARGET-032P-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE"
   ],
-  "notProved": [
-    "No INLAND/VAT19 VAT Posting Setup row completion.",
-    "No persisted VAT % 19.",
-    "No persisted Sales VAT Account 3806.",
-    "No persisted Purchase VAT Account 1406.",
-    "No German VAT final correctness.",
-    "No VAT Entries.",
-    "No G/L Entries.",
-    "No Preview Posting.",
-    "No Posting."
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-027d25-vat-matrix-route-reopen-decision/TARGET-027D25-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d26-vat-matrix-alternative-route-discovery/TARGET-027D26-result.json",
+    "playwright/projects/fibu-book5/evidence/target-032p-general-posting-setup-park-or-source-route/TARGET-032P-result.json"
   ],
-  "warnings": [
-    "The compact visible text did not prove both INLAND and VAT19 as row values in this run.",
-    "The visible read-only text does not prove a complete 19 percent INLAND/VAT19 VAT Posting Setup row with accounts 3806 and 1406."
+  "allowedActions": [
+    "read-source-and-prior-results",
+    "decide-exact-vat-matrix-fields",
+    "write-smart-decision-result-json",
+    "update-state-and-queue"
   ],
-  "screenshots": [
-    "playwright/projects/fibu-book5/evidence/target-027d26-vat-matrix-alternative-route-discovery/target-027d26-010-page-472-readonly.png",
-    "playwright/projects/fibu-book5/evidence/target-027d26-vat-matrix-alternative-route-discovery/target-027d26-020-tooltip-surface.png"
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central-for-write",
+    "click-new",
+    "click-edit-list",
+    "type-vat-values",
+    "write-vat-posting-setup",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-vat-correctness",
+    "claim-posting-readiness"
   ],
-  "nextCase": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
-  "nextCaseFile": ".agent/state/cases/target-027d27-vat-matrix-controlled-write-gate-decision.json",
-  "nextStep": "Run TARGET-027D27 as local/source-backed VAT matrix write-gate decision; no VAT write yet.",
+  "smartDecisionRequiredFor": [
+    "VAT Business Posting Group",
+    "VAT Product Posting Group",
+    "VAT %",
+    "VAT Calculation Type",
+    "Sales VAT Account",
+    "Purchase VAT Account"
+  ],
+  "targetValuesUnderReview": {
+    "vatBusinessPostingGroup": "INLAND",
+    "vatProductPostingGroup": "VAT19",
+    "vatPercent": "19",
+    "vatCalculationType": "Normale MwSt.",
+    "salesVatAccount": "3806",
+    "purchaseVatAccount": "1406"
+  },
+  "acceptanceCriteria": [
+    "Use Microsoft Learn VAT setup source mapping before any write case.",
+    "Do not treat TARGET-027D26 Page 472 visibility as VAT setup correctness.",
+    "If a write is justified, create a separate execution case with exact fields, stop rules, screenshot QA and reopen proof.",
+    "Keep master data, documents, Preview Posting and Posting locked."
+  ],
   "nextStepDecision": {
     "currentCase": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",

@@ -1,0 +1,269 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+  "source": "playwright-universaarl-vat-matrix-alternative-route-discovery",
+  "resultStatus": "observed",
+  "runPlanId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=472&company=UNIVERSAARL-DE&dc=0",
+  "page": "Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix",
+  "actionsTaken": [
+    "Opened Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix directly in playthru / UNIVERSAARL-DE.",
+    "Direct page=472 stayed on Role Center; used Tell Me search for MwSt.-Buchungsmatrix as a justified fallback route.",
+    "Hovered VAT account header areas for tooltip/surface learning without clicking or typing."
+  ],
+  "actionsNotTaken": [
+    "No New/Neu",
+    "No Edit List/Liste bearbeiten",
+    "No Copy/Kopieren",
+    "No setup value write",
+    "No master data",
+    "No document draft",
+    "No Preview Posting",
+    "No Posting",
+    "No payment",
+    "No API shortcut",
+    "No company switch"
+  ],
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "screenshots": [
+    "target-027d26-010-page-472-readonly.png",
+    "target-027d26-020-tooltip-surface.png"
+  ],
+  "rowSignals": {
+    "inland": false,
+    "vat19": false,
+    "percent19": false,
+    "salesVatAccount3806": false,
+    "purchaseVatAccount1406": false,
+    "normalVat": true
+  },
+  "routeAssessment": {
+    "sourceBasis": [
+      "Microsoft Learn: VAT Posting Setup combines VAT business/product posting groups with VAT %, calculation type and VAT G/L accounts.",
+      "TARGET-027D25: item VAT19 value is only prerequisite evidence and does not prove the INLAND/VAT19 matrix row.",
+      "TARGET-032P: General Posting Setup Page 314 purchase-account route is parked separately."
+    ],
+    "materiallyDifferentFromPriorRoutes": [
+      "This run does not repeat D3/D5/D8/D14 cell-edit or List Edit value typing.",
+      "This run proves direct page=472 may fall back to Role Center and Tell Me search is the safer visible route for Page 472.",
+      "Any future VAT write must be a new narrow gate, not a continuation of this read-only case."
+    ],
+    "routeChoice": "Create a separate controlled VAT matrix write-gate decision before any setup write."
+  },
+  "fallbackSearchUsed": true,
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix is reachable read-only.",
+    "The run did not repeat prior VAT matrix cell-edit routes.",
+    "VAT Posting Setup remains a separate prerequisite from item VAT product assignment and General Posting Setup.",
+    "No master data, document draft, Preview Posting, Posting or API shortcut was executed."
+  ],
+  "notProved": [
+    "No INLAND/VAT19 VAT Posting Setup row completion.",
+    "No persisted VAT % 19.",
+    "No persisted Sales VAT Account 3806.",
+    "No persisted Purchase VAT Account 1406.",
+    "No German VAT final correctness.",
+    "No VAT Entries.",
+    "No G/L Entries.",
+    "No Preview Posting.",
+    "No Posting."
+  ],
+  "blockedBy": [],
+  "warnings": [
+    "The compact visible text did not prove both INLAND and VAT19 as row values in this run.",
+    "The visible read-only text does not prove a complete 19 percent INLAND/VAT19 VAT Posting Setup row with accounts 3806 and 1406."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-027d26-vat-matrix-alternative-route-discovery/TARGET-027D26-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d26-vat-matrix-alternative-route-discovery/README.md",
+    "playwright/projects/fibu-book5/evidence/target-027d26-vat-matrix-alternative-route-discovery/*.txt",
+    "playwright/projects/fibu-book5/evidence/target-027d26-vat-matrix-alternative-route-discovery/*.png",
+    "playwright/projects/fibu-book5/evidence/target-027d26-vat-matrix-alternative-route-discovery/*.screenshot.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-027d26-vat-matrix-alternative-route-discovery/TARGET-027D26-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d26-vat-matrix-alternative-route-discovery/README.md"
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "nextStepDecision": {
+    "currentCase": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+    "lastEvidenceSummary": "TARGET-032P parked the separate General Posting Setup purchase-account route; TARGET-027D25 kept VAT Posting Setup parked because item VAT19 is not a matrix row.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "VAT Posting Setup remains the next separate W1 Foundation blocker and can be investigated read-only without document, preview or posting work.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
+        "status": "ready-next",
+        "reason": "Page 472 is visible; a separate source-backed write-gate can now decide exact target fields and stop rules."
+      },
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "ready-after-current",
+        "reason": "Dimensions should wait until VAT matrix write/park status is explicit."
+      },
+      {
+        "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+        "status": "ready-after-current",
+        "reason": "Useful only after VAT and dimensions status are known."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C remains locked until VAT Posting Setup, posting groups and dimensions are sufficiently scoped."
+      }
+    ],
+    "queueChangesMade": [
+      "Select TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION after TARGET-027D26."
+    ],
+    "selectedNextCase": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
+    "whySelectedNextCaseIsBest": "A separate decision gate avoids turning read-only route discovery into an unsafe setup write.",
+    "risksBeforeNextCase": [
+      "Do not claim VAT correctness from item VAT19 or page visibility.",
+      "Do not type 19/3806/1406 unless a new write gate explicitly unlocks those fields.",
+      "Do not start master data, documents, Preview Posting or Posting before Foundation readiness."
+    ],
+    "requiredPreparation": [
+      "Read TARGET-027D25 and TARGET-032P result JSONs.",
+      "Use Microsoft Learn VAT setup source mapping before deciding the write gate."
+    ]
+  },
+  "nextCase": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
+  "statePatch": {
+    "current": {
+      "activeCase": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
+      "active_case": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
+      "active_case_file": ".agent/state/cases/target-027d27-vat-matrix-controlled-write-gate-decision.json",
+      "activeCaseFile": ".agent/state/cases/target-027d27-vat-matrix-controlled-write-gate-decision.json",
+      "lastCompletedCase": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+      "lastResultPath": "playwright/projects/fibu-book5/evidence/target-027d26-vat-matrix-alternative-route-discovery/TARGET-027D26-result.json",
+      "nextCase": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
+      "nextStep": "Decide a controlled VAT matrix write gate for INLAND/VAT19; keep documents, preview and posting locked.",
+      "nextStepDecisionCard": {
+        "currentCase": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+        "plannedNextCaseBeforeReview": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+        "lastEvidenceSummary": "TARGET-032P parked the separate General Posting Setup purchase-account route; TARGET-027D25 kept VAT Posting Setup parked because item VAT19 is not a matrix row.",
+        "isPlannedNextCaseStillSensible": true,
+        "reason": "VAT Posting Setup remains the next separate W1 Foundation blocker and can be investigated read-only without document, preview or posting work.",
+        "lookaheadReviewed": [
+          {
+            "caseId": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
+            "status": "ready-next",
+            "reason": "Page 472 is visible; a separate source-backed write-gate can now decide exact target fields and stop rules."
+          },
+          {
+            "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+            "status": "ready-after-current",
+            "reason": "Dimensions should wait until VAT matrix write/park status is explicit."
+          },
+          {
+            "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+            "status": "ready-after-current",
+            "reason": "Useful only after VAT and dimensions status are known."
+          },
+          {
+            "caseId": "TARGET-038-O2C-PREFLIGHT",
+            "status": "needs-setup-first",
+            "reason": "O2C remains locked until VAT Posting Setup, posting groups and dimensions are sufficiently scoped."
+          }
+        ],
+        "queueChangesMade": [
+          "Select TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION after TARGET-027D26."
+        ],
+        "selectedNextCase": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
+        "whySelectedNextCaseIsBest": "A separate decision gate avoids turning read-only route discovery into an unsafe setup write.",
+        "risksBeforeNextCase": [
+          "Do not claim VAT correctness from item VAT19 or page visibility.",
+          "Do not type 19/3806/1406 unless a new write gate explicitly unlocks those fields.",
+          "Do not start master data, documents, Preview Posting or Posting before Foundation readiness."
+        ],
+        "requiredPreparation": [
+          "Read TARGET-027D25 and TARGET-032P result JSONs.",
+          "Use Microsoft Learn VAT setup source mapping before deciding the write gate."
+        ]
+      }
+    },
+    "lastRunSummary": {
+      "caseId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+      "resultStatus": "observed",
+      "instance": "playthru",
+      "company": "UNIVERSAARL-DE",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-027d26-vat-matrix-alternative-route-discovery/TARGET-027D26-result.json",
+      "setupChanged": false,
+      "masterDataChanged": false,
+      "draftCreated": false,
+      "previewPosting": false,
+      "posted": false,
+      "apiShortcut": false,
+      "summary": "TARGET-027D26 reopened Page 472 VAT Posting Setup read-only after Page 314 was parked and selected a separate VAT write-gate decision.",
+      "nextCase": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
+      "nextStepDecision": {
+        "currentCase": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+        "plannedNextCaseBeforeReview": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+        "lastEvidenceSummary": "TARGET-032P parked the separate General Posting Setup purchase-account route; TARGET-027D25 kept VAT Posting Setup parked because item VAT19 is not a matrix row.",
+        "isPlannedNextCaseStillSensible": true,
+        "reason": "VAT Posting Setup remains the next separate W1 Foundation blocker and can be investigated read-only without document, preview or posting work.",
+        "lookaheadReviewed": [
+          {
+            "caseId": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
+            "status": "ready-next",
+            "reason": "Page 472 is visible; a separate source-backed write-gate can now decide exact target fields and stop rules."
+          },
+          {
+            "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+            "status": "ready-after-current",
+            "reason": "Dimensions should wait until VAT matrix write/park status is explicit."
+          },
+          {
+            "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+            "status": "ready-after-current",
+            "reason": "Useful only after VAT and dimensions status are known."
+          },
+          {
+            "caseId": "TARGET-038-O2C-PREFLIGHT",
+            "status": "needs-setup-first",
+            "reason": "O2C remains locked until VAT Posting Setup, posting groups and dimensions are sufficiently scoped."
+          }
+        ],
+        "queueChangesMade": [
+          "Select TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION after TARGET-027D26."
+        ],
+        "selectedNextCase": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
+        "whySelectedNextCaseIsBest": "A separate decision gate avoids turning read-only route discovery into an unsafe setup write.",
+        "risksBeforeNextCase": [
+          "Do not claim VAT correctness from item VAT19 or page visibility.",
+          "Do not type 19/3806/1406 unless a new write gate explicitly unlocks those fields.",
+          "Do not start master data, documents, Preview Posting or Posting before Foundation readiness."
+        ],
+        "requiredPreparation": [
+          "Read TARGET-027D25 and TARGET-032P result JSONs.",
+          "Use Microsoft Learn VAT setup source mapping before deciding the write gate."
+        ]
+      }
+    },
+    "activeCase": {
+      "status": "done",
+      "completedAt": "2026-07-03T06:34:37.712Z",
+      "result": "Page 472 VAT Posting Setup reopened read-only; no setup values were changed; next is a separate controlled write-gate decision.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-027d26-vat-matrix-alternative-route-discovery/TARGET-027D26-result.json",
+      "nextCase": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION"
+    },
+    "coverage": {
+      "currentCoverageFocus": "TARGET-027D26 proves Page 472 VAT Posting Setup read-only route after Page 314 park; VAT matrix write still needs a separate gate."
+    }
+  },
+  "reason": "Readonly VAT matrix route discovery succeeded; write remains locked for a separate decision gate."
+}

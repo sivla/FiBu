@@ -763,33 +763,52 @@
     },
     "universaarlVatSetup": {
       "chapter": "W1 Foundation / USt-Setup",
-      "status": "blocked-needs-row-action-or-personalize-route",
-      "latestCase": "TARGET-027D5-VAT-MATRIX-CORRECTION-OR-CLEANUP",
-      "resultPath": "playwright/projects/fibu-book5/evidence/target-027d5-vat-matrix-correction-or-cleanup/TARGET-027D5-result.json",
+      "status": "page-472-visible-values-unproven",
+      "latestCase": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-027d26-vat-matrix-alternative-route-discovery/TARGET-027D26-result.json",
       "covered": [
         "VAT Business Posting Group INLAND visible after reopen",
         "VAT Product Posting Group VAT19 visible after reopen",
         "Page 472 partial INLAND/VAT19 row visible",
-        "D5 true-editor gate prevents unsafe VAT account cell typing"
+        "D5 true-editor gate prevents unsafe VAT account cell typing",
+        "TARGET-027D26 proved Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix visible read-only via justified Tell-Me fallback after direct page=472 returned Role Center."
       ],
       "openLimits": [
         "INLAND/VAT19 VAT Posting Setup row is still incomplete",
         "MwSt. % remains 0 in screenshot QA",
         "Sales VAT Account 3806 and Purchase VAT Account 1406 are not visible on the row",
         "No German 19 percent VAT calculation",
-        "No Preview Posting, VAT Entries or G/L Entries"
+        "No Preview Posting, VAT Entries or G/L Entries",
+        "TARGET-027D26 proves only Page 472 surface visibility; no INLAND/VAT19 row, 19 percent, Sales VAT Account 3806 or Purchase VAT Account 1406 is proven."
       ],
-      "nextCase": "TARGET-027D6-VAT-MATRIX-ROW-ACTION-OR-PERSONALIZE-ROUTE",
-      "latestResult": "playwright/projects/fibu-book5/evidence/target-027d5-vat-matrix-correction-or-cleanup/TARGET-027D5-result.json",
+      "nextCase": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
+      "latestResult": "playwright/projects/fibu-book5/evidence/target-027d26-vat-matrix-alternative-route-discovery/TARGET-027D26-result.json",
       "proved": [
         "Business Central stayed in playthru / UNIVERSAARL-DE.",
-        "D5 required true active editor detection before typing and refused VAT account fields without editors.",
-        "Screenshot QA confirms the INLAND/VAT19 matrix row remains incomplete."
+        "Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix is reachable read-only.",
+        "The run did not repeat prior VAT matrix cell-edit routes.",
+        "VAT Posting Setup remains a separate prerequisite from item VAT product assignment and General Posting Setup.",
+        "No master data, document draft, Preview Posting, Posting or API shortcut was executed."
       ],
       "blockedBy": [
         "No true active editor detected for sales-vat-account; refusing to type 3806.",
         "No true active editor detected for purchase-vat-account; refusing to type 1406.",
         "Reopen screenshot still shows the INLAND/VAT19 row incomplete: Beschreibung 19, MwSt. % 0 and no visible VAT account values."
+      ],
+      "notProved": [
+        "No INLAND/VAT19 VAT Posting Setup row completion.",
+        "No persisted VAT % 19.",
+        "No persisted Sales VAT Account 3806.",
+        "No persisted Purchase VAT Account 1406.",
+        "No German VAT final correctness.",
+        "No VAT Entries.",
+        "No G/L Entries.",
+        "No Preview Posting.",
+        "No Posting."
+      ],
+      "warnings": [
+        "The compact visible text did not prove both INLAND and VAT19 as row values in this run.",
+        "The visible read-only text does not prove a complete 19 percent INLAND/VAT19 VAT Posting Setup row with accounts 3806 and 1406."
       ]
     },
     "itemInventoryFoundation": {
@@ -824,7 +843,7 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-07-03T06:10:42.011Z",
+  "updatedAt": "2026-07-03T06:38:15.008Z",
   "activeArea": "universaarl-general-posting-setup-alternative-route-discovery",
   "currentBlock": "Foundation checkpoint needed before master data: General Posting Setup Page 314 and VAT matrix are parked; Dimensions starter set is visible but Global/Default Dimensions and posting effects are not proven.",
   "latestPracticalCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
@@ -1050,7 +1069,7 @@
     "playwright/projects/fibu-book5/BC-ERROR-BLOCKER-ATLAS.md",
     "playwright/projects/fibu-book5/BC-PROCESS-COVERAGE-ROADMAP.md"
   ],
-  "currentCoverageFocus": "TARGET-032P parks General Posting Setup as partial and shifts to TARGET-027D26 VAT matrix route; O2C/P2P remain locked.",
+  "currentCoverageFocus": "TARGET-027D26 proved Page 472 VAT Posting Setup visible read-only via Tell-Me fallback; VAT matrix values remain unproven and require TARGET-027D27 decision gate.",
   "latestCoverageUpdate": {
     "at": "2026-06-28T19:28:00.000+02:00",
     "type": "p2p-011-purchase-lines-action-discovery-tested",
