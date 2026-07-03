@@ -13,13 +13,15 @@ npm run auth:bc
 npm run auth:bc:check
 ```
 
-Complete Login/MFA in the opened browser and keep it open until the Business Central shell is visible. Safe shell signals are the Role Center, Search/Tell Me, or My Settings. If `npm run auth:bc:check` remains red and the browser is stuck on Microsoft sign-in, run:
+Complete Login/MFA in the browser opened by `npm run auth:bc` and keep it open until the Business Central shell is visible. A normal Chrome/Safari/Codex app login does not refresh Playwright auth state, because Playwright uses its own browser context.
+
+Safe shell signals are the Role Center, Search/Tell Me, or My Settings. If `npm run auth:bc:check` remains red and the browser is stuck on Microsoft sign-in, run:
 
 ```bash
 npm run auth:bc:diagnose
 ```
 
-The diagnose command prints only redacted shell signals. Do not commit `.env`, `playwright/.auth/`, screenshots from login pages, traces, tokens, tenant IDs, or account details.
+The diagnose command prints only redacted shell signals. Continue target workflows only after `npm run auth:bc:check` returns `canUseStoredAuth=true`. Do not commit `.env`, `playwright/.auth/`, screenshots from login pages, traces, tokens, tenant IDs, or account details.
 
 Before running any Business Central workflow, validate the compact agent layer:
 

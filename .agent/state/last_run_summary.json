@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "activeCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+  "activeCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
   "status": "blocked-auth-before-bc-shell",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -91,5 +91,34 @@
     ]
   },
   "runId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-  "completedAt": "2026-07-03T07:37:43.712Z"
+  "completedAt": "2026-07-03T07:37:43.712Z",
+  "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+  "resultStatus": "blocked-auth-before-bc-shell",
+  "latestTarget027D31AuthRefreshAttempt": {
+    "at": "2026-07-03T08:08:00.000Z",
+    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "result": "blocked-auth-before-bc-shell",
+    "commands": [
+      "npm run auth:bc:check",
+      "npm run auth:bc",
+      "npm run auth:bc:diagnose"
+    ],
+    "blockedBy": [
+      "auth:storage-state-too-old",
+      "auth:shell-validation-meta-too-old",
+      "auth:fresh-auth-diagnosis-stayed-on-microsoft-sign-in"
+    ],
+    "learning": "Playwright auth must be refreshed in the Playwright-opened browser context; normal browser login does not satisfy the target workflow gate.",
+    "noBcShellReached": true,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "nextSafeAction": "Finish Login/MFA inside the Playwright auth window until a Business Central shell signal is visible, require auth:bc:check canUseStoredAuth=true, then rerun D31 read-only discovery."
+  },
+  "updatedAt": "2026-07-03T08:08:00.000Z"
 }

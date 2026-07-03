@@ -43,6 +43,7 @@
   "acceptanceCriteria": [
     "npm run auth:bc:check returns canUseStoredAuth=true.",
     "Shell validation metadata matches playthru and UNIVERSAARL-DE.",
+    "The success signal comes from the Playwright auth browser context, not from a normal Chrome/Codex app login.",
     "No login page is accepted as Business Central evidence.",
     "If auth is refreshed, rerun only the D31 read-only Assisted Setup / Manual Setup discovery.",
     "No setup, VAT value, master data, draft, Preview Posting, Posting, payment or API shortcut occurs."
@@ -53,6 +54,34 @@
     "Shell validation company is not UNIVERSAARL-DE.",
     "Any flow asks to confirm setup or write data before D31 read-only evidence is captured."
   ],
+  "latestAttempt": {
+    "at": "2026-07-03T08:08:00.000Z",
+    "commands": [
+      {
+        "command": "npm run auth:bc:check",
+        "result": "blocked",
+        "blockedBy": [
+          "storage-state-too-old",
+          "shell-validation-meta-too-old"
+        ]
+      },
+      {
+        "command": "npm run auth:bc",
+        "timeoutMs": 600000,
+        "result": "timeout-stayed-on-microsoft-sign-in",
+        "shellSignalDetected": false,
+        "savedState": false
+      },
+      {
+        "command": "npm run auth:bc:diagnose",
+        "timeoutMs": 90000,
+        "result": "timeout-stayed-on-microsoft-sign-in",
+        "shellSignalDetected": false,
+        "savedState": false
+      }
+    ],
+    "learning": "A normal browser login is not sufficient for target workflows; the Playwright auth browser must reach the Business Central shell and auth:bc:check must be green."
+  },
   "nextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-  "updatedAt": "2026-07-03T07:38:08.734Z"
+  "updatedAt": "2026-07-03T08:08:00.000Z"
 }

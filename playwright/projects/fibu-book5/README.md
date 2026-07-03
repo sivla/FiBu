@@ -110,7 +110,9 @@ npm run agent:run-plan
 npm run fibu:target:playthru-context
 ```
 
-Live-Universaarl-Tests duerfen erst laufen, wenn `npm run auth:bc:check` gruen ist. Bei rotem Auth-Gate ist Business Central tabu; dann werden nur lokale State-, Doku-, Queue- oder Helper-Fixes gemacht.
+Live-Universaarl-Tests duerfen erst laufen, wenn `npm run auth:bc:check` gruen ist und `canUseStoredAuth=true` meldet. Ein Login in normalem Chrome oder in der Codex-App reicht dafuer nicht aus, weil Playwright einen eigenen Browserkontext speichert. Bei rotem Auth-Gate ist Business Central tabu; dann werden nur lokale State-, Doku-, Queue- oder Helper-Fixes gemacht.
+
+Wenn `auth:bc` oder `auth:bc:diagnose` auf `login.microsoftonline.com` stehen bleibt, ist noch keine Business-Central-Shell bewiesen. Erst Role Center, Suche/Tell Me oder Meine Einstellungen zaehlen als sichere Shell-Signale.
 
 `MASTERDATA-005` nutzt Playwright nicht nur für Klicks und Screenshots, sondern auch als authentifizierten technischen Träger für die Business-Central-API. Der Webclient liefert den gültigen Session-Token; die API erzeugt die Stammdaten idempotent. Danach öffnet Playwright die BC-Seiten und erzeugt die Buchscreenshots.
 

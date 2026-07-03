@@ -12,7 +12,10 @@
     "Ran npm run auth:bc:check.",
     "Ran npm run auth:bc after stale-auth blocker; command timed out without shell validation.",
     "Ran npm run auth:bc:diagnose for redacted diagnosis.",
-    "Stopped before D31 Business Central UI discovery because shell context was not validated."
+    "Stopped before D31 Business Central UI discovery because shell context was not validated.",
+    "Ran a second npm run auth:bc:check on 2026-07-03; stored Playwright auth was still too old.",
+    "Ran a second npm run auth:bc with a 10 minute timeout; the browser did not reach a Business Central shell signal.",
+    "Ran a second npm run auth:bc:diagnose; the redacted diagnosis remained on Microsoft sign-in."
   ],
   "actionsNotTaken": [
     "No Business Central shell page was accepted as evidence.",
@@ -30,7 +33,17 @@
     "diagnosisHost": "login.microsoftonline.com",
     "diagnosisTitle": "Bei Ihrem Konto anmelden",
     "shellSignalDetected": false,
-    "savedState": false
+    "savedState": false,
+    "followUp20260703": {
+      "authCheckBlockedBy": [
+        "storage-state-too-old",
+        "shell-validation-meta-too-old"
+      ],
+      "diagnosisHost": "login.microsoftonline.com",
+      "diagnosisTitle": "Bei Ihrem Konto anmelden",
+      "shellSignalDetected": false,
+      "savedState": false
+    }
   },
   "setupChanged": false,
   "setupChangeAttempted": false,
@@ -44,7 +57,8 @@
     "The local Playwright auth state is too old for D31 live evidence.",
     "The fresh auth attempt did not reach a validated Business Central shell within the command timeout.",
     "The redacted diagnosis stayed on Microsoft sign-in and did not detect a Business Central shell signal.",
-    "D31 VAT discovery was correctly not executed under unclear auth context."
+    "D31 VAT discovery was correctly not executed under unclear auth context.",
+    "A normal browser login is not sufficient for target workflows; the Playwright auth browser must reach a Business Central shell and auth:bc:check must be green."
   ],
   "notProved": [
     "No playthru / UNIVERSAARL-DE shell context was confirmed in this run.",
@@ -59,7 +73,8 @@
   ],
   "warnings": [
     "D31 remains the right next VAT route, but it must wait for a fresh Business Central shell validation.",
-    "Do not interpret a browser login page as Business Central evidence."
+    "Do not interpret a browser login page as Business Central evidence.",
+    "Do not rerun D31 until the Playwright auth gate is refreshed in its own browser context."
   ],
   "nextStepDecision": {
     "currentCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
@@ -126,5 +141,5 @@
   "statePatch": {},
   "reason": "D31 was stopped before BC UI discovery because auth shell validation could not be refreshed.",
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "completedAt": "2026-07-03T07:37:43.712Z"
+  "completedAt": "2026-07-03T08:08:00.000Z"
 }

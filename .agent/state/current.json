@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-03T07:37:43.712Z",
+  "updatedAt": "2026-07-03T08:08:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -7951,54 +7951,48 @@
     "uiLearning": "BC Page 456 URL filters require quoted table/field syntax for table names with punctuation; the filtered U-VEND list shows checkbox columns, but the write locator still must be source-backed or assisted before toggling Manual Nos."
   },
   "nextStepDecision": {
-    "currentCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+    "currentCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-    "lastEvidenceSummary": "TARGET-027D30 selected D31 as the next materially different VAT route, but auth:bc:check and auth:bc:diagnose show the local Playwright storageState is too old and the fresh auth attempt stayed on Microsoft sign-in instead of Business Central shell.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "D31 remains the best VAT next step, but it cannot run until Business Central shell validation is refreshed for playthru / UNIVERSAARL-DE.",
+    "lastEvidenceSummary": "D31 remains blocked before Business Central shell validation. A repeat auth refresh attempt stayed on Microsoft sign-in and saved no Playwright storage state.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "D31 is still the right VAT discovery, but not runnable until auth:bc:check is green for the Playwright context.",
     "lookaheadReviewed": [
-      {
-        "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-        "status": "blocked",
-        "reason": "Blocked only by stale/missing Playwright shell validation; no VAT setup route was attempted."
-      },
       {
         "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
         "status": "ready-next",
-        "reason": "First refresh auth state, then run the same D31 read-only discovery without changing VAT setup."
+        "reason": "Only remaining immediate blocker is Playwright shell auth."
+      },
+      {
+        "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+        "status": "blocked",
+        "reason": "Requires canUseStoredAuth=true before opening VAT pages."
       },
       {
         "caseId": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
-        "status": "ready-after-current",
-        "reason": "Only possible after D31 observes a bounded Assisted Setup / Manual Setup route."
+        "status": "needs-ui-discovery-first",
+        "reason": "Requires D31 read-only route evidence."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-after-current",
-        "reason": "Can resume after VAT status is observed or explicitly parked with D31 blocker."
+        "reason": "Can resume after VAT auth/discovery is resolved or intentionally parked."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Foundation checkpoint must include VAT and General Posting Setup boundaries."
+        "reason": "Requires VAT and dimension boundaries before foundation readiness."
       }
     ],
-    "queueChangesMade": [
-      "Recorded TARGET-027D31 as blocked by auth, not by VAT UI.",
-      "Kept VAT write, Preview Posting, Posting, master data and API shortcuts locked.",
-      "Selected auth refresh plus D31 read-only discovery as next practical action."
-    ],
+    "queueChangesMade": [],
     "selectedNextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "whySelectedNextCaseIsBest": "It solves the real current blocker before any VAT UI discovery and prevents false setup progress from stale auth.",
+    "whySelectedNextCaseIsBest": "It prevents stale-auth BC evidence and avoids repeating read-only VAT discovery against a login page.",
     "risksBeforeNextCase": [
-      "Do not use stale storageState for BC proof.",
-      "Do not continue to VAT setup pages until playthru / UNIVERSAARL-DE shell is confirmed.",
-      "Do not click wizard Next/Finish/Apply after auth is refreshed."
+      "Normal browser login can be mistaken for valid Playwright auth.",
+      "D31 must not run while auth:bc:check is red."
     ],
     "requiredPreparation": [
-      "Run npm run auth:bc and complete Login/MFA until Business Central shell is visible.",
-      "Run npm run auth:bc:check and require canUseStoredAuth=true.",
-      "Then run D31 read-only discovery with screenshot QA."
+      "Complete Login/MFA in the Playwright auth window.",
+      "Require auth:bc:check canUseStoredAuth=true."
     ]
   },
   "latestTarget037MasterdataFoundationCheckpoint": {
@@ -9038,5 +9032,31 @@
       "auth:fresh-auth-diagnosis-stayed-on-microsoft-sign-in"
     ],
     "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY"
+  },
+  "latestTarget027D31AuthRefreshAttempt": {
+    "at": "2026-07-03T08:08:00.000Z",
+    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "result": "blocked-auth-before-bc-shell",
+    "commands": [
+      "npm run auth:bc:check",
+      "npm run auth:bc",
+      "npm run auth:bc:diagnose"
+    ],
+    "blockedBy": [
+      "auth:storage-state-too-old",
+      "auth:shell-validation-meta-too-old",
+      "auth:fresh-auth-diagnosis-stayed-on-microsoft-sign-in"
+    ],
+    "learning": "Playwright auth must be refreshed in the Playwright-opened browser context; normal browser login does not satisfy the target workflow gate.",
+    "noBcShellReached": true,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "nextSafeAction": "Finish Login/MFA inside the Playwright auth window until a Business Central shell signal is visible, require auth:bc:check canUseStoredAuth=true, then rerun D31 read-only discovery."
   }
 }
