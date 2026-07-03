@@ -44,3 +44,4 @@ Current blocker:
 - `npm run auth:bc:capture-detached` is clear when no detached browser still uses the profile.
 - A confirmed capture still reached Microsoft sign-in instead of the Business Central shell, so `playwright/.auth/bc-user.json` was not written.
 - The next useful step is another detached login handoff: open the detached Playwright profile, complete Login/MFA there, wait for the Business Central shell for `playthru / UNIVERSAARL-DE`, close that browser, then capture.
+- If the detached Playwright browser is already open but hidden behind other windows, run `npm run auth:bc:focus-detached`.

@@ -78,6 +78,7 @@ const interactiveOperatorAction = {
     preferredAuthHandoff === 'detached-capture'
       ? [
           'Complete sign-in and MFA in the detached Playwright profile browser window if it is still open.',
+          'If the detached browser is hard to find, run npm run auth:bc:focus-detached.',
           'Wait until Business Central shell text such as Search/Tell Me, Role Center or My Settings is visible.',
           'Close the detached browser window so npm run auth:bc can reuse the profile.',
           'Run npm run auth:bc:capture-detached to verify the detached browser is closed.',
