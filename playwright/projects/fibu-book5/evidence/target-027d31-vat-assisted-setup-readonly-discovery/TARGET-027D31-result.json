@@ -1,13 +1,45 @@
 {
   "schemaVersion": 1,
-  "activeCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-  "status": "blocked-auth-before-bc-shell",
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+  "source": "playwright-auth-gate-diagnosis",
+  "resultStatus": "blocked-auth-before-bc-shell",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "mode": "universaarl-target-execution",
-  "activeArea": "universaarl-vat-assisted-setup-readonly-discovery",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-vat-assisted-setup-readonly-discovery/TARGET-027D31-result.json",
-  "summary": "TARGET-027D31 did not reach Business Central. Auth state was stale and a fresh auth attempt stayed on Microsoft sign-in, so VAT Assisted Setup discovery was not executed. No setup, master data, draft, Preview Posting, Posting or API shortcut occurred.",
+  "page": "not reached - Microsoft sign-in page before Business Central shell",
+  "url": "redacted-login.microsoftonline.com",
+  "actionsTaken": [
+    "Ran npm run auth:bc:check.",
+    "Ran npm run auth:bc after stale-auth blocker; command timed out without shell validation.",
+    "Ran npm run auth:bc:diagnose for redacted diagnosis.",
+    "Stopped before D31 Business Central UI discovery because shell context was not validated."
+  ],
+  "actionsNotTaken": [
+    "No Business Central shell page was accepted as evidence.",
+    "No Assisted Setup or Manual Setup page was opened.",
+    "No VAT setup page was changed.",
+    "No values were typed.",
+    "No wizard Next/Finish/Apply/OK was clicked.",
+    "No master data, document, Preview Posting, Posting, payment or API shortcut occurred."
+  ],
+  "authDiagnosis": {
+    "authCheckBlockedBy": [
+      "storage-state-too-old",
+      "shell-validation-meta-too-old"
+    ],
+    "diagnosisHost": "login.microsoftonline.com",
+    "diagnosisTitle": "Bei Ihrem Konto anmelden",
+    "shellSignalDetected": false,
+    "savedState": false
+  },
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "screenshots": [],
   "proved": [
     "The local Playwright auth state is too old for D31 live evidence.",
     "The fresh auth attempt did not reach a validated Business Central shell within the command timeout.",
@@ -29,16 +61,6 @@
     "D31 remains the right next VAT route, but it must wait for a fresh Business Central shell validation.",
     "Do not interpret a browser login page as Business Central evidence."
   ],
-  "setupChanged": false,
-  "setupChangeAttempted": false,
-  "masterDataChanged": false,
-  "draftCreated": false,
-  "previewPosting": false,
-  "posted": false,
-  "apiShortcut": false,
-  "screenshots": [],
-  "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "nextStep": "Refresh Business Central auth for playthru / UNIVERSAARL-DE, require npm run auth:bc:check canUseStoredAuth=true, then rerun D31 read-only Assisted VAT Setup discovery.",
   "nextStepDecision": {
     "currentCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
@@ -90,6 +112,19 @@
       "Then run D31 read-only discovery with screenshot QA."
     ]
   },
-  "runId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-027d31-vat-assisted-setup-readonly-discovery/TARGET-027D31-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d31-vat-assisted-setup-readonly-discovery/README.md",
+    ".agent/state/current.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/marathon_queue.json",
+    ".agent/state/cases/target-027d31-vat-assisted-setup-readonly-discovery.json"
+  ],
+  "evidenceRefs": [],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "statePatch": {},
+  "reason": "D31 was stopped before BC UI discovery because auth shell validation could not be refreshed.",
+  "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
   "completedAt": "2026-07-03T07:37:43.712Z"
 }

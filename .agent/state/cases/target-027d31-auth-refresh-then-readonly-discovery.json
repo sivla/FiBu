@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+  "status": "ready-next",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-target-execution",
+  "targetWorld": "Universaarl",
+  "activeArea": "universaarl-bc-auth-refresh-before-vat-assisted-setup",
+  "mayRunPlaywright": true,
+  "mayWorkEffectively": false,
+  "effectiveBcActionsAllowed": false,
+  "sourceBlockedCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+  "purpose": "Refresh local Business Central Playwright auth shell validation for playthru / UNIVERSAARL-DE before rerunning the D31 VAT Assisted Setup read-only discovery.",
+  "allowedActions": [
+    "refresh-business-central-auth",
+    "run-auth-bc-check",
+    "confirm-instance-and-company-after-auth",
+    "rerun-d31-readonly-after-auth",
+    "write-result-json",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "accept-login-page-as-bc-evidence",
+    "open-vat-setup-without-fresh-auth-check",
+    "finish-assisted-setup",
+    "click-next-if-it-writes",
+    "click-apply-ok-or-finish-on-setup-dialog",
+    "write-vat-posting-setup",
+    "type-values",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut"
+  ],
+  "acceptanceCriteria": [
+    "npm run auth:bc:check returns canUseStoredAuth=true.",
+    "Shell validation metadata matches playthru and UNIVERSAARL-DE.",
+    "No login page is accepted as Business Central evidence.",
+    "If auth is refreshed, rerun only the D31 read-only Assisted Setup / Manual Setup discovery.",
+    "No setup, VAT value, master data, draft, Preview Posting, Posting, payment or API shortcut occurs."
+  ],
+  "stopIf": [
+    "Auth remains on login.microsoftonline.com or any non-Business-Central shell.",
+    "Shell validation environment is not playthru.",
+    "Shell validation company is not UNIVERSAARL-DE.",
+    "Any flow asks to confirm setup or write data before D31 read-only evidence is captured."
+  ],
+  "nextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+  "updatedAt": "2026-07-03T07:38:08.734Z"
+}
