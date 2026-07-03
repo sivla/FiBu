@@ -2,8 +2,14 @@
 
 Status: blocked-auth-before-bc-shell
 
-The active auth refresh attempt ran `npm run auth:bc` against the intended `playthru / UNIVERSAARL-DE` target override. The Playwright auth browser stayed on Microsoft sign-in until the 600000 ms timeout. No Business Central shell signal was detected and no storage state was saved.
+The active auth refresh gate targets `playthru / UNIVERSAARL-DE`, but the Playwright auth profile is still not logged in to a Business Central shell. The latest bounded handoff ran `npm run auth:bc:open-login` for 300000 ms. The browser stayed on Microsoft sign-in, no Business Central shell signal was detected and no storage state was saved.
 
 No Assisted Setup, Manual Setup, VAT Posting Setup, setup value, master data, document, Preview Posting, Posting, payment, API shortcut or bookmaster change occurred.
 
-Next safe action: complete Login/MFA inside the Playwright-opened browser until Business Central shell is visible, then require `npm run auth:bc:check` to return `canUseStoredAuth=true` before rerunning D31 read-only discovery.
+Important: signing in through normal Chrome or the Codex app does not refresh `playwright/.auth/bc-user.json`. The login must finish in the Playwright-opened browser window. The next safe action is:
+
+1. Run `npm run auth:bc:open-login`.
+2. Complete Login/MFA in that Playwright window.
+3. Wait until Business Central shell text is visible.
+4. Run `npm run auth:bc:check` and require `canUseStoredAuth=true`.
+5. Only then rerun D31 read-only discovery.

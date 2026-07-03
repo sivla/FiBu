@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "activeCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "status": "blocked-auth-open-login-rechecked",
+  "status": "blocked-auth-handoff-documented",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "mode": "universaarl-target-execution",
   "activeArea": "universaarl-vat-assisted-setup-readonly-discovery",
   "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
-  "summary": "Ran auth:bc:open-login for 300000 ms. It targeted playthru / UNIVERSAARL-DE but stayed on Microsoft sign-in, so no shell-validated storage state was saved and all BC workflows remain blocked.",
+  "summary": "Business Central workflows remain blocked, but the Auth handoff is now documented consistently: auth:bc:probe is diagnosis only, auth:bc:open-login is the required Playwright-window handoff.",
   "proved": [
     "auth:bc:reset-profile -- --confirm removed only ignored local Playwright auth artifacts.",
     "The auth refresh command uses the intended playthru / UNIVERSAARL-DE target override.",
@@ -122,7 +122,7 @@
     "apiShortcut": false,
     "nextSafeAction": "Run npm run auth:bc:interactive and finish Login/MFA inside the Playwright auth window until a Business Central shell signal is visible, require auth:bc:check canUseStoredAuth=true, then rerun D31 read-only discovery."
   },
-  "updatedAt": "2026-07-03T14:45:00.000Z",
+  "updatedAt": "2026-07-03T15:05:00.000Z",
   "actionsTaken": [
     "Ran git status --short and git pull --ff-only; repository was up to date.",
     "Ran auth:bc:check and confirmed stored auth was unusable.",
@@ -135,7 +135,8 @@
     "Added auth:bc:open-login and updated auth doctor/check/run-plan hints to prefer the guided Playwright login handoff.",
     "Ran the guided auth:bc:open-login handoff for 600000 ms; the Playwright page stayed on Microsoft sign-in.",
     "Ran corrected auth:bc:probe for 30000 ms; the Playwright page stayed on Microsoft sign-in.",
-    "Ran auth:bc:open-login for 300000 ms; the Playwright page stayed on Microsoft sign-in."
+    "Ran auth:bc:open-login for 300000 ms; the Playwright page stayed on Microsoft sign-in.",
+    "Updated Auth evidence README and Playwright pattern rules for the current D31 blocker."
   ],
   "actionsNotTaken": [
     "No D31 VAT Assisted Setup or Manual Setup page was opened.",
@@ -148,7 +149,8 @@
     "No additional Business Central auth browser was opened after adding auth:bc:open-login.",
     "No bookmaster change was made.",
     "No BC workflow was run after the red auth probe.",
-    "No BC workflow was run after the red open-login attempt."
+    "No BC workflow was run after the red open-login attempt.",
+    "No BC workflow was run while auth:bc:check remained red."
   ],
   "latestAuthContextGate": {
     "at": "2026-07-03T10:55:00.000Z",
@@ -431,6 +433,22 @@
       "auth:storage-state-not-refreshed"
     ],
     "learning": "Short auth probe now labels its evidence as npm run auth:bc:probe; the current Playwright profile still has no Business Central shell session.",
+    "bcRun": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false
+  },
+  "latestAuthHandoffDocumentation": {
+    "at": "2026-07-03T15:05:00.000Z",
+    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "files": [
+      "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/README.md",
+      "playwright/projects/fibu-book5/BC-PLAYWRIGHT-PATTERNS.md"
+    ],
+    "rule": "auth:bc:probe is a short diagnosis only; auth:bc:open-login is the actual Playwright-window handoff. Normal Chrome/Codex login does not refresh Playwright storageState.",
     "bcRun": false,
     "setupChanged": false,
     "masterDataChanged": false,
