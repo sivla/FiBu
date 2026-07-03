@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
+  "status": "ready-next",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-target-execution",
+  "targetWorld": "Universaarl",
+  "activeArea": "universaarl-vat-matrix-park-or-source-route-decision",
+  "mayRunPlaywright": false,
+  "mayWorkEffectively": false,
+  "effectiveBcActionsAllowed": false,
+  "allowedActions": [
+    "read-source-and-prior-results",
+    "classify-vat-matrix-route-status",
+    "decide-park-or-new-source-route",
+    "write-result-json",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "write-vat-posting-setup",
+    "click-new-as-write-route",
+    "click-edit-list-as-write-route",
+    "type-values",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "repeat-rejected-d3-d5-d8-d28-cell-or-new-route",
+    "claim-vat-correctness",
+    "claim-posting-readiness"
+  ],
+  "purpose": "Make a local/source-backed decision after D29 proved Page 472 technical context but still did not prove a safe row-bound write route for INLAND/VAT19.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-027d26-vat-matrix-alternative-route-discovery/TARGET-027D26-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d27-vat-matrix-controlled-write-gate-decision/TARGET-027D27-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d28-vat-matrix-controlled-write-gate/TARGET-027D28-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d29-vat-matrix-row-bound-route-recovery/TARGET-027D29-result.json"
+  ],
+  "targetValuesUnderReview": {
+    "vatBusinessPostingGroup": "INLAND",
+    "vatProductPostingGroup": "VAT19",
+    "vatPercent": "19",
+    "vatCalculationType": "Normale MwSt.",
+    "salesVatAccount": "3806",
+    "purchaseVatAccount": "1406"
+  },
+  "decisionOptions": [
+    {
+      "option": "park-page-472-grid-route",
+      "when": "D26-D29 do not provide a materially safe UI write route and further BC grid attempts would repeat blocked patterns."
+    },
+    {
+      "option": "source-check-assisted-setup-or-configuration-route",
+      "when": "Microsoft/source mapping shows a standard guided setup or import route that can be bounded, cleaned up and screenshot-proven."
+    },
+    {
+      "option": "move-to-dimensions-with-explicit-vat-blocker",
+      "when": "Foundation can continue with VAT Posting Setup marked not posting-ready and O2C/P2P still locked."
+    }
+  ],
+  "acceptanceCriteria": [
+    "No BC or Playwright run occurs in D30.",
+    "D29 Page Inspection facts are used: Page 472 List / Table 325 / VAT account fields are technically known.",
+    "Rejected routes are explicitly not repeated: D3/D5/D8 cell routes, D28 top-level Neu/label-bound route, blind Edit List route.",
+    "Next case is either a genuinely different source-backed route or an explicit park decision before dimensions/checkpoint.",
+    "No VAT correctness or posting readiness is claimed."
+  ],
+  "stopIf": [
+    "A live BC action would be required.",
+    "The only proposed next route is a repeated Page 472 grid/cell/New/Edit List attempt.",
+    "The decision would unlock master data, Preview Posting or Posting before Foundation gates are explicit."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-027D29-VAT-MATRIX-ROW-BOUND-ROUTE-RECOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-027D29-VAT-MATRIX-ROW-BOUND-ROUTE-RECOVERY",
+    "lastEvidenceSummary": "D29 confirmed playthru / UNIVERSAARL-DE, opened Page 472 VAT Posting Setup, captured action inventory and Page Inspection. Page Inspection showed Page 472 List / Table 325 and VAT account fields, but no safe write route was proven.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "D29 completed the read-only route recovery and selected a local park/source decision instead of another blind Page 472 write attempt.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
+        "status": "ready-next",
+        "reason": "A local decision is now needed because Page 472 is technically known but still unsafe as a write route."
+      },
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "ready-after-current",
+        "reason": "Dimensions can resume only after VAT matrix status is explicitly parked or a genuinely new route is chosen."
+      },
+      {
+        "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Checkpoint must include VAT matrix as parked/not posting-ready unless D30 chooses a safe route."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "blocked",
+        "reason": "O2C remains locked until VAT, posting groups and dimensions are sufficiently scoped."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked TARGET-027D29 blocked-readonly-route-recovery with result evidence.",
+      "Inserted TARGET-027D30 as local no-BC/no-Playwright decision case."
+    ],
+    "selectedNextCase": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "The next best progress is not more grid clicking, but a source-backed choice: park VAT matrix explicitly or choose a materially different route.",
+    "risksBeforeNextCase": [
+      "Repeating Page 472 grid attempts would burn time without safer evidence.",
+      "Moving to master data or O2C without VAT status would create false readiness.",
+      "VAT setup may remain a Foundation blocker until a safer route exists."
+    ],
+    "requiredPreparation": [
+      "Read D26-D29 result JSONs and Page Inspection fields.",
+      "Check source mapping for supported setup routes before proposing another write case."
+    ]
+  },
+  "nextCase": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
+  "updatedAt": "2026-07-03T07:14:46.182Z"
+}

@@ -5,7 +5,7 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "queueId": "TARGET-MARATHON-002-UNIVERSAARL-REPO-READONLY-PREP",
-  "reason": "TARGET-032M safely blocked on purchase field recovery and selected a local route decision before any List Edit unlock.",
+  "reason": "TARGET-027D29 captured Page 472 read-only route evidence and Page Inspection, but did not prove a safe row-bound write route; next is local D30 park/source decision.",
   "noEffectiveBusinessCentralActions": false,
   "forbiddenUntilUnblocked": [],
   "unblockCriteria": "Satisfied: UNIVERSAARL-DE exists and active Role Center context / Firmendaten read-only proof is available.",
@@ -4598,7 +4598,7 @@
       "id": "TARGET-027D29-VAT-MATRIX-ROW-BOUND-ROUTE-RECOVERY",
       "caseId": "TARGET-027D29-VAT-MATRIX-ROW-BOUND-ROUTE-RECOVERY",
       "order": 10207,
-      "status": "pending",
+      "status": "blocked",
       "priority": "high",
       "category": "vat-matrix-row-bound-route-recovery",
       "expectedImpact": "recover-or-park-safe-page-472-row-bound-route",
@@ -4613,6 +4613,40 @@
       "lookaheadStatus": "ready-next",
       "dependsOn": [
         "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE"
+      ],
+      "completedAt": "2026-07-03T07:14:46.182Z",
+      "result": "D29 opened Page 472 read-only, captured action/hit-test inventory and Page Inspection (Page 472 List / Table 325), but did not prove a safe row-bound INLAND/VAT19 write route.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-027d29-vat-matrix-row-bound-route-recovery/TARGET-027D29-result.json",
+      "setupChanged": false,
+      "setupChangeAttempted": false,
+      "masterDataChanged": false,
+      "previewPosting": false,
+      "posted": false,
+      "apiShortcut": false,
+      "blockedBy": [
+        "D29 is read-only and did not prove a materially safe row-bound write route for INLAND/VAT19."
+      ],
+      "nextCase": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION"
+    },
+    {
+      "id": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
+      "caseId": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
+      "order": 10208,
+      "status": "pending",
+      "priority": "high",
+      "category": "vat-matrix-park-or-source-route-decision",
+      "expectedImpact": "avoid-repeating-unsafe-page472-write-routes",
+      "mayWorkEffectively": false,
+      "mayRunPlaywright": false,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Make a local/source-backed decision after D29 proved Page 472 technical context but still did not prove a safe row-bound write route for INLAND/VAT19.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "caseFile": ".agent/state/cases/target-027d30-vat-matrix-park-or-source-route-decision.json",
+      "lookaheadStatus": "ready-next",
+      "dependsOn": [
+        "TARGET-027D29-VAT-MATRIX-ROW-BOUND-ROUTE-RECOVERY"
       ]
     }
   ],

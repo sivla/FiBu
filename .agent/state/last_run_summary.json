@@ -1,33 +1,34 @@
 {
   "schemaVersion": 1,
-  "activeCase": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
-  "status": "blocked-vat-matrix-write-gate",
+  "activeCase": "TARGET-027D29-VAT-MATRIX-ROW-BOUND-ROUTE-RECOVERY",
+  "status": "blocked-readonly-route-recovery",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "mode": "universaarl-target-execution",
-  "activeArea": "universaarl-vat-matrix-controlled-write-gate",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d28-vat-matrix-controlled-write-gate/TARGET-027D28-result.json",
-  "summary": "TARGET-027D28 opened Page 472 VAT Posting Setup in playthru / UNIVERSAARL-DE and safely blocked the write gate because the visible top-level New/label-bound route was not safely usable. No setup, master data, draft, Preview Posting, Posting or API shortcut occurred.",
+  "activeArea": "universaarl-vat-matrix-row-bound-route-recovery",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d29-vat-matrix-row-bound-route-recovery/TARGET-027D29-result.json",
+  "summary": "TARGET-027D29 opened Page 472 VAT Posting Setup read-only in playthru / UNIVERSAARL-DE, captured action/hit-test inventory and Page Inspection. Page Inspection showed Page 472 List / Table 325 and VAT account fields, but no safe row-bound write route for INLAND/VAT19 was proven. No setup, master data, draft, Preview Posting, Posting or API shortcut occurred.",
   "proved": [
     "Business Central stayed in playthru / UNIVERSAARL-DE.",
     "Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix was visibly open.",
-    "D28 did not repeat rejected D3/D5/D8 coordinate/cell routes.",
-    "The run stopped before Preview Posting, Posting, master data and documents."
+    "D29 captured read-only action/control inventory and pointer hit tests.",
+    "D29 did not click New/Neu or Edit List as a write route and did not type values.",
+    "No master data, document draft, Preview Posting, Posting or API shortcut was executed."
   ],
   "notProved": [
+    "No saved INLAND/VAT19 VAT Posting Setup row.",
+    "No VAT percent 19 setup row.",
+    "No Sales VAT Account 3806 setup row.",
+    "No Purchase VAT Account 1406 setup row.",
     "No final German VAT correctness.",
-    "No Preview Posting.",
     "No VAT Entries.",
     "No G/L Entries.",
-    "No VAT Statement.",
-    "No tax advisor approval or compliance final proof."
+    "No posting readiness."
   ],
   "blockedBy": [
-    "Top-level New/Neu was visible but not safely clickable/usable as a write route; refusing fallback to Edit List or coordinates."
+    "D29 is read-only and did not prove a materially safe row-bound write route for INLAND/VAT19."
   ],
-  "warnings": [
-    "Business Central shows unsaved/error text after D28 route; reopen proof decides acceptance."
-  ],
+  "warnings": [],
   "setupChanged": false,
   "setupChangeAttempted": false,
   "masterDataChanged": false,
@@ -36,52 +37,57 @@
   "posted": false,
   "apiShortcut": false,
   "screenshots": [
-    "target-027d28-010-before.png",
-    "target-027d28-030-after-write-or-block.png",
-    "target-027d28-040-reopen-proof.png"
+    "target-027d29-010-page472-baseline.png",
+    "target-027d29-020-action-and-hit-test-inventory.png",
+    "target-027d29-030-page-inspection-probe.png",
+    "target-027d29-040-reopen-no-write-proof.png"
   ],
-  "nextCase": "TARGET-027D29-VAT-MATRIX-ROW-BOUND-ROUTE-RECOVERY",
-  "nextStep": "Run TARGET-027D29 as read-only Page-472 row-bound route recovery before any future VAT setup write.",
+  "nextCase": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
+  "nextStep": "Run TARGET-027D30 locally to decide park/source route; no BC or Playwright until the route decision is made.",
   "nextStepDecision": {
-    "currentCase": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "D27 selected a source-backed Page-472 write gate. D28 tested top-level New plus label-bound controls and avoided rejected coordinate routes.",
+    "currentCase": "TARGET-027D29-VAT-MATRIX-ROW-BOUND-ROUTE-RECOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-027D29-VAT-MATRIX-ROW-BOUND-ROUTE-RECOVERY",
+    "lastEvidenceSummary": "D29 confirmed playthru / UNIVERSAARL-DE, opened Page 472 VAT Posting Setup, captured action inventory and Page Inspection. Page Inspection showed Page 472 List / Table 325 and VAT account fields, but no safe write route was proven.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "VAT Posting Setup is the next narrow Foundation blocker before dimensions and Foundation checkpoint.",
+    "reason": "D29 completed the read-only route recovery and selected a local park/source decision instead of another blind Page 472 write attempt.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027D29-VAT-MATRIX-ROW-BOUND-ROUTE-RECOVERY",
+        "caseId": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
         "status": "ready-next",
-        "reason": "The write gate blocked safely; a narrower row-bound route recovery is needed before any more VAT setup write."
+        "reason": "A local decision is now needed because Page 472 is technically known but still unsafe as a write route."
+      },
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "ready-after-current",
+        "reason": "Dimensions can resume only after VAT matrix status is explicitly parked or a genuinely new route is chosen."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Checkpoint waits for VAT matrix status."
+        "reason": "Checkpoint must include VAT matrix as parked/not posting-ready unless D30 chooses a safe route."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "O2C remains locked until VAT, posting groups and dimensions are ready enough."
-      },
-      {
-        "caseId": "TARGET-032P-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE",
         "status": "blocked",
-        "reason": "General Posting Setup purchase account remains a separate parked blocker; do not mix with D28."
+        "reason": "O2C remains locked until VAT, posting groups and dimensions are sufficiently scoped."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-027D29-VAT-MATRIX-ROW-BOUND-ROUTE-RECOVERY",
-    "whySelectedNextCaseIsBest": "The top-level New path did not expose safe label-bound controls; the next step must learn the row-bound route instead of typing coordinates.",
+    "queueChangesMade": [
+      "Marked TARGET-027D29 blocked-readonly-route-recovery with result evidence.",
+      "Inserted TARGET-027D30 as local no-BC/no-Playwright decision case."
+    ],
+    "selectedNextCase": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "The next best progress is not more grid clicking, but a source-backed choice: park VAT matrix explicitly or choose a materially different route.",
     "risksBeforeNextCase": [
-      "No German VAT final correctness before Preview Posting and VAT Entries.",
-      "No O2C/P2P documents before Foundation readiness.",
-      "Do not repeat D3/D5/D8 coordinate/cell routes."
+      "Repeating Page 472 grid attempts would burn time without safer evidence.",
+      "Moving to master data or O2C without VAT status would create false readiness.",
+      "VAT setup may remain a Foundation blocker until a safer route exists."
     ],
     "requiredPreparation": [
-      "Review D28 screenshots/control inventory; use Page Inspection, personalization or a true card route before any further VAT write."
+      "Read D26-D29 result JSONs and Page Inspection fields.",
+      "Check source mapping for supported setup routes before proposing another write case."
     ]
   },
-  "runId": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
-  "completedAt": "2026-07-03T07:01:38.910Z"
+  "runId": "TARGET-027D29-VAT-MATRIX-ROW-BOUND-ROUTE-RECOVERY",
+  "completedAt": "2026-07-03T07:14:46.182Z"
 }
