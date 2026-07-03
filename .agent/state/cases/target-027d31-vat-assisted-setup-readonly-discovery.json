@@ -1,44 +1,72 @@
 {
   "schemaVersion": 1,
-  "activeCase": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
-  "status": "observed-source-decision",
+  "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+  "status": "ready-next",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "mode": "universaarl-target-execution",
-  "activeArea": "universaarl-vat-matrix-park-or-source-route-decision",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d30-vat-matrix-park-or-source-route-decision/TARGET-027D30-result.json",
-  "summary": "TARGET-027D30 did not run BC or Playwright. It reviewed D26-D29 and Microsoft VAT setup sources, parked the direct Page 472 grid/New/Edit List/cell write route, and selected TARGET-027D31 as a read-only Assisted VAT Setup / Manual Setup discovery route. No setup, master data, draft, Preview Posting, Posting or API shortcut occurred.",
-  "proved": [
-    "D30 performed a local/source-backed route decision only.",
-    "Page 472 / Table 325 field truth from D29 remains useful but is not a safe write route.",
-    "The direct Page 472 grid/New/Edit List/cell route is parked and must not be repeated as the next case.",
-    "The next case is a materially different read-only Assisted VAT Setup / Manual Setup discovery route.",
-    "No setup, master data, draft, Preview Posting, Posting, payment or API shortcut occurred."
+  "targetWorld": "Universaarl",
+  "activeArea": "universaarl-vat-assisted-setup-readonly-discovery",
+  "mayRunPlaywright": true,
+  "mayWorkEffectively": false,
+  "effectiveBcActionsAllowed": false,
+  "sourceDecision": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
+  "purpose": "Discover the source-backed Assisted VAT Setup / Manual Setup route read-only after Page 472 grid write routes were parked.",
+  "allowedActions": [
+    "open-business-central",
+    "confirm-instance-and-company",
+    "open-assisted-setup-readonly",
+    "search-vat-setup-guide-readonly",
+    "open-manual-setup-or-vat-setup-readonly-if-safe",
+    "hover-tooltips-and-inventory-actions",
+    "capture-screenshot-qa",
+    "inspect-dialogs-and-stop-before-write",
+    "write-result-json",
+    "update-state-and-queue"
   ],
-  "notProved": [
-    "No saved INLAND/VAT19 VAT Posting Setup row.",
-    "No VAT percent 19 setup row.",
-    "No Sales VAT Account 3806 setup row.",
-    "No Purchase VAT Account 1406 setup row.",
-    "No Assisted VAT Setup page route has yet been observed in Universaarl.",
-    "No posting readiness, VAT Entry or G/L Entry is proven.",
-    "No final German VAT correctness is proven."
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "finish-assisted-setup",
+    "click-next-if-it-writes",
+    "click-apply-ok-or-finish-on-setup-dialog",
+    "write-vat-posting-setup",
+    "type-values",
+    "import-configuration-package",
+    "export-configuration-package",
+    "validate-or-apply-configuration-package",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "repeat-rejected-page472-grid-new-edit-list-cell-route",
+    "claim-vat-correctness",
+    "claim-posting-readiness"
   ],
-  "blockedBy": [],
-  "warnings": [
-    "D31 is read-only discovery. It must stop before any Next/Finish/Apply/OK action that could write setup.",
-    "Configuration Package routes remain parked unless a later case explicitly unlocks them with cleanup/trace boundaries."
+  "sourceRefs": [
+    "https://learn.microsoft.com/en-gb/dynamics365/business-central/finance-setup-vat",
+    "https://learn.microsoft.com/en-us/training/modules/set-up-vat-dynamics-365-business-central/"
   ],
-  "setupChanged": false,
-  "setupChangeAttempted": false,
-  "masterDataChanged": false,
-  "draftCreated": false,
-  "previewPosting": false,
-  "posted": false,
-  "apiShortcut": false,
-  "screenshots": [],
-  "nextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-  "nextStep": "Run TARGET-027D31 as read-only Assisted VAT Setup / Manual Setup discovery in playthru / UNIVERSAARL-DE; stop before any wizard/setup write.",
+  "acceptanceCriteria": [
+    "Business Central stays in playthru / UNIVERSAARL-DE.",
+    "Assisted Setup or Manual Setup VAT route is observed read-only, or a precise blocker is documented.",
+    "Screenshot QA captures page title, company context, visible VAT setup guide/manual setup terms and action boundaries.",
+    "No wizard finish/apply/OK/Next action is clicked if it could write setup.",
+    "No VAT Posting Setup value, master data, document, Preview Posting, Posting or API shortcut occurs.",
+    "Result JSON states whether D32 write-gate decision is justified or whether VAT remains parked."
+  ],
+  "stopIf": [
+    "Instance is not playthru or company is not UNIVERSAARL-DE.",
+    "The route requires completing a wizard or confirming setup before read-only evidence is captured.",
+    "Only the already parked Page 472 grid/New/Edit List/cell route is available.",
+    "A dialog asks for OK, Yes, Ja, Next, Finish, Apply, Import, Export, Validate or Publish with possible setup impact.",
+    "BC shell/auth context is unclear."
+  ],
   "nextStepDecision": {
     "currentCase": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
     "plannedNextCaseBeforeReview": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
@@ -90,6 +118,6 @@
       "Stop before Finish/Apply/OK/Next if it would change setup."
     ]
   },
-  "runId": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
-  "completedAt": "2026-07-03T07:24:18.797Z"
+  "nextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+  "updatedAt": "2026-07-03T07:24:18.797Z"
 }

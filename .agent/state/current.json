@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-03T07:14:46.182Z",
+  "updatedAt": "2026-07-03T07:24:57.261Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-vat-matrix-park-or-source-route-decision",
-  "activeCase": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
-  "active_case_file": ".agent/state/cases/target-027d30-vat-matrix-park-or-source-route-decision.json",
+  "activeArea": "universaarl-vat-assisted-setup-readonly-discovery",
+  "activeCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+  "active_case_file": ".agent/state/cases/target-027d31-vat-assisted-setup-readonly-discovery.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -19,9 +19,14 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-source-and-prior-results",
-    "classify-vat-matrix-route-status",
-    "decide-park-or-new-source-route",
+    "open-business-central",
+    "confirm-instance-and-company",
+    "open-assisted-setup-readonly",
+    "search-vat-setup-guide-readonly",
+    "open-manual-setup-or-vat-setup-readonly-if-safe",
+    "hover-tooltips-and-inventory-actions",
+    "capture-screenshot-qa",
+    "inspect-dialogs-and-stop-before-write",
     "write-result-json",
     "update-state-and-queue"
   ],
@@ -31,24 +36,26 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "open-business-central",
-    "run-playwright",
+    "finish-assisted-setup",
+    "click-next-if-it-writes",
+    "click-apply-ok-or-finish-on-setup-dialog",
     "write-vat-posting-setup",
-    "click-new-as-write-route",
-    "click-edit-list-as-write-route",
     "type-values",
+    "import-configuration-package",
+    "export-configuration-package",
+    "validate-or-apply-configuration-package",
     "create-master-data",
     "create-document-or-draft",
     "preview-posting",
     "post",
     "payment",
     "api-shortcut",
-    "repeat-rejected-d3-d5-d8-d28-cell-or-new-route",
+    "repeat-rejected-page472-grid-new-edit-list-cell-route",
     "claim-vat-correctness",
     "claim-posting-readiness"
   ],
-  "nextCase": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
-  "nextStep": "Run TARGET-027D30 locally: decide whether to park Page 472 VAT matrix or choose a materially different source-backed route; no BC/Playwright in D30.",
+  "nextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+  "nextStep": "Run TARGET-027D31 as read-only Assisted VAT Setup / Manual Setup discovery in playthru / UNIVERSAARL-DE; stop before any wizard/setup write.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -231,7 +238,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "TARGET-027D28 proved Page 472 VAT Posting Setup visible in playthru / UNIVERSAARL-DE and safely blocked the top-level New/label-bound write gate without setup change.",
+  "currentCoverageFocus": "TARGET-027D30 parked the unsafe direct Page 472 VAT matrix write route and selected TARGET-027D31 Assisted VAT Setup read-only discovery as the next materially different route.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -1353,7 +1360,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "universaarl-skr04-balance-sheet-accounts-fit",
-  "lastCompletedCase": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
+  "lastCompletedCase": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3439,48 +3446,54 @@
       "replace-with-better-case"
     ],
     "latestDecisionCard": {
-      "currentCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
-      "plannedNextCaseBeforeReview": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
-      "lastEvidenceSummary": "TARGET-032D proved that Page 314 Edit List/New and Ctrl+Insert do not expose trusted editable inputs and no values were typed.",
+      "currentCase": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
+      "plannedNextCaseBeforeReview": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
+      "lastEvidenceSummary": "D29 proved Page 472 / Table 325 technical context and visible VAT account fields, but did not prove a safe row-bound UI write route for INLAND/VAT19/19/3806/1406.",
       "isPlannedNextCaseStillSensible": true,
-      "reason": "The case tests a materially different Page 314 route before any further write attempt.",
+      "reason": "D30 is the correct local decision step after repeated Page 472 route blockers; Microsoft recommends the assisted VAT setup guide, so the next useful route is a read-only discovery of that standard setup surface.",
       "lookaheadReviewed": [
         {
-          "caseId": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
-          "status": "blocked",
-          "reason": "No route candidate was good enough."
+          "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+          "status": "ready-next",
+          "reason": "Materially different source-backed route; read-only only; useful before any further VAT write gate."
         },
         {
-          "caseId": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
-          "status": "ready-next",
-          "reason": "A park/source-route decision is needed to avoid repeating weak UI routes."
+          "caseId": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
+          "status": "ready-after-current",
+          "reason": "Only sensible if D31 observes a bounded wizard/manual route and documents its write boundary."
         },
         {
           "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
-          "status": "needs-setup-first",
-          "reason": "Dimensions should wait until Page 314 is solved or consciously parked."
+          "status": "ready-after-current",
+          "reason": "Can resume after D31 either identifies a useful VAT route or explicitly parks VAT with a blocker."
         },
         {
           "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
           "status": "needs-setup-first",
-          "reason": "Foundation cannot be ready while the General Posting Setup matrix row is unresolved."
+          "reason": "Checkpoint must include VAT matrix and general posting setup as solved, partial or parked."
         },
         {
-          "caseId": "TARGET-035-MASTER-DATA-FIRST-CUSTOMER-VENDOR-ITEM",
-          "status": "needs-setup-first",
-          "reason": "Master data remains locked until posting groups, VAT and dimensions are sufficient."
+          "caseId": "TARGET-038-O2C-PREFLIGHT",
+          "status": "blocked",
+          "reason": "Documents stay locked until VAT/posting groups/dimensions are sufficiently scoped."
         }
       ],
-      "queueChangesMade": [],
-      "selectedNextCase": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
-      "whySelectedNextCaseIsBest": "It prevents another blind UI retry and forces a park/source-route decision.",
+      "queueChangesMade": [
+        "Marked TARGET-027D30 done as local/source-backed route decision.",
+        "Inserted TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY as next case.",
+        "Kept Page 472 direct grid route parked and all write gates locked."
+      ],
+      "selectedNextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+      "whySelectedNextCaseIsBest": "It avoids repeating unsafe grid/cell routes and follows the Microsoft-recommended VAT assisted setup path in a read-only, screenshot-QA-first way.",
       "risksBeforeNextCase": [
-        "Do not type 4400/5400 without a trusted card or field route.",
-        "Do not claim posting readiness.",
-        "Do not create master data, Preview Posting or Posting."
+        "A wizard could become effective if Next/Finish/Apply is clicked.",
+        "Assisted Setup may require choices that are setup-changing and must be stopped before write.",
+        "VAT correctness still needs setup evidence, Preview Posting and entries later."
       ],
       "requiredPreparation": [
-        "Review 032E action inventory, tooltip screenshots, Page Inspection and Page 315 card-candidate screenshot."
+        "Use screenshot QA on the Assisted Setup / VAT setup guide surface.",
+        "Hover/tooltip and action inventory before clicking any wizard button.",
+        "Stop before Finish/Apply/OK/Next if it would change setup."
       ]
     },
     "lastDecisionCard": {
@@ -3732,43 +3745,54 @@
     ]
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "D27 selected a source-backed Page-472 write gate. D28 tested top-level New plus label-bound controls and avoided rejected coordinate routes.",
+    "currentCase": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
+    "lastEvidenceSummary": "D29 proved Page 472 / Table 325 technical context and visible VAT account fields, but did not prove a safe row-bound UI write route for INLAND/VAT19/19/3806/1406.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "VAT Posting Setup is the next narrow Foundation blocker before dimensions and Foundation checkpoint.",
+    "reason": "D30 is the correct local decision step after repeated Page 472 route blockers; Microsoft recommends the assisted VAT setup guide, so the next useful route is a read-only discovery of that standard setup surface.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027D29-VAT-MATRIX-ROW-BOUND-ROUTE-RECOVERY",
+        "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
         "status": "ready-next",
-        "reason": "The write gate blocked safely; a narrower row-bound route recovery is needed before any more VAT setup write."
+        "reason": "Materially different source-backed route; read-only only; useful before any further VAT write gate."
+      },
+      {
+        "caseId": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
+        "status": "ready-after-current",
+        "reason": "Only sensible if D31 observes a bounded wizard/manual route and documents its write boundary."
+      },
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "ready-after-current",
+        "reason": "Can resume after D31 either identifies a useful VAT route or explicitly parks VAT with a blocker."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Checkpoint waits for VAT matrix status."
+        "reason": "Checkpoint must include VAT matrix and general posting setup as solved, partial or parked."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "O2C remains locked until VAT, posting groups and dimensions are ready enough."
-      },
-      {
-        "caseId": "TARGET-032P-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE",
         "status": "blocked",
-        "reason": "General Posting Setup purchase account remains a separate parked blocker; do not mix with D28."
+        "reason": "Documents stay locked until VAT/posting groups/dimensions are sufficiently scoped."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-027D29-VAT-MATRIX-ROW-BOUND-ROUTE-RECOVERY",
-    "whySelectedNextCaseIsBest": "The top-level New path did not expose safe label-bound controls; the next step must learn the row-bound route instead of typing coordinates.",
+    "queueChangesMade": [
+      "Marked TARGET-027D30 done as local/source-backed route decision.",
+      "Inserted TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY as next case.",
+      "Kept Page 472 direct grid route parked and all write gates locked."
+    ],
+    "selectedNextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+    "whySelectedNextCaseIsBest": "It avoids repeating unsafe grid/cell routes and follows the Microsoft-recommended VAT assisted setup path in a read-only, screenshot-QA-first way.",
     "risksBeforeNextCase": [
-      "No German VAT final correctness before Preview Posting and VAT Entries.",
-      "No O2C/P2P documents before Foundation readiness.",
-      "Do not repeat D3/D5/D8 coordinate/cell routes."
+      "A wizard could become effective if Next/Finish/Apply is clicked.",
+      "Assisted Setup may require choices that are setup-changing and must be stopped before write.",
+      "VAT correctness still needs setup evidence, Preview Posting and entries later."
     ],
     "requiredPreparation": [
-      "Review D28 screenshots/control inventory; use Page Inspection, personalization or a true card route before any further VAT write."
+      "Use screenshot QA on the Assisted Setup / VAT setup guide surface.",
+      "Hover/tooltip and action inventory before clicking any wizard button.",
+      "Stop before Finish/Apply/OK/Next if it would change setup."
     ]
   },
   "permissionBlocker": {
@@ -7271,9 +7295,9 @@
     "currentVisibleText": "1200 Forderungen aus Lieferungen und Leistungen Bilanz Buchung",
     "correctedReason": "SKR04-oriented Universaarl foundation must not create a new 1400 receivables account; 1400 belongs to the wrong mapping context for this target."
   },
-  "nextQueueItem": "TARGET-027D29-VAT-MATRIX-ROW-BOUND-ROUTE-RECOVERY",
+  "nextQueueItem": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
   "openItems": [
-    "TARGET-027D29-VAT-MATRIX-ROW-BOUND-ROUTE-RECOVERY"
+    "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY"
   ],
   "latestCustomerReceivablesSourceCorrection": {
     "caseId": "TARGET-031A-RECEIVABLES-ACCOUNT-RECOVERY",
@@ -7890,7 +7914,8 @@
     "updatedAt": "2026-07-01T11:31:24.302Z"
   },
   "nextCases": [
-    "TARGET-027D29-VAT-MATRIX-ROW-BOUND-ROUTE-RECOVERY",
+    "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+    "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
     "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
     "TARGET-034-FOUNDATION-READY-CHECKPOINT",
     "TARGET-038-O2C-PREFLIGHT"
@@ -7934,47 +7959,54 @@
     "uiLearning": "BC Page 456 URL filters require quoted table/field syntax for table names with punctuation; the filtered U-VEND list shows checkbox columns, but the write locator still must be source-backed or assisted before toggling Manual Nos."
   },
   "nextStepDecision": {
-    "currentCase": "TARGET-027D29-VAT-MATRIX-ROW-BOUND-ROUTE-RECOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-027D29-VAT-MATRIX-ROW-BOUND-ROUTE-RECOVERY",
-    "lastEvidenceSummary": "D29 confirmed playthru / UNIVERSAARL-DE, opened Page 472 VAT Posting Setup, captured action inventory and Page Inspection. Page Inspection showed Page 472 List / Table 325 and VAT account fields, but no safe write route was proven.",
+    "currentCase": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
+    "lastEvidenceSummary": "D29 proved Page 472 / Table 325 technical context and visible VAT account fields, but did not prove a safe row-bound UI write route for INLAND/VAT19/19/3806/1406.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "D29 completed the read-only route recovery and selected a local park/source decision instead of another blind Page 472 write attempt.",
+    "reason": "D30 is the correct local decision step after repeated Page 472 route blockers; Microsoft recommends the assisted VAT setup guide, so the next useful route is a read-only discovery of that standard setup surface.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
+        "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
         "status": "ready-next",
-        "reason": "A local decision is now needed because Page 472 is technically known but still unsafe as a write route."
+        "reason": "Materially different source-backed route; read-only only; useful before any further VAT write gate."
+      },
+      {
+        "caseId": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
+        "status": "ready-after-current",
+        "reason": "Only sensible if D31 observes a bounded wizard/manual route and documents its write boundary."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-after-current",
-        "reason": "Dimensions can resume only after VAT matrix status is explicitly parked or a genuinely new route is chosen."
+        "reason": "Can resume after D31 either identifies a useful VAT route or explicitly parks VAT with a blocker."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Checkpoint must include VAT matrix as parked/not posting-ready unless D30 chooses a safe route."
+        "reason": "Checkpoint must include VAT matrix and general posting setup as solved, partial or parked."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "blocked",
-        "reason": "O2C remains locked until VAT, posting groups and dimensions are sufficiently scoped."
+        "reason": "Documents stay locked until VAT/posting groups/dimensions are sufficiently scoped."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-027D29 blocked-readonly-route-recovery with result evidence.",
-      "Inserted TARGET-027D30 as local no-BC/no-Playwright decision case."
+      "Marked TARGET-027D30 done as local/source-backed route decision.",
+      "Inserted TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY as next case.",
+      "Kept Page 472 direct grid route parked and all write gates locked."
     ],
-    "selectedNextCase": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
-    "whySelectedNextCaseIsBest": "The next best progress is not more grid clicking, but a source-backed choice: park VAT matrix explicitly or choose a materially different route.",
+    "selectedNextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+    "whySelectedNextCaseIsBest": "It avoids repeating unsafe grid/cell routes and follows the Microsoft-recommended VAT assisted setup path in a read-only, screenshot-QA-first way.",
     "risksBeforeNextCase": [
-      "Repeating Page 472 grid attempts would burn time without safer evidence.",
-      "Moving to master data or O2C without VAT status would create false readiness.",
-      "VAT setup may remain a Foundation blocker until a safer route exists."
+      "A wizard could become effective if Next/Finish/Apply is clicked.",
+      "Assisted Setup may require choices that are setup-changing and must be stopped before write.",
+      "VAT correctness still needs setup evidence, Preview Posting and entries later."
     ],
     "requiredPreparation": [
-      "Read D26-D29 result JSONs and Page Inspection fields.",
-      "Check source mapping for supported setup routes before proposing another write case."
+      "Use screenshot QA on the Assisted Setup / VAT setup guide surface.",
+      "Hover/tooltip and action inventory before clicking any wizard button.",
+      "Stop before Finish/Apply/OK/Next if it would change setup."
     ]
   },
   "latestTarget037MasterdataFoundationCheckpoint": {
@@ -8365,11 +8397,10 @@
     "rawTenantOrAuthDetailsCommitted": false,
     "nextRequiredAction": "Complete attended Login/MFA in the auth browser until Business Central Role Center/Search/My Settings is visible; then run npm run auth:bc:check before rerunning D2F. If sign-in stalls or times out, run npm run auth:bc:diagnose for a short redacted diagnosis."
   },
-  "blockedBy": [
-    "Short auth diagnosis stayed on Microsoft sign-in page; Business Central shell signal was false and no shell-validation metadata was saved."
-  ],
+  "blockedBy": [],
   "warnings": [
-    "Auth diagnosis must not commit raw tenant, cookie, token or account details."
+    "Page 472 direct grid/New/Edit List/cell write route remains parked after D30.",
+    "TARGET-027D31 is read-only discovery and must stop before any wizard Next/Finish/Apply/OK or setup write."
   ],
   "stateConsistencyNote": {
     "status": "aligned-with-active-case",
@@ -8920,7 +8951,7 @@
     "nextCase": "TARGET-032N-GENERAL-POSTING-SETUP-PURCHASE-FIELD-ROUTE-DECISION",
     "updatedAt": "2026-07-03T06:10:42.011Z"
   },
-  "active_case": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
+  "active_case": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
   "latestTarget027D28VatMatrixControlledWriteGate": {
     "caseId": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
     "status": "blocked-vat-matrix-write-gate",
@@ -8964,5 +8995,31 @@
     "learning": "Page 472 is technically Page 472 List / Table 325; VAT account fields are visible in Page Inspection, but D29 still did not prove a safe row-bound UI write route.",
     "nextCase": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
     "updatedAt": "2026-07-03T07:14:46.182Z"
+  },
+  "latestTarget027D30VatMatrixParkOrSourceRouteDecision": {
+    "caseId": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
+    "status": "observed-source-decision",
+    "completedAt": "2026-07-03T07:24:18.797Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d30-vat-matrix-park-or-source-route-decision/TARGET-027D30-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "bcRun": false,
+    "playwrightRun": false,
+    "setupChanged": false,
+    "setupChangeAttempted": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "selectedDecision": "park-page-472-grid-write-route-and-run-assisted-vat-setup-readonly-discovery",
+    "parkedRoute": "direct Page 472 grid/New/Edit List/cell write route",
+    "selectedNextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+    "sourceRefs": [
+      "https://learn.microsoft.com/en-gb/dynamics365/business-central/finance-setup-vat",
+      "https://learn.microsoft.com/en-us/training/modules/set-up-vat-dynamics-365-business-central/",
+      "https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/set-up-standard-company-configuration-packages"
+    ],
+    "updatedAt": "2026-07-03T07:24:57.261Z"
   }
 }

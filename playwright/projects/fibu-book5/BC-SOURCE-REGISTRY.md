@@ -319,6 +319,18 @@ Fuer Universaarl folgt daraus:
 - Der Write ist nur erlaubt, wenn Page 472 sichtbar in `playthru` / `UNIVERSAARL-DE` steht, die Route row-bound ist und ein Reopen-Screenshot alle Zielwerte in einer Zeile zeigt.
 - Keine Stammdaten, keine Belege, keine Preview, keine Buchung und kein deutscher USt-Finalclaim vor korrekter Matrix plus spaeterer Preview-/Entry-Evidence.
 
+## TARGET-027D30 VAT-Matrix Park/Source Decision
+
+D30 nutzt dieselben Microsoft-Learn-Quellen anders: `Set up VAT` empfiehlt den MwSt.-Setup-Assistenten, weil manuelle VAT-Einrichtung zeitaufwendig und fehleranfaellig sein kann. Die Quelle stuetzt ausserdem, dass `VAT Posting Setup` die Kombination aus VAT Business Posting Group, VAT Product Posting Group, VAT %, Berechnungsart und Umsatz-/Vorsteuerkonten abbildet. Das Business-Central-VAT-Training stuetzt diese Setup-Bestandteile ebenfalls. `Set Up Company Configuration Packages` bleibt als technische Quelle fuer Setup-Tabellen relevant, ist fuer den naechsten Schritt aber zu breit, weil Import/Export/Validate/Apply wirksame Adminpfade sind.
+
+Fuer Universaarl folgt daraus:
+
+- Die direkte Page-472-Gridroute wird geparkt. Nicht wiederholen: alte D3/D5/D8-Zell-/Koordinatenrouten, D28 `Neu`-/label-bound Write Gate, blinde `Liste bearbeiten`-Route.
+- Die VAT-Matrix selbst wird nicht als erledigt markiert. `INLAND/VAT19/19/3806/1406` ist weiterhin nicht gespeichert bewiesen.
+- Der naechste Case ist `TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY`.
+- D31 darf nur Assisted Setup / Manual Setup / MwSt.-Setup-Assistent read-only entdecken, mit Screenshot-QA und Stop vor jedem `Weiter`, `Fertig stellen`, `Anwenden`, `OK`, Import/Export oder Setup-Write.
+- Falls D31 nur wieder Page 472 Grid/Neu/Edit List anbietet, bleibt VAT Setup geparkt und Foundation muss den Blocker offen in den Checkpoint uebernehmen.
+
 ## TARGET-027D21 Configuration Package Metadata Discovery
 
 D21 nutzt keine neue externe Quelle. Die bestehende Microsoft-Learn-Basis bleibt gueltig: Configuration Packages sind ein Standardmechanismus fuer Setup-/Tabellendaten, aber Import, Export, Validate, Apply und Excel-Pfade koennen wirksam werden. Die neue Wahrheit stammt aus Universaarl-UI-Evidence:

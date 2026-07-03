@@ -1,13 +1,54 @@
 {
   "schemaVersion": 1,
-  "activeCase": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
-  "status": "observed-source-decision",
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
+  "source": "local-source-decision",
+  "resultStatus": "observed-source-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "mode": "universaarl-target-execution",
-  "activeArea": "universaarl-vat-matrix-park-or-source-route-decision",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d30-vat-matrix-park-or-source-route-decision/TARGET-027D30-result.json",
-  "summary": "TARGET-027D30 did not run BC or Playwright. It reviewed D26-D29 and Microsoft VAT setup sources, parked the direct Page 472 grid/New/Edit List/cell write route, and selected TARGET-027D31 as a read-only Assisted VAT Setup / Manual Setup discovery route. No setup, master data, draft, Preview Posting, Posting or API shortcut occurred.",
+  "page": "VAT Posting Setup / MwSt.-Buchungsmatrix (Page 472, Table 325)",
+  "sourceResult": "playwright/projects/fibu-book5/evidence/target-027d29-vat-matrix-row-bound-route-recovery/TARGET-027D29-result.json",
+  "selectedDecision": "park-page-472-grid-write-route-and-run-assisted-vat-setup-readonly-discovery",
+  "selectedNextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+  "actionsTaken": [
+    "Read D26-D29 VAT matrix results and source mapping.",
+    "Classified Page 472 grid/New/Edit List/cell routes as parked for now.",
+    "Selected a materially different read-only route: Assisted Setup / Manual Setup VAT setup discovery.",
+    "Updated state and queue to D31 with write gates locked."
+  ],
+  "actionsNotTaken": [
+    "No Business Central session opened.",
+    "No Playwright test executed.",
+    "No VAT Posting Setup value typed.",
+    "No New/Edit List/grid/cell route repeated.",
+    "No configuration package route executed.",
+    "No master data, document, Preview Posting, Posting, payment or API shortcut executed."
+  ],
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "screenshots": [],
+  "sourceRefs": [
+    {
+      "title": "Microsoft Learn - Set up value-added tax in Business Central",
+      "url": "https://learn.microsoft.com/en-gb/dynamics365/business-central/finance-setup-vat",
+      "usage": "Supports that manual VAT setup can be tricky/time-consuming, the VAT assisted setup guide is recommended, and VAT Posting Setup combines VAT business/product groups with VAT %, calculation type and VAT G/L accounts."
+    },
+    {
+      "title": "Microsoft Learn training - Set up VAT in Dynamics 365 Business Central",
+      "url": "https://learn.microsoft.com/en-us/training/modules/set-up-vat-dynamics-365-business-central/",
+      "usage": "Supports that VAT setup includes posting groups, VAT G/L accounts, rates and VAT posting setup."
+    },
+    {
+      "title": "Microsoft Learn - Set Up Company Configuration Packages",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/set-up-standard-company-configuration-packages",
+      "usage": "Supports that configuration packages can include setup tables such as VAT Posting Setup, but this route remains broad/admin-like and is not selected for D31."
+    }
+  ],
   "proved": [
     "D30 performed a local/source-backed route decision only.",
     "Page 472 / Table 325 field truth from D29 remains useful but is not a safe write route.",
@@ -29,16 +70,6 @@
     "D31 is read-only discovery. It must stop before any Next/Finish/Apply/OK action that could write setup.",
     "Configuration Package routes remain parked unless a later case explicitly unlocks them with cleanup/trace boundaries."
   ],
-  "setupChanged": false,
-  "setupChangeAttempted": false,
-  "masterDataChanged": false,
-  "draftCreated": false,
-  "previewPosting": false,
-  "posted": false,
-  "apiShortcut": false,
-  "screenshots": [],
-  "nextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-  "nextStep": "Run TARGET-027D31 as read-only Assisted VAT Setup / Manual Setup discovery in playthru / UNIVERSAARL-DE; stop before any wizard/setup write.",
   "nextStepDecision": {
     "currentCase": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
     "plannedNextCaseBeforeReview": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
@@ -90,6 +121,19 @@
       "Stop before Finish/Apply/OK/Next if it would change setup."
     ]
   },
-  "runId": "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-027d30-vat-matrix-park-or-source-route-decision/TARGET-027D30-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d30-vat-matrix-park-or-source-route-decision/README.md",
+    ".agent/state/cases/target-027d31-vat-assisted-setup-readonly-discovery.json",
+    ".agent/state/current.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/marathon_queue.json"
+  ],
+  "evidenceRefs": [],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "statePatch": {},
+  "reason": "Source-backed local decision: park unsafe Page 472 grid write route and use read-only Assisted VAT Setup discovery next.",
+  "nextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
   "completedAt": "2026-07-03T07:24:18.797Z"
 }
