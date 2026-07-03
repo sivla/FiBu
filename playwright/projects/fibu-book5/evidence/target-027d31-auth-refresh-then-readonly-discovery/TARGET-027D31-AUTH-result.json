@@ -11,14 +11,17 @@
   "actionsTaken": [
     "Ran npm run auth:bc:open-login for the active D31 auth refresh gate.",
     "The Playwright auth browser targeted playthru / UNIVERSAARL-DE.",
-    "The command waited 300000 ms and did not save a Business Central shell-validated storage state."
+    "The command waited 300000 ms and did not save a Business Central shell-validated storage state.",
+    "Launched npm run auth:bc:open-login-detached so the operator can complete Login/MFA in the Playwright profile without command timeout."
   ],
   "actionsNotTaken": [
     "No D31 VAT Assisted Setup or Manual Setup page was opened by this auth command.",
     "No setup values were typed.",
     "No wizard Next, Finish, Apply or OK was clicked.",
     "No master data, document, Preview Posting, Posting, payment or API shortcut occurred.",
-    "No bookmaster change was made."
+    "No bookmaster change was made.",
+    "Detached handoff did not write storage state by itself.",
+    "No W1 Foundation, SKR04, VAT setup, master data, draft, Preview Posting, Posting or API shortcut was executed."
   ],
   "authDiagnosis": {
     "command": "npm run auth:bc:open-login",
@@ -79,20 +82,22 @@
   ],
   "warnings": [
     "Do not rerun D31 read-only discovery until auth:bc:check returns canUseStoredAuth=true.",
-    "Normal browser login or old storageState must not be accepted as current Business Central evidence."
+    "Normal browser login or old storageState must not be accepted as current Business Central evidence.",
+    "Do not run W1 Foundation or VAT discovery until auth:bc:check is green.",
+    "Detached handoff does not write storage state by itself."
   ],
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
   "nextStepDecision": {
     "currentCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "lastEvidenceSummary": "npm run auth:bc:open-login stayed before Business Central shell for 300000 ms and saved no Playwright storage state.",
+    "lastEvidenceSummary": "auth:bc:check still reports storage-state-file-missing. A detached Playwright profile browser was launched for operator Login/MFA; it does not write storage state until npm run auth:bc is run after shell is visible and the detached browser is closed.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The active blocker is still Playwright shell auth, not VAT UI or setup logic.",
+    "reason": "The active blocker remains Playwright storageState, not W1 Foundation content.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-        "status": "blocked",
-        "reason": "Needs Login/MFA completion inside the Playwright auth browser until BC shell appears."
+        "status": "ready-next",
+        "reason": "Finish detached Login/MFA, close browser, then capture storageState with npm run auth:bc."
       },
       {
         "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
@@ -107,7 +112,7 @@
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-after-current",
-        "reason": "Can resume after VAT auth/discovery is resolved or intentionally parked."
+        "reason": "Can resume after auth and VAT discovery are resolved or deliberately parked."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
@@ -115,16 +120,21 @@
         "reason": "Requires VAT and dimensions status."
       }
     ],
-    "queueChangesMade": [],
+    "queueChangesMade": [
+      "Recorded detached Playwright auth profile handoff launch."
+    ],
     "selectedNextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "whySelectedNextCaseIsBest": "It is the remaining gate that prevents false BC evidence and unsafe VAT discovery.",
+    "whySelectedNextCaseIsBest": "StorageState must be created before any safe Business Central evidence can be collected.",
     "risksBeforeNextCase": [
-      "Repeated auth attempts will keep timing out if Login/MFA is not completed in the Playwright auth browser.",
-      "Running BC tests with stale storageState would only create misleading evidence."
+      "Detached login is only a profile preparation step.",
+      "Running auth:bc before shell is visible will still produce a blocked result.",
+      "Running BC workflows before auth:bc:check is green would inspect login pages."
     ],
     "requiredPreparation": [
-      "Complete Login/MFA in the Playwright-opened browser window, not only in normal Chrome/Codex.",
-      "Wait until Role Center, Search/Tell Me, My Settings or another Business Central shell signal is visible.",
+      "Complete Login/MFA in the detached Playwright profile browser window.",
+      "Wait until Business Central shell is visible for playthru / UNIVERSAARL-DE.",
+      "Close that detached browser window.",
+      "Run npm run auth:bc to validate the profile and write playwright/.auth/bc-user.json.",
       "Run npm run auth:bc:check and require canUseStoredAuth=true."
     ]
   },
@@ -136,5 +146,32 @@
   "safeToFinalizeState": false,
   "statePatch": {},
   "reason": "Active case blocked at Playwright auth shell validation before any Business Central UI evidence.",
-  "completedAt": "2026-07-03T12:23:15.646Z"
+  "completedAt": "2026-07-03T12:28:23.690Z",
+  "latestDetachedAuthHandoffLaunch": {
+    "at": "2026-07-03T12:28:23.690Z",
+    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "command": "npm run auth:bc:open-login-detached",
+    "result": "detached-playwright-profile-window-launched",
+    "targetInstance": "playthru",
+    "targetCompany": "UNIVERSAARL-DE",
+    "storageStateWritten": false,
+    "bcWorkflowRun": false,
+    "requiredOperatorFollowup": [
+      "Complete Login/MFA in the detached Playwright profile browser window.",
+      "Wait until Business Central shell is visible for playthru / UNIVERSAARL-DE.",
+      "Close that detached browser window.",
+      "Run npm run auth:bc to validate the profile and write playwright/.auth/bc-user.json.",
+      "Run npm run auth:bc:check and require canUseStoredAuth=true."
+    ],
+    "warnings": [
+      "Do not run W1 Foundation or VAT discovery until auth:bc:check is green.",
+      "Detached handoff does not write storage state by itself."
+    ],
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false
+  }
 }
