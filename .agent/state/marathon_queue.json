@@ -5,7 +5,7 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "queueId": "TARGET-MARATHON-002-UNIVERSAARL-REPO-READONLY-PREP",
-  "reason": "TARGET-027D31 remains blocked by Playwright auth; auth:bc:interactive now provides a long attended login path for the operator.",
+  "reason": "TARGET-027D31 remains blocked after a 30-minute auth:bc:interactive attempt; Playwright stayed on Microsoft sign-in and no shell-validated storage state was saved.",
   "noEffectiveBusinessCentralActions": false,
   "forbiddenUntilUnblocked": [],
   "unblockCriteria": "Satisfied: UNIVERSAARL-DE exists and active Role Center context / Firmendaten read-only proof is available.",
@@ -4734,7 +4734,7 @@
       "id": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
       "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
       "order": 10210,
-      "status": "pending-operator-auth-required",
+      "status": "blocked",
       "priority": "high",
       "category": "auth-refresh-before-vat-assisted-setup",
       "expectedImpact": "unblock-readonly-vat-assisted-setup-discovery",
@@ -4780,15 +4780,61 @@
         "api-shortcut"
       ],
       "caseFile": ".agent/state/cases/target-027d31-auth-refresh-then-readonly-discovery.json",
-      "updatedAt": "2026-07-03T11:55:00.000Z",
-      "reason": "Operator can use auth:bc:interactive to complete Login/MFA in the Playwright auth window without the short probe timeout.",
+      "updatedAt": "2026-07-03T10:21:38.447Z",
+      "reason": "TARGET-027D31 remains blocked after a 30-minute auth:bc:interactive attempt; Playwright stayed on Microsoft sign-in and no shell-validated storage state was saved.",
       "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
-      "result": "Added auth:bc:interactive long attended login command; BC workflows remain blocked until auth:bc:check is green.",
+      "result": "Ran auth:bc:interactive for 1800000 ms. The Playwright auth profile stayed on Microsoft sign-in, no Business Central shell signal appeared and no storage state was saved.",
       "blockedBy": [
         "auth:playwright-window-stayed-before-business-central-shell",
         "auth:shell-signal-not-detected",
         "auth:storage-state-not-refreshed"
-      ]
+      ],
+      "nextStepDecision": {
+        "currentCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+        "plannedNextCaseBeforeReview": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+        "lastEvidenceSummary": "npm run auth:bc:interactive stayed before Business Central shell for 1800000 ms and saved no Playwright storage state.",
+        "isPlannedNextCaseStillSensible": true,
+        "reason": "The active blocker is still Playwright shell auth, not VAT UI or setup logic.",
+        "lookaheadReviewed": [
+          {
+            "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+            "status": "blocked",
+            "reason": "Needs Login/MFA completion inside the Playwright auth browser until BC shell appears."
+          },
+          {
+            "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+            "status": "blocked",
+            "reason": "Requires auth:bc:check canUseStoredAuth=true first."
+          },
+          {
+            "caseId": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
+            "status": "needs-ui-discovery-first",
+            "reason": "Requires D31 read-only route evidence."
+          },
+          {
+            "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+            "status": "ready-after-current",
+            "reason": "Can resume after VAT auth/discovery is resolved or intentionally parked."
+          },
+          {
+            "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+            "status": "needs-setup-first",
+            "reason": "Requires VAT and dimensions status."
+          }
+        ],
+        "queueChangesMade": [],
+        "selectedNextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+        "whySelectedNextCaseIsBest": "It is the remaining gate that prevents false BC evidence and unsafe VAT discovery.",
+        "risksBeforeNextCase": [
+          "Repeated auth attempts will keep timing out if Login/MFA is not completed in the Playwright auth browser.",
+          "Running BC tests with stale storageState would only create misleading evidence."
+        ],
+        "requiredPreparation": [
+          "Complete Login/MFA in the Playwright-opened browser window, not only in normal Chrome/Codex.",
+          "Wait until Role Center, Search/Tell Me, My Settings or another Business Central shell signal is visible.",
+          "Run npm run auth:bc:check and require canUseStoredAuth=true."
+        ]
+      }
     }
   ],
   "lastUpdated": "2026-07-03T11:55:00.000Z",

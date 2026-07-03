@@ -49,7 +49,7 @@
     "api-shortcut"
   ],
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "nextStep": "Run npm run auth:bc:interactive when ready to complete Login/MFA in the Playwright-opened browser window, then run npm run auth:bc:check and require canUseStoredAuth=true.",
+  "nextStep": "Business Central workflows remain blocked. Complete Login/MFA in the Playwright-opened auth window until Business Central shell is visible, then run npm run auth:bc:check and require canUseStoredAuth=true.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -9213,5 +9213,34 @@
     "posted": false,
     "apiShortcut": false,
     "nextSafeAction": "Run npm run auth:bc:interactive when ready to complete Login/MFA in the Playwright-opened browser window, then run npm run auth:bc:check and require canUseStoredAuth=true."
+  },
+  "latestAuthInteractiveAttempt": {
+    "at": "2026-07-03T10:21:38.447Z",
+    "completedAt": "2026-07-03T10:19:47.335Z",
+    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "command": "npm run auth:bc:interactive",
+    "underlyingCommand": "npm run auth:bc",
+    "timeoutMs": 1800000,
+    "resultStatus": "blocked-auth-before-bc-shell",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
+    "blockedBy": [
+      "auth:playwright-window-stayed-before-business-central-shell",
+      "auth:shell-signal-not-detected",
+      "auth:storage-state-not-refreshed"
+    ],
+    "diagnosisHost": "login.microsoftonline.com",
+    "shellSignalDetected": false,
+    "savedState": false,
+    "canRunBusinessCentralWorkflows": false,
+    "operatorActionRequired": true,
+    "bcRun": false,
+    "playwrightRun": true,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "nextSafeAction": "Business Central workflows remain blocked. Complete Login/MFA in the Playwright-opened auth window until Business Central shell is visible, then run npm run auth:bc:check and require canUseStoredAuth=true."
   }
 }

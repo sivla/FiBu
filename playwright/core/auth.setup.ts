@@ -13,6 +13,7 @@ const bcUrlSource =
   process.env.BC_AUTH_URL ? 'BC_AUTH_URL' : process.env.FIBU_BOOK5_BC_URL ? 'FIBU_BOOK5_BC_URL' : 'BC_URL';
 const bcUrl = process.env.BC_AUTH_URL ?? process.env.FIBU_BOOK5_BC_URL ?? process.env.BC_URL;
 const authTimeoutMs = Number(process.env.BC_AUTH_TIMEOUT_MS ?? 10 * 60 * 1000);
+const authCommandLabel = process.env.BC_AUTH_COMMAND_LABEL ?? 'npm run auth:bc';
 
 if (!bcUrl) {
   throw new Error(
@@ -90,7 +91,7 @@ async function writeAuthResult(args: AuthResultArgs) {
     page: reachedShell ? 'Business Central shell reached' : 'not reached - Microsoft sign-in page before Business Central shell',
     url: diagnosisHost.includes('login.microsoftonline.com') ? 'redacted-login.microsoftonline.com' : 'redacted-businesscentral-url',
     actionsTaken: [
-      'Ran npm run auth:bc for the active D31 auth refresh gate.',
+      `Ran ${authCommandLabel} for the active D31 auth refresh gate.`,
       `The Playwright auth browser targeted ${expectedEnvironment || '(unknown)'} / ${expectedCompany || '(unknown)'}.`,
       reachedShell
         ? 'Business Central shell validation succeeded and Playwright storage state was saved.'
@@ -104,7 +105,8 @@ async function writeAuthResult(args: AuthResultArgs) {
       'No bookmaster change was made.'
     ],
     authDiagnosis: {
-      command: 'npm run auth:bc',
+      command: authCommandLabel,
+      underlyingCommand: authCommandLabel === 'npm run auth:bc' ? undefined : 'npm run auth:bc',
       timeoutMs: authTimeoutMs,
       targetSource: `${bcUrlSource} with current.json override`,
       expectedInstance: expectedEnvironment,
@@ -123,9 +125,9 @@ async function writeAuthResult(args: AuthResultArgs) {
       : {
           reason: 'The Playwright auth profile is not logged in to Business Central yet.',
           profilePath: authProfileDir,
-          requiredWindow: 'the browser window opened by npm run auth:bc',
+          requiredWindow: `the browser window opened by ${authCommandLabel}`,
           steps: [
-            'Run npm run auth:bc from this repo.',
+            `Run ${authCommandLabel} from this repo.`,
             'Complete sign-in and MFA in the Playwright-opened browser window.',
             'Wait until Business Central shell text such as Search/Tell Me, Role Center or My Settings is visible.',
             'Then run npm run auth:bc:check and require canUseStoredAuth=true.'
@@ -176,8 +178,8 @@ async function writeAuthResult(args: AuthResultArgs) {
       currentCase: 'TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY',
       plannedNextCaseBeforeReview: 'TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY',
       lastEvidenceSummary: reachedShell
-        ? 'auth:bc reached the Business Central shell and saved Playwright storage state; auth:bc:check must confirm freshness next.'
-        : `auth:bc stayed before Business Central shell for ${authTimeoutMs} ms and saved no Playwright storage state.`,
+        ? `${authCommandLabel} reached the Business Central shell and saved Playwright storage state; auth:bc:check must confirm freshness next.`
+        : `${authCommandLabel} stayed before Business Central shell for ${authTimeoutMs} ms and saved no Playwright storage state.`,
       isPlannedNextCaseStillSensible: true,
       reason: reachedShell
         ? 'The auth gate can move to auth:bc:check and then D31 read-only discovery.'

@@ -7,22 +7,19 @@
   "mode": "universaarl-target-execution",
   "activeArea": "universaarl-vat-assisted-setup-readonly-discovery",
   "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
-  "summary": "Added auth:bc:interactive, a long attended Playwright auth command for manual Login/MFA. It is separate from auth:bc:probe and is intended for the operator to complete sign-in in the Playwright-opened browser window before auth:bc:check.",
+  "summary": "Ran auth:bc:interactive for 1800000 ms. The Playwright auth profile stayed on Microsoft sign-in, no Business Central shell signal appeared and no storage state was saved.",
   "proved": [
-    "auth:bc:interactive is available as a package script.",
-    "auth:bc:interactive uses the same auth.setup target construction but extends BC_AUTH_TIMEOUT_MS to 1800000 ms by default.",
-    "agent:run-plan lists auth:bc:interactive as an allowed auth-gate command before BC workflows.",
-    "No Business Central workflow, setup page, master data, document, Preview Posting, Posting or API shortcut ran."
+    "The auth refresh command uses the intended playthru / UNIVERSAARL-DE target override.",
+    "No Business Central shell signal was reached during this attempt.",
+    "No Playwright storage state was refreshed or saved.",
+    "D31 VAT discovery remains correctly blocked before any VAT UI action."
   ],
   "notProved": [
-    "No fresh Business Central shell context is proven.",
-    "No playthru / UNIVERSAARL-DE shell is freshly validated.",
-    "No D31 VAT Assisted Setup or Manual Setup route is observed.",
-    "No VAT setup, posting readiness, VAT Entries or G/L Entries are proven."
+    "playthru / UNIVERSAARL-DE shell context was not freshly confirmed.",
+    "No Assisted Setup, Manual Setup or VAT Posting Setup route was observed.",
+    "No VAT setup readiness, posting readiness, VAT Entries or G/L Entries are proven."
   ],
   "blockedBy": [
-    "auth:storage-state-too-old",
-    "auth:shell-validation-meta-too-old",
     "auth:playwright-window-stayed-before-business-central-shell",
     "auth:shell-signal-not-detected",
     "auth:storage-state-not-refreshed"
@@ -39,18 +36,18 @@
   "apiShortcut": false,
   "screenshots": [],
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "nextStep": "Run npm run auth:bc:interactive when ready to complete Login/MFA in the Playwright-opened browser window, then run npm run auth:bc:check and require canUseStoredAuth=true.",
+  "nextStep": "Business Central workflows remain blocked. Complete Login/MFA in the Playwright-opened auth window until Business Central shell is visible, then run npm run auth:bc:check and require canUseStoredAuth=true.",
   "nextStepDecision": {
     "currentCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "lastEvidenceSummary": "auth:bc:target confirms the local source URL path is legacy MCP_1_20260210, but the active auth target is rewritten to playthru / UNIVERSAARL-DE. Auth remains blocked because the Playwright shell validation is stale and the latest attempt did not reach BC shell.",
+    "lastEvidenceSummary": "npm run auth:bc:interactive stayed before Business Central shell for 1800000 ms and saved no Playwright storage state.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The next practical blocker is still Playwright login completion, not target URL construction. The target diagnostic prevents wasting time on a false MCP-vs-playthru suspicion.",
+    "reason": "The active blocker is still Playwright shell auth, not VAT UI or setup logic.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-        "status": "ready-next",
-        "reason": "Target URL construction is verified; complete Login/MFA in the persistent Playwright auth profile and require auth:bc:check green."
+        "status": "blocked",
+        "reason": "Needs Login/MFA completion inside the Playwright auth browser until BC shell appears."
       },
       {
         "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
@@ -70,30 +67,26 @@
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Requires VAT and dimensions status before readiness checkpoint."
+        "reason": "Requires VAT and dimensions status."
       }
     ],
-    "queueChangesMade": [
-      "Added auth:bc:target to show redacted source and target environment/company construction.",
-      "Extended auth:bc:doctor with authTarget so MCP-vs-playthru confusion is visible in one command."
-    ],
+    "queueChangesMade": [],
     "selectedNextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "whySelectedNextCaseIsBest": "It is still the only open queue item; target construction is now verified, so the remaining unblock is completing Playwright auth to BC shell.",
+    "whySelectedNextCaseIsBest": "It is the remaining gate that prevents false BC evidence and unsafe VAT discovery.",
     "risksBeforeNextCase": [
-      "The source URL still containing MCP can look misleading if the override is not inspected.",
-      "The persistent profile is not BC evidence by itself.",
-      "D31 must not run until auth:bc:check is green."
+      "Repeated auth attempts will keep timing out if Login/MFA is not completed in the Playwright auth browser.",
+      "Running BC tests with stale storageState would only create misleading evidence."
     ],
     "requiredPreparation": [
-      "Run npm run auth:bc:target before long auth retries or BC workflows.",
-      "Run npm run auth:bc in the persistent Playwright auth profile and complete Login/MFA until BC shell appears.",
+      "Complete Login/MFA in the Playwright-opened browser window, not only in normal Chrome/Codex.",
+      "Wait until Role Center, Search/Tell Me, My Settings or another Business Central shell signal is visible.",
       "Run npm run auth:bc:check and require canUseStoredAuth=true."
     ]
   },
-  "runId": "TARGET-027D31-AUTH-INTERACTIVE-COMMAND",
+  "runId": "TARGET-027D31-AUTH-INTERACTIVE-TIMEOUT",
   "completedAt": "2026-07-03T11:55:00.000Z",
   "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "resultStatus": "blocked-auth-before-bc-shell-interactive-command-added",
+  "resultStatus": "blocked-auth-before-bc-shell",
   "latestTarget027D31AuthRefreshAttempt": {
     "at": "2026-07-03T10:35:00.000Z",
     "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
@@ -124,18 +117,16 @@
     "apiShortcut": false,
     "nextSafeAction": "Run npm run auth:bc:interactive and finish Login/MFA inside the Playwright auth window until a Business Central shell signal is visible, require auth:bc:check canUseStoredAuth=true, then rerun D31 read-only discovery."
   },
-  "updatedAt": "2026-07-03T11:55:00.000Z",
+  "updatedAt": "2026-07-03T10:21:38.447Z",
   "actionsTaken": [
-    "Ran git status --short and git pull --ff-only; repository was up to date.",
-    "Ran auth:bc:check, agent:context, agent:run-plan and auth:bc:doctor before changes.",
-    "Added scripts/agent/auth-bc-interactive.mjs.",
-    "Added package script auth:bc:interactive.",
-    "Updated agent:run-plan to list auth:bc:interactive as the long attended auth path."
+    "Ran npm run auth:bc:interactive for the active D31 auth refresh gate.",
+    "The Playwright auth browser targeted playthru / UNIVERSAARL-DE.",
+    "The command waited 1800000 ms and did not save a Business Central shell-validated storage state."
   ],
   "actionsNotTaken": [
-    "Did not run auth:bc:interactive automatically.",
-    "No D31 VAT setup page was opened.",
+    "No D31 VAT Assisted Setup or Manual Setup page was opened by this auth command.",
     "No setup values were typed.",
+    "No wizard Next, Finish, Apply or OK was clicked.",
     "No master data, document, Preview Posting, Posting, payment or API shortcut occurred.",
     "No bookmaster change was made."
   ],
@@ -216,5 +207,36 @@
     "posted": false,
     "apiShortcut": false,
     "nextSafeAction": "Run npm run auth:bc:interactive when ready to complete Login/MFA in the Playwright-opened browser window, then run npm run auth:bc:check and require canUseStoredAuth=true."
+  },
+  "bcRun": false,
+  "playwrightRun": true,
+  "latestAuthInteractiveAttempt": {
+    "at": "2026-07-03T10:21:38.447Z",
+    "completedAt": "2026-07-03T10:19:47.335Z",
+    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "command": "npm run auth:bc:interactive",
+    "underlyingCommand": "npm run auth:bc",
+    "timeoutMs": 1800000,
+    "resultStatus": "blocked-auth-before-bc-shell",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
+    "blockedBy": [
+      "auth:playwright-window-stayed-before-business-central-shell",
+      "auth:shell-signal-not-detected",
+      "auth:storage-state-not-refreshed"
+    ],
+    "diagnosisHost": "login.microsoftonline.com",
+    "shellSignalDetected": false,
+    "savedState": false,
+    "canRunBusinessCentralWorkflows": false,
+    "operatorActionRequired": true,
+    "bcRun": false,
+    "playwrightRun": true,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "nextSafeAction": "Business Central workflows remain blocked. Complete Login/MFA in the Playwright-opened auth window until Business Central shell is visible, then run npm run auth:bc:check and require canUseStoredAuth=true."
   }
 }
