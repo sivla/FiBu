@@ -21,6 +21,7 @@ function summarizeProcess(processInfo) {
     pid: processInfo.pid,
     name: processInfo.name,
     role: typeMatch?.[1] ?? 'browser',
+    windowTitle: processInfo.windowTitle ?? '',
     targetUrl: targetMatch?.[0] ?? '',
     usesProfile: commandLine.includes('playwright/.auth/bc-profile')
   };
@@ -35,7 +36,7 @@ function listProfileProcesses() {
         [
           '-NoProfile',
           '-Command',
-          `$profilePath='${powershellProfilePath}'; Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -like "*$profilePath*" -or $_.CommandLine -like '*playwright/.auth/bc-profile*' -or $_.CommandLine -like '*playwright\\\\.auth\\\\bc-profile*' } | Select-Object ProcessId,Name,CommandLine | ConvertTo-Json -Compress`
+          `$profilePath='${powershellProfilePath}'; Get-CimInstance Win32_Process | Where-Object { $_.CommandLine -like "*$profilePath*" -or $_.CommandLine -like '*playwright/.auth/bc-profile*' -or $_.CommandLine -like '*playwright\\\\.auth\\\\bc-profile*' } | ForEach-Object { $p=Get-Process -Id $_.ProcessId -ErrorAction SilentlyContinue; [pscustomobject]@{ ProcessId=$_.ProcessId; Name=$_.Name; CommandLine=$_.CommandLine; MainWindowTitle=if ($p) { $p.MainWindowTitle } else { '' } } } | ConvertTo-Json -Compress`
         ],
         { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }
       ).trim();
@@ -44,7 +45,8 @@ function listProfileProcesses() {
       return (Array.isArray(parsed) ? parsed : [parsed]).map(processInfo => ({
         pid: processInfo.ProcessId,
         name: processInfo.Name,
-        commandLine: processInfo.CommandLine
+        commandLine: processInfo.CommandLine,
+        windowTitle: processInfo.MainWindowTitle
       }));
     }
 
