@@ -310,6 +310,7 @@ try {
   });
   console.log(`Login-State gespeichert: ${authFile}`);
 } catch (error) {
+  const errorMessage = error instanceof Error ? error.message : String(error);
   const shellDiagnosis = await page.evaluate(
     ({ authBlockerSource, authBlockerFlags, shellSource, shellFlags }) => {
       const url = new URL(window.location.href);
@@ -347,6 +348,7 @@ try {
   console.error('Business-Central-Shell wurde nicht bestaetigt. Login-State wurde nicht gespeichert.');
   console.error('Bitte Login/MFA abschliessen und warten, bis Suche/Rollencenter/My Settings sichtbar ist.');
   console.error(`Shell-Diagnose: ${JSON.stringify(shellDiagnosis)}`);
+  console.error(`Auth-Blocker: ${errorMessage}`);
   await writeAuthResult({
     resultStatus: 'blocked-auth-before-bc-shell',
     shellDiagnosis: shellDiagnosis as Record<string, unknown>,
@@ -357,7 +359,7 @@ try {
       'auth:storage-state-not-refreshed'
     ]
   });
-  throw error;
+  process.exitCode = 1;
 } finally {
   await context.close().catch(() => undefined);
 }

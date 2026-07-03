@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-03T09:45:00.000Z",
+  "updatedAt": "2026-07-03T10:05:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -9092,9 +9092,9 @@
     "posted": false
   },
   "latestAuthResultWriter": {
-    "at": "2026-07-03T08:40:00.000Z",
+    "at": "2026-07-03T10:05:00.000Z",
     "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "improvement": "playwright/core/auth.setup.ts now writes a normalized auth result JSON on shell success or auth timeout/failure.",
+    "improvement": "playwright/core/auth.setup.ts now writes a normalized auth result JSON on shell success or auth timeout/failure and exits with a controlled blocker code instead of rethrowing the raw timeout.",
     "lastResultStatus": "blocked-auth-before-bc-shell",
     "lastResultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
     "bcShellReached": false,
@@ -9103,7 +9103,9 @@
     "playwrightAuthRun": true,
     "setupChanged": false,
     "previewPosting": false,
-    "posted": false
+    "posted": false,
+    "lastProbeTimeoutMs": 5000,
+    "learning": "Auth remains blocked at Microsoft sign-in in the Playwright profile; no BC workflow may run until auth:bc:check is green."
   },
   "latestAuthPersistentProfileImprovement": {
     "at": "2026-07-03T08:58:00.000Z",
