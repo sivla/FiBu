@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-03T10:35:00.000Z",
+  "updatedAt": "2026-07-03T10:55:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -49,7 +49,7 @@
     "api-shortcut"
   ],
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "nextStep": "Run npm run auth:bc in the persistent Playwright auth profile and complete Login/MFA until Business Central shell appears; then require npm run auth:bc:check canUseStoredAuth=true before D31.",
+  "nextStep": "Run npm run auth:bc, complete Login/MFA in the Playwright-opened browser window until Business Central shell appears, then require npm run auth:bc:check canUseStoredAuth=true before D31.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -9135,5 +9135,21 @@
     "targetCompany": "UNIVERSAARL-DE",
     "targetMatchesState": true,
     "conclusion": "Local source URL still comes from the legacy MCP environment, but auth target construction rewrites it to playthru / UNIVERSAARL-DE before opening Playwright."
+  },
+  "latestAuthContextGate": {
+    "at": "2026-07-03T10:55:00.000Z",
+    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "script": "scripts/agent/context-pack.mjs",
+    "improvement": "agent:context now exposes authGate.operatorActionRequired=true, target playthru / UNIVERSAARL-DE, the latest auth result path, blockedBy and the next safe Playwright-window sign-in action without running BC or Playwright.",
+    "operatorActionRequired": true,
+    "canRunBusinessCentralWorkflows": false,
+    "normalBrowserLoginIsNotEnough": true,
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
+    "nextSafeAction": "Run npm run auth:bc, complete Login/MFA in the Playwright-opened browser window until Business Central shell appears, then require npm run auth:bc:check canUseStoredAuth=true before D31.",
+    "bcRun": false,
+    "playwrightRun": false,
+    "setupChanged": false,
+    "previewPosting": false,
+    "posted": false
   }
 }

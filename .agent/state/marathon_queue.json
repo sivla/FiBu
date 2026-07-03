@@ -5,7 +5,7 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "queueId": "TARGET-MARATHON-002-UNIVERSAARL-REPO-READONLY-PREP",
-  "reason": "TARGET-027D31 is blocked by stale Playwright auth / missing Business Central shell validation; next is auth refresh then D31 read-only discovery.",
+  "reason": "TARGET-027D31 is still blocked by Playwright auth; agent:context now surfaces the operator auth gate before any BC workflow or deeper run-plan step.",
   "noEffectiveBusinessCentralActions": false,
   "forbiddenUntilUnblocked": [],
   "unblockCriteria": "Satisfied: UNIVERSAARL-DE exists and active Role Center context / Firmendaten read-only proof is available.",
@@ -4734,7 +4734,7 @@
       "id": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
       "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
       "order": 10210,
-      "status": "pending",
+      "status": "pending-operator-auth-required",
       "priority": "high",
       "category": "auth-refresh-before-vat-assisted-setup",
       "expectedImpact": "unblock-readonly-vat-assisted-setup-discovery",
@@ -4780,10 +4780,10 @@
         "api-shortcut"
       ],
       "caseFile": ".agent/state/cases/target-027d31-auth-refresh-then-readonly-discovery.json",
-      "updatedAt": "2026-07-03T10:35:00.000Z",
-      "reason": "Current open gate; auth target construction is verified and run-plan now marks operatorActionRequired=true, but auth:bc:check must become green before any BC workflow.",
+      "updatedAt": "2026-07-03T10:55:00.000Z",
+      "reason": "No BC workflow can run until authGate/operatorActionRequired is cleared by a green auth:bc:check.",
       "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
-      "result": "Latest auth probe still stayed on Microsoft sign-in before BC shell; result, doctor and run-plan now explicitly require Login/MFA in the Playwright-opened browser window.",
+      "result": "Context-level auth gate added; next action remains completing Login/MFA in the Playwright-opened browser window and requiring auth:bc:check green.",
       "blockedBy": [
         "auth:playwright-window-stayed-before-business-central-shell",
         "auth:shell-signal-not-detected",
@@ -4791,7 +4791,7 @@
       ]
     }
   ],
-  "lastUpdated": "2026-07-03T09:45:00.000Z",
+  "lastUpdated": "2026-07-03T10:55:00.000Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -4903,7 +4903,7 @@
       ]
     }
   },
-  "updatedAt": "2026-07-03T08:50:00.000Z",
+  "updatedAt": "2026-07-03T10:55:00.000Z",
   "lastCompletedCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
   "nextStepDecisionCard": {

@@ -7,17 +7,17 @@
   "mode": "universaarl-target-execution",
   "activeArea": "universaarl-vat-assisted-setup-readonly-discovery",
   "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
-  "summary": "Propagated the D31 operator-action auth blocker into agent:run-plan. The plan now shows authDoctor.operatorActionRequired=true, carries the Playwright-window sign-in steps, and adds auth:operator-action-required as a stop condition.",
+  "summary": "Propagated the D31 operator-action auth blocker into agent:context. The compact context now exposes authGate.operatorActionRequired=true and the Playwright-window sign-in action before any BC workflow is planned.",
   "proved": [
-    "auth:bc still targets playthru / UNIVERSAARL-DE.",
-    "The latest short auth probe stayed on Microsoft sign-in and saved no storage state.",
-    "TARGET-027D31-AUTH-result.json and auth:bc:doctor expose operatorActionRequired=true with concrete Playwright-window login steps.",
-    "agent:run-plan now exposes authDoctor.operatorActionRequired=true and stops on auth:operator-action-required."
+    "agent:context reads the cached D31 auth blocker without opening Business Central or Playwright.",
+    "agent:context now exposes authGate.operatorActionRequired=true.",
+    "agent:context shows target playthru / UNIVERSAARL-DE and targetMatchesState=true from cached state.",
+    "agent:context points to the latest TARGET-027D31-AUTH result and next safe Playwright-window sign-in action."
   ],
   "notProved": [
     "No fresh Business Central shell context is proven.",
     "No D31 VAT route is observed.",
-    "No setup or posting readiness is proven."
+    "No setup, master data, draft, Preview Posting, Posting or API shortcut readiness is proven."
   ],
   "blockedBy": [
     "auth:storage-state-too-old",
@@ -38,7 +38,7 @@
   "apiShortcut": false,
   "screenshots": [],
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "nextStep": "Run npm run auth:bc in the persistent Playwright auth profile and complete Login/MFA until Business Central shell appears; then require npm run auth:bc:check canUseStoredAuth=true before D31.",
+  "nextStep": "Run npm run auth:bc, complete Login/MFA in the Playwright-opened browser window until Business Central shell appears, then require npm run auth:bc:check canUseStoredAuth=true before D31.",
   "nextStepDecision": {
     "currentCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
@@ -89,10 +89,10 @@
       "Run npm run auth:bc:check and require canUseStoredAuth=true."
     ]
   },
-  "runId": "TARGET-027D31-RUN-PLAN-OPERATOR-ACTION-GATE",
-  "completedAt": "2026-07-03T10:35:00.000Z",
+  "runId": "TARGET-027D31-CONTEXT-OPERATOR-AUTH-GATE",
+  "completedAt": "2026-07-03T10:55:00.000Z",
   "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "resultStatus": "blocked-auth-before-bc-shell-run-plan-operator-action-required",
+  "resultStatus": "blocked-auth-before-bc-shell-context-operator-action-required",
   "latestTarget027D31AuthRefreshAttempt": {
     "at": "2026-07-03T10:35:00.000Z",
     "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
@@ -123,18 +123,33 @@
     "apiShortcut": false,
     "nextSafeAction": "Finish Login/MFA inside the Playwright auth window until a Business Central shell signal is visible, require auth:bc:check canUseStoredAuth=true, then rerun D31 read-only discovery."
   },
-  "updatedAt": "2026-07-03T10:35:00.000Z",
+  "updatedAt": "2026-07-03T10:55:00.000Z",
   "actionsTaken": [
-    "Ran git status --short and git pull --ff-only; repository was up to date before changes.",
-    "Ran agent preflight, context and run-plan.",
-    "Updated scripts/agent/run-plan.mjs to call auth:bc:doctor for auth-gated cases.",
-    "Added authDoctor.operatorActionRequired/operatorAction to agent:run-plan output.",
-    "Added auth:operator-action-required to run-plan stopConditions when the Doctor reports a required Playwright-window sign-in."
+    "Ran git status and git pull --ff-only; repository was up to date.",
+    "Ran agent preflight, context and run-plan before editing.",
+    "Updated scripts/agent/context-pack.mjs to build a compact cached authGate from current state, active case and latest auth result.",
+    "Updated current state, active case and run summary to document the context-level operator auth gate."
   ],
   "actionsNotTaken": [
     "No Business Central workflow was opened.",
     "No D31 VAT setup page was opened.",
     "No setup, master data, draft, Preview Posting, Posting, payment or API shortcut occurred.",
     "No bookmaster change was made."
-  ]
+  ],
+  "latestAuthContextGate": {
+    "at": "2026-07-03T10:55:00.000Z",
+    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "script": "scripts/agent/context-pack.mjs",
+    "improvement": "agent:context now exposes authGate.operatorActionRequired=true, target playthru / UNIVERSAARL-DE, the latest auth result path, blockedBy and the next safe Playwright-window sign-in action without running BC or Playwright.",
+    "operatorActionRequired": true,
+    "canRunBusinessCentralWorkflows": false,
+    "normalBrowserLoginIsNotEnough": true,
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
+    "nextSafeAction": "Run npm run auth:bc, complete Login/MFA in the Playwright-opened browser window until Business Central shell appears, then require npm run auth:bc:check canUseStoredAuth=true before D31.",
+    "bcRun": false,
+    "playwrightRun": false,
+    "setupChanged": false,
+    "previewPosting": false,
+    "posted": false
+  }
 }

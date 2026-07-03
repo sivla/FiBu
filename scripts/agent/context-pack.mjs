@@ -13,6 +13,77 @@ function firstItems(value, limit) {
   return Array.isArray(value) ? value.slice(0, limit) : [];
 }
 
+function readJsonIfExists(path) {
+  if (!path || !existsSync(path)) {
+    return null;
+  }
+
+  return readJson(path);
+}
+
+function buildAuthGate(current, activeCase) {
+  const joinedActions = [
+    ...(activeCase.allowedActions ?? []),
+    ...(current.allowedActions ?? []),
+    ...(activeCase.forbiddenActions ?? []),
+    ...(current.forbiddenActions ?? []),
+  ].join(' ').toLowerCase();
+  const authRelevant =
+    current.activeCase?.toLowerCase().includes('auth') ||
+    activeCase.caseId?.toLowerCase().includes('auth') ||
+    joinedActions.includes('auth') ||
+    joinedActions.includes('business-central');
+
+  const resultPath =
+    current.latestAuthResultWriter?.lastResultPath ??
+    current.latestTarget027D31AuthRefreshResult ??
+    activeCase.latestAuthSetupResultWriter?.resultPath ??
+    activeCase.latestDoctor?.lastAuthRefreshResult;
+  const latestResult = readJsonIfExists(resultPath);
+  const latestWriter = current.latestAuthResultWriter ?? activeCase.latestAuthSetupResultWriter ?? {};
+  const latestDoctor = current.latestAuthDoctor ?? activeCase.latestDoctor ?? {};
+  const latestTarget = current.latestAuthTargetDiagnosis ?? activeCase.latestAuthTargetDiagnosis ?? {};
+  const operatorActionRequired =
+    latestWriter.operatorActionRequired === true ||
+    latestResult?.operatorActionRequired === true ||
+    latestDoctor.decision === 'operator-must-complete-playwright-auth-window';
+  const blockedBy = [
+    ...(latestResult?.blockedBy ?? []),
+    ...(latestResult?.blockedByAuth ?? []),
+    ...(latestWriter.blockedBy ?? []),
+  ];
+
+  if (!authRelevant && !operatorActionRequired && blockedBy.length === 0) {
+    return null;
+  }
+
+  return {
+    requiresAuth: authRelevant,
+    canRunBusinessCentralWorkflows: latestDoctor.canRunBusinessCentralWorkflows === true,
+    operatorActionRequired,
+    decision:
+      latestDoctor.decision ??
+      (operatorActionRequired ? 'operator-must-complete-playwright-auth-window' : undefined),
+    nextSafeAction:
+      latestDoctor.nextSafeAction ??
+      latestResult?.nextSafeAction ??
+      latestWriter.operatorAction ??
+      activeCase.nextStep ??
+      current.nextStep,
+    blockedBy: firstItems([...new Set(blockedBy)], 8),
+    resultPath,
+    target: {
+      instance: latestTarget.targetEnvironment ?? current.instance,
+      company: latestTarget.targetCompany ?? current.company,
+      targetMatchesState: latestTarget.targetMatchesState,
+    },
+    normalBrowserLoginIsNotEnough:
+      latestDoctor.operatorAction?.normalBrowserLoginIsNotEnough === true ||
+      latestResult?.operatorAction?.normalBrowserLoginIsNotEnough === true ||
+      latestWriter.operatorActionRequired === true,
+  };
+}
+
 function chooseTaskClass(current, activeCase) {
   if (typeof activeCase.taskClass === 'string' && activeCase.taskClass.length > 0) {
     return activeCase.taskClass;
@@ -89,6 +160,7 @@ const bookScreenshotValues = Object.values(bookScreenshots);
 const openProofs = bookScreenshotValues.filter((value) => value === 'open').length;
 const availableProofs = bookScreenshotValues.filter((value) =>
   typeof value === 'string' && value.includes('available')).length;
+const authGate = buildAuthGate(current, activeCase);
 
 const contextPack = {
   schemaVersion: 1,
@@ -130,6 +202,7 @@ const contextPack = {
   forbiddenActions: firstItems(activeCase.forbiddenActions ?? current.forbiddenActions, 16),
   acceptanceCriteria: firstItems(activeCase.acceptanceCriteria, 6),
   hardExclusions: coverage.hardExclusions ?? {},
+  ...(authGate ? { authGate } : {}),
   nextStep: current.nextStep ?? lastRun.nextStep,
 };
 
