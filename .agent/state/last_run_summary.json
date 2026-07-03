@@ -7,11 +7,11 @@
   "mode": "universaarl-target-execution",
   "activeArea": "universaarl-vat-assisted-setup-readonly-discovery",
   "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
-  "summary": "Added a redacted Business Central auth target diagnosis. It shows the local source URL still has legacy MCP_1_20260210 in the path, but the active auth target is rewritten to playthru / UNIVERSAARL-DE before Playwright opens it.",
+  "summary": "Integrated the redacted Business Central auth target diagnosis into agent:run-plan. The run plan now shows auth:bc:target before auth:bc:doctor/check, so MCP-vs-playthru target confusion is caught before any long auth retry or BC workflow.",
   "proved": [
+    "agent:run-plan now lists auth:bc:target for Business Central auth-gated cases.",
     "auth:bc:target can build and print a redacted target diagnosis without opening BC.",
-    "auth:bc:doctor now includes authTarget details.",
-    "The target URL construction matches current state: playthru / UNIVERSAARL-DE."
+    "The target URL construction still matches current state: playthru / UNIVERSAARL-DE."
   ],
   "notProved": [
     "No fresh Business Central shell context is proven.",
@@ -80,15 +80,15 @@
       "D31 must not run until auth:bc:check is green."
     ],
     "requiredPreparation": [
-      "Run npm run auth:bc:target when target confusion appears.",
+      "Run npm run auth:bc:target before long auth retries or BC workflows.",
       "Run npm run auth:bc in the persistent Playwright auth profile and complete Login/MFA until BC shell appears.",
       "Run npm run auth:bc:check and require canUseStoredAuth=true."
     ]
   },
-  "runId": "TARGET-027D31-AUTH-TARGET-DIAGNOSIS",
-  "completedAt": "2026-07-03T09:05:00.000Z",
+  "runId": "TARGET-027D31-RUN-PLAN-AUTH-TARGET-GATE",
+  "completedAt": "2026-07-03T09:45:00.000Z",
   "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "resultStatus": "local-progress-auth-target-diagnosis-added",
+  "resultStatus": "local-progress-run-plan-auth-target-integrated",
   "latestTarget027D31AuthRefreshAttempt": {
     "at": "2026-07-03T08:08:00.000Z",
     "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
@@ -115,13 +115,12 @@
     "apiShortcut": false,
     "nextSafeAction": "Finish Login/MFA inside the Playwright auth window until a Business Central shell signal is visible, require auth:bc:check canUseStoredAuth=true, then rerun D31 read-only discovery."
   },
-  "updatedAt": "2026-07-03T09:05:00.000Z",
+  "updatedAt": "2026-07-03T09:45:00.000Z",
   "actionsTaken": [
     "Ran git status --short and git pull --ff-only; repository was up to date and clean before changes.",
-    "Added scripts/agent/auth-target-diagnose.mjs and package script auth:bc:target.",
-    "Ran npm run auth:bc:target; it confirmed source MCP path is rewritten to playthru / UNIVERSAARL-DE.",
-    "Extended npm run auth:bc:doctor so it includes the redacted auth target diagnosis.",
-    "Updated docs/LOCAL-SETUP.md with the target-diagnosis command."
+    "Added npm run auth:bc:target to the Business Central auth-gated agent:run-plan step list before auth:bc:doctor/check.",
+    "Added npm run auth:bc:target to run-plan validationCommands for auth-gated cases.",
+    "Updated active state and case rules so target diagnosis is an explicit allowed pre-auth action."
   ],
   "actionsNotTaken": [
     "No Business Central workflow was opened.",

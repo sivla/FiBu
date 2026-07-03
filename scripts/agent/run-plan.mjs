@@ -107,6 +107,13 @@ steps.push(step('run-command', {
 
 if (needsBusinessCentralAuth) {
   steps.push(step('run-command', {
+    command: 'npm run auth:bc:target',
+    reason: 'Print a redacted Business Central target URL diagnosis so source environment and current-state override are clear before auth retry.',
+    allowed: true,
+    requiredBefore: ['npm run auth:bc', 'execute-playwright', 'execute-business-central'],
+    expectedFailureMeans: 'Fix the local BC target URL or current.json instance/company before any auth retry or BC workflow.',
+  }));
+  steps.push(step('run-command', {
     command: 'npm run auth:bc:doctor',
     reason: 'Summarize Business Central auth go/no-go, target context and last auth blocker before any expensive retry or BC workflow.',
     allowed: true,
@@ -232,6 +239,7 @@ const runPlan = {
     'npm run agent:preflight',
     'npm run agent:dry-run',
     'npm run agent:run-plan',
+    ...(needsBusinessCentralAuth ? ['npm run auth:bc:target'] : []),
     ...(needsBusinessCentralAuth ? ['npm run auth:bc:doctor'] : []),
     ...(needsBusinessCentralAuth ? ['npm run auth:bc:check'] : []),
     'npm run check:encoding',

@@ -13,6 +13,7 @@
   "sourceBlockedCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
   "purpose": "Refresh local Business Central Playwright auth shell validation for playthru / UNIVERSAARL-DE before rerunning the D31 VAT Assisted Setup read-only discovery.",
   "allowedActions": [
+    "run-auth-bc-target-diagnosis",
     "run-auth-bc-doctor",
     "refresh-business-central-auth",
     "run-auth-bc-check",
@@ -43,6 +44,7 @@
   ],
   "acceptanceCriteria": [
     "auth:bc:target confirms the redacted target URL points to playthru / UNIVERSAARL-DE.",
+    "agent:run-plan lists auth:bc:target before auth:bc:doctor, auth:bc:check or any BC workflow.",
     "auth:bc uses a local ignored persistent Playwright profile for attended Login/MFA retries.",
     "auth.setup writes TARGET-027D31-AUTH-result.json on success or failure.",
     "npm run auth:bc:doctor is used as fast go/no-go before a long auth refresh retry.",
@@ -95,7 +97,7 @@
     "lastAuthRefreshResult": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json"
   },
   "nextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-  "updatedAt": "2026-07-03T09:05:00.000Z",
+  "updatedAt": "2026-07-03T09:45:00.000Z",
   "latestAuthSetupResultWriter": {
     "at": "2026-07-03T08:40:00.000Z",
     "script": "playwright/core/auth.setup.ts",

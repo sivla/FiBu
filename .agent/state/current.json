@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-03T09:05:00.000Z",
+  "updatedAt": "2026-07-03T09:45:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -19,6 +19,7 @@
     "agent:safety:check"
   ],
   "allowedActions": [
+    "run-auth-bc-target-diagnosis",
     "run-auth-bc-doctor",
     "refresh-business-central-auth",
     "run-auth-bc-check",
@@ -9080,9 +9081,10 @@
     "purpose": "Fast non-interactive go/no-go gate before rerunning D31 or any BC workflow."
   },
   "latestRunPlanAuthDoctorIntegration": {
-    "at": "2026-07-03T09:34:00.000Z",
+    "at": "2026-07-03T09:45:00.000Z",
     "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "change": "agent:run-plan now lists npm run auth:bc:doctor before auth:bc:check for Business Central auth-gated cases.",
+    "change": "agent:run-plan now lists npm run auth:bc:target before auth:bc:doctor and auth:bc:check for Business Central auth-gated cases.",
+    "reason": "The plan must show the redacted source/target URL rewrite before any long auth retry so MCP-vs-playthru confusion is caught cheaply.",
     "bcRun": false,
     "playwrightRun": false,
     "setupChanged": false,
