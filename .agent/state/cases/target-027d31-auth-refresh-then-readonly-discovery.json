@@ -97,7 +97,7 @@
     "lastAuthRefreshResult": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json"
   },
   "nextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-  "updatedAt": "2026-07-03T11:15:00.000Z",
+  "updatedAt": "2026-07-03T11:35:00.000Z",
   "latestAuthSetupResultWriter": {
     "at": "2026-07-03T10:20:00.000Z",
     "script": "playwright/core/auth.setup.ts",
@@ -175,5 +175,27 @@
     "posted": false,
     "apiShortcut": false,
     "nextSafeAction": "Complete Login/MFA in the Playwright-opened auth window until Business Central shell is visible, then require npm run auth:bc:check canUseStoredAuth=true."
+  },
+  "latestAuthRedirectDiagnosis": {
+    "at": "2026-07-03T11:35:00.000Z",
+    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "script": "playwright/core/auth.setup.ts",
+    "improvement": "Auth shell diagnosis now records redacted loginRedirect information from the Microsoft sign-in URL, so wrong-target suspicions can be checked without exposing secrets.",
+    "latestProbeCommand": "BC_AUTH_PROBE_TIMEOUT_MS=5000 npm run auth:bc:probe",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
+    "loginRedirectHost": "businesscentral.dynamics.com",
+    "loginRedirectPathname": "/remote-sign-in",
+    "loginRedirectCompanyParamPresent": false,
+    "conclusion": "The current page is still Microsoft sign-in before BC shell; the redirect points to Business Central remote sign-in, not a proven playthru shell. Environment/company remain unproven until auth:bc:check is green.",
+    "canRunBusinessCentralWorkflows": false,
+    "operatorActionRequired": true,
+    "bcRun": false,
+    "playwrightAuthRun": true,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false
   }
 }

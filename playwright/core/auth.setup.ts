@@ -67,6 +67,10 @@ async function writeAuthResult(args: AuthResultArgs) {
         ? args.shellValidation.pathname
         : '';
   const diagnosisTitle = typeof args.shellDiagnosis?.title === 'string' ? args.shellDiagnosis.title : '';
+  const loginRedirect =
+    args.shellDiagnosis && typeof args.shellDiagnosis.loginRedirect === 'object'
+      ? args.shellDiagnosis.loginRedirect
+      : null;
   const matchedShellSignal =
     typeof args.shellDiagnosis?.matchedShellSignal === 'string'
       ? args.shellDiagnosis.matchedShellSignal
@@ -108,6 +112,7 @@ async function writeAuthResult(args: AuthResultArgs) {
       diagnosisHost,
       diagnosisPathname,
       diagnosisTitle,
+      loginRedirect,
       shellSignalDetected: reachedShell || Boolean(matchedShellSignal),
       matchedShellSignal,
       savedState: args.savedState
@@ -336,10 +341,31 @@ try {
         /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/gi,
         '{tenant-guid}'
       );
+      const redirectUri = url.searchParams.get('redirect_uri') ?? url.searchParams.get('wreply') ?? '';
+      let loginRedirect: Record<string, unknown> | null = null;
+      if (redirectUri) {
+        try {
+          const redirectUrl = new URL(redirectUri);
+          loginRedirect = {
+            host: redirectUrl.hostname,
+            pathname: redirectUrl.pathname.replace(
+              /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/gi,
+              '{tenant-guid}'
+            ),
+            companyParamPresent: redirectUrl.searchParams.has('company'),
+            company: redirectUrl.searchParams.get('company') ?? ''
+          };
+        } catch {
+          loginRedirect = {
+            parseError: true
+          };
+        }
+      }
 
       return {
         host: url.hostname,
         pathname: redactedPathname,
+        loginRedirect,
         hasCompanyParam: url.searchParams.has('company'),
         company: url.searchParams.get('company') ?? '',
         title: document.title,

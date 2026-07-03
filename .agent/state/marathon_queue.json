@@ -5,7 +5,7 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "queueId": "TARGET-MARATHON-002-UNIVERSAARL-REPO-READONLY-PREP",
-  "reason": "TARGET-027D31 remains blocked by Playwright auth; auth:bc:probe now gives a short repeatable blocker check before long auth waits.",
+  "reason": "TARGET-027D31 remains blocked by Playwright auth; login redirect diagnosis now shows the Microsoft sign-in redirect target without exposing secrets.",
   "noEffectiveBusinessCentralActions": false,
   "forbiddenUntilUnblocked": [],
   "unblockCriteria": "Satisfied: UNIVERSAARL-DE exists and active Role Center context / Firmendaten read-only proof is available.",
@@ -4780,10 +4780,10 @@
         "api-shortcut"
       ],
       "caseFile": ".agent/state/cases/target-027d31-auth-refresh-then-readonly-discovery.json",
-      "updatedAt": "2026-07-03T11:15:00.000Z",
-      "reason": "Operator must complete Login/MFA in the Playwright-opened auth window; probe prevents repeated 10-minute waits when the profile is still on Microsoft sign-in.",
+      "updatedAt": "2026-07-03T11:35:00.000Z",
+      "reason": "The login page itself is not Business Central evidence; operator must complete Login/MFA in the Playwright auth window until BC shell is visible.",
       "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
-      "result": "Added short auth:bc:probe and validated current profile still blocks before BC shell after 30000 ms.",
+      "result": "Auth diagnosis now records redacted loginRedirect; latest probe still blocks before BC shell and no storage state was saved.",
       "blockedBy": [
         "auth:playwright-window-stayed-before-business-central-shell",
         "auth:shell-signal-not-detected",
@@ -4791,7 +4791,7 @@
       ]
     }
   ],
-  "lastUpdated": "2026-07-03T11:15:00.000Z",
+  "lastUpdated": "2026-07-03T11:35:00.000Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -4903,7 +4903,7 @@
       ]
     }
   },
-  "updatedAt": "2026-07-03T11:15:00.000Z",
+  "updatedAt": "2026-07-03T11:35:00.000Z",
   "lastCompletedCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
   "nextStepDecisionCard": {
