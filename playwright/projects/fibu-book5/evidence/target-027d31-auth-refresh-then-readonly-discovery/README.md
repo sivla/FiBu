@@ -6,7 +6,17 @@ The active auth refresh gate targets `playthru / UNIVERSAARL-DE`, but the Playwr
 
 No Assisted Setup, Manual Setup, VAT Posting Setup, setup value, master data, document, Preview Posting, Posting, payment, API shortcut or bookmaster change occurred.
 
-Important: signing in through normal Chrome or the Codex app does not refresh `playwright/.auth/bc-user.json`. A diagnostic attempt to use the existing Chrome session was not available through the local Codex Chrome extension, so no Chrome cookies or auth data were read or copied. The login must finish in the Playwright-opened browser window. The next safe action is:
+Current gate state: the detached Playwright profile handoff has already been launched and `playwright/.auth/bc-profile` exists, but `playwright/.auth/bc-user.json` does not exist yet. `auth:bc:check`, `auth:bc:doctor` and `agent:run-plan` now point to the detached-capture sequence instead of blindly recommending another bounded login window.
+
+The next safe action is:
+
+1. Complete Login/MFA in the detached Playwright profile browser window if it is still open.
+2. Wait until the Business Central shell is visible for `playthru / UNIVERSAARL-DE`.
+3. Close that detached browser window.
+4. Run `npm run auth:bc` to validate the same profile and write `playwright/.auth/bc-user.json`.
+5. Run `npm run auth:bc:check` and require `canUseStoredAuth=true`.
+
+Important: signing in through normal Chrome or the Codex app does not refresh `playwright/.auth/bc-user.json`. A diagnostic attempt to use the existing Chrome session was not available through the local Codex Chrome extension, so no Chrome cookies or auth data were read or copied. If no detached browser is available anymore, the bounded fallback is:
 
 1. Run `npm run auth:bc:open-login`.
 2. Complete Login/MFA in that Playwright window.

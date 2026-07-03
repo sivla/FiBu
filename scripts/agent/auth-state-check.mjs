@@ -3,6 +3,7 @@ import path from 'node:path';
 
 const authFile = path.resolve('playwright/.auth/bc-user.json');
 const authMetaFile = path.resolve('playwright/.auth/bc-user.meta.json');
+const authProfileDir = path.resolve('playwright/.auth/bc-profile');
 const currentStateFile = path.resolve('.agent/state/current.json');
 const maxAgeHours = Number(process.env.BC_AUTH_MAX_AGE_HOURS ?? 12);
 const now = Date.now();
@@ -10,6 +11,8 @@ const authUnblockStep =
   'Run npm run auth:bc:open-login and complete Login/MFA in the Playwright-opened browser window until the Business Central shell is visible. ' +
   'The command is bounded by default; set BC_AUTH_OPEN_LOGIN_TIMEOUT_MS explicitly only for a longer attended handoff. ' +
   'If repeated handoffs time out before shell, use npm run auth:bc:open-login-detached, finish login, close that browser, then run npm run auth:bc.';
+const detachedCaptureStep =
+  'A detached Playwright auth profile handoff has already been launched. Complete Login/MFA in that detached browser if it is still open, wait for the Business Central shell, close the detached browser, then run npm run auth:bc to capture storage state and npm run auth:bc:check.';
 
 function result(overrides, target = {}) {
   return {
@@ -17,8 +20,10 @@ function result(overrides, target = {}) {
     purpose: 'business-central-auth-state-check',
     authFile: 'playwright/.auth/bc-user.json',
     authMetaFile: 'playwright/.auth/bc-user.meta.json',
+    authProfileDir: 'playwright/.auth/bc-profile',
     canUseStoredAuth: false,
     exists: false,
+    profileExists: false,
     readableJson: false,
     hasShellValidationMeta: false,
     ageHours: null,
@@ -38,15 +43,25 @@ function result(overrides, target = {}) {
 async function main() {
   let expectedInstance = '';
   let expectedCompany = '';
+  let detachedHandoffLaunched = false;
   try {
     const currentState = JSON.parse(await fs.readFile(currentStateFile, 'utf8'));
     expectedInstance = typeof currentState?.instance === 'string' ? currentState.instance : '';
     expectedCompany = typeof currentState?.company === 'string' ? currentState.company : '';
+    detachedHandoffLaunched =
+      currentState?.latestDetachedAuthHandoffLaunch?.result === 'detached-playwright-profile-window-launched';
   } catch {
     // Auth can still report storage-state shape, but target context validation will stay unavailable.
   }
 
   const target = { expectedInstance, expectedCompany };
+  let profileExists = false;
+  try {
+    profileExists = (await fs.stat(authProfileDir)).isDirectory();
+  } catch {
+    profileExists = false;
+  }
+  const unblockStep = detachedHandoffLaunched || profileExists ? detachedCaptureStep : authUnblockStep;
 
   let stats;
   try {
@@ -57,7 +72,9 @@ async function main() {
         result({
           expectedInstance,
           expectedCompany,
-          blockedBy: ['storage-state-file-missing']
+          profileExists,
+          blockedBy: ['storage-state-file-missing'],
+          nextStep: unblockStep
         }, target),
         null,
         2
@@ -78,8 +95,10 @@ async function main() {
           expectedInstance,
           expectedCompany,
           exists: true,
+          profileExists,
           ageHours,
-          blockedBy: ['storage-state-json-invalid']
+          blockedBy: ['storage-state-json-invalid'],
+          nextStep: unblockStep
         }, target),
         null,
         2
@@ -140,6 +159,7 @@ async function main() {
       result({
         canUseStoredAuth: blockedBy.length === 0,
         exists: true,
+        profileExists,
         readableJson: true,
         hasShellValidationMeta,
         ageHours,
@@ -153,7 +173,7 @@ async function main() {
         nextStep:
           blockedBy.length === 0
             ? 'Stored auth has local shell-validation metadata. Live tests must still validate the Business Central shell.'
-            : authUnblockStep
+            : unblockStep
       }),
       null,
       2

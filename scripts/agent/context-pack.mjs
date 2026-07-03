@@ -57,13 +57,20 @@ function buildAuthGate(current, activeCase) {
     return null;
   }
 
-  const nextSafeAction = [
+  const detachedCaptureAvailable =
+    current.latestDetachedAuthHandoffLaunch?.result === 'detached-playwright-profile-window-launched' ||
+    existsSync(resolve('playwright/.auth/bc-profile'));
+  const detachedCaptureStep =
+    'Complete Login/MFA in the detached Playwright profile browser if it is still open, wait for Business Central shell, close that browser, then run npm run auth:bc and npm run auth:bc:check.';
+  const nextSafeAction = (detachedCaptureAvailable
+    ? detachedCaptureStep
+    : [
     latestDoctor.nextSafeAction,
     latestResult?.nextSafeAction,
     latestWriter.operatorAction,
     activeCase.nextStep,
     current.nextStep,
-  ].find((value) => typeof value === 'string' && value.length > 0)
+  ].find((value) => typeof value === 'string' && value.length > 0))
     ?.replaceAll('npm run auth:bc:interactive', 'npm run auth:bc:open-login');
 
   return {
@@ -74,6 +81,7 @@ function buildAuthGate(current, activeCase) {
       latestDoctor.decision ??
       (operatorActionRequired ? 'operator-must-complete-playwright-auth-window' : undefined),
     nextSafeAction,
+    preferredAuthHandoff: detachedCaptureAvailable ? 'detached-capture' : 'bounded-open-login',
     blockedBy: firstItems([...new Set(blockedBy)], 8),
     resultPath,
     target: {

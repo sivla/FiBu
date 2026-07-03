@@ -63,21 +63,41 @@ const check = authCheck.output ?? {};
 const blockedBy = Array.isArray(check.blockedBy) ? check.blockedBy : ['auth-check-unavailable'];
 const canUseStoredAuth = check.canUseStoredAuth === true;
 const operatorActionRequired = !canUseStoredAuth && lastAuthResult?.operatorActionRequired === true;
+const detachedHandoffLaunched =
+  current?.latestDetachedAuthHandoffLaunch?.result === 'detached-playwright-profile-window-launched';
+const profileExists = existsSync(resolve('playwright/.auth/bc-profile'));
+const preferredAuthHandoff = detachedHandoffLaunched || profileExists ? 'detached-capture' : 'bounded-open-login';
 const interactiveOperatorAction = {
   reason: 'The Playwright auth profile is not logged in to Business Central yet.',
   profilePath: 'playwright/.auth/bc-profile',
-  requiredWindow: 'the browser window opened by npm run auth:bc:open-login',
-  steps: [
-    'Run npm run auth:bc:open-login from this repo.',
-    'Complete sign-in and MFA in the Playwright-opened browser window.',
-    'Wait until Business Central shell text such as Search/Tell Me, Role Center or My Settings is visible.',
-    'Then run npm run auth:bc:check and require canUseStoredAuth=true.',
-    'For a longer attended handoff, set BC_AUTH_OPEN_LOGIN_TIMEOUT_MS explicitly for that one run.',
-    'If the Playwright window repeatedly stays on Microsoft sign-in, run npm run auth:bc:reset-profile first as a dry run, then with -- --confirm only when the local auth profile should be reset.',
-    'If time-bound handoffs keep closing before the login can be completed, run npm run auth:bc:open-login-detached, finish Login/MFA, close that browser, then run npm run auth:bc to capture storage state.',
-  ],
+  requiredWindow:
+    preferredAuthHandoff === 'detached-capture'
+      ? 'the detached browser window opened by npm run auth:bc:open-login-detached'
+      : 'the browser window opened by npm run auth:bc:open-login',
+  steps:
+    preferredAuthHandoff === 'detached-capture'
+      ? [
+          'Complete sign-in and MFA in the detached Playwright profile browser window if it is still open.',
+          'Wait until Business Central shell text such as Search/Tell Me, Role Center or My Settings is visible.',
+          'Close the detached browser window so npm run auth:bc can reuse the profile.',
+          'Run npm run auth:bc to validate the same profile and write playwright/.auth/bc-user.json.',
+          'Then run npm run auth:bc:check and require canUseStoredAuth=true.',
+        ]
+      : [
+          'Run npm run auth:bc:open-login from this repo.',
+          'Complete sign-in and MFA in the Playwright-opened browser window.',
+          'Wait until Business Central shell text such as Search/Tell Me, Role Center or My Settings is visible.',
+          'Then run npm run auth:bc:check and require canUseStoredAuth=true.',
+          'For a longer attended handoff, set BC_AUTH_OPEN_LOGIN_TIMEOUT_MS explicitly for that one run.',
+          'If the Playwright window repeatedly stays on Microsoft sign-in, run npm run auth:bc:reset-profile first as a dry run, then with -- --confirm only when the local auth profile should be reset.',
+          'If time-bound handoffs keep closing before the login can be completed, run npm run auth:bc:open-login-detached, finish Login/MFA, close that browser, then run npm run auth:bc to capture storage state.',
+        ],
   normalBrowserLoginIsNotEnough: true,
 };
+const nextInteractiveAction =
+  preferredAuthHandoff === 'detached-capture'
+    ? 'Complete Login/MFA in the detached Playwright profile browser if it is still open, wait for Business Central shell, close that browser, then run npm run auth:bc and npm run auth:bc:check.'
+    : 'Run npm run auth:bc:open-login and complete Login/MFA in the Playwright-opened browser window, not normal Chrome, until Business Central shell is visible. The handoff is bounded by default; set BC_AUTH_OPEN_LOGIN_TIMEOUT_MS explicitly only for a longer attended run. If it repeatedly stays on Microsoft sign-in, dry-run npm run auth:bc:reset-profile and confirm only the ignored local profile reset. If the handoff window keeps closing before login completes, use npm run auth:bc:open-login-detached, finish login, close it, then run npm run auth:bc.';
 
 const result = {
   schemaVersion: 1,
@@ -96,6 +116,7 @@ const result = {
     ageHours: check.ageHours ?? null,
     metaAgeHours: check.metaAgeHours ?? null,
     maxAgeHours: check.maxAgeHours ?? null,
+    profileExists: check.profileExists === true,
   },
   authTarget: authTarget.output
     ? {
@@ -129,6 +150,7 @@ const result = {
       }
     : null,
   operatorActionRequired,
+  preferredAuthHandoff,
   decision: canUseStoredAuth
     ? 'stored-auth-usable-run-readonly-or-gated-target-tests'
     : operatorActionRequired
@@ -137,7 +159,7 @@ const result = {
   nextSafeAction: canUseStoredAuth
     ? 'Run only the active case allowed by agent:run-plan and keep normal BC shell/context checks enabled.'
     : operatorActionRequired
-      ? 'Run npm run auth:bc:open-login and complete Login/MFA in the Playwright-opened browser window, not normal Chrome, until Business Central shell is visible. The handoff is bounded by default; set BC_AUTH_OPEN_LOGIN_TIMEOUT_MS explicitly only for a longer attended run. If it repeatedly stays on Microsoft sign-in, dry-run npm run auth:bc:reset-profile and confirm only the ignored local profile reset. If the handoff window keeps closing before login completes, use npm run auth:bc:open-login-detached, finish login, close it, then run npm run auth:bc.'
+      ? nextInteractiveAction
     : 'Run npm run auth:bc:open-login, complete Login/MFA in the Playwright-opened browser until Business Central shell is visible, then rerun npm run auth:bc:check. For longer attended login, set BC_AUTH_OPEN_LOGIN_TIMEOUT_MS explicitly. If bounded handoffs keep timing out, use npm run auth:bc:open-login-detached, close it after shell loads, then run npm run auth:bc.',
   forbiddenUntilGreen: [
     'D31 VAT Assisted Setup read-only discovery',
