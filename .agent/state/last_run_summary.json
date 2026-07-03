@@ -7,11 +7,11 @@
   "mode": "universaarl-target-execution",
   "activeArea": "universaarl-vat-assisted-setup-readonly-discovery",
   "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
-  "summary": "Added auth:bc:doctor as a fast non-interactive go/no-go for Business Central Playwright auth. It reports target context, stale auth blockers and the last D31 auth-refresh blocker without opening BC.",
+  "summary": "Integrated auth:bc:doctor into the active D31 auth case and agent:run-plan so the Autopilot gets a fast Business Central auth go/no-go before long auth retries or BC workflows.",
   "proved": [
-    "auth:bc:doctor can summarize the current auth gate without opening Business Central.",
-    "The stored shell validation target remains playthru / UNIVERSAARL-DE but is too old.",
-    "The last D31 auth refresh blocker is linked from the doctor output."
+    "auth:bc:doctor remains a fast non-interactive blocker for stale Playwright auth.",
+    "agent:run-plan now exposes auth:bc:doctor before auth:bc:check for the D31 auth-gated case.",
+    "current.json mirrors the active D31 case actions after adding run-auth-bc-doctor."
   ],
   "notProved": [
     "No fresh Business Central shell context is proven.",
@@ -34,18 +34,18 @@
   "apiShortcut": false,
   "screenshots": [],
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "nextStep": "Run npm run auth:bc:doctor first; if it reports canRunBusinessCentralWorkflows=false, run npm run auth:bc and complete Login/MFA in the Playwright browser until Business Central shell is visible. Only then rerun D31 read-only discovery.",
+  "nextStep": "Run npm run auth:bc:doctor first. If it reports canRunBusinessCentralWorkflows=false, do not run D31 or other BC workflows; refresh Playwright auth only when Login/MFA can be completed in the Playwright browser.",
   "nextStepDecision": {
     "currentCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "lastEvidenceSummary": "auth:bc:doctor now summarizes auth:bc:check plus the last D31 auth refresh blocker without opening BC. It confirms target playthru / UNIVERSAARL-DE but blocks because storage state is older than 12 hours.",
+    "lastEvidenceSummary": "auth:bc:doctor remains red and now appears as an explicit run-plan step before long auth retries or BC workflows.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "D31 remains blocked by auth, but future runs can avoid repeated 10-minute timeouts by using the doctor go/no-go first.",
+    "reason": "The active blocker is still Playwright auth; integrating the doctor into run-plan avoids repeating 10 minute auth attempts without a go/no-go.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
         "status": "ready-next",
-        "reason": "Use auth:bc:doctor, then auth:bc only if green state is missing and user can complete Playwright login."
+        "reason": "Run doctor first; run auth:bc only when the Playwright login can be completed."
       },
       {
         "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
@@ -69,23 +69,25 @@
       }
     ],
     "queueChangesMade": [
-      "Added auth:bc:doctor as fast go/no-go before expensive auth retries."
+      "Added run-auth-bc-doctor to the active D31 auth case allowed actions.",
+      "agent:run-plan now prints auth:bc:doctor as required before auth retry/BC execution."
     ],
     "selectedNextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "whySelectedNextCaseIsBest": "It is still the single open gate; the doctor reduces repeat timeout risk while preserving the safety boundary.",
+    "whySelectedNextCaseIsBest": "It is still the only open queue item and the doctor step reduces wasted retries while preserving safety.",
     "risksBeforeNextCase": [
-      "Repeating auth:bc without completing Login/MFA in the Playwright browser will time out again."
+      "D31 must not run while doctor/check are red.",
+      "auth:bc will time out again if Playwright login is not completed in its own browser."
     ],
     "requiredPreparation": [
       "Run npm run auth:bc:doctor.",
-      "If blocked, complete Login/MFA in the Playwright auth browser.",
+      "If blocked, complete Login/MFA in Playwright auth window.",
       "Require npm run auth:bc:check canUseStoredAuth=true."
     ]
   },
-  "runId": "TARGET-027D31-AUTH-DOCTOR",
-  "completedAt": "2026-07-03T07:37:43.712Z",
+  "runId": "TARGET-027D31-RUN-PLAN-AUTH-DOCTOR-INTEGRATION",
+  "completedAt": "2026-07-03T09:34:00.000Z",
   "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "resultStatus": "local-progress-auth-doctor-added",
+  "resultStatus": "local-progress-run-plan-auth-doctor-integrated",
   "latestTarget027D31AuthRefreshAttempt": {
     "at": "2026-07-03T08:08:00.000Z",
     "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
@@ -112,17 +114,17 @@
     "apiShortcut": false,
     "nextSafeAction": "Finish Login/MFA inside the Playwright auth window until a Business Central shell signal is visible, require auth:bc:check canUseStoredAuth=true, then rerun D31 read-only discovery."
   },
-  "updatedAt": "2026-07-03T09:28:00.000Z",
+  "updatedAt": "2026-07-03T09:34:00.000Z",
   "actionsTaken": [
     "Ran git pull --ff-only; repository was up to date.",
-    "Ran npm run auth:bc:check; stored Playwright auth remains too old.",
-    "Added scripts/agent/auth-bc-doctor.mjs.",
-    "Added package script auth:bc:doctor.",
-    "Documented auth:bc:doctor in docs/LOCAL-SETUP.md.",
-    "Ran npm run auth:bc:doctor; it blocked BC workflows and linked the last D31 auth refresh blocker."
+    "Ran npm run auth:bc:doctor; it still blocks BC workflows because stored auth is too old.",
+    "Added npm run auth:bc:doctor as an explicit run-plan step before auth retry and BC execution.",
+    "Added run-auth-bc-doctor to the active D31 auth case allowed actions.",
+    "Mirrored active case actions into current.json."
   ],
   "actionsNotTaken": [
-    "No Business Central workflow was opened in this doctor-hardening step.",
+    "No Business Central workflow was opened.",
+    "No Playwright workflow was run beyond local auth doctor/check scripts.",
     "No VAT setup page was opened.",
     "No setup, master data, draft, Preview Posting, Posting, payment or API shortcut occurred.",
     "No bookmaster change was made."

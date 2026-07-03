@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-03T09:28:00.000Z",
+  "updatedAt": "2026-07-03T09:34:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -19,6 +19,7 @@
     "agent:safety:check"
   ],
   "allowedActions": [
+    "run-auth-bc-doctor",
     "refresh-business-central-auth",
     "run-auth-bc-check",
     "confirm-instance-and-company-after-auth",
@@ -47,7 +48,7 @@
     "api-shortcut"
   ],
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "nextStep": "Run npm run auth:bc:doctor first; if it reports canRunBusinessCentralWorkflows=false, run npm run auth:bc and complete Login/MFA in the Playwright browser until Business Central shell is visible. Only then rerun D31 read-only discovery.",
+  "nextStep": "Run npm run auth:bc:doctor first. If it reports canRunBusinessCentralWorkflows=false, do not run D31 or other BC workflows; refresh Playwright auth only when Login/MFA can be completed in the Playwright browser.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -7953,14 +7954,14 @@
   "nextStepDecision": {
     "currentCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "lastEvidenceSummary": "auth:bc:doctor now summarizes auth:bc:check plus the last D31 auth refresh blocker without opening BC. It confirms target playthru / UNIVERSAARL-DE but blocks because storage state is older than 12 hours.",
+    "lastEvidenceSummary": "auth:bc:doctor remains red and now appears as an explicit run-plan step before long auth retries or BC workflows.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "D31 remains blocked by auth, but future runs can avoid repeated 10-minute timeouts by using the doctor go/no-go first.",
+    "reason": "The active blocker is still Playwright auth; integrating the doctor into run-plan avoids repeating 10 minute auth attempts without a go/no-go.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
         "status": "ready-next",
-        "reason": "Use auth:bc:doctor, then auth:bc only if green state is missing and user can complete Playwright login."
+        "reason": "Run doctor first; run auth:bc only when the Playwright login can be completed."
       },
       {
         "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
@@ -7984,16 +7985,18 @@
       }
     ],
     "queueChangesMade": [
-      "Added auth:bc:doctor as fast go/no-go before expensive auth retries."
+      "Added run-auth-bc-doctor to the active D31 auth case allowed actions.",
+      "agent:run-plan now prints auth:bc:doctor as required before auth retry/BC execution."
     ],
     "selectedNextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "whySelectedNextCaseIsBest": "It is still the single open gate; the doctor reduces repeat timeout risk while preserving the safety boundary.",
+    "whySelectedNextCaseIsBest": "It is still the only open queue item and the doctor step reduces wasted retries while preserving safety.",
     "risksBeforeNextCase": [
-      "Repeating auth:bc without completing Login/MFA in the Playwright browser will time out again."
+      "D31 must not run while doctor/check are red.",
+      "auth:bc will time out again if Playwright login is not completed in its own browser."
     ],
     "requiredPreparation": [
       "Run npm run auth:bc:doctor.",
-      "If blocked, complete Login/MFA in the Playwright auth browser.",
+      "If blocked, complete Login/MFA in Playwright auth window.",
       "Require npm run auth:bc:check canUseStoredAuth=true."
     ]
   },
@@ -9074,5 +9077,15 @@
     "expectedCompany": "UNIVERSAARL-DE",
     "lastAuthRefreshResult": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
     "purpose": "Fast non-interactive go/no-go gate before rerunning D31 or any BC workflow."
+  },
+  "latestRunPlanAuthDoctorIntegration": {
+    "at": "2026-07-03T09:34:00.000Z",
+    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "change": "agent:run-plan now lists npm run auth:bc:doctor before auth:bc:check for Business Central auth-gated cases.",
+    "bcRun": false,
+    "playwrightRun": false,
+    "setupChanged": false,
+    "previewPosting": false,
+    "posted": false
   }
 }

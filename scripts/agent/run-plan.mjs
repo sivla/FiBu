@@ -107,6 +107,13 @@ steps.push(step('run-command', {
 
 if (needsBusinessCentralAuth) {
   steps.push(step('run-command', {
+    command: 'npm run auth:bc:doctor',
+    reason: 'Summarize Business Central auth go/no-go, target context and last auth blocker before any expensive retry or BC workflow.',
+    allowed: true,
+    requiredBefore: ['npm run auth:bc', 'execute-playwright', 'execute-business-central'],
+    expectedFailureMeans: authUnblockStep,
+  }));
+  steps.push(step('run-command', {
     command: 'npm run auth:bc:check',
     reason: 'Validate local Business Central storageState shape and shell-validation metadata before any later Playwright/BC execution.',
     allowed: true,
@@ -225,6 +232,7 @@ const runPlan = {
     'npm run agent:preflight',
     'npm run agent:dry-run',
     'npm run agent:run-plan',
+    ...(needsBusinessCentralAuth ? ['npm run auth:bc:doctor'] : []),
     ...(needsBusinessCentralAuth ? ['npm run auth:bc:check'] : []),
     'npm run check:encoding',
     'git diff --check',
