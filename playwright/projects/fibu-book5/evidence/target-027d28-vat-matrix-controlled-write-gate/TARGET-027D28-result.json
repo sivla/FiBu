@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
+  "source": "playwright-universaarl-vat-matrix-controlled-write-gate",
+  "resultStatus": "blocked-vat-matrix-write-gate",
+  "runPlanId": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE-PLAN",
+  "selectedTaskClass": "judge_work",
+  "selectedModelClass": "gpt-5.5-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=472&company=UNIVERSAARL-DE&dc=0",
+  "page": "Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix",
+  "targetValues": {
+    "vatBusinessPostingGroup": "INLAND",
+    "vatProductPostingGroup": "VAT19",
+    "vatPercent": "19",
+    "vatCalculationType": "Normale MwSt.",
+    "salesVatAccount": "3806",
+    "purchaseVatAccount": "1406"
+  },
+  "actionsTaken": [
+    "Direct page=472 did not show Page 472; used Tell Me fallback for MwSt.-Buchungsmatrix.",
+    "Direct page=472 did not show Page 472; used Tell Me fallback for MwSt.-Buchungsmatrix."
+  ],
+  "actionsNotTaken": [
+    "No Edit List coordinate route",
+    "No D3/D5/D8 direct cell route",
+    "No General Posting Setup write",
+    "No Dimensions write",
+    "No master data",
+    "No document draft",
+    "No Preview Posting",
+    "No Posting",
+    "No payment",
+    "No API shortcut",
+    "No company switch"
+  ],
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "screenshots": [
+    "target-027d28-010-before.png",
+    "target-027d28-030-after-write-or-block.png",
+    "target-027d28-040-reopen-proof.png"
+  ],
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix was visibly open.",
+    "D28 did not repeat rejected D3/D5/D8 coordinate/cell routes.",
+    "The run stopped before Preview Posting, Posting, master data and documents."
+  ],
+  "notProved": [
+    "No final German VAT correctness.",
+    "No Preview Posting.",
+    "No VAT Entries.",
+    "No G/L Entries.",
+    "No VAT Statement.",
+    "No tax advisor approval or compliance final proof."
+  ],
+  "blockedBy": [
+    "Top-level New/Neu was visible but not safely clickable/usable as a write route; refusing fallback to Edit List or coordinates."
+  ],
+  "warnings": [
+    "Business Central shows unsaved/error text after D28 route; reopen proof decides acceptance."
+  ],
+  "steps": [
+    {
+      "step": "before-row-risk",
+      "beforeRisk": {
+        "targetSignals": [],
+        "duplicateRisk": false,
+        "partialRowRisk": false
+      }
+    },
+    {
+      "step": "top-level-new-click",
+      "newRoute": {
+        "clicked": false,
+        "role": "menuitem",
+        "label": "^Neu$|^New$",
+        "error": "locator.click: Timeout 5000ms exceeded.\nCall log:\n[2m - waiting for getByRole('menuitem', { name: /^Neu$|^New$/i }).first() [22m\n[2m - locator resolved to <button type=\"button\" role=\"menuitem\" aria-label=\"Neu\" aria-haspopup=\"true\" aria-disabled=\"false\" aria-expanded=\"false\" data-is-focusable=\"true\" data-ktp-target=\"ktp-x-z-n\" id=\"commandBarItemButton663\" data-top-level-action=\"true\" data-ktp-execute-target=\"ktp-x-z-n\" aria-describedby=\"ktp-layer-id ktp-x-z-n\" aria-labelledby=\" commandBarItemButton663\" class=\"ms-Button ms-Button--action ms-Button--command ms-Button--hasMenu command-bar-button--sm7NnI8XII2yHRh2 button--SAoy5kQY47hR5bjB buttonGroup--A_CtNp...>...</button> [22m\n[2m - attempting "
+      }
+    }
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-027d28-vat-matrix-controlled-write-gate/TARGET-027D28-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d28-vat-matrix-controlled-write-gate/*.txt",
+    "playwright/projects/fibu-book5/evidence/target-027d28-vat-matrix-controlled-write-gate/*.png",
+    "playwright/projects/fibu-book5/evidence/target-027d28-vat-matrix-controlled-write-gate/*.screenshot.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-027d28-vat-matrix-controlled-write-gate/TARGET-027D28-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d28-vat-matrix-controlled-write-gate/README.md"
+  ],
+  "requiresReview": true,
+  "safeToFinalizeState": false,
+  "nextStepDecision": {
+    "currentCase": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "D27 selected a source-backed Page-472 write gate. D28 tested top-level New plus label-bound controls and avoided rejected coordinate routes.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "VAT Posting Setup is the next narrow Foundation blocker before dimensions and Foundation checkpoint.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D29-VAT-MATRIX-ROW-BOUND-ROUTE-RECOVERY",
+        "status": "ready-next",
+        "reason": "The write gate blocked safely; a narrower row-bound route recovery is needed before any more VAT setup write."
+      },
+      {
+        "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Checkpoint waits for VAT matrix status."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C remains locked until VAT, posting groups and dimensions are ready enough."
+      },
+      {
+        "caseId": "TARGET-032P-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE",
+        "status": "blocked",
+        "reason": "General Posting Setup purchase account remains a separate parked blocker; do not mix with D28."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-027D29-VAT-MATRIX-ROW-BOUND-ROUTE-RECOVERY",
+    "whySelectedNextCaseIsBest": "The top-level New path did not expose safe label-bound controls; the next step must learn the row-bound route instead of typing coordinates.",
+    "risksBeforeNextCase": [
+      "No German VAT final correctness before Preview Posting and VAT Entries.",
+      "No O2C/P2P documents before Foundation readiness.",
+      "Do not repeat D3/D5/D8 coordinate/cell routes."
+    ],
+    "requiredPreparation": [
+      "Review D28 screenshots/control inventory; use Page Inspection, personalization or a true card route before any further VAT write."
+    ]
+  },
+  "nextCase": "TARGET-027D29-VAT-MATRIX-ROW-BOUND-ROUTE-RECOVERY",
+  "statePatch": {},
+  "reason": "VAT Posting Setup controlled write gate blocked safely: Top-level New/Neu was visible but not safely clickable/usable as a write route; refusing fallback to Edit List or coordinates."
+}
