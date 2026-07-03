@@ -267,26 +267,38 @@ console.log('');
 
 try {
   const shellValidationHandle = await page.waitForFunction(
-    ({ authBlockerSource, authBlockerFlags, shellSource, shellFlags }) => {
+    ({ authBlockerSource, authBlockerFlags, shellSource, shellFlags, expectedEnvironment, expectedCompany }) => {
       const isBusinessCentral = window.location.hostname.toLowerCase().includes('businesscentral.dynamics.com');
       const url = new URL(window.location.href);
       const text = `${document.title}\n${url.pathname}\n${url.search}\n${document.body?.innerText ?? ''}`;
       const authBlockerRe = new RegExp(authBlockerSource, authBlockerFlags);
       const shellRe = new RegExp(shellSource, shellFlags);
-      if (!isBusinessCentral || authBlockerRe.test(text) || !shellRe.test(text)) return false;
+      const bodyText = document.body?.innerText ?? '';
+      const pathParts = url.pathname.split('/').filter(Boolean);
+      const environmentFromPath = pathParts.at(-1) ?? '';
+      const companyFromUrl = url.searchParams.get('company') ?? '';
+      const urlShellCandidate =
+        isBusinessCentral &&
+        !/\/remote-sign-in\b/i.test(url.pathname) &&
+        (!expectedEnvironment || environmentFromPath === expectedEnvironment) &&
+        (!expectedCompany || companyFromUrl === expectedCompany) &&
+        bodyText.trim().length > 250;
+      if (!isBusinessCentral || authBlockerRe.test(text) || (!shellRe.test(text) && !urlShellCandidate)) return false;
 
       return {
         host: window.location.hostname,
         pathname: window.location.pathname,
         company: new URL(window.location.href).searchParams.get('company') ?? '',
-        matchedShellSignal: text.match(shellRe)?.[0] ?? ''
+        matchedShellSignal: text.match(shellRe)?.[0] ?? (urlShellCandidate ? 'businesscentral-url-context' : '')
       };
     },
     {
       authBlockerSource: BUSINESS_CENTRAL_AUTH_BLOCKER_RE.source,
       authBlockerFlags: BUSINESS_CENTRAL_AUTH_BLOCKER_RE.flags,
       shellSource: BUSINESS_CENTRAL_SHELL_RE.source,
-      shellFlags: BUSINESS_CENTRAL_SHELL_RE.flags
+      shellFlags: BUSINESS_CENTRAL_SHELL_RE.flags,
+      expectedEnvironment,
+      expectedCompany
     },
     { timeout: authTimeoutMs }
   );

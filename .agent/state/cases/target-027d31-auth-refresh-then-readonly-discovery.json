@@ -97,7 +97,7 @@
     "lastAuthRefreshResult": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json"
   },
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "updatedAt": "2026-07-03T11:55:00.000Z",
+  "updatedAt": "2026-07-03T12:45:00.000Z",
   "latestAuthSetupResultWriter": {
     "at": "2026-07-03T10:20:00.000Z",
     "script": "playwright/core/auth.setup.ts",
@@ -297,5 +297,27 @@
     "posted": false,
     "apiShortcut": false,
     "nextSafeAction": "Auth profile has been reset. Run npm run auth:bc:interactive and complete Login/MFA in the Playwright-opened browser window until Business Central shell is visible; then require npm run auth:bc:check canUseStoredAuth=true."
+  },
+  "latestAuthShellDetectionImprovement": {
+    "at": "2026-07-03T12:45:00.000Z",
+    "script": "playwright/core/auth.setup.ts",
+    "improvement": "Auth shell validation now accepts a conservative Business Central URL-context fallback when the page is on businesscentral.dynamics.com, not /remote-sign-in, matches playthru / UNIVERSAARL-DE, has non-empty page text, and has no auth blocker text.",
+    "reason": "Repeated auth attempts can fail even after manual login if the visible Business Central shell text does not match the strict shell regex.",
+    "stillRejected": [
+      "login.microsoftonline.com",
+      "businesscentral.dynamics.com/remote-sign-in",
+      "wrong environment path",
+      "wrong company query parameter",
+      "empty/loading page text",
+      "auth blocker text"
+    ],
+    "bcRun": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "nextSafeAction": "Run npm run auth:bc:interactive after completing Login/MFA in the Playwright-opened browser; then require npm run auth:bc:check canUseStoredAuth=true before any BC workflow."
   }
 }
