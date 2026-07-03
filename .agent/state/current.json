@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-03T08:50:00.000Z",
+  "updatedAt": "2026-07-03T09:15:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -7952,20 +7952,20 @@
   },
   "nextStepDecision": {
     "currentCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-    "lastEvidenceSummary": "D31 remains blocked before Business Central shell validation. A repeat auth refresh attempt stayed on Microsoft sign-in and saved no Playwright storage state.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "D31 is still the right VAT discovery, but not runnable until auth:bc:check is green for the Playwright context.",
+    "plannedNextCaseBeforeReview": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "lastEvidenceSummary": "A fresh auth:bc attempt again stayed on Microsoft sign-in for 600000 ms and saved no Playwright storage state.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The active blocker is still Playwright shell auth, not VAT UI or setup logic.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-        "status": "ready-next",
-        "reason": "Only remaining immediate blocker is Playwright shell auth."
+        "status": "blocked",
+        "reason": "Needs manual Login/MFA completion inside the Playwright auth browser until BC shell appears."
       },
       {
         "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
         "status": "blocked",
-        "reason": "Requires canUseStoredAuth=true before opening VAT pages."
+        "reason": "Requires auth:bc:check canUseStoredAuth=true first."
       },
       {
         "caseId": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
@@ -7980,19 +7980,20 @@
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Requires VAT and dimension boundaries before foundation readiness."
+        "reason": "Requires VAT and dimensions status."
       }
     ],
     "queueChangesMade": [],
     "selectedNextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "whySelectedNextCaseIsBest": "It prevents stale-auth BC evidence and avoids repeating read-only VAT discovery against a login page.",
+    "whySelectedNextCaseIsBest": "It is the remaining gate that prevents false BC evidence and unsafe VAT discovery.",
     "risksBeforeNextCase": [
-      "Normal browser login can be mistaken for valid Playwright auth.",
-      "D31 must not run while auth:bc:check is red."
+      "Repeated auth attempts will keep timing out if Login/MFA is not completed in the Playwright auth browser.",
+      "Running BC tests with stale storageState would only create misleading evidence."
     ],
     "requiredPreparation": [
-      "Complete Login/MFA in the Playwright auth window.",
-      "Require auth:bc:check canUseStoredAuth=true."
+      "Complete Login/MFA in the Playwright-opened browser window, not only in normal Chrome/Codex.",
+      "Wait until Role Center, Search/Tell Me, My Settings or another Business Central shell signal is visible.",
+      "Run npm run auth:bc:check and require canUseStoredAuth=true."
     ]
   },
   "latestTarget037MasterdataFoundationCheckpoint": {
@@ -8384,9 +8385,9 @@
     "nextRequiredAction": "Complete attended Login/MFA in the auth browser until Business Central Role Center/Search/My Settings is visible; then run npm run auth:bc:check before rerunning D2F. If sign-in stalls or times out, run npm run auth:bc:diagnose for a short redacted diagnosis."
   },
   "blockedBy": [
-    "auth:storage-state-too-old",
-    "auth:shell-validation-meta-too-old",
-    "auth:fresh-auth-diagnosis-stayed-on-microsoft-sign-in"
+    "auth:playwright-window-stayed-on-microsoft-sign-in",
+    "auth:shell-signal-not-detected",
+    "auth:storage-state-not-refreshed"
   ],
   "warnings": [
     "D31 remains the right next VAT route, but it must wait for a fresh Business Central shell validation.",
@@ -9034,30 +9035,16 @@
     "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY"
   },
   "latestTarget027D31AuthRefreshAttempt": {
-    "at": "2026-07-03T08:08:00.000Z",
-    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "instance": "playthru",
-    "company": "UNIVERSAARL-DE",
-    "result": "blocked-auth-before-bc-shell",
-    "commands": [
-      "npm run auth:bc:check",
-      "npm run auth:bc",
-      "npm run auth:bc:diagnose"
-    ],
-    "blockedBy": [
-      "auth:storage-state-too-old",
-      "auth:shell-validation-meta-too-old",
-      "auth:fresh-auth-diagnosis-stayed-on-microsoft-sign-in"
-    ],
-    "learning": "Playwright auth must be refreshed in the Playwright-opened browser context; normal browser login does not satisfy the target workflow gate.",
-    "noBcShellReached": true,
-    "setupChanged": false,
-    "masterDataChanged": false,
-    "draftCreated": false,
-    "previewPosting": false,
-    "posted": false,
-    "apiShortcut": false,
-    "nextSafeAction": "Finish Login/MFA inside the Playwright auth window until a Business Central shell signal is visible, require auth:bc:check canUseStoredAuth=true, then rerun D31 read-only discovery."
+    "command": "npm run auth:bc",
+    "timeoutMs": 600000,
+    "targetSource": "FIBU_BOOK5_BC_URL with current.json override",
+    "expectedInstance": "playthru",
+    "expectedCompany": "UNIVERSAARL-DE",
+    "diagnosisHost": "login.microsoftonline.com",
+    "diagnosisPathname": "/{tenant-guid}/oauth2/authorize",
+    "diagnosisTitle": "Bei Ihrem Konto anmelden",
+    "shellSignalDetected": false,
+    "savedState": false
   },
   "stateConsistencyRepair": {
     "at": "2026-07-03T08:35:00.000Z",
@@ -9075,5 +9062,6 @@
     "setupChanged": false,
     "previewPosting": false,
     "posted": false
-  }
+  },
+  "latestTarget027D31AuthRefreshResult": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json"
 }

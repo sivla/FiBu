@@ -1,13 +1,47 @@
 {
   "schemaVersion": 1,
-  "activeCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "status": "blocked-auth-before-bc-shell",
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+  "source": "playwright-auth-refresh-attempt",
+  "resultStatus": "blocked-auth-before-bc-shell",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "mode": "universaarl-target-execution",
-  "activeArea": "universaarl-vat-assisted-setup-readonly-discovery",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
-  "summary": "Ran the active D31 Playwright auth refresh gate. The browser targeted playthru / UNIVERSAARL-DE but stayed on Microsoft sign-in until timeout; no Business Central shell signal and no storage state were saved.",
+  "page": "not reached - Microsoft sign-in page before Business Central shell",
+  "url": "redacted-login.microsoftonline.com",
+  "actionsTaken": [
+    "Ran npm run agent:preflight, agent:context, agent:dry-run and agent:run-plan before the auth attempt.",
+    "Ran npm run auth:bc for the active D31 auth refresh gate.",
+    "The Playwright auth browser targeted playthru / UNIVERSAARL-DE via current.json override.",
+    "The command waited 600000 ms and timed out on Microsoft sign-in without a Business Central shell signal."
+  ],
+  "actionsNotTaken": [
+    "No Business Central shell page was accepted as evidence.",
+    "No D31 VAT Assisted Setup or Manual Setup page was opened.",
+    "No setup values were typed.",
+    "No wizard Next, Finish, Apply or OK was clicked.",
+    "No master data, document, Preview Posting, Posting, payment or API shortcut occurred.",
+    "No bookmaster change was made."
+  ],
+  "authDiagnosis": {
+    "command": "npm run auth:bc",
+    "timeoutMs": 600000,
+    "targetSource": "FIBU_BOOK5_BC_URL with current.json override",
+    "expectedInstance": "playthru",
+    "expectedCompany": "UNIVERSAARL-DE",
+    "diagnosisHost": "login.microsoftonline.com",
+    "diagnosisPathname": "/{tenant-guid}/oauth2/authorize",
+    "diagnosisTitle": "Bei Ihrem Konto anmelden",
+    "shellSignalDetected": false,
+    "savedState": false
+  },
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "screenshots": [],
   "proved": [
     "The auth refresh command uses the intended playthru / UNIVERSAARL-DE target override.",
     "No Business Central shell signal was reached during this attempt.",
@@ -28,16 +62,6 @@
     "Do not rerun D31 read-only discovery until auth:bc:check returns canUseStoredAuth=true.",
     "Normal browser login or old storageState must not be accepted as current Business Central evidence."
   ],
-  "setupChanged": false,
-  "setupChangeAttempted": false,
-  "masterDataChanged": false,
-  "draftCreated": false,
-  "previewPosting": false,
-  "posted": false,
-  "apiShortcut": false,
-  "screenshots": [],
-  "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "nextStep": "Complete Login/MFA inside the Playwright-opened browser until Business Central shell is visible, then require npm run auth:bc:check canUseStoredAuth=true.",
   "nextStepDecision": {
     "currentCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
@@ -84,49 +108,17 @@
       "Run npm run auth:bc:check and require canUseStoredAuth=true."
     ]
   },
-  "runId": "TARGET-027D31-AUTH-REFRESH-ATTEMPT",
-  "completedAt": "2026-07-03T07:37:43.712Z",
-  "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "resultStatus": "blocked-auth-before-bc-shell",
-  "latestTarget027D31AuthRefreshAttempt": {
-    "at": "2026-07-03T08:08:00.000Z",
-    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "instance": "playthru",
-    "company": "UNIVERSAARL-DE",
-    "result": "blocked-auth-before-bc-shell",
-    "commands": [
-      "npm run auth:bc:check",
-      "npm run auth:bc",
-      "npm run auth:bc:diagnose"
-    ],
-    "blockedBy": [
-      "auth:storage-state-too-old",
-      "auth:shell-validation-meta-too-old",
-      "auth:fresh-auth-diagnosis-stayed-on-microsoft-sign-in"
-    ],
-    "learning": "Playwright auth must be refreshed in the Playwright-opened browser context; normal browser login does not satisfy the target workflow gate.",
-    "noBcShellReached": true,
-    "setupChanged": false,
-    "masterDataChanged": false,
-    "draftCreated": false,
-    "previewPosting": false,
-    "posted": false,
-    "apiShortcut": false,
-    "nextSafeAction": "Finish Login/MFA inside the Playwright auth window until a Business Central shell signal is visible, require auth:bc:check canUseStoredAuth=true, then rerun D31 read-only discovery."
-  },
-  "updatedAt": "2026-07-03T09:15:00.000Z",
-  "actionsTaken": [
-    "Ran npm run agent:preflight, agent:context, agent:dry-run and agent:run-plan before the auth attempt.",
-    "Ran npm run auth:bc for the active D31 auth refresh gate.",
-    "The Playwright auth browser targeted playthru / UNIVERSAARL-DE via current.json override.",
-    "The command waited 600000 ms and timed out on Microsoft sign-in without a Business Central shell signal."
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/README.md",
+    ".agent/state/current.json",
+    ".agent/state/last_run_summary.json"
   ],
-  "actionsNotTaken": [
-    "No Business Central shell page was accepted as evidence.",
-    "No D31 VAT Assisted Setup or Manual Setup page was opened.",
-    "No setup values were typed.",
-    "No wizard Next, Finish, Apply or OK was clicked.",
-    "No master data, document, Preview Posting, Posting, payment or API shortcut occurred.",
-    "No bookmaster change was made."
-  ]
+  "evidenceRefs": [],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "statePatch": {},
+  "reason": "Active case blocked at Playwright auth shell validation before any Business Central UI evidence.",
+  "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+  "completedAt": "2026-07-03T09:15:00.000Z"
 }
