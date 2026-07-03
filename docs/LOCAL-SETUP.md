@@ -43,6 +43,14 @@ npm run auth:bc:check
 
 The check must return `canUseStoredAuth=true` before any Business Central workflow or read-only evidence run starts.
 
+If the target instance or company is unclear, inspect the redacted target URL build:
+
+```bash
+npm run auth:bc:target
+```
+
+This command may show that the local source URL comes from an older environment, while the active `.agent/state/current.json` override rewrites it to the target environment and company. It never prints the full URL, tenant ID, cookies, tokens, or auth values.
+
 For a compact go/no-go decision that also points to the last recorded auth blocker, run:
 
 ```bash

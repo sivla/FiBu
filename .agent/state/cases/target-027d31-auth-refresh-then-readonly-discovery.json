@@ -42,6 +42,7 @@
     "api-shortcut"
   ],
   "acceptanceCriteria": [
+    "auth:bc:target confirms the redacted target URL points to playthru / UNIVERSAARL-DE.",
     "auth:bc uses a local ignored persistent Playwright profile for attended Login/MFA retries.",
     "auth.setup writes TARGET-027D31-AUTH-result.json on success or failure.",
     "npm run auth:bc:doctor is used as fast go/no-go before a long auth refresh retry.",
@@ -94,7 +95,7 @@
     "lastAuthRefreshResult": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json"
   },
   "nextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-  "updatedAt": "2026-07-03T08:58:00.000Z",
+  "updatedAt": "2026-07-03T09:05:00.000Z",
   "latestAuthSetupResultWriter": {
     "at": "2026-07-03T08:40:00.000Z",
     "script": "playwright/core/auth.setup.ts",
@@ -116,5 +117,19 @@
     "setupChanged": false,
     "previewPosting": false,
     "posted": false
+  },
+  "latestAuthTargetDiagnosis": {
+    "at": "2026-07-03T09:05:00.000Z",
+    "command": "npm run auth:bc:target",
+    "source": "FIBU_BOOK5_BC_URL",
+    "sourcePathRedacted": "/{tenant-guid}/MCP_1_20260210",
+    "targetPathRedacted": "/{tenant-guid}/playthru",
+    "sourceEnvironmentCandidate": "MCP_1_20260210",
+    "targetEnvironment": "playthru",
+    "expectedEnvironment": "playthru",
+    "expectedCompany": "UNIVERSAARL-DE",
+    "targetCompany": "UNIVERSAARL-DE",
+    "targetMatchesState": true,
+    "conclusion": "Local source URL still comes from the legacy MCP environment, but auth target construction rewrites it to playthru / UNIVERSAARL-DE before opening Playwright."
   }
 }

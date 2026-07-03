@@ -4750,6 +4750,7 @@
         "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY"
       ],
       "allowedActions": [
+        "run-auth-bc-target-diagnosis",
         "run-auth-bc-doctor",
         "refresh-business-central-auth",
         "run-auth-bc-check",
@@ -4779,10 +4780,10 @@
         "api-shortcut"
       ],
       "caseFile": ".agent/state/cases/target-027d31-auth-refresh-then-readonly-discovery.json",
-      "updatedAt": "2026-07-03T08:58:00.000Z",
-      "reason": "Current open gate; persistent auth profile should reduce repeated Microsoft sign-in resets, but auth:bc:check must become green before any BC workflow.",
+      "updatedAt": "2026-07-03T09:05:00.000Z",
+      "reason": "Current open gate; target URL construction is verified, but auth:bc:check must become green before any BC workflow.",
       "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
-      "result": "Auth setup now uses a local ignored persistent Playwright profile for attended login retries; latest validation still blocked before BC shell.",
+      "result": "Auth target diagnosis confirms legacy source URL is rewritten to playthru / UNIVERSAARL-DE; auth still needs Playwright shell completion.",
       "blockedBy": [
         "auth:playwright-window-stayed-before-business-central-shell",
         "auth:shell-signal-not-detected",
@@ -4790,7 +4791,7 @@
       ]
     }
   ],
-  "lastUpdated": "2026-07-03T08:58:00.000Z",
+  "lastUpdated": "2026-07-03T09:05:00.000Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",

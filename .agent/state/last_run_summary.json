@@ -7,11 +7,11 @@
   "mode": "universaarl-target-execution",
   "activeArea": "universaarl-vat-assisted-setup-readonly-discovery",
   "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
-  "summary": "Improved Business Central Playwright auth retry path: auth:bc now uses an ignored local persistent Playwright profile so attended Microsoft Login/MFA progress can survive repeated attempts. A short validation still blocked before Business Central shell and wrote normalized auth evidence.",
+  "summary": "Added a redacted Business Central auth target diagnosis. It shows the local source URL still has legacy MCP_1_20260210 in the path, but the active auth target is rewritten to playthru / UNIVERSAARL-DE before Playwright opens it.",
   "proved": [
-    "auth.setup compiles with persistent Playwright context support.",
-    "auth:bc still writes TARGET-027D31-AUTH-result.json on timeout/failure.",
-    "The latest short auth validation still stayed before Business Central shell and saved no storageState."
+    "auth:bc:target can build and print a redacted target diagnosis without opening BC.",
+    "auth:bc:doctor now includes authTarget details.",
+    "The target URL construction matches current state: playthru / UNIVERSAARL-DE."
   ],
   "notProved": [
     "No fresh Business Central shell context is proven.",
@@ -19,9 +19,8 @@
     "No setup or posting readiness is proven."
   ],
   "blockedBy": [
-    "auth:playwright-window-stayed-before-business-central-shell",
-    "auth:shell-signal-not-detected",
-    "auth:storage-state-not-refreshed"
+    "auth:storage-state-too-old",
+    "auth:shell-validation-meta-too-old"
   ],
   "warnings": [
     "Do not run D31 or other BC workflows while auth:bc:doctor reports canRunBusinessCentralWorkflows=false."
@@ -39,14 +38,14 @@
   "nextStepDecision": {
     "currentCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "lastEvidenceSummary": "auth:bc now uses a local persistent Playwright profile and still correctly writes a blocked result when the shell is not reached. The latest short validation stayed on Microsoft sign-in and saved no storageState.",
+    "lastEvidenceSummary": "auth:bc:target confirms the local source URL path is legacy MCP_1_20260210, but the active auth target is rewritten to playthru / UNIVERSAARL-DE. Auth remains blocked because the Playwright shell validation is stale and the latest attempt did not reach BC shell.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The active blocker remains Playwright auth, but the retry path is now more practical because Login/MFA progress can persist under the ignored .auth profile.",
+    "reason": "The next practical blocker is still Playwright login completion, not target URL construction. The target diagnostic prevents wasting time on a false MCP-vs-playthru suspicion.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
         "status": "ready-next",
-        "reason": "Use persistent Playwright auth profile; complete Login/MFA in that browser and require auth:bc:check green."
+        "reason": "Target URL construction is verified; complete Login/MFA in the persistent Playwright auth profile and require auth:bc:check green."
       },
       {
         "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
@@ -56,7 +55,7 @@
       {
         "caseId": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
         "status": "needs-ui-discovery-first",
-        "reason": "Requires D31 read-only Assisted Setup / Manual Setup route evidence."
+        "reason": "Requires D31 read-only route evidence."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
@@ -70,26 +69,26 @@
       }
     ],
     "queueChangesMade": [
-      "Changed auth.setup to use an ignored persistent Playwright profile for attended login retries.",
-      "Kept D31 and downstream VAT/setup actions blocked while auth:bc:check remains red."
+      "Added auth:bc:target to show redacted source and target environment/company construction.",
+      "Extended auth:bc:doctor with authTarget so MCP-vs-playthru confusion is visible in one command."
     ],
     "selectedNextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "whySelectedNextCaseIsBest": "It is still the only open queue item and now has a less wasteful attended-login retry path.",
+    "whySelectedNextCaseIsBest": "It is still the only open queue item; target construction is now verified, so the remaining unblock is completing Playwright auth to BC shell.",
     "risksBeforeNextCase": [
-      "The persistent profile is not Business Central evidence by itself.",
-      "Normal Chrome login still does not refresh Playwright storageState.",
+      "The source URL still containing MCP can look misleading if the override is not inspected.",
+      "The persistent profile is not BC evidence by itself.",
       "D31 must not run until auth:bc:check is green."
     ],
     "requiredPreparation": [
-      "Run npm run auth:bc and complete Login/MFA in the Playwright auth profile window.",
-      "Wait for a Business Central shell signal.",
+      "Run npm run auth:bc:target when target confusion appears.",
+      "Run npm run auth:bc in the persistent Playwright auth profile and complete Login/MFA until BC shell appears.",
       "Run npm run auth:bc:check and require canUseStoredAuth=true."
     ]
   },
-  "runId": "TARGET-027D31-PERSISTENT-AUTH-PROFILE",
-  "completedAt": "2026-07-03T08:58:00.000Z",
+  "runId": "TARGET-027D31-AUTH-TARGET-DIAGNOSIS",
+  "completedAt": "2026-07-03T09:05:00.000Z",
   "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "resultStatus": "local-progress-persistent-auth-profile-added",
+  "resultStatus": "local-progress-auth-target-diagnosis-added",
   "latestTarget027D31AuthRefreshAttempt": {
     "at": "2026-07-03T08:08:00.000Z",
     "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
@@ -116,16 +115,16 @@
     "apiShortcut": false,
     "nextSafeAction": "Finish Login/MFA inside the Playwright auth window until a Business Central shell signal is visible, require auth:bc:check canUseStoredAuth=true, then rerun D31 read-only discovery."
   },
-  "updatedAt": "2026-07-03T08:58:00.000Z",
+  "updatedAt": "2026-07-03T09:05:00.000Z",
   "actionsTaken": [
     "Ran git status --short and git pull --ff-only; repository was up to date and clean before changes.",
-    "Ran npm run auth:bc:doctor; it still blocked BC workflows because stored auth is too old.",
-    "Changed auth.setup.ts to use launchPersistentContext with playwright/.auth/bc-profile/.",
-    "Documented the persistent auth profile in docs/LOCAL-SETUP.md and playwright/LEARNINGS.md.",
-    "Ran a short BC_AUTH_TIMEOUT_MS=5000 npm run auth:bc validation; it still blocked before BC shell and wrote normalized result evidence."
+    "Added scripts/agent/auth-target-diagnose.mjs and package script auth:bc:target.",
+    "Ran npm run auth:bc:target; it confirmed source MCP path is rewritten to playthru / UNIVERSAARL-DE.",
+    "Extended npm run auth:bc:doctor so it includes the redacted auth target diagnosis.",
+    "Updated docs/LOCAL-SETUP.md with the target-diagnosis command."
   ],
   "actionsNotTaken": [
-    "No Business Central shell workflow was reached.",
+    "No Business Central workflow was opened.",
     "No D31 VAT setup page was opened.",
     "No setup, master data, draft, Preview Posting, Posting, payment or API shortcut occurred.",
     "No bookmaster change was made."

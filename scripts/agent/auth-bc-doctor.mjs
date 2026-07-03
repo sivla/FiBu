@@ -24,6 +24,28 @@ function runAuthCheck() {
   }
 }
 
+function runAuthTargetDiagnosis() {
+  try {
+    const output = execSync('npm run --silent auth:bc:target', {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    return { exitCode: 0, output: JSON.parse(output) };
+  } catch (error) {
+    const rawOutput = `${error.stdout ?? ''}`.trim();
+    let output = null;
+    try {
+      output = rawOutput ? JSON.parse(rawOutput) : null;
+    } catch {
+      output = null;
+    }
+    return {
+      exitCode: typeof error.status === 'number' ? error.status : 1,
+      output,
+    };
+  }
+}
+
 function readJsonIfExists(path) {
   const resolved = resolve(path);
   if (!existsSync(resolved)) return null;
@@ -36,6 +58,7 @@ const lastAuthResult =
     ? readJsonIfExists(current.latestTarget027D31AuthRefreshResult)
     : null;
 const authCheck = runAuthCheck();
+const authTarget = runAuthTargetDiagnosis();
 const check = authCheck.output ?? {};
 const blockedBy = Array.isArray(check.blockedBy) ? check.blockedBy : ['auth-check-unavailable'];
 const canUseStoredAuth = check.canUseStoredAuth === true;
@@ -58,6 +81,27 @@ const result = {
     metaAgeHours: check.metaAgeHours ?? null,
     maxAgeHours: check.maxAgeHours ?? null,
   },
+  authTarget: authTarget.output
+    ? {
+        exitCode: authTarget.exitCode,
+        canBuildTargetUrl: authTarget.output.canBuildTargetUrl === true,
+        source: authTarget.output.source ?? '',
+        sourcePathRedacted: authTarget.output.sourcePathRedacted ?? '',
+        targetPathRedacted: authTarget.output.targetPathRedacted ?? '',
+        sourceEnvironmentCandidate: authTarget.output.sourceEnvironmentCandidate ?? '',
+        targetEnvironment: authTarget.output.targetEnvironment ?? '',
+        expectedEnvironment: authTarget.output.expectedEnvironment ?? '',
+        sourceCompanyParamPresent: authTarget.output.sourceCompanyParamPresent === true,
+        targetCompanyParamPresent: authTarget.output.targetCompanyParamPresent === true,
+        expectedCompany: authTarget.output.expectedCompany ?? '',
+        targetCompany: authTarget.output.targetCompany ?? '',
+        targetMatchesState: authTarget.output.targetMatchesState === true,
+      }
+    : {
+        exitCode: authTarget.exitCode,
+        canBuildTargetUrl: false,
+        targetMatchesState: false,
+      },
   lastAuthRefreshAttempt: lastAuthResult
     ? {
         resultPath: current.latestTarget027D31AuthRefreshResult,

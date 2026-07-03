@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-03T08:58:00.000Z",
+  "updatedAt": "2026-07-03T09:05:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -7954,14 +7954,14 @@
   "nextStepDecision": {
     "currentCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "lastEvidenceSummary": "auth:bc now uses a local persistent Playwright profile and still correctly writes a blocked result when the shell is not reached. The latest short validation stayed on Microsoft sign-in and saved no storageState.",
+    "lastEvidenceSummary": "auth:bc:target confirms the local source URL path is legacy MCP_1_20260210, but the active auth target is rewritten to playthru / UNIVERSAARL-DE. Auth remains blocked because the Playwright shell validation is stale and the latest attempt did not reach BC shell.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The active blocker remains Playwright auth, but the retry path is now more practical because Login/MFA progress can persist under the ignored .auth profile.",
+    "reason": "The next practical blocker is still Playwright login completion, not target URL construction. The target diagnostic prevents wasting time on a false MCP-vs-playthru suspicion.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
         "status": "ready-next",
-        "reason": "Use persistent Playwright auth profile; complete Login/MFA in that browser and require auth:bc:check green."
+        "reason": "Target URL construction is verified; complete Login/MFA in the persistent Playwright auth profile and require auth:bc:check green."
       },
       {
         "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
@@ -7971,7 +7971,7 @@
       {
         "caseId": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
         "status": "needs-ui-discovery-first",
-        "reason": "Requires D31 read-only Assisted Setup / Manual Setup route evidence."
+        "reason": "Requires D31 read-only route evidence."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
@@ -7985,19 +7985,19 @@
       }
     ],
     "queueChangesMade": [
-      "Changed auth.setup to use an ignored persistent Playwright profile for attended login retries.",
-      "Kept D31 and downstream VAT/setup actions blocked while auth:bc:check remains red."
+      "Added auth:bc:target to show redacted source and target environment/company construction.",
+      "Extended auth:bc:doctor with authTarget so MCP-vs-playthru confusion is visible in one command."
     ],
     "selectedNextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "whySelectedNextCaseIsBest": "It is still the only open queue item and now has a less wasteful attended-login retry path.",
+    "whySelectedNextCaseIsBest": "It is still the only open queue item; target construction is now verified, so the remaining unblock is completing Playwright auth to BC shell.",
     "risksBeforeNextCase": [
-      "The persistent profile is not Business Central evidence by itself.",
-      "Normal Chrome login still does not refresh Playwright storageState.",
+      "The source URL still containing MCP can look misleading if the override is not inspected.",
+      "The persistent profile is not BC evidence by itself.",
       "D31 must not run until auth:bc:check is green."
     ],
     "requiredPreparation": [
-      "Run npm run auth:bc and complete Login/MFA in the Playwright auth profile window.",
-      "Wait for a Business Central shell signal.",
+      "Run npm run auth:bc:target when target confusion appears.",
+      "Run npm run auth:bc in the persistent Playwright auth profile and complete Login/MFA until BC shell appears.",
       "Run npm run auth:bc:check and require canUseStoredAuth=true."
     ]
   },
@@ -9114,5 +9114,19 @@
     "setupChanged": false,
     "previewPosting": false,
     "posted": false
+  },
+  "latestAuthTargetDiagnosis": {
+    "at": "2026-07-03T09:05:00.000Z",
+    "command": "npm run auth:bc:target",
+    "source": "FIBU_BOOK5_BC_URL",
+    "sourcePathRedacted": "/{tenant-guid}/MCP_1_20260210",
+    "targetPathRedacted": "/{tenant-guid}/playthru",
+    "sourceEnvironmentCandidate": "MCP_1_20260210",
+    "targetEnvironment": "playthru",
+    "expectedEnvironment": "playthru",
+    "expectedCompany": "UNIVERSAARL-DE",
+    "targetCompany": "UNIVERSAARL-DE",
+    "targetMatchesState": true,
+    "conclusion": "Local source URL still comes from the legacy MCP environment, but auth target construction rewrites it to playthru / UNIVERSAARL-DE before opening Playwright."
   }
 }
