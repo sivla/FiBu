@@ -160,6 +160,13 @@ if (needsBusinessCentralAuth) {
     requiredBefore: ['execute-playwright', 'execute-business-central'],
     expectedFailureMeans: operatorAuthUnblockStep,
   }));
+  steps.push(step('run-command', {
+    command: 'npm run auth:bc:probe',
+    reason: 'Run a short attended Playwright auth probe when a human believes login is complete, so repeated full 10-minute auth waits are avoided.',
+    allowed: true,
+    requiredBefore: ['npm run auth:bc', 'execute-playwright', 'execute-business-central'],
+    expectedFailureMeans: 'The Playwright auth window is still before Business Central shell; complete Login/MFA in that window or avoid rerunning long auth loops.',
+  }));
 }
 
 for (const path of dryRun.filesToRead ?? []) {
@@ -285,6 +292,7 @@ const runPlan = {
     ...(needsBusinessCentralAuth ? ['npm run auth:bc:target'] : []),
     ...(needsBusinessCentralAuth ? ['npm run auth:bc:doctor'] : []),
     ...(needsBusinessCentralAuth ? ['npm run auth:bc:check'] : []),
+    ...(needsBusinessCentralAuth ? ['npm run auth:bc:probe'] : []),
     'npm run check:encoding',
     'git diff --check',
   ],
