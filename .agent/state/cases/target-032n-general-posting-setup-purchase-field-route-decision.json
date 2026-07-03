@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-032N-GENERAL-POSTING-SETUP-PURCHASE-FIELD-ROUTE-DECISION",
+  "status": "done",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "targetWorld": "Universaarl",
+  "activeArea": "universaarl-general-posting-setup-purchase-field-route-decision",
+  "purpose": "Decide whether TARGET-032M evidence justifies a new tightly scoped Page 314 list-edit gate for only Wareneinkaufskonto 5400 on the existing INLAND/WAREN row, or whether General Posting Setup should be parked pending another source-backed route.",
+  "sourceCases": [
+    "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE",
+    "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY"
+  ],
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-032m-general-posting-setup-purchase-fasttab-recovery/TARGET-032M-result.json",
+    "playwright/projects/fibu-book5/img/target-032m-030-after-einkauf-expand.png",
+    "playwright/projects/fibu-book5/img/target-032m-050-reopen-proof.png"
+  ],
+  "allowedActions": [
+    "read-target-032m-result",
+    "classify-page314-visible-purchase-column",
+    "decide-next-controlled-route",
+    "write-result-json",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central-for-write",
+    "click-new",
+    "click-edit-list",
+    "click-copy-as-write-route",
+    "type-values",
+    "write-general-posting-setup",
+    "write-vat-posting-setup",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-posting-readiness"
+  ],
+  "decisionOptions": [
+    {
+      "id": "allow-narrow-list-edit-gate",
+      "meaning": "Create a follow-up case that may click Liste bearbeiten only after verifying existing INLAND/WAREN/4400 row and only target the visible Wareneinkaufskonto column with 5400."
+    },
+    {
+      "id": "park-general-posting-setup",
+      "meaning": "Consciously park General Posting Setup as partial and move to another Foundation blocker, keeping posting readiness locked."
+    },
+    {
+      "id": "source-check-first",
+      "meaning": "Check Microsoft Learn or BC behavior/source notes before unlocking any list edit route."
+    }
+  ],
+  "acceptanceCriteria": [
+    "No BC or Playwright execution is required for TARGET-032N.",
+    "Decision references TARGET-032M screenshots and Result JSON.",
+    "If List Edit is selected, the follow-up case must forbid New, Copy, VAT setup, documents, Preview Posting and Posting.",
+    "No posting readiness claim is made."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY",
+    "lastEvidenceSummary": "TARGET-032M shows Page 314 list context with existing INLAND/WAREN/4400 and a visible Wareneinkaufskonto column, but no distinct editable purchase field was proven and no 5400 was written.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Repeating the card FastTab route is obsolete; the new evidence points to a route decision about tightly scoped Page 314 list editing or conscious parking.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-032N-GENERAL-POSTING-SETUP-PURCHASE-FIELD-ROUTE-DECISION",
+        "status": "ready-next",
+        "reason": "Required before unlocking a new List Edit gate."
+      },
+      {
+        "caseId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+        "status": "ready-after-current",
+        "reason": "VAT matrix should wait until General Posting Setup is solved or parked."
+      },
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "ready-after-current",
+        "reason": "Dimensions can resume after posting matrix boundaries are clear."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C remains blocked until General Posting Setup and VAT setup are proven."
+      }
+    ],
+    "queueChangesMade": [
+      "TARGET-032M moved to blocked.",
+      "TARGET-032N added as local route decision."
+    ],
+    "selectedNextCase": "TARGET-032N-GENERAL-POSTING-SETUP-PURCHASE-FIELD-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "It prevents List Edit from being silently unlocked and turns the new UI observation into a conscious route choice.",
+    "risksBeforeNextCase": [
+      "Do not use List Edit without explicit new gate.",
+      "Do not create duplicate INLAND/WAREN rows.",
+      "Do not claim posting readiness from partial setup."
+    ],
+    "requiredPreparation": [
+      "Read TARGET-032M result and screenshots.",
+      "Decide whether visible list column is enough for a narrow write gate.",
+      "Keep VAT and document work locked."
+    ]
+  },
+  "updatedAt": "2026-07-03T06:15:39.118Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-032n-general-posting-setup-purchase-field-route-decision/TARGET-032N-result.json",
+  "decision": "allow-narrow-list-edit-gate",
+  "nextCase": "TARGET-032O-GENERAL-POSTING-SETUP-PURCHASE-LIST-EDIT-GATE"
+}

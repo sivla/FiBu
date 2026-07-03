@@ -1,68 +1,66 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
-  "caseId": "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE",
-  "status": "blocked-partial-sales-account-recovered",
-  "completedAt": "2026-07-03T05:44:12.572Z",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-032l-general-posting-setup-controlled-value-write-gate/TARGET-032L-result.json",
+  "runId": "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY",
+  "caseId": "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY",
+  "status": "blocked",
+  "completedAt": "2026-07-03T06:10:42.011Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-032m-general-posting-setup-purchase-fasttab-recovery/TARGET-032M-result.json",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "bcRun": true,
-  "playwrightRun": true,
-  "setupChanged": true,
+  "bcRun": false,
+  "playwrightRun": false,
+  "setupChanged": false,
   "masterDataChanged": false,
   "draftCreated": false,
   "previewPosting": false,
   "posted": false,
   "apiShortcut": false,
-  "summary": "TARGET-032L recovered the partial INLAND/WAREN General Posting Setup row so Warenverkaufskonto 4400 is visible after reopen; Wareneinkaufskonto 5400 remains blocked/unproven.",
+  "summary": "TARGET-032P parked General Posting Setup as partial after TARGET-032O failed to persist Wareneinkaufskonto 5400; next is separate VAT matrix route.",
   "proved": [
     "Business Central stayed in playthru / UNIVERSAARL-DE.",
-    "Page 314 Buchungsmatrix Einrichtung / General Posting Setup was opened directly.",
-    "Standalone Neu was clicked exactly once.",
-    "No values were typed in General Posting Setup.",
-    "No Edit List, Copy, configuration package route, document, Preview Posting, Posting, Payment or API shortcut occurred.",
-    "Page 314 was reopened after the Neu gate for side-effect proof."
+    "Page 314 reopen proof shows partial INLAND/WAREN setup with Sales Account 4400.",
+    "The case stopped without New, VAT setup, document, Preview Posting, Posting, Payment or API shortcut."
   ],
   "notProved": [
-    "No INLAND/WAREN General Posting Setup row with 4400/5400 is proven.",
-    "No Sales Account 4400 or Purchase Account 5400 is stored by this case.",
+    "Wareneinkaufskonto 5400 is not proven.",
     "No VAT Posting Setup row is proven.",
     "No posting readiness is proven.",
+    "No document Preview Posting is proven.",
     "No G/L Entry, VAT Entry or Value Entry is proven.",
     "No complete SKR04 chart, tax advisor approval or German compliance claim is proven."
   ],
   "warnings": [],
   "screenshots": [
-    "playwright/projects/fibu-book5/img/target-032l-010-before-card-write.png",
-    "playwright/projects/fibu-book5/img/target-032l-020-page395-empty-card.png",
-    "playwright/projects/fibu-book5/img/target-032l-030-after-card-write.png",
-    "playwright/projects/fibu-book5/img/target-032l-040-reopen-proof.png"
+    "playwright/projects/fibu-book5/img/target-032m-010-before-recovery.png",
+    "playwright/projects/fibu-book5/img/target-032m-020-card-before-einkauf.png",
+    "playwright/projects/fibu-book5/img/target-032m-030-after-einkauf-expand.png",
+    "playwright/projects/fibu-book5/img/target-032m-040-after-purchase-recovery.png",
+    "playwright/projects/fibu-book5/img/target-032m-050-reopen-proof.png"
   ],
-  "nextCase": "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY",
-  "nextCaseFile": ".agent/state/cases/target-032l-general-posting-setup-controlled-value-write-gate.json",
-  "nextStep": "Run TARGET-032L through the proven Page 395 Buchungsmatrixkarte route; write only INLAND/WAREN/4400/5400 if fields are unambiguous, then reopen Page 314.",
+  "nextCase": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+  "nextCaseFile": ".agent/state/cases/target-032n-general-posting-setup-purchase-field-route-decision.json",
+  "nextStep": "Run TARGET-032N as local route decision: choose whether a strictly scoped Page 314 List Edit gate for only Wareneinkaufskonto 5400 is justified, or park General Posting Setup partial.",
   "nextStepDecision": {
-    "currentCase": "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-032L proves the Page 395 card route can recover the visible sales account to 4400 on INLAND/WAREN, but Wareneinkaufskonto 5400 remains unproven.",
+    "currentCase": "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY",
+    "lastEvidenceSummary": "TARGET-032M shows Page 314 list context with existing INLAND/WAREN/4400 and a visible Wareneinkaufskonto column, but no distinct editable purchase field was proven and no 5400 was written.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "Repeating the broad value-write route would risk overwriting the partial setup; the next case must target only the missing purchase FastTab/field route.",
+    "reason": "Repeating the card FastTab route is obsolete; the new evidence points to a route decision about tightly scoped Page 314 list editing or conscious parking.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY",
+        "caseId": "TARGET-032N-GENERAL-POSTING-SETUP-PURCHASE-FIELD-ROUTE-DECISION",
         "status": "ready-next",
-        "reason": "Narrowest recovery: existing row, keep 4400, recover only 5400."
+        "reason": "Required before unlocking a new List Edit gate."
       },
       {
         "caseId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
         "status": "ready-after-current",
-        "reason": "VAT matrix should wait until General Posting Setup is either complete or consciously parked."
+        "reason": "VAT matrix should wait until General Posting Setup is solved or parked."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-after-current",
-        "reason": "Dimensions can resume after the posting matrix blocker is solved or parked."
+        "reason": "Dimensions can resume after posting matrix boundaries are clear."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
@@ -71,21 +69,24 @@
       }
     ],
     "queueChangesMade": [
-      "TARGET-032L moved to blocked-partial-sales-account-recovered.",
-      "TARGET-032M added as the next narrow recovery case."
+      "TARGET-032M moved to blocked.",
+      "TARGET-032N added as local route decision."
     ],
-    "selectedNextCase": "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY",
-    "whySelectedNextCaseIsBest": "It preserves the useful partial setup and aims only at the missing purchase account route.",
+    "selectedNextCase": "TARGET-032N-GENERAL-POSTING-SETUP-PURCHASE-FIELD-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "It prevents List Edit from being silently unlocked and turns the new UI observation into a conscious route choice.",
     "risksBeforeNextCase": [
-      "Duplicate INLAND/WAREN rows must not be created.",
-      "Sales account 4400 must not be overwritten.",
-      "VAT/setup/document/posting actions remain locked."
+      "Do not use List Edit without explicit new gate.",
+      "Do not create duplicate INLAND/WAREN rows.",
+      "Do not claim posting readiness from partial setup."
     ],
     "requiredPreparation": [
-      "Use TARGET-032L reopen screenshot as starting truth.",
-      "Inspect Page 395 FastTabs and layout before typing.",
-      "Stop if Wareneinkaufskonto is not a distinct visible field."
+      "Read TARGET-032M result and screenshots.",
+      "Decide whether visible list column is enough for a narrow write gate.",
+      "Keep VAT and document work locked."
     ]
   },
-  "updatedAt": "2026-07-03T05:57:41.620Z"
+  "updatedAt": "2026-07-03T06:10:42.011Z",
+  "lastCase": "TARGET-032P-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE",
+  "lastCompletedCase": "TARGET-032P-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE",
+  "resultStatus": "observed"
 }

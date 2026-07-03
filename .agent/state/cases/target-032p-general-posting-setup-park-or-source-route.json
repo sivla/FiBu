@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-032P-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE",
+  "status": "done",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "targetWorld": "Universaarl",
+  "activeArea": "universaarl-general-posting-setup-park-or-source-route",
+  "purpose": "Close the Page 314 purchase account recovery sequence without pretending success. Park General Posting Setup as partial and avoid repeating exhausted UI routes.",
+  "sourceCases": [
+    "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY",
+    "TARGET-032N-GENERAL-POSTING-SETUP-PURCHASE-FIELD-ROUTE-DECISION",
+    "TARGET-032O-GENERAL-POSTING-SETUP-PURCHASE-LIST-EDIT-GATE"
+  ],
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-032o-general-posting-setup-purchase-list-edit-gate/TARGET-032O-result.json",
+    "playwright/projects/fibu-book5/img/target-032o-040-after-one-cell-write-or-block.png",
+    "playwright/projects/fibu-book5/img/target-032o-050-reopen-proof.png"
+  ],
+  "decision": "park-general-posting-setup-partial-and-move-to-separate-vat-matrix-route",
+  "allowedActions": [
+    "read-target-032o-result",
+    "classify-ui-route",
+    "update-state-and-queue",
+    "write-result-json"
+  ],
+  "forbiddenActions": [
+    "open-business-central-for-write",
+    "repeat-page314-column-geometry-write",
+    "click-new",
+    "click-copy-as-write-route",
+    "write-vat-posting-setup",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-posting-readiness"
+  ],
+  "blockedRoutes": [
+    "Page 395 Einkauf FastTab distinct-field route",
+    "Page 314 header/row coordinate List Edit route"
+  ],
+  "reusableLearning": [
+    "Before claiming a BC grid cell is editable, screenshot QA must prove focus is inside a data cell, not a header/menu/tooltip.",
+    "A green Playwright run is not enough; reopen proof decides setup truth.",
+    "Partial INLAND/WAREN/4400 remains useful evidence but is not posting readiness."
+  ],
+  "nextCase": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+  "updatedAt": "2026-07-03T06:20:38.965Z"
+}

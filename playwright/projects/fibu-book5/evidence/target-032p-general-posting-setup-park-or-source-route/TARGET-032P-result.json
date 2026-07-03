@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-032P-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE",
+  "source": "local-route-decision",
+  "resultStatus": "observed",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "Local decision based on TARGET-032O screenshot QA",
+  "url": "",
+  "actionsTaken": [
+    "Read TARGET-032O result and screenshot QA.",
+    "Classified Page 314 coordinate List Edit route as exhausted because it opened a header/menu route and did not persist 5400.",
+    "Parked General Posting Setup as partial: INLAND/WAREN/4400 visible, Wareneinkaufskonto 5400 not proven.",
+    "Selected the separate VAT matrix route as next Foundation blocker, with posting readiness still locked."
+  ],
+  "actionsNotTaken": [
+    "No Business Central execution.",
+    "No Playwright execution.",
+    "No setup write.",
+    "No VAT setup write.",
+    "No document or draft.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No Payment.",
+    "No API shortcut."
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "proved": [
+    "Page 314 General Posting Setup remains partial, not complete.",
+    "The exact 032O list-edit geometry route must not be repeated.",
+    "The next Foundation work must keep O2C/P2P locked and handle VAT/setup separately."
+  ],
+  "notProved": [
+    "Wareneinkaufskonto 5400.",
+    "VAT Posting Setup.",
+    "Posting readiness.",
+    "Preview Posting or Posting."
+  ],
+  "blockedBy": [
+    "No safe UI route has persisted Wareneinkaufskonto 5400 after reopen."
+  ],
+  "warnings": [
+    "Do not erase the partial row; keep it as setup context and revisit only with a materially different route or source-backed method."
+  ],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true,
+    "noVatSetupChange": true,
+    "noPayment": true
+  },
+  "nextStepDecision": {
+    "currentCase": "TARGET-032P-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE",
+    "plannedNextCaseBeforeReview": "TARGET-032P-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE",
+    "lastEvidenceSummary": "TARGET-032O clicked List Edit and typed 5400, but screenshot QA shows a header/menu route and reopen proof still lacks 5400.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A local stop decision prevents repeating exhausted Page 314 routes and avoids false posting readiness.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+        "status": "ready-next",
+        "reason": "VAT matrix is a separate Foundation blocker and can be investigated without claiming Page 314 completion."
+      },
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "ready-after-current",
+        "reason": "Dimensions can resume after VAT matrix boundary is known."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C stays blocked until VAT/setup readiness."
+      },
+      {
+        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
+        "status": "ready-after-current",
+        "reason": "Useful after VAT and dimensions status are clear."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked TARGET-032O-GENERAL-POSTING-SETUP-PURCHASE-LIST-EDIT-GATE partially-completed/blocked route.",
+      "Marked TARGET-032P-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE done as local route stop.",
+      "Selected TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY as next active case."
+    ],
+    "selectedNextCase": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+    "whySelectedNextCaseIsBest": "It moves to the next distinct Foundation blocker without repeating a failed General Posting Setup UI route.",
+    "risksBeforeNextCase": [
+      "Do not write VAT setup without its case gate.",
+      "Do not start documents or Preview Posting.",
+      "Do not claim General Posting Setup is complete."
+    ],
+    "requiredPreparation": [
+      "Read previous VAT matrix evidence and source-backed route notes."
+    ]
+  },
+  "nextCase": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-032p-general-posting-setup-park-or-source-route/TARGET-032P-result.json"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-032o-general-posting-setup-purchase-list-edit-gate/TARGET-032O-result.json",
+    "playwright/projects/fibu-book5/img/target-032o-040-after-one-cell-write-or-block.png",
+    "playwright/projects/fibu-book5/img/target-032o-050-reopen-proof.png"
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {},
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run check:encoding",
+    "git diff --check"
+  ],
+  "reason": "General Posting Setup purchase account route parked as partial; move to separate VAT matrix route."
+}

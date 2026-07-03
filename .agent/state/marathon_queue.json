@@ -5,7 +5,7 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "queueId": "TARGET-MARATHON-002-UNIVERSAARL-REPO-READONLY-PREP",
-  "reason": "TARGET-032L produced a partial General Posting Setup row and blocked on the missing purchase account route; TARGET-032M is the narrow recovery step.",
+  "reason": "TARGET-032M safely blocked on purchase field recovery and selected a local route decision before any List Edit unlock.",
   "noEffectiveBusinessCentralActions": false,
   "forbiddenUntilUnblocked": [],
   "unblockCriteria": "Satisfied: UNIVERSAARL-DE exists and active Role Center context / Firmendaten read-only proof is available.",
@@ -4371,7 +4371,7 @@
     {
       "id": "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY",
       "order": 10200,
-      "status": "pending",
+      "status": "blocked",
       "priority": "high",
       "category": "general-posting-setup-purchase-fasttab-recovery",
       "expectedImpact": "complete-or-safely-park-inland-waren-purchase-account-route",
@@ -4407,10 +4407,129 @@
         "payment",
         "api-shortcut",
         "claim-posting-readiness"
+      ],
+      "completedAt": "2026-07-03T06:10:42.011Z",
+      "result": "Existing INLAND/WAREN/4400 row was verified and opened. Einkauf FastTab attempt returned to Page 314 list with Wareneinkaufskonto column visible, but no distinct editable purchase field was proven and no value was written.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-032m-general-posting-setup-purchase-fasttab-recovery/TARGET-032M-result.json",
+      "nextCase": "TARGET-032N-GENERAL-POSTING-SETUP-PURCHASE-FIELD-ROUTE-DECISION",
+      "setupChanged": false,
+      "masterDataChanged": false,
+      "previewPosting": false,
+      "posted": false,
+      "apiShortcut": false,
+      "screenshots": [
+        "playwright/projects/fibu-book5/img/target-032m-010-before-recovery.png",
+        "playwright/projects/fibu-book5/img/target-032m-020-card-before-einkauf.png",
+        "playwright/projects/fibu-book5/img/target-032m-030-after-einkauf-expand.png",
+        "playwright/projects/fibu-book5/img/target-032m-040-after-purchase-recovery.png",
+        "playwright/projects/fibu-book5/img/target-032m-050-reopen-proof.png"
+      ]
+    },
+    {
+      "id": "TARGET-032N-GENERAL-POSTING-SETUP-PURCHASE-FIELD-ROUTE-DECISION",
+      "order": 10201,
+      "status": "done",
+      "priority": "high",
+      "category": "general-posting-setup-purchase-field-route-decision",
+      "expectedImpact": "decide-list-edit-gate-or-park-general-posting-setup-partial",
+      "mayWorkEffectively": false,
+      "mayRunPlaywright": false,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Decide whether TARGET-032M evidence justifies a new tightly scoped Page 314 list-edit gate for only Wareneinkaufskonto 5400 on the existing INLAND/WAREN row, or whether General Posting Setup should be parked pending another source-backed route.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "caseFile": ".agent/state/cases/target-032n-general-posting-setup-purchase-field-route-decision.json",
+      "lookaheadStatus": "ready-next",
+      "dependsOn": [
+        "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY"
+      ],
+      "forbiddenActions": [
+        "leave-instance",
+        "commit-secrets",
+        "show-env-or-auth",
+        "fake-evidence",
+        "book-claim-without-evidence",
+        "open-business-central-for-write",
+        "click-new",
+        "click-edit-list",
+        "click-copy-as-write-route",
+        "type-values",
+        "write-general-posting-setup",
+        "write-vat-posting-setup",
+        "create-document-or-draft",
+        "preview-posting",
+        "post",
+        "payment",
+        "api-shortcut",
+        "claim-posting-readiness"
+      ],
+      "completedAt": "2026-07-03T06:15:39.118Z",
+      "result": "Selected a strict Page 314 List Edit gate for only Wareneinkaufskonto 5400.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-032n-general-posting-setup-purchase-field-route-decision/TARGET-032N-result.json",
+      "nextCase": "TARGET-032O-GENERAL-POSTING-SETUP-PURCHASE-LIST-EDIT-GATE"
+    },
+    {
+      "id": "TARGET-032O-GENERAL-POSTING-SETUP-PURCHASE-LIST-EDIT-GATE",
+      "caseId": "TARGET-032O-GENERAL-POSTING-SETUP-PURCHASE-LIST-EDIT-GATE",
+      "order": 10202,
+      "status": "blocked",
+      "category": "general-posting-setup-purchase-list-edit-gate",
+      "expectedImpact": "attempt-one-cell-purchase-account-write",
+      "goal": "Set only Wareneinkaufskonto 5400 on existing INLAND/WAREN Page 314 row if geometry is unambiguous.",
+      "allowedActions": [
+        "open-page-314",
+        "click-list-edit-after-geometry-proof",
+        "write-only-wareneinkaufskonto-5400",
+        "reopen-proof"
+      ],
+      "forbiddenActions": [
+        "click-new",
+        "copy",
+        "vat-setup",
+        "documents",
+        "preview-posting",
+        "post",
+        "payment",
+        "api-shortcut"
+      ],
+      "dependsOn": [
+        "TARGET-032N-GENERAL-POSTING-SETUP-PURCHASE-FIELD-ROUTE-DECISION"
+      ],
+      "completedAt": "2026-07-03T06:20:38.965Z",
+      "result": "Strict List Edit geometry route typed 5400 but did not persist it after reopen; route parked.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-032o-general-posting-setup-purchase-list-edit-gate/TARGET-032O-result.json",
+      "nextCase": "TARGET-032P-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE"
+    },
+    {
+      "id": "TARGET-032P-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE",
+      "caseId": "TARGET-032P-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE",
+      "order": 10203,
+      "status": "done",
+      "category": "general-posting-setup-park-or-source-route",
+      "expectedImpact": "park-failed-page314-route-and-move-to-vat-matrix",
+      "goal": "Park General Posting Setup partial and select next distinct Foundation blocker.",
+      "result": "Parked Page 314 purchase-account route as partial; selected VAT matrix alternative route.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-032p-general-posting-setup-park-or-source-route/TARGET-032P-result.json",
+      "nextCase": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+      "dependsOn": [
+        "TARGET-032O-GENERAL-POSTING-SETUP-PURCHASE-LIST-EDIT-GATE"
+      ]
+    },
+    {
+      "id": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+      "caseId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+      "order": 10204,
+      "status": "pending",
+      "category": "vat-matrix-alternative-route-discovery",
+      "expectedImpact": "resume-separate-vat-foundation-blocker",
+      "goal": "Investigate materially different VAT Posting Setup route with write gates locked.",
+      "dependsOn": [
+        "TARGET-032P-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE"
       ]
     }
   ],
-  "lastUpdated": "2026-07-03T05:57:41.620Z",
+  "lastUpdated": "2026-07-03T06:10:42.011Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -4522,7 +4641,7 @@
   },
   "updatedAt": "2026-07-03T05:44:12.572Z",
   "lastCompletedCase": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
-  "nextCase": "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY",
+  "nextCase": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
   "nextStepDecisionCard": {
     "currentCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
@@ -4573,9 +4692,11 @@
       "Decide whether Page 314 remains parked or whether a new non-repeating UI/source route is justified."
     ]
   },
-  "nextStep": "Run TARGET-032M: open the existing INLAND/WAREN/4400 General Posting Setup card, recover only the missing Einkauf / Wareneinkaufskonto 5400 route if distinct and visible, then reopen Page 314.",
-  "openItems": 1,
-  "nextQueueItem": "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY",
+  "nextStep": "Run TARGET-027D26: investigate the separate VAT matrix route while keeping documents, preview and posting locked.",
+  "openItems": [
+    "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY"
+  ],
+  "nextQueueItem": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
   "nextCases": [
     "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
     "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",

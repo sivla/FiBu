@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+  "status": "ready-next",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "targetWorld": "Universaarl",
+  "activeArea": "universaarl-vat-matrix-alternative-route-discovery",
+  "purpose": "Investigate the next materially different VAT Posting Setup route after the General Posting Setup partial was parked. Keep documents, preview and posting locked.",
+  "sourceCases": [
+    "TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION",
+    "TARGET-032P-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE"
+  ],
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-032p-general-posting-setup-park-or-source-route/TARGET-032P-result.json"
+  ],
+  "allowedActions": [
+    "read-prior-vat-route-results",
+    "open-vat-posting-setup-readonly-or-gated",
+    "inventory-ui-actions",
+    "write-result-json",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-posting-readiness"
+  ],
+  "acceptanceCriteria": [
+    "Do not claim General Posting Setup completion.",
+    "Do not run documents, Preview Posting or Posting.",
+    "If a VAT setup write is proposed, it must get its own narrow Smart Decision gate.",
+    "Result must explain why the VAT route is materially different from prior blocked routes."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-032P-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE",
+    "plannedNextCaseBeforeReview": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+    "lastEvidenceSummary": "General Posting Setup remains partial; the exhausted Page 314 routes are parked.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "VAT matrix is a separate Foundation blocker and can be investigated without pretending Page 314 completion.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+        "status": "ready-next",
+        "reason": "Next distinct Foundation setup area."
+      },
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "ready-after-current",
+        "reason": "Dimensions wait until VAT matrix boundary is known."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C requires setup readiness."
+      },
+      {
+        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
+        "status": "ready-after-current",
+        "reason": "Useful after VAT/dimensions status is clear."
+      }
+    ],
+    "queueChangesMade": [
+      "Created missing active case file for TARGET-027D26."
+    ],
+    "selectedNextCase": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+    "whySelectedNextCaseIsBest": "It avoids repeating General Posting Setup UI routes and returns to the next independent Foundation blocker.",
+    "risksBeforeNextCase": [
+      "VAT setup write must be gated.",
+      "No document or posting work."
+    ],
+    "requiredPreparation": [
+      "Read prior TARGET-027D results and source notes."
+    ]
+  },
+  "updatedAt": "2026-07-03T06:23:45.029Z"
+}

@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-03T05:57:41.620Z",
+  "updatedAt": "2026-07-03T06:10:42.011Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-general-posting-setup-purchase-fasttab-recovery",
-  "activeCase": "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY",
-  "active_case_file": ".agent/state/cases/target-032m-general-posting-setup-purchase-fasttab-recovery.json",
+  "activeArea": "universaarl-vat-matrix-alternative-route-discovery",
+  "activeCase": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+  "active_case_file": ".agent/state/cases/target-027d26-vat-matrix-alternative-route-discovery.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -19,16 +19,9 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central-target-context",
-    "verify-instance-playthru",
-    "verify-company-universaarl-de",
-    "open-page-314-general-posting-setup",
-    "verify-existing-inland-waren-4400-row",
-    "open-existing-inland-waren-card",
-    "capture-screenshot-qa-before-write",
-    "expand-or-focus-einkauf-fasttab",
-    "write-only-wareneinkaufskonto-5400-if-distinct-field-visible",
-    "reopen-page-314-proof",
+    "read-prior-vat-route-results",
+    "open-vat-posting-setup-readonly-or-gated",
+    "inventory-ui-actions",
     "write-result-json",
     "update-state-and-queue"
   ],
@@ -38,14 +31,6 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "click-new-for-duplicate-row",
-    "click-edit-list",
-    "click-copy-as-write-route",
-    "change-business-posting-group",
-    "change-product-posting-group",
-    "change-sales-account-away-from-4400",
-    "write-vat-posting-setup",
-    "configuration-package-import-export-validate-apply",
     "create-document-or-draft",
     "preview-posting",
     "post",
@@ -53,8 +38,8 @@
     "api-shortcut",
     "claim-posting-readiness"
   ],
-  "nextCase": "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY",
-  "nextStep": "Run TARGET-032M: open the existing INLAND/WAREN/4400 General Posting Setup card, recover only the missing Einkauf / Wareneinkaufskonto 5400 route if distinct and visible, then reopen Page 314.",
+  "nextCase": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+  "nextStep": "Run TARGET-027D26: investigate the separate VAT matrix route while keeping documents, preview and posting locked.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -237,7 +222,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "TARGET-032L created/recovered a partial Page 314 General Posting Setup row for INLAND/WAREN with Warenverkaufskonto 4400. Wareneinkaufskonto 5400 remains unproven and requires TARGET-032M purchase FastTab recovery.",
+  "currentCoverageFocus": "General Posting Setup remains partial: INLAND/WAREN/4400 visible; 5400 not proven after TARGET-032O; Page 314 geometry route parked.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -3861,7 +3846,7 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/target-050-inventory-posting-setup-controlled-write-gate.json",
+  "activeCaseFile": ".agent/state/cases/target-027d26-vat-matrix-alternative-route-discovery.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
@@ -7521,25 +7506,11 @@
     "nextCase": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION"
   },
   "latestGeneralPostingSetupParkDecision": {
-    "caseId": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
-    "status": "done-page314-parked",
-    "instance": "playthru",
-    "company": "UNIVERSAARL-DE",
-    "decision": "park-page314-general-posting-setup-write-route",
-    "provenPrerequisites": [
-      "General Business Posting Group INLAND",
-      "General Product Posting Group WAREN"
-    ],
-    "parkedBoundary": "No trusted Page 314 write/card route for INLAND/WAREN/4400/5400 after TARGET-032D and TARGET-032E.",
-    "notProved": [
-      "No INLAND/WAREN General Posting Setup row with Sales Account 4400 and Purchase Account 5400 is saved or reopened.",
-      "No VAT Posting Setup is proven.",
-      "No Inventory Posting Setup is proven.",
-      "No posting readiness, Preview Posting, G/L Entries, VAT Entries or Value Entries are proven.",
-      "No final SKR04, tax advisor, German VAT or compliance claim is proven."
-    ],
-    "nextCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
-    "updatedAt": "2026-07-01T08:33:32.134Z"
+    "caseId": "TARGET-032P-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE",
+    "status": "observed",
+    "decision": "park-partial-route",
+    "nextCase": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+    "updatedAt": "2026-07-03T06:20:38.965Z"
   },
   "latestTarget033DimensionsRecovery": {
     "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
@@ -8544,11 +8515,10 @@
     "summary": "1140 Waren (Bestand) selected as source-backed SKR04-oriented inventory balance candidate; no Business Central account proof yet."
   },
   "acceptanceCriteria": [
-    "Business Central remains in playthru / UNIVERSAARL-DE.",
-    "Item Posting Groups page is visible.",
-    "Exactly one minimal Item Posting Group is created or verified, or the case blocks before change.",
-    "No Inventory Posting Setup, item, document, Preview Posting, Posting or API shortcut occurs.",
-    "Result JSON records before/after/reopen proof and notProved boundaries."
+    "Do not claim General Posting Setup completion.",
+    "Do not run documents, Preview Posting or Posting.",
+    "If a VAT setup write is proposed, it must get its own narrow Smart Decision gate.",
+    "Result must explain why the VAT route is materially different from prior blocked routes."
   ],
   "latestTarget048CInventoryAccount1140BalanceCorrection": {
     "caseId": "TARGET-048C-INVENTORY-ACCOUNT-1140-BALANCE-SHEET-CORRECTION",
@@ -8916,5 +8886,45 @@
     ],
     "nextCase": "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY",
     "updatedAt": "2026-07-03T05:57:41.620Z"
-  }
+  },
+  "latestGeneralPostingSetupPurchaseFasttabRecovery": {
+    "caseId": "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY",
+    "status": "blocked",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-032m-general-posting-setup-purchase-fasttab-recovery/TARGET-032M-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "proved": [
+      "Business Central stayed in playthru / UNIVERSAARL-DE.",
+      "Page 314 reopen proof shows partial INLAND/WAREN setup with Sales Account 4400.",
+      "The case stopped without New, VAT setup, document, Preview Posting, Posting, Payment or API shortcut."
+    ],
+    "notProved": [
+      "Wareneinkaufskonto 5400 is not proven.",
+      "No VAT Posting Setup row is proven.",
+      "No posting readiness is proven.",
+      "No document Preview Posting is proven.",
+      "No G/L Entry, VAT Entry or Value Entry is proven.",
+      "No complete SKR04 chart, tax advisor approval or German compliance claim is proven."
+    ],
+    "blockedBy": [
+      "Distinct Wareneinkaufskonto field was not found after Einkauf FastTab expansion.",
+      "Reopen proof does not show INLAND/WAREN/4400/5400 together on Page 314."
+    ],
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-032m-010-before-recovery.png",
+      "playwright/projects/fibu-book5/img/target-032m-020-card-before-einkauf.png",
+      "playwright/projects/fibu-book5/img/target-032m-030-after-einkauf-expand.png",
+      "playwright/projects/fibu-book5/img/target-032m-040-after-purchase-recovery.png",
+      "playwright/projects/fibu-book5/img/target-032m-050-reopen-proof.png"
+    ],
+    "nextCase": "TARGET-032N-GENERAL-POSTING-SETUP-PURCHASE-FIELD-ROUTE-DECISION",
+    "updatedAt": "2026-07-03T06:10:42.011Z"
+  },
+  "active_case": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY"
 }
