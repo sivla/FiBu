@@ -4777,7 +4777,9 @@
         "payment",
         "api-shortcut"
       ],
-      "caseFile": ".agent/state/cases/target-027d31-auth-refresh-then-readonly-discovery.json"
+      "caseFile": ".agent/state/cases/target-027d31-auth-refresh-then-readonly-discovery.json",
+      "updatedAt": "2026-07-03T08:50:00.000Z",
+      "reason": "Current open gate; auth:bc:check must become green before any BC workflow."
     }
   ],
   "lastUpdated": "2026-07-03T07:37:43.712Z",
@@ -4892,7 +4894,7 @@
       ]
     }
   },
-  "updatedAt": "2026-07-03T07:37:43.712Z",
+  "updatedAt": "2026-07-03T08:50:00.000Z",
   "lastCompletedCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
   "nextStepDecisionCard": {
@@ -4959,47 +4961,51 @@
     "TARGET-034-FOUNDATION-READY-CHECKPOINT"
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
-    "lastEvidenceSummary": "TARGET-027D26 proved Page 472 reachable via justified Tell-Me fallback, but no INLAND/VAT19 row, 19 percent, 3806 or 1406 values are proven.",
+    "currentCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "lastEvidenceSummary": "The only open queue item is the D31 Playwright auth refresh gate. auth:bc:check still blocks because stored shell validation metadata is older than the configured 12 hour limit.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "A local/source-backed decision gate is the smallest safe step before any VAT matrix write.",
+    "reason": "No BC workflow may run until the Playwright storage state is refreshed and validated for playthru / UNIVERSAARL-DE.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
+        "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
         "status": "ready-next",
-        "reason": "Page 472 is visible; a separate source-backed write-gate can now decide exact target fields and stop rules."
+        "reason": "Refresh Playwright auth and require auth:bc:check canUseStoredAuth=true."
+      },
+      {
+        "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+        "status": "blocked",
+        "reason": "Cannot open VAT pages while auth check is red."
+      },
+      {
+        "caseId": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
+        "status": "needs-ui-discovery-first",
+        "reason": "Requires D31 read-only route evidence first."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-after-current",
-        "reason": "Dimensions should wait until VAT matrix write/park status is explicit."
+        "reason": "Can continue after VAT auth/discovery is resolved or deliberately parked."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
-        "status": "ready-after-current",
-        "reason": "Useful only after VAT and dimensions status are known."
-      },
-      {
-        "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C remains locked until VAT Posting Setup, posting groups and dimensions are sufficiently scoped."
+        "reason": "Requires VAT and dimensions status before readiness checkpoint."
       }
     ],
     "queueChangesMade": [
-      "TARGET-027D26 marked done.",
-      "TARGET-027D27 inserted as the next local decision gate."
+      "Replaced stale D26/D27 decision-card text with current D31 auth-gate lookahead."
     ],
-    "selectedNextCase": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
-    "whySelectedNextCaseIsBest": "It prevents a read-only page proof from turning into an unsafe setup write and defines the exact field/value gate first.",
+    "selectedNextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "whySelectedNextCaseIsBest": "It is the only open queue item and protects W1 Foundation from running VAT discovery against stale auth or a login page.",
     "risksBeforeNextCase": [
-      "Do not claim VAT correctness from item VAT19 or page visibility.",
-      "Do not type 19/3806/1406 unless a new write gate explicitly unlocks those fields.",
-      "Do not start master data, documents, Preview Posting or Posting before Foundation readiness."
+      "Normal browser login does not refresh Playwright storageState.",
+      "If auth:bc opens Microsoft sign-in only, no Business Central evidence exists."
     ],
     "requiredPreparation": [
-      "Read TARGET-027D25 and TARGET-032P result JSONs.",
-      "Use Microsoft Learn VAT setup source mapping before deciding the write gate."
+      "Run npm run auth:bc in the Playwright browser context.",
+      "Complete Login/MFA until Business Central shell appears.",
+      "Run npm run auth:bc:check and require canUseStoredAuth=true."
     ]
   },
   "total": 196,

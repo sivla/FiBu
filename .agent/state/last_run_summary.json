@@ -7,7 +7,7 @@
   "mode": "universaarl-target-execution",
   "activeArea": "universaarl-vat-assisted-setup-readonly-discovery",
   "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-vat-assisted-setup-readonly-discovery/TARGET-027D31-result.json",
-  "summary": "Auth gate is still blocked by stale Playwright storage state. Repaired current.json activeCaseFile alias and hardened state validation so activeCaseFile must mirror active_case_file when present.",
+  "summary": "Auth remains blocked by stale Playwright storage state. Improved auth:bc:check to expose expected/stored shell-validation target metadata and refreshed the marathon queue decision-card for the current D31 auth gate.",
   "proved": [
     "The local Playwright auth state is too old for D31 live evidence.",
     "The fresh auth attempt did not reach a validated Business Central shell within the command timeout.",
@@ -37,55 +37,59 @@
   "apiShortcut": false,
   "screenshots": [],
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "nextStep": "Refresh Playwright Business Central auth in the Playwright auth browser until auth:bc:check returns canUseStoredAuth=true, then rerun D31 read-only discovery.",
+  "nextStep": "Run npm run auth:bc, complete Login/MFA in the Playwright browser until the Business Central shell is visible, then require npm run auth:bc:check canUseStoredAuth=true.",
   "nextStepDecision": {
     "currentCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "lastEvidenceSummary": "auth:bc:check still reports storage-state-too-old and shell-validation-meta-too-old. State had a stale activeCaseFile alias that could mislead manual/tools-based reads.",
+    "lastEvidenceSummary": "The only open queue item is the D31 Playwright auth refresh gate. auth:bc:check still blocks because stored shell validation metadata is older than the configured 12 hour limit.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "D31 auth refresh remains the correct immediate gate; the State validator now protects against reading the obsolete D28 setup-write case.",
+    "reason": "No BC workflow may run until the Playwright storage state is refreshed and validated for playthru / UNIVERSAARL-DE.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
         "status": "ready-next",
-        "reason": "Must complete Playwright shell auth before any BC work."
+        "reason": "Refresh Playwright auth and require auth:bc:check canUseStoredAuth=true."
       },
       {
         "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
         "status": "blocked",
-        "reason": "Requires auth:bc:check canUseStoredAuth=true."
+        "reason": "Cannot open VAT pages while auth check is red."
       },
       {
         "caseId": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
         "status": "needs-ui-discovery-first",
-        "reason": "Requires D31 read-only route evidence."
+        "reason": "Requires D31 read-only route evidence first."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-after-current",
-        "reason": "Still sequenced after VAT auth/discovery is resolved or explicitly parked."
+        "reason": "Can continue after VAT auth/discovery is resolved or deliberately parked."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Needs VAT and dimensions status before checkpoint."
+        "reason": "Requires VAT and dimensions status before readiness checkpoint."
       }
     ],
-    "queueChangesMade": [],
+    "queueChangesMade": [
+      "Replaced stale D26/D27 decision-card text with current D31 auth-gate lookahead."
+    ],
     "selectedNextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "whySelectedNextCaseIsBest": "It is the only safe next step while Playwright auth is stale; it prevents accidental setup work through an obsolete activeCaseFile alias.",
+    "whySelectedNextCaseIsBest": "It is the only open queue item and protects W1 Foundation from running VAT discovery against stale auth or a login page.",
     "risksBeforeNextCase": [
-      "Running D31 while auth:bc:check is red would only reach login context."
+      "Normal browser login does not refresh Playwright storageState.",
+      "If auth:bc opens Microsoft sign-in only, no Business Central evidence exists."
     ],
     "requiredPreparation": [
-      "Complete login/MFA in Playwright auth window.",
+      "Run npm run auth:bc in the Playwright browser context.",
+      "Complete Login/MFA until Business Central shell appears.",
       "Run npm run auth:bc:check and require canUseStoredAuth=true."
     ]
   },
-  "runId": "TARGET-027D31-STATE-CONSISTENCY-REPAIR",
+  "runId": "TARGET-027D31-AUTH-CHECK-DIAGNOSTIC-HARDENING",
   "completedAt": "2026-07-03T07:37:43.712Z",
   "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "resultStatus": "local-progress-auth-still-blocked",
+  "resultStatus": "local-progress-auth-diagnostic-hardened",
   "latestTarget027D31AuthRefreshAttempt": {
     "at": "2026-07-03T08:08:00.000Z",
     "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
@@ -112,13 +116,12 @@
     "apiShortcut": false,
     "nextSafeAction": "Finish Login/MFA inside the Playwright auth window until a Business Central shell signal is visible, require auth:bc:check canUseStoredAuth=true, then rerun D31 read-only discovery."
   },
-  "updatedAt": "2026-07-03T08:35:00.000Z",
+  "updatedAt": "2026-07-03T08:50:00.000Z",
   "actionsTaken": [
     "Ran git pull --ff-only; repository was up to date.",
     "Ran npm run auth:bc:check; Playwright auth state remains too old.",
-    "Detected stale current.json activeCaseFile alias pointing at TARGET-027D28 while active_case_file correctly pointed at TARGET-027D31.",
-    "Repaired activeCaseFile to mirror active_case_file.",
-    "Updated scripts/agent/state-validate.mjs to reject future activeCaseFile / active_case_file divergence."
+    "Updated auth-state-check output to include expectedInstance, expectedCompany and stored shellValidationMeta without cookies or tokens.",
+    "Updated marathon_queue nextStepDecision from stale D26/D27 text to current D31 auth-gate lookahead."
   ],
   "actionsNotTaken": [
     "No Business Central workflow was opened because auth:bc:check is red.",

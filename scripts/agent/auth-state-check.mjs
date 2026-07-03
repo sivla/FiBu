@@ -23,6 +23,9 @@ function result(overrides) {
     ageHours: null,
     metaAgeHours: null,
     maxAgeHours,
+    expectedInstance: '',
+    expectedCompany: '',
+    shellValidationMeta: null,
     cookieCount: 0,
     originCount: 0,
     blockedBy: [],
@@ -85,20 +88,28 @@ async function main() {
   let metaAgeHours = null;
   let hasShellValidationMeta = false;
   let metaMtimeMs = null;
+  let shellValidationMeta = null;
 
   try {
     const metaStats = await fs.stat(authMetaFile);
     metaMtimeMs = metaStats.mtimeMs;
     metaAgeHours = Math.round(((now - metaStats.mtimeMs) / 36_000) * 10) / 1000;
     const meta = JSON.parse(await fs.readFile(authMetaFile, 'utf8'));
+    const metaEnvironment = typeof meta?.pathname === 'string' ? meta.pathname.split('/').filter(Boolean).at(-1) ?? '' : '';
+    const metaCompany = typeof meta?.company === 'string' ? meta.company : '';
+    shellValidationMeta = {
+      generatedAt: typeof meta?.generatedAt === 'string' ? meta.generatedAt : '',
+      host: typeof meta?.host === 'string' ? meta.host : '',
+      environment: metaEnvironment,
+      company: metaCompany,
+      matchedShellSignal: typeof meta?.matchedShellSignal === 'string' ? meta.matchedShellSignal : ''
+    };
     hasShellValidationMeta =
       meta?.schemaVersion === 1 &&
       meta?.purpose === 'business-central-auth-shell-validation' &&
       meta?.shellValidation === true &&
       typeof meta?.matchedShellSignal === 'string' &&
       meta.matchedShellSignal.length > 0;
-    const metaEnvironment = typeof meta?.pathname === 'string' ? meta.pathname.split('/').filter(Boolean).at(-1) ?? '' : '';
-    const metaCompany = typeof meta?.company === 'string' ? meta.company : '';
     if (expectedInstance && metaEnvironment !== expectedInstance) {
       blockedBy.push('shell-validation-environment-mismatch');
     }
@@ -126,6 +137,9 @@ async function main() {
         hasShellValidationMeta,
         ageHours,
         metaAgeHours,
+        expectedInstance,
+        expectedCompany,
+        shellValidationMeta,
         cookieCount: cookies.length,
         originCount: origins.length,
         blockedBy,

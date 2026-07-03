@@ -206,6 +206,9 @@ const runPlan = {
         authFile: authCheck.output?.authFile ?? 'playwright/.auth/bc-user.json',
         authMetaFile: authCheck.output?.authMetaFile ?? 'playwright/.auth/bc-user.meta.json',
         hasShellValidationMeta: authCheck.output?.hasShellValidationMeta ?? false,
+        expectedInstance: authCheck.output?.expectedInstance ?? '',
+        expectedCompany: authCheck.output?.expectedCompany ?? '',
+        shellValidationMeta: authCheck.output?.shellValidationMeta ?? null,
         nextStep: authCheck.output?.nextStep ?? authUnblockStep,
       }
     : null,
