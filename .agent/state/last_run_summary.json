@@ -7,11 +7,11 @@
   "mode": "universaarl-target-execution",
   "activeArea": "universaarl-vat-assisted-setup-readonly-discovery",
   "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
-  "summary": "Tried the D31 Playwright auth refresh again, confirmed it still stops before Business Central shell, and hardened auth.setup so auth blockers write a result and exit cleanly instead of ending in an uncaught Playwright timeout.",
+  "summary": "Marked the D31 auth blocker as operator-action-required. auth:bc and auth:bc:doctor now state that the missing step is Login/MFA completion inside the Playwright-opened browser window, not another technical BC or URL diagnosis.",
   "proved": [
     "auth:bc still targets playthru / UNIVERSAARL-DE.",
     "The latest short auth probe stayed on Microsoft sign-in and saved no storage state.",
-    "auth.setup now turns blocked auth attempts into controlled result evidence with exit code 1 instead of an uncaught timeout stack."
+    "TARGET-027D31-AUTH-result.json and auth:bc:doctor now expose operatorActionRequired=true with concrete Playwright-window login steps."
   ],
   "notProved": [
     "No fresh Business Central shell context is proven.",
@@ -88,12 +88,12 @@
       "Run npm run auth:bc:check and require canUseStoredAuth=true."
     ]
   },
-  "runId": "TARGET-027D31-CONTROLLED-AUTH-BLOCKER-RESULT",
-  "completedAt": "2026-07-03T10:05:00.000Z",
+  "runId": "TARGET-027D31-OPERATOR-ACTION-AUTH-GATE",
+  "completedAt": "2026-07-03T10:20:00.000Z",
   "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "resultStatus": "blocked-auth-before-bc-shell-helper-hardened",
+  "resultStatus": "blocked-auth-before-bc-shell-operator-action-required",
   "latestTarget027D31AuthRefreshAttempt": {
-    "at": "2026-07-03T10:05:00.000Z",
+    "at": "2026-07-03T10:20:00.000Z",
     "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
     "instance": "playthru",
     "company": "UNIVERSAARL-DE",
@@ -110,7 +110,9 @@
       "auth:shell-signal-not-detected",
       "auth:storage-state-not-refreshed"
     ],
-    "learning": "Playwright auth must be completed in the Playwright-opened browser context; the helper now records blocked attempts cleanly so future diagnosis is cheaper.",
+    "learning": "Playwright auth must be completed in the Playwright-opened browser context; normal Chrome or Codex app login is explicitly not enough.",
+    "operatorActionRequired": true,
+    "operatorAction": "Run npm run auth:bc, complete sign-in/MFA in that Playwright browser window, wait for Business Central shell text, then run npm run auth:bc:check.",
     "noBcShellReached": true,
     "setupChanged": false,
     "masterDataChanged": false,
@@ -120,13 +122,13 @@
     "apiShortcut": false,
     "nextSafeAction": "Finish Login/MFA inside the Playwright auth window until a Business Central shell signal is visible, require auth:bc:check canUseStoredAuth=true, then rerun D31 read-only discovery."
   },
-  "updatedAt": "2026-07-03T10:05:00.000Z",
+  "updatedAt": "2026-07-03T10:20:00.000Z",
   "actionsTaken": [
     "Ran git status --short and git pull --ff-only; repository was up to date before changes.",
-    "Ran agent preflight, context, dry-run, run-plan and auth doctor.",
-    "Ran auth:bc once with the normal long timeout; it stayed on Microsoft sign-in and saved no BC shell state.",
-    "Changed auth.setup so blocked auth attempts set exitCode=1 after writing normalized result evidence instead of rethrowing the raw Playwright timeout.",
-    "Validated the controlled blocker with BC_AUTH_TIMEOUT_MS=5000 npm run auth:bc."
+    "Ran agent preflight, context and auth doctor.",
+    "Added operatorActionRequired and operatorAction details to auth.setup result output.",
+    "Added operatorActionRequired and operatorAction propagation to auth:bc:doctor.",
+    "Validated the operator-action blocker with BC_AUTH_TIMEOUT_MS=5000 npm run auth:bc and npm run auth:bc:doctor."
   ],
   "actionsNotTaken": [
     "No Business Central workflow was opened.",

@@ -112,6 +112,21 @@ async function writeAuthResult(args: AuthResultArgs) {
       matchedShellSignal,
       savedState: args.savedState
     },
+    operatorActionRequired: !reachedShell,
+    operatorAction: reachedShell
+      ? null
+      : {
+          reason: 'The Playwright auth profile is not logged in to Business Central yet.',
+          profilePath: authProfileDir,
+          requiredWindow: 'the browser window opened by npm run auth:bc',
+          steps: [
+            'Run npm run auth:bc from this repo.',
+            'Complete sign-in and MFA in the Playwright-opened browser window.',
+            'Wait until Business Central shell text such as Search/Tell Me, Role Center or My Settings is visible.',
+            'Then run npm run auth:bc:check and require canUseStoredAuth=true.'
+          ],
+          normalBrowserLoginIsNotEnough: true
+        },
     setupChanged: false,
     setupChangeAttempted: false,
     masterDataChanged: false,

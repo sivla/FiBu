@@ -62,6 +62,7 @@ const authTarget = runAuthTargetDiagnosis();
 const check = authCheck.output ?? {};
 const blockedBy = Array.isArray(check.blockedBy) ? check.blockedBy : ['auth-check-unavailable'];
 const canUseStoredAuth = check.canUseStoredAuth === true;
+const operatorActionRequired = !canUseStoredAuth && lastAuthResult?.operatorActionRequired === true;
 
 const result = {
   schemaVersion: 1,
@@ -108,13 +109,20 @@ const result = {
         resultStatus: lastAuthResult.resultStatus ?? '',
         blockedBy: lastAuthResult.blockedBy ?? [],
         authDiagnosis: lastAuthResult.authDiagnosis ?? null,
+        operatorActionRequired: lastAuthResult.operatorActionRequired === true,
+        operatorAction: lastAuthResult.operatorAction ?? null,
       }
     : null,
+  operatorActionRequired,
   decision: canUseStoredAuth
     ? 'stored-auth-usable-run-readonly-or-gated-target-tests'
+    : operatorActionRequired
+      ? 'operator-must-complete-playwright-auth-window'
     : 'do-not-run-business-central-workflows-refresh-playwright-auth-first',
   nextSafeAction: canUseStoredAuth
     ? 'Run only the active case allowed by agent:run-plan and keep normal BC shell/context checks enabled.'
+    : operatorActionRequired
+      ? 'Run npm run auth:bc and complete Login/MFA in the Playwright-opened browser window, not normal Chrome, until Business Central shell is visible; then rerun npm run auth:bc:check.'
     : 'Run npm run auth:bc, complete Login/MFA in the Playwright-opened browser until Business Central shell is visible, then rerun npm run auth:bc:check.',
   forbiddenUntilGreen: [
     'D31 VAT Assisted Setup read-only discovery',

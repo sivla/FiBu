@@ -33,6 +33,19 @@
     "matchedShellSignal": "",
     "savedState": false
   },
+  "operatorActionRequired": true,
+  "operatorAction": {
+    "reason": "The Playwright auth profile is not logged in to Business Central yet.",
+    "profilePath": "playwright/.auth/bc-profile",
+    "requiredWindow": "the browser window opened by npm run auth:bc",
+    "steps": [
+      "Run npm run auth:bc from this repo.",
+      "Complete sign-in and MFA in the Playwright-opened browser window.",
+      "Wait until Business Central shell text such as Search/Tell Me, Role Center or My Settings is visible.",
+      "Then run npm run auth:bc:check and require canUseStoredAuth=true."
+    ],
+    "normalBrowserLoginIsNotEnough": true
+  },
   "setupChanged": false,
   "setupChangeAttempted": false,
   "masterDataChanged": false,
@@ -116,5 +129,5 @@
   "safeToFinalizeState": false,
   "statePatch": {},
   "reason": "Active case blocked at Playwright auth shell validation before any Business Central UI evidence.",
-  "completedAt": "2026-07-03T09:03:31.634Z"
+  "completedAt": "2026-07-03T09:07:25.675Z"
 }
