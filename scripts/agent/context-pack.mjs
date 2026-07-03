@@ -57,6 +57,15 @@ function buildAuthGate(current, activeCase) {
     return null;
   }
 
+  const nextSafeAction = [
+    latestDoctor.nextSafeAction,
+    latestResult?.nextSafeAction,
+    latestWriter.operatorAction,
+    activeCase.nextStep,
+    current.nextStep,
+  ].find((value) => typeof value === 'string' && value.length > 0)
+    ?.replaceAll('npm run auth:bc:interactive', 'npm run auth:bc:open-login');
+
   return {
     requiresAuth: authRelevant,
     canRunBusinessCentralWorkflows: latestDoctor.canRunBusinessCentralWorkflows === true,
@@ -64,12 +73,7 @@ function buildAuthGate(current, activeCase) {
     decision:
       latestDoctor.decision ??
       (operatorActionRequired ? 'operator-must-complete-playwright-auth-window' : undefined),
-    nextSafeAction:
-      latestDoctor.nextSafeAction ??
-      latestResult?.nextSafeAction ??
-      latestWriter.operatorAction ??
-      activeCase.nextStep ??
-      current.nextStep,
+    nextSafeAction,
     blockedBy: firstItems([...new Set(blockedBy)], 8),
     resultPath,
     target: {

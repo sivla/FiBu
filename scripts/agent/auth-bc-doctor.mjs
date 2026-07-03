@@ -66,9 +66,9 @@ const operatorActionRequired = !canUseStoredAuth && lastAuthResult?.operatorActi
 const interactiveOperatorAction = {
   reason: 'The Playwright auth profile is not logged in to Business Central yet.',
   profilePath: 'playwright/.auth/bc-profile',
-  requiredWindow: 'the browser window opened by npm run auth:bc:interactive',
+  requiredWindow: 'the browser window opened by npm run auth:bc:open-login',
   steps: [
-    'Run npm run auth:bc:interactive from this repo.',
+    'Run npm run auth:bc:open-login from this repo.',
     'Complete sign-in and MFA in the Playwright-opened browser window.',
     'Wait until Business Central shell text such as Search/Tell Me, Role Center or My Settings is visible.',
     'Then run npm run auth:bc:check and require canUseStoredAuth=true.',
@@ -135,8 +135,8 @@ const result = {
   nextSafeAction: canUseStoredAuth
     ? 'Run only the active case allowed by agent:run-plan and keep normal BC shell/context checks enabled.'
     : operatorActionRequired
-      ? 'Run npm run auth:bc:interactive and complete Login/MFA in the Playwright-opened browser window, not normal Chrome, until Business Central shell is visible; if it repeatedly stays on Microsoft sign-in, dry-run npm run auth:bc:reset-profile and confirm only the ignored local profile reset.'
-    : 'Run npm run auth:bc:interactive, complete Login/MFA in the Playwright-opened browser until Business Central shell is visible, then rerun npm run auth:bc:check.',
+      ? 'Run npm run auth:bc:open-login and complete Login/MFA in the Playwright-opened browser window, not normal Chrome, until Business Central shell is visible; if it repeatedly stays on Microsoft sign-in, dry-run npm run auth:bc:reset-profile and confirm only the ignored local profile reset.'
+    : 'Run npm run auth:bc:open-login, complete Login/MFA in the Playwright-opened browser until Business Central shell is visible, then rerun npm run auth:bc:check.',
   forbiddenUntilGreen: [
     'D31 VAT Assisted Setup read-only discovery',
     'VAT setup pages',

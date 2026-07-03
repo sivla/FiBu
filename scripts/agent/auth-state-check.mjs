@@ -7,7 +7,7 @@ const currentStateFile = path.resolve('.agent/state/current.json');
 const maxAgeHours = Number(process.env.BC_AUTH_MAX_AGE_HOURS ?? 12);
 const now = Date.now();
 const authUnblockStep =
-  'Run npm run auth:bc:interactive and complete Login/MFA until the Business Central shell is visible. ' +
+  'Run npm run auth:bc:open-login and complete Login/MFA until the Business Central shell is visible. ' +
   'If it stays on Microsoft sign-in or times out, run npm run auth:bc:probe for a short redacted diagnosis.';
 
 function result(overrides, target = {}) {

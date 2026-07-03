@@ -97,7 +97,7 @@
     "lastAuthRefreshResult": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json"
   },
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "updatedAt": "2026-07-03T13:15:00.000Z",
+  "updatedAt": "2026-07-03T13:35:00.000Z",
   "latestAuthSetupResultWriter": {
     "at": "2026-07-03T10:20:00.000Z",
     "script": "playwright/core/auth.setup.ts",
@@ -154,7 +154,7 @@
     "previewPosting": false,
     "posted": false
   },
-  "nextStep": "Auth profile has been reset. Run npm run auth:bc:interactive and complete Login/MFA in the Playwright-opened browser window until Business Central shell is visible; then require npm run auth:bc:check canUseStoredAuth=true.",
+  "nextStep": "Run npm run auth:bc:open-login and complete Login/MFA in the Playwright-opened browser window until Business Central shell is visible; then require npm run auth:bc:check canUseStoredAuth=true before D31.",
   "latestAuthProbe": {
     "at": "2026-07-03T11:15:00.000Z",
     "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
@@ -346,5 +346,21 @@
     "posted": false,
     "apiShortcut": false,
     "nextSafeAction": "Complete Login/MFA in the Playwright-opened auth window until Business Central shell is visible; then require npm run auth:bc:check canUseStoredAuth=true before D31."
+  },
+  "latestAuthOpenLoginHandoff": {
+    "at": "2026-07-03T13:35:00.000Z",
+    "command": "npm run auth:bc:open-login",
+    "script": "scripts/agent/auth-bc-open-login.mjs",
+    "purpose": "Guided longer Playwright auth handoff that makes clear only the Playwright-opened browser window refreshes playwright/.auth/bc-user.json.",
+    "timeoutMs": 3600000,
+    "replacesPrimaryRecommendation": "npm run auth:bc:interactive",
+    "stillRequires": "npm run auth:bc:check canUseStoredAuth=true before any Business Central workflow",
+    "bcRun": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false
   }
 }

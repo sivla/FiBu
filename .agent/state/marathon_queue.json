@@ -4949,7 +4949,7 @@
       ]
     }
   },
-  "updatedAt": "2026-07-03T11:55:00.000Z",
+  "updatedAt": "2026-07-03T13:35:00.000Z",
   "lastCompletedCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
   "nextStepDecisionCard": {
@@ -5003,7 +5003,7 @@
       "Then run D31 read-only discovery with screenshot QA."
     ]
   },
-  "nextStep": "Refresh Business Central auth for playthru / UNIVERSAARL-DE, require npm run auth:bc:check canUseStoredAuth=true, then rerun D31 read-only Assisted VAT Setup discovery.",
+  "nextStep": "Run npm run auth:bc:open-login and complete Login/MFA in the Playwright-opened browser window until Business Central shell is visible; then require npm run auth:bc:check canUseStoredAuth=true before D31.",
   "openItems": [
     "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY"
   ],
@@ -5065,5 +5065,21 @@
   },
   "total": 196,
   "done": 154,
-  "blocked": 37
+  "blocked": 37,
+  "latestAuthOpenLoginHandoff": {
+    "at": "2026-07-03T13:35:00.000Z",
+    "command": "npm run auth:bc:open-login",
+    "script": "scripts/agent/auth-bc-open-login.mjs",
+    "purpose": "Guided longer Playwright auth handoff that makes clear only the Playwright-opened browser window refreshes playwright/.auth/bc-user.json.",
+    "timeoutMs": 3600000,
+    "replacesPrimaryRecommendation": "npm run auth:bc:interactive",
+    "stillRequires": "npm run auth:bc:check canUseStoredAuth=true before any Business Central workflow",
+    "bcRun": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false
+  }
 }
