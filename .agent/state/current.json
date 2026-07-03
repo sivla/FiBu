@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-03T05:17:23.966Z",
+  "updatedAt": "2026-07-03T05:23:43.647Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-general-posting-setup-route-candidate-decision",
-  "activeCase": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
-  "active_case_file": ".agent/state/cases/target-032i-general-posting-setup-route-candidate-decision.json",
+  "activeArea": "universaarl-general-posting-setup-source-or-configuration-route-decision",
+  "activeCase": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
+  "active_case_file": ".agent/state/cases/target-032j-general-posting-setup-source-or-configuration-route-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -19,9 +19,10 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-target-032h-result",
-    "classify-action-inventory",
-    "classify-route-signal-strength",
+    "read-target-032i-result",
+    "read-source-registry",
+    "classify-standard-route-options",
+    "classify-configuration-route-options",
     "write-local-decision-result",
     "update-state-and-queue"
   ],
@@ -44,8 +45,8 @@
     "api-shortcut",
     "claim-posting-readiness"
   ],
-  "nextCase": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
-  "nextStep": "Run TARGET-032I as local route-candidate decision from TARGET-032H evidence; no Business Central write.",
+  "nextCase": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
+  "nextStep": "Run TARGET-032J as local source/configuration route decision for General Posting Setup; no Business Central write.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -228,7 +229,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "TARGET-032H captured Page 314 action/tooltip evidence read-only; next TARGET-032I classifies the weak route signal before any General Posting Setup write.",
+  "currentCoverageFocus": "TARGET-032I classified Page 314 General Posting Setup route signal as insufficient; next TARGET-032J decides a non-repeating source/configuration route or conscious park.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -1350,7 +1351,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "universaarl-skr04-balance-sheet-accounts-fit",
-  "lastCompletedCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+  "lastCompletedCase": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3814,7 +3815,7 @@
     "noPlaywrightExecution": true,
     "nextCase": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP"
   },
-  "lastCompletedCaseFile": ".agent/state/cases/prep-031-companies-page-readonly-playwright.json",
+  "lastCompletedCaseFile": ".agent/state/cases/target-032i-general-posting-setup-route-candidate-decision.json",
   "lastResultPath": "playwright/projects/fibu-book5/evidence/target-049-item-posting-group-controlled-write-gate/TARGET-049-result.json",
   "latestReadonlyUiLookAndFeelMap": {
     "caseId": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
@@ -8832,5 +8833,15 @@
     "posted": false,
     "selectedNextCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
     "reason": "WAREN on U-ITEM-HW100 is item-card truth, not an INLAND/WAREN General Posting Setup matrix row."
+  },
+  "latestGeneralPostingSetupRouteCandidateDecision": {
+    "caseId": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
+    "status": "done-route-signal-insufficient-no-write",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-032i-general-posting-setup-route-candidate-decision/TARGET-032I-result.json",
+    "routeSignalStrength": "insufficient",
+    "trustedWriteRouteProven": false,
+    "boundary": "General Posting Setup Page 314 remains parked before any INLAND/WAREN/4400/5400 write until a materially new standard route or source/configuration route is proven.",
+    "nextCase": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
+    "updatedAt": "2026-07-03T05:23:43.647Z"
   }
 }

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
-  "status": "ready-next",
+  "status": "done-route-signal-insufficient-no-write",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -67,54 +67,96 @@
     "No posting readiness claim is made."
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
-    "lastEvidenceSummary": "TARGET-032H opened Page 314 read-only in playthru / UNIVERSAARL-DE, captured action inventory, tooltips, More-options state and final reopen proof. No setup value was typed. The only route signal is weak and may come from column/menu text rather than a safe row-card route.",
+    "currentCase": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
+    "lastEvidenceSummary": "TARGET-032H proved Page 314 read-only context, action inventory, tooltips, More-options state and final reopen proof, but did not prove a trusted row/card/write route for INLAND/WAREN/4400/5400.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "A write case is not yet sensible because TARGET-032H did not prove a trusted editable row/card route for INLAND/WAREN/4400/5400.",
+    "reason": "TARGET-032I is the right local gate because the only route signal from TARGET-032H is weak and could otherwise be mistaken for a safe write path.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
+        "caseId": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
         "status": "ready-next",
-        "reason": "Classify the weak Page 314 route signal before any write attempt."
+        "reason": "A source/configuration-route decision is safer than repeating Page 314 New/Edit/List/Copy clicks and can decide whether a standard route exists before any setup write."
       },
       {
         "caseId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
         "status": "ready-after-current",
-        "reason": "VAT matrix route discovery is separate and should wait until Page 314 signal is classified."
+        "reason": "VAT Posting Setup remains a separate parked matrix blocker; it should not be mixed with General Posting Setup."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
-        "status": "needs-setup-first",
-        "reason": "Dimensions can continue only after W1 posting setup boundaries are consciously parked or solved."
+        "status": "ready-after-current",
+        "reason": "Dimensions can continue only after the two matrix blockers are explicitly parked or a new setup route is chosen."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C needs General Posting Setup and VAT boundaries before document work."
+        "reason": "O2C preflight still needs posting group and VAT boundaries before any document or preview work."
       },
       {
         "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
         "status": "blocked",
-        "reason": "Preview remains blocked without complete posting setup and a document."
+        "reason": "Preview Posting remains blocked without complete posting setup, VAT setup and a document."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-032H as done with read-only weak-route evidence.",
-      "Added TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION as the next local decision before any Page 314 write."
+      "Marked TARGET-032I as done with insufficient route signal classification.",
+      "Added TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION as the next local route decision before any Page 314 write."
     ],
-    "selectedNextCase": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
-    "whySelectedNextCaseIsBest": "It prevents a false-positive action label from becoming a risky setup write and keeps Foundation progress on the exact unresolved matrix blocker.",
+    "selectedNextCase": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "It avoids another blind Page 314 cell-edit loop and turns the blocker into a narrow source/configuration decision with explicit no-write boundaries.",
     "risksBeforeNextCase": [
-      "Do not treat column menu labels or broad form text as a row-card route.",
-      "Do not click New, Liste bearbeiten or Kopieren as a write path without a new Smart Decision.",
-      "Do not claim posting readiness from Page 314 visibility."
+      "Do not treat form-level text or column-menu labels as row-card evidence.",
+      "Do not click Neu, Liste bearbeiten or Kopieren as a write route without a new Smart Decision.",
+      "Do not claim General Posting Setup readiness until INLAND/WAREN/4400/5400 is visibly stored after reopen."
     ],
     "requiredPreparation": [
-      "Read TARGET-032H action inventory and tooltip results.",
-      "Separate safe navigation/menu evidence from true row-edit or card evidence.",
-      "Decide whether Page 314 remains parked or whether a new non-repeating UI/source route is justified."
+      "Read TARGET-032H result and action inventory.",
+      "Review Microsoft Learn/source notes for General Posting Setup and possible standard setup/configuration routes.",
+      "Decide whether a new controlled UI route, configuration route or conscious park is best."
     ]
   },
-  "updatedAt": "2026-07-03T05:17:23.971Z"
+  "updatedAt": "2026-07-03T05:23:43.647Z",
+  "completedAt": "2026-07-03T05:23:43.647Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-032i-general-posting-setup-route-candidate-decision/TARGET-032I-result.json",
+  "routeClassification": {
+    "routeSignalStrength": "insufficient",
+    "classification": "weak-false-positive-risk",
+    "trustedWriteRouteProven": false,
+    "trustedRowCardRouteProven": false,
+    "reason": "TARGET-032H actionInventoryHasCardSignal came from broad form/column/menu text and the visible Kopieren... tooltip says a new record must already exist. More options did not expose a card route and Page Inspection did not produce stable Page 314 technical proof.",
+    "acceptedSignals": [
+      "Page 314 Buchungsmatrix Einrichtung is reachable read-only.",
+      "Visible command bar contains Neu, Liste bearbeiten, Konten vorschlagen, Kopieren... and Weitere Optionen.",
+      "Relevant account columns are visible enough for screenshot QA."
+    ],
+    "rejectedSignals": [
+      "Form-level action text is not a row/card route.",
+      "Column menu labels such as Menu oeffnen are not setup-write routes.",
+      "Kopieren... cannot be used as the first route because its tooltip requires a new target record first.",
+      "Page 315 remains rejected as VAT Entries, not General Posting Setup."
+    ],
+    "resultingBoundary": "General Posting Setup Page 314 remains parked before any INLAND/WAREN/4400/5400 write until a materially new standard route or source/configuration route is proven."
+  },
+  "proved": [
+    "TARGET-032H route signal is insufficient for a safe General Posting Setup write.",
+    "No trusted Page 314 row-card route is proven for INLAND/WAREN/4400/5400.",
+    "Kopieren... is not a safe first write route because the tooltip requires a new record first.",
+    "The next step must be a source/configuration decision or another materially new route, not a repeat of New/Edit List/cell-edit attempts.",
+    "No BC, Playwright, setup, master data, draft, Preview Posting, Posting or API action occurred in TARGET-032I."
+  ],
+  "notProved": [
+    "No INLAND/WAREN General Posting Setup row is stored.",
+    "No Sales Account 4400 or Purchase Account 5400 is stored in Page 314.",
+    "No VAT Posting Setup row is stored.",
+    "No document, Preview Posting, Posting, G/L Entries, VAT Entries or Value Entries are proven.",
+    "No SKR04 completeness, tax advisor approval or German compliance claim is proven."
+  ],
+  "warnings": [
+    "TARGET-032H Page Inspection shortcut did not provide stable Page 314 technical proof.",
+    "Column/menu/form text can look like an action route but is not enough for setup writes.",
+    "General Posting Setup remains a Foundation blocker until a trusted route or conscious replacement is documented."
+  ],
+  "result": "TARGET-032I classified TARGET-032H Page 314 signal as insufficient/weak-false-positive-risk; no write route is accepted.",
+  "nextCase": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION"
 }

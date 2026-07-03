@@ -566,6 +566,18 @@ Fuer Claims bedeutet das:
 
 Fuer Universaarl folgt daraus: Vor jedem General-Posting-Setup-Write muss TARGET-032I den Routenkandidaten klassifizieren. Erst wenn ein echter Zeilen-/Karten-/Setupweg bewiesen ist, darf ein neuer Write-Gate entstehen.
 
+## TARGET-032I General Posting Setup Routenkandidat klassifiziert
+
+TARGET-032I laeuft ohne Business-Central- und ohne Playwright-Ausfuehrung. Der Lauf bewertet TARGET-032H gegen die bisherige Page-314-Blockerhistorie:
+
+- Der sichtbare Form-/Spalten-/Menue-Text ist hilfreich fuer Screenshot-QA, aber kein belastbarer Zeilen- oder Kartenpfad.
+- `Kopieren...` ist kein sicherer erster Schreibweg, weil der Tooltip sagt, dass der neue Datensatz vorher erstellt werden muss.
+- `Weitere Optionen` hat in TARGET-032H keinen eigenen Kartenpfad freigelegt.
+- Page Inspection lieferte keinen stabilen technischen Page-314-Beweis.
+- Page `315` bleibt verworfen, weil sie zu MwSt.-Posten gehoert und nicht zur allgemeinen Buchungsmatrix.
+
+Fuer Universaarl folgt daraus: TARGET-032H hat die Oberflaeche besser erklaerbar gemacht, aber keine Schreibroute bewiesen. Die Kombination `INLAND` + `WAREN` mit `4400` und `5400` bleibt unbewiesen. Der naechste Schritt ist TARGET-032J als Source-/Konfigurationsrouten-Entscheidung: entweder wird ein wirklich neuer Standardweg begruendet oder die allgemeine Buchungsmatrix bleibt bewusst geparkt.
+
 ## URLs
 
 - https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company

@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
+  "status": "ready-next",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "targetWorld": "Universaarl",
+  "activeArea": "universaarl-general-posting-setup-source-or-configuration-route-decision",
+  "purpose": "Decide whether General Posting Setup should continue through a source-backed standard UI route, a configuration/setup route, or stay parked before any Page 314 write.",
+  "sourceCases": [
+    "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
+    "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+    "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION"
+  ],
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-032i-general-posting-setup-route-candidate-decision/TARGET-032I-result.json",
+    "TARGET-032I rejected the weak Page 314 route signal as insufficient for write.",
+    "TARGET-032H proved Page 314 read-only context and visible actions only."
+  ],
+  "allowedActions": [
+    "read-target-032i-result",
+    "read-source-registry",
+    "classify-standard-route-options",
+    "classify-configuration-route-options",
+    "write-local-decision-result",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central-for-write",
+    "click-new",
+    "click-edit-list",
+    "click-copy-as-write-route",
+    "type-values",
+    "write-general-posting-setup",
+    "write-vat-posting-setup",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-posting-readiness"
+  ],
+  "smartDecision": {
+    "whyNow": "General Posting Setup is still a Foundation blocker, but repeated Page 314 cell-edit attempts have not produced a trusted route. A local source/configuration decision is the smallest safe next step.",
+    "fieldsToChangeOnlyIfClear": [],
+    "fieldsNotToTouch": [
+      "General Posting Setup",
+      "VAT Posting Setup",
+      "Inventory Posting Setup",
+      "Customers",
+      "Vendors",
+      "Items",
+      "Documents",
+      "Journals"
+    ],
+    "risk": "Choosing another UI write route without source/configuration evidence would repeat the same blocker and may create partial setup data.",
+    "fallback": "Keep Page 314 parked and continue with VAT or Dimensions only under explicit blocker boundaries."
+  },
+  "acceptanceCriteria": [
+    "A non-repeating next route is selected or General Posting Setup is consciously kept parked.",
+    "The decision distinguishes standard UI, configuration/setup route and do-not-repeat options.",
+    "No Business Central write is performed in this decision case.",
+    "No posting readiness claim is made."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
+    "lastEvidenceSummary": "TARGET-032I rejected the weak TARGET-032H route signal as insufficient and kept Page 314 unwritten.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The matrix blocker now needs a source/configuration route decision rather than another direct Page 314 write attempt.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
+        "status": "ready-next",
+        "reason": "A source/configuration-route decision is safer than repeating Page 314 New/Edit/List/Copy clicks and can decide whether a standard route exists before any setup write."
+      },
+      {
+        "caseId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+        "status": "ready-after-current",
+        "reason": "VAT Posting Setup remains a separate parked matrix blocker; it should not be mixed with General Posting Setup."
+      },
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "ready-after-current",
+        "reason": "Dimensions can continue only after the two matrix blockers are explicitly parked or a new setup route is chosen."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C preflight still needs posting group and VAT boundaries before any document or preview work."
+      },
+      {
+        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
+        "status": "blocked",
+        "reason": "Preview Posting remains blocked without complete posting setup, VAT setup and a document."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked TARGET-032I as done with insufficient route signal classification.",
+      "Added TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION as the next local route decision before any Page 314 write."
+    ],
+    "selectedNextCase": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "It avoids another blind Page 314 cell-edit loop and turns the blocker into a narrow source/configuration decision with explicit no-write boundaries.",
+    "risksBeforeNextCase": [
+      "Do not treat form-level text or column-menu labels as row-card evidence.",
+      "Do not click Neu, Liste bearbeiten or Kopieren as a write route without a new Smart Decision.",
+      "Do not claim General Posting Setup readiness until INLAND/WAREN/4400/5400 is visibly stored after reopen."
+    ],
+    "requiredPreparation": [
+      "Read TARGET-032H result and action inventory.",
+      "Review Microsoft Learn/source notes for General Posting Setup and possible standard setup/configuration routes.",
+      "Decide whether a new controlled UI route, configuration route or conscious park is best."
+    ]
+  },
+  "updatedAt": "2026-07-03T05:23:43.647Z"
+}

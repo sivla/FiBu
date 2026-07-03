@@ -26,7 +26,8 @@
         "TARGET-045B read-only card route retry: Customer Card and Item Card inspected in playthru / UNIVERSAARL-DE without writes.",
         "TARGET-046 source mapping: Item Posting Group and Inventory Posting Setup dependency classified before any item/setup write.",
         "TARGET-053 source decision: WAREN and VAT19 selected for U-ITEM-HW100, with VAT and General Posting Setup still separated.",
-        "TARGET-032H captured Page 314 command bar, hover/tooltip and More-options evidence for setup-page screenshot QA."
+        "TARGET-032H captured Page 314 command bar, hover/tooltip and More-options evidence for setup-page screenshot QA.",
+        "TARGET-032I classified Page 314 action/menu/form route signal as insufficient for setup writes."
       ],
       "openLimits": [
         "No Universaarl master data family exists yet.",
@@ -35,7 +36,7 @@
         "TARGET-045B: Customer Posting Group, Gen. Bus. Posting Group, VAT Bus. Posting Group, Item Posting Group, Gen. Prod. Posting Group, VAT Prod. Posting Group and Costing Method were not visible enough for a write.",
         "No Inventory Posting Group row, Inventory Posting Setup row, SKR04 inventory account, item posting readiness, Preview Posting or Posting is proven from TARGET-046."
       ],
-      "nextCase": "TARGET-054-ITEM-PRODUCT-VAT-POSTING-FIELDS-CONTROLLED-WRITE-GATE",
+      "nextCase": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
       "plannedCases": [
         "TARGET-DATA-001-UNIVERSAARL-DATA-RICHNESS-PLAN",
         "TARGET-DATA-009-FILTERING-READY-CHECK",
@@ -822,7 +823,7 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-07-03T05:17:01.174Z",
+  "updatedAt": "2026-07-03T05:23:43.647Z",
   "activeArea": "universaarl-general-posting-setup-alternative-route-discovery",
   "currentBlock": "Foundation checkpoint needed before master data: General Posting Setup Page 314 and VAT matrix are parked; Dimensions starter set is visible but Global/Default Dimensions and posting effects are not proven.",
   "latestPracticalCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
@@ -5541,5 +5542,34 @@
     "posted": false,
     "selectedNextCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
     "reason": "WAREN on U-ITEM-HW100 is item-card truth, not an INLAND/WAREN General Posting Setup matrix row."
+  },
+  "latestGeneralPostingSetupRouteCandidateDecision": {
+    "caseId": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
+    "status": "insufficient-no-write-route",
+    "sourceEvidence": [
+      "playwright/projects/fibu-book5/evidence/target-032h-general-posting-setup-alternative-route-discovery/TARGET-032H-result.json",
+      "playwright/projects/fibu-book5/evidence/target-032h-general-posting-setup-alternative-route-discovery/020-page314-action-inventory.json"
+    ],
+    "routeClassification": {
+      "routeSignalStrength": "insufficient",
+      "classification": "weak-false-positive-risk",
+      "trustedWriteRouteProven": false,
+      "trustedRowCardRouteProven": false,
+      "reason": "TARGET-032H actionInventoryHasCardSignal came from broad form/column/menu text and the visible Kopieren... tooltip says a new record must already exist. More options did not expose a card route and Page Inspection did not produce stable Page 314 technical proof.",
+      "acceptedSignals": [
+        "Page 314 Buchungsmatrix Einrichtung is reachable read-only.",
+        "Visible command bar contains Neu, Liste bearbeiten, Konten vorschlagen, Kopieren... and Weitere Optionen.",
+        "Relevant account columns are visible enough for screenshot QA."
+      ],
+      "rejectedSignals": [
+        "Form-level action text is not a row/card route.",
+        "Column menu labels such as Menu oeffnen are not setup-write routes.",
+        "Kopieren... cannot be used as the first route because its tooltip requires a new target record first.",
+        "Page 315 remains rejected as VAT Entries, not General Posting Setup."
+      ],
+      "resultingBoundary": "General Posting Setup Page 314 remains parked before any INLAND/WAREN/4400/5400 write until a materially new standard route or source/configuration route is proven."
+    },
+    "nextCase": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
+    "updatedAt": "2026-07-03T05:23:43.647Z"
   }
 }

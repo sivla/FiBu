@@ -1,21 +1,59 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
+  "purpose": "autopilot-local-decision-result",
   "caseId": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
-  "status": "observed-route-signal-insufficient-no-write",
-  "completedAt": "2026-07-03T05:23:43.647Z",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-032i-general-posting-setup-route-candidate-decision/TARGET-032I-result.json",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "bcRun": false,
-  "playwrightRun": false,
+  "source": "local-analysis-general-posting-setup-route-candidate-decision",
+  "resultStatus": "observed-route-signal-insufficient-no-write",
+  "page": "Page 314 Buchungsmatrix Einrichtung / General Posting Setup",
+  "url": "",
+  "actionsTaken": [
+    "Read TARGET-032H result and action inventory.",
+    "Classified the Page 314 route signal as insufficient for any write.",
+    "Selected a non-repeating source/configuration decision as next case."
+  ],
+  "actionsNotTaken": [
+    "No Business Central page was opened in this case.",
+    "No Playwright test was executed in this case.",
+    "No New action was clicked.",
+    "No Edit List action was clicked.",
+    "No Copy action was clicked.",
+    "No setup value was typed.",
+    "No General Posting Setup value was written.",
+    "No VAT Posting Setup value was written.",
+    "No master data, document, draft, Preview Posting, Posting, Payment or API shortcut occurred."
+  ],
   "setupChanged": false,
   "masterDataChanged": false,
   "draftCreated": false,
   "previewPosting": false,
   "posted": false,
   "apiShortcut": false,
-  "summary": "TARGET-032I classified the weak TARGET-032H Page 314 route signal as insufficient for any General Posting Setup write. Broad form/column/menu labels and Kopieren... are not accepted as a trusted row/card route. No BC or Playwright action occurred.",
+  "routeClassification": {
+    "routeSignalStrength": "insufficient",
+    "classification": "weak-false-positive-risk",
+    "trustedWriteRouteProven": false,
+    "trustedRowCardRouteProven": false,
+    "reason": "TARGET-032H actionInventoryHasCardSignal came from broad form/column/menu text and the visible Kopieren... tooltip says a new record must already exist. More options did not expose a card route and Page Inspection did not produce stable Page 314 technical proof.",
+    "acceptedSignals": [
+      "Page 314 Buchungsmatrix Einrichtung is reachable read-only.",
+      "Visible command bar contains Neu, Liste bearbeiten, Konten vorschlagen, Kopieren... and Weitere Optionen.",
+      "Relevant account columns are visible enough for screenshot QA."
+    ],
+    "rejectedSignals": [
+      "Form-level action text is not a row/card route.",
+      "Column menu labels such as Menu oeffnen are not setup-write routes.",
+      "Kopieren... cannot be used as the first route because its tooltip requires a new target record first.",
+      "Page 315 remains rejected as VAT Entries, not General Posting Setup."
+    ],
+    "resultingBoundary": "General Posting Setup Page 314 remains parked before any INLAND/WAREN/4400/5400 write until a materially new standard route or source/configuration route is proven."
+  },
+  "screenshots": [],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-032h-general-posting-setup-alternative-route-discovery/TARGET-032H-result.json",
+    "playwright/projects/fibu-book5/evidence/target-032h-general-posting-setup-alternative-route-discovery/020-page314-action-inventory.json"
+  ],
   "proved": [
     "TARGET-032H route signal is insufficient for a safe General Posting Setup write.",
     "No trusted Page 314 row-card route is proven for INLAND/WAREN/4400/5400.",
@@ -30,15 +68,12 @@
     "No document, Preview Posting, Posting, G/L Entries, VAT Entries or Value Entries are proven.",
     "No SKR04 completeness, tax advisor approval or German compliance claim is proven."
   ],
+  "blockedBy": [],
   "warnings": [
     "TARGET-032H Page Inspection shortcut did not provide stable Page 314 technical proof.",
     "Column/menu/form text can look like an action route but is not enough for setup writes.",
     "General Posting Setup remains a Foundation blocker until a trusted route or conscious replacement is documented."
   ],
-  "screenshots": [],
-  "nextCase": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
-  "nextCaseFile": ".agent/state/cases/target-032j-general-posting-setup-source-or-configuration-route-decision.json",
-  "nextStep": "Decide source/configuration route for General Posting Setup before any Page 314 write.",
   "nextStepDecision": {
     "currentCase": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
     "plannedNextCaseBeforeReview": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
@@ -88,5 +123,22 @@
       "Review Microsoft Learn/source notes for General Posting Setup and possible standard setup/configuration routes.",
       "Decide whether a new controlled UI route, configuration route or conscious park is best."
     ]
-  }
+  },
+  "nextCase": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-032i-general-posting-setup-route-candidate-decision/TARGET-032I-result.json",
+    ".agent/state/cases/target-032i-general-posting-setup-route-candidate-decision.json",
+    ".agent/state/cases/target-032j-general-posting-setup-source-or-configuration-route-decision.json",
+    ".agent/state/current.json",
+    ".agent/state/marathon_queue.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/coverage_state.json",
+    "playwright/projects/fibu-book5/BC-SOURCE-REGISTRY.md",
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
+    "playwright/projects/fibu-book5/BC-ACTION-ATLAS.md"
+  ],
+  "statePatch": {},
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "completedAt": "2026-07-03T05:23:43.647Z"
 }
