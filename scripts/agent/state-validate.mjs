@@ -59,6 +59,11 @@ requireString(current, 'company', files.current, errors);
 requireString(current, 'activeArea', files.current, errors);
 requireString(current, 'activeCase', files.current, errors);
 requireString(current, 'active_case_file', files.current, errors);
+if (current.activeCaseFile !== undefined && current.activeCaseFile !== current.active_case_file) {
+  errors.push(
+    `current.activeCaseFile must mirror current.active_case_file when present: ${current.activeCaseFile} vs ${current.active_case_file}`,
+  );
+}
 requireArray(current, 'allowedActions', files.current, errors);
 requireArray(current, 'forbiddenActions', files.current, errors);
 requireString(lastRun, 'runId', files.lastRun, errors);
