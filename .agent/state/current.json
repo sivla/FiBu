@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-02T01:25:00.000Z",
+  "updatedAt": "2026-07-03T05:17:23.966Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-general-posting-setup-alternative-route-discovery",
-  "activeCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
-  "active_case_file": ".agent/state/cases/target-032h-general-posting-setup-alternative-route-discovery.json",
+  "activeArea": "universaarl-general-posting-setup-route-candidate-decision",
+  "activeCase": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
+  "active_case_file": ".agent/state/cases/target-032i-general-posting-setup-route-candidate-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -19,15 +19,10 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central-readonly",
-    "confirm-instance-playthru",
-    "confirm-company-universaarl-de",
-    "open-general-posting-setup-readonly",
-    "capture-page-and-action-inventory",
-    "hover-action-tooltips",
-    "inspect-more-options-readonly",
-    "inspect-personalize-or-page-inspection-if-safe",
-    "write-evidence-result",
+    "read-target-032h-result",
+    "classify-action-inventory",
+    "classify-route-signal-strength",
+    "write-local-decision-result",
     "update-state-and-queue"
   ],
   "forbiddenActions": [
@@ -36,22 +31,21 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "company-switch",
-    "click-new-if-it-creates-row",
+    "open-business-central-for-write",
+    "click-new",
+    "click-edit-list",
+    "click-copy-as-write-route",
     "type-values",
     "write-general-posting-setup",
     "write-vat-posting-setup",
-    "change-item",
     "create-document-or-draft",
     "preview-posting",
     "post",
-    "payment",
     "api-shortcut",
-    "claim-posting-readiness",
-    "claim-tax-advisor-approved"
+    "claim-posting-readiness"
   ],
-  "nextCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
-  "nextStep": "Run TARGET-032H as read-only Page 314 alternative-route discovery; do not write setup, do not click New if it creates a row.",
+  "nextCase": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
+  "nextStep": "Run TARGET-032I as local route-candidate decision from TARGET-032H evidence; no Business Central write.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -234,7 +228,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "TARGET-032G keeps General Posting Setup Page 314 parked after item-card WAREN proof; next is TARGET-032H read-only alternative route discovery before any setup write.",
+  "currentCoverageFocus": "TARGET-032H captured Page 314 action/tooltip evidence read-only; next TARGET-032I classifies the weak route signal before any General Posting Setup write.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -1356,7 +1350,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "universaarl-skr04-balance-sheet-accounts-fit",
-  "lastCompletedCase": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
+  "lastCompletedCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3735,45 +3729,53 @@
     ]
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-050-INVENTORY-POSTING-SETUP-CONTROLLED-WRITE-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-038-O2C-PREFLIGHT",
-    "lastEvidenceSummary": "SAAR-HL + WARE + 1140 is visible on Page 5826 after reopen.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "O2C is still too early; the next narrow step is assigning proven posting fields to the item, not a process document.",
+    "currentCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+    "lastEvidenceSummary": "TARGET-032H opened Page 314 read-only in playthru / UNIVERSAARL-DE, captured action inventory, tooltips, More-options state and final reopen proof. No setup value was typed. The only route signal is weak and may come from column/menu text rather than a safe row-card route.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A write case is not yet sensible because TARGET-032H did not prove a trusted editable row/card route for INLAND/WAREN/4400/5400.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
+        "caseId": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
         "status": "ready-next",
-        "reason": "Setup dependencies are individually and jointly proven."
+        "reason": "Classify the weak Page 314 route signal before any write attempt."
+      },
+      {
+        "caseId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+        "status": "ready-after-current",
+        "reason": "VAT matrix route discovery is separate and should wait until Page 314 signal is classified."
+      },
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "needs-setup-first",
+        "reason": "Dimensions can continue only after W1 posting setup boundaries are consciously parked or solved."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C still waits for item field assignment, VAT and General Posting Setup."
+        "reason": "O2C needs General Posting Setup and VAT boundaries before document work."
       },
       {
-        "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
-        "status": "ready-after-current",
-        "reason": "VAT remains a separate foundation lane and must not be mixed with inventory setup."
-      },
-      {
-        "caseId": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
         "status": "blocked",
-        "reason": "Vendor numbering remains parked and separate."
+        "reason": "Preview remains blocked without complete posting setup and a document."
       }
     ],
     "queueChangesMade": [
-      "Mark TARGET-050 done and insert TARGET-051 item posting-field assignment gate."
+      "Marked TARGET-032H as done with read-only weak-route evidence.",
+      "Added TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION as the next local decision before any Page 314 write."
     ],
-    "selectedNextCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
-    "whySelectedNextCaseIsBest": "The item now has enough inventory setup dependencies to attempt a narrow field assignment later.",
+    "selectedNextCase": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
+    "whySelectedNextCaseIsBest": "It prevents a false-positive action label from becoming a risky setup write and keeps Foundation progress on the exact unresolved matrix blocker.",
     "risksBeforeNextCase": [
-      "Do not claim inventory posting readiness before item field assignment and Preview Posting.",
-      "Keep VAT and General Posting Setup as separate lanes.",
-      "Keep Preview Posting and Posting false."
+      "Do not treat column menu labels or broad form text as a row-card route.",
+      "Do not click New, Liste bearbeiten or Kopieren as a write path without a new Smart Decision.",
+      "Do not claim posting readiness from Page 314 visibility."
     ],
     "requiredPreparation": [
-      "Create a narrow item posting-fields assignment case for U-ITEM-HW100 only after reviewing TARGET-045B field visibility."
+      "Read TARGET-032H action inventory and tooltip results.",
+      "Separate safe navigation/menu evidence from true row-edit or card evidence.",
+      "Decide whether Page 314 remains parked or whether a new non-repeating UI/source route is justified."
     ]
   },
   "permissionBlocker": {
@@ -7477,46 +7479,37 @@
     "nextCase": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY"
   },
   "latestGeneralPostingSetupAlternativeRouteDiscovery": {
-    "caseId": "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
-    "status": "blocked",
-    "completedAt": "2026-07-01T08:24:32.854Z",
-    "resultPath": "playwright/projects/fibu-book5/evidence/target-032e-general-posting-setup-alternative-route-discovery/TARGET-032E-result.json",
-    "sourceInstance": "playthru",
-    "sourceCompany": "UNIVERSAARL-DE",
-    "pageId": 314,
+    "caseId": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+    "status": "observed-weak-route-signal-no-write",
+    "completedAt": "2026-07-03T05:17:01.174Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-032h-general-posting-setup-alternative-route-discovery/TARGET-032H-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
     "setupChanged": false,
-    "setupChangeAttempted": false,
     "masterDataChanged": false,
     "draftCreated": false,
     "previewPosting": false,
     "posted": false,
     "apiShortcut": false,
     "routeSignals": {
-      "sourceMentionsOwnCard": "Microsoft Learn: General Posting Setup lines can be opened in their own posting setup card; this case probes whether Page 314 exposes that route in this UI.",
+      "sourceMentionsOwnCard": "Microsoft Learn describes General Posting Setup as a setup matrix for business and product posting groups. This case only checks whether Page 314 exposes a safer UI route than inline matrix editing.",
       "actionInventoryHasCardSignal": true,
       "moreOptionsHasCardSignal": false,
       "pageInspectionOpened": false,
       "pageInspectionStayedOnPage314": false,
-      "page315LooksLikeVatEntries": true,
-      "page315HasCardCandidateSignal": false
+      "finalReopenStayedOnPage314": true,
+      "finalReopenHasDangerousDialog": false,
+      "skippedRejectedPage315Probe": true
     },
-    "blockedBy": [
-      "No materially different Page 314 route was proven beyond action inventory and blocked list-new evidence."
-    ],
-    "warnings": [
-      "Page Inspection shortcut did not produce a clear Page Inspection text surface.",
-      "Direct Page 315 did not prove a General Posting Setup card route in this run.",
-      "Direct Page 315 opened MwSt.-Posten/VAT Entries and is rejected as a General Posting Setup card route."
-    ],
-    "learning": "Direct Page 315 is MwSt.-Posten/VAT Entries and must not be treated as a General Posting Setup card route; More options expands command-bar state but did not expose a card/open route; Page Inspection shortcut was not accepted as a stable Page 314 proof in this run.",
     "screenshots": [
-      "playwright/projects/fibu-book5/img/target-032e-010-page314-start.png",
-      "playwright/projects/fibu-book5/img/target-032e-020-action-tooltip-qa.png",
-      "playwright/projects/fibu-book5/img/target-032e-030-more-options-state.png",
-      "playwright/projects/fibu-book5/img/target-032e-040-page-inspection-context.png",
-      "playwright/projects/fibu-book5/img/target-032e-050-page315-card-candidate.png"
+      "playwright/projects/fibu-book5/img/target-032h-010-page314-start.png",
+      "playwright/projects/fibu-book5/img/target-032h-020-action-tooltip-qa.png",
+      "playwright/projects/fibu-book5/img/target-032h-030-more-options-state.png",
+      "playwright/projects/fibu-book5/img/target-032h-040-page-inspection-context.png",
+      "playwright/projects/fibu-book5/img/target-032h-050-page314-final-reopen-proof.png"
     ],
-    "nextCase": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION"
+    "summary": "Page 314 read-only action inventory, tooltips, More-options state and final reopen proof captured. No setup row or target matrix row was written; route signal is weak and requires TARGET-032I classification.",
+    "nextCase": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION"
   },
   "latestGeneralPostingSetupParkDecision": {
     "caseId": "TARGET-032F-GENERAL-POSTING-SETUP-PARK-OR-SOURCE-ROUTE-DECISION",
@@ -7966,50 +7959,53 @@
     "uiLearning": "BC Page 456 URL filters require quoted table/field syntax for table names with punctuation; the filtered U-VEND list shows checkbox columns, but the write locator still must be source-backed or assisted before toggling Manual Nos."
   },
   "nextStepDecision": {
-    "currentCase": "TARGET-052-ITEM-POSTING-FIELDS-FOUNDATION-CHECKPOINT",
-    "plannedNextCaseBeforeReview": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
-    "lastEvidenceSummary": "TARGET-051 proved WARE on U-ITEM-HW100 after reopen. TARGET-052 checked the current item card without writes.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "VAT matrix work is still too broad. The next useful step is a source decision for the item Product Posting Group and VAT Product Posting Group target values before any write.",
+    "currentCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+    "lastEvidenceSummary": "TARGET-032H opened Page 314 read-only in playthru / UNIVERSAARL-DE, captured action inventory, tooltips, More-options state and final reopen proof. No setup value was typed. The only route signal is weak and may come from column/menu text rather than a safe row-card route.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A write case is not yet sensible because TARGET-032H did not prove a trusted editable row/card route for INLAND/WAREN/4400/5400.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
+        "caseId": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
         "status": "ready-next",
-        "reason": "The exact remaining item fields are visible, but values must be source-backed before a write."
+        "reason": "Classify the weak Page 314 route signal before any write attempt."
       },
       {
-        "caseId": "TARGET-027D4-VAT-MATRIX-FIELD-CONTROL-MAPPING",
+        "caseId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
         "status": "ready-after-current",
-        "reason": "VAT Posting Setup remains relevant, but item VAT product value should be decided first."
+        "reason": "VAT matrix route discovery is separate and should wait until Page 314 signal is classified."
       },
       {
-        "caseId": "TARGET-032D-GENERAL-POSTING-SETUP-MATRIX-WRITE-GATE",
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "needs-setup-first",
-        "reason": "General Posting Setup should follow source-backed business/product group values."
+        "reason": "Dimensions can continue only after W1 posting setup boundaries are consciously parked or solved."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C needs item/customer posting fields plus VAT and general posting setup readiness."
+        "reason": "O2C needs General Posting Setup and VAT boundaries before document work."
       },
       {
-        "caseId": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
         "status": "blocked",
-        "reason": "Vendor manual number-series checkbox remains parked and unrelated to this item foundation lane."
+        "reason": "Preview remains blocked without complete posting setup and a document."
       }
     ],
     "queueChangesMade": [
-      "Selected TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION after TARGET-052 checkpoint."
+      "Marked TARGET-032H as done with read-only weak-route evidence.",
+      "Added TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION as the next local decision before any Page 314 write."
     ],
-    "selectedNextCase": "TARGET-053-ITEM-PRODUCT-VAT-POSTING-FIELDS-SOURCE-DECISION",
-    "whySelectedNextCaseIsBest": "It resolves the next narrow item-card dependency without jumping to VAT setup, documents or posting.",
+    "selectedNextCase": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
+    "whySelectedNextCaseIsBest": "It prevents a false-positive action label from becoming a risky setup write and keeps Foundation progress on the exact unresolved matrix blocker.",
     "risksBeforeNextCase": [
-      "Do not claim item posting readiness from WARE alone.",
-      "Do not set Product Posting Group or VAT Product Posting Group without a source-backed target value.",
-      "Keep Preview Posting and Posting false."
+      "Do not treat column menu labels or broad form text as a row-card route.",
+      "Do not click New, Liste bearbeiten or Kopieren as a write path without a new Smart Decision.",
+      "Do not claim posting readiness from Page 314 visibility."
     ],
     "requiredPreparation": [
-      "Use Microsoft Learn and existing Universaarl setup evidence to choose source-backed product/VAT product target values."
+      "Read TARGET-032H action inventory and tooltip results.",
+      "Separate safe navigation/menu evidence from true row-edit or card evidence.",
+      "Decide whether Page 314 remains parked or whether a new non-repeating UI/source route is justified."
     ]
   },
   "latestTarget037MasterdataFoundationCheckpoint": {
@@ -8428,7 +8424,7 @@
       "apiShortcut": false
     }
   ],
-  "lastCompletedResultPath": "playwright/projects/fibu-book5/evidence/target-027d25-vat-matrix-route-reopen-decision/TARGET-027D25-result.json",
+  "lastCompletedResultPath": "playwright/projects/fibu-book5/evidence/target-032h-general-posting-setup-alternative-route-discovery/TARGET-032H-result.json",
   "latestTarget045B": {
     "caseId": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
     "resultPath": "playwright/projects/fibu-book5/evidence/target-045b-customer-item-posting-fields-readonly-route-retry/TARGET-045B-result.json",

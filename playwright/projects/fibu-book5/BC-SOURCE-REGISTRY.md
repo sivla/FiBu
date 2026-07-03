@@ -552,6 +552,20 @@ TARGET-032G laeuft ohne Business-Central- und ohne Playwright-Ausfuehrung. Der L
 
 Fuer Universaarl folgt daraus: Die General-Posting-Setup-Route bleibt geparkt. Der naechste sinnvolle Schritt ist keine Wiederholung von `Liste bearbeiten` + `Neu`, `Strg+Einfuegen` oder Page `315`, sondern TARGET-032H als read-only Alternative-Route-Discovery mit Screenshot-QA, Tooltip-/Action-Inventar und klarer Stop-Regel vor jeder Datenanlage.
 
+## TARGET-032H General Posting Setup Action-/Tooltip-Discovery
+
+TARGET-032H oeffnet Page 314 `Buchungsmatrix Einrichtung` read-only in `playthru` / `UNIVERSAARL-DE`. Sichtbar sind `Neu`, `Liste bearbeiten`, `Konten vorschlagen`, `Kopieren...`, `Weitere Optionen`, die relevanten Kontenspalten und Spaltenmenues wie `Menu oeffnen`. Der Lauf klickt kein `Neu`, keine `Liste bearbeiten`-Schreibroute, schreibt keine Werte und wiederholt Page `315` bewusst nicht.
+
+Fuer Claims bedeutet das:
+
+- Page 314 ist als Oberflaeche fuer die allgemeine Buchungsmatrix bestaetigt.
+- Tooltip-/Action-Inventar hilft beim Verstehen der Oberflaeche und beim naechsten Screenshot-QA.
+- Der gefundene Routenkandidat ist schwach, weil er aus breitem Form-/Spalten-/Menue-Text stammen kann.
+- `INLAND` + `WAREN` mit `4400` und `5400` bleibt unbewiesen.
+- Preview, Posting, G/L Entries, VAT Entries und Value Entries bleiben gesperrt.
+
+Fuer Universaarl folgt daraus: Vor jedem General-Posting-Setup-Write muss TARGET-032I den Routenkandidaten klassifizieren. Erst wenn ein echter Zeilen-/Karten-/Setupweg bewiesen ist, darf ein neuer Write-Gate entstehen.
+
 ## URLs
 
 - https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company

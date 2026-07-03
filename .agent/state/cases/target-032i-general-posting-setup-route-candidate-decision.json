@@ -1,51 +1,71 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
-  "caseId": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
-  "status": "observed-weak-route-signal-no-write",
-  "completedAt": "2026-07-03T05:17:01.174Z",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-032h-general-posting-setup-alternative-route-discovery/TARGET-032H-result.json",
+  "caseId": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
+  "status": "ready-next",
+  "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "bcRun": true,
-  "playwrightRun": true,
-  "setupChanged": false,
-  "masterDataChanged": false,
-  "draftCreated": false,
-  "previewPosting": false,
-  "posted": false,
-  "apiShortcut": false,
-  "summary": "TARGET-032H opened General Posting Setup Page 314 read-only, captured action inventory, hover/tooltip evidence, More-options state and final reopen proof. It did not click New/Edit List, type setup values, create a row, preview or post. The only route signal is weak and must be classified in TARGET-032I before any write.",
-  "proved": [
-    "Business Central stayed in playthru / UNIVERSAARL-DE.",
-    "Page 314 was opened without typing setup values.",
-    "Page 314 action inventory and tooltip/More-options/Page-Inspection probes were captured.",
-    "Page 314 was reopened after the probes without a dangerous dialog.",
-    "No master data, document draft, Preview Posting, Posting, Payment or API shortcut occurred.",
-    "A weak route signal exists and needs classification before any write."
+  "targetWorld": "Universaarl",
+  "activeArea": "universaarl-general-posting-setup-route-candidate-decision",
+  "purpose": "Classify TARGET-032H Page 314 route signals before any General Posting Setup write. The decision must separate weak column/menu text from a trusted row-card or setup route.",
+  "sourceCases": [
+    "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+    "TARGET-032E-GENERAL-POSTING-SETUP-CARD-OR-ALTERNATIVE-ROUTE-DISCOVERY",
+    "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION"
   ],
-  "notProved": [
-    "No complete INLAND/WAREN/4400/5400 matrix row is proven after reopen.",
-    "No General Posting Setup value is written by this case.",
-    "No VAT Posting Setup is proven.",
-    "No Inventory Posting Setup is proven.",
-    "No posting readiness, Preview Posting, G/L Entries, VAT Entries or Value Entries are proven.",
-    "No final SKR04, tax advisor or German compliance claim is proven."
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-032h-general-posting-setup-alternative-route-discovery/TARGET-032H-result.json",
+    "TARGET-032H captured Neu, Liste bearbeiten, Kopieren..., Weitere Optionen, table columns and final Page 314 reopen proof without writing.",
+    "TARGET-032E rejected Page 315 as VAT Entries, not a General Posting Setup card route.",
+    "TARGET-032G kept General Posting Setup parked after item-card WAREN proof."
   ],
-  "warnings": [
-    "Page Inspection shortcut did not produce a clear Page Inspection text surface.",
-    "Page 315 was intentionally not repeated because prior evidence already rejected it as a VAT Entries route, not a General Posting Setup card route."
+  "allowedActions": [
+    "read-target-032h-result",
+    "classify-action-inventory",
+    "classify-route-signal-strength",
+    "write-local-decision-result",
+    "update-state-and-queue"
   ],
-  "screenshots": [
-    "playwright/projects/fibu-book5/img/target-032h-010-page314-start.png",
-    "playwright/projects/fibu-book5/img/target-032h-020-action-tooltip-qa.png",
-    "playwright/projects/fibu-book5/img/target-032h-030-more-options-state.png",
-    "playwright/projects/fibu-book5/img/target-032h-040-page-inspection-context.png",
-    "playwright/projects/fibu-book5/img/target-032h-050-page314-final-reopen-proof.png"
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central-for-write",
+    "click-new",
+    "click-edit-list",
+    "click-copy-as-write-route",
+    "type-values",
+    "write-general-posting-setup",
+    "write-vat-posting-setup",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-posting-readiness"
   ],
-  "nextCase": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
-  "nextCaseFile": ".agent/state/cases/target-032i-general-posting-setup-route-candidate-decision.json",
-  "nextStep": "Classify TARGET-032H route signals locally; do not write Page 314 values yet.",
+  "smartDecision": {
+    "whyNow": "TARGET-032H produced a possible route signal, but the signal may be a false positive from broad form/column menu text. A local judgement step is safer than another UI write attempt.",
+    "fieldsToChangeOnlyIfClear": [],
+    "fieldsNotToTouch": [
+      "General Posting Setup",
+      "VAT Posting Setup",
+      "Items",
+      "Customers",
+      "Vendors",
+      "Documents",
+      "Journals"
+    ],
+    "risk": "Misreading a broad action inventory label as a row-card route could create another unsafe Page 314 write attempt.",
+    "fallback": "If no trusted route is proven, park Page 314 and select a source/configuration route or the VAT route discovery with explicit boundaries."
+  },
+  "acceptanceCriteria": [
+    "TARGET-032H route signal is classified as trusted, weak, false-positive or insufficient.",
+    "No Business Central write is performed in this decision case.",
+    "Next case is either a new non-repeating controlled route, source/configuration decision, or a conscious park with boundary.",
+    "No posting readiness claim is made."
+  ],
   "nextStepDecision": {
     "currentCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
@@ -95,5 +115,6 @@
       "Separate safe navigation/menu evidence from true row-edit or card evidence.",
       "Decide whether Page 314 remains parked or whether a new non-repeating UI/source route is justified."
     ]
-  }
+  },
+  "updatedAt": "2026-07-03T05:17:23.971Z"
 }

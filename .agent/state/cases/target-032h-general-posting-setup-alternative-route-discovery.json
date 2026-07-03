@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
-  "status": "ready-next",
+  "status": "done",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -73,46 +73,102 @@
     "Result states whether a materially new route exists before any future write case."
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+    "currentCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
-    "lastEvidenceSummary": "TARGET-032G kept General Posting Setup parked after item-card WAREN proof; old Page 314 write routes remain blocked.",
+    "lastEvidenceSummary": "TARGET-032H opened Page 314 read-only in playthru / UNIVERSAARL-DE, captured action inventory, tooltips, More-options state and final reopen proof. No setup value was typed. The only route signal is weak and may come from column/menu text rather than a safe row-card route.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "A read-only route discovery is the safest next step before any setup write.",
+    "reason": "A write case is not yet sensible because TARGET-032H did not prove a trusted editable row/card route for INLAND/WAREN/4400/5400.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+        "caseId": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
         "status": "ready-next",
-        "reason": "It tests new route visibility without writing setup."
-      },
-      {
-        "caseId": "TARGET-038-O2C-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "O2C still needs General Posting Setup and VAT boundaries."
-      },
-      {
-        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
-        "status": "blocked",
-        "reason": "No document and no full posting setup."
+        "reason": "Classify the weak Page 314 route signal before any write attempt."
       },
       {
         "caseId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
         "status": "ready-after-current",
-        "reason": "VAT matrix route discovery is separate and can follow Page 314 discovery."
+        "reason": "VAT matrix route discovery is separate and should wait until Page 314 signal is classified."
+      },
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "needs-setup-first",
+        "reason": "Dimensions can continue only after W1 posting setup boundaries are consciously parked or solved."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C needs General Posting Setup and VAT boundaries before document work."
+      },
+      {
+        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
+        "status": "blocked",
+        "reason": "Preview remains blocked without complete posting setup and a document."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
-    "whySelectedNextCaseIsBest": "It keeps Foundation work practical while respecting the parked setup-write boundary.",
+    "queueChangesMade": [
+      "Marked TARGET-032H as done with read-only weak-route evidence.",
+      "Added TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION as the next local decision before any Page 314 write."
+    ],
+    "selectedNextCase": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
+    "whySelectedNextCaseIsBest": "It prevents a false-positive action label from becoming a risky setup write and keeps Foundation progress on the exact unresolved matrix blocker.",
     "risksBeforeNextCase": [
-      "New action can create a row.",
-      "Action menus may contain write actions.",
-      "Personalization/Page Inspection must not be mistaken for table truth alone."
+      "Do not treat column menu labels or broad form text as a row-card route.",
+      "Do not click New, Liste bearbeiten or Kopieren as a write path without a new Smart Decision.",
+      "Do not claim posting readiness from Page 314 visibility."
     ],
     "requiredPreparation": [
-      "Use screenshot QA for visible actions and tooltips.",
-      "Stop before any data-changing dialog or row creation.",
-      "Explain the UI learning in atlas/evidence, not as final posting readiness."
+      "Read TARGET-032H action inventory and tooltip results.",
+      "Separate safe navigation/menu evidence from true row-edit or card evidence.",
+      "Decide whether Page 314 remains parked or whether a new non-repeating UI/source route is justified."
     ]
   },
-  "updatedAt": "2026-07-02T01:25:00.000Z"
+  "updatedAt": "2026-07-03T05:17:01.174Z",
+  "completedAt": "2026-07-03T05:17:01.174Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-032h-general-posting-setup-alternative-route-discovery/TARGET-032H-result.json",
+  "resultStatus": "observed-weak-route-signal-no-write",
+  "routeSignals": {
+    "sourceMentionsOwnCard": "Microsoft Learn describes General Posting Setup as a setup matrix for business and product posting groups. This case only checks whether Page 314 exposes a safer UI route than inline matrix editing.",
+    "actionInventoryHasCardSignal": true,
+    "moreOptionsHasCardSignal": false,
+    "pageInspectionOpened": false,
+    "pageInspectionStayedOnPage314": false,
+    "finalReopenStayedOnPage314": true,
+    "finalReopenHasDangerousDialog": false,
+    "skippedRejectedPage315Probe": true
+  },
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Page 314 was opened without typing setup values.",
+    "Page 314 action inventory and tooltip/More-options/Page-Inspection probes were captured.",
+    "Page 314 was reopened after the probes without a dangerous dialog.",
+    "No master data, document draft, Preview Posting, Posting, Payment or API shortcut occurred.",
+    "A weak route signal exists and needs classification before any write."
+  ],
+  "notProved": [
+    "No complete INLAND/WAREN/4400/5400 matrix row is proven after reopen.",
+    "No General Posting Setup value is written by this case.",
+    "No VAT Posting Setup is proven.",
+    "No Inventory Posting Setup is proven.",
+    "No posting readiness, Preview Posting, G/L Entries, VAT Entries or Value Entries are proven.",
+    "No final SKR04, tax advisor or German compliance claim is proven."
+  ],
+  "warnings": [
+    "Page Inspection shortcut did not produce a clear Page Inspection text surface.",
+    "Page 315 was intentionally not repeated because prior evidence already rejected it as a VAT Entries route, not a General Posting Setup card route."
+  ],
+  "blockedBy": [],
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/target-032h-010-page314-start.png",
+    "playwright/projects/fibu-book5/img/target-032h-020-action-tooltip-qa.png",
+    "playwright/projects/fibu-book5/img/target-032h-030-more-options-state.png",
+    "playwright/projects/fibu-book5/img/target-032h-040-page-inspection-context.png",
+    "playwright/projects/fibu-book5/img/target-032h-050-page314-final-reopen-proof.png"
+  ],
+  "nextCase": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION"
 }

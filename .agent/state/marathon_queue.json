@@ -5,7 +5,7 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "queueId": "TARGET-MARATHON-002-UNIVERSAARL-REPO-READONLY-PREP",
-  "reason": "TARGET-053 selected WAREN and VAT19 as source-backed values without writing; TARGET-054 is now the next narrow item-card write gate.",
+  "reason": "TARGET-032H captured read-only weak Page 314 route-signal evidence; TARGET-032I must classify it before any write.",
   "noEffectiveBusinessCentralActions": false,
   "forbiddenUntilUnblocked": [],
   "unblockCriteria": "Satisfied: UNIVERSAARL-DE exists and active Role Center context / Firmendaten read-only proof is available.",
@@ -4199,7 +4199,7 @@
     {
       "id": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
       "order": 10195,
-      "status": "pending",
+      "status": "done",
       "priority": "high",
       "category": "general-posting-setup-alternative-route-discovery",
       "expectedImpact": "discover-materially-new-readonly-page314-route-before-any-general-posting-setup-write",
@@ -4214,10 +4214,47 @@
       "lookaheadStatus": "ready-next",
       "dependsOn": [
         "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION"
+      ],
+      "completedAt": "2026-07-03T05:17:01.174Z",
+      "result": "Read-only Page 314 action inventory, tooltips, More-options and reopen proof captured; weak route signal needs local decision before any write.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-032h-general-posting-setup-alternative-route-discovery/TARGET-032H-result.json",
+      "nextCase": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
+      "setupChanged": false,
+      "masterDataChanged": false,
+      "previewPosting": false,
+      "posted": false,
+      "apiShortcut": false,
+      "screenshots": [
+        "playwright/projects/fibu-book5/img/target-032h-010-page314-start.png",
+        "playwright/projects/fibu-book5/img/target-032h-020-action-tooltip-qa.png",
+        "playwright/projects/fibu-book5/img/target-032h-030-more-options-state.png",
+        "playwright/projects/fibu-book5/img/target-032h-040-page-inspection-context.png",
+        "playwright/projects/fibu-book5/img/target-032h-050-page314-final-reopen-proof.png"
+      ]
+    },
+    {
+      "id": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
+      "order": 10196,
+      "status": "pending",
+      "priority": "high",
+      "category": "general-posting-setup-route-candidate-decision",
+      "expectedImpact": "classify-target-032h-weak-route-signal-before-any-page314-write",
+      "mayWorkEffectively": false,
+      "mayRunPlaywright": false,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Decide whether TARGET-032H found a trusted Page 314 row/card route or only weak column/menu labels; no BC write.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "sourceInstance": "playthru",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "caseFile": ".agent/state/cases/target-032i-general-posting-setup-route-candidate-decision.json",
+      "lookaheadStatus": "ready-next",
+      "dependsOn": [
+        "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY"
       ]
     }
   ],
-  "lastUpdated": "2026-07-02T01:25:00.000Z",
+  "lastUpdated": "2026-07-03T05:17:01.174Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -4329,114 +4366,115 @@
   },
   "updatedAt": "2026-07-02T01:25:00.000Z",
   "lastCompletedCase": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
-  "nextCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+  "nextCase": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
-    "lastEvidenceSummary": "TARGET-054 proved WAREN and VAT19 on U-ITEM-HW100 after reopen. TARGET-032F had parked Page 314 because no safe write/card route for INLAND/WAREN with 4400/5400 was proven.",
+    "currentCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+    "lastEvidenceSummary": "TARGET-032H opened Page 314 read-only in playthru / UNIVERSAARL-DE, captured action inventory, tooltips, More-options state and final reopen proof. No setup value was typed. The only route signal is weak and may come from column/menu text rather than a safe row-card route.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The local decision is still necessary because item-card WAREN can be mistaken for General Posting Setup readiness.",
+    "reason": "A write case is not yet sensible because TARGET-032H did not prove a trusted editable row/card route for INLAND/WAREN/4400/5400.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+        "caseId": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
         "status": "ready-next",
-        "reason": "Completed locally in this run."
-      },
-      {
-        "caseId": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
-        "status": "ready-next",
-        "reason": "A read-only UI/action discovery can look for a materially new route without writing setup."
-      },
-      {
-        "caseId": "TARGET-038-O2C-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "O2C remains blocked until VAT and General Posting Setup boundaries are resolved."
-      },
-      {
-        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
-        "status": "blocked",
-        "reason": "Preview Posting is blocked without full posting setup and a document."
+        "reason": "Classify the weak Page 314 route signal before any write attempt."
       },
       {
         "caseId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
         "status": "ready-after-current",
-        "reason": "VAT matrix still needs a separate route, but Page 314 is the next queue dependency."
+        "reason": "VAT matrix route discovery is separate and should wait until Page 314 signal is classified."
+      },
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "needs-setup-first",
+        "reason": "Dimensions can continue only after W1 posting setup boundaries are consciously parked or solved."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C needs General Posting Setup and VAT boundaries before document work."
+      },
+      {
+        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
+        "status": "blocked",
+        "reason": "Preview remains blocked without complete posting setup and a document."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-032G as done.",
-      "Added TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY as the next read-only route discovery."
+      "Marked TARGET-032H as done with read-only weak-route evidence.",
+      "Added TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION as the next local decision before any Page 314 write."
     ],
-    "selectedNextCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
-    "whySelectedNextCaseIsBest": "It avoids treating item WAREN as posting setup truth and avoids another blind Page 314 write retry.",
+    "selectedNextCase": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
+    "whySelectedNextCaseIsBest": "It prevents a false-positive action label from becoming a risky setup write and keeps Foundation progress on the exact unresolved matrix blocker.",
     "risksBeforeNextCase": [
-      "Do not click New if it creates a setup row.",
-      "Do not type INLAND, WAREN, 4400 or 5400.",
-      "Do not proceed to O2C/P2P documents before matrix boundaries are resolved."
+      "Do not treat column menu labels or broad form text as a row-card route.",
+      "Do not click New, Liste bearbeiten or Kopieren as a write path without a new Smart Decision.",
+      "Do not claim posting readiness from Page 314 visibility."
     ],
     "requiredPreparation": [
-      "Open Page 314 read-only only after confirming playthru / UNIVERSAARL-DE.",
-      "Inspect command bar, More Options, hover tooltips, personalization/page inspection if safe.",
-      "Capture screenshot QA that explains visible actions and what they do not prove."
+      "Read TARGET-032H action inventory and tooltip results.",
+      "Separate safe navigation/menu evidence from true row-edit or card evidence.",
+      "Decide whether Page 314 remains parked or whether a new non-repeating UI/source route is justified."
     ]
   },
-  "nextStep": "Run TARGET-032H read-only Page 314 alternative-route discovery; no setup write.",
+  "nextStep": "Run TARGET-032I local route-candidate decision; no BC write.",
   "openItems": 1,
-  "nextQueueItem": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+  "nextQueueItem": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
   "nextCases": [
-    "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+    "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
+    "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+    "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
     "TARGET-038-O2C-PREFLIGHT",
-    "TARGET-037-FIRST-PREVIEW-GATE",
-    "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY"
+    "TARGET-037-FIRST-PREVIEW-GATE"
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
-    "lastEvidenceSummary": "TARGET-054 proved WAREN and VAT19 on U-ITEM-HW100 after reopen. TARGET-032F had parked Page 314 because no safe write/card route for INLAND/WAREN with 4400/5400 was proven.",
+    "currentCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+    "lastEvidenceSummary": "TARGET-032H opened Page 314 read-only in playthru / UNIVERSAARL-DE, captured action inventory, tooltips, More-options state and final reopen proof. No setup value was typed. The only route signal is weak and may come from column/menu text rather than a safe row-card route.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The local decision is still necessary because item-card WAREN can be mistaken for General Posting Setup readiness.",
+    "reason": "A write case is not yet sensible because TARGET-032H did not prove a trusted editable row/card route for INLAND/WAREN/4400/5400.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
+        "caseId": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
         "status": "ready-next",
-        "reason": "Completed locally in this run."
-      },
-      {
-        "caseId": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
-        "status": "ready-next",
-        "reason": "A read-only UI/action discovery can look for a materially new route without writing setup."
-      },
-      {
-        "caseId": "TARGET-038-O2C-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "O2C remains blocked until VAT and General Posting Setup boundaries are resolved."
-      },
-      {
-        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
-        "status": "blocked",
-        "reason": "Preview Posting is blocked without full posting setup and a document."
+        "reason": "Classify the weak Page 314 route signal before any write attempt."
       },
       {
         "caseId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
         "status": "ready-after-current",
-        "reason": "VAT matrix still needs a separate route, but Page 314 is the next queue dependency."
+        "reason": "VAT matrix route discovery is separate and should wait until Page 314 signal is classified."
+      },
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "needs-setup-first",
+        "reason": "Dimensions can continue only after W1 posting setup boundaries are consciously parked or solved."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C needs General Posting Setup and VAT boundaries before document work."
+      },
+      {
+        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
+        "status": "blocked",
+        "reason": "Preview remains blocked without complete posting setup and a document."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-032G as done.",
-      "Added TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY as the next read-only route discovery."
+      "Marked TARGET-032H as done with read-only weak-route evidence.",
+      "Added TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION as the next local decision before any Page 314 write."
     ],
-    "selectedNextCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
-    "whySelectedNextCaseIsBest": "It avoids treating item WAREN as posting setup truth and avoids another blind Page 314 write retry.",
+    "selectedNextCase": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
+    "whySelectedNextCaseIsBest": "It prevents a false-positive action label from becoming a risky setup write and keeps Foundation progress on the exact unresolved matrix blocker.",
     "risksBeforeNextCase": [
-      "Do not click New if it creates a setup row.",
-      "Do not type INLAND, WAREN, 4400 or 5400.",
-      "Do not proceed to O2C/P2P documents before matrix boundaries are resolved."
+      "Do not treat column menu labels or broad form text as a row-card route.",
+      "Do not click New, Liste bearbeiten or Kopieren as a write path without a new Smart Decision.",
+      "Do not claim posting readiness from Page 314 visibility."
     ],
     "requiredPreparation": [
-      "Open Page 314 read-only only after confirming playthru / UNIVERSAARL-DE.",
-      "Inspect command bar, More Options, hover tooltips, personalization/page inspection if safe.",
-      "Capture screenshot QA that explains visible actions and what they do not prove."
+      "Read TARGET-032H action inventory and tooltip results.",
+      "Separate safe navigation/menu evidence from true row-edit or card evidence.",
+      "Decide whether Page 314 remains parked or whether a new non-repeating UI/source route is justified."
     ]
   }
 }

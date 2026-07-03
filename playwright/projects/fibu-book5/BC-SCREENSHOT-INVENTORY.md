@@ -855,6 +855,18 @@ Screenshot-QA zu TARGET-032D: Dieser Lauf ist bewusst kein Erfolgsbild fuer die 
 
 Screenshot-QA zu TARGET-032E: Der wichtigste Fortschritt ist ein abgelehnter Irrweg. Page 315 wirkt technisch als moeglicher Kartenkandidat, ist in der sichtbaren Oberflaeche aber `MwSt.-Posten`. Dieser Screenshot verhindert, dass der naechste Lauf eine falsche Seite als Buchungsmatrix-Karte behandelt. Page 314 bleibt offen: Die Grundgruppen `INLAND` und `WAREN` sind vorhanden, aber die Matrixzeile mit `4400` und `5400` ist nicht eingerichtet.
 
+## Universaarl General Posting Setup Alternative Route TARGET-032H
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Interner Beweis | Beweist nicht | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-032h-010-page314-start.png` | Buchungsmatrix Einrichtung, Page 314 | `playthru` / `UNIVERSAARL-DE` | Start der erneuten Read-only-Discovery | Page 314 ist leer fuer die Zielzeile; sichtbar sind `Neu`, `Liste bearbeiten`, `Konten vorschlagen`, `Kopieren...`, `Weitere Optionen` und die Konto-Spalten | Der Lauf startet im richtigen Zielkontext und ohne vorhandene `INLAND`/`WAREN`-Zeile | keine Setup-Aenderung, keine Matrixzeile, keine Buchungsfaehigkeit | `diagnosis-evidence`, `no-write` |
+| `target-032h-020-action-tooltip-qa.png` | Buchungsmatrix Einrichtung, Page 314 | `playthru` / `UNIVERSAARL-DE` | Hover-/Tooltip-QA | Die Aktionsleiste bleibt sichtbar; Tooltip-/Actiontexte werden inventarisiert | Playwright erfasst Bedienhinweise wie `Neu`, `Liste bearbeiten`, `Kopieren...` und `Weitere Optionen`, ohne zu klicken | kein sicherer Schreibpfad, keine Zeilenkarte, keine Kontenwirkung | `tooltip-qa`, `ui-learning` |
+| `target-032h-030-more-options-state.png` | Buchungsmatrix Einrichtung, Page 314 | `playthru` / `UNIVERSAARL-DE` | Nach `Weitere Optionen` | Die Seite bleibt im read-only Kontext; kein gefuehrter Kartenpfad fuer eine Zielzeile wird sichtbar | `Weitere Optionen` ist als Oberflaechenbereich dokumentiert | keine editierbare Zielzeile, kein `INLAND`/`WAREN`/`4400`/`5400` | `route-weak`, `no-write` |
+| `target-032h-040-page-inspection-context.png` | Seitenueberpruefung-Probe | `playthru` / `UNIVERSAARL-DE` | `Ctrl+Alt+F1`-Probe | Keine stabile Page-314-Seitenpruefung wird sichtbar | Die Shortcut-Route ist hier kein verlaesslicher technischer Beweis | keine Page-/Table-/Field-Wahrheit fuer Page 314 | `technical-proof-not-available`, `ui-learning` |
+| `target-032h-050-page314-final-reopen-proof.png` | Buchungsmatrix Einrichtung, Page 314 | `playthru` / `UNIVERSAARL-DE` | Finaler Reopen-Proof | Page 314 ist nach den Probes wieder sichtbar; keine riskante Dialog-/Schreibsituation bleibt offen | Die read-only Probes haben keinen sichtbaren Setupzustand veraendert | keine gespeicherte Matrixzeile, keine Preview, keine Buchung | `reopen-proof`, `no-target-row-persisted` |
+
+Screenshot-QA zu TARGET-032H: Der Lauf verbessert das Oberflaechenverstaendnis, aber er entsperrt keinen Schreibfall. Besonders wichtig ist die Trennung zwischen echten Aktionen und breitem Form-/Spaltenmenue-Text: Ein sichtbares `Menu oeffnen` oder `Kopieren...` ist noch keine sichere Zeilenkarte fuer die Buchungsmatrix. Der naechste Case muss diesen schwachen Routenkandidaten bewerten, bevor `INLAND`, `WAREN`, `4400` oder `5400` in Page 314 geschrieben werden.
+
 ## Universaarl Dimensions Recovery / Defaults TARGET-033
 
 | Screenshot | Page | Company | Schritt | Was sieht man? | Interner Beweis | Beweist nicht | Status |
