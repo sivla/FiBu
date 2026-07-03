@@ -56,5 +56,5 @@ console.log(JSON.stringify({
   resetMode: true,
   removedTargets: plan.filter(item => item.exists),
   skippedTargets: plan.filter(item => !item.exists),
-  nextStep: 'Run npm run auth:bc:interactive and complete Login/MFA in the Playwright-opened browser window until Business Central shell is visible.',
+  nextStep: 'Run npm run auth:bc:open-login and complete Login/MFA in the Playwright-opened browser window until Business Central shell is visible.',
 }, null, 2));

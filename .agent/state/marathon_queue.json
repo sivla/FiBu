@@ -4837,7 +4837,7 @@
       }
     }
   ],
-  "lastUpdated": "2026-07-03T15:40:00.000Z",
+  "lastUpdated": "2026-07-03T16:00:00.000Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -4949,7 +4949,7 @@
       ]
     }
   },
-  "updatedAt": "2026-07-03T15:40:00.000Z",
+  "updatedAt": "2026-07-03T16:00:00.000Z",
   "lastCompletedCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
   "nextStepDecisionCard": {
@@ -5075,7 +5075,7 @@
     "script": "scripts/agent/auth-bc-open-login.mjs",
     "purpose": "Guided longer Playwright auth handoff that makes clear only the Playwright-opened browser window refreshes playwright/.auth/bc-user.json.",
     "timeoutMs": 3600000,
-    "replacesPrimaryRecommendation": "npm run auth:bc:interactive",
+    "replacesPrimaryRecommendation": "npm run auth:bc:open-login",
     "stillRequires": "npm run auth:bc:check canUseStoredAuth=true before any Business Central workflow",
     "bcRun": false,
     "setupChanged": false,
@@ -5188,5 +5188,25 @@
       "auth:storage-state-file-missing"
     ],
     "workflowGate": "No Business Central workflow may run before auth:bc:check canUseStoredAuth=true."
+  },
+  "latestAuthGuidanceAlignment": {
+    "at": "2026-07-03T16:00:00.000Z",
+    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "change": "Aligned auth:bc:check, auth:bc:doctor, agent:run-plan, auth:bc:reset-profile and auth:bc:interactive messages with bounded auth:bc:open-login guidance.",
+    "files": [
+      "scripts/agent/auth-state-check.mjs",
+      "scripts/agent/auth-bc-doctor.mjs",
+      "scripts/agent/run-plan.mjs",
+      "scripts/agent/auth-bc-reset-profile.mjs",
+      "scripts/agent/auth-bc-interactive.mjs"
+    ],
+    "result": "Active auth outputs now point to npm run auth:bc:open-login and mention explicit BC_AUTH_OPEN_LOGIN_TIMEOUT_MS only for longer attended handoff. Business Central workflows remain blocked while auth:bc:check is red.",
+    "bcRun": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false
   }
 }

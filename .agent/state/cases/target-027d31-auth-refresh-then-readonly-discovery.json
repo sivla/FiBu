@@ -97,7 +97,7 @@
     "lastAuthRefreshResult": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json"
   },
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "updatedAt": "2026-07-03T15:45:00.000Z",
+  "updatedAt": "2026-07-03T16:00:00.000Z",
   "latestAuthSetupResultWriter": {
     "at": "2026-07-03T10:20:00.000Z",
     "script": "playwright/core/auth.setup.ts",
@@ -147,7 +147,7 @@
     "canRunBusinessCentralWorkflows": false,
     "normalBrowserLoginIsNotEnough": true,
     "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
-    "nextSafeAction": "Run npm run auth:bc:interactive, complete Login/MFA in the Playwright-opened browser window until Business Central shell appears, then require npm run auth:bc:check canUseStoredAuth=true before D31.",
+    "nextSafeAction": "Run npm run auth:bc:open-login, complete Login/MFA in the Playwright-opened browser window until Business Central shell appears, then require npm run auth:bc:check canUseStoredAuth=true before D31.",
     "bcRun": false,
     "playwrightRun": false,
     "setupChanged": false,
@@ -222,7 +222,7 @@
     "previewPosting": false,
     "posted": false,
     "apiShortcut": false,
-    "nextSafeAction": "Run npm run auth:bc:interactive when ready to complete Login/MFA in the Playwright-opened browser window, then run npm run auth:bc:check and require canUseStoredAuth=true."
+    "nextSafeAction": "Run npm run auth:bc:open-login when ready to complete Login/MFA in the Playwright-opened browser window, then run npm run auth:bc:check and require canUseStoredAuth=true."
   },
   "latestAuthInteractiveAttempt": {
     "at": "2026-07-03T10:21:38.447Z",
@@ -276,14 +276,14 @@
     "previewPosting": false,
     "posted": false,
     "apiShortcut": false,
-    "nextSafeAction": "Dry-run npm run auth:bc:reset-profile. Use -- --confirm only to intentionally remove stale local Playwright auth artifacts, then run npm run auth:bc:interactive."
+    "nextSafeAction": "Dry-run npm run auth:bc:reset-profile. Use -- --confirm only to intentionally remove stale local Playwright auth artifacts, then run npm run auth:bc:open-login."
   },
   "latestAuthProfileResetExecution": {
     "at": "2026-07-03T10:59:25.617Z",
     "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
     "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
     "resetCommand": "npm run auth:bc:reset-profile -- --confirm",
-    "authCommand": "npm run auth:bc:interactive",
+    "authCommand": "npm run auth:bc:open-login",
     "resultStatus": "blocked-auth-before-bc-shell",
     "blockedBy": [
       "auth:playwright-window-stayed-before-business-central-shell",
@@ -303,7 +303,7 @@
     "previewPosting": false,
     "posted": false,
     "apiShortcut": false,
-    "nextSafeAction": "Auth profile has been reset. Run npm run auth:bc:interactive and complete Login/MFA in the Playwright-opened browser window until Business Central shell is visible; then require npm run auth:bc:check canUseStoredAuth=true."
+    "nextSafeAction": "Auth profile has been reset. Run npm run auth:bc:open-login and complete Login/MFA in the Playwright-opened browser window until Business Central shell is visible; then require npm run auth:bc:check canUseStoredAuth=true."
   },
   "latestAuthShellDetectionImprovement": {
     "at": "2026-07-03T12:45:00.000Z",
@@ -325,7 +325,7 @@
     "previewPosting": false,
     "posted": false,
     "apiShortcut": false,
-    "nextSafeAction": "Run npm run auth:bc:interactive after completing Login/MFA in the Playwright-opened browser; then require npm run auth:bc:check canUseStoredAuth=true before any BC workflow."
+    "nextSafeAction": "Run npm run auth:bc:open-login after completing Login/MFA in the Playwright-opened browser; then require npm run auth:bc:check canUseStoredAuth=true before any BC workflow."
   },
   "latestBoundedAuthRetry": {
     "at": "2026-07-03T13:15:00.000Z",
@@ -360,7 +360,7 @@
     "script": "scripts/agent/auth-bc-open-login.mjs",
     "purpose": "Guided longer Playwright auth handoff that makes clear only the Playwright-opened browser window refreshes playwright/.auth/bc-user.json.",
     "timeoutMs": 3600000,
-    "replacesPrimaryRecommendation": "npm run auth:bc:interactive",
+    "replacesPrimaryRecommendation": "npm run auth:bc:open-login",
     "stillRequires": "npm run auth:bc:check canUseStoredAuth=true before any Business Central workflow",
     "bcRun": false,
     "setupChanged": false,
@@ -476,6 +476,26 @@
       ".agent/state/marathon_queue.json"
     ],
     "result": "Marathon check reports authGateActive=true, nextBestLevers=[TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY], nextExecuteLever empty.",
+    "bcRun": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false
+  },
+  "latestAuthGuidanceAlignment": {
+    "at": "2026-07-03T16:00:00.000Z",
+    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "change": "Aligned auth:bc:check, auth:bc:doctor, agent:run-plan, auth:bc:reset-profile and auth:bc:interactive messages with bounded auth:bc:open-login guidance.",
+    "files": [
+      "scripts/agent/auth-state-check.mjs",
+      "scripts/agent/auth-bc-doctor.mjs",
+      "scripts/agent/run-plan.mjs",
+      "scripts/agent/auth-bc-reset-profile.mjs",
+      "scripts/agent/auth-bc-interactive.mjs"
+    ],
+    "result": "Active auth outputs now point to npm run auth:bc:open-login and mention explicit BC_AUTH_OPEN_LOGIN_TIMEOUT_MS only for longer attended handoff. Business Central workflows remain blocked while auth:bc:check is red.",
     "bcRun": false,
     "setupChanged": false,
     "masterDataChanged": false,

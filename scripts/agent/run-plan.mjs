@@ -74,8 +74,8 @@ function runAuthDoctor() {
 }
 
 const authUnblockStep =
-  'Run npm run auth:bc:open-login and complete Login/MFA until the Business Central shell is visible. ' +
-  'If it stays on Microsoft sign-in or times out, run npm run auth:bc:probe for a short redacted diagnosis.';
+  'Run npm run auth:bc:open-login and complete Login/MFA in the Playwright-opened browser window until the Business Central shell is visible. ' +
+  'The command is bounded by default; set BC_AUTH_OPEN_LOGIN_TIMEOUT_MS explicitly only for a longer attended handoff.';
 
 function step(type, fields) {
   return {
@@ -162,7 +162,7 @@ if (needsBusinessCentralAuth) {
   }));
   steps.push(step('run-command', {
     command: 'npm run auth:bc:probe',
-    reason: 'Run a short attended Playwright auth probe when a human believes login is complete, so repeated full 10-minute auth waits are avoided.',
+    reason: 'Run a short attended Playwright auth probe when a human believes login is complete, so repeated login waits are avoided.',
     allowed: true,
     requiredBefore: ['npm run auth:bc:open-login', 'execute-playwright', 'execute-business-central'],
     expectedFailureMeans: 'The Playwright auth window is still before Business Central shell; complete Login/MFA in that window or avoid rerunning long auth loops.',
@@ -176,10 +176,10 @@ if (needsBusinessCentralAuth) {
   }));
   steps.push(step('run-command', {
     command: 'npm run auth:bc:open-login',
-    reason: 'Open the Playwright auth profile with a guided longer attended timeout when the operator is ready to complete Login/MFA.',
+    reason: 'Open the Playwright auth profile with a bounded attended handoff when the operator is ready to complete Login/MFA.',
     allowed: true,
     requiredBefore: ['npm run auth:bc:check', 'execute-playwright', 'execute-business-central'],
-    expectedFailureMeans: 'Login/MFA still did not reach Business Central shell in the Playwright auth window; do not run BC workflows.',
+    expectedFailureMeans: 'Login/MFA still did not reach Business Central shell in the Playwright auth window; do not run BC workflows. For a longer attended handoff, set BC_AUTH_OPEN_LOGIN_TIMEOUT_MS explicitly.',
   }));
 }
 

@@ -72,6 +72,7 @@ const interactiveOperatorAction = {
     'Complete sign-in and MFA in the Playwright-opened browser window.',
     'Wait until Business Central shell text such as Search/Tell Me, Role Center or My Settings is visible.',
     'Then run npm run auth:bc:check and require canUseStoredAuth=true.',
+    'For a longer attended handoff, set BC_AUTH_OPEN_LOGIN_TIMEOUT_MS explicitly for that one run.',
     'If the Playwright window repeatedly stays on Microsoft sign-in, run npm run auth:bc:reset-profile first as a dry run, then with -- --confirm only when the local auth profile should be reset.',
   ],
   normalBrowserLoginIsNotEnough: true,
@@ -135,8 +136,8 @@ const result = {
   nextSafeAction: canUseStoredAuth
     ? 'Run only the active case allowed by agent:run-plan and keep normal BC shell/context checks enabled.'
     : operatorActionRequired
-      ? 'Run npm run auth:bc:open-login and complete Login/MFA in the Playwright-opened browser window, not normal Chrome, until Business Central shell is visible; if it repeatedly stays on Microsoft sign-in, dry-run npm run auth:bc:reset-profile and confirm only the ignored local profile reset.'
-    : 'Run npm run auth:bc:open-login, complete Login/MFA in the Playwright-opened browser until Business Central shell is visible, then rerun npm run auth:bc:check.',
+      ? 'Run npm run auth:bc:open-login and complete Login/MFA in the Playwright-opened browser window, not normal Chrome, until Business Central shell is visible. The handoff is bounded by default; set BC_AUTH_OPEN_LOGIN_TIMEOUT_MS explicitly only for a longer attended run. If it repeatedly stays on Microsoft sign-in, dry-run npm run auth:bc:reset-profile and confirm only the ignored local profile reset.'
+    : 'Run npm run auth:bc:open-login, complete Login/MFA in the Playwright-opened browser until Business Central shell is visible, then rerun npm run auth:bc:check. For longer attended login, set BC_AUTH_OPEN_LOGIN_TIMEOUT_MS explicitly.',
   forbiddenUntilGreen: [
     'D31 VAT Assisted Setup read-only discovery',
     'VAT setup pages',
