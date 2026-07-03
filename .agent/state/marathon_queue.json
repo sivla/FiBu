@@ -4949,7 +4949,7 @@
       ]
     }
   },
-  "updatedAt": "2026-07-03T14:25:00.000Z",
+  "updatedAt": "2026-07-03T14:45:00.000Z",
   "lastCompletedCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
   "nextStepDecisionCard": {
@@ -5003,7 +5003,7 @@
       "Then run D31 read-only discovery with screenshot QA."
     ]
   },
-  "nextStep": "Short auth probe still stayed on Microsoft sign-in. Run npm run auth:bc:open-login, complete Login/MFA in the Playwright-opened window until Business Central shell is visible, then require npm run auth:bc:check canUseStoredAuth=true before D31.",
+  "nextStep": "Auth open-login stayed on Microsoft sign-in for 300000 ms. Complete Login/MFA in the Playwright-opened window until Business Central shell is visible, then require npm run auth:bc:check canUseStoredAuth=true before D31.",
   "openItems": [
     "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY"
   ],
@@ -5083,12 +5083,16 @@
     "apiShortcut": false
   },
   "latestOpenLoginAttempt": {
-    "at": "2026-07-03T13:55:00.000Z",
-    "command": "BC_AUTH_OPEN_LOGIN_TIMEOUT_MS=600000 npm run auth:bc:open-login",
+    "at": "2026-07-03T14:45:00.000Z",
+    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "command": "BC_AUTH_OPEN_LOGIN_TIMEOUT_MS=300000 npm run auth:bc:open-login",
     "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
     "resultStatus": "blocked-auth-before-bc-shell",
+    "timeoutMs": 300000,
     "diagnosisHost": "login.microsoftonline.com",
     "diagnosisPathname": "/{tenant-guid}/oauth2/authorize",
+    "loginRedirectHost": "businesscentral.dynamics.com",
+    "loginRedirectPathname": "/remote-sign-in",
     "targetInstance": "playthru",
     "targetCompany": "UNIVERSAARL-DE",
     "shellSignalDetected": false,

@@ -9,9 +9,9 @@
   "page": "not reached - Microsoft sign-in page before Business Central shell",
   "url": "redacted-login.microsoftonline.com",
   "actionsTaken": [
-    "Ran npm run auth:bc:probe for the active D31 auth refresh gate.",
+    "Ran npm run auth:bc:open-login for the active D31 auth refresh gate.",
     "The Playwright auth browser targeted playthru / UNIVERSAARL-DE.",
-    "The command waited 30000 ms and did not save a Business Central shell-validated storage state."
+    "The command waited 300000 ms and did not save a Business Central shell-validated storage state."
   ],
   "actionsNotTaken": [
     "No D31 VAT Assisted Setup or Manual Setup page was opened by this auth command.",
@@ -21,9 +21,9 @@
     "No bookmaster change was made."
   ],
   "authDiagnosis": {
-    "command": "npm run auth:bc:probe",
+    "command": "npm run auth:bc:open-login",
     "underlyingCommand": "npm run auth:bc",
-    "timeoutMs": 30000,
+    "timeoutMs": 300000,
     "targetSource": "FIBU_BOOK5_BC_URL with current.json override",
     "expectedInstance": "playthru",
     "expectedCompany": "UNIVERSAARL-DE",
@@ -44,9 +44,9 @@
   "operatorAction": {
     "reason": "The Playwright auth profile is not logged in to Business Central yet.",
     "profilePath": "playwright/.auth/bc-profile",
-    "requiredWindow": "the browser window opened by npm run auth:bc:probe",
+    "requiredWindow": "the browser window opened by npm run auth:bc:open-login",
     "steps": [
-      "Run npm run auth:bc:probe from this repo.",
+      "Run npm run auth:bc:open-login from this repo.",
       "Complete sign-in and MFA in the Playwright-opened browser window.",
       "Wait until Business Central shell text such as Search/Tell Me, Role Center or My Settings is visible.",
       "Then run npm run auth:bc:check and require canUseStoredAuth=true."
@@ -85,7 +85,7 @@
   "nextStepDecision": {
     "currentCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "lastEvidenceSummary": "npm run auth:bc:probe stayed before Business Central shell for 30000 ms and saved no Playwright storage state.",
+    "lastEvidenceSummary": "npm run auth:bc:open-login stayed before Business Central shell for 300000 ms and saved no Playwright storage state.",
     "isPlannedNextCaseStillSensible": true,
     "reason": "The active blocker is still Playwright shell auth, not VAT UI or setup logic.",
     "lookaheadReviewed": [
@@ -136,5 +136,5 @@
   "safeToFinalizeState": false,
   "statePatch": {},
   "reason": "Active case blocked at Playwright auth shell validation before any Business Central UI evidence.",
-  "completedAt": "2026-07-03T11:36:20.570Z"
+  "completedAt": "2026-07-03T11:43:54.302Z"
 }
