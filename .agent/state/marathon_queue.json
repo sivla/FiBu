@@ -4750,6 +4750,7 @@
         "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY"
       ],
       "allowedActions": [
+        "run-auth-bc-doctor",
         "refresh-business-central-auth",
         "run-auth-bc-check",
         "confirm-instance-and-company-after-auth",
@@ -4778,11 +4779,18 @@
         "api-shortcut"
       ],
       "caseFile": ".agent/state/cases/target-027d31-auth-refresh-then-readonly-discovery.json",
-      "updatedAt": "2026-07-03T08:50:00.000Z",
-      "reason": "Current open gate; auth:bc:check must become green before any BC workflow."
+      "updatedAt": "2026-07-03T08:40:00.000Z",
+      "reason": "Current open gate; auth:bc:check must become green before any BC workflow. Auth attempts now leave automatic evidence.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
+      "result": "Auth setup now writes normalized auth result JSON on failure/success; latest short attempt still blocked before Business Central shell.",
+      "blockedBy": [
+        "auth:playwright-window-stayed-before-business-central-shell",
+        "auth:shell-signal-not-detected",
+        "auth:storage-state-not-refreshed"
+      ]
     }
   ],
-  "lastUpdated": "2026-07-03T07:37:43.712Z",
+  "lastUpdated": "2026-07-03T08:40:00.000Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",

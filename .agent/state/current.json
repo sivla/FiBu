@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-03T09:34:00.000Z",
+  "updatedAt": "2026-07-03T08:40:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -48,7 +48,7 @@
     "api-shortcut"
   ],
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "nextStep": "Run npm run auth:bc:doctor first. If it reports canRunBusinessCentralWorkflows=false, do not run D31 or other BC workflows; refresh Playwright auth only when Login/MFA can be completed in the Playwright browser.",
+  "nextStep": "Run npm run auth:bc only when Login/MFA can be completed in the Playwright auth browser; auth.setup now records each success/failure in TARGET-027D31-AUTH-result.json.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -7954,50 +7954,50 @@
   "nextStepDecision": {
     "currentCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "lastEvidenceSummary": "auth:bc:doctor remains red and now appears as an explicit run-plan step before long auth retries or BC workflows.",
+    "lastEvidenceSummary": "A short auth:bc validation proved the auth script now writes a normalized result JSON on failure; the latest attempt still stayed on Microsoft sign-in and saved no storageState.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The active blocker is still Playwright auth; integrating the doctor into run-plan avoids repeating 10 minute auth attempts without a go/no-go.",
+    "reason": "The active blocker remains Playwright auth, but the blocker is now evidence-backed and automatically updated by the auth setup script.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
         "status": "ready-next",
-        "reason": "Run doctor first; run auth:bc only when the Playwright login can be completed."
+        "reason": "Run auth:bc when Login/MFA can be completed in the Playwright window; result JSON will be written automatically."
       },
       {
         "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
         "status": "blocked",
-        "reason": "Requires auth:bc:check canUseStoredAuth=true."
+        "reason": "Requires auth:bc:check canUseStoredAuth=true first."
       },
       {
         "caseId": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
         "status": "needs-ui-discovery-first",
-        "reason": "Requires D31 read-only route evidence."
+        "reason": "Requires D31 read-only route evidence first."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-after-current",
-        "reason": "Can resume after VAT auth/discovery is resolved or parked."
+        "reason": "Can resume after VAT auth/discovery is resolved or deliberately parked."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Requires VAT and dimensions status."
+        "reason": "Requires VAT and dimensions status before readiness checkpoint."
       }
     ],
     "queueChangesMade": [
-      "Added run-auth-bc-doctor to the active D31 auth case allowed actions.",
-      "agent:run-plan now prints auth:bc:doctor as required before auth retry/BC execution."
+      "Auth setup now writes TARGET-027D31-AUTH-result.json automatically on success or failure.",
+      "Kept D31 and downstream VAT/setup actions blocked while auth:bc:check remains red."
     ],
     "selectedNextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "whySelectedNextCaseIsBest": "It is still the only open queue item and the doctor step reduces wasted retries while preserving safety.",
+    "whySelectedNextCaseIsBest": "It is still the only open queue item and now has an automatic evidence path for the next auth attempt.",
     "risksBeforeNextCase": [
-      "D31 must not run while doctor/check are red.",
-      "auth:bc will time out again if Playwright login is not completed in its own browser."
+      "Normal browser login does not refresh Playwright storageState.",
+      "A Playwright auth attempt is useful only if Login/MFA reaches the Business Central shell."
     ],
     "requiredPreparation": [
-      "Run npm run auth:bc:doctor.",
-      "If blocked, complete Login/MFA in Playwright auth window.",
-      "Require npm run auth:bc:check canUseStoredAuth=true."
+      "Run npm run auth:bc in the Playwright auth window when login can be completed.",
+      "Require npm run auth:bc:check canUseStoredAuth=true.",
+      "Only then run D31 read-only VAT route discovery."
     ]
   },
   "latestTarget037MasterdataFoundationCheckpoint": {
@@ -9084,6 +9084,20 @@
     "change": "agent:run-plan now lists npm run auth:bc:doctor before auth:bc:check for Business Central auth-gated cases.",
     "bcRun": false,
     "playwrightRun": false,
+    "setupChanged": false,
+    "previewPosting": false,
+    "posted": false
+  },
+  "latestAuthResultWriter": {
+    "at": "2026-07-03T08:40:00.000Z",
+    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "improvement": "playwright/core/auth.setup.ts now writes a normalized auth result JSON on shell success or auth timeout/failure.",
+    "lastResultStatus": "blocked-auth-before-bc-shell",
+    "lastResultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
+    "bcShellReached": false,
+    "storageStateSaved": false,
+    "bcRun": false,
+    "playwrightAuthRun": true,
     "setupChanged": false,
     "previewPosting": false,
     "posted": false

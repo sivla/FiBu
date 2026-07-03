@@ -9,14 +9,12 @@
   "page": "not reached - Microsoft sign-in page before Business Central shell",
   "url": "redacted-login.microsoftonline.com",
   "actionsTaken": [
-    "Ran npm run agent:preflight, agent:context, agent:dry-run and agent:run-plan before the auth attempt.",
     "Ran npm run auth:bc for the active D31 auth refresh gate.",
-    "The Playwright auth browser targeted playthru / UNIVERSAARL-DE via current.json override.",
-    "The command waited 600000 ms and timed out on Microsoft sign-in without a Business Central shell signal."
+    "The Playwright auth browser targeted playthru / UNIVERSAARL-DE.",
+    "The command waited 5000 ms and did not save a Business Central shell-validated storage state."
   ],
   "actionsNotTaken": [
-    "No Business Central shell page was accepted as evidence.",
-    "No D31 VAT Assisted Setup or Manual Setup page was opened.",
+    "No D31 VAT Assisted Setup or Manual Setup page was opened by this auth command.",
     "No setup values were typed.",
     "No wizard Next, Finish, Apply or OK was clicked.",
     "No master data, document, Preview Posting, Posting, payment or API shortcut occurred.",
@@ -24,7 +22,7 @@
   ],
   "authDiagnosis": {
     "command": "npm run auth:bc",
-    "timeoutMs": 600000,
+    "timeoutMs": 5000,
     "targetSource": "FIBU_BOOK5_BC_URL with current.json override",
     "expectedInstance": "playthru",
     "expectedCompany": "UNIVERSAARL-DE",
@@ -32,6 +30,7 @@
     "diagnosisPathname": "/{tenant-guid}/oauth2/authorize",
     "diagnosisTitle": "Bei Ihrem Konto anmelden",
     "shellSignalDetected": false,
+    "matchedShellSignal": "",
     "savedState": false
   },
   "setupChanged": false,
@@ -54,7 +53,7 @@
     "No VAT setup readiness, posting readiness, VAT Entries or G/L Entries are proven."
   ],
   "blockedBy": [
-    "auth:playwright-window-stayed-on-microsoft-sign-in",
+    "auth:playwright-window-stayed-before-business-central-shell",
     "auth:shell-signal-not-detected",
     "auth:storage-state-not-refreshed"
   ],
@@ -62,17 +61,18 @@
     "Do not rerun D31 read-only discovery until auth:bc:check returns canUseStoredAuth=true.",
     "Normal browser login or old storageState must not be accepted as current Business Central evidence."
   ],
+  "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
   "nextStepDecision": {
     "currentCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "lastEvidenceSummary": "A fresh auth:bc attempt again stayed on Microsoft sign-in for 600000 ms and saved no Playwright storage state.",
+    "lastEvidenceSummary": "auth:bc stayed before Business Central shell for 5000 ms and saved no Playwright storage state.",
     "isPlannedNextCaseStillSensible": true,
     "reason": "The active blocker is still Playwright shell auth, not VAT UI or setup logic.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
         "status": "blocked",
-        "reason": "Needs manual Login/MFA completion inside the Playwright auth browser until BC shell appears."
+        "reason": "Needs Login/MFA completion inside the Playwright auth browser until BC shell appears."
       },
       {
         "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
@@ -109,16 +109,12 @@
     ]
   },
   "changedFiles": [
-    "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
-    "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/README.md",
-    ".agent/state/current.json",
-    ".agent/state/last_run_summary.json"
+    "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json"
   ],
   "evidenceRefs": [],
   "requiresReview": false,
   "safeToFinalizeState": false,
   "statePatch": {},
   "reason": "Active case blocked at Playwright auth shell validation before any Business Central UI evidence.",
-  "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "completedAt": "2026-07-03T09:15:00.000Z"
+  "completedAt": "2026-07-03T08:38:00.621Z"
 }
