@@ -306,6 +306,19 @@ Fuer Universaarl folgt daraus:
 - D21 darf keine VAT-Matrixwerte schreiben und darf kein Paket importieren, exportieren, validieren, anwenden oder per Excel veroeffentlichen.
 - Eine Paket-/Tabellen-Metadatenzeile ist noch kein USt-Setup-Erfolg. Erfolg ist nur: Table 325/Feldkontext sichtbar oder sauber blockiert, mit Screenshot-QA und Cleanup-/Keep-Entscheidung.
 
+## TARGET-027D27 VAT-Matrix Controlled Write Gate Decision
+
+D27 nutzt Microsoft Learn `Set up value-added tax` und das Business-Central-VAT-Training als Produktquelle. Beide Quellen stuetzen nur die Struktur der MwSt.-Buchungsmatrix: Kombination aus MwSt.-Geschaeftsbuchungsgruppe, MwSt.-Produktbuchungsgruppe, Steuersatz, Berechnungsart und MwSt.-Sachkonten. Die Quellen beweisen nicht, dass `UNIVERSAARL-DE` diese Werte bereits gespeichert hat.
+
+Fuer Universaarl folgt daraus:
+
+- Der naechste praktische Schritt ist ein eigener Execute-Case `TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE`.
+- D28 darf nur die eine Zielkombination `INLAND` + `VAT19` bearbeiten.
+- Die Zielwerte sind `MwSt. % = 19`, `Berechnungsart = Normale MwSt.`, `Umsatzsteuerkonto = 3806` und `Vorsteuerkonto = 1406`.
+- D3/D5/D8-Zellklick-, F2-, Enter- und Koordinatenrouten bleiben gesperrt.
+- Der Write ist nur erlaubt, wenn Page 472 sichtbar in `playthru` / `UNIVERSAARL-DE` steht, die Route row-bound ist und ein Reopen-Screenshot alle Zielwerte in einer Zeile zeigt.
+- Keine Stammdaten, keine Belege, keine Preview, keine Buchung und kein deutscher USt-Finalclaim vor korrekter Matrix plus spaeterer Preview-/Entry-Evidence.
+
 ## TARGET-027D21 Configuration Package Metadata Discovery
 
 D21 nutzt keine neue externe Quelle. Die bestehende Microsoft-Learn-Basis bleibt gueltig: Configuration Packages sind ein Standardmechanismus fuer Setup-/Tabellendaten, aber Import, Export, Validate, Apply und Excel-Pfade koennen wirksam werden. Die neue Wahrheit stammt aus Universaarl-UI-Evidence:

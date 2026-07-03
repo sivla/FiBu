@@ -848,7 +848,7 @@
   "currentBlock": "Foundation checkpoint needed before master data: General Posting Setup Page 314 and VAT matrix are parked; Dimensions starter set is visible but Global/Default Dimensions and posting effects are not proven.",
   "latestPracticalCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
   "latestReviewCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
-  "nextCase": "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE",
+  "nextCase": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -4416,7 +4416,7 @@
     ],
     "nextCase": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE"
   },
-  "currentFoundationFocus": "TARGET-036C created or verified Debitor U-CUST-100 / Universaarl Kunde 100 with Nr. and Name only and reopen proof; no template, posting/VAT/payment fields, preview or posting.",
+  "currentFoundationFocus": "TARGET-027D27 selected a source-backed controlled Page-472 VAT Posting Setup write gate. Next: TARGET-027D28 may write only INLAND/VAT19 with 19, Normale MwSt., 3806 and 1406 if the UI route is row-bound and screenshot QA passes.",
   "latestGeneralPostingGroupsControlledWriteGate": {
     "caseId": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
     "status": "partially-completed",
@@ -5694,5 +5694,43 @@
     "decision": "allow-narrow-list-edit-gate",
     "nextCase": "TARGET-032O-GENERAL-POSTING-SETUP-PURCHASE-LIST-EDIT-GATE",
     "updatedAt": "2026-07-03T06:15:39.118Z"
+  },
+  "lastUpdated": "2026-07-03",
+  "lastCase": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
+  "vatMatrixControlledWriteGate": {
+    "status": "source-backed-gate-ready",
+    "sourceCase": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
+    "nextCase": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
+    "targetFields": {
+      "vatBusinessPostingGroup": "INLAND",
+      "vatProductPostingGroup": "VAT19",
+      "vatPercent": "19",
+      "vatCalculationType": "Normale MwSt.",
+      "salesVatAccount": "3806",
+      "purchaseVatAccount": "1406"
+    },
+    "boundaries": [
+      "No saved INLAND/VAT19 VAT Posting Setup row.",
+      "No persisted VAT percent 19.",
+      "No persisted Sales VAT Account 3806.",
+      "No persisted Purchase VAT Account 1406.",
+      "No German VAT final correctness.",
+      "No VAT Entries.",
+      "No G/L Entries.",
+      "No Preview Posting.",
+      "No Posting.",
+      "No posting readiness."
+    ],
+    "stopIf": [
+      "Instance is not playthru.",
+      "Company is not UNIVERSAARL-DE.",
+      "Page 472 is not visibly opened.",
+      "A duplicate INLAND/VAT19 row risk appears.",
+      "The UI exposes only the rejected direct cell-edit or coordinate route.",
+      "A required field does not expose a safe row-bound editor or card/control route.",
+      "Any dialog requests confirmation outside the exact planned write.",
+      "Any value lands in a wrong field, row or description column.",
+      "Reopen proof cannot show INLAND, VAT19, 19, Normale MwSt., 3806 and 1406 in the same row."
+    ]
   }
 }

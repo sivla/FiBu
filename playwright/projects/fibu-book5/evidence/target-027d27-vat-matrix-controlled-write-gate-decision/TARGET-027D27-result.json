@@ -1,0 +1,180 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result",
+  "caseId": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
+  "source": "local-source-and-evidence-decision",
+  "resultStatus": "observed",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "VAT Posting Setup / MwSt.-Buchungsmatrix Einr.",
+  "pageId": 472,
+  "url": "",
+  "actionsTaken": [
+    "Read TARGET-027D25 VAT matrix reopen decision.",
+    "Read TARGET-027D26 Page 472 read-only route evidence.",
+    "Read TARGET-032P General Posting Setup park/source-route result.",
+    "Checked Microsoft Learn VAT setup source mapping.",
+    "Selected a separate controlled write-gate case instead of writing VAT setup in this run.",
+    "Defined exact target fields, stop rules, screenshot QA requirements and lookahead."
+  ],
+  "actionsNotTaken": [
+    "No Business Central UI was opened.",
+    "No Playwright test was executed.",
+    "No VAT Posting Setup value was typed.",
+    "No setup was changed.",
+    "No master data was created or changed.",
+    "No document or draft was created.",
+    "No Preview Posting was executed.",
+    "No Posting was executed.",
+    "No API shortcut was used.",
+    "No book claim was added."
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "screenshots": [],
+  "sourceRefs": [
+    {
+      "title": "Microsoft Learn: Set up value-added tax - Business Central",
+      "url": "https://learn.microsoft.com/en-gb/dynamics365/business-central/finance-setup-vat",
+      "claimUse": "VAT Posting Setup combines VAT business posting group, VAT product posting group, VAT percent, VAT calculation type and VAT G/L accounts."
+    },
+    {
+      "title": "Microsoft Learn training: Set up VAT in Dynamics 365 Business Central",
+      "url": "https://learn.microsoft.com/en-us/training/modules/set-up-vat-dynamics-365-business-central/",
+      "claimUse": "VAT setup includes assigning VAT G/L accounts and specifying VAT rates in the VAT posting setup."
+    }
+  ],
+  "targetWriteGate": {
+    "nextCase": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
+    "allowedScope": "One controlled UI attempt to create or complete only the INLAND/VAT19 VAT Posting Setup row.",
+    "targetFields": {
+      "vatBusinessPostingGroup": "INLAND",
+      "vatProductPostingGroup": "VAT19",
+      "vatPercent": "19",
+      "vatCalculationType": "Normale MwSt.",
+      "salesVatAccount": "3806",
+      "purchaseVatAccount": "1406"
+    },
+    "requiredBeforeWrite": [
+      "Confirm playthru / UNIVERSAARL-DE in the visible Business Central shell.",
+      "Open Page 472 through the proven Tell-Me fallback if direct page URL returns to Role Center.",
+      "Capture before screenshot with visible Page 472 columns.",
+      "Confirm no existing complete INLAND/VAT19 row already exists.",
+      "Confirm the route is materially different from rejected D3/D5/D8 cell-edit routes."
+    ],
+    "stopIf": [
+      "Instance is not playthru.",
+      "Company is not UNIVERSAARL-DE.",
+      "Page 472 is not visibly opened.",
+      "A duplicate INLAND/VAT19 row risk appears.",
+      "The UI exposes only the rejected direct cell-edit or coordinate route.",
+      "A required field does not expose a safe row-bound editor or card/control route.",
+      "Any dialog requests confirmation outside the exact planned write.",
+      "Any value lands in a wrong field, row or description column.",
+      "Reopen proof cannot show INLAND, VAT19, 19, Normale MwSt., 3806 and 1406 in the same row."
+    ],
+    "requiredEvidence": [
+      "Before screenshot on Page 472.",
+      "Action/route screenshot if New/List Edit/Card route is used.",
+      "After-write screenshot.",
+      "Reopen screenshot showing all target values in one row.",
+      "Result JSON with rowSignals and notProved boundaries."
+    ]
+  },
+  "proved": [
+    "The next VAT matrix action must be a separate controlled write gate, not a continuation of read-only route discovery.",
+    "Microsoft Learn supports the field class needed for VAT Posting Setup: business group, product group, percent, calculation type and VAT G/L accounts.",
+    "Universaarl evidence already proves the Page 472 surface route but does not prove a saved INLAND/VAT19 matrix row.",
+    "TARGET-026K/TARGET-026L make 1406 and 3806 visible as SKR04-oriented starter accounts, but not yet as matrix accounts.",
+    "D3/D5/D8 style direct cell-edit routes remain rejected for account fields."
+  ],
+  "notProved": [
+    "No saved INLAND/VAT19 VAT Posting Setup row.",
+    "No persisted VAT percent 19.",
+    "No persisted Sales VAT Account 3806.",
+    "No persisted Purchase VAT Account 1406.",
+    "No German VAT final correctness.",
+    "No VAT Entries.",
+    "No G/L Entries.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No posting readiness."
+  ],
+  "blockedBy": [],
+  "warnings": [
+    "Do not treat Page 472 visibility as VAT setup correctness.",
+    "Do not treat item VAT product group VAT19 as VAT Posting Setup readiness.",
+    "Do not treat 1406/3806 chart-of-accounts visibility as VAT matrix usage.",
+    "The next case may change setup only if the visible UI route is row-bound and all stop rules pass."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
+    "lastEvidenceSummary": "TARGET-027D26 proved Page 472 visibility via Tell-Me fallback but no INLAND/VAT19 row, no 19 percent, no 3806 and no 1406.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A source-backed decision gate is the safe bridge between read-only Page 472 evidence and any future setup write.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
+        "status": "ready-next",
+        "reason": "The next case can attempt exactly one controlled Page-472 write if the UI route is safe and materially different from rejected cell-edit routes."
+      },
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "ready-after-current",
+        "reason": "Dimensions can follow once VAT matrix write or park status is explicit."
+      },
+      {
+        "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+        "status": "ready-after-current",
+        "reason": "Foundation checkpoint is meaningful only after VAT matrix and dimensions status are known."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C remains locked until VAT Posting Setup, posting groups and dimensions are sufficiently scoped."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked TARGET-027D27 done as a local/source-backed decision.",
+      "Inserted TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE as the next active case."
+    ],
+    "selectedNextCase": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It is the smallest practical step that can move Foundation forward while preserving strict no-preview/no-posting boundaries.",
+    "risksBeforeNextCase": [
+      "Wrong-row or wrong-column value entry on Page 472.",
+      "Duplicate INLAND/VAT19 row.",
+      "Repeating a previously rejected cell-edit route.",
+      "Claiming VAT correctness before Preview Posting and Entries exist."
+    ],
+    "requiredPreparation": [
+      "Use screenshot QA before and after any Page 472 write.",
+      "Abort if the UI route is not row-bound.",
+      "Keep master data, documents, Preview Posting and Posting locked."
+    ]
+  },
+  "nextCase": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
+  "safeToFinalizeState": true,
+  "requiresReview": false,
+  "statePatch": {
+    "current": {
+      "activeCase": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
+      "activeArea": "universaarl-vat-matrix-controlled-write-gate",
+      "nextCase": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
+      "nextStep": "Run TARGET-027D28 as the controlled Page-472 VAT Posting Setup write gate; stop unless the UI route is row-bound and all screenshot QA gates pass."
+    },
+    "lastRunSummary": {
+      "activeCase": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
+      "status": "observed-local-decision",
+      "instance": "playthru",
+      "company": "UNIVERSAARL-DE",
+      "nextCase": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
+      "nextStep": "Attempt one controlled Page-472 write gate for INLAND/VAT19 only, with screenshot QA and reopen proof; no Preview Posting or Posting."
+    }
+  }
+}
+

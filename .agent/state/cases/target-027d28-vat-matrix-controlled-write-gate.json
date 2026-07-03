@@ -1,0 +1,143 @@
+{
+  "caseId": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
+  "status": "ready-next",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-target-execution",
+  "activeArea": "universaarl-vat-matrix-controlled-write-gate",
+  "mayRunPlaywright": true,
+  "mayWorkEffectively": true,
+  "effectiveBcActionsAllowed": true,
+  "allowedActions": [
+    "open-business-central",
+    "confirm-instance-and-company",
+    "open-vat-posting-setup-page-472",
+    "capture-before-screenshot",
+    "use-safe-row-bound-new-or-card-route",
+    "write-only-inland-vat19-vat-posting-setup-row-if-safe",
+    "capture-after-screenshot",
+    "reopen-proof",
+    "write-result-json",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "repeat-rejected-d3-d5-d8-cell-edit-route",
+    "write-general-posting-setup",
+    "write-dimensions",
+    "claim-vat-correctness",
+    "claim-posting-readiness"
+  ],
+  "purpose": "Attempt exactly one controlled VAT Posting Setup write for the INLAND/VAT19 row after TARGET-027D27 selected the source-backed field gate.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-027d26-vat-matrix-alternative-route-discovery/TARGET-027D26-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d27-vat-matrix-controlled-write-gate-decision/TARGET-027D27-result.json",
+    "playwright/projects/fibu-book5/evidence/target-026k-skr04-vat-receivable-account-fit/TARGET-026K-result.json",
+    "playwright/projects/fibu-book5/evidence/target-026l-skr04-remaining-balance-sheet-accounts-fit/TARGET-026L-result.json"
+  ],
+  "targetValues": {
+    "vatBusinessPostingGroup": "INLAND",
+    "vatProductPostingGroup": "VAT19",
+    "vatPercent": "19",
+    "vatCalculationType": "Normale MwSt.",
+    "salesVatAccount": "3806",
+    "purchaseVatAccount": "1406"
+  },
+  "smartDecision": {
+    "whyNow": "Page 472 is visible in UNIVERSAARL-DE and the source-backed target fields are defined; this is the smallest remaining VAT Foundation blocker before dimensions/checkpoint.",
+    "evidenceBasis": [
+      "TARGET-027D26 proved Page 472 read-only surface route.",
+      "TARGET-027D27 defined exact fields and stop rules.",
+      "TARGET-026K/TARGET-026L proved 1406 and 3806 as visible starter accounts."
+    ],
+    "fieldsToChange": [
+      "VAT Bus. Posting Group / MwSt.-Geschaeftsbuchungsgruppe",
+      "VAT Prod. Posting Group / MwSt.-Produktbuchungsgruppe",
+      "VAT % / MwSt. %",
+      "VAT Calculation Type / Berechnungsart",
+      "Sales VAT Account / Umsatzsteuerkonto",
+      "Purchase VAT Account / Vorsteuerkonto"
+    ],
+    "fieldsToLeaveUntouched": [
+      "General Posting Setup",
+      "Dimensions",
+      "Customer/Vendor/Item master data",
+      "Documents",
+      "Journals",
+      "Preview Posting",
+      "Posting"
+    ],
+    "risk": "Page 472 grid controls can drift between rows and columns; previous cell-edit routes produced wrong or incomplete values.",
+    "fallback": "Stop as blocked with screenshot QA and no setup write if the route is not row-bound."
+  },
+  "stopIf": [
+    "Instance is not playthru.",
+    "Company is not UNIVERSAARL-DE.",
+    "Page 472 is not visibly opened.",
+    "A duplicate INLAND/VAT19 row risk appears.",
+    "Only a previously rejected direct cell-edit, F2, Enter or coordinate route is available.",
+    "A required field does not expose a safe row-bound editor or card/control route.",
+    "A confirmation dialog appears that is not part of the planned single-row save route.",
+    "Any target value lands in the wrong row or wrong field.",
+    "Reopen proof does not show INLAND, VAT19, 19, Normale MwSt., 3806 and 1406 in one row."
+  ],
+  "acceptanceCriteria": [
+    "Business Central visible context remains playthru / UNIVERSAARL-DE.",
+    "Before screenshot shows Page 472 and current row state.",
+    "If a write occurs, after screenshot and reopen screenshot show one INLAND/VAT19 row with 19, Normale MwSt., 3806 and 1406.",
+    "Result JSON keeps previewPosting=false, posted=false, draftCreated=false and apiShortcut=false.",
+    "No German VAT final correctness or posting readiness is claimed."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "D27 selected a source-backed Page-472 write gate but did not open BC or change setup.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "VAT matrix remains the next narrow Foundation blocker before dimensions and Foundation checkpoint.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
+        "status": "ready-next",
+        "reason": "Exact fields and stop rules are defined."
+      },
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "ready-after-current",
+        "reason": "Can follow after VAT matrix write/park status."
+      },
+      {
+        "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+        "status": "ready-after-current",
+        "reason": "Useful after VAT and dimensions status."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Still requires VAT, posting groups and dimensions boundaries."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It is the smallest practical setup gate that can advance W1 Foundation without documents, preview or posting.",
+    "risksBeforeNextCase": [
+      "Wrong row/field in Page 472 grid.",
+      "Duplicate row.",
+      "Repeating rejected cell-edit route."
+    ],
+    "requiredPreparation": [
+      "Screenshot QA before any write.",
+      "Abort unless row-bound editor/card/control route is visible."
+    ]
+  },
+  "nextCase": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS"
+}

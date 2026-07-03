@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-03T06:38:50.304Z",
+  "updatedAt": "2026-07-03T06:48:18.578Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-vat-matrix-write-gate-decision",
-  "activeCase": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
-  "active_case_file": ".agent/state/cases/target-027d27-vat-matrix-controlled-write-gate-decision.json",
+  "activeArea": "universaarl-vat-matrix-controlled-write-gate",
+  "activeCase": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
+  "active_case_file": ".agent/state/cases/target-027d28-vat-matrix-controlled-write-gate.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -19,9 +19,15 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-source-and-prior-results",
-    "decide-exact-vat-matrix-fields",
-    "write-smart-decision-result-json",
+    "open-business-central",
+    "confirm-instance-and-company",
+    "open-vat-posting-setup-page-472",
+    "capture-before-screenshot",
+    "use-safe-row-bound-new-or-card-route",
+    "write-only-inland-vat19-vat-posting-setup-row-if-safe",
+    "capture-after-screenshot",
+    "reopen-proof",
+    "write-result-json",
     "update-state-and-queue"
   ],
   "forbiddenActions": [
@@ -30,21 +36,20 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "open-business-central-for-write",
-    "click-new",
-    "click-edit-list",
-    "type-vat-values",
-    "write-vat-posting-setup",
+    "create-master-data",
     "create-document-or-draft",
     "preview-posting",
     "post",
     "payment",
     "api-shortcut",
+    "repeat-rejected-d3-d5-d8-cell-edit-route",
+    "write-general-posting-setup",
+    "write-dimensions",
     "claim-vat-correctness",
     "claim-posting-readiness"
   ],
-  "nextCase": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
-  "nextStep": "Run TARGET-027D27 as local/source-backed VAT matrix write-gate decision; do not write VAT setup yet.",
+  "nextCase": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
+  "nextStep": "Run TARGET-027D28 as the controlled Page-472 VAT Posting Setup write gate; stop unless the UI route is row-bound and all screenshot QA gates pass.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -3845,7 +3850,7 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/target-027d27-vat-matrix-controlled-write-gate-decision.json",
+  "activeCaseFile": ".agent/state/cases/target-027d28-vat-matrix-controlled-write-gate.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
@@ -7934,26 +7939,26 @@
     "uiLearning": "BC Page 456 URL filters require quoted table/field syntax for table names with punctuation; the filtered U-VEND list shows checkbox columns, but the write locator still must be source-backed or assisted before toggling Manual Nos."
   },
   "nextStepDecision": {
-    "currentCase": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+    "currentCase": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
     "plannedNextCaseBeforeReview": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
-    "lastEvidenceSummary": "TARGET-027D26 proved Page 472 reachable via justified Tell-Me fallback, but no INLAND/VAT19 row, 19 percent, 3806 or 1406 values are proven.",
+    "lastEvidenceSummary": "TARGET-027D26 proved Page 472 visibility via Tell-Me fallback but no INLAND/VAT19 row, no 19 percent, no 3806 and no 1406.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "A local/source-backed decision gate is the smallest safe step before any VAT matrix write.",
+    "reason": "A source-backed decision gate is the safe bridge between read-only Page 472 evidence and any future setup write.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
+        "caseId": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
         "status": "ready-next",
-        "reason": "Page 472 is visible; a separate source-backed write-gate can now decide exact target fields and stop rules."
+        "reason": "The next case can attempt exactly one controlled Page-472 write if the UI route is safe and materially different from rejected cell-edit routes."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-after-current",
-        "reason": "Dimensions should wait until VAT matrix write/park status is explicit."
+        "reason": "Dimensions can follow once VAT matrix write or park status is explicit."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "ready-after-current",
-        "reason": "Useful only after VAT and dimensions status are known."
+        "reason": "Foundation checkpoint is meaningful only after VAT matrix and dimensions status are known."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
@@ -7962,19 +7967,21 @@
       }
     ],
     "queueChangesMade": [
-      "TARGET-027D26 marked done.",
-      "TARGET-027D27 inserted as the next local decision gate."
+      "Marked TARGET-027D27 done as a local/source-backed decision.",
+      "Inserted TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE as the next active case."
     ],
-    "selectedNextCase": "TARGET-027D27-VAT-MATRIX-CONTROLLED-WRITE-GATE-DECISION",
-    "whySelectedNextCaseIsBest": "It prevents a read-only page proof from turning into an unsafe setup write and defines the exact field/value gate first.",
+    "selectedNextCase": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It is the smallest practical step that can move Foundation forward while preserving strict no-preview/no-posting boundaries.",
     "risksBeforeNextCase": [
-      "Do not claim VAT correctness from item VAT19 or page visibility.",
-      "Do not type 19/3806/1406 unless a new write gate explicitly unlocks those fields.",
-      "Do not start master data, documents, Preview Posting or Posting before Foundation readiness."
+      "Wrong-row or wrong-column value entry on Page 472.",
+      "Duplicate INLAND/VAT19 row.",
+      "Repeating a previously rejected cell-edit route.",
+      "Claiming VAT correctness before Preview Posting and Entries exist."
     ],
     "requiredPreparation": [
-      "Read TARGET-027D25 and TARGET-032P result JSONs.",
-      "Use Microsoft Learn VAT setup source mapping before deciding the write gate."
+      "Use screenshot QA before and after any Page 472 write.",
+      "Abort if the UI route is not row-bound.",
+      "Keep master data, documents, Preview Posting and Posting locked."
     ]
   },
   "latestTarget037MasterdataFoundationCheckpoint": {
@@ -8508,10 +8515,11 @@
     "summary": "1140 Waren (Bestand) selected as source-backed SKR04-oriented inventory balance candidate; no Business Central account proof yet."
   },
   "acceptanceCriteria": [
-    "Use Microsoft Learn VAT setup source mapping before any write case.",
-    "Do not treat TARGET-027D26 Page 472 visibility as VAT setup correctness.",
-    "If a write is justified, create a separate execution case with exact fields, stop rules, screenshot QA and reopen proof.",
-    "Keep master data, documents, Preview Posting and Posting locked."
+    "Business Central visible context remains playthru / UNIVERSAARL-DE.",
+    "Before screenshot shows Page 472 and current row state.",
+    "If a write occurs, after screenshot and reopen screenshot show one INLAND/VAT19 row with 19, Normale MwSt., 3806 and 1406.",
+    "Result JSON keeps previewPosting=false, posted=false, draftCreated=false and apiShortcut=false.",
+    "No German VAT final correctness or posting readiness is claimed."
   ],
   "latestTarget048CInventoryAccount1140BalanceCorrection": {
     "caseId": "TARGET-048C-INVENTORY-ACCOUNT-1140-BALANCE-SHEET-CORRECTION",
