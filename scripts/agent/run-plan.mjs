@@ -47,6 +47,32 @@ function runAuthCheck() {
   }
 }
 
+function runAuthDoctor() {
+  try {
+    const output = execSync('npm run --silent auth:bc:doctor', {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    return {
+      exitCode: 0,
+      output: JSON.parse(output),
+    };
+  } catch (error) {
+    const rawOutput = `${error.stdout ?? ''}`.trim();
+    let output = null;
+    try {
+      output = rawOutput ? JSON.parse(rawOutput) : null;
+    } catch {
+      output = null;
+    }
+
+    return {
+      exitCode: typeof error.status === 'number' ? error.status : 1,
+      output,
+    };
+  }
+}
+
 const authUnblockStep =
   'Run npm run auth:bc and complete Login/MFA until the Business Central shell is visible. ' +
   'If it stays on Microsoft sign-in or times out, run npm run auth:bc:diagnose for a short redacted diagnosis.';
@@ -86,7 +112,14 @@ const activeCase = current.active_case_file && existsSync(current.active_case_fi
 const dryRun = runDryRun();
 const needsBusinessCentralAuth = caseMayNeedBusinessCentralAuth(activeCase, dryRun);
 const authCheck = needsBusinessCentralAuth ? runAuthCheck() : null;
+const authDoctor = needsBusinessCentralAuth ? runAuthDoctor() : null;
 const authBlockedBy = authCheck && !authCheck.canUseStoredAuth ? authCheck.blockedBy ?? [] : [];
+const operatorActionRequired = authDoctor?.output?.operatorActionRequired === true;
+const operatorAction = authDoctor?.output?.lastAuthRefreshAttempt?.operatorAction ?? null;
+const operatorAuthUnblockStep =
+  operatorActionRequired && operatorAction
+    ? authDoctor.output.nextSafeAction
+    : authUnblockStep;
 
 const blockedLiveActions = unique([
   ...(dryRun.forbiddenActions ?? []),
@@ -118,14 +151,14 @@ if (needsBusinessCentralAuth) {
     reason: 'Summarize Business Central auth go/no-go, target context and last auth blocker before any expensive retry or BC workflow.',
     allowed: true,
     requiredBefore: ['npm run auth:bc', 'execute-playwright', 'execute-business-central'],
-    expectedFailureMeans: authUnblockStep,
+    expectedFailureMeans: operatorAuthUnblockStep,
   }));
   steps.push(step('run-command', {
     command: 'npm run auth:bc:check',
     reason: 'Validate local Business Central storageState shape and shell-validation metadata before any later Playwright/BC execution.',
     allowed: true,
     requiredBefore: ['execute-playwright', 'execute-business-central'],
-    expectedFailureMeans: authUnblockStep,
+    expectedFailureMeans: operatorAuthUnblockStep,
   }));
 }
 
@@ -226,6 +259,15 @@ const runPlan = {
         nextStep: authCheck.output?.nextStep ?? authUnblockStep,
       }
     : null,
+  authDoctor: authDoctor
+    ? {
+        exitCode: authDoctor.exitCode,
+        decision: authDoctor.output?.decision ?? '',
+        operatorActionRequired,
+        operatorAction,
+        nextSafeAction: authDoctor.output?.nextSafeAction ?? '',
+      }
+    : null,
   canProceed: canProceedWithAuth,
   steps,
   blockedLiveActions,
@@ -234,6 +276,7 @@ const runPlan = {
   stopConditions: unique([
     ...(dryRun.stopConditions ?? []),
     ...authBlockedBy.map((blocker) => `auth:${blocker}`),
+    ...(operatorActionRequired ? ['auth:operator-action-required'] : []),
   ]),
   validationCommands: [
     'npm run agent:preflight',
@@ -247,6 +290,8 @@ const runPlan = {
   ],
   nextSafeAction: canProceedWithAuth
     ? 'Execute only the allowed local-analysis steps. Do not run Playwright or Business Central.'
+    : operatorActionRequired
+      ? operatorAuthUnblockStep
     : authBlockedBy.length
       ? authUnblockStep
       : 'Resolve dry-run stopConditions before local analysis.',
