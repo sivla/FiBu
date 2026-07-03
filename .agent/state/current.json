@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-03T16:00:00.000Z",
+  "updatedAt": "2026-07-03T12:14:23.447Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -49,7 +49,7 @@
     "api-shortcut"
   ],
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "nextStep": "Auth open-login now runs bounded by default. Latest 30000 ms verification stayed on Microsoft sign-in and saved no storage state. Complete Login/MFA in the Playwright-opened window until Business Central shell is visible, then require npm run auth:bc:check canUseStoredAuth=true before D31.",
+  "nextStep": "Fresh 60000 ms auth:bc:open-login stayed on Microsoft sign-in and saved no storage state. Complete Login/MFA in the Playwright-opened browser until Business Central shell is visible, then require npm run auth:bc:check canUseStoredAuth=true before W1 Foundation continues.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -7955,14 +7955,14 @@
   "nextStepDecision": {
     "currentCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "lastEvidenceSummary": "auth:bc:target confirms the local source URL path is legacy MCP_1_20260210, but the active auth target is rewritten to playthru / UNIVERSAARL-DE. Auth remains blocked because the Playwright shell validation is stale and the latest attempt did not reach BC shell.",
+    "lastEvidenceSummary": "A fresh 60000 ms auth:bc:open-login handoff targeted playthru / UNIVERSAARL-DE but stayed on Microsoft sign-in and saved no Playwright storage state. Chrome-session fallback was not available through the local extension.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The next practical blocker is still Playwright login completion, not target URL construction. The target diagnostic prevents wasting time on a false MCP-vs-playthru suspicion.",
+    "reason": "The active blocker is still Playwright storageState, not W1 Foundation, SKR04, VAT UI or setup logic.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-        "status": "ready-next",
-        "reason": "Target URL construction is verified; complete Login/MFA in the persistent Playwright auth profile and require auth:bc:check green."
+        "status": "blocked",
+        "reason": "Needs Login/MFA completion inside the Playwright-opened browser until Business Central shell appears and auth:bc:check is green."
       },
       {
         "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
@@ -7977,29 +7977,30 @@
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-after-current",
-        "reason": "Can resume after VAT auth/discovery is resolved or intentionally parked."
+        "reason": "Can resume after auth and VAT discovery are resolved or deliberately parked."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Requires VAT and dimensions status before readiness checkpoint."
+        "reason": "Requires VAT and dimensions status."
       }
     ],
     "queueChangesMade": [
-      "Added auth:bc:target to show redacted source and target environment/company construction.",
-      "Extended auth:bc:doctor with authTarget so MCP-vs-playthru confusion is visible in one command."
+      "Recorded the fresh 60000 ms auth:bc:open-login blocker evidence.",
+      "Kept all Business Central workflows locked while auth:bc:check reports storage-state-file-missing.",
+      "Did not use normal Chrome login as Business Central evidence."
     ],
     "selectedNextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "whySelectedNextCaseIsBest": "It is still the only open queue item; target construction is now verified, so the remaining unblock is completing Playwright auth to BC shell.",
+    "whySelectedNextCaseIsBest": "It is the real prerequisite for safe D31 VAT read-only discovery and prevents false evidence from a Microsoft login page.",
     "risksBeforeNextCase": [
-      "The source URL still containing MCP can look misleading if the override is not inspected.",
-      "The persistent profile is not BC evidence by itself.",
-      "D31 must not run until auth:bc:check is green."
+      "Normal Chrome login does not refresh playwright/.auth/bc-user.json.",
+      "Running BC tests while auth is red would inspect a login page instead of Business Central.",
+      "Long unattended auth attempts can waste time without creating storageState."
     ],
     "requiredPreparation": [
-      "Run npm run auth:bc:target when target confusion appears.",
-      "Run npm run auth:bc in the persistent Playwright auth profile and complete Login/MFA until BC shell appears.",
-      "Run npm run auth:bc:check and require canUseStoredAuth=true."
+      "Run npm run auth:bc:open-login when ready for attended Login/MFA in the Playwright-opened browser.",
+      "Wait until a Business Central shell signal is visible in that Playwright window.",
+      "Run npm run auth:bc:check and require canUseStoredAuth=true before any W1 Foundation workflow."
     ]
   },
   "latestTarget037MasterdataFoundationCheckpoint": {
@@ -9437,6 +9438,40 @@
       "scripts/agent/auth-bc-interactive.mjs"
     ],
     "result": "Active auth outputs now point to npm run auth:bc:open-login and mention explicit BC_AUTH_OPEN_LOGIN_TIMEOUT_MS only for longer attended handoff. Business Central workflows remain blocked while auth:bc:check is red.",
+    "bcRun": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false
+  },
+  "latestAuthOpenLoginAttempt": {
+    "at": "2026-07-03T12:14:23.447Z",
+    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "command": "BC_AUTH_OPEN_LOGIN_TIMEOUT_MS=60000 npm run auth:bc:open-login",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
+    "resultStatus": "blocked-auth-before-bc-shell",
+    "timeoutMs": 60000,
+    "diagnosisHost": "login.microsoftonline.com",
+    "diagnosisPathname": "/{tenant-guid}/oauth2/authorize",
+    "loginRedirectHost": "businesscentral.dynamics.com",
+    "loginRedirectPathname": "/remote-sign-in",
+    "targetInstance": "playthru",
+    "targetCompany": "UNIVERSAARL-DE",
+    "shellSignalDetected": false,
+    "savedState": false,
+    "blockedBy": [
+      "auth:playwright-window-stayed-before-business-central-shell",
+      "auth:shell-signal-not-detected",
+      "auth:storage-state-not-refreshed"
+    ],
+    "chromeDiagnostic": {
+      "attempted": true,
+      "result": "chrome-extension-browser-not-available",
+      "noCookiesOrAuthDataRead": true,
+      "reason": "Existing normal Chrome login could not be used as a safe diagnostic source in this Codex session."
+    },
     "bcRun": false,
     "setupChanged": false,
     "masterDataChanged": false,
