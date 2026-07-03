@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-03T13:35:00.000Z",
+  "updatedAt": "2026-07-03T13:55:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -49,7 +49,7 @@
     "api-shortcut"
   ],
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "nextStep": "Run npm run auth:bc:open-login and complete Login/MFA in the Playwright-opened browser window until Business Central shell is visible; then require npm run auth:bc:check canUseStoredAuth=true before D31.",
+  "nextStep": "Auth open-login stayed on Microsoft sign-in. Complete Login/MFA in the Playwright-opened browser window until Business Central shell is visible, then require npm run auth:bc:check canUseStoredAuth=true before D31.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -9296,6 +9296,30 @@
     "timeoutMs": 3600000,
     "replacesPrimaryRecommendation": "npm run auth:bc:interactive",
     "stillRequires": "npm run auth:bc:check canUseStoredAuth=true before any Business Central workflow",
+    "bcRun": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false
+  },
+  "latestOpenLoginAttempt": {
+    "at": "2026-07-03T13:55:00.000Z",
+    "command": "BC_AUTH_OPEN_LOGIN_TIMEOUT_MS=600000 npm run auth:bc:open-login",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
+    "resultStatus": "blocked-auth-before-bc-shell",
+    "diagnosisHost": "login.microsoftonline.com",
+    "diagnosisPathname": "/{tenant-guid}/oauth2/authorize",
+    "targetInstance": "playthru",
+    "targetCompany": "UNIVERSAARL-DE",
+    "shellSignalDetected": false,
+    "savedState": false,
+    "blockedBy": [
+      "auth:playwright-window-stayed-before-business-central-shell",
+      "auth:shell-signal-not-detected",
+      "auth:storage-state-not-refreshed"
+    ],
     "bcRun": false,
     "setupChanged": false,
     "masterDataChanged": false,
