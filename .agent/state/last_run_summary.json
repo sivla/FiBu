@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "activeCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "status": "blocked-auth-open-login-rechecked",
+  "status": "blocked-auth-probe-rechecked",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "mode": "universaarl-target-execution",
   "activeArea": "universaarl-vat-assisted-setup-readonly-discovery",
   "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
-  "summary": "Ran the guided auth:bc:open-login handoff for 600000 ms. It targeted playthru / UNIVERSAARL-DE but stayed on Microsoft sign-in, so no shell-validated storage state was saved and all BC workflows remain blocked.",
+  "summary": "Ran a corrected short auth:bc:probe for 30000 ms. It targeted playthru / UNIVERSAARL-DE but stayed on Microsoft sign-in, so no shell-validated storage state was saved and all BC workflows remain blocked.",
   "proved": [
     "auth:bc:reset-profile -- --confirm removed only ignored local Playwright auth artifacts.",
     "The auth refresh command uses the intended playthru / UNIVERSAARL-DE target override.",
@@ -21,7 +21,8 @@
     "playthru / UNIVERSAARL-DE shell context was not freshly confirmed.",
     "No Assisted Setup, Manual Setup or VAT Posting Setup route was observed.",
     "No VAT setup readiness, posting readiness, VAT Entries or G/L Entries are proven.",
-    "No new Business Central shell context, VAT setup, posting readiness, Preview Posting or posting was proven in this run."
+    "No new Business Central shell context, VAT setup, posting readiness, Preview Posting or posting was proven in this run.",
+    "The Playwright auth profile is not yet logged in to Business Central shell."
   ],
   "blockedBy": [
     "auth:playwright-window-stayed-before-business-central-shell",
@@ -40,7 +41,7 @@
   "apiShortcut": false,
   "screenshots": [],
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "nextStep": "Auth open-login stayed on Microsoft sign-in. Complete Login/MFA in the Playwright-opened browser window until Business Central shell is visible, then require npm run auth:bc:check canUseStoredAuth=true before D31.",
+  "nextStep": "Short auth probe still stayed on Microsoft sign-in. Run npm run auth:bc:open-login, complete Login/MFA in the Playwright-opened window until Business Central shell is visible, then require npm run auth:bc:check canUseStoredAuth=true before D31.",
   "nextStepDecision": {
     "currentCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
@@ -121,7 +122,7 @@
     "apiShortcut": false,
     "nextSafeAction": "Run npm run auth:bc:interactive and finish Login/MFA inside the Playwright auth window until a Business Central shell signal is visible, require auth:bc:check canUseStoredAuth=true, then rerun D31 read-only discovery."
   },
-  "updatedAt": "2026-07-03T13:55:00.000Z",
+  "updatedAt": "2026-07-03T14:25:00.000Z",
   "actionsTaken": [
     "Ran git status --short and git pull --ff-only; repository was up to date.",
     "Ran auth:bc:check and confirmed stored auth was unusable.",
@@ -132,7 +133,8 @@
     "Improved playwright/core/auth.setup.ts auth shell detection to handle a valid Business Central URL context when strict shell text matching is too narrow.",
     "Ran a bounded 180000 ms auth:bc:interactive retry after the shell detection hardening.",
     "Added auth:bc:open-login and updated auth doctor/check/run-plan hints to prefer the guided Playwright login handoff.",
-    "Ran the guided auth:bc:open-login handoff for 600000 ms; the Playwright page stayed on Microsoft sign-in."
+    "Ran the guided auth:bc:open-login handoff for 600000 ms; the Playwright page stayed on Microsoft sign-in.",
+    "Ran corrected auth:bc:probe for 30000 ms; the Playwright page stayed on Microsoft sign-in."
   ],
   "actionsNotTaken": [
     "No D31 VAT Assisted Setup or Manual Setup page was opened.",
@@ -143,7 +145,8 @@
     "No D31 VAT Assisted Setup or Manual Setup page was opened by this auth command.",
     "No wizard Next, Finish, Apply or OK was clicked.",
     "No additional Business Central auth browser was opened after adding auth:bc:open-login.",
-    "No bookmaster change was made."
+    "No bookmaster change was made.",
+    "No BC workflow was run after the red auth probe."
   ],
   "latestAuthContextGate": {
     "at": "2026-07-03T10:55:00.000Z",
@@ -162,25 +165,32 @@
     "posted": false
   },
   "latestAuthProbe": {
-    "at": "2026-07-03T11:15:00.000Z",
+    "at": "2026-07-03T14:25:00.000Z",
     "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "command": "npm run auth:bc:probe",
+    "command": "BC_AUTH_PROBE_TIMEOUT_MS=30000 npm run auth:bc:probe",
     "script": "scripts/agent/auth-bc-probe.mjs",
-    "improvement": "Short attended Playwright auth probe added so stale-login detection can complete in about 30 seconds instead of repeating the full 10-minute auth wait.",
-    "timeoutMs": 30000,
-    "resultStatus": "blocked-auth-before-bc-shell",
     "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
-    "canRunBusinessCentralWorkflows": false,
-    "operatorActionRequired": true,
+    "resultStatus": "blocked-auth-before-bc-shell",
+    "timeoutMs": 30000,
+    "diagnosisHost": "login.microsoftonline.com",
+    "diagnosisPathname": "/{tenant-guid}/oauth2/authorize",
+    "targetInstance": "playthru",
+    "targetCompany": "UNIVERSAARL-DE",
+    "shellSignalDetected": false,
+    "savedState": false,
+    "blockedBy": [
+      "auth:playwright-window-stayed-before-business-central-shell",
+      "auth:shell-signal-not-detected",
+      "auth:storage-state-not-refreshed"
+    ],
+    "learning": "Short auth probe now labels its evidence as npm run auth:bc:probe; the current Playwright profile still has no Business Central shell session.",
     "bcRun": false,
-    "playwrightAuthRun": true,
     "setupChanged": false,
     "masterDataChanged": false,
     "draftCreated": false,
     "previewPosting": false,
     "posted": false,
-    "apiShortcut": false,
-    "nextSafeAction": "Run npm run auth:bc:interactive, complete Login/MFA in the Playwright-opened auth window until Business Central shell is visible, then require npm run auth:bc:check canUseStoredAuth=true."
+    "apiShortcut": false
   },
   "latestAuthRedirectDiagnosis": {
     "at": "2026-07-03T11:35:00.000Z",
@@ -387,6 +397,34 @@
       "auth:shell-signal-not-detected",
       "auth:storage-state-not-refreshed"
     ],
+    "bcRun": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false
+  },
+  "latestProbeAfterOpenLogin": {
+    "at": "2026-07-03T14:25:00.000Z",
+    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "command": "BC_AUTH_PROBE_TIMEOUT_MS=30000 npm run auth:bc:probe",
+    "script": "scripts/agent/auth-bc-probe.mjs",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
+    "resultStatus": "blocked-auth-before-bc-shell",
+    "timeoutMs": 30000,
+    "diagnosisHost": "login.microsoftonline.com",
+    "diagnosisPathname": "/{tenant-guid}/oauth2/authorize",
+    "targetInstance": "playthru",
+    "targetCompany": "UNIVERSAARL-DE",
+    "shellSignalDetected": false,
+    "savedState": false,
+    "blockedBy": [
+      "auth:playwright-window-stayed-before-business-central-shell",
+      "auth:shell-signal-not-detected",
+      "auth:storage-state-not-refreshed"
+    ],
+    "learning": "Short auth probe now labels its evidence as npm run auth:bc:probe; the current Playwright profile still has no Business Central shell session.",
     "bcRun": false,
     "setupChanged": false,
     "masterDataChanged": false,

@@ -6,6 +6,7 @@ const result = spawnSync('npm', ['run', 'auth:bc'], {
   shell: process.platform === 'win32',
   env: {
     ...process.env,
+    BC_AUTH_COMMAND_LABEL: 'npm run auth:bc:probe',
     BC_AUTH_TIMEOUT_MS: timeoutMs,
   },
 });
