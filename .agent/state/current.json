@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-03T11:35:00.000Z",
+  "updatedAt": "2026-07-03T11:55:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -49,7 +49,7 @@
     "api-shortcut"
   ],
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "nextStep": "Complete Login/MFA in the Playwright-opened auth window until Business Central shell is visible, then require npm run auth:bc:check canUseStoredAuth=true.",
+  "nextStep": "Run npm run auth:bc:interactive when ready to complete Login/MFA in the Playwright-opened browser window, then run npm run auth:bc:check and require canUseStoredAuth=true.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -9106,7 +9106,7 @@
     "posted": false,
     "lastProbeTimeoutMs": 5000,
     "operatorActionRequired": true,
-    "operatorAction": "Run npm run auth:bc, complete Login/MFA in the Playwright-opened browser window, wait for BC shell, then run npm run auth:bc:check.",
+    "operatorAction": "Run npm run auth:bc:interactive, complete Login/MFA in the Playwright-opened browser window, wait for BC shell, then run npm run auth:bc:check.",
     "runPlanPropagation": "agent:run-plan now exposes authDoctor.operatorActionRequired=true and stops on auth:operator-action-required.",
     "learning": "Auth remains blocked at Microsoft sign-in in the Playwright profile; no BC workflow may run until auth:bc:check is green."
   },
@@ -9145,7 +9145,7 @@
     "canRunBusinessCentralWorkflows": false,
     "normalBrowserLoginIsNotEnough": true,
     "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
-    "nextSafeAction": "Run npm run auth:bc, complete Login/MFA in the Playwright-opened browser window until Business Central shell appears, then require npm run auth:bc:check canUseStoredAuth=true before D31.",
+    "nextSafeAction": "Run npm run auth:bc:interactive, complete Login/MFA in the Playwright-opened browser window until Business Central shell appears, then require npm run auth:bc:check canUseStoredAuth=true before D31.",
     "bcRun": false,
     "playwrightRun": false,
     "setupChanged": false,
@@ -9171,7 +9171,7 @@
     "previewPosting": false,
     "posted": false,
     "apiShortcut": false,
-    "nextSafeAction": "Complete Login/MFA in the Playwright-opened auth window until Business Central shell is visible, then require npm run auth:bc:check canUseStoredAuth=true."
+    "nextSafeAction": "Run npm run auth:bc:interactive, complete Login/MFA in the Playwright-opened auth window until Business Central shell is visible, then require npm run auth:bc:check canUseStoredAuth=true."
   },
   "latestAuthRedirectDiagnosis": {
     "at": "2026-07-03T11:35:00.000Z",
@@ -9194,5 +9194,24 @@
     "previewPosting": false,
     "posted": false,
     "apiShortcut": false
+  },
+  "latestAuthInteractiveCommand": {
+    "at": "2026-07-03T11:55:00.000Z",
+    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "command": "npm run auth:bc:interactive",
+    "script": "scripts/agent/auth-bc-interactive.mjs",
+    "improvement": "Added a long attended Playwright auth command for manual Login/MFA, separate from the short auth probe and the standard auth command.",
+    "timeoutMs": 1800000,
+    "canRunBusinessCentralWorkflows": false,
+    "operatorActionRequired": true,
+    "bcRun": false,
+    "playwrightRun": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "nextSafeAction": "Run npm run auth:bc:interactive when ready to complete Login/MFA in the Playwright-opened browser window, then run npm run auth:bc:check and require canUseStoredAuth=true."
   }
 }

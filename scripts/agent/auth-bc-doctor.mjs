@@ -63,6 +63,18 @@ const check = authCheck.output ?? {};
 const blockedBy = Array.isArray(check.blockedBy) ? check.blockedBy : ['auth-check-unavailable'];
 const canUseStoredAuth = check.canUseStoredAuth === true;
 const operatorActionRequired = !canUseStoredAuth && lastAuthResult?.operatorActionRequired === true;
+const interactiveOperatorAction = {
+  reason: 'The Playwright auth profile is not logged in to Business Central yet.',
+  profilePath: 'playwright/.auth/bc-profile',
+  requiredWindow: 'the browser window opened by npm run auth:bc:interactive',
+  steps: [
+    'Run npm run auth:bc:interactive from this repo.',
+    'Complete sign-in and MFA in the Playwright-opened browser window.',
+    'Wait until Business Central shell text such as Search/Tell Me, Role Center or My Settings is visible.',
+    'Then run npm run auth:bc:check and require canUseStoredAuth=true.',
+  ],
+  normalBrowserLoginIsNotEnough: true,
+};
 
 const result = {
   schemaVersion: 1,
@@ -110,7 +122,7 @@ const result = {
         blockedBy: lastAuthResult.blockedBy ?? [],
         authDiagnosis: lastAuthResult.authDiagnosis ?? null,
         operatorActionRequired: lastAuthResult.operatorActionRequired === true,
-        operatorAction: lastAuthResult.operatorAction ?? null,
+        operatorAction: operatorActionRequired ? interactiveOperatorAction : (lastAuthResult.operatorAction ?? null),
       }
     : null,
   operatorActionRequired,
@@ -122,8 +134,8 @@ const result = {
   nextSafeAction: canUseStoredAuth
     ? 'Run only the active case allowed by agent:run-plan and keep normal BC shell/context checks enabled.'
     : operatorActionRequired
-      ? 'Run npm run auth:bc and complete Login/MFA in the Playwright-opened browser window, not normal Chrome, until Business Central shell is visible; then rerun npm run auth:bc:check.'
-    : 'Run npm run auth:bc, complete Login/MFA in the Playwright-opened browser until Business Central shell is visible, then rerun npm run auth:bc:check.',
+      ? 'Run npm run auth:bc:interactive and complete Login/MFA in the Playwright-opened browser window, not normal Chrome, until Business Central shell is visible; then rerun npm run auth:bc:check.'
+    : 'Run npm run auth:bc:interactive, complete Login/MFA in the Playwright-opened browser until Business Central shell is visible, then rerun npm run auth:bc:check.',
   forbiddenUntilGreen: [
     'D31 VAT Assisted Setup read-only discovery',
     'VAT setup pages',

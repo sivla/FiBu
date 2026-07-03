@@ -5,7 +5,7 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "queueId": "TARGET-MARATHON-002-UNIVERSAARL-REPO-READONLY-PREP",
-  "reason": "TARGET-027D31 remains blocked by Playwright auth; login redirect diagnosis now shows the Microsoft sign-in redirect target without exposing secrets.",
+  "reason": "TARGET-027D31 remains blocked by Playwright auth; auth:bc:interactive now provides a long attended login path for the operator.",
   "noEffectiveBusinessCentralActions": false,
   "forbiddenUntilUnblocked": [],
   "unblockCriteria": "Satisfied: UNIVERSAARL-DE exists and active Role Center context / Firmendaten read-only proof is available.",
@@ -4780,10 +4780,10 @@
         "api-shortcut"
       ],
       "caseFile": ".agent/state/cases/target-027d31-auth-refresh-then-readonly-discovery.json",
-      "updatedAt": "2026-07-03T11:35:00.000Z",
-      "reason": "The login page itself is not Business Central evidence; operator must complete Login/MFA in the Playwright auth window until BC shell is visible.",
+      "updatedAt": "2026-07-03T11:55:00.000Z",
+      "reason": "Operator can use auth:bc:interactive to complete Login/MFA in the Playwright auth window without the short probe timeout.",
       "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
-      "result": "Auth diagnosis now records redacted loginRedirect; latest probe still blocks before BC shell and no storage state was saved.",
+      "result": "Added auth:bc:interactive long attended login command; BC workflows remain blocked until auth:bc:check is green.",
       "blockedBy": [
         "auth:playwright-window-stayed-before-business-central-shell",
         "auth:shell-signal-not-detected",
@@ -4791,7 +4791,7 @@
       ]
     }
   ],
-  "lastUpdated": "2026-07-03T11:35:00.000Z",
+  "lastUpdated": "2026-07-03T11:55:00.000Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -4903,7 +4903,7 @@
       ]
     }
   },
-  "updatedAt": "2026-07-03T11:35:00.000Z",
+  "updatedAt": "2026-07-03T11:55:00.000Z",
   "lastCompletedCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
   "nextStepDecisionCard": {
