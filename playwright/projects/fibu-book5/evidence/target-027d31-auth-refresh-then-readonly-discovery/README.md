@@ -15,3 +15,14 @@ Important: signing in through normal Chrome or the Codex app does not refresh `p
 5. Only then rerun D31 read-only discovery.
 
 If the operator needs more than the default wait window, set `BC_AUTH_OPEN_LOGIN_TIMEOUT_MS` explicitly for that one run.
+
+If bounded handoffs keep timing out before Login/MFA can be completed, use the detached fallback:
+
+1. Run `npm run auth:bc:open-login-detached`.
+2. Complete Login/MFA in the opened Playwright profile browser.
+3. Wait until Business Central shell is visible for `playthru / UNIVERSAARL-DE`.
+4. Close that browser window.
+5. Run `npm run auth:bc` to validate the same profile and write `playwright/.auth/bc-user.json`.
+6. Run `npm run auth:bc:check` and require `canUseStoredAuth=true`.
+
+The detached command does not write storage state by itself. It only gives the operator a browser window that is not closed by the agent command timeout.

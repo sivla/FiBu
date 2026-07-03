@@ -8,7 +8,8 @@ const maxAgeHours = Number(process.env.BC_AUTH_MAX_AGE_HOURS ?? 12);
 const now = Date.now();
 const authUnblockStep =
   'Run npm run auth:bc:open-login and complete Login/MFA in the Playwright-opened browser window until the Business Central shell is visible. ' +
-  'The command is bounded by default; set BC_AUTH_OPEN_LOGIN_TIMEOUT_MS explicitly only for a longer attended handoff.';
+  'The command is bounded by default; set BC_AUTH_OPEN_LOGIN_TIMEOUT_MS explicitly only for a longer attended handoff. ' +
+  'If repeated handoffs time out before shell, use npm run auth:bc:open-login-detached, finish login, close that browser, then run npm run auth:bc.';
 
 function result(overrides, target = {}) {
   return {
