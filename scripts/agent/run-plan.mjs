@@ -76,7 +76,7 @@ function runAuthDoctor() {
 const authUnblockStep =
   'Run npm run auth:bc:open-login and complete Login/MFA in the Playwright-opened browser window until the Business Central shell is visible. ' +
   'The command is bounded by default; set BC_AUTH_OPEN_LOGIN_TIMEOUT_MS explicitly only for a longer attended handoff. ' +
-  'If repeated handoffs time out before shell, use npm run auth:bc:open-login-detached, finish login, close that browser, then run npm run auth:bc.';
+  'If repeated handoffs time out before shell, use npm run auth:bc:open-login-detached, finish login, close that browser, then run npm run auth:bc:capture-detached.';
 
 function step(type, fields) {
   return {
@@ -186,8 +186,8 @@ if (needsBusinessCentralAuth) {
     command: 'npm run auth:bc:open-login-detached',
     reason: 'Open the same Playwright auth profile in a detached browser when bounded handoffs repeatedly close before Login/MFA can be completed.',
     allowed: true,
-    requiredBefore: ['npm run auth:bc', 'npm run auth:bc:check', 'execute-playwright', 'execute-business-central'],
-    expectedFailureMeans: 'Detached login only prepares the persistent profile. Close the browser after Business Central shell loads, then run npm run auth:bc to capture storage state.',
+    requiredBefore: ['npm run auth:bc:capture-detached', 'npm run auth:bc:check', 'execute-playwright', 'execute-business-central'],
+    expectedFailureMeans: 'Detached login only prepares the persistent profile. Close the browser after Business Central shell loads, then run npm run auth:bc:capture-detached to verify and capture storage state.',
   }));
 }
 

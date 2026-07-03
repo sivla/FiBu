@@ -61,7 +61,7 @@ function buildAuthGate(current, activeCase) {
     current.latestDetachedAuthHandoffLaunch?.result === 'detached-playwright-profile-window-launched' ||
     existsSync(resolve('playwright/.auth/bc-profile'));
   const detachedCaptureStep =
-    'Complete Login/MFA in the detached Playwright profile browser if it is still open, wait for Business Central shell, close that browser, then run npm run auth:bc and npm run auth:bc:check.';
+    'Complete Login/MFA in the detached Playwright profile browser if it is still open, wait for Business Central shell, close that browser, then run npm run auth:bc:capture-detached and, if clear, npm run auth:bc:capture-detached -- --confirm. Finish with npm run auth:bc:check.';
   const nextSafeAction = (detachedCaptureAvailable
     ? detachedCaptureStep
     : [

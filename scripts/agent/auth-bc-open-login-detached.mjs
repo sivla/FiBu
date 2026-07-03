@@ -65,7 +65,8 @@ console.log(JSON.stringify(
       'Complete Login/MFA in the opened Playwright profile browser window.',
       'Wait until Business Central shell is visible for playthru / UNIVERSAARL-DE.',
       'Close that browser window after Business Central is loaded.',
-      'Run npm run auth:bc to validate the same profile and write playwright/.auth/bc-user.json.',
+      'Run npm run auth:bc:capture-detached to verify the detached browser is closed.',
+      'If clear, run npm run auth:bc:capture-detached -- --confirm to validate the same profile and write playwright/.auth/bc-user.json.',
       'Run npm run auth:bc:check and require canUseStoredAuth=true before any BC workflow.'
     ],
     safety: [

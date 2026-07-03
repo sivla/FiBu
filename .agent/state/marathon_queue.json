@@ -4949,7 +4949,7 @@
       ]
     }
   },
-  "updatedAt": "2026-07-03T12:28:23.690Z",
+  "updatedAt": "2026-07-03T12:41:15.494Z",
   "lastCompletedCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
   "nextStepDecisionCard": {
@@ -5003,7 +5003,7 @@
       "Then run D31 read-only discovery with screenshot QA."
     ]
   },
-  "nextStep": "Complete Login/MFA in the detached Playwright profile browser, close it after Business Central shell is visible, then run npm run auth:bc and npm run auth:bc:check.",
+  "nextStep": "Close the detached Playwright auth browser after Business Central shell is visible, rerun npm run auth:bc:capture-detached, then run npm run auth:bc:capture-detached -- --confirm only when canCapture=true; finish with npm run auth:bc:check.",
   "openItems": [
     "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY"
   ],
@@ -5018,14 +5018,14 @@
   "nextStepDecision": {
     "currentCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "lastEvidenceSummary": "auth:bc:check still reports storage-state-file-missing. A detached Playwright profile browser was launched for operator Login/MFA; it does not write storage state until npm run auth:bc is run after shell is visible and the detached browser is closed.",
+    "lastEvidenceSummary": "auth:bc:capture-detached now detects the detached browser using playwright/.auth/bc-profile and blocks capture while it is open; bc-user.json is still missing.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The active blocker remains Playwright storageState, not W1 Foundation content.",
+    "reason": "The active blocker is still Playwright storageState, now narrowed to closing/capturing the detached profile safely.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
         "status": "ready-next",
-        "reason": "Finish detached Login/MFA, close browser, then capture storageState with npm run auth:bc."
+        "reason": "Detached browser is still using playwright/.auth/bc-profile; close it before capture."
       },
       {
         "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
@@ -5035,7 +5035,7 @@
       {
         "caseId": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
         "status": "needs-ui-discovery-first",
-        "reason": "Requires D31 read-only route evidence."
+        "reason": "Requires D31 read-only route evidence after auth is green."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
@@ -5049,20 +5049,20 @@
       }
     ],
     "queueChangesMade": [
-      "Recorded detached Playwright auth profile handoff launch."
+      "Added safe detached capture wrapper and documented profile-lock blocker."
     ],
     "selectedNextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "whySelectedNextCaseIsBest": "StorageState must be created before any safe Business Central evidence can be collected.",
+    "whySelectedNextCaseIsBest": "StorageState must be captured before any safe Business Central evidence can be collected.",
     "risksBeforeNextCase": [
-      "Detached login is only a profile preparation step.",
-      "Running auth:bc before shell is visible will still produce a blocked result.",
-      "Running BC workflows before auth:bc:check is green would inspect login pages."
+      "Running raw auth:bc while the detached browser is open reuses the current session and can fail before writing storageState.",
+      "Running BC workflows before auth:bc:check is green would inspect login or stale pages."
     ],
     "requiredPreparation": [
-      "Complete Login/MFA in the detached Playwright profile browser window.",
+      "Complete Login/MFA in the detached Playwright profile browser if needed.",
       "Wait until Business Central shell is visible for playthru / UNIVERSAARL-DE.",
-      "Close that detached browser window.",
-      "Run npm run auth:bc to validate the profile and write playwright/.auth/bc-user.json.",
+      "Close the detached browser window.",
+      "Run npm run auth:bc:capture-detached and require canCapture=true.",
+      "Run npm run auth:bc:capture-detached -- --confirm.",
       "Run npm run auth:bc:check and require canUseStoredAuth=true."
     ]
   },
@@ -5283,6 +5283,28 @@
       "Do not run W1 Foundation or VAT discovery until auth:bc:check is green.",
       "Detached handoff does not write storage state by itself."
     ],
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false
+  },
+  "latestDetachedCaptureGate": {
+    "at": "2026-07-03T12:41:15.494Z",
+    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "command": "npm run auth:bc:capture-detached",
+    "confirmedCommandAttempted": "npm run auth:bc:capture-detached -- --confirm",
+    "result": "blocked-detached-browser-still-uses-auth-profile",
+    "profileExists": true,
+    "storageStateExists": false,
+    "canCapture": false,
+    "blockedBy": [
+      "detached-browser-still-uses-auth-profile",
+      "storage-state-file-missing"
+    ],
+    "nextStep": "Close the detached Playwright auth browser after Business Central shell is visible, rerun npm run auth:bc:capture-detached, then run npm run auth:bc:capture-detached -- --confirm only when canCapture=true; finish with npm run auth:bc:check.",
+    "bcWorkflowRun": false,
     "setupChanged": false,
     "masterDataChanged": false,
     "draftCreated": false,

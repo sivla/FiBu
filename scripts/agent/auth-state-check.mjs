@@ -10,9 +10,9 @@ const now = Date.now();
 const authUnblockStep =
   'Run npm run auth:bc:open-login and complete Login/MFA in the Playwright-opened browser window until the Business Central shell is visible. ' +
   'The command is bounded by default; set BC_AUTH_OPEN_LOGIN_TIMEOUT_MS explicitly only for a longer attended handoff. ' +
-  'If repeated handoffs time out before shell, use npm run auth:bc:open-login-detached, finish login, close that browser, then run npm run auth:bc.';
+  'If repeated handoffs time out before shell, use npm run auth:bc:open-login-detached, finish login, close that browser, then run npm run auth:bc:capture-detached.';
 const detachedCaptureStep =
-  'A detached Playwright auth profile handoff has already been launched. Complete Login/MFA in that detached browser if it is still open, wait for the Business Central shell, close the detached browser, then run npm run auth:bc to capture storage state and npm run auth:bc:check.';
+  'A detached Playwright auth profile handoff has already been launched. Complete Login/MFA in that detached browser if it is still open, wait for the Business Central shell, close the detached browser, then run npm run auth:bc:capture-detached and, if clear, npm run auth:bc:capture-detached -- --confirm. Finish with npm run auth:bc:check.';
 
 function result(overrides, target = {}) {
   return {

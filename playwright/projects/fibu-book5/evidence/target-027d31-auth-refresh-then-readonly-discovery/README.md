@@ -13,8 +13,9 @@ The next safe action is:
 1. Complete Login/MFA in the detached Playwright profile browser window if it is still open.
 2. Wait until the Business Central shell is visible for `playthru / UNIVERSAARL-DE`.
 3. Close that detached browser window.
-4. Run `npm run auth:bc` to validate the same profile and write `playwright/.auth/bc-user.json`.
-5. Run `npm run auth:bc:check` and require `canUseStoredAuth=true`.
+4. Run `npm run auth:bc:capture-detached` to verify that no detached browser still uses the profile.
+5. If the dry run is clear, run `npm run auth:bc:capture-detached -- --confirm` to validate the same profile and write `playwright/.auth/bc-user.json`.
+6. Run `npm run auth:bc:check` and require `canUseStoredAuth=true`.
 
 Important: signing in through normal Chrome or the Codex app does not refresh `playwright/.auth/bc-user.json`. A diagnostic attempt to use the existing Chrome session was not available through the local Codex Chrome extension, so no Chrome cookies or auth data were read or copied. If no detached browser is available anymore, the bounded fallback is:
 
@@ -32,7 +33,8 @@ If bounded handoffs keep timing out before Login/MFA can be completed, use the d
 2. Complete Login/MFA in the opened Playwright profile browser.
 3. Wait until Business Central shell is visible for `playthru / UNIVERSAARL-DE`.
 4. Close that browser window.
-5. Run `npm run auth:bc` to validate the same profile and write `playwright/.auth/bc-user.json`.
-6. Run `npm run auth:bc:check` and require `canUseStoredAuth=true`.
+5. Run `npm run auth:bc:capture-detached` to verify that no detached browser still uses the profile.
+6. If the dry run is clear, run `npm run auth:bc:capture-detached -- --confirm` to validate the same profile and write `playwright/.auth/bc-user.json`.
+7. Run `npm run auth:bc:check` and require `canUseStoredAuth=true`.
 
 The detached command does not write storage state by itself. It only gives the operator a browser window that is not closed by the agent command timeout.
