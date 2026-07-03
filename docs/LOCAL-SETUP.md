@@ -33,6 +33,8 @@ Complete Login/MFA in the browser opened by this command and wait until the Busi
 
 Safe shell signals are the Role Center, Search/Tell Me, or My Settings. Only then does the script create local Playwright auth state under `playwright/.auth/`.
 
+`npm run auth:bc` uses a local persistent Playwright profile at `playwright/.auth/bc-profile/`. This keeps Microsoft login/MFA progress between auth attempts, but it is still local-only and ignored by Git. A stored profile is not Business Central evidence; only `auth:bc:check` with `canUseStoredAuth=true` unlocks target workflows.
+
 Check whether the stored state is usable:
 
 ```bash

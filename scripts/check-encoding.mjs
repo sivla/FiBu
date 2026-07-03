@@ -23,6 +23,7 @@ const textExtensions = new Set([
 
 const ignoredDirs = new Set([
   '.git',
+  '.auth',
   'node_modules',
   'playwright-report',
   'test-results',

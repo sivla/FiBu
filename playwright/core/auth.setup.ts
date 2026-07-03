@@ -6,6 +6,7 @@ import { BUSINESS_CENTRAL_AUTH_BLOCKER_RE, BUSINESS_CENTRAL_SHELL_RE } from './b
 
 const authFile = 'playwright/.auth/bc-user.json';
 const authMetaFile = 'playwright/.auth/bc-user.meta.json';
+const authProfileDir = 'playwright/.auth/bc-profile';
 const authResultFile =
   'playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json';
 const bcUrlSource =
@@ -39,6 +40,7 @@ if (expectedCompany) {
 const targetUrl = expectedUrl.toString();
 
 await fs.mkdir('playwright/.auth', { recursive: true });
+await fs.mkdir(authProfileDir, { recursive: true });
 await fs.mkdir('playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery', {
   recursive: true
 });
@@ -224,8 +226,8 @@ async function writeAuthResult(args: AuthResultArgs) {
   await fs.writeFile(authResultFile, `${JSON.stringify(result, null, 2)}\n`, 'utf8');
 }
 
-const browser = await chromium.launch({ headless: false });
-const context = await browser.newContext({
+const context = await chromium.launchPersistentContext(authProfileDir, {
+  headless: false,
   viewport: { width: 1440, height: 1000 },
   locale: 'de-DE',
   timezoneId: 'Europe/Berlin'
@@ -357,5 +359,5 @@ try {
   });
   throw error;
 } finally {
-  await browser.close().catch(() => undefined);
+  await context.close().catch(() => undefined);
 }

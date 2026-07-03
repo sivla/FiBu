@@ -16,7 +16,7 @@ Das Repository soll auch von anderen Codex-Accounts übernommen werden können. 
 
 | Thema | Befund | Wiederverwendbare Regel |
 |---|---|---|
-| Login-State | Manueller Entra-ID-Login mit anschliessendem `storageState` ist nur dann fuer Live-Tests nutzbar, wenn echte Business-Central-Shell-Signale validiert wurden. Microsoft-Sign-in oder Token-Kontext ist kein BC-Kontext. | `npm run auth:bc` attended bis Role Center/Search/My Settings sichtbar ist, dann `npm run auth:bc:check`; bei Sign-in-Haenger `npm run auth:bc:diagnose`. Session-Datei nie committen. |
+| Login-State | Manueller Entra-ID-Login mit anschliessendem `storageState` ist nur dann fuer Live-Tests nutzbar, wenn echte Business-Central-Shell-Signale validiert wurden. Microsoft-Sign-in oder Token-Kontext ist kein BC-Kontext. | `npm run auth:bc` attended bis Role Center/Search/My Settings sichtbar ist, dann `npm run auth:bc:check`; bei Sign-in-Haenger `npm run auth:bc:diagnose`. `auth:bc` nutzt ein lokales persistentes Playwright-Profil unter `playwright/.auth/bc-profile/`, damit MFA-/Login-Fortschritt nicht bei jedem Versuch verloren geht. Session-Datei und Profil nie committen. |
 | Fester Viewport | `1440 x 1000` liefert brauchbare Buchscreenshots. | Viewport projektweit stabil halten. |
 | Direkte Company-URL | `company=UNIVERSAARL-DE` in der Projekt-URL ist die aktive Zielwelt fuer Buch 5. | Tests starten gezielt in `playthru / UNIVERSAARL-DE`; RM-/CRONUS-Bezuege sind nur Legacy-Evidence. |
 | Tell-Me-Suche | Der Suchbutton `Suchen/Search` ist stabiler als reines `Alt+Q`. | In Playwright zuerst den Suchbutton anklicken, dann Suchbegriff tippen. |

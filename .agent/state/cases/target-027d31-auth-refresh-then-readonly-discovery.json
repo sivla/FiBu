@@ -42,6 +42,7 @@
     "api-shortcut"
   ],
   "acceptanceCriteria": [
+    "auth:bc uses a local ignored persistent Playwright profile for attended Login/MFA retries.",
     "auth.setup writes TARGET-027D31-AUTH-result.json on success or failure.",
     "npm run auth:bc:doctor is used as fast go/no-go before a long auth refresh retry.",
     "npm run auth:bc:check returns canUseStoredAuth=true.",
@@ -93,7 +94,7 @@
     "lastAuthRefreshResult": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json"
   },
   "nextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-  "updatedAt": "2026-07-03T08:40:00.000Z",
+  "updatedAt": "2026-07-03T08:58:00.000Z",
   "latestAuthSetupResultWriter": {
     "at": "2026-07-03T08:40:00.000Z",
     "script": "playwright/core/auth.setup.ts",
@@ -103,5 +104,17 @@
     "timeoutMs": 5000,
     "shellSignalDetected": false,
     "savedState": false
+  },
+  "latestAuthPersistentProfileImprovement": {
+    "at": "2026-07-03T08:58:00.000Z",
+    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "script": "playwright/core/auth.setup.ts",
+    "improvement": "auth:bc now uses a local persistent Playwright profile at playwright/.auth/bc-profile so Microsoft Login/MFA progress can survive repeated auth attempts.",
+    "localOnlyIgnoredPath": "playwright/.auth/bc-profile/",
+    "lastValidationResult": "blocked-auth-before-bc-shell",
+    "bcShellReached": false,
+    "setupChanged": false,
+    "previewPosting": false,
+    "posted": false
   }
 }
