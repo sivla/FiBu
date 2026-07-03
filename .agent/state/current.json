@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-03T05:31:43.012Z",
+  "updatedAt": "2026-07-03T05:57:41.620Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-general-posting-setup-new-action-empty-record-gate",
-  "activeCase": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
-  "active_case_file": ".agent/state/cases/target-032k-general-posting-setup-new-action-empty-record-gate.json",
+  "activeArea": "universaarl-general-posting-setup-purchase-fasttab-recovery",
+  "activeCase": "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY",
+  "active_case_file": ".agent/state/cases/target-032m-general-posting-setup-purchase-fasttab-recovery.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -19,13 +19,15 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central-readonly-context",
+    "open-business-central-target-context",
     "verify-instance-playthru",
     "verify-company-universaarl-de",
     "open-page-314-general-posting-setup",
-    "click-standalone-new-action-once",
-    "capture-screenshot-qa",
-    "capture-action-field-inventory",
+    "verify-existing-inland-waren-4400-row",
+    "open-existing-inland-waren-card",
+    "capture-screenshot-qa-before-write",
+    "expand-or-focus-einkauf-fasttab",
+    "write-only-wareneinkaufskonto-5400-if-distinct-field-visible",
     "reopen-page-314-proof",
     "write-result-json",
     "update-state-and-queue"
@@ -36,20 +38,23 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
+    "click-new-for-duplicate-row",
     "click-edit-list",
     "click-copy-as-write-route",
-    "type-values",
-    "write-general-posting-setup-values",
+    "change-business-posting-group",
+    "change-product-posting-group",
+    "change-sales-account-away-from-4400",
     "write-vat-posting-setup",
     "configuration-package-import-export-validate-apply",
     "create-document-or-draft",
     "preview-posting",
     "post",
+    "payment",
     "api-shortcut",
     "claim-posting-readiness"
   ],
-  "nextCase": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
-  "nextStep": "Run TARGET-032K as controlled Page 314 standalone Neu-action empty-record gate; no value typing.",
+  "nextCase": "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY",
+  "nextStep": "Run TARGET-032M: open the existing INLAND/WAREN/4400 General Posting Setup card, recover only the missing Einkauf / Wareneinkaufskonto 5400 route if distinct and visible, then reopen Page 314.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -232,7 +237,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "TARGET-032J selected standalone Neu-action discovery for Page 314 as the next non-repeating General Posting Setup route; configuration packages remain deferred.",
+  "currentCoverageFocus": "TARGET-032L created/recovered a partial Page 314 General Posting Setup row for INLAND/WAREN with Warenverkaufskonto 4400. Wareneinkaufskonto 5400 remains unproven and requires TARGET-032M purchase FastTab recovery.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -7963,53 +7968,49 @@
     "uiLearning": "BC Page 456 URL filters require quoted table/field syntax for table names with punctuation; the filtered U-VEND list shows checkbox columns, but the write locator still must be source-backed or assisted before toggling Manual Nos."
   },
   "nextStepDecision": {
-    "currentCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
-    "lastEvidenceSummary": "TARGET-032H opened Page 314 read-only in playthru / UNIVERSAARL-DE, captured action inventory, tooltips, More-options state and final reopen proof. No setup value was typed. The only route signal is weak and may come from column/menu text rather than a safe row-card route.",
+    "currentCase": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
+    "lastEvidenceSummary": "TARGET-032J selected standalone Neu as the smallest non-repeating Page 314 route after weak Page 314 route signals and broader configuration-package routes were deferred.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "A write case is not yet sensible because TARGET-032H did not prove a trusted editable row/card route for INLAND/WAREN/4400/5400.",
+    "reason": "The standalone Neu gate is the only remaining narrow Page 314 route before either a controlled value write or a conscious park decision.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
+        "caseId": "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE",
         "status": "ready-next",
-        "reason": "Classify the weak Page 314 route signal before any write attempt."
+        "reason": "Neu exposed a context without values; a separate value-write gate can decide the exact fields."
+      },
+      {
+        "caseId": "TARGET-032L-GENERAL-POSTING-SETUP-NEW-ACTION-RESULT-DECISION",
+        "status": "ready-after-current",
+        "reason": "Still useful if the project wants one final human/source decision before value typing."
       },
       {
         "caseId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
         "status": "ready-after-current",
-        "reason": "VAT matrix route discovery is separate and should wait until Page 314 signal is classified."
+        "reason": "VAT matrix remains separate and should not be mixed with Page 314."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
-        "status": "needs-setup-first",
-        "reason": "Dimensions can continue only after W1 posting setup boundaries are consciously parked or solved."
+        "status": "ready-after-current",
+        "reason": "Dimensions can resume after matrix blockers are solved or parked."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C needs General Posting Setup and VAT boundaries before document work."
-      },
-      {
-        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
-        "status": "blocked",
-        "reason": "Preview remains blocked without complete posting setup and a document."
+        "reason": "O2C still needs General Posting Setup and VAT boundaries before document work."
       }
     ],
-    "queueChangesMade": [
-      "Marked TARGET-032H as done with read-only weak-route evidence.",
-      "Added TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION as the next local decision before any Page 314 write."
-    ],
-    "selectedNextCase": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
-    "whySelectedNextCaseIsBest": "It prevents a false-positive action label from becoming a risky setup write and keeps Foundation progress on the exact unresolved matrix blocker.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "A separate write gate keeps the Neu discovery and value entry concerns cleanly separated.",
     "risksBeforeNextCase": [
-      "Do not treat column menu labels or broad form text as a row-card route.",
-      "Do not click New, Liste bearbeiten or Kopieren as a write path without a new Smart Decision.",
-      "Do not claim posting readiness from Page 314 visibility."
+      "Do not type 4400/5400 unless the value-write gate explicitly unlocks fields.",
+      "Do not click Edit List or Copy inside the Neu-result decision.",
+      "Do not claim posting readiness without General Posting Setup and VAT Posting Setup proof."
     ],
     "requiredPreparation": [
-      "Read TARGET-032H action inventory and tooltip results.",
-      "Separate safe navigation/menu evidence from true row-edit or card evidence.",
-      "Decide whether Page 314 remains parked or whether a new non-repeating UI/source route is justified."
+      "Review the three TARGET-032K screenshots and inventory files.",
+      "Use reopen proof to decide whether any empty/partial row side effect exists."
     ]
   },
   "latestTarget037MasterdataFoundationCheckpoint": {
@@ -8855,5 +8856,65 @@
     "configPackageRoute": "deferred-too-broad-for-current-blocker",
     "nextCase": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
     "updatedAt": "2026-07-03T05:31:43.012Z"
+  },
+  "latestGeneralPostingSetupNewGate": {
+    "caseId": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
+    "status": "observed-new-context-no-values",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-032k-general-posting-setup-new-action-empty-record-gate/TARGET-032K-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "pageRoute": "Page 314 Neu -> Page 395 Buchungsmatrixkarte Einricht.",
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-032k-010-before-new.png",
+      "playwright/projects/fibu-book5/img/target-032k-020-after-new-click.png",
+      "playwright/projects/fibu-book5/img/target-032k-030-reopen-proof.png"
+    ],
+    "proved": [
+      "Business Central stayed in playthru / UNIVERSAARL-DE.",
+      "Page 314 Buchungsmatrix Einrichtung / General Posting Setup was opened directly.",
+      "Standalone Neu was clicked exactly once.",
+      "No values were typed in General Posting Setup.",
+      "No Edit List, Copy, configuration package route, document, Preview Posting, Posting, Payment or API shortcut occurred.",
+      "Page 314 was reopened after the Neu gate for side-effect proof."
+    ],
+    "notProved": [
+      "No INLAND/WAREN General Posting Setup row with 4400/5400 is proven.",
+      "No Sales Account 4400 or Purchase Account 5400 is stored by this case.",
+      "No VAT Posting Setup row is proven.",
+      "No posting readiness is proven.",
+      "No G/L Entry, VAT Entry or Value Entry is proven.",
+      "No complete SKR04 chart, tax advisor approval or German compliance claim is proven."
+    ],
+    "nextCase": "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE",
+    "updatedAt": "2026-07-03T05:44:12.572Z"
+  },
+  "latestGeneralPostingSetupControlledValueWriteGate": {
+    "caseId": "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE",
+    "status": "blocked-partial-sales-account-recovered",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-032l-general-posting-setup-controlled-value-write-gate/TARGET-032L-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "setupChanged": true,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "partialRow": "INLAND / WAREN / Warenverkaufskonto 4400 visible after reopen",
+    "missingValue": "Wareneinkaufskonto 5400",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-032l-010-before-card-write.png",
+      "playwright/projects/fibu-book5/img/target-032l-020-page395-empty-card.png",
+      "playwright/projects/fibu-book5/img/target-032l-030-after-card-write.png",
+      "playwright/projects/fibu-book5/img/target-032l-040-reopen-proof.png"
+    ],
+    "nextCase": "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY",
+    "updatedAt": "2026-07-03T05:57:41.620Z"
   }
 }

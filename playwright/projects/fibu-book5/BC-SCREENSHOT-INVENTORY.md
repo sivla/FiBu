@@ -867,6 +867,27 @@ Screenshot-QA zu TARGET-032E: Der wichtigste Fortschritt ist ein abgelehnter Irr
 
 Screenshot-QA zu TARGET-032H: Der Lauf verbessert das Oberflaechenverstaendnis, aber er entsperrt keinen Schreibfall. Besonders wichtig ist die Trennung zwischen echten Aktionen und breitem Form-/Spaltenmenue-Text: Ein sichtbares `Menu oeffnen` oder `Kopieren...` ist noch keine sichere Zeilenkarte fuer die Buchungsmatrix. Der naechste Case muss diesen schwachen Routenkandidaten bewerten, bevor `INLAND`, `WAREN`, `4400` oder `5400` in Page 314 geschrieben werden.
 
+## Universaarl General Posting Setup Neu Gate TARGET-032K
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Interner Beweis | Beweist nicht | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-032k-010-before-new.png` | Buchungsmatrix Einrichtung, Page 314 | `playthru` / `UNIVERSAARL-DE` | Vor dem engen Neu-Gate | Die leere Page-314-Liste zeigt `Neu`, `Liste bearbeiten`, `Kopieren...`, `Konten vorschlagen` und die Konto-Spalten | Richtiger Zielkontext vor dem kontrollierten Kartenrouten-Test | keine Matrixzeile, keine Werteingabe, keine Buchungsfaehigkeit | `before-gate`, `universaarl-target`, `no-write` |
+| `target-032k-020-after-new-click.png` | Buchungsmatrixkarte Einricht., Page 395 | `playthru` / `UNIVERSAARL-DE` | Nach einmaligem Klick auf `Neu` | Eine Karten-/Overlayseite mit FastTabs `Allgemein`, `Verkauf`, `Einkauf`, `Lager` und leeren Feldern ist sichtbar | `Neu` fuehrt nicht nur zu einer unklaren Listenzeile, sondern zu einer eigenen Kartenroute fuer Buchungsmatrix-Einrichtung | keine gespeicherte `INLAND`/`WAREN`-Zeile, keine Kontenwerte, keine Preview, keine Buchung | `card-route-observed`, `screenshot-qa-reviewed`, `no-values-typed` |
+| `target-032k-030-reopen-proof.png` | Buchungsmatrix Einrichtung, Page 314 | `playthru` / `UNIVERSAARL-DE` | Reopen-Proof nach `Neu` ohne Werte | Page 314 ist wieder leer; die Ansicht zeigt keine Zielzeile und keine sichtbaren Eingabefelder | Der Kartenaufruf ohne Werte hat keine sichtbare leere/teilweise Zielzeile hinterlassen | keine eingerichtete Buchungsmatrix, keine Buchungsfaehigkeit, keine Sachposten | `reopen-proof`, `no-target-row-persisted`, `not-posting-ready` |
+
+Screenshot-QA zu TARGET-032K: Der Lauf korrigiert die fruehere Annahme, dass `Neu` in Page 314 nur eine schwer steuerbare Listenzeile erzeugt. In der Zieloberflaeche oeffnet `Neu` eine eigene Kartenroute `Buchungsmatrixkarte Einricht.`. Fuer den naechsten Gate ist das die bessere Bedienlogik: Erst die Felder auf der Karte verstehen, dann in einem separaten Case Werte schreiben und danach per Reopen beweisen. Dieses Bild beweist aber noch keine Matrixeinrichtung und keine Buchungsfaehigkeit.
+
+## Universaarl General Posting Setup Card Write Gate TARGET-032L
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Interner Beweis | Beweist nicht | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-032l-010-before-card-write.png` | Buchungsmatrix Einrichtung, Page 314 | `playthru` / `UNIVERSAARL-DE` | Vor dem Karten-Schreibversuch | Die vorhandene Zielzeile ist als Ausgangskontext sichtbar | Der Lauf startet in der richtigen Zielcompany und in Page 314 | keine vollstaendige Matrix, keine Einkaufskonto-Persistenz, keine Buchungsfaehigkeit | `before-write`, `setup-risk-context` |
+| `target-032l-020-page395-empty-card.png` | Buchungsmatrixkarte Einricht., Page 395 | `playthru` / `UNIVERSAARL-DE` | Geoeffnete Kartenroute | Die Kartenroute ist geoeffnet; `Allgemein` und `Verkauf` sind erreichbar, der `Einkauf`-Bereich ist nicht als sicherer Schreibbereich bewiesen | Page 395 kann eine bestehende bzw. teilweise Zeile bearbeiten | kein sicherer Einkauf-FastTab, kein `Wareneinkaufskonto=5400` | `card-route`, `partial-route-only` |
+| `target-032l-030-after-card-write.png` | Buchungsmatrix Einrichtung, Page 314 / Kartenkontext | `playthru` / `UNIVERSAARL-DE` | Nach Recovery-Versuch | `INLAND`, `WAREN` und `4400` sind sichtbar; `5400` ist nicht sichtbar | Der falsche sichtbare Verkaufskonto-Wert wurde auf `4400` korrigiert | keine vollstaendige `INLAND/WAREN/4400/5400`-Zeile | `partial-recovery`, `not-posting-ready` |
+| `target-032l-040-reopen-proof.png` | Buchungsmatrix Einrichtung, Page 314 | `playthru` / `UNIVERSAARL-DE` | Reopen-Proof nach TARGET-032L | Nach erneutem Oeffnen steht `INLAND` / `WAREN` mit `Warenverkaufskonto=4400` sichtbar in der Liste | Die Teilzeile ist persistiert und der Verkaufskonto-Wert ist wieder richtig | `Wareneinkaufskonto=5400`, VAT Posting Setup, Preview, Buchung, Sachposten | `blocked-partial-sales-account-recovered`, `requires-032m` |
+
+Screenshot-QA zu TARGET-032L: Der Lauf ist kein fertiger General-Posting-Setup-Erfolg. Er hat aber einen wichtigen Teil gerettet: Die sichtbare Kombination `INLAND`/`WAREN` zeigt nach Reopen wieder das Verkaufskonto `4400`. Das Einkaufskonto `5400` ist nicht bewiesen. Der naechste Case darf deshalb nicht denselben breiten Schreibversuch wiederholen, sondern muss die bestehende Zeile oeffnen, den `Einkauf`-FastTab verstehen und nur ein eindeutig sichtbares Feld `Wareneinkaufskonto` beschreiben.
+
 ## Universaarl Dimensions Recovery / Defaults TARGET-033
 
 | Screenshot | Page | Company | Schritt | Was sieht man? | Interner Beweis | Beweist nicht | Status |

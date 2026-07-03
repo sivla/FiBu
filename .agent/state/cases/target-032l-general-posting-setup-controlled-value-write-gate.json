@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE",
+  "status": "blocked-partial-sales-account-recovered",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "targetWorld": "Universaarl",
+  "activeArea": "universaarl-general-posting-setup-controlled-value-write-gate",
+  "purpose": "Use the TARGET-032K Page 395 card route to write exactly one General Posting Setup row for INLAND/WAREN with 4400 sales and 5400 purchase accounts, then prove it after reopen.",
+  "sourceCases": [
+    "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
+    "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
+    "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
+    "TARGET-026M-SKR04-GUV-ACCOUNTS-ROUTE"
+  ],
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-032k-general-posting-setup-new-action-empty-record-gate/TARGET-032K-result.json",
+    "playwright/projects/fibu-book5/img/target-032k-020-after-new-click.png",
+    "playwright/projects/fibu-book5/img/target-032k-030-reopen-proof.png"
+  ],
+  "targetFields": {
+    "generalBusinessPostingGroup": "INLAND",
+    "generalProductPostingGroup": "WAREN",
+    "salesAccount": "4400",
+    "purchaseAccount": "5400"
+  },
+  "allowedActions": [
+    "open-business-central-target-context",
+    "verify-instance-playthru",
+    "verify-company-universaarl-de",
+    "open-page-314-general-posting-setup",
+    "click-standalone-new-action-once",
+    "write-only-target-page395-card-fields",
+    "capture-screenshot-qa",
+    "save-by-standard-business-central-card-navigation",
+    "reopen-page-314-proof",
+    "write-result-json",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "click-edit-list",
+    "click-copy-as-write-route",
+    "write-any-general-posting-setup-field-outside-target-list",
+    "write-vat-posting-setup",
+    "configuration-package-import-export-validate-apply",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-posting-readiness"
+  ],
+  "smartDecision": {
+    "whyNow": "TARGET-032K proved that Page 314 Neu opens Page 395 Buchungsmatrixkarte Einricht. with clear card fields and leaves no blank row after reopen when no values are typed.",
+    "fieldsToChangeOnlyIfClear": [
+      "Geschaeftsbuchungsgruppe = INLAND",
+      "Produktbuchungsgruppe = WAREN",
+      "Warenverkaufskonto = 4400",
+      "Wareneinkaufskonto = 5400"
+    ],
+    "fieldsNotToTouch": [
+      "VAT Posting Setup",
+      "Vorauszahlungskonten",
+      "Gutschriftkonten",
+      "Lagerkonten",
+      "Subscription Billing fields",
+      "Documents",
+      "Journals"
+    ],
+    "risk": "A card route can persist setup. The case must stop before value write if fields are not clearly visible or if a dangerous confirmation appears.",
+    "fallback": "If the Page 395 card route cannot safely target exactly the four fields, park General Posting Setup again and move to a local result decision."
+  },
+  "acceptanceCriteria": [
+    "playthru / UNIVERSAARL-DE is verified before Page 314 interaction.",
+    "Only Page 395 card route from standalone Neu is used; Edit List, Copy and configuration packages remain locked.",
+    "Only INLAND, WAREN, 4400 and 5400 are written if the corresponding fields are visible and unambiguous.",
+    "Page 314 is reopened and shows the target INLAND/WAREN row with 4400 and 5400.",
+    "No VAT setup, document, Preview Posting, Posting, Payment or API shortcut occurs.",
+    "No posting readiness claim is made."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
+    "lastEvidenceSummary": "TARGET-032K clicked standalone Neu once on Page 314, opened Page 395 Buchungsmatrixkarte Einricht. with empty fields, typed no values, and proved after reopen that no target row persisted.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The Page 395 card route is materially safer than the rejected list/edit routes because the target fields are visible as card fields before value entry.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE",
+        "status": "ready-next",
+        "reason": "Page 395 card route is now proven as the next narrow setup write gate."
+      },
+      {
+        "caseId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+        "status": "ready-after-current",
+        "reason": "VAT matrix remains a separate setup lane after General Posting Setup."
+      },
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "ready-after-current",
+        "reason": "Dimensions can resume after the two posting matrices are solved or parked."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C remains blocked until General Posting Setup and VAT setup are proven."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked TARGET-032K done.",
+      "Added TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE as next narrow Page 395 card-route write case."
+    ],
+    "selectedNextCase": "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It converts the newly proven card route into one controlled setup write without jumping to VAT, master data, Preview Posting or Posting.",
+    "risksBeforeNextCase": [
+      "Do not write values if Page 395 fields are not clearly visible.",
+      "Do not touch Gutschrift, Vorauszahlung, Lager or Subscription Billing fields.",
+      "Do not claim posting readiness from setup visibility alone."
+    ],
+    "requiredPreparation": [
+      "Review TARGET-032K after-new screenshot.",
+      "Use field-label-targeted selectors and screenshot QA for each target field.",
+      "Reopen Page 314 and verify only the target row."
+    ]
+  },
+  "updatedAt": "2026-07-03T05:57:41.620Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-032l-general-posting-setup-controlled-value-write-gate/TARGET-032L-result.json",
+  "completedAt": "2026-07-03T05:57:41.620Z",
+  "setupChanged": true,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "result": "Page 395 card route recovered the existing partial INLAND/WAREN row to Sales Account 4400, but Wareneinkaufskonto 5400 was not found/proven as a distinct field.",
+  "nextCase": "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY"
+}

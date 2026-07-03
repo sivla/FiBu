@@ -824,12 +824,12 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-07-03T05:31:43.012Z",
+  "updatedAt": "2026-07-03T05:57:41.620Z",
   "activeArea": "universaarl-general-posting-setup-alternative-route-discovery",
   "currentBlock": "Foundation checkpoint needed before master data: General Posting Setup Page 314 and VAT matrix are parked; Dimensions starter set is visible but Global/Default Dimensions and posting effects are not proven.",
   "latestPracticalCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
   "latestReviewCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
-  "nextCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
+  "nextCase": "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -1050,7 +1050,7 @@
     "playwright/projects/fibu-book5/BC-ERROR-BLOCKER-ATLAS.md",
     "playwright/projects/fibu-book5/BC-PROCESS-COVERAGE-ROADMAP.md"
   ],
-  "currentCoverageFocus": "TARGET-032G keeps General Posting Setup Page 314 parked after item-card WAREN proof; TARGET-032H should inspect a materially new read-only route before any setup write.",
+  "currentCoverageFocus": "TARGET-032L created/recovered a partial Page 314 General Posting Setup row for INLAND/WAREN with Warenverkaufskonto 4400. Wareneinkaufskonto 5400 remains unproven and requires TARGET-032M purchase FastTab recovery.",
   "latestCoverageUpdate": {
     "at": "2026-06-28T19:28:00.000+02:00",
     "type": "p2p-011-purchase-lines-action-discovery-tested",
@@ -1930,7 +1930,7 @@
     "nextCase": "FIXEDASSETS-298-FA-DEPRECIATION-BLOCKER-BOOK-SYNC",
     "updatedAt": "2026-06-29T07:09:31.588Z"
   },
-  "nextStep": "Run TARGET-032G as a local route decision before any General Posting Setup write attempt.",
+  "nextStep": "Run TARGET-032L through the proven Page 395 Buchungsmatrixkarte route; write only INLAND/WAREN/4400/5400 if fields are unambiguous, then reopen Page 314.",
   "warehouse": {
     "chapter": "Kapitel 13",
     "status": "in-progress",
@@ -5579,5 +5579,65 @@
     "selectedRoute": "standard-ui-new-action-empty-record-gate",
     "nextCase": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
     "updatedAt": "2026-07-03T05:31:43.012Z"
+  },
+  "latestGeneralPostingSetupNewGate": {
+    "caseId": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
+    "status": "observed-new-context-no-values",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-032k-general-posting-setup-new-action-empty-record-gate/TARGET-032K-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "pageRoute": "Page 314 Neu -> Page 395 Buchungsmatrixkarte Einricht.",
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-032k-010-before-new.png",
+      "playwright/projects/fibu-book5/img/target-032k-020-after-new-click.png",
+      "playwright/projects/fibu-book5/img/target-032k-030-reopen-proof.png"
+    ],
+    "proved": [
+      "Business Central stayed in playthru / UNIVERSAARL-DE.",
+      "Page 314 Buchungsmatrix Einrichtung / General Posting Setup was opened directly.",
+      "Standalone Neu was clicked exactly once.",
+      "No values were typed in General Posting Setup.",
+      "No Edit List, Copy, configuration package route, document, Preview Posting, Posting, Payment or API shortcut occurred.",
+      "Page 314 was reopened after the Neu gate for side-effect proof."
+    ],
+    "notProved": [
+      "No INLAND/WAREN General Posting Setup row with 4400/5400 is proven.",
+      "No Sales Account 4400 or Purchase Account 5400 is stored by this case.",
+      "No VAT Posting Setup row is proven.",
+      "No posting readiness is proven.",
+      "No G/L Entry, VAT Entry or Value Entry is proven.",
+      "No complete SKR04 chart, tax advisor approval or German compliance claim is proven."
+    ],
+    "nextCase": "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE",
+    "updatedAt": "2026-07-03T05:44:12.572Z"
+  },
+  "latestGeneralPostingSetupControlledValueWriteGate": {
+    "caseId": "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE",
+    "status": "blocked-partial-sales-account-recovered",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-032l-general-posting-setup-controlled-value-write-gate/TARGET-032L-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "setupChanged": true,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "partialRow": "INLAND / WAREN / Warenverkaufskonto 4400 visible after reopen",
+    "missingValue": "Wareneinkaufskonto 5400",
+    "screenshots": [
+      "playwright/projects/fibu-book5/img/target-032l-010-before-card-write.png",
+      "playwright/projects/fibu-book5/img/target-032l-020-page395-empty-card.png",
+      "playwright/projects/fibu-book5/img/target-032l-030-after-card-write.png",
+      "playwright/projects/fibu-book5/img/target-032l-040-reopen-proof.png"
+    ],
+    "nextCase": "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY",
+    "updatedAt": "2026-07-03T05:57:41.620Z"
   }
 }

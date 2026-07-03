@@ -1,92 +1,91 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
-  "caseId": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
-  "status": "observed-source-route-decision-no-write",
-  "completedAt": "2026-07-03T05:31:43.012Z",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-032j-general-posting-setup-source-or-configuration-route-decision/TARGET-032J-result.json",
+  "runId": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
+  "caseId": "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE",
+  "status": "blocked-partial-sales-account-recovered",
+  "completedAt": "2026-07-03T05:44:12.572Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-032l-general-posting-setup-controlled-value-write-gate/TARGET-032L-result.json",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "bcRun": false,
-  "playwrightRun": false,
-  "setupChanged": false,
+  "bcRun": true,
+  "playwrightRun": true,
+  "setupChanged": true,
   "masterDataChanged": false,
   "draftCreated": false,
   "previewPosting": false,
   "posted": false,
   "apiShortcut": false,
-  "summary": "TARGET-032J compared standard UI, copy-line, configuration-package and placeholder/JIT routes for General Posting Setup. It selected a standalone Neu-action empty-record gate as the next narrow non-repeating route and deferred configuration package import as too broad.",
+  "summary": "TARGET-032L recovered the partial INLAND/WAREN General Posting Setup row so Warenverkaufskonto 4400 is visible after reopen; Wareneinkaufskonto 5400 remains blocked/unproven.",
   "proved": [
-    "General Posting Setup remains the correct Business Central setup area for INLAND/WAREN account mapping.",
-    "Configuration packages are a valid Business Central setup mechanism but too broad and too effective for the next narrow Page 314 blocker step.",
-    "Kopieren... is deferred until a trusted target record exists.",
-    "The next non-repeating route is a standalone Neu-action empty-record gate with no value typing.",
-    "No BC, Playwright, setup, master data, draft, Preview Posting, Posting or API action occurred in TARGET-032J."
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Page 314 Buchungsmatrix Einrichtung / General Posting Setup was opened directly.",
+    "Standalone Neu was clicked exactly once.",
+    "No values were typed in General Posting Setup.",
+    "No Edit List, Copy, configuration package route, document, Preview Posting, Posting, Payment or API shortcut occurred.",
+    "Page 314 was reopened after the Neu gate for side-effect proof."
   ],
   "notProved": [
-    "No INLAND/WAREN General Posting Setup row is stored.",
-    "No Sales Account 4400 or Purchase Account 5400 is stored in Page 314.",
-    "No VAT Posting Setup row is stored.",
-    "No document, Preview Posting, Posting, G/L Entries, VAT Entries or Value Entries are proven.",
-    "No SKR04 completeness, tax advisor approval or German compliance claim is proven."
+    "No INLAND/WAREN General Posting Setup row with 4400/5400 is proven.",
+    "No Sales Account 4400 or Purchase Account 5400 is stored by this case.",
+    "No VAT Posting Setup row is proven.",
+    "No posting readiness is proven.",
+    "No G/L Entry, VAT Entry or Value Entry is proven.",
+    "No complete SKR04 chart, tax advisor approval or German compliance claim is proven."
   ],
-  "warnings": [
-    "TARGET-032K must treat a blank row as a possible side effect and prove after reopen whether it persisted.",
-    "Configuration packages remain locked until a separate design/apply gate exists.",
-    "A source decision does not prove posting readiness."
+  "warnings": [],
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/target-032l-010-before-card-write.png",
+    "playwright/projects/fibu-book5/img/target-032l-020-page395-empty-card.png",
+    "playwright/projects/fibu-book5/img/target-032l-030-after-card-write.png",
+    "playwright/projects/fibu-book5/img/target-032l-040-reopen-proof.png"
   ],
-  "screenshots": [],
-  "nextCase": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
-  "nextCaseFile": ".agent/state/cases/target-032k-general-posting-setup-new-action-empty-record-gate.json",
-  "nextStep": "Run TARGET-032K as controlled Page 314 standalone Neu-action empty-record gate; no value typing.",
+  "nextCase": "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY",
+  "nextCaseFile": ".agent/state/cases/target-032l-general-posting-setup-controlled-value-write-gate.json",
+  "nextStep": "Run TARGET-032L through the proven Page 395 Buchungsmatrixkarte route; write only INLAND/WAREN/4400/5400 if fields are unambiguous, then reopen Page 314.",
   "nextStepDecision": {
-    "currentCase": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
-    "lastEvidenceSummary": "TARGET-032I rejected the weak TARGET-032H Page 314 signal as insufficient. General Posting Setup remains unwritten: no INLAND/WAREN row and no 4400/5400 accounts are stored.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "A local source/configuration decision is still the right next step because Page 314 remains the main Foundation blocker and another blind cell-edit attempt would repeat a rejected pattern.",
+    "currentCase": "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-032L proves the Page 395 card route can recover the visible sales account to 4400 on INLAND/WAREN, but Wareneinkaufskonto 5400 remains unproven.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Repeating the broad value-write route would risk overwriting the partial setup; the next case must target only the missing purchase FastTab/field route.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
+        "caseId": "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY",
         "status": "ready-next",
-        "reason": "Standalone Neu route is the smallest non-repeating standard UI probe before values are typed."
-      },
-      {
-        "caseId": "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE",
-        "status": "ready-after-current",
-        "reason": "Only sensible if TARGET-032K proves an explicit field/card/row context without partial side effects."
+        "reason": "Narrowest recovery: existing row, keep 4400, recover only 5400."
       },
       {
         "caseId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
         "status": "ready-after-current",
-        "reason": "VAT matrix remains a separate blocker and should follow after General Posting Setup route decision or conscious park."
+        "reason": "VAT matrix should wait until General Posting Setup is either complete or consciously parked."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-after-current",
-        "reason": "Dimensions can resume after both matrix blockers are either parked with boundaries or assigned a new route."
+        "reason": "Dimensions can resume after the posting matrix blocker is solved or parked."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C remains blocked until General Posting Setup and VAT Setup boundaries are resolved."
+        "reason": "O2C remains blocked until General Posting Setup and VAT setup are proven."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-032J as done with source/configuration route decision.",
-      "Added TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE as the next controlled UI gate for Page 314."
+      "TARGET-032L moved to blocked-partial-sales-account-recovered.",
+      "TARGET-032M added as the next narrow recovery case."
     ],
-    "selectedNextCase": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
-    "whySelectedNextCaseIsBest": "It is narrower and more standard than configuration package import, does not repeat rejected cell-edit paths, and can prove whether Page 314 has a real new-record context before any setup value is typed.",
+    "selectedNextCase": "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY",
+    "whySelectedNextCaseIsBest": "It preserves the useful partial setup and aims only at the missing purchase account route.",
     "risksBeforeNextCase": [
-      "Clicking Neu may create a transient blank setup row; TARGET-032K must perform reopen proof and document cleanup if any row persists.",
-      "No values may be typed until the field/row context is explicitly proven.",
-      "Kopieren and configuration packages remain locked in TARGET-032K."
+      "Duplicate INLAND/WAREN rows must not be created.",
+      "Sales account 4400 must not be overwritten.",
+      "VAT/setup/document/posting actions remain locked."
     ],
     "requiredPreparation": [
-      "Use screenshot QA before and after clicking Neu.",
-      "Keep browser in playthru / UNIVERSAARL-DE.",
-      "Abort on any dangerous confirmation, dialog, company switch or unexpected page."
+      "Use TARGET-032L reopen screenshot as starting truth.",
+      "Inspect Page 395 FastTabs and layout before typing.",
+      "Stop if Wareneinkaufskonto is not a distinct visible field."
     ]
-  }
+  },
+  "updatedAt": "2026-07-03T05:57:41.620Z"
 }

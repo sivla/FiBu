@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
-  "status": "ready-next",
+  "status": "done",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -70,54 +70,54 @@
     "No posting readiness claim is made."
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
-    "lastEvidenceSummary": "TARGET-032I rejected the weak TARGET-032H Page 314 signal as insufficient. General Posting Setup remains unwritten: no INLAND/WAREN row and no 4400/5400 accounts are stored.",
+    "currentCase": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
+    "lastEvidenceSummary": "TARGET-032J selected standalone Neu as the smallest non-repeating Page 314 route after weak Page 314 route signals and broader configuration-package routes were deferred.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "A local source/configuration decision is still the right next step because Page 314 remains the main Foundation blocker and another blind cell-edit attempt would repeat a rejected pattern.",
+    "reason": "The standalone Neu gate is the only remaining narrow Page 314 route before either a controlled value write or a conscious park decision.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
+        "caseId": "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE",
         "status": "ready-next",
-        "reason": "Standalone Neu route is the smallest non-repeating standard UI probe before values are typed."
+        "reason": "Neu exposed a context without values; a separate value-write gate can decide the exact fields."
       },
       {
-        "caseId": "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE",
+        "caseId": "TARGET-032L-GENERAL-POSTING-SETUP-NEW-ACTION-RESULT-DECISION",
         "status": "ready-after-current",
-        "reason": "Only sensible if TARGET-032K proves an explicit field/card/row context without partial side effects."
+        "reason": "Still useful if the project wants one final human/source decision before value typing."
       },
       {
         "caseId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
         "status": "ready-after-current",
-        "reason": "VAT matrix remains a separate blocker and should follow after General Posting Setup route decision or conscious park."
+        "reason": "VAT matrix remains separate and should not be mixed with Page 314."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-after-current",
-        "reason": "Dimensions can resume after both matrix blockers are either parked with boundaries or assigned a new route."
+        "reason": "Dimensions can resume after matrix blockers are solved or parked."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C remains blocked until General Posting Setup and VAT Setup boundaries are resolved."
+        "reason": "O2C still needs General Posting Setup and VAT boundaries before document work."
       }
     ],
-    "queueChangesMade": [
-      "Marked TARGET-032J as done with source/configuration route decision.",
-      "Added TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE as the next controlled UI gate for Page 314."
-    ],
-    "selectedNextCase": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
-    "whySelectedNextCaseIsBest": "It is narrower and more standard than configuration package import, does not repeat rejected cell-edit paths, and can prove whether Page 314 has a real new-record context before any setup value is typed.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "A separate write gate keeps the Neu discovery and value entry concerns cleanly separated.",
     "risksBeforeNextCase": [
-      "Clicking Neu may create a transient blank setup row; TARGET-032K must perform reopen proof and document cleanup if any row persists.",
-      "No values may be typed until the field/row context is explicitly proven.",
-      "Kopieren and configuration packages remain locked in TARGET-032K."
+      "Do not type 4400/5400 unless the value-write gate explicitly unlocks fields.",
+      "Do not click Edit List or Copy inside the Neu-result decision.",
+      "Do not claim posting readiness without General Posting Setup and VAT Posting Setup proof."
     ],
     "requiredPreparation": [
-      "Use screenshot QA before and after clicking Neu.",
-      "Keep browser in playthru / UNIVERSAARL-DE.",
-      "Abort on any dangerous confirmation, dialog, company switch or unexpected page."
+      "Review the three TARGET-032K screenshots and inventory files.",
+      "Use reopen proof to decide whether any empty/partial row side effect exists."
     ]
   },
-  "updatedAt": "2026-07-03T05:31:43.012Z"
+  "updatedAt": "2026-07-03T05:44:12.572Z",
+  "completedAt": "2026-07-03T05:44:12.572Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-032k-general-posting-setup-new-action-empty-record-gate/TARGET-032K-result.json",
+  "result": "Standalone Neu on Page 314 opens Page 395 Buchungsmatrixkarte Einricht.; no values typed; reopen proof shows no target row persisted.",
+  "nextCase": "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE"
 }

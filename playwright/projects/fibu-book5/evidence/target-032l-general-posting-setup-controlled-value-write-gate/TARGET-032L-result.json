@@ -1,0 +1,209 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE",
+  "source": "playwright-controlled-setup-write",
+  "resultStatus": "blocked-partial-sales-account-recovered",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "Page 314 / Page 395 General Posting Setup card route",
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=314&company=UNIVERSAARL-DE",
+  "targetValues": {
+    "businessGroup": "INLAND",
+    "productGroup": "WAREN",
+    "salesAccount": "4400",
+    "purchaseAccount": "5400"
+  },
+  "actionsTaken": [
+    "Opened Page 314 Buchungsmatrix Einrichtung in playthru / UNIVERSAARL-DE.",
+    "Opened existing partial INLAND/WAREN row card: yes.",
+    "Attempted only INLAND, WAREN, 4400 and 5400 in Page 395 card fields; missing fields block the case.",
+    "Reopened Page 314 after card route for persistence proof."
+  ],
+  "actionsNotTaken": [
+    "No Edit List action clicked.",
+    "No Copy action clicked.",
+    "No VAT Posting Setup value written.",
+    "No configuration package import/export/validate/apply.",
+    "No document or draft created.",
+    "No master data created.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No Payment.",
+    "No API shortcut.",
+    "No company switch.",
+    "No book claim from this evidence."
+  ],
+  "setupChanged": true,
+  "setupChangeAttempted": true,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "fillResults": [
+    {
+      "label": "Warenverkaufskonto",
+      "value": "4400",
+      "found": true,
+      "x": 1085,
+      "y": 577
+    },
+    {
+      "label": "Wareneinkaufskonto",
+      "value": "5400",
+      "found": false
+    }
+  ],
+  "states": {
+    "before": {
+      "step": "Before Page 395 card write.",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=314&company=UNIVERSAARL-DE",
+      "title": "Buchungsmatrix Einrichtung",
+      "compact": "Buchungsmatrix Einrichtung:\nNeu\nListe bearbeiten\nKopieren...\nProduktbuchungsgruppe\nWarenverkaufskonto\nWareneinkaufskonto\nINLAND\nWAREN\n5400\nListe mit Titel Buchungsmatrix Einrichtung hat jetzt einen Artikel\nProduktbuchungsgruppe, Sortierreihenfolge Aufsteigend",
+      "hasDangerousDialog": false,
+      "hasPage314Context": true,
+      "targetRowVisible": false
+    },
+    "after": {
+      "step": "After Page 395 card write before reopen.",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=314&company=UNIVERSAARL-DE",
+      "title": "Buchungsmatrix Einrichtung",
+      "compact": "Buchungsmatrix Einrichtung:\nNeu\nListe bearbeiten\nKopieren...\nProduktbuchungsgruppe\nWarenverkaufskonto\nWareneinkaufskonto\nINLAND\nWAREN\n4400\nListe mit Titel Buchungsmatrix Einrichtung hat jetzt einen Artikel\nProduktbuchungsgruppe, Sortierreihenfolge Aufsteigend",
+      "hasDangerousDialog": false,
+      "hasPage314Context": true,
+      "targetRowVisible": false,
+      "fillResults": [
+        {
+          "label": "Warenverkaufskonto",
+          "value": "4400",
+          "found": true,
+          "x": 1085,
+          "y": 577
+        },
+        {
+          "label": "Wareneinkaufskonto",
+          "value": "5400",
+          "found": false
+        }
+      ]
+    },
+    "reopen": {
+      "step": "Page 314 reopen proof after card route.",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=314&company=UNIVERSAARL-DE",
+      "title": "Buchungsmatrix Einrichtung",
+      "compact": "Buchungsmatrix Einrichtung:\nNeu\nListe bearbeiten\nKopieren...\nProduktbuchungsgruppe\nWarenverkaufskonto\nWareneinkaufskonto\nINLAND\nWAREN\n4400\nListe mit Titel Buchungsmatrix Einrichtung hat jetzt einen Artikel\nProduktbuchungsgruppe, Sortierreihenfolge Aufsteigend",
+      "hasDangerousDialog": false,
+      "hasPage314Context": true,
+      "targetRowVisible": false
+    }
+  },
+  "screenshots": [
+    "playwright/projects/fibu-book5/img/target-032l-010-before-card-write.png",
+    "playwright/projects/fibu-book5/img/target-032l-020-page395-empty-card.png",
+    "playwright/projects/fibu-book5/img/target-032l-030-after-card-write.png",
+    "playwright/projects/fibu-book5/img/target-032l-040-reopen-proof.png"
+  ],
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Page 314 reopen proof shows partial INLAND/WAREN setup with Sales Account 4400.",
+    "The earlier wrong visible sales-account value was recovered to 4400 before the case stopped.",
+    "The case stopped without VAT setup, document, Preview Posting, Posting, Payment or API shortcut."
+  ],
+  "notProved": [
+    "Wareneinkaufskonto 5400 is not proven.",
+    "No complete INLAND/WAREN/4400/5400 General Posting Setup row is proven.",
+    "No VAT Posting Setup row is proven.",
+    "No posting readiness is proven.",
+    "No document Preview Posting is proven.",
+    "No G/L Entry, VAT Entry or Value Entry is proven.",
+    "No complete SKR04 chart, tax advisor approval or German compliance claim is proven."
+  ],
+  "blockedBy": [
+    "Wareneinkaufskonto field/FastTab route was not found as a distinct safe field on Page 395.",
+    "Page 314 reopen proof shows INLAND/WAREN/4400 but does not show purchase account 5400.",
+    "Full General Posting Setup readiness remains blocked until the purchase FastTab/field route is recovered."
+  ],
+  "warnings": [],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true,
+    "noVatSetupChange": true,
+    "noPayment": true,
+    "noEditListClicked": true,
+    "noCopyClicked": true
+  },
+  "nextStepDecision": {
+    "currentCase": "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-032K proved Page 395 as the safe General Posting Setup card route and no empty row persisted without values.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A controlled card-route value write is the direct follow-up to the Page 395 discovery.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+        "status": "ready-after-current",
+        "reason": "VAT matrix should wait until General Posting Setup recovery decision is complete."
+      },
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "ready-after-current",
+        "reason": "Dimensions can resume after the two posting matrices are solved or parked."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C still needs VAT setup and a preflight before document work."
+      },
+      {
+        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
+        "status": "ready-after-current",
+        "reason": "Useful after General Posting Setup and VAT matrix status are both known."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked TARGET-032L as blocked-partial-sales-account-recovered.",
+      "Added TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY as the narrow recovery case."
+    ],
+    "selectedNextCase": "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY",
+    "whySelectedNextCaseIsBest": "The next case should recover only the missing purchase FastTab / Wareneinkaufskonto route on the existing partial INLAND/WAREN row, without repeating Neu or touching VAT/document/posting flows.",
+    "risksBeforeNextCase": [
+      "Do not create a duplicate INLAND/WAREN row.",
+      "Do not overwrite Warenverkaufskonto 4400 while searching for Wareneinkaufskonto.",
+      "Do not claim posting readiness until 5400 and VAT Posting Setup are proven."
+    ],
+    "requiredPreparation": [
+      "Open existing INLAND/WAREN Page 395 card only.",
+      "Use screenshot QA to prove Einkauf FastTab state before any write.",
+      "Write 5400 only if Wareneinkaufskonto is a distinct visible field."
+    ]
+  },
+  "nextCase": "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-032l-general-posting-setup-controlled-value-write-gate/TARGET-032L-result.json",
+    "playwright/projects/fibu-book5/evidence/target-032l-general-posting-setup-controlled-value-write-gate/*.txt",
+    "playwright/projects/fibu-book5/evidence/target-032l-general-posting-setup-controlled-value-write-gate/*.json",
+    "playwright/projects/fibu-book5/img/target-032l-*.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-032l-general-posting-setup-controlled-value-write-gate/TARGET-032L-result.json",
+    "playwright/projects/fibu-book5/img/target-032l-030-after-card-write.png",
+    "playwright/projects/fibu-book5/img/target-032l-040-reopen-proof.png"
+  ],
+  "requiresReview": true,
+  "safeToFinalizeState": true,
+  "statePatch": {},
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run fibu:target:general-posting-setup-card-write-gate",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/target-032l-general-posting-setup-controlled-value-write-gate/TARGET-032L-result.json",
+    "npm run check:encoding",
+    "git diff --check"
+  ],
+  "reason": "Wareneinkaufskonto field/FastTab route was not found as a distinct safe field on Page 395.; Page 314 reopen proof shows INLAND/WAREN/4400 but does not show purchase account 5400.; Full General Posting Setup readiness remains blocked until the purchase FastTab/field route is recovered."
+}

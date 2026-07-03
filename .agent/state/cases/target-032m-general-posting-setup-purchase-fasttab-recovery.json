@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY",
+  "status": "ready-next",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "targetWorld": "Universaarl",
+  "activeArea": "universaarl-general-posting-setup-purchase-fasttab-recovery",
+  "purpose": "Recover the existing partial INLAND/WAREN General Posting Setup row by proving the Page 395 Einkauf FastTab / Wareneinkaufskonto route and writing only purchase account 5400 if the field is distinct and visible.",
+  "sourceCases": [
+    "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
+    "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE"
+  ],
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-032l-general-posting-setup-controlled-value-write-gate/TARGET-032L-result.json",
+    "playwright/projects/fibu-book5/img/target-032l-040-reopen-proof.png"
+  ],
+  "startingState": {
+    "expectedPartialRow": "INLAND / WAREN / Warenverkaufskonto 4400 visible on Page 314",
+    "missingValue": "Wareneinkaufskonto 5400 not proven",
+    "postingReadiness": false
+  },
+  "targetFields": {
+    "generalBusinessPostingGroup": "INLAND",
+    "generalProductPostingGroup": "WAREN",
+    "salesAccountMustRemain": "4400",
+    "purchaseAccountToRecover": "5400"
+  },
+  "allowedActions": [
+    "open-business-central-target-context",
+    "verify-instance-playthru",
+    "verify-company-universaarl-de",
+    "open-page-314-general-posting-setup",
+    "verify-existing-inland-waren-4400-row",
+    "open-existing-inland-waren-card",
+    "capture-screenshot-qa-before-write",
+    "expand-or-focus-einkauf-fasttab",
+    "write-only-wareneinkaufskonto-5400-if-distinct-field-visible",
+    "reopen-page-314-proof",
+    "write-result-json",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "click-new-for-duplicate-row",
+    "click-edit-list",
+    "click-copy-as-write-route",
+    "change-business-posting-group",
+    "change-product-posting-group",
+    "change-sales-account-away-from-4400",
+    "write-vat-posting-setup",
+    "configuration-package-import-export-validate-apply",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-posting-readiness"
+  ],
+  "smartDecision": {
+    "whyNow": "TARGET-032L created a useful but incomplete General Posting Setup row: INLAND/WAREN with sales account 4400. The missing purchase account 5400 is now the narrowest blocker before VAT matrix work can resume.",
+    "fieldsToChangeOnlyIfClear": [
+      "Wareneinkaufskonto = 5400"
+    ],
+    "fieldsToVerifyButNotChange": [
+      "Geschaeftsbuchungsgruppe = INLAND",
+      "Produktbuchungsgruppe = WAREN",
+      "Warenverkaufskonto = 4400"
+    ],
+    "fieldsNotToTouch": [
+      "VAT Posting Setup",
+      "Vorauszahlungskonten",
+      "Gutschriftkonten",
+      "Lagerkonten",
+      "Subscription Billing fields",
+      "Documents",
+      "Journals"
+    ],
+    "risk": "A second broad card-write attempt could overwrite the already recovered sales account or create duplicate matrix rows.",
+    "fallback": "If Einkauf / Wareneinkaufskonto cannot be opened and identified as a distinct field, stop with screenshot QA and do not write further values."
+  },
+  "acceptanceCriteria": [
+    "playthru / UNIVERSAARL-DE is verified before Page 314 interaction.",
+    "Existing INLAND/WAREN/4400 row is verified before any write attempt.",
+    "No new duplicate INLAND/WAREN row is created.",
+    "5400 is written only into a distinct visible Wareneinkaufskonto field.",
+    "Page 314 is reopened and shows INLAND/WAREN/4400/5400, or the case blocks without further wrong writes.",
+    "No VAT setup, document, Preview Posting, Posting, Payment or API shortcut occurs.",
+    "No posting readiness claim is made."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-032L proves the Page 395 card route can recover the visible sales account to 4400 on INLAND/WAREN, but Wareneinkaufskonto 5400 remains unproven.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Repeating the broad value-write route would risk overwriting the partial setup; the next case must target only the missing purchase FastTab/field route.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY",
+        "status": "ready-next",
+        "reason": "Narrowest recovery: existing row, keep 4400, recover only 5400."
+      },
+      {
+        "caseId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
+        "status": "ready-after-current",
+        "reason": "VAT matrix should wait until General Posting Setup is either complete or consciously parked."
+      },
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "ready-after-current",
+        "reason": "Dimensions can resume after the posting matrix blocker is solved or parked."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "O2C remains blocked until General Posting Setup and VAT setup are proven."
+      }
+    ],
+    "queueChangesMade": [
+      "TARGET-032L moved to blocked-partial-sales-account-recovered.",
+      "TARGET-032M added as the next narrow recovery case."
+    ],
+    "selectedNextCase": "TARGET-032M-GENERAL-POSTING-SETUP-PURCHASE-FASTTAB-RECOVERY",
+    "whySelectedNextCaseIsBest": "It preserves the useful partial setup and aims only at the missing purchase account route.",
+    "risksBeforeNextCase": [
+      "Duplicate INLAND/WAREN rows must not be created.",
+      "Sales account 4400 must not be overwritten.",
+      "VAT/setup/document/posting actions remain locked."
+    ],
+    "requiredPreparation": [
+      "Use TARGET-032L reopen screenshot as starting truth.",
+      "Inspect Page 395 FastTabs and layout before typing.",
+      "Stop if Wareneinkaufskonto is not a distinct visible field."
+    ]
+  },
+  "updatedAt": "2026-07-03T05:57:41.620Z"
+}
