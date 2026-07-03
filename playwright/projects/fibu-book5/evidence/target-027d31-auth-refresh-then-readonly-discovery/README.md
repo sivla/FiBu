@@ -38,3 +38,9 @@ If bounded handoffs keep timing out before Login/MFA can be completed, use the d
 7. Run `npm run auth:bc:check` and require `canUseStoredAuth=true`.
 
 The detached command does not write storage state by itself. It only gives the operator a browser window that is not closed by the agent command timeout.
+
+Current blocker:
+
+- `npm run auth:bc:capture-detached` is clear when no detached browser still uses the profile.
+- A confirmed capture still reached Microsoft sign-in instead of the Business Central shell, so `playwright/.auth/bc-user.json` was not written.
+- The next useful step is another detached login handoff: open the detached Playwright profile, complete Login/MFA there, wait for the Business Central shell for `playthru / UNIVERSAARL-DE`, close that browser, then capture.

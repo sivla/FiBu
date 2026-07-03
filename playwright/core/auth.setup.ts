@@ -79,6 +79,27 @@ async function writeAuthResult(args: AuthResultArgs) {
         ? args.shellValidation.matchedShellSignal
         : '';
   const reachedShell = args.savedState && args.blockedBy.length === 0;
+  const isDetachedCapture = authCommandLabel.includes('auth:bc:capture-detached');
+  const operatorSteps = isDetachedCapture
+    ? [
+        'Run npm run auth:bc:open-login-detached from this repo.',
+        'Complete sign-in and MFA in the detached Playwright profile browser window.',
+        'Wait until Business Central shell text such as Search/Tell Me, Role Center or My Settings is visible.',
+        'Close the detached browser window.',
+        'Run npm run auth:bc:capture-detached and require canCapture=true.',
+        'Run npm run auth:bc:capture-detached -- --confirm.',
+        'Then run npm run auth:bc:check and require canUseStoredAuth=true.'
+      ]
+    : [
+        `Run ${authCommandLabel} from this repo.`,
+        'Complete sign-in and MFA in the Playwright-opened browser window.',
+        'Wait until Business Central shell text such as Search/Tell Me, Role Center or My Settings is visible.',
+        'Then run npm run auth:bc:check and require canUseStoredAuth=true.',
+        'If bounded login windows keep closing before sign-in completes, use npm run auth:bc:open-login-detached, close it after the Business Central shell is visible, then run npm run auth:bc:capture-detached.'
+      ];
+  const requiredWindow = isDetachedCapture
+    ? 'the detached browser window opened by npm run auth:bc:open-login-detached'
+    : `the browser window opened by ${authCommandLabel}`;
 
   const result = {
     schemaVersion: 1,
@@ -125,13 +146,8 @@ async function writeAuthResult(args: AuthResultArgs) {
       : {
           reason: 'The Playwright auth profile is not logged in to Business Central yet.',
           profilePath: authProfileDir,
-          requiredWindow: `the browser window opened by ${authCommandLabel}`,
-          steps: [
-            `Run ${authCommandLabel} from this repo.`,
-            'Complete sign-in and MFA in the Playwright-opened browser window.',
-            'Wait until Business Central shell text such as Search/Tell Me, Role Center or My Settings is visible.',
-            'Then run npm run auth:bc:check and require canUseStoredAuth=true.'
-          ],
+          requiredWindow,
+          steps: operatorSteps,
           normalBrowserLoginIsNotEnough: true
         },
     setupChanged: false,
@@ -223,16 +239,28 @@ async function writeAuthResult(args: AuthResultArgs) {
       risksBeforeNextCase: reachedShell
         ? ['Do not run D31 until auth:bc:check confirms canUseStoredAuth=true.']
         : [
-            'Repeated auth attempts will keep timing out if Login/MFA is not completed in the Playwright auth browser.',
+            isDetachedCapture
+              ? 'Confirmed detached capture will keep timing out if the persistent profile is not already logged in to the Business Central shell.'
+              : 'Repeated auth attempts will keep timing out if Login/MFA is not completed in the Playwright auth browser.',
             'Running BC tests with stale storageState would only create misleading evidence.'
           ],
       requiredPreparation: reachedShell
         ? ['Run npm run auth:bc:check and require canUseStoredAuth=true.']
-        : [
-            'Complete Login/MFA in the Playwright-opened browser window, not only in normal Chrome/Codex.',
-            'Wait until Role Center, Search/Tell Me, My Settings or another Business Central shell signal is visible.',
-            'Run npm run auth:bc:check and require canUseStoredAuth=true.'
-          ]
+        : isDetachedCapture
+          ? [
+              'Run npm run auth:bc:open-login-detached.',
+              'Complete Login/MFA in the detached Playwright profile browser, not only in normal Chrome/Codex.',
+              'Wait until Role Center, Search/Tell Me, My Settings or another Business Central shell signal is visible.',
+              'Close the detached browser.',
+              'Run npm run auth:bc:capture-detached and require canCapture=true.',
+              'Run npm run auth:bc:capture-detached -- --confirm.',
+              'Run npm run auth:bc:check and require canUseStoredAuth=true.'
+            ]
+          : [
+              'Complete Login/MFA in the Playwright-opened browser window, not only in normal Chrome/Codex.',
+              'Wait until Role Center, Search/Tell Me, My Settings or another Business Central shell signal is visible.',
+              'Run npm run auth:bc:check and require canUseStoredAuth=true.'
+            ]
     },
     changedFiles: [authResultFile],
     evidenceRefs: [],

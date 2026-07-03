@@ -107,6 +107,10 @@ if (!confirmed || !canCapture) {
 console.log(JSON.stringify({ ...result, action: 'running npm run auth:bc' }, null, 2));
 const authRun = spawnSync('npm', ['run', 'auth:bc'], {
   stdio: 'inherit',
-  shell: process.platform === 'win32'
+  shell: process.platform === 'win32',
+  env: {
+    ...process.env,
+    BC_AUTH_COMMAND_LABEL: 'npm run auth:bc:capture-detached -- --confirm'
+  }
 });
 process.exitCode = typeof authRun.status === 'number' ? authRun.status : 1;
