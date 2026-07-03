@@ -5,7 +5,7 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "queueId": "TARGET-MARATHON-002-UNIVERSAARL-REPO-READONLY-PREP",
-  "reason": "TARGET-032I classified the TARGET-032H weak Page 314 route signal as insufficient; TARGET-032J must choose a source/configuration route or conscious park before any write.",
+  "reason": "TARGET-032J selected standalone Neu-action empty-record gate as the next Page 314 route; no setup write occurred.",
   "noEffectiveBusinessCentralActions": false,
   "forbiddenUntilUnblocked": [],
   "unblockCriteria": "Satisfied: UNIVERSAARL-DE exists and active Role Center context / Firmendaten read-only proof is available.",
@@ -4260,7 +4260,7 @@
     {
       "id": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
       "order": 10197,
-      "status": "pending",
+      "status": "done",
       "category": "general-posting-setup-source-or-configuration-route-decision",
       "expectedImpact": "select-non-repeating-general-posting-setup-route-or-conscious-park-before-write",
       "goal": "Decide whether a source-backed standard UI route, configuration/setup route or conscious park is safest after TARGET-032I rejected the weak Page 314 signal.",
@@ -4280,6 +4280,39 @@
         "type-values",
         "write-general-posting-setup",
         "write-vat-posting-setup",
+        "create-document-or-draft",
+        "preview-posting",
+        "post",
+        "api-shortcut",
+        "claim-posting-readiness"
+      ],
+      "completedAt": "2026-07-03T05:31:43.012Z",
+      "result": "Selected standalone Neu-action empty-record gate; configuration package route deferred as too broad for this blocker.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-032j-general-posting-setup-source-or-configuration-route-decision/TARGET-032J-result.json",
+      "nextCase": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE"
+    },
+    {
+      "id": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
+      "order": 10198,
+      "status": "pending",
+      "category": "general-posting-setup-new-action-empty-record-gate",
+      "expectedImpact": "prove-or-reject-standalone-new-action-context-before-general-posting-setup-value-write",
+      "goal": "Click only standalone Neu on Page 314, classify the resulting UI context, capture screenshot QA and reopen proof, without typing values.",
+      "dependencies": [
+        "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION"
+      ],
+      "forbiddenActions": [
+        "leave-instance",
+        "commit-secrets",
+        "show-env-or-auth",
+        "fake-evidence",
+        "book-claim-without-evidence",
+        "click-edit-list",
+        "click-copy-as-write-route",
+        "type-values",
+        "write-general-posting-setup-values",
+        "write-vat-posting-setup",
+        "configuration-package-import-export-validate-apply",
         "create-document-or-draft",
         "preview-posting",
         "post",
@@ -4398,9 +4431,9 @@
       ]
     }
   },
-  "updatedAt": "2026-07-03T05:23:43.647Z",
+  "updatedAt": "2026-07-03T05:31:43.012Z",
   "lastCompletedCase": "TARGET-032G-GENERAL-POSTING-SETUP-ROUTE-REOPEN-DECISION",
-  "nextCase": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
+  "nextCase": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
   "nextStepDecisionCard": {
     "currentCase": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
@@ -4451,9 +4484,9 @@
       "Decide whether Page 314 remains parked or whether a new non-repeating UI/source route is justified."
     ]
   },
-  "nextStep": "Run TARGET-032J local source/configuration route decision; no BC write.",
+  "nextStep": "Run TARGET-032K controlled standalone Neu-action gate; no values typed.",
   "openItems": 1,
-  "nextQueueItem": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
+  "nextQueueItem": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
   "nextCases": [
     "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
     "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
@@ -4462,56 +4495,56 @@
     "TARGET-037-FIRST-PREVIEW-GATE"
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
-    "lastEvidenceSummary": "TARGET-032H proved Page 314 read-only context, action inventory, tooltips, More-options state and final reopen proof, but did not prove a trusted row/card/write route for INLAND/WAREN/4400/5400.",
+    "currentCase": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
+    "lastEvidenceSummary": "TARGET-032I rejected the weak TARGET-032H Page 314 signal as insufficient. General Posting Setup remains unwritten: no INLAND/WAREN row and no 4400/5400 accounts are stored.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "TARGET-032I is the right local gate because the only route signal from TARGET-032H is weak and could otherwise be mistaken for a safe write path.",
+    "reason": "A local source/configuration decision is still the right next step because Page 314 remains the main Foundation blocker and another blind cell-edit attempt would repeat a rejected pattern.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
+        "caseId": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
         "status": "ready-next",
-        "reason": "A source/configuration-route decision is safer than repeating Page 314 New/Edit/List/Copy clicks and can decide whether a standard route exists before any setup write."
+        "reason": "Standalone Neu route is the smallest non-repeating standard UI probe before values are typed."
+      },
+      {
+        "caseId": "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE",
+        "status": "ready-after-current",
+        "reason": "Only sensible if TARGET-032K proves an explicit field/card/row context without partial side effects."
       },
       {
         "caseId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
         "status": "ready-after-current",
-        "reason": "VAT Posting Setup remains a separate parked matrix blocker; it should not be mixed with General Posting Setup."
+        "reason": "VAT matrix remains a separate blocker and should follow after General Posting Setup route decision or conscious park."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-after-current",
-        "reason": "Dimensions can continue only after the two matrix blockers are explicitly parked or a new setup route is chosen."
+        "reason": "Dimensions can resume after both matrix blockers are either parked with boundaries or assigned a new route."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C preflight still needs posting group and VAT boundaries before any document or preview work."
-      },
-      {
-        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
-        "status": "blocked",
-        "reason": "Preview Posting remains blocked without complete posting setup, VAT setup and a document."
+        "reason": "O2C remains blocked until General Posting Setup and VAT Setup boundaries are resolved."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-032I as done with insufficient route signal classification.",
-      "Added TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION as the next local route decision before any Page 314 write."
+      "Marked TARGET-032J as done with source/configuration route decision.",
+      "Added TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE as the next controlled UI gate for Page 314."
     ],
-    "selectedNextCase": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
-    "whySelectedNextCaseIsBest": "It avoids another blind Page 314 cell-edit loop and turns the blocker into a narrow source/configuration decision with explicit no-write boundaries.",
+    "selectedNextCase": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
+    "whySelectedNextCaseIsBest": "It is narrower and more standard than configuration package import, does not repeat rejected cell-edit paths, and can prove whether Page 314 has a real new-record context before any setup value is typed.",
     "risksBeforeNextCase": [
-      "Do not treat form-level text or column-menu labels as row-card evidence.",
-      "Do not click Neu, Liste bearbeiten or Kopieren as a write route without a new Smart Decision.",
-      "Do not claim General Posting Setup readiness until INLAND/WAREN/4400/5400 is visibly stored after reopen."
+      "Clicking Neu may create a transient blank setup row; TARGET-032K must perform reopen proof and document cleanup if any row persists.",
+      "No values may be typed until the field/row context is explicitly proven.",
+      "Kopieren and configuration packages remain locked in TARGET-032K."
     ],
     "requiredPreparation": [
-      "Read TARGET-032H result and action inventory.",
-      "Review Microsoft Learn/source notes for General Posting Setup and possible standard setup/configuration routes.",
-      "Decide whether a new controlled UI route, configuration route or conscious park is best."
+      "Use screenshot QA before and after clicking Neu.",
+      "Keep browser in playthru / UNIVERSAARL-DE.",
+      "Abort on any dangerous confirmation, dialog, company switch or unexpected page."
     ]
   },
-  "total": 195,
-  "done": 153,
+  "total": 196,
+  "done": 154,
   "blocked": 37
 }

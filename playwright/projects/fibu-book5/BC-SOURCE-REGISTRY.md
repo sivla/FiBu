@@ -578,6 +578,17 @@ TARGET-032I laeuft ohne Business-Central- und ohne Playwright-Ausfuehrung. Der L
 
 Fuer Universaarl folgt daraus: TARGET-032H hat die Oberflaeche besser erklaerbar gemacht, aber keine Schreibroute bewiesen. Die Kombination `INLAND` + `WAREN` mit `4400` und `5400` bleibt unbewiesen. Der naechste Schritt ist TARGET-032J als Source-/Konfigurationsrouten-Entscheidung: entweder wird ein wirklich neuer Standardweg begruendet oder die allgemeine Buchungsmatrix bleibt bewusst geparkt.
 
+## TARGET-032J General Posting Setup Source-/Konfigurationsroute
+
+TARGET-032J laeuft ohne Business-Central- und ohne Playwright-Ausfuehrung. Der Lauf verbindet die vorhandene Page-314-Evidence mit Microsoft Learn:
+
+- `Posting group setup` beschreibt `General Posting Setup` als Kombination aus Geschaefts- und Produktbuchungsgruppe, in der Sachkonten wie Verkaufs- und Einkaufskonten hinterlegt werden.
+- `Copy posting setup lines` ist hilfreich, wenn es bereits eine Zielzeile gibt. Fuer die erste vertraute `INLAND`/`WAREN`-Zeile reicht `Kopieren...` nicht, weil TARGET-032H per Tooltip zeigte, dass zuvor ein neuer Datensatz existieren muss.
+- `Set up company configuration packages` nennt `General Posting Setup` als moegliche Setup-Tabelle in Konfigurationspaketen. Das ist Standardfunktionalitaet, aber ein wirksamer Import-/Setup-Pfad.
+- `Apply company configuration packages` macht klar, dass Pakete besonders fuer Ersteinrichtung gedacht sind und mit Validierung, Import/Apply und Berechtigungen kontrolliert werden muessen.
+
+Fuer Universaarl folgt daraus: Der naechste Schritt ist kein Konfigurationspaket-Import und keine Wiederholung von Zell-Edit. TARGET-032K prueft nur den eigenstaendigen `Neu`-Button auf Page 314. Dabei werden noch keine Werte getippt. Der Lauf soll beweisen, ob Business Central eine echte neue Karten-/Zeilenroute zeigt oder ob Page 314 weiterhin geparkt bleibt.
+
 ## URLs
 
 - https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company

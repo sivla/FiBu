@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
-  "status": "ready-next",
+  "status": "done-source-route-decision-no-write",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -68,54 +68,119 @@
     "No posting readiness claim is made."
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION",
+    "currentCase": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
     "plannedNextCaseBeforeReview": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
-    "lastEvidenceSummary": "TARGET-032I rejected the weak TARGET-032H route signal as insufficient and kept Page 314 unwritten.",
+    "lastEvidenceSummary": "TARGET-032I rejected the weak TARGET-032H Page 314 signal as insufficient. General Posting Setup remains unwritten: no INLAND/WAREN row and no 4400/5400 accounts are stored.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The matrix blocker now needs a source/configuration route decision rather than another direct Page 314 write attempt.",
+    "reason": "A local source/configuration decision is still the right next step because Page 314 remains the main Foundation blocker and another blind cell-edit attempt would repeat a rejected pattern.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
+        "caseId": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
         "status": "ready-next",
-        "reason": "A source/configuration-route decision is safer than repeating Page 314 New/Edit/List/Copy clicks and can decide whether a standard route exists before any setup write."
+        "reason": "Standalone Neu route is the smallest non-repeating standard UI probe before values are typed."
+      },
+      {
+        "caseId": "TARGET-032L-GENERAL-POSTING-SETUP-CONTROLLED-VALUE-WRITE-GATE",
+        "status": "ready-after-current",
+        "reason": "Only sensible if TARGET-032K proves an explicit field/card/row context without partial side effects."
       },
       {
         "caseId": "TARGET-027D26-VAT-MATRIX-ALTERNATIVE-ROUTE-DISCOVERY",
         "status": "ready-after-current",
-        "reason": "VAT Posting Setup remains a separate parked matrix blocker; it should not be mixed with General Posting Setup."
+        "reason": "VAT matrix remains a separate blocker and should follow after General Posting Setup route decision or conscious park."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-after-current",
-        "reason": "Dimensions can continue only after the two matrix blockers are explicitly parked or a new setup route is chosen."
+        "reason": "Dimensions can resume after both matrix blockers are either parked with boundaries or assigned a new route."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "O2C preflight still needs posting group and VAT boundaries before any document or preview work."
-      },
-      {
-        "caseId": "TARGET-037-FIRST-PREVIEW-GATE",
-        "status": "blocked",
-        "reason": "Preview Posting remains blocked without complete posting setup, VAT setup and a document."
+        "reason": "O2C remains blocked until General Posting Setup and VAT Setup boundaries are resolved."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-032I as done with insufficient route signal classification.",
-      "Added TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION as the next local route decision before any Page 314 write."
+      "Marked TARGET-032J as done with source/configuration route decision.",
+      "Added TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE as the next controlled UI gate for Page 314."
     ],
-    "selectedNextCase": "TARGET-032J-GENERAL-POSTING-SETUP-SOURCE-OR-CONFIGURATION-ROUTE-DECISION",
-    "whySelectedNextCaseIsBest": "It avoids another blind Page 314 cell-edit loop and turns the blocker into a narrow source/configuration decision with explicit no-write boundaries.",
+    "selectedNextCase": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
+    "whySelectedNextCaseIsBest": "It is narrower and more standard than configuration package import, does not repeat rejected cell-edit paths, and can prove whether Page 314 has a real new-record context before any setup value is typed.",
     "risksBeforeNextCase": [
-      "Do not treat form-level text or column-menu labels as row-card evidence.",
-      "Do not click Neu, Liste bearbeiten or Kopieren as a write route without a new Smart Decision.",
-      "Do not claim General Posting Setup readiness until INLAND/WAREN/4400/5400 is visibly stored after reopen."
+      "Clicking Neu may create a transient blank setup row; TARGET-032K must perform reopen proof and document cleanup if any row persists.",
+      "No values may be typed until the field/row context is explicitly proven.",
+      "Kopieren and configuration packages remain locked in TARGET-032K."
     ],
     "requiredPreparation": [
-      "Read TARGET-032H result and action inventory.",
-      "Review Microsoft Learn/source notes for General Posting Setup and possible standard setup/configuration routes.",
-      "Decide whether a new controlled UI route, configuration route or conscious park is best."
+      "Use screenshot QA before and after clicking Neu.",
+      "Keep browser in playthru / UNIVERSAARL-DE.",
+      "Abort on any dangerous confirmation, dialog, company switch or unexpected page."
     ]
   },
-  "updatedAt": "2026-07-03T05:23:43.647Z"
+  "updatedAt": "2026-07-03T05:31:43.012Z",
+  "completedAt": "2026-07-03T05:31:43.012Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-032j-general-posting-setup-source-or-configuration-route-decision/TARGET-032J-result.json",
+  "routeDecision": {
+    "selectedRoute": "standard-ui-new-action-empty-record-gate",
+    "selectedRouteType": "controlled-ui-discovery-before-write",
+    "selectedRouteReason": "Microsoft Learn identifies General Posting Setup as the page that combines general business and product posting groups with G/L accounts. TARGET-032H shows a visible Neu action on Page 314, but prior cases did not isolate a standalone Neu route. A narrow Neu-only gate is the next non-repeating standard UI route before any values are typed.",
+    "rejectedOrDeferredRoutes": [
+      {
+        "route": "repeat-list-edit-cell-edit",
+        "decision": "rejected-do-not-repeat",
+        "reason": "TARGET-032D/TARGET-032E/TARGET-032H already show that List Edit, Ctrl+Insert, column/menu labels and broad form text are not trusted write routes."
+      },
+      {
+        "route": "copy-posting-setup-lines",
+        "decision": "deferred-until-target-record-exists",
+        "reason": "Microsoft Learn describes copying accounts from existing General Posting Setup lines, and TARGET-032H tooltip says Kopieren requires a new target record first. It cannot create the first trusted INLAND/WAREN row by itself."
+      },
+      {
+        "route": "configuration-package-import",
+        "decision": "deferred-too-broad-for-current-blocker",
+        "reason": "Microsoft Learn supports configuration packages for setup tables including General Posting Setup, but import/apply is a broad effective setup path. Prior VAT package work also left metadata/cleanup blockers. Use only after a separate package-design case, not as the next quick matrix route."
+      },
+      {
+        "route": "posting-error-placeholder-or-jit-creation",
+        "decision": "rejected-before-foundation-ready",
+        "reason": "Microsoft Learn notes missing posting setups can lead Business Central to create placeholder posting groups or setups, but reaching that point would require documents/preview/posting-style flows that are explicitly locked before Foundation readiness."
+      }
+    ],
+    "nextGateRules": [
+      "Open Page 314 in playthru / UNIVERSAARL-DE.",
+      "Click only the standalone Neu action, not Liste bearbeiten and not Kopieren.",
+      "Do not type INLAND, WAREN, 4400, 5400 or any other value in TARGET-032K.",
+      "If a card/dialog/row appears, capture screenshot QA and field/action inventory.",
+      "If a blank transient row appears, close/reopen Page 314 and prove whether it persisted; document cleanup if needed.",
+      "If any confirmation or dangerous dialog appears, abort without confirming.",
+      "No Preview Posting, Posting, document, VAT setup, master data or API shortcut."
+    ],
+    "sourceBasis": [
+      "Microsoft Learn: Posting group setup - General Posting Setups combine business/product posting groups and assign G/L accounts.",
+      "Microsoft Learn: Posting group setup - Copy posting setup lines can reduce manual entry but copies from an existing line.",
+      "Microsoft Learn: Set up company configuration packages - configuration packages can include General Posting Setup and other setup tables.",
+      "Microsoft Learn: Apply company configuration packages - importing/applying packages is an effective setup path intended especially for first-time setup and must be controlled."
+    ]
+  },
+  "proved": [
+    "General Posting Setup remains the correct Business Central setup area for INLAND/WAREN account mapping.",
+    "Configuration packages are a valid Business Central setup mechanism but too broad and too effective for the next narrow Page 314 blocker step.",
+    "Kopieren... is deferred until a trusted target record exists.",
+    "The next non-repeating route is a standalone Neu-action empty-record gate with no value typing.",
+    "No BC, Playwright, setup, master data, draft, Preview Posting, Posting or API action occurred in TARGET-032J."
+  ],
+  "notProved": [
+    "No INLAND/WAREN General Posting Setup row is stored.",
+    "No Sales Account 4400 or Purchase Account 5400 is stored in Page 314.",
+    "No VAT Posting Setup row is stored.",
+    "No document, Preview Posting, Posting, G/L Entries, VAT Entries or Value Entries are proven.",
+    "No SKR04 completeness, tax advisor approval or German compliance claim is proven."
+  ],
+  "warnings": [
+    "TARGET-032K must treat a blank row as a possible side effect and prove after reopen whether it persisted.",
+    "Configuration packages remain locked until a separate design/apply gate exists.",
+    "A source decision does not prove posting readiness."
+  ],
+  "result": "TARGET-032J selected a narrow standalone Neu-action empty-record gate as the next non-repeating General Posting Setup route; configuration package import remains deferred.",
+  "nextCase": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE"
 }
