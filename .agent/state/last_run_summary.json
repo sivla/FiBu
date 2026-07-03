@@ -1,24 +1,26 @@
 {
   "schemaVersion": 1,
   "activeCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "status": "blocked-auth-before-bc-shell",
+  "status": "blocked-auth-book-progress",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "mode": "universaarl-target-execution",
   "activeArea": "universaarl-vat-assisted-setup-readonly-discovery",
   "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
-  "summary": "Confirmed reset of ignored local Playwright auth artifacts, then ran auth:bc:interactive for 1800000 ms. The fresh profile still stayed on Microsoft sign-in, no Business Central shell signal appeared and no storage state was saved.",
+  "summary": "Business Central workflows remain blocked because the Playwright storage state is missing, but the run converted existing Universaarl SKR04 starter-account evidence into beginner-friendly Foundation book text without opening BC.",
   "proved": [
     "auth:bc:reset-profile -- --confirm removed only ignored local Playwright auth artifacts.",
     "The auth refresh command uses the intended playthru / UNIVERSAARL-DE target override.",
     "No Business Central shell signal was reached during this attempt.",
     "No Playwright storage state was refreshed or saved.",
-    "D31 VAT discovery remains correctly blocked before any VAT UI action."
+    "D31 VAT discovery remains correctly blocked before any VAT UI action.",
+    "The Foundation draft now explains SKR04-oriented starter accounts, GuV/Bilanz, Kontoart Buchung and the remaining setup boundaries in reader-facing language."
   ],
   "notProved": [
     "playthru / UNIVERSAARL-DE shell context was not freshly confirmed.",
     "No Assisted Setup, Manual Setup or VAT Posting Setup route was observed.",
-    "No VAT setup readiness, posting readiness, VAT Entries or G/L Entries are proven."
+    "No VAT setup readiness, posting readiness, VAT Entries or G/L Entries are proven.",
+    "No new Business Central shell context, VAT setup, posting readiness, Preview Posting or posting was proven in this run."
   ],
   "blockedBy": [
     "auth:playwright-window-stayed-before-business-central-shell",
@@ -119,19 +121,21 @@
     "apiShortcut": false,
     "nextSafeAction": "Run npm run auth:bc:interactive and finish Login/MFA inside the Playwright auth window until a Business Central shell signal is visible, require auth:bc:check canUseStoredAuth=true, then rerun D31 read-only discovery."
   },
-  "updatedAt": "2026-07-03T10:59:25.617Z",
+  "updatedAt": "2026-07-03T12:20:00.000Z",
   "actionsTaken": [
     "Ran git status --short and git pull --ff-only; repository was up to date.",
     "Ran auth:bc:check and confirmed stored auth was unusable.",
     "Ran auth:bc:reset-profile as a dry run, then with -- --confirm.",
     "Removed ignored local Playwright auth profile and storage-state files.",
-    "Ran auth:bc:interactive for a fresh login attempt; Business Central shell was not reached."
+    "Ran auth:bc:interactive for a fresh login attempt; Business Central shell was not reached.",
+    "Added beginner-friendly SKR04 starter-account book substance to playwright/projects/fibu-book5/book-drafts/universaarl-foundation-ch06-draft.md based on existing Universaarl evidence."
   ],
   "actionsNotTaken": [
     "No D31 VAT Assisted Setup or Manual Setup page was opened.",
     "No setup values were typed.",
     "No master data, document, Preview Posting, Posting, payment or API shortcut occurred.",
-    "No bookmaster change was made."
+    "No BC workflow or Playwright business test was run because auth:bc:check remains blocked.",
+    "No bookmaster change was made; only the existing Foundation draft was improved."
   ],
   "latestAuthContextGate": {
     "at": "2026-07-03T10:55:00.000Z",
@@ -286,5 +290,12 @@
     "posted": false,
     "apiShortcut": false,
     "nextSafeAction": "Auth profile has been reset. Run npm run auth:bc:interactive and complete Login/MFA in the Playwright-opened browser window until Business Central shell is visible; then require npm run auth:bc:check canUseStoredAuth=true."
+  },
+  "bookProgress": {
+    "at": "2026-07-03T12:20:00.000Z",
+    "file": "playwright/projects/fibu-book5/book-drafts/universaarl-foundation-ch06-draft.md",
+    "status": "labor-to-target-book-draft-progress",
+    "topic": "SKR04-oriented Universaarl starter accounts",
+    "claimBoundary": "starter accounts and setup prerequisites only; no full SKR04, tax advisor approval, VAT setup, posting readiness, Preview Posting or posting claim"
   }
 }

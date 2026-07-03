@@ -66,6 +66,41 @@ Vor dem ersten Posting muss mindestens klar sein:
 - welche Sachkonten fuer die wichtigsten Prozesse bereitstehen,
 - ob direkte Buchung auf ein Konto erlaubt ist oder nur ueber Nebenbuchprozesse erfolgen soll.
 
+### SKR04-orientierte Starterkonten fuer Universaarl
+
+Fuer die deutsche Universaarl-Company wird der Kontenplan SKR04-orientiert aufgebaut. Das bedeutet nicht, dass sofort ein vollstaendiger deutscher Kontenplan vorhanden ist. Am Anfang reichen wenige, bewusst gewaehlte Starterkonten, damit die spaeteren Einrichtungsseiten erklaerbar werden.
+
+Die ersten Konten decken unterschiedliche Aufgaben ab:
+
+| Konto | Name | Rolle in Business Central |
+| --- | --- | --- |
+| `1140` | Waren (Bestand) | Bilanzkonto fuer spaetere Lagerbewertung. |
+| `1406` | Abziehbare Vorsteuer 19 Prozent | Bilanzkonto fuer spaetere Vorsteuerbuchungen. |
+| `1800` | Bank Saarland | Bilanzkonto fuer spaetere Bank- und Zahlungsprozesse. |
+| `3300` | Verbindlichkeiten aus Lieferungen und Leistungen | Bilanzkonto fuer spaetere Kreditorenbuchungen. |
+| `3806` | Umsatzsteuer 19 Prozent | Bilanzkonto fuer spaetere Umsatzsteuerbuchungen. |
+| `4400` | Umsatzerloese Inland 19 Prozent | GuV-Konto fuer spaetere Verkaufserloese. |
+| `5400` | Wareneingang / Materialaufwand | GuV-Konto fuer spaetere Einkaufs- und Materialaufwandslogik. |
+
+Auf der Seite `Kontenplan` ist besonders wichtig, nicht nur die Kontonummer zu sehen. Ein Anfaenger muss auch die Spalten `Name`, `GuV/Bilanz` und `Kontoart` pruefen. Ein Steuerkonto wie `3806 Umsatzsteuer 19 Prozent` gehoert als Bilanzkonto in die Grundlage. Ein Erloeskonto wie `4400 Umsatzerloese Inland 19 Prozent` gehoert als GuV-Konto in die Grundlage. Beide koennen im Kontenplan sichtbar sein, haben aber fachlich eine andere Aufgabe.
+
+`Kontoart` muss fuer diese Starterkonten auf `Buchung` stehen. Nur Buchungskonten koennen spaeter in Einrichtungen und Buchungen verwendet werden. Ueberschriften, Summen oder Gliederungskonten helfen beim Lesen des Kontenplans, sind aber keine Zielkonten fuer eine Belegbuchung.
+
+Ein sichtbares Sachkonto ist noch keine fertige Buchungslogik. Konto `3300` wird erst durch eine Kreditorenbuchungsgruppe zum Sammelkonto fuer Lieferanten. Konto `3806` wird erst durch die USt-Buchungsmatrix zum Umsatzsteuerkonto. Konto `4400` und Konto `5400` werden erst durch die allgemeine Buchungsmatrix mit Geschaefts- und Produktbuchungsgruppen verbunden. Ohne diese Verbindungen kann Business Central zwar das Konto anzeigen, aber noch keinen vollstaendigen Verkaufs-, Einkaufs- oder Steuerprozess buchen.
+
+Im Kontenplan gibt es ausserdem eine wichtige Altlast: `1200 Bank Saarland` ist sichtbar, passt aber nicht sauber zur gewuenschten Universaarl-Starterlogik. Dieses Konto wird deshalb nicht fuer Bank, Zahlung, USt oder Buchungsgruppen verwendet. Fuer Bankprozesse ist `1800 Bank Saarland` der engere Starterkandidat. Fuer Forderungen braucht die Universaarl-Company spaeter eine eigene, sauber gepruefte Entscheidung.
+
+Der sichere Kontrollpunkt lautet deshalb:
+
+1. Konto im Kontenplan suchen.
+2. Nummer und Namen lesen.
+3. `GuV/Bilanz` pruefen.
+4. `Kontoart` pruefen.
+5. Konto erneut oeffnen oder die Liste erneut anzeigen.
+6. Erst danach das Konto in einer Einrichtungsseite verwenden.
+
+Solange USt-Buchungsmatrix, allgemeine Buchungsmatrix, Lagerbuchung, Bankeinrichtung und Stammdaten noch nicht vollstaendig zusammenpassen, bleibt die Foundation nicht buchungsbereit. Der Kontenplan ist dann ein vorbereiteter Baustein, aber noch kein Beweis fuer Belegvorschau, Posting, Steuerposten oder Sachposten.
+
 ## Nummernserien
 
 Nummernserien erzeugen nachvollziehbare Nummern fuer Stammdaten, Belege und Journale. Eine Verkaufsrechnung, eine Einkaufsrechnung, ein Artikel oder eine Anlagenkarte sollte nicht zufaellig benannt werden. Die Nummer hilft spaeter beim Suchen, Abstimmen und Erklaeren.
