@@ -72,6 +72,7 @@ const interactiveOperatorAction = {
     'Complete sign-in and MFA in the Playwright-opened browser window.',
     'Wait until Business Central shell text such as Search/Tell Me, Role Center or My Settings is visible.',
     'Then run npm run auth:bc:check and require canUseStoredAuth=true.',
+    'If the Playwright window repeatedly stays on Microsoft sign-in, run npm run auth:bc:reset-profile first as a dry run, then with -- --confirm only when the local auth profile should be reset.',
   ],
   normalBrowserLoginIsNotEnough: true,
 };
@@ -134,7 +135,7 @@ const result = {
   nextSafeAction: canUseStoredAuth
     ? 'Run only the active case allowed by agent:run-plan and keep normal BC shell/context checks enabled.'
     : operatorActionRequired
-      ? 'Run npm run auth:bc:interactive and complete Login/MFA in the Playwright-opened browser window, not normal Chrome, until Business Central shell is visible; then rerun npm run auth:bc:check.'
+      ? 'Run npm run auth:bc:interactive and complete Login/MFA in the Playwright-opened browser window, not normal Chrome, until Business Central shell is visible; if it repeatedly stays on Microsoft sign-in, dry-run npm run auth:bc:reset-profile and confirm only the ignored local profile reset.'
     : 'Run npm run auth:bc:interactive, complete Login/MFA in the Playwright-opened browser until Business Central shell is visible, then rerun npm run auth:bc:check.',
   forbiddenUntilGreen: [
     'D31 VAT Assisted Setup read-only discovery',

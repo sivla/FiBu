@@ -168,6 +168,13 @@ if (needsBusinessCentralAuth) {
     expectedFailureMeans: 'The Playwright auth window is still before Business Central shell; complete Login/MFA in that window or avoid rerunning long auth loops.',
   }));
   steps.push(step('run-command', {
+    command: 'npm run auth:bc:reset-profile',
+    reason: 'Dry-run the ignored local Playwright auth profile reset if repeated interactive attempts stay on Microsoft sign-in.',
+    allowed: true,
+    requiredBefore: ['npm run auth:bc:interactive'],
+    expectedFailureMeans: 'Do not delete auth artifacts automatically; use -- --confirm only when the operator intentionally wants a fresh Playwright auth profile.',
+  }));
+  steps.push(step('run-command', {
     command: 'npm run auth:bc:interactive',
     reason: 'Open the Playwright auth profile with a longer attended timeout when the operator is ready to complete Login/MFA.',
     allowed: true,

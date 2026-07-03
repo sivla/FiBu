@@ -49,7 +49,7 @@
     "api-shortcut"
   ],
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "nextStep": "Business Central workflows remain blocked. Complete Login/MFA in the Playwright-opened auth window until Business Central shell is visible, then run npm run auth:bc:check and require canUseStoredAuth=true.",
+  "nextStep": "Dry-run npm run auth:bc:reset-profile. Use -- --confirm only to intentionally remove stale local Playwright auth artifacts, then run npm run auth:bc:interactive.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -9242,5 +9242,23 @@
     "posted": false,
     "apiShortcut": false,
     "nextSafeAction": "Business Central workflows remain blocked. Complete Login/MFA in the Playwright-opened auth window until Business Central shell is visible, then run npm run auth:bc:check and require canUseStoredAuth=true."
+  },
+  "latestAuthProfileResetFallback": {
+    "at": "2026-07-03T10:24:59.943Z",
+    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "command": "npm run auth:bc:reset-profile",
+    "confirmCommand": "npm run auth:bc:reset-profile -- --confirm",
+    "purpose": "Safely reset only ignored local Playwright auth artifacts when repeated interactive auth stays on Microsoft sign-in.",
+    "defaultMode": "dry-run",
+    "destructiveWithoutConfirm": false,
+    "targetScope": "playwright/.auth/bc-profile, playwright/.auth/bc-user.json, playwright/.auth/bc-user.meta.json",
+    "bcRun": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "nextSafeAction": "Dry-run npm run auth:bc:reset-profile. Use -- --confirm only to intentionally remove stale local Playwright auth artifacts, then run npm run auth:bc:interactive."
   }
 }
