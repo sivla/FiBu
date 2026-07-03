@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "activeCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "status": "blocked-auth-bounded-handoff-verified",
+  "status": "blocked-auth-marathon-gate-aligned",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "mode": "universaarl-target-execution",
   "activeArea": "universaarl-vat-assisted-setup-readonly-discovery",
   "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
-  "summary": "auth:bc:open-login is now bounded by default. A 30000 ms verification handoff targeted playthru / UNIVERSAARL-DE, stayed on Microsoft sign-in, wrote a red blocked Result JSON and left BC workflows blocked.",
+  "summary": "Business Central workflows remain blocked by missing Playwright storageState. Marathon check and queue now prefer the active D31 auth gate instead of stale execute levers while auth is red.",
   "proved": [
     "auth:bc:reset-profile -- --confirm removed only ignored local Playwright auth artifacts.",
     "The auth refresh command uses the intended playthru / UNIVERSAARL-DE target override.",
@@ -122,7 +122,7 @@
     "apiShortcut": false,
     "nextSafeAction": "Run npm run auth:bc:interactive and finish Login/MFA inside the Playwright auth window until a Business Central shell signal is visible, require auth:bc:check canUseStoredAuth=true, then rerun D31 read-only discovery."
   },
-  "updatedAt": "2026-07-03T15:25:00.000Z",
+  "updatedAt": "2026-07-03T15:45:00.000Z",
   "actionsTaken": [
     "Ran git status --short and git pull --ff-only; repository was up to date.",
     "Ran auth:bc:check and confirmed stored auth was unusable.",
@@ -138,7 +138,9 @@
     "Ran auth:bc:open-login for 300000 ms; the Playwright page stayed on Microsoft sign-in.",
     "Updated Auth evidence README and Playwright pattern rules for the current D31 blocker.",
     "Changed auth:bc:open-login default wait to a bounded 300000 ms and documented longer handoffs via BC_AUTH_OPEN_LOGIN_TIMEOUT_MS.",
-    "Ran auth:bc:open-login with BC_AUTH_OPEN_LOGIN_TIMEOUT_MS=30000 to verify it writes a red blocked auth result instead of timing out silently."
+    "Ran auth:bc:open-login with BC_AUTH_OPEN_LOGIN_TIMEOUT_MS=30000 to verify it writes a red blocked auth result instead of timing out silently.",
+    "Updated agent:marathon:check to suppress stale execute levers when the active case/status/summary indicates an auth gate.",
+    "Synchronized marathon_queue nextStep and decision card with the bounded D31 auth handoff result."
   ],
   "actionsNotTaken": [
     "No D31 VAT Assisted Setup or Manual Setup page was opened.",
@@ -154,7 +156,9 @@
     "No BC workflow was run after the red open-login attempt.",
     "No BC workflow was run while auth:bc:check remained red.",
     "No BC workflow was run while auth:bc:check remained red after the bounded handoff verification.",
-    "No setup, master data, draft, Preview Posting, Posting or API shortcut was executed."
+    "No setup, master data, draft, Preview Posting, Posting or API shortcut was executed.",
+    "No Business Central workflow was run while auth:bc:check reported storage-state-file-missing.",
+    "No W1 Foundation/SKR04/VAT setup step was attempted while auth was red."
   ],
   "latestAuthContextGate": {
     "at": "2026-07-03T10:55:00.000Z",
@@ -478,6 +482,23 @@
       "auth:storage-state-not-refreshed"
     ],
     "scriptImprovement": "scripts/agent/auth-bc-open-login.mjs now defaults to a bounded 300000 ms handoff; longer handoffs require BC_AUTH_OPEN_LOGIN_TIMEOUT_MS.",
+    "bcRun": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false
+  },
+  "latestMarathonAuthGateAlignment": {
+    "at": "2026-07-03T15:45:00.000Z",
+    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "change": "agent:marathon:check now treats an active auth gate as the current nextBestLever and suppresses stale execute levers while auth:bc:check is red.",
+    "files": [
+      "scripts/agent/marathon-check.mjs",
+      ".agent/state/marathon_queue.json"
+    ],
+    "result": "Marathon check reports authGateActive=true, nextBestLevers=[TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY], nextExecuteLever empty.",
     "bcRun": false,
     "setupChanged": false,
     "masterDataChanged": false,

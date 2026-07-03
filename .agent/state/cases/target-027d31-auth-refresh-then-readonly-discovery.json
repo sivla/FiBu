@@ -97,7 +97,7 @@
     "lastAuthRefreshResult": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json"
   },
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "updatedAt": "2026-07-03T15:25:00.000Z",
+  "updatedAt": "2026-07-03T15:45:00.000Z",
   "latestAuthSetupResultWriter": {
     "at": "2026-07-03T10:20:00.000Z",
     "script": "playwright/core/auth.setup.ts",
@@ -459,6 +459,23 @@
       "auth:storage-state-not-refreshed"
     ],
     "scriptImprovement": "scripts/agent/auth-bc-open-login.mjs now defaults to a bounded 300000 ms handoff; longer handoffs require BC_AUTH_OPEN_LOGIN_TIMEOUT_MS.",
+    "bcRun": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false
+  },
+  "latestMarathonAuthGateAlignment": {
+    "at": "2026-07-03T15:45:00.000Z",
+    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "change": "agent:marathon:check now treats an active auth gate as the current nextBestLever and suppresses stale execute levers while auth:bc:check is red.",
+    "files": [
+      "scripts/agent/marathon-check.mjs",
+      ".agent/state/marathon_queue.json"
+    ],
+    "result": "Marathon check reports authGateActive=true, nextBestLevers=[TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY], nextExecuteLever empty.",
     "bcRun": false,
     "setupChanged": false,
     "masterDataChanged": false,

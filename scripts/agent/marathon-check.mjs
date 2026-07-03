@@ -106,6 +106,10 @@ const doneQueueItems = queueItems.filter((entry) => normalize(entry.status) === 
 const nextQueueItem = openQueueItems[0] ?? null;
 const queueNotEmpty = openQueueItems.length > 0;
 const noEffectiveBusinessCentralActions = marathonQueue?.noEffectiveBusinessCentralActions === true;
+const authGateActive =
+  /auth/.test(normalize(current?.activeCase)) ||
+  /blocked-auth|auth:/.test(normalize(lastRun?.status)) ||
+  /auth:/.test(normalize(lastRun?.summary));
 
 if (noEffectiveBusinessCentralActions) {
   packageClassifications = doneQueueItems.map((entry) => ({
@@ -132,10 +136,12 @@ const minProgressPackagesReached = progressPackages >= marathon.minProgressPacka
 const minExecutePackagesReached = executePackages >= marathon.minExecutePackages;
 const minHighImpactExecutePackagesReached = highImpactExecutePackages >= (marathon.minHighImpactExecutePackages ?? 0);
 const onlyLightExecute = executePackages > 0 && highImpactExecutePackages === 0 && lightExecutePackages === executePackages;
-const nextBestLevers = noEffectiveBusinessCentralActions
+const nextBestLevers = authGateActive
+  ? current?.activeCase ? [current.activeCase] : []
+  : noEffectiveBusinessCentralActions
   ? nextQueueItem ? [nextQueueItem.id] : []
   : Array.isArray(summary?.nextBestLevers) ? summary.nextBestLevers : [];
-const nextExecuteLevers = noEffectiveBusinessCentralActions
+const nextExecuteLevers = authGateActive || noEffectiveBusinessCentralActions
   ? []
   : nextBestLevers.length > 0 ? nextBestLevers : marathon.nextExecuteLevers ?? [];
 const nextExecuteLeversExist = nextExecuteLevers.length > 0;
@@ -159,6 +165,7 @@ const output = {
   instance: marathon.instance,
   summaryPath: noEffectiveBusinessCentralActions ? '.agent/state/marathon_queue.json' : summaryPath,
   noEffectiveBusinessCentralActions,
+  authGateActive,
   progressPackages,
   executePackages,
   readOnlyPackages,
@@ -198,7 +205,9 @@ const output = {
   nextExecuteLever: nextExecuteLevers?.[0] ?? '',
   packageClassifications,
   reason: finalReportAllowed
-    ? 'Marathon final report is allowed.'
+    ? authGateActive
+      ? 'Marathon final report is allowed, but Business Central execution remains blocked by the active auth gate.'
+      : 'Marathon final report is allowed.'
     : hardStopDocumented
       ? 'Marathon final report is allowed because a hard stop was documented.'
       : queueNotEmpty

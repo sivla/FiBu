@@ -5,7 +5,7 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "queueId": "TARGET-MARATHON-002-UNIVERSAARL-REPO-READONLY-PREP",
-  "reason": "TARGET-027D31 remains blocked after confirmed local auth profile reset and fresh auth:bc:interactive timeout; no storage-state file exists until a successful Playwright login reaches Business Central shell.",
+  "reason": "TARGET-027D31 remains blocked because auth:bc:check reports storage-state-file-missing. auth:bc:open-login is now bounded by default and writes a red result when the Playwright login window does not reach Business Central shell.",
   "noEffectiveBusinessCentralActions": false,
   "forbiddenUntilUnblocked": [],
   "unblockCriteria": "Satisfied: UNIVERSAARL-DE exists and active Role Center context / Firmendaten read-only proof is available.",
@@ -4837,7 +4837,7 @@
       }
     }
   ],
-  "lastUpdated": "2026-07-03T11:55:00.000Z",
+  "lastUpdated": "2026-07-03T15:40:00.000Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -4949,7 +4949,7 @@
       ]
     }
   },
-  "updatedAt": "2026-07-03T14:45:00.000Z",
+  "updatedAt": "2026-07-03T15:40:00.000Z",
   "lastCompletedCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
   "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
   "nextStepDecisionCard": {
@@ -5003,7 +5003,7 @@
       "Then run D31 read-only discovery with screenshot QA."
     ]
   },
-  "nextStep": "Auth open-login stayed on Microsoft sign-in for 300000 ms. Complete Login/MFA in the Playwright-opened window until Business Central shell is visible, then require npm run auth:bc:check canUseStoredAuth=true before D31.",
+  "nextStep": "Auth open-login now runs bounded by default. Latest 30000 ms verification stayed on Microsoft sign-in and saved no storage state. Complete Login/MFA in the Playwright-opened window until Business Central shell is visible, then require npm run auth:bc:check canUseStoredAuth=true before D31.",
   "openItems": [
     "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY"
   ],
@@ -5018,48 +5018,51 @@
   "nextStepDecision": {
     "currentCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "lastEvidenceSummary": "The only open queue item is the D31 Playwright auth refresh gate. auth:bc:check still blocks because stored shell validation metadata is older than the configured 12 hour limit.",
+    "lastEvidenceSummary": "auth:bc:check still reports storage-state-file-missing; the bounded 30000 ms open-login verification wrote a red blocked auth result and did not reach Business Central shell.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "No BC workflow may run until the Playwright storage state is refreshed and validated for playthru / UNIVERSAARL-DE.",
+    "reason": "The active blocker is Playwright auth, not SKR04, VAT UI or setup logic. Running W1 Foundation would only create false evidence until storageState exists.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-        "status": "ready-next",
-        "reason": "Refresh Playwright auth and require auth:bc:check canUseStoredAuth=true."
+        "status": "blocked",
+        "reason": "Needs Login/MFA completion in the Playwright-opened browser until Business Central shell is visible."
       },
       {
         "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
         "status": "blocked",
-        "reason": "Cannot open VAT pages while auth check is red."
+        "reason": "Requires auth:bc:check canUseStoredAuth=true first."
       },
       {
         "caseId": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
         "status": "needs-ui-discovery-first",
-        "reason": "Requires D31 read-only route evidence first."
+        "reason": "Requires D31 read-only route evidence."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-after-current",
-        "reason": "Can continue after VAT auth/discovery is resolved or deliberately parked."
+        "reason": "Can resume after auth and VAT discovery are resolved or deliberately parked."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Requires VAT and dimensions status before readiness checkpoint."
+        "reason": "Requires VAT and dimensions status."
       }
     ],
     "queueChangesMade": [
-      "Replaced stale D26/D27 decision-card text with current D31 auth-gate lookahead."
+      "Synchronized marathon_queue nextStep with the bounded auth handoff result.",
+      "Kept active next case on TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY.",
+      "Kept all BC workflows locked while auth:bc:check is red."
     ],
     "selectedNextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "whySelectedNextCaseIsBest": "It is the only open queue item and protects W1 Foundation from running VAT discovery against stale auth or a login page.",
+    "whySelectedNextCaseIsBest": "It is the current gate that prevents false Business Central evidence and must be solved before W1 Foundation continues.",
     "risksBeforeNextCase": [
-      "Normal browser login does not refresh Playwright storageState.",
-      "If auth:bc opens Microsoft sign-in only, no Business Central evidence exists."
+      "Normal Chrome login does not create playwright/.auth/bc-user.json.",
+      "Long unbounded auth attempts can leave processes behind if the agent tool times out.",
+      "Running BC tests while auth is red would inspect a login page, not Business Central."
     ],
     "requiredPreparation": [
-      "Run npm run auth:bc in the Playwright browser context.",
-      "Complete Login/MFA until Business Central shell appears.",
+      "Run npm run auth:bc:open-login when ready for attended Login/MFA.",
+      "Finish Login/MFA in the Playwright-opened browser window until Business Central shell is visible.",
       "Run npm run auth:bc:check and require canUseStoredAuth=true."
     ]
   },
@@ -5165,5 +5168,25 @@
     "previewPosting": false,
     "posted": false,
     "apiShortcut": false
+  },
+  "latestAuthBoundedHandoff": {
+    "at": "2026-07-03T15:40:00.000Z",
+    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "command": "npm run auth:bc:open-login",
+    "verificationTimeoutMs": 30000,
+    "defaultTimeoutMs": 300000,
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
+    "resultStatus": "blocked-auth-before-bc-shell",
+    "targetInstance": "playthru",
+    "targetCompany": "UNIVERSAARL-DE",
+    "shellSignalDetected": false,
+    "savedState": false,
+    "blockedBy": [
+      "auth:playwright-window-stayed-before-business-central-shell",
+      "auth:shell-signal-not-detected",
+      "auth:storage-state-not-refreshed",
+      "auth:storage-state-file-missing"
+    ],
+    "workflowGate": "No Business Central workflow may run before auth:bc:check canUseStoredAuth=true."
   }
 }
