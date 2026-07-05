@@ -48,6 +48,8 @@ The target is one integrated system:
   - Mapping from training modules to Playwright, sandbox evidence, UAT and handbook readiness.
 - `REALISM-STANDARD-DRAFT.md`
   - Quality gate for keeping the fictional Universaarl project realistic instead of demo-perfect.
+- `REALISM-REVIEW-DATA-REQUESTS-2026-07-05.md`
+  - First realism review for the Jira-ready core and master-data request candidates.
 - `SPEC-DRIVEN-SIDEPROJECT-DRAFT.md`
   - OpenSpec/Spec-Kit-inspired sideproject for testing a BC-specific spec-driven workflow.
 - `BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md`

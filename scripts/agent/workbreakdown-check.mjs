@@ -16,6 +16,7 @@ const files = {
   trainingModuleCards: '.agent/project-template/TRAINING-MODULE-CARDS-DRAFT.md',
   playwrightTrainingEvidenceMap: '.agent/project-template/PLAYWRIGHT-TRAINING-EVIDENCE-MAP-DRAFT.md',
   realismStandard: '.agent/project-template/REALISM-STANDARD-DRAFT.md',
+  dataRequestRealismReview: '.agent/project-template/REALISM-REVIEW-DATA-REQUESTS-2026-07-05.md',
   specDrivenSideproject: '.agent/project-template/SPEC-DRIVEN-SIDEPROJECT-DRAFT.md',
   bcSpecPilot: '.agent/project-template/BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md',
   customerDataSimulation: '.agent/project-template/CUSTOMER-DATA-SIMULATION-DRAFT.md',
@@ -86,6 +87,7 @@ if (allText) {
     'Training Module Cards Draft',
     'Playwright Training Evidence Map Draft',
     'Realism Standard Draft',
+    'Realism Review - Data Requests 2026-07-05',
     'Spec-Driven Sideproject Draft',
     'BCSpec Pilot 001: Master Data Product Training and Evidence',
     'Customer Data Simulation Draft',
@@ -116,6 +118,7 @@ if (allText) {
     'Recommended first refinement target: Finance Foundation and Control Model',
     'Current next best step',
     'Data request Jira candidates',
+    'Data request realism review',
     'WORKSTREAM-02-CASE-STUDY-CORE-JIRA-DRAFT.md',
     'Epic CS-01: Company Story and Legal Entity Model',
     'Epic CS-02: Organization, Locations and Responsibility Model',
@@ -346,6 +349,21 @@ if (allText) {
     'Do not introduce a new Jira issue type for specs'
   ], 9);
 
+  requireAtLeast('data request realism review anchors', [
+    'Realism Review - Data Requests 2026-07-05',
+    'DR-CORE-001',
+    'DR-CORE-002',
+    'DR-MD-001',
+    'DR-MD-002',
+    'DR-MD-003',
+    'Ready for Jira candidate',
+    'Ready for BC setup',
+    'planning-ready but not BC-setup-ready',
+    'simulated data tables',
+    'tax-review boundary',
+    'configuration-package route decision'
+  ], 10);
+
   if (/password|client_secret|refresh_token|access_token|Bearer |eyJ/i.test(allText)) {
     errors.push('.agent/project-template appears to contain secret-like text');
   }
@@ -371,7 +389,7 @@ const output = {
   warnings,
   nextStep:
     errors.length === 0
-      ? 'Project template is usable as a local implementation planning anchor. Next apply the realism standard and create a Playwright scenario catalog for WS02/WS03/WS04.'
+      ? 'Project template is usable as a local implementation planning anchor. Next create simulated data tables for CORE-001, CORE-002, MD-001, MD-002 and MD-003, then map Playwright scenarios for WS02/WS03/WS04.'
       : 'Fix the workbreakdown draft before using it as a planning anchor.'
 };
 

@@ -122,6 +122,8 @@ Each data request should include owner, due date, format, validation rule and BC
 
 Current status: first Jira-ready candidates for `DR-CORE-001`, `DR-CORE-002`, `DR-MD-001`, `DR-MD-002` and `DR-MD-003` exist in `DATA-REQUEST-JIRA-CANDIDATES-DRAFT.md`. Next refinement should apply the realism standard, then convert accepted candidates into Jira import rows or simulated data tables.
 
+Realism review status: the first five candidates were reviewed in `REALISM-REVIEW-DATA-REQUESTS-2026-07-05.md`. They are planning-ready but intentionally not BC-setup-ready. Next work should create simulated data tables and validation columns before live setup or import planning.
+
 ## P1: Build simulated customer data packets
 
 Use `CUSTOMER-DATA-SIMULATION-DRAFT.md` to create the first realistic data packets:
@@ -285,4 +287,4 @@ Later create one compact dashboard:
 
 ## Current next best step
 
-`WS02-CASE-STUDY-CORE`, `WS04-MASTER-DATA-PRODUCT`, the first training module cards and `DATA-REQUEST-JIRA-CANDIDATES-DRAFT.md` now exist as drafts. The next useful refinement is to review those data-request candidates against realism, ownership, validation, route and evidence gates, while using `BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md` to test whether a spec-driven layer improves the work. That is the fastest way to make the next live Foundation/Master-Data pilot better rather than merely more automated.
+`WS02-CASE-STUDY-CORE`, `WS04-MASTER-DATA-PRODUCT`, the first training module cards, `DATA-REQUEST-JIRA-CANDIDATES-DRAFT.md` and the first data-request realism review now exist as drafts. The next useful refinement is to create simulated data tables for `CORE-001`, `CORE-002`, `MD-001`, `MD-002` and `MD-003`, including validation status, dependency status and follow-up questions. That is the fastest way to make the next live Foundation/Master-Data pilot better rather than merely more automated.

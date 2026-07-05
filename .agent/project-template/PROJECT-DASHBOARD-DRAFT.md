@@ -24,6 +24,7 @@ This dashboard is the project manager view. It should stay short and point to th
 | Training module cards | draft | First cards exist for environment/company, navigation, chart of accounts and posting groups. |
 | Playwright training evidence map | draft | `PLAYWRIGHT-TRAINING-EVIDENCE-MAP-DRAFT.md` exists. |
 | Realism standard | draft | `REALISM-STANDARD-DRAFT.md` exists. |
+| Data request realism review | draft | First five core/master-data requests were reviewed against realism gates; all are planning-ready but not BC-setup-ready. |
 | Spec-driven sideproject | proposed | `SPEC-DRIVEN-SIDEPROJECT-DRAFT.md` and `BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md` test whether OpenSpec-style workflow helps this BC project. |
 | Workbreakdown | draft | Workstreams and epics exist in `BC-IMPLEMENTATION-WORKBREAKDOWN-DRAFT.md`. |
 | Jira model | draft | Issue model, labels, statuses and DoR/DoD exist. |
@@ -112,16 +113,15 @@ Status: mostly drafted, not yet reviewed as final.
 
 ## Next recommended work
 
-1. Apply `REAL-CUSTOMER-ONBOARDING-AND-PROJECT-SETUP-GUIDE-DRAFT.md` to the project plan, Jira model and Confluence/spec-driven assumptions.
-2. Apply `REALISM-STANDARD-DRAFT.md` to the new data-request candidates, storyline, scene cards and customer data simulation.
+1. Create first simulated data tables for `CORE-001`, `CORE-002`, `MD-001`, `MD-002` and `MD-003` using the realism-review follow-ups.
+2. Create Playwright scenario catalog mapped to WS02/WS03/WS04 UAT and evidence needs.
 3. Run `BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md` as a small spec-driven pilot before adopting OpenSpec globally.
-4. Create Playwright scenario catalog mapped to WS02/WS03/WS04 UAT and evidence needs.
-5. Turn `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` into workstream-level Jira import candidates.
-6. Create first simulated data files or tables for company, finance and master data after the new owner/validation rules are accepted.
-7. Create workstream-to-book-chapter map.
-8. Create project plan review checklist.
-9. Expand training module cards for VAT, dimensions and customer/vendor/item master data.
-10. After the freeze, resume live work with a read-first foundation/master-data preflight, not blind record creation.
+4. Turn `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` into workstream-level Jira import candidates.
+5. Apply `REALISM-STANDARD-DRAFT.md` to storyline, scene cards and broader customer data simulation.
+6. Create workstream-to-book-chapter map.
+7. Create project plan review checklist.
+8. Expand training module cards for VAT, dimensions and customer/vendor/item master data.
+9. After the freeze, resume live work with a read-first foundation/master-data preflight, not blind record creation.
 
 ## Update rule
 
