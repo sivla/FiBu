@@ -13,6 +13,7 @@ This dashboard is the project manager view. It should stay short and point to th
 | Area | Status | Note |
 | --- | --- | --- |
 | Project plan | draft | `PROJECT-PLAN-DRAFT.md` exists. |
+| Real customer onboarding/setup | draft | `REAL-CUSTOMER-ONBOARDING-AND-PROJECT-SETUP-GUIDE-DRAFT.md` exists and defines the realistic Confluence/Jira/GitHub/BC operating model. |
 | Book as project model | draft | `BOOK-AS-PROJECT-MANAGEMENT-MODEL.md` exists. |
 | Book ticket backlog | draft | `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` exists. |
 | Project cast | draft | `PROJECT-CAST-AND-STAKEHOLDERS-DRAFT.md` exists. |
@@ -94,6 +95,7 @@ Status: mostly drafted, not yet reviewed as final.
 | DEC-009 | Training material must be role-based and evidence-backed | accepted |
 | DEC-010 | Realism is a quality gate for project/book/training artifacts | accepted |
 | DEC-011 | Test BCSpec before adopting OpenSpec globally | proposed |
+| DEC-012 | Use real customer onboarding and Atlassian-first project setup | accepted |
 
 ## Top active risks
 
@@ -106,18 +108,20 @@ Status: mostly drafted, not yet reviewed as final.
 | RISK-009 | Parallel agent changes create worktree conflicts | P1 | active |
 | RISK-012 | Project story becomes too demo-perfect | P1 | active |
 | RISK-013 | Spec-driven layer duplicates Jira/project docs | P2 | active |
+| RISK-014 | Real setup becomes artificial tool architecture | P1 | active |
 
 ## Next recommended work
 
-1. Apply `REALISM-STANDARD-DRAFT.md` to the new data-request candidates, storyline, scene cards and customer data simulation.
-2. Run `BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md` as a small spec-driven pilot before adopting OpenSpec globally.
-3. Create Playwright scenario catalog mapped to WS02/WS03/WS04 UAT and evidence needs.
-4. Turn `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` into workstream-level Jira import candidates.
-5. Create first simulated data files or tables for company, finance and master data after the new owner/validation rules are accepted.
-6. Create workstream-to-book-chapter map.
-7. Create project plan review checklist.
-8. Expand training module cards for VAT, dimensions and customer/vendor/item master data.
-9. After the freeze, resume live work with a read-first foundation/master-data preflight, not blind record creation.
+1. Apply `REAL-CUSTOMER-ONBOARDING-AND-PROJECT-SETUP-GUIDE-DRAFT.md` to the project plan, Jira model and Confluence/spec-driven assumptions.
+2. Apply `REALISM-STANDARD-DRAFT.md` to the new data-request candidates, storyline, scene cards and customer data simulation.
+3. Run `BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md` as a small spec-driven pilot before adopting OpenSpec globally.
+4. Create Playwright scenario catalog mapped to WS02/WS03/WS04 UAT and evidence needs.
+5. Turn `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` into workstream-level Jira import candidates.
+6. Create first simulated data files or tables for company, finance and master data after the new owner/validation rules are accepted.
+7. Create workstream-to-book-chapter map.
+8. Create project plan review checklist.
+9. Expand training module cards for VAT, dimensions and customer/vendor/item master data.
+10. After the freeze, resume live work with a read-first foundation/master-data preflight, not blind record creation.
 
 ## Update rule
 

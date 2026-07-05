@@ -254,3 +254,22 @@ Mitigation:
 - Require each BCSpec change to map to concrete workstreams, Jira issue candidates, customer data, evidence, training and book outputs.
 - Archive, merge or reject completed BCSpec material instead of leaving parallel stale drafts.
 - Prefer normal Jira/backlog templates for small single-file or low-risk changes.
+
+### RISK-014 Real setup becomes artificial tool architecture
+
+Workstream: `WS01-GOVERNANCE`, `WS14-BOOK-PLAYWRIGHT-LEARNING`
+Severity: P1
+Probability: medium
+Status: active
+
+Impact:
+
+The project may over-focus on Confluence/Jira/OpenSpec/GitHub mechanics and stop feeling like a real Business Central customer implementation.
+
+Mitigation:
+
+- Use `REAL-CUSTOMER-ONBOARDING-AND-PROJECT-SETUP-GUIDE-DRAFT.md` as the operating model.
+- Keep Jira simple and human-manageable.
+- Use Confluence pages only when they explain project knowledge, requirements, decisions, training or handbook content.
+- Use GitHub only for technical artifacts and evidence.
+- Reject any tool structure that does not help a PM, consultant, architect, key user, trainer, customer or evidence reviewer.

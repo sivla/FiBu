@@ -5,6 +5,7 @@ const root = process.cwd();
 const files = {
   readme: '.agent/project-template/README.md',
   projectPlan: '.agent/project-template/PROJECT-PLAN-DRAFT.md',
+  realCustomerOnboarding: '.agent/project-template/REAL-CUSTOMER-ONBOARDING-AND-PROJECT-SETUP-GUIDE-DRAFT.md',
   bookProjectModel: '.agent/project-template/BOOK-AS-PROJECT-MANAGEMENT-MODEL.md',
   bookProjectBacklog: '.agent/project-template/BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md',
   projectCast: '.agent/project-template/PROJECT-CAST-AND-STAKEHOLDERS-DRAFT.md',
@@ -74,6 +75,7 @@ if (allText) {
   for (const phrase of [
     'Universaarl BC Project Template',
     'Universaarl Business Central Project Plan Draft',
+    'Real Customer Onboarding and Project Setup Guide Draft',
     'Book as Project Management Model',
     'Book Project Ticket Backlog Draft',
     'Project Cast and Stakeholders Draft',
@@ -128,7 +130,14 @@ if (allText) {
     'Epic FF-03: Posting Groups and Posting Setup',
     'Epic FF-04: VAT/USt Setup',
     'Workstream-level Playwright scenarios',
-    'Workstream-level book outputs'
+    'Workstream-level book outputs',
+    'Real customer operating model',
+    'Confluence is the customer-visible knowledge layer',
+    'Jira is the operational control layer',
+    'GitHub is the technical workbench',
+    'Business Central `playthru` is the only practical sandbox',
+    'Do not create a dedicated `Spec Change` issue type',
+    'Confluence explains intent'
   ]) {
     requirePhrase(phrase);
   }
@@ -322,6 +331,20 @@ if (allText) {
     'Playwright evidence planning',
     'book curation'
   ], 8);
+
+  requireAtLeast('real customer onboarding anchors', [
+    'Real Customer Onboarding and Project Setup Guide Draft',
+    'Confluence structure',
+    'Jira setup',
+    'Spec-driven without tool theater',
+    'Business Central environment setup',
+    'Customer onboarding kickoff',
+    'Discovery and fit-to-standard',
+    'Blueprint and route approval',
+    'UAT and training',
+    'Cutover, go-live and hypercare',
+    'Do not introduce a new Jira issue type for specs'
+  ], 9);
 
   if (/password|client_secret|refresh_token|access_token|Bearer |eyJ/i.test(allText)) {
     errors.push('.agent/project-template appears to contain secret-like text');

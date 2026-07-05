@@ -409,3 +409,48 @@ Risks:
 Reversal/correction path:
 
 If the pilot adds overhead without improving quality, keep the useful template fragments and reject BCSpec as a standing process.
+
+### DEC-012 Use real customer onboarding and Atlassian-first project setup
+
+Date: 2026-07-05
+Workstream: `WS01-GOVERNANCE`, `WS13-UAT-TRAINING-CUTOVER`, `WS14-BOOK-PLAYWRIGHT-LEARNING`
+Status: accepted
+
+Problem:
+
+The project can drift into an artificial repo-only structure if Jira, Confluence, OpenSpec/BCSpec, GitHub, Playwright and the book are treated as equal parallel systems.
+
+Decision:
+
+Use a real customer-project operating model: Confluence for knowledge, specs, blueprint, training and handbook; Jira for work, owner, due date, status, blockers and delivery control; GitHub for technical repo work, Playwright, scripts and evidence files; Business Central sandboxes for setup, validation and training proof.
+
+Reason:
+
+This is closer to how a human project manager, consultant, solution architect, key user and customer would actually work. Spec-driven remains a method for better Confluence pages and Jira epics, not a separate customer-facing tool layer.
+
+Source basis:
+
+- Microsoft Dynamics 365 Success by Design and implementation guide for governance, project roles, data, testing, deployment and training.
+- Atlassian Jira/Confluence positioning for work tracking and knowledge/project collaboration.
+- GitHub Projects/Issues for repo-integrated technical planning.
+
+Customer impact:
+
+The customer sees a familiar project setup: project home, plan, decisions, risks, data requests, workshops, UAT, training and handbook.
+
+Book impact:
+
+The book can explain a realistic consulting operating model instead of a synthetic internal agent workflow.
+
+Playwright impact:
+
+Playwright evidence is linked to project questions, UAT, training or book claims, but does not become the project-management system.
+
+Risks:
+
+- over-modeling the tools can create project theater
+- Confluence pages can become stale if Jira status and page status are not synchronized
+
+Reversal/correction path:
+
+If a tool layer does not help PM, consultant, customer, trainer, architect or evidence work, merge or remove it.

@@ -13,6 +13,7 @@ The project template should become complete, but not by creating a huge static d
 - Create project template index.
 - Create complete project plan draft.
 - Create project dashboard draft.
+- Create real customer onboarding and project setup guide.
 - Create goal transition protocol.
 - Create first goal transition card.
 - Create book-as-project-management model.
@@ -57,6 +58,27 @@ Refine in this order:
 14. `WS01-GOVERNANCE`
 
 Reason: Finance and system foundation gate most later processes. Master data, inventory, purchasing and sales then become realistic rather than isolated clicks.
+
+## P1: Apply real onboarding and setup model
+
+Use `REAL-CUSTOMER-ONBOARDING-AND-PROJECT-SETUP-GUIDE-DRAFT.md` to align:
+
+- `PROJECT-PLAN-DRAFT.md`
+- `JIRA-WORK-ITEM-MODEL.md`
+- `DOCUMENTATION-CADENCE.md`
+- `SPEC-DRIVEN-SIDEPROJECT-DRAFT.md`
+- `BOOK-AS-PROJECT-MANAGEMENT-MODEL.md`
+- `TRAINING-STRATEGY-AND-CURRICULUM-DRAFT.md`
+
+The goal is to make the project feel like a real customer onboarding and implementation, not an internal documentation lab.
+
+Do first:
+
+- define Confluence as the customer-visible knowledge/spec/handbook layer
+- define Jira as the operational execution layer without new spec issue types
+- define GitHub as the technical evidence/repo layer
+- define Business Central sandbox/environment roles
+- define which onboarding artifacts the customer receives before, during and after kickoff
 
 ## P1: Convert the book into project tickets
 

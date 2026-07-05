@@ -22,6 +22,8 @@ The target is one integrated system:
   - Complete project plan draft with phases, milestones, governance, roles, gates and immediate next actions.
 - `PROJECT-DASHBOARD-DRAFT.md`
   - Compact project manager view with milestone, workstream readiness, top decisions, risks and next work.
+- `REAL-CUSTOMER-ONBOARDING-AND-PROJECT-SETUP-GUIDE-DRAFT.md`
+  - Real customer onboarding and project setup guide for Confluence, Jira, GitHub, BC sandbox, data, UAT, training and handbook work.
 - `GOAL-TRANSITION-PROTOCOL.md`
   - Protocol for switching a long-running goal into the project-management system at a safe checkpoint.
 - `GOAL-TRANSITION-CARD-2026-07-05.md`

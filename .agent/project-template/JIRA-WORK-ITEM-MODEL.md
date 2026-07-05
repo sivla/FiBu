@@ -38,7 +38,17 @@ Recommended values:
 
 ## Issue types
 
-Use these types consistently:
+Default Jira projects should stay simple and human-manageable:
+
+- `Epic`
+- `Story`
+- `Task`
+- `Bug`
+- `Sub-task`
+
+Do not create a dedicated `Spec Change` issue type. Spec-driven work belongs in a Confluence spec page linked to a normal Jira epic, story or task.
+
+The project still uses semantic work categories, but they can be represented as labels, components or custom fields when Jira should not be customized heavily:
 
 - `Initiative`: whole project outcome or major phase.
 - `Epic`: fachliches deliverable package.
@@ -55,7 +65,7 @@ Use these types consistently:
 - `Playwright Evidence`: repeatable proof scenario.
 - `Skill/Helper Improvement`: agent learning or automation improvement.
 
-If Jira cannot add custom issue types, represent custom types with labels.
+Only add custom issue types if the customer/project governance really benefits from them. Otherwise represent these semantic categories with labels or fields such as `Work Item Category`, `Workstream`, `Evidence Status`, `Training Output` and `Book Output`.
 
 ## Standard labels
 
@@ -200,6 +210,22 @@ Recommended fields:
 - `Evidence Status`
 - `Risk Level`
 - `Decision Record`
+
+## Confluence link fields
+
+For larger epics, add links to the corresponding Confluence pages:
+
+- project charter or kickoff page
+- discovery notes
+- Solution Blueprint section
+- data request page
+- decision or risk page
+- UAT script
+- training module
+- customer handbook section
+- evidence summary
+
+Jira tracks execution. Confluence explains intent, context, route choices and customer-facing knowledge.
 
 ## Evidence status values
 

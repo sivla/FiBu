@@ -71,6 +71,18 @@ The project combines four methods:
 4. Book production
    - Raw evidence is curated into readable chapters, customer handbook sections and training exercises.
 
+## Real customer operating model
+
+Use the repository as the working draft of a real customer implementation model:
+
+- Confluence is the customer-visible knowledge layer for project home, governance, discovery notes, Solution Blueprint, decisions, risks, data requests, UAT, training and customer handbook.
+- Jira is the operational control layer for work, owner, due date, status, blockers, dependencies, UAT defects and delivery tracking.
+- GitHub is the technical workbench for Playwright, scripts, evidence files, checks and agent-learning assets.
+- Business Central `playthru` is the only practical sandbox for Universaarl setup, observation, validation, UAT preparation and training proof.
+- Spec-driven work is a method for making Confluence pages and Jira epics better; it is not a separate customer-facing tool layer.
+
+The customer should not need to understand internal repository labels, Playwright helper debt or agent prompts. Customer-facing material must remain curated and useful for project steering, training and daily Business Central work.
+
 ## Success criteria
 
 The project is successful when:
@@ -149,6 +161,9 @@ Goal: Establish project management, scope and working rules.
 
 Deliverables:
 
+- Real customer onboarding and project setup guide
+- Confluence project space model
+- Jira project setup model
 - Project plan draft
 - Jira work item model
 - Workstream and epic structure
