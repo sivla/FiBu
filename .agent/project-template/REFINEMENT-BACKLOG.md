@@ -145,10 +145,10 @@ Use these files:
 
 Create training module cards for:
 
-- environment/company and evidence boundary
-- Business Central navigation
-- chart of accounts
-- posting groups
+- environment/company and evidence boundary - draft exists in `TRAINING-MODULE-CARDS-DRAFT.md`
+- Business Central navigation - draft exists in `TRAINING-MODULE-CARDS-DRAFT.md`
+- chart of accounts - draft exists in `TRAINING-MODULE-CARDS-DRAFT.md`
+- posting groups - draft exists in `TRAINING-MODULE-CARDS-DRAFT.md`
 - VAT/USt boundary
 - dimensions
 - customer/vendor/item master data
@@ -232,4 +232,4 @@ Later create one compact dashboard:
 
 ## Current next best step
 
-`WS02-CASE-STUDY-CORE` and `WS04-MASTER-DATA-PRODUCT` now exist as workstream drafts. The next useful refinement is to convert `DR-CORE-001`, `DR-CORE-002` and `DR-MD-001` through `DR-MD-003` into Jira-ready data requests with owner, due date, format, validation rule, dependency and BC usage. That is the fastest way to make the next live Foundation/Master-Data pilot better rather than merely more automated.
+`WS02-CASE-STUDY-CORE`, `WS04-MASTER-DATA-PRODUCT` and the first training module cards now exist as drafts. The next useful refinement is to convert `DR-CORE-001`, `DR-CORE-002` and `DR-MD-001` through `DR-MD-003` into Jira-ready data requests with owner, due date, format, validation rule, dependency and BC usage. That is the fastest way to make the next live Foundation/Master-Data pilot better rather than merely more automated.

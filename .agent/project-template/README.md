@@ -40,6 +40,8 @@ The target is one integrated system:
   - Role- and phase-based training curriculum linked to BC workstreams, UAT, handbook output and evidence.
 - `ROLE-BASED-TRAINING-MATRIX-DRAFT.md`
   - Training matrix by audience, module, exercise, evidence gate and status.
+- `TRAINING-MODULE-CARDS-DRAFT.md`
+  - First concrete training cards with role, exercise, typical mistakes, success check, escalation, handbook output, UAT and evidence status.
 - `PLAYWRIGHT-TRAINING-EVIDENCE-MAP-DRAFT.md`
   - Mapping from training modules to Playwright, sandbox evidence, UAT and handbook readiness.
 - `REALISM-STANDARD-DRAFT.md`

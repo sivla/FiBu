@@ -20,6 +20,7 @@ This dashboard is the project manager view. It should stay short and point to th
 | Project scene cards | draft | `PROJECT-SCENE-CARDS-DRAFT.md` exists. |
 | Training strategy | draft | `TRAINING-STRATEGY-AND-CURRICULUM-DRAFT.md` exists. |
 | Role training matrix | draft | `ROLE-BASED-TRAINING-MATRIX-DRAFT.md` exists. |
+| Training module cards | draft | First cards exist for environment/company, navigation, chart of accounts and posting groups. |
 | Playwright training evidence map | draft | `PLAYWRIGHT-TRAINING-EVIDENCE-MAP-DRAFT.md` exists. |
 | Realism standard | draft | `REALISM-STANDARD-DRAFT.md` exists. |
 | Workbreakdown | draft | Workstreams and epics exist in `BC-IMPLEMENTATION-WORKBREAKDOWN-DRAFT.md`. |
@@ -105,13 +106,13 @@ Status: mostly drafted, not yet reviewed as final.
 ## Next recommended work
 
 1. Convert `DR-CORE-001`, `DR-CORE-002` and `DR-MD-001` through `DR-MD-003` into Jira-ready data-request candidates with owner, due date, format, validation and BC usage.
-2. Create first training module cards for environment/company, navigation, chart of accounts and posting groups.
-3. Apply `REALISM-STANDARD-DRAFT.md` to storyline, scene cards and customer data simulation.
-4. Create Playwright scenario catalog mapped to WS02/WS03/WS04 UAT and evidence needs.
-5. Turn `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` into workstream-level Jira import candidates.
-6. Create first simulated data files or tables for company, finance and master data.
-7. Create workstream-to-book-chapter map.
-8. Create project plan review checklist.
+2. Apply `REALISM-STANDARD-DRAFT.md` to storyline, scene cards and customer data simulation.
+3. Create Playwright scenario catalog mapped to WS02/WS03/WS04 UAT and evidence needs.
+4. Turn `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` into workstream-level Jira import candidates.
+5. Create first simulated data files or tables for company, finance and master data.
+6. Create workstream-to-book-chapter map.
+7. Create project plan review checklist.
+8. Expand training module cards for VAT, dimensions and customer/vendor/item master data.
 9. After the freeze, resume live work with a read-first foundation/master-data preflight, not blind record creation.
 
 ## Update rule
