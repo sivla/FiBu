@@ -138,4 +138,4 @@ Reason: this proves the import shape across Data Request, Decision, dependency, 
 | BC-setup-ready? | No. This is project-control work only. |
 | Specialist needed? | Not for this draft. Use a Jira/Confluence Blueprint review only when actual Jira fields are known. |
 | Biggest risk | Treating import status as implementation permission. Keep `Blocks BC setup` visible. |
-| Next concrete step | Confirm Jira project fields or generate a reviewed CSV preview from the first five rows. |
+| Next concrete step | Review `JIRA-IMPORT-PREVIEW-DATA-PACKAGES-FIRST-BATCH.csv` against the actual Jira project fields before any import. |

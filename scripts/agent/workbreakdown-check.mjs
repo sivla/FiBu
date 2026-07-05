@@ -26,6 +26,7 @@ const files = {
   simulatedDataTablesCoreMd: '.agent/project-template/SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md',
   jiraImportRowsDataPackages: '.agent/project-template/JIRA-IMPORT-ROWS-DATA-PACKAGES-DRAFT.md',
   jiraImportFieldMapping: '.agent/project-template/JIRA-IMPORT-FIELD-MAPPING-DRAFT.md',
+  jiraImportPreviewFirstBatch: '.agent/project-template/JIRA-IMPORT-PREVIEW-DATA-PACKAGES-FIRST-BATCH.csv',
   routeDecisionCardsFoundationMasterData: '.agent/project-template/ROUTE-DECISION-CARDS-FOUNDATION-MASTER-DATA-DRAFT.md',
   workbreakdown: '.agent/project-template/BC-IMPLEMENTATION-WORKBREAKDOWN-DRAFT.md',
   jiraModel: '.agent/project-template/JIRA-WORK-ITEM-MODEL.md',
@@ -104,6 +105,7 @@ if (allText) {
     'Simulated Data Tables - Core and Master Data Draft',
     'Jira Import Rows - Universaarl Data Packages Draft',
     'Jira Import Field Mapping Draft',
+    'JIRA-IMPORT-PREVIEW-DATA-PACKAGES-FIRST-BATCH.csv',
     'Route Decision Cards - Foundation and Master Data Draft',
     'Business Central Implementation Workbreakdown Draft',
     'Jira Work Item Model',
@@ -499,6 +501,22 @@ if (allText) {
     'Specialist needed?'
   ], 15);
 
+  requireAtLeast('jira import preview first batch anchors', [
+    'External ID,Issue Type,Summary,Priority,Status,Components,Epic Candidate,Labels,Description',
+    'DR-CORE-COMPANY-001',
+    'DEC-CORE-TAX-001',
+    'DR-CORE-ORG-001',
+    'DEC-ORG-DIM-001',
+    'DR-MD-CUST-001',
+    'Blocks BC setup: yes',
+    'This issue does not authorize Business Central writes',
+    'Values are simulated unless explicitly confirmed later',
+    'Read-first proof of Company Information and company context',
+    'No live BC evidence until decision is made',
+    'Dimension page read-first proof after decision',
+    'Customer list/card read-first proof before write'
+  ], 12);
+
   requireAtLeast('simulated core master data anchors', [
     'Simulated Data Tables - Core and Master Data Draft',
     'UNIVERSAARL_CORE_CompanyInformation',
@@ -584,7 +602,7 @@ const output = {
   warnings,
   nextStep:
     errors.length === 0
-      ? 'Project template is usable as a local implementation planning anchor. Next confirm Jira field mapping or build the first read-first Playwright spec after the freeze/resume gate.'
+      ? 'Project template is usable as a local implementation planning anchor. Next review the five-row Jira CSV preview against actual Jira project fields, or build the first read-first Playwright spec after the freeze/resume gate.'
       : 'Fix the workbreakdown draft before using it as a planning anchor.'
 };
 

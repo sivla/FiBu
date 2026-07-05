@@ -1,0 +1,131 @@
+External ID,Issue Type,Summary,Priority,Status,Components,Epic Candidate,Labels,Description
+DR-CORE-COMPANY-001,Data Request,Collect simulated Company Information fields for Universaarl GmbH,High,Backlog,WS02,CS-01; CS-05,"universaarl,data-request,company-information,playthru","Business purpose: Collect simulated Company Information fields for Universaarl GmbH.
+
+Source package: UNIVERSAARL_CORE_CompanyInformation
+
+Customer owner: Jonas Weber
+
+Internal owner: Adrian Vogt; Eva Krueger
+
+Acceptance criteria: Required fields are provided or explicitly open; no real tax/contact/bank/auth data; BC write remains blocked until read-first proof and Smart Decision.
+
+BC setup gate:
+- Blocks BC setup: yes
+- Dependencies: DEC-CORE-TAX-001; TASK-PWS-CORE-001
+- Required decisions: Safe fictional tax/contact boundary and read-first Company Information proof.
+
+UAT impact: Management and finance can confirm visible company identity.
+
+Training/handbook impact: Environment/company training can use one coherent company frame.
+
+Playwright evidence need: Read-first proof of Company Information and company context.
+
+Next action: Create Jira row and plan read-first Company Information proof.
+
+Notes:
+- Values are simulated unless explicitly confirmed later.
+- This issue does not authorize Business Central writes."
+DEC-CORE-TAX-001,Decision,Decide safe fictional VAT and tax identity boundary,High,Blocked,WS03,FF-04,"universaarl,decision,tax-boundary,source-needed,blocked","Business purpose: Decide safe fictional VAT and tax identity boundary before tax-sensitive company information or VAT setup is written.
+
+Source package: UNIVERSAARL_CORE_CompanyInformation
+
+Customer owner: Jonas Weber; Robert Klein
+
+Internal owner: Eva Krueger
+
+Acceptance criteria: Decision states what can be shown, what remains blank, and what needs external review.
+
+BC setup gate:
+- Blocks BC setup: yes
+- Dependencies: official-source-review
+- Required decisions: Tax/VAT identity boundary for fictional training data.
+
+UAT impact: Prevents tax-sensitive UAT from using fake final values.
+
+Training/handbook impact: Teaches tax/compliance boundary without overclaiming.
+
+Playwright evidence need: No live BC evidence until decision is made; source review first.
+
+Next action: Open decision ticket before VAT/tax Company Information writes.
+
+Notes:
+- Values are simulated unless explicitly confirmed later.
+- This issue does not authorize Business Central writes."
+DR-CORE-ORG-001,Data Request,Classify Universaarl organization values before dimensions or locations,High,Backlog,WS02,CS-02,"universaarl,data-request,organization-model","Business purpose: Classify Universaarl organization values before dimensions or locations are created.
+
+Source package: UNIVERSAARL_CORE_OrganizationModel
+
+Customer owner: Claudia Schulte; Sami Yilmaz
+
+Internal owner: Adrian Vogt; Sarah Klein
+
+Acceptance criteria: Each value is classified as dimension candidate, role group, site/location, legal entity or reporting-only.
+
+BC setup gate:
+- Blocks BC setup: yes
+- Dependencies: DEC-ORG-DIM-001; DEC-ORG-LOC-001
+- Required decisions: Dimension route and location route.
+
+UAT impact: UAT has named role and organization ownership.
+
+Training/handbook impact: Role and organization training uses realistic ownership.
+
+Playwright evidence need: Later dimension/location read-first proof.
+
+Next action: Create Jira row and split dimension/location decisions.
+
+Notes:
+- Values are simulated unless explicitly confirmed later.
+- This issue does not authorize Business Central writes."
+DEC-ORG-DIM-001,Decision,Decide which organization values become dimensions,High,Blocked,WS03,FF-Dimensions,"universaarl,decision,dimensions,blocked","Business purpose: Decide which organization values become Business Central dimensions and which remain project/training context.
+
+Source package: UNIVERSAARL_CORE_OrganizationModel
+
+Customer owner: Claudia Schulte; Jonas Weber
+
+Internal owner: Eva Krueger
+
+Acceptance criteria: No dimension value is created until business purpose, owner, phase and defaulting rule are known.
+
+BC setup gate:
+- Blocks BC setup: yes
+- Dependencies: DR-CORE-ORG-001
+- Required decisions: Dimension purpose, phase, owner and defaulting rule.
+
+UAT impact: Finance and reporting UAT do not test arbitrary dimensions.
+
+Training/handbook impact: Dimension training can explain purpose and responsibility.
+
+Playwright evidence need: Dimension page read-first proof after decision.
+
+Next action: Add before any dimension setup case.
+
+Notes:
+- Values are simulated unless explicitly confirmed later.
+- This issue does not authorize Business Central writes."
+DR-MD-CUST-001,Data Request,Collect simulated customers for O2C and receivables training,High,Backlog,WS04,MD-01,"universaarl,data-request,customers,o2c","Business purpose: Collect simulated customers for O2C, receivables, training and later UAT.
+
+Source package: UNIVERSAARL_MD_Customers
+
+Customer owner: Pia Neumann; Lena Hartmann
+
+Internal owner: Felix Roth; Eva Krueger; Milena Brand
+
+Acceptance criteria: Customer names are simulated; posting/VAT/payment/numbering fields are known or explicitly blocked.
+
+BC setup gate:
+- Blocks BC setup: yes
+- Dependencies: DEC-MD-NUM-001; DEC-FF-POSTING-001; DEC-FF-VAT-001; TASK-PWS-MD-001
+- Required decisions: Numbering, posting groups, VAT groups and customer page read-first proof.
+
+UAT impact: O2C UAT can start only after master-data dependencies are satisfied.
+
+Training/handbook impact: Customer-card and sales training have realistic examples.
+
+Playwright evidence need: Customer list/card read-first proof before write.
+
+Next action: Create Jira Data Request; keep customer creation blocked.
+
+Notes:
+- Values are simulated unless explicitly confirmed later.
+- This issue does not authorize Business Central writes."
