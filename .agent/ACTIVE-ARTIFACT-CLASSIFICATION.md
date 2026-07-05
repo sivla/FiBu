@@ -48,6 +48,19 @@ Last reviewed: 2026-07-06
 | `.agent/project-template/WORKSTREAM-BOOK-CHAPTER-MAP-DRAFT.md` | `active-work` | Book patches must use this map before claiming readiness. |
 | `.agent/project-template/SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md` | `active-work` | Data packages are Jira-ready, not BC-setup-ready. |
 
+## State and case classification
+
+| Artifact group | Class | Boundary |
+| --- | --- | --- |
+| `.agent/state/current.json` top-level active fields | `active-control` | Machine-readable active truth; lower historical blocks do not override roadmap/dashboard. |
+| `.agent/state/last_run_summary.json` | `active-work` | Read for latest evidence summary only; it does not reopen parked cases. |
+| `.agent/state/cases/target-075-chart-of-accounts-reopen-and-setup-consistency-check.json` | `active-work` | Prepared first resume pilot, read-first and no-write. |
+| `.agent/state/cases/target-073-vat-page472-active-editor-route-decision.json` and TARGET-071/074 VAT route files | `parked` | Useful blocker history; do not repeat as-is. |
+| `.agent/state/book-production-goal.json`, `.agent/state/project_state.json`, `.agent/state/lab_to_german_sandbox_migration_plan.json`, `.agent/state/german-final-rebuild-map.json` | `reference` or `legacy-purge-source` | Contain old RM/MCP/lab framing; mine boundaries only, do not use as active target truth. |
+| `.agent/state/marathon.json`, `.agent/state/marathon_queue.json`, `.agent/state/next_10_case_plan.json` | `parked` | Historical queue memory. Roadmap/dashboard choose current sequence. |
+| `.agent/state/*audit*.json`, `.agent/state/*coverage*.json`, `.agent/state/open_questions_register.json`, `.agent/state/source_registry.json` | `reference` | Use for evidence, source and quality context when relevant; not a live execution queue. |
+| `.agent/state/cases/bank-*`, `.agent/state/cases/fixedassets-*`, `.agent/state/cases/warehouse-*`, older P2P/O2C/lab cases | `legacy-purge-source` or `parked` | Preserve traceability; port patterns to Universaarl only through a new roadmap decision. |
+
 ## Reference set
 
 | Artifact group | Class | Boundary |
@@ -57,6 +70,17 @@ Last reviewed: 2026-07-06
 | `.agent/capabilities.json` | `reference` | Capability registry; not a queue. |
 | `.agent/project-template/*DRAFT.md` not listed above | `reference` | Read when a workstream needs it; not an active next-step source by itself. |
 | `playwright/projects/fibu-book5/BC-*.md` | `reference` | Atlases/source maps/catalogs guide evidence and book work; they do not lift gates. |
+
+## Scripts, tests and evidence classification
+
+| Artifact group | Class | Boundary |
+| --- | --- | --- |
+| `package.json` active agent checks | `active-control` | Scripts such as `agent:preflight`, `agent:workbreakdown:check`, `check:encoding` and legacy guards protect the control plane. |
+| `package.json` direct RM/MCP/CRONUS routes routed through `legacy-script-blocked.mjs` | `parked` | Blocked intentionally; do not bypass to execute historical live routes. |
+| Package scripts with `legacy-target-file-reference` findings | `legacy-purge-source` | Warning inventory until the target tests are ported, blocked or archived. |
+| `playwright/projects/fibu-book5/tests/*target-075*` | `active-work` | First resume pilot area only, still gated by freeze/resume checks. |
+| RM-DEMO/MCP/CRONUS/Rhein-Main Playwright tests | `legacy-purge-source` | Reuse helper patterns only after neutralization or Universaarl port. |
+| `playwright/projects/fibu-book5/evidence/**` | `reference` or `legacy-purge-source` | Preserve evidence chain; do not edit screenshots/results to make them look current. |
 
 ## Parked set
 
