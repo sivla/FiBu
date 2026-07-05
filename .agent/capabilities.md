@@ -40,6 +40,7 @@ Dieses Projekt soll Business Central nicht nur irgendwie bedienen, sondern Playw
 - `purchase_invoice_context_guard`: Einkaufsrechnungskontext vor Zielwerten hart pruefen.
 - `bc_scoped_new_action`: `New/Neu` nur im richtigen Page-Scope ausloesen.
 - `journal_line_control_snapshot`: Journal-Zeilencontrols vor dem Fuellen indexieren.
+- `bc_setup_route_decision`: vor groesseren Setup-/Migrations-/Stammdatenaktionen den besten BC-Implementierungsweg waehlen.
 
 ## Effizienzregel
 

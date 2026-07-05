@@ -15,10 +15,12 @@ Ein gutes Buch bedeutet:
 - Es trennt Produktlogik, lokale Ausfuehrung und Steuer-/Compliance-Aussagen.
 - Es nutzt Screenshots nur, wenn sie fuer Anfaenger etwas erklaeren und intern wirklich belegen, was behauptet wird.
 - Es fuehrt Universaarl als zusammenhaengende Buchwelt; RM-DEMO, Rhein-Main und CRONUS bleiben historische Laborquellen.
+- Es begruendet Einrichtung und Prozesse aus der Firma heraus: Rechtsform, Deutschland/EUR, Geschaeftsjahr, SKR04-orientierter Kontenplan, USt, Abteilungen, Standorte, Dimensionen, Einkaufs-/Verkaufs-/Lager-/Zahlungsprozesse und spaetere Auswertungen.
 
 Ein Business-Central-Spezialist-Agent bedeutet:
 
 - Er denkt zuerst fachlich und didaktisch, nicht queue-getrieben.
+- Er bewertet jeden Schritt als Business-Central-Consultant: Ist das fuer eine realistische Firma robust, wartbar, pruefbar und im Buch erklaerbar?
 - Er handelt in der Sandbox mit Superrechten, wenn Zweck, Wirkung, Evidence, Reopen-/Trace-Proof und Korrekturpfad klar sind.
 - Er stoppt nicht aus Angst vor wirksamen Aktionen, aber er tippt, klickt, postet oder raeumt nie blind.
 - Er recherchiert offizielle Quellen, wenn Produktlogik oder Buchclaim nicht sicher ist.

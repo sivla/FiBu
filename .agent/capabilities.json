@@ -776,6 +776,60 @@
         "Use for the frozen TARGET-073 route before any future VAT setup retry.",
         "Generalize from Page 472 into card/list/grid active editor helper after one more local review."
       ]
+    },
+    {
+      "id": "bc_setup_route_decision",
+      "name": "BC Setup Route Decision",
+      "maturity": "draft",
+      "taskClass": "judge_work",
+      "linkedSkills": [
+        "bc-source-research"
+      ],
+      "purpose": "Vor groesseren Business-Central-Setup-, Migrations- oder Stammdatenaktionen den saubersten Implementierungsweg waehlen, statt automatisch manuelle UI-Klicks zu wiederholen.",
+      "inputs": [
+        "businessSetupQuestion",
+        "caseStudyContext",
+        "affectedTablesOrPages",
+        "localUniversaarlEvidence",
+        "microsoftLearnOrOfficialSource",
+        "dependencyAndCleanupRisk"
+      ],
+      "outputs": [
+        "setupRouteAssessment",
+        "caseStudyArchitecture",
+        "selectedRoute",
+        "rejectedRoutes",
+        "evidencePlan",
+        "bookExplanationBoundary"
+      ],
+      "allowedRoutes": [
+        "manualUi",
+        "assistedSetup",
+        "configurationPackageOrRapidStart",
+        "excelImport",
+        "template",
+        "api",
+        "alExtension",
+        "parkOrNoChange"
+      ],
+      "gates": [
+        "compare-manual-ui-assisted-setup-configuration-package-excel-template-api-al-park",
+        "official-source-before-best-practice-claim",
+        "dependency-check-before-delete-or-replace",
+        "reopen-proof-required-after-effective-setup"
+      ],
+      "playwrightTouchpoints": [
+        ".agent/SETUP-ROUTE-DECISION.md",
+        ".agent/SMART-DECISION-GATE.md",
+        "Configuration Packages page evidence",
+        "Assisted Setup page evidence",
+        "manual setup page screenshot truth"
+      ],
+      "improvementBacklog": [
+        "Use this capability before the next VAT, Posting Groups, Number Series, Dimensions or master-data write gate.",
+        "When a configuration package route is selected, add a package-specific validation and cleanup/keep plan before Import, Validate or Apply.",
+        "Keep manual UI evidence for book learning even when the selected project route is configuration package, import or template based."
+      ]
     }
   ]
 }

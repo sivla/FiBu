@@ -41,6 +41,14 @@ The hard Business Central boundary is the active instance in `.agent/state/curre
 - If the visible URL or shell suggests another instance, stop immediately and write a blocked result.
 - `MCP_1_20260210`, `RM-DEMO`, Rhein-Main/RM-* and CRONUS are legacy laboratory references. Keep their evidence intact, but do not use them as active target truth.
 
+## Case study architecture
+
+Business Central work is part of a realistic Universaarl implementation, not a collection of isolated clicks. Use `.agent/CASE-STUDY-ARCHITECTURE-GATE.md` before larger setup, master-data, process or book decisions.
+
+Every material decision should connect the BC concept to the company: legal entity, country, currency, fiscal year, SKR04-oriented chart, VAT, departments, locations, product/service portfolio, dimensions, users/roles, process flow and later reporting. If a step cannot be explained from the company story, it is probably too isolated for the book.
+
+The book must explain why the setup exists for Universaarl, which downstream process will use it, and how success is checked in BC. Screenshots and Playwright evidence support that story; they do not replace it.
+
 ## UI-first rule
 
 - Business Central work is UI-first by default.
