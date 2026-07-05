@@ -28,8 +28,8 @@ Zero-Open-Questions-Regel: Jeder Bereich in diesem Katalog muss seine offenen Ob
 
 | Prioritaet | Case | Warum |
 | --- | --- | --- |
-| 1 | `TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE` | D31C hat Assisted Setup / Page 1801 read-only sichtbar gemacht, aber Page 470 `MwSt.-Geschaeftsbuchungsgruppen` bleibt trotz direkter URL, lokalisierter Suche und DOM-naher Trefferaktivierung im Role-Center-/Suchkontext blockiert. Erst eine neue Page-470-Route oder bewusste Parkentscheidung, dann ein Write-Gate. |
-| 2 | `TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION` | Nur sinnvoll, wenn D31D Page 470 loest oder eine fachlich tragbare Alternative dokumentiert und die exakten USt-Zielwerte source-backed festlegt. |
+| 1 | `TARGET-027D31E-VAT-BUSINESS-GROUPS-SOURCE-OR-PAGEINSPECTION-DECISION` | D31D hat den engen Seiten-und-Aufgaben-Treffer fuer Page 470 erneut versucht. Der Klick fuehrte sichtbar zurueck ins Role Center; Titel und `Code`-Spalte der Liste fehlten. Naechster sinnvoller Schritt ist keine weitere Klickwiederholung, sondern Park-/Source-/Page-Inspection-Entscheidung. |
+| 2 | `TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION` | Weiter blockiert, solange Page 470 nicht sichtbar reproduzierbar ist oder D31E eine tragbare Park-/Alternativentscheidung dokumentiert und die exakten USt-Zielwerte source-backed festlegt. |
 | 3 | `TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS` | Kann weiterlaufen, sobald D31 VAT entweder mit neuer Route vorbereitet oder explizit geparkt hat. |
 | 4 | `TARGET-034-FOUNDATION-READY-CHECKPOINT` | Wartet auf die klare VAT-/Posting-Groups-/Dimensions-Grenze; kein Posting-Readiness-Claim ohne Setup- und Preview-Evidence. |
 | 5 | `TARGET-038-O2C-PREFLIGHT` | Bleibt gesperrt, bis Inventory Posting Setup, VAT Setup, General Posting Setup und Dimensionen bewusst geprueft sind. |
@@ -81,7 +81,7 @@ Microsoft Learn beschreibt, welche Business-Central-Bereiche es gibt und wie Com
 
 ## Aktuelle USt-Routenlage
 
-TARGET-027D31B und TARGET-027D31C sind Teilerfolge, kein USt-Setup-Erfolg. In `playthru` / `UNIVERSAARL-DE` sind Page 471 `MwSt.-Produktbuchungsgruppen`, Page 472 `MwSt.-Buchungsmatrix Einr.` und Page 1801 `Unterstuetztes Setup` read-only sichtbar. Page 470 `MwSt.-Geschaeftsbuchungsgruppen` bleibt dagegen blockiert: der Suchtreffer `MwSt.-Geschaeftsbuchungsgruppen Verwaltung` ist sichtbar, fuehrt aber noch nicht zu einem akzeptierten Listenbild mit `Code` und `Beschreibung`. Deshalb bleibt jede USt-Aenderung gesperrt, bis TARGET-027D31D Page 470 ueber eine neue Route loest oder bewusst parkt.
+TARGET-027D31B, TARGET-027D31C und TARGET-027D31D sind Teilerfolge, kein USt-Setup-Erfolg. In `playthru` / `UNIVERSAARL-DE` sind Page 471 `MwSt.-Produktbuchungsgruppen`, Page 472 `MwSt.-Buchungsmatrix Einr.` und Page 1801 `Unterstuetztes Setup` read-only sichtbar. Page 470 `MwSt.-Geschaeftsbuchungsgruppen` bleibt dagegen blockiert: der Suchtreffer `MwSt.-Geschaeftsbuchungsgruppen Verwaltung` ist sichtbar und wurde in D31D gezielt angeklickt, fuehrt aber wieder zum Role Center statt zu einem akzeptierten Listenbild mit `Code` und `Beschreibung`. Deshalb bleibt jede USt-Aenderung gesperrt, bis TARGET-027D31E die Route bewusst parkt oder eine wirklich neue Page-470-Route begruendet.
 
 ## Gesamtmatrix
 

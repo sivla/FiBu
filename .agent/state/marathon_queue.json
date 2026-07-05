@@ -5,7 +5,7 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "queueId": "TARGET-MARATHON-002-UNIVERSAARL-REPO-READONLY-PREP",
-  "reason": "TARGET-027D31C observed Assisted Setup read-only but left Page 470 / MwSt.-Geschaeftsbuchungsgruppen blocked; next queue item is a non-repeating alternative Page-470 route.",
+  "reason": "TARGET-027D31D blocked the current Page-470 route with screenshot QA; VAT setup writes remain locked and the next step is the local D31E source/Page-Inspection park decision.",
   "noEffectiveBusinessCentralActions": false,
   "forbiddenUntilUnblocked": [],
   "unblockCriteria": [
@@ -5010,7 +5010,7 @@
     {
       "id": "TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE",
       "order": 10213,
-      "status": "pending",
+      "status": "blocked",
       "category": "vat-business-posting-groups-route",
       "expectedImpact": "recover-or-park-page-470-route-without-vat-write",
       "mayWorkEffectively": false,
@@ -5019,7 +5019,60 @@
       "goal": "Find a non-repeating read-only route to Page 470 / MwSt.-Geschaeftsbuchungsgruppen or keep VAT writes parked with precise route evidence.",
       "sourceCompany": "UNIVERSAARL-DE",
       "targetWorld": "Universaarl",
-      "lookaheadStatus": "ready-next"
+      "lookaheadStatus": "ready-next",
+      "completedAt": "2026-07-05T14:58:21.342Z",
+      "result": "Exact pages-and-tasks result click returned to Role Center; Page-470 title and Code column not visible.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31d-vat-business-posting-groups-alternative-route/TARGET-027D31D-result.json",
+      "blockedBy": [
+        "Page 470 title not visible.",
+        "Code column not visible."
+      ],
+      "nextCase": "TARGET-027D31E-VAT-BUSINESS-GROUPS-SOURCE-OR-PAGEINSPECTION-DECISION",
+      "setupChanged": false,
+      "masterDataChanged": false,
+      "previewPosting": false,
+      "posted": false,
+      "apiShortcut": false,
+      "nextStepDecision": {
+        "currentCase": "TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE",
+        "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+        "lastEvidenceSummary": "D31C proved Assisted Setup read-only but blocked Page 470 because broad direct/search routes stayed in Role Center or overlay context.",
+        "isPlannedNextCaseStillSensible": false,
+        "reason": "The exact row route did not produce accepted Page 470 proof; VAT setup writes remain parked.",
+        "lookaheadReviewed": [
+          {
+            "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+            "status": "blocked",
+            "reason": "Needs Page 470 proof or a documented alternative first."
+          },
+          {
+            "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+            "status": "needs-setup-first",
+            "reason": "Posting group preflight depends on VAT setup route/value decision."
+          },
+          {
+            "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+            "status": "ready-after-current",
+            "reason": "Can proceed after VAT setup is resolved or deliberately parked."
+          },
+          {
+            "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+            "status": "needs-setup-first",
+            "reason": "Foundation readiness waits for VAT/posting group status."
+          }
+        ],
+        "queueChangesMade": [],
+        "selectedNextCase": "TARGET-027D31E-VAT-BUSINESS-GROUPS-SOURCE-OR-PAGEINSPECTION-DECISION",
+        "whySelectedNextCaseIsBest": "Repeating UI clicks would waste time; the next useful step is a source/page-inspection decision or deliberate VAT parking.",
+        "risksBeforeNextCase": [
+          "Visible Page 470 is not VAT correctness.",
+          "No INLAND/VAT19 values are final until a separate write case with Reopen-Proof.",
+          "No Preview Posting, Posting or VAT Entries exist."
+        ],
+        "requiredPreparation": [
+          "Do not repeat D31C/D31D click routes without a new route hypothesis."
+        ]
+      }
     }
   ],
   "lastUpdated": "2026-07-05T13:57:56.982Z",
@@ -5134,7 +5187,7 @@
       ]
     }
   },
-  "updatedAt": "2026-07-05T14:49:48.571Z",
+  "updatedAt": "2026-07-05T15:05:00.000Z",
   "lastCompletedCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
   "nextCase": "TARGET-027D31C-VAT-SETUP-ROUTE-BLOCKER-REVIEW",
   "nextStepDecisionCard": {

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE",
-  "status": "ready-next",
+  "status": "blocked",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "mode": "universaarl-target-execution",
@@ -60,49 +60,53 @@
     "Business Central shell/auth context is unclear."
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-027D31C-VAT-SETUP-ROUTE-BLOCKER-REVIEW",
+    "currentCase": "TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE",
     "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
-    "lastEvidenceSummary": "D31C observed Assisted Setup read-only, but Page 470 / MwSt.-Geschaeftsbuchungsgruppen still returned to Role Center after direct URL, localized search, openSearchResult and DOM-near result activation.",
+    "lastEvidenceSummary": "D31C proved Assisted Setup read-only but blocked Page 470 because broad direct/search routes stayed in Role Center or overlay context.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "VAT write-gate remains premature while the mandatory manual VAT Business Posting Groups route is still not visible.",
+    "reason": "The exact row route did not produce accepted Page 470 proof; VAT setup writes remain parked.",
     "lookaheadReviewed": [
-      {
-        "caseId": "TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE",
-        "status": "ready-next",
-        "reason": "It tests a new route hypothesis instead of repeating D31C click attempts."
-      },
       {
         "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
         "status": "blocked",
-        "reason": "Needs Page 470 proof or an explicit alternative before any VAT write-gate."
+        "reason": "Needs Page 470 proof or a documented alternative first."
       },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Posting groups depend on VAT setup status."
+        "reason": "Posting group preflight depends on VAT setup route/value decision."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-after-current",
-        "reason": "Can continue after VAT setup route is resolved or deliberately parked."
+        "reason": "Can proceed after VAT setup is resolved or deliberately parked."
+      },
+      {
+        "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness waits for VAT/posting group status."
       }
     ],
-    "queueChangesMade": [
-      "Mark D31C blocked with useful Assisted Setup proof.",
-      "Insert D31D as the next narrow non-repeating route case."
-    ],
-    "selectedNextCase": "TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE",
-    "whySelectedNextCaseIsBest": "It addresses the remaining Page 470 blocker without setup writes, broad repeats or premature VAT decisions.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-027D31E-VAT-BUSINESS-GROUPS-SOURCE-OR-PAGEINSPECTION-DECISION",
+    "whySelectedNextCaseIsBest": "Repeating UI clicks would waste time; the next useful step is a source/page-inspection decision or deliberate VAT parking.",
     "risksBeforeNextCase": [
-      "Visible search results may still not navigate.",
-      "All Reports/Page Explorer routes may expose unrelated pages.",
-      "No VAT setup value is final until a separate write-gate and Reopen-Proof exist."
+      "Visible Page 470 is not VAT correctness.",
+      "No INLAND/VAT19 values are final until a separate write case with Reopen-Proof.",
+      "No Preview Posting, Posting or VAT Entries exist."
     ],
     "requiredPreparation": [
-      "Use a new route family, for example All Reports/Page Explorer/role navigation, not the same generic Tell-Me result click.",
-      "Keep setup writes and assistant completion locked."
+      "Do not repeat D31C/D31D click routes without a new route hypothesis."
     ]
   },
-  "nextCase": "TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE",
-  "updatedAt": "2026-07-05T14:50:00.000Z"
+  "nextCase": "TARGET-027D31E-VAT-BUSINESS-GROUPS-SOURCE-OR-PAGEINSPECTION-DECISION",
+  "updatedAt": "2026-07-05T15:05:00.000Z",
+  "resultStatus": "blocked",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31d-vat-business-posting-groups-alternative-route/TARGET-027D31D-result.json",
+  "completedAt": "2026-07-05T14:58:21.342Z",
+  "result": "Exact pages-and-tasks row click returned to Role Center; screenshot QA rejected Page-470 proof.",
+  "blockedBy": [
+    "Page 470 title not visible.",
+    "Code column not visible."
+  ]
 }

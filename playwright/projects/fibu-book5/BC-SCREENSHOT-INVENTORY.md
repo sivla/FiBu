@@ -160,6 +160,15 @@ Screenshot-QA zu TARGET-027D31B: Der Lauf verbessert das UI-Modell. Direkte Page
 | `target-027d31c-002-assisted-setup-vat-route.png` | Unterstuetztes Setup / Page 1801 | `playthru` / `UNIVERSAARL-DE` | Direkte read-only Route | Die Liste `Unterstuetztes Setup` ist sichtbar; die Zeile `Mehrwertsteuer (MwSt.) einrichten` steht unter `Unternehmen einrichten` | Assisted Setup ist als read-only Kontext erreichbar, ohne Wizard-Start oder Abschluss | keine Wizard-Ausfuehrung, kein VAT-Setup, keine Werte, keine Preview/Buchung | `usable-readonly-route`, `not-write-ready` |
 
 Screenshot-QA zu TARGET-027D31C: Der Lauf verbessert die UI-Wahrheit. Assisted Setup ist jetzt sichtbar und kann im Buch spaeter als Einrichtungsuebersicht erklaert werden. Page 470 bleibt offen, weil der sichtbare Suchtreffer nicht genuegt; der naechste Case braucht eine neue Route statt denselben Trefferklick zu wiederholen.
+
+## Universaarl VAT Business Posting Groups Alternative Route TARGET-027D31D
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Interner Nachweis | Beweist nicht | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-027d31d-000-search-overlay-before-click.png` | Tell-Me / Seiten und Aufgaben | `playthru` / `UNIVERSAARL-DE` | Vor dem engen Trefferklick | Der Suchtreffer `MwSt.-Geschaeftsbuchungsgruppen Verwaltung` ist sichtbar | Der Treffer ist als Navigationskandidat vorhanden | keine geoeffnete Page 470, kein Setupwert, keine USt-Reife | `navigation-candidate`, `not-page-proof` |
+| `target-027d31d-010-after-exact-pages-and-tasks-click.png` | Role Center nach engem Trefferklick | `playthru` / `UNIVERSAARL-DE` | Nach kleinem Seiten-und-Aufgaben-Treffer | Das Bild zeigt wieder den Role Center; die Liste mit Seitentitel und `Code`-Spalte fehlt | Auch der enge Trefferklick ist aktuell kein stabiler Page-470-Beweis | keine Geschaeftsbuchungsgruppenliste, kein `INLAND`, kein Setupwert, keine Preview/Buchung | `blocked-route`, `do-not-use-as-page470-proof` |
+
+Screenshot-QA zu TARGET-027D31D: Der Fehler ist jetzt enger eingegrenzt. Nicht der Suchbegriff ist das Problem, sondern die Navigation nach dem Trefferklick. Weitere Wiederholungen derselben Trefferroute sind nicht sinnvoll; der naechste Schritt ist eine lokale Park-/Source-/Page-Inspection-Entscheidung.
 | `target-008-020-create-new-company-route-opened.png` | `debugging-only` | zeigen, dass der erwartete Wizard nicht sauber sichtbar wurde | kein Beweis fuer `Neues Unternehmen erstellen`, keine gespeicherte Company |
 | `target-009-010-before-main-neu-create.png` | `preflight-context` | Mandantenliste vor einer Anlage erklaeren | keine Berechtigung, keine Anlage, kein Setup |
 | `target-009-020-after-main-neu-create-attempt.png` | `blocked-permission-screenshot` | Berechtigungs-/Speicherblocker sachlich erklaeren | keine sichtbare `UNIVERSAARL-DE`, keine Company Information, keine Foundation |

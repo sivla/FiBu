@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-05T14:51:47.443Z",
+  "updatedAt": "2026-07-05T15:10:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-vat-business-posting-groups-route",
-  "activeCase": "TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE",
-  "active_case_file": ".agent/state/cases/target-027d31d-vat-business-posting-groups-alternative-route.json",
+  "activeArea": "universaarl-vat-business-posting-groups-route-blocked",
+  "activeCase": "TARGET-027D31E-VAT-BUSINESS-GROUPS-SOURCE-OR-PAGEINSPECTION-DECISION",
+  "active_case_file": ".agent/state/cases/target-027d31e-vat-business-groups-source-or-pageinspection-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -19,14 +19,11 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central",
-    "confirm-instance-and-company",
-    "inspect-current-shell-readonly",
-    "use-localized-page-name-navigation-readonly",
-    "use-page-explorer-or-safe-navigation-readonly",
-    "inspect-all-reports-or-page-explorer-readonly",
-    "capture-screenshot-qa",
-    "write-result-json",
+    "read-existing-result-json",
+    "read-source-registry",
+    "read-atlas-and-coverage",
+    "classify-vat-route-status",
+    "write-local-decision-result",
     "update-state-and-queue"
   ],
   "forbiddenActions": [
@@ -35,14 +32,11 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
+    "open-business-central",
+    "execute-playwright",
     "write-vat-posting-setup",
     "finish-assisted-setup",
-    "click-next-if-it-writes",
-    "click-apply-ok-or-finish-on-setup-dialog",
     "type-values",
-    "import-configuration-package",
-    "export-configuration-package",
-    "validate-or-apply-configuration-package",
     "create-master-data",
     "create-document-or-draft",
     "preview-posting",
@@ -50,10 +44,11 @@
     "payment",
     "api-shortcut",
     "claim-vat-correctness",
-    "claim-posting-readiness"
+    "claim-posting-readiness",
+    "repeat-d31c-d31d-search-click-route"
   ],
-  "nextCase": "TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE",
-  "nextStep": "Run TARGET-027D31D read-only alternative route for Page 470 / MwSt.-Geschaeftsbuchungsgruppen; do not write VAT setup or finish any assistant.",
+  "nextCase": "TARGET-027D31E-VAT-BUSINESS-GROUPS-SOURCE-OR-PAGEINSPECTION-DECISION",
+  "nextStep": "Run a local no-BC/no-Playwright decision: park Page 470 route or define a materially new Page-Inspection/source route; keep VAT writes locked.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -236,7 +231,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "TARGET-027D31C proves Assisted Setup Page 1801 read-only in playthru / UNIVERSAARL-DE, but Page 470 / MwSt.-Geschaeftsbuchungsgruppen remains blocked after direct URL, localized search, openSearchResult and DOM-near result activation. VAT write-gate remains locked.",
+  "currentCoverageFocus": "TARGET-027D31D revalidated the exact pages-and-tasks result click for Page 470 in playthru / UNIVERSAARL-DE. Screenshot-QA rejected the result because the visible surface returned to Role Center; Page-470 title and Code column were not visible. VAT write-gate remains locked.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -3858,7 +3853,7 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/target-027d31d-vat-business-posting-groups-alternative-route.json",
+  "activeCaseFile": ".agent/state/cases/target-027d31e-vat-business-groups-source-or-pageinspection-decision.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
@@ -8520,12 +8515,10 @@
     "summary": "1140 Waren (Bestand) selected as source-backed SKR04-oriented inventory balance candidate; no Business Central account proof yet."
   },
   "acceptanceCriteria": [
-    "Business Central stays in playthru / UNIVERSAARL-DE.",
-    "Assisted Setup VAT route is either observed read-only or intentionally parked with precise UI evidence.",
-    "VAT Business Posting Groups route is either observed read-only or intentionally parked with precise UI evidence.",
-    "Already observed VAT Product Posting Groups and VAT Posting Setup remain documented as read-only reachable.",
-    "No setup value, wizard completion, master data, draft, Preview Posting, Posting or API shortcut occurs.",
-    "Next-step decision states whether VAT write-gate is ready or VAT route discovery remains parked."
+    "D31D blocker is classified without another UI click.",
+    "VAT setup writes remain locked unless a later case has source-backed values and visible route proof.",
+    "The next case either parks VAT and resumes another Foundation strand, or defines a materially new Page-470 route.",
+    "No final German VAT claim is made."
   ],
   "latestTarget048CInventoryAccount1140BalanceCorrection": {
     "caseId": "TARGET-048C-INVENTORY-ACCOUNT-1140-BALANCE-SHEET-CORRECTION",
@@ -9618,10 +9611,9 @@
     "apiShortcut": false
   },
   "stopIf": [
-    "Instance is not playthru or company is not UNIVERSAARL-DE.",
-    "Only a generic search overlay is visible after route attempt.",
-    "The route requires writing setup, finishing an assistant, importing/exporting, validating or confirming OK/Yes/Ja.",
-    "Business Central shell/auth context is unclear."
+    "A decision would require a new BC or Playwright run.",
+    "The decision would treat Role Center or search overlay text as Page-470 proof.",
+    "The decision would unlock VAT writes without a separate write-gate."
   ],
   "latestTarget027D31BResult": "playwright/projects/fibu-book5/evidence/target-027d31b-vat-setup-route-ui-source-followup/TARGET-027D31B-result.json",
   "latestVatSetupRouteRecovery": {
@@ -9672,5 +9664,41 @@
     "vatBusinessPostingGroupsStatus": "blocked",
     "nextCase": "TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE",
     "updatedAt": "2026-07-05T14:49:48.571Z"
+  },
+  "latestTarget027D31DResult": "playwright/projects/fibu-book5/evidence/target-027d31d-vat-business-posting-groups-alternative-route/TARGET-027D31D-result.json",
+  "latestVatBusinessPostingGroupsAlternativeRoute": {
+    "caseId": "TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE",
+    "resultStatus": "blocked",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31d-vat-business-posting-groups-alternative-route/TARGET-027D31D-result.json",
+    "proved": [
+      "Business Central stayed in playthru / UNIVERSAARL-DE.",
+      "No VAT setup, master data, document draft, Preview Posting, Posting or API shortcut was executed."
+    ],
+    "notProved": [
+      "Page 470 MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups did not pass screenshot QA.",
+      "No INLAND or VAT19 group exists or was changed by this run.",
+      "No VAT Posting Setup matrix row exists.",
+      "No German 19 percent VAT calculation is proven.",
+      "No VAT Entries or G/L Entries exist."
+    ],
+    "blockedBy": [
+      "Page 470 title not visible.",
+      "Code column not visible."
+    ],
+    "route": {
+      "searchTerm": "MwSt.-Geschäftsbuchungsgruppen",
+      "clicked": true,
+      "route": "small-pages-and-tasks-candidate-geometry",
+      "candidateCount": 61,
+      "accepted": false
+    },
+    "nextCase": "TARGET-027D31E-VAT-BUSINESS-GROUPS-SOURCE-OR-PAGEINSPECTION-DECISION",
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "updatedAt": "2026-07-05T15:05:00.000Z"
   }
 }

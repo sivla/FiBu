@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027D31E-VAT-BUSINESS-GROUPS-SOURCE-OR-PAGEINSPECTION-DECISION",
+  "status": "ready-next",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-target-execution",
+  "targetWorld": "Universaarl",
+  "activeArea": "universaarl-vat-business-posting-groups-route-decision",
+  "mayRunPlaywright": false,
+  "mayWorkEffectively": false,
+  "effectiveBcActionsAllowed": false,
+  "sourceDecision": "TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE",
+  "purpose": "Decide locally whether Page 470 / MwSt.-Geschaeftsbuchungsgruppen should remain parked, whether Page Inspection/source evidence is enough for the next no-write decision, or whether a materially new route is required.",
+  "allowedActions": [
+    "read-existing-result-json",
+    "read-source-registry",
+    "read-atlas-and-coverage",
+    "classify-vat-route-status",
+    "write-local-decision-result",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "execute-playwright",
+    "write-vat-posting-setup",
+    "finish-assisted-setup",
+    "type-values",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-vat-correctness",
+    "claim-posting-readiness",
+    "repeat-d31c-d31d-search-click-route"
+  ],
+  "acceptanceCriteria": [
+    "D31D blocker is classified without another UI click.",
+    "VAT setup writes remain locked unless a later case has source-backed values and visible route proof.",
+    "The next case either parks VAT and resumes another Foundation strand, or defines a materially new Page-470 route.",
+    "No final German VAT claim is made."
+  ],
+  "stopIf": [
+    "A decision would require a new BC or Playwright run.",
+    "The decision would treat Role Center or search overlay text as Page-470 proof.",
+    "The decision would unlock VAT writes without a separate write-gate."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE",
+    "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+    "lastEvidenceSummary": "D31D stayed in playthru / UNIVERSAARL-DE and clicked the exact small pages-and-tasks result, but the visible surface returned to Role Center. Screenshot-QA rejected it because Page-470 title and Code column were not visible.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "A VAT write-gate remains premature while the current Page-470 route cannot be reproduced as visible page proof.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D31E-VAT-BUSINESS-GROUPS-SOURCE-OR-PAGEINSPECTION-DECISION",
+        "status": "ready-next",
+        "reason": "It prevents another blind UI retry and decides whether VAT is parked or needs a materially new route."
+      },
+      {
+        "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+        "status": "blocked",
+        "reason": "Needs visible Page-470 proof or an explicit park/alternative decision first."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Posting groups depend on VAT setup status."
+      },
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "ready-after-current",
+        "reason": "Dimension work can continue after VAT is deliberately parked."
+      },
+      {
+        "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness must show VAT as parked/blocked, not posting-ready."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-027D31E-VAT-BUSINESS-GROUPS-SOURCE-OR-PAGEINSPECTION-DECISION",
+    "whySelectedNextCaseIsBest": "The UI route has failed with screenshot proof; the fastest useful move is a local decision, not another click loop.",
+    "risksBeforeNextCase": [
+      "Existing historical Page-470 screenshots must not be treated as current write readiness.",
+      "No INLAND/VAT19 write or matrix write may be unlocked by D31E alone.",
+      "No Preview Posting, Posting or VAT Entry exists."
+    ],
+    "requiredPreparation": [
+      "Use D31B/D31C/D31D results and existing source registry.",
+      "Do not run BC or Playwright in D31E."
+    ]
+  },
+  "nextCase": "TARGET-027D31E-VAT-BUSINESS-GROUPS-SOURCE-OR-PAGEINSPECTION-DECISION",
+  "updatedAt": "2026-07-05T15:10:00.000Z"
+}
