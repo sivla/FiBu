@@ -1,68 +1,64 @@
 {
   "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
   "caseId": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
-  "status": "observed-local-decision",
+  "source": "local-foundation-ready-checkpoint",
+  "resultStatus": "observed-local-decision",
+  "foundationReadiness": "limited-learning-path-only",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "mode": "universaarl-target-execution",
-  "activeArea": "universaarl-w1-foundation-ready-checkpoint-after-dimension-park",
-  "mayRunPlaywright": false,
-  "effectiveBcActionsAllowed": false,
-  "purpose": "Run a local W1 Foundation Ready checkpoint after chart, posting-group, VAT and dimension boundaries are explicit.",
-  "whyNow": "TARGET-067 parks global/default dimensions and TARGET-066 parks posting-group/VAT blockers. The next useful step is to decide whether Foundation remains blocked, which exact dependency is next, or whether a limited master-data learning path is justified without claiming posting readiness.",
-  "sourceEvidence": [
-    "playwright/projects/fibu-book5/evidence/target-026o-chart-of-accounts-visible-screenshot-recovery/TARGET-026O-result.json",
-    "playwright/projects/fibu-book5/evidence/target-030-posting-groups-vendor-inland-write-gate/TARGET-030-result.json",
-    "playwright/projects/fibu-book5/evidence/target-031b-customer-posting-group-inland-write-gate/TARGET-031B-result.json",
-    "playwright/projects/fibu-book5/evidence/target-050-inventory-posting-setup-controlled-write/TARGET-050-result.json",
-    "playwright/projects/fibu-book5/evidence/target-054-item-product-vat-field-assignment/TARGET-054-result.json",
-    "playwright/projects/fibu-book5/evidence/target-065-posting-groups-pageinspection-or-source-route-decision/TARGET-065-result.json",
-    "playwright/projects/fibu-book5/evidence/target-066-foundation-limitation-check-after-posting-group-route-blocker/TARGET-066-result.json",
-    "playwright/projects/fibu-book5/evidence/target-067-dimension-defaults-next-route-decision/TARGET-067-result.json"
+  "url": "n/a-local-decision-no-business-central-opened",
+  "page": "n/a-local-decision",
+  "actionsTaken": [
+    "Read the active TARGET-068 case and latest TARGET-067 summary.",
+    "Reviewed W1 Foundation evidence anchors for chart of accounts, posting groups, inventory posting setup, item posting fields, posting-group blockers and dimension boundaries.",
+    "Classified Foundation Ready as limited-learning-path-only, not pass.",
+    "Selected a narrow VAT source/route decision as the next case before master data or process work.",
+    "Updated the Full Playthrough Catalog and Foundation draft with the current readiness boundary."
   ],
-  "allowedActions": [
-    "read-foundation-evidence-results",
-    "write-local-foundation-ready-checkpoint-result",
-    "update-state-and-coverage-plan",
-    "update-catalog-or-bookdraft-if-reader-facing-and-evidence-bounded"
+  "actionsNotTaken": [
+    "No Business Central execution.",
+    "No Playwright execution.",
+    "No setup write.",
+    "No master data creation.",
+    "No document or draft creation.",
+    "No journal line creation.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No payment.",
+    "No API shortcut."
   ],
-  "forbiddenActions": [
-    "leave-instance",
-    "company-switch",
-    "commit-secrets",
-    "show-env-or-auth",
-    "fake-evidence",
-    "book-claim-without-evidence",
-    "open-business-central",
-    "run-playwright",
-    "write-setup",
-    "write-vat-posting-setup",
-    "write-general-posting-setup",
-    "write-default-dimensions",
-    "write-global-dimensions",
-    "create-master-data",
-    "create-document-or-draft",
-    "preview-posting",
-    "post",
-    "payment",
-    "api-shortcut",
-    "claim-foundation-ready-with-open-blockers"
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "bookChanged": true,
+  "bookChangedFiles": [
+    "playwright/projects/fibu-book5/book-drafts/universaarl-foundation-ch06-draft.md"
   ],
-  "acceptanceCriteria": [
-    "Classify Foundation Ready as pass, fail or limited-learning-path-only.",
-    "List the exact blocking dependencies.",
-    "Select one narrow next case without starting master data or processes.",
-    "Write a Next-Step Decision Card with a 3-5 step lookahead."
-  ],
-  "stopIf": [
-    "The checkpoint would claim posting readiness while VAT or General Posting Setup remains parked.",
-    "The checkpoint would unlock master data without explicit limitations.",
-    "The next step would require BC/Playwright execution without a new case."
-  ],
-  "nextCase": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
-  "completedAt": "2026-07-05T17:31:53.330Z",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-068-w1-foundation-ready-checkpoint-after-dimension-park/TARGET-068-result.json",
-  "foundationReadiness": "limited-learning-path-only",
+  "screenshots": [],
+  "foundationDecision": {
+    "classification": "limited-learning-path-only",
+    "postingReady": false,
+    "masterDataReadyAsDefaultNextStep": false,
+    "allowedLearningPath": [
+      "reader-facing foundation explanation",
+      "source-backed route decisions",
+      "read-only UI discovery when a new hypothesis exists",
+      "one narrow setup gate only after Smart Decision"
+    ],
+    "blockedProcessStarts": [
+      "O2C",
+      "P2P",
+      "journals",
+      "Preview Posting",
+      "Posting",
+      "payments"
+    ]
+  },
   "proved": [
     "The starter chart rows 1200, 1406, 1800, 3300, 3806, 4400 and 5400 are visible in the Universaarl chart context.",
     "Vendor Posting Group INLAND with payables account 3300 is proven from TARGET-030.",
@@ -141,5 +137,43 @@
       "Do not run BC/Playwright or write VAT setup in TARGET-069 unless a later case explicitly unlocks it."
     ]
   },
-  "nextStep": "Run TARGET-069 as a local/source-backed VAT route decision. Do not run BC/Playwright, do not write VAT setup, and do not unlock master data or process cases."
+  "statePatch": {
+    "current": {
+      "activeCase": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
+      "active_case_file": ".agent/state/cases/target-069-vat-business-groups-source-route-decision.json",
+      "activeCaseFile": ".agent/state/cases/target-069-vat-business-groups-source-route-decision.json",
+      "activeArea": "universaarl-vat-business-groups-source-route-decision",
+      "nextCase": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
+      "nextStep": "Run TARGET-069 as a local/source-backed VAT route decision. Do not run BC/Playwright, do not write VAT setup, and do not unlock master data or process cases."
+    },
+    "lastRunSummary": {
+      "caseId": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
+      "status": "observed-local-decision",
+      "instance": "playthru",
+      "company": "UNIVERSAARL-DE",
+      "summary": "TARGET-068 classified W1 Foundation as limited-learning-path-only: useful for explanation and narrow route decisions, but not posting-ready. TARGET-069 VAT source route decision is next.",
+      "nextCase": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION"
+    },
+    "activeCase": {
+      "status": "observed-local-decision",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-068-w1-foundation-ready-checkpoint-after-dimension-park/TARGET-068-result.json",
+      "nextCase": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION"
+    }
+  },
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-068-w1-foundation-ready-checkpoint-after-dimension-park/README.md",
+    "playwright/projects/fibu-book5/evidence/target-068-w1-foundation-ready-checkpoint-after-dimension-park/TARGET-068-result.json",
+    ".agent/state/cases/target-068-w1-foundation-ready-checkpoint-after-dimension-park.json",
+    ".agent/state/cases/target-069-vat-business-groups-source-route-decision.json",
+    ".agent/state/current.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/marathon_queue.json",
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
+    "playwright/projects/fibu-book5/book-drafts/universaarl-foundation-ch06-draft.md"
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "Local checkpoint only; no live actions and no setup writes.",
+  "nextCase": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION"
 }

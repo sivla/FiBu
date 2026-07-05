@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
+  "status": "ready-next",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-target-execution",
+  "activeArea": "universaarl-vat-business-groups-source-route-decision",
+  "mayRunPlaywright": false,
+  "effectiveBcActionsAllowed": false,
+  "purpose": "Decide the next non-repeating, source-backed route for VAT Business Posting Groups and VAT Posting Setup before any VAT write gate.",
+  "whyNow": "TARGET-068 keeps W1 Foundation limited-learning-path-only because VAT remains one of the strongest blockers. A write gate would be premature until the Page 470 and INLAND/VAT19 route is source-backed and not just another failed search/click attempt.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-027d31b-vat-setup-route-ui-source-followup/TARGET-027D31B-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d31c-vat-setup-route-blocker-review/TARGET-027D31C-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d31d-vat-business-posting-groups-alternative-route/TARGET-027D31D-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d31e-vat-business-groups-source-or-pageinspection-decision/TARGET-027D31E-result.json",
+    "playwright/projects/fibu-book5/evidence/target-066-foundation-limitation-check-after-posting-group-route-blocker/TARGET-066-result.json",
+    "playwright/projects/fibu-book5/evidence/target-068-w1-foundation-ready-checkpoint-after-dimension-park/TARGET-068-result.json",
+    "playwright/projects/fibu-book5/BC-MICROSOFT-LEARN-MAPPING.md",
+    "playwright/projects/fibu-book5/BC-SOURCE-REGISTRY.md"
+  ],
+  "allowedActions": [
+    "read-vat-evidence-results",
+    "read-microsoft-learn-vat-source-mapping",
+    "write-local-vat-route-decision-result",
+    "update-state-and-coverage-plan",
+    "update-catalog-or-bookdraft-if-reader-facing-and-evidence-bounded"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "write-vat-business-posting-group",
+    "write-vat-product-posting-group",
+    "write-vat-posting-setup",
+    "write-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "repeat-failed-page-470-search-click-route"
+  ],
+  "acceptanceCriteria": [
+    "Classify Page 470 / VAT Business Posting Groups route as source-ready, needs-ui-discovery-first or parked.",
+    "Classify INLAND/VAT19 VAT Posting Setup route as source-ready, needs-ui-discovery-first or parked.",
+    "Do not write VAT setup or run Playwright.",
+    "Select one narrow next case with a 3-5 step lookahead."
+  ],
+  "stopIf": [
+    "The decision would unlock a VAT write gate without a materially new route.",
+    "The decision would treat item VAT19 as a complete VAT Posting Setup matrix.",
+    "The next step would start master data, documents, Preview Posting or Posting."
+  ],
+  "nextCase": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION"
+}

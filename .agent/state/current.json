@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-05T17:25:19.400Z",
+  "updatedAt": "2026-07-05T17:31:53.330Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-w1-foundation-ready-checkpoint-after-dimension-park",
-  "activeCase": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
-  "active_case_file": ".agent/state/cases/target-068-w1-foundation-ready-checkpoint-after-dimension-park.json",
+  "activeArea": "universaarl-vat-business-groups-source-route-decision",
+  "activeCase": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
+  "active_case_file": ".agent/state/cases/target-069-vat-business-groups-source-route-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -19,8 +19,9 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-foundation-evidence-results",
-    "write-local-foundation-ready-checkpoint-result",
+    "read-vat-evidence-results",
+    "read-microsoft-learn-vat-source-mapping",
+    "write-local-vat-route-decision-result",
     "update-state-and-coverage-plan",
     "update-catalog-or-bookdraft-if-reader-facing-and-evidence-bounded"
   ],
@@ -33,21 +34,20 @@
     "book-claim-without-evidence",
     "open-business-central",
     "run-playwright",
-    "write-setup",
+    "write-vat-business-posting-group",
+    "write-vat-product-posting-group",
     "write-vat-posting-setup",
-    "write-general-posting-setup",
-    "write-default-dimensions",
-    "write-global-dimensions",
+    "write-setup",
     "create-master-data",
     "create-document-or-draft",
     "preview-posting",
     "post",
     "payment",
     "api-shortcut",
-    "claim-foundation-ready-with-open-blockers"
+    "repeat-failed-page-470-search-click-route"
   ],
-  "nextCase": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
-  "nextStep": "Run TARGET-068 local W1 Foundation Ready checkpoint after dimension park. Do not unlock master data, VAT writes, General Posting Setup writes, Preview Posting or Posting unless the checkpoint explicitly narrows the next dependency.",
+  "nextCase": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
+  "nextStep": "Run TARGET-069 as a local/source-backed VAT route decision. Do not run BC/Playwright, do not write VAT setup, and do not unlock master data or process cases.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -3852,7 +3852,7 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/target-068-w1-foundation-ready-checkpoint-after-dimension-park.json",
+  "activeCaseFile": ".agent/state/cases/target-069-vat-business-groups-source-route-decision.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
@@ -7563,35 +7563,14 @@
     "updatedAt": "2026-07-01T08:43:26.535Z"
   },
   "latestFoundationReadyCheckpoint": {
-    "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
-    "status": "foundation-partial-ready-for-masterdata-preflight-only",
-    "instance": "playthru",
-    "company": "UNIVERSAARL-DE",
-    "resultPath": "playwright/projects/fibu-book5/evidence/target-034-foundation-ready-checkpoint/TARGET-034-result.json",
-    "foundationClassification": {
-      "overall": "partial-ready-for-readonly-masterdata-preflight-only",
-      "postingReadiness": "not-proven",
-      "previewReadiness": "not-proven",
-      "masterDataCreationReadiness": "not-unlocked",
-      "masterDataPreflightReadiness": "unlocked-readonly-only"
-    },
-    "provenGates": [
-      "company-context",
-      "starter-chart-of-accounts",
-      "number-series-lines",
-      "customer-vendor-posting-groups",
-      "general-business-product-posting-groups",
-      "dimensions"
-    ],
-    "parkedGates": [
-      "general-posting-setup-page314",
-      "vat-posting-setup",
-      "global-dimensions",
-      "default-dimensions",
-      "inventory-bank-fa-posting-setup"
-    ],
-    "nextCase": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
-    "updatedAt": "2026-07-01T09:05:00.000Z"
+    "caseId": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
+    "status": "observed-local-decision",
+    "foundationReadiness": "limited-learning-path-only",
+    "postingReady": false,
+    "masterDataReadyAsDefaultNextStep": false,
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-068-w1-foundation-ready-checkpoint-after-dimension-park/TARGET-068-result.json",
+    "nextCase": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
+    "updatedAt": "2026-07-05T17:31:53.330Z"
   },
   "latestTarget035MasterDataPreflight": {
     "caseId": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
@@ -8532,10 +8511,10 @@
     "summary": "1140 Waren (Bestand) selected as source-backed SKR04-oriented inventory balance candidate; no Business Central account proof yet."
   },
   "acceptanceCriteria": [
-    "Classify Foundation Ready as pass, fail or limited-learning-path-only.",
-    "List the exact blocking dependencies.",
-    "Select one narrow next case without starting master data or processes.",
-    "Write a Next-Step Decision Card with a 3-5 step lookahead."
+    "Classify Page 470 / VAT Business Posting Groups route as source-ready, needs-ui-discovery-first or parked.",
+    "Classify INLAND/VAT19 VAT Posting Setup route as source-ready, needs-ui-discovery-first or parked.",
+    "Do not write VAT setup or run Playwright.",
+    "Select one narrow next case with a 3-5 step lookahead."
   ],
   "latestTarget048CInventoryAccount1140BalanceCorrection": {
     "caseId": "TARGET-048C-INVENTORY-ACCOUNT-1140-BALANCE-SHEET-CORRECTION",
@@ -10003,11 +9982,11 @@
   },
   "lastCompletedResult": "playwright/projects/fibu-book5/evidence/target-064-posting-groups-route-recovery-after-strong-qa/TARGET-064-result.json",
   "latestUniversaarlDecision": {
-    "caseId": "TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION",
+    "caseId": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
     "status": "observed-local-decision",
-    "summary": "Starterdimensionen und Werte bleiben proven-visible; globale Dimensionen und Default Dimensions sind bewusst geparkt; TARGET-068 ist der naechste Foundation-Ready-Checkpoint.",
-    "resultPath": "playwright/projects/fibu-book5/evidence/target-067-dimension-defaults-next-route-decision/TARGET-067-result.json",
-    "nextCase": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK"
+    "summary": "W1 Foundation classified as limited-learning-path-only; no process or posting readiness; TARGET-069 VAT source route decision selected.",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-068-w1-foundation-ready-checkpoint-after-dimension-park/TARGET-068-result.json",
+    "nextCase": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION"
   },
   "latestDimensionDefaultsDecision": {
     "caseId": "TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION",

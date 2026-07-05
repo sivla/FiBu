@@ -113,7 +113,11 @@ Auch die USt ist noch offen. `VAT19` auf einer Artikelkarte ist kein USt-Setup. 
 
 Dimensionen sind ebenfalls ein eigener Baustein. `PRODUCTLINE`, `COSTCENTER` und `CHANNEL` helfen spaeter beim Auswerten. Sie ersetzen aber keine Kontenfindung und keine USt-Einrichtung. Erst wenn Dimensionen auf Stammdaten, Belegen oder Posten sichtbar wirken, kann man sie als Auswertungslogik im Prozess erklaeren.
 
-Die sichere Grenze lautet deshalb: Die Universaarl-Foundation ist teilweise aufgebaut, aber nicht buchungsbereit. Der naechste gute Schritt ist nicht ein schneller Verkaufs- oder Einkaufsbeleg. Zuerst wird geklaert, welche offenen Foundation-Punkte bewusst geloest werden muessen und welche Punkte fuer einen spaeteren Lernpfad nur als Grenze notiert bleiben.
+Die sichere Grenze lautet deshalb: Die Universaarl-Foundation ist teilweise aufgebaut, aber nicht buchungsbereit. Sie reicht fuer einen Lernpfad: Man kann die Seiten, Felder, Pflichtlogik und Zusammenhaenge erklaeren. Sie reicht aber noch nicht fuer eine Verkaufsrechnung, Einkaufsrechnung, Journalbuchung, Buchungsvorschau oder echte Buchung.
+
+Der naechste gute Schritt ist deshalb nicht ein schneller Verkaufs- oder Einkaufsbeleg. Zuerst wird die USt-Grundlage eingegrenzt. Fuer `VAT19` muss klar sein, welche USt-Geschaeftsbuchungsgruppe verwendet wird und wie die Kombination aus Geschaeftsgruppe und Produktgruppe in der USt-Buchungsmatrix aussieht. Erst wenn dort Prozentsatz, Berechnungsart und Steuerkonten passend sichtbar sind, kann ein deutscher 19-Prozent-Beleg sinnvoll vorbereitet werden.
+
+Parallel bleibt die allgemeine Buchungsmatrix offen. Fuer Warenfaelle muss Business Central die Kombination `INLAND` und `WAREN` mit den passenden Erlos- und Einkaufskonten verbinden. Das Verkaufskonto `4400` ist als Teilpfad vorhanden; das Einkaufskonto `5400` ist aber noch nicht als stabil gespeicherter Wert in derselben Matrixzeile abgesichert. Solange diese Luecke besteht, bleibt die Foundation ein guter Erklaerstand, aber kein Buchungsstand.
 
 ## Nummernserien
 

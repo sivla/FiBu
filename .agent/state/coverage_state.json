@@ -15,7 +15,7 @@
     "lookAndFeelFiltering": {
       "chapter": "Kapitel 2/3",
       "status": "planned",
-      "currentBlock": "target-067-dimension-boundary-parked-before-foundation-checkpoint",
+      "currentBlock": "target-068-foundation-limited-learning-path-only-before-vat-route-decision",
       "latestPlanningCase": "TARGET-DATA-001-UNIVERSAARL-DATA-RICHNESS-PLAN",
       "planPath": "playwright/projects/fibu-book5/UNIVERSAARL-DATA-RICHNESS-PLAN.md",
       "bookDraft": "playwright/projects/fibu-book5/book-drafts/universaarl-look-and-feel-filtering-draft.md",
@@ -874,7 +874,7 @@
   "currentBlock": "Page 314 Wareneinkaufskonto / Purch. Account 5400 is still not persisted. TARGET-058 showed List Edit and a row-bound target cell, but the controlled attempt opened the column menu and Reopen proof showed no 5400.",
   "latestPracticalCase": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
   "latestReviewCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
-  "nextCase": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
+  "nextCase": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -3981,6 +3981,15 @@
       "resultPath": "playwright/projects/fibu-book5/evidence/target-067-dimension-defaults-next-route-decision/TARGET-067-result.json",
       "nextCase": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
       "updatedAt": "2026-07-05T17:25:19.400Z"
+    },
+    "readyCheckpointAfterDimensionPark": {
+      "status": "observed-local-decision",
+      "foundationReadiness": "limited-learning-path-only",
+      "postingReady": false,
+      "masterDataReadyAsDefaultNextStep": false,
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-068-w1-foundation-ready-checkpoint-after-dimension-park/TARGET-068-result.json",
+      "nextCase": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
+      "updatedAt": "2026-07-05T17:31:53.330Z"
     }
   },
   "latestTarget024EGlobalDimensionSourceRoute": {
@@ -4494,7 +4503,7 @@
     ],
     "nextCase": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE"
   },
-  "currentFoundationFocus": "TARGET-067 parked global/default dimensions after visible starter dimension values; next is TARGET-068 local Foundation Ready checkpoint after dimension park.",
+  "currentFoundationFocus": "TARGET-068 classified W1 Foundation as limited-learning-path-only: explanatory and narrow route work may continue, but master data, process cases, Preview Posting and Posting remain locked.",
   "latestGeneralPostingGroupsControlledWriteGate": {
     "caseId": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
     "status": "partially-completed",
@@ -4644,15 +4653,35 @@
     "updatedAt": "2026-07-01T08:43:26.535Z"
   },
   "latestFoundationReadyCheckpoint": {
-    "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
-    "status": "foundation-partial-ready-for-masterdata-preflight-only",
-    "resultPath": "playwright/projects/fibu-book5/evidence/target-034-foundation-ready-checkpoint/TARGET-034-result.json",
-    "overall": "partial-ready-for-readonly-masterdata-preflight-only",
-    "postingReadiness": "not-proven",
-    "previewReadiness": "not-proven",
-    "masterDataCreationReadiness": "not-unlocked",
-    "masterDataPreflightReadiness": "unlocked-readonly-only",
-    "nextCase": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT"
+    "caseId": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
+    "status": "observed-local-decision",
+    "foundationReadiness": "limited-learning-path-only",
+    "postingReady": false,
+    "masterDataReadyAsDefaultNextStep": false,
+    "proved": [
+      "The starter chart rows 1200, 1406, 1800, 3300, 3806, 4400 and 5400 are visible in the Universaarl chart context.",
+      "Vendor Posting Group INLAND with payables account 3300 is proven from TARGET-030.",
+      "Customer Posting Group INLAND with receivables account 1200 is proven from TARGET-031B.",
+      "Inventory Posting Setup SAAR-HL + WARE + 1140 is proven after reopen from TARGET-050.",
+      "U-ITEM-HW100 shows Product Posting Group WAREN and VAT Product Posting Group VAT19 after reopen from TARGET-054.",
+      "Starter dimensions and values are visible, while global/default dimensions are deliberately parked from TARGET-067."
+    ],
+    "notProved": [
+      "No complete INLAND/WAREN/4400/5400 General Posting Setup row is proven.",
+      "No complete INLAND/VAT19 VAT Posting Setup row with 19 percent, calculation type and VAT accounts is proven.",
+      "No Global Dimension Code 1/2 assignment is proven.",
+      "No Default Dimensions, Dimension Set Entries or reporting effect are proven.",
+      "No O2C, P2P, journal, Preview Posting, Posting, G/L Entry, VAT Entry, Customer Ledger Entry, Vendor Ledger Entry, Item Ledger Entry or Value Entry is proven by this checkpoint.",
+      "No final SKR04, tax-advisor, German tax or compliance claim is proven."
+    ],
+    "blockedBy": [
+      "General Posting Setup purchase account 5400 remains parked after TARGET-058/TARGET-059.",
+      "VAT Business Posting Groups Page 470 and VAT Posting Setup completion remain parked after TARGET-027D31E and TARGET-066.",
+      "Global/default dimension effects remain unproven from TARGET-067.",
+      "Foundation cannot pass as posting-ready with the current VAT and General Posting Setup gaps."
+    ],
+    "nextCase": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
+    "updatedAt": "2026-07-05T17:31:53.330Z"
   },
   "latestTarget035MasterDataPreflight": {
     "caseId": "TARGET-035-MASTER-DATA-CARDS-TEMPLATES-PREFLIGHT",
@@ -6201,12 +6230,12 @@
     "updatedAt": "2026-07-05T17:04:29.595Z"
   },
   "latestUniversaarlDecision": {
-    "caseId": "TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION",
+    "caseId": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
     "status": "observed-local-decision",
-    "summary": "Dimension boundary closed locally: starter values visible; global/default dimensions parked; Foundation Ready checkpoint selected.",
-    "resultPath": "playwright/projects/fibu-book5/evidence/target-067-dimension-defaults-next-route-decision/TARGET-067-result.json",
-    "nextCase": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
-    "updatedAt": "2026-07-05T17:25:19.400Z"
+    "summary": "Foundation checkpoint after dimension park: limited-learning-path-only; VAT source route decision selected.",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-068-w1-foundation-ready-checkpoint-after-dimension-park/TARGET-068-result.json",
+    "nextCase": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
+    "updatedAt": "2026-07-05T17:31:53.330Z"
   },
   "latestDimensionDefaultsDecision": {
     "caseId": "TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION",
