@@ -2,6 +2,10 @@
 
 This file defines how agents operate Business Central for FiBu Buch 5. It is a compact rule layer for UI-first, evidence-first work.
 
+Current consolidated project decision: `.agent/PROJECT-DECISION.md`.
+
+Use that file as the short strategic layer before choosing a live case. It resolves the current freeze conflict: TARGET-073 stays parked, Superrechte remain usable inside the sandbox when the active case allows them, and the next resume path starts with TARGET-074 rather than another VAT Page 472 editor retry.
+
 ## Core rule
 
 Every Business Central step must have:

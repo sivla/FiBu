@@ -1,0 +1,166 @@
+# Project Decision
+
+Status: active
+Date: 2026-07-05
+Scope: Consolidated decision from strategy, sandbox operating model, repo cleanup, book quality and live-queue resume reviews.
+
+## 1. Gemeinsames Zielbild
+
+Das Projektziel ist ein anfaengerfreundliches, fachlich kuratiertes Business-Central-Buch, das die Universaarl GmbH als grosse fiktive Fallstudienfirma in `playthru` / `UNIVERSAARL-DE` einrichtet, Prozesse ausfuehrt, Posten nachweist und die Ergebnisse verstaendlich erklaert.
+
+Ein gutes Buch bedeutet:
+
+- Es liest sich wie ein Fachbuch, nicht wie ein Testprotokoll.
+- Es erklaert Seiten, Felder, Entscheidungen, Buchungsgruppen, Konten, Dimensionen, Belege, Posten und Korrekturen in sinnvoller Reihenfolge.
+- Es trennt Produktlogik, lokale Ausfuehrung und Steuer-/Compliance-Aussagen.
+- Es nutzt Screenshots nur, wenn sie fuer Anfaenger etwas erklaeren und intern wirklich belegen, was behauptet wird.
+- Es fuehrt Universaarl als zusammenhaengende Buchwelt; RM-DEMO, Rhein-Main und CRONUS bleiben historische Laborquellen.
+
+Ein Business-Central-Spezialist-Agent bedeutet:
+
+- Er denkt zuerst fachlich und didaktisch, nicht queue-getrieben.
+- Er handelt in der Sandbox mit Superrechten, wenn Zweck, Wirkung, Evidence, Reopen-/Trace-Proof und Korrekturpfad klar sind.
+- Er stoppt nicht aus Angst vor wirksamen Aktionen, aber er tippt, klickt, postet oder raeumt nie blind.
+- Er recherchiert offizielle Quellen, wenn Produktlogik oder Buchclaim nicht sicher ist.
+- Er macht wiederholte UI-Blocker zu Helpern, Skills, Capabilities oder rejected paths.
+
+## 2. Konsolidierte Prinzipien
+
+### Buch
+
+- Buchtext ist Lesertext. Keine Agenten-, Case-, Evidence- oder Repo-Metasprache im Fliesstext.
+- Buchclaims brauchen lokale Universaarl-Evidence, Microsoft-Learn-Produktlogik oder amtliche/Fachquellen.
+- Labor- oder Legacy-Evidence darf Buchlernen inspirieren, aber keine aktive Universaarl-Finalwahrheit ersetzen.
+- Kapitel folgen grob MB-800 und Microsoft Learn: Company/Core Setup, Financials, Chart of Accounts, Posting Groups, Dimensions, Sales, Purchasing, Inventory, Fixed Assets und Operations.
+
+### Evidence
+
+- Lokale Evidence beweist UI, konkrete Werte, ausgefuehrte Aktionen, Reopen-Proof und Posten in unserer Umgebung.
+- Microsoft Learn erklaert Business-Central-Produktlogik und empfohlene Einrichtung.
+- Amtliche oder verlaessliche Fachquellen sind Pflicht fuer Steuer-, GoBD-, E-Rechnungs- und Compliance-Aussagen.
+- Kein Setup/Stammdaten-`done` ohne Reopen-Proof.
+- Kein Posting-`done` ohne relevante Entry-/Ledger-Spur.
+
+### Playwright
+
+- Neue Live-Specs muessen Page Context, Company, Instance und Screenshot-Zweck pruefen.
+- Kein Tippen ohne `bc_active_editor_diagnosis` oder gleichwertigen aktiven Editorbeweis.
+- Kein unscoped `Neu`, `OK`, `Ja`, `Post`, `Preview`, `Loeschen`, `Starten`.
+- `force: true`, Koordinatenklicks, harte Waits und direkte alte `storageState`-Nutzung sind nicht global verboten, aber in neuen Live-Cases begruendungspflichtig und sollen ueber Helper ersetzt werden.
+
+### Sandbox-Superrechte
+
+- Superrechte sollen Handlungsfreiheit schaffen, nicht Laehmung.
+- Setup, Stammdaten, Companies, Dokumente, Preview, Posting, Korrektur und Cleanup sind erlaubt, wenn der aktive Case sie ausdruecklich freigibt und Evidence-/Korrekturpfad klar sind.
+- Die Sandbox ist Werkstatt und Beweisraum. Sie ist nicht produktiv, aber auch kein Ort fuer unerklaerte Zufallsaktionen.
+
+## 3. Gates
+
+### Echte Stopps
+
+- falsche Instanz oder Instanz unklar
+- Company unklar oder falsche Company
+- Secret/Auth sichtbar oder commitgefaehrdet
+- Dialogwirkung unklar
+- Page-Kontext nur Suchoverlay, Role Center oder generischer Text
+- aktiver Editor nicht bewiesen, aber Wert soll getippt werden
+- Aktion wuerde externe Systeme oder Produktivdaten beruehren
+- Buchclaim ohne Evidence/Quelle
+- TARGET-073 erneut als Live-Editorprobe ohne neue Helper-/Quellenbasis
+
+### Entscheidungsstuetzen, keine Dauerstopps
+
+- Smart Decision Gate
+- Screenshot Truth Gate
+- Page Context Guard
+- Active Editor Diagnosis
+- Quality Audit
+- MB-800-/Microsoft-Learn-Abgleich
+- Next-Step-/Lookahead-Gate
+
+Diese Gates sollen entscheiden, begrenzen oder umordnen. Sie sollen nicht automatisch jede wirksame Aktion verhindern.
+
+## 4. Priorisierte Arbeitspakete
+
+### Sofort
+
+1. Diese Projektentscheidung als zentrale Referenz nutzen.
+2. Freeze nicht durch weitere Reviews verlaengern.
+3. TARGET-073 eingefroren/geparkt lassen.
+4. TARGET-074 als lokalen Foundation-Checkpoint vorbereiten.
+5. Naechsten Live-Pilot nur mit expliziten Capability-Verweisen planen.
+
+### Als naechstes
+
+1. TARGET-074 ausfuehren: Foundation-Stand auf `ready`, `limited-learning-path-only` oder `blocked` klassifizieren.
+2. Danach einen kleinen Live-Pilot waehlen, der das Betriebsmodell testet, bevorzugt Karten-/Stammdatenlogik statt VAT-Grid.
+3. Candidate: `TARGET-075-FIRST-VENDOR-CARD-CONTROLLED-FIT`, falls Nummernserie und Kreditorenbuchungsgruppe ausreichend geklaert sind.
+4. Alternative: `TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK`, falls Stammdaten fachlich noch zu frueh sind.
+
+### Spaeter
+
+1. Case-Registry/Runner fuer neue Cases.
+2. Auth-Freshness-Gate fuer Live-Specs.
+3. TypeScript-Checks in `core` und `active` aufteilen.
+4. Evidence-Index fuer active Universaarl, legacy RM-DEMO, rejected paths und book candidates.
+5. Helper-Konsolidierung fuer Active Editor, Scoped Action, Dialog Gate und Screenshot Truth.
+
+### Nicht anfassen / vermeiden
+
+- keine Massenloeschung alter Tests
+- keine Massenverschiebung alter Evidence
+- keine vollstaendige `package.json`-Bereinigung in einem Schritt
+- kein globales TypeScript-Strict-Refactoring
+- keine weitere Subagent-/Framework-Architektur als Selbstzweck
+- keine Wiederholung von TARGET-073 ohne neue Hypothese
+
+## 5. Erste konkrete Umsetzung
+
+Dieses Dokument ist das erste Umsetzungspaket.
+
+Zweck:
+
+- Die fuenf Planungs-/Review-Laeufe werden in eine einzige Projektentscheidung ueberfuehrt.
+- Der naechste Agent bekommt eine klare Resume-Entscheidung.
+- Widerspruch wird aufgeloest: Superrechte bleiben nutzbar, aber TARGET-073 bleibt geparkt.
+
+Keine Business-Central-Live-Ausfuehrung, kein Playwright-Live-Test und keine wirksame BC-Aktion gehoeren zu diesem Paket.
+
+## 6. Entscheidung zur Live-Queue
+
+TARGET-073 bleibt eingefroren und wird nicht als naechster Live-Case wiederholt.
+
+Der wahrscheinlich beste Resume-Pfad ist:
+
+1. `TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK`
+   - lokal oder read-only
+   - klassifiziert Foundation-Grenzen
+   - entscheidet, ob begrenzter Lernpfad, Helper-first oder Setup-Recovery folgt
+
+2. Danach bevorzugter Live-Pilot:
+   - `TARGET-075-FIRST-VENDOR-CARD-CONTROLLED-FIT`
+   - nur wenn Nummernserie, Kreditorenbuchungsgruppe, Page Context, aktiver Editor und Reopen-Proof planbar sind
+
+3. Alternative Live-/Read-only-Pilot:
+   - `TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK`
+   - wenn Stammdaten fachlich noch nicht sauber genug vorbereitet sind
+
+Vor Resume muessen erfuellt sein:
+
+- `npm run agent:preflight` gruen
+- `npm run check:encoding` gruen
+- `npm run agent:quality:audit` gelesen und in der Case-Entscheidung adressiert
+- naechster Case nennt relevante Capabilities:
+  - `bc_page_context_guard`
+  - `bc_active_editor_diagnosis`
+  - `bc_scoped_action_click`
+  - `bc_dialog_gate`
+  - `screenshot_truth_gate`
+  - `evidence_pack_writer`
+  - `bc_source_research`, wenn Produktlogik oder Buchclaim nicht sicher ist
+
+## 7. Knapp begruendete Konfliktentscheidung
+
+Fruehere Empfehlungen schwankten zwischen "hart einfrieren" und "Superrechte mutig nutzen". Die konsolidierte Entscheidung lautet:
+
+Superrechte werden genutzt, aber nicht fuer denselben blockierten Grid-Pfad. Die Live-Queue wird nicht pauschal gesperrt; sie wird ueber TARGET-074 bewusst wieder geoeffnet. Der erste Pilot soll das neue Betriebsmodell an einem fachlich nuetzlichen, korrigierbaren und buchwirksamen Schritt pruefen.

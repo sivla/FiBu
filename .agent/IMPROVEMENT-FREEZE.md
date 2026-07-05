@@ -3,6 +3,10 @@
 Status: active
 Started: 2026-07-05
 
+Consolidated decision: `.agent/PROJECT-DECISION.md`.
+
+The freeze is not a permanent stop. It pauses TARGET-073 and prevents another blind VAT Page 472 editor retry. The intended resume path is TARGET-074 as a foundation checkpoint, followed by a small capability-referenced pilot live case when the resume conditions below are met.
+
 ## Purpose
 
 Pause the live Business Central execution queue and improve the project system before another book/playthrough run.
