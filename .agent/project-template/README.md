@@ -4,17 +4,30 @@ Status: draft
 Purpose: Projektakte fuer eine realistische Business-Central-Einfuehrung, das kuratierte Buch, Kundenschulung, UAT und Playwright-Beweisfuehrung.
 Last reviewed: 2026-07-06
 
-## Why this exists
+## Wofür diese Projektakte da ist
 
-This project should be handled like a real Business Central implementation, not like a pile of test runs. Every setup, process, book chapter and Playwright proof should connect to a project structure that a consultant could also maintain in Jira.
+Dieses Repository wird wie eine echte Business-Central-Einführung geführt, nicht wie eine Sammlung einzelner Testläufe. Jede Einrichtung, jeder Prozess, jedes Buchkapitel und jeder Playwright-Nachweis soll auf eine Projektstruktur einzahlen, die ein Business-Central-Consultant auch in einem echten Kundenprojekt verwenden könnte.
 
-The target is one integrated system:
+Das Ziel ist ein integriertes System:
 
-- Jira-style work management for scope, epics, tasks, risks and decisions.
-- Business Central consulting logic for setup, data, process and training.
-- Book curation so raw evidence becomes readable customer-facing material.
-- Playwright evidence so important claims can be reproduced in the sandbox.
-- Agent learning so repeated problems become skills, helpers and better rules.
+- Jira-nahe Arbeitssteuerung für Scope, Epics, Aufgaben, Risiken und Entscheidungen.
+- Business-Central-Beratungssicht für Einrichtung, Daten, Prozesse und Schulung.
+- Buch- und Handbuchkuratierung, damit rohe Nachweise zu lesbarem Kundenmaterial werden.
+- Playwright-Nachweise, damit wichtige Aussagen in der Sandbox wiederholbar geprüft werden können.
+- Agentenlernen, damit wiederkehrende Probleme zu Skills, Helpern und besseren Regeln werden.
+
+## Schnellstart für neue Arbeit
+
+Wenn kein konkreterer Auftrag vorliegt, gilt diese Reihenfolge:
+
+1. `UNIVERSAARL-EXECUTION-ROADMAP.md` lesen.
+2. `PROJECT-DASHBOARD-DRAFT.md` und `.agent/state/current.json` prüfen.
+3. Bestätigen, dass aktive Wahrheit `playthru / UNIVERSAARL-DE / Universaarl GmbH` ist.
+4. Legacy-Bezüge aus RM-DEMO, MCP_1_20260210, CRONUS oder Rhein-Main nur als historische Spur oder Musterquelle behandeln.
+5. Den kleinsten nützlichen Fortschritt wählen: Datenpaket, Routenentscheidung, lesender Erstnachweis, UAT-/Trainingsbaustein, Buch-/Handbuchbaustein, Playwright-Helfer oder State-/Backlog-Korrektur.
+6. Nach der Arbeit Dashboard, State, Backlog, Decision Log oder Risk Register nur dann aktualisieren, wenn sich die Projektwahrheit oder der nächste Schritt wirklich geändert hat.
+
+Keine neue Methodikdatei anlegen, wenn ein bestehendes Artefakt erweitert, gekürzt, zusammengeführt oder geparkt werden kann.
 
 ## Current files
 

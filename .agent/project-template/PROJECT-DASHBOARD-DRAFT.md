@@ -4,11 +4,20 @@ Status: draft
 Purpose: Kompakte Projektsteuerung fuer Universaarl BC Implementierung, Buch, Training und Playwright-Evidence.
 Last reviewed: 2026-07-06
 
-## How to use
+## How to use / Verwendung
 
-This dashboard is the project manager view. It should stay short and point to the detailed files. Update it after meaningful project changes, not after every tiny edit.
+Dieses Dashboard ist die Projektleiter-Sicht. Es bleibt kurz und verweist auf Detaildateien. Aktualisiere es nach echten Projektänderungen, nicht nach jeder kleinen Textkorrektur.
 
-## Overall status
+Aktive Wahrheit:
+
+- Instanz: `playthru`
+- Company: `UNIVERSAARL-DE`
+- Referenzfirma: Universaarl GmbH
+- Nächster Live-Pilot nach Freeze-Lift: `TARGET-075`
+- Geparkter Live-Case: `TARGET-073`
+- Legacy: RM-DEMO, MCP_1_20260210, CRONUS, Rhein-Main und RM-* sind keine aktive Projektwahrheit.
+
+## Overall status / Gesamtstatus
 
 | Area | Status | Note |
 | --- | --- | --- |
@@ -50,15 +59,15 @@ This dashboard is the project manager view. It should stay short and point to th
 | Book map | draft | `WORKSTREAM-BOOK-CHAPTER-MAP-DRAFT.md` maps workstreams, Jira anchors, customer data, UAT, training and evidence gates to curated book chapters. |
 | Playwright scenario catalog | draft | Read-first context/navigation/setup-dependency scenarios exist for WS02/WS03/WS04. |
 
-## Current milestone
+## Current milestone / Aktueller Meilenstein
 
 Current milestone: `M0 Project mobilized`
 
-Goal:
+Ziel:
 
-- Build the project management foundation before expanding every workstream.
+- Projektbetrieb, aktive Wahrheit und Steuerungsartefakte stabil halten, bevor weitere Workstreams breit ausgebaut werden.
 
-M0 exit criteria:
+M0-Exit-Kriterien:
 
 - Project plan exists.
 - Workbreakdown exists.
@@ -70,7 +79,7 @@ M0 exit criteria:
 - Risk register exists.
 - First workstream is expanded as pattern.
 
-Status: mostly drafted, not yet reviewed as final.
+Status: größtenteils entworfen, noch nicht final abgenommen.
 
 ## Workstream readiness
 
@@ -131,7 +140,7 @@ Status: mostly drafted, not yet reviewed as final.
 | RISK-018 | Legacy material remains active steering truth | P0 | active |
 | RISK-019 | Project artifacts drift into mixed-language customer text | P1 | active |
 
-## Next recommended work
+## Next recommended work / Nächste empfohlene Arbeit
 
 1. Use `UNIVERSAARL-EXECUTION-ROADMAP.md` as the single current steering source.
 2. Run the local freeze/resume checks before any Business Central or Playwright live work.
