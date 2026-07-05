@@ -1,143 +1,130 @@
-# Business-Central-Lern- und Screenshot-Projekt
+# Universaarl Business-Central-Implementierungsbetriebssystem
 
 ## Aktueller Einstieg
 
-Neue Agents starten hier:
+Neue Agents, Projektleiter, Business-Central-Consultants und Solution Architects starten hier:
 
 ```text
-playwright/projects/fibu-book5/CURRENT-STATE.md
+.agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md
+.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md
+.agent/project-template/PROJECT-DASHBOARD-DRAFT.md
+.agent/state/current.json
 ```
 
-Diese Datei beschreibt den letzten Stand, die offenen fachlichen Grenzen und den nächsten sinnvollen Schritt. Sie ist wichtiger als der Chatverlauf.
+Diese Dateien beschreiben die aktive Projektwahrheit, die erlaubte naechste Aktion, die Freeze-/Resume-Grenzen und die Artefaktklassen. Sie sind wichtiger als alte Chatverlaeufe oder historische State-Bloecke.
 
-Dieses Repository ist ein Arbeitsprojekt, um Microsoft Dynamics 365 Business Central systematisch zu lernen, zu testen und für ein Buchprojekt mit bebilderten Klickanleitungen zu dokumentieren.
+## Aktive Zielwelt
 
-Der erste konkrete Anwendungsfall ist `FiBu-Buch 5`. Das langfristige Ziel ist jedoch größer: Das Projekt soll Business Central durch reale Nutzung erschließen. Playwright klickt Prozesse durch, erzeugt Screenshots, entdeckt sichtbare Funktionen und hilft dabei, das Buch fachlich zu verbessern.
+- Business-Central-Instanz: `playthru`
+- Zielcompany: `UNIVERSAARL-DE`
+- Referenzfirma: Universaarl GmbH
+- Waehrung und Zielkontext: EUR, deutsches Business Central, deutsche Kunden-/Schulungslogik
+- Fuehrende Sprache fuer Projekt, Buch, UAT, Training und Kundenhandbuch: Deutsch
+- Geparkter Live-Case: `TARGET-073`
+- Erster erlaubter Resume-Pilot nach Freeze-Gate: `TARGET-075`, read-first und no-write
+
+Legacy-Grenze:
+
+- `RM-DEMO`, `MCP_1_20260210`, CRONUS, Rhein-Main und RM-* sind keine aktive Projektwahrheit.
+- Historische Evidence bleibt erhalten, darf aber neue Arbeit nicht mehr fuehren.
+- Wiederverwendbare Muster aus Legacy werden neutralisiert oder fuer Universaarl neu aufgebaut.
 
 ## Projektauftrag
 
-`FiBu` ist ein kombiniertes Lern-, Test- und Redaktionsprojekt.
+`FiBu` wird zu einem schlanken, realitaetsnahen und wiederverwendbaren Business-Central-Implementierungsbetriebssystem.
 
 Das Projekt soll:
 
-- das Buch fachlich durcharbeiten,
-- Business Central durch echte Nutzung lernen,
-- jede Anleitung im Buch praktisch prüfen,
-- fehlende Stammdaten und Einrichtungen in BC erkennen, anlegen und dokumentieren,
-- Klickpfade mit Playwright, MCP-Exploration und manueller Sichtprüfung absichern,
-- Screenshots und Schrittfolgen für alle relevanten Buchanleitungen erzeugen,
-- sichtbare Felder, Buttons, FastTabs, FactBoxes, Dialoge und Fehlermeldungen fachlich erklären,
-- Abweichungen zwischen Buchtext und BC-Wirklichkeit als Findings erfassen,
-- das Buch sinnvoll erweitern, wenn Bedienung, Prozesslogik, Prüfung oder Evidence Pack dadurch klarer werden,
-- Playwright-Wissen so aufbauen, dass spätere Business-Central-Projekte und Umgebungen nach demselben Muster getestet werden können.
+- eine realistische Universaarl-Referenzimplementierung in Business Central aufbauen,
+- Kunden-Onboarding, Projektsetup, Discovery, Solution Blueprint, Datenanforderungen, Konfiguration, Migration, UAT, Schulung, Go-live und Hypercare als wiederverwendbare Projektakte abbilden,
+- Business-Central-Setup und Prozesse in `playthru` nachweisen,
+- Playwright als reproduzierbares Evidence- und Schulungswerkzeug nutzen,
+- Jira-/Confluence-nahe Artefakte erzeugen, die fuer echte Kundenprojekte wiederverwendbar sind,
+- aus Evidence kuratierte Kundenhandbuch- und Buchtexte machen,
+- Legacy-Pfade aus aktiver Steuerung entfernen.
 
-Das Ziel ist nicht nur, dass ein Test grün ist. Das Ziel ist, dass ein Anfänger mit dem Buch Business Central versteht, die Klickfolge nachmachen kann und weiß, warum Business Central an jeder Stelle so reagiert.
+Das Ziel ist nicht maximale Dokumentmenge. Das Ziel ist ein belastbarer Blueprint, mit dem ein echter Business-Central-Partner ein Kundenprojekt fuehren koennte.
 
 ## Projektziele
 
-1. Business-Central-Prozesse aus dem Buch praktisch durchspielen.
-2. Fehlende Testdaten in BC anlegen und versioniert dokumentieren.
-3. Screenshots für bebilderte Klickanleitungen erzeugen.
-4. Jedes sichtbare UI-Element fachlich verstehen: Seiten, Buttons, Menüs, Felder, FastTabs, FactBoxes, Dialoge und Hinweise.
-5. Dinge, die im Screenshot sichtbar sind, aber im Buch fehlen, als Fundstelle erfassen.
-6. Fundstellen mit Microsoft-Dokumentation, BC-Hilfe und eigenen Tests nachrecherchieren.
-7. Das Buch aktualisieren, wenn eine Funktion für Bedienung, Prozessverständnis, Prüfung, Fehlerdiagnose oder Evidence Pack relevant ist.
-8. Learnings so dokumentieren, dass ein anderer Codex-Account oder ein anderes Projekt später weiterarbeiten kann.
-9. Klickpfade, Buttons und Funktionen nicht nur theoretisch kennen, sondern durch Playwright-Läufe praktisch durchspielen und nachweisen.
-
-## Arbeitsprinzip
-
-Das Buch gibt den roten Faden vor. Business Central selbst korrigiert und erweitert diesen roten Faden durch echte Nutzung.
-
-Wenn Playwright beim Testen etwas findet, das nicht erklärt ist, wird es nicht ignoriert. Es wird geprüft:
-
-- Ist es nur Navigation oder fachlich relevant?
-- Muss der Leser den Button oder das Feld verstehen?
-- Hat das Element Auswirkungen auf Buchung, Steuer, Dimension, Lager, Bericht oder Evidence Pack?
-- Fehlt dem Buch dazu eine Erklärung?
-- Braucht der Test zusätzliche Stammdaten oder Setup-Schritte?
+1. Aktive Projektwahrheit und Legacy-Grenzen eindeutig halten.
+2. Universaarl als realistische Fallstudienfirma aufbauen.
+3. Business-Central-Foundation zuerst lesend beweisen, danach gated schreiben.
+4. Datenanforderungen, Entscheidungen, Risiken, UAT und Training wie in einem Kundenprojekt fuehren.
+5. Playwright-Szenarien mit Startzustand, Zweck, Stop-Regeln, Evidence und Buch-/Trainingsbezug bauen.
+6. Buch und Kundenhandbuch aus kuratierten, belegten Projektbausteinen schreiben.
+7. Wiederholbare Muster als Skills, Helper oder Check-Regeln dokumentieren, aber nur bei echtem Nutzen.
+8. Legacy-Pfade aus aktiven README-/Dashboard-/Backlog-/Script-/State-Fuehrungen entfernen.
 
 ## Zentrale Dokumente
 
 | Datei/Ordner | Zweck |
 |---|---|
-| `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md` | aktuelles Buchmanuskript |
-| `playwright/README.md` | technische Playwright-Struktur |
-| `playwright/BC-LEARNING-MODEL.md` | Lernmodell: Business Central durch Nutzung verstehen |
-| `playwright/FINDINGS.md` | offene Fundstellen aus Screenshots und Tests |
-| `playwright/projects/fibu-book5/UI-INVENTORY.md` | Inventar der gesehenen, geklickten und verstandenen BC-Funktionen |
-| `playwright/projects/fibu-book5/BOOK-CLICK-GUIDE-COVERAGE.md` | Abdeckung der getesteten bebilderten Klickanleitungen |
-| `playwright/LEARNINGS.md` | wiederverwendbare BC-Playwright-Erfahrungen |
-| `playwright/PROJECTS.md` | Register für mehrere Projekte |
-| `playwright/ENVIRONMENTS.md` | Regeln für Umgebungen und `.env` |
-| `HANDOVER.md` | Übergabe an andere Codex-Accounts |
+| `.agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md` | aktuelle Roadmap und naechste erlaubte Aktion |
+| `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` | Einordnung in `active-control`, `active-work`, `reference`, `parked`, `legacy-purge-source` und `superseded/remove-candidate` |
+| `.agent/project-template/PROJECT-DASHBOARD-DRAFT.md` | kompakte Projektleiter-Sicht |
+| `.agent/state/current.json` | maschinenlesbarer State; top-level aktive Wahrheit gewinnt gegen historische `latest*`-Bloecke |
+| `.agent/PLAYTHRU-AUTHORITY-CHARTER.md` | Handlungsvollmacht innerhalb `playthru`, ohne den Freeze zu uebergehen |
+| `.agent/SKILL-SYSTEM.md` | Regel, wann Skills entstehen duerfen und wann nicht |
+| `.agent/project-template/WORKSTREAM-BOOK-CHAPTER-MAP-DRAFT.md` | Verbindung von Workstreams, UAT, Training, Evidence und Buch |
+| `.agent/project-template/ROUTE-DECISION-CARDS-FOUNDATION-MASTER-DATA-DRAFT.md` | Variantenvergleich fuer Foundation- und Stammdatenrouten |
+| `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md` | Buchmaster, aber nicht aktive Projektsteuerung |
+| `playwright/projects/fibu-book5/` | Playwright, Evidence, Atlanten und Bucharbeitsmaterial |
 
-## Erste Projektlinie
+## Aktueller Fokus
 
-Aktives Projekt:
+1. Improvement Freeze sauber halten, bis Resume-Gates geprueft sind.
+2. `TARGET-073` geparkt lassen.
+3. `TARGET-075` als ersten read-first/no-write Foundation-Pilot verwenden, sobald der Freeze bewusst geliftet ist.
+4. Danach `FOUNDATION-READINESS-DECISION.md` erstellen oder aktualisieren.
+5. Legacy-Pfade nur noch als Migrationsquelle lesen, nicht als aktive Fuehrung.
 
-```text
-playwright/projects/fibu-book5/
-```
+## Definition von belastbar
 
-Aktueller Fokus:
+Ein Projektbaustein oder Buchabschnitt ist erst dann belastbar, wenn:
 
-- nackige Spielwiese mit CRONUS einrichten
-- Trainingscompany `RM-DEMO` aufbauen
-- Buchanleitungen praktisch testen
-- Screenshots erzeugen
-- sichtbare BC-Funktionen erklären
-- Buchtext bei Lücken ergänzen
+- die aktive Zielwelt und Company stimmen,
+- Zweck, Daten, Entscheidung, UAT-/Training- und Buchbezug klar sind,
+- der Business-Central-Weg lesend beobachtet oder gated ausgefuehrt wurde,
+- Evidence sagt, was bewiesen und was nicht bewiesen ist,
+- Screenshots wirklich den behaupteten Kontext zeigen,
+- Legacy nicht als aktive Universaarl-Wahrheit genutzt wird,
+- der naechste Schritt in Roadmap, Dashboard und State nicht widerspruechlich ist.
 
-## Definition von fertig
+## Arbeitsprinzip
 
-Ein getesteter Buchabschnitt ist erst dann fertig, wenn:
+Arbeite in kleinen, pruefbaren Batches:
 
-- der Klickpfad in Business Central funktioniert
-- benötigte Testdaten dokumentiert sind
-- Screenshots erzeugt und geprüft wurden
-- jedes fachlich relevante sichtbare Element erklärt ist
-- relevante Buttons und Funktionen im UI-Inventar erfasst sind
-- offene Funktionen in `playwright/FINDINGS.md` erfasst oder erledigt sind
-- das Buch die Erkenntnisse enthält
-- Evidence-Pack-Hinweise vorhanden sind
+1. Aktive Wahrheit lesen.
+2. Kleinsten sinnvollen Fortschritt waehlen.
+3. Ergebnis als bewiesen, beobachtet, Annahme, blockiert, geparkt, verworfen oder `legacy-purge-source` klassifizieren.
+4. Nur die Steuerdateien aktualisieren, deren Aussage sich wirklich geaendert hat.
+5. Rauschen entfernen oder parken, wenn es die aktive Steuerung erschwert.
 
-## Encoding
+Keine neue Methodikdatei anlegen, wenn ein bestehendes Artefakt erweitert, gekuerzt, zusammengefuehrt oder geparkt werden kann.
 
-Alle Textdateien im Projekt werden als UTF-8 gepflegt. Das ist wichtig, weil Buchtext, Business-Central-Begriffe und Microsoft-Learn-Zitate deutsche Umlaute enthalten.
+## Checks
 
-Pruefung:
-
-```powershell
-npm run check:encoding
-```
-
-Unter macOS/Linux:
-
-```bash
-npm run check:encoding
-```
-
-Wenn `Get-Content` in PowerShell deutsche Umlaute sichtbar falsch anzeigt, ist in der Regel die Konsolenausgabe falsch eingestellt, nicht die Datei. Fuer die aktuelle Sitzung kann die Konsole so auf UTF-8 gestellt werden:
+Wichtige lokale Checks:
 
 ```powershell
-. .\scripts\Use-Utf8Console.ps1
+npm run agent:preflight
+npm run agent:workbreakdown:check
+npm run check:encoding
+git diff --check
+npx tsc --noEmit
 ```
 
-Unter macOS ist die Terminal-Ausgabe normalerweise bereits UTF-8. Falls eine Shell-Sitzung trotzdem falsch konfiguriert ist:
+Business Central oder Playwright live nur ausfuehren, wenn die aktiven Gates es erlauben.
 
-```bash
-. ./scripts/use-utf8-console.sh
-```
+## Encoding und Plattformen
 
-## Plattformen
-
-Das Projekt soll auf Windows und macOS laufen.
+Alle Textdateien werden als UTF-8 gepflegt. Das Projekt soll auf Windows und macOS laufen.
 
 | Bereich | Regel |
 |---|---|
 | Node/npm | Skripte in `package.json` plattformneutral halten |
 | Playwright | Browserinstallation je Rechner mit `npx playwright install chromium` |
-| Pfade | Im Code bevorzugt Node-`path` oder Playwright-Projektpfade nutzen, keine hart verdrahteten Windows-Trenner |
+| Pfade | Im Code bevorzugt Node-`path` oder Playwright-Projektpfade nutzen |
 | Encoding | UTF-8 und LF ueber `.editorconfig` und `.gitattributes` |
 | Secrets | `.env` und `playwright/.auth/` bleiben lokal auf jedem Rechner |

@@ -28,6 +28,7 @@ Last reviewed: 2026-07-06
 
 | Artifact | Class | Why it controls |
 | --- | --- | --- |
+| `README.md` | `active-control` | Root entrypoint for new humans and agents; must not steer to legacy worlds. |
 | `.agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md` | `active-control` | Single current roadmap, freeze/resume order and TARGET-075 boundary. |
 | `.agent/project-template/PROJECT-DASHBOARD-DRAFT.md` | `active-control` | Compact project manager view. |
 | `.agent/state/current.json` top-level active truth and `implementationOperatingSystem` block | `active-control` | Machine-readable active instance, company, freeze and next case. |
