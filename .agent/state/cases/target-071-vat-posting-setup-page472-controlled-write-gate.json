@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
+  "status": "ready-next",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-target-execution",
+  "activeArea": "universaarl-vat-posting-setup-page472-controlled-write-gate",
+  "mayRunPlaywright": true,
+  "effectiveBcActionsAllowed": true,
+  "purpose": "Run a controlled live Page 472 VAT Posting Setup gate for the single INLAND/VAT19 setup row, stopping before write unless all live page and row-bound field conditions are met.",
+  "whyNow": "TARGET-027D32 approved this as the narrowest practical next W1 Foundation step after Page 472/Table 325 field truth and Page 470 parking.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-070d-vat-page472-table325-alternative-route-decision/TARGET-070D-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d26-vat-matrix-alternative-route-discovery/TARGET-027D26-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d29-vat-matrix-row-bound-route-recovery/TARGET-027D29-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d30-vat-matrix-park-or-source-route-decision/TARGET-027D30-result.json",
+    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/TARGET-061-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d31e-vat-business-groups-source-or-pageinspection-decision/TARGET-027D31E-result.json"
+  ],
+  "allowedActions": [
+    "run-playwright-target-test",
+    "open-business-central-stored-auth",
+    "confirm-instance-playthru",
+    "confirm-company-universaarl-de",
+    "open-page472-vat-posting-setup",
+    "capture-pre-write-screenshot-qa",
+    "write-single-vat-posting-setup-row-if-all-gates-pass",
+    "reopen-proof-screenshot-qa",
+    "write-result-json",
+    "update-state-and-coverage-plan"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "write-vat-business-posting-group",
+    "write-vat-product-posting-group",
+    "write-any-row-except-inland-vat19-page472",
+    "delete-or-cleanup-vat-row",
+    "configuration-package-import-export-validate-apply",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut"
+  ],
+  "smartDecision": {
+    "status": "approved-next-controlled-live-gate-with-hard-preconditions",
+    "approvedNextCase": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
+    "notApprovedAsDirectWrite": true,
+    "targetPage": "Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix Einr.",
+    "sourceTable": "Table 325 VAT Posting Setup",
+    "targetValues": {
+      "vatBusinessPostingGroup": "INLAND",
+      "vatProductPostingGroup": "VAT19",
+      "vatPercent": "19",
+      "vatCalculationType": "Normale MwSt.",
+      "salesVatAccount": "3806",
+      "purchaseVatAccount": "1406"
+    },
+    "requiredPreWriteProof": [
+      "stored auth usable and BC shell confirms playthru / UNIVERSAARL-DE",
+      "Page 472 title or Page Inspection confirms VAT Posting Setup (472, List) / Table 325",
+      "target row is absent or visibly incomplete in a way that can be updated without deleting/cleanup",
+      "field route is row-bound for VAT Bus. Posting Group, VAT Prod. Posting Group, VAT %, VAT Calculation Type, Sales VAT Account and Purchase VAT Account",
+      "screenshot before write documents exact page, row and empty/current target fields",
+      "after write, reopen proof shows all target values in the same row"
+    ],
+    "stopBeforeWriteIf": [
+      "Page 472 opens only as Role Center, search overlay or generic navigation text",
+      "Page 470 is required to complete the action",
+      "only broad Configuration Package import/export/validate/apply is available",
+      "the UI route repeats D28 top-level Neu/label-bound or blind Grid/Edit-List routes without stronger row-bound proof",
+      "a wrong existing INLAND/VAT19 row requires delete/cleanup/correction beyond this case",
+      "any dialog appears that is not explicitly understood and scoped to this VAT setup row"
+    ],
+    "claimBoundary": "Even if the next write gate succeeds, it proves only a VAT Posting Setup row after reopen. German VAT correctness still needs later Preview Posting, VAT Entries and G/L Entries."
+  },
+  "targetValues": {
+    "vatBusinessPostingGroup": "INLAND",
+    "vatProductPostingGroup": "VAT19",
+    "vatPercent": "19",
+    "vatCalculationType": "Normale MwSt.",
+    "salesVatAccount": "3806",
+    "purchaseVatAccount": "1406"
+  },
+  "preWriteGates": [
+    "stored auth usable and BC shell confirms playthru / UNIVERSAARL-DE",
+    "Page 472 title or Page Inspection confirms VAT Posting Setup (472, List) / Table 325",
+    "target row is absent or visibly incomplete in a way that can be updated without deleting/cleanup",
+    "field route is row-bound for VAT Bus. Posting Group, VAT Prod. Posting Group, VAT %, VAT Calculation Type, Sales VAT Account and Purchase VAT Account",
+    "screenshot before write documents exact page, row and empty/current target fields",
+    "after write, reopen proof shows all target values in the same row"
+  ],
+  "stopIf": [
+    "Page 472 opens only as Role Center, search overlay or generic navigation text",
+    "Page 470 is required to complete the action",
+    "only broad Configuration Package import/export/validate/apply is available",
+    "the UI route repeats D28 top-level Neu/label-bound or blind Grid/Edit-List routes without stronger row-bound proof",
+    "a wrong existing INLAND/VAT19 row requires delete/cleanup/correction beyond this case",
+    "any dialog appears that is not explicitly understood and scoped to this VAT setup row"
+  ],
+  "acceptanceCriteria": [
+    "Stored auth and BC shell confirm playthru / UNIVERSAARL-DE.",
+    "Page 472 / Table 325 context is visible or Page Inspection confirms it.",
+    "Before screenshot clearly shows the target page and current row/field state.",
+    "Only the single INLAND/VAT19 row may be created or updated.",
+    "After reopen screenshot shows INLAND, VAT19, 19, Normale MwSt., 3806 and 1406 in the same row.",
+    "If any gate fails, resultStatus is blocked and setupChanged remains false."
+  ],
+  "nextIfSuccessful": "TARGET-071B-VAT-POSTING-SETUP-REOPEN-AND-SOURCE-REVIEW",
+  "nextIfBlocked": "TARGET-032P-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PARK",
+  "nextCase": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
+  "createdAt": "2026-07-05T21:04:00.000+02:00"
+}

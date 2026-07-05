@@ -623,6 +623,13 @@
           "No German VAT calculation, VAT Entry, G/L Entry, Preview Posting or Posting is proven.",
           "No posting readiness or final German tax correctness is proven."
         ]
+      },
+      "latestVatWriteGateDecision": {
+        "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+        "status": "observed-local-decision",
+        "resultPath": "playwright/projects/fibu-book5/evidence/target-027d32-vat-setup-write-gate-decision/TARGET-027D32-result.json",
+        "nextCase": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
+        "decision": "approved-next-controlled-live-gate-with-hard-preconditions"
       }
     },
     "universaarlUsecaseBacklog": {
@@ -861,7 +868,7 @@
     },
     "vatSetup": {
       "chapter": "Kapitel 6/7",
-      "status": "write-locked-page472-decision-gate-next",
+      "status": "controlled-page472-live-gate-next-no-write-yet",
       "latestPracticalCase": "TARGET-027D31C-VAT-SETUP-ROUTE-BLOCKER-REVIEW",
       "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31c-vat-setup-route-blocker-review/TARGET-027D31C-result.json",
       "covered": [
@@ -870,16 +877,23 @@
         "Page 1801 Unterstuetztes Setup reachable read-only from D31C without wizard completion."
       ],
       "openLimits": [
-        "No INLAND/VAT19 VAT Posting Setup row is proven saved.",
-        "No VAT percent 19 setup row is proven.",
-        "No Sales VAT Account 3806 setup row is proven.",
-        "No Purchase VAT Account 1406 setup row is proven.",
-        "No Page 470 VAT Business Posting Groups route is recovered.",
-        "No German VAT calculation, VAT Entry, G/L Entry, Preview Posting or Posting is proven.",
-        "No posting readiness or final German tax correctness is proven."
+        "No INLAND/VAT19 VAT Posting Setup row is saved yet.",
+        "No VAT percent 19, Sales VAT Account 3806 or Purchase VAT Account 1406 is proven in Table 325 yet.",
+        "No live Page 472 write route is proven yet.",
+        "No German VAT calculation, Preview Posting, VAT Entry, G/L Entry or posting readiness is proven.",
+        "No final German tax correctness or tax-advisor approval is proven."
       ],
-      "nextCase": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
-      "latestCase": "TARGET-070D-VAT-PAGE472-TABLE325-ALTERNATIVE-ROUTE-DECISION"
+      "nextCase": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
+      "latestCase": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+      "latestDecision": "TARGET-071 approved only as gated live Page 472 route; no setup write yet.",
+      "targetValues": {
+        "vatBusinessPostingGroup": "INLAND",
+        "vatProductPostingGroup": "VAT19",
+        "vatPercent": "19",
+        "vatCalculationType": "Normale MwSt.",
+        "salesVatAccount": "3806",
+        "purchaseVatAccount": "1406"
+      }
     },
     "w1Foundation": {
       "latestPostingGroupsRouteRecovery": "TARGET-064-POSTING-GROUPS-ROUTE-RECOVERY-AFTER-STRONG-QA",
@@ -890,7 +904,7 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-07-05T20:32:00.000+02:00",
+  "updatedAt": "2026-07-05T21:04:00.000+02:00",
   "activeArea": "universaarl-vat-page470-route-decision",
   "currentBlock": "Page 314 Wareneinkaufskonto / Purch. Account 5400 is still not persisted. TARGET-058 showed List Edit and a row-bound target cell, but the controlled attempt opened the column menu and Reopen proof showed no 5400.",
   "latestPracticalCase": {

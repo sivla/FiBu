@@ -1,91 +1,90 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-070D-VAT-PAGE472-TABLE325-ALTERNATIVE-ROUTE-DECISION-RUN",
-  "caseId": "TARGET-070D-VAT-PAGE472-TABLE325-ALTERNATIVE-ROUTE-DECISION",
+  "runId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION-RUN",
+  "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
   "status": "observed-local-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Page 472/Table 325 selected as the strongest current VAT setup field/context basis for a later local write-gate decision; no setup write unlocked.",
+  "summary": "Approved TARGET-071 only as a controlled live Page 472 VAT Posting Setup gate with hard pre-write requirements; no VAT setup write occurred.",
   "proved": [
-    "Page 472/Table 325 is the strongest current VAT setup knowledge base after Page 470 was parked.",
-    "Page 472/Table 325 evidence can support a later local write-gate decision because it contains read-only page context and technical field truth.",
-    "Page 472/Table 325 evidence does not by itself unlock a setup write.",
-    "Configuration-package import/apply remains too broad for the next step and is rejected for the current route.",
-    "The next useful step is TARGET-027D32 as a local VAT setup write-gate decision, not a BC write run."
+    "A later controlled Page 472 live gate is justified as the next practical W1 Foundation step.",
+    "The intended VAT Posting Setup row scope is explicit: INLAND + VAT19 + 19 + Normale MwSt. + 3806 + 1406.",
+    "The next case must stop before any write unless live page context, row scope, field route and pre-write screenshot QA are all clear.",
+    "Page 470 remains parked and is not required for the next Page 472 gate.",
+    "Configuration Package import/apply is rejected for this next step because it is too broad and cleanup-heavy."
   ],
   "notProved": [
-    "No INLAND/VAT19 VAT Posting Setup row is proven saved.",
-    "No VAT percent 19 setup row is proven.",
-    "No Sales VAT Account 3806 setup row is proven.",
-    "No Purchase VAT Account 1406 setup row is proven.",
-    "No Page 470 VAT Business Posting Groups route is recovered.",
-    "No German VAT calculation, VAT Entry, G/L Entry, Preview Posting or Posting is proven.",
-    "No posting readiness or final German tax correctness is proven."
+    "No INLAND/VAT19 VAT Posting Setup row is saved yet.",
+    "No VAT percent 19, Sales VAT Account 3806 or Purchase VAT Account 1406 is proven in Table 325 yet.",
+    "No live Page 472 write route is proven yet.",
+    "No German VAT calculation, Preview Posting, VAT Entry, G/L Entry or posting readiness is proven.",
+    "No final German tax correctness or tax-advisor approval is proven."
   ],
   "blockedBy": [],
   "warnings": [
-    "Table 325 field truth is a field map, not setup truth.",
-    "A later write case still needs live page context, Smart Decision, value scope, reopen proof and screenshot QA.",
-    "O2C/P2P remain blocked while VAT Posting Setup and General Posting Setup are not posting-ready."
+    "TARGET-071 is a gate, not a permission to force a write through unclear UI.",
+    "If Page 472 opens in Role Center/search context or only a broad import route appears, TARGET-071 must block without setup change.",
+    "Even a successful setup row needs later Preview Posting and entry trace before book claims."
   ],
   "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-070d-vat-page472-table325-alternative-route-decision/TARGET-070D-result.json",
     "playwright/projects/fibu-book5/evidence/target-027d26-vat-matrix-alternative-route-discovery/TARGET-027D26-result.json",
     "playwright/projects/fibu-book5/evidence/target-027d29-vat-matrix-row-bound-route-recovery/TARGET-027D29-result.json",
     "playwright/projects/fibu-book5/evidence/target-027d30-vat-matrix-park-or-source-route-decision/TARGET-027D30-result.json",
     "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/TARGET-061-result.json",
-    "playwright/projects/fibu-book5/evidence/target-070c-vat-page470-source-object-or-alternative-route-decision/TARGET-070C-result.json"
+    "playwright/projects/fibu-book5/evidence/target-027d31e-vat-business-groups-source-or-pageinspection-decision/TARGET-027D31E-result.json"
   ],
-  "nextStep": "Run TARGET-027D32 locally as a VAT setup write-gate decision. Do not write VAT setup yet.",
-  "nextCase": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+  "nextStep": "Run TARGET-071 as a controlled live Page 472 VAT Posting Setup gate; stop before write unless all pre-write gates pass.",
+  "nextCase": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
   "nextStepDecision": {
-    "currentCase": "TARGET-070D-VAT-PAGE472-TABLE325-ALTERNATIVE-ROUTE-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
-    "lastEvidenceSummary": "TARGET-027D26/TARGET-061 show Page 472 VAT Posting Setup read-only context; TARGET-027D29 adds Page Inspection/Table 325 field truth; TARGET-027D28/D29/D30 park direct grid/New/Edit-List write routes; TARGET-070C parks Page 470.",
+    "currentCase": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-070D selected Page 472/Table 325 as the strongest field/context basis; TARGET-027D26 and TARGET-061 show Page 472 visible read-only; TARGET-027D29 gives Table 325 field truth; D28/D29/D30 parked weak grid/New/Edit-List routes.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The next step must decide a narrow VAT setup write gate from Page 472/Table 325 evidence before any UI write. It avoids repeating Page 470 and avoids jumping straight into setup changes.",
+    "reason": "The next case is sensible only as a controlled live gate with mandatory pre-write proof and stop rules. It is not a direct VAT setup success claim.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+        "caseId": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
         "status": "ready-next",
-        "reason": "Local decision only; it can decide whether a later narrow Page 472 VAT setup write case is allowed."
+        "reason": "It is the narrowest practical route to either prove or block the Page 472 VAT setup write with real live context."
       },
       {
         "caseId": "TARGET-071-VAT-GROUPS-CONTROLLED-WRITE-GATE-DECISION",
         "status": "blocked",
-        "reason": "Page 470 remains parked as current UI-route blocker; no VAT Business Posting Group write gate yet."
+        "reason": "Page 470 remains parked; VAT Business Posting Groups writes are not part of the Page 472 setup-row gate."
       },
       {
         "caseId": "TARGET-032P-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PARK",
         "status": "ready-after-current",
-        "reason": "General Posting Setup 5400 is a separate Foundation blocker and should not be mixed into VAT Page 472."
+        "reason": "If VAT Page 472 blocks again, General Posting Setup 5400 remains the next separate Foundation blocker."
       },
       {
         "caseId": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
         "status": "ready-after-current",
-        "reason": "Foundation checkpoint remains useful after VAT/General Posting blockers are classified."
+        "reason": "Foundation checkpoint becomes useful after the VAT/Page472 and General Posting blockers are classified."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "blocked",
-        "reason": "O2C remains blocked until VAT Posting Setup and General Posting Setup readiness are either proven or explicitly scoped as learning-only."
+        "reason": "O2C remains blocked until VAT and General Posting Setup are proven or consciously limited as learning-only."
       }
     ],
     "queueChangesMade": [
-      "Closed TARGET-070D as observed-local-decision.",
-      "Created TARGET-027D32 as the next local VAT write-gate decision if missing.",
-      "Kept actual VAT setup writes, Preview Posting, Posting, master data and API shortcuts locked."
+      "Closed TARGET-027D32 as observed-local-decision.",
+      "Created TARGET-071 as the next controlled live Page 472 VAT Posting Setup gate.",
+      "Kept Preview Posting, Posting, master data, document drafts, Page 470 writes and API shortcuts locked."
     ],
-    "selectedNextCase": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
-    "whySelectedNextCaseIsBest": "It is the smallest useful next step: a Smart Decision gate that can approve, narrow, or reject a later Page 472 setup write without executing BC.",
+    "selectedNextCase": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It converts existing Page 472/Table 325 learning into one practical, bounded live test with strict stop rules instead of looping on Page 470 or broad configuration packages.",
     "risksBeforeNextCase": [
-      "Do not treat Table 325 field truth as persisted VAT setup.",
-      "Do not write INLAND/VAT19 values before a separate controlled write case exists.",
-      "Do not claim German VAT correctness before Preview Posting, VAT Entries and G/L Entries."
+      "A visible Page 472 list can still be insufficient for a row-bound write.",
+      "Existing wrong or partial VAT rows may require cleanup outside this case.",
+      "A successful row write is not German VAT final proof."
     ],
     "requiredPreparation": [
-      "Use TARGET-027D26, TARGET-027D29, TARGET-027D30, TARGET-061 and TARGET-070C as inputs.",
-      "Explicitly reject repeated Page 470 click loops and broad configuration-package import routes.",
-      "Return a yes/no decision for one narrow later write case."
+      "Run stored-auth and instance/company checks before Playwright.",
+      "Use screenshot QA before and after any setup value change.",
+      "Stop before write unless all target fields and row scope are unambiguous."
     ]
   },
   "flags": {
@@ -99,6 +98,6 @@
     "noApiShortcut": true,
     "noBookChange": true
   },
-  "updatedAt": "2026-07-05T20:32:00.000+02:00",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-070d-vat-page472-table325-alternative-route-decision/TARGET-070D-result.json"
+  "updatedAt": "2026-07-05T21:04:00.000+02:00",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d32-vat-setup-write-gate-decision/TARGET-027D32-result.json"
 }

@@ -625,6 +625,17 @@ TARGET-069 laeuft ohne Business-Central- und ohne Playwright-Ausfuehrung. Der La
 
 Fuer Universaarl folgt daraus: Der naechste Schritt ist TARGET-070 als read-only Page-470-Route-Parity-Gate. Erst wenn ein aktueller Screenshot mit echter Page-470-Listenoberflaeche, Titel/Kontext und Spalten wie `Code` und `Beschreibung` vorliegt, darf ein spaeterer lokaler VAT-Gruppen-Write-Gate ueberhaupt wieder entschieden werden. TARGET-027D32, Stammdaten, Preview Posting, Posting und deutsche USt-Finalclaims bleiben bis dahin gesperrt.
 
+## TARGET-070D / TARGET-027D32 VAT Page 472 Gate-Entscheidung
+
+TARGET-070D und TARGET-027D32 laufen ohne Business-Central- und ohne Playwright-Ausfuehrung. Sie bewerten die vorhandene Universaarl-Evidence zu Page 472 / Table 325 gegen die geparkte Page-470-Route:
+
+- Microsoft Learn `Set up VAT` stuetzt weiter nur die Produktstruktur aus VAT Business Posting Group, VAT Product Posting Group, VAT %, Berechnungsart und Steuerkonten.
+- Page 472 / Table 325 ist die staerkste aktuelle Feld- und Kontextbasis fuer die MwSt.-Buchungsmatrix.
+- Page 472 / Table 325 ist noch kein gespeicherter Setup-Beweis.
+- Der Zielumfang fuer den naechsten Gate ist `INLAND`, `VAT19`, `19`, `Normale MwSt.`, Umsatzsteuerkonto `3806` und Vorsteuerkonto `1406`.
+
+Fuer Universaarl folgt daraus: TARGET-071 darf nur als enger Live-Gate laufen. Vor einem Write muessen Page 472 / Table 325, Row-Scope, Feldroute und Pre-Write-Screenshot eindeutig sein. Nach einem moeglichen Write muss ein Reopen-Screenshot alle Zielwerte in derselben Zeile zeigen. Keine Preview, keine Buchung, keine VAT Entries, keine Sachposten und kein finaler deutscher USt-Claim entstehen aus TARGET-027D32.
+
 ## URLs
 
 - https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company
