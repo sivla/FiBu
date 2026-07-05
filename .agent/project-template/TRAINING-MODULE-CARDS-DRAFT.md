@@ -399,6 +399,197 @@ Acceptance criteria:
 - Missing setup rows are documented as blockers or decisions.
 - No VAT/final posting claim is made from source-only evidence.
 
+## TR-02-03 VAT/USt Boundary
+
+Workstream: `WS03-FINANCE-FOUNDATION`
+Epic: `FF-04 VAT and Tax Boundary`
+Issue type: Training Item
+Status: `blocked-by-source-and-setup`
+
+Business purpose:
+
+Finance, sales and purchasing users must understand the difference between Business Central VAT setup and a final tax or compliance decision. Business Central can calculate VAT from VAT business posting groups, VAT product posting groups and VAT Posting Setup rows, but the correct German tax treatment still needs source-backed project decisions and tax review.
+
+Target roles:
+
+- finance key users
+- sales key users
+- purchasing key users
+- consultants
+- UAT testers
+- training/book team
+
+Customer/example data:
+
+- Universaarl domestic German scenarios, simulated only until source and setup evidence exist
+- customer and vendor VAT group candidates from later master-data packages
+- product/service VAT group candidates from item/service packages
+- no final VAT registration, tax advisor approval or compliance claim in this draft
+
+BC concept or process:
+
+- VAT business posting group
+- VAT product posting group
+- VAT Posting Setup
+- relationship between customer/vendor/product setup and document VAT calculation
+- source/evidence boundary for German VAT claims
+
+Exercise:
+
+1. Start with a simple domestic sales or purchase example.
+2. Identify which side of the scenario represents the business party and which side represents the product or service.
+3. Map the scenario to candidate VAT business and VAT product posting groups.
+4. Check whether a VAT Posting Setup row would be needed before preview or posting.
+5. Mark missing source, tax review or Universaarl setup proof as blocked instead of inventing a VAT setup.
+
+Typical mistakes:
+
+- treating a visible VAT group as final German tax correctness
+- changing VAT groups only to make a posting work
+- mixing general posting groups and VAT posting groups
+- using CRONUS or legacy laboratory VAT setup as Universaarl final proof
+- writing legal, GoBD or tax-advisor claims from Playwright screenshots
+
+Success check:
+
+- The participant can explain in plain language why BC VAT setup is not the same as tax advice.
+- The participant can identify the two VAT group dimensions and the setup row that connects them.
+- The participant can tell when to stop for source review, tax review or a setup decision.
+
+Escalation path:
+
+- If the VAT treatment is unclear, create a decision or tax-review task.
+- If a required VAT Posting Setup row is missing, stop before preview/posting and create a setup task.
+- If a training example needs legal certainty, require official source and tax advisor review before trainer-ready status.
+
+Handbook/book output:
+
+- customer-facing page: "VAT setup in Business Central and what it does not decide"
+- simple table for VAT business group, VAT product group and VAT Posting Setup
+- warning box that German tax correctness is not proven by a sandbox calculation alone
+
+Source/evidence status:
+
+- Official Microsoft source needed for the BC product explanation.
+- German tax/compliance claims need official/tax review and cannot be inferred from sandbox evidence.
+- Universaarl setup-row evidence still needed before trainer-ready.
+
+UAT status:
+
+- planned; should be tested with a non-posting preview/read-first scenario before process training
+
+Playwright/evidence output:
+
+- read-first proof of VAT setup pages in `playthru` / `UNIVERSAARL-DE`
+- screenshot truth for relevant VAT group and VAT Posting Setup fields
+- later preview trace only after source, setup and Smart Decision gates
+
+Realism note:
+
+A serious customer training does not teach "19 percent" as a magic value. It teaches who owns the tax decision, where BC stores the setup, which scenarios the setup covers and what must be reviewed before real posting.
+
+Acceptance criteria:
+
+- Module separates BC setup behavior from tax finality.
+- Module includes at least one stop condition for missing source or missing tax review.
+- No final German VAT, GoBD, AO or compliance claim is made from source-only or screenshot-only evidence.
+
+## TR-02-04 Dimensions
+
+Workstream: `WS03-FINANCE-FOUNDATION`
+Epic: `FF-05 Dimensions and Reporting Model`
+Issue type: Training Item
+Status: `blocked-by-organization-model-and-read-first-proof`
+
+Business purpose:
+
+Dimensions help Universaarl analyze posted entries by meaningful business perspectives such as cost center, product line or sales channel. They are reporting and control attributes, not a substitute for customers, vendors, items, projects or warehouse locations.
+
+Target roles:
+
+- finance key users
+- department leads
+- sales and purchasing key users
+- inventory/product owners
+- consultants
+- management/reporting users
+- training/book team
+
+Customer/example data:
+
+- organization model package: `UNIVERSAARL_CORE_OrganizationModel`
+- dimension candidates from existing Universaarl draft work, subject to confirmation
+- examples for cost center, product line and channel remain draft until setup route and value evidence are recovered
+
+BC concept or process:
+
+- dimensions as analytical attributes on entries
+- dimension values
+- global dimensions
+- shortcut dimensions
+- default dimensions and later document/journal impact
+- reporting, filtering and correction boundary
+
+Exercise:
+
+1. Start from Universaarl's organization model, not from random codes.
+2. Classify each reporting need as dimension, master data, role/security, workflow or location/site.
+3. Choose only dimensions that will be used consistently in daily work and reporting.
+4. Check which values must exist before master data or transaction training.
+5. Mark missing organization decision, setup route or read-first proof as blocked.
+
+Typical mistakes:
+
+- creating too many dimensions because they look harmless
+- using dimensions as a replacement for clean master data
+- mixing organizational hierarchy, legal entity, location and reporting purpose without a decision
+- assuming a dimension value is valid for posting before defaulting and entry behavior are tested
+- teaching report filters before posted example data exists
+
+Success check:
+
+- The participant can explain what a dimension adds to an entry.
+- The participant can decide whether a business attribute belongs in a dimension or elsewhere.
+- The participant can name which setup/evidence is still needed before using dimensions in process training.
+
+Escalation path:
+
+- If the organization model is unclear, create a data request or decision.
+- If the field route is unclear, run a read-first page and FastTab diagnosis before writing setup.
+- If later posting uses dimensions unexpectedly, create a UAT defect or setup review task.
+
+Handbook/book output:
+
+- customer-facing page: "Dimensions: how Business Central adds reporting context"
+- table that separates dimension candidates from master data, roles, workflows and locations
+- training checklist for keeping dimensions small, stable and understandable
+
+Source/evidence status:
+
+- Official Microsoft source needed for product explanation.
+- Universaarl organization model and dimension setup proof are still needed.
+- Posted-entry/reporting proof is not available yet and must not be implied.
+
+UAT status:
+
+- planned; requires setup proof, defaulting proof and later posted-entry/reporting proof
+
+Playwright/evidence output:
+
+- read-first proof of Dimensions and Dimension Values pages
+- screenshot truth for relevant fields, FastTabs and action routes
+- later default-dimension and entry/report proof only after setup gates
+
+Realism note:
+
+Dimensions are powerful precisely because they affect reporting across processes. A realistic implementation keeps them limited, owned and testable instead of using them as a catch-all for every customer question.
+
+Acceptance criteria:
+
+- Module distinguishes dimensions from master data, roles, workflows and locations.
+- Module requires organization-owner confirmation before trainer-ready status.
+- Module does not claim reporting or posted-entry proof until Universaarl evidence exists.
+
 ## TR-03-01 Customer Master Data
 
 Workstream: `WS04-MASTER-DATA-PRODUCT`

@@ -232,14 +232,16 @@ Create training module cards for:
 - customer master data - draft exists in `TRAINING-MODULE-CARDS-DRAFT.md`; blocked by foundation dependencies
 - vendor master data - draft exists in `TRAINING-MODULE-CARDS-DRAFT.md`; blocked by foundation and payment-boundary dependencies
 - items, services and non-inventory items - draft exists in `TRAINING-MODULE-CARDS-DRAFT.md`; blocked by product model, UOM, posting, VAT, inventory posting and costing decisions
-- VAT/USt boundary
-- dimensions
+- VAT/USt boundary - draft exists in `TRAINING-MODULE-CARDS-DRAFT.md`; blocked by official source, tax-review boundary and Universaarl setup-row evidence
+- dimensions - draft exists in `TRAINING-MODULE-CARDS-DRAFT.md`; blocked by organization model confirmation, setup route and read-first Dimensions/Dimension Values proof
 - purchasing process
 - sales process
 - inventory quantity/value
 - UAT execution
 
 Each module must define audience, learning objective, exercise, handbook output, source/evidence status, Playwright/UAT link and acceptance criteria.
+
+Current next useful refinement: after freeze/resume gate, build read-first Playwright proof for VAT setup and Dimensions/Dimension Values, or create purchasing/sales process cards only as dependency-blocked drafts that do not assume missing foundation evidence.
 
 ## P1: Apply realism standard
 

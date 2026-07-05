@@ -338,6 +338,8 @@ if (allText) {
     'TR-01-01 Role Center and Navigation',
     'TR-02-01 Chart of Accounts',
     'TR-02-02 Posting Groups',
+    'TR-02-03 VAT/USt Boundary',
+    'TR-02-04 Dimensions',
     'TR-03-01 Customer Master Data',
     'TR-03-02 Vendor Master Data',
     'TR-03-03 Items, Services and Non-Inventory Items',
@@ -364,6 +366,23 @@ if (allText) {
     'blocked-by-foundation',
     'blocked-by-product-model'
   ], 14);
+
+  requireAtLeast('vat dimensions training module anchors', [
+    'TR-02-03 VAT/USt Boundary',
+    'VAT/USt boundary',
+    'tax advisor',
+    'VAT business posting group',
+    'VAT product posting group',
+    'VAT Posting Setup',
+    'blocked-by-source-and-setup',
+    'TR-02-04 Dimensions',
+    'dimension values',
+    'global dimensions',
+    'shortcut dimensions',
+    'organization model',
+    'blocked-by-organization-model-and-read-first-proof',
+    'read-first proof'
+  ], 12);
 
   requireAtLeast('spec-driven sideproject anchors', [
     'Spec-Driven Sideproject Draft',
@@ -646,7 +665,7 @@ const output = {
   warnings,
   nextStep:
     errors.length === 0
-      ? 'Project template is usable as a local implementation planning anchor. Next create VAT/USt and dimensions training cards, or after the freeze/resume gate build read-first Playwright specs for PWS-MD-001, PWS-MD-002 and PWS-MD-003 without creating master data.'
+      ? 'Project template is usable as a local implementation planning anchor. Next after the freeze/resume gate build read-first Playwright proof for VAT setup and Dimensions/Dimension Values, or create further process training cards only as dependency-blocked drafts.'
       : 'Fix the workbreakdown draft before using it as a planning anchor.'
 };
 

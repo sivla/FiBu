@@ -39,8 +39,8 @@ Technical probes are not training material until translated into customer-facing
 | TR-01-02 Lists, cards, FastTabs and FactBoxes | User recognizes page types | Screenshot set with labels | source-only | Capture/curate Universaarl examples |
 | TR-02-01 Chart of accounts | User reviews account list/card | Reopen proof for visible accounts | sandbox-observed candidate | Connect latest chart evidence to training module |
 | TR-02-02 Posting groups | User explains account determination | Setup rows plus source explanation | source-only | Prove setup rows or park incomplete rows |
-| TR-02-03 VAT/USt boundary | User understands BC VAT setup vs tax finality | Microsoft source, setup evidence, tax boundary | source-only | Create VAT boundary card and avoid final legal claim |
-| TR-02-04 Dimensions | User understands reporting dimensions | Dimension setup and later entry/report proof | source-only | Define dimensions after organization model |
+| TR-02-03 VAT/USt Boundary | User understands BC VAT setup vs tax finality | Microsoft source, Universaarl setup-row proof, tax boundary review | blocked-by-source-and-setup | Build read-first VAT setup proof after freeze/resume gate; do not make legal/tax final claims from screenshots |
+| TR-02-04 Dimensions | User understands reporting dimensions and setup ownership | Organization model, dimension setup proof, later defaulting and entry/report proof | blocked-by-organization-model-and-read-first-proof | Build read-first Dimensions/Dimension Values proof after freeze/resume gate; keep reporting claims blocked until posted-entry evidence exists |
 | TR-02-05 Journals, preview and posting | User understands journal route and posting effect | Preview/posting scenario with G/L entries | blocked | Needs explicit unlock and evidence plan |
 | TR-03-01 Customer master data | User reviews customer required fields and setup dependencies | Customer card/list proof plus data-package dependency review | blocked | Build `PWS-MD-001` read-first proof after freeze/resume gate; keep BC creation blocked until numbering, posting, VAT and payment terms decisions |
 | TR-03-02 Vendor master data | User reviews vendor required fields, payment boundary and setup dependencies | Vendor card/list proof plus no-real-bank-data boundary | blocked | Build `PWS-MD-002` read-first proof after freeze/resume gate; keep BC creation blocked until numbering, posting, VAT, payment terms and payment method decisions |
@@ -102,6 +102,8 @@ Create concrete evidence cards for:
 - TR-01-01 navigation
 - TR-02-01 chart of accounts
 - TR-02-02 posting groups
+- TR-02-03 VAT/USt boundary
+- TR-02-04 dimensions
 - TR-03-01 customer master data
 - TR-03-02 vendor master data
 - TR-03-03 items, services and non-inventory items
