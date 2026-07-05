@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-065-POSTING-GROUPS-PAGEINSPECTION-OR-SOURCE-ROUTE-DECISION",
+  "status": "ready-next",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-target-execution",
+  "activeArea": "universaarl-posting-groups-pageinspection-or-source-route-decision",
+  "mayRunPlaywright": false,
+  "effectiveBcActionsAllowed": false,
+  "purpose": "Decide the next non-repeating route for unresolved posting-group pages after TARGET-064 proved that direct URL and narrow Tell-Me pages-and-tasks activation still fall back to the Role Center.",
+  "whyNow": "TARGET-064 produced screenshot QA and route evidence for Page 314, Page 470 and Page 111. No target page passed strong page-specific QA. Repeating the same direct URL or Tell-Me route would be wasteful and could create false confidence.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-064-posting-groups-route-recovery-after-strong-qa/TARGET-064-result.json",
+    "playwright/projects/fibu-book5/evidence/target-064-posting-groups-route-recovery-after-strong-qa/target-064-*.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-064-posting-groups-route-recovery-after-strong-qa/target-064-*-candidates.json"
+  ],
+  "decisionOptions": [
+    "Use Microsoft Learn/source-backed page mapping before another UI attempt.",
+    "Use Page Inspection only if a target page is already visibly open or a legal page-inspection route can prove page/table context without writes.",
+    "Prefer existing proven page-specific tests for Page 314/Page 470/Page 111 when they are still valid in playthru / UNIVERSAARL-DE.",
+    "Park unresolved posting-group pages and move to a foundation limitation checkpoint if no non-repeating route exists."
+  ],
+  "exhaustedRoutes": [
+    "direct-page-url for Page 314, Page 470 and Page 111 in current playthru session",
+    "broad Tell-Me search text acceptance",
+    "single visible pages-and-tasks Enter activation for Page 314, Page 470 and Page 111 in TARGET-064"
+  ],
+  "allowedActions": [
+    "read-target-064-result",
+    "read-existing-route-evidence",
+    "read-source-registry-and-microsoft-learn-mapping",
+    "write-local-decision-result",
+    "update-state-and-coverage-plan"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "repeat-direct-page-url-route-without-new-hypothesis",
+    "repeat-tell-me-pages-and-tasks-route-without-new-hypothesis",
+    "click-new-edit-delete-or-copy-actions",
+    "write-setup",
+    "write-vat-posting-setup",
+    "write-general-posting-setup",
+    "write-customer-or-vendor-posting-groups",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-posting-readiness"
+  ],
+  "acceptanceCriteria": [
+    "Classify TARGET-064 routes as exhausted or reusable with a concrete reason.",
+    "Choose one next route: source/page-inspection, local foundation limitation checkpoint, or a genuinely new UI hypothesis.",
+    "Do not unlock any setup, VAT, posting group, master data, preview or posting gate.",
+    "Write a Next-Step Decision Card with a 3-5 step lookahead."
+  ],
+  "stopIf": [
+    "The decision would require a setup write.",
+    "The decision relies on Role Center or Tell-Me overlay text as page proof.",
+    "No materially new route or source-backed reason exists."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-064-POSTING-GROUPS-ROUTE-RECOVERY-AFTER-STRONG-QA",
+    "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+    "lastEvidenceSummary": "TARGET-064 stayed in playthru / UNIVERSAARL-DE and changed nothing, but direct URL and narrow pages-and-tasks activation still did not produce accepted Page 314, Page 470 or Page 111 proof.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "A write gate remains unsafe while all three target setup pages lack accepted page proof.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-065-POSTING-GROUPS-PAGEINSPECTION-OR-SOURCE-ROUTE-DECISION",
+        "status": "ready-next",
+        "reason": "It prevents repeating exhausted routes and decides the next useful proof strategy."
+      },
+      {
+        "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+        "status": "blocked",
+        "reason": "VAT writes require source-backed values and reliable page proof first."
+      },
+      {
+        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
+        "status": "needs-setup-first",
+        "reason": "Foundation cannot be ready while posting-group pages are unresolved."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "blocked",
+        "reason": "O2C remains locked before foundation readiness."
+      }
+    ],
+    "queueChangesMade": [
+      "Added TARGET-065 as a local decision follow-up after TARGET-064."
+    ],
+    "selectedNextCase": "TARGET-065-POSTING-GROUPS-PAGEINSPECTION-OR-SOURCE-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "It turns the route blocker into a controlled decision instead of another broad UI retry.",
+    "risksBeforeNextCase": [
+      "False page proof from Role Center navigation words.",
+      "Premature VAT/posting-group write gates.",
+      "Wasting runs by repeating exhausted direct URL/Tell-Me routes."
+    ],
+    "requiredPreparation": [
+      "Read TARGET-064 result and candidate inventories.",
+      "Compare with older successful route evidence before deciding whether a route is still valid."
+    ]
+  },
+  "nextCase": "TARGET-065-POSTING-GROUPS-PAGEINSPECTION-OR-SOURCE-ROUTE-DECISION"
+}

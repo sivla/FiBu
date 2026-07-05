@@ -5,9 +5,9 @@
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-posting-groups-route-recovery-after-strong-qa",
-  "activeCase": "TARGET-064-POSTING-GROUPS-ROUTE-RECOVERY-AFTER-STRONG-QA",
-  "active_case_file": ".agent/state/cases/target-064-posting-groups-route-recovery-after-strong-qa.json",
+  "activeArea": "universaarl-posting-groups-pageinspection-or-source-route-decision",
+  "activeCase": "TARGET-065-POSTING-GROUPS-PAGEINSPECTION-OR-SOURCE-ROUTE-DECISION",
+  "active_case_file": ".agent/state/cases/target-065-posting-groups-pageinspection-or-source-route-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -19,13 +19,11 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-playthru-business-central-readonly",
-    "confirm-UNIVERSAARL-DE-context",
-    "inspect-navigation-routes-readonly",
-    "inspect-tell-me-route-readonly-without-opening-edit-actions",
-    "capture-route-and-screenshot-qa",
-    "write-result-json-and-next-step-decision",
-    "update-coverage-and-atlases"
+    "read-target-064-result",
+    "read-existing-route-evidence",
+    "read-source-registry-and-microsoft-learn-mapping",
+    "write-local-decision-result",
+    "update-state-and-coverage-plan"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -34,6 +32,8 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
+    "repeat-direct-page-url-route-without-new-hypothesis",
+    "repeat-tell-me-pages-and-tasks-route-without-new-hypothesis",
     "click-new-edit-delete-or-copy-actions",
     "write-setup",
     "write-vat-posting-setup",
@@ -48,7 +48,7 @@
     "claim-posting-readiness"
   ],
   "nextCase": "TARGET-064-POSTING-GROUPS-ROUTE-RECOVERY-AFTER-STRONG-QA",
-  "nextStep": "Run TARGET-064 as a read-only route-recovery follow-up. TARGET-063 proved that direct page URLs can stay on the Role Center, so do not unlock VAT/posting-group write gates until target pages are actually reached and page-specific screenshot QA passes.",
+  "nextStep": "Run TARGET-065 local decision: classify TARGET-064 route blocker and choose source/page-inspection or foundation limitation checkpoint. Do not repeat broad Tell-Me/direct URL routes and do not unlock write gates.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -1353,7 +1353,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "universaarl-skr04-balance-sheet-accounts-fit",
-  "lastCompletedCase": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+  "lastCompletedCase": "TARGET-064-POSTING-GROUPS-ROUTE-RECOVERY-AFTER-STRONG-QA",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3853,7 +3853,7 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/target-064-posting-groups-route-recovery-after-strong-qa.json",
+  "activeCaseFile": ".agent/state/cases/target-065-posting-groups-pageinspection-or-source-route-decision.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
@@ -8533,11 +8533,10 @@
     "summary": "1140 Waren (Bestand) selected as source-backed SKR04-oriented inventory balance candidate; no Business Central account proof yet."
   },
   "acceptanceCriteria": [
-    "No page is accepted from generic text alone.",
-    "Each accepted screenshot has at least two page-specific signals beyond New/Neu, Code and Beschreibung.",
-    "Platform config strings such as trustedOriginAuthorities are filtered from text evidence.",
-    "Any page that cannot be proven is rejected with exact missing signals.",
-    "No setup write, master data, draft, Preview Posting, Posting, payment or API shortcut occurs."
+    "Classify TARGET-064 routes as exhausted or reusable with a concrete reason.",
+    "Choose one next route: source/page-inspection, local foundation limitation checkpoint, or a genuinely new UI hypothesis.",
+    "Do not unlock any setup, VAT, posting group, master data, preview or posting gate.",
+    "Write a Next-Step Decision Card with a 3-5 step lookahead."
   ],
   "latestTarget048CInventoryAccount1140BalanceCorrection": {
     "caseId": "TARGET-048C-INVENTORY-ACCOUNT-1140-BALANCE-SHEET-CORRECTION",
@@ -9630,10 +9629,9 @@
     "apiShortcut": false
   },
   "stopIf": [
-    "The browser is outside playthru / UNIVERSAARL-DE.",
-    "A dialog asks for OK, Yes, Ja, New, Edit, Delete, Apply, Preview Posting or Post.",
-    "The route requires typing a setup value or confirming a change.",
-    "The screenshot QA cannot identify page-specific signals after direct route and safe layout inspection."
+    "The decision would require a setup write.",
+    "The decision relies on Role Center or Tell-Me overlay text as page proof.",
+    "No materially new route or source-backed reason exists."
   ],
   "latestTarget027D31BResult": "playwright/projects/fibu-book5/evidence/target-027d31b-vat-setup-route-ui-source-followup/TARGET-027D31B-result.json",
   "latestVatSetupRouteRecovery": {
@@ -10003,5 +10001,6 @@
     },
     "coverageEffect": "Improved screenshot truth: Role Center fallback and generic navigation words are rejected as target-page proof. No setup/write/posting gate unlocked.",
     "nextCase": "TARGET-064-POSTING-GROUPS-ROUTE-RECOVERY-AFTER-STRONG-QA"
-  }
+  },
+  "lastCompletedResult": "playwright/projects/fibu-book5/evidence/target-064-posting-groups-route-recovery-after-strong-qa/TARGET-064-result.json"
 }

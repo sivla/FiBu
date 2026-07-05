@@ -1,29 +1,29 @@
 {
   "schemaVersion": 1,
   "runId": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY",
-  "caseId": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY",
+  "caseId": "TARGET-064-POSTING-GROUPS-ROUTE-RECOVERY-AFTER-STRONG-QA",
   "status": "blocked",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "TARGET-063 ran read-only screenshot QA. It rejected Role Center fallback and generic navigation words as target-page proof; no setup/write/posting action occurred.",
+  "summary": "TARGET-064 ran read-only route recovery for Page 314, Page 470 and Page 111. Direct URL and narrow pages-and-tasks activation still fell back to Role Center; no target page passed strong screenshot QA. No setup, master data, draft, Preview Posting, Posting, payment, API or company switch occurred.",
   "proved": [
     "Business Central stayed in playthru / UNIVERSAARL-DE.",
-    "0/3 target setup pages passed stronger page-specific screenshot QA.",
-    "Generic words such as Code, Beschreibung, New/Neu are treated as supporting signals only, not as proof.",
-    "No setup value, master data, draft, Preview Posting, Posting, payment or API shortcut occurred."
+    "0/3 posting-group target pages were reached with page-specific read-only signals.",
+    "Tell-Me/search overlay text was rejected as page proof until an actual page/list surface appeared.",
+    "No setup value, master data, document draft, Preview Posting, Posting, payment or API shortcut occurred."
   ],
   "notProved": [
     "W1 Foundation is not posting-ready.",
-    "No VAT setup, general posting setup, customer posting group or vendor posting group correctness is proven.",
+    "No VAT setup, General Posting Setup, Vendor Posting Group or Customer Posting Group correctness is proven.",
     "No German tax correctness, SKR04 completeness, Preview Posting, Posting, G/L Entry, VAT Entry or ledger trace is proven.",
-    "Buchungsmatrix Einrichtung / General Posting Setup: Direct page route stayed on the Role Center; navigation words are not accepted as page proof.",
-    "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups: Required page-specific screenshot signals were not visible enough.",
-    "Kreditorenbuchungsgruppen / Vendor Posting Groups: Direct page route stayed on the Role Center; navigation words are not accepted as page proof."
+    "Buchungsmatrix Einrichtung / General Posting Setup: Route stayed on the Role Center; navigation words are not page proof.",
+    "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups: Route stayed on the Role Center; navigation words are not page proof.",
+    "Kreditorenbuchungsgruppen / Vendor Posting Groups: Route stayed on the Role Center; navigation words are not page proof."
   ],
   "blockedBy": [
-    "general-posting-setup: missing page-caption",
-    "vat-business-posting-groups: missing page-caption",
-    "vendor-posting-groups: missing page-caption"
+    "general-posting-setup: Route stayed on the Role Center; navigation words are not page proof.",
+    "vat-business-posting-groups: Route stayed on the Role Center; navigation words are not page proof.",
+    "vendor-posting-groups: Route stayed on the Role Center; navigation words are not page proof."
   ],
   "warnings": [
     "This is a read-only screenshot-QA recovery. It does not unlock write gates by itself.",
@@ -36,7 +36,7 @@
     "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/target-063-030-vendor-posting-groups-strong-qa.png"
   ],
   "nextStep": "Run TARGET-064 as read-only route recovery for Page 314, Page 470 and Page 111 before any setup write gate.",
-  "nextCase": "TARGET-064-POSTING-GROUPS-ROUTE-RECOVERY-AFTER-STRONG-QA",
+  "nextCase": "TARGET-065-POSTING-GROUPS-PAGEINSPECTION-OR-SOURCE-ROUTE-DECISION",
   "nextStepDecision": {
     "currentCase": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
@@ -86,5 +86,6 @@
     "noApiShortcut": true,
     "noBookMasterChange": true
   },
-  "updatedAt": "2026-07-05T16:48:13.910Z"
+  "updatedAt": "2026-07-05T17:04:29.592Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-064-posting-groups-route-recovery-after-strong-qa/TARGET-064-result.json"
 }
