@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-072-VAT-PAGE472-NAVIGATION-ROUTE-DECISION",
-  "status": "pending",
+  "status": "done",
   "mode": "universaarl-target-execution",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -88,5 +88,57 @@
   ],
   "nextIfSuccessful": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
   "nextIfBlocked": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
-  "updatedAt": "2026-07-05T22:18:00.000+02:00"
+  "updatedAt": "2026-07-05T23:05:00.000+02:00",
+  "completedAt": "2026-07-05T23:05:00.000+02:00",
+  "resultStatus": "observed-page472-navigation-route",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-072-vat-page472-navigation-route-decision/TARGET-072-result.json",
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "nextCase": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
+  "nextStepDecision": {
+    "currentCase": "TARGET-072-VAT-PAGE472-NAVIGATION-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-072-VAT-PAGE472-NAVIGATION-ROUTE-DECISION",
+    "lastEvidenceSummary": "TARGET-071 blocked because direct page=472 stayed outside accepted Page 472 context. No setup write was attempted.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A read-only navigation decision is the narrowest useful next step before repeating any VAT setup write gate.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
+        "status": "ready-next",
+        "reason": "Page 472 is now visibly reachable through a documented route; a controlled write gate may be retried with that route."
+      },
+      {
+        "caseId": "TARGET-071B-VAT-POSTING-SETUP-REOPEN-AND-SOURCE-REVIEW",
+        "status": "blocked",
+        "reason": "No INLAND/VAT19 row was written."
+      },
+      {
+        "caseId": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
+        "status": "ready-after-current",
+        "reason": "Checkpoint remains useful after the next write gate or deliberate VAT park decision."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "blocked",
+        "reason": "O2C remains blocked until VAT and General Posting Setup are proven or deliberately limited."
+      }
+    ],
+    "queueChangesMade": [
+      "TARGET-072 documented a bounded visible Page 472 route and re-selects TARGET-071 as the next write gate."
+    ],
+    "selectedNextCase": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "The blocker was route visibility, not VAT field logic; the next safest progress is retrying the same controlled write gate with the documented route.",
+    "risksBeforeNextCase": [
+      "Do not treat search overlay text as Page 472 truth.",
+      "Do not click New/Edit/List Edit/Copy in a read-only route case.",
+      "Do not claim VAT readiness before a saved INLAND/VAT19 row and later Preview/Entries proof."
+    ],
+    "requiredPreparation": [
+      "Update TARGET-071 implementation to use the bounded visible route instead of relying on direct page=472 only."
+    ]
+  }
 }

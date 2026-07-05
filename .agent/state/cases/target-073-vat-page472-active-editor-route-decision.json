@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
+  "status": "pending",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "targetWorld": "Universaarl",
+  "activeArea": "universaarl-vat-page472-active-editor-route-decision",
+  "purpose": "Diagnose the Page 472 active editor route after TARGET-071 reached the VAT Posting Setup page but refused to type because no true active editor was detected.",
+  "sourceCases": [
+    "TARGET-072-VAT-PAGE472-NAVIGATION-ROUTE-DECISION",
+    "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE"
+  ],
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-072-vat-page472-navigation-route-decision/TARGET-072-result.json",
+    "playwright/projects/fibu-book5/evidence/target-071-vat-posting-setup-page472-controlled-write-gate/TARGET-071-result.json",
+    "playwright/projects/fibu-book5/evidence/target-071-vat-posting-setup-page472-controlled-write-gate/target-071-030-pre-write-editor-proof.png"
+  ],
+  "reason": "TARGET-072 solved route visibility. TARGET-071 then reached Page 472 and clicked Liste bearbeiten and Neu, but all target fields failed the true active-editor gate. Another write attempt would repeat the same blocker.",
+  "mayRunPlaywright": true,
+  "effectiveBcActionsAllowed": false,
+  "allowedActions": [
+    "open-business-central-readonly",
+    "confirm-instance-playthru",
+    "confirm-company-universaarl-de",
+    "open-page472-using-target072-route",
+    "click-edit-list-readonly-diagnosis",
+    "click-new-only-if-no-value-typing",
+    "probe-active-editor-without-typing-target-values",
+    "capture-screenshot-qa",
+    "write-result-json"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "type-inland",
+    "type-vat19",
+    "type-19",
+    "type-3806",
+    "type-1406",
+    "write-vat-posting-setup",
+    "write-vat-business-posting-group",
+    "write-vat-product-posting-group",
+    "configuration-package-import-export-validate-apply",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "company-switch",
+    "book-claim-without-evidence"
+  ],
+  "smartDecision": {
+    "whyNow": "The remaining blocker is UI mechanics, not source decision or page navigation.",
+    "fieldsThatMayChange": [],
+    "fieldsThatMustRemainUntouched": [
+      "VAT Business Posting Group",
+      "VAT Product Posting Group",
+      "VAT %",
+      "VAT Calculation Type",
+      "Sales VAT Account",
+      "Purchase VAT Account"
+    ],
+    "risk": "A grid/header/menu click can look like a row edit but not focus a data editor.",
+    "fallback": "If no active editor is found, park the VAT matrix write route and refresh the Foundation limitation checkpoint."
+  },
+  "lookaheadReviewed": [
+    {
+      "caseId": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
+      "status": "blocked",
+      "reason": "Blocked by missing true active editor after Page 472 opened."
+    },
+    {
+      "caseId": "TARGET-071B-VAT-POSTING-SETUP-REOPEN-AND-SOURCE-REVIEW",
+      "status": "blocked",
+      "reason": "No INLAND/VAT19 setup row exists."
+    },
+    {
+      "caseId": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
+      "status": "ready-after-current",
+      "reason": "Useful if the active editor route remains blocked."
+    },
+    {
+      "caseId": "TARGET-038-O2C-PREFLIGHT",
+      "status": "blocked",
+      "reason": "O2C remains blocked until VAT and General Posting Setup are proven or deliberately limited."
+    }
+  ],
+  "successCriteria": [
+    "playthru and UNIVERSAARL-DE are confirmed.",
+    "Page 472 is reached using the TARGET-072 route.",
+    "The test proves either a true active editor route or a well-documented editor blocker.",
+    "No target VAT values are typed and no setup values are saved."
+  ],
+  "nextIfSuccessful": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
+  "nextIfBlocked": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
+  "updatedAt": "2026-07-05T23:20:00.000+02:00"
+}

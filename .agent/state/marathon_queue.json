@@ -5304,14 +5304,20 @@
       "effectiveBcActionsAllowed": true,
       "goal": "Run a controlled live Page 472 VAT Posting Setup gate for the single INLAND/VAT19 row; stop before write unless all gates pass.",
       "dependencies": [
-        "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION"
+        "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+        "TARGET-072-VAT-PAGE472-NAVIGATION-ROUTE-DECISION"
       ],
       "lookaheadStatus": "ready-next",
-      "completedAt": "2026-07-05T22:10:00.000+02:00",
-      "result": "TARGET-071 blocked safely: Direct page=472 route stayed on a non-Page-472 context; refusing Tell-Me/search fallback and refusing setup write.",
+      "completedAt": "2026-07-05T23:20:00.000+02:00",
+      "result": "TARGET-071 blocked safely after reaching Page 472: no true active editor was detected for the target VAT setup fields, so no values were typed.",
       "resultPath": "playwright/projects/fibu-book5/evidence/target-071-vat-posting-setup-page472-controlled-write-gate/TARGET-071-result.json",
       "blockedBy": [
-        "Direct page=472 route stayed on a non-Page-472 context; refusing Tell-Me/search fallback and refusing setup write."
+        "No true active editor detected for vatBusinessPostingGroup; refusing to type INLAND.",
+        "No true active editor detected for vatProductPostingGroup; refusing to type VAT19.",
+        "No true active editor detected for vatPercent; refusing to type 19.",
+        "No true active editor detected for vatCalculationType; refusing to type Normale MwSt..",
+        "No true active editor detected for salesVatAccount; refusing to type 3806.",
+        "No true active editor detected for purchaseVatAccount; refusing to type 1406."
       ],
       "setupChanged": false,
       "masterDataChanged": false,
@@ -5319,13 +5325,13 @@
       "previewPosting": false,
       "posted": false,
       "apiShortcut": false,
-      "nextCase": "TARGET-072-VAT-PAGE472-NAVIGATION-ROUTE-DECISION"
+      "nextCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION"
     },
     {
       "id": "TARGET-072-VAT-PAGE472-NAVIGATION-ROUTE-DECISION",
       "caseId": "TARGET-072-VAT-PAGE472-NAVIGATION-ROUTE-DECISION",
       "order": 221,
-      "status": "pending",
+      "status": "done",
       "category": "vat-page472-navigation-route-decision",
       "expectedImpact": "page472-route-helper-or-bounded-navigation-decision",
       "mayRunPlaywright": true,
@@ -5335,10 +5341,37 @@
         "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE"
       ],
       "caseFile": ".agent/state/cases/target-072-vat-page472-navigation-route-decision.json",
+      "lookaheadStatus": "ready-next",
+      "completedAt": "2026-07-05T23:05:00.000+02:00",
+      "result": "TARGET-072 observed a bounded Page 472 navigation route; no setup values were changed.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-072-vat-page472-navigation-route-decision/TARGET-072-result.json",
+      "setupChanged": false,
+      "masterDataChanged": false,
+      "draftCreated": false,
+      "previewPosting": false,
+      "posted": false,
+      "apiShortcut": false,
+      "nextCase": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE"
+    },
+    {
+      "id": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
+      "caseId": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
+      "order": 222,
+      "status": "pending",
+      "category": "vat-page472-active-editor-route-decision",
+      "expectedImpact": "page472-active-editor-helper-or-park-decision",
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Read-only active-editor route diagnosis for Page 472 before another VAT Posting Setup write gate.",
+      "dependencies": [
+        "TARGET-072-VAT-PAGE472-NAVIGATION-ROUTE-DECISION",
+        "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE"
+      ],
+      "caseFile": ".agent/state/cases/target-073-vat-page472-active-editor-route-decision.json",
       "lookaheadStatus": "ready-next"
     }
   ],
-  "lastUpdated": "2026-07-05T22:10:00.000+02:00",
+  "lastUpdated": "2026-07-05T23:20:00.000+02:00",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -5450,72 +5483,79 @@
       ]
     }
   },
-  "updatedAt": "2026-07-05T22:10:00.000+02:00",
+  "updatedAt": "2026-07-05T23:20:00.000+02:00",
   "lastCompletedCase": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
-  "nextCase": "TARGET-072-VAT-PAGE472-NAVIGATION-ROUTE-DECISION",
+  "nextCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
   "nextStepDecisionCard": {
     "currentCase": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
     "plannedNextCaseBeforeReview": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-027D32 approved only a narrow Page 472 live gate. The live direct page=472 route currently lands in non-Page-472 context.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "The planned Page-472 write is not sensible while the direct route cannot prove Page 472 without search fallback.",
+    "lastEvidenceSummary": "TARGET-027D32 approved only a narrow Page 472 live gate after Page 472/Table 325 field truth and Page 470 parking.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "TARGET-071 is the smallest practical W1 Foundation step for the missing INLAND/VAT19 VAT Posting Setup row.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-071B-VAT-POSTING-SETUP-REOPEN-AND-SOURCE-REVIEW",
         "status": "blocked",
-        "reason": "No saved VAT setup row exists."
+        "reason": "No saved VAT setup row exists, so 071B is premature."
       },
       {
         "caseId": "TARGET-032P-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PARK",
         "status": "obsolete",
-        "reason": "The older General Posting Setup park case is already completed and should not become the active fallback."
+        "reason": "The older General Posting Setup park case is already complete; do not jump backward as active next case."
+      },
+      {
+        "caseId": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
+        "status": "ready-next",
+        "reason": "Page 472 opens, but the active editor route for target cells is not proven."
       },
       {
         "caseId": "TARGET-072-VAT-PAGE472-NAVIGATION-ROUTE-DECISION",
-        "status": "ready-next",
-        "reason": "The direct Page 472 route landed outside Page 472; the next useful step is a route decision/helper before any VAT setup write."
+        "status": "done",
+        "reason": "TARGET-072 already proved the bounded visible Page 472 navigation route."
       },
       {
         "caseId": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
         "status": "ready-after-current",
-        "reason": "Useful only after VAT/Page472 and General Posting blockers are classified."
+        "reason": "Foundation checkpoint is useful only after VAT/Page472 and General Posting blockers are classified."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "blocked",
-        "reason": "O2C remains blocked until VAT and General Posting Setup are proven or consciously limited."
+        "reason": "O2C remains blocked until VAT and General Posting Setup are proven or consciously limited as learning-only."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-071 blocked with no setup write.",
-      "Added TARGET-072 as the next narrow read-only navigation route decision."
+      "TARGET-072 route learning was applied to TARGET-071.",
+      "TARGET-071 blocked on active-editor detection, so TARGET-073 was created."
     ],
-    "selectedNextCase": "TARGET-072-VAT-PAGE472-NAVIGATION-ROUTE-DECISION",
-    "whySelectedNextCaseIsBest": "TARGET-071 blocked before write because direct page=472 stayed outside Page 472. A bounded navigation route decision is now the safest useful next step.",
+    "selectedNextCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "TARGET-071 reached Page 472 using TARGET-072 route, but no true active editor was detected. The next useful step is active-editor diagnosis, not another navigation check.",
     "risksBeforeNextCase": [
-      "Do not open search as a hidden fallback for this write gate.",
-      "Do not claim VAT setup readiness from Role Center text."
+      "Do not claim final German VAT correctness before Preview Posting, VAT Entries and G/L Entries.",
+      "Do not create master data or documents before Foundation readiness.",
+      "Do not delete or clean up VAT rows outside an explicit cleanup case."
     ],
     "requiredPreparation": [
-      "Review the blocked screenshot and define a non-hidden Page-472 navigation route before another VAT write gate."
+      "Review TARGET-071 screenshots and blockers before choosing any further VAT route."
     ]
   },
-  "nextStep": "Run TARGET-072 read-only Page 472 navigation route decision before any further VAT Posting Setup write gate.",
+  "nextStep": "Run TARGET-073 read-only active-editor diagnosis on Page 472.",
   "openItems": 1,
   "nextQueueItem": {
-    "id": "TARGET-072-VAT-PAGE472-NAVIGATION-ROUTE-DECISION",
-    "caseId": "TARGET-072-VAT-PAGE472-NAVIGATION-ROUTE-DECISION",
-    "order": 221,
+    "id": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
+    "caseId": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
+    "order": 222,
     "status": "pending",
-    "category": "vat-page472-navigation-route-decision",
-    "expectedImpact": "page472-route-helper-or-bounded-navigation-decision",
+    "category": "vat-page472-active-editor-route-decision",
+    "expectedImpact": "page472-active-editor-helper-or-park-decision",
     "mayRunPlaywright": true,
     "effectiveBcActionsAllowed": false,
-    "goal": "Read-only route decision for Page 472 before any further VAT Posting Setup write gate.",
+    "goal": "Read-only active-editor route diagnosis for Page 472 before another VAT Posting Setup write gate.",
     "dependencies": [
+      "TARGET-072-VAT-PAGE472-NAVIGATION-ROUTE-DECISION",
       "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE"
     ],
-    "caseFile": ".agent/state/cases/target-072-vat-page472-navigation-route-decision.json",
+    "caseFile": ".agent/state/cases/target-073-vat-page472-active-editor-route-decision.json",
     "lookaheadStatus": "ready-next"
   },
   "nextCases": [
@@ -5524,52 +5564,58 @@
   "nextStepDecision": {
     "currentCase": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
     "plannedNextCaseBeforeReview": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-027D32 approved only a narrow Page 472 live gate. The live direct page=472 route currently lands in non-Page-472 context.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "The planned Page-472 write is not sensible while the direct route cannot prove Page 472 without search fallback.",
+    "lastEvidenceSummary": "TARGET-027D32 approved only a narrow Page 472 live gate after Page 472/Table 325 field truth and Page 470 parking.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "TARGET-071 is the smallest practical W1 Foundation step for the missing INLAND/VAT19 VAT Posting Setup row.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-071B-VAT-POSTING-SETUP-REOPEN-AND-SOURCE-REVIEW",
         "status": "blocked",
-        "reason": "No saved VAT setup row exists."
+        "reason": "No saved VAT setup row exists, so 071B is premature."
       },
       {
         "caseId": "TARGET-032P-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PARK",
         "status": "obsolete",
-        "reason": "The older General Posting Setup park case is already completed and should not become the active fallback."
+        "reason": "The older General Posting Setup park case is already complete; do not jump backward as active next case."
+      },
+      {
+        "caseId": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
+        "status": "ready-next",
+        "reason": "Page 472 opens, but the active editor route for target cells is not proven."
       },
       {
         "caseId": "TARGET-072-VAT-PAGE472-NAVIGATION-ROUTE-DECISION",
-        "status": "ready-next",
-        "reason": "The direct Page 472 route landed outside Page 472; the next useful step is a route decision/helper before any VAT setup write."
+        "status": "done",
+        "reason": "TARGET-072 already proved the bounded visible Page 472 navigation route."
       },
       {
         "caseId": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
         "status": "ready-after-current",
-        "reason": "Useful only after VAT/Page472 and General Posting blockers are classified."
+        "reason": "Foundation checkpoint is useful only after VAT/Page472 and General Posting blockers are classified."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "blocked",
-        "reason": "O2C remains blocked until VAT and General Posting Setup are proven or consciously limited."
+        "reason": "O2C remains blocked until VAT and General Posting Setup are proven or consciously limited as learning-only."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-071 blocked with no setup write.",
-      "Added TARGET-072 as the next narrow read-only navigation route decision."
+      "TARGET-072 route learning was applied to TARGET-071.",
+      "TARGET-071 blocked on active-editor detection, so TARGET-073 was created."
     ],
-    "selectedNextCase": "TARGET-072-VAT-PAGE472-NAVIGATION-ROUTE-DECISION",
-    "whySelectedNextCaseIsBest": "TARGET-071 blocked before write because direct page=472 stayed outside Page 472. A bounded navigation route decision is now the safest useful next step.",
+    "selectedNextCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "TARGET-071 reached Page 472 using TARGET-072 route, but no true active editor was detected. The next useful step is active-editor diagnosis, not another navigation check.",
     "risksBeforeNextCase": [
-      "Do not open search as a hidden fallback for this write gate.",
-      "Do not claim VAT setup readiness from Role Center text."
+      "Do not claim final German VAT correctness before Preview Posting, VAT Entries and G/L Entries.",
+      "Do not create master data or documents before Foundation readiness.",
+      "Do not delete or clean up VAT rows outside an explicit cleanup case."
     ],
     "requiredPreparation": [
-      "Review the blocked screenshot and define a non-hidden Page-472 navigation route before another VAT write gate."
+      "Review TARGET-071 screenshots and blockers before choosing any further VAT route."
     ]
   },
-  "total": 221,
-  "done": 167,
+  "total": 222,
+  "done": 168,
   "blocked": 48,
   "latestAuthOpenLoginHandoff": {
     "at": "2026-07-03T13:35:00.000Z",
@@ -5877,7 +5923,7 @@
     "posted": false,
     "apiShortcut": false
   },
-  "activeCase": "TARGET-072-VAT-PAGE472-NAVIGATION-ROUTE-DECISION",
+  "activeCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
   "latestRouteDecision": {
     "caseId": "TARGET-059-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-ROUTE-ESCALATION-OR-PARK",
     "resultPath": "playwright/projects/fibu-book5/evidence/target-059-general-posting-setup-purchase-account-route-escalation-or-park/TARGET-059-result.json",

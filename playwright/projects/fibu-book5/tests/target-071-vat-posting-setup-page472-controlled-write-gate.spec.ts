@@ -2,7 +2,7 @@ import { expect, test, type Page } from '@playwright/test';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import { compactPageText, pageText, requireBcUrl, waitForBusinessCentralShell } from '../../../core/bc-helpers';
+import { compactPageText, openSearchResult, pageText, requireBcUrl, searchFor, waitForBusinessCentralShell } from '../../../core/bc-helpers';
 
 test.use({ storageState: 'playwright/.auth/bc-user.json' });
 test.setTimeout(300_000);
@@ -198,10 +198,27 @@ async function openMatrix(page: Page) {
   await page.waitForTimeout(2500);
   await page.keyboard.press('Escape').catch(() => undefined);
   await assertContext(page);
-  const text = await visibleText(page);
+  let text = await visibleText(page);
+  if (page472Visible(text)) {
+    return true;
+  }
+
+  await searchFor(page, 'MwSt.-Buchungsmatrix');
+  await page.waitForTimeout(1200);
+  const searchText = await visibleText(page);
+  if (!/MwSt\.-?Buchungsmatrix|VAT Posting Setup|USt\.-?Buchungsmatrix/i.test(searchText)) {
+    return false;
+  }
+  await openSearchResult(page, /MwSt\.-?Buchungsmatrix|VAT Posting Setup|USt\.-?Buchungsmatrix/i, { requireUnique: false });
+  await waitForBusinessCentralShell(page);
+  await page.waitForTimeout(2500);
+  await page.keyboard.press('Escape').catch(() => undefined);
+  await assertContext(page);
+  text = await visibleText(page);
   if (!page472Visible(text)) {
     return false;
   }
+
   return true;
 }
 
@@ -421,7 +438,7 @@ test('TARGET-071 writes or blocks the single Page 472 INLAND/VAT19 VAT Posting S
   let setupChanged = false;
 
   const openedMatrix = await openMatrix(page);
-  actionsTaken.push('Opened Page 472 directly in playthru / UNIVERSAARL-DE.');
+  actionsTaken.push('Opened Page 472 in playthru / UNIVERSAARL-DE using the TARGET-072 bounded visible navigation route when direct page=472 stayed outside Page 472.');
   if (!openedMatrix) {
     blockedBy.push('Direct page=472 route stayed on a non-Page-472 context; refusing Tell-Me/search fallback and refusing setup write.');
     const blockedText = await capture(page, 'target-071-000-direct-page-route-blocked', 'Direct page=472 did not show Page 472.', {
@@ -429,7 +446,7 @@ test('TARGET-071 writes or blocks the single Page 472 INLAND/VAT19 VAT Posting S
       routeRule: 'No search fallback in TARGET-071; wrong-target direct route blocks before setup write.',
       currentUrl: sanitizeEvidenceUrl(page.url())
     });
-    const nextCase = 'TARGET-072-VAT-PAGE472-NAVIGATION-ROUTE-DECISION';
+    const nextCase = 'TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION';
     const result = {
       schemaVersion: 1,
       purpose: 'autopilot-result-normalized',
@@ -514,9 +531,9 @@ test('TARGET-071 writes or blocks the single Page 472 INLAND/VAT19 VAT Posting S
             reason: 'The older General Posting Setup park case is already completed and should not become the active fallback.'
           },
           {
-            caseId: 'TARGET-072-VAT-PAGE472-NAVIGATION-ROUTE-DECISION',
+            caseId: 'TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION',
             status: 'ready-next',
-            reason: 'The direct Page 472 route landed outside Page 472; the next useful step is a route decision/helper before any VAT setup write.'
+            reason: 'Page 472 can be reached, but a true editable cell/editor route is still missing.'
           },
           {
             caseId: 'TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK',
@@ -531,9 +548,9 @@ test('TARGET-071 writes or blocks the single Page 472 INLAND/VAT19 VAT Posting S
         ],
         queueChangesMade: [],
         selectedNextCase: nextCase,
-        whySelectedNextCaseIsBest: 'TARGET-071 blocked before write; the next practical progress path is a bounded Page-472 navigation route decision, not a stale General Posting Setup park case.',
+        whySelectedNextCaseIsBest: 'TARGET-071 blocked before write; the next practical progress path is a bounded Page-472 active-editor route decision, not another navigation check.',
         risksBeforeNextCase: ['Do not open search as a hidden fallback for this write gate.', 'Do not claim VAT setup readiness from Role Center text.'],
-        requiredPreparation: ['Review the blocked screenshot and define a non-hidden Page-472 navigation route before another VAT write gate.']
+        requiredPreparation: ['Review the pre-write editor-proof screenshot and define a true active-editor route before another VAT write gate.']
       },
       nextCase,
       reason: `TARGET-071 blocked safely: ${blockedBy.join('; ')}`
@@ -663,7 +680,7 @@ test('TARGET-071 writes or blocks the single Page 472 INLAND/VAT19 VAT Posting S
   const resultStatus = setupChanged ? 'observed-vat-posting-setup-row-proven' : 'blocked-vat-posting-setup-page472-gate';
   const nextCase = setupChanged
     ? 'TARGET-071B-VAT-POSTING-SETUP-REOPEN-AND-SOURCE-REVIEW'
-    : 'TARGET-072-VAT-PAGE472-NAVIGATION-ROUTE-DECISION';
+    : 'TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION';
 
   const nextStepDecision = {
     currentCase: CASE_ID,
@@ -688,10 +705,17 @@ test('TARGET-071 writes or blocks the single Page 472 INLAND/VAT19 VAT Posting S
       },
       {
         caseId: 'TARGET-072-VAT-PAGE472-NAVIGATION-ROUTE-DECISION',
-        status: setupChanged ? 'ready-after-current' : 'ready-next',
+        status: 'done',
         reason: setupChanged
           ? 'Only needed if later Page 472 navigation becomes unstable again.'
-          : 'The Page 472 direct route blocked; define a bounded navigation/helper route before another VAT write gate.'
+          : 'TARGET-072 already proved the bounded visible Page 472 route; the remaining blocker is active editor detection.'
+      },
+      {
+        caseId: 'TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION',
+        status: setupChanged ? 'ready-after-current' : 'ready-next',
+        reason: setupChanged
+          ? 'Only needed if later cell editing becomes unstable again.'
+          : 'Page 472 opens, Liste bearbeiten and Neu are clickable, but no true active editor was detected for target fields.'
       },
       {
         caseId: 'TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK',
@@ -708,7 +732,7 @@ test('TARGET-071 writes or blocks the single Page 472 INLAND/VAT19 VAT Posting S
     selectedNextCase: nextCase,
     whySelectedNextCaseIsBest: setupChanged
       ? 'A saved VAT setup row needs one narrow reopen/source review before any posting-style claim.'
-      : 'TARGET-071 stopped or failed safely; another Page-472 write loop would repeat risk, so the next useful lane is the Page-472 navigation route decision.',
+      : 'TARGET-071 stopped or failed safely after reaching Page 472; the next useful lane is a Page-472 active-editor route decision.',
     risksBeforeNextCase: [
       'Do not claim final German VAT correctness before Preview Posting, VAT Entries and G/L Entries.',
       'Do not create master data or documents before Foundation readiness.',

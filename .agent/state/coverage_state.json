@@ -904,12 +904,12 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-07-05T22:10:00.000+02:00",
-  "activeArea": "universaarl-vat-page472-navigation-route-decision",
+  "updatedAt": "2026-07-05T23:20:00.000+02:00",
+  "activeArea": "universaarl-vat-page472-active-editor-route-decision",
   "currentBlock": "Page 314 Wareneinkaufskonto / Purch. Account 5400 is still not persisted. TARGET-058 showed List Edit and a row-bound target cell, but the controlled attempt opened the column menu and Reopen proof showed no 5400.",
   "latestPracticalCase": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
   "latestReviewCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
-  "nextCase": "TARGET-072-VAT-PAGE472-NAVIGATION-ROUTE-DECISION",
+  "nextCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -1130,7 +1130,7 @@
     "playwright/projects/fibu-book5/BC-ERROR-BLOCKER-ATLAS.md",
     "playwright/projects/fibu-book5/BC-PROCESS-COVERAGE-ROADMAP.md"
   ],
-  "currentCoverageFocus": "Universaarl W1 Foundation VAT Posting Setup Page 472 navigation route",
+  "currentCoverageFocus": "TARGET-071 reached Page 472 but blocked on true active editor detection for VAT setup target cells.",
   "latestCoverageUpdate": {
     "at": "2026-07-05T20:12:00.000+02:00",
     "type": "vat-page470-parked-page472-alternative-route-decision",
@@ -2011,7 +2011,7 @@
     "nextCase": "FIXEDASSETS-298-FA-DEPRECIATION-BLOCKER-BOOK-SYNC",
     "updatedAt": "2026-06-29T07:09:31.588Z"
   },
-  "nextStep": "Resolve Page 472 navigation route read-only before another VAT Posting Setup write gate.",
+  "nextStep": "Run TARGET-073 active-editor diagnosis before any VAT matrix write retry.",
   "warehouse": {
     "chapter": "Kapitel 13",
     "status": "in-progress",
@@ -2461,8 +2461,8 @@
     "finalScreenshotNeeded": true,
     "updatedAt": "2026-06-29T23:59:00+02:00"
   },
-  "activeCase": "TARGET-072-VAT-PAGE472-NAVIGATION-ROUTE-DECISION",
-  "active_case_file": ".agent/state/cases/target-072-vat-page472-navigation-route-decision.json",
+  "activeCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
+  "active_case_file": ".agent/state/cases/target-073-vat-page472-active-editor-route-decision.json",
   "latestManufacturing005": {
     "caseId": "MANUFACTURING-005-CHAPTER14-LAB-VS-TARGET-CLEANUP",
     "status": [
@@ -6336,29 +6336,23 @@
     "updatedAt": "2026-07-05T20:12:00.000+02:00"
   },
   "latestTarget071VatPostingSetupPage472Gate": {
-    "status": "blocked-vat-posting-setup-page472-direct-route",
-    "evidenceClass": "universaarl-target-evidence",
+    "status": "blocked-vat-posting-setup-page472-gate",
     "resultPath": "playwright/projects/fibu-book5/evidence/target-071-vat-posting-setup-page472-controlled-write-gate/TARGET-071-result.json",
-    "screenshots": [
-      "target-071-000-direct-page-route-blocked.png"
-    ],
-    "proved": [
-      "Business Central stayed in playthru / UNIVERSAARL-DE.",
-      "The direct page=472 route did not produce accepted Page 472 context in this run.",
-      "TARGET-071 stopped before any setup write, Preview Posting, Posting, master data, document draft, payment or API shortcut."
-    ],
-    "notProved": [
-      "No saved INLAND/VAT19 VAT Posting Setup row.",
-      "No Page 472 live write route.",
-      "No final German VAT correctness.",
-      "No Preview Posting.",
-      "No VAT Entries.",
-      "No G/L Entries."
-    ],
+    "coverageImpact": "Page 472 route is solved, but no active editor was found for INLAND/VAT19/19/3806/1406. VAT Posting Setup remains not proven.",
     "blockedBy": [
-      "Direct page=472 route stayed on a non-Page-472 context; refusing Tell-Me/search fallback and refusing setup write."
+      "No true active editor detected for vatBusinessPostingGroup; refusing to type INLAND.",
+      "No true active editor detected for vatProductPostingGroup; refusing to type VAT19.",
+      "No true active editor detected for vatPercent; refusing to type 19.",
+      "No true active editor detected for vatCalculationType; refusing to type Normale MwSt..",
+      "No true active editor detected for salesVatAccount; refusing to type 3806.",
+      "No true active editor detected for purchaseVatAccount; refusing to type 1406."
     ],
-    "coverageImpact": "VAT Posting Setup INLAND/VAT19 remains not proven; direct Page 472 navigation route is now a documented blocker.",
-    "nextCase": "TARGET-072-VAT-PAGE472-NAVIGATION-ROUTE-DECISION"
+    "nextCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION"
+  },
+  "latestTarget072VatPage472NavigationRouteDecision": {
+    "status": "observed-page472-navigation-route",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-072-vat-page472-navigation-route-decision/TARGET-072-result.json",
+    "coverageImpact": "Page 472 is visibly reachable via bounded search-result navigation; direct page=472 alone remains unreliable. No VAT setup row is proven.",
+    "nextCase": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE"
   }
 }
