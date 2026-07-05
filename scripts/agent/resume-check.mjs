@@ -1,8 +1,6 @@
 import { spawnSync } from 'node:child_process';
 
-const specPath = 'playwright/projects/fibu-book5/tests/target-075-chart-of-accounts-reopen-and-setup-consistency-check.spec.ts';
 const npmCmd = process.platform === 'win32' ? 'npm.cmd' : 'npm';
-const npxCmd = process.platform === 'win32' ? 'npx.cmd' : 'npx';
 const nodeCmd = process.execPath;
 
 function runStep(id, command, args, options = {}) {
@@ -50,7 +48,9 @@ const steps = [
   runStep('quality-audit', nodeCmd, ['scripts/agent/quality-audit.mjs'], { parseJson: true }),
   runStep('target-075-readiness', nodeCmd, ['scripts/agent/target-075-readiness-check.mjs'], { parseJson: true }),
   runStep('encoding', npmCmd, ['run', '--silent', 'check:encoding'], { keepStdout: true }),
-  runStep('target-075-playwright-list', npxCmd, ['playwright', 'test', '--list', specPath], { keepStdout: true })
+  runStep('target-075-guarded-list', npmCmd, ['run', '--silent', 'fibu:target:foundation-consistency-pilot', '--', '--list'], {
+    keepStdout: true
+  })
 ];
 
 const failed = steps.filter((step) => !step.ok);
