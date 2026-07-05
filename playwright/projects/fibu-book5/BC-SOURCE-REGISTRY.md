@@ -614,6 +614,17 @@ TARGET-032J laeuft ohne Business-Central- und ohne Playwright-Ausfuehrung. Der L
 
 Fuer Universaarl folgt daraus: Der naechste Schritt ist kein Konfigurationspaket-Import und keine Wiederholung von Zell-Edit. TARGET-032K prueft nur den eigenstaendigen `Neu`-Button auf Page 314. Dabei werden noch keine Werte getippt. Der Lauf soll beweisen, ob Business Central eine echte neue Karten-/Zeilenroute zeigt oder ob Page 314 weiterhin geparkt bleibt.
 
+## TARGET-069 VAT Business Groups Route-Parity-Entscheidung
+
+TARGET-069 laeuft ohne Business-Central- und ohne Playwright-Ausfuehrung. Der Lauf verbindet Microsoft Learn `Set up VAT` mit der Universaarl-Evidence zu Page 470, Page 471 und Page 472:
+
+- Die Produktquelle stuetzt weiterhin die Struktur aus VAT Business Posting Groups, VAT Product Posting Groups und VAT Posting Setup.
+- Page 471 und Page 472 sind als read-only Kontext vorhanden.
+- Page 470 hat einen Route-Parity-Konflikt: TARGET-027C4/TARGET-027S/TARGET-020 enthalten positive Direkt-/C4-Evidence, aber TARGET-027D31D/D31E und spaetere starke Screenshot-QA zeigen, dass aktuelle Helper/Suchrouten wieder auf Role Center oder Suchkontext fallen koennen.
+- Daraus entsteht kein Schreibrecht fuer USt-Setup.
+
+Fuer Universaarl folgt daraus: Der naechste Schritt ist TARGET-070 als read-only Page-470-Route-Parity-Gate. Erst wenn ein aktueller Screenshot mit echter Page-470-Listenoberflaeche, Titel/Kontext und Spalten wie `Code` und `Beschreibung` vorliegt, darf ein spaeterer lokaler VAT-Gruppen-Write-Gate ueberhaupt wieder entschieden werden. TARGET-027D32, Stammdaten, Preview Posting, Posting und deutsche USt-Finalclaims bleiben bis dahin gesperrt.
+
 ## URLs
 
 - https://learn.microsoft.com/en-us/dynamics365/business-central/about-new-company

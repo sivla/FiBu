@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
+  "status": "ready-next",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-target-execution",
+  "activeArea": "universaarl-vat-page470-route-parity",
+  "mayRunPlaywright": true,
+  "effectiveBcActionsAllowed": false,
+  "purpose": "Reproduce a current read-only Page 470 VAT Business Posting Groups proof using the older accepted direct/C4 route pattern, without writing VAT setup.",
+  "whyNow": "TARGET-069 found that VAT source truth is sufficient for the concept, but not for a write gate. Page 470 has older accepted proof and newer helper failures, so route parity must be resolved before any VAT write decision.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-027c4-vat-business-result-click-recovery/TARGET-027C4-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027s-vat-business-posting-groups-route-followup/TARGET-027S-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d31d-vat-business-posting-groups-alternative-route/TARGET-027D31D-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d31e-vat-business-groups-source-or-pageinspection-decision/TARGET-027D31E-result.json",
+    "playwright/projects/fibu-book5/evidence/target-069-vat-business-groups-source-route-decision/TARGET-069-result.json"
+  ],
+  "allowedActions": [
+    "open-business-central-readonly",
+    "confirm-playthru-instance",
+    "confirm-universaarl-de-company",
+    "try-target020-direct-page470-readonly-pattern",
+    "try-target027c4-exact-result-readonly-pattern-only-if-direct-pattern-fails",
+    "capture-screenshot-qa",
+    "write-result-json",
+    "update-state-and-coverage-plan"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "write-vat-business-posting-group",
+    "write-vat-product-posting-group",
+    "write-vat-posting-setup",
+    "write-setup",
+    "click-new",
+    "click-edit-list",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "treat-role-center-or-search-overlay-as-page470-proof",
+    "repeat-failed-page-470-search-click-route-without-direct-pattern"
+  ],
+  "acceptanceCriteria": [
+    "The run stays in playthru / UNIVERSAARL-DE.",
+    "A screenshot passes Page-470-specific QA with VAT Business Posting Groups title/context and list columns such as Code and Description/Beschreibung.",
+    "Role Center, Tell-Me overlay, hidden DOM text or generic Code/Beschreibung words alone are rejected.",
+    "No New/Edit/List/setup/master-data/draft/Preview/Post/API action is executed.",
+    "The result selects either a later local VAT write-gate decision or a blocker/helper-fix case."
+  ],
+  "stopIf": [
+    "The target instance is not playthru.",
+    "The target company is not UNIVERSAARL-DE.",
+    "The visible page is Role Center, Tell-Me search or another page instead of Page 470.",
+    "A dialog asks to confirm setup/write/delete/post/preview.",
+    "Only the already failed D31C/D31D search-click route is available."
+  ],
+  "nextIfSuccessful": "TARGET-071-VAT-GROUPS-CONTROLLED-WRITE-GATE-DECISION",
+  "nextIfBlocked": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS",
+  "nextCase": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE"
+}

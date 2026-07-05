@@ -1,11 +1,41 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
+  "purpose": "autopilot-result-normalized",
   "caseId": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
-  "status": "observed-local-decision",
+  "source": "local-analysis",
+  "resultStatus": "observed-local-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "TARGET-069 kept VAT writes locked and selected TARGET-070 as the read-only Page-470 direct-route parity gate.",
+  "page": "local-source-and-evidence-review",
+  "url": "",
+  "runPlanId": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION-PLAN",
+  "selectedTaskClass": "monkey_work",
+  "selectedModelClass": "gpt-4-mini-low",
+  "actionsTaken": [
+    "Read TARGET-027D31B, TARGET-027D31C, TARGET-027D31D, TARGET-027D31E, TARGET-066 and TARGET-068 evidence.",
+    "Read VAT source mapping and source registry entries.",
+    "Compared older TARGET-027C4/TARGET-027S Page-470 proof with newer D31D/D31E route blockers.",
+    "Classified TARGET-027D32 VAT write gate as premature.",
+    "Created TARGET-070 as the next read-only Page-470 route parity gate."
+  ],
+  "actionsNotTaken": [
+    "No Business Central run.",
+    "No Playwright run.",
+    "No VAT setup write.",
+    "No master data.",
+    "No document or draft.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No API shortcut.",
+    "No bookmaster change."
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "screenshots": [],
   "proved": [
     "VAT Business Posting Groups, VAT Product Posting Groups and VAT Posting Setup are source-backed product concepts, but source truth alone does not prove Universaarl setup.",
     "Page 471 and Page 472 have accepted earlier read-only Universaarl context.",
@@ -31,6 +61,12 @@
     "VAT19 on the item card does not replace VAT Posting Setup.",
     "A read-only Page-470 proof would still not prove VAT setup correctness; it only unlocks a later local write-gate decision."
   ],
+  "decision": {
+    "page470VatBusinessPostingGroupsRoute": "needs-ui-discovery-first",
+    "vatPostingSetupInlandVat19Route": "blocked-until-page470-parity-and-write-gate-decision",
+    "target027d32WriteGate": "blocked-premature",
+    "selectedNextRoute": "read-only-page470-direct-route-parity-gate"
+  },
   "evidenceRefs": [
     "playwright/projects/fibu-book5/evidence/target-027c4-vat-business-result-click-recovery/TARGET-027C4-result.json",
     "playwright/projects/fibu-book5/evidence/target-027s-vat-business-posting-groups-route-followup/TARGET-027S-result.json",
@@ -43,8 +79,42 @@
     "playwright/projects/fibu-book5/BC-MICROSOFT-LEARN-MAPPING.md",
     "playwright/projects/fibu-book5/BC-SOURCE-REGISTRY.md"
   ],
-  "nextStep": "Run TARGET-070 as a read-only Page-470 route parity gate. Do not write VAT setup, master data, drafts, Preview Posting, Posting or API shortcuts.",
-  "nextCase": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
+  "changedFiles": [
+    ".agent/state/cases/target-070-vat-page470-direct-route-parity-readonly-gate.json",
+    "playwright/projects/fibu-book5/evidence/target-069-vat-business-groups-source-route-decision/README.md",
+    "playwright/projects/fibu-book5/evidence/target-069-vat-business-groups-source-route-decision/TARGET-069-result.json"
+  ],
+  "statePatch": {
+    "current": {
+      "activeArea": "universaarl-vat-page470-route-parity",
+      "activeCase": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
+      "active_case_file": ".agent/state/cases/target-070-vat-page470-direct-route-parity-readonly-gate.json",
+      "nextCase": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
+      "nextStep": "Run TARGET-070 as a read-only Page-470 route parity gate. Do not write VAT setup, master data, drafts, Preview Posting, Posting or API shortcuts."
+    },
+    "lastRunSummary": {
+      "runId": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
+      "caseId": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
+      "status": "observed-local-decision",
+      "summary": "TARGET-069 kept VAT writes locked and selected TARGET-070 as the read-only Page-470 route parity gate.",
+      "nextCase": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE"
+    }
+  },
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBusinessCentralRun": true,
+    "noPlaywrightRun": true,
+    "noBookMasterChange": true
+  },
   "nextStepDecision": {
     "currentCase": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
     "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
@@ -96,19 +166,6 @@
       "Capture screenshot QA and result JSON with no-write flags."
     ]
   },
-  "flags": {
-    "noWrite": true,
-    "noPost": true,
-    "noPreview": true,
-    "noDraft": true,
-    "noSetupChange": true,
-    "noMasterDataChange": true,
-    "noCompanySwitch": true,
-    "noApiShortcut": true,
-    "noBusinessCentralRun": true,
-    "noPlaywrightRun": true,
-    "noBookMasterChange": true
-  },
-  "updatedAt": "2026-07-05T17:38:41.261Z",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-069-vat-business-groups-source-route-decision/TARGET-069-result.json"
+  "nextCase": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
+  "updatedAt": "2026-07-05T18:05:00.000Z"
 }

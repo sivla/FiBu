@@ -5,7 +5,7 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "queueId": "TARGET-MARATHON-002-UNIVERSAARL-REPO-READONLY-PREP",
-  "reason": "TARGET-068 classified W1 Foundation as limited-learning-path-only; next active work is TARGET-069 VAT source route decision, not stale TARGET-061 or Company Creation.",
+  "reason": "TARGET-069 closed the VAT source route decision and selected TARGET-070 Page-470 route parity before any VAT write gate.",
   "noEffectiveBusinessCentralActions": false,
   "forbiddenUntilUnblocked": [],
   "unblockCriteria": [
@@ -5091,6 +5091,61 @@
       "resultPath": "playwright/projects/fibu-book5/evidence/target-055-foundation-ready-recheck-after-vat-park/TARGET-055-result.json",
       "nextCase": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
       "completedAt": "2026-07-05T17:05:00.000Z"
+    },
+    {
+      "id": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
+      "order": 10216,
+      "category": "vat-route-decision",
+      "status": "done",
+      "lookaheadStatus": "done",
+      "expectedImpact": "vat-write-gate-kept-locked-route-parity-selected",
+      "goal": "Decide the next non-repeating source-backed route for VAT Business Posting Groups before any VAT write gate.",
+      "completedAt": "2026-07-05T17:38:41.261Z",
+      "result": "VAT write gate remains locked; selected TARGET-070 read-only Page-470 route parity gate.",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-069-vat-business-groups-source-route-decision/TARGET-069-result.json",
+      "nextCase": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
+      "setupChanged": false,
+      "masterDataChanged": false,
+      "previewPosting": false,
+      "posted": false,
+      "apiShortcut": false
+    },
+    {
+      "id": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
+      "order": 10217,
+      "category": "vat-page470-route-parity",
+      "status": "pending",
+      "lookaheadStatus": "ready-next",
+      "expectedImpact": "current-readonly-page470-proof-or-helper-blocker",
+      "goal": "Reproduce a current read-only Page 470 VAT Business Posting Groups proof using the older accepted direct/C4 route pattern, without writing VAT setup.",
+      "dependencies": [
+        "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION"
+      ],
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "forbiddenActions": [
+        "leave-instance",
+        "company-switch",
+        "commit-secrets",
+        "show-env-or-auth",
+        "fake-evidence",
+        "book-claim-without-evidence",
+        "write-vat-business-posting-group",
+        "write-vat-product-posting-group",
+        "write-vat-posting-setup",
+        "write-setup",
+        "click-new",
+        "click-edit-list",
+        "create-master-data",
+        "create-document-or-draft",
+        "preview-posting",
+        "post",
+        "payment",
+        "api-shortcut",
+        "treat-role-center-or-search-overlay-as-page470-proof",
+        "repeat-failed-page-470-search-click-route-without-direct-pattern"
+      ],
+      "nextCase": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE"
     }
   ],
   "lastUpdated": "2026-07-05T15:44:03.367Z",
@@ -5248,75 +5303,76 @@
       "Reject Role Center, search overlay or menu-only false positives."
     ]
   },
-  "nextStep": "Run TARGET-069 as a local/source-backed VAT route decision. Do not run BC/Playwright, do not write VAT setup, and do not unlock master data or process cases.",
+  "nextStep": "Run TARGET-070 as a read-only Page-470 route parity gate. Do not write VAT setup, master data, drafts, Preview Posting, Posting or API shortcuts.",
   "openItems": [
     "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE"
   ],
   "nextQueueItem": {
-    "caseId": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
+    "caseId": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
     "status": "ready-next",
-    "reason": "Narrow local VAT route/source decision before any write gate."
+    "reason": "Current read-only route parity gate before any VAT setup write."
   },
   "nextCases": [
-    "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
+    "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
+    "TARGET-071-VAT-GROUPS-CONTROLLED-WRITE-GATE-DECISION",
     "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
     "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
-    "TARGET-LOOKFEEL-001-LIST-SEARCH-SORT-FILTER",
     "TARGET-038-O2C-PREFLIGHT"
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-060-FOUNDATION-LIMITATION-CHECK-AFTER-PURCHASE-ACCOUNT-PARK",
+    "currentCase": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
     "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
-    "lastEvidenceSummary": "TARGET-059 parks the exhausted Page 314 Purch. Account 5400 UI route. TARGET-057 supplies field truth; TARGET-058 supplies the no-persist warning; General Posting Setup remains partial.",
+    "lastEvidenceSummary": "TARGET-068 kept W1 Foundation limited-learning-path-only. TARGET-027D31E and TARGET-066 parked Page 470 and VAT setup writes; older TARGET-027C4/TARGET-027S evidence shows a possible direct-route proof that newer helpers failed to reproduce.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "A VAT write gate or old posting-groups preflight would skip the new 5400 limitation. The next useful move is a fresh read-only boundary refresh after the park decision.",
+    "reason": "A write gate would outrun the current route truth. The best next step is a read-only route parity gate that proves or rejects the older Page-470 direct/C4 route under current screenshot QA.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
+        "caseId": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
         "status": "ready-next",
-        "reason": "TARGET-028 is older than the new 5400 park decision; a fresh read-only boundary refresh can create current Universaarl evidence without setup writes."
+        "reason": "It is materially new compared with D31D/D31E because it tests direct/C4 route parity and remains read-only."
+      },
+      {
+        "caseId": "TARGET-071-VAT-GROUPS-CONTROLLED-WRITE-GATE-DECISION",
+        "status": "ready-after-current",
+        "reason": "Only sensible if TARGET-070 produces accepted current Page-470 proof."
       },
       {
         "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
         "status": "blocked",
-        "reason": "No current Page 470/Page 472 write route is accepted and no case file exists; VAT writes stay locked."
+        "reason": "Premature until Page-470 parity and VAT group write decision are resolved."
       },
       {
-        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "caseId": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
         "status": "obsolete",
-        "reason": "Already completed before TARGET-057/058/059; keep as historical read-only evidence, but do not reactivate as current next case."
+        "reason": "Already completed; Page-314/5400 route remains parked and must not interrupt VAT parity."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "blocked",
-        "reason": "O2C cannot start while VAT Posting Setup and full General Posting Setup are not posting-ready."
-      },
-      {
-        "caseId": "TARGET-LOOKFEEL-001-LIST-SEARCH-SORT-FILTER",
-        "status": "ready-after-current",
-        "reason": "Book-useful after Foundation boundary refresh, but it does not resolve setup prerequisites."
+        "reason": "Process preflight remains blocked until VAT and General Posting Setup boundaries are narrowed."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-060 done as a local Foundation limitation classification.",
-      "Created TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK as the next read-only, no-write boundary refresh."
+      "Closed TARGET-069 as observed-local-decision.",
+      "Created TARGET-070 as the next read-only route parity gate.",
+      "Kept TARGET-027D32 and process cases blocked."
     ],
-    "selectedNextCase": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
-    "whySelectedNextCaseIsBest": "It produces current Universaarl setup-boundary evidence without editing setup, and it prevents the project from treating old TARGET-028 screenshots as current readiness.",
+    "selectedNextCase": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
+    "whySelectedNextCaseIsBest": "It converts a stale conflict between older Page-470 proof and newer helper failures into one reproducible, screenshot-QA-gated read-only case.",
     "risksBeforeNextCase": [
-      "Read-only page visibility must not be treated as posting readiness.",
-      "The missing 5400 Purch. Account must remain visible in the notProved boundary.",
-      "VAT Page 470/Page 472 visibility must not unlock a write gate without a separate Smart Decision."
+      "TARGET-070 must reject Role Center and Tell-Me overlay as proof.",
+      "TARGET-070 must not click New/Edit/List or write setup.",
+      "A successful Page-470 screenshot still does not prove VAT correctness."
     ],
     "requiredPreparation": [
-      "Use direct page URLs only inside playthru / UNIVERSAARL-DE.",
-      "Capture screenshots and screenshot QA for Page 314, VAT boundary pages and posting-group context.",
-      "Do not click New/Edit/Delete/Post/Preview/Apply/OK or type values."
+      "Use stored auth only after agent context permits BC workflows.",
+      "Prefer TARGET-020 direct Page-470 pattern before C4 exact-result fallback.",
+      "Capture screenshot QA and result JSON with no-write flags."
     ]
   },
-  "total": 209,
-  "done": 161,
-  "blocked": 43,
+  "total": 215,
+  "done": 164,
+  "blocked": 45,
   "latestAuthOpenLoginHandoff": {
     "at": "2026-07-03T13:35:00.000Z",
     "command": "npm run auth:bc:open-login",
@@ -5623,7 +5679,7 @@
     "posted": false,
     "apiShortcut": false
   },
-  "activeCase": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
+  "activeCase": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
   "latestRouteDecision": {
     "caseId": "TARGET-059-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-ROUTE-ESCALATION-OR-PARK",
     "resultPath": "playwright/projects/fibu-book5/evidence/target-059-general-posting-setup-purchase-account-route-escalation-or-park/TARGET-059-result.json",
@@ -5643,7 +5699,14 @@
     "status": "observed-local-decision",
     "foundationReadiness": "limited-learning-path-only",
     "resultPath": "playwright/projects/fibu-book5/evidence/target-068-w1-foundation-ready-checkpoint-after-dimension-park/TARGET-068-result.json",
-    "nextCase": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
-    "updatedAt": "2026-07-05T17:31:53.330Z"
+    "nextCase": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
+    "updatedAt": "2026-07-05T17:38:41.261Z"
+  },
+  "latestTarget069VatRouteDecision": {
+    "caseId": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
+    "status": "observed-local-decision",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-069-vat-business-groups-source-route-decision/TARGET-069-result.json",
+    "nextCase": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
+    "updatedAt": "2026-07-05T17:38:41.261Z"
   }
 }

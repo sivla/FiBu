@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-05T17:31:53.330Z",
+  "updatedAt": "2026-07-05T17:38:41.261Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-vat-business-groups-source-route-decision",
-  "activeCase": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
-  "active_case_file": ".agent/state/cases/target-069-vat-business-groups-source-route-decision.json",
+  "activeArea": "universaarl-vat-page470-route-parity",
+  "activeCase": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
+  "active_case_file": ".agent/state/cases/target-070-vat-page470-direct-route-parity-readonly-gate.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -19,11 +19,14 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-vat-evidence-results",
-    "read-microsoft-learn-vat-source-mapping",
-    "write-local-vat-route-decision-result",
-    "update-state-and-coverage-plan",
-    "update-catalog-or-bookdraft-if-reader-facing-and-evidence-bounded"
+    "open-business-central-readonly",
+    "confirm-playthru-instance",
+    "confirm-universaarl-de-company",
+    "try-target020-direct-page470-readonly-pattern",
+    "try-target027c4-exact-result-readonly-pattern-only-if-direct-pattern-fails",
+    "capture-screenshot-qa",
+    "write-result-json",
+    "update-state-and-coverage-plan"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -32,22 +35,23 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "open-business-central",
-    "run-playwright",
     "write-vat-business-posting-group",
     "write-vat-product-posting-group",
     "write-vat-posting-setup",
     "write-setup",
+    "click-new",
+    "click-edit-list",
     "create-master-data",
     "create-document-or-draft",
     "preview-posting",
     "post",
     "payment",
     "api-shortcut",
-    "repeat-failed-page-470-search-click-route"
+    "treat-role-center-or-search-overlay-as-page470-proof",
+    "repeat-failed-page-470-search-click-route-without-direct-pattern"
   ],
-  "nextCase": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
-  "nextStep": "Run TARGET-069 as a local/source-backed VAT route decision. Do not run BC/Playwright, do not write VAT setup, and do not unlock master data or process cases.",
+  "nextCase": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
+  "nextStep": "Run TARGET-070 as a read-only Page-470 route parity gate. Do not write VAT setup, master data, drafts, Preview Posting, Posting or API shortcuts.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -3852,7 +3856,7 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/target-069-vat-business-groups-source-route-decision.json",
+  "activeCaseFile": ".agent/state/cases/target-070-vat-page470-direct-route-parity-readonly-gate.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
@@ -9982,11 +9986,12 @@
   },
   "lastCompletedResult": "playwright/projects/fibu-book5/evidence/target-064-posting-groups-route-recovery-after-strong-qa/TARGET-064-result.json",
   "latestUniversaarlDecision": {
-    "caseId": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
+    "caseId": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
     "status": "observed-local-decision",
-    "summary": "W1 Foundation classified as limited-learning-path-only; no process or posting readiness; TARGET-069 VAT source route decision selected.",
-    "resultPath": "playwright/projects/fibu-book5/evidence/target-068-w1-foundation-ready-checkpoint-after-dimension-park/TARGET-068-result.json",
-    "nextCase": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION"
+    "summary": "VAT write gate remains locked; Page-470 route parity must be proven read-only before any VAT write decision.",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-069-vat-business-groups-source-route-decision/TARGET-069-result.json",
+    "nextCase": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
+    "updatedAt": "2026-07-05T17:38:41.261Z"
   },
   "latestDimensionDefaultsDecision": {
     "caseId": "TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION",
@@ -10000,5 +10005,18 @@
     "reportingEffect": "not-proven",
     "nextCase": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
     "updatedAt": "2026-07-05T17:25:19.400Z"
+  },
+  "latestTarget069VatRouteDecision": {
+    "caseId": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
+    "status": "observed-local-decision",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-069-vat-business-groups-source-route-decision/TARGET-069-result.json",
+    "decision": {
+      "page470VatBusinessPostingGroupsRoute": "needs-ui-discovery-first",
+      "vatPostingSetupInlandVat19Route": "blocked-until-page470-parity-and-write-gate-decision",
+      "target027d32WriteGate": "blocked-premature",
+      "selectedNextRoute": "read-only-page470-direct-route-parity-gate"
+    },
+    "nextCase": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
+    "updatedAt": "2026-07-05T17:38:41.261Z"
   }
 }
