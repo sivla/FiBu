@@ -40,7 +40,8 @@
     "screenshot_truth_gate",
     "evidence_pack_writer",
     "bc_dialog_gate",
-    "bc_source_research"
+    "bc_source_research",
+    "mcp_tooling_governance"
   ],
   "optionalCapabilities": [
     "bc_active_editor_diagnosis",
@@ -96,6 +97,39 @@
     "risk": "Low if strictly read-only; medium if the UI enters edit mode or a dialog asks for confirmation.",
     "fallback": "Abort, document the page/dialog state, and create a narrower UI diagnosis case.",
     "bookUse": "Supports beginner explanation of what a starter chart and setup boundary look like before postings are possible."
+  },
+  "qualityAuditReview": {
+    "reviewedCommand": "npm run agent:quality:audit",
+    "reviewedAt": "2026-07-05T20:05:46.230Z",
+    "risksAcceptedForThisCaseOnly": [
+      {
+        "id": "narrow-tsconfig",
+        "risk": "tsconfig.json type-checks only 5 files while the repo contains 450 TypeScript files.",
+        "caseDecision": "Do not treat tsc as full project health proof for TARGET-075. Use agent preflight, encoding, diff check and Playwright --list before any later live run."
+      },
+      {
+        "id": "auth-check-not-enforced",
+        "risk": "Direct storageState references can run without auth freshness preflight.",
+        "caseDecision": "TARGET-075 must run auth/context checks before live execution; stale auth or wrong instance/company blocks the pilot."
+      },
+      {
+        "id": "playwright-flake-surface",
+        "risk": "Existing repo still contains many fixed waits, force clicks and coordinate clicks.",
+        "caseDecision": "TARGET-075 is read-only and must not use write clicks, force-click value entry, coordinate editing or unscoped New/Edit/Post actions."
+      }
+    ],
+    "notFixedBeforePilot": [
+      "Do not attempt global tsconfig expansion before TARGET-075.",
+      "Do not mass-rewrite legacy tests before TARGET-075.",
+      "Do not solve all storageState references before TARGET-075."
+    ],
+    "mustHoldBeforePilot": [
+      "agent:preflight passes.",
+      "check:encoding passes.",
+      "Playwright can list the TARGET-075 spec without opening Business Central.",
+      "Live execution remains blocked until the freeze is explicitly lifted.",
+      "TARGET-075 remains read-only."
+    ]
   },
   "acceptanceCriteria": [
     "playthru / UNIVERSAARL-DE is visibly confirmed in the live session.",
