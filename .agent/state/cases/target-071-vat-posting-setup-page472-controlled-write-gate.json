@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
-  "status": "ready-next",
+  "status": "blocked",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "mode": "universaarl-target-execution",
@@ -115,6 +115,68 @@
   ],
   "nextIfSuccessful": "TARGET-071B-VAT-POSTING-SETUP-REOPEN-AND-SOURCE-REVIEW",
   "nextIfBlocked": "TARGET-032P-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PARK",
-  "nextCase": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
-  "createdAt": "2026-07-05T21:04:00.000+02:00"
+  "nextCase": "TARGET-072-VAT-PAGE472-NAVIGATION-ROUTE-DECISION",
+  "createdAt": "2026-07-05T21:04:00.000+02:00",
+  "resultStatus": "blocked-vat-posting-setup-page472-direct-route",
+  "completedAt": "2026-07-05T22:10:00.000+02:00",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-071-vat-posting-setup-page472-controlled-write-gate/TARGET-071-result.json",
+  "blockedBy": [
+    "Direct page=472 route stayed on a non-Page-472 context; refusing Tell-Me/search fallback and refusing setup write."
+  ],
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "nextCaseFile": ".agent/state/cases/target-072-vat-page472-navigation-route-decision.json",
+  "nextStepDecision": {
+    "currentCase": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-027D32 approved only a narrow Page 472 live gate. The live direct page=472 route currently lands in non-Page-472 context.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The planned Page-472 write is not sensible while the direct route cannot prove Page 472 without search fallback.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-071B-VAT-POSTING-SETUP-REOPEN-AND-SOURCE-REVIEW",
+        "status": "blocked",
+        "reason": "No saved VAT setup row exists."
+      },
+      {
+        "caseId": "TARGET-032P-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PARK",
+        "status": "obsolete",
+        "reason": "The older General Posting Setup park case is already completed and should not become the active fallback."
+      },
+      {
+        "caseId": "TARGET-072-VAT-PAGE472-NAVIGATION-ROUTE-DECISION",
+        "status": "ready-next",
+        "reason": "The direct Page 472 route landed outside Page 472; the next useful step is a route decision/helper before any VAT setup write."
+      },
+      {
+        "caseId": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
+        "status": "ready-after-current",
+        "reason": "Useful only after VAT/Page472 and General Posting blockers are classified."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "blocked",
+        "reason": "O2C remains blocked until VAT and General Posting Setup are proven or consciously limited."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked TARGET-071 blocked with no setup write.",
+      "Added TARGET-072 as the next narrow read-only navigation route decision."
+    ],
+    "selectedNextCase": "TARGET-072-VAT-PAGE472-NAVIGATION-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "TARGET-071 blocked before write because direct page=472 stayed outside Page 472. A bounded navigation route decision is now the safest useful next step.",
+    "risksBeforeNextCase": [
+      "Do not open search as a hidden fallback for this write gate.",
+      "Do not claim VAT setup readiness from Role Center text."
+    ],
+    "requiredPreparation": [
+      "Review the blocked screenshot and define a non-hidden Page-472 navigation route before another VAT write gate."
+    ]
+  },
+  "updatedAt": "2026-07-05T22:10:00.000+02:00"
 }
