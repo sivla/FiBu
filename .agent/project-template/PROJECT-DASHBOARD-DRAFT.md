@@ -36,6 +36,7 @@ This dashboard is the project manager view. It should stay short and point to th
 | Data request Jira candidates | draft | First five candidates exist for core company/organization data and customer/vendor/item master data. |
 | Customer data simulation | draft | `CUSTOMER-DATA-SIMULATION-DRAFT.md` exists. |
 | Simulated core/master data tables | draft | First fictional planning tables exist for company information, organization model, customers, vendors and items/services; master-data setup remains blocked by dependencies. |
+| Foundation/master-data route decisions | draft | Route cards exist for numbering, posting groups, payment terms and product/UOM setup before live master-data work. |
 | Decision log | draft | Initial decisions captured. |
 | Risk register | draft | Initial risks captured. |
 | UAT/training plan | draft | Training strategy, role matrix, evidence map and first module cards exist; more role/process cards still needed. |
@@ -114,15 +115,14 @@ Status: mostly drafted, not yet reviewed as final.
 
 ## Next recommended work
 
-1. Create route decision cards for numbering, posting groups, payment terms and product posting setup.
-2. Create Playwright scenario catalog mapped to WS02/WS03/WS04 UAT and evidence needs.
+1. Create Playwright scenario catalog mapped to read-first validation for WS02/WS03/WS04 setup dependencies.
+2. Create training module cards for customer/vendor/item master data using the route boundaries.
 3. Run `BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md` as a small spec-driven pilot before adopting OpenSpec globally.
 4. Turn `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` into workstream-level Jira import candidates.
 5. Apply `REALISM-STANDARD-DRAFT.md` to storyline, scene cards and broader customer data simulation.
 6. Create workstream-to-book-chapter map.
 7. Create project plan review checklist.
-8. Expand training module cards for VAT, dimensions and customer/vendor/item master data.
-9. After the freeze, resume live work with a read-first foundation/master-data preflight, not blind record creation.
+8. After the freeze, resume live work with a read-first foundation/master-data preflight, not blind record creation.
 
 ## Update rule
 

@@ -72,6 +72,8 @@ The target is one integrated system:
   - Simulated customer data packages, file structures, validation rules and consultant review flow.
 - `SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md`
   - First fictional planning tables for core company information, organization model, customers, vendors and items/services.
+- `ROUTE-DECISION-CARDS-FOUNDATION-MASTER-DATA-DRAFT.md`
+  - First route decision cards for numbering, posting groups, payment terms and product/UOM setup before live master-data work.
 - `DECISION-LOG-DRAFT.md`
   - Project decision register for scope, setup, route, evidence and book decisions.
 - `RISK-REGISTER-DRAFT.md`

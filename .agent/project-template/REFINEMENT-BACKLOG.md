@@ -126,6 +126,8 @@ Realism review status: the first five candidates were reviewed in `REALISM-REVIE
 
 Simulation status: first simulated tables now exist in `SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md`. They expose blockers for numbering, posting groups, VAT groups, payment terms, UOM and inventory posting setup before any live master-data creation.
 
+Route decision status: first route decision cards now exist in `ROUTE-DECISION-CARDS-FOUNDATION-MASTER-DATA-DRAFT.md`. They recommend read-first proof and gated setup before number series, posting groups, payment terms, UOM or item/master-data work.
+
 ## P1: Build simulated customer data packets
 
 Use `CUSTOMER-DATA-SIMULATION-DRAFT.md` to create the first realistic data packets:
@@ -289,4 +291,4 @@ Later create one compact dashboard:
 
 ## Current next best step
 
-`WS02-CASE-STUDY-CORE`, `WS04-MASTER-DATA-PRODUCT`, the first training module cards, data-request candidates, realism review and simulated core/master-data tables now exist as drafts. The next useful refinement is to create route decision cards for numbering, posting groups, payment terms and product posting setup. That is the fastest way to make the next live Foundation/Master-Data pilot better rather than merely more automated.
+`WS02-CASE-STUDY-CORE`, `WS04-MASTER-DATA-PRODUCT`, the first training module cards, data-request candidates, realism review, simulated tables and route decision cards now exist as drafts. The next useful refinement is to create a Playwright scenario catalog for read-first validation of the setup dependencies in WS02/WS03/WS04. That is the fastest way to make the next live Foundation/Master-Data pilot better rather than merely more automated.

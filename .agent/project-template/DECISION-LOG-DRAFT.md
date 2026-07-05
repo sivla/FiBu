@@ -454,3 +454,46 @@ Risks:
 Reversal/correction path:
 
 If a tool layer does not help PM, consultant, customer, trainer, architect or evidence work, merge or remove it.
+
+### DEC-013 Use route decision cards before live foundation/master-data setup
+
+Date: 2026-07-05
+Workstream: `WS03-FINANCE-FOUNDATION`, `WS04-MASTER-DATA-PRODUCT`
+Status: proposed
+
+Problem:
+
+The simulated Universaarl master-data tables expose blockers for numbering, posting groups, VAT groups, payment terms, UOM and product posting setup. If the project jumps directly into BC setup, the book and training flow could become arbitrary.
+
+Decision:
+
+Use `ROUTE-DECISION-CARDS-FOUNDATION-MASTER-DATA-DRAFT.md` as the planning layer before live setup or master-data creation.
+
+Reason:
+
+Business Central setup should be standard-oriented and teachable. Number series, posting groups, payment terms and product/UOM setup affect later process evidence and customer understanding, so each route must be decided before execution.
+
+Source basis:
+
+- Microsoft Learn Business Central setup overview.
+- Microsoft Learn MB-800 setup scope, including number series.
+- Microsoft Learn posting group setup.
+- Microsoft Learn configuration package/import guidance.
+- Microsoft Learn unit-of-measure guidance.
+
+Book impact:
+
+The book can explain why these dependencies exist before showing customer/vendor/item creation.
+
+Playwright impact:
+
+The next Playwright catalog should focus on read-first validation of setup dependencies before effective changes.
+
+Risks:
+
+- route cards can become documentation noise if they do not lead to setup, evidence, UAT or training output
+- minimal phase-1 setup could be mistaken for a complete German production design
+
+Reversal/correction path:
+
+If a route card does not guide a concrete setup or training decision, merge it into the relevant workstream page and remove it from the active decision path.

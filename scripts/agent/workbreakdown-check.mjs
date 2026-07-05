@@ -21,6 +21,7 @@ const files = {
   bcSpecPilot: '.agent/project-template/BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md',
   customerDataSimulation: '.agent/project-template/CUSTOMER-DATA-SIMULATION-DRAFT.md',
   simulatedDataTablesCoreMd: '.agent/project-template/SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md',
+  routeDecisionCardsFoundationMasterData: '.agent/project-template/ROUTE-DECISION-CARDS-FOUNDATION-MASTER-DATA-DRAFT.md',
   workbreakdown: '.agent/project-template/BC-IMPLEMENTATION-WORKBREAKDOWN-DRAFT.md',
   jiraModel: '.agent/project-template/JIRA-WORK-ITEM-MODEL.md',
   cadence: '.agent/project-template/DOCUMENTATION-CADENCE.md',
@@ -93,6 +94,7 @@ if (allText) {
     'BCSpec Pilot 001: Master Data Product Training and Evidence',
     'Customer Data Simulation Draft',
     'Simulated Data Tables - Core and Master Data Draft',
+    'Route Decision Cards - Foundation and Master Data Draft',
     'Business Central Implementation Workbreakdown Draft',
     'Jira Work Item Model',
     'Documentation Cadence',
@@ -122,6 +124,7 @@ if (allText) {
     'Data request Jira candidates',
     'Data request realism review',
     'Simulated core/master data tables',
+    'Foundation/master-data route decisions',
     'WORKSTREAM-02-CASE-STUDY-CORE-JIRA-DRAFT.md',
     'Epic CS-01: Company Story and Legal Entity Model',
     'Epic CS-02: Organization, Locations and Responsibility Model',
@@ -384,6 +387,22 @@ if (allText) {
     'not import files'
   ], 12);
 
+  requireAtLeast('foundation route decision anchors', [
+    'Route Decision Cards - Foundation and Master Data Draft',
+    'RD-FOUND-001 Numbering policy',
+    'RD-FOUND-002 Posting group model',
+    'RD-FOUND-003 Payment terms and payment method route',
+    'RD-FOUND-004 Product setup route',
+    'Numbering policy',
+    'Posting groups',
+    'Payment terms',
+    'Units of measure',
+    'configuration package',
+    'read-first proof',
+    'gated setup',
+    'DEC-013'
+  ], 11);
+
   if (/password|client_secret|refresh_token|access_token|Bearer |eyJ/i.test(allText)) {
     errors.push('.agent/project-template appears to contain secret-like text');
   }
@@ -409,7 +428,7 @@ const output = {
   warnings,
   nextStep:
     errors.length === 0
-      ? 'Project template is usable as a local implementation planning anchor. Next create route decision cards for numbering, posting groups, payment terms and product posting setup, then map Playwright scenarios for WS02/WS03/WS04.'
+      ? 'Project template is usable as a local implementation planning anchor. Next create a Playwright scenario catalog for read-first validation of WS02/WS03/WS04 setup dependencies.'
       : 'Fix the workbreakdown draft before using it as a planning anchor.'
 };
 
