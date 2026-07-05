@@ -58,10 +58,14 @@ const steps = [
 ];
 
 const failed = steps.filter((step) => !step.ok);
+const freezeStatus = steps.find((step) => step.id === 'freeze-status')?.parsedJson;
 const qualityAudit = steps.find((step) => step.id === 'quality-audit')?.parsedJson;
 const readiness = steps.find((step) => step.id === 'target-075-readiness')?.parsedJson;
 const authCheck = steps.find((step) => step.id === 'auth-state-check')?.parsedJson;
 const qualityRiskIds = (qualityAudit?.risks ?? []).map((risk) => risk.id);
+const localResumeReady =
+  failed.length === 0 && readiness?.canProceedAfterFreezeLift === true && authCheck?.canUseStoredAuth === true;
+const freezeActive = freezeStatus?.freezeActive === true;
 
 const warnings = [];
 if (qualityRiskIds.includes('narrow-tsconfig')) {
@@ -82,8 +86,10 @@ const output = {
   schemaVersion: 1,
   purpose: 'autopilot-resume-check',
   caseId: 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK',
-  canResumeAfterFreezeLift:
-    failed.length === 0 && readiness?.canProceedAfterFreezeLift === true && authCheck?.canUseStoredAuth === true,
+  canResumeAfterFreezeLift: localResumeReady,
+  canRunNow: localResumeReady && !freezeActive,
+  freezeActive,
+  requiresFreezeLift: freezeActive,
   liveActionsExecuted: false,
   businessCentralOpened: false,
   playwrightLiveRunExecuted: false,
@@ -115,6 +121,15 @@ const output = {
         nextStep: readiness.nextStep
       }
     : null,
+  freezeStatus: freezeStatus
+    ? {
+        freezeActive: freezeStatus.freezeActive,
+        frozenLiveCase: freezeStatus.frozenLiveCase,
+        resumeCandidateAfterFreeze: freezeStatus.resumeCandidateAfterFreeze,
+        errors: freezeStatus.errors,
+        warnings: freezeStatus.warnings
+      }
+    : null,
   authState: authCheck
     ? {
         canUseStoredAuth: authCheck.canUseStoredAuth,
@@ -136,10 +151,11 @@ const output = {
     : null,
   warnings,
   errors: failed.map((step) => `${step.id} failed with exit code ${step.exitCode}`),
-  nextStep:
-    failed.length === 0 && readiness?.canProceedAfterFreezeLift === true && authCheck?.canUseStoredAuth === true
-      ? 'All local resume checks passed, including stored auth. Freeze lift and live shell/context validation are still required before running TARGET-075.'
-      : 'Fix failed local resume checks before considering TARGET-075.'
+  nextStep: !localResumeReady
+    ? 'Fix failed local resume checks before considering TARGET-075.'
+    : freezeActive
+      ? 'Local resume checks passed, including stored auth, but the freeze is still active. Do not run TARGET-075 until explicit freeze lift or active-case approval.'
+      : 'All local resume checks passed, including stored auth. Run TARGET-075 only with live shell/context validation.'
 };
 
 console.log(JSON.stringify(output, null, 2));
