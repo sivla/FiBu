@@ -15,6 +15,7 @@ This dashboard is the project manager view. It should stay short and point to th
 | Project plan | draft | `PROJECT-PLAN-DRAFT.md` exists. |
 | Real customer onboarding/setup | draft | `REAL-CUSTOMER-ONBOARDING-AND-PROJECT-SETUP-GUIDE-DRAFT.md` exists and defines the realistic Confluence/Jira/GitHub/BC operating model. |
 | Agent operating model | draft | `AGENT-OPERATING-MODEL-DRAFT.md` defines orchestrator, specialist roles, model routing, review gates and exclusive `playthru` execution. |
+| Concept realism review cadence | draft | `CONCEPT-REALISM-REVIEW-CADENCE-DRAFT.md` defines recurring source-backed checks for whether the overall project concept should adapt. |
 | Book as project model | draft | `BOOK-AS-PROJECT-MANAGEMENT-MODEL.md` exists. |
 | Book ticket backlog | draft | `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` exists. |
 | Project cast | draft | `PROJECT-CAST-AND-STAKEHOLDERS-DRAFT.md` exists. |
@@ -103,6 +104,7 @@ Status: mostly drafted, not yet reviewed as final.
 | DEC-012 | Use real customer onboarding and Atlassian-first project setup | accepted |
 | DEC-013 | Use route decision cards before live foundation/master-data setup | proposed |
 | DEC-014 | Use a governed agent operating model before automation | accepted |
+| DEC-015 | Run recurring concept realism reviews | accepted |
 
 ## Top active risks
 
@@ -117,18 +119,20 @@ Status: mostly drafted, not yet reviewed as final.
 | RISK-013 | Spec-driven layer duplicates Jira/project docs | P2 | active |
 | RISK-014 | Real setup becomes artificial tool architecture | P1 | active |
 | RISK-015 | Multi-agent work creates conflicting project truth | P1 | active |
+| RISK-016 | Concept review cadence becomes review theater | P2 | active |
 
 ## Next recommended work
 
-1. Use `AGENT-OPERATING-MODEL-DRAFT.md` as governance for any further specialist-agent or subagent work; do not automate it yet.
-2. Turn the package-derived Jira ticket map into import-ready Jira rows or project tickets.
-3. Turn the first two Playwright catalog entries into read-only specs after the freeze is lifted or a read-only probe is approved.
-4. Create training module cards for customer/vendor/item master data using the package dependencies, not before them.
-5. Run `BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md` as a small spec-driven pilot before adopting OpenSpec globally.
-6. Turn `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` into workstream-level Jira import candidates.
-7. Apply `REALISM-STANDARD-DRAFT.md` to storyline, scene cards and broader customer data simulation.
-8. Create workstream-to-book-chapter map.
-9. After the freeze, resume live work with a read-first foundation/master-data preflight, not blind record creation.
+1. Use `CONCEPT-REALISM-REVIEW-CADENCE-DRAFT.md` for the next weekly-style review before expanding more structure.
+2. Use `AGENT-OPERATING-MODEL-DRAFT.md` as governance for any further specialist-agent or subagent work; do not automate it yet.
+3. Turn the package-derived Jira ticket map into import-ready Jira rows or project tickets.
+4. Turn the first two Playwright catalog entries into read-only specs after the freeze is lifted or a read-only probe is approved.
+5. Create training module cards for customer/vendor/item master data using the package dependencies, not before them.
+6. Run `BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md` as a small spec-driven pilot before adopting OpenSpec globally.
+7. Turn `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` into workstream-level Jira import candidates.
+8. Apply `REALISM-STANDARD-DRAFT.md` to storyline, scene cards and broader customer data simulation.
+9. Create workstream-to-book-chapter map.
+10. After the freeze, resume live work with a read-first foundation/master-data preflight, not blind record creation.
 
 ## Update rule
 

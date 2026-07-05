@@ -15,6 +15,7 @@ The project template should become complete, but not by creating a huge static d
 - Create project dashboard draft.
 - Create real customer onboarding and project setup guide.
 - Create agent operating model draft.
+- Create concept realism review cadence.
 - Create goal transition protocol.
 - Create first goal transition card.
 - Create book-as-project-management model.
@@ -95,6 +96,20 @@ The model must stay practical:
 - stronger models are used for BC judgment, architecture, risky claims and final review, not mechanical cleanup
 
 Do not automate a broader multi-agent system until manual specialist-role use proves better output, fewer correction loops and no sandbox/project-truth conflicts.
+
+## P1: Run recurring concept realism reviews
+
+Use `CONCEPT-REALISM-REVIEW-CADENCE-DRAFT.md` to keep the project concept honest.
+
+First review should cover:
+
+- whether the Confluence/Jira/GitHub/BC model is still realistic
+- whether BCSpec should remain a pilot or be folded into Confluence/Jira templates
+- whether the new agent operating model adds value or ceremony
+- whether data requests, route cards, simulated tables and Playwright catalog are too many artifacts or the right level of control
+- whether the customer could understand what they must deliver next
+
+Every review must update the dashboard, backlog, decision log or risk register, or explicitly record a no-change verdict.
 
 ## P1: Convert the book into project tickets
 

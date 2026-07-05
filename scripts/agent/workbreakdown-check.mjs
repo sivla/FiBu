@@ -7,6 +7,7 @@ const files = {
   projectPlan: '.agent/project-template/PROJECT-PLAN-DRAFT.md',
   realCustomerOnboarding: '.agent/project-template/REAL-CUSTOMER-ONBOARDING-AND-PROJECT-SETUP-GUIDE-DRAFT.md',
   agentOperatingModel: '.agent/project-template/AGENT-OPERATING-MODEL-DRAFT.md',
+  conceptRealismReviewCadence: '.agent/project-template/CONCEPT-REALISM-REVIEW-CADENCE-DRAFT.md',
   bookProjectModel: '.agent/project-template/BOOK-AS-PROJECT-MANAGEMENT-MODEL.md',
   bookProjectBacklog: '.agent/project-template/BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md',
   projectCast: '.agent/project-template/PROJECT-CAST-AND-STAKEHOLDERS-DRAFT.md',
@@ -24,6 +25,7 @@ const files = {
   customerDataSimulation: '.agent/project-template/CUSTOMER-DATA-SIMULATION-DRAFT.md',
   simulatedDataTablesCoreMd: '.agent/project-template/SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md',
   jiraImportRowsDataPackages: '.agent/project-template/JIRA-IMPORT-ROWS-DATA-PACKAGES-DRAFT.md',
+  jiraImportFieldMapping: '.agent/project-template/JIRA-IMPORT-FIELD-MAPPING-DRAFT.md',
   routeDecisionCardsFoundationMasterData: '.agent/project-template/ROUTE-DECISION-CARDS-FOUNDATION-MASTER-DATA-DRAFT.md',
   workbreakdown: '.agent/project-template/BC-IMPLEMENTATION-WORKBREAKDOWN-DRAFT.md',
   jiraModel: '.agent/project-template/JIRA-WORK-ITEM-MODEL.md',
@@ -83,6 +85,7 @@ if (allText) {
     'Universaarl Business Central Project Plan Draft',
     'Real Customer Onboarding and Project Setup Guide Draft',
     'Agent Operating Model Draft',
+    'Concept Realism Review Cadence Draft',
     'Book as Project Management Model',
     'Book Project Ticket Backlog Draft',
     'Project Cast and Stakeholders Draft',
@@ -100,6 +103,7 @@ if (allText) {
     'Customer Data Simulation Draft',
     'Simulated Data Tables - Core and Master Data Draft',
     'Jira Import Rows - Universaarl Data Packages Draft',
+    'Jira Import Field Mapping Draft',
     'Route Decision Cards - Foundation and Master Data Draft',
     'Business Central Implementation Workbreakdown Draft',
     'Jira Work Item Model',
@@ -382,6 +386,32 @@ if (allText) {
     'Do not build new automation yet'
   ], 14);
 
+  requireAtLeast('concept realism review cadence anchors', [
+    'Concept Realism Review Cadence Draft',
+    'The project must regularly review itself',
+    'Source basis',
+    'Microsoft Learn',
+    'Dynamics 365 implementation guide',
+    'Project governance',
+    'Testing strategy',
+    'Training process and best practices',
+    'Review cadence',
+    'Session concept pulse',
+    'Weekly-style concept review',
+    'Milestone concept review',
+    'Source refresh review',
+    'Post-evidence realism review',
+    'Adoption and training review',
+    'Review dimensions',
+    'Customer realism',
+    'Consultant realism',
+    'Architect realism',
+    'Evidence realism',
+    'Tool realism',
+    'Anti-patterns',
+    'Success criteria'
+  ], 20);
+
   requireAtLeast('data request realism review anchors', [
     'Realism Review - Data Requests 2026-07-05',
     'DR-CORE-001',
@@ -448,6 +478,26 @@ if (allText) {
     'DEC-FF-POSTING-001',
     'DEC-FF-VAT-001'
   ], 22);
+
+  requireAtLeast('jira import field mapping anchors', [
+    'Jira Import Field Mapping Draft',
+    'Required Jira field mapping',
+    'Issue key candidate',
+    'External ID or local reference custom field',
+    'Blocks BC setup',
+    'Description template',
+    'Import readiness checklist',
+    'First import batch recommendation',
+    'Data Request',
+    'Decision',
+    'Task',
+    'ready-after-freeze',
+    'ready-after-foundation',
+    'This issue does not authorize Business Central writes',
+    'Jira project key confirmed',
+    'Supported issue types confirmed',
+    'Specialist needed?'
+  ], 15);
 
   requireAtLeast('simulated core master data anchors', [
     'Simulated Data Tables - Core and Master Data Draft',

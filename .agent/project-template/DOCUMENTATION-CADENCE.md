@@ -79,6 +79,30 @@ When enough work accumulates, review:
 - Playwright repeatability debt
 - old raw material that should be curated or rejected
 
+## Concept realism review
+
+Use `CONCEPT-REALISM-REVIEW-CADENCE-DRAFT.md` when the project structure itself may need adjustment.
+
+Run it:
+
+- after several meaningful project-template changes
+- before milestone readiness claims
+- when Jira/Confluence/spec-driven structure feels heavy or unclear
+- when evidence contradicts the current concept
+- when external Microsoft guidance or implementation best practice changes the expected route
+- before promoting major handbook/book material
+
+The review must produce one of:
+
+- no-change verdict with reason
+- decision update
+- risk update
+- backlog change
+- parked/rejected concept
+- source/evidence follow-up
+
+Do not run concept reviews as ceremony. If no artifact changes and no decision is made, explicitly record why the current model still stands.
+
 ## Evidence rules
 
 Use these categories:

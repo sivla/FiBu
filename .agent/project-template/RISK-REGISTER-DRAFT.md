@@ -293,3 +293,22 @@ Mitigation:
 - Require orchestrator merge before specialist output becomes canonical.
 - Allow only one Playwright/BC execution agent in `playthru` at a time.
 - Track whether agent roles reduce rework and conflicts; if not, scale back to single-agent execution.
+
+### RISK-016 Concept review cadence becomes review theater
+
+Workstream: `WS01-GOVERNANCE`, `WS14-BOOK-PLAYWRIGHT-LEARNING`
+Severity: P2
+Probability: medium
+Status: active
+
+Impact:
+
+Recurring reviews may create more documentation without improving project realism, customer clarity, BC route quality, evidence quality, training usefulness or book curation.
+
+Mitigation:
+
+- Use `CONCEPT-REALISM-REVIEW-CADENCE-DRAFT.md`.
+- Require each review to produce a no-change verdict, decision update, risk update, backlog change, parked/rejected item or source/evidence follow-up.
+- Keep source hierarchy clear: Microsoft and Universaarl evidence outrank external advisory sources.
+- Timebox session and weekly-style reviews.
+- Reduce cadence if reviews do not lead to better project decisions.

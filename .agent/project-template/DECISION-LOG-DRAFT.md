@@ -539,3 +539,43 @@ Risks:
 Reversal/correction path:
 
 If a route card does not guide a concrete setup or training decision, merge it into the relevant workstream page and remove it from the active decision path.
+
+### DEC-015 Run recurring concept realism reviews
+
+Date: 2026-07-06
+Workstream: `WS01-GOVERNANCE`, `WS14-BOOK-PLAYWRIGHT-LEARNING`
+Status: accepted
+
+Problem:
+
+The project can become unrealistic if the overall concept is only defined once and then keeps growing through Jira drafts, Confluence-like specs, BCSpec, Playwright evidence, agent roles and book artifacts without regular critique.
+
+Decision:
+
+Use `CONCEPT-REALISM-REVIEW-CADENCE-DRAFT.md` for recurring session, weekly-style, milestone, source-refresh, post-evidence and adoption/training reviews. Reviews must use Microsoft guidance first, Universaarl evidence second and external method/adoption sources as advisory input.
+
+Reason:
+
+Microsoft guidance emphasizes adapting governance throughout the project lifecycle, regular project/business reviews, Success by Design reviews, testing strategy and ongoing training. External practices such as retrospectives, lessons learned and change-management/adoption reviews reinforce that implementation projects need deliberate feedback loops.
+
+Customer impact:
+
+The project should stay understandable and useful for real project managers, consultants, key users and customers instead of becoming an internal documentation system.
+
+Book impact:
+
+Book and handbook output should become more curated, realistic and source/evidence-aligned over time.
+
+Playwright impact:
+
+Evidence must be reviewed for whether it proves a business/project claim or only a technical screen observation.
+
+Risks:
+
+- reviews can become ceremony
+- external advice can be over-weighted versus Microsoft/BC evidence
+- too many reviews can slow implementation
+
+Reversal/correction path:
+
+If reviews do not produce clearer decisions, risks, backlog changes or simplification, reduce cadence and keep only milestone and post-evidence reviews.

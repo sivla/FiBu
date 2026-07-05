@@ -26,6 +26,8 @@ The target is one integrated system:
   - Real customer onboarding and project setup guide for Confluence, Jira, GitHub, BC sandbox, data, UAT, training and handbook work.
 - `AGENT-OPERATING-MODEL-DRAFT.md`
   - Schlankes Rollen-, Routing- und Governance-Modell fuer Orchestrator, Spezialagenten, Modellstaerken, Reviews und `playthru`-Exklusivitaet.
+- `CONCEPT-REALISM-REVIEW-CADENCE-DRAFT.md`
+  - Wiederkehrende Konzept-/Realismus-Reviews mit Microsoft-Quellen, externen Methodensignalen, Review-Gates und konkreten Outputs.
 - `GOAL-TRANSITION-PROTOCOL.md`
   - Protocol for switching a long-running goal into the project-management system at a safe checkpoint.
 - `GOAL-TRANSITION-CARD-2026-07-05.md`
