@@ -20,6 +20,22 @@ Do not resume TARGET-073 as the next live case. TARGET-073 is parked until a mat
 | Direct `storageState` references exist | TARGET-075 must start with auth/context checks. Wrong auth, wrong instance or wrong company blocks the pilot. |
 | Many waits, force clicks and coordinate clicks exist in legacy tests | TARGET-075 stays read-only. No force-click value entry, no coordinate editing, no unscoped `New/Edit/Post/OK`. |
 
+## Latest local gate snapshot
+
+Last checked: 2026-07-06.
+
+| Gate | Result | Meaning |
+| --- | --- | --- |
+| `git pull --ff-only` | passed | Branch was already up to date before the readiness refresh. |
+| `npm run agent:preflight` | passed | Agent state, budgets, safety, model routing, capabilities and skills are locally consistent. |
+| `npm run agent:quality:audit` | passed with known risk findings | The pilot may proceed only as read-first; TypeScript coverage, auth freshness and legacy Playwright flake surface remain bounded risks. |
+| `npm run agent:resume:check` | passed locally | TARGET-075 is prepared after freeze lift; this check does not open Business Central and does not lift the freeze. |
+| `npm run agent:freeze:status` | freeze active | Live execution remains blocked until the freeze is explicitly lifted or the active case confirms TARGET-075 may run. |
+| `npx playwright test --list playwright/projects/fibu-book5/tests/target-075-chart-of-accounts-reopen-and-setup-consistency-check.spec.ts` | passed, 1 test listed | The TARGET-075 spec is discoverable without opening Business Central. |
+| `npm run check:encoding` | passed | Text encoding is clean enough for this readiness package. |
+
+Current decision: stop broad cleanup here. The next useful project movement is either explicit freeze lift plus TARGET-075 live read-first execution, or a narrow local fix only if a gate changes from green to red.
+
 ## Required before live execution
 
 - `npm run agent:resume:check`
