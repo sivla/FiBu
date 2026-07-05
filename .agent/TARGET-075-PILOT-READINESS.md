@@ -22,6 +22,7 @@ Do not resume TARGET-073 as the next live case. TARGET-073 is parked until a mat
 
 ## Required before live execution
 
+- `npm run agent:resume:check`
 - `npm run agent:preflight`
 - `npm run check:encoding`
 - `npx playwright test --list playwright/projects/fibu-book5/tests/target-075-chart-of-accounts-reopen-and-setup-consistency-check.spec.ts`
