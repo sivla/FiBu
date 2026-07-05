@@ -657,6 +657,80 @@
         "Gradually tag new Universaarl tests with capabilitiesUsed instead of duplicating old RM-specific helper logic.",
         "When a legacy test is ported, keep the old evidence archived and mark the new Universaarl result as replacement candidate."
       ]
+    },
+    {
+      "id": "bc_source_research",
+      "name": "BC Source Research",
+      "maturity": "draft",
+      "taskClass": "judge_work",
+      "linkedSkills": [
+        "bc-source-research"
+      ],
+      "purpose": "Business-Central-, Buchhaltungs-, Compliance- und Microsoft-Implementierungsclaims recherchieren, bevor sie als finale Buchaussagen erscheinen.",
+      "inputs": [
+        "questionOrClaim",
+        "claimLevel",
+        "localEvidence",
+        "targetBookSection"
+      ],
+      "outputs": [
+        "allowedClaim",
+        "notAllowedClaim",
+        "sourceReferences",
+        "bookBoundary"
+      ],
+      "gates": [
+        "official-source-required-for-final-claim",
+        "local-evidence-required-for-ui-claim",
+        "no-rm-demo-as-german-final-proof"
+      ],
+      "playwrightTouchpoints": [
+        "Evidence result JSON",
+        "screenshot metadata",
+        "BC source registry"
+      ],
+      "improvementBacklog": [
+        "Connect research output to BC-SOURCE-REGISTRY.md and open_questions_register.json.",
+        "Use before any final VAT, GoBD, e-invoice, posting interpretation or release-dependent book claim."
+      ]
+    },
+    {
+      "id": "bc_active_editor_diagnosis",
+      "name": "BC Active Editor Diagnosis",
+      "maturity": "draft",
+      "taskClass": "wizard_work",
+      "linkedSkills": [
+        "bc-active-editor"
+      ],
+      "purpose": "Ermitteln, ob ein sichtbares Business-Central-Feld wirklich editierbar ist, bevor Werte getippt werden.",
+      "inputs": [
+        "pageContext",
+        "targetFieldCaptions",
+        "rowAnchors",
+        "allowedActions",
+        "forbiddenActions"
+      ],
+      "outputs": [
+        "editorCandidates",
+        "trueEditorProven",
+        "safeToType",
+        "blockedBy"
+      ],
+      "gates": [
+        "page-context-before-editor-proof",
+        "row-anchor-before-grid-entry",
+        "no-type-without-true-editor"
+      ],
+      "playwrightTouchpoints": [
+        "locator focus",
+        "activeElement inspection",
+        "control snapshots",
+        "Page 472 VAT Posting Setup blocker"
+      ],
+      "improvementBacklog": [
+        "Use for the frozen TARGET-073 route before any future VAT setup retry.",
+        "Generalize from Page 472 into card/list/grid active editor helper after one more local review."
+      ]
     }
   ]
 }
