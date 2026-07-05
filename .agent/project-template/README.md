@@ -46,6 +46,10 @@ The target is one integrated system:
   - Mapping from training modules to Playwright, sandbox evidence, UAT and handbook readiness.
 - `REALISM-STANDARD-DRAFT.md`
   - Quality gate for keeping the fictional Universaarl project realistic instead of demo-perfect.
+- `SPEC-DRIVEN-SIDEPROJECT-DRAFT.md`
+  - OpenSpec/Spec-Kit-inspired sideproject for testing a BC-specific spec-driven workflow.
+- `BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md`
+  - First manual BCSpec pilot for master-data/product training, customer data, UAT and Playwright evidence.
 - `BC-IMPLEMENTATION-WORKBREAKDOWN-DRAFT.md`
   - Main workstream, epic, story and task breakdown.
 - `WORKSTREAM-02-CASE-STUDY-CORE-JIRA-DRAFT.md`
@@ -58,6 +62,8 @@ The target is one integrated system:
   - Reusable templates for issues, data requests, decisions, risks, UAT, training and book output.
 - `CUSTOMER-DATA-CATALOG-DRAFT.md`
   - Structured customer data request catalog by workstream and data category.
+- `DATA-REQUEST-JIRA-CANDIDATES-DRAFT.md`
+  - First Jira-ready Data Request candidates for company information, organization model, customers, vendors and items/services.
 - `CUSTOMER-DATA-SIMULATION-DRAFT.md`
   - Simulated customer data packages, file structures, validation rules and consultant review flow.
 - `DECISION-LOG-DRAFT.md`
@@ -84,6 +90,7 @@ Every meaningful piece of work should leave a trace in at least one of these for
 - a Playwright evidence scenario
 - a book chapter or book-candidate note
 - a skill/helper/capability improvement
+- a BCSpec-style change note for larger cross-cutting changes
 
 If work cannot be connected to any of those traces, it is probably too isolated or not yet understood.
 

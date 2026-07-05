@@ -236,3 +236,21 @@ Mitigation:
 - Include realistic imperfections only when they teach project behavior.
 - Convert imperfections into data requests, decisions, risks, UAT defects, training notes or book boundaries.
 - Avoid drama that does not produce project value.
+
+### RISK-013 Spec-driven layer duplicates Jira/project docs
+
+Workstream: `WS01-GOVERNANCE`, `WS14-BOOK-PLAYWRIGHT-LEARNING`
+Severity: P2
+Probability: medium
+Status: active
+
+Impact:
+
+BCSpec or OpenSpec-inspired files may become a second project-management system next to Jira/backlog/dashboard artifacts, increasing maintenance without improving BC setup, training, book quality or Playwright repeatability.
+
+Mitigation:
+
+- Run one pilot before creating a canonical `.agent/spec-driven/` tree.
+- Require each BCSpec change to map to concrete workstreams, Jira issue candidates, customer data, evidence, training and book outputs.
+- Archive, merge or reject completed BCSpec material instead of leaving parallel stale drafts.
+- Prefer normal Jira/backlog templates for small single-file or low-risk changes.

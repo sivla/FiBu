@@ -25,10 +25,12 @@ The project template should become complete, but not by creating a huge static d
 - Create role-based training matrix.
 - Create Playwright training evidence map.
 - Create realism standard.
+- Create spec-driven sideproject draft and first BCSpec pilot.
 - Define Jira work item model.
 - Define documentation cadence.
 - Define artifact templates.
 - Create initial customer data catalog.
+- Create first data-request Jira candidate draft.
 - Create initial decision log.
 - Create initial risk register.
 - Keep current workbreakdown draft aligned with workstreams and epics.
@@ -95,6 +97,8 @@ Refine the initial catalog into Jira-ready data requests:
 - integrations
 
 Each data request should include owner, due date, format, validation rule and BC usage. The initial file exists as `CUSTOMER-DATA-CATALOG-DRAFT.md`.
+
+Current status: first Jira-ready candidates for `DR-CORE-001`, `DR-CORE-002`, `DR-MD-001`, `DR-MD-002` and `DR-MD-003` exist in `DATA-REQUEST-JIRA-CANDIDATES-DRAFT.md`. Next refinement should apply the realism standard, then convert accepted candidates into Jira import rows or simulated data tables.
 
 ## P1: Build simulated customer data packets
 
@@ -173,6 +177,33 @@ Apply first to:
 
 The goal is to prevent demo-perfect artifacts. Realistic material should include owners, missing data, validation, role constraints, trade-offs, UAT feedback, training gaps and evidence boundaries where appropriate.
 
+## P1: Run BCSpec sideproject pilot
+
+Use these files:
+
+- `SPEC-DRIVEN-SIDEPROJECT-DRAFT.md`
+- `BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md`
+
+Run the pilot only for one master-data/product refinement before adopting any larger OpenSpec structure.
+
+The pilot must prove that BCSpec improves:
+
+- customer data readiness
+- route decisions
+- Jira-ready tasks
+- Playwright evidence planning
+- UAT/training linkage
+- book curation boundaries
+
+Do not create a canonical `.agent/spec-driven/` tree or install OpenSpec until the pilot is reviewed.
+
+After the pilot, decide whether to:
+
+- keep BCSpec as a lightweight checklist
+- create a local `.agent/spec-driven/` structure
+- install OpenSpec and customize a schema
+- reject the extra layer and fold useful parts into existing templates
+
 ## P1: Refine decision and risk registers
 
 Refine the initial registers:
@@ -232,4 +263,4 @@ Later create one compact dashboard:
 
 ## Current next best step
 
-`WS02-CASE-STUDY-CORE`, `WS04-MASTER-DATA-PRODUCT` and the first training module cards now exist as drafts. The next useful refinement is to convert `DR-CORE-001`, `DR-CORE-002` and `DR-MD-001` through `DR-MD-003` into Jira-ready data requests with owner, due date, format, validation rule, dependency and BC usage. That is the fastest way to make the next live Foundation/Master-Data pilot better rather than merely more automated.
+`WS02-CASE-STUDY-CORE`, `WS04-MASTER-DATA-PRODUCT`, the first training module cards and `DATA-REQUEST-JIRA-CANDIDATES-DRAFT.md` now exist as drafts. The next useful refinement is to review those data-request candidates against realism, ownership, validation, route and evidence gates, while using `BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md` to test whether a spec-driven layer improves the work. That is the fastest way to make the next live Foundation/Master-Data pilot better rather than merely more automated.

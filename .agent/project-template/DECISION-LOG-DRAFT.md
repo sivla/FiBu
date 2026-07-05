@@ -368,3 +368,44 @@ Risks:
 Reversal/correction path:
 
 If a section becomes too messy, simplify it intentionally and label it as `training-simplification` or `book-simplification`.
+
+### DEC-011 Test BCSpec before adopting OpenSpec globally
+
+Date: 2026-07-05
+Workstream: `WS01-GOVERNANCE`, `WS14-BOOK-PLAYWRIGHT-LEARNING`
+Status: proposed
+
+Problem:
+
+OpenSpec and Spec Kit offer useful spec-driven workflows, but the Universaarl repo is not only a code project. It contains Business Central implementation work, project management, customer data requests, UAT, training, book curation, Playwright evidence and agent-learning artifacts.
+
+Decision:
+
+Test a lightweight BC-specific spec-driven workflow called `BCSpec` with one pilot before installing OpenSpec or creating a canonical `.agent/spec-driven/` structure.
+
+Reason:
+
+The project benefits from persistent specs and change proposals, but the artifact set must include BC route decisions, customer data, evidence, training, UAT and book impact. A manual pilot will show whether the workflow improves delivery quality or only adds documentation overhead.
+
+Source basis:
+
+- OpenSpec docs: persistent specs, change folders, proposal/spec/design/tasks and archive workflow.
+- OpenSpec customization docs: custom schemas and project configuration.
+- GitHub Spec Kit docs: structured spec/plan/tasks/implementation flow.
+
+Book impact:
+
+Large book changes can be reviewed for intent before raw execution becomes prose.
+
+Playwright impact:
+
+Evidence scenarios can be planned as requirements instead of discovered accidentally after automation runs.
+
+Risks:
+
+- spec-driven files can duplicate Jira/backlog/project docs
+- agents may write polished specs without doing source, sandbox, UAT or Playwright verification
+
+Reversal/correction path:
+
+If the pilot adds overhead without improving quality, keep the useful template fragments and reject BCSpec as a standing process.

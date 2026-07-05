@@ -15,12 +15,15 @@ const files = {
   trainingModuleCards: '.agent/project-template/TRAINING-MODULE-CARDS-DRAFT.md',
   playwrightTrainingEvidenceMap: '.agent/project-template/PLAYWRIGHT-TRAINING-EVIDENCE-MAP-DRAFT.md',
   realismStandard: '.agent/project-template/REALISM-STANDARD-DRAFT.md',
+  specDrivenSideproject: '.agent/project-template/SPEC-DRIVEN-SIDEPROJECT-DRAFT.md',
+  bcSpecPilot: '.agent/project-template/BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md',
   customerDataSimulation: '.agent/project-template/CUSTOMER-DATA-SIMULATION-DRAFT.md',
   workbreakdown: '.agent/project-template/BC-IMPLEMENTATION-WORKBREAKDOWN-DRAFT.md',
   jiraModel: '.agent/project-template/JIRA-WORK-ITEM-MODEL.md',
   cadence: '.agent/project-template/DOCUMENTATION-CADENCE.md',
   artifactTemplates: '.agent/project-template/PROJECT-ARTIFACT-TEMPLATES.md',
   customerDataCatalog: '.agent/project-template/CUSTOMER-DATA-CATALOG-DRAFT.md',
+  dataRequestJiraCandidates: '.agent/project-template/DATA-REQUEST-JIRA-CANDIDATES-DRAFT.md',
   decisionLog: '.agent/project-template/DECISION-LOG-DRAFT.md',
   riskRegister: '.agent/project-template/RISK-REGISTER-DRAFT.md',
   projectDashboard: '.agent/project-template/PROJECT-DASHBOARD-DRAFT.md',
@@ -81,12 +84,15 @@ if (allText) {
     'Training Module Cards Draft',
     'Playwright Training Evidence Map Draft',
     'Realism Standard Draft',
+    'Spec-Driven Sideproject Draft',
+    'BCSpec Pilot 001: Master Data Product Training and Evidence',
     'Customer Data Simulation Draft',
     'Business Central Implementation Workbreakdown Draft',
     'Jira Work Item Model',
     'Documentation Cadence',
     'Project Artifact Templates',
     'Customer Data Catalog Draft',
+    'Data Request Jira Candidates Draft',
     'Decision Log Draft',
     'Risk Register Draft',
     'Project Dashboard Draft',
@@ -107,12 +113,13 @@ if (allText) {
     'Finance Foundation and Control Model',
     'Recommended first refinement target: Finance Foundation and Control Model',
     'Current next best step',
-    'WS02-CASE-STUDY-CORE`, `WS04-MASTER-DATA-PRODUCT` and the first training module cards now exist as drafts',
+    'Data request Jira candidates',
     'WORKSTREAM-02-CASE-STUDY-CORE-JIRA-DRAFT.md',
     'Epic CS-01: Company Story and Legal Entity Model',
     'Epic CS-02: Organization, Locations and Responsibility Model',
     'Epic CS-03: Environment, Company Context and Evidence Boundary',
     'WORKSTREAM-04-MASTER-DATA-PRODUCT-JIRA-DRAFT.md',
+    'DATA-REQUEST-JIRA-CANDIDATES-DRAFT.md',
     'Epic MD-01: Customer Master Data',
     'Epic MD-02: Vendor Master Data',
     'Epic MD-03: Product Model, Items, Services and Non-Inventory Items',
@@ -270,6 +277,12 @@ if (allText) {
     'DR-MD-001',
     'DR-MD-002',
     'DR-MD-003',
+    'Customer owner',
+    'Internal owner',
+    'Validation rules',
+    'Dependencies',
+    'BC usage',
+    'Jira issue type: `Data Request`',
     'UAT-MD-001',
     'TR-MD-001',
     'configuration package',
@@ -282,6 +295,8 @@ if (allText) {
     'Training Module Cards Draft',
     'Playwright Training Evidence Map Draft',
     'Realism Standard Draft',
+    'BCSpec',
+    'OpenSpec',
     'role-based',
     'training-ready',
     'evidence-needed',
@@ -293,6 +308,20 @@ if (allText) {
     'RISK-011',
     'DEC-009'
   ], 12);
+
+  requireAtLeast('spec-driven sideproject anchors', [
+    'Spec-Driven Sideproject Draft',
+    'BCSpec Pilot 001',
+    'REQ-001 Master data must be taught as business ownership',
+    'REQ-002 Bulk setup routes must be considered before manual mass entry',
+    'proposal',
+    'requirements',
+    'design',
+    'tasks',
+    'customer data requests',
+    'Playwright evidence planning',
+    'book curation'
+  ], 8);
 
   if (/password|client_secret|refresh_token|access_token|Bearer |eyJ/i.test(allText)) {
     errors.push('.agent/project-template appears to contain secret-like text');
@@ -319,7 +348,7 @@ const output = {
   warnings,
   nextStep:
     errors.length === 0
-      ? 'Project template is usable as a local implementation planning anchor. Next convert core and master-data data requests into Jira-ready issue candidates.'
+      ? 'Project template is usable as a local implementation planning anchor. Next apply the realism standard and create a Playwright scenario catalog for WS02/WS03/WS04.'
       : 'Fix the workbreakdown draft before using it as a planning anchor.'
 };
 

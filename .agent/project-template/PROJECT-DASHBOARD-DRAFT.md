@@ -23,17 +23,19 @@ This dashboard is the project manager view. It should stay short and point to th
 | Training module cards | draft | First cards exist for environment/company, navigation, chart of accounts and posting groups. |
 | Playwright training evidence map | draft | `PLAYWRIGHT-TRAINING-EVIDENCE-MAP-DRAFT.md` exists. |
 | Realism standard | draft | `REALISM-STANDARD-DRAFT.md` exists. |
+| Spec-driven sideproject | proposed | `SPEC-DRIVEN-SIDEPROJECT-DRAFT.md` and `BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md` test whether OpenSpec-style workflow helps this BC project. |
 | Workbreakdown | draft | Workstreams and epics exist in `BC-IMPLEMENTATION-WORKBREAKDOWN-DRAFT.md`. |
 | Jira model | draft | Issue model, labels, statuses and DoR/DoD exist. |
 | Goal transition | active-transition | `GOAL-TRANSITION-PROTOCOL.md` and `GOAL-TRANSITION-CARD-2026-07-05.md` exist for the running long-goal agent. |
 | Case study core workstream | draft | Detailed WS02 draft exists and links company story, roles, data requests, UAT, training, book and Playwright context. |
 | Finance workstream | draft | First detailed workstream draft exists. |
 | Master data/product workstream | draft | Detailed WS04 draft exists and compares manual UI, templates, configuration packages, Excel import, API and park routes. |
-| Customer data catalog | draft | Initial data requests exist, not yet Jira-ready. |
+| Customer data catalog | draft | Initial data requests exist; Jira-ready candidates are tracked separately. |
+| Data request Jira candidates | draft | First five candidates exist for core company/organization data and customer/vendor/item master data. |
 | Customer data simulation | draft | `CUSTOMER-DATA-SIMULATION-DRAFT.md` exists. |
 | Decision log | draft | Initial decisions captured. |
 | Risk register | draft | Initial risks captured. |
-| UAT/training plan | draft | Training strategy, role matrix and evidence map exist; module cards still needed. |
+| UAT/training plan | draft | Training strategy, role matrix, evidence map and first module cards exist; more role/process cards still needed. |
 | Book map | missing | Workstream-to-chapter mapping still needed. |
 | Playwright scenario catalog | missing | Needs mapping to workstreams and UAT. |
 
@@ -91,6 +93,7 @@ Status: mostly drafted, not yet reviewed as final.
 | DEC-008 | Use recurring fictional characters to drive the project story | accepted |
 | DEC-009 | Training material must be role-based and evidence-backed | accepted |
 | DEC-010 | Realism is a quality gate for project/book/training artifacts | accepted |
+| DEC-011 | Test BCSpec before adopting OpenSpec globally | proposed |
 
 ## Top active risks
 
@@ -102,14 +105,15 @@ Status: mostly drafted, not yet reviewed as final.
 | RISK-004 | Playwright routes are not repeatable | P1 | active |
 | RISK-009 | Parallel agent changes create worktree conflicts | P1 | active |
 | RISK-012 | Project story becomes too demo-perfect | P1 | active |
+| RISK-013 | Spec-driven layer duplicates Jira/project docs | P2 | active |
 
 ## Next recommended work
 
-1. Convert `DR-CORE-001`, `DR-CORE-002` and `DR-MD-001` through `DR-MD-003` into Jira-ready data-request candidates with owner, due date, format, validation and BC usage.
-2. Apply `REALISM-STANDARD-DRAFT.md` to storyline, scene cards and customer data simulation.
+1. Apply `REALISM-STANDARD-DRAFT.md` to the new data-request candidates, storyline, scene cards and customer data simulation.
+2. Run `BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md` as a small spec-driven pilot before adopting OpenSpec globally.
 3. Create Playwright scenario catalog mapped to WS02/WS03/WS04 UAT and evidence needs.
 4. Turn `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` into workstream-level Jira import candidates.
-5. Create first simulated data files or tables for company, finance and master data.
+5. Create first simulated data files or tables for company, finance and master data after the new owner/validation rules are accepted.
 6. Create workstream-to-book-chapter map.
 7. Create project plan review checklist.
 8. Expand training module cards for VAT, dimensions and customer/vendor/item master data.
