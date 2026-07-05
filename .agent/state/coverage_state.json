@@ -607,6 +607,22 @@
         "blocker": "Page 118 after reopen does not show PRODUCTLINE as Global Dimension Code 1 and COSTCENTER as Global Dimension Code 2.",
         "nextCase": "TARGET-024E-GLOBAL-DIMENSION-ASSIGNMENT-SOURCE-OR-ALTERNATIVE-ROUTE",
         "updatedAt": "2026-06-30T17:34:19.935Z"
+      },
+      "latestVatPage472Decision": {
+        "caseId": "TARGET-070D-VAT-PAGE472-TABLE325-ALTERNATIVE-ROUTE-DECISION",
+        "status": "observed-local-decision",
+        "resultPath": "playwright/projects/fibu-book5/evidence/target-070d-vat-page472-table325-alternative-route-decision/TARGET-070D-result.json",
+        "decision": "usable-for-next-local-write-gate-decision-not-direct-write",
+        "nextCase": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+        "openLimits": [
+          "No INLAND/VAT19 VAT Posting Setup row is proven saved.",
+          "No VAT percent 19 setup row is proven.",
+          "No Sales VAT Account 3806 setup row is proven.",
+          "No Purchase VAT Account 1406 setup row is proven.",
+          "No Page 470 VAT Business Posting Groups route is recovered.",
+          "No German VAT calculation, VAT Entry, G/L Entry, Preview Posting or Posting is proven.",
+          "No posting readiness or final German tax correctness is proven."
+        ]
       }
     },
     "universaarlUsecaseBacklog": {
@@ -845,7 +861,7 @@
     },
     "vatSetup": {
       "chapter": "Kapitel 6/7",
-      "status": "blocked-route-partial-readonly-proof",
+      "status": "write-locked-page472-decision-gate-next",
       "latestPracticalCase": "TARGET-027D31C-VAT-SETUP-ROUTE-BLOCKER-REVIEW",
       "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31c-vat-setup-route-blocker-review/TARGET-027D31C-result.json",
       "covered": [
@@ -854,11 +870,16 @@
         "Page 1801 Unterstuetztes Setup reachable read-only from D31C without wizard completion."
       ],
       "openLimits": [
-        "Page 470 MwSt.-Geschaeftsbuchungsgruppen not yet accepted as visible page proof.",
-        "No VAT setup value written.",
-        "No VAT correctness, Preview Posting, Posting or VAT Entry proof."
+        "No INLAND/VAT19 VAT Posting Setup row is proven saved.",
+        "No VAT percent 19 setup row is proven.",
+        "No Sales VAT Account 3806 setup row is proven.",
+        "No Purchase VAT Account 1406 setup row is proven.",
+        "No Page 470 VAT Business Posting Groups route is recovered.",
+        "No German VAT calculation, VAT Entry, G/L Entry, Preview Posting or Posting is proven.",
+        "No posting readiness or final German tax correctness is proven."
       ],
-      "nextCase": "TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE"
+      "nextCase": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+      "latestCase": "TARGET-070D-VAT-PAGE472-TABLE325-ALTERNATIVE-ROUTE-DECISION"
     },
     "w1Foundation": {
       "latestPostingGroupsRouteRecovery": "TARGET-064-POSTING-GROUPS-ROUTE-RECOVERY-AFTER-STRONG-QA",
@@ -869,7 +890,7 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-07-05T20:12:00.000+02:00",
+  "updatedAt": "2026-07-05T20:32:00.000+02:00",
   "activeArea": "universaarl-vat-page470-route-decision",
   "currentBlock": "Page 314 Wareneinkaufskonto / Purch. Account 5400 is still not persisted. TARGET-058 showed List Edit and a row-bound target cell, but the controlled attempt opened the column menu and Reopen proof showed no 5400.",
   "latestPracticalCase": {

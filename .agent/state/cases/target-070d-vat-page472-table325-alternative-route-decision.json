@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-070D-VAT-PAGE472-TABLE325-ALTERNATIVE-ROUTE-DECISION",
-  "status": "ready-next",
+  "status": "observed-local-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "mode": "universaarl-target-execution",
@@ -60,5 +60,73 @@
   ],
   "nextIfSuccessful": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
   "nextIfBlocked": "TARGET-032P-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PARK",
-  "nextCase": "TARGET-070D-VAT-PAGE472-TABLE325-ALTERNATIVE-ROUTE-DECISION"
+  "nextCase": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+  "completedAt": "2026-07-05T20:32:00.000+02:00",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-070d-vat-page472-table325-alternative-route-decision/TARGET-070D-result.json",
+  "decision": {
+    "page470VatBusinessPostingGroupsRoute": "parked-current-ui-route-blocked",
+    "page472VatPostingSetupRoute": "usable-for-next-local-write-gate-decision-not-direct-write",
+    "table325FieldTruth": "usable-as-field-map-not-setup-proof",
+    "assistedSetupRoute": "parked-for-now-readonly-only",
+    "configurationPackageRoute": "rejected-for-current-next-step-too-broad-and-cleanup-risk",
+    "selectedNextRoute": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+    "reason": "Page 472/Table 325 has accepted read-only context and technical field truth, but no persisted INLAND/VAT19/19/3806/1406 row. Therefore the next step is a local Smart Decision write-gate, not a setup write."
+  },
+  "nextStepDecision": {
+    "currentCase": "TARGET-070D-VAT-PAGE472-TABLE325-ALTERNATIVE-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+    "lastEvidenceSummary": "TARGET-027D26/TARGET-061 show Page 472 VAT Posting Setup read-only context; TARGET-027D29 adds Page Inspection/Table 325 field truth; TARGET-027D28/D29/D30 park direct grid/New/Edit-List write routes; TARGET-070C parks Page 470.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The next step must decide a narrow VAT setup write gate from Page 472/Table 325 evidence before any UI write. It avoids repeating Page 470 and avoids jumping straight into setup changes.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+        "status": "ready-next",
+        "reason": "Local decision only; it can decide whether a later narrow Page 472 VAT setup write case is allowed."
+      },
+      {
+        "caseId": "TARGET-071-VAT-GROUPS-CONTROLLED-WRITE-GATE-DECISION",
+        "status": "blocked",
+        "reason": "Page 470 remains parked as current UI-route blocker; no VAT Business Posting Group write gate yet."
+      },
+      {
+        "caseId": "TARGET-032P-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PARK",
+        "status": "ready-after-current",
+        "reason": "General Posting Setup 5400 is a separate Foundation blocker and should not be mixed into VAT Page 472."
+      },
+      {
+        "caseId": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
+        "status": "ready-after-current",
+        "reason": "Foundation checkpoint remains useful after VAT/General Posting blockers are classified."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "blocked",
+        "reason": "O2C remains blocked until VAT Posting Setup and General Posting Setup readiness are either proven or explicitly scoped as learning-only."
+      }
+    ],
+    "queueChangesMade": [
+      "Closed TARGET-070D as observed-local-decision.",
+      "Created TARGET-027D32 as the next local VAT write-gate decision if missing.",
+      "Kept actual VAT setup writes, Preview Posting, Posting, master data and API shortcuts locked."
+    ],
+    "selectedNextCase": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+    "whySelectedNextCaseIsBest": "It is the smallest useful next step: a Smart Decision gate that can approve, narrow, or reject a later Page 472 setup write without executing BC.",
+    "risksBeforeNextCase": [
+      "Do not treat Table 325 field truth as persisted VAT setup.",
+      "Do not write INLAND/VAT19 values before a separate controlled write case exists.",
+      "Do not claim German VAT correctness before Preview Posting, VAT Entries and G/L Entries."
+    ],
+    "requiredPreparation": [
+      "Use TARGET-027D26, TARGET-027D29, TARGET-027D30, TARGET-061 and TARGET-070C as inputs.",
+      "Explicitly reject repeated Page 470 click loops and broad configuration-package import routes.",
+      "Return a yes/no decision for one narrow later write case."
+    ]
+  },
+  "acceptanceStatus": [
+    "No Business Central or Playwright action executed.",
+    "Page 470 remains parked.",
+    "Page 472/Table 325 can support a later local write-gate decision, not a direct write.",
+    "No VAT setup, master data, draft, Preview Posting, Posting or API action executed."
+  ]
 }

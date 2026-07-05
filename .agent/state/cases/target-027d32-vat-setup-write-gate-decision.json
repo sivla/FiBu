@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+  "status": "ready-next",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-target-execution",
+  "activeArea": "universaarl-vat-setup-write-gate-decision",
+  "mayRunPlaywright": false,
+  "effectiveBcActionsAllowed": false,
+  "purpose": "Decide whether a later, tightly scoped VAT Posting Setup Page 472 write case is justified from existing Page 472/Table 325 evidence and source-backed target values.",
+  "whyNow": "TARGET-070D selected Page 472/Table 325 as the strongest non-Page-470 basis, but explicitly did not unlock a write. A separate Smart Decision gate is required before any setup change.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-070d-vat-page472-table325-alternative-route-decision/TARGET-070D-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d26-vat-matrix-alternative-route-discovery/TARGET-027D26-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d29-vat-matrix-row-bound-route-recovery/TARGET-027D29-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d30-vat-matrix-park-or-source-route-decision/TARGET-027D30-result.json",
+    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/TARGET-061-result.json"
+  ],
+  "allowedActions": [
+    "local-source-review",
+    "review-existing-evidence",
+    "define-narrow-vat-setup-write-scope",
+    "define-live-ui-preconditions",
+    "define-reopen-proof-requirements",
+    "approve-or-reject-next-controlled-write-case",
+    "update-state-and-coverage-plan"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "run-business-central",
+    "run-playwright",
+    "write-vat-business-posting-group",
+    "write-vat-product-posting-group",
+    "write-vat-posting-setup",
+    "write-setup",
+    "click-new",
+    "click-edit-list",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut"
+  ],
+  "acceptanceCriteria": [
+    "No BC or Playwright execution occurs in the decision case.",
+    "The target values and fields for any later VAT setup write are explicitly listed.",
+    "The later write case is approved only if live page context, field route, reopen proof and screenshot QA are all required.",
+    "If the route is still too risky, VAT setup remains parked and the queue moves to the next Foundation blocker."
+  ],
+  "stopIf": [
+    "The decision would turn field truth into setup truth.",
+    "The decision would allow a write without live page context and reopen proof.",
+    "The only route is broad configuration-package import/apply."
+  ],
+  "nextIfSuccessful": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
+  "nextIfBlocked": "TARGET-032P-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PARK",
+  "nextCase": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+  "createdAt": "2026-07-05T20:32:00.000+02:00"
+}

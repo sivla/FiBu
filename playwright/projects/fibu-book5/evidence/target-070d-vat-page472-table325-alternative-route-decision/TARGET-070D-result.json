@@ -1,11 +1,34 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-070D-VAT-PAGE472-TABLE325-ALTERNATIVE-ROUTE-DECISION-RUN",
   "caseId": "TARGET-070D-VAT-PAGE472-TABLE325-ALTERNATIVE-ROUTE-DECISION",
-  "status": "observed-local-decision",
+  "source": "local-source-decision",
+  "resultStatus": "observed-local-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Page 472/Table 325 selected as the strongest current VAT setup field/context basis for a later local write-gate decision; no setup write unlocked.",
+  "page": "Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix Einr.",
+  "sourceTable": "Table 325 VAT Posting Setup",
+  "actionsTaken": [
+    "Reviewed prior Universaarl Page 472/Page Inspection/Table 325 evidence.",
+    "Compared Page 472/Table 325 against the parked Page 470 route, direct grid/New/Edit-List routes, assisted setup and configuration-package routes.",
+    "Selected a local Smart Decision write-gate case as the next step instead of a setup write."
+  ],
+  "actionsNotTaken": [
+    "No Business Central session opened.",
+    "No Playwright test executed.",
+    "No VAT Business Posting Group write.",
+    "No VAT Product Posting Group write.",
+    "No VAT Posting Setup write.",
+    "No New/Neu or Edit List click.",
+    "No master data, document draft, Preview Posting, Posting, payment or API shortcut.",
+    "No book change."
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "screenshots": [],
   "proved": [
     "Page 472/Table 325 is the strongest current VAT setup knowledge base after Page 470 was parked.",
     "Page 472/Table 325 evidence can support a later local write-gate decision because it contains read-only page context and technical field truth.",
@@ -35,8 +58,15 @@
     "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/TARGET-061-result.json",
     "playwright/projects/fibu-book5/evidence/target-070c-vat-page470-source-object-or-alternative-route-decision/TARGET-070C-result.json"
   ],
-  "nextStep": "Run TARGET-027D32 locally as a VAT setup write-gate decision. Do not write VAT setup yet.",
-  "nextCase": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+  "decision": {
+    "page470VatBusinessPostingGroupsRoute": "parked-current-ui-route-blocked",
+    "page472VatPostingSetupRoute": "usable-for-next-local-write-gate-decision-not-direct-write",
+    "table325FieldTruth": "usable-as-field-map-not-setup-proof",
+    "assistedSetupRoute": "parked-for-now-readonly-only",
+    "configurationPackageRoute": "rejected-for-current-next-step-too-broad-and-cleanup-risk",
+    "selectedNextRoute": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+    "reason": "Page 472/Table 325 has accepted read-only context and technical field truth, but no persisted INLAND/VAT19/19/3806/1406 row. Therefore the next step is a local Smart Decision write-gate, not a setup write."
+  },
   "nextStepDecision": {
     "currentCase": "TARGET-070D-VAT-PAGE472-TABLE325-ALTERNATIVE-ROUTE-DECISION",
     "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
@@ -88,6 +118,7 @@
       "Return a yes/no decision for one narrow later write case."
     ]
   },
+  "nextCase": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
   "flags": {
     "noWrite": true,
     "noPost": true,
@@ -99,6 +130,9 @@
     "noApiShortcut": true,
     "noBookChange": true
   },
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "statePatch": {},
   "updatedAt": "2026-07-05T20:32:00.000+02:00",
   "resultPath": "playwright/projects/fibu-book5/evidence/target-070d-vat-page472-table325-alternative-route-decision/TARGET-070D-result.json"
 }
