@@ -20,6 +20,7 @@ const files = {
   specDrivenSideproject: '.agent/project-template/SPEC-DRIVEN-SIDEPROJECT-DRAFT.md',
   bcSpecPilot: '.agent/project-template/BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md',
   customerDataSimulation: '.agent/project-template/CUSTOMER-DATA-SIMULATION-DRAFT.md',
+  simulatedDataTablesCoreMd: '.agent/project-template/SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md',
   workbreakdown: '.agent/project-template/BC-IMPLEMENTATION-WORKBREAKDOWN-DRAFT.md',
   jiraModel: '.agent/project-template/JIRA-WORK-ITEM-MODEL.md',
   cadence: '.agent/project-template/DOCUMENTATION-CADENCE.md',
@@ -91,6 +92,7 @@ if (allText) {
     'Spec-Driven Sideproject Draft',
     'BCSpec Pilot 001: Master Data Product Training and Evidence',
     'Customer Data Simulation Draft',
+    'Simulated Data Tables - Core and Master Data Draft',
     'Business Central Implementation Workbreakdown Draft',
     'Jira Work Item Model',
     'Documentation Cadence',
@@ -119,6 +121,7 @@ if (allText) {
     'Current next best step',
     'Data request Jira candidates',
     'Data request realism review',
+    'Simulated core/master data tables',
     'WORKSTREAM-02-CASE-STUDY-CORE-JIRA-DRAFT.md',
     'Epic CS-01: Company Story and Legal Entity Model',
     'Epic CS-02: Organization, Locations and Responsibility Model',
@@ -364,6 +367,23 @@ if (allText) {
     'configuration-package route decision'
   ], 10);
 
+  requireAtLeast('simulated core master data anchors', [
+    'Simulated Data Tables - Core and Master Data Draft',
+    'CORE-001 Company Information',
+    'CORE-002 Organization Model',
+    'MD-001 Customers',
+    'MD-002 Vendors',
+    'MD-003 Items, Services and Non-Inventory Items',
+    'complete-for-planning',
+    'needs-review',
+    'blocked',
+    'parked',
+    'Numbering policy',
+    'Posting groups',
+    'Units of measure',
+    'not import files'
+  ], 12);
+
   if (/password|client_secret|refresh_token|access_token|Bearer |eyJ/i.test(allText)) {
     errors.push('.agent/project-template appears to contain secret-like text');
   }
@@ -389,7 +409,7 @@ const output = {
   warnings,
   nextStep:
     errors.length === 0
-      ? 'Project template is usable as a local implementation planning anchor. Next create simulated data tables for CORE-001, CORE-002, MD-001, MD-002 and MD-003, then map Playwright scenarios for WS02/WS03/WS04.'
+      ? 'Project template is usable as a local implementation planning anchor. Next create route decision cards for numbering, posting groups, payment terms and product posting setup, then map Playwright scenarios for WS02/WS03/WS04.'
       : 'Fix the workbreakdown draft before using it as a planning anchor.'
 };
 

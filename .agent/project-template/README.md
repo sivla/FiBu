@@ -70,6 +70,8 @@ The target is one integrated system:
   - First Jira-ready Data Request candidates for company information, organization model, customers, vendors and items/services.
 - `CUSTOMER-DATA-SIMULATION-DRAFT.md`
   - Simulated customer data packages, file structures, validation rules and consultant review flow.
+- `SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md`
+  - First fictional planning tables for core company information, organization model, customers, vendors and items/services.
 - `DECISION-LOG-DRAFT.md`
   - Project decision register for scope, setup, route, evidence and book decisions.
 - `RISK-REGISTER-DRAFT.md`

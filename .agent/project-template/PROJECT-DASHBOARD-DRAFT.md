@@ -35,6 +35,7 @@ This dashboard is the project manager view. It should stay short and point to th
 | Customer data catalog | draft | Initial data requests exist; Jira-ready candidates are tracked separately. |
 | Data request Jira candidates | draft | First five candidates exist for core company/organization data and customer/vendor/item master data. |
 | Customer data simulation | draft | `CUSTOMER-DATA-SIMULATION-DRAFT.md` exists. |
+| Simulated core/master data tables | draft | First fictional planning tables exist for company information, organization model, customers, vendors and items/services; master-data setup remains blocked by dependencies. |
 | Decision log | draft | Initial decisions captured. |
 | Risk register | draft | Initial risks captured. |
 | UAT/training plan | draft | Training strategy, role matrix, evidence map and first module cards exist; more role/process cards still needed. |
@@ -113,7 +114,7 @@ Status: mostly drafted, not yet reviewed as final.
 
 ## Next recommended work
 
-1. Create first simulated data tables for `CORE-001`, `CORE-002`, `MD-001`, `MD-002` and `MD-003` using the realism-review follow-ups.
+1. Create route decision cards for numbering, posting groups, payment terms and product posting setup.
 2. Create Playwright scenario catalog mapped to WS02/WS03/WS04 UAT and evidence needs.
 3. Run `BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md` as a small spec-driven pilot before adopting OpenSpec globally.
 4. Turn `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` into workstream-level Jira import candidates.
