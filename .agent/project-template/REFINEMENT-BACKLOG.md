@@ -70,6 +70,20 @@ Useful first cleanup candidates after the freeze/resume checks:
 - book or training text that uses legacy as the current customer story
 - Playwright helper learnings that can be made company-neutral
 
+## P0: Skill system as practical operating memory
+
+Use `.agent/SKILL-SYSTEM.md` only for reusable patterns that reduce risk, repeated context reading, legacy regression or BC/Playwright/book rework.
+
+Immediate active skills:
+
+- `playthru-context-check` before practical BC/Playwright work
+- `read-first-page-proof` for TARGET-075 and Foundation read-first checks
+- `bc-write-gate` before setup, master data, drafts, imports, cleanup, preview, posting or payment
+- `legacy-reference-finder` when scripts/tests/book/state references can steer back to RM/MCP/CRONUS
+- `state-sync-check` when Roadmap, Dashboard, State or Backlog next steps change
+
+Do not build more skills until a concrete blocker, repeated pattern, training/UAT need, book-quality issue or migration risk justifies it.
+
 ## P1: Expand workstreams to Jira-ready detail
 
 Refine in this order:

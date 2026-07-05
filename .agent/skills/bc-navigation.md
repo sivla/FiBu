@@ -37,7 +37,8 @@ Open and verify Business Central pages through the UI without ambiguous navigati
 ```
 
 ## Rules
-- Stay inside `MCP_1_20260210`.
+- Stay inside `playthru` for active Universaarl work.
+- Treat `MCP_1_20260210`, RM-DEMO, CRONUS and Rhein-Main routes as legacy pattern sources only.
 - Confirm company before changing data.
 - Prefer proven page links or scoped Tell Me results over first-hit Enter.
 - Use wide layout when line tables, columns or screenshot proof matter.
@@ -45,7 +46,7 @@ Open and verify Business Central pages through the UI without ambiguous navigati
 - Use Personalize and Page Inspection as documented diagnostics.
 
 ## Stop if
-- The instance is not `MCP_1_20260210`.
+- The instance is not `playthru`.
 - The visible company is not the intended company.
 - Tell Me results are ambiguous.
 - The page does not show the expected business context.

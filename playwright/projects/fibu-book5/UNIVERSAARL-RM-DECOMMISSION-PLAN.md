@@ -113,6 +113,8 @@ Der Blocker oeffnet kein Business Central und startet kein Playwright. Er erklae
 
 Der neue Check `agent:legacy:active-check` ist Teil von `agent:preflight`. Er verhindert, dass neue package scripts ungebremst auf alte RM-/MCP-/CRONUS-Routen zeigen.
 
+Erweiterung vom 06.07.2026: Der Check liest zusaetzlich die Playwright-Zieldateien aus `package.json`-Scripts. Direkte alte Scriptnamen oder Commands bleiben ein harter Fehler, wenn sie nicht ueber `legacy-script-blocked.mjs` gesperrt sind. Legacy-Begriffe innerhalb historischer oder noch nicht portierter Playwright-Specs werden dagegen als `legacy-target-file-reference` inventarisiert und nur als Warnung ausgegeben. Aktueller Befund: 433 Playwright-Zieldateien wurden geprueft, 431 enthalten noch alte RM-/MCP-/CRONUS-/Rhein-Main-Bezuege. Diese Treffer sind Migrationsarbeit: portieren, blockieren oder archivieren, aber nicht massenhaft historische Evidence ueberschreiben.
+
 ## PREP-009 Trefferklassifikation vom 30.06.2026
 
 Die aktive Suche wurde auf Buchmaster, zentrale Kataloge/Atlanten und aktive State-Dateien begrenzt. Evidence-Ordner und Screenshots wurden nicht massenhaft bearbeitet.

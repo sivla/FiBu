@@ -187,7 +187,26 @@
         "fibu:company:rm-de-lab-save-error",
         "fibu:company:rm-de-lab-create-new-company-route"
       ],
-      "rule": "Package scripts must not offer old RM-DEMO/MCP/CRONUS company routes as normal active execution. They must be ported to Universaarl or blocked as legacy-purge-source."
+      "indirectTargetFileScan": {
+        "status": "warning-inventory-only",
+        "checkedPlaywrightTargetFiles": 433,
+        "legacyTargetFileReferences": 431,
+        "policy": "Target Playwright specs with legacy environment/company terms are migration inventory until ported, blocked or archived. Historical evidence is not mass-edited."
+      },
+      "rule": "Package scripts must not offer old RM-DEMO/MCP/CRONUS company routes as normal active execution. They must be ported to Universaarl or blocked as legacy-purge-source; indirect legacy target-file references are surfaced as warnings for planned migration."
+    },
+    "skillSystem": {
+      "path": ".agent/SKILL-SYSTEM.md",
+      "status": "active-draft",
+      "rule": "Create or improve skills only when they reduce risk, repetition, context load, legacy regression or evidence/book/training rework.",
+      "prioritySkills": [
+        "playthru-context-check",
+        "legacy-reference-finder",
+        "read-first-page-proof",
+        "state-sync-check",
+        "bc-write-gate"
+      ],
+      "nextUse": "Use playthru-context-check, read-first-page-proof and state-sync-check before TARGET-075; use bc-write-gate before any later write; use legacy-reference-finder during script/test migration."
     }
   },
   "projectGovernanceArtifact": {

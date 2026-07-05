@@ -26,6 +26,7 @@ Aktive Wahrheit:
 | Implementation operating system | active-control | The active truth is `playthru / UNIVERSAARL-DE / Universaarl GmbH`; legacy RM/MCP/CRONUS material is only traceability or `legacy-purge-source`. |
 | Sprache und Terminologie | active-control | Deutsch ist führende Projektsprache; englische BC-/Tool-Begriffe bleiben nur als fachliche oder technische Hilfsbegriffe. |
 | Legacy package-script guard | active-control | `agent:legacy:active-check` blocks direct package scripts that would resume old RM-DEMO/MCP/CRONUS company routes. |
+| Skill system | active-draft | `.agent/SKILL-SYSTEM.md` defines when reusable skills are created; first operational skills cover playthru context, read-first proof, write gates, state sync and legacy reference finding. |
 | Real customer onboarding/setup | draft | `REAL-CUSTOMER-ONBOARDING-AND-PROJECT-SETUP-GUIDE-DRAFT.md` exists and defines the realistic Confluence/Jira/GitHub/BC operating model. |
 | Agent operating model | draft | `AGENT-OPERATING-MODEL-DRAFT.md` defines orchestrator, specialist roles, model routing, review gates and exclusive `playthru` execution. |
 | Concept realism review cadence | draft | `CONCEPT-REALISM-REVIEW-CADENCE-DRAFT.md` defines recurring source-backed checks for whether the overall project concept should adapt. |
@@ -151,8 +152,9 @@ Status: größtenteils entworfen, noch nicht final abgenommen.
 6. Build VAT/USt, Dimensions and Posting Groups read-first proof before master data or process chapters.
 7. Use `WORKSTREAM-BOOK-CHAPTER-MAP-DRAFT.md` and the training evidence map before process training cards or book patches.
 8. Treat legacy RM/MCP/CRONUS references as purge candidates or historical traceability, not active next steps.
-9. Convert customer-facing or book-relevant text to German-leading terminology whenever those files are substantively edited.
-10. Expand Jira import rows, BCSpec or broader concept reviews only when they directly support the next BC/training/evidence step.
+9. Use the first P0 skills before related work: `playthru-context-check`, `read-first-page-proof`, `state-sync-check`, `bc-write-gate` and `legacy-reference-finder`.
+10. Convert customer-facing or book-relevant text to German-leading terminology whenever those files are substantively edited.
+11. Expand Jira import rows, BCSpec or broader concept reviews only when they directly support the next BC/training/evidence step.
 
 ## Update rule
 
