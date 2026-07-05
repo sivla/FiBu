@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-060-FOUNDATION-LIMITATION-CHECK-AFTER-PURCHASE-ACCOUNT-PARK",
+  "source": "local-foundation-limitation-classification",
+  "resultStatus": "observed-local-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "local-decision-no-business-central-page-opened",
+  "url": "",
+  "actionsTaken": [
+    "Reviewed TARGET-055 Foundation recheck.",
+    "Reviewed TARGET-057 Page 314 field-truth result.",
+    "Reviewed TARGET-058 controlled write blocker.",
+    "Reviewed TARGET-059 route park decision.",
+    "Classified W1 Foundation after the 5400 route park.",
+    "Selected TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK as the next current read-only boundary refresh."
+  ],
+  "actionsNotTaken": [
+    "No Business Central execution.",
+    "No Playwright execution.",
+    "No setup write.",
+    "No VAT setup write.",
+    "No General Posting Setup write.",
+    "No inventory setup write.",
+    "No master data write.",
+    "No document or draft creation.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No payment.",
+    "No API shortcut.",
+    "No bookmaster change."
+  ],
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "screenshots": [],
+  "foundationClassification": {
+    "overall": "partial-not-posting-ready-after-5400-route-park",
+    "proven": [
+      "UNIVERSAARL-DE is the active target company in playthru.",
+      "SKR04-oriented starter accounts are individual starter-account evidence, not a complete SKR04 chart.",
+      "SAAR-HL, WARE, SAAR-HL/WARE/1140, U-ITEM-HW100, WAREN and VAT19 have earlier Universaarl evidence.",
+      "Page 314/Table 252 Purch. Account field truth exists from TARGET-057."
+    ],
+    "partial": [
+      "General Posting Setup has INLAND/WAREN/4400 context but not Purch. Account 5400 persistence.",
+      "VAT setup has read-only/page/table context but no correct INLAND/VAT19/19 percent/3806/1406 setup row.",
+      "Number Series and first master data are partial; U-VEND Manual Nos remains not proven active.",
+      "Dimensions starter values exist, but global/default dimensions and posting effects remain unproven."
+    ],
+    "parked": [
+      "Page 314 List Edit/grid/header route for Purch. Account 5400.",
+      "Page 470 VAT Business Posting Groups route.",
+      "Page 472 VAT matrix write route.",
+      "Repeated old coordinate/search-click routes for these setup surfaces."
+    ],
+    "blocked": [
+      "Posting readiness.",
+      "Preview Posting readiness.",
+      "VAT write gate.",
+      "O2C/P2P process starts.",
+      "Master data expansion beyond already proven starter records."
+    ],
+    "nextUsefulEvidence": [
+      "Fresh read-only setup-boundary screenshots after TARGET-059.",
+      "Current Page 314/472/470/posting-group context with no setup write.",
+      "A clear list of what can be carried into beginner book text without claiming posting readiness."
+    ]
+  },
+  "proved": [
+    "W1 Foundation is still partial and not posting-ready after TARGET-059.",
+    "The new 5400 limitation must be part of every next setup/process decision.",
+    "TARGET-028 is historical read-only evidence and should not be reused as the current post-TARGET-059 boundary refresh.",
+    "The next best practical step is a read-only boundary refresh, not VAT write, posting-groups write, master data, Preview Posting or Posting.",
+    "No BC, Playwright, setup, draft, Preview Posting, Posting or API shortcut occurred in TARGET-060."
+  ],
+  "notProved": [
+    "No Purch. Account 5400 persistence is proven.",
+    "No full General Posting Setup INLAND/WAREN/4400/5400 row is proven.",
+    "No VAT Posting Setup row is proven.",
+    "No current post-TARGET-059 screenshots exist for the refreshed boundary.",
+    "No posting readiness, Preview Posting, Posting or ledger trace is proven."
+  ],
+  "blockedBy": [
+    "Purch. Account 5400 route parked.",
+    "VAT Page 470/Page 472 routes parked.",
+    "No current post-TARGET-059 boundary screenshot set yet."
+  ],
+  "warnings": [
+    "Do not claim posting readiness from setup-page visibility.",
+    "Do not reactivate TARGET-028 as if it were current after TARGET-059.",
+    "Do not start O2C/P2P or master data expansion before the refreshed setup boundary is captured."
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-060-foundation-limitation-check-after-purchase-account-park/TARGET-060-result.json",
+    "playwright/projects/fibu-book5/evidence/target-060-foundation-limitation-check-after-purchase-account-park/README.md",
+    ".agent/state/cases/target-060-foundation-limitation-check-after-purchase-account-park.json",
+    ".agent/state/cases/target-061-posting-groups-readonly-boundary-refresh-after-5400-park.json",
+    ".agent/state/current.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/marathon_queue.json",
+    "playwright/projects/fibu-book5/BC-COVERAGE-MATRIX.md",
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md"
+  ],
+  "statePatch": {},
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-055-foundation-ready-recheck-after-vat-park/TARGET-055-result.json",
+    "playwright/projects/fibu-book5/evidence/target-057-general-posting-setup-purchase-account-pageinspection-readonly-gate/TARGET-057-result.json",
+    "playwright/projects/fibu-book5/evidence/target-058-general-posting-setup-purchase-account-controlled-write-gate/TARGET-058-result.json",
+    "playwright/projects/fibu-book5/evidence/target-059-general-posting-setup-purchase-account-route-escalation-or-park/TARGET-059-result.json"
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "reason": "TARGET-060 is a local boundary classification. It completes the park decision by selecting a fresh read-only boundary refresh before any write gate.",
+  "nextStepDecision": {
+    "currentCase": "TARGET-060-FOUNDATION-LIMITATION-CHECK-AFTER-PURCHASE-ACCOUNT-PARK",
+    "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+    "lastEvidenceSummary": "TARGET-059 parks the exhausted Page 314 Purch. Account 5400 UI route. TARGET-057 supplies field truth; TARGET-058 supplies the no-persist warning; General Posting Setup remains partial.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "A VAT write gate or old posting-groups preflight would skip the new 5400 limitation. The next useful move is a fresh read-only boundary refresh after the park decision.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
+        "status": "ready-next",
+        "reason": "TARGET-028 is older than the new 5400 park decision; a fresh read-only boundary refresh can create current Universaarl evidence without setup writes."
+      },
+      {
+        "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+        "status": "blocked",
+        "reason": "No current Page 470/Page 472 write route is accepted and no case file exists; VAT writes stay locked."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "obsolete",
+        "reason": "Already completed before TARGET-057/058/059; keep as historical read-only evidence, but do not reactivate as current next case."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "blocked",
+        "reason": "O2C cannot start while VAT Posting Setup and full General Posting Setup are not posting-ready."
+      },
+      {
+        "caseId": "TARGET-LOOKFEEL-001-LIST-SEARCH-SORT-FILTER",
+        "status": "ready-after-current",
+        "reason": "Book-useful after Foundation boundary refresh, but it does not resolve setup prerequisites."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked TARGET-060 done as a local Foundation limitation classification.",
+      "Created TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK as the next read-only, no-write boundary refresh."
+    ],
+    "selectedNextCase": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
+    "whySelectedNextCaseIsBest": "It produces current Universaarl setup-boundary evidence without editing setup, and it prevents the project from treating old TARGET-028 screenshots as current readiness.",
+    "risksBeforeNextCase": [
+      "Read-only page visibility must not be treated as posting readiness.",
+      "The missing 5400 Purch. Account must remain visible in the notProved boundary.",
+      "VAT Page 470/Page 472 visibility must not unlock a write gate without a separate Smart Decision."
+    ],
+    "requiredPreparation": [
+      "Use direct page URLs only inside playthru / UNIVERSAARL-DE.",
+      "Capture screenshots and screenshot QA for Page 314, VAT boundary pages and posting-group context.",
+      "Do not click New/Edit/Delete/Post/Preview/Apply/OK or type values."
+    ]
+  },
+  "nextCase": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK"
+}

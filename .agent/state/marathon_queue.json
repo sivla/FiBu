@@ -5205,9 +5205,9 @@
       ]
     }
   },
-  "updatedAt": "2026-07-05T16:10:56.036Z",
-  "lastCompletedCase": "TARGET-059-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-ROUTE-ESCALATION-OR-PARK",
-  "nextCase": "TARGET-060-FOUNDATION-LIMITATION-CHECK-AFTER-PURCHASE-ACCOUNT-PARK",
+  "updatedAt": "2026-07-05T16:20:36.466Z",
+  "lastCompletedCase": "TARGET-060-FOUNDATION-LIMITATION-CHECK-AFTER-PURCHASE-ACCOUNT-PARK",
+  "nextCase": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
   "nextStepDecisionCard": {
     "currentCase": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
     "plannedNextCaseBeforeReview": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
@@ -5248,7 +5248,7 @@
       "Reject Role Center, search overlay or menu-only false positives."
     ]
   },
-  "nextStep": "Run TARGET-060 locally: classify W1 Foundation after TARGET-059 parks the Page 314 Purch. Account 5400 route; do not open BC or run Playwright.",
+  "nextStep": "Run TARGET-061 as a read-only setup-boundary refresh in playthru / UNIVERSAARL-DE. Capture screenshots and QA only; no setup write, no master data, no draft, no Preview Posting, no Posting.",
   "openItems": [
     "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE"
   ],
@@ -5264,52 +5264,53 @@
     "TARGET-040-FOUNDATION-READY-RECHECK"
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-059-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-ROUTE-ESCALATION-OR-PARK",
-    "plannedNextCaseBeforeReview": "TARGET-059-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-ROUTE-ESCALATION-OR-PARK",
-    "lastEvidenceSummary": "TARGET-057 proved Page 314/Table 252 field truth for Purch. Account, and TARGET-058 proved that the tested List Edit/grid/header route did not persist 5400 after reopen.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "TARGET-059 is the right local gate because repeating the same Page 314 click route would likely hit the column menu again and would not improve W1 Foundation.",
+    "currentCase": "TARGET-060-FOUNDATION-LIMITATION-CHECK-AFTER-PURCHASE-ACCOUNT-PARK",
+    "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+    "lastEvidenceSummary": "TARGET-059 parks the exhausted Page 314 Purch. Account 5400 UI route. TARGET-057 supplies field truth; TARGET-058 supplies the no-persist warning; General Posting Setup remains partial.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "A VAT write gate or old posting-groups preflight would skip the new 5400 limitation. The next useful move is a fresh read-only boundary refresh after the park decision.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-060-FOUNDATION-LIMITATION-CHECK-AFTER-PURCHASE-ACCOUNT-PARK",
+        "caseId": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
         "status": "ready-next",
-        "reason": "Needed to fold the new 5400 limitation into the W1 Foundation boundary before any VAT, posting-group or process step."
+        "reason": "TARGET-028 is older than the new 5400 park decision; a fresh read-only boundary refresh can create current Universaarl evidence without setup writes."
       },
       {
         "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
         "status": "blocked",
-        "reason": "No case file exists yet and VAT writes remain locked while Page 470/Page 472 routes are parked."
+        "reason": "No current Page 470/Page 472 write route is accepted and no case file exists; VAT writes stay locked."
       },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "General Posting Setup and VAT boundaries must be consciously classified before a broader posting-groups preflight."
+        "status": "obsolete",
+        "reason": "Already completed before TARGET-057/058/059; keep as historical read-only evidence, but do not reactivate as current next case."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "blocked",
-        "reason": "O2C remains blocked because no VAT setup, full General Posting Setup, Preview Posting or posting trace is proven."
+        "reason": "O2C cannot start while VAT Posting Setup and full General Posting Setup are not posting-ready."
       },
       {
         "caseId": "TARGET-LOOKFEEL-001-LIST-SEARCH-SORT-FILTER",
         "status": "ready-after-current",
-        "reason": "Useful for the book and Playwright learning later, but the current Foundation limitation must be recorded first."
+        "reason": "Book-useful after Foundation boundary refresh, but it does not resolve setup prerequisites."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-059 done as a local route decision.",
-      "Created TARGET-060-FOUNDATION-LIMITATION-CHECK-AFTER-PURCHASE-ACCOUNT-PARK as the next no-BC/no-Playwright Foundation limitation check."
+      "Marked TARGET-060 done as a local Foundation limitation classification.",
+      "Created TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK as the next read-only, no-write boundary refresh."
     ],
-    "selectedNextCase": "TARGET-060-FOUNDATION-LIMITATION-CHECK-AFTER-PURCHASE-ACCOUNT-PARK",
-    "whySelectedNextCaseIsBest": "It prevents both blind Page-314 retries and premature VAT/process work by recording the exact setup boundary now known from TARGET-057 and TARGET-058.",
+    "selectedNextCase": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
+    "whySelectedNextCaseIsBest": "It produces current Universaarl setup-boundary evidence without editing setup, and it prevents the project from treating old TARGET-028 screenshots as current readiness.",
     "risksBeforeNextCase": [
-      "Partial INLAND/WAREN/4400 evidence could be mistaken for posting readiness.",
-      "The missing 5400 purchase account could be forgotten if W1 jumps straight to VAT or master data.",
-      "Repeating the same List Edit/header route would waste time and risk a wrong-cell edit."
+      "Read-only page visibility must not be treated as posting readiness.",
+      "The missing 5400 Purch. Account must remain visible in the notProved boundary.",
+      "VAT Page 470/Page 472 visibility must not unlock a write gate without a separate Smart Decision."
     ],
     "requiredPreparation": [
-      "Use TARGET-057 and TARGET-058 only; do not open BC or run Playwright in TARGET-059/TARGET-060.",
-      "Keep Preview Posting, Posting, documents, master data and API shortcuts false."
+      "Use direct page URLs only inside playthru / UNIVERSAARL-DE.",
+      "Capture screenshots and screenshot QA for Page 314, VAT boundary pages and posting-group context.",
+      "Do not click New/Edit/Delete/Post/Preview/Apply/OK or type values."
     ]
   },
   "total": 209,
@@ -5621,12 +5622,19 @@
     "posted": false,
     "apiShortcut": false
   },
-  "activeCase": "TARGET-060-FOUNDATION-LIMITATION-CHECK-AFTER-PURCHASE-ACCOUNT-PARK",
+  "activeCase": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
   "latestRouteDecision": {
     "caseId": "TARGET-059-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-ROUTE-ESCALATION-OR-PARK",
     "resultPath": "playwright/projects/fibu-book5/evidence/target-059-general-posting-setup-purchase-account-route-escalation-or-park/TARGET-059-result.json",
     "decision": "park-page314-purchase-account-list-edit-grid-header-route",
     "nextCase": "TARGET-060-FOUNDATION-LIMITATION-CHECK-AFTER-PURCHASE-ACCOUNT-PARK",
     "updatedAt": "2026-07-05T16:10:56.036Z"
+  },
+  "latestFoundationLimitationCheck": {
+    "caseId": "TARGET-060-FOUNDATION-LIMITATION-CHECK-AFTER-PURCHASE-ACCOUNT-PARK",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-060-foundation-limitation-check-after-purchase-account-park/TARGET-060-result.json",
+    "classification": "partial-not-posting-ready-after-5400-route-park",
+    "nextCase": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
+    "updatedAt": "2026-07-05T16:20:36.466Z"
   }
 }
