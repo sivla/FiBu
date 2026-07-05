@@ -312,3 +312,22 @@ Mitigation:
 - Keep source hierarchy clear: Microsoft and Universaarl evidence outrank external advisory sources.
 - Timebox session and weekly-style reviews.
 - Reduce cadence if reviews do not lead to better project decisions.
+
+### RISK-017 Consulting-house benchmark imports marketing bias
+
+Workstream: `WS01-GOVERNANCE`, `WS11-DATA-MIGRATION-INTEGRATION`, `WS13-UAT-TRAINING-CUTOVER`, `WS14-BOOK-PLAYWRIGHT-LEARNING`
+Severity: P2
+Probability: medium
+Status: active
+
+Impact:
+
+The project may adopt polished partner language, generic best practices, premature customization assumptions, unrealistic timeline/cost framing or non-German localization assumptions without enough Microsoft source support, Universaarl evidence or customer/UAT grounding.
+
+Mitigation:
+
+- Use `CONSULTING-HOUSE-BENCHMARK-REVIEW-DRAFT.md` as a filter, not a source of truth.
+- Require accept/adapt/park/reject verdicts for any external consulting recommendation that changes project artifacts.
+- Keep Microsoft Learn, MB-800, Business Central docs, release notes and `playthru` evidence above partner articles.
+- Reject recommendations that do not improve a concrete Jira, Confluence, BC route, data, training, UAT, evidence or book artifact.
+- Mark time/cost and partner-selection claims as market context, not Universaarl facts.

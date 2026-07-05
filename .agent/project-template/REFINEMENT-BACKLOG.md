@@ -16,6 +16,7 @@ The project template should become complete, but not by creating a huge static d
 - Create real customer onboarding and project setup guide.
 - Create agent operating model draft.
 - Create concept realism review cadence.
+- Create consulting-house benchmark review.
 - Create goal transition protocol.
 - Create first goal transition card.
 - Create book-as-project-management model.
@@ -110,6 +111,20 @@ First review should cover:
 - whether the customer could understand what they must deliver next
 
 Every review must update the dashboard, backlog, decision log or risk register, or explicitly record a no-change verdict.
+
+## P1: Apply consulting-house benchmark critically
+
+Use `CONSULTING-HOUSE-BENCHMARK-REVIEW-DRAFT.md` as a market reality check, not as authority.
+
+Apply first to:
+
+- customer onboarding and kickoff readiness
+- data-request Jira candidates and import-ready rows
+- WS11 data migration/integration structure
+- training, UAT, cutover and hypercare planning
+- book sections that describe how a consultant should run the project
+
+Each accepted external recommendation must become a concrete project artifact: data request, Jira item, decision, risk, route card, UAT/training item, Playwright evidence need or book curation boundary. Otherwise park or reject it.
 
 ## P1: Convert the book into project tickets
 
@@ -324,4 +339,4 @@ Later create one compact dashboard:
 
 ## Current next best step
 
-`WS02-CASE-STUDY-CORE`, `WS04-MASTER-DATA-PRODUCT`, the first training module cards, data-request candidates, realism review, simulated tables, route decision cards and first read-first Playwright scenario catalog now exist as drafts. The next useful refinement is to create training module cards for customer, vendor and item master data using the new route boundaries. That is the fastest way to make the next live Foundation/Master-Data pilot better rather than merely more automated.
+`WS02-CASE-STUDY-CORE`, `WS04-MASTER-DATA-PRODUCT`, the first training module cards, data-request candidates, realism review, simulated tables, route decision cards, concept review cadence, consulting-house benchmark and first read-first Playwright scenario catalog now exist as drafts. The next useful refinement is to create training module cards for customer, vendor and item master data using the new route boundaries, while using the consulting-house benchmark to challenge data readiness, training, UAT, cutover and hypercare gaps. That is the fastest way to make the next live Foundation/Master-Data pilot better rather than merely more automated.

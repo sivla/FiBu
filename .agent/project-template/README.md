@@ -28,6 +28,8 @@ The target is one integrated system:
   - Schlankes Rollen-, Routing- und Governance-Modell fuer Orchestrator, Spezialagenten, Modellstaerken, Reviews und `playthru`-Exklusivitaet.
 - `CONCEPT-REALISM-REVIEW-CADENCE-DRAFT.md`
   - Wiederkehrende Konzept-/Realismus-Reviews mit Microsoft-Quellen, externen Methodensignalen, Review-Gates und konkreten Outputs.
+- `CONSULTING-HOUSE-BENCHMARK-REVIEW-DRAFT.md`
+  - Kritischer Benchmark fuer Beratungs-/Partnerempfehlungen, damit externe Best Practices nuetzen, aber nicht unbewiesen zur Projektwahrheit werden.
 - `GOAL-TRANSITION-PROTOCOL.md`
   - Protocol for switching a long-running goal into the project-management system at a safe checkpoint.
 - `GOAL-TRANSITION-CARD-2026-07-05.md`

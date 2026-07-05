@@ -30,12 +30,13 @@ Primary Microsoft sources:
 
 External advisory sources:
 
+- Consulting-house benchmark review: `CONSULTING-HOUSE-BENCHMARK-REVIEW-DRAFT.md`
 - Atlassian retrospectives: https://www.atlassian.com/team-playbook/plays/retrospective
 - Atlassian agile retrospectives: https://www.atlassian.com/agile/scrum/retrospectives
 - PMI lessons learned: https://www.pmi.org/learning/library/lessons-learned-sharing-knowledge-8189
 - Prosci change management: https://www.prosci.com/change-management
 - Prosci change management best practices: https://www.prosci.com/blog/change-management-best-practices
-- Partner/advisory Dynamics implementation articles may be used as weak signals, never as final authority.
+- Partner/advisory Dynamics implementation articles may be used as weak signals through the consulting-house benchmark, never as final authority.
 
 Source hierarchy:
 
@@ -43,7 +44,7 @@ Source hierarchy:
 2. Universaarl sandbox evidence from `playthru` / `UNIVERSAARL-DE`.
 3. Jira/Confluence-style project artifacts in this repo.
 4. UAT/training feedback and customer-role plausibility.
-5. Atlassian, PMI, Prosci and reputable partner articles as method/adoption benchmarks.
+5. Atlassian, PMI, Prosci and reputable partner articles as method/adoption benchmarks, filtered through `CONSULTING-HOUSE-BENCHMARK-REVIEW-DRAFT.md`.
 6. Community sources only as prompts for further verification.
 
 ## Review cadence
@@ -183,6 +184,7 @@ Every concept realism review scores these dimensions:
 | Training realism | Can users learn and perform the process, including mistakes and escalation? | pass / weak / fail |
 | Book realism | Does the book read as curated guidance rather than raw execution log? | pass / weak / fail |
 | Tool realism | Do Jira, Confluence, GitHub, BCSpec and agents reduce friction rather than add ceremony? | pass / weak / fail |
+| External benchmark realism | Do reputable consulting-house signals reveal a real missing project ingredient, or only generic marketing noise? | pass / weak / fail |
 
 Any `fail` verdict must create one of:
 
@@ -210,6 +212,7 @@ What is under-specified:
 What a real PM would struggle with:
 What a real BC consultant would challenge:
 What a solution architect would challenge:
+What reputable consulting sources would challenge:
 What the customer would not understand:
 What needs Microsoft source verification:
 What needs sandbox/Playwright evidence:
@@ -226,6 +229,7 @@ Verdicts:
 - Training realism:
 - Book realism:
 - Tool realism:
+- External benchmark realism:
 
 Decisions created/updated:
 Risks created/updated:
@@ -247,6 +251,7 @@ Recommended inputs:
 - risk register
 - data-request status
 - route decision cards
+- consulting-house benchmark review
 - training matrix/module cards
 - Playwright scenario/evidence map
 - source list from Microsoft Learn and Business Central docs
@@ -280,6 +285,7 @@ Avoid:
 - reviews without source/evidence input
 - reviews that produce no decision, risk, backlog change or explicit no-change verdict
 - using external partner articles as authority for BC product behavior
+- copying partner marketing language into the project, training or book without a concrete artifact and source/evidence boundary
 - changing the project model after every small discomfort
 - leaving `fail` verdicts without ownership
 - letting review work replace actual implementation, UAT, training or evidence

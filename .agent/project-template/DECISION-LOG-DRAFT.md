@@ -579,3 +579,48 @@ Risks:
 Reversal/correction path:
 
 If reviews do not produce clearer decisions, risks, backlog changes or simplification, reduce cadence and keep only milestone and post-evidence reviews.
+
+### DEC-016 Use consulting-house recommendations as a critical benchmark, not authority
+
+Date: 2026-07-06
+Workstream: `WS01-GOVERNANCE`, `WS11-DATA-MIGRATION-INTEGRATION`, `WS13-UAT-TRAINING-CUTOVER`, `WS14-BOOK-PLAYWRIGHT-LEARNING`
+Status: accepted
+
+Problem:
+
+External Business Central consulting and partner articles can expose practical project blind spots, but they can also contain marketing bias, vague best-practice language, localization mismatch or premature customization pressure.
+
+Decision:
+
+Use `CONSULTING-HOUSE-BENCHMARK-REVIEW-DRAFT.md` as an advisory benchmark for project realism. Consulting-house recommendations may challenge onboarding, data readiness, methodology, training, UAT, cutover, hypercare and support planning, but they do not override Microsoft guidance, Universaarl sandbox evidence or customer/UAT reality.
+
+Reason:
+
+Multiple partner sources repeatedly emphasize planning, process review, data migration, testing, role-based training, go-live support and post-go-live support. Those are useful realism checks for the blueprint. Microsoft fit-to-standard guidance remains the stronger authority for solution direction because it explicitly warns against recreating legacy processes and unnecessary customization.
+
+Source basis:
+
+- Microsoft Dynamics 365 fit-to-standard and fit-gap guidance.
+- Selected Business Central partner/consulting implementation and data-migration articles from Rand Group, Cargas, 360 Visibility, Akita and ArcherPoint.
+
+Customer impact:
+
+Customer-facing onboarding, data requests and training should better reflect the work a real customer must do, especially data preparation, decision ownership, UAT, training and hypercare.
+
+Book impact:
+
+The book can use consulting-house signals to become more realistic, but final claims must be curated and source/evidence-bounded instead of repeating generic best practices.
+
+Playwright impact:
+
+Partner recommendations can suggest what needs evidence, but Playwright remains a proof mechanism only for observed sandbox behavior and repeatable UI/process claims.
+
+Risks:
+
+- partner marketing language can make the project sound more professional without making it more true
+- external sources can overstate customization or implementation simplicity
+- time/cost claims can be misleading for Universaarl
+
+Reversal/correction path:
+
+If external benchmarks add ceremony or generic language without improving Jira, Confluence, BC route, training, UAT, evidence or book quality, reduce their use to source-refresh checks only.

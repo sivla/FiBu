@@ -8,6 +8,7 @@ const files = {
   realCustomerOnboarding: '.agent/project-template/REAL-CUSTOMER-ONBOARDING-AND-PROJECT-SETUP-GUIDE-DRAFT.md',
   agentOperatingModel: '.agent/project-template/AGENT-OPERATING-MODEL-DRAFT.md',
   conceptRealismReviewCadence: '.agent/project-template/CONCEPT-REALISM-REVIEW-CADENCE-DRAFT.md',
+  consultingHouseBenchmarkReview: '.agent/project-template/CONSULTING-HOUSE-BENCHMARK-REVIEW-DRAFT.md',
   bookProjectModel: '.agent/project-template/BOOK-AS-PROJECT-MANAGEMENT-MODEL.md',
   bookProjectBacklog: '.agent/project-template/BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md',
   projectCast: '.agent/project-template/PROJECT-CAST-AND-STAKEHOLDERS-DRAFT.md',
@@ -87,6 +88,7 @@ if (allText) {
     'Real Customer Onboarding and Project Setup Guide Draft',
     'Agent Operating Model Draft',
     'Concept Realism Review Cadence Draft',
+    'Consulting House Benchmark Review Draft',
     'Book as Project Management Model',
     'Book Project Ticket Backlog Draft',
     'Project Cast and Stakeholders Draft',
@@ -413,6 +415,26 @@ if (allText) {
     'Anti-patterns',
     'Success criteria'
   ], 20);
+
+  requireAtLeast('consulting house benchmark anchors', [
+    'Consulting House Benchmark Review Draft',
+    'Consulting-house and partner recommendations are benchmark signals, not project authority',
+    'Microsoft fit-to-standard',
+    'Rand Group Business Central implementation guide',
+    'Cargas Business Central implementation guide',
+    '360 Visibility partner selection guide',
+    'Akita Business Central data migration article',
+    'ArcherPoint methodology page',
+    'Repeated market signals',
+    'Critical challenge list',
+    'Universaarl project impact',
+    'Accepted uses',
+    'Rejected or constrained uses',
+    'Benchmark review template',
+    'Verdict: accept | adapt | park | reject',
+    'Microsoft fit-to-standard and fit-gap',
+    'First review triggers'
+  ], 15);
 
   requireAtLeast('data request realism review anchors', [
     'Realism Review - Data Requests 2026-07-05',

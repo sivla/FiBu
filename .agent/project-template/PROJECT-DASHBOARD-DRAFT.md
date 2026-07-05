@@ -16,6 +16,7 @@ This dashboard is the project manager view. It should stay short and point to th
 | Real customer onboarding/setup | draft | `REAL-CUSTOMER-ONBOARDING-AND-PROJECT-SETUP-GUIDE-DRAFT.md` exists and defines the realistic Confluence/Jira/GitHub/BC operating model. |
 | Agent operating model | draft | `AGENT-OPERATING-MODEL-DRAFT.md` defines orchestrator, specialist roles, model routing, review gates and exclusive `playthru` execution. |
 | Concept realism review cadence | draft | `CONCEPT-REALISM-REVIEW-CADENCE-DRAFT.md` defines recurring source-backed checks for whether the overall project concept should adapt. |
+| Consulting-house benchmark | draft | `CONSULTING-HOUSE-BENCHMARK-REVIEW-DRAFT.md` defines how partner/consulting recommendations are used as critical market benchmarks without becoming product authority. |
 | Book as project model | draft | `BOOK-AS-PROJECT-MANAGEMENT-MODEL.md` exists. |
 | Book ticket backlog | draft | `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` exists. |
 | Project cast | draft | `PROJECT-CAST-AND-STAKEHOLDERS-DRAFT.md` exists. |
@@ -105,6 +106,7 @@ Status: mostly drafted, not yet reviewed as final.
 | DEC-013 | Use route decision cards before live foundation/master-data setup | proposed |
 | DEC-014 | Use a governed agent operating model before automation | accepted |
 | DEC-015 | Run recurring concept realism reviews | accepted |
+| DEC-016 | Use consulting-house recommendations as a critical benchmark, not authority | accepted |
 
 ## Top active risks
 
@@ -120,19 +122,21 @@ Status: mostly drafted, not yet reviewed as final.
 | RISK-014 | Real setup becomes artificial tool architecture | P1 | active |
 | RISK-015 | Multi-agent work creates conflicting project truth | P1 | active |
 | RISK-016 | Concept review cadence becomes review theater | P2 | active |
+| RISK-017 | Consulting-house benchmark imports marketing bias | P2 | active |
 
 ## Next recommended work
 
 1. Use `CONCEPT-REALISM-REVIEW-CADENCE-DRAFT.md` for the next weekly-style review before expanding more structure.
-2. Use `AGENT-OPERATING-MODEL-DRAFT.md` as governance for any further specialist-agent or subagent work; do not automate it yet.
-3. Turn the package-derived Jira ticket map into import-ready Jira rows or project tickets.
-4. Turn the first two Playwright catalog entries into read-only specs after the freeze is lifted or a read-only probe is approved.
-5. Create training module cards for customer/vendor/item master data using the package dependencies, not before them.
-6. Run `BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md` as a small spec-driven pilot before adopting OpenSpec globally.
-7. Turn `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` into workstream-level Jira import candidates.
-8. Apply `REALISM-STANDARD-DRAFT.md` to storyline, scene cards and broader customer data simulation.
-9. Create workstream-to-book-chapter map.
-10. After the freeze, resume live work with a read-first foundation/master-data preflight, not blind record creation.
+2. Use `CONSULTING-HOUSE-BENCHMARK-REVIEW-DRAFT.md` during the next concept review to challenge onboarding, data readiness, training, UAT, cutover and hypercare realism.
+3. Use `AGENT-OPERATING-MODEL-DRAFT.md` as governance for any further specialist-agent or subagent work; do not automate it yet.
+4. Turn the package-derived Jira ticket map into import-ready Jira rows or project tickets.
+5. Turn the first two Playwright catalog entries into read-only specs after the freeze is lifted or a read-only probe is approved.
+6. Create training module cards for customer/vendor/item master data using the package dependencies, not before them.
+7. Run `BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md` as a small spec-driven pilot before adopting OpenSpec globally.
+8. Turn `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` into workstream-level Jira import candidates.
+9. Apply `REALISM-STANDARD-DRAFT.md` to storyline, scene cards and broader customer data simulation.
+10. Create workstream-to-book-chapter map.
+11. After the freeze, resume live work with a read-first foundation/master-data preflight, not blind record creation.
 
 ## Update rule
 
