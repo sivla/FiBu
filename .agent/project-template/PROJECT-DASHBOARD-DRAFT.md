@@ -13,10 +13,14 @@ This dashboard is the project manager view. It should stay short and point to th
 | Area | Status | Note |
 | --- | --- | --- |
 | Project plan | draft | `PROJECT-PLAN-DRAFT.md` exists. |
+| Book as project model | draft | `BOOK-AS-PROJECT-MANAGEMENT-MODEL.md` exists. |
+| Book ticket backlog | draft | `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` exists. |
 | Workbreakdown | draft | Workstreams and epics exist in `BC-IMPLEMENTATION-WORKBREAKDOWN-DRAFT.md`. |
 | Jira model | draft | Issue model, labels, statuses and DoR/DoD exist. |
+| Goal transition | active-transition | `GOAL-TRANSITION-PROTOCOL.md` and `GOAL-TRANSITION-CARD-2026-07-05.md` exist for the running long-goal agent. |
 | Finance workstream | draft | First detailed workstream draft exists. |
 | Customer data catalog | draft | Initial data requests exist, not yet Jira-ready. |
+| Customer data simulation | draft | `CUSTOMER-DATA-SIMULATION-DRAFT.md` exists. |
 | Decision log | draft | Initial decisions captured. |
 | Risk register | draft | Initial risks captured. |
 | UAT/training plan | early | Templates exist; full role matrix still needed. |
@@ -73,6 +77,7 @@ Status: mostly drafted, not yet reviewed as final.
 | DEC-003 | Use Finance Foundation as first detailed workstream | accepted |
 | DEC-004 | Compare scalable BC implementation routes | accepted |
 | DEC-005 | Official sources above community sources | accepted |
+| DEC-007 | Treat the complete book as project-management simulation | accepted |
 
 ## Top active risks
 
@@ -86,13 +91,14 @@ Status: mostly drafted, not yet reviewed as final.
 
 ## Next recommended work
 
-1. Expand `WS02-CASE-STUDY-CORE`.
+1. Expand `WS02-CASE-STUDY-CORE` into a real case-study/core workstream draft with company story, organization model, roles, locations, source/evidence needs and book/training outputs.
 2. Expand `WS04-MASTER-DATA-PRODUCT`.
-3. Create role-based training matrix.
-4. Create workstream-to-book-chapter map.
-5. Create Playwright scenario catalog mapped to UAT and evidence needs.
-6. Convert customer data catalog into Jira `Data Request` candidates.
-7. Create project plan review checklist.
+3. Turn `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` into workstream-level Jira import candidates.
+4. Create first simulated data files or tables for company, finance and master data.
+5. Create role-based training matrix.
+6. Create workstream-to-book-chapter map.
+7. Create Playwright scenario catalog mapped to UAT and evidence needs.
+8. Create project plan review checklist.
 
 ## Update rule
 

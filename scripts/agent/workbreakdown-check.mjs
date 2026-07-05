@@ -5,6 +5,9 @@ const root = process.cwd();
 const files = {
   readme: '.agent/project-template/README.md',
   projectPlan: '.agent/project-template/PROJECT-PLAN-DRAFT.md',
+  bookProjectModel: '.agent/project-template/BOOK-AS-PROJECT-MANAGEMENT-MODEL.md',
+  bookProjectBacklog: '.agent/project-template/BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md',
+  customerDataSimulation: '.agent/project-template/CUSTOMER-DATA-SIMULATION-DRAFT.md',
   workbreakdown: '.agent/project-template/BC-IMPLEMENTATION-WORKBREAKDOWN-DRAFT.md',
   jiraModel: '.agent/project-template/JIRA-WORK-ITEM-MODEL.md',
   cadence: '.agent/project-template/DOCUMENTATION-CADENCE.md',
@@ -13,6 +16,8 @@ const files = {
   decisionLog: '.agent/project-template/DECISION-LOG-DRAFT.md',
   riskRegister: '.agent/project-template/RISK-REGISTER-DRAFT.md',
   projectDashboard: '.agent/project-template/PROJECT-DASHBOARD-DRAFT.md',
+  transitionProtocol: '.agent/project-template/GOAL-TRANSITION-PROTOCOL.md',
+  transitionCard: '.agent/project-template/GOAL-TRANSITION-CARD-2026-07-05.md',
   refinementBacklog: '.agent/project-template/REFINEMENT-BACKLOG.md',
   financeFoundationDraft: '.agent/project-template/WORKSTREAM-03-FINANCE-FOUNDATION-JIRA-DRAFT.md'
 };
@@ -56,6 +61,9 @@ if (allText) {
   for (const phrase of [
     'Universaarl BC Project Template',
     'Universaarl Business Central Project Plan Draft',
+    'Book as Project Management Model',
+    'Book Project Ticket Backlog Draft',
+    'Customer Data Simulation Draft',
     'Business Central Implementation Workbreakdown Draft',
     'Jira Work Item Model',
     'Documentation Cadence',
@@ -64,6 +72,8 @@ if (allText) {
     'Decision Log Draft',
     'Risk Register Draft',
     'Project Dashboard Draft',
+    'Goal Transition Protocol',
+    'Goal Transition Card - 2026-07-05',
     'Project Template Refinement Backlog',
     'WS03 Finance Foundation Jira Draft',
     'Universaarl Business Central Implementation, Book, Training and Evidence System',
@@ -77,7 +87,7 @@ if (allText) {
     'Finance Foundation and Control Model',
     'Recommended first refinement target: Finance Foundation and Control Model',
     'Current next best step',
-    'Finish `WORKSTREAM-03-FINANCE-FOUNDATION-JIRA-DRAFT.md`',
+    'expand `WS02-CASE-STUDY-CORE`',
     'Epic FF-01: General Ledger Setup and Accounting Periods',
     'Epic FF-02: Chart of Accounts and Account Categories',
     'Epic FF-03: Posting Groups and Posting Setup',
@@ -90,6 +100,9 @@ if (allText) {
 
   requireAtLeast('project governance artifacts', [
     'Project plan draft',
+    'Book as Project Management Model',
+    'Book Project Ticket Backlog Draft',
+    'Customer Data Simulation Draft',
     'Customer data request catalog',
     'Decision log',
     'Risk register',
@@ -97,7 +110,31 @@ if (allText) {
     'Training matrix',
     'Customer handbook',
     'Project dashboard'
-  ], 6);
+  ], 8);
+
+  requireAtLeast('book project model concepts', [
+    'Project situation',
+    'customer question or business need',
+    'Jira tickets opened',
+    'customer data requested',
+    'consultant review and decision',
+    'BC setup or process implementation',
+    'Playwright/evidence validation',
+    'UAT and customer acceptance',
+    'training/handbook output'
+  ], 8);
+
+  requireAtLeast('ticket backlog anchors', [
+    'BCPM-0001',
+    'BCPM-0100',
+    'BCPM-0200',
+    'BCPM-0300',
+    'BCPM-0400',
+    'BCPM-0500',
+    'BCPM-0600',
+    'BCPM-1100',
+    'BCPM-1200'
+  ], 8);
 
   requireAtLeast('dashboard controls', [
     'Overall status',
@@ -108,6 +145,23 @@ if (allText) {
     'Next recommended work',
     'Update rule'
   ], 6);
+
+  requireAtLeast('transition card fields', [
+    'Current goal',
+    'Current changed files',
+    'Current active work',
+    'Workstream mapping',
+    'Epic mapping',
+    'Issue type mapping',
+    'Customer data impact',
+    'Decision impact',
+    'Risk impact',
+    'UAT and training impact',
+    'Book impact',
+    'Playwright and evidence impact',
+    'Next recommended project item',
+    'What will not be touched'
+  ], 12);
 
   requireAtLeast('official/source anchors', [
     'MB-800',
@@ -178,7 +232,7 @@ const output = {
   warnings,
   nextStep:
     errors.length === 0
-      ? 'Workbreakdown draft is usable as a local implementation planning anchor. Refine Finance Foundation first.'
+      ? 'Project template is usable as a local implementation planning anchor. Next refine WS02 Case Study/Core, while keeping WS03 Finance Foundation as the first detailed pattern.'
       : 'Fix the workbreakdown draft before using it as a planning anchor.'
 };
 

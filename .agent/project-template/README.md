@@ -22,6 +22,14 @@ The target is one integrated system:
   - Complete project plan draft with phases, milestones, governance, roles, gates and immediate next actions.
 - `PROJECT-DASHBOARD-DRAFT.md`
   - Compact project manager view with milestone, workstream readiness, top decisions, risks and next work.
+- `GOAL-TRANSITION-PROTOCOL.md`
+  - Protocol for switching a long-running goal into the project-management system at a safe checkpoint.
+- `GOAL-TRANSITION-CARD-2026-07-05.md`
+  - Current transition card for moving the active long-running goal into project-mode defaults.
+- `BOOK-AS-PROJECT-MANAGEMENT-MODEL.md`
+  - Model for treating the complete book as a realistic Business Central implementation project.
+- `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md`
+  - Initial Jira-style backlog for the book/project simulation.
 - `BC-IMPLEMENTATION-WORKBREAKDOWN-DRAFT.md`
   - Main workstream, epic, story and task breakdown.
 - `JIRA-WORK-ITEM-MODEL.md`
@@ -32,12 +40,12 @@ The target is one integrated system:
   - Reusable templates for issues, data requests, decisions, risks, UAT, training and book output.
 - `CUSTOMER-DATA-CATALOG-DRAFT.md`
   - Structured customer data request catalog by workstream and data category.
+- `CUSTOMER-DATA-SIMULATION-DRAFT.md`
+  - Simulated customer data packages, file structures, validation rules and consultant review flow.
 - `DECISION-LOG-DRAFT.md`
   - Project decision register for scope, setup, route, evidence and book decisions.
 - `RISK-REGISTER-DRAFT.md`
   - Initial risk register for project, BC setup, book quality and automation risks.
-- `PROJECT-DASHBOARD-DRAFT.md`
-  - Compact project-manager view for status, milestone, risks, decisions and next recommended work.
 - `REFINEMENT-BACKLOG.md`
   - Ordered refinement backlog for turning the draft into Jira-ready project material.
 - `WORKSTREAM-03-FINANCE-FOUNDATION-JIRA-DRAFT.md`

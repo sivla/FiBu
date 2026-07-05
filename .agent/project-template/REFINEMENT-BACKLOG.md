@@ -13,6 +13,11 @@ The project template should become complete, but not by creating a huge static d
 - Create project template index.
 - Create complete project plan draft.
 - Create project dashboard draft.
+- Create goal transition protocol.
+- Create first goal transition card.
+- Create book-as-project-management model.
+- Create initial book/project ticket backlog.
+- Create simulated customer data package model.
 - Define Jira work item model.
 - Define documentation cadence.
 - Define artifact templates.
@@ -44,6 +49,20 @@ Refine in this order:
 
 Reason: Finance and system foundation gate most later processes. Master data, inventory, purchasing and sales then become realistic rather than isolated clicks.
 
+## P1: Convert the book into project tickets
+
+Use `BOOK-AS-PROJECT-MANAGEMENT-MODEL.md` and `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` to ensure every major book chapter has:
+
+- workstream and epic
+- Jira-style ticket(s)
+- customer data input or explicit no-data-needed note
+- decision/risk where relevant
+- BC implementation route
+- Playwright/evidence route
+- UAT scenario
+- training/handbook output
+- book curation output
+
 ## P1: Refine customer data catalog
 
 Refine the initial catalog into Jira-ready data requests:
@@ -69,6 +88,23 @@ Refine the initial catalog into Jira-ready data requests:
 - integrations
 
 Each data request should include owner, due date, format, validation rule and BC usage. The initial file exists as `CUSTOMER-DATA-CATALOG-DRAFT.md`.
+
+## P1: Build simulated customer data packets
+
+Use `CUSTOMER-DATA-SIMULATION-DRAFT.md` to create the first realistic data packets:
+
+- company information
+- organization model
+- chart of accounts
+- posting group inputs
+- VAT assumptions
+- dimensions
+- customers
+- vendors
+- items/services/non-inventory items
+- opening inventory
+
+Do not create final imported data without deciding whether the route is UI, configuration package, Excel import, API or parked.
 
 ## P1: Refine decision and risk registers
 
@@ -129,4 +165,4 @@ Later create one compact dashboard:
 
 ## Current next best step
 
-Finish `WORKSTREAM-03-FINANCE-FOUNDATION-JIRA-DRAFT.md`, then use it as the pattern for all other workstreams.
+The long-running goal is now transitioned into the project system. Next, expand `WS02-CASE-STUDY-CORE` so Universaarl has enough company story, organization model, roles, locations, evidence boundaries and training/book outputs to justify later finance and master-data decisions.

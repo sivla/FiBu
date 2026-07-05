@@ -177,3 +177,77 @@ The book and consultant agent must be reliable.
 Risks:
 
 - official docs may not cover every implementation nuance, so sandbox evidence and clearly marked assumptions still matter.
+
+### DEC-006 Transition long-running goals into the project system
+
+Date: 2026-07-05
+Workstream: `WS01-GOVERNANCE`, `WS14-BOOK-PLAYWRIGHT-LEARNING`
+Status: accepted
+
+Problem:
+
+A long-running agent can keep working in the old queue/execution mode even after the repo has a project-management structure.
+
+Decision:
+
+Use `GOAL-TRANSITION-PROTOCOL.md` to switch long-running goals into the project system at a safe checkpoint.
+
+Reason:
+
+The transition preserves useful work while forcing every next step to map to workstream, epic, issue type, customer data, risk, UAT/training, book and Playwright/evidence impact.
+
+Book impact:
+
+Book work must be connected to workstreams and final-claim gates instead of growing as isolated fragments.
+
+Playwright impact:
+
+Playwright work must map to project evidence, UAT or agent-learning tasks.
+
+Risks:
+
+- forcing the transition mid-action could interrupt valid work
+- delaying the transition too long lets old execution habits continue
+
+Reversal/correction path:
+
+If the transition happens too early, the agent may finish the current small case, then repeat the transition card before starting the next major item.
+
+### DEC-007 Treat the complete book as a project-management simulation
+
+Date: 2026-07-05
+Workstream: `WS01-GOVERNANCE`, `WS13-UAT-TRAINING-CUTOVER`, `WS14-BOOK-PLAYWRIGHT-LEARNING`
+Status: accepted
+
+Problem:
+
+The book could become a set of Business Central explanations without showing how a real implementation project is managed.
+
+Decision:
+
+Treat the entire book as a realistic Business Central project simulation. Each major chapter should include project context: Jira tickets, customer data requests, simulated customer data, consultant review, decisions, risks, BC implementation route, Playwright evidence, UAT, training and book curation.
+
+Reason:
+
+This makes the book practical and real. Readers learn not only Business Central behavior, but also how a consultant structures, executes and teaches an implementation project.
+
+Customer impact:
+
+The customer becomes part of the story through data requests, decisions, UAT and training.
+
+Book impact:
+
+Chapters should read like a guided implementation journey instead of isolated feature documentation.
+
+Playwright impact:
+
+Automation scenarios should map to project evidence, UAT, training or book claims.
+
+Risks:
+
+- fictional data might be mistaken for real customer data
+- project tickets could become decorative if they do not drive decisions or outputs
+
+Reversal/correction path:
+
+All simulated customer data must be labeled as fictional Universaarl case-study data. Tickets without project purpose should be rejected or merged.
