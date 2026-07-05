@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-05T14:14:56.102Z",
+  "updatedAt": "2026-07-05T14:33:12.414Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-vat-setup-route-ui-source-followup",
-  "activeCase": "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP",
-  "active_case_file": ".agent/state/cases/target-027d31b-vat-setup-route-ui-source-followup.json",
+  "activeArea": "universaarl-vat-setup-route-blocker-review",
+  "activeCase": "TARGET-027D31C-VAT-SETUP-ROUTE-BLOCKER-REVIEW",
+  "active_case_file": ".agent/state/cases/target-027d31c-vat-setup-route-blocker-review.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -22,8 +22,8 @@
     "open-business-central",
     "confirm-instance-and-company",
     "inspect-current-shell-readonly",
-    "use-role-center-navigation-readonly",
-    "use-page-url-or-known-page-route-readonly-if-source-backed",
+    "use-localized-page-name-navigation-readonly",
+    "use-page-explorer-or-safe-navigation-readonly",
     "hover-tooltips-and-inventory-actions",
     "capture-screenshot-qa",
     "inspect-dialogs-and-stop-before-write",
@@ -50,12 +50,11 @@
     "post",
     "payment",
     "api-shortcut",
-    "repeat-rejected-page472-grid-new-edit-list-cell-route",
     "claim-vat-correctness",
     "claim-posting-readiness"
   ],
-  "nextCase": "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP",
-  "nextStep": "Run TARGET-027D31B read-only VAT setup route UI/source follow-up; do not write VAT setup, master data, drafts, Preview Posting, Posting or API shortcuts.",
+  "nextCase": "TARGET-027D31C-VAT-SETUP-ROUTE-BLOCKER-REVIEW",
+  "nextStep": "Run TARGET-027D31C read-only route blocker review; do not write VAT setup, master data, drafts, Preview Posting, Posting or API shortcuts.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -3860,7 +3859,7 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/target-027d31b-vat-setup-route-ui-source-followup.json",
+  "activeCaseFile": ".agent/state/cases/target-027d31c-vat-setup-route-blocker-review.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
@@ -8522,11 +8521,11 @@
   },
   "acceptanceCriteria": [
     "Business Central stays in playthru / UNIVERSAARL-DE.",
-    "Assisted Setup or Manual Setup VAT route is observed read-only, or a precise blocker is documented.",
-    "Screenshot QA captures page title, company context, visible VAT setup guide/manual setup terms and action boundaries.",
-    "No wizard finish/apply/OK/Next action is clicked if it could write setup.",
-    "No VAT Posting Setup value, master data, document, Preview Posting, Posting or API shortcut occurs.",
-    "Result JSON states whether D32 write-gate decision is justified or whether VAT remains parked."
+    "Assisted Setup VAT route is either observed read-only or intentionally parked with precise UI evidence.",
+    "VAT Business Posting Groups route is either observed read-only or intentionally parked with precise UI evidence.",
+    "Already observed VAT Product Posting Groups and VAT Posting Setup remain documented as read-only reachable.",
+    "No setup value, wizard completion, master data, draft, Preview Posting, Posting or API shortcut occurs.",
+    "Next-step decision states whether VAT write-gate is ready or VAT route discovery remains parked."
   ],
   "latestTarget048CInventoryAccount1140BalanceCorrection": {
     "caseId": "TARGET-048C-INVENTORY-ACCOUNT-1140-BALANCE-SHEET-CORRECTION",
@@ -9625,5 +9624,30 @@
     "Only the already parked Page 472 grid/New/Edit List/cell route is available.",
     "A dialog asks for OK, Yes, Ja, Next, Finish, Apply, Import, Export, Validate or Publish with possible setup impact.",
     "BC shell/auth context is unclear."
-  ]
+  ],
+  "latestTarget027D31BResult": "playwright/projects/fibu-book5/evidence/target-027d31b-vat-setup-route-ui-source-followup/TARGET-027D31B-result.json",
+  "latestVatSetupRouteRecovery": {
+    "caseId": "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP",
+    "resultStatus": "partially-observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31b-vat-setup-route-ui-source-followup/TARGET-027D31B-result.json",
+    "proved": [
+      "Business Central stayed in playthru / UNIVERSAARL-DE.",
+      "VAT Product Posting Groups / MwSt.-Produktbuchungsgruppen is reachable read-only by direct page route.",
+      "VAT Posting Setup / MwSt.-Buchungsmatrix is reachable read-only by direct page route.",
+      "D31 Tell-Me search-overlay route is not needed for the manual VAT setup page inventory.",
+      "No setup, master data, document draft, Preview Posting, Posting or API shortcut was executed."
+    ],
+    "notProved": [
+      "No VAT setup value has been written.",
+      "No Universaarl VAT group code or VAT posting setup row is final.",
+      "No VAT correctness, Preview Posting, Posting, VAT Entry or German compliance claim is proven.",
+      "No tax advisor approval is proven."
+    ],
+    "blockedBy": [
+      "Wie mochten Sie weiter verfahren?\nListe mit Titel \"Nach Assisted Setup suchen\" weist jetzt 2 Artikel fur Assisted Setup auf\nNach Assisted Setup suchen\nUnternehmensdaten durchsuchen\nHilfe durchsuchen\nSie haben nicht gefunden, wonach Sie gesucht haben? Versuchen Sie, Seiten oder Berichte zu erkunden",
+      "Wie mochten Sie weiter verfahren?\nListe mit Titel \"Nach VAT Business Posting Groups suchen\" weist jetzt 2 Artikel fur VAT Business Posting Groups auf\nNach VAT Business Posting Groups suchen\nUnternehmensdaten durchsuchen\nHilfe durchsuchen\nSie haben nicht gefunden, wonach Sie gesucht haben? Versuchen Sie, Seiten oder Berichte zu erkunden"
+    ],
+    "nextCase": "TARGET-027D31C-VAT-SETUP-ROUTE-BLOCKER-REVIEW",
+    "updatedAt": "2026-07-05T14:32:18.534Z"
+  }
 }

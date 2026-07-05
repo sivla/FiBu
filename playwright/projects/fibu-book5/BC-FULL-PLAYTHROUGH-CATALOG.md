@@ -28,8 +28,8 @@ Zero-Open-Questions-Regel: Jeder Bereich in diesem Katalog muss seine offenen Ob
 
 | Prioritaet | Case | Warum |
 | --- | --- | --- |
-| 1 | `TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY` | TARGET-027D30 hat die direkte Page-472-Grid-/Neu-/Edit-List-Route geparkt. D31 prueft nun den von Microsoft empfohlenen MwSt.-Setup-Assistenten bzw. Manual Setup read-only, mit Stop vor jeder wirksamen Setup-Aktion. |
-| 2 | `TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION` | Nur sinnvoll, wenn D31 eine begrenzbare Assistant-/Manual-Setup-Route sichtbar macht. Sonst bleibt VAT Setup fuer den Foundation Checkpoint offen/geparkt. |
+| 1 | `TARGET-027D31C-VAT-SETUP-ROUTE-BLOCKER-REVIEW` | D31B hat Page 471 `MwSt.-Produktbuchungsgruppen` und Page 472 `MwSt.-Buchungsmatrix Einr.` read-only sichtbar gemacht, aber Assisted Setup und Page 470 `MwSt.-Geschaeftsbuchungsgruppen` bleiben in Such-/Role-Center-Kontexten blockiert. Erst diese Routenentscheidung, dann ein Write-Gate. |
+| 2 | `TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION` | Nur sinnvoll, wenn D31C die offenen Routen begrenzbar loest oder bewusst parkt und die exakten USt-Zielwerte source-backed festlegt. |
 | 3 | `TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS` | Kann weiterlaufen, sobald D31 VAT entweder mit neuer Route vorbereitet oder explizit geparkt hat. |
 | 4 | `TARGET-034-FOUNDATION-READY-CHECKPOINT` | Wartet auf die klare VAT-/Posting-Groups-/Dimensions-Grenze; kein Posting-Readiness-Claim ohne Setup- und Preview-Evidence. |
 | 5 | `TARGET-038-O2C-PREFLIGHT` | Bleibt gesperrt, bis Inventory Posting Setup, VAT Setup, General Posting Setup und Dimensionen bewusst geprueft sind. |
@@ -78,6 +78,10 @@ Zero-Open-Questions-Regel: Jeder Bereich in diesem Katalog muss seine offenen Ob
 | Prozessketten | nein | O2C, P2P, Inventory, Payments, FA, Bank, Warehouse, Manufacturing, Service, Projects | Setup, Stammdaten und Smart Decision Card stehen | Preview/Post/Entries/Screenshots je Prozess |
 
 Microsoft Learn beschreibt, welche Business-Central-Bereiche es gibt und wie Companies angelegt werden koennen. Das ersetzt nicht den Universaarl-Nachweis. Konkrete UI-, Setup-, Preview-, Posting- und Entry-Claims entstehen erst durch `playthru`-Evidence.
+
+## Aktuelle USt-Routenlage
+
+TARGET-027D31B ist ein Teilerfolg, kein USt-Setup-Erfolg. In `playthru` / `UNIVERSAARL-DE` sind Page 471 `MwSt.-Produktbuchungsgruppen` und Page 472 `MwSt.-Buchungsmatrix Einr.` read-only direkt erreichbar. Assisted Setup / Page 1801 und Page 470 `MwSt.-Geschaeftsbuchungsgruppen` blieben dagegen in Such- oder Rollencenter-Kontexten haengen. Deshalb bleibt jede USt-Aenderung gesperrt, bis TARGET-027D31C diese beiden Routen loest oder bewusst parkt.
 
 ## Gesamtmatrix
 

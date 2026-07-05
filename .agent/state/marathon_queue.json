@@ -5,7 +5,7 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "queueId": "TARGET-MARATHON-002-UNIVERSAARL-REPO-READONLY-PREP",
-  "reason": "TARGET-027D31 produced read-only VAT setup route evidence but blocked because Tell-Me stayed in search overlay; D31B is the next route-recovery case.",
+  "reason": "TARGET-027D31B partially observed direct read-only routes for VAT Product Posting Groups and VAT Posting Setup; Assisted Setup and VAT Business Posting Groups remain route blockers.",
   "noEffectiveBusinessCentralActions": false,
   "forbiddenUntilUnblocked": [],
   "unblockCriteria": [
@@ -4782,7 +4782,7 @@
     {
       "id": "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP",
       "order": 10211,
-      "status": "pending",
+      "status": "partially-observed",
       "category": "vat-setup-route-discovery",
       "expectedImpact": "recover-safe-vat-setup-route-before-write-gate",
       "mayWorkEffectively": false,
@@ -4794,7 +4794,61 @@
       "noFinalGermanClaimWithoutUniversaarlEvidence": false,
       "lookaheadStatus": "ready-next",
       "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31b-vat-setup-route-ui-source-followup/TARGET-027D31B-result.json",
-      "nextCase": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION"
+      "nextCase": "TARGET-027D31C-VAT-SETUP-ROUTE-BLOCKER-REVIEW",
+      "caseId": "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP",
+      "completedAt": "2026-07-05T14:32:18.534Z",
+      "result": "Read-only VAT route recovery observed direct routes for VAT Product Posting Groups and VAT Posting Setup, but Assisted Setup and VAT Business Posting Groups remained search/Role Center blockers.",
+      "setupChanged": false,
+      "masterDataChanged": false,
+      "previewPosting": false,
+      "posted": false,
+      "apiShortcut": false,
+      "blockedBy": [
+        "Wie mochten Sie weiter verfahren?\nListe mit Titel \"Nach Assisted Setup suchen\" weist jetzt 2 Artikel fur Assisted Setup auf\nNach Assisted Setup suchen\nUnternehmensdaten durchsuchen\nHilfe durchsuchen\nSie haben nicht gefunden, wonach Sie gesucht haben? Versuchen Sie, Seiten oder Berichte zu erkunden",
+        "Wie mochten Sie weiter verfahren?\nListe mit Titel \"Nach VAT Business Posting Groups suchen\" weist jetzt 2 Artikel fur VAT Business Posting Groups auf\nNach VAT Business Posting Groups suchen\nUnternehmensdaten durchsuchen\nHilfe durchsuchen\nSie haben nicht gefunden, wonach Sie gesucht haben? Versuchen Sie, Seiten oder Berichte zu erkunden"
+      ],
+      "nextStepDecision": {
+        "currentCase": "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP",
+        "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
+        "lastEvidenceSummary": "D31 stayed in playthru / UNIVERSAARL-DE but only proved that broad VAT Setup and Manual Setup Tell-Me searches can remain search overlays.",
+        "isPlannedNextCaseStillSensible": false,
+        "reason": "A VAT write-gate remains premature because source-backed page route recovery is incomplete.",
+        "lookaheadReviewed": [
+          {
+            "caseId": "TARGET-027D31C-VAT-SETUP-ROUTE-BLOCKER-REVIEW",
+            "status": "blocked",
+            "reason": "Write-gate waits for a reliable route."
+          },
+          {
+            "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+            "status": "needs-setup-first",
+            "reason": "Posting groups need VAT setup status first."
+          },
+          {
+            "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+            "status": "ready-after-current",
+            "reason": "Dimensions can continue after VAT setup route is either decided or parked."
+          },
+          {
+            "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+            "status": "needs-setup-first",
+            "reason": "Foundation readiness waits for VAT/posting group status."
+          }
+        ],
+        "queueChangesMade": [
+          "Keep VAT setup writes parked."
+        ],
+        "selectedNextCase": "TARGET-027D31C-VAT-SETUP-ROUTE-BLOCKER-REVIEW",
+        "whySelectedNextCaseIsBest": "Do not write VAT setup until the route blocker is resolved.",
+        "risksBeforeNextCase": [
+          "A visible VAT setup page is not a correctness proof.",
+          "VAT setup values still need source-backed field and account decisions.",
+          "No Preview Posting or VAT Entries exist yet."
+        ],
+        "requiredPreparation": [
+          "Repair direct page visibility or choose a different read-only route."
+        ]
+      }
     },
     {
       "id": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
@@ -4923,6 +4977,29 @@
         "apiShortcut": false
       },
       "nextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY"
+    },
+    {
+      "id": "TARGET-027D31C-VAT-SETUP-ROUTE-BLOCKER-REVIEW",
+      "caseId": "TARGET-027D31C-VAT-SETUP-ROUTE-BLOCKER-REVIEW",
+      "order": 10212,
+      "status": "pending",
+      "priority": "high",
+      "category": "vat-setup-route-blocker-review",
+      "expectedImpact": "resolve-or-park-remaining-vat-route-blockers-before-write-gate",
+      "mayWorkEffectively": false,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Resolve or park Assisted Setup VAT and VAT Business Posting Groups route blockers read-only before any VAT write-gate.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": true,
+      "caseFile": ".agent/state/cases/target-027d31c-vat-setup-route-blocker-review.json",
+      "lookaheadStatus": "ready-next",
+      "dependsOn": [
+        "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP"
+      ],
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31c-vat-setup-route-blocker-review/TARGET-027D31C-result.json",
+      "nextCase": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION"
     }
   ],
   "lastUpdated": "2026-07-05T13:57:56.982Z",
@@ -5037,9 +5114,9 @@
       ]
     }
   },
-  "updatedAt": "2026-07-05T13:57:56.982Z",
+  "updatedAt": "2026-07-05T14:32:18.534Z",
   "lastCompletedCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-  "nextCase": "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP",
+  "nextCase": "TARGET-027D31C-VAT-SETUP-ROUTE-BLOCKER-REVIEW",
   "nextStepDecisionCard": {
     "currentCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",

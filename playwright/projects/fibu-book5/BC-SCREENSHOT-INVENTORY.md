@@ -140,6 +140,17 @@ PREP-011 wendet die PREP-010-Regel auf die aktuellen Universaarl-Company-Creatio
 | Screenshot | PREP-011 Entscheidung | Was im Buch erlaubt ist | Was gesperrt bleibt |
 |---|---|---|---|
 | `target-006-020-after-unternehmen-einrichten-route.png` | `debugging-only` | Assisted Setup als Navigations-/Diagnosekontext erklaeren | keine Company-Anlage, keine Datenbasis, kein Wizard-Finish |
+
+## Universaarl VAT Setup Route Recovery TARGET-027D31B
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Interner Nachweis | Beweist nicht | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-027d31b-001-assisted-setup-page-1801.png` | Assisted Setup / Page 1801 Route | `playthru` / `UNIVERSAARL-DE` | Direktroute plus exakter Suchfallback | Der Lauf bleibt im Rollencenter-/Suchkontext, nicht auf einer akzeptierten VAT-Assisted-Setup-Seite | Assisted Setup VAT ist fuer diesen Lauf kein sicherer Schreib-Gate | keine Wizard-Route, keine USt-Einrichtung, kein Next/Finish/OK | `blocked-route` |
+| `target-027d31b-002-vat-business-posting-groups.png` | VAT Business Posting Groups / Page 470 Route | `playthru` / `UNIVERSAARL-DE` | Direktroute plus exakter Suchfallback | Der Lauf bleibt in einem Such-/Rollencenter-Kontext | Page 470 ist in diesem Lauf nicht als sichtbare Seite akzeptiert | keine Geschaeftsbuchungsgruppe, keine USt-Bereitschaft | `blocked-route` |
+| `target-027d31b-003-vat-product-posting-groups.png` | MwSt.-Produktbuchungsgruppen / Page 471 | `playthru` / `UNIVERSAARL-DE` | Direkte read-only Route | Die Liste `MwSt.-Produktbuchungsgruppen` ist sichtbar | Page 471 ist read-only erreichbar | keine Gruppe geschrieben, keine Matrix, keine VAT Entries | `usable-readonly-route` |
+| `target-027d31b-004-vat-posting-setup.png` | MwSt.-Buchungsmatrix Einr. / Page 472 | `playthru` / `UNIVERSAARL-DE` | Direkte read-only Route | Die USt-Matrixseite ist sichtbar | Page 472 ist read-only erreichbar | keine `INLAND/VAT19`-Matrixzeile, kein Prozentsatz, keine Steuerkonten, keine Preview, keine Buchung | `usable-readonly-route` |
+
+Screenshot-QA zu TARGET-027D31B: Der Lauf verbessert das UI-Modell. Direkte Page-IDs sind nicht automatisch Erfolg, wenn die Seite sichtbar im Rollencenter oder in der Suche bleibt. Fuer das Buch sind Page 471 und Page 472 als spaetere Erklaerungsbilder nutzbar; Assisted Setup und Page 470 brauchen zuerst TARGET-027D31C oder muessen bewusst geparkt werden.
 | `target-008-020-create-new-company-route-opened.png` | `debugging-only` | zeigen, dass der erwartete Wizard nicht sauber sichtbar wurde | kein Beweis fuer `Neues Unternehmen erstellen`, keine gespeicherte Company |
 | `target-009-010-before-main-neu-create.png` | `preflight-context` | Mandantenliste vor einer Anlage erklaeren | keine Berechtigung, keine Anlage, kein Setup |
 | `target-009-020-after-main-neu-create-attempt.png` | `blocked-permission-screenshot` | Berechtigungs-/Speicherblocker sachlich erklaeren | keine sichtbare `UNIVERSAARL-DE`, keine Company Information, keine Foundation |
