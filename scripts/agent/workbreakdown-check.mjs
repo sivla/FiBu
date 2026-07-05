@@ -22,6 +22,7 @@ const files = {
   bcSpecPilot: '.agent/project-template/BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md',
   customerDataSimulation: '.agent/project-template/CUSTOMER-DATA-SIMULATION-DRAFT.md',
   simulatedDataTablesCoreMd: '.agent/project-template/SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md',
+  jiraImportRowsDataPackages: '.agent/project-template/JIRA-IMPORT-ROWS-DATA-PACKAGES-DRAFT.md',
   routeDecisionCardsFoundationMasterData: '.agent/project-template/ROUTE-DECISION-CARDS-FOUNDATION-MASTER-DATA-DRAFT.md',
   workbreakdown: '.agent/project-template/BC-IMPLEMENTATION-WORKBREAKDOWN-DRAFT.md',
   jiraModel: '.agent/project-template/JIRA-WORK-ITEM-MODEL.md',
@@ -96,6 +97,7 @@ if (allText) {
     'BCSpec Pilot 001: Master Data Product Training and Evidence',
     'Customer Data Simulation Draft',
     'Simulated Data Tables - Core and Master Data Draft',
+    'Jira Import Rows - Universaarl Data Packages Draft',
     'Route Decision Cards - Foundation and Master Data Draft',
     'Business Central Implementation Workbreakdown Draft',
     'Jira Work Item Model',
@@ -375,6 +377,7 @@ if (allText) {
 
   requireAtLeast('package-derived jira ticket anchors', [
     'Package-derived Jira ticket map',
+    'JIRA-IMPORT-ROWS-DATA-PACKAGES-DRAFT.md',
     'DR-CORE-COMPANY-001',
     'DEC-CORE-TAX-001',
     'DR-CORE-ORG-001',
@@ -395,6 +398,34 @@ if (allText) {
     'DEC-FF-POSTING-001',
     'DEC-FF-VAT-001'
   ], 16);
+
+  requireAtLeast('jira import rows anchors', [
+    'Jira Import Rows - Universaarl Data Packages Draft',
+    'Issue key candidate',
+    'Issue type',
+    'Summary',
+    'Workstream',
+    'Epic',
+    'Source package',
+    'Customer owner',
+    'Internal owner',
+    'Priority',
+    'Status',
+    'Blocks BC setup',
+    'Depends on',
+    'Labels',
+    'Acceptance criteria',
+    'UAT impact',
+    'Training impact',
+    'Playwright evidence need',
+    'Next action',
+    'DR-CORE-COMPANY-001',
+    'DR-MD-CUST-001',
+    'DR-MD-VEND-001',
+    'DR-MD-ITEM-001',
+    'DEC-FF-POSTING-001',
+    'DEC-FF-VAT-001'
+  ], 22);
 
   requireAtLeast('simulated core master data anchors', [
     'Simulated Data Tables - Core and Master Data Draft',
@@ -481,7 +512,7 @@ const output = {
   warnings,
   nextStep:
     errors.length === 0
-      ? 'Project template is usable as a local implementation planning anchor. Next turn the package-derived Jira ticket map into import-ready Jira rows or project tickets.'
+      ? 'Project template is usable as a local implementation planning anchor. Next confirm Jira field mapping or build the first read-first Playwright spec after the freeze/resume gate.'
       : 'Fix the workbreakdown draft before using it as a planning anchor.'
 };
 

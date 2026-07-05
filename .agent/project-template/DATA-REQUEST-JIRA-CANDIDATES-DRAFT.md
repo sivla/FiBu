@@ -22,6 +22,7 @@ They do not contain real customer data. They do not authorize Business Central w
 ## Package-derived Jira ticket map
 
 Source: `SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md`
+Import rows: `JIRA-IMPORT-ROWS-DATA-PACKAGES-DRAFT.md`
 
 These tickets are the first operational bridge from simulated Universaarl data packages to Jira-style project work. They are not import jobs and do not authorize Business Central writes.
 
