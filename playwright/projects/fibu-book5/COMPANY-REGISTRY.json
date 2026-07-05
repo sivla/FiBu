@@ -1,239 +1,231 @@
 {
-  "schemaVersion": 1,
-  "updatedAt": "2026-06-28T19:45:52.122Z",
-  "environment": "MCP_1_20260210",
-  "status": "governance-readonly-ui-enumerated",
+  "schemaVersion": 2,
+  "updatedAt": "2026-07-05T00:00:00.000Z",
+  "environment": "playthru",
+  "status": "universaarl-active-target-registry",
   "mode": "instance-bound-multi-company",
-  "primaryCompany": "RM-DEMO",
+  "primaryCompany": "UNIVERSAARL-DE",
+  "legalEntity": "Universaarl GmbH",
+  "currency": "EUR",
+  "countryFocus": "Germany first",
+  "chartOfAccountsPolicy": "SKR04-oriented starter chart for German Universaarl companies; not a full tax-advisor-approved chart.",
+  "activeEvidencePolicy": [
+    "Use Universaarl evidence for active book truth.",
+    "Use RM-DEMO, Rhein-Main and CRONUS evidence only as historical learning or pattern archive.",
+    "Do not present legacy evidence as final Universaarl proof.",
+    "Do not create or switch company unless the active case documents purpose, route, evidence and cleanup/keep strategy."
+  ],
   "registryEvidence": [
-    "playwright/projects/fibu-book5/testdata/masterdata/companies.json",
-    "playwright/projects/fibu-book5/testdata/foundation/rm-demo-company.json",
-    "playwright/projects/fibu-book5/evidence/governance-012/README.md"
+    "playwright/projects/fibu-book5/evidence/target-009-main-neu-list-company-create-gate/TARGET-009-result.json",
+    "playwright/projects/fibu-book5/evidence/target-010-universaarl-company-context-proof/TARGET-010-result.json",
+    "playwright/projects/fibu-book5/evidence/target-011-universaarl-company-information/TARGET-011-result.json",
+    "playwright/projects/fibu-book5/BC-COMPANY-USECASE.md",
+    "playwright/projects/fibu-book5/UNIVERSAARL-DATASET-BLUEPRINT.md"
   ],
   "limits": [
-    "Do not leave MCP_1_20260210.",
+    "Do not leave playthru.",
     "Do not use productive or real customer data.",
-    "Do not create or switch company unless the company action is documented first.",
-    "Do not claim German VAT19, German chart of accounts or German final screenshots without separate proof.",
-    "The visible Companies list was read-only enumerated in GOVERNANCE-013.",
-    "CRONUS USA, Inc. and My Company are visible, but are not current book process companies."
+    "Do not use Shopify or Online Store scope for FiBu Buch 5.",
+    "Do not claim German VAT, full SKR04, tax correctness or posting readiness without source and Universaarl evidence.",
+    "Do not mass-replace or delete legacy evidence; mark it as archive or superseded when Universaarl proof exists."
   ],
   "nextCompanyEvidenceStep": {
-    "caseId": "GOVERNANCE-013-COMPANY-LIST-READONLY",
-    "mode": "read-only-ui",
-    "goal": "Open the Companies list inside MCP_1_20260210 and mark registry entries as actual-visible or not-visible.",
-    "forbidden": [
-      "company creation",
-      "company switch",
+    "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
+    "mode": "read-first-after-freeze-lift",
+    "goal": "Confirm playthru / UNIVERSAARL-DE and reopen Chart of Accounts plus setup context before any new effective setup or master-data action.",
+    "forbiddenWhileFreezeActive": [
+      "open Business Central live",
       "setup change",
-      "posting"
+      "master data change",
+      "document or draft creation",
+      "preview posting",
+      "posting",
+      "payment",
+      "cleanup delete",
+      "company switch"
     ]
   },
   "companies": [
     {
-      "company": "RM-DEMO",
-      "purpose": "Current consolidated learning and laboratory company for FiBu Buch 5",
-      "dataBasis": "CRONUS USA",
-      "languageLocalization": "mixed German/English UI, US tax logic",
-      "status": "active-practically-proven",
+      "company": "UNIVERSAARL-DE",
+      "legalName": "Universaarl GmbH",
+      "purpose": "Primary German setup and book company for Foundation, SKR04-oriented chart, VAT, master data and first end-to-end processes.",
+      "dataBasis": "created as new company without CRONUS/demo data route; setup is built intentionally in the book.",
+      "languageLocalization": "German target world in playthru; exact UI language and localization remain evidence-bound per case.",
+      "countryFocus": "Germany",
+      "currency": "EUR",
+      "chartOfAccountsPolicy": "SKR04-oriented starter chart, not complete or tax-advisor-approved.",
+      "status": "active-target-visible",
       "bookChapters": [
+        "3",
+        "4",
         "6",
         "7",
+        "8",
+        "9",
         "10",
         "11",
         "12",
         "13",
-        "14",
-        "15",
-        "16",
-        "17",
-        "18",
         "19",
         "20",
         "21",
-        "22",
-        "23",
         "25",
-        "39",
-        "40"
+        "26"
       ],
       "allowedUsage": [
-        "UI-first learning",
-        "screenshots",
-        "evidence",
-        "controlled lab postings with preflight and posting trace"
+        "active Universaarl evidence",
+        "Foundation setup",
+        "controlled master data",
+        "controlled preview and posting after gates",
+        "book screenshots",
+        "entry and report traces"
       ],
       "lastProof": [
-        "foundation/rm-demo-company.json",
-        "PS-INV103297",
-        "108219",
-        "INV008-899959",
-        "PAY011-PS103297"
+        "TARGET-009 created/verified company route",
+        "TARGET-010 company context proof",
+        "TARGET-011 company information proof"
       ],
-      "actualVisibleInBc": "actual-visible-governance-013"
+      "actualVisibleInBc": "actual-visible-target-009-010-011",
+      "nextStep": "TARGET-075 read-first foundation checkpoint after freeze lift"
+    },
+    {
+      "company": "UNIVERSAARL-PROD",
+      "purpose": "Planned production/manufacturing/warehouse company for later multi-company and intercompany chapters.",
+      "dataBasis": "planned-only",
+      "languageLocalization": "to be defined by future company blueprint",
+      "countryFocus": "Germany or production-specific country context, not yet decided",
+      "currency": "EUR unless a later case decides otherwise",
+      "status": "planned-only-not-created",
+      "bookChapters": [
+        "13",
+        "14",
+        "16",
+        "18",
+        "27"
+      ],
+      "allowedUsage": [
+        "planning only until dedicated company creation and setup case"
+      ],
+      "lastProof": [],
+      "actualVisibleInBc": "not-proven"
+    },
+    {
+      "company": "UNIVERSAARL-SALES",
+      "purpose": "Planned sales/distribution company for later O2C, pricing, returns and intercompany chapters.",
+      "dataBasis": "planned-only",
+      "languageLocalization": "to be defined by future company blueprint",
+      "countryFocus": "Germany first unless a later case decides otherwise",
+      "currency": "EUR unless a later case decides otherwise",
+      "status": "planned-only-not-created",
+      "bookChapters": [
+        "10",
+        "17",
+        "18",
+        "27"
+      ],
+      "allowedUsage": [
+        "planning only until dedicated company creation and setup case"
+      ],
+      "lastProof": [],
+      "actualVisibleInBc": "not-proven"
+    },
+    {
+      "company": "UNIVERSAARL-SERVICE",
+      "purpose": "Planned service company for service orders, service items, spare parts and maintenance processes.",
+      "dataBasis": "planned-only",
+      "languageLocalization": "to be defined by future company blueprint",
+      "countryFocus": "Germany first unless a later case decides otherwise",
+      "currency": "EUR unless a later case decides otherwise",
+      "status": "planned-only-not-created",
+      "bookChapters": [
+        "15",
+        "18",
+        "27"
+      ],
+      "allowedUsage": [
+        "planning only until dedicated company creation and setup case"
+      ],
+      "lastProof": [],
+      "actualVisibleInBc": "not-proven"
+    },
+    {
+      "company": "UNIVERSAARL-HOLDING",
+      "purpose": "Planned holding/reporting company for consolidation preparation, reporting and intercompany governance.",
+      "dataBasis": "planned-only",
+      "languageLocalization": "to be defined by future company blueprint",
+      "countryFocus": "Germany first unless a later case decides otherwise",
+      "currency": "EUR unless a later case decides otherwise",
+      "status": "planned-only-not-created",
+      "bookChapters": [
+        "23",
+        "25",
+        "27"
+      ],
+      "allowedUsage": [
+        "planning only until dedicated company creation and setup case"
+      ],
+      "lastProof": [],
+      "actualVisibleInBc": "not-proven"
+    },
+    {
+      "company": "UNIVERSAARL-AT",
+      "purpose": "Possible later foreign/EU company for localization, VAT and intercompany comparison.",
+      "dataBasis": "planned-only",
+      "languageLocalization": "Austrian/local setup must be source-backed before use.",
+      "countryFocus": "Austria/EU later",
+      "currency": "EUR",
+      "chartOfAccountsPolicy": "Must use the appropriate local chart/setup, not German SKR04 by default.",
+      "status": "planned-only-not-created",
+      "bookChapters": [
+        "22",
+        "27"
+      ],
+      "allowedUsage": [
+        "planning only until dedicated source-backed company blueprint"
+      ],
+      "lastProof": [],
+      "actualVisibleInBc": "not-proven"
+    },
+    {
+      "company": "RM-DEMO",
+      "purpose": "Historical laboratory company from the earlier Rhein-Main phase.",
+      "dataBasis": "CRONUS/demo-derived laboratory evidence",
+      "languageLocalization": "legacy mixed demo context",
+      "status": "legacy-labor-reference",
+      "allowedUsage": [
+        "historical evidence archive",
+        "Playwright pattern learning",
+        "blocked-path comparison"
+      ],
+      "notAllowedUsage": [
+        "active Universaarl target truth",
+        "German final proof",
+        "new book claims without Universaarl rebuild"
+      ],
+      "lastProof": [
+        "legacy RM-DEMO evidence archive"
+      ],
+      "actualVisibleInBc": "legacy-archive-only"
     },
     {
       "company": "CRONUS USA, Inc.",
-      "purpose": "Visible CRONUS source/reference company in the sandbox",
-      "dataBasis": "CRONUS USA",
-      "languageLocalization": "mixed German/English UI, US tax logic",
-      "status": "actual-visible-reference-only",
-      "bookChapters": [
-        "6",
-        "10",
-        "11",
-        "12",
-        "39"
-      ],
+      "purpose": "Historical standard/demo reference company, not the Universaarl basis.",
+      "dataBasis": "CRONUS demo",
+      "languageLocalization": "US/demo context",
+      "status": "legacy-reference-only",
       "allowedUsage": [
-        "read-only reference",
-        "possible copy template only after documented company action plan"
+        "read-only historical reference when explicitly needed"
+      ],
+      "notAllowedUsage": [
+        "active Universaarl data basis",
+        "German final proof",
+        "default copy source without a documented route decision"
       ],
       "lastProof": [
-        "GOVERNANCE-013 Companies list"
+        "legacy governance evidence"
       ],
-      "actualVisibleInBc": "actual-visible-governance-013"
-    },
-    {
-      "company": "My Company",
-      "purpose": "Visible standard/legacy company in the sandbox, not a current book target company",
-      "dataBasis": "standard-or-legacy-company-details-not-profiled",
-      "languageLocalization": "mixed, not profiled",
-      "status": "actual-visible-do-not-use-until-profiled",
-      "bookChapters": [
-        "39"
-      ],
-      "allowedUsage": [
-        "do not use for book processes until purpose, data basis and risks are profiled"
-      ],
-      "lastProof": [
-        "GOVERNANCE-013 Companies list"
-      ],
-      "actualVisibleInBc": "actual-visible-governance-013"
-    },
-    {
-      "company": "RM-PROD",
-      "purpose": "Future production/manufacturing/warehouse target company",
-      "dataBasis": "planned-template-open",
-      "languageLocalization": "target German, final proof open",
-      "status": "planned-only-not-created",
-      "bookChapters": [
-        "13",
-        "14",
-        "18",
-        "23",
-        "25"
-      ],
-      "allowedUsage": [
-        "only after documented company action plan"
-      ],
-      "lastProof": [],
-      "actualVisibleInBc": "not-visible-governance-013"
-    },
-    {
-      "company": "RM-SALES",
-      "purpose": "Future sales/special-sales/dropshipping target company without Shopify scope",
-      "dataBasis": "planned-template-open",
-      "languageLocalization": "target German, final proof open",
-      "status": "planned-only-not-created",
-      "bookChapters": [
-        "11",
-        "17",
-        "18",
-        "25"
-      ],
-      "allowedUsage": [
-        "only after documented company action plan"
-      ],
-      "lastProof": [],
-      "actualVisibleInBc": "not-visible-governance-013"
-    },
-    {
-      "company": "RM-SERVICE",
-      "purpose": "Future service/maintenance/rental target company",
-      "dataBasis": "planned-template-open",
-      "languageLocalization": "target German, final proof open",
-      "status": "planned-only-not-created",
-      "bookChapters": [
-        "15",
-        "18",
-        "25"
-      ],
-      "allowedUsage": [
-        "only after documented company action plan"
-      ],
-      "lastProof": [],
-      "actualVisibleInBc": "not-visible-governance-013"
-    },
-    {
-      "company": "RM-SHARED",
-      "purpose": "Future purchasing/finance/shared-services target company",
-      "dataBasis": "planned-template-open",
-      "languageLocalization": "target German, final proof open",
-      "status": "planned-only-not-created",
-      "bookChapters": [
-        "12",
-        "18",
-        "19",
-        "20",
-        "25"
-      ],
-      "allowedUsage": [
-        "only after documented company action plan"
-      ],
-      "lastProof": [],
-      "actualVisibleInBc": "not-visible-governance-013"
-    },
-    {
-      "company": "RM-AT",
-      "purpose": "Future EU foreign company for VAT and intercompany learning cases",
-      "dataBasis": "planned-template-open",
-      "languageLocalization": "target AT/EU context, final proof open",
-      "status": "planned-only-not-created",
-      "bookChapters": [
-        "18",
-        "22",
-        "25"
-      ],
-      "allowedUsage": [
-        "only after documented company action plan"
-      ],
-      "lastProof": [
-        "FIND-BC-COMPANY-AT book decision"
-      ],
-      "actualVisibleInBc": "not-visible-governance-013"
-    },
-    {
-      "company": "RM-DE-LAB",
-      "purpose": "Planned clean German-oriented laboratory/rebuild company inside MCP_1_20260210 before future German final instance exists",
-      "dataBasis": "planned-template-open-cronus-copy-or-new-company-not-yet-decided",
-      "languageLocalization": "target German-oriented lab, final German proof still open",
-      "status": "planned-only-not-created",
-      "bookChapters": [
-        "6",
-        "7",
-        "10",
-        "11",
-        "12",
-        "13",
-        "19",
-        "20",
-        "21",
-        "23",
-        "25"
-      ],
-      "allowedUsage": [
-        "only after dedicated UI-first company creation case and registry proof",
-        "foundation setup after actual-visible proof"
-      ],
-      "lastProof": [
-        "RM-DE-LAB-001 local governance decision only; no BC company proof yet"
-      ],
-      "actualVisibleInBc": "not-created-not-visible",
-      "migrationRelevance": "needed-for-german-final",
-      "evidenceRefs": [
-        "playwright/projects/fibu-book5/evidence/rm-de-lab-001/RM-DE-LAB-001-result.json"
-      ]
+      "actualVisibleInBc": "legacy-archive-only"
     }
   ]
 }
