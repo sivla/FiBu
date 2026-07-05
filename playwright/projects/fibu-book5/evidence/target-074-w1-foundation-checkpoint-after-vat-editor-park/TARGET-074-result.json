@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized-compatible",
+  "caseId": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
+  "source": "local-analysis",
+  "resultStatus": "observed-local-decision",
+  "runPlanId": "TARGET-074-LOCAL-CHECKPOINT",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "local-foundation-checkpoint",
+  "actionsTaken": [
+    "Read TARGET-068 local foundation checkpoint.",
+    "Read TARGET-071 VAT Posting Setup controlled write gate result.",
+    "Read TARGET-072 VAT Page 472 navigation route decision result.",
+    "Read TARGET-073 VAT Page 472 active editor route decision result.",
+    "Classified the current W1 Foundation state without opening Business Central."
+  ],
+  "actionsNotTaken": [
+    "No Business Central live session opened.",
+    "No Playwright live test executed.",
+    "No setup value written.",
+    "No VAT Posting Setup row written.",
+    "No General Posting Setup row written.",
+    "No master data created or edited.",
+    "No document or draft created.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No payment.",
+    "No cleanup/delete.",
+    "No API shortcut.",
+    "No company switch.",
+    "No book claim promoted to final."
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "screenshots": [],
+  "proved": [
+    "TARGET-072 proved that Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix is visibly reachable in playthru / UNIVERSAARL-DE.",
+    "TARGET-071 stopped before writing VAT values because no true active editor was detected for the target fields.",
+    "TARGET-073 materially probed Page 472 row/cell focus routes without typing target VAT values and still found no convincing row-scoped active editor.",
+    "No setup, master data, document draft, Preview Posting, Posting, payment, API shortcut or company switch was executed in TARGET-071, TARGET-072, TARGET-073 or TARGET-074.",
+    "W1 Foundation is not posting-ready and remains limited-learning-path-only until VAT and General Posting Setup gaps are closed or explicitly bounded for a narrow learning pilot."
+  ],
+  "notProved": [
+    "No INLAND/VAT19 VAT Posting Setup row was saved.",
+    "No VAT percent 19 value was persisted.",
+    "No Sales VAT Account 3806 value was persisted in VAT Posting Setup.",
+    "No Purchase VAT Account 1406 value was persisted in VAT Posting Setup.",
+    "No complete INLAND/WAREN/4400/5400 General Posting Setup row is proven.",
+    "No O2C, P2P, journal, Preview Posting, Posting, G/L Entry, VAT Entry, Customer Ledger Entry, Vendor Ledger Entry, Item Ledger Entry or Value Entry is proven by this checkpoint.",
+    "No final SKR04, tax-advisor, German tax, GoBD, HGB or AO compliance claim is proven."
+  ],
+  "blockedBy": [],
+  "warnings": [
+    "Repeating TARGET-071 or TARGET-073 as-is would be a blind UI retry.",
+    "Master data and document cases remain too early for final process claims while VAT Posting Setup and General Posting Setup are incomplete."
+  ],
+  "foundationDecision": {
+    "status": "limited-learning-path-only",
+    "chartOfAccounts": "starter-accounts-visible-but-not-final-skr04",
+    "generalPostingGroups": "business-and-product-groups-partly-proven",
+    "generalPostingSetup": "incomplete-purchase-account-and-matrix-proof-open",
+    "vatPostingSetup": "page472-reachable-but-editor-route-parked",
+    "dimensions": "starter-dimensions-visible-global-default-effects-parked",
+    "numberSeries": "partly-configured-but-foundation-check-still-needed",
+    "masterData": "locked-for-final-process-claims-until-foundation-gate",
+    "processPosting": "locked"
+  },
+  "nextStepDecision": {
+    "currentCase": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
+    "plannedNextCaseBeforeReview": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
+    "lastEvidenceSummary": "TARGET-073 reached Page 472 and tested new no-value active-editor probes, but no safe row-scoped editor was found.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The checkpoint is the correct local closure after TARGET-073 because it prevents another blind Page 472 write attempt and selects a safer resume pilot.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
+        "status": "obsolete",
+        "reason": "Already executed and blocked; repeat only with a materially new helper or route."
+      },
+      {
+        "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
+        "status": "ready-next",
+        "reason": "Low-risk live pilot: read/reopen existing foundation setup, verify company/page context, and exercise screenshot/context gates before another write-heavy case."
+      },
+      {
+        "caseId": "TARGET-075-FIRST-VENDOR-CARD-CONTROLLED-FIT",
+        "status": "ready-after-current",
+        "reason": "Useful first master-data pilot, but only after the Foundation consistency check confirms the minimum setup boundary and required capabilities."
+      },
+      {
+        "caseId": "TARGET-071B-VAT-POSTING-SETUP-REOPEN-AND-SOURCE-REVIEW",
+        "status": "needs-ui-discovery-first",
+        "reason": "No saved INLAND/VAT19 row exists; needs a new non-repeating editor/helper route before write."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "blocked",
+        "reason": "O2C remains too early until VAT/General Posting Setup are proven or a limited learning-path exception is explicitly documented."
+      }
+    ],
+    "queueChangesMade": [
+      "TARGET-074 marked as completed local checkpoint.",
+      "TARGET-073 kept parked/frozen for as-is retry.",
+      "Recommended next live pilot changed to TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK."
+    ],
+    "selectedNextCase": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
+    "whySelectedNextCaseIsBest": "It tests the improved operating model with a low-risk, book-relevant Foundation read/reopen checkpoint before any new VAT write, posting group write or master data creation.",
+    "risksBeforeNextCase": [
+      "Auth/storage state must reach playthru / UNIVERSAARL-DE, not a legacy environment.",
+      "No setup write may occur in the chart checkpoint unless a later case explicitly changes scope.",
+      "Screenshots must explain what an beginner sees and what is not proven."
+    ],
+    "requiredPreparation": [
+      "Use bc_page_context_guard.",
+      "Use screenshot_truth_gate.",
+      "Use evidence_pack_writer.",
+      "Keep bc_active_editor_diagnosis available but do not retry Page 472 writes."
+    ]
+  },
+  "changedFiles": [
+    ".agent/state/cases/target-074-w1-foundation-checkpoint-after-vat-editor-park.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/marathon_queue.json",
+    "playwright/projects/fibu-book5/evidence/target-074-w1-foundation-checkpoint-after-vat-editor-park/README.md",
+    "playwright/projects/fibu-book5/evidence/target-074-w1-foundation-checkpoint-after-vat-editor-park/TARGET-074-result.json"
+  ],
+  "statePatch": {},
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-068-w1-foundation-ready-checkpoint-after-dimension-park/TARGET-068-result.json",
+    "playwright/projects/fibu-book5/evidence/target-071-vat-posting-setup-page472-controlled-write-gate/TARGET-071-result.json",
+    "playwright/projects/fibu-book5/evidence/target-072-vat-page472-navigation-route-decision/TARGET-072-result.json",
+    "playwright/projects/fibu-book5/evidence/target-073-vat-page472-active-editor-route-decision/TARGET-073-result.json",
+    "playwright/projects/fibu-book5/evidence/target-074-w1-foundation-checkpoint-after-vat-editor-park/README.md"
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "reason": "Local checkpoint only; state files are updated directly in this commit, but no state-finalize write should run from this result.",
+  "nextCase": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
+  "updatedAt": "2026-07-05T23:59:00.000+02:00"
+}
