@@ -1,83 +1,84 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-065-POSTING-GROUPS-PAGEINSPECTION-OR-SOURCE-ROUTE-DECISION",
-  "caseId": "TARGET-065-POSTING-GROUPS-PAGEINSPECTION-OR-SOURCE-ROUTE-DECISION",
+  "runId": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER",
+  "caseId": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER",
   "status": "observed-local-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "TARGET-065 closed the TARGET-064 route blocker locally: direct URL and Tell-Me activation are exhausted for Page 314, Page 470 and Page 111 without a materially new hypothesis. Posting-group/VAT write gates remain locked; TARGET-066 is selected as the Foundation limitation checkpoint.",
+  "summary": "TARGET-066 classified W1 Foundation as partial-not-posting-ready after the posting-group route blocker, updated the Full Playthrough Catalog and Chapter 6 draft boundary, and selected TARGET-067 as the next dimension/defaults decision.",
   "proved": [
-    "TARGET-064 route blocker is accepted as real route evidence, not a setup success.",
-    "Direct page URL and Tell-Me pages-and-tasks activation are exhausted for Page 314, Page 470 and Page 111 without a materially new hypothesis.",
-    "VAT Business Posting Groups Page 470 remains parked from TARGET-027D31E.",
-    "General Posting Setup purchase account 5400 remains parked from TARGET-059.",
-    "Vendor Posting Group INLAND / 3300 remains older accepted evidence from TARGET-030, but TARGET-064 did not recover a fresh Page 111 route."
+    "W1 Foundation is partial and not posting-ready.",
+    "The current parked setup boundaries are explicit: Page 470/VAT, General Posting Setup 5400, global/default dimensions and process readiness.",
+    "The Full Playthrough Catalog now states the current W1 Foundation boundary.",
+    "The Chapter 6 draft now explains reader-facing why visible accounts and groups are not enough for posting readiness."
   ],
   "notProved": [
-    "No current visible Page 314, Page 470 or Page 111 screenshot proof was produced in TARGET-065.",
-    "No posting readiness, Preview Posting, Posting, G/L Entry, VAT Entry or ledger trace is proven.",
-    "No full SKR04, tax-advisor, German tax or compliance claim is proven."
+    "No complete INLAND/WAREN/4400/5400 General Posting Setup row is proven.",
+    "No complete INLAND/VAT19 VAT Posting Setup row with 19 percent and accounts is proven.",
+    "No global dimension assignment or default dimension effect is proven.",
+    "No Preview Posting, Posting or entries are proven."
   ],
   "blockedBy": [
-    "Page 470 route remains parked.",
-    "General Posting Setup purchase account 5400 route remains parked.",
-    "No materially new UI route exists yet for another safe posting-group write attempt."
+    "General Posting Setup purchase account 5400 remains parked.",
+    "VAT Page 470 and VAT Posting Setup completion remain parked.",
+    "Global/default dimensions remain unproven."
   ],
   "warnings": [
-    "Do not unlock VAT, General Posting Setup, master data, Preview Posting or Posting from this decision."
+    "Do not start O2C, P2P, journals, Preview Posting or Posting from this checkpoint."
   ],
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/target-064-posting-groups-route-recovery-after-strong-qa/TARGET-064-result.json",
-    "playwright/projects/fibu-book5/evidence/target-065-posting-groups-pageinspection-or-source-route-decision/TARGET-065-result.json",
-    "playwright/projects/fibu-book5/evidence/target-065-posting-groups-pageinspection-or-source-route-decision/README.md"
+    "playwright/projects/fibu-book5/evidence/target-066-foundation-limitation-check-after-posting-group-route-blocker/TARGET-066-result.json",
+    "playwright/projects/fibu-book5/evidence/target-066-foundation-limitation-check-after-posting-group-route-blocker/README.md",
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
+    "playwright/projects/fibu-book5/book-drafts/universaarl-foundation-ch06-draft.md"
   ],
-  "nextStep": "Run TARGET-066 local Foundation limitation checkpoint: state which W1 Foundation dependencies are proven, partial, parked or blocked after the posting-group route blocker. Do not unlock master data, VAT writes, General Posting Setup writes, Preview Posting or Posting.",
-  "nextCase": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER",
+  "nextStep": "Run TARGET-067 local dimension defaults/global-dimension route decision. Do not rerun completed TARGET-023B; do not unlock VAT, General Posting Setup, master data, Preview Posting or Posting.",
+  "nextCase": "TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION",
   "nextStepDecision": {
-    "currentCase": "TARGET-065-POSTING-GROUPS-PAGEINSPECTION-OR-SOURCE-ROUTE-DECISION",
+    "currentCase": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER",
     "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
-    "lastEvidenceSummary": "TARGET-064 proved the current direct URL and Tell-Me activation routes do not produce accepted Page 314, Page 470 or Page 111 page proof.",
+    "lastEvidenceSummary": "TARGET-065 parked repeated posting-group route recovery and TARGET-066 classified W1 Foundation as partial-not-posting-ready.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "A VAT/write gate remains unsafe while Page 470 and General Posting Setup purchase account proof are parked.",
+    "reason": "VAT/write gates remain too broad. The next independent foundation lane is dimension/defaults route decision.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER",
+        "caseId": "TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION",
         "status": "ready-next",
-        "reason": "Consolidates proven, partial, parked and blocked W1 Foundation dependencies."
-      },
-      {
-        "caseId": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
-        "status": "ready-after-current",
-        "reason": "Separate foundation lane after the limitation checkpoint."
+        "reason": "Fresh local decision; TARGET-023B is already done, TARGET-024B/H are blocked or parked."
       },
       {
         "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
         "status": "blocked",
-        "reason": "VAT write gate needs a materially new route or source/page-inspection gate."
+        "reason": "Needs materially new VAT route."
       },
       {
         "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
         "status": "needs-setup-first",
-        "reason": "Foundation cannot be ready while VAT and General Posting Setup remain partial."
+        "reason": "Foundation cannot pass before dimensions and setup boundaries are explicit."
+      },
+      {
+        "caseId": "TARGET-LOOKFEEL-001-LIST-SEARCH-SORT-FILTER",
+        "status": "ready-after-current",
+        "reason": "Bookrelevant after foundation boundary, not a posting readiness substitute."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "blocked",
-        "reason": "Process preflight remains locked before foundation readiness."
+        "reason": "No process preflight before foundation readiness."
       }
     ],
     "queueChangesMade": [
-      "Selected TARGET-066 as active next case."
+      "Selected TARGET-067 as active next case."
     ],
-    "selectedNextCase": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER",
-    "whySelectedNextCaseIsBest": "It prevents false posting readiness and stops another repeated route recovery loop.",
+    "selectedNextCase": "TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "It improves W1 Foundation without relying on parked VAT/Page314 routes or starting master data/processes.",
     "risksBeforeNextCase": [
-      "Partial setup evidence could be mistaken for posting readiness.",
-      "Future runs could start master data or documents too early."
+      "Global dimension assignment could be assumed from dimension value visibility.",
+      "Old blocked routes could be repeated without new hypothesis."
     ],
     "requiredPreparation": [
-      "Use compact existing result JSONs only.",
-      "Do not run BC or Playwright unless a new explicit case allows it."
+      "Read TARGET-023B, TARGET-024B and TARGET-024H evidence.",
+      "No BC/Playwright unless a later explicit case allows it."
     ]
   },
   "flags": {
@@ -91,6 +92,6 @@
     "noApiShortcut": true,
     "noBookMasterChange": true
   },
-  "updatedAt": "2026-07-05T17:35:00.000Z",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-065-posting-groups-pageinspection-or-source-route-decision/TARGET-065-result.json"
+  "updatedAt": "2026-07-05T18:05:00.000Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-066-foundation-limitation-check-after-posting-group-route-blocker/TARGET-066-result.json"
 }

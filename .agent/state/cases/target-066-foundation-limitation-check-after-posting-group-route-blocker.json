@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER",
-  "status": "ready-next",
+  "status": "observed-local-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "mode": "universaarl-target-execution",
@@ -105,5 +105,25 @@
       "No Business Central or Playwright run is needed."
     ]
   },
-  "nextCase": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER"
+  "nextCase": "TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-066-foundation-limitation-check-after-posting-group-route-blocker/TARGET-066-result.json",
+  "completedAt": "2026-07-05",
+  "proved": [
+    "W1 Foundation is partial and not posting-ready.",
+    "The current parked setup boundaries are explicit: Page 470/VAT, General Posting Setup 5400, global/default dimensions and process readiness.",
+    "The Full Playthrough Catalog now states the current W1 Foundation boundary.",
+    "The Chapter 6 draft now explains reader-facing why visible accounts and groups are not enough for posting readiness."
+  ],
+  "notProved": [
+    "No complete INLAND/WAREN/4400/5400 General Posting Setup row is proven.",
+    "No complete INLAND/VAT19 VAT Posting Setup row with 19 percent and accounts is proven.",
+    "No global dimension assignment or default dimension effect is proven.",
+    "No Preview Posting, Posting or entries are proven."
+  ],
+  "blockedBy": [
+    "General Posting Setup purchase account 5400 remains parked.",
+    "VAT Page 470 and VAT Posting Setup completion remain parked.",
+    "Global/default dimensions remain unproven."
+  ],
+  "nextStep": "Run TARGET-067 local dimension defaults/global-dimension route decision. Do not rerun completed TARGET-023B; do not unlock VAT, General Posting Setup, master data, Preview Posting or Posting."
 }

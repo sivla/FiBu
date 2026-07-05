@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION",
+  "status": "ready-next",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-target-execution",
+  "activeArea": "universaarl-dimension-defaults-next-route-decision",
+  "mayRunPlaywright": false,
+  "effectiveBcActionsAllowed": false,
+  "purpose": "Decide the next non-repeating Dimensions route after TARGET-023B and TARGET-024H: either a source/UI-discovery route for global/default dimensions or a conscious park decision before Foundation Ready.",
+  "whyNow": "TARGET-066 keeps VAT and General Posting Setup gates locked. Dimensions are the next independent W1 Foundation lane, but existing TARGET-023B is already done and TARGET-024B-D/H parked global dimension assignment. A fresh decision is needed before another UI attempt.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-023b-dimension-values-route-recovery/TARGET-023B-result.json",
+    "playwright/projects/fibu-book5/evidence/target-024b-global-dimension-assignment/TARGET-024B-result.json",
+    "playwright/projects/fibu-book5/evidence/target-024h-global-dimension-park-or-pageinspection-decision/TARGET-024H-result.json",
+    "playwright/projects/fibu-book5/evidence/target-066-foundation-limitation-check-after-posting-group-route-blocker/TARGET-066-result.json"
+  ],
+  "allowedActions": [
+    "read-dimension-evidence-results",
+    "read-microsoft-learn-dimension-sources-if-needed",
+    "write-local-decision-result",
+    "update-state-and-coverage-plan"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "write-setup",
+    "write-default-dimensions",
+    "write-global-dimensions",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-reporting-readiness"
+  ],
+  "acceptanceCriteria": [
+    "Do not rerun TARGET-023B because it is already done.",
+    "Classify global dimensions and default dimensions as ready, parked or requiring source/UI-discovery first.",
+    "Select one narrow next case that improves W1 Foundation without unlocking VAT, General Posting Setup, master data, Preview Posting or Posting.",
+    "Write a Next-Step Decision Card with a 3-5 step lookahead."
+  ],
+  "stopIf": [
+    "The decision would unlock setup writes.",
+    "The decision assumes global dimension assignment from dimension value visibility.",
+    "The next step would start master data or documents."
+  ],
+  "nextCase": "TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION"
+}

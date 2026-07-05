@@ -101,6 +101,20 @@ Der sichere Kontrollpunkt lautet deshalb:
 
 Solange USt-Buchungsmatrix, allgemeine Buchungsmatrix, Lagerbuchung, Bankeinrichtung und Stammdaten noch nicht vollstaendig zusammenpassen, bleibt die Foundation nicht buchungsbereit. Der Kontenplan ist dann ein vorbereiteter Baustein, aber noch kein Beweis fuer Belegvorschau, Posting, Steuerposten oder Sachposten.
 
+## Warum die Foundation noch nicht buchungsbereit ist
+
+Ein sichtbares Sachkonto ist nur der Anfang. Business Central bucht einen Verkaufs- oder Einkaufsbeleg nicht allein deshalb richtig, weil ein Konto im Kontenplan steht. Das System muss auch wissen, wann dieses Konto verwendet werden soll. Diese Entscheidung entsteht erst aus Buchungsgruppen, USt-Gruppen, Matrixzeilen und den Werten auf Stammdaten.
+
+Bei der Universaarl GmbH sind mehrere Bausteine bereits vorbereitet. Die Starterkonten sind sichtbar. Die Debitorenbuchungsgruppe `INLAND` verweist auf `1200 Forderungen aus Lieferungen und Leistungen`. Die Kreditorenbuchungsgruppe `INLAND` verweist auf `3300 Verbindlichkeiten aus Lieferungen und Leistungen`. Der Artikel `U-ITEM-HW100` zeigt `WAREN` als Produktbuchungsgruppe und `VAT19` als MwSt.-Produktbuchungsgruppe.
+
+Trotzdem ist die Company noch nicht bereit fuer eine Belegvorschau oder Buchung. In der allgemeinen Buchungsmatrix muss die Kombination aus Geschaeftsgruppe und Produktgruppe vollstaendig stimmen. Fuer den ersten Warenfall ist das `INLAND` plus `WAREN`. Dort muessen die Konten fuer Verkauf und Einkauf sichtbar in den richtigen Spalten stehen. Das Verkaufskonto `4400` ist als Teilpfad vorhanden, aber das Einkaufskonto `5400` ist noch nicht als stabil gespeicherter Wert in derselben Matrixzeile belegt.
+
+Auch die USt ist noch offen. `VAT19` auf einer Artikelkarte ist kein USt-Setup. Fuer deutsche 19 Prozent braucht Business Central eine passende USt-Geschaeftsbuchungsgruppe, eine USt-Produktbuchungsgruppe und eine korrekte Zeile in der USt-Buchungsmatrix. In dieser Zeile muessen Prozentsatz, Berechnungsart und Steuerkonten sichtbar passen. Solange diese Zeile nicht sauber vorhanden ist, duerfen Verkaufs- oder Einkaufsbelege nicht als steuerlich vorbereitet gelten.
+
+Dimensionen sind ebenfalls ein eigener Baustein. `PRODUCTLINE`, `COSTCENTER` und `CHANNEL` helfen spaeter beim Auswerten. Sie ersetzen aber keine Kontenfindung und keine USt-Einrichtung. Erst wenn Dimensionen auf Stammdaten, Belegen oder Posten sichtbar wirken, kann man sie als Auswertungslogik im Prozess erklaeren.
+
+Die sichere Grenze lautet deshalb: Die Universaarl-Foundation ist teilweise aufgebaut, aber nicht buchungsbereit. Der naechste gute Schritt ist nicht ein schneller Verkaufs- oder Einkaufsbeleg. Zuerst wird geklaert, welche offenen Foundation-Punkte bewusst geloest werden muessen und welche Punkte fuer einen spaeteren Lernpfad nur als Grenze notiert bleiben.
+
 ## Nummernserien
 
 Nummernserien erzeugen nachvollziehbare Nummern fuer Stammdaten, Belege und Journale. Eine Verkaufsrechnung, eine Einkaufsrechnung, ein Artikel oder eine Anlagenkarte sollte nicht zufaellig benannt werden. Die Nummer hilft spaeter beim Suchen, Abstimmen und Erklaeren.

@@ -874,7 +874,7 @@
   "currentBlock": "Page 314 Wareneinkaufskonto / Purch. Account 5400 is still not persisted. TARGET-058 showed List Edit and a row-bound target cell, but the controlled attempt opened the column menu and Reopen proof showed no 5400.",
   "latestPracticalCase": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
   "latestReviewCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
-  "nextCase": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER",
+  "nextCase": "TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -3932,7 +3932,7 @@
     },
     "vatBusinessGroupsRouteStatus": "parked-after-d31e",
     "vatWriteGate": "locked",
-    "nextCase": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER",
+    "nextCase": "TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION",
     "postingGroupRouteDecision": {
       "status": "observed-local-decision",
       "caseId": "TARGET-065-POSTING-GROUPS-PAGEINSPECTION-OR-SOURCE-ROUTE-DECISION",
@@ -3949,6 +3949,26 @@
         "No complete General Posting Setup row."
       ],
       "nextCase": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER"
+    },
+    "foundationLimitationCheckpoint": {
+      "status": "partial-not-posting-ready",
+      "caseId": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-066-foundation-limitation-check-after-posting-group-route-blocker/TARGET-066-result.json",
+      "proven": [
+        "Starter chart and selected posting/inventory/dimension contexts exist.",
+        "No process posting readiness is proven."
+      ],
+      "partial": [
+        "General Posting Setup",
+        "VAT Setup",
+        "Dimensions defaults/global assignment"
+      ],
+      "parked": [
+        "Page 470 route",
+        "General Posting Setup 5400 route",
+        "Global/default dimensions route"
+      ],
+      "nextCase": "TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION"
     }
   },
   "latestTarget024EGlobalDimensionSourceRoute": {
@@ -4462,7 +4482,7 @@
     ],
     "nextCase": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE"
   },
-  "currentFoundationFocus": "TARGET-065 closed the posting-group route decision locally: Page 314, Page 470 and Page 111 direct URL/Tell-Me routes are exhausted without a materially new hypothesis. VAT and General Posting Setup write gates remain locked. Next: TARGET-066 Foundation limitation checkpoint.",
+  "currentFoundationFocus": "TARGET-066 classified W1 Foundation as partial-not-posting-ready. VAT Page 470, General Posting Setup 5400, global/default dimensions and process posting remain gated. Next: TARGET-067 dimension/defaults next-route decision.",
   "latestGeneralPostingGroupsControlledWriteGate": {
     "caseId": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
     "status": "partially-completed",
@@ -6169,10 +6189,10 @@
     "updatedAt": "2026-07-05T17:04:29.595Z"
   },
   "latestUniversaarlDecision": {
-    "caseId": "TARGET-065-POSTING-GROUPS-PAGEINSPECTION-OR-SOURCE-ROUTE-DECISION",
+    "caseId": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER",
     "status": "observed-local-decision",
-    "summary": "Posting-group route recovery is closed as a blocker; move to foundation limitation checkpoint instead of repeating UI routes.",
-    "resultPath": "playwright/projects/fibu-book5/evidence/target-065-posting-groups-pageinspection-or-source-route-decision/TARGET-065-result.json",
-    "nextCase": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER"
+    "summary": "W1 Foundation boundary consolidated; next independent lane is dimensions/defaults decision.",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-066-foundation-limitation-check-after-posting-group-route-blocker/TARGET-066-result.json",
+    "nextCase": "TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION"
   }
 }

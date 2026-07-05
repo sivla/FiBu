@@ -1,0 +1,180 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER",
+  "source": "local-foundation-limitation-checkpoint",
+  "resultStatus": "observed-local-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "url": "n/a-local-decision-no-business-central-opened",
+  "page": "n/a-local-decision",
+  "actionsTaken": [
+    "Read compact Universaarl Foundation evidence results.",
+    "Classified W1 dependencies as proven, partial, parked or blocked.",
+    "Updated the Full Playthrough Catalog with the current W1 Foundation boundary.",
+    "Updated the Chapter 6 Foundation draft with reader-facing text about why the company is not posting-ready yet.",
+    "Selected the next safe case after the limitation checkpoint."
+  ],
+  "actionsNotTaken": [
+    "No Business Central execution.",
+    "No Playwright execution.",
+    "No setup write.",
+    "No master data write.",
+    "No document or draft creation.",
+    "No journal line.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No payment.",
+    "No API shortcut.",
+    "No bookmaster change."
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "bookChanged": true,
+  "bookChangedFiles": [
+    "playwright/projects/fibu-book5/book-drafts/universaarl-foundation-ch06-draft.md"
+  ],
+  "screenshots": [],
+  "foundationStatus": {
+    "overall": "partial-not-posting-ready",
+    "proven": [
+      "UNIVERSAARL-DE is the active target company.",
+      "SKR04-oriented starter accounts are visible as a starter chart, including 1140, 1200, 1406, 1800, 3300, 3806, 4400 and 5400.",
+      "Vendor Posting Group INLAND / 3300 has an older accepted reopen proof from TARGET-030.",
+      "Customer Posting Group INLAND / 1200 is accepted from the earlier W1 lane.",
+      "Inventory lane has SAAR-HL, WARE / Warenbestand, 1140 and U-ITEM-HW100 context from prior Universaarl evidence.",
+      "U-ITEM-HW100 visibly carries WAREN and VAT19 after reopen from TARGET-054."
+    ],
+    "partial": [
+      "General Posting Setup has INLAND/WAREN/4400 context, but 5400 is not proven as persisted in the same row.",
+      "VAT setup has VAT19 and Page-472 field context, but no complete INLAND/VAT19 matrix row with 19 percent and tax accounts.",
+      "Dimensions have starter dimension and value evidence, but global dimensions and default dimensions remain unproven."
+    ],
+    "parked": [
+      "Page 470 VAT Business Posting Groups route is parked after TARGET-027D31E and TARGET-064.",
+      "General Posting Setup purchase account 5400 route is parked after TARGET-059 and TARGET-064.",
+      "Broad direct URL and Tell-Me activation routes for Page 314, Page 470 and Page 111 are parked without a materially new hypothesis."
+    ],
+    "blocked": [
+      "Foundation Ready cannot be claimed.",
+      "Master data expansion is blocked until the remaining foundation boundaries are either solved or explicitly carried as limited learning boundaries.",
+      "Preview Posting and Posting remain blocked."
+    ]
+  },
+  "proved": [
+    "W1 Foundation is partial and not posting-ready.",
+    "The current blocker is no longer a vague UI problem: VAT Page 470, General Posting Setup 5400, and repeated direct URL/Tell-Me routes are explicitly parked.",
+    "The book draft can explain the Foundation boundary in reader-facing language without claiming posting readiness.",
+    "The Full Playthrough Catalog now carries the current W1 Foundation boundary before process cases."
+  ],
+  "notProved": [
+    "No complete INLAND/WAREN/4400/5400 General Posting Setup row is proven.",
+    "No complete INLAND/VAT19 VAT Posting Setup row with 19 percent, calculation type and tax accounts is proven.",
+    "No global dimension assignment or default dimension effect is proven.",
+    "No O2C, P2P, journal, Preview Posting, Posting, G/L Entry, VAT Entry, Customer Ledger Entry, Vendor Ledger Entry, Item Ledger Entry or Value Entry is proven by TARGET-066.",
+    "No final SKR04, tax-advisor, German tax or compliance claim is proven."
+  ],
+  "blockedBy": [
+    "General Posting Setup purchase account 5400 remains parked.",
+    "VAT Business Posting Groups Page 470 and VAT Posting Setup completion remain parked.",
+    "Global dimension and default dimension effects remain unproven.",
+    "No Foundation Ready checkpoint can pass yet."
+  ],
+  "warnings": [
+    "Do not start O2C, P2P, journals, Preview Posting or Posting from this checkpoint.",
+    "Article WAREN/VAT19 values do not replace General Posting Setup or VAT Posting Setup.",
+    "Starter accounts are not a complete SKR04 or tax-advisor-approved chart.",
+    "Book text must remain reader-facing and avoid final German tax claims."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER",
+    "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+    "lastEvidenceSummary": "TARGET-065 parked repeated posting-group route recovery and kept setup write gates locked.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "A VAT write gate is still too broad. The next useful step is to recover a separate foundation lane that can improve readiness without claiming posting-readiness.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION",
+        "status": "ready-next",
+        "reason": "TARGET-023B is already done, while global/default dimensions remain parked; a fresh local decision can choose the next non-repeating dimension route."
+      },
+      {
+        "caseId": "TARGET-024B-GLOBAL-DIMENSION-ASSIGNMENT",
+        "status": "ready-after-current",
+        "reason": "Existing blocked evidence is source material, not a case to rerun blindly."
+      },
+      {
+        "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+        "status": "blocked",
+        "reason": "VAT writes need a materially new route or accepted source/page-inspection gate."
+      },
+      {
+        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
+        "status": "needs-setup-first",
+        "reason": "Foundation Ready cannot pass until VAT, General Posting Setup and dimension boundaries are handled."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "blocked",
+        "reason": "O2C remains locked before foundation readiness."
+      }
+    ],
+    "queueChangesMade": [
+      "Selected TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION as the next best independent foundation lane.",
+      "Kept TARGET-027D32 blocked."
+    ],
+    "selectedNextCase": "TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "It can improve W1 Foundation by deciding the remaining dimension/global/default boundary without relying on parked VAT or General Posting Setup routes.",
+    "risksBeforeNextCase": [
+      "Dimension values may already be partially present and need reopen proof rather than blind creation.",
+      "Global dimension assignment must not be assumed from dimension value visibility."
+    ],
+    "requiredPreparation": [
+      "Read TARGET-023, TARGET-023B and TARGET-024B/H evidence before any dimension follow-up.",
+      "Do not run BC unless the next case explicitly allows a narrow dimension route."
+    ]
+  },
+  "statePatch": {
+    "current": {
+      "activeCase": "TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION",
+      "active_case_file": ".agent/state/cases/target-067-dimension-defaults-next-route-decision.json",
+      "activeCaseFile": ".agent/state/cases/target-067-dimension-defaults-next-route-decision.json",
+      "activeArea": "universaarl-dimension-defaults-next-route-decision",
+      "nextCase": "TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION",
+      "nextStep": "Run TARGET-067 local dimension defaults/global-dimension route decision. Do not rerun completed TARGET-023B; do not unlock VAT, General Posting Setup, master data, Preview Posting or Posting."
+    },
+    "lastRunSummary": {
+      "caseId": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER",
+      "status": "observed-local-decision",
+      "instance": "playthru",
+      "company": "UNIVERSAARL-DE",
+      "summary": "TARGET-066 classified W1 Foundation as partial-not-posting-ready, updated the catalog and Chapter 6 draft boundary, and selected TARGET-067 as the next dimension/defaults decision.",
+      "nextCase": "TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION"
+    },
+    "activeCase": {
+      "status": "observed-local-decision",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-066-foundation-limitation-check-after-posting-group-route-blocker/TARGET-066-result.json",
+      "nextCase": "TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION"
+    }
+  },
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-066-foundation-limitation-check-after-posting-group-route-blocker/README.md",
+    "playwright/projects/fibu-book5/evidence/target-066-foundation-limitation-check-after-posting-group-route-blocker/TARGET-066-result.json",
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
+    "playwright/projects/fibu-book5/book-drafts/universaarl-foundation-ch06-draft.md",
+    ".agent/state/current.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/cases/target-066-foundation-limitation-check-after-posting-group-route-blocker.json",
+    ".agent/state/cases/target-067-dimension-defaults-next-route-decision.json"
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "Local limitation checkpoint; no BC/Playwright execution and no write gates unlocked.",
+  "nextCase": "TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION"
+}

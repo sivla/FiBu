@@ -28,10 +28,10 @@ Zero-Open-Questions-Regel: Jeder Bereich in diesem Katalog muss seine offenen Ob
 
 | Prioritaet | Case | Warum |
 | --- | --- | --- |
-| 1 | `TARGET-064-POSTING-GROUPS-ROUTE-RECOVERY-AFTER-STRONG-QA` | TARGET-063 hat die Screenshot-QA korrigiert: direkte `page=`-Aufrufe koennen im Rollencenter landen, und Navigationswoerter sind kein Zielseitenbeweis. Der naechste Schritt ist eine read-only Route-Recovery fuer Page 314, Page 470 und Page 111, kein Write-Gate. |
-| 2 | `TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION` | Blockiert, solange Page 470 nicht sichtbar reproduzierbar ist oder eine wirklich neue Source-/Page-Inspection-Route begruendet wurde. TARGET-063 bestaetigt diese Grenze erneut; Rollencenter-Fallback gibt keine USt-Schreibfreigabe. |
-| 3 | `TARGET-028-POSTING-GROUPS-PREFLIGHT` | Wartet auf die klare VAT-/General-Posting-Groups-/Dimensions-Grenze; kein Posting-Readiness-Claim ohne Setup-, `5400`-Boundary- und Preview-Evidence. |
-| 4 | `TARGET-LOOKFEEL-001-LIST-SEARCH-SORT-FILTER` | Buchrelevant nach dem naechsten Foundation-Blocker, aber nicht vor U-VEND, wenn der erste Kreditor weiter blockiert. |
+| 1 | `TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION` | Nach TARGET-066 ist die Foundation als `partial-not-posting-ready` klassifiziert. Die naechste unabhaengige W1-Spur ist die Dimension-Grenze: TARGET-023B ist erledigt, globale Dimensionen und Default Dimensions bleiben geparkt und brauchen eine neue Entscheidung statt Wiederholung alter Routen. |
+| 2 | `TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION` | Weiter blockiert, solange Page 470 und die `INLAND`/`VAT19`-Matrix nicht ueber eine wirklich neue Source-/Page-Inspection-/UI-Route tragfaehig sind. |
+| 3 | `TARGET-040-FOUNDATION-READY-RECHECK` | Erst sinnvoll, wenn TARGET-067 die Dimension-Grenze geschlossen hat und VAT/General-Posting-Setup bewusst als geloest oder geparkt im Foundation-Status stehen. |
+| 4 | `TARGET-LOOKFEEL-001-LIST-SEARCH-SORT-FILTER` | Buchrelevant nach dem Foundation-Grenzblock, aber nicht als Ersatz fuer fehlende Foundation-Readiness. |
 | 5 | `TARGET-038-O2C-PREFLIGHT` | Bleibt gesperrt, bis Inventory Posting Setup, VAT Setup, General Posting Setup und Dimensionen bewusst geprueft sind. |
 | 6 | `PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING` | Quellen bleiben als Unterstuetzung aktiv, ersetzen aber keine Universaarl-UI- und Posting-Evidence. |
 | 7 | `PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT` | Erledigt: Read-only Companies Page zeigt `Neu`, Pfeil neben `Neu`, `Neues Unternehmen erstellen`, `Kopieren` und `Testunternehmen` ohne Company-Anlage. |
@@ -63,6 +63,19 @@ Zero-Open-Questions-Regel: Jeder Bereich in diesem Katalog muss seine offenen Ob
 | 33 | `TARGET-016M-NUMBER-SERIES-REMAINING-LINES-CONTROLLED-FIT` | Erledigt: `U-VEND`, `U-ITEM`, `U-SO`, `U-SINV`, `U-PO`, `U-PINV` haben sichtbare `Startnr.`/`Endnr.` nach Reopen. Keine Checkbox-Aenderung, keine Setup-Zuweisung, keine Stammdaten, keine Preview, keine Buchung. |
 | 34 | `TARGET-017-NUMBER-SERIES-SETUP-ASSIGNMENT` | Teilerfolg: `U-SO`, `U-SINV`, `U-VEND` und `U-PINV` sind in den Setup-Seiten sichtbar zugewiesen oder bereits zugewiesen. Blockiert: `U-CUST`, `U-PO` und `U-ITEM` brauchen Field Discovery; keine Stammdaten, keine Belege, keine Preview, keine Buchung. |
 | 35 | `TARGET-017B-NUMBER-SERIES-SETUP-FIELD-DISCOVERY` | Naechster Schritt: blockierte Setup-Felder fuer Debitorennummern, Einkaufsbestellungsnummern und Artikelnummern ueber FastTabs, Page Inspection, Personalisieren und Screenshot-QA sicher identifizieren, bevor weitere Zuweisungen oder Stammdaten folgen. |
+
+## Aktuelle W1-Foundation-Grenze
+
+TARGET-066 klassifiziert die Universaarl-Foundation nach dem Posting-Groups-Route-Blocker als `partial-not-posting-ready`. Der Kontenplan und einzelne Setup-Bausteine sind sichtbar oder teilweise gepflegt, aber daraus folgt noch keine Belegfreigabe. Gesperrt bleiben Master Data, Verkaufs-/Einkaufsbelege, Journale, Preview Posting und Posting, solange die offenen Setup-Grenzen nicht bewusst geloest oder fuer einen eng begrenzten Lernpfad akzeptiert sind.
+
+| Bereich | Aktueller Stand | Grenze fuer naechste Cases |
+| --- | --- | --- |
+| Kontenplan | SKR04-orientierte Starterkonten sind sichtbar, inklusive `1140`, `1200`, `1406`, `1800`, `3300`, `3806`, `4400`, `5400`. | Kein vollstaendiger SKR04, keine Steuerberaterfreigabe, keine Buchungsfaehigkeit. |
+| Debitoren-/Kreditorenbuchungsgruppen | `INLAND` ist auf Debitoren- und Kreditorenseite mit Sammelkonten `1200` und `3300` belegt. | Das beweist keine komplette Kontenfindung fuer Belege. |
+| Allgemeine Buchungsmatrix | `INLAND`, `WAREN` und Verkaufskonto `4400` sind als Teilpfad vorhanden; `5400` bleibt nicht sichtbar persistiert. | Keine `INLAND`/`WAREN`-Matrixzeile als vollstaendige Posting-Readiness. |
+| USt | `VAT19` und Page-472-Feldkontext sind sichtbar; Page 470 und die korrekte `INLAND`/`VAT19`-Matrix bleiben geparkt. | Keine deutsche 19-Prozent-USt, keine VAT Entries, keine Preview-Freigabe. |
+| Dimensionen | Starterdimensionen und mehrere Werte sind vorhanden; globale Dimensionen und Default Dimensions bleiben offen. | Reporting-/Postenwirkung erst nach Beleg- und Entry-Nachweis. |
+| Lager/Artikel | `SAAR-HL`, `WARE`, `1140` und `U-ITEM-HW100` mit `WAREN`/`VAT19` sind sichtbar. | Artikelwerte ersetzen weder USt-Matrix noch allgemeine Buchungsmatrix. |
 
 ## Permission-aware Gate-Reihenfolge
 
