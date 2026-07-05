@@ -1,0 +1,192 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
+  "source": "local-route-decision",
+  "resultStatus": "observed-local-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "Page 314 Buchungsmatrix Einrichtung / General Posting Setup",
+  "url": "",
+  "targetValues": {
+    "businessGroup": "INLAND",
+    "productGroup": "WAREN",
+    "salesAccount": "4400",
+    "purchaseAccount": "5400"
+  },
+  "actionsTaken": [
+    "Read TARGET-032H through TARGET-032P General Posting Setup evidence.",
+    "Classified the existing Page 314 route chain without opening Business Central or Playwright.",
+    "Rejected another repeat of standalone Neu, Page 395 Einkauf FastTab, and Page 314 header/row coordinate List Edit routes.",
+    "Selected TARGET-057 as a read-only Page Inspection and field-mapping gate before any later purchase-account write."
+  ],
+  "actionsNotTaken": [
+    "No Business Central opened.",
+    "No Playwright executed.",
+    "No General Posting Setup value written.",
+    "No VAT Posting Setup value written.",
+    "No master data created or changed.",
+    "No document or draft created.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No Payment.",
+    "No API shortcut.",
+    "No book claim from this decision."
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "proved": [
+    "The Page 314 General Posting Setup blocker chain is classified locally without a new UI click.",
+    "INLAND/WAREN with Warenverkaufskonto 4400 is only a partial setup proof.",
+    "Wareneinkaufskonto 5400 is still not proven after TARGET-032O reopen evidence.",
+    "The exact TARGET-032O Page 314 list-edit geometry route must not be repeated.",
+    "The next materially different route is read-only Page Inspection and field mapping, not a setup write."
+  ],
+  "notProved": [
+    "No complete INLAND/WAREN/4400/5400 General Posting Setup row is proven.",
+    "No safe write route for Wareneinkaufskonto 5400 is proven.",
+    "No VAT Posting Setup row INLAND/VAT19 with 19 percent and VAT accounts is proven.",
+    "No O2C/P2P readiness is proven.",
+    "No Preview Posting, Posting, G/L Entry, VAT Entry, Customer Ledger Entry, Vendor Ledger Entry, Item Ledger Entry or Value Entry is proven.",
+    "No complete SKR04 chart, tax advisor approval or German compliance claim is proven."
+  ],
+  "blockedBy": [
+    "Page 395 Einkauf FastTab did not expose a distinct safe Wareneinkaufskonto field.",
+    "Page 314 header/row coordinate List Edit did not persist 5400 after reopen.",
+    "Existing Page Inspection evidence from TARGET-032H did not provide stable Page 314 field metadata."
+  ],
+  "warnings": [
+    "Do not use partial INLAND/WAREN/4400 evidence as posting readiness.",
+    "Do not repeat TARGET-032O list-edit geometry.",
+    "Do not write 5400 until a separate gated write case follows read-only field truth.",
+    "Keep VAT Setup, master data, documents, Preview Posting and Posting locked."
+  ],
+  "flags": {
+    "noBusinessCentral": true,
+    "noPlaywright": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noDraft": true,
+    "noPreview": true,
+    "noPost": true,
+    "noPayment": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true
+  },
+  "routeDecision": {
+    "decision": "park-write-route-select-page-inspection-readonly-gate",
+    "rejectedRoutes": [
+      "repeat-standalone-new-duplicate-row",
+      "repeat-page-395-einkauf-fasttab-field-entry",
+      "repeat-page-314-header-row-coordinate-list-edit",
+      "copy-line-before-trusted-target-record",
+      "configuration-package-import-or-apply"
+    ],
+    "selectedRoute": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+    "selectedRouteType": "read-only-page-inspection-field-map",
+    "writeGateUnlocked": false,
+    "reason": "A later write needs stable field truth first: page/table identity, focused row, field/control name for Wareneinkaufskonto, and screenshot QA that proves the target cell without changing setup."
+  },
+  "nextStepDecision": {
+    "currentCase": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
+    "lastEvidenceSummary": "TARGET-032K opened Page 395 through Neu without values, TARGET-032L produced the partial INLAND/WAREN/4400 state, TARGET-032M failed to find a distinct Einkauf FastTab field, TARGET-032O failed to persist 5400 through list-edit geometry, and TARGET-032P parked the route.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "TARGET-056 is the needed local decision to stop repeated Page 314 routes and pick a materially different next gate.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+        "status": "ready-next",
+        "reason": "Read-only Page Inspection and field mapping is materially different from the exhausted write routes and can prove whether a later write gate is even safe."
+      },
+      {
+        "caseId": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Requires TARGET-057 to prove a stable field/control route first."
+      },
+      {
+        "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+        "status": "blocked",
+        "reason": "VAT remains parked after Page 470/Page 472 route blockers; no VAT write should precede the posting setup boundary decision."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Needs General Posting Setup and VAT setup boundaries before broader posting-group preflight."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "blocked",
+        "reason": "O2C remains blocked until setup readiness and no-post preflight criteria are proven."
+      }
+    ],
+    "queueChangesMade": [
+      "Marked TARGET-056 completed as local decision.",
+      "Created TARGET-057 as the next read-only Page Inspection gate.",
+      "Kept TARGET-058 write gate blocked until TARGET-057 proves field truth."
+    ],
+    "selectedNextCase": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+    "whySelectedNextCaseIsBest": "It answers the real blocker without another blind write: first identify the actual row, page/table, and field/control for Wareneinkaufskonto 5400.",
+    "risksBeforeNextCase": [
+      "Business Central Page Inspection can be noisy; screenshot QA must reject Role Center/search-overlay false positives.",
+      "Read-only field truth is not setup write permission.",
+      "Partial INLAND/WAREN/4400 state must not be described as posting-ready."
+    ],
+    "requiredPreparation": [
+      "Open playthru / UNIVERSAARL-DE only in the separate TARGET-057 case.",
+      "Capture Page 314 context, row, field/control metadata and screenshot QA without editing.",
+      "Stop before any setup write or dialog confirmation."
+    ]
+  },
+  "nextCase": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-056-general-posting-setup-purchase-account-source-route-decision/TARGET-056-result.json",
+    "playwright/projects/fibu-book5/evidence/target-056-general-posting-setup-purchase-account-source-route-decision/README.md",
+    ".agent/state/cases/target-057-general-posting-setup-purchase-account-pageinspection-readonly-gate.json",
+    ".agent/state/current.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/marathon_queue.json",
+    ".agent/state/model_usage_log.jsonl",
+    "playwright/projects/fibu-book5/BC-COVERAGE-MATRIX.md",
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-032k-general-posting-setup-new-action-empty-record-gate/TARGET-032K-result.json",
+    "playwright/projects/fibu-book5/evidence/target-032l-general-posting-setup-controlled-value-write-gate/TARGET-032L-result.json",
+    "playwright/projects/fibu-book5/evidence/target-032m-general-posting-setup-purchase-fasttab-recovery/TARGET-032M-result.json",
+    "playwright/projects/fibu-book5/evidence/target-032o-general-posting-setup-purchase-list-edit-gate/TARGET-032O-result.json",
+    "playwright/projects/fibu-book5/evidence/target-032p-general-posting-setup-park-or-source-route/TARGET-032P-result.json"
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "statePatch": {
+    "current": {
+      "activeArea": "universaarl-general-posting-setup-purchase-account-pageinspection-readonly",
+      "activeCase": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+      "active_case_file": ".agent/state/cases/target-057-general-posting-setup-purchase-account-pageinspection-readonly-gate.json",
+      "nextCase": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+      "nextStep": "Run TARGET-057 as a read-only Page Inspection/field-mapping gate for Page 314 Wareneinkaufskonto 5400; no setup write, no VAT, no master data, no draft, no Preview, no Posting."
+    },
+    "lastRunSummary": {
+      "caseId": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
+      "nextCase": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE"
+    }
+  },
+  "validationCommands": [
+    "npm run agent:preflight",
+    "npm run agent:context",
+    "npm run agent:dry-run",
+    "npm run agent:run-plan",
+    "npm run agent:result-normalize -- --input playwright/projects/fibu-book5/evidence/target-056-general-posting-setup-purchase-account-source-route-decision/TARGET-056-result.json",
+    "npm run agent:state-finalize -- --input playwright/projects/fibu-book5/evidence/target-056-general-posting-setup-purchase-account-source-route-decision/TARGET-056-result.json",
+    "npm run check:encoding",
+    "git diff --check"
+  ],
+  "reason": "TARGET-056 closes the repeated 5400 route loop and selects a safer read-only metadata gate before any later write.",
+  "updatedAt": "2026-07-05T18:10:00.000Z"
+}

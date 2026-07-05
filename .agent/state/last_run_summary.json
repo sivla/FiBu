@@ -1,91 +1,78 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-055-FOUNDATION-READY-RECHECK-AFTER-VAT-PARK",
-  "updatedAt": "2026-07-05T17:05:00.000Z",
-  "caseId": "TARGET-055-FOUNDATION-READY-RECHECK-AFTER-VAT-PARK",
-  "activeCase": "TARGET-055-FOUNDATION-READY-RECHECK-AFTER-VAT-PARK",
+  "runId": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
+  "updatedAt": "2026-07-05T18:10:00.000Z",
+  "caseId": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
+  "activeCase": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
   "status": "observed-local-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-055-foundation-ready-recheck-after-vat-park/TARGET-055-result.json",
-  "summary": "TARGET-055 ran locally without BC or Playwright. It reclassified W1 Foundation as partial and not posting-ready after VAT Page 470 was parked. Because U-VEND D2G/D2H and item/inventory follow-ups already exist, it selected TARGET-056 as the next narrow dependency: a source/route decision for General Posting Setup purchase account 5400.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-056-general-posting-setup-purchase-account-source-route-decision/TARGET-056-result.json",
+  "summary": "TARGET-056 ran locally without BC or Playwright. It classified the Page 314 General Posting Setup 5400 blocker chain, rejected another repeat of the old Neu/Page395/List-Edit geometry routes, and selected TARGET-057 as the next read-only Page Inspection/field-mapping gate.",
   "proved": [
-    "W1 Foundation is partial and not posting-ready.",
-    "VAT setup remains parked after D31E and must not unlock a write-gate.",
-    "General Posting Setup remains partial because INLAND/WAREN/4400 is visible but 5400 is not proven.",
-    "U-ITEM-HW100 is stronger than at TARGET-034 because WAREN and VAT19 are now visible after reopen, but that still does not prove posting readiness.",
-    "The next useful narrow dependency is the General Posting Setup purchase account 5400 route decision, because U-VEND D2G/D2H and item/inventory follow-ups already exist."
+    "The Page 314 5400 route chain is classified without a new UI click.",
+    "INLAND/WAREN/4400 remains partial setup proof only.",
+    "Wareneinkaufskonto 5400 is still not proven.",
+    "The TARGET-032O list-edit geometry route must not be repeated.",
+    "TARGET-057 is the next materially different read-only gate."
   ],
   "notProved": [
-    "No full SKR04 chart of accounts is proven.",
-    "No complete General Posting Setup row INLAND/WAREN/4400/5400 is proven.",
-    "No VAT Posting Setup row INLAND/VAT19/19 percent/3806/1406 is proven.",
-    "No U-VEND Manual Nos active state is proven.",
-    "No complete customer/vendor/item posting-group readiness is proven.",
-    "No Preview Posting, Posting, VAT Entry, G/L Entry, Customer Ledger Entry, Vendor Ledger Entry, Item Ledger Entry or Value Entry is proven."
+    "No complete INLAND/WAREN/4400/5400 General Posting Setup row is proven.",
+    "No safe 5400 write route is proven.",
+    "No VAT Posting Setup row is proven.",
+    "No O2C/P2P readiness is proven.",
+    "No Preview Posting, Posting or ledger entries are proven."
   ],
   "blockedBy": [
-    "VAT Business Posting Groups Page 470 route is parked.",
-    "VAT Posting Setup write route is parked.",
-    "General Posting Setup purchase account route is parked.",
-    "U-VEND Manual Nos remains unresolved.",
-    "No Preview/Post evidence exists."
+    "Page 395 Einkauf FastTab did not expose a distinct safe Wareneinkaufskonto field.",
+    "Page 314 coordinate List Edit did not persist 5400 after reopen.",
+    "Existing Page Inspection evidence did not provide stable Page 314 field metadata."
   ],
   "warnings": [
-    "Do not use item-card WAREN/VAT19 as VAT or posting setup proof.",
-    "Do not start O2C/P2P documents while VAT and General Posting Setup remain parked.",
-    "Do not retry U-VEND checkbox/list-coordinate routes without a materially new source or assisted route.",
-    "Do not reactivate completed D2G/D2H as the active next case."
+    "Do not repeat TARGET-032O geometry.",
+    "Do not treat partial INLAND/WAREN/4400 as posting readiness.",
+    "Do not write setup before TARGET-057 proves field truth."
   ],
-  "nextCase": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
-  "nextStep": "Run TARGET-056 locally: choose a materially new source-backed route for the General Posting Setup purchase account 5400 gap; no setup write, BC, Playwright, draft, Preview or Posting.",
+  "nextCase": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+  "nextStep": "Run TARGET-057 as a read-only Page Inspection/field-mapping gate for Page 314 Wareneinkaufskonto 5400; no setup write, no VAT, no master data, no draft, no Preview, no Posting.",
   "nextStepDecision": {
-    "currentCase": "TARGET-055-FOUNDATION-READY-RECHECK-AFTER-VAT-PARK",
-    "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
-    "lastEvidenceSummary": "D31E parks VAT Page 470. D2G/D2H already handled the U-VEND route decision and parked Manual Nos. Item/inventory follow-ups through TARGET-054 also exist. General Posting Setup still lacks purchase account 5400.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "VAT write-gate is blocked, U-VEND D2G/D2H is already done, and the next real Foundation gap is the missing 5400 purchase account route.",
+    "currentCase": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
+    "lastEvidenceSummary": "TARGET-056 parked the exhausted 5400 write routes and selected a read-only Page Inspection gate as the materially different next route.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A later write gate needs stable field truth before any setup value can be safely changed.",
     "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+        "status": "ready-next",
+        "reason": "Read-only metadata gate; no setup write."
+      },
+      {
+        "caseId": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Requires TARGET-057 field truth."
+      },
       {
         "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
         "status": "blocked",
-        "reason": "Needs Page 470 or a materially new source route first."
-      },
-      {
-        "caseId": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
-        "status": "obsolete",
-        "reason": "Already executed; D2H is also done and parked U-VEND Manual Nos."
-      },
-      {
-        "caseId": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
-        "status": "ready-next",
-        "reason": "Targets the unresolved General Posting Setup 5400 gap without BC/Playwright or writes."
+        "reason": "VAT route remains parked."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "blocked",
-        "reason": "O2C needs posting/VAT setup boundaries and no posting readiness is proven."
-      },
-      {
-        "caseId": "TARGET-LOOKFEEL-001-LIST-SEARCH-SORT-FILTER",
-        "status": "ready-after-current",
-        "reason": "Book-useful later, but the Foundation setup gap comes first."
+        "reason": "Needs setup readiness first."
       }
     ],
-    "queueChangesMade": [
-      "Marked TARGET-055 done.",
-      "Selected TARGET-056 as the next active case."
-    ],
-    "selectedNextCase": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
-    "whySelectedNextCaseIsBest": "It addresses a real Foundation setup blocker, avoids old VAT/U-VEND loops, and keeps all writes/posting locked.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+    "whySelectedNextCaseIsBest": "It replaces repeated cell-edit attempts with evidence about the actual Business Central page/field structure.",
     "risksBeforeNextCase": [
-      "Repeating failed Page 314 geometry routes.",
-      "Mistaking partial INLAND/WAREN/4400 evidence for posting readiness.",
-      "Creating documents before setup boundaries are settled."
+      "Page Inspection may not expose the expected field.",
+      "Visible 4400 still does not prove 5400 or posting readiness."
     ],
     "requiredPreparation": [
-      "Read TARGET-032K through TARGET-032P evidence.",
-      "Use source or Page Inspection before any later write case."
+      "Use screenshot QA.",
+      "Reject Role Center, search overlay or menu-only false positives."
     ]
   }
 }

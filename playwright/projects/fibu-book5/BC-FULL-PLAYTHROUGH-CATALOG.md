@@ -28,7 +28,7 @@ Zero-Open-Questions-Regel: Jeder Bereich in diesem Katalog muss seine offenen Ob
 
 | Prioritaet | Case | Warum |
 | --- | --- | --- |
-| 1 | `TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION` | TARGET-055 hat W1 Foundation als partiell und nicht posting-ready klassifiziert. D2G/D2H haben `U-VEND Manuelle Anz.` bereits geparkt; der engste aktuelle Setup-Blocker ist jetzt das fehlende Einkaufskonto `5400` in General Posting Setup. |
+| 1 | `TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE` | TARGET-056 hat die alte Page-314-Route geschlossen: `INLAND`/`WAREN`/`4400` bleibt nur Teilbeweis, `Wareneinkaufskonto=5400` ist nicht bewiesen, und die TARGET-032O-Listen-/Geometrieroute darf nicht wiederholt werden. Der naechste Schritt ist deshalb Page Inspection/Feldwahrheit read-only, kein Setup-Write. |
 | 2 | `TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION` | Blockiert, solange Page 470 nicht sichtbar reproduzierbar ist oder eine wirklich neue Source-/Page-Inspection-Route begruendet wurde. D31E allein gibt keine USt-Schreibfreigabe. |
 | 3 | `TARGET-028-POSTING-GROUPS-PREFLIGHT` | Wartet auf die klare VAT-/General-Posting-Groups-/Dimensions-Grenze; kein Posting-Readiness-Claim ohne Setup- und Preview-Evidence. |
 | 4 | `TARGET-LOOKFEEL-001-LIST-SEARCH-SORT-FILTER` | Buchrelevant nach dem naechsten Foundation-Blocker, aber nicht vor U-VEND, wenn der erste Kreditor weiter blockiert. |

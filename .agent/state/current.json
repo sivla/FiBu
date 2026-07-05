@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-05T17:05:00.000Z",
+  "updatedAt": "2026-07-05T18:10:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-general-posting-setup-purchase-account-route-decision",
-  "activeCase": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
-  "active_case_file": ".agent/state/cases/target-056-general-posting-setup-purchase-account-source-route-decision.json",
+  "activeArea": "universaarl-general-posting-setup-purchase-account-pageinspection-readonly",
+  "activeCase": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+  "active_case_file": ".agent/state/cases/target-057-general-posting-setup-purchase-account-pageinspection-readonly-gate.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -19,12 +19,14 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-existing-result-json",
-    "read-source-registry",
-    "read-coverage-and-catalog",
-    "classify-general-posting-setup-route-status",
-    "write-local-decision-result",
-    "update-state-and-queue"
+    "open-business-central-readonly",
+    "confirm-playthru-instance",
+    "confirm-universaarl-de-company",
+    "open-page-314-readonly",
+    "filter-or-focus-existing-inland-waren-row-readonly",
+    "page-inspection-readonly",
+    "screenshot-qa",
+    "write-evidence-result"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -32,8 +34,6 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "open-business-central",
-    "execute-playwright",
     "write-general-posting-setup",
     "write-vat-posting-setup",
     "create-master-data",
@@ -42,10 +42,14 @@
     "post",
     "payment",
     "api-shortcut",
-    "repeat-target-032o-list-edit-geometry-route"
+    "repeat-target-032o-list-edit-geometry-route",
+    "click-new",
+    "click-copy",
+    "click-edit-list-for-value-entry",
+    "type-5400"
   ],
-  "nextCase": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
-  "nextStep": "Run TARGET-056 locally: decide a materially new source-backed route for General Posting Setup purchase account 5400; do not write setup or run BC/Playwright in the decision case.",
+  "nextCase": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+  "nextStep": "Run TARGET-057 as a read-only Page Inspection/field-mapping gate for Page 314 Wareneinkaufskonto 5400; no setup write, no VAT, no master data, no draft, no Preview, no Posting.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -228,7 +232,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "TARGET-055 classifies W1 Foundation as partial and not posting-ready. D2G/D2H are already done, so next active case is TARGET-056 for the missing General Posting Setup purchase account 5400 route decision.",
+  "currentCoverageFocus": "TARGET-056 closed the repeated Page 314 5400 route loop. Next active case is TARGET-057: read-only Page Inspection/field mapping for Wareneinkaufskonto 5400 before any later setup write.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -1350,7 +1354,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "universaarl-skr04-balance-sheet-accounts-fit",
-  "lastCompletedCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+  "lastCompletedCase": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3850,7 +3854,7 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/target-056-general-posting-setup-purchase-account-source-route-decision.json",
+  "activeCaseFile": ".agent/state/cases/target-057-general-posting-setup-purchase-account-pageinspection-readonly-gate.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
@@ -7940,52 +7944,43 @@
     "uiLearning": "BC Page 456 URL filters require quoted table/field syntax for table names with punctuation; the filtered U-VEND list shows checkbox columns, but the write locator still must be source-backed or assisted before toggling Manual Nos."
   },
   "nextStepDecision": {
-    "currentCase": "TARGET-055-FOUNDATION-READY-RECHECK-AFTER-VAT-PARK",
-    "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
-    "lastEvidenceSummary": "D31E parks VAT Page 470. D2G/D2H already handled the U-VEND route decision and parked Manual Nos. Item/inventory follow-ups through TARGET-054 also exist. General Posting Setup still lacks purchase account 5400.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "VAT write-gate is blocked, U-VEND D2G/D2H is already done, and the next real Foundation gap is the missing 5400 purchase account route.",
+    "currentCase": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
+    "lastEvidenceSummary": "TARGET-056 parked the exhausted 5400 write routes and selected a read-only Page Inspection gate as the materially different next route.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A later write gate needs stable field truth before any setup value can be safely changed.",
     "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+        "status": "ready-next",
+        "reason": "Read-only metadata gate; no setup write."
+      },
+      {
+        "caseId": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Requires TARGET-057 field truth."
+      },
       {
         "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
         "status": "blocked",
-        "reason": "Needs Page 470 or a materially new source route first."
-      },
-      {
-        "caseId": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
-        "status": "obsolete",
-        "reason": "Already executed; D2H is also done and parked U-VEND Manual Nos."
-      },
-      {
-        "caseId": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
-        "status": "ready-next",
-        "reason": "Targets the unresolved General Posting Setup 5400 gap without BC/Playwright or writes."
+        "reason": "VAT route remains parked."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "blocked",
-        "reason": "O2C needs posting/VAT setup boundaries and no posting readiness is proven."
-      },
-      {
-        "caseId": "TARGET-LOOKFEEL-001-LIST-SEARCH-SORT-FILTER",
-        "status": "ready-after-current",
-        "reason": "Book-useful later, but the Foundation setup gap comes first."
+        "reason": "Needs setup readiness first."
       }
     ],
-    "queueChangesMade": [
-      "Marked TARGET-055 done.",
-      "Selected TARGET-056 as the next active case."
-    ],
-    "selectedNextCase": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
-    "whySelectedNextCaseIsBest": "It addresses a real Foundation setup blocker, avoids old VAT/U-VEND loops, and keeps all writes/posting locked.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+    "whySelectedNextCaseIsBest": "It replaces repeated cell-edit attempts with evidence about the actual Business Central page/field structure.",
     "risksBeforeNextCase": [
-      "Repeating failed Page 314 geometry routes.",
-      "Mistaking partial INLAND/WAREN/4400 evidence for posting readiness.",
-      "Creating documents before setup boundaries are settled."
+      "Page Inspection may not expose the expected field.",
+      "Visible 4400 still does not prove 5400 or posting readiness."
     ],
     "requiredPreparation": [
-      "Read TARGET-032K through TARGET-032P evidence.",
-      "Use source or Page Inspection before any later write case."
+      "Use screenshot QA.",
+      "Reject Role Center, search overlay or menu-only false positives."
     ]
   },
   "latestTarget037MasterdataFoundationCheckpoint": {
@@ -9703,5 +9698,27 @@
     "posted": false,
     "apiShortcut": false,
     "updatedAt": "2026-07-05T15:05:00.000Z"
+  },
+  "latestTarget056GeneralPostingSetupPurchaseAccountRouteDecision": {
+    "caseId": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
+    "status": "observed-local-decision",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-056-general-posting-setup-purchase-account-source-route-decision/TARGET-056-result.json",
+    "bcRun": false,
+    "playwrightRun": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "decision": "park-write-route-select-page-inspection-readonly-gate",
+    "rejectedRoutes": [
+      "repeat-standalone-new-duplicate-row",
+      "repeat-page-395-einkauf-fasttab-field-entry",
+      "repeat-page-314-header-row-coordinate-list-edit",
+      "configuration-package-import-or-apply"
+    ],
+    "nextCase": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+    "updatedAt": "2026-07-05T18:10:00.000Z"
   }
 }

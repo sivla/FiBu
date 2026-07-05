@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+  "status": "ready-next",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-target-execution",
+  "targetWorld": "Universaarl",
+  "activeArea": "universaarl-general-posting-setup-purchase-account-pageinspection-readonly",
+  "mayRunPlaywright": true,
+  "mayWorkEffectively": false,
+  "effectiveBcActionsAllowed": false,
+  "purpose": "Inspect Page 314 General Posting Setup read-only to identify stable row, page/table and field/control truth for Wareneinkaufskonto 5400 before any later setup-write gate.",
+  "allowedActions": [
+    "open-business-central-readonly",
+    "confirm-playthru-instance",
+    "confirm-universaarl-de-company",
+    "open-page-314-readonly",
+    "filter-or-focus-existing-inland-waren-row-readonly",
+    "page-inspection-readonly",
+    "screenshot-qa",
+    "write-evidence-result"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "write-general-posting-setup",
+    "write-vat-posting-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "repeat-target-032o-list-edit-geometry-route",
+    "click-new",
+    "click-copy",
+    "click-edit-list-for-value-entry",
+    "type-5400"
+  ],
+  "acceptanceCriteria": [
+    "Business Central context is visibly playthru / UNIVERSAARL-DE.",
+    "Page 314 Buchungsmatrix Einrichtung is visible, not Role Center or search overlay.",
+    "Existing INLAND / WAREN row and visible 4400 partial state are documented without editing.",
+    "Page Inspection or equivalent metadata identifies page/table and the Wareneinkaufskonto/Purchase Account field context, or the route is blocked with evidence.",
+    "No setup, master data, document, Preview Posting or Posting is executed.",
+    "Result JSON includes screenshot QA and a next-step decision."
+  ],
+  "stopIf": [
+    "Instance is not playthru.",
+    "Company is not UNIVERSAARL-DE.",
+    "Page 314 cannot be confirmed as the visible page.",
+    "A dialog asks for OK, Yes, Ja, Save, Delete, Post or Preview.",
+    "The only available path would repeat TARGET-032O list-edit geometry or type 5400.",
+    "Page Inspection cannot be opened without changing setup."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
+    "lastEvidenceSummary": "TARGET-056 parked the exhausted 5400 write routes and selected a read-only Page Inspection gate as the materially different next route.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A later write gate needs stable field truth before any setup value can be safely changed.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+        "status": "ready-next",
+        "reason": "Read-only metadata gate; no setup write."
+      },
+      {
+        "caseId": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Requires TARGET-057 field truth."
+      },
+      {
+        "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+        "status": "blocked",
+        "reason": "VAT route remains parked."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "blocked",
+        "reason": "Needs setup readiness first."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+    "whySelectedNextCaseIsBest": "It replaces repeated cell-edit attempts with evidence about the actual Business Central page/field structure.",
+    "risksBeforeNextCase": [
+      "Page Inspection may not expose the expected field.",
+      "Visible 4400 still does not prove 5400 or posting readiness."
+    ],
+    "requiredPreparation": [
+      "Use screenshot QA.",
+      "Reject Role Center, search overlay or menu-only false positives."
+    ]
+  },
+  "nextCase": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+  "updatedAt": "2026-07-05T18:10:00.000Z"
+}
