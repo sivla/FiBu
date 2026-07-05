@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY",
+  "status": "ready-next",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-target-execution",
+  "activeArea": "universaarl-posting-groups-screenshot-qa-recovery",
+  "mayRunPlaywright": true,
+  "effectiveBcActionsAllowed": false,
+  "purpose": "Recover the weak TARGET-061 screenshot QA with a stricter read-only probe that verifies page title, heading, grid headers and role/aria signals before accepting a setup page as book-usable evidence.",
+  "whyNow": "TARGET-062 classified TARGET-061 as useful but too weak for final routing: some accepted/rejected decisions relied on generic text such as Kreditoren, Neu and Beschreibung, and compact text included platform configuration strings. The next run must improve screenshot truth before any setup write gate.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/TARGET-061-result.json",
+    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/*.screenshot.json",
+    "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH"
+  ],
+  "targetPages": [
+    {
+      "id": "general-posting-setup",
+      "pageId": 314,
+      "page": "Buchungsmatrix Einrichtung / General Posting Setup",
+      "requiredSignals": [
+        "page caption or breadcrumb",
+        "business/product posting group headers",
+        "sales/purchase account headers",
+        "INLAND/WAREN row only if visible"
+      ]
+    },
+    {
+      "id": "vat-business-posting-groups",
+      "pageId": 470,
+      "page": "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups",
+      "requiredSignals": [
+        "page caption or breadcrumb",
+        "Code column",
+        "Description/Beschreibung column",
+        "VAT/MwSt.-business-group terminology"
+      ]
+    },
+    {
+      "id": "vendor-posting-groups",
+      "pageId": 111,
+      "page": "Kreditorenbuchungsgruppen / Vendor Posting Groups",
+      "requiredSignals": [
+        "page caption or breadcrumb",
+        "Code column",
+        "Payables Account/Verbindlichkeitskonto column",
+        "Vendor/Kreditorenbuchungsgruppen terminology"
+      ]
+    }
+  ],
+  "allowedActions": [
+    "open-playthru-business-central-readonly",
+    "confirm-UNIVERSAARL-DE-context",
+    "open-target-pages-by-direct-page-url-readonly",
+    "capture-strong-screenshot-qa",
+    "write-result-json-and-next-step-decision",
+    "update-coverage-and-atlases"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "click-new-edit-delete-or-copy-actions",
+    "write-setup",
+    "write-vat-posting-setup",
+    "write-general-posting-setup",
+    "write-customer-or-vendor-posting-groups",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-posting-readiness"
+  ],
+  "acceptanceCriteria": [
+    "No page is accepted from generic text alone.",
+    "Each accepted screenshot has at least two page-specific signals beyond New/Neu, Code and Beschreibung.",
+    "Platform config strings such as trustedOriginAuthorities are filtered from text evidence.",
+    "Any page that cannot be proven is rejected with exact missing signals.",
+    "No setup write, master data, draft, Preview Posting, Posting, payment or API shortcut occurs."
+  ],
+  "stopIf": [
+    "The browser is outside playthru / UNIVERSAARL-DE.",
+    "A dialog asks for OK, Yes, Ja, New, Edit, Delete, Apply, Preview Posting or Post.",
+    "The route requires typing a setup value or confirming a change.",
+    "The screenshot QA cannot identify page-specific signals after direct route and safe layout inspection."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH",
+    "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+    "lastEvidenceSummary": "TARGET-061 refreshed screenshots but showed weak/generic text extraction. TARGET-062 classified that as a screenshot-QA problem, not a setup-write unlock.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "A VAT or posting-groups write gate would rely on weak page proof. Screenshot truth must be recovered first.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY",
+        "status": "ready-next",
+        "reason": "It fixes the immediate evidence-quality problem without changing setup."
+      },
+      {
+        "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+        "status": "blocked",
+        "reason": "Page 470 and VAT values still lack strong evidence and source-backed write decision."
+      },
+      {
+        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
+        "status": "needs-setup-first",
+        "reason": "Foundation cannot be ready while screenshot truth and setup gaps remain open."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "blocked",
+        "reason": "O2C remains blocked before Foundation readiness."
+      }
+    ],
+    "queueChangesMade": [
+      "Created TARGET-063 as the next read-only screenshot-QA recovery case."
+    ],
+    "selectedNextCase": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY",
+    "whySelectedNextCaseIsBest": "It improves Playwright learning and prevents weak screenshots from becoming false book or setup truth.",
+    "risksBeforeNextCase": [
+      "Generic UI words can make a screenshot look accepted even when the actual page is uncertain.",
+      "A setup write gate based on weak page proof would be unsafe.",
+      "Book screenshots need page-specific explanation, not just file existence."
+    ],
+    "requiredPreparation": [
+      "Filter platform configuration strings from text evidence.",
+      "Require page-specific title/heading/grid/header signals before accepting screenshots.",
+      "Keep writes, master data, Preview Posting and Posting locked."
+    ]
+  },
+  "nextCase": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY"
+}

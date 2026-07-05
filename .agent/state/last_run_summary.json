@@ -1,104 +1,89 @@
 {
   "schemaVersion": 1,
-  "caseId": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
-  "status": "partially-completed",
+  "runId": "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH",
+  "caseId": "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH",
+  "status": "observed-local-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Read-only boundary refresh completed partially; blocked pages require route decision.",
+  "summary": "TARGET-062 completed as a local route decision; no live action was performed.",
   "proved": [
-    "Business Central stayed in playthru / UNIVERSAARL-DE.",
-    "2/5 target setup pages were accepted as read-only visible boundary evidence.",
-    "No setup value, master data, document draft, Preview Posting, Posting, Payment or API shortcut occurred.",
-    "MwSt.-Buchungsmatrix Einr. / VAT Posting Setup was visible read-only.",
-    "Debitorenbuchungsgruppen / Customer Posting Groups was visible read-only."
+    "TARGET-061 is a current read-only boundary package, not a setup-readiness proof.",
+    "TARGET-061 confirmed playthru / UNIVERSAARL-DE and no writes, but its screenshot text signals are too weak/generic for a write gate.",
+    "Page 472 and Customer Posting Groups may remain read-only candidates, but they still need stronger page-specific screenshot signals before becoming book-quality images.",
+    "Page 314, Page 470 and Vendor Posting Groups remain route/screenshot-QA blockers.",
+    "The next best move is TARGET-063: a read-only screenshot-QA recovery with stricter page-specific acceptance rules."
   ],
   "notProved": [
-    "W1 Foundation is not posting-ready.",
-    "No complete INLAND/WAREN/4400/5400 General Posting Setup row is proven.",
-    "No Purch. Account 5400 persistence is proven unless visible in Page 314 screenshot QA.",
-    "No VAT Posting Setup correctness is proven.",
-    "No Customer/Vendor Posting Group account correctness is proven.",
-    "No German tax, SKR04 completeness, Preview Posting, Posting, G/L Entry, VAT Entry or ledger trace is proven.",
-    "Buchungsmatrix Einrichtung / General Posting Setup: Expected page title/text was not visible enough for accepted proof.",
-    "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups: Expected page title/text was not visible enough for accepted proof.",
-    "Kreditorenbuchungsgruppen / Vendor Posting Groups: Expected page title/text was not visible enough for accepted proof."
+    "No complete INLAND/WAREN/4400/5400 General Posting Setup row.",
+    "No Purch. Account 5400 persistence.",
+    "No VAT Business Posting Groups route.",
+    "No VAT Posting Setup correctness.",
+    "No Vendor Posting Groups page proof.",
+    "No Foundation readiness, Preview Posting, Posting, ledger entries or German compliance claim."
   ],
-  "blockedBy": [
-    "general-posting-setup: Expected page title/text was not visible enough for accepted proof.",
-    "vat-business-posting-groups: Expected page title/text was not visible enough for accepted proof.",
-    "vendor-posting-groups: Expected page title/text was not visible enough for accepted proof."
-  ],
+  "blockedBy": [],
   "warnings": [
-    "New/Neu action may be visible but was not clicked.",
-    "Edit/Bearbeiten action may be visible but was not clicked."
+    "TARGET-061 remains useful as boundary evidence, but not as write readiness.",
+    "Do not reuse TARGET-061 accepted screenshots as final book screenshots until TARGET-063 improves page-specific QA."
   ],
   "evidenceRefs": [
     "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/TARGET-061-result.json",
-    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/README.md",
-    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-001-general-posting-setup.png",
-    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-001-general-posting-setup.screenshot.json",
-    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-001-general-posting-setup.txt",
-    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-002-vat-business-posting-groups.png",
-    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-002-vat-business-posting-groups.screenshot.json",
-    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-002-vat-business-posting-groups.txt",
-    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-003-vat-posting-setup.png",
-    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-003-vat-posting-setup.screenshot.json",
-    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-003-vat-posting-setup.txt",
-    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-004-customer-posting-groups.png",
-    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-004-customer-posting-groups.screenshot.json",
-    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-004-customer-posting-groups.txt",
-    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-005-vendor-posting-groups.png",
-    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-005-vendor-posting-groups.screenshot.json",
-    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-005-vendor-posting-groups.txt"
+    "playwright/projects/fibu-book5/evidence/target-062-posting-groups-boundary-route-decision-after-readonly-refresh/TARGET-062-result.json"
   ],
-  "nextCase": "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH",
+  "nextStep": "Run TARGET-063 as read-only screenshot-QA recovery; no setup write, no master data, no draft, no Preview Posting, no Posting.",
+  "nextCase": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY",
   "nextStepDecision": {
-    "currentCase": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
-    "plannedNextCaseBeforeReview": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
-    "lastEvidenceSummary": "TARGET-060 selected a fresh read-only boundary refresh because TARGET-059 parked the 5400 Purch. Account route and older TARGET-028 screenshots are not current enough.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "The run produced current setup-boundary evidence without writing setup. Any next write/process case still needs a separate decision.",
+    "currentCase": "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH",
+    "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+    "lastEvidenceSummary": "TARGET-061 produced a partial read-only refresh but exposed weak screenshot/text signals.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "A write gate would be premature because page proof quality is not strong enough.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH",
+        "caseId": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY",
         "status": "ready-next",
-        "reason": "At least one boundary route needs classification before any write gate."
+        "reason": "Directly fixes the evidence-quality gap without setup writes."
       },
       {
         "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
         "status": "blocked",
-        "reason": "VAT writes remain locked until a separate Smart Decision defines values and source support."
-      },
-      {
-        "caseId": "TARGET-038-O2C-PREFLIGHT",
-        "status": "blocked",
-        "reason": "O2C remains blocked while Foundation is not posting-ready."
+        "reason": "VAT writes need stronger Page 470/Page 472 proof and source-backed values."
       },
       {
         "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
         "status": "needs-setup-first",
-        "reason": "Foundation readiness cannot be claimed from read-only screenshots."
+        "reason": "Foundation cannot be ready while 5400/VAT/Vendor Posting Groups remain unresolved."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "blocked",
+        "reason": "O2C remains blocked until Foundation readiness is proven."
       },
       {
         "caseId": "TARGET-LOOKFEEL-001-LIST-SEARCH-SORT-FILTER",
         "status": "ready-after-current",
-        "reason": "Useful for the book after current Foundation boundary decisions, but not a setup dependency."
+        "reason": "Useful for book UI learning later, but not the current setup blocker."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH",
-    "whySelectedNextCaseIsBest": "It turns the refreshed screenshot set into a concrete route/boundary decision without writing setup.",
+    "queueChangesMade": [
+      "Created TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY."
+    ],
+    "selectedNextCase": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY",
+    "whySelectedNextCaseIsBest": "It makes Playwright smarter about Business Central screenshot truth before any setup-write or book-screenshot claim.",
     "risksBeforeNextCase": [
-      "Do not treat read-only page visibility as setup correctness.",
-      "Do not unlock VAT/General Posting Setup writes without a case-specific Smart Decision.",
-      "Do not start master data, documents, Preview Posting or Posting before Foundation readiness is proven."
+      "Generic text extraction can produce false positives.",
+      "Setup gates must not unlock from weak screenshot proof.",
+      "Book images need page-specific explanation."
     ],
     "requiredPreparation": [
-      "Review TARGET-061 screenshot QA metadata.",
-      "Keep 5400/VAT limitations in notProved until a controlled write/reopen proof exists."
+      "Use strong title/heading/grid/header/aria signals.",
+      "Filter platform config strings.",
+      "Keep setup writes locked."
     ]
   },
   "flags": {
+    "noBcOpened": true,
+    "noPlaywright": true,
     "noWrite": true,
     "noPost": true,
     "noPreview": true,
@@ -107,14 +92,7 @@
     "noMasterDataChange": true,
     "noCompanySwitch": true,
     "noApiShortcut": true,
-    "noBookMasterChange": true,
-    "noVatSetupChange": true,
-    "noGeneralPostingSetupChange": true,
-    "noCustomerPostingGroupChange": true,
-    "noVendorPostingGroupChange": true,
-    "readOnlyDirectPageRoutes": true
+    "noBookMasterChange": true
   },
-  "updatedAt": "2026-07-05T16:30:45.989Z",
-  "runId": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
-  "nextStep": "Run TARGET-062 locally: classify TARGET-061 partial read-only boundary evidence and select the next narrow Foundation route. No BC, no Playwright, no setup write."
+  "updatedAt": "2026-07-05T16:37:01.564Z"
 }

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH",
-  "status": "ready-next",
+  "status": "observed-local-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "mode": "universaarl-target-execution",
@@ -70,48 +70,74 @@
     "A proposed next step repeats the rejected Page 314 header/grid route or Page 470 search route without a materially new UI hypothesis."
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
-    "plannedNextCaseBeforeReview": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
-    "lastEvidenceSummary": "TARGET-061 refreshed the setup-boundary screenshots read-only. VAT Posting Setup and Customer Posting Groups were accepted; General Posting Setup, VAT Business Posting Groups and Vendor Posting Groups were rejected by screenshot QA.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "A local route decision is now safer than jumping into another setup write or process case.",
+    "currentCase": "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH",
+    "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+    "lastEvidenceSummary": "TARGET-061 produced a partial read-only refresh but exposed weak screenshot/text signals.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "A write gate would be premature because page proof quality is not strong enough.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH",
+        "caseId": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY",
         "status": "ready-next",
-        "reason": "It converts the fresh partial read-only result into a concrete next route without BC writes."
+        "reason": "Directly fixes the evidence-quality gap without setup writes."
       },
       {
         "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
         "status": "blocked",
-        "reason": "VAT Business Posting Groups remains rejected and VAT values are not source-gated for write."
-      },
-      {
-        "caseId": "TARGET-038-O2C-PREFLIGHT",
-        "status": "blocked",
-        "reason": "O2C still requires Foundation readiness and posting setup proof."
+        "reason": "VAT writes need stronger Page 470/Page 472 proof and source-backed values."
       },
       {
         "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
         "status": "needs-setup-first",
-        "reason": "A readiness checkpoint cannot pass while Page 314/5400 and VAT setup remain unresolved."
+        "reason": "Foundation cannot be ready while 5400/VAT/Vendor Posting Groups remain unresolved."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "blocked",
+        "reason": "O2C remains blocked until Foundation readiness is proven."
+      },
+      {
+        "caseId": "TARGET-LOOKFEEL-001-LIST-SEARCH-SORT-FILTER",
+        "status": "ready-after-current",
+        "reason": "Useful for book UI learning later, but not the current setup blocker."
       }
     ],
     "queueChangesMade": [
-      "Created TARGET-062 as the next local decision after TARGET-061 partial read-only refresh."
+      "Created TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY."
     ],
-    "selectedNextCase": "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH",
-    "whySelectedNextCaseIsBest": "It prevents blind retries and keeps Foundation decisions evidence-led after TARGET-061 showed only partial page coverage.",
+    "selectedNextCase": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY",
+    "whySelectedNextCaseIsBest": "It makes Playwright smarter about Business Central screenshot truth before any setup-write or book-screenshot claim.",
     "risksBeforeNextCase": [
-      "Read-only visibility could be overclaimed as setup correctness.",
-      "Old Page 314/Page 470 routes could be repeated without new evidence.",
-      "Process cases could start before Foundation is ready."
+      "Generic text extraction can produce false positives.",
+      "Setup gates must not unlock from weak screenshot proof.",
+      "Book images need page-specific explanation."
     ],
     "requiredPreparation": [
-      "Read TARGET-061 result and screenshot metadata only.",
-      "Select a narrow route-discovery or source-backed decision, not a write gate."
+      "Use strong title/heading/grid/header/aria signals.",
+      "Filter platform config strings.",
+      "Keep setup writes locked."
     ]
   },
-  "resultPath": "",
-  "nextCase": "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH"
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-062-posting-groups-boundary-route-decision-after-readonly-refresh/TARGET-062-result.json",
+  "nextCase": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY",
+  "completedAt": "2026-07-05T16:37:01.564Z",
+  "proved": [
+    "TARGET-061 is a current read-only boundary package, not a setup-readiness proof.",
+    "TARGET-061 confirmed playthru / UNIVERSAARL-DE and no writes, but its screenshot text signals are too weak/generic for a write gate.",
+    "Page 472 and Customer Posting Groups may remain read-only candidates, but they still need stronger page-specific screenshot signals before becoming book-quality images.",
+    "Page 314, Page 470 and Vendor Posting Groups remain route/screenshot-QA blockers.",
+    "The next best move is TARGET-063: a read-only screenshot-QA recovery with stricter page-specific acceptance rules."
+  ],
+  "notProved": [
+    "No complete INLAND/WAREN/4400/5400 General Posting Setup row.",
+    "No Purch. Account 5400 persistence.",
+    "No VAT Business Posting Groups route.",
+    "No VAT Posting Setup correctness.",
+    "No Vendor Posting Groups page proof.",
+    "No Foundation readiness, Preview Posting, Posting, ledger entries or German compliance claim."
+  ],
+  "warnings": [
+    "TARGET-061 remains useful as boundary evidence, but not as write readiness.",
+    "Do not reuse TARGET-061 accepted screenshots as final book screenshots until TARGET-063 improves page-specific QA."
+  ]
 }

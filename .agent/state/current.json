@@ -5,9 +5,9 @@
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-posting-groups-boundary-route-decision-after-target-061",
-  "activeCase": "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH",
-  "active_case_file": ".agent/state/cases/target-062-posting-groups-boundary-route-decision-after-readonly-refresh.json",
+  "activeArea": "universaarl-posting-groups-screenshot-qa-recovery",
+  "activeCase": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY",
+  "active_case_file": ".agent/state/cases/target-063-posting-groups-screenshot-qa-recovery.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -19,11 +19,12 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-target-061-result",
-    "read-target-061-screenshot-metadata",
-    "classify-route-gaps",
-    "write-local-result-json",
-    "update-state-and-coverage-only"
+    "open-playthru-business-central-readonly",
+    "confirm-UNIVERSAARL-DE-context",
+    "open-target-pages-by-direct-page-url-readonly",
+    "capture-strong-screenshot-qa",
+    "write-result-json-and-next-step-decision",
+    "update-coverage-and-atlases"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -32,8 +33,6 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "run-playwright",
-    "open-business-central",
     "click-new-edit-delete-or-copy-actions",
     "write-setup",
     "write-vat-posting-setup",
@@ -47,8 +46,8 @@
     "api-shortcut",
     "claim-posting-readiness"
   ],
-  "nextCase": "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH",
-  "nextStep": "Run TARGET-062 locally: classify TARGET-061 partial read-only boundary evidence and select the next narrow Foundation route. Do not open BC, run Playwright, write setup, create master data, draft, Preview Posting or Posting.",
+  "nextCase": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY",
+  "nextStep": "Run TARGET-063 as a read-only screenshot-QA recovery in playthru / UNIVERSAARL-DE. Improve page-specific screenshot truth for Page 314, Page 470 and Page 111; no setup write, master data, draft, Preview Posting or Posting.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -3853,7 +3852,7 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/target-062-posting-groups-boundary-route-decision-after-readonly-refresh.json",
+  "activeCaseFile": ".agent/state/cases/target-063-posting-groups-screenshot-qa-recovery.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
@@ -8533,9 +8532,10 @@
     "summary": "1140 Waren (Bestand) selected as source-backed SKR04-oriented inventory balance candidate; no Business Central account proof yet."
   },
   "acceptanceCriteria": [
-    "TARGET-061 is classified without opening Business Central.",
-    "The next case does not repeat rejected old Page 314 or Page 470 routes without a new hypothesis.",
-    "The selected next step is either a narrow route-discovery case, a source/page-inspection decision, or a Foundation limitation checkpoint.",
+    "No page is accepted from generic text alone.",
+    "Each accepted screenshot has at least two page-specific signals beyond New/Neu, Code and Beschreibung.",
+    "Platform config strings such as trustedOriginAuthorities are filtered from text evidence.",
+    "Any page that cannot be proven is rejected with exact missing signals.",
     "No setup write, master data, draft, Preview Posting, Posting, payment or API shortcut occurs."
   ],
   "latestTarget048CInventoryAccount1140BalanceCorrection": {
@@ -9629,9 +9629,10 @@
     "apiShortcut": false
   },
   "stopIf": [
-    "A proposed next step treats TARGET-061 page visibility as posting readiness.",
-    "A proposed next step writes VAT or General Posting Setup values without a separate Smart Decision.",
-    "A proposed next step repeats the rejected Page 314 header/grid route or Page 470 search route without a materially new UI hypothesis."
+    "The browser is outside playthru / UNIVERSAARL-DE.",
+    "A dialog asks for OK, Yes, Ja, New, Edit, Delete, Apply, Preview Posting or Post.",
+    "The route requires typing a setup value or confirming a change.",
+    "The screenshot QA cannot identify page-specific signals after direct route and safe layout inspection."
   ],
   "latestTarget027D31BResult": "playwright/projects/fibu-book5/evidence/target-027d31b-vat-setup-route-ui-source-followup/TARGET-027D31B-result.json",
   "latestVatSetupRouteRecovery": {
@@ -9910,5 +9911,13 @@
     },
     "nextCase": "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH",
     "coverageEffect": "Fresh read-only boundary screenshots after TARGET-059/TARGET-060: VAT Posting Setup and Customer Posting Groups accepted; General Posting Setup, VAT Business Posting Groups and Vendor Posting Groups rejected by screenshot QA. Foundation remains partial-not-posting-ready."
+  },
+  "latestTarget062PostingGroupsBoundaryDecision": {
+    "caseId": "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH",
+    "status": "observed-local-decision",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-062-posting-groups-boundary-route-decision-after-readonly-refresh/TARGET-062-result.json",
+    "completedAt": "2026-07-05T16:37:01.564Z",
+    "decision": "Do not unlock write gates. TARGET-063 must recover screenshot QA first.",
+    "nextCase": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY"
   }
 }
