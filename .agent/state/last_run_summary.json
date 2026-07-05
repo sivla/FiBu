@@ -1,78 +1,83 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY",
-  "caseId": "TARGET-064-POSTING-GROUPS-ROUTE-RECOVERY-AFTER-STRONG-QA",
-  "status": "blocked",
+  "runId": "TARGET-065-POSTING-GROUPS-PAGEINSPECTION-OR-SOURCE-ROUTE-DECISION",
+  "caseId": "TARGET-065-POSTING-GROUPS-PAGEINSPECTION-OR-SOURCE-ROUTE-DECISION",
+  "status": "observed-local-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "TARGET-064 ran read-only route recovery for Page 314, Page 470 and Page 111. Direct URL and narrow pages-and-tasks activation still fell back to Role Center; no target page passed strong screenshot QA. No setup, master data, draft, Preview Posting, Posting, payment, API or company switch occurred.",
+  "summary": "TARGET-065 closed the TARGET-064 route blocker locally: direct URL and Tell-Me activation are exhausted for Page 314, Page 470 and Page 111 without a materially new hypothesis. Posting-group/VAT write gates remain locked; TARGET-066 is selected as the Foundation limitation checkpoint.",
   "proved": [
-    "Business Central stayed in playthru / UNIVERSAARL-DE.",
-    "0/3 posting-group target pages were reached with page-specific read-only signals.",
-    "Tell-Me/search overlay text was rejected as page proof until an actual page/list surface appeared.",
-    "No setup value, master data, document draft, Preview Posting, Posting, payment or API shortcut occurred."
+    "TARGET-064 route blocker is accepted as real route evidence, not a setup success.",
+    "Direct page URL and Tell-Me pages-and-tasks activation are exhausted for Page 314, Page 470 and Page 111 without a materially new hypothesis.",
+    "VAT Business Posting Groups Page 470 remains parked from TARGET-027D31E.",
+    "General Posting Setup purchase account 5400 remains parked from TARGET-059.",
+    "Vendor Posting Group INLAND / 3300 remains older accepted evidence from TARGET-030, but TARGET-064 did not recover a fresh Page 111 route."
   ],
   "notProved": [
-    "W1 Foundation is not posting-ready.",
-    "No VAT setup, General Posting Setup, Vendor Posting Group or Customer Posting Group correctness is proven.",
-    "No German tax correctness, SKR04 completeness, Preview Posting, Posting, G/L Entry, VAT Entry or ledger trace is proven.",
-    "Buchungsmatrix Einrichtung / General Posting Setup: Route stayed on the Role Center; navigation words are not page proof.",
-    "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups: Route stayed on the Role Center; navigation words are not page proof.",
-    "Kreditorenbuchungsgruppen / Vendor Posting Groups: Route stayed on the Role Center; navigation words are not page proof."
+    "No current visible Page 314, Page 470 or Page 111 screenshot proof was produced in TARGET-065.",
+    "No posting readiness, Preview Posting, Posting, G/L Entry, VAT Entry or ledger trace is proven.",
+    "No full SKR04, tax-advisor, German tax or compliance claim is proven."
   ],
   "blockedBy": [
-    "general-posting-setup: Route stayed on the Role Center; navigation words are not page proof.",
-    "vat-business-posting-groups: Route stayed on the Role Center; navigation words are not page proof.",
-    "vendor-posting-groups: Route stayed on the Role Center; navigation words are not page proof."
+    "Page 470 route remains parked.",
+    "General Posting Setup purchase account 5400 route remains parked.",
+    "No materially new UI route exists yet for another safe posting-group write attempt."
   ],
   "warnings": [
-    "This is a read-only screenshot-QA recovery. It does not unlock write gates by itself.",
-    "Accepted screenshots can support beginner-facing page explanation, but not posting readiness."
+    "Do not unlock VAT, General Posting Setup, master data, Preview Posting or Posting from this decision."
   ],
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/TARGET-063-result.json",
-    "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/target-063-010-general-posting-setup-strong-qa.png",
-    "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/target-063-020-vat-business-posting-groups-strong-qa.png",
-    "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/target-063-030-vendor-posting-groups-strong-qa.png"
+    "playwright/projects/fibu-book5/evidence/target-064-posting-groups-route-recovery-after-strong-qa/TARGET-064-result.json",
+    "playwright/projects/fibu-book5/evidence/target-065-posting-groups-pageinspection-or-source-route-decision/TARGET-065-result.json",
+    "playwright/projects/fibu-book5/evidence/target-065-posting-groups-pageinspection-or-source-route-decision/README.md"
   ],
-  "nextStep": "Run TARGET-064 as read-only route recovery for Page 314, Page 470 and Page 111 before any setup write gate.",
-  "nextCase": "TARGET-065-POSTING-GROUPS-PAGEINSPECTION-OR-SOURCE-ROUTE-DECISION",
+  "nextStep": "Run TARGET-066 local Foundation limitation checkpoint: state which W1 Foundation dependencies are proven, partial, parked or blocked after the posting-group route blocker. Do not unlock master data, VAT writes, General Posting Setup writes, Preview Posting or Posting.",
+  "nextCase": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER",
   "nextStepDecision": {
-    "currentCase": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY",
+    "currentCase": "TARGET-065-POSTING-GROUPS-PAGEINSPECTION-OR-SOURCE-ROUTE-DECISION",
     "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
-    "lastEvidenceSummary": "TARGET-061 had weak screenshot acceptance/rejection signals; TARGET-062 required a stronger read-only recovery before any write gate.",
+    "lastEvidenceSummary": "TARGET-064 proved the current direct URL and Tell-Me activation routes do not produce accepted Page 314, Page 470 or Page 111 page proof.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "A write gate is still premature until the posting-group boundary evidence is classified with stronger page-specific signals.",
+    "reason": "A VAT/write gate remains unsafe while Page 470 and General Posting Setup purchase account proof are parked.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-064-POSTING-GROUPS-ROUTE-RECOVERY-AFTER-STRONG-QA",
+        "caseId": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER",
         "status": "ready-next",
-        "reason": "Some page routes still need recovery before write gates."
+        "reason": "Consolidates proven, partial, parked and blocked W1 Foundation dependencies."
+      },
+      {
+        "caseId": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
+        "status": "ready-after-current",
+        "reason": "Separate foundation lane after the limitation checkpoint."
       },
       {
         "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
         "status": "blocked",
-        "reason": "VAT write gate remains blocked until route evidence and source-backed setup values are clear."
+        "reason": "VAT write gate needs a materially new route or source/page-inspection gate."
       },
       {
         "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
         "status": "needs-setup-first",
-        "reason": "Foundation cannot be ready while setup pages and posting groups are not safely classified."
+        "reason": "Foundation cannot be ready while VAT and General Posting Setup remain partial."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "blocked",
-        "reason": "O2C remains blocked before Foundation readiness and posting group setup."
+        "reason": "Process preflight remains locked before foundation readiness."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-064-POSTING-GROUPS-ROUTE-RECOVERY-AFTER-STRONG-QA",
-    "whySelectedNextCaseIsBest": "The next safe step is route recovery for the pages that still lack strong screenshot proof.",
+    "queueChangesMade": [
+      "Selected TARGET-066 as active next case."
+    ],
+    "selectedNextCase": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER",
+    "whySelectedNextCaseIsBest": "It prevents false posting readiness and stops another repeated route recovery loop.",
     "risksBeforeNextCase": [
-      "Weak screenshot proof could create false setup/book truth."
+      "Partial setup evidence could be mistaken for posting readiness.",
+      "Future runs could start master data or documents too early."
     ],
     "requiredPreparation": [
-      "Keep all setup/write/posting gates locked until the local boundary decision is complete."
+      "Use compact existing result JSONs only.",
+      "Do not run BC or Playwright unless a new explicit case allows it."
     ]
   },
   "flags": {
@@ -86,6 +91,6 @@
     "noApiShortcut": true,
     "noBookMasterChange": true
   },
-  "updatedAt": "2026-07-05T17:04:29.592Z",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-064-posting-groups-route-recovery-after-strong-qa/TARGET-064-result.json"
+  "updatedAt": "2026-07-05T17:35:00.000Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-065-posting-groups-pageinspection-or-source-route-decision/TARGET-065-result.json"
 }

@@ -874,7 +874,7 @@
   "currentBlock": "Page 314 Wareneinkaufskonto / Purch. Account 5400 is still not persisted. TARGET-058 showed List Edit and a row-bound target cell, but the controlled attempt opened the column menu and Reopen proof showed no 5400.",
   "latestPracticalCase": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
   "latestReviewCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
-  "nextCase": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY",
+  "nextCase": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -3932,7 +3932,24 @@
     },
     "vatBusinessGroupsRouteStatus": "parked-after-d31e",
     "vatWriteGate": "locked",
-    "nextCase": "TARGET-055-FOUNDATION-READY-RECHECK-AFTER-VAT-PARK"
+    "nextCase": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER",
+    "postingGroupRouteDecision": {
+      "status": "observed-local-decision",
+      "caseId": "TARGET-065-POSTING-GROUPS-PAGEINSPECTION-OR-SOURCE-ROUTE-DECISION",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-065-posting-groups-pageinspection-or-source-route-decision/TARGET-065-result.json",
+      "proved": [
+        "Direct URL and Tell-Me pages-and-tasks routes exhausted for current Page 314/Page 470/Page 111 proof problem.",
+        "Page 470 remains parked from TARGET-027D31E.",
+        "Page 314 purchase account 5400 remains parked from TARGET-059.",
+        "Vendor Posting Group INLAND / 3300 older TARGET-030 proof remains scoped but no fresh Page 111 route was recovered."
+      ],
+      "notProved": [
+        "No posting readiness.",
+        "No complete VAT setup.",
+        "No complete General Posting Setup row."
+      ],
+      "nextCase": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER"
+    }
   },
   "latestTarget024EGlobalDimensionSourceRoute": {
     "caseId": "TARGET-024E-GLOBAL-DIMENSION-ASSIGNMENT-SOURCE-OR-ALTERNATIVE-ROUTE",
@@ -4445,7 +4462,7 @@
     ],
     "nextCase": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE"
   },
-  "currentFoundationFocus": "TARGET-027D27 selected a source-backed controlled Page-472 VAT Posting Setup write gate. Next: TARGET-027D28 may write only INLAND/VAT19 with 19, Normale MwSt., 3806 and 1406 if the UI route is row-bound and screenshot QA passes.",
+  "currentFoundationFocus": "TARGET-065 closed the posting-group route decision locally: Page 314, Page 470 and Page 111 direct URL/Tell-Me routes are exhausted without a materially new hypothesis. VAT and General Posting Setup write gates remain locked. Next: TARGET-066 Foundation limitation checkpoint.",
   "latestGeneralPostingGroupsControlledWriteGate": {
     "caseId": "TARGET-032B-GENERAL-POSTING-GROUPS-CONTROLLED-WRITE-GATE",
     "status": "partially-completed",
@@ -6150,5 +6167,12 @@
     "apiShortcut": false,
     "nextCase": "TARGET-065-POSTING-GROUPS-PAGEINSPECTION-OR-SOURCE-ROUTE-DECISION",
     "updatedAt": "2026-07-05T17:04:29.595Z"
+  },
+  "latestUniversaarlDecision": {
+    "caseId": "TARGET-065-POSTING-GROUPS-PAGEINSPECTION-OR-SOURCE-ROUTE-DECISION",
+    "status": "observed-local-decision",
+    "summary": "Posting-group route recovery is closed as a blocker; move to foundation limitation checkpoint instead of repeating UI routes.",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-065-posting-groups-pageinspection-or-source-route-decision/TARGET-065-result.json",
+    "nextCase": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER"
   }
 }

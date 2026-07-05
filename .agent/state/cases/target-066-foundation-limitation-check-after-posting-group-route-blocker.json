@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER",
+  "status": "ready-next",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-target-execution",
+  "activeArea": "universaarl-foundation-limitation-check-after-posting-group-route-blocker",
+  "mayRunPlaywright": false,
+  "effectiveBcActionsAllowed": false,
+  "purpose": "Create a compact W1 Foundation limitation checkpoint after TARGET-064 and TARGET-065 so later runs do not start master data, VAT writes, General Posting Setup writes, Preview Posting or Posting from partial setup evidence.",
+  "whyNow": "Posting-group page recovery failed in TARGET-064 and TARGET-065 decided not to repeat exhausted routes. W1 now needs a clear boundary of proven, partial, parked and blocked prerequisites before choosing the next safe foundation lane.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-026o-chart-foundation-visible-proof/TARGET-026O-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d31e-vat-business-groups-source-or-pageinspection-decision/TARGET-027D31E-result.json",
+    "playwright/projects/fibu-book5/evidence/target-030-posting-groups-vendor-inland-write-gate/TARGET-030-result.json",
+    "playwright/projects/fibu-book5/evidence/target-055-foundation-ready-recheck-after-vat-park/TARGET-055-result.json",
+    "playwright/projects/fibu-book5/evidence/target-057-general-posting-setup-purchase-account-pageinspection-readonly-gate/TARGET-057-result.json",
+    "playwright/projects/fibu-book5/evidence/target-059-general-posting-setup-purchase-account-route-escalation-or-park/TARGET-059-result.json",
+    "playwright/projects/fibu-book5/evidence/target-064-posting-groups-route-recovery-after-strong-qa/TARGET-064-result.json",
+    "playwright/projects/fibu-book5/evidence/target-065-posting-groups-pageinspection-or-source-route-decision/TARGET-065-result.json"
+  ],
+  "allowedActions": [
+    "read-foundation-evidence-results",
+    "write-local-foundation-limitation-result",
+    "update-state-and-coverage-plan",
+    "update-book-draft-only-if-reader-facing-and-evidence-bounded"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "write-setup",
+    "write-vat-posting-setup",
+    "write-general-posting-setup",
+    "write-customer-or-vendor-posting-groups",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-posting-readiness"
+  ],
+  "acceptanceCriteria": [
+    "List W1 Foundation dependencies as proven, partial, parked or blocked.",
+    "State that Universaarl is not posting-ready.",
+    "Keep VAT, General Posting Setup, master data, Preview Posting and Posting gates locked.",
+    "Select the next best non-repeating foundation case with a 3-5 step lookahead."
+  ],
+  "stopIf": [
+    "The checkpoint would unlock a write gate.",
+    "A book claim would exceed current Universaarl evidence.",
+    "The next case would start master data or documents before Foundation boundaries are explicit."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-065-POSTING-GROUPS-PAGEINSPECTION-OR-SOURCE-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+    "lastEvidenceSummary": "TARGET-065 rejected another direct URL/Tell-Me retry and kept posting-group/VAT write gates locked.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The next step must first consolidate the W1 boundary after multiple parked setup routes.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER",
+        "status": "ready-next",
+        "reason": "Closes the immediate blocker and makes the next foundation lane explicit."
+      },
+      {
+        "caseId": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
+        "status": "ready-after-current",
+        "reason": "Dimensions can be handled after W1 limitations are explicit because they are separate from VAT/Posting Group blockers."
+      },
+      {
+        "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+        "status": "blocked",
+        "reason": "VAT write gates need a materially new route or accepted source/page-inspection gate."
+      },
+      {
+        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
+        "status": "needs-setup-first",
+        "reason": "Foundation cannot be called ready while VAT and General Posting Setup remain partial or parked."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "blocked",
+        "reason": "No process preflight before foundation limitation and posting readiness boundaries are clear."
+      }
+    ],
+    "queueChangesMade": [
+      "TARGET-066 selected as active next case."
+    ],
+    "selectedNextCase": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER",
+    "whySelectedNextCaseIsBest": "It prevents false readiness and lets the next run choose a separate foundation lane instead of repeating failed posting-group routes.",
+    "risksBeforeNextCase": [
+      "Partial setup evidence could be mistaken for posting readiness.",
+      "A future run could jump to master data or documents too early."
+    ],
+    "requiredPreparation": [
+      "Use only compact existing result JSONs.",
+      "No Business Central or Playwright run is needed."
+    ]
+  },
+  "nextCase": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER"
+}

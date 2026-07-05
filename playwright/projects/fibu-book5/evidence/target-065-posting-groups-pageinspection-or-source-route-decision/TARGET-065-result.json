@@ -1,0 +1,172 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-065-POSTING-GROUPS-PAGEINSPECTION-OR-SOURCE-ROUTE-DECISION",
+  "source": "local-decision",
+  "resultStatus": "observed-local-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "url": "n/a-local-decision-no-business-central-opened",
+  "page": "n/a-local-decision",
+  "actionsTaken": [
+    "Read TARGET-064 route recovery result.",
+    "Compared TARGET-064 with TARGET-027D31E, TARGET-030, TARGET-055, TARGET-057 and TARGET-059 evidence.",
+    "Classified direct page URL and Tell-Me pages-and-tasks activation as exhausted for the current posting-group route problem.",
+    "Selected a foundation limitation checkpoint as the next useful non-repeating case."
+  ],
+  "actionsNotTaken": [
+    "No Business Central execution.",
+    "No Playwright execution.",
+    "No setup write.",
+    "No VAT Posting Setup write.",
+    "No General Posting Setup write.",
+    "No customer or vendor posting group write.",
+    "No master data creation.",
+    "No document or draft creation.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No payment.",
+    "No API shortcut.",
+    "No bookmaster change."
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "bookChanged": false,
+  "screenshots": [],
+  "proved": [
+    "TARGET-064 is a real route blocker, not a setup success: 0/3 target posting-group pages passed strong page-specific screenshot QA.",
+    "Direct page URL and Tell-Me pages-and-tasks activation are exhausted for Page 314, Page 470 and Page 111 unless a materially new hypothesis is introduced.",
+    "VAT Business Posting Groups Page 470 remains parked from TARGET-027D31E; a VAT write gate is still unsafe.",
+    "General Posting Setup purchase account 5400 remains parked from TARGET-059; repeating the old grid/header route is unsafe.",
+    "Vendor Posting Group INLAND / 3300 remains an older accepted setup proof from TARGET-030, but TARGET-064 did not recover a fresh Page 111 route.",
+    "The next useful W1 step is a Foundation limitation checkpoint that states exactly which setup areas are proven, partial, parked or blocked before any master data or posting process starts."
+  ],
+  "notProved": [
+    "No current visible Page 314, Page 470 or Page 111 screenshot proof was produced in TARGET-065.",
+    "No complete INLAND/WAREN/4400/5400 General Posting Setup row is proven.",
+    "No complete INLAND/VAT19 VAT Posting Setup row with 19 percent and tax accounts is proven.",
+    "No Customer Posting Group correctness is proven by TARGET-065.",
+    "No posting readiness, Preview Posting, Posting, G/L Entry, VAT Entry, Customer Ledger Entry, Vendor Ledger Entry, Item Ledger Entry or Value Entry is proven.",
+    "No final German tax, SKR04 completeness, tax-advisor approval or compliance claim is proven."
+  ],
+  "blockedBy": [
+    "Page 470 VAT Business Posting Groups accepted route remains unavailable.",
+    "General Posting Setup purchase account 5400 persistence remains unavailable.",
+    "Fresh Page 111 route proof failed in TARGET-064, although older TARGET-030 evidence remains usable as scoped historical setup evidence.",
+    "No materially new UI route exists yet for another safe posting-group write attempt."
+  ],
+  "warnings": [
+    "Do not repeat direct page URL or broad Tell-Me pages-and-tasks activation for these pages without a new hypothesis.",
+    "Do not unlock VAT, General Posting Setup, master data, Preview Posting or Posting from this decision.",
+    "Business Central navigation words in a Role Center or search overlay are navigation candidates only, not page proof.",
+    "The book may describe posting groups as a foundation dependency, but must not call the Universaarl company posting-ready."
+  ],
+  "routeDecision": {
+    "selectedRoute": "foundation-limitation-checkpoint",
+    "rejectedRoutes": [
+      {
+        "route": "repeat-direct-page-url",
+        "reason": "TARGET-064 showed direct URLs stayed on Role Center or did not expose page-specific signals."
+      },
+      {
+        "route": "repeat-tell-me-pages-and-tasks-enter",
+        "reason": "TARGET-064 showed visible search/navigation text without accepted target page proof."
+      },
+      {
+        "route": "unlock-posting-group-write-gate",
+        "reason": "Page 470 and Page 314 purchase account dependencies remain parked; writing would outrun evidence."
+      }
+    ],
+    "acceptedBoundary": "Move to a local foundation limitation checkpoint and only later reopen a setup write gate if a materially new route, source-backed assisted setup route or accepted page inspection route exists."
+  },
+  "nextStepDecision": {
+    "currentCase": "TARGET-065-POSTING-GROUPS-PAGEINSPECTION-OR-SOURCE-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+    "lastEvidenceSummary": "TARGET-064 stayed in playthru / UNIVERSAARL-DE and changed nothing, but direct URL and Tell-Me activation did not produce accepted Page 314, Page 470 or Page 111 proof.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "A VAT or posting-group write gate is not sensible while Page 470 and General Posting Setup purchase account proof remain parked.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER",
+        "status": "ready-next",
+        "reason": "It converts the blocker into an explicit W1 boundary and prevents master data or posting from starting too early."
+      },
+      {
+        "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+        "status": "blocked",
+        "reason": "VAT writes require a better Page 470 / VAT setup route and source-backed values first."
+      },
+      {
+        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
+        "status": "needs-setup-first",
+        "reason": "Foundation cannot be marked ready while VAT and General Posting Setup are partial or parked."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "blocked",
+        "reason": "O2C remains locked before foundation readiness and before posting-group/VAT limits are explicit."
+      },
+      {
+        "caseId": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
+        "status": "ready-after-current",
+        "reason": "Dimensions are a separate foundation lane, but should follow the limitation checkpoint so the next run knows what is intentionally parked."
+      }
+    ],
+    "queueChangesMade": [
+      "Selected TARGET-066 as the active next case instead of TARGET-027D32.",
+      "Kept VAT/write gates locked until a materially new route exists."
+    ],
+    "selectedNextCase": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER",
+    "whySelectedNextCaseIsBest": "It is the smallest useful step that closes the repeated route failure, protects W1 Foundation from false posting readiness, and gives the book a clean boundary before future setup or dimension work.",
+    "risksBeforeNextCase": [
+      "False confidence from older partial setup evidence.",
+      "Premature master data or document cases.",
+      "Repeating failed navigation routes instead of improving Business Central understanding."
+    ],
+    "requiredPreparation": [
+      "Use TARGET-030, TARGET-057, TARGET-059, TARGET-027D31E and TARGET-064 as boundaries.",
+      "Do not open Business Central unless the checkpoint selects a new narrow UI hypothesis."
+    ]
+  },
+  "statePatch": {
+    "current": {
+      "activeCase": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER",
+      "active_case_file": ".agent/state/cases/target-066-foundation-limitation-check-after-posting-group-route-blocker.json",
+      "activeCaseFile": ".agent/state/cases/target-066-foundation-limitation-check-after-posting-group-route-blocker.json",
+      "activeArea": "universaarl-foundation-limitation-check-after-posting-group-route-blocker",
+      "nextCase": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER",
+      "nextStep": "Run TARGET-066 local Foundation limitation checkpoint: state which W1 Foundation dependencies are proven, partial, parked or blocked after the posting-group route blocker. Do not unlock master data, VAT writes, General Posting Setup writes, Preview Posting or Posting."
+    },
+    "lastRunSummary": {
+      "caseId": "TARGET-065-POSTING-GROUPS-PAGEINSPECTION-OR-SOURCE-ROUTE-DECISION",
+      "status": "observed-local-decision",
+      "instance": "playthru",
+      "company": "UNIVERSAARL-DE",
+      "summary": "TARGET-065 closed the TARGET-064 route blocker locally: direct URL and Tell-Me activation are exhausted for Page 314, Page 470 and Page 111 without a materially new hypothesis. Posting-group/VAT write gates remain locked; TARGET-066 is selected as the Foundation limitation checkpoint.",
+      "nextCase": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER"
+    },
+    "activeCase": {
+      "status": "observed-local-decision",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-065-posting-groups-pageinspection-or-source-route-decision/TARGET-065-result.json",
+      "nextCase": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER"
+    }
+  },
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-065-posting-groups-pageinspection-or-source-route-decision/README.md",
+    "playwright/projects/fibu-book5/evidence/target-065-posting-groups-pageinspection-or-source-route-decision/TARGET-065-result.json",
+    ".agent/state/cases/target-066-foundation-limitation-check-after-posting-group-route-blocker.json",
+    ".agent/state/current.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/cases/target-065-posting-groups-pageinspection-or-source-route-decision.json"
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "Local decision only. It reduces repeated UI attempts and keeps all write gates locked until a better route exists.",
+  "nextCase": "TARGET-066-FOUNDATION-LIMITATION-CHECK-AFTER-POSTING-GROUP-ROUTE-BLOCKER"
+}
