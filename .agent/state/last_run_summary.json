@@ -1,104 +1,77 @@
 {
   "schemaVersion": 1,
-  "activeCase": "TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE",
-  "status": "blocked",
+  "updatedAt": "2026-07-05T16:20:00.000Z",
+  "caseId": "TARGET-027D31E-VAT-BUSINESS-GROUPS-SOURCE-OR-PAGEINSPECTION-DECISION",
+  "activeCase": "TARGET-027D31E-VAT-BUSINESS-GROUPS-SOURCE-OR-PAGEINSPECTION-DECISION",
+  "status": "observed-local-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "mode": "universaarl-target-execution",
-  "activeArea": "universaarl-vat-business-posting-groups-route",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31d-vat-business-posting-groups-alternative-route/TARGET-027D31D-result.json",
-  "summary": "TARGET-027D31D ran read-only in playthru / UNIVERSAARL-DE. It clicked the exact small pages-and-tasks result for MwSt.-Geschaeftsbuchungsgruppen Verwaltung, but the visible surface returned to Role Center. Screenshot-QA rejected the run as Page-470 proof because the Page-470 title and Code column were not visible. VAT writes remain locked.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31e-vat-business-groups-source-or-pageinspection-decision/TARGET-027D31E-result.json",
+  "summary": "TARGET-027D31E ran locally without BC or Playwright. It parks the current Page-470 / VAT Business Posting Groups route, rejects repeating D31C/D31D search-click paths, and keeps VAT setup writes locked. The next active case is TARGET-055 to recheck W1 Foundation boundaries after the VAT park decision.",
   "proved": [
-    "Business Central stayed in playthru / UNIVERSAARL-DE.",
-    "No VAT setup, master data, document draft, Preview Posting, Posting or API shortcut was executed."
+    "Current Page-470 route is parked after D31D failed screenshot QA.",
+    "VAT write-gate is not sensible directly after D31D.",
+    "TARGET-055 is the next bounded local Foundation recheck."
   ],
   "notProved": [
-    "Page 470 MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups did not pass screenshot QA.",
-    "No INLAND or VAT19 group exists or was changed by this run.",
-    "No VAT Posting Setup matrix row exists.",
-    "No German 19 percent VAT calculation is proven.",
-    "No VAT Entries or G/L Entries exist."
+    "No Page 470 visible proof.",
+    "No INLAND/VAT19 VAT setup write.",
+    "No VAT Posting Setup matrix row.",
+    "No posting readiness, Preview Posting, Posting, VAT Entry or G/L Entry."
   ],
   "blockedBy": [
-    "Page 470 title not visible.",
-    "Code column not visible."
+    "Page 470 visible page proof remains unavailable in the current tested routes.",
+    "VAT setup writes require a later materially new route or accepted source/Page-Inspection gate."
   ],
-  "warnings": [
-    "Tell-Me is treated only as navigation; the accepted proof is the actual list surface.",
-    "Visible New/Edit/List actions remain unclicked."
-  ],
-  "setupChanged": false,
-  "setupChangeAttempted": false,
-  "masterDataChanged": false,
-  "draftCreated": false,
-  "previewPosting": false,
-  "posted": false,
-  "apiShortcut": false,
-  "screenshots": [
-    "target-027d31d-000-search-overlay-before-click.png",
-    "target-027d31d-010-after-exact-pages-and-tasks-click.png"
-  ],
-  "nextCase": "TARGET-027D31E-VAT-BUSINESS-GROUPS-SOURCE-OR-PAGEINSPECTION-DECISION",
-  "nextStep": "Run TARGET-027D31E locally without BC/Playwright: decide whether to park VAT Page-470 route or define a materially new source/Page-Inspection route.",
+  "nextCase": "TARGET-055-FOUNDATION-READY-RECHECK-AFTER-VAT-PARK",
+  "nextStep": "Run TARGET-055 locally: classify proven, partial, parked and blocked W1 Foundation areas before choosing another write/process case.",
   "nextStepDecision": {
-    "currentCase": "TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE",
+    "currentCase": "TARGET-027D31E-VAT-BUSINESS-GROUPS-SOURCE-OR-PAGEINSPECTION-DECISION",
     "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
-    "lastEvidenceSummary": "D31C proved Assisted Setup read-only but blocked Page 470 because broad direct/search routes stayed in Role Center or overlay context.",
+    "lastEvidenceSummary": "TARGET-027D31D clicked the exact VAT Business Posting Groups pages-and-tasks result, but the visible surface returned to Role Center. Page-470 title and Code column were not visible.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "The exact row route did not produce accepted Page 470 proof; VAT setup writes remain parked.",
+    "reason": "A write-gate would be premature without accepted Page-470 proof or a materially different source/Page-Inspection route.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
         "status": "blocked",
-        "reason": "Needs Page 470 proof or a documented alternative first."
+        "reason": "Blocked until Page 470 is visible or a later source-backed alternative is accepted."
       },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Posting group preflight depends on VAT setup route/value decision."
+        "reason": "Posting Groups depend on VAT and General Posting Setup boundaries."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
-        "status": "ready-after-current",
-        "reason": "Can proceed after VAT setup is resolved or deliberately parked."
+        "status": "obsolete",
+        "reason": "Already completed; do not repeat as the next step."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
-        "status": "needs-setup-first",
-        "reason": "Foundation readiness waits for VAT/posting group status."
+        "status": "obsolete",
+        "reason": "Already completed as partial checkpoint and now outdated by later item/VAT/posting evidence."
+      },
+      {
+        "caseId": "TARGET-055-FOUNDATION-READY-RECHECK-AFTER-VAT-PARK",
+        "status": "ready-next",
+        "reason": "Best next step is to reclassify Foundation after VAT is parked, including which setup strands can progress without falsely claiming posting readiness."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-027D31E-VAT-BUSINESS-GROUPS-SOURCE-OR-PAGEINSPECTION-DECISION",
-    "whySelectedNextCaseIsBest": "Repeating UI clicks would waste time; the next useful step is a source/page-inspection decision or deliberate VAT parking.",
+    "queueChangesMade": [
+      "Marked D31E done and selected TARGET-055 as the next active case."
+    ],
+    "selectedNextCase": "TARGET-055-FOUNDATION-READY-RECHECK-AFTER-VAT-PARK",
+    "whySelectedNextCaseIsBest": "It converts the VAT blocker into a bounded Foundation decision and prevents both a click loop and a premature process/posting step.",
     "risksBeforeNextCase": [
-      "Visible Page 470 is not VAT correctness.",
-      "No INLAND/VAT19 values are final until a separate write case with Reopen-Proof.",
-      "No Preview Posting, Posting or VAT Entries exist."
+      "Foundation may look more complete than it is because item fields exist while VAT/General Posting Setup remain parked.",
+      "Vendor number-series manual-nos and some dimensions/defaults may still block master data completeness.",
+      "No Preview Posting or Posting has proven the setup."
     ],
     "requiredPreparation": [
-      "Do not repeat D31C/D31D click routes without a new route hypothesis."
+      "Use existing evidence only unless TARGET-055 explicitly unlocks a read-only probe.",
+      "Do not unlock VAT writes, process drafts, Preview Posting or Posting."
     ]
   },
-  "runId": "TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE",
-  "completedAt": "2026-07-05T14:58:21.342Z",
-  "updatedAt": "2026-07-05T15:05:00.000Z",
-  "actionsTaken": [
-    "Opened Business Central read-only in playthru / UNIVERSAARL-DE.",
-    "Opened Tell-Me only as a navigation helper for MwSt.-Geschaeftsbuchungsgruppen.",
-    "Captured the search overlay and candidate inventory before clicking.",
-    "Clicked only the exact small pages-and-tasks row candidate for MwSt.-Geschaeftsbuchungsgruppen Verwaltung.",
-    "Captured after-click screenshot QA and rejected overlay/Role Center text as page proof."
-  ],
-  "actionsNotTaken": [
-    "No VAT group create/edit",
-    "No VAT Posting Setup matrix row",
-    "No assisted setup Next/Finish/Apply/OK",
-    "No master data",
-    "No document draft",
-    "No Preview Posting",
-    "No Posting",
-    "No API shortcut",
-    "No Company switch"
-  ]
+  "runId": "TARGET-027D31E-VAT-BUSINESS-GROUPS-SOURCE-OR-PAGEINSPECTION-DECISION"
 }

@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-055-FOUNDATION-READY-RECHECK-AFTER-VAT-PARK",
+  "status": "ready-next",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-target-execution",
+  "targetWorld": "Universaarl",
+  "activeArea": "universaarl-foundation-readiness-after-vat-park",
+  "mayRunPlaywright": false,
+  "mayWorkEffectively": false,
+  "effectiveBcActionsAllowed": false,
+  "purpose": "Reclassify W1 Foundation after the VAT Business Posting Groups route was parked. Decide which setup areas are proven, partial, parked or blocked before any further master-data/process/posting step.",
+  "allowedActions": [
+    "read-existing-result-json",
+    "read-coverage-and-catalog",
+    "classify-foundation-status",
+    "write-local-decision-result",
+    "update-state-and-queue",
+    "update-atlas-or-coverage"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "execute-playwright",
+    "write-vat-posting-setup",
+    "write-general-posting-setup",
+    "write-number-series",
+    "write-dimensions",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-posting-readiness"
+  ],
+  "acceptanceCriteria": [
+    "Foundation status separates proven, partial, parked and blocked areas.",
+    "VAT Business Posting Groups and VAT Posting Setup remain locked.",
+    "General Posting Setup remains partial/parked unless existing evidence proves otherwise.",
+    "No master data, process draft, Preview Posting or Posting is unlocked by this case.",
+    "The next case is chosen from a real dependency, not from the old Page-470 click loop."
+  ],
+  "stopIf": [
+    "A conclusion would require a new BC or Playwright run.",
+    "The decision would claim posting readiness.",
+    "The decision would unlock VAT or General Posting Setup writes without a separate case."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-027D31E-VAT-BUSINESS-GROUPS-SOURCE-OR-PAGEINSPECTION-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+    "lastEvidenceSummary": "D31E parks the current Page-470 route and keeps VAT writes locked.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "After parking VAT, the next useful move is to recheck Foundation boundaries before choosing any write or process case.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+        "status": "blocked",
+        "reason": "Still lacks visible Page-470 proof or a materially new source route."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Needs Foundation boundary classification first."
+      },
+      {
+        "caseId": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+        "status": "ready-after-current",
+        "reason": "Vendor blocker may be a narrower next route after Foundation recheck."
+      },
+      {
+        "caseId": "TARGET-LOOKFEEL-001-LIST-SEARCH-SORT-FILTER",
+        "status": "needs-book-context-first",
+        "reason": "Useful for the book, but data richness and Foundation boundaries come first."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-055-FOUNDATION-READY-RECHECK-AFTER-VAT-PARK",
+    "whySelectedNextCaseIsBest": "It prevents a VAT click loop and avoids jumping into master data or process documents while Foundation is still partial.",
+    "risksBeforeNextCase": [
+      "False posting-readiness claim.",
+      "Treating parked setup routes as solved.",
+      "Repeating already obsolete dimensions or checkpoint cases."
+    ],
+    "requiredPreparation": [
+      "Use existing TARGET-026 through TARGET-054 evidence.",
+      "Keep all BC and Playwright execution locked unless a later case explicitly allows it."
+    ]
+  },
+  "nextCase": "TARGET-055-FOUNDATION-READY-RECHECK-AFTER-VAT-PARK",
+  "updatedAt": "2026-07-05T16:20:00.000Z"
+}
