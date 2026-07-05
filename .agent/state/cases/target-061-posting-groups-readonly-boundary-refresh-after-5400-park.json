@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
-  "status": "ready-next",
+  "status": "partially-completed",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "mode": "universaarl-target-execution",
@@ -103,53 +103,100 @@
     "A page needs a search-click loop that could open the wrong surface."
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-060-FOUNDATION-LIMITATION-CHECK-AFTER-PURCHASE-ACCOUNT-PARK",
-    "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
-    "lastEvidenceSummary": "TARGET-060 keeps Foundation partial and selects a fresh read-only setup boundary refresh after TARGET-059.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "A write gate is premature; collect fresh read-only boundary screenshots first.",
+    "currentCase": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
+    "plannedNextCaseBeforeReview": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
+    "lastEvidenceSummary": "TARGET-060 selected a fresh read-only boundary refresh because TARGET-059 parked the 5400 Purch. Account route and older TARGET-028 screenshots are not current enough.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The run produced current setup-boundary evidence without writing setup. Any next write/process case still needs a separate decision.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
+        "caseId": "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH",
         "status": "ready-next",
-        "reason": "TARGET-028 is older than the new 5400 park decision; a fresh read-only boundary refresh can create current Universaarl evidence without setup writes."
+        "reason": "At least one boundary route needs classification before any write gate."
       },
       {
         "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
         "status": "blocked",
-        "reason": "No current Page 470/Page 472 write route is accepted and no case file exists; VAT writes stay locked."
-      },
-      {
-        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
-        "status": "obsolete",
-        "reason": "Already completed before TARGET-057/058/059; keep as historical read-only evidence, but do not reactivate as current next case."
+        "reason": "VAT writes remain locked until a separate Smart Decision defines values and source support."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "blocked",
-        "reason": "O2C cannot start while VAT Posting Setup and full General Posting Setup are not posting-ready."
+        "reason": "O2C remains blocked while Foundation is not posting-ready."
+      },
+      {
+        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness cannot be claimed from read-only screenshots."
       },
       {
         "caseId": "TARGET-LOOKFEEL-001-LIST-SEARCH-SORT-FILTER",
         "status": "ready-after-current",
-        "reason": "Book-useful after Foundation boundary refresh, but it does not resolve setup prerequisites."
+        "reason": "Useful for the book after current Foundation boundary decisions, but not a setup dependency."
       }
     ],
     "queueChangesMade": [],
-    "selectedNextCase": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
-    "whySelectedNextCaseIsBest": "It produces current Universaarl setup-boundary evidence without editing setup, and it prevents the project from treating old TARGET-028 screenshots as current readiness.",
+    "selectedNextCase": "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH",
+    "whySelectedNextCaseIsBest": "It turns the refreshed screenshot set into a concrete route/boundary decision without writing setup.",
     "risksBeforeNextCase": [
-      "Read-only page visibility must not be treated as posting readiness.",
-      "The missing 5400 Purch. Account must remain visible in the notProved boundary.",
-      "VAT Page 470/Page 472 visibility must not unlock a write gate without a separate Smart Decision."
+      "Do not treat read-only page visibility as setup correctness.",
+      "Do not unlock VAT/General Posting Setup writes without a case-specific Smart Decision.",
+      "Do not start master data, documents, Preview Posting or Posting before Foundation readiness is proven."
     ],
     "requiredPreparation": [
-      "Use direct page URLs only inside playthru / UNIVERSAARL-DE.",
-      "Capture screenshots and screenshot QA for Page 314, VAT boundary pages and posting-group context.",
-      "Do not click New/Edit/Delete/Post/Preview/Apply/OK or type values."
+      "Review TARGET-061 screenshot QA metadata.",
+      "Keep 5400/VAT limitations in notProved until a controlled write/reopen proof exists."
     ]
   },
-  "nextCase": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
+  "nextCase": "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH",
   "createdAt": "2026-07-05T16:20:36.466Z",
-  "updatedAt": "2026-07-05T16:20:36.466Z"
+  "updatedAt": "2026-07-05T16:20:36.466Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/TARGET-061-result.json",
+  "completedAt": "2026-07-05T16:29:16.780Z",
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "2/5 target setup pages were accepted as read-only visible boundary evidence.",
+    "No setup value, master data, document draft, Preview Posting, Posting, Payment or API shortcut occurred.",
+    "MwSt.-Buchungsmatrix Einr. / VAT Posting Setup was visible read-only.",
+    "Debitorenbuchungsgruppen / Customer Posting Groups was visible read-only."
+  ],
+  "notProved": [
+    "W1 Foundation is not posting-ready.",
+    "No complete INLAND/WAREN/4400/5400 General Posting Setup row is proven.",
+    "No Purch. Account 5400 persistence is proven unless visible in Page 314 screenshot QA.",
+    "No VAT Posting Setup correctness is proven.",
+    "No Customer/Vendor Posting Group account correctness is proven.",
+    "No German tax, SKR04 completeness, Preview Posting, Posting, G/L Entry, VAT Entry or ledger trace is proven.",
+    "Buchungsmatrix Einrichtung / General Posting Setup: Expected page title/text was not visible enough for accepted proof.",
+    "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups: Expected page title/text was not visible enough for accepted proof.",
+    "Kreditorenbuchungsgruppen / Vendor Posting Groups: Expected page title/text was not visible enough for accepted proof."
+  ],
+  "blockedBy": [
+    "general-posting-setup: Expected page title/text was not visible enough for accepted proof.",
+    "vat-business-posting-groups: Expected page title/text was not visible enough for accepted proof.",
+    "vendor-posting-groups: Expected page title/text was not visible enough for accepted proof."
+  ],
+  "screenshots": [
+    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-001-general-posting-setup.png",
+    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-002-vat-business-posting-groups.png",
+    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-003-vat-posting-setup.png",
+    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-004-customer-posting-groups.png",
+    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-005-vendor-posting-groups.png"
+  ],
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookMasterChange": true,
+    "noVatSetupChange": true,
+    "noGeneralPostingSetupChange": true,
+    "noCustomerPostingGroupChange": true,
+    "noVendorPostingGroupChange": true,
+    "readOnlyDirectPageRoutes": true
+  }
 }

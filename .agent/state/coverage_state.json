@@ -864,12 +864,12 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-07-05T16:20:36.466Z",
-  "activeArea": "universaarl-general-posting-setup-purchase-account-route-escalation-or-park",
+  "updatedAt": "2026-07-05T16:30:45.989Z",
+  "activeArea": "universaarl-posting-groups-boundary-route-decision-after-target-061",
   "currentBlock": "Page 314 Wareneinkaufskonto / Purch. Account 5400 is still not persisted. TARGET-058 showed List Edit and a row-bound target cell, but the controlled attempt opened the column menu and Reopen proof showed no 5400.",
   "latestPracticalCase": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
   "latestReviewCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
-  "nextCase": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
+  "nextCase": "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -1090,7 +1090,7 @@
     "playwright/projects/fibu-book5/BC-ERROR-BLOCKER-ATLAS.md",
     "playwright/projects/fibu-book5/BC-PROCESS-COVERAGE-ROADMAP.md"
   ],
-  "currentCoverageFocus": "TARGET-060 classified W1 Foundation as partial-not-posting-ready after the 5400 route park. Next is TARGET-061: fresh read-only setup-boundary screenshots after TARGET-059, without writes.",
+  "currentCoverageFocus": "TARGET-061 refreshed the post-5400-park setup boundary read-only: VAT Posting Setup and Customer Posting Groups accepted, General Posting Setup/Page 470/Vendor Posting Groups rejected by screenshot QA. W1 Foundation remains partial-not-posting-ready; next is TARGET-062 local route decision, no BC write.",
   "latestCoverageUpdate": {
     "at": "2026-06-28T19:28:00.000+02:00",
     "type": "p2p-011-purchase-lines-action-discovery-tested",
@@ -5994,5 +5994,44 @@
     "classification": "partial-not-posting-ready-after-5400-route-park",
     "nextCase": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
     "updatedAt": "2026-07-05T16:20:36.466Z"
+  },
+  "latestTarget061PostingGroupsBoundaryRefresh": {
+    "caseId": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
+    "status": "partially-completed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/TARGET-061-result.json",
+    "observed": [
+      "MwSt.-Buchungsmatrix Einr. / VAT Posting Setup",
+      "Debitorenbuchungsgruppen / Customer Posting Groups"
+    ],
+    "rejected": [
+      "Buchungsmatrix Einrichtung / General Posting Setup",
+      "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups",
+      "Kreditorenbuchungsgruppen / Vendor Posting Groups"
+    ],
+    "proved": [
+      "Business Central stayed in playthru / UNIVERSAARL-DE.",
+      "2/5 target setup pages were accepted as read-only visible boundary evidence.",
+      "No setup value, master data, document draft, Preview Posting, Posting, Payment or API shortcut occurred.",
+      "MwSt.-Buchungsmatrix Einr. / VAT Posting Setup was visible read-only.",
+      "Debitorenbuchungsgruppen / Customer Posting Groups was visible read-only."
+    ],
+    "notProved": [
+      "W1 Foundation is not posting-ready.",
+      "No complete INLAND/WAREN/4400/5400 General Posting Setup row is proven.",
+      "No Purch. Account 5400 persistence is proven unless visible in Page 314 screenshot QA.",
+      "No VAT Posting Setup correctness is proven.",
+      "No Customer/Vendor Posting Group account correctness is proven.",
+      "No German tax, SKR04 completeness, Preview Posting, Posting, G/L Entry, VAT Entry or ledger trace is proven.",
+      "Buchungsmatrix Einrichtung / General Posting Setup: Expected page title/text was not visible enough for accepted proof.",
+      "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups: Expected page title/text was not visible enough for accepted proof.",
+      "Kreditorenbuchungsgruppen / Vendor Posting Groups: Expected page title/text was not visible enough for accepted proof."
+    ],
+    "blockedBy": [
+      "general-posting-setup: Expected page title/text was not visible enough for accepted proof.",
+      "vat-business-posting-groups: Expected page title/text was not visible enough for accepted proof.",
+      "vendor-posting-groups: Expected page title/text was not visible enough for accepted proof."
+    ],
+    "nextCase": "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH",
+    "coverageEffect": "Fresh Universaarl evidence replaces reliance on old TARGET-028 for the current boundary. It does not prove posting readiness."
   }
 }

@@ -28,8 +28,8 @@ Zero-Open-Questions-Regel: Jeder Bereich in diesem Katalog muss seine offenen Ob
 
 | Prioritaet | Case | Warum |
 | --- | --- | --- |
-| 1 | `TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK` | TARGET-060 hat die W1-Grenze nach dem `5400`-Park als `partial-not-posting-ready` klassifiziert. Der naechste praktische Schritt ist ein frischer read-only Boundary-Refresh mit Screenshots und Screenshot-QA, nicht ein Write-Gate und nicht der alte erledigte TARGET-028-Preflight. |
-| 2 | `TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION` | Blockiert, solange Page 470 nicht sichtbar reproduzierbar ist oder eine wirklich neue Source-/Page-Inspection-Route begruendet wurde. D31E allein gibt keine USt-Schreibfreigabe, und TARGET-060 muss die 5400-Grenze vorher einordnen. |
+| 1 | `TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH` | TARGET-061 hat die W1-Grenze frisch read-only bebildert: Page 472 und Customer Posting Groups wurden akzeptiert, Page 314, Page 470 und Vendor Posting Groups wurden durch Screenshot-QA abgelehnt. Der naechste Schritt ist eine lokale Routenentscheidung, kein Write-Gate. |
+| 2 | `TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION` | Blockiert, solange Page 470 nicht sichtbar reproduzierbar ist oder eine wirklich neue Source-/Page-Inspection-Route begruendet wurde. TARGET-061 bestaetigt diese Grenze erneut; D31E allein gibt keine USt-Schreibfreigabe. |
 | 3 | `TARGET-028-POSTING-GROUPS-PREFLIGHT` | Wartet auf die klare VAT-/General-Posting-Groups-/Dimensions-Grenze; kein Posting-Readiness-Claim ohne Setup-, `5400`-Boundary- und Preview-Evidence. |
 | 4 | `TARGET-LOOKFEEL-001-LIST-SEARCH-SORT-FILTER` | Buchrelevant nach dem naechsten Foundation-Blocker, aber nicht vor U-VEND, wenn der erste Kreditor weiter blockiert. |
 | 5 | `TARGET-038-O2C-PREFLIGHT` | Bleibt gesperrt, bis Inventory Posting Setup, VAT Setup, General Posting Setup und Dimensionen bewusst geprueft sind. |

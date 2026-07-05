@@ -5,9 +5,9 @@
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-posting-groups-readonly-boundary-refresh-after-5400-park",
-  "activeCase": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
-  "active_case_file": ".agent/state/cases/target-061-posting-groups-readonly-boundary-refresh-after-5400-park.json",
+  "activeArea": "universaarl-posting-groups-boundary-route-decision-after-target-061",
+  "activeCase": "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH",
+  "active_case_file": ".agent/state/cases/target-062-posting-groups-boundary-route-decision-after-readonly-refresh.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -19,12 +19,11 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-playthru-business-central-readonly",
-    "confirm-UNIVERSAARL-DE-context",
-    "open-target-pages-by-direct-page-url-readonly",
-    "capture-screenshot-qa",
-    "write-result-json-and-next-step-decision",
-    "update-coverage-and-atlases"
+    "read-target-061-result",
+    "read-target-061-screenshot-metadata",
+    "classify-route-gaps",
+    "write-local-result-json",
+    "update-state-and-coverage-only"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -33,11 +32,13 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
+    "run-playwright",
+    "open-business-central",
     "click-new-edit-delete-or-copy-actions",
     "write-setup",
     "write-vat-posting-setup",
     "write-general-posting-setup",
-    "write-inventory-posting-setup",
+    "write-customer-or-vendor-posting-groups",
     "create-master-data",
     "create-document-or-draft",
     "preview-posting",
@@ -46,8 +47,8 @@
     "api-shortcut",
     "claim-posting-readiness"
   ],
-  "nextCase": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
-  "nextStep": "Run TARGET-061 as a read-only setup-boundary refresh in playthru / UNIVERSAARL-DE. Capture screenshots and QA only; no setup write, no master data, no draft, no Preview Posting, no Posting.",
+  "nextCase": "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH",
+  "nextStep": "Run TARGET-062 locally: classify TARGET-061 partial read-only boundary evidence and select the next narrow Foundation route. Do not open BC, run Playwright, write setup, create master data, draft, Preview Posting or Posting.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -3852,7 +3853,7 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/target-061-posting-groups-readonly-boundary-refresh-after-5400-park.json",
+  "activeCaseFile": ".agent/state/cases/target-062-posting-groups-boundary-route-decision-after-readonly-refresh.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
@@ -8532,13 +8533,10 @@
     "summary": "1140 Waren (Bestand) selected as source-backed SKR04-oriented inventory balance candidate; no Business Central account proof yet."
   },
   "acceptanceCriteria": [
-    "Business Central context is visibly playthru / UNIVERSAARL-DE.",
-    "Page 314 Buchungsmatrix Einrichtung is visible, not Role Center or search overlay.",
-    "The existing INLAND / WAREN row is selected or focused before any value entry.",
-    "Only Wareneinkaufskonto / Purchase Account is changed, and only to 5400.",
-    "A reopen proof shows whether 5400 persisted on the INLAND / WAREN row.",
-    "No VAT setup, Inventory Posting Setup, master data, document, Preview Posting or Posting is executed.",
-    "Result JSON includes before/change/reopen screenshot QA and next-step decision."
+    "TARGET-061 is classified without opening Business Central.",
+    "The next case does not repeat rejected old Page 314 or Page 470 routes without a new hypothesis.",
+    "The selected next step is either a narrow route-discovery case, a source/page-inspection decision, or a Foundation limitation checkpoint.",
+    "No setup write, master data, draft, Preview Posting, Posting, payment or API shortcut occurs."
   ],
   "latestTarget048CInventoryAccount1140BalanceCorrection": {
     "caseId": "TARGET-048C-INVENTORY-ACCOUNT-1140-BALANCE-SHEET-CORRECTION",
@@ -9631,13 +9629,9 @@
     "apiShortcut": false
   },
   "stopIf": [
-    "Instance is not playthru.",
-    "Company is not UNIVERSAARL-DE.",
-    "Page 314 cannot be confirmed as the visible page.",
-    "The INLAND / WAREN row cannot be uniquely identified.",
-    "The Wareneinkaufskonto / Purchase Account field cannot be uniquely targeted.",
-    "The only available path repeats TARGET-032O list-edit geometry.",
-    "Any dialog asks for Preview Posting, Post, Delete, company switch, New record creation or broad setup confirmation."
+    "A proposed next step treats TARGET-061 page visibility as posting readiness.",
+    "A proposed next step writes VAT or General Posting Setup values without a separate Smart Decision.",
+    "A proposed next step repeats the rejected Page 314 header/grid route or Page 470 search route without a materially new UI hypothesis."
   ],
   "latestTarget027D31BResult": "playwright/projects/fibu-book5/evidence/target-027d31b-vat-setup-route-ui-source-followup/TARGET-027D31B-result.json",
   "latestVatSetupRouteRecovery": {
@@ -9820,5 +9814,101 @@
     "classification": "partial-not-posting-ready-after-5400-route-park",
     "nextCase": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
     "updatedAt": "2026-07-05T16:20:36.466Z"
+  },
+  "latestTarget061PostingGroupsBoundaryRefresh": {
+    "caseId": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
+    "status": "partially-completed",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/TARGET-061-result.json",
+    "completedAt": "2026-07-05T16:29:16.780Z",
+    "proved": [
+      "Business Central stayed in playthru / UNIVERSAARL-DE.",
+      "2/5 target setup pages were accepted as read-only visible boundary evidence.",
+      "No setup value, master data, document draft, Preview Posting, Posting, Payment or API shortcut occurred.",
+      "MwSt.-Buchungsmatrix Einr. / VAT Posting Setup was visible read-only.",
+      "Debitorenbuchungsgruppen / Customer Posting Groups was visible read-only."
+    ],
+    "notProved": [
+      "W1 Foundation is not posting-ready.",
+      "No complete INLAND/WAREN/4400/5400 General Posting Setup row is proven.",
+      "No Purch. Account 5400 persistence is proven unless visible in Page 314 screenshot QA.",
+      "No VAT Posting Setup correctness is proven.",
+      "No Customer/Vendor Posting Group account correctness is proven.",
+      "No German tax, SKR04 completeness, Preview Posting, Posting, G/L Entry, VAT Entry or ledger trace is proven.",
+      "Buchungsmatrix Einrichtung / General Posting Setup: Expected page title/text was not visible enough for accepted proof.",
+      "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups: Expected page title/text was not visible enough for accepted proof.",
+      "Kreditorenbuchungsgruppen / Vendor Posting Groups: Expected page title/text was not visible enough for accepted proof."
+    ],
+    "blockedBy": [
+      "general-posting-setup: Expected page title/text was not visible enough for accepted proof.",
+      "vat-business-posting-groups: Expected page title/text was not visible enough for accepted proof.",
+      "vendor-posting-groups: Expected page title/text was not visible enough for accepted proof."
+    ],
+    "pages": [
+      {
+        "id": "general-posting-setup",
+        "pageId": 314,
+        "label": "Buchungsmatrix Einrichtung / General Posting Setup",
+        "status": "rejected",
+        "reason": "Expected page title/text was not visible enough for accepted proof.",
+        "screenshot": "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-001-general-posting-setup.png",
+        "screenshotMetadata": "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-001-general-posting-setup.screenshot.json"
+      },
+      {
+        "id": "vat-business-posting-groups",
+        "pageId": 470,
+        "label": "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups",
+        "status": "rejected",
+        "reason": "Expected page title/text was not visible enough for accepted proof.",
+        "screenshot": "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-002-vat-business-posting-groups.png",
+        "screenshotMetadata": "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-002-vat-business-posting-groups.screenshot.json"
+      },
+      {
+        "id": "vat-posting-setup",
+        "pageId": 472,
+        "label": "MwSt.-Buchungsmatrix Einr. / VAT Posting Setup",
+        "status": "observed",
+        "reason": "Expected read-only page text is visible.",
+        "screenshot": "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-003-vat-posting-setup.png",
+        "screenshotMetadata": "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-003-vat-posting-setup.screenshot.json"
+      },
+      {
+        "id": "customer-posting-groups",
+        "pageId": 110,
+        "label": "Debitorenbuchungsgruppen / Customer Posting Groups",
+        "status": "observed",
+        "reason": "Expected read-only page text is visible.",
+        "screenshot": "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-004-customer-posting-groups.png",
+        "screenshotMetadata": "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-004-customer-posting-groups.screenshot.json"
+      },
+      {
+        "id": "vendor-posting-groups",
+        "pageId": 111,
+        "label": "Kreditorenbuchungsgruppen / Vendor Posting Groups",
+        "status": "rejected",
+        "reason": "Expected page title/text was not visible enough for accepted proof.",
+        "screenshot": "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-005-vendor-posting-groups.png",
+        "screenshotMetadata": "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/target-061-005-vendor-posting-groups.screenshot.json"
+      }
+    ],
+    "flags": {
+      "noWrite": true,
+      "noPost": true,
+      "noPreview": true,
+      "noDraft": true,
+      "noSetupChange": true,
+      "noMasterDataChange": true,
+      "noCompanySwitch": true,
+      "noApiShortcut": true,
+      "noBookMasterChange": true,
+      "noVatSetupChange": true,
+      "noGeneralPostingSetupChange": true,
+      "noCustomerPostingGroupChange": true,
+      "noVendorPostingGroupChange": true,
+      "readOnlyDirectPageRoutes": true
+    },
+    "nextCase": "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH",
+    "coverageEffect": "Fresh read-only boundary screenshots after TARGET-059/TARGET-060: VAT Posting Setup and Customer Posting Groups accepted; General Posting Setup, VAT Business Posting Groups and Vendor Posting Groups rejected by screenshot QA. Foundation remains partial-not-posting-ready."
   }
 }

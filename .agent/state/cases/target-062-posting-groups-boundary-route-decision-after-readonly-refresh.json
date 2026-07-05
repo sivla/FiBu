@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH",
+  "status": "ready-next",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-target-execution",
+  "activeArea": "universaarl-posting-groups-boundary-route-decision-after-target-061",
+  "mayRunPlaywright": false,
+  "effectiveBcActionsAllowed": false,
+  "purpose": "Classify TARGET-061 boundary screenshots and decide the next narrow Foundation move without repeating old Page 314 or Page 470 routes and without setup writes.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/TARGET-061-result.json",
+    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/README.md",
+    "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+    "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
+    "TARGET-059-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-ROUTE-ESCALATION-OR-PARK",
+    "TARGET-060-FOUNDATION-LIMITATION-CHECK-AFTER-PURCHASE-ACCOUNT-PARK"
+  ],
+  "decisionInputs": {
+    "target061Observed": [
+      "MwSt.-Buchungsmatrix Einr. / VAT Posting Setup",
+      "Debitorenbuchungsgruppen / Customer Posting Groups"
+    ],
+    "target061Rejected": [
+      "Buchungsmatrix Einrichtung / General Posting Setup",
+      "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups",
+      "Kreditorenbuchungsgruppen / Vendor Posting Groups"
+    ],
+    "foundationLimit": "W1 Foundation stays partial and not posting-ready. Read-only visibility is not setup correctness."
+  },
+  "allowedActions": [
+    "read-target-061-result",
+    "read-target-061-screenshot-metadata",
+    "classify-route-gaps",
+    "write-local-result-json",
+    "update-state-and-coverage-only"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "run-playwright",
+    "open-business-central",
+    "click-new-edit-delete-or-copy-actions",
+    "write-setup",
+    "write-vat-posting-setup",
+    "write-general-posting-setup",
+    "write-customer-or-vendor-posting-groups",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-posting-readiness"
+  ],
+  "acceptanceCriteria": [
+    "TARGET-061 is classified without opening Business Central.",
+    "The next case does not repeat rejected old Page 314 or Page 470 routes without a new hypothesis.",
+    "The selected next step is either a narrow route-discovery case, a source/page-inspection decision, or a Foundation limitation checkpoint.",
+    "No setup write, master data, draft, Preview Posting, Posting, payment or API shortcut occurs."
+  ],
+  "stopIf": [
+    "A proposed next step treats TARGET-061 page visibility as posting readiness.",
+    "A proposed next step writes VAT or General Posting Setup values without a separate Smart Decision.",
+    "A proposed next step repeats the rejected Page 314 header/grid route or Page 470 search route without a materially new UI hypothesis."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
+    "plannedNextCaseBeforeReview": "TARGET-061-POSTING-GROUPS-READONLY-BOUNDARY-REFRESH-AFTER-5400-PARK",
+    "lastEvidenceSummary": "TARGET-061 refreshed the setup-boundary screenshots read-only. VAT Posting Setup and Customer Posting Groups were accepted; General Posting Setup, VAT Business Posting Groups and Vendor Posting Groups were rejected by screenshot QA.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A local route decision is now safer than jumping into another setup write or process case.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH",
+        "status": "ready-next",
+        "reason": "It converts the fresh partial read-only result into a concrete next route without BC writes."
+      },
+      {
+        "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+        "status": "blocked",
+        "reason": "VAT Business Posting Groups remains rejected and VAT values are not source-gated for write."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "blocked",
+        "reason": "O2C still requires Foundation readiness and posting setup proof."
+      },
+      {
+        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
+        "status": "needs-setup-first",
+        "reason": "A readiness checkpoint cannot pass while Page 314/5400 and VAT setup remain unresolved."
+      }
+    ],
+    "queueChangesMade": [
+      "Created TARGET-062 as the next local decision after TARGET-061 partial read-only refresh."
+    ],
+    "selectedNextCase": "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH",
+    "whySelectedNextCaseIsBest": "It prevents blind retries and keeps Foundation decisions evidence-led after TARGET-061 showed only partial page coverage.",
+    "risksBeforeNextCase": [
+      "Read-only visibility could be overclaimed as setup correctness.",
+      "Old Page 314/Page 470 routes could be repeated without new evidence.",
+      "Process cases could start before Foundation is ready."
+    ],
+    "requiredPreparation": [
+      "Read TARGET-061 result and screenshot metadata only.",
+      "Select a narrow route-discovery or source-backed decision, not a write gate."
+    ]
+  },
+  "resultPath": "",
+  "nextCase": "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH"
+}
