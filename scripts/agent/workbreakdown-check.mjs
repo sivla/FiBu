@@ -7,6 +7,9 @@ const files = {
   projectPlan: '.agent/project-template/PROJECT-PLAN-DRAFT.md',
   bookProjectModel: '.agent/project-template/BOOK-AS-PROJECT-MANAGEMENT-MODEL.md',
   bookProjectBacklog: '.agent/project-template/BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md',
+  projectCast: '.agent/project-template/PROJECT-CAST-AND-STAKEHOLDERS-DRAFT.md',
+  projectStoryline: '.agent/project-template/PROJECT-STORYLINE-DRAFT.md',
+  projectSceneCards: '.agent/project-template/PROJECT-SCENE-CARDS-DRAFT.md',
   customerDataSimulation: '.agent/project-template/CUSTOMER-DATA-SIMULATION-DRAFT.md',
   workbreakdown: '.agent/project-template/BC-IMPLEMENTATION-WORKBREAKDOWN-DRAFT.md',
   jiraModel: '.agent/project-template/JIRA-WORK-ITEM-MODEL.md',
@@ -19,6 +22,7 @@ const files = {
   transitionProtocol: '.agent/project-template/GOAL-TRANSITION-PROTOCOL.md',
   transitionCard: '.agent/project-template/GOAL-TRANSITION-CARD-2026-07-05.md',
   refinementBacklog: '.agent/project-template/REFINEMENT-BACKLOG.md',
+  caseStudyCoreDraft: '.agent/project-template/WORKSTREAM-02-CASE-STUDY-CORE-JIRA-DRAFT.md',
   financeFoundationDraft: '.agent/project-template/WORKSTREAM-03-FINANCE-FOUNDATION-JIRA-DRAFT.md'
 };
 
@@ -63,6 +67,9 @@ if (allText) {
     'Universaarl Business Central Project Plan Draft',
     'Book as Project Management Model',
     'Book Project Ticket Backlog Draft',
+    'Project Cast and Stakeholders Draft',
+    'Project Storyline Draft',
+    'Project Scene Cards Draft',
     'Customer Data Simulation Draft',
     'Business Central Implementation Workbreakdown Draft',
     'Jira Work Item Model',
@@ -75,6 +82,7 @@ if (allText) {
     'Goal Transition Protocol',
     'Goal Transition Card - 2026-07-05',
     'Project Template Refinement Backlog',
+    'WS02 Case Study Core Jira Draft',
     'WS03 Finance Foundation Jira Draft',
     'Universaarl Business Central Implementation, Book, Training and Evidence System',
     'Workstream',
@@ -87,7 +95,11 @@ if (allText) {
     'Finance Foundation and Control Model',
     'Recommended first refinement target: Finance Foundation and Control Model',
     'Current next best step',
-    'expand `WS02-CASE-STUDY-CORE`',
+    'WS02-CASE-STUDY-CORE` now exists as a workstream draft',
+    'WORKSTREAM-02-CASE-STUDY-CORE-JIRA-DRAFT.md',
+    'Epic CS-01: Company Story and Legal Entity Model',
+    'Epic CS-02: Organization, Locations and Responsibility Model',
+    'Epic CS-03: Environment, Company Context and Evidence Boundary',
     'Epic FF-01: General Ledger Setup and Accounting Periods',
     'Epic FF-02: Chart of Accounts and Account Categories',
     'Epic FF-03: Posting Groups and Posting Setup',
@@ -207,6 +219,32 @@ if (allText) {
     'Book output'
   ], 6);
 
+  requireAtLeast('case study core anchors', [
+    'Company Story and Legal Entity Model',
+    'Organization, Locations and Responsibility Model',
+    'Environment, Company Context and Evidence Boundary',
+    'Business Central Navigation and UI Baseline',
+    'Company Information and Localization Inputs',
+    'Book Opening, Training and UAT Frame',
+    'DR-CORE-001',
+    'DR-CORE-002',
+    'UAT-CS-001',
+    'TR-CS-001'
+  ], 8);
+
+  requireAtLeast('project story anchors', [
+    'Mara Stein',
+    'Jonas Weber',
+    'Nora Becker',
+    'Adrian Vogt',
+    'Story promise',
+    'SCENE-001',
+    'SCENE-002',
+    'SCENE-003',
+    'BCPM-0100',
+    'All named people are fictional characters'
+  ], 7);
+
   if (/password|client_secret|refresh_token|access_token|Bearer |eyJ/i.test(allText)) {
     errors.push('.agent/project-template appears to contain secret-like text');
   }
@@ -232,7 +270,7 @@ const output = {
   warnings,
   nextStep:
     errors.length === 0
-      ? 'Project template is usable as a local implementation planning anchor. Next refine WS02 Case Study/Core, while keeping WS03 Finance Foundation as the first detailed pattern.'
+      ? 'Project template is usable as a local implementation planning anchor. Next refine WS04 Master Data/Product, while using WS02 and WS03 as the first detailed patterns.'
       : 'Fix the workbreakdown draft before using it as a planning anchor.'
 };
 

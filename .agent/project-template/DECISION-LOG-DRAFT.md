@@ -251,3 +251,42 @@ Risks:
 Reversal/correction path:
 
 All simulated customer data must be labeled as fictional Universaarl case-study data. Tickets without project purpose should be rejected or merged.
+
+### DEC-008 Use recurring fictional characters to drive the project story
+
+Date: 2026-07-05
+Workstream: `WS02-CASE-STUDY-CORE`, `WS13-UAT-TRAINING-CUTOVER`, `WS14-BOOK-PLAYWRIGHT-LEARNING`
+Status: accepted
+
+Problem:
+
+The project/book structure can still feel abstract if there are no recurring people, responsibilities, questions and conflicts.
+
+Decision:
+
+Use a fictional but realistic cast of customer and implementation-partner characters. Characters may own multiple responsibilities when that reflects real projects. They should drive data requests, decisions, risks, UAT, training, Playwright evidence and book scenes.
+
+Reason:
+
+Business Central implementations are shaped by people. Recurrent characters make the project understandable and give the reader a realistic sense of why BC decisions happen.
+
+Customer impact:
+
+The fictional customer team becomes concrete: sponsor, CFO, finance key user, purchasing manager, sales lead, warehouse lead, IT admin, training coordinator and tax advisor.
+
+Book impact:
+
+Chapters can open with short project scenes and then move into BC explanation, evidence and training.
+
+Playwright impact:
+
+Playwright scenarios should map to character-owned business questions or UAT needs where possible.
+
+Risks:
+
+- scenes could become decorative fiction if they do not teach project or BC content
+- character names could be mistaken for real people if disclaimers are missing
+
+Reversal/correction path:
+
+Keep all named persons explicitly fictional. Remove scenes that do not produce tickets, decisions, data, BC work, evidence, UAT/training or book learning.

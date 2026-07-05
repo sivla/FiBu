@@ -15,9 +15,13 @@ This dashboard is the project manager view. It should stay short and point to th
 | Project plan | draft | `PROJECT-PLAN-DRAFT.md` exists. |
 | Book as project model | draft | `BOOK-AS-PROJECT-MANAGEMENT-MODEL.md` exists. |
 | Book ticket backlog | draft | `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` exists. |
+| Project cast | draft | `PROJECT-CAST-AND-STAKEHOLDERS-DRAFT.md` exists. |
+| Project storyline | draft | `PROJECT-STORYLINE-DRAFT.md` exists. |
+| Project scene cards | draft | `PROJECT-SCENE-CARDS-DRAFT.md` exists. |
 | Workbreakdown | draft | Workstreams and epics exist in `BC-IMPLEMENTATION-WORKBREAKDOWN-DRAFT.md`. |
 | Jira model | draft | Issue model, labels, statuses and DoR/DoD exist. |
 | Goal transition | active-transition | `GOAL-TRANSITION-PROTOCOL.md` and `GOAL-TRANSITION-CARD-2026-07-05.md` exist for the running long-goal agent. |
+| Case study core workstream | draft | Detailed WS02 draft exists and links company story, roles, data requests, UAT, training, book and Playwright context. |
 | Finance workstream | draft | First detailed workstream draft exists. |
 | Customer data catalog | draft | Initial data requests exist, not yet Jira-ready. |
 | Customer data simulation | draft | `CUSTOMER-DATA-SIMULATION-DRAFT.md` exists. |
@@ -54,7 +58,7 @@ Status: mostly drafted, not yet reviewed as final.
 | Workstream | Structure | Jira detail | Data requests | UAT/training | Book/evidence |
 | --- | --- | --- | --- | --- | --- |
 | WS01 Governance | draft | partial | n/a | partial | partial |
-| WS02 Case Study/Core | draft | missing | partial | missing | missing |
+| WS02 Case Study/Core | draft | draft | partial | draft | draft |
 | WS03 Finance Foundation | draft | draft | partial | draft | draft |
 | WS04 Master Data/Product | draft | missing | partial | missing | missing |
 | WS05 Purchasing | draft | missing | missing | missing | missing |
@@ -78,6 +82,7 @@ Status: mostly drafted, not yet reviewed as final.
 | DEC-004 | Compare scalable BC implementation routes | accepted |
 | DEC-005 | Official sources above community sources | accepted |
 | DEC-007 | Treat the complete book as project-management simulation | accepted |
+| DEC-008 | Use recurring fictional characters to drive the project story | accepted |
 
 ## Top active risks
 
@@ -91,11 +96,11 @@ Status: mostly drafted, not yet reviewed as final.
 
 ## Next recommended work
 
-1. Expand `WS02-CASE-STUDY-CORE` into a real case-study/core workstream draft with company story, organization model, roles, locations, source/evidence needs and book/training outputs.
-2. Expand `WS04-MASTER-DATA-PRODUCT`.
-3. Turn `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` into workstream-level Jira import candidates.
-4. Create first simulated data files or tables for company, finance and master data.
-5. Create role-based training matrix.
+1. Expand `WS04-MASTER-DATA-PRODUCT` so customers, vendors, items, services, locations, templates and configuration-package options are planned before new master-data live work.
+2. Convert `DR-CORE-001` and `DR-CORE-002` into Jira-ready data-request candidates with owner, due date, format, validation and BC usage.
+3. Create role-based training matrix from `PROJECT-CAST-AND-STAKEHOLDERS-DRAFT.md` and `WORKSTREAM-02-CASE-STUDY-CORE-JIRA-DRAFT.md`.
+4. Turn `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` into workstream-level Jira import candidates.
+5. Create first simulated data files or tables for company, finance and master data.
 6. Create workstream-to-book-chapter map.
 7. Create Playwright scenario catalog mapped to UAT and evidence needs.
 8. Create project plan review checklist.

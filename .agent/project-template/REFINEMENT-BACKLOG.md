@@ -18,6 +18,9 @@ The project template should become complete, but not by creating a huge static d
 - Create book-as-project-management model.
 - Create initial book/project ticket backlog.
 - Create simulated customer data package model.
+- Create project cast and stakeholder model.
+- Create end-to-end project storyline draft.
+- Create first project scene cards.
 - Define Jira work item model.
 - Define documentation cadence.
 - Define artifact templates.
@@ -33,8 +36,8 @@ Status: started, core files exist as drafts
 Refine in this order:
 
 1. `WS03-FINANCE-FOUNDATION`
-2. `WS02-CASE-STUDY-CORE`
-3. `WS04-MASTER-DATA-PRODUCT`
+2. `WS02-CASE-STUDY-CORE` - draft exists; refine later into Jira import candidates after data-request owners are assigned.
+3. `WS04-MASTER-DATA-PRODUCT` - current next detailed workstream target.
 4. `WS07-INVENTORY-COSTING-STOCK`
 5. `WS05-PURCHASING-SOURCE-TO-PAY`
 6. `WS06-SALES-ORDER-TO-CASH`
@@ -106,6 +109,27 @@ Use `CUSTOMER-DATA-SIMULATION-DRAFT.md` to create the first realistic data packe
 
 Do not create final imported data without deciding whether the route is UI, configuration package, Excel import, API or parked.
 
+## P1: Build story scenes and character-driven chapters
+
+Use `PROJECT-CAST-AND-STAKEHOLDERS-DRAFT.md` and `PROJECT-STORYLINE-DRAFT.md` to turn abstract workstreams into realistic project scenes:
+
+- kickoff
+- company discovery
+- first data request
+- first data quality issue
+- finance discovery
+- posting group decision
+- VAT boundary review
+- master data review
+- purchasing UAT
+- sales UAT
+- inventory opening decision
+- training readiness
+- go-live simulation
+- retrospective
+
+Each scene should produce project artifacts, not just dialogue: tickets, data requests, decisions, risks, BC work, evidence, UAT/training or book output.
+
 ## P1: Refine decision and risk registers
 
 Refine the initial registers:
@@ -165,4 +189,4 @@ Later create one compact dashboard:
 
 ## Current next best step
 
-The long-running goal is now transitioned into the project system. Next, expand `WS02-CASE-STUDY-CORE` so Universaarl has enough company story, organization model, roles, locations, evidence boundaries and training/book outputs to justify later finance and master-data decisions.
+`WS02-CASE-STUDY-CORE` now exists as a workstream draft. The next useful refinement is `WS04-MASTER-DATA-PRODUCT`, because customers, vendors, items, services, locations, templates and configuration-package choices must be planned before the next live master-data or process work. In parallel, `DR-CORE-001` and `DR-CORE-002` should become Jira-ready data requests with owner, due date, format, validation rule and BC usage.

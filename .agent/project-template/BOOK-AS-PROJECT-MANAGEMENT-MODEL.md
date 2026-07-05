@@ -25,6 +25,8 @@ The reader should experience:
 
 The book should feel like a consultant is taking the reader through a real project, not like a list of pages and buttons.
 
+Use `PROJECT-CAST-AND-STAKEHOLDERS-DRAFT.md` and `PROJECT-STORYLINE-DRAFT.md` to keep the project human and consistent. Characters should represent real project roles and recurring responsibilities, but all named people are fictional case-study characters.
+
 ## Narrative model
 
 Every major chapter should contain a project layer and a Business Central layer.

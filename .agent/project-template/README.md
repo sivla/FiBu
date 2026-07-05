@@ -30,8 +30,16 @@ The target is one integrated system:
   - Model for treating the complete book as a realistic Business Central implementation project.
 - `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md`
   - Initial Jira-style backlog for the book/project simulation.
+- `PROJECT-CAST-AND-STAKEHOLDERS-DRAFT.md`
+  - Fictional but realistic project characters, roles, dual responsibilities and stakeholder tensions.
+- `PROJECT-STORYLINE-DRAFT.md`
+  - End-to-end project story arc from kickoff to go-live simulation and retrospective.
+- `PROJECT-SCENE-CARDS-DRAFT.md`
+  - Scene cards that turn characters and storyline into tickets, data, decisions, BC work, evidence and training.
 - `BC-IMPLEMENTATION-WORKBREAKDOWN-DRAFT.md`
   - Main workstream, epic, story and task breakdown.
+- `WORKSTREAM-02-CASE-STUDY-CORE-JIRA-DRAFT.md`
+  - Detailed workstream draft for Universaarl case-study core, company story, organization model, roles, evidence boundaries, training and book outputs.
 - `JIRA-WORK-ITEM-MODEL.md`
   - How to model the work in Jira-like terms.
 - `DOCUMENTATION-CADENCE.md`
