@@ -273,3 +273,23 @@ Mitigation:
 - Use Confluence pages only when they explain project knowledge, requirements, decisions, training or handbook content.
 - Use GitHub only for technical artifacts and evidence.
 - Reject any tool structure that does not help a PM, consultant, architect, key user, trainer, customer or evidence reviewer.
+
+### RISK-015 Multi-agent work creates conflicting project truth
+
+Workstream: `WS01-GOVERNANCE`, `WS14-BOOK-PLAYWRIGHT-LEARNING`
+Severity: P1
+Probability: medium
+Status: active
+
+Impact:
+
+Multiple agents may edit overlapping files, make inconsistent BC route decisions, duplicate Jira/Confluence structures, promote unreviewed claims or conflict in the `playthru` sandbox.
+
+Mitigation:
+
+- Use `AGENT-OPERATING-MODEL-DRAFT.md`.
+- Keep one orchestrator accountable for project truth.
+- Use specialist agents for bounded research, review, curation or cleanup.
+- Require orchestrator merge before specialist output becomes canonical.
+- Allow only one Playwright/BC execution agent in `playthru` at a time.
+- Track whether agent roles reduce rework and conflicts; if not, scale back to single-agent execution.

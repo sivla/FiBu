@@ -6,6 +6,7 @@ const files = {
   readme: '.agent/project-template/README.md',
   projectPlan: '.agent/project-template/PROJECT-PLAN-DRAFT.md',
   realCustomerOnboarding: '.agent/project-template/REAL-CUSTOMER-ONBOARDING-AND-PROJECT-SETUP-GUIDE-DRAFT.md',
+  agentOperatingModel: '.agent/project-template/AGENT-OPERATING-MODEL-DRAFT.md',
   bookProjectModel: '.agent/project-template/BOOK-AS-PROJECT-MANAGEMENT-MODEL.md',
   bookProjectBacklog: '.agent/project-template/BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md',
   projectCast: '.agent/project-template/PROJECT-CAST-AND-STAKEHOLDERS-DRAFT.md',
@@ -81,6 +82,7 @@ if (allText) {
     'Universaarl BC Project Template',
     'Universaarl Business Central Project Plan Draft',
     'Real Customer Onboarding and Project Setup Guide Draft',
+    'Agent Operating Model Draft',
     'Book as Project Management Model',
     'Book Project Ticket Backlog Draft',
     'Project Cast and Stakeholders Draft',
@@ -146,6 +148,7 @@ if (allText) {
     'Workstream-level Playwright scenarios',
     'Workstream-level book outputs',
     'Real customer operating model',
+    'Agent operating model',
     'Confluence is the customer-visible knowledge layer',
     'Jira is the operational control layer',
     'GitHub is the technical workbench',
@@ -359,6 +362,25 @@ if (allText) {
     'Cutover, go-live and hypercare',
     'Do not introduce a new Jira issue type for specs'
   ], 9);
+
+  requireAtLeast('agent operating model anchors', [
+    'Agent Operating Model Draft',
+    'one accountable orchestrator',
+    'no parallel writes to the same truth',
+    'no parallel Business Central execution in `playthru`',
+    'BC Consultant / Solution Architect Reviewer',
+    'Research Agent',
+    'Jira/Confluence Blueprint Agent',
+    'Training/Handbook Curator',
+    'Playwright Evidence Agent',
+    'Mechanical Cleanup Agent',
+    'Default: single orchestrator',
+    'Maker-checker',
+    'Sequential handoff',
+    'Handoff template',
+    'Output contract',
+    'Do not build new automation yet'
+  ], 14);
 
   requireAtLeast('data request realism review anchors', [
     'Realism Review - Data Requests 2026-07-05',

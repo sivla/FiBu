@@ -24,6 +24,8 @@ The target is one integrated system:
   - Compact project manager view with milestone, workstream readiness, top decisions, risks and next work.
 - `REAL-CUSTOMER-ONBOARDING-AND-PROJECT-SETUP-GUIDE-DRAFT.md`
   - Real customer onboarding and project setup guide for Confluence, Jira, GitHub, BC sandbox, data, UAT, training and handbook work.
+- `AGENT-OPERATING-MODEL-DRAFT.md`
+  - Schlankes Rollen-, Routing- und Governance-Modell fuer Orchestrator, Spezialagenten, Modellstaerken, Reviews und `playthru`-Exklusivitaet.
 - `GOAL-TRANSITION-PROTOCOL.md`
   - Protocol for switching a long-running goal into the project-management system at a safe checkpoint.
 - `GOAL-TRANSITION-CARD-2026-07-05.md`

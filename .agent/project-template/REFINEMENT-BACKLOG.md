@@ -14,6 +14,7 @@ The project template should become complete, but not by creating a huge static d
 - Create complete project plan draft.
 - Create project dashboard draft.
 - Create real customer onboarding and project setup guide.
+- Create agent operating model draft.
 - Create goal transition protocol.
 - Create first goal transition card.
 - Create book-as-project-management model.
@@ -79,6 +80,21 @@ Do first:
 - define GitHub as the technical evidence/repo layer
 - define Business Central sandbox/environment roles
 - define which onboarding artifacts the customer receives before, during and after kickoff
+
+## P1: Apply agent operating model
+
+Use `AGENT-OPERATING-MODEL-DRAFT.md` before any further specialist-agent or subagent work.
+
+The model must stay practical:
+
+- one orchestrator owns project truth
+- specialist roles produce bounded outputs
+- no parallel writes to the same canonical files
+- no parallel `playthru` execution
+- model/taskclass choices follow `.agent/model-routing.md`
+- stronger models are used for BC judgment, architecture, risky claims and final review, not mechanical cleanup
+
+Do not automate a broader multi-agent system until manual specialist-role use proves better output, fewer correction loops and no sandbox/project-truth conflicts.
 
 ## P1: Convert the book into project tickets
 

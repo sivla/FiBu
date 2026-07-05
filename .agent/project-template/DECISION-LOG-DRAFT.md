@@ -455,6 +455,48 @@ Reversal/correction path:
 
 If a tool layer does not help PM, consultant, customer, trainer, architect or evidence work, merge or remove it.
 
+### DEC-014 Use a governed agent operating model before automation
+
+Date: 2026-07-05
+Workstream: `WS01-GOVERNANCE`, `WS14-BOOK-PLAYWRIGHT-LEARNING`
+Status: accepted
+
+Problem:
+
+The project can benefit from specialist agent roles, but uncontrolled multi-agent work can create conflicting project truth, duplicate documentation, high model cost, coordination overhead and unsafe parallel Business Central execution.
+
+Decision:
+
+Adopt `AGENT-OPERATING-MODEL-DRAFT.md` as governance before building or automating a broader multi-agent system. Use one accountable orchestrator, narrow specialist roles, explicit handoff contracts, model/taskclass routing and exclusive `playthru` execution.
+
+Reason:
+
+Specialization helps only when it reduces context load, improves review quality or separates mechanical work from high-risk judgment. The project is not ready for fully automated multi-agent execution until the manual role model proves value.
+
+Source basis:
+
+- Microsoft guidance: default to the lowest complexity that meets requirements; multi-agent systems add coordination overhead and should be justified by real specialization or boundaries.
+- OpenAI guidance: stronger reasoning models are better for planning, ambiguous decisions and reviews; smaller/faster models are better for well-defined execution.
+- Existing project routing: `.agent/model-routing.md`, `.agent/subagent-routing.md` and `.agent/autopilot.md`.
+
+Customer impact:
+
+The customer benefits from clearer, more reviewed project output without seeing internal agent complexity.
+
+Playwright impact:
+
+Only one Playwright/BC execution role may act against `playthru` at a time.
+
+Risks:
+
+- agent roles can become ceremony
+- subagents can duplicate work or stale context
+- model cost can rise without quality benefit
+
+Reversal/correction path:
+
+If specialist roles do not reduce rework, conflicts or risk, return to single-agent execution with occasional manual review prompts.
+
 ### DEC-013 Use route decision cards before live foundation/master-data setup
 
 Date: 2026-07-05
