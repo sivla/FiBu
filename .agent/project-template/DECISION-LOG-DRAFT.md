@@ -624,3 +624,58 @@ Risks:
 Reversal/correction path:
 
 If external benchmarks add ceremony or generic language without improving Jira, Confluence, BC route, training, UAT, evidence or book quality, reduce their use to source-refresh checks only.
+
+### DEC-017 Use Universaarl implementation operating system as active truth
+
+Date: 2026-07-06
+Workstream: `WS01-GOVERNANCE`, `WS14-BOOK-PLAYWRIGHT-LEARNING`
+Status: accepted
+
+Problem:
+
+The repository still contains useful but confusing historical laboratory material from RM-DEMO, MCP_1_20260210, CRONUS and Rhein-Main. A future consultant or agent could mistake that history for the current implementation path.
+
+Options considered:
+
+- Keep old and new worlds side by side as equal references.
+- Create another broad strategy document.
+- Make the existing execution roadmap the single active-control source and classify legacy as traceability or purge source.
+
+Decision:
+
+Use `UNIVERSAARL-EXECUTION-ROADMAP.md` as the active steering source for the Universaarl Business Central implementation operating system. The active project truth is `playthru / UNIVERSAARL-DE / Universaarl GmbH`. Legacy material is not active target truth.
+
+Reason:
+
+This keeps the project leaner than adding another framework and makes the next concrete step unambiguous: complete freeze/resume checks, keep TARGET-073 parked, and return only with read-first TARGET-075 when allowed.
+
+Source basis:
+
+- Internal project governance and current user authority charter.
+- Existing project-template operating model, realism standard, training model and execution roadmap.
+
+Sandbox/evidence basis:
+
+- No live Business Central work was executed for this decision.
+- Existing `playthru / UNIVERSAARL-DE` evidence remains the only target-world evidence basis.
+
+Customer impact:
+
+The project now behaves more like a real customer implementation file: one target world, one steering source and explicit legacy boundaries.
+
+Book impact:
+
+Book and handbook work must use Universaarl as the customer story. Legacy may inform patterns only after being neutralized or rebuilt.
+
+Playwright impact:
+
+Playwright work must target `playthru / UNIVERSAARL-DE` unless a case explicitly marks a legacy artifact as pattern extraction or historical traceability.
+
+Risks:
+
+- Historical evidence must not be mass-deleted before reusable patterns and traceability are protected.
+- Legacy purge can become busywork if it is not tied to active steering, book, training or Playwright value.
+
+Reversal/correction path:
+
+If the roadmap becomes too broad, split only the concrete active-control fields into a smaller dashboard section instead of creating a parallel strategy.

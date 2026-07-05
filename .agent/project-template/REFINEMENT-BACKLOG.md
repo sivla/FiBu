@@ -2,7 +2,7 @@
 
 Status: draft
 Purpose: Schrittweise Ausarbeitung der Universaarl Projektstruktur bis zur Jira-faehigen Projektakte.
-Last reviewed: 2026-07-05
+Last reviewed: 2026-07-06
 
 ## Guiding idea
 
@@ -11,6 +11,12 @@ The project template should become complete, but not by creating a huge static d
 Current steering source: `UNIVERSAARL-EXECUTION-ROADMAP.md`.
 
 Do not treat this backlog as a flat queue. The execution roadmap decides the current sequence: finish local freeze/resume checks, return with read-first `TARGET-075`, create a Foundation Readiness Decision, then move toward VAT/USt, Dimensions, Posting Groups and master-data readiness.
+
+Active truth rule:
+
+- `playthru / UNIVERSAARL-DE / Universaarl GmbH` is the only active implementation world.
+- RM-DEMO, MCP_1_20260210, CRONUS, Rhein-Main and RM-* material may be read only as historical traceability or `legacy-purge-source`.
+- A cleanup item is useful only when it converts a legacy pattern into neutral/Universaarl guidance, removes an active legacy next-step, or prevents a future regression.
 
 ## P0: Foundation structure
 
@@ -44,6 +50,25 @@ Do not treat this backlog as a flat queue. The execution roadmap decides the cur
 - Keep current workbreakdown draft aligned with workstreams and epics.
 
 Status: started, core files exist as drafts
+
+## P0: Active truth and legacy eradication
+
+Use this only for changes that make a new consultant or agent less likely to resume the wrong world.
+
+Immediate controls:
+
+- keep `UNIVERSAARL-EXECUTION-ROADMAP.md`, dashboard and `current.json` aligned on `playthru / UNIVERSAARL-DE`
+- keep `TARGET-073` parked until a conscious resume decision changes that
+- keep `TARGET-075` read-first and no-write
+- classify legacy references as historical traceability, neutral pattern source, purge candidate or superseded-by-Universaarl
+- do not mass-delete evidence without a replacement/supersession decision
+
+Useful first cleanup candidates after the freeze/resume checks:
+
+- package scripts or test names that imply RM/MCP/CRONUS is a normal active path
+- README/current-state/dashboard lines that could steer a new agent to legacy
+- book or training text that uses legacy as the current customer story
+- Playwright helper learnings that can be made company-neutral
 
 ## P1: Expand workstreams to Jira-ready detail
 

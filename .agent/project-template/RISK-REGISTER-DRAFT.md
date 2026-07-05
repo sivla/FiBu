@@ -331,3 +331,28 @@ Mitigation:
 - Keep Microsoft Learn, MB-800, Business Central docs, release notes and `playthru` evidence above partner articles.
 - Reject recommendations that do not improve a concrete Jira, Confluence, BC route, data, training, UAT, evidence or book artifact.
 - Mark time/cost and partner-selection claims as market context, not Universaarl facts.
+
+### RISK-018 Legacy material remains active steering truth
+
+Workstream: `WS01-GOVERNANCE`, `WS14-BOOK-PLAYWRIGHT-LEARNING`
+Severity: P0
+Probability: high
+Status: active
+
+Impact:
+
+Future work may accidentally resume RM-DEMO, MCP_1_20260210, CRONUS or Rhein-Main paths as if they were still current project truth. That can create wrong book claims, wrong Playwright targets, stale dashboard next steps, confusing training material and wasted Business Central work.
+
+Trigger:
+
+- README, dashboard, state, package scripts, test names, book drafts or evidence indexes point to legacy as a normal next step.
+- A future agent treats historical evidence as final Universaarl proof.
+- Legacy patterns are copied into new artifacts without neutralizing or rebuilding them.
+
+Mitigation:
+
+- Use `UNIVERSAARL-EXECUTION-ROADMAP.md` as the active-control source.
+- Keep active truth as `playthru / UNIVERSAARL-DE / Universaarl GmbH`.
+- Classify legacy as historical traceability, neutral pattern source, purge candidate or superseded-by-Universaarl.
+- Do not mass-delete evidence before replacement or supersession is clear.
+- Add checks and cleanup only when they protect active next steps, book/training quality or Playwright repeatability.

@@ -21,6 +21,51 @@ The freeze is not a permanent stop, but it must not be skipped. The next live wo
 | Next live type | read-first, no writes |
 | Next local control task | keep roadmap, dashboard, state and chapter/training/evidence maps aligned |
 
+## North star and active truth
+
+This roadmap is the current operating source for the Universaarl Business Central implementation system. The repository is not only a test collection or book draft. It is a reusable customer-project blueprint that should let a Business Central consultant, solution architect, project manager, trainer or future agent understand the next responsible step within minutes.
+
+Active truth:
+
+- Business Central environment: `playthru`
+- Target company: `UNIVERSAARL-DE`
+- Reference legal entity: Universaarl GmbH
+- Currency and market context: EUR, German customer/training logic
+- Execution boundary: all practical Business Central and Playwright proof work happens only in `playthru`
+- Current resume pilot: `TARGET-075`
+- Parked live case: `TARGET-073`
+
+Legacy truth:
+
+- `RM-DEMO`, `MCP_1_20260210`, CRONUS, Rhein-Main and RM-* material are not active target truth.
+- Existing legacy evidence may remain only as traceability or `legacy-purge-source`.
+- Reusable patterns from legacy material must be neutralized or rebuilt for Universaarl before they guide active work.
+- New state, dashboard, book, training or Playwright routes must not point a new agent back into legacy as the normal path.
+
+## Operating loop
+
+Every meaningful work package should follow this small loop:
+
+1. Read active truth: instance, company, active case, freeze status, allowed actions, legacy boundary and next step.
+2. Pick one concrete project artifact or evidence step: data package, route decision, read-first proof, UAT scenario, training card, handbook/book candidate, Playwright helper or cleanup.
+3. Execute only the smallest useful batch.
+4. Classify the result as proven, observed, assumption, blocked, parked, rejected or legacy-purge-source.
+5. Update dashboard, state, backlog, decision/risk or readiness artifact if the next-step picture changed.
+6. Remove or park noise when a file no longer helps active control.
+
+Do not create another strategy layer unless it replaces confusion with a concrete operating artifact.
+
+## Tool and artifact model
+
+| Layer | Owns | Does not own |
+| --- | --- | --- |
+| Confluence model | Customer-readable knowledge, blueprint, decisions, risks, data requests, UAT, training and handbook context. | Raw Playwright logs or secret/auth material. |
+| Jira model | Work, owners, status, blockers, decisions, risks, data requests, UAT and training tasks. | Product evidence or final book prose by itself. |
+| GitHub/repo model | Playwright, scripts, checks, evidence files, technical markdown, agent learning and repeatability. | Customer-facing PM truth when Jira/Confluence would be clearer. |
+| Business Central `playthru` | Real product observation, setup, data, process proof, UAT/training candidates and screenshot evidence. | Work outside the sandbox boundary or real customer data. |
+
+This split is practical, not bureaucratic. If a work item cannot improve project control, Business Central correctness, repeatability, UAT/training, customer handbooks or book quality, it should be parked or removed.
+
 ## Local check snapshot
 
 Latest local check result: roadmap implementation run, 2026-07-06.
@@ -63,13 +108,16 @@ Now:
 
 1. Treat this roadmap as the current steering document.
 2. Dashboard, backlog and state must point to this roadmap.
-3. Remove contradictory next-step language when it suggests broad expansion before the read-first foundation return.
+3. Keep legacy material out of active next-step truth.
+4. Remove contradictory next-step language when it suggests broad expansion before the read-first foundation return.
+5. Prefer one concrete artifact over another broad review.
 
 Do not:
 
 - add another strategy layer
 - create new subagent infrastructure
 - expand Jira imports unless they directly support the next BC/training/evidence step
+- mass-delete historical evidence without a replacement, supersession or explicit purge decision
 
 ## Phase 1 - End freeze safely
 

@@ -23,7 +23,7 @@ The target is one integrated system:
 - `PROJECT-DASHBOARD-DRAFT.md`
   - Compact project manager view with milestone, workstream readiness, top decisions, risks and next work.
 - `UNIVERSAARL-EXECUTION-ROADMAP.md`
-  - Current steering roadmap from improvement freeze to read-first foundation validation, master data, processes, UAT, training and book curation.
+  - Current active-control roadmap for the Universaarl implementation operating system: active truth, legacy boundary, freeze/resume path, Foundation validation, master data, processes, UAT, training and book curation.
 - `REAL-CUSTOMER-ONBOARDING-AND-PROJECT-SETUP-GUIDE-DRAFT.md`
   - Real customer onboarding and project setup guide for Confluence, Jira, GitHub, BC sandbox, data, UAT, training and handbook work.
 - `AGENT-OPERATING-MODEL-DRAFT.md`
@@ -113,6 +113,12 @@ Every meaningful piece of work should leave a trace in at least one of these for
 - a BCSpec-style change note for larger cross-cutting changes
 
 If work cannot be connected to any of those traces, it is probably too isolated or not yet understood.
+
+## Active truth rule
+
+The active implementation world is `playthru / UNIVERSAARL-DE / Universaarl GmbH`.
+
+Legacy material from RM-DEMO, MCP_1_20260210, CRONUS, Rhein-Main or RM-* may remain only as historical traceability or a source for reusable patterns. It must not be used as the normal next step, final book truth, active customer story or active Playwright target.
 
 ## Project levels
 
