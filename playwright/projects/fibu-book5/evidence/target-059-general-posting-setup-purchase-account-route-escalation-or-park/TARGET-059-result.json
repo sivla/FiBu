@@ -1,14 +1,54 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-059-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-ROUTE-ESCALATION-OR-PARK",
-  "updatedAt": "2026-07-05T16:10:56.036Z",
   "caseId": "TARGET-059-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-ROUTE-ESCALATION-OR-PARK",
-  "activeCase": "TARGET-059-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-ROUTE-ESCALATION-OR-PARK",
-  "status": "observed-local-decision",
+  "source": "local-route-decision",
+  "resultStatus": "observed-local-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-059-general-posting-setup-purchase-account-route-escalation-or-park/TARGET-059-result.json",
-  "summary": "TARGET-059 completed as a local route decision. It parked the exhausted Page 314 List Edit/grid/header route for Wareneinkaufskonto / Purch. Account 5400, kept the business requirement open, and selected TARGET-060 as the next local Foundation limitation check.",
+  "page": "local-decision-no-business-central-page-opened",
+  "url": "",
+  "actionsTaken": [
+    "Reviewed TARGET-057 Page 314/Table 252 field-truth result.",
+    "Reviewed TARGET-058 controlled write attempt result and screenshot QA.",
+    "Classified the tested Page 314 List Edit/grid/header route for Purch. Account 5400 as parked.",
+    "Kept the business requirement for purchase account 5400 open as a Foundation limitation.",
+    "Selected TARGET-060-FOUNDATION-LIMITATION-CHECK-AFTER-PURCHASE-ACCOUNT-PARK as the next local boundary check."
+  ],
+  "actionsNotTaken": [
+    "No Business Central execution.",
+    "No Playwright execution.",
+    "No setup write.",
+    "No VAT setup write.",
+    "No inventory setup write.",
+    "No master data write.",
+    "No document or draft creation.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No payment.",
+    "No API shortcut.",
+    "No bookmaster change."
+  ],
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "screenshots": [],
+  "decision": "park-page314-purchase-account-list-edit-grid-header-route",
+  "parkedRoute": {
+    "page": "General Posting Setup / Buchungsmatrix Einrichtung, Page 314",
+    "row": "INLAND / WAREN",
+    "field": "Wareneinkaufskonto / Purch. Account",
+    "targetValue": "5400",
+    "parkedBecause": "TARGET-058 reached a writable-looking gridcell but the controlled attempt opened the column menu/header area and 5400 was not visible after reopen."
+  },
+  "notParked": [
+    "The business need for a purchase/material account mapping remains open.",
+    "A materially different standard UI route may be tested later if a case explicitly unlocks it.",
+    "Foundation classification must keep the General Posting Setup row partial."
+  ],
   "proved": [
     "Page 314/Table 252 field truth for Purch. Account exists from TARGET-057.",
     "The tested List Edit/grid/header route did not prove a stable write editor for 5400.",
@@ -29,16 +69,26 @@
     "VAT and process cases must carry the limitation that purchase-side account mapping is still unproven.",
     "The next effective write must use a materially different route, not the parked grid/header pattern."
   ],
-  "setupChanged": false,
-  "setupChangeAttempted": false,
-  "masterDataChanged": false,
-  "draftCreated": false,
-  "previewPosting": false,
-  "posted": false,
-  "apiShortcut": false,
-  "screenshots": [],
-  "nextCase": "TARGET-060-FOUNDATION-LIMITATION-CHECK-AFTER-PURCHASE-ACCOUNT-PARK",
-  "nextStep": "Run TARGET-060 locally: classify W1 Foundation after TARGET-059 parks the Page 314 Purch. Account 5400 route; do not open BC or run Playwright.",
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-059-general-posting-setup-purchase-account-route-escalation-or-park/TARGET-059-result.json",
+    "playwright/projects/fibu-book5/evidence/target-059-general-posting-setup-purchase-account-route-escalation-or-park/README.md",
+    ".agent/state/cases/target-059-general-posting-setup-purchase-account-route-escalation-or-park.json",
+    ".agent/state/cases/target-060-foundation-limitation-check-after-purchase-account-park.json",
+    ".agent/state/current.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/marathon_queue.json",
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
+    "playwright/projects/fibu-book5/BC-COVERAGE-MATRIX.md"
+  ],
+  "statePatch": {},
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-057-general-posting-setup-purchase-account-pageinspection-readonly-gate/TARGET-057-result.json",
+    "playwright/projects/fibu-book5/evidence/target-058-general-posting-setup-purchase-account-controlled-write-gate/TARGET-058-result.json"
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "reason": "TARGET-059 is a local safety and route-efficiency decision. It parks only the exhausted UI route, not the underlying accounting requirement.",
   "nextStepDecision": {
     "currentCase": "TARGET-059-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-ROUTE-ESCALATION-OR-PARK",
     "plannedNextCaseBeforeReview": "TARGET-059-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-ROUTE-ESCALATION-OR-PARK",
@@ -87,5 +137,6 @@
       "Use TARGET-057 and TARGET-058 only; do not open BC or run Playwright in TARGET-059/TARGET-060.",
       "Keep Preview Posting, Posting, documents, master data and API shortcuts false."
     ]
-  }
+  },
+  "nextCase": "TARGET-060-FOUNDATION-LIMITATION-CHECK-AFTER-PURCHASE-ACCOUNT-PARK"
 }

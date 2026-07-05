@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-05T16:02:58.246Z",
+  "updatedAt": "2026-07-05T16:16:13.981Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-general-posting-setup-purchase-account-route-escalation-or-park",
-  "activeCase": "TARGET-059-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-ROUTE-ESCALATION-OR-PARK",
-  "active_case_file": ".agent/state/cases/target-059-general-posting-setup-purchase-account-route-escalation-or-park.json",
+  "activeArea": "universaarl-foundation-limitation-after-purchase-account-park",
+  "activeCase": "TARGET-060-FOUNDATION-LIMITATION-CHECK-AFTER-PURCHASE-ACCOUNT-PARK",
+  "active_case_file": ".agent/state/cases/target-060-foundation-limitation-check-after-purchase-account-park.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -19,12 +19,11 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-target-057-evidence",
-    "read-target-058-evidence",
-    "compare-page314-grid-route-against-vat-matrix-route-history",
-    "decide-park-or-new-material-route",
-    "write-route-decision-result",
-    "update-state-and-atlases"
+    "read-target-055-057-058-059-results",
+    "classify-foundation-limits",
+    "update-coverage-and-queue",
+    "write-local-result-json",
+    "select-next-ready-case-with-lookahead"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -36,6 +35,7 @@
     "run-playwright",
     "write-setup",
     "write-vat-posting-setup",
+    "write-general-posting-setup",
     "write-inventory-posting-setup",
     "create-master-data",
     "create-document-or-draft",
@@ -43,13 +43,10 @@
     "post",
     "payment",
     "api-shortcut",
-    "repeat-target-032o-list-edit-geometry-route",
-    "repeat-target-058-header-menu-click-route",
-    "click-new",
-    "click-copy"
+    "claim-posting-readiness"
   ],
-  "nextCase": "TARGET-059-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-ROUTE-ESCALATION-OR-PARK",
-  "nextStep": "Run TARGET-059 as a local route decision: do not repeat Page 314 grid/header clicks; decide whether to park Purchase Account 5400 or choose a materially different standard route before VAT setup.",
+  "nextCase": "TARGET-060-FOUNDATION-LIMITATION-CHECK-AFTER-PURCHASE-ACCOUNT-PARK",
+  "nextStep": "Run TARGET-060 locally: classify W1 Foundation after TARGET-059 parks the Page 314 Purch. Account 5400 route; do not open BC or run Playwright.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -232,7 +229,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "TARGET-058 proved that Page 314 Purchase Account 5400 is still not persisted: List Edit opens an edit surface, but the controlled attempt hit the Wareneinkaufskonto column menu and Reopen proof showed no 5400. TARGET-059 must decide park vs materially different route before VAT setup.",
+  "currentCoverageFocus": "TARGET-059 parked the exhausted Page 314 List Edit/grid/header route for Purch. Account 5400. General Posting Setup remains partial: INLAND/WAREN/4400 is context, but 5400 and posting readiness are not proven.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -3854,7 +3851,7 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/target-059-general-posting-setup-purchase-account-route-escalation-or-park.json",
+  "activeCaseFile": ".agent/state/cases/target-060-foundation-limitation-check-after-purchase-account-park.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
@@ -7347,10 +7344,22 @@
     "nextCase": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE"
   },
   "latestGeneralPostingSetupDecision": {
-    "caseId": "TARGET-032-GENERAL-POSTING-GROUPS-AND-SETUP-GATE",
-    "status": "source-backed-decision-no-write",
-    "selectedNextCase": "TARGET-032A-GENERAL-POSTING-GROUPS-SOURCE-AND-UI-DISCOVERY",
-    "resultPath": "playwright/projects/fibu-book5/evidence/target-032-general-posting-groups-and-setup-gate/TARGET-032-result.json"
+    "caseId": "TARGET-059-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-ROUTE-ESCALATION-OR-PARK",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-059-general-posting-setup-purchase-account-route-escalation-or-park/TARGET-059-result.json",
+    "status": "route-parked-not-posting-ready",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "partialProof": [
+      "INLAND/WAREN/4400 remains context from earlier evidence",
+      "Page 314/Table 252 Purch. Account field truth exists from TARGET-057"
+    ],
+    "notProved": [
+      "Purch. Account 5400 persistence",
+      "complete General Posting Setup row",
+      "posting readiness"
+    ],
+    "nextCase": "TARGET-060-FOUNDATION-LIMITATION-CHECK-AFTER-PURCHASE-ACCOUNT-PARK",
+    "updatedAt": "2026-07-05T16:10:56.036Z"
   },
   "latestGeneralPostingGroupsUiDiscovery": {
     "caseId": "TARGET-032A-GENERAL-POSTING-GROUPS-SOURCE-AND-UI-DISCOVERY",
