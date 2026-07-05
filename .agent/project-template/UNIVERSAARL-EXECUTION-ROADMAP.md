@@ -4,6 +4,17 @@ Status: active-draft
 Purpose: Single operating roadmap for the Universaarl Business Central implementation system, from improvement freeze back into read-first foundation validation and later customer-ready process playthrough.
 Last reviewed: 2026-07-06
 
+## Sprache und Terminologie
+
+Die führende Projektsprache ist Deutsch. Projektführende, kundenorientierte und buchrelevante Artefakte sollen deutsche Begriffe zuerst verwenden und englische Begriffe nur als Business-Central-, Microsoft-Learn-, Code-, Status- oder Suchhilfe ergänzen.
+
+Leitregel:
+
+- Deutsch zuerst: Debitoren (Customers), Kreditoren (Vendors), Artikel (Items), Sachposten (G/L Entries), Buchungsgruppen (Posting Groups), Nummernserien (Number Series), Konfigurationspakete (Configuration Packages), Buchungsvorschau (Preview Posting), lesender Erstnachweis (Read-first Evidence).
+- Technische IDs, Dateinamen, npm-Scripts, JSON-Keys, Playwright-Testnamen, Git-Branches und Statuswerte dürfen technisch oder englisch bleiben, wenn Tooling oder Stabilität davon profitieren.
+- Kundenhandbuch, Schulung, UAT und Buch verwenden deutsche Begriffe als führende Begriffe.
+- Englische Projektformulierungen in bestehenden Drafts sind Übergangsstand und werden bei substanzieller Bearbeitung schrittweise auf deutsche Leserführung umgestellt.
+
 ## Current operating decision
 
 The project is in `Improvement Freeze / M0-M1 transition`.

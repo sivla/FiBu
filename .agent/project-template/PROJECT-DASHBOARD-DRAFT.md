@@ -15,6 +15,7 @@ This dashboard is the project manager view. It should stay short and point to th
 | Project plan | draft | `PROJECT-PLAN-DRAFT.md` exists. |
 | Execution roadmap | active-draft | `UNIVERSAARL-EXECUTION-ROADMAP.md` is the current steering source from improvement freeze to read-first foundation validation and later process playthrough. |
 | Implementation operating system | active-control | The active truth is `playthru / UNIVERSAARL-DE / Universaarl GmbH`; legacy RM/MCP/CRONUS material is only traceability or `legacy-purge-source`. |
+| Sprache und Terminologie | active-control | Deutsch ist führende Projektsprache; englische BC-/Tool-Begriffe bleiben nur als fachliche oder technische Hilfsbegriffe. |
 | Real customer onboarding/setup | draft | `REAL-CUSTOMER-ONBOARDING-AND-PROJECT-SETUP-GUIDE-DRAFT.md` exists and defines the realistic Confluence/Jira/GitHub/BC operating model. |
 | Agent operating model | draft | `AGENT-OPERATING-MODEL-DRAFT.md` defines orchestrator, specialist roles, model routing, review gates and exclusive `playthru` execution. |
 | Concept realism review cadence | draft | `CONCEPT-REALISM-REVIEW-CADENCE-DRAFT.md` defines recurring source-backed checks for whether the overall project concept should adapt. |
@@ -110,6 +111,7 @@ Status: mostly drafted, not yet reviewed as final.
 | DEC-015 | Run recurring concept realism reviews | accepted |
 | DEC-016 | Use consulting-house recommendations as a critical benchmark, not authority | accepted |
 | DEC-017 | Use Universaarl implementation operating system as active truth | accepted |
+| DEC-018 | Use German as leading project and book language | accepted |
 
 ## Top active risks
 
@@ -127,6 +129,7 @@ Status: mostly drafted, not yet reviewed as final.
 | RISK-016 | Concept review cadence becomes review theater | P2 | active |
 | RISK-017 | Consulting-house benchmark imports marketing bias | P2 | active |
 | RISK-018 | Legacy material remains active steering truth | P0 | active |
+| RISK-019 | Project artifacts drift into mixed-language customer text | P1 | active |
 
 ## Next recommended work
 
@@ -138,7 +141,8 @@ Status: mostly drafted, not yet reviewed as final.
 6. Build VAT/USt, Dimensions and Posting Groups read-first proof before master data or process chapters.
 7. Use `WORKSTREAM-BOOK-CHAPTER-MAP-DRAFT.md` and the training evidence map before process training cards or book patches.
 8. Treat legacy RM/MCP/CRONUS references as purge candidates or historical traceability, not active next steps.
-9. Expand Jira import rows, BCSpec or broader concept reviews only when they directly support the next BC/training/evidence step.
+9. Convert customer-facing or book-relevant text to German-leading terminology whenever those files are substantively edited.
+10. Expand Jira import rows, BCSpec or broader concept reviews only when they directly support the next BC/training/evidence step.
 
 ## Update rule
 

@@ -679,3 +679,54 @@ Risks:
 Reversal/correction path:
 
 If the roadmap becomes too broad, split only the concrete active-control fields into a smaller dashboard section instead of creating a parallel strategy.
+
+### DEC-018 Use German as leading project and book language
+
+Date: 2026-07-06
+Workstream: `WS01-GOVERNANCE`, `WS13-UAT-TRAINING-CUTOVER`, `WS14-BOOK-PLAYWRIGHT-LEARNING`
+Status: accepted
+
+Problem:
+
+The project is intended to become a German customer handbook, training guide and Business Central book. If active project artifacts stay mostly English, customer-facing language, training language and book language drift apart.
+
+Decision:
+
+Use German as the leading language for project-steering, customer-facing and book-relevant artifacts. English Business Central, Microsoft Learn, code, script, page, field, status and search terms remain allowed as supporting terms where useful.
+
+Reason:
+
+The target customer and book context are German. German-leading terminology makes the repository more usable as customer handover, training material and curated book source while preserving technical compatibility for code and tooling.
+
+Examples:
+
+- Debitoren (Customers)
+- Kreditoren (Vendors)
+- Artikel (Items)
+- Sachposten (G/L Entries)
+- Buchungsgruppen (Posting Groups)
+- Nummernserien (Number Series)
+- Konfigurationspakete (Configuration Packages)
+- Buchungsvorschau (Preview Posting)
+- lesender Erstnachweis (Read-first Evidence)
+
+Customer impact:
+
+Key users, trainers and project stakeholders see terminology that can be reused in German training and handbooks.
+
+Book impact:
+
+Book sections should read as German Fachbuch/Kundenhandbuch text, not translated engineering notes.
+
+Playwright impact:
+
+Technical filenames, scripts, JSON keys and Playwright IDs can remain stable. Evidence summaries intended for book/training should use German-leading terms.
+
+Risks:
+
+- A mechanical mass translation could break scripts, IDs or established checks.
+- Mixed-language drafts remain temporarily, so conversion must happen when files are substantively edited.
+
+Reversal/correction path:
+
+If a technical artifact becomes harder to maintain in German, keep technical names stable and add German explanation around them instead of renaming code-level identifiers.

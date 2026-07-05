@@ -356,3 +356,27 @@ Mitigation:
 - Classify legacy as historical traceability, neutral pattern source, purge candidate or superseded-by-Universaarl.
 - Do not mass-delete evidence before replacement or supersession is clear.
 - Add checks and cleanup only when they protect active next steps, book/training quality or Playwright repeatability.
+
+### RISK-019 Project artifacts drift into mixed-language customer text
+
+Workstream: `WS01-GOVERNANCE`, `WS13-UAT-TRAINING-CUTOVER`, `WS14-BOOK-PLAYWRIGHT-LEARNING`
+Severity: P1
+Probability: high
+Status: active
+
+Impact:
+
+The repository may become technically understandable to agents but weak as German customer handbook, training material or Fachbuch source. Mixed-language sections can confuse readers, trainers and key users.
+
+Trigger:
+
+- Customer-facing drafts use English as the main prose language.
+- Book, UAT or training material uses technical English labels without German explanation.
+- Evidence summaries are copied into book text without German curation.
+
+Mitigation:
+
+- Use German as the leading language in project-steering, customer-facing and book-relevant artifacts.
+- Keep English terms only as supporting Business Central, Microsoft Learn, code, field, page, status or search terms.
+- Do not mass-translate code-level IDs, filenames, scripts or JSON keys.
+- Convert existing mixed-language drafts when they are substantively edited or promoted toward book/training use.

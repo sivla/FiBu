@@ -2,7 +2,7 @@
 
 Status: draft
 Purpose: Projektakte fuer eine realistische Business-Central-Einfuehrung, das kuratierte Buch, Kundenschulung, UAT und Playwright-Beweisfuehrung.
-Last reviewed: 2026-07-05
+Last reviewed: 2026-07-06
 
 ## Why this exists
 
@@ -119,6 +119,23 @@ If work cannot be connected to any of those traces, it is probably too isolated 
 The active implementation world is `playthru / UNIVERSAARL-DE / Universaarl GmbH`.
 
 Legacy material from RM-DEMO, MCP_1_20260210, CRONUS, Rhein-Main or RM-* may remain only as historical traceability or a source for reusable patterns. It must not be used as the normal next step, final book truth, active customer story or active Playwright target.
+
+## Sprachregel
+
+Die führende Projektsprache ist Deutsch. Kundenorientierte, projektführende und buchrelevante Artefakte verwenden deutsche Begriffe zuerst und englische Begriffe nur dort, wo sie für Business Central, Microsoft Learn, Suche, Code oder Statuswerte hilfreich sind.
+
+Beispiele:
+
+- Debitoren (Customers)
+- Kreditoren (Vendors)
+- Artikel (Items)
+- Buchungsgruppen (Posting Groups)
+- Nummernserien (Number Series)
+- Konfigurationspakete (Configuration Packages)
+- Buchungsvorschau (Preview Posting)
+- lesender Erstnachweis (Read-first Evidence)
+
+Dateinamen, Scripts, JSON-Keys, Playwright-Testnamen, Git-Branches und technische Statuswerte dürfen englisch oder technisch bleiben.
 
 ## Project levels
 
