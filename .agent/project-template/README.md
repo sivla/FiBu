@@ -38,6 +38,8 @@ The target is one integrated system:
   - Model for treating the complete book as a realistic Business Central implementation project.
 - `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md`
   - Initial Jira-style backlog for the book/project simulation.
+- `WORKSTREAM-BOOK-CHAPTER-MAP-DRAFT.md`
+  - Mapping from workstreams, Jira anchors, customer data, UAT, training and Playwright evidence gates to curated book chapters.
 - `PROJECT-CAST-AND-STAKEHOLDERS-DRAFT.md`
   - Fictional but realistic project characters, roles, dual responsibilities and stakeholder tensions.
 - `PROJECT-STORYLINE-DRAFT.md`

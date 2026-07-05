@@ -44,7 +44,7 @@ This dashboard is the project manager view. It should stay short and point to th
 | Decision log | draft | Initial decisions captured. |
 | Risk register | draft | Initial risks captured. |
 | UAT/training plan | draft | Training strategy, role matrix, evidence map and module cards exist through finance foundation VAT/dimensions and WS04 master-data training; process cards still needed. |
-| Book map | missing | Workstream-to-chapter mapping still needed. |
+| Book map | draft | `WORKSTREAM-BOOK-CHAPTER-MAP-DRAFT.md` maps workstreams, Jira anchors, customer data, UAT, training and evidence gates to curated book chapters. |
 | Playwright scenario catalog | draft | Read-first context/navigation/setup-dependency scenarios exist for WS02/WS03/WS04. |
 
 ## Current milestone
@@ -136,7 +136,7 @@ Status: mostly drafted, not yet reviewed as final.
 8. Run `BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md` as a small spec-driven pilot before adopting OpenSpec globally.
 9. Turn `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` into workstream-level Jira import candidates.
 10. Apply `REALISM-STANDARD-DRAFT.md` to storyline, scene cards and broader customer data simulation.
-11. Create workstream-to-book-chapter map.
+11. Use `WORKSTREAM-BOOK-CHAPTER-MAP-DRAFT.md` when creating the next process training card or evidence package, so book output is not disconnected from UAT/training gates.
 12. After the freeze, resume live work with a read-first foundation/master-data preflight, not blind record creation.
 
 ## Update rule

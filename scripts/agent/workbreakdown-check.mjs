@@ -11,6 +11,7 @@ const files = {
   consultingHouseBenchmarkReview: '.agent/project-template/CONSULTING-HOUSE-BENCHMARK-REVIEW-DRAFT.md',
   bookProjectModel: '.agent/project-template/BOOK-AS-PROJECT-MANAGEMENT-MODEL.md',
   bookProjectBacklog: '.agent/project-template/BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md',
+  workstreamBookChapterMap: '.agent/project-template/WORKSTREAM-BOOK-CHAPTER-MAP-DRAFT.md',
   projectCast: '.agent/project-template/PROJECT-CAST-AND-STAKEHOLDERS-DRAFT.md',
   projectStoryline: '.agent/project-template/PROJECT-STORYLINE-DRAFT.md',
   projectSceneCards: '.agent/project-template/PROJECT-SCENE-CARDS-DRAFT.md',
@@ -91,6 +92,7 @@ if (allText) {
     'Consulting House Benchmark Review Draft',
     'Book as Project Management Model',
     'Book Project Ticket Backlog Draft',
+    'Workstream Book Chapter Map Draft',
     'Project Cast and Stakeholders Draft',
     'Project Storyline Draft',
     'Project Scene Cards Draft',
@@ -384,6 +386,21 @@ if (allText) {
     'read-first proof'
   ], 12);
 
+  requireAtLeast('workstream book chapter map anchors', [
+    'Workstream Book Chapter Map Draft',
+    'Book chapter or section',
+    'Jira anchor',
+    'Customer data needed',
+    'Route/evidence gate',
+    'UAT/training link',
+    'BCPM-1201',
+    'Chapter 8: Foundation setup',
+    'Purchasing chapters: Source-to-Pay',
+    'Sales chapters: Order-to-Cash',
+    'Migration, opening balances and cutover chapter',
+    'Playwright evidence proves repeatable sandbox behavior'
+  ], 10);
+
   requireAtLeast('spec-driven sideproject anchors', [
     'Spec-Driven Sideproject Draft',
     'BCSpec Pilot 001',
@@ -665,7 +682,7 @@ const output = {
   warnings,
   nextStep:
     errors.length === 0
-      ? 'Project template is usable as a local implementation planning anchor. Next after the freeze/resume gate build read-first Playwright proof for VAT setup and Dimensions/Dimension Values, or create further process training cards only as dependency-blocked drafts.'
+      ? 'Project template is usable as a local implementation planning anchor. Next use WORKSTREAM-BOOK-CHAPTER-MAP-DRAFT.md when creating the next process training/evidence package; after the freeze/resume gate build read-first Playwright proof for VAT setup and Dimensions/Dimension Values.'
       : 'Fix the workbreakdown draft before using it as a planning anchor.'
 };
 

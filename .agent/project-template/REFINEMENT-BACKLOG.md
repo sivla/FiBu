@@ -316,6 +316,8 @@ Map every workstream and epic to:
 - Playwright repeatability status
 - training output
 
+Status: first draft exists in `WORKSTREAM-BOOK-CHAPTER-MAP-DRAFT.md`. It maps chapters to workstreams, Jira anchors, customer data, route/evidence gates, UAT/training links and next actions. Next refinement should use the map to prevent process cards or book sections from claiming readiness before foundation/master-data evidence exists.
+
 ## P2: Connect Playwright scenarios
 
 Create a scenario catalog:
