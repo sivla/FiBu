@@ -1,0 +1,179 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "source": "playwright-target-execution",
+  "runPlanId": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
+  "selectedTaskClass": "wizard_work",
+  "selectedModelClass": "gpt-4-high",
+  "sourceResult": "C:/Users/kkali/.codex/worktrees/b8d6/FiBu/playwright/projects/fibu-book5/evidence/target-058-general-posting-setup-purchase-account-controlled-write-gate/TARGET-058-result.json",
+  "resultStatus": "blocked",
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=314&company=UNIVERSAARL-DE&dc=0",
+  "page": "General Posting Setup / Buchungsmatrix Einrichtung",
+  "actionsTaken": [
+    "opened Page 314 General Posting Setup directly in playthru / UNIVERSAARL-DE",
+    "clicked Liste bearbeiten / Edit List to expose editable controls",
+    "typed 5400 directly into the unique writable row-bound Purch. Account / Wareneinkaufskonto cell and tabbed out"
+  ],
+  "actionsNotTaken": [
+    "no New action",
+    "no Copy action",
+    "no VAT setup write",
+    "no inventory setup write",
+    "no master data write",
+    "no document or journal draft",
+    "no Preview Posting",
+    "no Posting",
+    "no Payment",
+    "no API shortcut",
+    "no company switch"
+  ],
+  "setupChanged": false,
+  "setupChangeAttempted": true,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "companySwitch": false,
+  "screenshots": [
+    "playwright/projects/fibu-book5/evidence/target-058-general-posting-setup-purchase-account-controlled-write-gate/target-058-010-before-page314.png",
+    "playwright/projects/fibu-book5/evidence/target-058-general-posting-setup-purchase-account-controlled-write-gate/target-058-030-after-edit-list.png",
+    "playwright/projects/fibu-book5/evidence/target-058-general-posting-setup-purchase-account-controlled-write-gate/target-058-050-after-write-attempt.png",
+    "playwright/projects/fibu-book5/evidence/target-058-general-posting-setup-purchase-account-controlled-write-gate/target-058-060-reopen-proof.png"
+  ],
+  "routeDecision": {
+    "status": "cell-control",
+    "reason": "A unique writable row-bound Purchase Account cell is visible next to INLAND/WAREN/4400.",
+    "candidates": [
+      {
+        "text": "Der Wert fur dieses Feld muss angegeben werden.",
+        "aria": "",
+        "title": "",
+        "controlName": "Purch. Account",
+        "role": "gridcell",
+        "tag": "td",
+        "value": "",
+        "disabled": false,
+        "readonly": false,
+        "x": 1699,
+        "y": 307,
+        "width": 114,
+        "height": 28
+      }
+    ],
+    "candidate": {
+      "text": "Der Wert fur dieses Feld muss angegeben werden.",
+      "aria": "",
+      "title": "",
+      "controlName": "Purch. Account",
+      "role": "gridcell",
+      "tag": "td",
+      "value": "",
+      "disabled": false,
+      "readonly": false,
+      "x": 1699,
+      "y": 307,
+      "width": 114,
+      "height": 28
+    }
+  },
+  "proved": [
+    "playthru / UNIVERSAARL-DE was targeted directly.",
+    "Page 314 General Posting Setup was opened for the existing INLAND / WAREN row.",
+    "TARGET-058 did not use New, Copy, VAT setup, inventory setup, master data, documents, preview posting, posting, payment or API shortcuts."
+  ],
+  "notProved": [
+    "Wareneinkaufskonto / Purch. Account 5400 did not visibly persist in the reopen proof."
+  ],
+  "blockedBy": [
+    "purchase-account-5400-not-visible-after-reopen"
+  ],
+  "warnings": [
+    "5400 was entered into the selected field route, but it was not visible in the Page 314 reopen proof."
+  ],
+  "changedFiles": [
+    "C:/Users/kkali/.codex/worktrees/b8d6/FiBu/playwright/projects/fibu-book5/evidence/target-058-general-posting-setup-purchase-account-controlled-write-gate/TARGET-058-result.json",
+    "playwright/projects/fibu-book5/evidence/target-058-general-posting-setup-purchase-account-controlled-write-gate/target-058-010-before-page314.png",
+    "playwright/projects/fibu-book5/evidence/target-058-general-posting-setup-purchase-account-controlled-write-gate/target-058-030-after-edit-list.png",
+    "playwright/projects/fibu-book5/evidence/target-058-general-posting-setup-purchase-account-controlled-write-gate/target-058-050-after-write-attempt.png",
+    "playwright/projects/fibu-book5/evidence/target-058-general-posting-setup-purchase-account-controlled-write-gate/target-058-060-reopen-proof.png"
+  ],
+  "flags": {
+    "noNew": true,
+    "noCopy": true,
+    "noVatSetupWrite": true,
+    "noInventorySetupWrite": true,
+    "noMasterData": true,
+    "noDraft": true,
+    "noPreview": true,
+    "noPost": true,
+    "noPayment": true,
+    "noApiShortcut": true,
+    "noCompanySwitch": true
+  },
+  "smartDecision": {
+    "whyNow": "TARGET-057 proved the target field exists in Page Inspection; TARGET-058 is the narrow follow-up for the one missing General Posting Setup purchase account.",
+    "evidenceBasis": [
+      "TARGET-057 Page Inspection field truth for General Posting Setup table 252, field Purch. Account (14)."
+    ],
+    "fieldsAllowedToChange": [
+      "Wareneinkaufskonto / Purch. Account = 5400 on INLAND / WAREN only"
+    ],
+    "fieldsKeptUntouched": [
+      "VAT Posting Setup",
+      "Inventory Posting Setup",
+      "Posting Groups other than existing Page 314 target row",
+      "master data",
+      "documents",
+      "journals"
+    ],
+    "risk": "Wrong cell write on Page 314 would corrupt posting setup; therefore the script only writes after direct field/control identification.",
+    "fallback": "If no unique field/control is found, stop blocked and route to a source-backed or assisted setup decision instead of retrying geometry.",
+    "beginnerBookExplanation": "Auf der Buchungsmatrix Einrichtung verbindet Business Central Produkt- und Geschaeftsbuchungsgruppen mit Sachkonten fuer Verkauf und Einkauf. Das Einkaufskonto 5400 gehoert zur Zeile INLAND / WAREN, damit spaetere Einkaufsprozesse ein Materialaufwandskonto kennen."
+  },
+  "nextStepDecision": {
+    "currentCase": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-057 proved Page 314 and Purch. Account field metadata, but did not set 5400.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The W1 Foundation is blocked until the General Posting Setup purchase account is either written or deliberately parked.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
+        "status": "ready-next",
+        "reason": "Active single-field write gate."
+      },
+      {
+        "caseId": "TARGET-027D31E-VAT-BUSINESS-GROUPS-SOURCE-OR-PAGEINSPECTION-DECISION",
+        "status": "needs-setup-first",
+        "reason": "Should wait until Page 314 purchase account is solved or parked."
+      },
+      {
+        "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+        "status": "needs-setup-first",
+        "reason": "VAT setup write gate depends on starter account and posting setup context clarity."
+      },
+      {
+        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
+        "status": "needs-setup-first",
+        "reason": "Foundation is not ready until posting and VAT setup checkpoints are clean."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-059-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-ROUTE-ESCALATION-OR-PARK",
+    "whySelectedNextCaseIsBest": "The target field was not safely writable, so the next step must decide a safer source-backed or park route before VAT setup.",
+    "risksBeforeNextCase": [
+      "Repeating list-edit geometry would waste time and risk wrong-cell edits."
+    ],
+    "requiredPreparation": [
+      "Document a source-backed alternative or decide whether this Page 314 field can be parked temporarily."
+    ]
+  },
+  "safeToFinalizeState": true,
+  "requiresReview": false,
+  "reason": "Single-field write gate blocked safely before or after narrow attempt."
+}

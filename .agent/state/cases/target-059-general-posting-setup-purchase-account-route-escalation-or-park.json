@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-059-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-ROUTE-ESCALATION-OR-PARK",
+  "status": "ready-next",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-target-execution",
+  "targetWorld": "Universaarl",
+  "activeArea": "universaarl-general-posting-setup-purchase-account-route-escalation-or-park",
+  "mayRunPlaywright": false,
+  "mayWorkEffectively": false,
+  "effectiveBcActionsAllowed": false,
+  "purpose": "Review TARGET-057 and TARGET-058 evidence and decide whether the Page 314 Wareneinkaufskonto / Purchase Account 5400 route should be parked, solved by a materially different UI route, or moved behind VAT/foundation planning with a clear setup limitation.",
+  "requiredEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-057-general-posting-setup-purchase-account-pageinspection-readonly-gate/TARGET-057-result.json",
+    "playwright/projects/fibu-book5/evidence/target-058-general-posting-setup-purchase-account-controlled-write-gate/TARGET-058-result.json",
+    "playwright/projects/fibu-book5/evidence/target-058-general-posting-setup-purchase-account-controlled-write-gate/target-058-030-after-edit-list.png",
+    "playwright/projects/fibu-book5/evidence/target-058-general-posting-setup-purchase-account-controlled-write-gate/target-058-050-after-write-attempt.png",
+    "playwright/projects/fibu-book5/evidence/target-058-general-posting-setup-purchase-account-controlled-write-gate/target-058-060-reopen-proof.png"
+  ],
+  "allowedActions": [
+    "read-target-057-evidence",
+    "read-target-058-evidence",
+    "compare-page314-grid-route-against-vat-matrix-route-history",
+    "decide-park-or-new-material-route",
+    "write-route-decision-result",
+    "update-state-and-atlases"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "write-setup",
+    "write-vat-posting-setup",
+    "write-inventory-posting-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "repeat-target-032o-list-edit-geometry-route",
+    "repeat-target-058-header-menu-click-route",
+    "click-new",
+    "click-copy"
+  ],
+  "acceptanceCriteria": [
+    "TARGET-058 is classified as blocked-after-controlled-attempt, not as solved.",
+    "The decision explicitly distinguishes technical field truth from a safe write route.",
+    "The decision explains that List Edit exposes a writable-looking grid cell, but the attempted click opened the column menu and 5400 was not visible after reopen.",
+    "The selected next case is either a materially different route or a conscious park decision before VAT setup.",
+    "No BC or Playwright action is performed in TARGET-059."
+  ],
+  "stopIf": [
+    "A proposed next step repeats the TARGET-032O coordinate route.",
+    "A proposed next step repeats the TARGET-058 column-header/menu hit pattern.",
+    "A proposed next step treats Page Inspection field truth as a write proof.",
+    "A proposed next step jumps to VAT, master data, Preview Posting or Posting without an explicit foundation limitation."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
+    "lastEvidenceSummary": "TARGET-058 clicked Liste bearbeiten and identified a writable-looking Purch. Account cell for INLAND / WAREN, but typing 5400 did not persist; Screenshot QA shows the attempt opened the Wareneinkaufskonto column menu instead of a stable cell editor.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Repeating TARGET-058 would likely repeat the header/menu hit pattern. The next useful step is a local route decision.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-059-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-ROUTE-ESCALATION-OR-PARK",
+        "status": "ready-next",
+        "reason": "Needed to avoid more Page 314 micro-retries and decide a materially different route or park boundary."
+      },
+      {
+        "caseId": "TARGET-027D31E-VAT-BUSINESS-GROUPS-SOURCE-OR-PAGEINSPECTION-DECISION",
+        "status": "needs-setup-first",
+        "reason": "VAT setup can resume only after Page 314 purchase account is solved or consciously parked."
+      },
+      {
+        "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+        "status": "needs-setup-first",
+        "reason": "VAT write gates need a clear foundation limitation if Purchase Account 5400 remains unresolved."
+      },
+      {
+        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
+        "status": "needs-setup-first",
+        "reason": "Foundation cannot be ready while the purchase account route is unresolved."
+      }
+    ],
+    "queueChangesMade": [
+      "Insert TARGET-059 as a local decision gate after TARGET-058."
+    ],
+    "selectedNextCase": "TARGET-059-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-ROUTE-ESCALATION-OR-PARK",
+    "whySelectedNextCaseIsBest": "It prevents another blind grid retry and forces a practical decision: materially different route, conscious park, or foundation limitation.",
+    "risksBeforeNextCase": [
+      "Mistaking column menu interaction for cell editing.",
+      "Treating a typed-but-not-persisted value as setup truth.",
+      "Blocking all W1 progress indefinitely on one optional purchase-account column."
+    ],
+    "requiredPreparation": [
+      "Read TARGET-058 screenshots and DOM route files.",
+      "Compare with prior VAT Matrix parked-route decisions.",
+      "Keep all BC/Playwright execution locked for this decision case."
+    ]
+  },
+  "nextCase": "TARGET-059-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-ROUTE-ESCALATION-OR-PARK",
+  "updatedAt": "2026-07-05T20:10:00.000Z"
+}

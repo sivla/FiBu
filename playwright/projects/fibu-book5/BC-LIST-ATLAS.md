@@ -60,3 +60,5 @@ Listen, Worksheets und Journals duerfen erst als blockiert gelten, wenn Datenzei
 Filter- und Suchbeispiele brauchen genug Zeilen. Eine leere oder einzeilige Universaarl-Liste beweist Navigation, aber keine belastbare Such-, Sortier- oder Filterlogik.
 
 PREP-003 ergaenzt: Eine sichtbare Eingabezeile oder ein ListPart mit `Neu - <Liste>` beweist nur den Eingabekontext. Ein Datensatz ist erst belegt, wenn er nach dem Speichern/Zurueckkehren als normale Zeile sichtbar ist und der Folgekontext dazu passt.
+
+TARGET-058 ergaenzt fuer Matrixlisten: `Liste bearbeiten` und eine sichtbare `gridcell` mit passendem `controlName` beweisen noch keinen stabilen Feldeditor. Auf Page 314 oeffnete der kontrollierte Klick in Richtung `Wareneinkaufskonto` / `Purch. Account` das Spaltenmenue; `5400` war nach Reopen nicht sichtbar. Bei Matrixlisten muessen Spaltenkopf, Spaltenmenue, Pflichtfeldhinweis und echte Zellwerte strikt getrennt werden. Wiederholte Header-/Koordinatenklicks gelten nicht als Fortschritt.
