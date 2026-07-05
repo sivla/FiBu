@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-027D31C-VAT-SETUP-ROUTE-BLOCKER-REVIEW",
-  "status": "ready-next",
+  "status": "blocked",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "mode": "universaarl-target-execution",
@@ -62,50 +62,66 @@
     "Business Central shell/auth context is unclear."
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP",
-    "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
-    "lastEvidenceSummary": "D31B partially observed direct read-only routes for VAT Product Posting Groups and VAT Posting Setup, but Assisted Setup and VAT Business Posting Groups still stayed in search/Role Center contexts.",
+    "currentCase": "TARGET-027D31C-VAT-SETUP-ROUTE-BLOCKER-REVIEW",
+    "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+    "lastEvidenceSummary": "D31B proved Page 471 and Page 472, while Page 470 and Assisted Setup still looked like search overlays. D31C rechecked both blockers with direct page and localized search routes.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "VAT setup write-gate remains premature while two route blockers are open.",
+    "reason": "VAT write-gate remains premature because Page 470 route proof is still missing; D31D is the next non-repeating route case.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027D31C-VAT-SETUP-ROUTE-BLOCKER-REVIEW",
-        "status": "ready-next",
-        "reason": "It resolves or parks the exact remaining route blockers without writing VAT setup."
-      },
-      {
         "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
-        "status": "needs-ui-discovery-first",
-        "reason": "Requires accepted route evidence and exact source-backed values first."
+        "status": "blocked",
+        "reason": "Needs Page 470 route proof or an explicit alternative before any write-gate."
       },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Posting groups depend on VAT setup status."
+        "reason": "Posting groups depend on VAT setup decision."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-after-current",
-        "reason": "Can continue after VAT route is resolved or parked."
+        "reason": "Dimensions can continue after VAT setup is decided or deliberately parked."
+      },
+      {
+        "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness waits for VAT/posting group status."
       }
     ],
     "queueChangesMade": [
-      "Inserted TARGET-027D31C before any VAT write-gate.",
-      "Kept VAT setup changes, master data, drafts, Preview Posting, Posting and API shortcuts locked."
+      "D31C marked blocked with useful Assisted Setup proof.",
+      "D31D inserted as next narrow Page-470 route case."
     ],
-    "selectedNextCase": "TARGET-027D31C-VAT-SETUP-ROUTE-BLOCKER-REVIEW",
-    "whySelectedNextCaseIsBest": "It converts the partial D31B result into a clear route decision instead of forcing a premature setup write.",
+    "selectedNextCase": "TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE",
+    "whySelectedNextCaseIsBest": "Repeating setup writes would be unsafe without mandatory route proof.",
     "risksBeforeNextCase": [
-      "Search overlays can look like page navigation if not rejected.",
-      "Assisted setup rows can expose wizard actions that must remain untouched.",
-      "Visible VAT pages do not prove VAT correctness."
+      "A visible setup page is not a correctness proof.",
+      "VAT accounts and percentages still need a separate source-backed decision.",
+      "No Preview Posting, Posting or VAT Entries exist."
     ],
     "requiredPreparation": [
-      "Use German and English page names deliberately.",
-      "Reject generic search overlays as route failures.",
-      "Do not write setup values."
+      "Recover Page 470 route or document a safer alternative manual route."
     ]
   },
-  "nextCase": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
-  "updatedAt": "2026-07-05T14:25:00.000Z"
+  "nextCase": "TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE",
+  "updatedAt": "2026-07-05T14:49:48.571Z",
+  "resultStatus": "blocked",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31c-vat-setup-route-blocker-review/TARGET-027D31C-result.json",
+  "completedAt": "2026-07-05T14:47:56.440Z",
+  "blockedBy": [
+    "Expected page title/text not visible for MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups.",
+    "Required page signals not visible for MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups."
+  ],
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Assisted Setup route is visible read-only, but no wizard action was clicked.",
+    "No VAT setup, master data, document draft, Preview Posting, Posting or API shortcut was executed."
+  ],
+  "notProved": [
+    "No VAT setup value has been written.",
+    "No Universaarl VAT setup value is final.",
+    "No VAT correctness, Preview Posting, Posting, VAT Entry or German compliance claim is proven.",
+    "No tax advisor approval is proven."
+  ]
 }

@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-05T14:33:12.414Z",
+  "updatedAt": "2026-07-05T14:51:47.443Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-vat-setup-route-blocker-review",
-  "activeCase": "TARGET-027D31C-VAT-SETUP-ROUTE-BLOCKER-REVIEW",
-  "active_case_file": ".agent/state/cases/target-027d31c-vat-setup-route-blocker-review.json",
+  "activeArea": "universaarl-vat-business-posting-groups-route",
+  "activeCase": "TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE",
+  "active_case_file": ".agent/state/cases/target-027d31d-vat-business-posting-groups-alternative-route.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -24,9 +24,8 @@
     "inspect-current-shell-readonly",
     "use-localized-page-name-navigation-readonly",
     "use-page-explorer-or-safe-navigation-readonly",
-    "hover-tooltips-and-inventory-actions",
+    "inspect-all-reports-or-page-explorer-readonly",
     "capture-screenshot-qa",
-    "inspect-dialogs-and-stop-before-write",
     "write-result-json",
     "update-state-and-queue"
   ],
@@ -36,10 +35,10 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
+    "write-vat-posting-setup",
     "finish-assisted-setup",
     "click-next-if-it-writes",
     "click-apply-ok-or-finish-on-setup-dialog",
-    "write-vat-posting-setup",
     "type-values",
     "import-configuration-package",
     "export-configuration-package",
@@ -53,8 +52,8 @@
     "claim-vat-correctness",
     "claim-posting-readiness"
   ],
-  "nextCase": "TARGET-027D31C-VAT-SETUP-ROUTE-BLOCKER-REVIEW",
-  "nextStep": "Run TARGET-027D31C read-only route blocker review; do not write VAT setup, master data, drafts, Preview Posting, Posting or API shortcuts.",
+  "nextCase": "TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE",
+  "nextStep": "Run TARGET-027D31D read-only alternative route for Page 470 / MwSt.-Geschaeftsbuchungsgruppen; do not write VAT setup or finish any assistant.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -237,7 +236,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "TARGET-027D31 proved playthru / UNIVERSAARL-DE shell context but blocked VAT Assisted/Manual Setup route discovery because Tell-Me only exposed search-overlay results, not an accepted setup page.",
+  "currentCoverageFocus": "TARGET-027D31C proves Assisted Setup Page 1801 read-only in playthru / UNIVERSAARL-DE, but Page 470 / MwSt.-Geschaeftsbuchungsgruppen remains blocked after direct URL, localized search, openSearchResult and DOM-near result activation. VAT write-gate remains locked.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -3859,7 +3858,7 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/target-027d31c-vat-setup-route-blocker-review.json",
+  "activeCaseFile": ".agent/state/cases/target-027d31d-vat-business-posting-groups-alternative-route.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
@@ -7949,45 +7948,46 @@
     "uiLearning": "BC Page 456 URL filters require quoted table/field syntax for table names with punctuation; the filtered U-VEND list shows checkbox columns, but the write locator still must be source-backed or assisted before toggling Manual Nos."
   },
   "nextStepDecision": {
-    "currentCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-    "lastEvidenceSummary": "Auth is fresh for playthru / UNIVERSAARL-DE; D31 can inspect VAT Assisted/Manual Setup routes read-only.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "No safe Assisted/Manual VAT setup context was accepted; setup writes stay locked.",
+    "currentCase": "TARGET-027D31C-VAT-SETUP-ROUTE-BLOCKER-REVIEW",
+    "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+    "lastEvidenceSummary": "D31B proved Page 471 and Page 472, while Page 470 and Assisted Setup still looked like search overlays. D31C rechecked both blockers with direct page and localized search routes.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "VAT write-gate remains premature because Page 470 route proof is still missing; D31D is the next non-repeating route case.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
+        "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
         "status": "blocked",
-        "reason": "Needs a safe VAT setup route context first."
+        "reason": "Needs Page 470 route proof or an explicit alternative before any write-gate."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Posting groups depend on VAT setup decision."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-after-current",
-        "reason": "Can resume after VAT route is observed or intentionally parked."
+        "reason": "Dimensions can continue after VAT setup is decided or deliberately parked."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Requires VAT and dimensions status."
-      },
-      {
-        "caseId": "TARGET-038-O2C-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "Master/process work remains locked until W1 Foundation is clearer."
+        "reason": "Foundation readiness waits for VAT/posting group status."
       }
     ],
     "queueChangesMade": [
-      "Select TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP after TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY."
+      "D31C marked blocked with useful Assisted Setup proof.",
+      "D31D inserted as next narrow Page-470 route case."
     ],
-    "selectedNextCase": "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP",
-    "whySelectedNextCaseIsBest": "It keeps setup writes locked and narrows the remaining blocker to route/source/UI discovery.",
+    "selectedNextCase": "TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE",
+    "whySelectedNextCaseIsBest": "Repeating setup writes would be unsafe without mandatory route proof.",
     "risksBeforeNextCase": [
-      "Do not click Next, Finish, Apply, OK or any setup-saving action without a separate Smart Decision Gate.",
-      "Do not claim VAT correctness without setup row, preview/posting and ledger evidence.",
-      "Abort if runtime shell is not playthru / UNIVERSAARL-DE."
+      "A visible setup page is not a correctness proof.",
+      "VAT accounts and percentages still need a separate source-backed decision.",
+      "No Preview Posting, Posting or VAT Entries exist."
     ],
     "requiredPreparation": [
-      "Use source/UI follow-up to locate the exact VAT Assisted/Manual setup route."
+      "Recover Page 470 route or document a safer alternative manual route."
     ]
   },
   "latestTarget037MasterdataFoundationCheckpoint": {
@@ -9619,11 +9619,9 @@
   },
   "stopIf": [
     "Instance is not playthru or company is not UNIVERSAARL-DE.",
-    "The route requires completing a wizard or confirming setup before read-only evidence is captured.",
-    "Only Tell-Me search overlay results such as 'Nach VAT Setup suchen' are visible.",
-    "Only the already parked Page 472 grid/New/Edit List/cell route is available.",
-    "A dialog asks for OK, Yes, Ja, Next, Finish, Apply, Import, Export, Validate or Publish with possible setup impact.",
-    "BC shell/auth context is unclear."
+    "Only a generic search overlay is visible after route attempt.",
+    "The route requires writing setup, finishing an assistant, importing/exporting, validating or confirming OK/Yes/Ja.",
+    "Business Central shell/auth context is unclear."
   ],
   "latestTarget027D31BResult": "playwright/projects/fibu-book5/evidence/target-027d31b-vat-setup-route-ui-source-followup/TARGET-027D31B-result.json",
   "latestVatSetupRouteRecovery": {
@@ -9649,5 +9647,30 @@
     ],
     "nextCase": "TARGET-027D31C-VAT-SETUP-ROUTE-BLOCKER-REVIEW",
     "updatedAt": "2026-07-05T14:32:18.534Z"
+  },
+  "latestTarget027D31CResult": "playwright/projects/fibu-book5/evidence/target-027d31c-vat-setup-route-blocker-review/TARGET-027D31C-result.json",
+  "latestVatSetupRouteBlockerReview": {
+    "caseId": "TARGET-027D31C-VAT-SETUP-ROUTE-BLOCKER-REVIEW",
+    "resultStatus": "blocked",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31c-vat-setup-route-blocker-review/TARGET-027D31C-result.json",
+    "proved": [
+      "Business Central stayed in playthru / UNIVERSAARL-DE.",
+      "Assisted Setup route is visible read-only, but no wizard action was clicked.",
+      "No VAT setup, master data, document draft, Preview Posting, Posting or API shortcut was executed."
+    ],
+    "notProved": [
+      "No VAT setup value has been written.",
+      "No Universaarl VAT setup value is final.",
+      "No VAT correctness, Preview Posting, Posting, VAT Entry or German compliance claim is proven.",
+      "No tax advisor approval is proven."
+    ],
+    "blockedBy": [
+      "Expected page title/text not visible for MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups.",
+      "Required page signals not visible for MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups."
+    ],
+    "assistedSetupStatus": "observed",
+    "vatBusinessPostingGroupsStatus": "blocked",
+    "nextCase": "TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE",
+    "updatedAt": "2026-07-05T14:49:48.571Z"
   }
 }

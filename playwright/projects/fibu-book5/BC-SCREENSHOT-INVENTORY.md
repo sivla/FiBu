@@ -151,6 +151,15 @@ PREP-011 wendet die PREP-010-Regel auf die aktuellen Universaarl-Company-Creatio
 | `target-027d31b-004-vat-posting-setup.png` | MwSt.-Buchungsmatrix Einr. / Page 472 | `playthru` / `UNIVERSAARL-DE` | Direkte read-only Route | Die USt-Matrixseite ist sichtbar | Page 472 ist read-only erreichbar | keine `INLAND/VAT19`-Matrixzeile, kein Prozentsatz, keine Steuerkonten, keine Preview, keine Buchung | `usable-readonly-route` |
 
 Screenshot-QA zu TARGET-027D31B: Der Lauf verbessert das UI-Modell. Direkte Page-IDs sind nicht automatisch Erfolg, wenn die Seite sichtbar im Rollencenter oder in der Suche bleibt. Fuer das Buch sind Page 471 und Page 472 als spaetere Erklaerungsbilder nutzbar; Assisted Setup und Page 470 brauchen zuerst TARGET-027D31C oder muessen bewusst geparkt werden.
+
+## Universaarl VAT Setup Route Blocker Review TARGET-027D31C
+
+| Screenshot | Page | Company | Schritt | Was sieht man? | Interner Nachweis | Beweist nicht | Status |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `target-027d31c-001-vat-business-posting-groups-page-470.png` | Role Center nach Page-470-Routenversuchen | `playthru` / `UNIVERSAARL-DE` | Direkte URL, lokalisierte Suche, openSearchResult und DOM-nahe Trefferaktivierung | Das Bild zeigt weiter den Role Center, nicht die Liste `MwSt.-Geschaeftsbuchungsgruppen` | Page 470 ist in diesem Lauf kein akzeptierter Seitenbeweis; sichtbare Suchtreffer allein reichen nicht | keine Geschaeftsbuchungsgruppenliste, kein Setupwert, keine USt-Reife | `blocked-route`, `do-not-use-as-page470-proof` |
+| `target-027d31c-002-assisted-setup-vat-route.png` | Unterstuetztes Setup / Page 1801 | `playthru` / `UNIVERSAARL-DE` | Direkte read-only Route | Die Liste `Unterstuetztes Setup` ist sichtbar; die Zeile `Mehrwertsteuer (MwSt.) einrichten` steht unter `Unternehmen einrichten` | Assisted Setup ist als read-only Kontext erreichbar, ohne Wizard-Start oder Abschluss | keine Wizard-Ausfuehrung, kein VAT-Setup, keine Werte, keine Preview/Buchung | `usable-readonly-route`, `not-write-ready` |
+
+Screenshot-QA zu TARGET-027D31C: Der Lauf verbessert die UI-Wahrheit. Assisted Setup ist jetzt sichtbar und kann im Buch spaeter als Einrichtungsuebersicht erklaert werden. Page 470 bleibt offen, weil der sichtbare Suchtreffer nicht genuegt; der naechste Case braucht eine neue Route statt denselben Trefferklick zu wiederholen.
 | `target-008-020-create-new-company-route-opened.png` | `debugging-only` | zeigen, dass der erwartete Wizard nicht sauber sichtbar wurde | kein Beweis fuer `Neues Unternehmen erstellen`, keine gespeicherte Company |
 | `target-009-010-before-main-neu-create.png` | `preflight-context` | Mandantenliste vor einer Anlage erklaeren | keine Berechtigung, keine Anlage, kein Setup |
 | `target-009-020-after-main-neu-create-attempt.png` | `blocked-permission-screenshot` | Berechtigungs-/Speicherblocker sachlich erklaeren | keine sichtbare `UNIVERSAARL-DE`, keine Company Information, keine Foundation |

@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE",
+  "status": "ready-next",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-target-execution",
+  "targetWorld": "Universaarl",
+  "activeArea": "universaarl-vat-business-posting-groups-route",
+  "mayRunPlaywright": true,
+  "mayWorkEffectively": false,
+  "effectiveBcActionsAllowed": false,
+  "sourceDecision": "TARGET-027D31C-VAT-SETUP-ROUTE-BLOCKER-REVIEW",
+  "purpose": "Find a non-repeating read-only route to Page 470 / MwSt.-Geschaeftsbuchungsgruppen after direct page URL and generic Tell-Me result activation stayed in Role Center context.",
+  "allowedActions": [
+    "open-business-central",
+    "confirm-instance-and-company",
+    "inspect-current-shell-readonly",
+    "use-localized-page-name-navigation-readonly",
+    "use-page-explorer-or-safe-navigation-readonly",
+    "inspect-all-reports-or-page-explorer-readonly",
+    "capture-screenshot-qa",
+    "write-result-json",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "write-vat-posting-setup",
+    "finish-assisted-setup",
+    "click-next-if-it-writes",
+    "click-apply-ok-or-finish-on-setup-dialog",
+    "type-values",
+    "import-configuration-package",
+    "export-configuration-package",
+    "validate-or-apply-configuration-package",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-vat-correctness",
+    "claim-posting-readiness"
+  ],
+  "acceptanceCriteria": [
+    "Business Central stays in playthru / UNIVERSAARL-DE.",
+    "The route either opens Page 470 / MwSt.-Geschaeftsbuchungsgruppen visibly with Code and Beschreibung/Description, or records why Page 470 is not reachable through the tested route.",
+    "No setup value, wizard completion, master data, draft, Preview Posting, Posting or API shortcut occurs.",
+    "Search overlays and Role Center text are rejected as page proof.",
+    "Next-step decision states whether VAT write-gate can proceed or whether VAT setup must remain parked."
+  ],
+  "stopIf": [
+    "Instance is not playthru or company is not UNIVERSAARL-DE.",
+    "Only a generic search overlay is visible after route attempt.",
+    "The route requires writing setup, finishing an assistant, importing/exporting, validating or confirming OK/Yes/Ja.",
+    "Business Central shell/auth context is unclear."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-027D31C-VAT-SETUP-ROUTE-BLOCKER-REVIEW",
+    "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+    "lastEvidenceSummary": "D31C observed Assisted Setup read-only, but Page 470 / MwSt.-Geschaeftsbuchungsgruppen still returned to Role Center after direct URL, localized search, openSearchResult and DOM-near result activation.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "VAT write-gate remains premature while the mandatory manual VAT Business Posting Groups route is still not visible.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE",
+        "status": "ready-next",
+        "reason": "It tests a new route hypothesis instead of repeating D31C click attempts."
+      },
+      {
+        "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+        "status": "blocked",
+        "reason": "Needs Page 470 proof or an explicit alternative before any VAT write-gate."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Posting groups depend on VAT setup status."
+      },
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "ready-after-current",
+        "reason": "Can continue after VAT setup route is resolved or deliberately parked."
+      }
+    ],
+    "queueChangesMade": [
+      "Mark D31C blocked with useful Assisted Setup proof.",
+      "Insert D31D as the next narrow non-repeating route case."
+    ],
+    "selectedNextCase": "TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE",
+    "whySelectedNextCaseIsBest": "It addresses the remaining Page 470 blocker without setup writes, broad repeats or premature VAT decisions.",
+    "risksBeforeNextCase": [
+      "Visible search results may still not navigate.",
+      "All Reports/Page Explorer routes may expose unrelated pages.",
+      "No VAT setup value is final until a separate write-gate and Reopen-Proof exist."
+    ],
+    "requiredPreparation": [
+      "Use a new route family, for example All Reports/Page Explorer/role navigation, not the same generic Tell-Me result click.",
+      "Keep setup writes and assistant completion locked."
+    ]
+  },
+  "nextCase": "TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE",
+  "updatedAt": "2026-07-05T14:50:00.000Z"
+}

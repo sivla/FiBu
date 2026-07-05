@@ -5,7 +5,7 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "queueId": "TARGET-MARATHON-002-UNIVERSAARL-REPO-READONLY-PREP",
-  "reason": "TARGET-027D31B partially observed direct read-only routes for VAT Product Posting Groups and VAT Posting Setup; Assisted Setup and VAT Business Posting Groups remain route blockers.",
+  "reason": "TARGET-027D31C observed Assisted Setup read-only but left Page 470 / MwSt.-Geschaeftsbuchungsgruppen blocked; next queue item is a non-repeating alternative Page-470 route.",
   "noEffectiveBusinessCentralActions": false,
   "forbiddenUntilUnblocked": [],
   "unblockCriteria": [
@@ -4982,7 +4982,7 @@
       "id": "TARGET-027D31C-VAT-SETUP-ROUTE-BLOCKER-REVIEW",
       "caseId": "TARGET-027D31C-VAT-SETUP-ROUTE-BLOCKER-REVIEW",
       "order": 10212,
-      "status": "pending",
+      "status": "blocked",
       "priority": "high",
       "category": "vat-setup-route-blocker-review",
       "expectedImpact": "resolve-or-park-remaining-vat-route-blockers-before-write-gate",
@@ -4999,7 +4999,27 @@
         "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP"
       ],
       "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31c-vat-setup-route-blocker-review/TARGET-027D31C-result.json",
-      "nextCase": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION"
+      "nextCase": "TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE",
+      "completedAt": "2026-07-05T14:47:56.440Z",
+      "result": "Assisted Setup Page 1801 is visible read-only; Page 470 still lacks accepted page proof after direct URL, localized search, openSearchResult and DOM-near candidate activation.",
+      "blockedBy": [
+        "Expected page title/text not visible for MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups.",
+        "Required page signals not visible for MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups."
+      ]
+    },
+    {
+      "id": "TARGET-027D31D-VAT-BUSINESS-POSTING-GROUPS-ALTERNATIVE-ROUTE",
+      "order": 10213,
+      "status": "pending",
+      "category": "vat-business-posting-groups-route",
+      "expectedImpact": "recover-or-park-page-470-route-without-vat-write",
+      "mayWorkEffectively": false,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Find a non-repeating read-only route to Page 470 / MwSt.-Geschaeftsbuchungsgruppen or keep VAT writes parked with precise route evidence.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "lookaheadStatus": "ready-next"
     }
   ],
   "lastUpdated": "2026-07-05T13:57:56.982Z",
@@ -5114,7 +5134,7 @@
       ]
     }
   },
-  "updatedAt": "2026-07-05T14:32:18.534Z",
+  "updatedAt": "2026-07-05T14:49:48.571Z",
   "lastCompletedCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
   "nextCase": "TARGET-027D31C-VAT-SETUP-ROUTE-BLOCKER-REVIEW",
   "nextStepDecisionCard": {
