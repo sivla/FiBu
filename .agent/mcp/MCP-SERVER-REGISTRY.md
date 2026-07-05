@@ -4,6 +4,8 @@ Purpose: curated MCP options for the FiBu / Business Central book project.
 
 This registry separates safe read-only research, AL development tooling, community code-intelligence tools and live Business Central data access. Do not treat all MCPs as equal: some are documentation sources, some can compile/publish code, and some can read or mutate Business Central data.
 
+Local availability is tracked in `.agent/mcp/LOCAL-TOOLING-STATUS.md`. Do not assume `altool`, `al`, `dotnet`, `npx` or an MCP server exists locally until that file or a fresh check confirms it.
+
 ## Priority
 
 | Priority | MCP | Status | Use for | Default gate |

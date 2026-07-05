@@ -30,6 +30,7 @@ Allowed work during the freeze:
 - capability registry cleanup
 - book-quality rules
 - source/research workflow improvements
+- MCP/tooling governance and local availability documentation
 - documentation consolidation
 - selftests that do not open Business Central
 
@@ -51,3 +52,4 @@ Resume live queue only after:
 3. Require source research for Business Central facts that are not proven by local evidence.
 4. Separate book-reader text from internal evidence language.
 5. Reduce direct, duplicated Playwright patterns in tests by moving stable patterns into `playwright/core/bc`.
+6. Treat MCPs as gated tooling: Microsoft Learn Docs MCP is read-only research; AL/Business Central MCP write, auth, publish and debug flows remain locked until explicitly approved.

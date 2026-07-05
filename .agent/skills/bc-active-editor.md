@@ -42,6 +42,8 @@ Diagnose whether a visible Business Central card/list/grid cell is truly editabl
 - Capture before-state evidence before any edit-mode action.
 - If a popup, dialog or wrong card opens, classify the route and stop.
 - Do not upgrade editor proof into setup correctness; it proves only UI editability.
+- If AL metadata, Page Inspection or MCP/tooling would help explain a field, use it only as diagnostic context. It does not replace UI proof that a real user-facing editor is active.
+- Do not use Business Central MCP, AL publish/auth/debug tooling or API shortcuts to bypass the UI editor gate unless a separate active case explicitly unlocks that route.
 
 ## Stop if
 - The page is a Role Center, search overlay or generic navigation surface.

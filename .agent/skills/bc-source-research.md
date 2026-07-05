@@ -23,6 +23,7 @@ Research Business Central, German accounting/compliance or Microsoft implementat
 - Local observation, screenshot or result JSON if available.
 - Instance and company context, especially whether the observation is from `playthru` / `UNIVERSAARL-DE` or legacy `RM-DEMO`.
 - Required claim level: `lab-observation`, `book-candidate`, `final-product-claim`, `legal-or-tax-claim`.
+- Available source/tool path: Microsoft Learn Docs MCP, web lookup, local source registry, AL tooling, or deliberately no MCP.
 
 ## Output JSON schema
 ```json
@@ -31,6 +32,8 @@ Research Business Central, German accounting/compliance or Microsoft implementat
   "claimLevel": "",
   "localEvidenceUsed": [],
   "sourcesUsed": [],
+  "mcpOrToolUsed": "",
+  "toolingAvailability": [],
   "allowedClaim": "",
   "notAllowedClaim": "",
   "bookBoundary": "",
@@ -42,9 +45,13 @@ Research Business Central, German accounting/compliance or Microsoft implementat
 ## Rules
 - Prefer local Universaarl Evidence for UI claims.
 - Always state the instance and company behind local UI evidence before promoting a claim.
+- Prefer Microsoft Learn Docs MCP for Microsoft product facts when it is available; otherwise use official Microsoft Learn URLs and record the fallback.
 - Use Microsoft Learn or official Microsoft documentation for Business Central product/setup claims.
 - Use Microsoft release plans for release-dependent feature availability.
 - Use official German/EU sources for legal, VAT, GoBD or e-invoice claims.
+- Treat community MCPs as advisory only; they are not authority for book claims.
+- Do not use Business Central MCP writes, AL publish, AL auth, debug-session tooling or live sandbox write access unless a separate active case explicitly unlocks it.
+- Record missing local tooling such as `altool`, `al`, `dotnet` or `npx` when the proposed research path depends on it.
 - Do not turn RM-DEMO or CRONUS lab behavior into a German final claim.
 - Do not cite memory for unstable Business Central, tax, legal, release or licensing facts.
 

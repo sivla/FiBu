@@ -687,11 +687,56 @@
       "playwrightTouchpoints": [
         "Evidence result JSON",
         "screenshot metadata",
-        "BC source registry"
+        "BC source registry",
+        ".agent/mcp/MCP-SERVER-REGISTRY.md"
       ],
       "improvementBacklog": [
         "Connect research output to BC-SOURCE-REGISTRY.md and open_questions_register.json.",
+        "Prefer Microsoft Learn Docs MCP for product facts when available and record the fallback when not available.",
         "Use before any final VAT, GoBD, e-invoice, posting interpretation or release-dependent book claim."
+      ]
+    },
+    {
+      "id": "mcp_tooling_governance",
+      "name": "MCP Tooling Governance",
+      "maturity": "draft",
+      "taskClass": "judge_work",
+      "linkedSkills": [
+        "bc-source-research"
+      ],
+      "purpose": "MCP- und lokale Tool-Nutzung so steuern, dass Quellenrecherche, AL-Diagnostik und Business-Central-Zugriffe die Buchqualitaet verbessern, ohne Secrets, Auth, Publish oder Live-Write-Routen blind zu aktivieren.",
+      "inputs": [
+        "requestedToolOrMcp",
+        "claimOrTaskPurpose",
+        "localToolingStatus",
+        "activeCasePermissions",
+        "sourceAuthorityNeeded"
+      ],
+      "outputs": [
+        "toolingDecision",
+        "allowedReadOnlyUse",
+        "blockedAuthPublishDebugOrWriteUse",
+        "sourceAuthorityClassification",
+        "localToolingGap"
+      ],
+      "gates": [
+        "no-secrets-in-committed-config",
+        "microsoft-learn-mcp-preferred-for-product-facts",
+        "community-mcp-advisory-only",
+        "al-auth-publish-debug-requires-explicit-case",
+        "business-central-mcp-write-requires-smart-decision"
+      ],
+      "playwrightTouchpoints": [
+        ".agent/mcp/MCP-SERVER-REGISTRY.md",
+        ".agent/mcp/LOCAL-TOOLING-STATUS.md",
+        ".agent/mcp/mcpServers.example.json",
+        "BC source registry",
+        "Evidence result JSON"
+      ],
+      "improvementBacklog": [
+        "Keep local tool status current when AL or MCP workflows are first used.",
+        "If a future AL-specific case needs compile or symbols, install/provenance-check `altool` or `al` before relying on it.",
+        "Never use Business Central MCP write access as a shortcut around UI evidence unless a case explicitly grants that route."
       ]
     },
     {

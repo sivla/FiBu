@@ -12,6 +12,8 @@ This project should learn from every run. A run is incomplete if it only produce
    - `book-reader-gap`
    - `safety-gate`
    - `source-research-needed`
+   - `mcp-tooling-needed`
+   - `tooling-unavailable`
    - `rejected-path`
 3. Decide the durable home:
    - BC atlas or coverage file
@@ -49,14 +51,21 @@ Do not create a skill only because a topic exists. Create it when it changes fut
 
 If the agent does not know a Business Central fact, it must research it before writing a final book claim. Use local evidence first for UI behavior. Use Microsoft Learn, release plans, official implementation guidance or official legal/tax sources for product and compliance claims.
 
+Use `.agent/mcp/MCP-SERVER-REGISTRY.md` when an MCP or local tooling path could help. Microsoft Learn Docs MCP is the preferred read-only source path for Business Central product facts. AL MCP, AL tools, Business Central MCP, publish/auth/debug flows and live sandbox write access stay gated; do not enable them only because research is needed.
+
 When research is needed, write down:
 
 - question
 - source used
+- MCP/tool used or deliberately not used
 - claim allowed
 - claim not allowed
 - book wording boundary
 - evidence/source reference
+
+## Tool availability rule
+
+Before a plan depends on `altool`, `al`, `dotnet`, `npx` or an MCP server, record whether the tool exists locally and whether using it would be read-only, diagnostic, auth-triggering or write-capable. Missing tools are not blockers by themselves; they become backlog or setup notes unless the active case explicitly requires them.
 
 ## Freeze rule
 
