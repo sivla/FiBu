@@ -1,78 +1,93 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
-  "updatedAt": "2026-07-05T18:10:00.000Z",
-  "caseId": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
-  "activeCase": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
-  "status": "observed-local-decision",
+  "runId": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+  "updatedAt": "2026-07-05T15:46:36.650Z",
+  "caseId": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+  "activeCase": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+  "status": "observed-readonly-field-truth",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-056-general-posting-setup-purchase-account-source-route-decision/TARGET-056-result.json",
-  "summary": "TARGET-056 ran locally without BC or Playwright. It classified the Page 314 General Posting Setup 5400 blocker chain, rejected another repeat of the old Neu/Page395/List-Edit geometry routes, and selected TARGET-057 as the next read-only Page Inspection/field-mapping gate.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-057-general-posting-setup-purchase-account-pageinspection-readonly-gate/TARGET-057-result.json",
+  "summary": "TARGET-057 ran Playwright read-only in playthru / UNIVERSAARL-DE. Page 314 General Posting Setup and Page Inspection proved table 252 field context for Purchase Account; INLAND/WAREN and Sales Account 4400 are visible, but Purchase Account 5400 is still not persisted.",
   "proved": [
-    "The Page 314 5400 route chain is classified without a new UI click.",
-    "INLAND/WAREN/4400 remains partial setup proof only.",
-    "Wareneinkaufskonto 5400 is still not proven.",
-    "The TARGET-032O list-edit geometry route must not be repeated.",
-    "TARGET-057 is the next materially different read-only gate."
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Page 314 General Posting Setup was opened read-only.",
+    "The INLAND / WAREN row and Purchase Account field context were technically identified without editing.",
+    "Page 314 was reopened after diagnostics without a dangerous dialog.",
+    "No setup value, master data, document draft, Preview Posting, Posting, Payment or API shortcut occurred."
   ],
   "notProved": [
-    "No complete INLAND/WAREN/4400/5400 General Posting Setup row is proven.",
-    "No safe 5400 write route is proven.",
-    "No VAT Posting Setup row is proven.",
-    "No O2C/P2P readiness is proven.",
-    "No Preview Posting, Posting or ledger entries are proven."
+    "No Wareneinkaufskonto 5400 setup value was written.",
+    "No General Posting Setup row completeness is proven for posting readiness.",
+    "No VAT Posting Setup is proven.",
+    "No Inventory Posting Setup is proven.",
+    "No posting readiness, Preview Posting, G/L Entries, VAT Entries or Value Entries are proven.",
+    "No final SKR04, tax advisor or German compliance claim is proven."
   ],
-  "blockedBy": [
-    "Page 395 Einkauf FastTab did not expose a distinct safe Wareneinkaufskonto field.",
-    "Page 314 coordinate List Edit did not persist 5400 after reopen.",
-    "Existing Page Inspection evidence did not provide stable Page 314 field metadata."
-  ],
+  "blockedBy": [],
   "warnings": [
-    "Do not repeat TARGET-032O geometry.",
-    "Do not treat partial INLAND/WAREN/4400 as posting readiness.",
-    "Do not write setup before TARGET-057 proves field truth."
+    "5400 remains not visibly proven as persisted on the INLAND / WAREN row."
   ],
-  "nextCase": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
-  "nextStep": "Run TARGET-057 as a read-only Page Inspection/field-mapping gate for Page 314 Wareneinkaufskonto 5400; no setup write, no VAT, no master data, no draft, no Preview, no Posting.",
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "screenshots": [
+    "playwright/projects/fibu-book5/evidence/target-057-general-posting-setup-purchase-account-pageinspection-readonly-gate/target-057-010-page314-start-readonly.png",
+    "playwright/projects/fibu-book5/evidence/target-057-general-posting-setup-purchase-account-pageinspection-readonly-gate/target-057-030-pageinspection-attempt.png",
+    "playwright/projects/fibu-book5/evidence/target-057-general-posting-setup-purchase-account-pageinspection-readonly-gate/target-057-040-page314-reopen-proof.png"
+  ],
+  "nextCase": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
+  "nextStep": "Run TARGET-058 as a narrow controlled write gate for Purchase Account 5400 only; stop if field focus is ambiguous.",
   "nextStepDecision": {
-    "currentCase": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
-    "lastEvidenceSummary": "TARGET-056 parked the exhausted 5400 write routes and selected a read-only Page Inspection gate as the materially different next route.",
+    "currentCase": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+    "lastEvidenceSummary": "TARGET-056 selected a read-only Page Inspection gate because 5400 write routes through old cell/list edit attempts were exhausted and must not be repeated.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "A later write gate needs stable field truth before any setup value can be safely changed.",
+    "reason": "Stable page/table/field truth is required before any controlled setup write can be attempted.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
-        "status": "ready-next",
-        "reason": "Read-only metadata gate; no setup write."
+        "status": "ready-after-current",
+        "reason": "Read-only field truth was captured."
       },
       {
         "caseId": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
-        "status": "blocked",
-        "reason": "Requires TARGET-057 field truth."
+        "status": "ready-next",
+        "reason": "A later write gate can be prepared, but still needs explicit Smart Decision before writing."
       },
       {
         "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
-        "status": "blocked",
-        "reason": "VAT route remains parked."
+        "status": "needs-setup-first",
+        "reason": "VAT setup remains parked until General Posting Setup purchase account is solved or consciously parked."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
-        "status": "blocked",
-        "reason": "Needs setup readiness first."
+        "status": "needs-setup-first",
+        "reason": "Process preflight requires foundation posting setup readiness first."
+      },
+      {
+        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
+        "status": "needs-setup-first",
+        "reason": "Foundation cannot be marked ready while the Page 314 purchase account route is unresolved."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
-    "whySelectedNextCaseIsBest": "It replaces repeated cell-edit attempts with evidence about the actual Business Central page/field structure.",
+    "queueChangesMade": [
+      "TARGET-057 completed as observed-readonly-field-truth.",
+      "TARGET-058 promoted before VAT/process preflight because General Posting Setup purchase account remains the current Foundation blocker."
+    ],
+    "selectedNextCase": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It is the narrow next gate from read-only field truth to a still-controlled write decision.",
     "risksBeforeNextCase": [
-      "Page Inspection may not expose the expected field.",
-      "Visible 4400 still does not prove 5400 or posting readiness."
+      "Do not type 5400 without an explicit controlled write gate.",
+      "Do not repeat TARGET-032O list-edit geometry.",
+      "Do not claim posting readiness from Page Inspection alone."
     ],
     "requiredPreparation": [
-      "Use screenshot QA.",
-      "Reject Role Center, search overlay or menu-only false positives."
+      "Review TARGET-057 fieldTruth and screenshots.",
+      "Keep Preview Posting and Posting locked."
     ]
   }
 }

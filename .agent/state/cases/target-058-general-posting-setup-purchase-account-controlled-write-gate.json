@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
+  "status": "ready-next",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-target-execution",
+  "targetWorld": "Universaarl",
+  "activeArea": "universaarl-general-posting-setup-purchase-account-controlled-write-gate",
+  "mayRunPlaywright": true,
+  "mayWorkEffectively": true,
+  "effectiveBcActionsAllowed": true,
+  "purpose": "Use the TARGET-057 Page Inspection field truth to attempt exactly one controlled General Posting Setup purchase-account update for the existing INLAND / WAREN row, setting only Wareneinkaufskonto / Purchase Account to 5400 if the field route is unambiguous.",
+  "requiredEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-057-general-posting-setup-purchase-account-pageinspection-readonly-gate/TARGET-057-result.json",
+    "playwright/projects/fibu-book5/evidence/target-057-general-posting-setup-purchase-account-pageinspection-readonly-gate/target-057-030-pageinspection-attempt.png"
+  ],
+  "allowedActions": [
+    "open-business-central",
+    "confirm-playthru-instance",
+    "confirm-universaarl-de-company",
+    "open-page-314",
+    "focus-existing-inland-waren-row",
+    "use-pageinspection-field-truth",
+    "enter-5400-only-into-wareneinkaufskonto-if-unambiguous",
+    "commit-the-single-field-change-if-required-by-bc",
+    "reopen-page-314",
+    "screenshot-qa",
+    "write-evidence-result"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "write-any-field-except-wareneinkaufskonto-5400",
+    "write-vat-posting-setup",
+    "write-inventory-posting-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "repeat-target-032o-list-edit-geometry-route",
+    "click-new",
+    "click-copy"
+  ],
+  "acceptanceCriteria": [
+    "Business Central context is visibly playthru / UNIVERSAARL-DE.",
+    "Page 314 Buchungsmatrix Einrichtung is visible, not Role Center or search overlay.",
+    "The existing INLAND / WAREN row is selected or focused before any value entry.",
+    "Only Wareneinkaufskonto / Purchase Account is changed, and only to 5400.",
+    "A reopen proof shows whether 5400 persisted on the INLAND / WAREN row.",
+    "No VAT setup, Inventory Posting Setup, master data, document, Preview Posting or Posting is executed.",
+    "Result JSON includes before/change/reopen screenshot QA and next-step decision."
+  ],
+  "stopIf": [
+    "Instance is not playthru.",
+    "Company is not UNIVERSAARL-DE.",
+    "Page 314 cannot be confirmed as the visible page.",
+    "The INLAND / WAREN row cannot be uniquely identified.",
+    "The Wareneinkaufskonto / Purchase Account field cannot be uniquely targeted.",
+    "The only available path repeats TARGET-032O list-edit geometry.",
+    "Any dialog asks for Preview Posting, Post, Delete, company switch, New record creation or broad setup confirmation."
+  ],
+  "smartDecisionRequired": {
+    "whyNow": "TARGET-057 proved Page 314 and table 252 field context for Purchase Account, while 5400 remains missing.",
+    "sourceEvidence": "TARGET-057 Page Inspection shows General Posting Setup (314, List), table General Posting Setup (252), INLAND / WAREN row, Sales Account 4400 and Purch. Account field currently blank.",
+    "fieldsAllowedToChange": [
+      "Purch. Account / Wareneinkaufskonto = 5400"
+    ],
+    "fieldsMustRemainUnchanged": [
+      "Gen. Bus. Posting Group",
+      "Gen. Prod. Posting Group",
+      "Sales Account",
+      "VAT setup fields",
+      "Inventory setup fields",
+      "all other General Posting Setup account fields"
+    ],
+    "fallback": "If the field route is ambiguous, stop and create a route-escalation or park decision. Do not repeat the old coordinate List Edit route."
+  },
+  "nextStepDecision": {
+    "currentCase": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+    "lastEvidenceSummary": "TARGET-057 observed Page 314 / table 252 field truth and Purchase Account context, but 5400 is still not visible as persisted.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The next useful step is a narrow controlled write gate for the single missing Purchase Account value, not VAT, master data or process posting.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
+        "status": "ready-next",
+        "reason": "Field truth exists, but the write must stay single-field and gated."
+      },
+      {
+        "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+        "status": "needs-setup-first",
+        "reason": "VAT remains blocked behind General Posting Setup purchase account resolution or an explicit park decision."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Process preflight needs foundation posting setup first."
+      },
+      {
+        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
+        "status": "needs-setup-first",
+        "reason": "Foundation cannot be marked ready until General Posting Setup and VAT boundaries are resolved or parked."
+      }
+    ],
+    "queueChangesMade": [
+      "Promote TARGET-058 before VAT and process preflight because TARGET-057 created the missing field-truth prerequisite."
+    ],
+    "selectedNextCase": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It converts the new Page Inspection learning into the smallest possible practical setup step.",
+    "risksBeforeNextCase": [
+      "The grid route could still target the wrong field.",
+      "5400 must not be typed if field focus is ambiguous.",
+      "No posting readiness follows from the setup value alone."
+    ],
+    "requiredPreparation": [
+      "Review TARGET-057 screenshot and fieldTruth.",
+      "Keep Preview Posting and Posting locked.",
+      "Abort on any ambiguity rather than repeating coordinate-only editing."
+    ]
+  },
+  "nextCase": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
+  "updatedAt": "2026-07-05T19:00:00.000Z"
+}

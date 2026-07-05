@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-05T18:10:00.000Z",
+  "updatedAt": "2026-07-05T15:45:10.275Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-general-posting-setup-purchase-account-pageinspection-readonly",
-  "activeCase": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
-  "active_case_file": ".agent/state/cases/target-057-general-posting-setup-purchase-account-pageinspection-readonly-gate.json",
+  "activeArea": "universaarl-general-posting-setup-purchase-account-controlled-write-gate",
+  "activeCase": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
+  "active_case_file": ".agent/state/cases/target-058-general-posting-setup-purchase-account-controlled-write-gate.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -19,12 +19,15 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central-readonly",
+    "open-business-central",
     "confirm-playthru-instance",
     "confirm-universaarl-de-company",
-    "open-page-314-readonly",
-    "filter-or-focus-existing-inland-waren-row-readonly",
-    "page-inspection-readonly",
+    "open-page-314",
+    "focus-existing-inland-waren-row",
+    "use-pageinspection-field-truth",
+    "enter-5400-only-into-wareneinkaufskonto-if-unambiguous",
+    "commit-the-single-field-change-if-required-by-bc",
+    "reopen-page-314",
     "screenshot-qa",
     "write-evidence-result"
   ],
@@ -34,8 +37,9 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "write-general-posting-setup",
+    "write-any-field-except-wareneinkaufskonto-5400",
     "write-vat-posting-setup",
+    "write-inventory-posting-setup",
     "create-master-data",
     "create-document-or-draft",
     "preview-posting",
@@ -44,12 +48,10 @@
     "api-shortcut",
     "repeat-target-032o-list-edit-geometry-route",
     "click-new",
-    "click-copy",
-    "click-edit-list-for-value-entry",
-    "type-5400"
+    "click-copy"
   ],
-  "nextCase": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
-  "nextStep": "Run TARGET-057 as a read-only Page Inspection/field-mapping gate for Page 314 Wareneinkaufskonto 5400; no setup write, no VAT, no master data, no draft, no Preview, no Posting.",
+  "nextCase": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
+  "nextStep": "Run TARGET-058 as a single-field controlled write gate for Wareneinkaufskonto / Purchase Account = 5400 only if the Page 314 field route is unambiguous.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -1354,7 +1356,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "universaarl-skr04-balance-sheet-accounts-fit",
-  "lastCompletedCase": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
+  "lastCompletedCase": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -3817,7 +3819,7 @@
     "nextCase": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP"
   },
   "lastCompletedCaseFile": ".agent/state/cases/target-032j-general-posting-setup-source-or-configuration-route-decision.json",
-  "lastResultPath": "playwright/projects/fibu-book5/evidence/target-027d26-vat-matrix-alternative-route-discovery/TARGET-027D26-result.json",
+  "lastResultPath": "playwright/projects/fibu-book5/evidence/target-057-general-posting-setup-purchase-account-pageinspection-readonly-gate/TARGET-057-result.json",
   "latestReadonlyUiLookAndFeelMap": {
     "caseId": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
     "status": "prep-done",
@@ -3854,7 +3856,7 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/target-057-general-posting-setup-purchase-account-pageinspection-readonly-gate.json",
+  "activeCaseFile": ".agent/state/cases/target-058-general-posting-setup-purchase-account-controlled-write-gate.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
@@ -7944,43 +7946,52 @@
     "uiLearning": "BC Page 456 URL filters require quoted table/field syntax for table names with punctuation; the filtered U-VEND list shows checkbox columns, but the write locator still must be source-backed or assisted before toggling Manual Nos."
   },
   "nextStepDecision": {
-    "currentCase": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
-    "lastEvidenceSummary": "TARGET-056 parked the exhausted 5400 write routes and selected a read-only Page Inspection gate as the materially different next route.",
+    "currentCase": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+    "lastEvidenceSummary": "TARGET-056 selected a read-only Page Inspection gate because 5400 write routes through old cell/list edit attempts were exhausted and must not be repeated.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "A later write gate needs stable field truth before any setup value can be safely changed.",
+    "reason": "Stable page/table/field truth is required before any controlled setup write can be attempted.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
-        "status": "ready-next",
-        "reason": "Read-only metadata gate; no setup write."
+        "status": "ready-after-current",
+        "reason": "Read-only field truth was captured."
       },
       {
         "caseId": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
-        "status": "blocked",
-        "reason": "Requires TARGET-057 field truth."
+        "status": "ready-next",
+        "reason": "A later write gate can be prepared, but still needs explicit Smart Decision before writing."
       },
       {
         "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
-        "status": "blocked",
-        "reason": "VAT route remains parked."
+        "status": "needs-setup-first",
+        "reason": "VAT setup remains parked until General Posting Setup purchase account is solved or consciously parked."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
-        "status": "blocked",
-        "reason": "Needs setup readiness first."
+        "status": "needs-setup-first",
+        "reason": "Process preflight requires foundation posting setup readiness first."
+      },
+      {
+        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
+        "status": "needs-setup-first",
+        "reason": "Foundation cannot be marked ready while the Page 314 purchase account route is unresolved."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
-    "whySelectedNextCaseIsBest": "It replaces repeated cell-edit attempts with evidence about the actual Business Central page/field structure.",
+    "queueChangesMade": [
+      "TARGET-057 completed as observed-readonly-field-truth.",
+      "TARGET-058 promoted before VAT/process preflight because General Posting Setup purchase account remains the current Foundation blocker."
+    ],
+    "selectedNextCase": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It is the narrow next gate from read-only field truth to a still-controlled write decision.",
     "risksBeforeNextCase": [
-      "Page Inspection may not expose the expected field.",
-      "Visible 4400 still does not prove 5400 or posting readiness."
+      "Do not type 5400 without an explicit controlled write gate.",
+      "Do not repeat TARGET-032O list-edit geometry.",
+      "Do not claim posting readiness from Page Inspection alone."
     ],
     "requiredPreparation": [
-      "Use screenshot QA.",
-      "Reject Role Center, search overlay or menu-only false positives."
+      "Review TARGET-057 fieldTruth and screenshots.",
+      "Keep Preview Posting and Posting locked."
     ]
   },
   "latestTarget037MasterdataFoundationCheckpoint": {
@@ -8353,7 +8364,7 @@
     "updatedAt": "2026-07-01T14:02:31.619Z"
   },
   "lastRunSummaryPath": "playwright/projects/fibu-book5/evidence/target-044d-customer-item-posting-fields-alternative-page-route/TARGET-044D-result.json",
-  "lastEvidenceSummary": "TARGET-027D25 kept VAT Posting Setup parked: VAT19 on U-ITEM-HW100 is prerequisite evidence, not an INLAND/VAT19 matrix row. Next decision is General Posting Setup INLAND/WAREN.",
+  "lastEvidenceSummary": "TARGET-057 observed Page 314 / table 252 field truth for General Posting Setup Purchase Account; 5400 is still not persisted.",
   "authUnblock": {
     "status": "resolved-local-shell-validation-present",
     "lastCheckedAt": "2026-07-01T21:25:00.977Z",
@@ -8513,10 +8524,13 @@
     "summary": "1140 Waren (Bestand) selected as source-backed SKR04-oriented inventory balance candidate; no Business Central account proof yet."
   },
   "acceptanceCriteria": [
-    "Existing Page 314 blocker chain is classified without another UI click.",
-    "The next route is materially new, source-backed, Page-Inspection-backed or explicitly parked.",
-    "No setup, master data, document, Preview Posting or Posting is unlocked by this decision alone.",
-    "No posting-readiness claim is made."
+    "Business Central context is visibly playthru / UNIVERSAARL-DE.",
+    "Page 314 Buchungsmatrix Einrichtung is visible, not Role Center or search overlay.",
+    "The existing INLAND / WAREN row is selected or focused before any value entry.",
+    "Only Wareneinkaufskonto / Purchase Account is changed, and only to 5400.",
+    "A reopen proof shows whether 5400 persisted on the INLAND / WAREN row.",
+    "No VAT setup, Inventory Posting Setup, master data, document, Preview Posting or Posting is executed.",
+    "Result JSON includes before/change/reopen screenshot QA and next-step decision."
   ],
   "latestTarget048CInventoryAccount1140BalanceCorrection": {
     "caseId": "TARGET-048C-INVENTORY-ACCOUNT-1140-BALANCE-SHEET-CORRECTION",
@@ -9609,9 +9623,13 @@
     "apiShortcut": false
   },
   "stopIf": [
-    "A decision would require a new BC or Playwright run.",
-    "The decision would treat Role Center or search overlay text as Page-470 proof.",
-    "The decision would unlock VAT writes without a separate write-gate."
+    "Instance is not playthru.",
+    "Company is not UNIVERSAARL-DE.",
+    "Page 314 cannot be confirmed as the visible page.",
+    "The INLAND / WAREN row cannot be uniquely identified.",
+    "The Wareneinkaufskonto / Purchase Account field cannot be uniquely targeted.",
+    "The only available path repeats TARGET-032O list-edit geometry.",
+    "Any dialog asks for Preview Posting, Post, Delete, company switch, New record creation or broad setup confirmation."
   ],
   "latestTarget027D31BResult": "playwright/projects/fibu-book5/evidence/target-027d31b-vat-setup-route-ui-source-followup/TARGET-027D31B-result.json",
   "latestVatSetupRouteRecovery": {
@@ -9720,5 +9738,8 @@
     ],
     "nextCase": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
     "updatedAt": "2026-07-05T18:10:00.000Z"
-  }
+  },
+  "mayRunPlaywright": true,
+  "mayWorkEffectively": true,
+  "effectiveBcActionsAllowed": true
 }

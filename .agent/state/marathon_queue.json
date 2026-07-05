@@ -5093,7 +5093,7 @@
       "completedAt": "2026-07-05T17:05:00.000Z"
     }
   ],
-  "lastUpdated": "2026-07-05T13:57:56.982Z",
+  "lastUpdated": "2026-07-05T15:44:03.367Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -5205,9 +5205,9 @@
       ]
     }
   },
-  "updatedAt": "2026-07-05T18:10:00.000Z",
-  "lastCompletedCase": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
-  "nextCase": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+  "updatedAt": "2026-07-05T15:44:03.367Z",
+  "lastCompletedCase": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+  "nextCase": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
   "nextStepDecisionCard": {
     "currentCase": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
     "plannedNextCaseBeforeReview": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
@@ -5248,61 +5248,68 @@
       "Reject Role Center, search overlay or menu-only false positives."
     ]
   },
-  "nextStep": "Run TARGET-057 as a read-only Page Inspection/field-mapping gate for Page 314 Wareneinkaufskonto 5400; no setup write, no VAT, no master data, no draft, no Preview, no Posting.",
+  "nextStep": "Run TARGET-058 as a narrow controlled write gate for Purchase Account 5400 only; stop if field focus is ambiguous.",
   "openItems": [
-    "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP"
+    "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE"
   ],
   "nextQueueItem": {
-    "caseId": "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP",
+    "caseId": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
     "status": "pending",
-    "reason": "Recover a safe source/UI route before any VAT setup write gate."
+    "reason": "TARGET-057 proved Page 314 field truth; next step is a single-field controlled write gate for Purchase Account 5400 only."
   },
   "nextCases": [
-    "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP",
-    "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
-    "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
-    "TARGET-034-FOUNDATION-READY-CHECKPOINT"
+    "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
+    "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+    "TARGET-038-O2C-PREFLIGHT",
+    "TARGET-040-FOUNDATION-READY-RECHECK"
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-    "lastEvidenceSummary": "Auth is fresh for playthru / UNIVERSAARL-DE; D31 can inspect VAT Assisted/Manual Setup routes read-only.",
+    "currentCase": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
+    "lastEvidenceSummary": "TARGET-056 selected a read-only Page Inspection gate because 5400 write routes through old cell/list edit attempts were exhausted and must not be repeated.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "No safe Assisted/Manual VAT setup context was accepted; setup writes stay locked.",
+    "reason": "Stable page/table/field truth is required before any controlled setup write can be attempted.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
-        "status": "blocked",
-        "reason": "Needs a safe VAT setup route context first."
-      },
-      {
-        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "caseId": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
         "status": "ready-after-current",
-        "reason": "Can resume after VAT route is observed or intentionally parked."
+        "reason": "Read-only field truth was captured."
       },
       {
-        "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+        "caseId": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
+        "status": "ready-next",
+        "reason": "A later write gate can be prepared, but still needs explicit Smart Decision before writing."
+      },
+      {
+        "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
         "status": "needs-setup-first",
-        "reason": "Requires VAT and dimensions status."
+        "reason": "VAT setup remains parked until General Posting Setup purchase account is solved or consciously parked."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "needs-setup-first",
-        "reason": "Master/process work remains locked until W1 Foundation is clearer."
+        "reason": "Process preflight requires foundation posting setup readiness first."
+      },
+      {
+        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
+        "status": "needs-setup-first",
+        "reason": "Foundation cannot be marked ready while the Page 314 purchase account route is unresolved."
       }
     ],
     "queueChangesMade": [
-      "Select TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP after TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY."
+      "TARGET-057 completed as observed-readonly-field-truth.",
+      "TARGET-058 promoted before VAT and process preflight."
     ],
-    "selectedNextCase": "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP",
-    "whySelectedNextCaseIsBest": "It keeps setup writes locked and narrows the remaining blocker to route/source/UI discovery.",
+    "selectedNextCase": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It is the narrow next gate from read-only field truth to a still-controlled write decision.",
     "risksBeforeNextCase": [
-      "Do not click Next, Finish, Apply, OK or any setup-saving action without a separate Smart Decision Gate.",
-      "Do not claim VAT correctness without setup row, preview/posting and ledger evidence.",
-      "Abort if runtime shell is not playthru / UNIVERSAARL-DE."
+      "Do not type 5400 without an explicit controlled write gate.",
+      "Do not repeat TARGET-032O list-edit geometry.",
+      "Do not claim posting readiness from Page Inspection alone."
     ],
     "requiredPreparation": [
-      "Use source/UI follow-up to locate the exact VAT Assisted/Manual setup route."
+      "Review TARGET-057 fieldTruth and screenshots.",
+      "Keep Preview Posting and Posting locked."
     ]
   },
   "total": 209,
