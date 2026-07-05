@@ -23,6 +23,7 @@ Aktive Wahrheit:
 | --- | --- | --- |
 | Project plan | draft | `PROJECT-PLAN-DRAFT.md` exists. |
 | Execution roadmap | active-draft | `UNIVERSAARL-EXECUTION-ROADMAP.md` is the current steering source from improvement freeze to read-first foundation validation and later process playthrough. |
+| Artifact classification | active-control | `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` separates active-control, active-work, reference, parked, legacy-purge-source and remove-candidate material. |
 | Implementation operating system | active-control | The active truth is `playthru / UNIVERSAARL-DE / Universaarl GmbH`; legacy RM/MCP/CRONUS material is only traceability or `legacy-purge-source`. |
 | Sprache und Terminologie | active-control | Deutsch ist führende Projektsprache; englische BC-/Tool-Begriffe bleiben nur als fachliche oder technische Hilfsbegriffe. |
 | Legacy package-script guard | active-control | `agent:legacy:active-check` blocks direct package scripts that would resume old RM-DEMO/MCP/CRONUS company routes. |
@@ -145,16 +146,16 @@ Status: größtenteils entworfen, noch nicht final abgenommen.
 ## Next recommended work / Nächste empfohlene Arbeit
 
 1. Use `UNIVERSAARL-EXECUTION-ROADMAP.md` as the single current steering source.
-2. Run the local freeze/resume checks before any Business Central or Playwright live work.
-3. Keep `TARGET-073` parked; do not resume the VAT Page 472 active-editor loop.
-4. Resume live work only with `TARGET-075` as read-first Chart of Accounts / Foundation consistency check.
-5. After TARGET-075, create or update `FOUNDATION-READINESS-DECISION.md`.
-6. Build VAT/USt, Dimensions and Posting Groups read-first proof before master data or process chapters.
-7. Use `WORKSTREAM-BOOK-CHAPTER-MAP-DRAFT.md` and the training evidence map before process training cards or book patches.
-8. Treat legacy RM/MCP/CRONUS references as purge candidates or historical traceability, not active next steps.
-9. Use the first P0 skills before related work: `playthru-context-check`, `read-first-page-proof`, `state-sync-check`, `bc-write-gate` and `legacy-reference-finder`.
-10. Convert customer-facing or book-relevant text to German-leading terminology whenever those files are substantively edited.
-11. Expand Jira import rows, BCSpec or broader concept reviews only when they directly support the next BC/training/evidence step.
+2. Use `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` to decide whether a file may steer work or is only reference/parked/legacy.
+3. Run the local freeze/resume checks before any Business Central or Playwright live work.
+4. Keep `TARGET-073` parked; do not resume the VAT Page 472 active-editor loop.
+5. Resume live work only with `TARGET-075` as read-first Chart of Accounts / Foundation consistency check.
+6. After TARGET-075, create or update `FOUNDATION-READINESS-DECISION.md`.
+7. Build VAT/USt, Dimensions and Posting Groups read-first proof before master data or process chapters.
+8. Use `WORKSTREAM-BOOK-CHAPTER-MAP-DRAFT.md` and the training evidence map before process training cards or book patches.
+9. Treat legacy RM/MCP/CRONUS references as purge candidates or historical traceability, not active next steps.
+10. Use the first P0 skills before related work: `playthru-context-check`, `read-first-page-proof`, `state-sync-check`, `bc-write-gate` and `legacy-reference-finder`.
+11. Convert customer-facing or book-relevant text to German-leading terminology whenever those files are substantively edited.
 
 ## Update rule
 

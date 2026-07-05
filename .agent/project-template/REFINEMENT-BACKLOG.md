@@ -10,6 +10,8 @@ The project template should become complete, but not by creating a huge static d
 
 Current steering source: `UNIVERSAARL-EXECUTION-ROADMAP.md`.
 
+Artifact classification source: `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md`.
+
 Do not treat this backlog as a flat queue. The execution roadmap decides the current sequence: finish local freeze/resume checks, return with read-first `TARGET-075`, create a Foundation Readiness Decision, then move toward VAT/USt, Dimensions, Posting Groups and master-data readiness.
 
 Active truth rule:
@@ -58,6 +60,7 @@ Use this only for changes that make a new consultant or agent less likely to res
 Immediate controls:
 
 - keep `UNIVERSAARL-EXECUTION-ROADMAP.md`, dashboard and `current.json` aligned on `playthru / UNIVERSAARL-DE`
+- keep `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` aligned so active-control files stay few and obvious
 - keep `TARGET-073` parked until a conscious resume decision changes that
 - keep `TARGET-075` read-first and no-write
 - classify legacy references as historical traceability, neutral pattern source, purge candidate or superseded-by-Universaarl

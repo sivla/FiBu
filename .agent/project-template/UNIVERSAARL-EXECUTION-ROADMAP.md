@@ -30,7 +30,8 @@ The freeze is not a permanent stop, but it must not be skipped. The next live wo
 | Parked case | `TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION` |
 | First resume pilot | `TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK` |
 | Next live type | read-first, no writes |
-| Next local control task | keep roadmap, dashboard, state and chapter/training/evidence maps aligned |
+| Artifact classification | `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` |
+| Next local control task | keep roadmap, dashboard, state and artifact classification aligned; demote historical next-step noise instead of adding new layers |
 
 ## North star and active truth
 
@@ -118,7 +119,7 @@ Done:
 Now:
 
 1. Treat this roadmap as the current steering document.
-2. Dashboard, backlog and state must point to this roadmap.
+2. Dashboard, backlog, state and artifact classification must point to this roadmap.
 3. Keep legacy material out of active next-step truth.
 4. Remove contradictory next-step language when it suggests broad expansion before the read-first foundation return.
 5. Prefer one concrete artifact over another broad review.

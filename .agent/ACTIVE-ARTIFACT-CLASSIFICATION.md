@@ -1,0 +1,94 @@
+# Active Artifact Classification
+
+Status: active-control
+Purpose: Keep the Universaarl project steerable by separating active control from work material, reference material, parked history and legacy purge sources.
+Last reviewed: 2026-07-06
+
+## Active truth
+
+- Environment: `playthru`
+- Company: `UNIVERSAARL-DE`
+- Reference entity: Universaarl GmbH
+- Live status: Improvement Freeze remains active until resume gates are checked.
+- Parked live case: `TARGET-073`
+- First allowed resume pilot: `TARGET-075`, read-first and no-write.
+
+## Classification rules
+
+| Class | Meaning | Rule |
+| --- | --- | --- |
+| `active-control` | A file may steer the next action. | Keep short, current and aligned. |
+| `active-work` | A file is useful working material for the current roadmap. | Use only through the active-control files. |
+| `reference` | A file explains policy, source, skill, training or past decisions. | Read when relevant, but it does not override active-control. |
+| `parked` | A file or case is intentionally not active now. | Do not resume without a new decision. |
+| `legacy-purge-source` | A file contains old RM/MCP/CRONUS/Rhein-Main patterns that may be mined or ported. | Do not use as active Universaarl truth. |
+| `superseded/remove-candidate` | A file or signal should be shortened, archived or removed later. | Do not delete historical evidence blindly. |
+
+## Active-control set
+
+| Artifact | Class | Why it controls |
+| --- | --- | --- |
+| `.agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md` | `active-control` | Single current roadmap, freeze/resume order and TARGET-075 boundary. |
+| `.agent/project-template/PROJECT-DASHBOARD-DRAFT.md` | `active-control` | Compact project manager view. |
+| `.agent/state/current.json` top-level active truth and `implementationOperatingSystem` block | `active-control` | Machine-readable active instance, company, freeze and next case. |
+| `.agent/project-template/REFINEMENT-BACKLOG.md` first sections | `active-control` | Work ordering only when it follows the roadmap. |
+| `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` | `active-control` | Explains which files may steer and which are parked/reference/legacy. |
+| `.agent/SKILL-SYSTEM.md` | `active-control` | Governs when skills should exist, without expanding a skill library on Vorrat. |
+
+## Active-work set
+
+| Artifact group | Class | Use now |
+| --- | --- | --- |
+| `.agent/project-template/WORKSTREAM-03-FINANCE-FOUNDATION-JIRA-DRAFT.md` | `active-work` | Finance Foundation planning after TARGET-075. |
+| `.agent/project-template/ROUTE-DECISION-CARDS-FOUNDATION-MASTER-DATA-DRAFT.md` | `active-work` | Route decisions before setup/master-data writes. |
+| `.agent/project-template/PLAYWRIGHT-SCENARIO-CATALOG-WS02-WS03-WS04-DRAFT.md` | `active-work` | Read-first scenario planning. |
+| `.agent/project-template/TRAINING-MODULE-CARDS-DRAFT.md` | `active-work` | Training cards only where dependencies are explicit. |
+| `.agent/project-template/WORKSTREAM-BOOK-CHAPTER-MAP-DRAFT.md` | `active-work` | Book patches must use this map before claiming readiness. |
+| `.agent/project-template/SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md` | `active-work` | Data packages are Jira-ready, not BC-setup-ready. |
+
+## Reference set
+
+| Artifact group | Class | Boundary |
+| --- | --- | --- |
+| `.agent/BC-OPERATING-MODEL.md`, `.agent/PLAYTHRU-AUTHORITY-CHARTER.md`, `.agent/SMART-DECISION-GATE.md` | `reference` | Operating principles; do not override freeze/resume roadmap. |
+| `.agent/skills/*.md` | `reference` | Use when the pattern applies; do not create new skills without concrete reuse. |
+| `.agent/capabilities.json` | `reference` | Capability registry; not a queue. |
+| `.agent/project-template/*DRAFT.md` not listed above | `reference` | Read when a workstream needs it; not an active next-step source by itself. |
+| `playwright/projects/fibu-book5/BC-*.md` | `reference` | Atlases/source maps/catalogs guide evidence and book work; they do not lift gates. |
+
+## Parked set
+
+| Artifact or signal | Class | Boundary |
+| --- | --- | --- |
+| `TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION` | `parked` | Do not repeat without a materially new editor/helper route and explicit decision. |
+| `.agent/state/marathon.json` and `.agent/state/marathon_queue.json` | `parked` | Old marathon execution is not the current steering source during freeze. |
+| Deep historical `latest*` and old `nextStep` blocks inside `.agent/state/current.json` | `parked` | Historical run memory only; top-level active-control fields win. |
+| Old P2P/BANK/FA/RM queue next steps | `parked` | Do not resume until roadmap selects that process again. |
+
+## Legacy-purge-source set
+
+| Artifact group | Class | Boundary |
+| --- | --- | --- |
+| RM-DEMO/MCP/CRONUS/Rhein-Main Playwright tests | `legacy-purge-source` | Mine patterns, then port/block/archive; not active proof. |
+| Old evidence under `playwright/projects/fibu-book5/evidence/` | `legacy-purge-source` or `reference` | Preserve evidence chain; do not mass-edit screenshots/results. |
+| Package scripts flagged by `agent:legacy:active-check` as `legacy-target-file-reference` | `legacy-purge-source` | Warning inventory until ported, blocked or archived. |
+| `playwright/projects/fibu-book5/UNIVERSAARL-RM-DECOMMISSION-PLAN.md` | `active-work` | Controls legacy cleanup actions, not current BC execution. |
+
+## Superseded/remove candidates
+
+| Candidate | Class | Why not delete now |
+| --- | --- | --- |
+| Duplicated high-level strategy drafts after roadmap consolidation | `superseded/remove-candidate` | Review one by one; some contain decision history. |
+| Old local state examples and dry-run examples | `superseded/remove-candidate` | May be useful for schema checks; archive later if unused. |
+| Broad review prompts converted into dashboard/backlog decisions | `superseded/remove-candidate` | Keep until a clean project archive exists. |
+
+## Known contradictions and read rule
+
+- If a lower historical state block disagrees with the roadmap, the roadmap wins.
+- If a package script target contains legacy terms but the script name is not directly legacy, treat it as warning inventory, not active truth.
+- If a file says to resume TARGET-073, P2P, BANK, FA or RM-DE-LAB directly, treat that instruction as parked unless the roadmap is updated first.
+- If a book/training file still sounds like RM-DEMO/CRONUS is the live customer story, classify it as `legacy-purge-source` until rewritten for Universaarl.
+
+## Batch review
+
+This batch makes the project easier to steer because it defines which files are allowed to control next actions and demotes historical next-step noise without deleting evidence.
