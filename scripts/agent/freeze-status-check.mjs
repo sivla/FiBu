@@ -8,6 +8,8 @@ const freezePath = '.agent/IMPROVEMENT-FREEZE.md';
 const projectDecisionPath = '.agent/PROJECT-DECISION.md';
 const freezeCasePath = '.agent/state/cases/project-improvement-freeze-001.json';
 const readinessPath = '.agent/TARGET-075-PILOT-READINESS.md';
+const packagePath = 'package.json';
+const frozenScriptName = 'fibu:target:vat-page472-active-editor-route-decision';
 
 function readText(relativePath) {
   return fs.readFileSync(path.resolve(root, relativePath), 'utf8');
@@ -20,7 +22,7 @@ function readJson(relativePath) {
 const errors = [];
 const warnings = [];
 
-for (const filePath of [currentPath, freezePath, projectDecisionPath, freezeCasePath, readinessPath]) {
+for (const filePath of [currentPath, freezePath, projectDecisionPath, freezeCasePath, readinessPath, packagePath]) {
   if (!fs.existsSync(path.resolve(root, filePath))) errors.push(`missing required file: ${filePath}`);
 }
 
@@ -29,6 +31,7 @@ let freezeCase = null;
 let freezeText = '';
 let decisionText = '';
 let readinessText = '';
+let packageJson = null;
 
 if (!errors.length) {
   current = readJson(currentPath);
@@ -36,6 +39,7 @@ if (!errors.length) {
   freezeText = readText(freezePath);
   decisionText = readText(projectDecisionPath);
   readinessText = readText(readinessPath);
+  packageJson = readJson(packagePath);
 }
 
 if (current) {
@@ -79,6 +83,16 @@ if (freezeCase) {
   if (freezeCase.effectiveBcActionsAllowed !== false) errors.push(`${freezeCasePath}: effectiveBcActionsAllowed must be false`);
 }
 
+if (packageJson) {
+  const frozenScript = packageJson.scripts?.[frozenScriptName] ?? '';
+  if (!frozenScript.includes('legacy-script-blocked.mjs')) {
+    errors.push(`${packagePath}: ${frozenScriptName} must route through legacy-script-blocked.mjs while TARGET-073 is frozen`);
+  }
+  if (/playwright\s+test/i.test(frozenScript)) {
+    errors.push(`${packagePath}: ${frozenScriptName} must not directly run Playwright while TARGET-073 is frozen`);
+  }
+}
+
 for (const [filePath, text, requiredPhrases] of [
   [
     freezePath,
@@ -112,7 +126,7 @@ const output = {
   targetCompany: current?.company ?? '',
   frozenLiveCase: current?.freezeStatus?.frozenLiveCase ?? '',
   resumeCandidateAfterFreeze: current?.freezeStatus?.resumeCandidateAfterFreeze ?? '',
-  checkedFiles: [currentPath, freezePath, projectDecisionPath, freezeCasePath, readinessPath],
+  checkedFiles: [currentPath, freezePath, projectDecisionPath, freezeCasePath, readinessPath, packagePath],
   errors,
   warnings,
   nextStep:
