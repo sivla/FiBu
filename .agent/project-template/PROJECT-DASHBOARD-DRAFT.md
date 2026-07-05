@@ -25,6 +25,7 @@ Aktive Wahrheit:
 | Execution roadmap | active-draft | `UNIVERSAARL-EXECUTION-ROADMAP.md` is the current steering source from improvement freeze to read-first foundation validation and later process playthrough. |
 | Implementation operating system | active-control | The active truth is `playthru / UNIVERSAARL-DE / Universaarl GmbH`; legacy RM/MCP/CRONUS material is only traceability or `legacy-purge-source`. |
 | Sprache und Terminologie | active-control | Deutsch ist führende Projektsprache; englische BC-/Tool-Begriffe bleiben nur als fachliche oder technische Hilfsbegriffe. |
+| Legacy package-script guard | active-control | `agent:legacy:active-check` blocks direct package scripts that would resume old RM-DEMO/MCP/CRONUS company routes. |
 | Real customer onboarding/setup | draft | `REAL-CUSTOMER-ONBOARDING-AND-PROJECT-SETUP-GUIDE-DRAFT.md` exists and defines the realistic Confluence/Jira/GitHub/BC operating model. |
 | Agent operating model | draft | `AGENT-OPERATING-MODEL-DRAFT.md` defines orchestrator, specialist roles, model routing, review gates and exclusive `playthru` execution. |
 | Concept realism review cadence | draft | `CONCEPT-REALISM-REVIEW-CADENCE-DRAFT.md` defines recurring source-backed checks for whether the overall project concept should adapt. |

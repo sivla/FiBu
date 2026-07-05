@@ -48,7 +48,8 @@ Diese Dateien bleiben zunaechst Beweiskette und Lernarchiv.
 | Coverage-/Atlas-Dateien | Alte Evidence wird oft als Lernquelle oder Laborreferenz genannt. | `replace-with-universaarl-evidence` | Sobald Universaarl-Prozess bewiesen ist: Coverage auf `superseded-by-universaarl`. |
 | `.agent/state/current.json` | Aktive Wahrheit ist Universaarl; viele historische `latest*` Blocks bleiben. | `external-archive-later` | Spaeter State komprimieren, historische Blocks in Archivstate auslagern. |
 | `.agent/state/cases/*` | Viele alte Case-Dateien enthalten RM-DEMO/MCP. | `external-archive-later` | Nicht loeschen; als historische Case-Evidence behalten. |
-| Tests mit `rm-de-lab-*` | Alte Laborcompany-Routen. | `convert-to-generic-helper` oder `external-archive-later` | Nach Universaarl-Company-Creation-Route generisch machen oder archivieren. |
+| npm-Scripts fuer `foundation-company-rm-demo` und `rm-de-lab-*` | Alte Laborcompany-Routen konnten direkt per npm gestartet werden. | `removed-from-active-repo` fuer aktive Ausfuehrung, `external-archive-later` fuer Testdateien | Scripts sind jetzt durch `legacy-script-blocked.mjs` gesperrt; Testdateien bleiben als historische Musterquelle erhalten. |
+| Tests mit `rm-de-lab-*` | Alte Laborcompany-Routen. | `convert-to-generic-helper` oder `external-archive-later` | Nicht direkt aus package scripts starten; nach Universaarl-Company-Creation-Route generisch machen oder archivieren. |
 | Evidence-Dateien | Viele RM-/CRONUS-Treffer in Result JSONs und Screenshots. | `external-archive-later` | Nicht veraendern, weil Beweiskette. |
 
 ## Kapitel-3-/Company-Prioritaet
@@ -98,6 +99,19 @@ Stattdessen:
 6. Historische RM-DEMO-State-Bloecke in Archivstate verdichten.
 7. Alte Tests/Helper generisch machen oder als Archiv markieren.
 8. Erst danach nicht mehr benoetigte aktive RM-Dateien entfernen.
+
+## Aktiver Script-Guard vom 06.07.2026
+
+`package.json` darf alte RM-/MCP-/CRONUS-Routen nicht mehr als normale aktive Ausfuehrung anbieten. Deshalb wurden die folgenden Scripts auf einen lokalen Blocker umgestellt:
+
+- `fibu:foundation:company`
+- `fibu:company:rm-de-lab-create`
+- `fibu:company:rm-de-lab-save-error`
+- `fibu:company:rm-de-lab-create-new-company-route`
+
+Der Blocker oeffnet kein Business Central und startet kein Playwright. Er erklaert, dass die aktive Wahrheit `playthru / UNIVERSAARL-DE / Universaarl GmbH` ist und dass ein alter RM-/MCP-Pfad zuerst portiert oder als `legacy-purge-source` klassifiziert werden muss.
+
+Der neue Check `agent:legacy:active-check` ist Teil von `agent:preflight`. Er verhindert, dass neue package scripts ungebremst auf alte RM-/MCP-/CRONUS-Routen zeigen.
 
 ## PREP-009 Trefferklassifikation vom 30.06.2026
 
