@@ -8,6 +8,7 @@ const freezePath = '.agent/IMPROVEMENT-FREEZE.md';
 const capabilitiesPath = '.agent/capabilities.json';
 const packagePath = 'package.json';
 const specPath = 'playwright/projects/fibu-book5/tests/target-075-chart-of-accounts-reopen-and-setup-consistency-check.spec.ts';
+const guardedRunnerPath = 'scripts/agent/run-target-075-foundation-consistency-pilot.mjs';
 const scriptName = 'fibu:target:foundation-consistency-pilot';
 
 function readText(relativePath) {
@@ -30,7 +31,7 @@ function includesAll(values, required) {
 const errors = [];
 const warnings = [];
 
-for (const requiredFile of [casePath, readinessPath, freezePath, capabilitiesPath, packagePath, specPath]) {
+for (const requiredFile of [casePath, readinessPath, freezePath, capabilitiesPath, packagePath, specPath, guardedRunnerPath]) {
   if (!exists(requiredFile)) errors.push(`missing required file: ${requiredFile}`);
 }
 
@@ -40,6 +41,7 @@ let capabilities = null;
 let readiness = '';
 let freeze = '';
 let spec = '';
+let guardedRunner = '';
 
 if (!errors.length) {
   targetCase = readJson(casePath);
@@ -48,6 +50,7 @@ if (!errors.length) {
   readiness = readText(readinessPath);
   freeze = readText(freezePath);
   spec = readText(specPath);
+  guardedRunner = readText(guardedRunnerPath);
 }
 
 if (targetCase) {
@@ -131,8 +134,23 @@ if (capabilities) {
 
 if (packageJson) {
   const script = packageJson.scripts?.[scriptName] ?? '';
-  if (!script.includes(specPath.replaceAll('\\', '/'))) {
-    errors.push(`${packagePath}: script ${scriptName} must reference ${specPath}`);
+  if (!script.includes(guardedRunnerPath) && !script.includes(specPath.replaceAll('\\', '/'))) {
+    errors.push(`${packagePath}: script ${scriptName} must reference the guarded runner or ${specPath}`);
+  }
+}
+
+if (guardedRunner) {
+  if (!guardedRunner.includes(specPath)) {
+    errors.push(`${guardedRunnerPath}: guarded runner must reference ${specPath}`);
+  }
+  if (!guardedRunner.includes('agent:freeze:status')) {
+    errors.push(`${guardedRunnerPath}: guarded runner must check agent:freeze:status`);
+  }
+  if (!guardedRunner.includes('agent:target075:readiness')) {
+    errors.push(`${guardedRunnerPath}: guarded runner must check agent:target075:readiness`);
+  }
+  if (!guardedRunner.includes('--live-approved')) {
+    errors.push(`${guardedRunnerPath}: guarded runner must require --live-approved for live execution while freeze is active`);
   }
 }
 
@@ -187,7 +205,7 @@ const result = {
   liveActionsExecuted: false,
   businessCentralOpened: false,
   playwrightLiveRunExecuted: false,
-  checkedFiles: [casePath, readinessPath, freezePath, capabilitiesPath, packagePath, specPath],
+  checkedFiles: [casePath, readinessPath, freezePath, capabilitiesPath, packagePath, specPath, guardedRunnerPath],
   errors,
   warnings,
   nextStep:
