@@ -5,7 +5,11 @@ Started: 2026-07-05
 
 Consolidated decision: `.agent/PROJECT-DECISION.md`.
 
+Authority charter: `.agent/PLAYTHRU-AUTHORITY-CHARTER.md`.
+
 The freeze is not a permanent stop. It pauses TARGET-073 and prevents another blind VAT Page 472 editor retry. TARGET-074 is completed as the local foundation checkpoint. The prepared resume pilot is TARGET-075 as a read-first Chart of Accounts / Foundation consistency check when the resume conditions below are met.
+
+The authority charter broadens the agent mandate after resume: inside `playthru`, effective actions may be executed when an active case, Smart Decision, evidence plan and correction/cleanup route allow them. It does not lift this freeze by itself.
 
 ## Purpose
 

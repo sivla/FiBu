@@ -10,6 +10,10 @@ const current = readJson('.agent/state/current.json');
 const project = readJson('.agent/state/project_state.json');
 const budgets = readJson('.agent/budgets.json');
 const gitignore = existsSync('.gitignore') ? readFileSync('.gitignore', 'utf8') : '';
+const authorityPath = '.agent/PLAYTHRU-AUTHORITY-CHARTER.md';
+const operatingModelPath = '.agent/BC-OPERATING-MODEL.md';
+const authorityText = existsSync(authorityPath) ? readFileSync(authorityPath, 'utf8') : '';
+const operatingModelText = existsSync(operatingModelPath) ? readFileSync(operatingModelPath, 'utf8') : '';
 
 const configuredInstance = project.businessCentral?.instance;
 const configuredCompany = project.businessCentral?.primaryCompany;
@@ -32,6 +36,24 @@ if (configuredCompany !== current.company) {
 
 if (project.safety?.doNotLeaveInstance !== true) {
   errors.push('project_state.safety.doNotLeaveInstance must be true');
+}
+
+if (!authorityText.includes('Playthru Authority Charter')) {
+  errors.push(`${authorityPath} must define the Playthru Authority Charter`);
+}
+
+for (const phrase of ['playthru', 'Destructive action protocol', 'Company strategy', 'does not override the currently active Improvement Freeze']) {
+  if (!authorityText.includes(phrase)) {
+    errors.push(`${authorityPath} must mention: ${phrase}`);
+  }
+}
+
+if (!operatingModelText.includes(authorityPath)) {
+  errors.push(`${operatingModelPath} must reference ${authorityPath}`);
+}
+
+if (current.authorityCharter?.path !== authorityPath) {
+  errors.push(`current.authorityCharter.path must be ${authorityPath}`);
 }
 
 for (const forbidden of ['leave-instance', 'commit-secrets', 'show-env-or-auth', 'fake-evidence', 'book-claim-without-evidence']) {

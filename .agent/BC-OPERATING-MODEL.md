@@ -6,6 +6,10 @@ Current consolidated project decision: `.agent/PROJECT-DECISION.md`.
 
 Use that file as the short strategic layer before choosing a live case. It resolves the current freeze conflict: TARGET-073 stays parked, Superrechte remain usable inside the sandbox when the active case allows them, TARGET-074 is completed as the local checkpoint, and the prepared resume pilot is TARGET-075 as a read-first Chart of Accounts / Foundation consistency check rather than another VAT Page 472 editor retry.
 
+Current authority charter: `.agent/PLAYTHRU-AUTHORITY-CHARTER.md`.
+
+The charter gives the agent broad working authority inside `playthru`, including company, setup, master-data, process, Playwright and cleanup work when an active case or gate unlocks it. It is not a license to act outside `playthru`, skip evidence, skip Smart Decision Cards, commit secrets or ignore the active freeze state.
+
 ## Core rule
 
 Every Business Central step must have:
@@ -40,6 +44,57 @@ The hard Business Central boundary is the active instance in `.agent/state/curre
 - Evidence must always state the instance and company.
 - If the visible URL or shell suggests another instance, stop immediately and write a blocked result.
 - `MCP_1_20260210`, `RM-DEMO`, Rhein-Main/RM-* and CRONUS are legacy laboratory references. Keep their evidence intact, but do not use them as active target truth.
+
+## Playthru autonomy model
+
+Inside `playthru`, the agent is expected to work like a Business Central consultant and solution architect, not a passive test runner. When the active case permits it and gates are satisfied, the agent may create, change, reset, delete, post, clean up or rebuild sandbox data if that is the best route for the Universaarl project, UAT, training, book, evidence or implementation blueprint.
+
+Autonomy requires documentation:
+
+- purpose
+- affected company/data/process
+- route considered
+- expected effect
+- evidence to capture
+- correction, cleanup or keep strategy
+- training/book impact
+
+If those items cannot be stated, downgrade to read-only investigation or create a decision/blocker ticket.
+
+## Company strategy inside playthru
+
+Use clear company names and purposes. Recommended pattern:
+
+- `UNIVERSAARL-BASE` for clean foundation/setup model
+- `UNIVERSAARL-TRAINING` for guided exercises
+- `UNIVERSAARL-UAT` for UAT-near test execution
+- `UNIVERSAARL-PLAY` for exploratory Playwright and agent learning
+- `UNIVERSAARL-RESET` only for deliberate reset/migration tests
+
+Prefer fewer, well-documented companies over many unclear leftovers. If an existing company is mixed, low quality or contradicts the target model, the agent may propose or execute archive, ignore, restructure, delete or rebuild routes through the destructive action protocol.
+
+## Destructive action protocol
+
+Destructive action inside `playthru` is allowed only when the active case unlocks it and the gate is documented.
+
+Before delete/reset/rebuild/replace:
+
+- state why the action serves the project
+- name affected company/data/evidence
+- list what may be lost
+- compare a non-destructive alternative
+- capture or reference before-state evidence
+- define rebuild path
+- list artifacts to update
+
+Afterwards:
+
+- document what changed
+- document why it was correct
+- document the new structure
+- update affected state, evidence, UAT, training, Playwright and book artifacts
+
+Destructive action is acceptable when rebuild is cleaner than repair, the current state contradicts the target model, the action is part of a reset/migration/training/UAT scenario, or it improves blueprint repeatability.
 
 ## Case study architecture
 
