@@ -2,6 +2,8 @@
 
 Das Buch ist kein Bericht ueber Agentenarbeit. Es ist ein Schulungsbuch fuer Business Central.
 
+Es ist zugleich Kundenhandbuch und Trainingsgrundlage. Ein guter Abschnitt befaehigt den Kunden: Welche Rolle nutzt den Prozess, welche Entscheidung muss sie treffen, welche Felder sind wichtig, woran erkennt sie Erfolg und wann muss sie korrigieren oder eskalieren?
+
 ## Lesertext
 
 Buchtext beschreibt direkt:
@@ -18,6 +20,8 @@ Buchtext beschreibt direkt:
 - woran ein erfolgreicher Schritt erkennbar ist,
 - welcher Fehler typisch ist,
 - wie der Fehler korrigiert wird.
+- welche Rolle den Schritt ausfuehrt oder verantwortet,
+- welche Uebung, Checkliste oder Kontrollfrage fuer Schulung und Alltag sinnvoll ist.
 
 ## Nicht in den Buchfliesstext
 
@@ -49,6 +53,8 @@ Wenn Quelle und eigene UI-Evidence voneinander abweichen, wird im Buch vorsichti
 ## Vor wirksamen Buchaenderungen
 
 Bevor der Buchmaster oder ein finaler Buchdraft fachlich umgeschrieben wird, muss intern eine Smart Decision Card existieren. Sie erklaert, welche Buchfrage geloest wird, welche Quelle oder Universaarl-Evidence den Abschnitt stuetzt, welche alte Legacy-Stelle ersetzt wird und warum der Text fuer Anfaenger jetzt hilfreicher ist. Diese Card bleibt in Case, Result, Evidence oder State; der Buchtext selbst bleibt direkter Lesertext ohne Agenten-Meta.
+
+Wenn der Abschnitt kundennah ist, pruefe zusaetzlich `.agent/CUSTOMER-HANDBOOK-TRAINING-STANDARD.md`: Lernziel, Zielrolle, Alltagsprozess, Pflichtfelder, Erfolgskontrolle, typische Fehler, Korrekturweg und Rollenabgrenzung muessen zumindest intern geklaert sein.
 
 ## Stil fuer Screenshots
 

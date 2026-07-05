@@ -4,10 +4,15 @@ import path from 'node:path';
 const root = process.cwd();
 const files = {
   readme: '.agent/project-template/README.md',
+  projectPlan: '.agent/project-template/PROJECT-PLAN-DRAFT.md',
   workbreakdown: '.agent/project-template/BC-IMPLEMENTATION-WORKBREAKDOWN-DRAFT.md',
   jiraModel: '.agent/project-template/JIRA-WORK-ITEM-MODEL.md',
   cadence: '.agent/project-template/DOCUMENTATION-CADENCE.md',
   artifactTemplates: '.agent/project-template/PROJECT-ARTIFACT-TEMPLATES.md',
+  customerDataCatalog: '.agent/project-template/CUSTOMER-DATA-CATALOG-DRAFT.md',
+  decisionLog: '.agent/project-template/DECISION-LOG-DRAFT.md',
+  riskRegister: '.agent/project-template/RISK-REGISTER-DRAFT.md',
+  projectDashboard: '.agent/project-template/PROJECT-DASHBOARD-DRAFT.md',
   refinementBacklog: '.agent/project-template/REFINEMENT-BACKLOG.md',
   financeFoundationDraft: '.agent/project-template/WORKSTREAM-03-FINANCE-FOUNDATION-JIRA-DRAFT.md'
 };
@@ -50,10 +55,15 @@ function requireAtLeast(label, phrases, minimum) {
 if (allText) {
   for (const phrase of [
     'Universaarl BC Project Template',
+    'Universaarl Business Central Project Plan Draft',
     'Business Central Implementation Workbreakdown Draft',
     'Jira Work Item Model',
     'Documentation Cadence',
     'Project Artifact Templates',
+    'Customer Data Catalog Draft',
+    'Decision Log Draft',
+    'Risk Register Draft',
+    'Project Dashboard Draft',
     'Project Template Refinement Backlog',
     'WS03 Finance Foundation Jira Draft',
     'Universaarl Business Central Implementation, Book, Training and Evidence System',
@@ -77,6 +87,27 @@ if (allText) {
   ]) {
     requirePhrase(phrase);
   }
+
+  requireAtLeast('project governance artifacts', [
+    'Project plan draft',
+    'Customer data request catalog',
+    'Decision log',
+    'Risk register',
+    'UAT scenario catalog',
+    'Training matrix',
+    'Customer handbook',
+    'Project dashboard'
+  ], 6);
+
+  requireAtLeast('dashboard controls', [
+    'Overall status',
+    'Current milestone',
+    'Workstream readiness',
+    'Top open decisions',
+    'Top active risks',
+    'Next recommended work',
+    'Update rule'
+  ], 6);
 
   requireAtLeast('official/source anchors', [
     'MB-800',

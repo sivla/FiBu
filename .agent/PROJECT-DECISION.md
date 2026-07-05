@@ -12,6 +12,7 @@ Ein gutes Buch bedeutet:
 
 - Es liest sich wie ein Fachbuch, nicht wie ein Testprotokoll.
 - Es erklaert Seiten, Felder, Entscheidungen, Buchungsgruppen, Konten, Dimensionen, Belege, Posten und Korrekturen in sinnvoller Reihenfolge.
+- Es funktioniert zugleich als Kundenhandbuch und Schulungsleitfaden: Key User, Endanwender, Admins und Management erkennen, was sie im Alltag verstehen, entscheiden, ausfuehren, pruefen und eskalieren muessen.
 - Es trennt Produktlogik, lokale Ausfuehrung und Steuer-/Compliance-Aussagen.
 - Es nutzt Screenshots nur, wenn sie fuer Anfaenger etwas erklaeren und intern wirklich belegen, was behauptet wird.
 - Es fuehrt Universaarl als zusammenhaengende Buchwelt; RM-DEMO, Rhein-Main und CRONUS bleiben historische Laborquellen.
@@ -34,6 +35,7 @@ Ein Business-Central-Spezialist-Agent bedeutet:
 - Buchclaims brauchen lokale Universaarl-Evidence, Microsoft-Learn-Produktlogik oder amtliche/Fachquellen.
 - Labor- oder Legacy-Evidence darf Buchlernen inspirieren, aber keine aktive Universaarl-Finalwahrheit ersetzen.
 - Kapitel folgen grob MB-800 und Microsoft Learn: Company/Core Setup, Financials, Chart of Accounts, Posting Groups, Dimensions, Sales, Purchasing, Inventory, Fixed Assets und Operations.
+- Customer-facing Kapitel muessen Lernziele, betroffene Rollen, Pflichtfelder, Alltagsprozess, Erfolgskontrolle, typische Fehler und Korrektur-/Eskalationsweg mitdenken.
 
 ### Evidence
 
@@ -151,6 +153,7 @@ Vor Resume muessen erfuellt sein:
 
 - `npm run agent:preflight` gruen
 - `npm run check:encoding` gruen
+- `npm run agent:handbook:check` gruen, wenn ein Lauf Buch-, Trainings- oder Handbuchwirkung beansprucht
 - `npm run agent:quality:audit` gelesen und in der Case-Entscheidung adressiert
 - naechster Case nennt relevante Capabilities:
   - `bc_page_context_guard`

@@ -11,12 +11,17 @@ The project template should become complete, but not by creating a huge static d
 ## P0: Foundation structure
 
 - Create project template index.
+- Create complete project plan draft.
+- Create project dashboard draft.
 - Define Jira work item model.
 - Define documentation cadence.
 - Define artifact templates.
+- Create initial customer data catalog.
+- Create initial decision log.
+- Create initial risk register.
 - Keep current workbreakdown draft aligned with workstreams and epics.
 
-Status: started
+Status: started, core files exist as drafts
 
 ## P1: Expand workstreams to Jira-ready detail
 
@@ -39,9 +44,9 @@ Refine in this order:
 
 Reason: Finance and system foundation gate most later processes. Master data, inventory, purchasing and sales then become realistic rather than isolated clicks.
 
-## P1: Create customer data catalog
+## P1: Refine customer data catalog
 
-Create a structured catalog for required customer data:
+Refine the initial catalog into Jira-ready data requests:
 
 - company information
 - fiscal/calendar setup
@@ -63,11 +68,11 @@ Create a structured catalog for required customer data:
 - reports
 - integrations
 
-Each data request should include owner, due date, format, validation rule and BC usage.
+Each data request should include owner, due date, format, validation rule and BC usage. The initial file exists as `CUSTOMER-DATA-CATALOG-DRAFT.md`.
 
-## P1: Create decision and risk registers
+## P1: Refine decision and risk registers
 
-Create initial empty registers:
+Refine the initial registers:
 
 - `DECISION-LOG-DRAFT.md`
 - `RISK-REGISTER-DRAFT.md`

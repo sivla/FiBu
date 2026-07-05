@@ -49,6 +49,12 @@ Every material decision should connect the BC concept to the company: legal enti
 
 The book must explain why the setup exists for Universaarl, which downstream process will use it, and how success is checked in BC. Screenshots and Playwright evidence support that story; they do not replace it.
 
+## Customer handbook and training rule
+
+Use `.agent/CUSTOMER-HANDBOOK-TRAINING-STANDARD.md` when a Business Central topic is meant to become customer-facing. The book is also a customer handbook and training guide: it must explain what a role needs to understand, what the user does in daily work, which fields and buttons matter, how success is checked and how common mistakes are corrected.
+
+Playwright scenarios should therefore capture not only technical proof, but also training value: start state, role, data, action, expected BC result, visible validation and correction or escalation path. Technical probes remain internal until translated into customer language.
+
 ## UI-first rule
 
 - Business Central work is UI-first by default.
@@ -177,6 +183,7 @@ Book patches must be:
 - small
 - status-labeled
 - beginner-readable
+- useful as customer handbook or training material when the topic is customer-facing
 - clear about lab vs final proof
 
 Do not write broad BC theory without source or evidence.

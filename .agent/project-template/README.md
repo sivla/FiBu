@@ -18,6 +18,10 @@ The target is one integrated system:
 
 ## Current files
 
+- `PROJECT-PLAN-DRAFT.md`
+  - Complete project plan draft with phases, milestones, governance, roles, gates and immediate next actions.
+- `PROJECT-DASHBOARD-DRAFT.md`
+  - Compact project manager view with milestone, workstream readiness, top decisions, risks and next work.
 - `BC-IMPLEMENTATION-WORKBREAKDOWN-DRAFT.md`
   - Main workstream, epic, story and task breakdown.
 - `JIRA-WORK-ITEM-MODEL.md`
@@ -26,6 +30,14 @@ The target is one integrated system:
   - How to keep documentation current while work happens.
 - `PROJECT-ARTIFACT-TEMPLATES.md`
   - Reusable templates for issues, data requests, decisions, risks, UAT, training and book output.
+- `CUSTOMER-DATA-CATALOG-DRAFT.md`
+  - Structured customer data request catalog by workstream and data category.
+- `DECISION-LOG-DRAFT.md`
+  - Project decision register for scope, setup, route, evidence and book decisions.
+- `RISK-REGISTER-DRAFT.md`
+  - Initial risk register for project, BC setup, book quality and automation risks.
+- `PROJECT-DASHBOARD-DRAFT.md`
+  - Compact project-manager view for status, milestone, risks, decisions and next recommended work.
 - `REFINEMENT-BACKLOG.md`
   - Ordered refinement backlog for turning the draft into Jira-ready project material.
 - `WORKSTREAM-03-FINANCE-FOUNDATION-JIRA-DRAFT.md`

@@ -10,6 +10,7 @@ This project should learn from every run. A run is incomplete if it only produce
    - `ui-control-pattern`
    - `playwright-helper-pattern`
    - `book-reader-gap`
+   - `customer-training-gap`
    - `safety-gate`
    - `source-research-needed`
    - `mcp-tooling-needed`
@@ -21,6 +22,7 @@ This project should learn from every run. A run is incomplete if it only produce
    - `.agent/skills/*.md`
    - `playwright/core/bc/*`
    - book draft or click guide
+   - customer handbook or training artifact
    - open questions register
 4. Add a small verification path.
 5. Reference the evidence or source that caused the learning.
@@ -46,6 +48,7 @@ Do not create a skill only because a topic exists. Create it when it changes fut
 | `bc-live-run-freeze-review` | Live queue was paused or a case was blocked by repeated UI mechanics | resume/reorder decision |
 | `book-claim-auditor` | A book paragraph mixes lab evidence, final claims and internal language | claim boundary patch plan |
 | `bc-helper-consolidator` | A test repeats force clicks, timeouts or coordinate logic already seen elsewhere | helper extraction plan |
+| `customer-handbook-training-auditor` | A process is technically proven but does not yet tell a customer role what to understand, do, check or correct | handbook/training readiness patch plan |
 
 ## Research rule
 
@@ -62,6 +65,20 @@ When research is needed, write down:
 - claim not allowed
 - book wording boundary
 - evidence/source reference
+
+## Customer enablement rule
+
+When a run affects a customer-facing Business Central topic, classify what changed for training:
+
+- target role
+- concept a key user must understand
+- daily action or decision
+- success check
+- common mistake or exception
+- correction, cleanup or escalation path
+- whether the current evidence is `technical-only`, `handbook-draft`, `training-readiness` or customer-ready
+
+Use `.agent/CUSTOMER-HANDBOOK-TRAINING-STANDARD.md` as the durable home for this rule. A Playwright result that only proves a control path is useful, but it is not yet a customer training scenario until the customer-facing meaning is written.
 
 ## Tool availability rule
 
