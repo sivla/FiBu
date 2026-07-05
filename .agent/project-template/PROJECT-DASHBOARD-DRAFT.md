@@ -1,167 +1,97 @@
 # Project Dashboard Draft
 
-Status: draft
-Purpose: Kompakte Projektsteuerung fuer Universaarl BC Implementierung, Buch, Training und Playwright-Evidence.
+Status: active-control
+Purpose: Kompakte Projektleiter-Sicht fuer Universaarl Business Central Implementierung, Buch, Training, UAT und Playwright-Evidence.
 Last reviewed: 2026-07-06
 
-## How to use / Verwendung
+## Aktive Wahrheit
 
-Dieses Dashboard ist die Projektleiter-Sicht. Es bleibt kurz und verweist auf Detaildateien. Aktualisiere es nach echten Projektänderungen, nicht nach jeder kleinen Textkorrektur.
+| Feld | Aktueller Stand |
+| --- | --- |
+| Zielwelt | `playthru / UNIVERSAARL-DE / Universaarl GmbH` |
+| Projektphase | Improvement Freeze / M0-M1 Uebergang |
+| Aktive Steuerungsquelle | `.agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md` |
+| Artefakt-Klassifikation | `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` |
+| Geparkter Live-Case | `TARGET-073` |
+| Erster erlaubter Resume-Pilot | `TARGET-075`, read-first, no-write |
+| Legacy-Grenze | RM-DEMO, MCP_1_20260210, CRONUS, Rhein-Main und RM-* sind keine aktive Projektwahrheit. |
 
-Aktive Wahrheit:
+## Steuerungsregel
 
-- Instanz: `playthru`
-- Company: `UNIVERSAARL-DE`
-- Referenzfirma: Universaarl GmbH
-- Nächster Live-Pilot nach Freeze-Lift: `TARGET-075`
-- Geparkter Live-Case: `TARGET-073`
-- Legacy: RM-DEMO, MCP_1_20260210, CRONUS, Rhein-Main und RM-* sind keine aktive Projektwahrheit.
+Dieses Dashboard ist keine Datei-Inventarliste und keine Queue. Es beantwortet nur:
 
-## Overall status / Gesamtstatus
+1. Was ist gerade aktiv?
+2. Was darf als Naechstes passieren?
+3. Welche Gates blockieren Live-Arbeit?
+4. Welche Risiken und Entscheidungen muessen sichtbar bleiben?
 
-| Area | Status | Note |
-| --- | --- | --- |
-| Project plan | draft | `PROJECT-PLAN-DRAFT.md` exists. |
-| Execution roadmap | active-draft | `UNIVERSAARL-EXECUTION-ROADMAP.md` is the current steering source from improvement freeze to read-first foundation validation and later process playthrough. |
-| Artifact classification | active-control | `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` separates active-control, active-work, reference, parked, legacy-purge-source and remove-candidate material. |
-| Implementation operating system | active-control | The active truth is `playthru / UNIVERSAARL-DE / Universaarl GmbH`; legacy RM/MCP/CRONUS material is only traceability or `legacy-purge-source`. |
-| Sprache und Terminologie | active-control | Deutsch ist führende Projektsprache; englische BC-/Tool-Begriffe bleiben nur als fachliche oder technische Hilfsbegriffe. |
-| Legacy package-script guard | active-control | `agent:legacy:active-check` blocks direct package scripts that would resume old RM-DEMO/MCP/CRONUS company routes. |
-| Skill system | active-draft | `.agent/SKILL-SYSTEM.md` defines when reusable skills are created; first operational skills cover playthru context, read-first proof, write gates, state sync and legacy reference finding. |
-| Real customer onboarding/setup | draft | `REAL-CUSTOMER-ONBOARDING-AND-PROJECT-SETUP-GUIDE-DRAFT.md` exists and defines the realistic Confluence/Jira/GitHub/BC operating model. |
-| Agent operating model | draft | `AGENT-OPERATING-MODEL-DRAFT.md` defines orchestrator, specialist roles, model routing, review gates and exclusive `playthru` execution. |
-| Concept realism review cadence | draft | `CONCEPT-REALISM-REVIEW-CADENCE-DRAFT.md` defines recurring source-backed checks for whether the overall project concept should adapt. |
-| Consulting-house benchmark | draft | `CONSULTING-HOUSE-BENCHMARK-REVIEW-DRAFT.md` defines how partner/consulting recommendations are used as critical market benchmarks without becoming product authority. |
-| Book as project model | draft | `BOOK-AS-PROJECT-MANAGEMENT-MODEL.md` exists. |
-| Book ticket backlog | draft | `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` exists. |
-| Project cast | draft | `PROJECT-CAST-AND-STAKEHOLDERS-DRAFT.md` exists. |
-| Project storyline | draft | `PROJECT-STORYLINE-DRAFT.md` exists. |
-| Project scene cards | draft | `PROJECT-SCENE-CARDS-DRAFT.md` exists. |
-| Training strategy | draft | `TRAINING-STRATEGY-AND-CURRICULUM-DRAFT.md` exists. |
-| Role training matrix | draft | `ROLE-BASED-TRAINING-MATRIX-DRAFT.md` exists. |
-| Training module cards | draft | Cards exist for environment/company, navigation, chart of accounts, posting groups, VAT/USt boundary, dimensions, customer master data, vendor master data and item/service/non-inventory master data; VAT/dimension and WS04 cards are dependency-blocked, not trainer-ready. |
-| Playwright training evidence map | draft | `PLAYWRIGHT-TRAINING-EVIDENCE-MAP-DRAFT.md` exists. |
-| Playwright scenario catalog | draft | Read-first WS02/WS03/WS04 scenario catalog exists; no live execution authorized. |
-| Realism standard | draft | `REALISM-STANDARD-DRAFT.md` exists. |
-| Data request realism review | draft | First five core/master-data requests were reviewed against realism gates; all are planning-ready but not BC-setup-ready. |
-| Spec-driven sideproject | proposed | `SPEC-DRIVEN-SIDEPROJECT-DRAFT.md` and `BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md` test whether OpenSpec-style workflow helps this BC project. |
-| Workbreakdown | draft | Workstreams and epics exist in `BC-IMPLEMENTATION-WORKBREAKDOWN-DRAFT.md`. |
-| Jira model | draft | Issue model, labels, statuses and DoR/DoD exist. |
-| Goal transition | active-transition | `GOAL-TRANSITION-PROTOCOL.md` and `GOAL-TRANSITION-CARD-2026-07-05.md` exist for the running long-goal agent. |
-| Case study core workstream | draft | Detailed WS02 draft exists and links company story, roles, data requests, UAT, training, book and Playwright context. |
-| Finance workstream | draft | First detailed workstream draft exists. |
-| Master data/product workstream | draft | Detailed WS04 draft exists and compares manual UI, templates, configuration packages, Excel import, API and park routes. |
-| Customer data catalog | draft | Initial data requests exist; Jira-ready candidates are tracked separately. |
-| Data request Jira candidates | draft | First five candidates exist and now include a package-derived Jira ticket map with dependency tickets for Company Information, organization model, customers, vendors and items/services. |
-| Customer data simulation | draft | `CUSTOMER-DATA-SIMULATION-DRAFT.md` exists. |
-| Simulated core/master data tables | draft | Five concrete simulated packages exist: `UNIVERSAARL_CORE_CompanyInformation`, `UNIVERSAARL_CORE_OrganizationModel`, `UNIVERSAARL_MD_Customers`, `UNIVERSAARL_MD_Vendors` and `UNIVERSAARL_MD_ItemsServices`; all are Jira-ready, none are BC-setup-ready yet. |
-| Foundation/master-data route decisions | draft | Route cards exist for numbering, posting groups, payment terms and product/UOM setup before live master-data work. |
-| Decision log | draft | Initial decisions captured. |
-| Risk register | draft | Initial risks captured. |
-| UAT/training plan | draft | Training strategy, role matrix, evidence map and module cards exist through finance foundation VAT/dimensions and WS04 master-data training; process cards still needed. |
-| Book map | draft | `WORKSTREAM-BOOK-CHAPTER-MAP-DRAFT.md` maps workstreams, Jira anchors, customer data, UAT, training and evidence gates to curated book chapters. |
-| Playwright scenario catalog | draft | Read-first context/navigation/setup-dependency scenarios exist for WS02/WS03/WS04. |
+Detaildateien werden ueber `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` eingeordnet. Wenn ein Detailentwurf nicht dort oder in der Roadmap als aktiv genannt ist, steuert er keine naechste Aktion.
 
-## Current milestone / Aktueller Meilenstein
+## Aktueller Meilenstein
 
 Current milestone: `M0 Project mobilized`
 
-Ziel:
+M0 ist weitgehend entworfen, aber noch nicht als voll abgenommen zu behandeln. Der naechste sinnvolle Fortschritt ist keine weitere Methodikschicht, sondern ein sauberer Freeze/Resume-Uebergang mit `TARGET-075` als lesendem Foundation-Pilot.
 
-- Projektbetrieb, aktive Wahrheit und Steuerungsartefakte stabil halten, bevor weitere Workstreams breit ausgebaut werden.
+## Overall status
 
-M0-Exit-Kriterien:
-
-- Project plan exists.
-- Workbreakdown exists.
-- Jira model exists.
-- Documentation cadence exists.
-- Artifact templates exist.
-- Customer data catalog exists.
-- Decision log exists.
-- Risk register exists.
-- First workstream is expanded as pattern.
-
-Status: größtenteils entworfen, noch nicht final abgenommen.
+| Bereich | Status |
+| --- | --- |
+| Universaarl Execution Roadmap | active-control |
+| Artifact classification | active-control |
+| Agent operating model | reference |
+| Data request Jira candidates | reference/active-work when master-data planning resumes |
+| Data request realism review | reference |
+| Simulated core/master data tables | active-work, Jira-ready but not BC-setup-ready |
+| Foundation/master-data route decisions | active-work before setup or master-data writes |
+| Read-first WS02/WS03/WS04 scenario catalog | active-work for read-first Playwright planning |
 
 ## Workstream readiness
 
-| Workstream | Structure | Jira detail | Data requests | UAT/training | Book/evidence |
-| --- | --- | --- | --- | --- | --- |
-| WS01 Governance | draft | partial | n/a | partial | partial |
-| WS02 Case Study/Core | draft | draft | partial | draft | draft |
-| WS03 Finance Foundation | draft | draft | partial | draft | draft |
-| WS04 Master Data/Product | draft | draft | partial | draft | draft |
-| WS05 Purchasing | draft | missing | missing | missing | missing |
-| WS06 Sales | draft | missing | missing | missing | missing |
-| WS07 Inventory | draft | missing | partial | missing | missing |
-| WS08 Warehouse | draft | missing | missing | missing | missing |
-| WS09 Security/Workflows | draft | missing | partial | missing | missing |
-| WS10 Reporting | draft | missing | missing | missing | missing |
-| WS11 Data Migration/Integration | draft | missing | partial | missing | missing |
-| WS12 Advanced Areas | draft | missing | missing | missing | missing |
-| WS13 UAT/Training/Cutover | draft | missing | partial | draft | missing |
-| WS14 Book/Playwright/Learning | draft | missing | n/a | partial | partial |
+| Bereich | Status | Naechste sinnvolle Aktion |
+| --- | --- | --- |
+| Projektsteuerung | usable-draft | Roadmap, Dashboard, State und Klassifikation schlank synchron halten. |
+| Freeze/Resume | gated | Lokale Freeze/Resume-Checks ausfuehren, bevor Business Central oder Playwright live laufen. |
+| Finance Foundation | pending-read-first | `TARGET-075` fuer Kontenplan/Foundation-Kontext lesen, keine Writes. |
+| VAT/USt, Dimensions, Posting Groups | planned | Erst nach TARGET-075 als read-first Proofs angehen. |
+| Master Data | planned-blocked | Erst nach Foundation Readiness Decision in BC schreiben. |
+| Buch/Handbuch/Training | draft | Nur auf Basis offizieller Quellen, Universaarl-Evidence oder klar markierter Annahmen ausbauen. |
+| Playwright/Evidence | draft | Read-first Specs und Screenshot-QA stabilisieren; keine Legacy-Routen als aktive Tests nutzen. |
+| Legacy-Decommission | active-work | Legacy nur inventarisieren, neutralisieren, portieren oder parken; Evidence nicht blind loeschen. |
 
 ## Top open decisions
 
-| ID | Decision | Status |
+| ID | Entscheidung | Status |
 | --- | --- | --- |
-| DEC-001 | Treat repo as real BC implementation project | accepted |
-| DEC-002 | Separate product model, inventory and warehouse | accepted |
-| DEC-003 | Use Finance Foundation as first detailed workstream | accepted |
-| DEC-004 | Compare scalable BC implementation routes | accepted |
-| DEC-005 | Official sources above community sources | accepted |
-| DEC-007 | Treat the complete book as project-management simulation | accepted |
-| DEC-008 | Use recurring fictional characters to drive the project story | accepted |
-| DEC-009 | Training material must be role-based and evidence-backed | accepted |
-| DEC-010 | Realism is a quality gate for project/book/training artifacts | accepted |
-| DEC-011 | Test BCSpec before adopting OpenSpec globally | proposed |
-| DEC-012 | Use real customer onboarding and Atlassian-first project setup | accepted |
-| DEC-013 | Use route decision cards before live foundation/master-data setup | proposed |
-| DEC-014 | Use a governed agent operating model before automation | accepted |
-| DEC-015 | Run recurring concept realism reviews | accepted |
-| DEC-016 | Use consulting-house recommendations as a critical benchmark, not authority | accepted |
-| DEC-017 | Use Universaarl implementation operating system as active truth | accepted |
-| DEC-018 | Use German as leading project and book language | accepted |
+| DEC-001 | Repo als realistisches Business-Central-Kundenprojekt fuehren | accepted |
+| DEC-005 | Offizielle Microsoft-/BC-Quellen stehen ueber Community-Quellen | accepted |
+| DEC-009 | Training muss rollenbezogen und evidence-backed sein | accepted |
+| DEC-010 | Realismus ist Qualitaetsgate fuer Projekt, Buch und Training | accepted |
+| DEC-017 | Universaarl Implementation Operating System ist aktive Wahrheit | accepted |
+| DEC-018 | Deutsch ist fuehrende Projekt- und Buchsprache | accepted |
 
 ## Top active risks
 
-| ID | Risk | Severity | Status |
+| ID | Risiko | Severity | Steuerung |
 | --- | --- | --- | --- |
-| RISK-001 | Raw automation becomes book content | P0 | active |
-| RISK-002 | Missing customer data causes arbitrary setup | P0 | active |
-| RISK-005 | VAT and compliance claims overreach evidence | P0 | active |
-| RISK-004 | Playwright routes are not repeatable | P1 | active |
-| RISK-009 | Parallel agent changes create worktree conflicts | P1 | active |
-| RISK-012 | Project story becomes too demo-perfect | P1 | active |
-| RISK-013 | Spec-driven layer duplicates Jira/project docs | P2 | active |
-| RISK-014 | Real setup becomes artificial tool architecture | P1 | active |
-| RISK-015 | Multi-agent work creates conflicting project truth | P1 | active |
-| RISK-016 | Concept review cadence becomes review theater | P2 | active |
-| RISK-017 | Consulting-house benchmark imports marketing bias | P2 | active |
-| RISK-018 | Legacy material remains active steering truth | P0 | active |
-| RISK-019 | Project artifacts drift into mixed-language customer text | P1 | active |
+| RISK-001 | Rohprotokolle werden zu Buchtext | P0 | Buchtext nur kuratiert, ohne Agenten-/Evidence-Meta. |
+| RISK-002 | Fehlende Kundendaten fuehren zu willkuerlichem Setup | P0 | Datenpakete und Route Decisions vor Writes. |
+| RISK-005 | VAT/Compliance-Claims ueberziehen die Evidence | P0 | Produktlogik, lokale Evidence und amtliche Quellen trennen. |
+| RISK-004 | Playwright-Routen sind nicht wiederholbar | P1 | Read-first Proof, Screenshot-QA und Helper-Learning nutzen. |
+| RISK-018 | Legacy bleibt aktive Steuerungswahrheit | P0 | Klassifikation, Legacy-Check und Universaarl-first README nutzen. |
+| RISK-019 | Projektartefakte bleiben sprachlich gemischt | P1 | Substanzielle Edits auf deutsche Leserfuehrung umstellen. |
 
-## Next recommended work / Nächste empfohlene Arbeit
+## Next recommended work
 
-1. Use `UNIVERSAARL-EXECUTION-ROADMAP.md` as the single current steering source.
-2. Use `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` to decide whether a file may steer work or is only reference/parked/legacy.
-3. Run the local freeze/resume checks before any Business Central or Playwright live work.
-4. Keep `TARGET-073` parked; do not resume the VAT Page 472 active-editor loop.
-5. Resume live work only with `TARGET-075` as read-first Chart of Accounts / Foundation consistency check.
-6. After TARGET-075, create or update `FOUNDATION-READINESS-DECISION.md`.
-7. Build VAT/USt, Dimensions and Posting Groups read-first proof before master data or process chapters.
-8. Use `WORKSTREAM-BOOK-CHAPTER-MAP-DRAFT.md` and the training evidence map before process training cards or book patches.
-9. Treat legacy RM/MCP/CRONUS references as purge candidates or historical traceability, not active next steps.
-10. Use the first P0 skills before related work: `playthru-context-check`, `read-first-page-proof`, `state-sync-check`, `bc-write-gate` and `legacy-reference-finder`.
-11. Convert customer-facing or book-relevant text to German-leading terminology whenever those files are substantively edited.
+1. Keine neue Methodikdatei anlegen.
+2. Naechsten kleinen Batch waehlen, der aktive Steuerung, Legacy-Isolation oder Universaarl-Readiness verbessert.
+3. Vor Live-Arbeit: `agent:preflight`, `check:encoding`, `agent:quality:audit`, `agent:resume:check || true`, `agent:freeze:status || true`.
+4. `TARGET-073` bleibt geparkt.
+5. Live-Resume nur mit `TARGET-075`, read-first und no-write.
+6. Nach `TARGET-075`: `FOUNDATION-READINESS-DECISION.md` erstellen oder aktualisieren.
 
 ## Update rule
 
-When a new file, workstream or major decision is added:
+Aktualisiere dieses Dashboard nur, wenn sich aktive Wahrheit, Gate-Status, naechster erlaubter Schritt, Top-Risiko oder Top-Entscheidung geaendert hat.
 
-- update this dashboard
-- update `README.md` if it is a new core artifact
-- update `REFINEMENT-BACKLOG.md` if the next-step order changes
-- add a decision or risk if the route changes
+Wenn nur eine Detaildatei besser wird, reicht die Detaildatei. Kein Dashboard-Edit nur als Aktivitaetsnachweis.
