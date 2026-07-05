@@ -306,6 +306,7 @@ test('TARGET-075 runs a read-only Foundation consistency pilot', async ({ page }
       : missingStarterAccounts.length > 0 || rejected.length > 0
         ? 'partially-completed'
         : 'observed';
+  const statusFor = (id: string) => results.find((entry) => entry.id === id)?.status ?? 'blocked';
 
   const nextCase =
     resultStatus === 'observed'
@@ -375,6 +376,35 @@ test('TARGET-075 runs a read-only Foundation consistency pilot', async ({ page }
     warnings: Array.from(new Set(results.flatMap((entry) => entry.warnings))),
     accountFindings,
     pages: results,
+    foundationReadinessInput: {
+      decisionStatus:
+        resultStatus === 'observed'
+          ? 'ready-for-foundation-readiness-decision'
+          : 'needs-local-review-before-foundation-readiness-decision',
+      chartOfAccounts: {
+        status: chart?.status ?? 'blocked',
+        starterAccountsVisible: accountFindings.filter((entry) => entry.visible).map((entry) => entry.accountNo),
+        starterAccountsMissingOrUnclear: missingStarterAccounts,
+        bookBoundary: 'Use as beginner-facing chart visibility only, not as complete SKR04 or posting readiness proof.'
+      },
+      setupContext: {
+        generalBusinessPostingGroups: statusFor('general-business-posting-groups'),
+        generalProductPostingGroups: statusFor('general-product-posting-groups'),
+        generalPostingSetup: statusFor('general-posting-setup'),
+        vatPostingSetup: statusFor('vat-posting-setup'),
+        bookBoundary: 'Use as setup-page visibility and dependency map only; do not claim setup correctness from read-only visibility.'
+      },
+      nextProjectOutputs: [
+        'Update or create FOUNDATION-READINESS-DECISION.md after reviewing this result.',
+        'Classify master-data readiness only after chart/setup context is accepted.',
+        'Use accepted screenshots as draft handbook/training evidence, not final compliance proof.'
+      ],
+      uatTrainingImpact: [
+        'Shows key users where chart and posting setup context lives.',
+        'Supports a Foundation checkpoint exercise before master data entry.',
+        'Defines stop conditions for setup pages that expose write actions or unclear dialogs.'
+      ]
+    },
     flags: {
       noWrite: true,
       noPost: true,
@@ -478,6 +508,19 @@ test('TARGET-075 runs a read-only Foundation consistency pilot', async ({ page }
       '## Buchwirkung',
       '',
       'Dieser Lauf liefert die Foundation-Grenze: Was ist vor Stammdaten und Buchungen sichtbar, und welche Setup-Aussagen bleiben noch offen?',
+      '',
+      '## Foundation-Readiness-Handoff',
+      '',
+      '- Nach dem Lauf `FOUNDATION-READINESS-DECISION.md` erstellen oder aktualisieren.',
+      '- Kontenplan-Sichtbarkeit nicht als vollstaendigen SKR04- oder Buchungsfaehigkeitsnachweis werten.',
+      '- Buchungsgruppen- und MwSt.-Seiten nur als sichtbaren Setup-Kontext werten, nicht als Korrektheitsnachweis.',
+      '- Master Data erst nach angenommener Foundation-Readiness starten.',
+      '',
+      '## UAT- und Trainingswirkung',
+      '',
+      '- Key User sehen, wo Kontenplan und Setup-Kontext geprueft werden.',
+      '- Der Lauf liefert eine Uebung fuer den Foundation-Checkpoint vor Stammdaten.',
+      '- Unklare Dialoge, Edit-Modus oder falsche Company blockieren den naechsten Schritt.',
       ''
     ].join('\n')
   );
