@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-05T18:06:57.169Z",
+  "updatedAt": "2026-07-05T20:12:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-vat-page470-route-decision",
-  "activeCase": "TARGET-070C-VAT-PAGE470-SOURCE-OBJECT-OR-ALTERNATIVE-ROUTE-DECISION",
-  "active_case_file": ".agent/state/cases/target-070c-vat-page470-source-object-or-alternative-route-decision.json",
+  "activeArea": "universaarl-vat-page472-table325-route-decision",
+  "activeCase": "TARGET-070D-VAT-PAGE472-TABLE325-ALTERNATIVE-ROUTE-DECISION",
+  "active_case_file": ".agent/state/cases/target-070d-vat-page472-table325-alternative-route-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -21,9 +21,9 @@
   "allowedActions": [
     "local-source-review",
     "review-existing-evidence",
-    "review-existing-playwright-helper-patterns",
-    "classify-page470-route-status",
-    "propose-non-repeating-next-case",
+    "review-page472-table325-field-truth",
+    "compare-assisted-setup-configuration-package-and-page472-routes",
+    "propose-narrow-write-gate-or-park-decision",
     "update-state-and-coverage-plan"
   ],
   "forbiddenActions": [
@@ -50,8 +50,8 @@
     "repeat-target070-row-geometry-click-route",
     "repeat-target070b-url-shape-route"
   ],
-  "nextCase": "TARGET-070C-VAT-PAGE470-SOURCE-OBJECT-OR-ALTERNATIVE-ROUTE-DECISION",
-  "nextStep": "Run TARGET-070C as a local decision: stop repeating Page 470 clicks and decide source/object or alternative VAT route before any setup write.",
+  "nextCase": "TARGET-070D-VAT-PAGE472-TABLE325-ALTERNATIVE-ROUTE-DECISION",
+  "nextStep": "Run TARGET-070D as a local Page 472/Table 325 alternative route decision before any VAT setup write.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -234,7 +234,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "TARGET-070B confirmed Page 470 route remains blocked: exact no-dc URL variants still drop page=470 to Role Center, and Page Inspection opens only in Role Center/Tell-Me context. Next is TARGET-070C local source/object or alternative route decision.",
+  "currentCoverageFocus": "TARGET-070C parks Page 470 as a current UI-route blocker after TARGET-070/TARGET-070B. Next is TARGET-070D: local Page 472/Table 325 alternative-route decision; no setup write.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -3856,7 +3856,7 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/target-070c-vat-page470-source-object-or-alternative-route-decision.json",
+  "activeCaseFile": ".agent/state/cases/target-070d-vat-page472-table325-alternative-route-decision.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
@@ -10034,11 +10034,27 @@
     "updatedAt": "2026-07-05T18:06:57.169Z"
   },
   "latestPracticalCase": {
-    "caseId": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS",
-    "resultPath": "playwright/projects/fibu-book5/evidence/target-070b-vat-page470-helper-fix-or-pageinspection-diagnosis/TARGET-070B-result.json",
-    "status": "blocked",
-    "impact": "Page 470 URL-shape and Page Inspection diagnosis completed read-only; setup writes remain locked.",
-    "nextCase": "TARGET-070C-VAT-PAGE470-SOURCE-OBJECT-OR-ALTERNATIVE-ROUTE-DECISION",
-    "updatedAt": "2026-07-05T18:06:57.169Z"
+    "caseId": "TARGET-070C-VAT-PAGE470-SOURCE-OBJECT-OR-ALTERNATIVE-ROUTE-DECISION",
+    "status": "observed-local-decision",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-070c-vat-page470-source-object-or-alternative-route-decision/TARGET-070C-result.json",
+    "impact": "Page 470 parked as current UI-route blocker; Page 472/Table 325 selected for local alternative-route decision.",
+    "nextCase": "TARGET-070D-VAT-PAGE472-TABLE325-ALTERNATIVE-ROUTE-DECISION",
+    "updatedAt": "2026-07-05T20:12:00.000+02:00"
+  },
+  "latestTarget070CVatRouteDecision": {
+    "caseId": "TARGET-070C-VAT-PAGE470-SOURCE-OBJECT-OR-ALTERNATIVE-ROUTE-DECISION",
+    "status": "observed-local-decision",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-070c-vat-page470-source-object-or-alternative-route-decision/TARGET-070C-result.json",
+    "decision": {
+      "page470VatBusinessPostingGroupsRoute": "parked-current-ui-route-blocked",
+      "reason": "TARGET-070 and TARGET-070B exhausted direct URL, Tell-Me result activation, URL-shape variants, row-chevron geometry and Page Inspection diagnosis without accepted Page 470 screenshot truth.",
+      "page472VatPostingSetupRoute": "preferred-next-local-decision",
+      "reasonForPage472": "Existing Universaarl evidence has accepted Page 472 context and Page Inspection/Table 325 field truth; it is a materially different setup surface from Page 470.",
+      "target071WriteGate": "blocked-premature",
+      "target027d32WriteGate": "blocked-premature",
+      "selectedNextRoute": "TARGET-070D-VAT-PAGE472-TABLE325-ALTERNATIVE-ROUTE-DECISION"
+    },
+    "nextCase": "TARGET-070D-VAT-PAGE472-TABLE325-ALTERNATIVE-ROUTE-DECISION",
+    "updatedAt": "2026-07-05T20:12:00.000+02:00"
   }
 }

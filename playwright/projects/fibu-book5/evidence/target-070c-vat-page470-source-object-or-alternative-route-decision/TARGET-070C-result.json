@@ -1,11 +1,37 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-070C-VAT-PAGE470-SOURCE-OBJECT-OR-ALTERNATIVE-ROUTE-DECISION-RUN",
+  "purpose": "autopilot-result-normalized",
   "caseId": "TARGET-070C-VAT-PAGE470-SOURCE-OBJECT-OR-ALTERNATIVE-ROUTE-DECISION",
-  "status": "observed-local-decision",
+  "source": "local-analysis",
+  "resultStatus": "observed-local-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Page 470 parked as current UI-route blocker; Page 472/Table 325 selected for the next local alternative-route decision before any VAT setup write.",
+  "page": "local VAT route decision after Page 470 blockers",
+  "runPlanId": "TARGET-070C-VAT-PAGE470-SOURCE-OBJECT-OR-ALTERNATIVE-ROUTE-DECISION-PLAN",
+  "selectedTaskClass": "monkey_work",
+  "selectedModelClass": "gpt-4-mini-low",
+  "actionsTaken": [
+    "Reviewed TARGET-070 and TARGET-070B Page 470 blocker evidence.",
+    "Reviewed prior Page 472 / VAT Posting Setup evidence and source registry boundaries.",
+    "Classified Page 470 as parked for current UI automation.",
+    "Selected a materially different next case: local Page 472/Table 325 alternative route decision before any setup write."
+  ],
+  "actionsNotTaken": [
+    "No Business Central UI was opened.",
+    "No Playwright test was executed for TARGET-070C.",
+    "No VAT Business Posting Group was created or changed.",
+    "No VAT Product Posting Group was created or changed.",
+    "No VAT Posting Setup row was created or changed.",
+    "No master data, document draft, Preview Posting, Posting, payment or API shortcut was executed.",
+    "No book text was changed."
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "screenshots": [],
   "proved": [
     "The current Page 470 route is not suitable as a write-gate prerequisite after TARGET-070 and TARGET-070B.",
     "TARGET-070B showed that URL-shape variants still drop or ignore page=470 and leave Business Central in Role Center/Tell-Me context.",
@@ -27,14 +53,15 @@
     "Page 472/Table 325 source context does not by itself permit a setup write.",
     "Any future VAT write gate still needs visible UI context, Smart Decision Card, reopen proof and later Preview/Entry trace."
   ],
-  "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/TARGET-070-result.json",
-    "playwright/projects/fibu-book5/evidence/target-070b-vat-page470-helper-fix-or-pageinspection-diagnosis/TARGET-070B-result.json",
-    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/TARGET-061-result.json",
-    "playwright/projects/fibu-book5/evidence/target-069-vat-business-groups-source-route-decision/TARGET-069-result.json"
-  ],
-  "nextStep": "Run TARGET-070D as a local Page 472/Table 325 alternative-route decision. Do not write VAT setup.",
-  "nextCase": "TARGET-070D-VAT-PAGE472-TABLE325-ALTERNATIVE-ROUTE-DECISION",
+  "decision": {
+    "page470VatBusinessPostingGroupsRoute": "parked-current-ui-route-blocked",
+    "reason": "TARGET-070 and TARGET-070B exhausted direct URL, Tell-Me result activation, URL-shape variants, row-chevron geometry and Page Inspection diagnosis without accepted Page 470 screenshot truth.",
+    "page472VatPostingSetupRoute": "preferred-next-local-decision",
+    "reasonForPage472": "Existing Universaarl evidence has accepted Page 472 context and Page Inspection/Table 325 field truth; it is a materially different setup surface from Page 470.",
+    "target071WriteGate": "blocked-premature",
+    "target027d32WriteGate": "blocked-premature",
+    "selectedNextRoute": "TARGET-070D-VAT-PAGE472-TABLE325-ALTERNATIVE-ROUTE-DECISION"
+  },
   "nextStepDecision": {
     "currentCase": "TARGET-070C-VAT-PAGE470-SOURCE-OBJECT-OR-ALTERNATIVE-ROUTE-DECISION",
     "plannedNextCaseBeforeReview": "TARGET-071-VAT-GROUPS-CONTROLLED-WRITE-GATE-DECISION",
@@ -86,17 +113,28 @@
       "Return a yes/no decision for a later narrow write gate."
     ]
   },
-  "flags": {
-    "noWrite": true,
-    "noPost": true,
-    "noPreview": true,
-    "noDraft": true,
-    "noSetupChange": true,
-    "noMasterDataChange": true,
-    "noCompanySwitch": true,
-    "noApiShortcut": true,
-    "noBookChange": true
-  },
-  "updatedAt": "2026-07-05T20:12:00.000+02:00",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-070c-vat-page470-source-object-or-alternative-route-decision/TARGET-070C-result.json"
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/TARGET-070-result.json",
+    "playwright/projects/fibu-book5/evidence/target-070b-vat-page470-helper-fix-or-pageinspection-diagnosis/TARGET-070B-result.json",
+    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/TARGET-061-result.json",
+    "playwright/projects/fibu-book5/evidence/target-069-vat-business-groups-source-route-decision/TARGET-069-result.json"
+  ],
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-070c-vat-page470-source-object-or-alternative-route-decision/TARGET-070C-result.json",
+    "playwright/projects/fibu-book5/evidence/target-070c-vat-page470-source-object-or-alternative-route-decision/README.md",
+    ".agent/state/cases/target-070c-vat-page470-source-object-or-alternative-route-decision.json",
+    ".agent/state/cases/target-070d-vat-page472-table325-alternative-route-decision.json",
+    ".agent/state/current.json",
+    ".agent/state/marathon_queue.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/coverage_state.json",
+    "playwright/projects/fibu-book5/BC-COVERAGE-MATRIX.md",
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md"
+  ],
+  "statePatch": {},
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "reason": "TARGET-070C closes a local route decision only. It intentionally proposes state updates through the commit, not through state-finalize --write.",
+  "nextCase": "TARGET-070D-VAT-PAGE472-TABLE325-ALTERNATIVE-ROUTE-DECISION",
+  "updatedAt": "2026-07-05T20:12:00.000+02:00"
 }

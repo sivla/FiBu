@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-070D-VAT-PAGE472-TABLE325-ALTERNATIVE-ROUTE-DECISION",
+  "status": "ready-next",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-target-execution",
+  "activeArea": "universaarl-vat-page472-table325-route-decision",
+  "mayRunPlaywright": false,
+  "effectiveBcActionsAllowed": false,
+  "purpose": "Decide whether the existing Page 472 / VAT Posting Setup and Table 325 evidence can support a later narrow VAT setup write-gate without reopening the blocked Page 470 click loop.",
+  "whyNow": "TARGET-070C parks Page 470 as a current UI-route blocker. Page 472 has stronger existing Universaarl context and Page Inspection evidence, but a write gate is still premature until the alternative route is explicitly assessed.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-027d26-vat-matrix-alternative-route-discovery/",
+    "playwright/projects/fibu-book5/evidence/target-027d29-vat-matrix-row-bound-route-recovery/",
+    "playwright/projects/fibu-book5/evidence/target-061-posting-groups-readonly-boundary-refresh-after-5400-park/TARGET-061-result.json",
+    "playwright/projects/fibu-book5/evidence/target-070c-vat-page470-source-object-or-alternative-route-decision/TARGET-070C-result.json"
+  ],
+  "allowedActions": [
+    "local-source-review",
+    "review-existing-evidence",
+    "review-page472-table325-field-truth",
+    "compare-assisted-setup-configuration-package-and-page472-routes",
+    "propose-narrow-write-gate-or-park-decision",
+    "update-state-and-coverage-plan"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "write-vat-business-posting-group",
+    "write-vat-product-posting-group",
+    "write-vat-posting-setup",
+    "write-setup",
+    "click-new",
+    "click-edit-list",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "repeat-target020-direct-page470-route",
+    "repeat-target027c4-text-click-route",
+    "repeat-target070-row-geometry-click-route",
+    "repeat-target070b-url-shape-route"
+  ],
+  "acceptanceCriteria": [
+    "No Business Central or Playwright action is executed.",
+    "Page 470 remains parked unless a new non-repeating source-backed reason appears.",
+    "The decision states whether Page 472/Table 325 can become a later controlled write gate or must remain parked.",
+    "No VAT setup, master data, draft, Preview Posting, Posting or API action is executed."
+  ],
+  "stopIf": [
+    "The only available next step is repeating Page 470 route attempts.",
+    "The decision would claim VAT setup correctness without current setup evidence."
+  ],
+  "nextIfSuccessful": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+  "nextIfBlocked": "TARGET-032P-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PARK",
+  "nextCase": "TARGET-070D-VAT-PAGE472-TABLE325-ALTERNATIVE-ROUTE-DECISION"
+}

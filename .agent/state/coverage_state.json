@@ -869,16 +869,16 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-07-05T18:06:57.169Z",
+  "updatedAt": "2026-07-05T20:12:00.000+02:00",
   "activeArea": "universaarl-vat-page470-route-decision",
   "currentBlock": "Page 314 Wareneinkaufskonto / Purch. Account 5400 is still not persisted. TARGET-058 showed List Edit and a row-bound target cell, but the controlled attempt opened the column menu and Reopen proof showed no 5400.",
   "latestPracticalCase": {
-    "caseId": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS",
-    "resultPath": "playwright/projects/fibu-book5/evidence/target-070b-vat-page470-helper-fix-or-pageinspection-diagnosis/TARGET-070B-result.json",
-    "status": "blocked",
-    "impact": "Page 470 URL-shape and Page Inspection diagnosis completed read-only; setup writes remain locked.",
-    "nextCase": "TARGET-070C-VAT-PAGE470-SOURCE-OBJECT-OR-ALTERNATIVE-ROUTE-DECISION",
-    "updatedAt": "2026-07-05T18:06:57.169Z"
+    "caseId": "TARGET-070C-VAT-PAGE470-SOURCE-OBJECT-OR-ALTERNATIVE-ROUTE-DECISION",
+    "status": "observed-local-decision",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-070c-vat-page470-source-object-or-alternative-route-decision/TARGET-070C-result.json",
+    "impact": "Page 470 parked as current UI-route blocker; Page 472/Table 325 selected for local alternative-route decision.",
+    "nextCase": "TARGET-070D-VAT-PAGE472-TABLE325-ALTERNATIVE-ROUTE-DECISION",
+    "updatedAt": "2026-07-05T20:12:00.000+02:00"
   },
   "latestReviewCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
   "nextCase": "TARGET-070C-VAT-PAGE470-SOURCE-OBJECT-OR-ALTERNATIVE-ROUTE-DECISION",
@@ -1115,19 +1115,14 @@
     "playwright/projects/fibu-book5/BC-ERROR-BLOCKER-ATLAS.md",
     "playwright/projects/fibu-book5/BC-PROCESS-COVERAGE-ROADMAP.md"
   ],
-  "currentCoverageFocus": "TARGET-070B confirmed Page 470 route remains blocked: exact no-dc URL variants still drop page=470 to Role Center, and Page Inspection opens only in Role Center/Tell-Me context. Next is TARGET-070C local source/object or alternative route decision.",
+  "currentCoverageFocus": "TARGET-070C parks Page 470 as a current UI-route blocker after TARGET-070/TARGET-070B. Next is TARGET-070D: local Page 472/Table 325 alternative-route decision; no setup write.",
   "latestCoverageUpdate": {
-    "caseId": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS",
-    "resultPath": "playwright/projects/fibu-book5/evidence/target-070b-vat-page470-helper-fix-or-pageinspection-diagnosis/TARGET-070B-result.json",
-    "status": "blocked",
-    "coverageEffect": "VAT Business Posting Groups Page 470 remains blocked after URL-shape and Page Inspection diagnosis. VAT writes stay locked; next step is a local source/object or alternative-route decision.",
-    "screenshots": [
-      "target-070b-001-target020-exact-company-then-page-no-dc.png",
-      "target-070b-002-page-first-then-company-no-dc.png",
-      "target-070b-003-company-then-page-with-dc-control.png",
-      "target-070b-900-pageinspection-attempt.png"
-    ],
-    "updatedAt": "2026-07-05T18:06:57.169Z"
+    "at": "2026-07-05T20:12:00.000+02:00",
+    "type": "vat-page470-parked-page472-alternative-route-decision",
+    "caseId": "TARGET-070C-VAT-PAGE470-SOURCE-OBJECT-OR-ALTERNATIVE-ROUTE-DECISION",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-070c-vat-page470-source-object-or-alternative-route-decision/TARGET-070C-result.json",
+    "nextCase": "TARGET-070D-VAT-PAGE472-TABLE325-ALTERNATIVE-ROUTE-DECISION",
+    "coverageEffect": "VAT writes remain locked. Page 470 is parked as a current UI-route blocker; Page 472/Table 325 is the next local alternative-route decision."
   },
   "companyUsecase": {
     "path": "playwright/projects/fibu-book5/BC-COMPANY-USECASE.md",
@@ -6308,5 +6303,21 @@
     "vatPostingSetupInlandVat19Route": "blocked-until-page470-parity-and-write-gate-decision",
     "nextCase": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
     "updatedAt": "2026-07-05T17:38:41.261Z"
+  },
+  "latestTarget070CVatRouteDecision": {
+    "caseId": "TARGET-070C-VAT-PAGE470-SOURCE-OBJECT-OR-ALTERNATIVE-ROUTE-DECISION",
+    "status": "observed-local-decision",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-070c-vat-page470-source-object-or-alternative-route-decision/TARGET-070C-result.json",
+    "decision": {
+      "page470VatBusinessPostingGroupsRoute": "parked-current-ui-route-blocked",
+      "reason": "TARGET-070 and TARGET-070B exhausted direct URL, Tell-Me result activation, URL-shape variants, row-chevron geometry and Page Inspection diagnosis without accepted Page 470 screenshot truth.",
+      "page472VatPostingSetupRoute": "preferred-next-local-decision",
+      "reasonForPage472": "Existing Universaarl evidence has accepted Page 472 context and Page Inspection/Table 325 field truth; it is a materially different setup surface from Page 470.",
+      "target071WriteGate": "blocked-premature",
+      "target027d32WriteGate": "blocked-premature",
+      "selectedNextRoute": "TARGET-070D-VAT-PAGE472-TABLE325-ALTERNATIVE-ROUTE-DECISION"
+    },
+    "nextCase": "TARGET-070D-VAT-PAGE472-TABLE325-ALTERNATIVE-ROUTE-DECISION",
+    "updatedAt": "2026-07-05T20:12:00.000+02:00"
   }
 }
