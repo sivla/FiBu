@@ -18,16 +18,21 @@ This dashboard is the project manager view. It should stay short and point to th
 | Project cast | draft | `PROJECT-CAST-AND-STAKEHOLDERS-DRAFT.md` exists. |
 | Project storyline | draft | `PROJECT-STORYLINE-DRAFT.md` exists. |
 | Project scene cards | draft | `PROJECT-SCENE-CARDS-DRAFT.md` exists. |
+| Training strategy | draft | `TRAINING-STRATEGY-AND-CURRICULUM-DRAFT.md` exists. |
+| Role training matrix | draft | `ROLE-BASED-TRAINING-MATRIX-DRAFT.md` exists. |
+| Playwright training evidence map | draft | `PLAYWRIGHT-TRAINING-EVIDENCE-MAP-DRAFT.md` exists. |
+| Realism standard | draft | `REALISM-STANDARD-DRAFT.md` exists. |
 | Workbreakdown | draft | Workstreams and epics exist in `BC-IMPLEMENTATION-WORKBREAKDOWN-DRAFT.md`. |
 | Jira model | draft | Issue model, labels, statuses and DoR/DoD exist. |
 | Goal transition | active-transition | `GOAL-TRANSITION-PROTOCOL.md` and `GOAL-TRANSITION-CARD-2026-07-05.md` exist for the running long-goal agent. |
 | Case study core workstream | draft | Detailed WS02 draft exists and links company story, roles, data requests, UAT, training, book and Playwright context. |
 | Finance workstream | draft | First detailed workstream draft exists. |
+| Master data/product workstream | draft | Detailed WS04 draft exists and compares manual UI, templates, configuration packages, Excel import, API and park routes. |
 | Customer data catalog | draft | Initial data requests exist, not yet Jira-ready. |
 | Customer data simulation | draft | `CUSTOMER-DATA-SIMULATION-DRAFT.md` exists. |
 | Decision log | draft | Initial decisions captured. |
 | Risk register | draft | Initial risks captured. |
-| UAT/training plan | early | Templates exist; full role matrix still needed. |
+| UAT/training plan | draft | Training strategy, role matrix and evidence map exist; module cards still needed. |
 | Book map | missing | Workstream-to-chapter mapping still needed. |
 | Playwright scenario catalog | missing | Needs mapping to workstreams and UAT. |
 
@@ -60,7 +65,7 @@ Status: mostly drafted, not yet reviewed as final.
 | WS01 Governance | draft | partial | n/a | partial | partial |
 | WS02 Case Study/Core | draft | draft | partial | draft | draft |
 | WS03 Finance Foundation | draft | draft | partial | draft | draft |
-| WS04 Master Data/Product | draft | missing | partial | missing | missing |
+| WS04 Master Data/Product | draft | draft | partial | draft | draft |
 | WS05 Purchasing | draft | missing | missing | missing | missing |
 | WS06 Sales | draft | missing | missing | missing | missing |
 | WS07 Inventory | draft | missing | partial | missing | missing |
@@ -83,6 +88,8 @@ Status: mostly drafted, not yet reviewed as final.
 | DEC-005 | Official sources above community sources | accepted |
 | DEC-007 | Treat the complete book as project-management simulation | accepted |
 | DEC-008 | Use recurring fictional characters to drive the project story | accepted |
+| DEC-009 | Training material must be role-based and evidence-backed | accepted |
+| DEC-010 | Realism is a quality gate for project/book/training artifacts | accepted |
 
 ## Top active risks
 
@@ -93,17 +100,19 @@ Status: mostly drafted, not yet reviewed as final.
 | RISK-005 | VAT and compliance claims overreach evidence | P0 | active |
 | RISK-004 | Playwright routes are not repeatable | P1 | active |
 | RISK-009 | Parallel agent changes create worktree conflicts | P1 | active |
+| RISK-012 | Project story becomes too demo-perfect | P1 | active |
 
 ## Next recommended work
 
-1. Expand `WS04-MASTER-DATA-PRODUCT` so customers, vendors, items, services, locations, templates and configuration-package options are planned before new master-data live work.
-2. Convert `DR-CORE-001` and `DR-CORE-002` into Jira-ready data-request candidates with owner, due date, format, validation and BC usage.
-3. Create role-based training matrix from `PROJECT-CAST-AND-STAKEHOLDERS-DRAFT.md` and `WORKSTREAM-02-CASE-STUDY-CORE-JIRA-DRAFT.md`.
-4. Turn `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` into workstream-level Jira import candidates.
-5. Create first simulated data files or tables for company, finance and master data.
-6. Create workstream-to-book-chapter map.
-7. Create Playwright scenario catalog mapped to UAT and evidence needs.
+1. Convert `DR-CORE-001`, `DR-CORE-002` and `DR-MD-001` through `DR-MD-003` into Jira-ready data-request candidates with owner, due date, format, validation and BC usage.
+2. Create first training module cards for environment/company, navigation, chart of accounts and posting groups.
+3. Apply `REALISM-STANDARD-DRAFT.md` to storyline, scene cards and customer data simulation.
+4. Create Playwright scenario catalog mapped to WS02/WS03/WS04 UAT and evidence needs.
+5. Turn `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` into workstream-level Jira import candidates.
+6. Create first simulated data files or tables for company, finance and master data.
+7. Create workstream-to-book-chapter map.
 8. Create project plan review checklist.
+9. After the freeze, resume live work with a read-first foundation/master-data preflight, not blind record creation.
 
 ## Update rule
 

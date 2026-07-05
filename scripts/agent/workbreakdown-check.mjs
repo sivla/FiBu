@@ -10,6 +10,10 @@ const files = {
   projectCast: '.agent/project-template/PROJECT-CAST-AND-STAKEHOLDERS-DRAFT.md',
   projectStoryline: '.agent/project-template/PROJECT-STORYLINE-DRAFT.md',
   projectSceneCards: '.agent/project-template/PROJECT-SCENE-CARDS-DRAFT.md',
+  trainingStrategy: '.agent/project-template/TRAINING-STRATEGY-AND-CURRICULUM-DRAFT.md',
+  roleTrainingMatrix: '.agent/project-template/ROLE-BASED-TRAINING-MATRIX-DRAFT.md',
+  playwrightTrainingEvidenceMap: '.agent/project-template/PLAYWRIGHT-TRAINING-EVIDENCE-MAP-DRAFT.md',
+  realismStandard: '.agent/project-template/REALISM-STANDARD-DRAFT.md',
   customerDataSimulation: '.agent/project-template/CUSTOMER-DATA-SIMULATION-DRAFT.md',
   workbreakdown: '.agent/project-template/BC-IMPLEMENTATION-WORKBREAKDOWN-DRAFT.md',
   jiraModel: '.agent/project-template/JIRA-WORK-ITEM-MODEL.md',
@@ -23,7 +27,8 @@ const files = {
   transitionCard: '.agent/project-template/GOAL-TRANSITION-CARD-2026-07-05.md',
   refinementBacklog: '.agent/project-template/REFINEMENT-BACKLOG.md',
   caseStudyCoreDraft: '.agent/project-template/WORKSTREAM-02-CASE-STUDY-CORE-JIRA-DRAFT.md',
-  financeFoundationDraft: '.agent/project-template/WORKSTREAM-03-FINANCE-FOUNDATION-JIRA-DRAFT.md'
+  financeFoundationDraft: '.agent/project-template/WORKSTREAM-03-FINANCE-FOUNDATION-JIRA-DRAFT.md',
+  masterDataProductDraft: '.agent/project-template/WORKSTREAM-04-MASTER-DATA-PRODUCT-JIRA-DRAFT.md'
 };
 
 function absolute(relativePath) {
@@ -70,6 +75,10 @@ if (allText) {
     'Project Cast and Stakeholders Draft',
     'Project Storyline Draft',
     'Project Scene Cards Draft',
+    'Training Strategy and Curriculum Draft',
+    'Role-Based Training Matrix Draft',
+    'Playwright Training Evidence Map Draft',
+    'Realism Standard Draft',
     'Customer Data Simulation Draft',
     'Business Central Implementation Workbreakdown Draft',
     'Jira Work Item Model',
@@ -84,6 +93,7 @@ if (allText) {
     'Project Template Refinement Backlog',
     'WS02 Case Study Core Jira Draft',
     'WS03 Finance Foundation Jira Draft',
+    'WS04 Master Data Product Jira Draft',
     'Universaarl Business Central Implementation, Book, Training and Evidence System',
     'Workstream',
     'Epic',
@@ -95,11 +105,15 @@ if (allText) {
     'Finance Foundation and Control Model',
     'Recommended first refinement target: Finance Foundation and Control Model',
     'Current next best step',
-    'WS02-CASE-STUDY-CORE` now exists as a workstream draft',
+    'WS02-CASE-STUDY-CORE` and `WS04-MASTER-DATA-PRODUCT` now exist as workstream drafts',
     'WORKSTREAM-02-CASE-STUDY-CORE-JIRA-DRAFT.md',
     'Epic CS-01: Company Story and Legal Entity Model',
     'Epic CS-02: Organization, Locations and Responsibility Model',
     'Epic CS-03: Environment, Company Context and Evidence Boundary',
+    'WORKSTREAM-04-MASTER-DATA-PRODUCT-JIRA-DRAFT.md',
+    'Epic MD-01: Customer Master Data',
+    'Epic MD-02: Vendor Master Data',
+    'Epic MD-03: Product Model, Items, Services and Non-Inventory Items',
     'Epic FF-01: General Ledger Setup and Accounting Periods',
     'Epic FF-02: Chart of Accounts and Account Categories',
     'Epic FF-03: Posting Groups and Posting Setup',
@@ -245,6 +259,34 @@ if (allText) {
     'All named people are fictional characters'
   ], 7);
 
+  requireAtLeast('master data product anchors', [
+    'Customer Master Data',
+    'Vendor Master Data',
+    'Product Model, Items, Services and Non-Inventory Items',
+    'Templates, Configuration Packages and Data Quality',
+    'Route matrix',
+    'DR-MD-001',
+    'DR-MD-002',
+    'DR-MD-003',
+    'UAT-MD-001',
+    'TR-MD-001',
+    'configuration package',
+    'Excel import'
+  ], 10);
+
+  requireAtLeast('training and realism anchors', [
+    'Training Strategy and Curriculum Draft',
+    'Role-Based Training Matrix Draft',
+    'Playwright Training Evidence Map Draft',
+    'Realism Standard Draft',
+    'role-based',
+    'training-ready',
+    'evidence-needed',
+    'Would a serious Business Central consultant',
+    'RISK-011',
+    'DEC-009'
+  ], 8);
+
   if (/password|client_secret|refresh_token|access_token|Bearer |eyJ/i.test(allText)) {
     errors.push('.agent/project-template appears to contain secret-like text');
   }
@@ -270,7 +312,7 @@ const output = {
   warnings,
   nextStep:
     errors.length === 0
-      ? 'Project template is usable as a local implementation planning anchor. Next refine WS04 Master Data/Product, while using WS02 and WS03 as the first detailed patterns.'
+      ? 'Project template is usable as a local implementation planning anchor. Next convert core and master-data data requests into Jira-ready issue candidates.'
       : 'Fix the workbreakdown draft before using it as a planning anchor.'
 };
 

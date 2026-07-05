@@ -201,3 +201,38 @@ Mitigation:
 - Maintain MCP registry and local tooling status.
 - Treat missing tools as documented constraints.
 - Never commit real tenant/auth secrets.
+
+### RISK-011 Training material teaches unproven behavior
+
+Workstream: `WS13-UAT-TRAINING-CUTOVER`, `WS14-BOOK-PLAYWRIGHT-LEARNING`
+Severity: P1
+Probability: medium
+Status: active
+
+Impact:
+
+Users may learn steps or checks that are not actually proven in Universaarl, leading to weak UAT, wrong expectations or misleading book content.
+
+Mitigation:
+
+- Use `PLAYWRIGHT-TRAINING-EVIDENCE-MAP-DRAFT.md`.
+- Keep training modules in `draft`, `evidence-needed`, `technical-only` or `parked` until source/evidence/UAT gates are clear.
+- Translate technical probes into customer-facing exercises only after validation.
+
+### RISK-012 Project story becomes too demo-perfect
+
+Workstream: all workstreams
+Severity: P1
+Probability: medium
+Status: active
+
+Impact:
+
+The book may feel artificial if every data packet is complete, every role is available, every decision is easy and every Business Central path works on first try.
+
+Mitigation:
+
+- Use `REALISM-STANDARD-DRAFT.md`.
+- Include realistic imperfections only when they teach project behavior.
+- Convert imperfections into data requests, decisions, risks, UAT defects, training notes or book boundaries.
+- Avoid drama that does not produce project value.

@@ -36,6 +36,14 @@ The target is one integrated system:
   - End-to-end project story arc from kickoff to go-live simulation and retrospective.
 - `PROJECT-SCENE-CARDS-DRAFT.md`
   - Scene cards that turn characters and storyline into tickets, data, decisions, BC work, evidence and training.
+- `TRAINING-STRATEGY-AND-CURRICULUM-DRAFT.md`
+  - Role- and phase-based training curriculum linked to BC workstreams, UAT, handbook output and evidence.
+- `ROLE-BASED-TRAINING-MATRIX-DRAFT.md`
+  - Training matrix by audience, module, exercise, evidence gate and status.
+- `PLAYWRIGHT-TRAINING-EVIDENCE-MAP-DRAFT.md`
+  - Mapping from training modules to Playwright, sandbox evidence, UAT and handbook readiness.
+- `REALISM-STANDARD-DRAFT.md`
+  - Quality gate for keeping the fictional Universaarl project realistic instead of demo-perfect.
 - `BC-IMPLEMENTATION-WORKBREAKDOWN-DRAFT.md`
   - Main workstream, epic, story and task breakdown.
 - `WORKSTREAM-02-CASE-STUDY-CORE-JIRA-DRAFT.md`
@@ -58,6 +66,8 @@ The target is one integrated system:
   - Ordered refinement backlog for turning the draft into Jira-ready project material.
 - `WORKSTREAM-03-FINANCE-FOUNDATION-JIRA-DRAFT.md`
   - First detailed workstream draft for finance foundation, setup decisions, Playwright scenarios and book outputs.
+- `WORKSTREAM-04-MASTER-DATA-PRODUCT-JIRA-DRAFT.md`
+  - Detailed workstream draft for customers, vendors, items, services, locations, templates, configuration-package choices, UAT, training and book outputs.
 
 ## Working rule
 

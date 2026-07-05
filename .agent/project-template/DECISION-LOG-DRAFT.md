@@ -290,3 +290,81 @@ Risks:
 Reversal/correction path:
 
 Keep all named persons explicitly fictional. Remove scenes that do not produce tickets, decisions, data, BC work, evidence, UAT/training or book learning.
+
+### DEC-009 Training material must be role-based and evidence-backed
+
+Date: 2026-07-05
+Workstream: `WS13-UAT-TRAINING-CUTOVER`, `WS14-BOOK-PLAYWRIGHT-LEARNING`
+Status: accepted
+
+Problem:
+
+Training could become generic slides or handbook text that is disconnected from actual Business Central behavior, customer roles and project evidence.
+
+Decision:
+
+All professional training material must be role-based, tied to a workstream/epic, linked to handbook/book output and backed by source, Universaarl sandbox observation, Playwright repeatability or UAT acceptance where it teaches concrete BC behavior.
+
+Reason:
+
+Customer training only has value when users learn their actual responsibilities, daily process, checks, exceptions and escalation routes.
+
+Customer impact:
+
+Each audience receives a different learning path: management, finance, purchasing, sales, inventory/warehouse, admin, key users and project/book team.
+
+Book impact:
+
+Book chapters must produce usable handbook and training sections, not just explanatory prose.
+
+Playwright impact:
+
+Playwright scenarios should be mapped to training modules when they can prove or demonstrate the behavior being taught.
+
+Risks:
+
+- training material can overclaim if the BC behavior is not proven
+- technical Playwright probes can be mistaken for customer-facing exercises
+
+Reversal/correction path:
+
+Mark modules as `draft`, `evidence-needed`, `technical-only` or `parked` until evidence, UAT or source gates are satisfied.
+
+### DEC-010 Realism is a quality gate for project/book/training artifacts
+
+Date: 2026-07-05
+Workstream: all workstreams
+Status: accepted
+
+Problem:
+
+The Universaarl project could become too smooth and demo-like: perfect data, instant decisions, always-available roles, no missing fields, no UAT findings and no realistic project constraints.
+
+Decision:
+
+Use `REALISM-STANDARD-DRAFT.md` as a quality gate before promoting project plans, tickets, customer data, scenes, book chapters, training material, UAT scenarios or Playwright evidence to a more final status.
+
+Reason:
+
+A realistic Business Central implementation includes incomplete data, role constraints, phased scope, trade-offs, review boundaries, defects, training gaps and explicit risks.
+
+Customer impact:
+
+The fictional customer behaves like a real customer: data arrives with owners, gaps, follow-up questions, availability constraints and sign-off needs.
+
+Book impact:
+
+The book becomes more credible because it shows real project behavior instead of perfect demo flow.
+
+Playwright impact:
+
+Playwright remains evidence for repeatable behavior, not proof that the customer accepted the process or that the project is production-ready.
+
+Risks:
+
+- too much realism can create distracting noise
+- too little realism makes the book feel artificial
+
+Reversal/correction path:
+
+If a section becomes too messy, simplify it intentionally and label it as `training-simplification` or `book-simplification`.

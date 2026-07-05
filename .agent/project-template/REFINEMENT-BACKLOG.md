@@ -21,6 +21,10 @@ The project template should become complete, but not by creating a huge static d
 - Create project cast and stakeholder model.
 - Create end-to-end project storyline draft.
 - Create first project scene cards.
+- Create training strategy and curriculum.
+- Create role-based training matrix.
+- Create Playwright training evidence map.
+- Create realism standard.
 - Define Jira work item model.
 - Define documentation cadence.
 - Define artifact templates.
@@ -37,7 +41,7 @@ Refine in this order:
 
 1. `WS03-FINANCE-FOUNDATION`
 2. `WS02-CASE-STUDY-CORE` - draft exists; refine later into Jira import candidates after data-request owners are assigned.
-3. `WS04-MASTER-DATA-PRODUCT` - current next detailed workstream target.
+3. `WS04-MASTER-DATA-PRODUCT` - draft exists; refine later into Jira import candidates after data-request owners and route decisions are assigned.
 4. `WS07-INVENTORY-COSTING-STOCK`
 5. `WS05-PURCHASING-SOURCE-TO-PAY`
 6. `WS06-SALES-ORDER-TO-CASH`
@@ -130,6 +134,45 @@ Use `PROJECT-CAST-AND-STAKEHOLDERS-DRAFT.md` and `PROJECT-STORYLINE-DRAFT.md` to
 
 Each scene should produce project artifacts, not just dialogue: tickets, data requests, decisions, risks, BC work, evidence, UAT/training or book output.
 
+## P1: Build professional training package
+
+Use these files:
+
+- `TRAINING-STRATEGY-AND-CURRICULUM-DRAFT.md`
+- `ROLE-BASED-TRAINING-MATRIX-DRAFT.md`
+- `PLAYWRIGHT-TRAINING-EVIDENCE-MAP-DRAFT.md`
+- `.agent/CUSTOMER-HANDBOOK-TRAINING-STANDARD.md`
+
+Create training module cards for:
+
+- environment/company and evidence boundary
+- Business Central navigation
+- chart of accounts
+- posting groups
+- VAT/USt boundary
+- dimensions
+- customer/vendor/item master data
+- purchasing process
+- sales process
+- inventory quantity/value
+- UAT execution
+
+Each module must define audience, learning objective, exercise, handbook output, source/evidence status, Playwright/UAT link and acceptance criteria.
+
+## P1: Apply realism standard
+
+Use `REALISM-STANDARD-DRAFT.md` before promoting project, book, customer-data, training or evidence material.
+
+Apply first to:
+
+- `PROJECT-STORYLINE-DRAFT.md`
+- `PROJECT-SCENE-CARDS-DRAFT.md`
+- `CUSTOMER-DATA-SIMULATION-DRAFT.md`
+- `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md`
+- `ROLE-BASED-TRAINING-MATRIX-DRAFT.md`
+
+The goal is to prevent demo-perfect artifacts. Realistic material should include owners, missing data, validation, role constraints, trade-offs, UAT feedback, training gaps and evidence boundaries where appropriate.
+
 ## P1: Refine decision and risk registers
 
 Refine the initial registers:
@@ -189,4 +232,4 @@ Later create one compact dashboard:
 
 ## Current next best step
 
-`WS02-CASE-STUDY-CORE` now exists as a workstream draft. The next useful refinement is `WS04-MASTER-DATA-PRODUCT`, because customers, vendors, items, services, locations, templates and configuration-package choices must be planned before the next live master-data or process work. In parallel, `DR-CORE-001` and `DR-CORE-002` should become Jira-ready data requests with owner, due date, format, validation rule and BC usage.
+`WS02-CASE-STUDY-CORE` and `WS04-MASTER-DATA-PRODUCT` now exist as workstream drafts. The next useful refinement is to convert `DR-CORE-001`, `DR-CORE-002` and `DR-MD-001` through `DR-MD-003` into Jira-ready data requests with owner, due date, format, validation rule, dependency and BC usage. That is the fastest way to make the next live Foundation/Master-Data pilot better rather than merely more automated.

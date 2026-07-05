@@ -157,6 +157,9 @@ Suggested ticket groups:
 | BCPM-1102 | Task | WS13 | Create role-based training matrix | Training matrix |
 | BCPM-1103 | Task | WS13 | Create cutover checklist | Cutover draft |
 | BCPM-1104 | Task | WS13 | Create hypercare support model | Support model |
+| BCPM-1105 | Task | WS13 | Create training strategy and curriculum | Training curriculum |
+| BCPM-1106 | Task | WS13 | Map training modules to Playwright and UAT evidence | Training evidence map |
+| BCPM-1107 | Training Item | WS13 | Create first training module cards | Trainer-ready module drafts |
 | BCPM-1200 | Epic | WS14 | Operate book, Playwright and learning system | Evidence-backed book machine |
 | BCPM-1201 | Task | WS14 | Map book chapters to workstreams and epics | Book map |
 | BCPM-1202 | Task | WS14 | Map Playwright scenarios to UAT and evidence claims | Scenario map |
