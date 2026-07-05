@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-05T23:20:00.000+02:00",
+  "updatedAt": "2026-07-05T23:55:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-vat-page472-active-editor-route-decision",
-  "activeCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-  "active_case_file": ".agent/state/cases/target-073-vat-page472-active-editor-route-decision.json",
+  "activeArea": "universaarl-w1-foundation-checkpoint-after-vat-editor-park",
+  "activeCase": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
+  "active_case_file": ".agent/state/cases/target-074-w1-foundation-checkpoint-after-vat-editor-park.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -19,41 +19,35 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central-readonly",
-    "confirm-instance-playthru",
-    "confirm-company-universaarl-de",
-    "open-page472-using-target072-route",
-    "click-edit-list-readonly-diagnosis",
-    "click-new-only-if-no-value-typing",
-    "probe-active-editor-without-typing-target-values",
-    "capture-screenshot-qa",
-    "write-result-json"
+    "read-foundation-evidence-results",
+    "write-local-foundation-checkpoint-result",
+    "update-state-and-coverage-plan",
+    "update-catalog-or-bookdraft-if-reader-facing-and-evidence-bounded"
   ],
   "forbiddenActions": [
     "leave-instance",
+    "company-switch",
     "commit-secrets",
     "show-env-or-auth",
     "fake-evidence",
-    "type-inland",
-    "type-vat19",
-    "type-19",
-    "type-3806",
-    "type-1406",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "write-setup",
     "write-vat-posting-setup",
-    "write-vat-business-posting-group",
-    "write-vat-product-posting-group",
-    "configuration-package-import-export-validate-apply",
+    "write-general-posting-setup",
+    "write-default-dimensions",
+    "write-global-dimensions",
     "create-master-data",
     "create-document-or-draft",
     "preview-posting",
     "post",
     "payment",
     "api-shortcut",
-    "company-switch",
-    "book-claim-without-evidence"
+    "claim-foundation-ready-with-open-blockers"
   ],
-  "nextCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-  "nextStep": "Run TARGET-073 read-only active-editor diagnosis on Page 472; do not type VAT target values until a true editor route is proven.",
+  "nextCase": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
+  "nextStep": "Run TARGET-074 as a local W1 Foundation checkpoint after VAT Page 472 editor route park; do not run BC/Playwright and do not unlock master data or process cases.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -236,7 +230,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "TARGET-027D32 approves TARGET-071 only as a controlled Page 472 live gate for INLAND/VAT19. No VAT setup write has happened yet.",
+  "currentCoverageFocus": "TARGET-073 reached Page 472 and probed materially new editor routes, but no convincing row-scoped editor was found. VAT Posting Setup remains parked; TARGET-074 must refresh the W1 Foundation limitation honestly.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -3858,7 +3852,7 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/target-073-vat-page472-active-editor-route-decision.json",
+  "activeCaseFile": ".agent/state/cases/target-074-w1-foundation-checkpoint-after-vat-editor-park.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
@@ -7939,54 +7933,43 @@
     "uiLearning": "BC Page 456 URL filters require quoted table/field syntax for table names with punctuation; the filtered U-VEND list shows checkbox columns, but the write locator still must be source-backed or assisted before toggling Manual Nos."
   },
   "nextStepDecision": {
-    "currentCase": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-070D selected Page 472/Table 325 as the strongest field/context basis; TARGET-027D26 and TARGET-061 show Page 472 visible read-only; TARGET-027D29 gives Table 325 field truth; D28/D29/D30 parked weak grid/New/Edit-List routes.",
+    "currentCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
+    "lastEvidenceSummary": "TARGET-071 reached Page 472 but did not detect a true active editor for target fields.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The next case is sensible only as a controlled live gate with mandatory pre-write proof and stop rules. It is not a direct VAT setup success claim.",
+    "reason": "TARGET-073 is the narrowest non-writing diagnosis before another VAT setup write gate.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
-        "status": "ready-next",
-        "reason": "It is the narrowest practical route to either prove or block the Page 472 VAT setup write with real live context."
-      },
-      {
-        "caseId": "TARGET-071-VAT-GROUPS-CONTROLLED-WRITE-GATE-DECISION",
         "status": "blocked",
-        "reason": "Page 470 remains parked; VAT Business Posting Groups writes are not part of the Page 472 setup-row gate."
+        "reason": "Still no active editor route; repeating TARGET-071 would be blind."
       },
       {
-        "caseId": "TARGET-032P-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PARK",
-        "status": "ready-after-current",
-        "reason": "If VAT Page 472 blocks again, General Posting Setup 5400 remains the next separate Foundation blocker."
+        "caseId": "TARGET-071B-VAT-POSTING-SETUP-REOPEN-AND-SOURCE-REVIEW",
+        "status": "blocked",
+        "reason": "No saved INLAND/VAT19 row exists."
       },
       {
-        "caseId": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
-        "status": "ready-after-current",
-        "reason": "Foundation checkpoint becomes useful after the VAT/Page472 and General Posting blockers are classified."
+        "caseId": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
+        "status": "ready-next",
+        "reason": "Fresh checkpoint after TARGET-073 should classify the current VAT editor limitation and choose a non-repeating next setup route."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "blocked",
-        "reason": "O2C remains blocked until VAT and General Posting Setup are proven or consciously limited as learning-only."
+        "reason": "O2C remains blocked until VAT and General Posting Setup are proven or consciously limited."
       }
     ],
-    "queueChangesMade": [
-      "Closed TARGET-027D32 as observed-local-decision.",
-      "Created TARGET-071 as the next controlled live Page 472 VAT Posting Setup gate.",
-      "Kept Preview Posting, Posting, master data, document drafts, Page 470 writes and API shortcuts locked."
-    ],
-    "selectedNextCase": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
-    "whySelectedNextCaseIsBest": "It converts existing Page 472/Table 325 learning into one practical, bounded live test with strict stop rules instead of looping on Page 470 or broad configuration packages.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
+    "whySelectedNextCaseIsBest": "The Page 472 editor route remains blocked after materially new probes, so a fresh Foundation checkpoint is more honest than another write attempt or reusing an older completed checkpoint.",
     "risksBeforeNextCase": [
-      "A visible Page 472 list can still be insufficient for a row-bound write.",
-      "Existing wrong or partial VAT rows may require cleanup outside this case.",
-      "A successful row write is not German VAT final proof."
+      "Do not type VAT target values without a row-scoped editor.",
+      "Do not claim final German VAT correctness before Preview Posting, VAT Entries and G/L Entries.",
+      "Do not create master data or documents before Foundation readiness."
     ],
     "requiredPreparation": [
-      "Run stored-auth and instance/company checks before Playwright.",
-      "Use screenshot QA before and after any setup value change.",
-      "Stop before write unless all target fields and row scope are unambiguous."
+      "Update the Foundation checkpoint with VAT matrix route limitation and choose a non-repeating next setup route."
     ]
   },
   "latestTarget037MasterdataFoundationCheckpoint": {
@@ -10282,5 +10265,40 @@
         "Update TARGET-071 implementation to use the bounded visible route instead of relying on direct page=472 only."
       ]
     }
+  },
+  "latestTarget073VatPage472ActiveEditorRouteDecision": {
+    "caseId": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
+    "status": "blocked-page472-active-editor-route",
+    "completedAt": "2026-07-05T23:55:00.000+02:00",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-073-vat-page472-active-editor-route-decision/TARGET-073-result.json",
+    "setupChanged": false,
+    "setupChangeAttempted": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "proved": [
+      "Business Central stayed in playthru / UNIVERSAARL-DE.",
+      "Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix was opened through the bounded route.",
+      "TARGET-073 probed Page 472 row/cell focus routes without typing target VAT values.",
+      "No setup, master data, document draft, Preview Posting, Posting, payment, API shortcut or company switch was executed."
+    ],
+    "notProved": [
+      "No INLAND/VAT19 VAT Posting Setup row was saved.",
+      "No VAT % 19 value was persisted.",
+      "No Sales VAT Account 3806 value was persisted.",
+      "No Purchase VAT Account 1406 value was persisted.",
+      "No final German VAT correctness.",
+      "No VAT Entries.",
+      "No G/L Entries.",
+      "No Preview Posting.",
+      "No Posting."
+    ],
+    "blockedBy": [
+      "No convincing row-scoped active editor was detected after single-click, double-click, Enter, or F2 probes."
+    ],
+    "nextCase": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
+    "coverageImpact": "Page 472 is reachable and the matrix can be placed in edit/new diagnosis state, but no safe row-scoped editor route exists for INLAND/VAT19/19/3806/1406."
   }
 }

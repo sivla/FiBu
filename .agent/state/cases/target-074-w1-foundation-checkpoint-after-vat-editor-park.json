@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
+  "status": "pending",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-target-execution",
+  "activeArea": "universaarl-w1-foundation-checkpoint-after-vat-editor-park",
+  "mayRunPlaywright": false,
+  "effectiveBcActionsAllowed": false,
+  "purpose": "Refresh the W1 Foundation checkpoint after TARGET-073 proved that Page 472 is reachable but the active editor route for VAT Posting Setup target fields remains blocked.",
+  "whyNow": "TARGET-072 solved Page 472 navigation and TARGET-071/TARGET-073 proved that the current Page 472 grid/editor route cannot safely persist INLAND/VAT19/19/3806/1406. Another VAT write attempt would repeat the blocker.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-072-vat-page472-navigation-route-decision/TARGET-072-result.json",
+    "playwright/projects/fibu-book5/evidence/target-071-vat-posting-setup-page472-controlled-write-gate/TARGET-071-result.json",
+    "playwright/projects/fibu-book5/evidence/target-073-vat-page472-active-editor-route-decision/TARGET-073-result.json",
+    "playwright/projects/fibu-book5/evidence/target-068-w1-foundation-ready-checkpoint-after-dimension-park/TARGET-068-result.json"
+  ],
+  "allowedActions": [
+    "read-foundation-evidence-results",
+    "write-local-foundation-checkpoint-result",
+    "update-state-and-coverage-plan",
+    "update-catalog-or-bookdraft-if-reader-facing-and-evidence-bounded"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "write-setup",
+    "write-vat-posting-setup",
+    "write-general-posting-setup",
+    "write-default-dimensions",
+    "write-global-dimensions",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-foundation-ready-with-open-blockers"
+  ],
+  "acceptanceCriteria": [
+    "Classify W1 Foundation after VAT Page 472 editor-route block.",
+    "List which setup blocks are now parked and why.",
+    "Select one non-repeating next case.",
+    "Keep O2C/P2P/master data/Preview/Post locked unless a later gate explicitly accepts a limited learning path."
+  ],
+  "stopIf": [
+    "The checkpoint would claim posting readiness.",
+    "The checkpoint would unlock master data or documents without a new gate.",
+    "The next case would repeat TARGET-071 or TARGET-073 without a materially new route."
+  ],
+  "nextCase": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
+  "updatedAt": "2026-07-05T23:55:00.000+02:00"
+}
