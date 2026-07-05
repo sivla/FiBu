@@ -141,6 +141,10 @@ Prefer deterministic local tools before model judgment:
 
 Escalate to Judge or Big Brain only for risk, contradiction, BC/FiBu judgment or architecture decisions.
 
+## MCP and source tooling
+
+Use `.agent/mcp/MCP-SERVER-REGISTRY.md` before adding or relying on MCP servers. Microsoft Learn Docs MCP is the preferred read-only source path for Business Central product facts; Business Central MCP and AL tooling require their documented gates before they can affect sandbox data, AL publish flows, or book claims. Keep private tenant, auth and connection details in ignored local config files, never in committed project state.
+
 ## Skill budget
 
 Default: load at most three skills.

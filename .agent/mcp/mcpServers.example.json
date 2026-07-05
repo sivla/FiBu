@@ -1,0 +1,33 @@
+{
+  "mcpServers": {
+    "microsoft.docs.mcp": {
+      "type": "http",
+      "url": "https://learn.microsoft.com/api/mcp"
+    },
+    "al": {
+      "type": "stdio",
+      "command": "altool",
+      "args": ["launchmcpserver", "--transport", "stdio"]
+    },
+    "businesscentral-readonly": {
+      "type": "http",
+      "url": "https://mcp.businesscentral.dynamics.com",
+      "headers": {
+        "TenantId": "<tenant-guid>",
+        "EnvironmentName": "playthru",
+        "Company": "UNIVERSAARL-DE",
+        "ConfigurationName": ""
+      }
+    },
+    "al-symbols-mcp": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "al-mcp-server"]
+    },
+    "bc-code-intelligence": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "bc-code-intelligence-mcp"]
+    }
+  }
+}
