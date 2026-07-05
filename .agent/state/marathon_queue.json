@@ -5160,7 +5160,7 @@
       "id": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS",
       "order": 10218,
       "category": "vat-page470-route-diagnosis",
-      "status": "pending",
+      "status": "blocked",
       "lookaheadStatus": "ready-next",
       "expectedImpact": "non-repeating-page470-helper-or-pageinspection-diagnosis",
       "goal": "Diagnose Page 470 activation after direct, exact-result and row-geometry routes stayed on Role Center/Tell-Me overlay.",
@@ -5181,10 +5181,58 @@
         "api-shortcut",
         "repeat-target070-click-routes-without-new-evidence"
       ],
-      "nextCase": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS"
+      "nextCase": "TARGET-070C-VAT-PAGE470-SOURCE-OBJECT-OR-ALTERNATIVE-ROUTE-DECISION",
+      "completedAt": "2026-07-05T18:06:57.169Z",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-070b-vat-page470-helper-fix-or-pageinspection-diagnosis/TARGET-070B-result.json",
+      "blockedBy": [
+        "Business Central removed or ignored page=470 from the visible URL.",
+        "Page 470 title not visible.",
+        "Code column not visible.",
+        "Visible state still looks like Role Center, not Page 470."
+      ],
+      "actualImpact": "page470-url-shape-and-pageinspection-diagnosis-completed"
+    },
+    {
+      "id": "TARGET-070C-VAT-PAGE470-SOURCE-OBJECT-OR-ALTERNATIVE-ROUTE-DECISION",
+      "order": 10219,
+      "category": "vat-page470-route-decision",
+      "status": "pending",
+      "lookaheadStatus": "ready-next",
+      "expectedImpact": "local-non-repeating-vat-page470-route-decision",
+      "goal": "Decide the next non-click-loop route for VAT Business Posting Groups Page 470 after direct URL, Tell-Me activation, URL-shape variants and Page Inspection all failed to produce current screenshot truth.",
+      "dependencies": [
+        "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS"
+      ],
+      "mayRunPlaywright": false,
+      "effectiveBcActionsAllowed": false,
+      "forbiddenActions": [
+        "leave-instance",
+        "company-switch",
+        "commit-secrets",
+        "show-env-or-auth",
+        "fake-evidence",
+        "book-claim-without-evidence",
+        "write-vat-business-posting-group",
+        "write-vat-product-posting-group",
+        "write-vat-posting-setup",
+        "write-setup",
+        "click-new",
+        "click-edit-list",
+        "create-master-data",
+        "create-document-or-draft",
+        "preview-posting",
+        "post",
+        "payment",
+        "api-shortcut",
+        "repeat-target020-direct-page470-route",
+        "repeat-target027c4-text-click-route",
+        "repeat-target070-row-geometry-click-route",
+        "repeat-target070b-url-shape-route"
+      ],
+      "nextCase": "TARGET-070C-VAT-PAGE470-SOURCE-OBJECT-OR-ALTERNATIVE-ROUTE-DECISION"
     }
   ],
-  "lastUpdated": "2026-07-05T17:57:49.644Z",
+  "lastUpdated": "2026-07-05T18:06:57.169Z",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -5296,25 +5344,25 @@
       ]
     }
   },
-  "updatedAt": "2026-07-05T17:57:49.644Z",
+  "updatedAt": "2026-07-05T18:06:57.169Z",
   "lastCompletedCase": "TARGET-060-FOUNDATION-LIMITATION-CHECK-AFTER-PURCHASE-ACCOUNT-PARK",
-  "nextCase": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS",
+  "nextCase": "TARGET-070C-VAT-PAGE470-SOURCE-OBJECT-OR-ALTERNATIVE-ROUTE-DECISION",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
-    "lastEvidenceSummary": "TARGET-069 found conflicting Page 470 route evidence: older TARGET-020/TARGET-027C4 positive signals versus newer D31D/D31E blocked routes.",
+    "currentCase": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS",
+    "plannedNextCaseBeforeReview": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS",
+    "lastEvidenceSummary": "TARGET-070 blocked Page 470 direct, exact-result and row-chevron geometry routes.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The next write-gate depends on current Page 470 screenshot truth, so route parity must be settled before VAT setup work.",
+    "reason": "Route construction and Page Inspection are materially different from repeating the same Tell-Me clicks.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-071-VAT-GROUPS-CONTROLLED-WRITE-GATE-DECISION",
         "status": "blocked",
-        "reason": "No write-gate before current Page 470 proof."
+        "reason": "No VAT group write gate before Page 470 route truth."
       },
       {
         "caseId": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
         "status": "needs-setup-first",
-        "reason": "The VAT matrix row depends on VAT Business and Product Posting Groups first."
+        "reason": "VAT matrix remains downstream of VAT Business/Product Posting Group setup."
       },
       {
         "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
@@ -5324,51 +5372,63 @@
       {
         "caseId": "TARGET-012-W1-FOUNDATION-READINESS",
         "status": "needs-setup-first",
-        "reason": "Foundation readiness cannot be claimed while VAT write gates remain unresolved."
+        "reason": "Foundation readiness cannot be claimed while VAT route truth remains blocked."
       }
     ],
     "queueChangesMade": [],
-    "selectedNextCase": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS",
-    "whySelectedNextCaseIsBest": "Repeating the same route would waste time; the next useful work is helper/Page Inspection diagnosis.",
+    "selectedNextCase": "TARGET-070C-VAT-PAGE470-SOURCE-OBJECT-OR-ALTERNATIVE-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "URL shape and Page Inspection did not unlock Page 470; use source/object or alternative non-UI route decision before further clicks.",
     "risksBeforeNextCase": [
-      "Do not click New/Edit/List actions without the controlled write case.",
+      "Do not write VAT groups before a controlled write gate.",
       "Do not claim German VAT correctness before matrix, Preview Posting, VAT Entries and G/L Entries."
     ],
     "requiredPreparation": [
-      "Use Page Inspection or a materially different UI route; do not repeat the failed search-click path."
+      "Stop repeating Page 470 Tell-Me clicks; decide source/object or alternative route."
     ]
   },
-  "nextStep": "Run TARGET-070B helper/Page Inspection diagnosis; avoid repeating TARGET-070 direct/text/row geometry routes.",
+  "nextStep": "Run TARGET-070C as a local decision: stop repeating Page 470 clicks and decide source/object or alternative VAT route before any setup write.",
   "openItems": 1,
   "nextQueueItem": {
-    "id": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS",
-    "order": 10218,
-    "category": "vat-page470-route-diagnosis",
+    "id": "TARGET-070C-VAT-PAGE470-SOURCE-OBJECT-OR-ALTERNATIVE-ROUTE-DECISION",
+    "order": 10219,
+    "category": "vat-page470-route-decision",
     "status": "pending",
     "lookaheadStatus": "ready-next",
-    "expectedImpact": "non-repeating-page470-helper-or-pageinspection-diagnosis",
-    "goal": "Diagnose Page 470 activation after direct, exact-result and row-geometry routes stayed on Role Center/Tell-Me overlay.",
+    "expectedImpact": "local-non-repeating-vat-page470-route-decision",
+    "goal": "Decide the next non-click-loop route for VAT Business Posting Groups Page 470 after direct URL, Tell-Me activation, URL-shape variants and Page Inspection all failed to produce current screenshot truth.",
     "dependencies": [
-      "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE"
+      "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS"
     ],
-    "mayRunPlaywright": true,
+    "mayRunPlaywright": false,
     "effectiveBcActionsAllowed": false,
     "forbiddenActions": [
+      "leave-instance",
+      "company-switch",
+      "commit-secrets",
+      "show-env-or-auth",
+      "fake-evidence",
+      "book-claim-without-evidence",
       "write-vat-business-posting-group",
       "write-vat-product-posting-group",
       "write-vat-posting-setup",
       "write-setup",
+      "click-new",
+      "click-edit-list",
       "create-master-data",
       "create-document-or-draft",
       "preview-posting",
       "post",
+      "payment",
       "api-shortcut",
-      "repeat-target070-click-routes-without-new-evidence"
+      "repeat-target020-direct-page470-route",
+      "repeat-target027c4-text-click-route",
+      "repeat-target070-row-geometry-click-route",
+      "repeat-target070b-url-shape-route"
     ],
-    "nextCase": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS"
+    "nextCase": "TARGET-070C-VAT-PAGE470-SOURCE-OBJECT-OR-ALTERNATIVE-ROUTE-DECISION"
   },
   "nextCases": [
-    "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS"
+    "TARGET-070C-VAT-PAGE470-SOURCE-OBJECT-OR-ALTERNATIVE-ROUTE-DECISION"
   ],
   "nextStepDecision": {
     "currentCase": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
@@ -5421,9 +5481,9 @@
       "Capture screenshot QA and result JSON with no-write flags."
     ]
   },
-  "total": 216,
+  "total": 217,
   "done": 164,
-  "blocked": 46,
+  "blocked": 47,
   "latestAuthOpenLoginHandoff": {
     "at": "2026-07-03T13:35:00.000Z",
     "command": "npm run auth:bc:open-login",

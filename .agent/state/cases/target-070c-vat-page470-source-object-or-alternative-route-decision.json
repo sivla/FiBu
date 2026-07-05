@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-070C-VAT-PAGE470-SOURCE-OBJECT-OR-ALTERNATIVE-ROUTE-DECISION",
+  "status": "ready-next",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-target-execution",
+  "activeArea": "universaarl-vat-page470-route-decision",
+  "mayRunPlaywright": false,
+  "effectiveBcActionsAllowed": false,
+  "purpose": "Decide the next non-click-loop route for VAT Business Posting Groups Page 470 after direct URL, Tell-Me activation, URL-shape variants and Page Inspection all failed to produce current screenshot truth.",
+  "whyNow": "TARGET-070 and TARGET-070B produced enough UI evidence to stop repeating Page 470 clicks. The next step should decide between source/object mapping, a different Business Central page, configuration package/table route, or parking Page 470 until a safer route is available.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/TARGET-070-result.json",
+    "playwright/projects/fibu-book5/evidence/target-070b-vat-page470-helper-fix-or-pageinspection-diagnosis/TARGET-070B-result.json"
+  ],
+  "allowedActions": [
+    "local-source-review",
+    "review-existing-evidence",
+    "review-existing-playwright-helper-patterns",
+    "classify-page470-route-status",
+    "propose-non-repeating-next-case",
+    "update-state-and-coverage-plan"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "write-vat-business-posting-group",
+    "write-vat-product-posting-group",
+    "write-vat-posting-setup",
+    "write-setup",
+    "click-new",
+    "click-edit-list",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "repeat-target020-direct-page470-route",
+    "repeat-target027c4-text-click-route",
+    "repeat-target070-row-geometry-click-route",
+    "repeat-target070b-url-shape-route"
+  ],
+  "acceptanceCriteria": [
+    "No Playwright or Business Central action is required unless the decision explicitly creates a later case.",
+    "The decision explains whether Page 470 remains blocked, can be replaced by another source-backed route, or needs a helper/object-analysis case.",
+    "No VAT setup, master data, draft, Preview Posting, Posting or API action is executed.",
+    "The next case is materially different from TARGET-070 and TARGET-070B."
+  ],
+  "stopIf": [
+    "The only available action is repeating TARGET-070 or TARGET-070B routes.",
+    "The decision would claim VAT setup correctness without current setup evidence."
+  ],
+  "nextIfSuccessful": "TARGET-071-VAT-GROUPS-CONTROLLED-WRITE-GATE-DECISION",
+  "nextIfBlocked": "TARGET-070D-VAT-PAGE470-PARK-AND-VAT-SETUP-ALTERNATIVE-ROUTE",
+  "nextCase": "TARGET-070C-VAT-PAGE470-SOURCE-OBJECT-OR-ALTERNATIVE-ROUTE-DECISION"
+}

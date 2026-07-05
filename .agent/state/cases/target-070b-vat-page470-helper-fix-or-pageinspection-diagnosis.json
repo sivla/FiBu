@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS",
-  "status": "ready-next",
+  "status": "blocked",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "mode": "universaarl-target-execution",
@@ -21,6 +21,8 @@
     "confirm-playthru-instance",
     "confirm-universaarl-de-company",
     "inspect-tell-me-result-dom-and-geometry",
+    "try-target020-exact-url-shape-without-dc-readonly",
+    "try-page-first-url-shape-without-dc-readonly",
     "try-page-inspection-readonly-if-visible",
     "capture-screenshot-qa",
     "write-result-json",
@@ -45,7 +47,7 @@
     "post",
     "payment",
     "api-shortcut",
-    "repeat-target020-direct-page470-route",
+    "repeat-target070-dc0-direct-page470-route",
     "repeat-target027c4-text-click-route",
     "repeat-target070-row-geometry-click-route"
   ],
@@ -63,5 +65,25 @@
   ],
   "nextIfSuccessful": "TARGET-071-VAT-GROUPS-CONTROLLED-WRITE-GATE-DECISION",
   "nextIfBlocked": "TARGET-070C-VAT-PAGE470-SOURCE-OBJECT-OR-ALTERNATIVE-ROUTE-DECISION",
-  "nextCase": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS"
+  "nextCase": "TARGET-070C-VAT-PAGE470-SOURCE-OBJECT-OR-ALTERNATIVE-ROUTE-DECISION",
+  "completedAt": "2026-07-05T18:06:57.169Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-070b-vat-page470-helper-fix-or-pageinspection-diagnosis/TARGET-070B-result.json",
+  "blockedBy": [
+    "Business Central removed or ignored page=470 from the visible URL.",
+    "Page 470 title not visible.",
+    "Code column not visible.",
+    "Visible state still looks like Role Center, not Page 470."
+  ],
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "No VAT setup, master data, document draft, Preview Posting, Posting or API shortcut was executed."
+  ],
+  "notProved": [
+    "Page 470 MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups did not pass screenshot QA with URL-shape variants or Page Inspection.",
+    "No INLAND or VAT19 group exists or was changed by this run.",
+    "No VAT Posting Setup matrix row exists.",
+    "No German 19 percent VAT calculation is proven.",
+    "No VAT Entries or G/L Entries exist."
+  ],
+  "summary": "Page 470 route remains blocked after URL-shape and Page Inspection diagnosis; setup writes stay locked."
 }

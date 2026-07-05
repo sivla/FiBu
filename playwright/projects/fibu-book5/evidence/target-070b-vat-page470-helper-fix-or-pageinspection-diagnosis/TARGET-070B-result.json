@@ -1,0 +1,212 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS",
+  "source": "playwright-universaarl-vat-page470-url-shape-pageinspection-readonly",
+  "resultStatus": "blocked",
+  "runPlanId": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS-PLAN",
+  "selectedTaskClass": "monkey_work",
+  "selectedModelClass": "gpt-4-mini-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "actionsTaken": [
+    "Opened Business Central read-only in playthru / UNIVERSAARL-DE.",
+    "Tried Page 470 URL-shape variants without setup writes.",
+    "Attempted Ctrl+Alt+F1 Page Inspection from the Tell-Me candidate context.",
+    "Captured screenshots, text, metadata and result JSON."
+  ],
+  "actionsNotTaken": [
+    "No VAT Business Posting Group create/edit",
+    "No VAT Product Posting Group create/edit",
+    "No VAT Posting Setup write",
+    "No New action",
+    "No Edit List action",
+    "No setup change",
+    "No master data",
+    "No document draft",
+    "No Preview Posting",
+    "No Posting",
+    "No API shortcut",
+    "No Company switch"
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "No VAT setup, master data, document draft, Preview Posting, Posting or API shortcut was executed."
+  ],
+  "notProved": [
+    "Page 470 MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups did not pass screenshot QA with URL-shape variants or Page Inspection.",
+    "No INLAND or VAT19 group exists or was changed by this run.",
+    "No VAT Posting Setup matrix row exists.",
+    "No German 19 percent VAT calculation is proven.",
+    "No VAT Entries or G/L Entries exist."
+  ],
+  "observations": [
+    {
+      "route": "target020-exact-company-then-page-no-dc",
+      "accepted": false,
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?company=UNIVERSAARL-DE&dc=0",
+      "screenshot": "target-070b-001-target020-exact-company-then-page-no-dc.png",
+      "textFile": "target-070b-001-target020-exact-company-then-page-no-dc.txt",
+      "metadata": "target-070b-001-target020-exact-company-then-page-no-dc.screenshot.json",
+      "blockedBy": [
+        "Business Central removed or ignored page=470 from the visible URL.",
+        "Page 470 title not visible.",
+        "Code column not visible.",
+        "Visible state still looks like Role Center, not Page 470."
+      ],
+      "signals": {
+        "titleVisible": false,
+        "codeColumnVisible": false,
+        "descriptionColumnVisible": true,
+        "searchOverlayVisible": false,
+        "roleCenterVisible": true,
+        "dangerousDialogVisible": false,
+        "pageParamPresent": false
+      }
+    },
+    {
+      "route": "page-first-then-company-no-dc",
+      "accepted": false,
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?company=UNIVERSAARL-DE&dc=0",
+      "screenshot": "target-070b-002-page-first-then-company-no-dc.png",
+      "textFile": "target-070b-002-page-first-then-company-no-dc.txt",
+      "metadata": "target-070b-002-page-first-then-company-no-dc.screenshot.json",
+      "blockedBy": [
+        "Business Central removed or ignored page=470 from the visible URL.",
+        "Page 470 title not visible.",
+        "Code column not visible.",
+        "Visible state still looks like Role Center, not Page 470."
+      ],
+      "signals": {
+        "titleVisible": false,
+        "codeColumnVisible": false,
+        "descriptionColumnVisible": true,
+        "searchOverlayVisible": false,
+        "roleCenterVisible": true,
+        "dangerousDialogVisible": false,
+        "pageParamPresent": false
+      }
+    },
+    {
+      "route": "company-then-page-with-dc-control",
+      "accepted": false,
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?company=UNIVERSAARL-DE&dc=0",
+      "screenshot": "target-070b-003-company-then-page-with-dc-control.png",
+      "textFile": "target-070b-003-company-then-page-with-dc-control.txt",
+      "metadata": "target-070b-003-company-then-page-with-dc-control.screenshot.json",
+      "blockedBy": [
+        "Business Central removed or ignored page=470 from the visible URL.",
+        "Page 470 title not visible.",
+        "Code column not visible.",
+        "Visible state still looks like Role Center, not Page 470."
+      ],
+      "signals": {
+        "titleVisible": false,
+        "codeColumnVisible": false,
+        "descriptionColumnVisible": true,
+        "searchOverlayVisible": false,
+        "roleCenterVisible": true,
+        "dangerousDialogVisible": false,
+        "pageParamPresent": false
+      }
+    }
+  ],
+  "pageInspection": {
+    "opened": true,
+    "hasPage470Signal": true,
+    "hasRoleCenterSignal": true,
+    "hasSearchOverlaySignal": true
+  },
+  "screenshots": [
+    "target-070b-001-target020-exact-company-then-page-no-dc.png",
+    "target-070b-002-page-first-then-company-no-dc.png",
+    "target-070b-003-company-then-page-with-dc-control.png",
+    "target-070b-900-pageinspection-attempt.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-070b-vat-page470-helper-fix-or-pageinspection-diagnosis/TARGET-070B-result.json",
+    "playwright/projects/fibu-book5/evidence/target-070b-vat-page470-helper-fix-or-pageinspection-diagnosis/target-070b-001-target020-exact-company-then-page-no-dc.txt",
+    "playwright/projects/fibu-book5/evidence/target-070b-vat-page470-helper-fix-or-pageinspection-diagnosis/target-070b-001-target020-exact-company-then-page-no-dc.png",
+    "playwright/projects/fibu-book5/evidence/target-070b-vat-page470-helper-fix-or-pageinspection-diagnosis/target-070b-001-target020-exact-company-then-page-no-dc.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-070b-vat-page470-helper-fix-or-pageinspection-diagnosis/target-070b-002-page-first-then-company-no-dc.txt",
+    "playwright/projects/fibu-book5/evidence/target-070b-vat-page470-helper-fix-or-pageinspection-diagnosis/target-070b-002-page-first-then-company-no-dc.png",
+    "playwright/projects/fibu-book5/evidence/target-070b-vat-page470-helper-fix-or-pageinspection-diagnosis/target-070b-002-page-first-then-company-no-dc.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-070b-vat-page470-helper-fix-or-pageinspection-diagnosis/target-070b-003-company-then-page-with-dc-control.txt",
+    "playwright/projects/fibu-book5/evidence/target-070b-vat-page470-helper-fix-or-pageinspection-diagnosis/target-070b-003-company-then-page-with-dc-control.png",
+    "playwright/projects/fibu-book5/evidence/target-070b-vat-page470-helper-fix-or-pageinspection-diagnosis/target-070b-003-company-then-page-with-dc-control.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-070b-vat-page470-helper-fix-or-pageinspection-diagnosis/target-070b-900-pageinspection-attempt.txt",
+    "playwright/projects/fibu-book5/evidence/target-070b-vat-page470-helper-fix-or-pageinspection-diagnosis/target-070b-900-pageinspection-attempt.png",
+    "playwright/projects/fibu-book5/evidence/target-070b-vat-page470-helper-fix-or-pageinspection-diagnosis/target-070b-900-pageinspection-attempt.screenshot.json"
+  ],
+  "blockedBy": [
+    "Business Central removed or ignored page=470 from the visible URL.",
+    "Page 470 title not visible.",
+    "Code column not visible.",
+    "Visible state still looks like Role Center, not Page 470."
+  ],
+  "warnings": [
+    "This run is route diagnosis only; visible New/Edit actions remain unclicked.",
+    "Page 470 visibility is not VAT setup correctness."
+  ],
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS",
+    "plannedNextCaseBeforeReview": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS",
+    "lastEvidenceSummary": "TARGET-070 blocked Page 470 direct, exact-result and row-chevron geometry routes.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Route construction and Page Inspection are materially different from repeating the same Tell-Me clicks.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-071-VAT-GROUPS-CONTROLLED-WRITE-GATE-DECISION",
+        "status": "blocked",
+        "reason": "No VAT group write gate before Page 470 route truth."
+      },
+      {
+        "caseId": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
+        "status": "needs-setup-first",
+        "reason": "VAT matrix remains downstream of VAT Business/Product Posting Group setup."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Posting Groups remain downstream of VAT group/matrix readiness."
+      },
+      {
+        "caseId": "TARGET-012-W1-FOUNDATION-READINESS",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness cannot be claimed while VAT route truth remains blocked."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-070C-VAT-PAGE470-SOURCE-OBJECT-OR-ALTERNATIVE-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "URL shape and Page Inspection did not unlock Page 470; use source/object or alternative non-UI route decision before further clicks.",
+    "risksBeforeNextCase": [
+      "Do not write VAT groups before a controlled write gate.",
+      "Do not claim German VAT correctness before matrix, Preview Posting, VAT Entries and G/L Entries."
+    ],
+    "requiredPreparation": [
+      "Stop repeating Page 470 Tell-Me clicks; decide source/object or alternative route."
+    ]
+  },
+  "safeToFinalizeState": false,
+  "requiresReview": true,
+  "statePatch": {},
+  "nextCase": "TARGET-070C-VAT-PAGE470-SOURCE-OBJECT-OR-ALTERNATIVE-ROUTE-DECISION",
+  "reason": "Page 470 route remains blocked after URL-shape and Page Inspection diagnosis; setup writes stay locked."
+}
