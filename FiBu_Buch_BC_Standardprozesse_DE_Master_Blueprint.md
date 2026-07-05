@@ -4100,9 +4100,9 @@ Umsatzsteuer und E-Rechnungsstatus werden nicht nur am Beleg gelesen. Entscheide
 
 ### Aktueller Evidence-Stand fuer RM-DEMO
 
-Dieses Kapitel beschreibt das deutsche Zielbild. Der aktuelle Laborstand in `RM-DEMO` ist enger: `COMPLIANCE-001` hat nur read-only geprüft, welche Einstiegspunkte in Business Central sichtbar sind. Sichtbar oder kontextuell sichtbar waren `E-Rechnungen`, `VAT Entries`, `VAT Posting Setup`, `Document Sending Profiles`, `Change Log Entries`, `Change Log Setup` und im Role Center der Hinweis `Warten auf Ka E-Rechnungen 0`.
+Das deutsche Zielbild ist breiter als der bisherige Laborstand in `RM-DEMO`. Dort waren bisher nur die Einstiegspunkte sichtbar: `E-Rechnungen`, `VAT Entries`, `VAT Posting Setup`, `Document Sending Profiles`, `Change Log Entries`, `Change Log Setup` und im Role Center der Hinweis `Warten auf Ka E-Rechnungen 0`.
 
-Das beweist fuer das Buch: Ein Anfaenger kann die relevanten Such- und Navigationspfade finden. Es beweist noch nicht, dass eine Rechnung als E-Rechnung erzeugt, validiert, versendet, archiviert oder mit deutscher USt gebucht wurde. In `RM-DEMO` wurde in diesem Compliance-Lauf nichts eingerichtet, nichts gebucht und kein Change Log aktiviert.
+Damit sind Such- und Navigationspfade bekannt. Noch offen bleibt, ob eine Rechnung als E-Rechnung erzeugt, validiert, versendet, archiviert und mit deutscher USt gebucht wird. In `RM-DEMO` wurde in diesem Compliance-Lauf nichts eingerichtet, nichts gebucht und kein Change Log aktiviert.
 
 | Statusfrage | Aktueller Stand |
 |---|---|

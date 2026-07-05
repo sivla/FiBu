@@ -70,6 +70,10 @@ Das Buch enthaelt keine internen Open-Question-Listen. Wenn ein Feld, Button, Di
 
 Kein Buchabschnitt wird als fertig behandelt, solange seine zentralen Business-Central-Objekte nicht durch Universaarl-Evidence, Microsoft Learn, erlaubte Objektanalyse oder einen finalen Status aus `BC-ZERO-OPEN-QUESTIONS-POLICY.md` erklaert sind.
 
+## Lokaler Stilcheck
+
+Vor groesseren Buchpatches hilft `npm run agent:book-style:check`. Der Check durchsucht den Buchmaster und die finalen Buchdrafts nach typischer Agenten-, Evidence- und Repo-Metasprache. Er ist ein Reviewer, kein Massenaenderungsautomat: Treffer werden beim naechsten fachlich passenden Abschnitt bereinigt, nicht blind ueber alte Legacy-Kapitel ersetzt.
+
 ## Look and Feel im Buch
 
 Das Buch erklaert Business Central so, wie ein Anfaenger die Oberflaeche sieht: Command Bar, FastTabs, FactBoxes, Listen, Karten, Worksheets, Journals, Dialoge und Request Pages. Screenshots werden erst als Buchbilder genutzt, wenn relevante Felder, Buttons und Tabellen lesbar sind.

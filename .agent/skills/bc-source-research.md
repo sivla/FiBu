@@ -9,6 +9,7 @@ Research Business Central, German accounting/compliance or Microsoft implementat
 ## Use when
 - A Business Central behavior, setup meaning, module concept or release-dependent feature is not already proven by local Evidence.
 - A book section needs a final product, VAT, GoBD, e-invoice, reporting, setup or best-practice claim.
+- A larger setup route must be selected between manual UI, assisted setup, configuration packages/RapidStart, Excel import, templates, API, AL extension or parking.
 - Local UI evidence shows what happened, but the agent needs to explain why Business Central behaves that way.
 - A claim could affect accounting correctness, compliance, tax, posting interpretation or implementation guidance.
 
@@ -47,6 +48,7 @@ Research Business Central, German accounting/compliance or Microsoft implementat
 - Always state the instance and company behind local UI evidence before promoting a claim.
 - Prefer Microsoft Learn Docs MCP for Microsoft product facts when it is available; otherwise use official Microsoft Learn URLs and record the fallback.
 - Use Microsoft Learn or official Microsoft documentation for Business Central product/setup claims.
+- For setup and migration decisions, explicitly evaluate whether configuration packages, Excel import/export, assisted setup, templates, APIs or AL extensions are more robust than manual UI entry.
 - Use Microsoft release plans for release-dependent feature availability.
 - Use official German/EU sources for legal, VAT, GoBD or e-invoice claims.
 - Treat community MCPs as advisory only; they are not authority for book claims.

@@ -36,6 +36,7 @@ Vor der Aktion beantwortet der Autopilot kompakt:
 - Ist der Schritt Standard Business Central, Projektentscheidung oder UI-Abkuerzung?
 - Welche Alternativen gibt es?
 - Welche Option ist fuer eine saubere Universaarl-Musterfirma am besten?
+- Ist fuer dieses Thema manuelle UI-Eingabe, Assisted Setup, Konfigurationspaket/RapidStart, Excel-Import, Template, API, AL-Erweiterung oder bewusstes Parken der beste Weg?
 - Welche Quelle oder eigene Evidence stuetzt den Schritt?
 - Was passiert nach Klick, Speichern, Finish oder Buchen?
 - Welches Risiko, welche Korrektur und welcher Fallback existieren?
@@ -74,6 +75,17 @@ Vor der Aktion beantwortet der Autopilot kompakt:
       "decision": "reject|prefer|investigate"
     }
   ],
+  "setupRouteAssessment": {
+    "manualUi": "prefer|reject|investigate|not-applicable",
+    "assistedSetup": "prefer|reject|investigate|not-applicable",
+    "configurationPackageOrRapidStart": "prefer|reject|investigate|not-applicable",
+    "excelImport": "prefer|reject|investigate|not-applicable",
+    "template": "prefer|reject|investigate|not-applicable",
+    "api": "prefer|reject|investigate|not-applicable",
+    "alExtension": "prefer|reject|investigate|not-applicable",
+    "parkOrNoChange": "prefer|reject|investigate|not-applicable",
+    "reason": ""
+  },
   "selectedOption": "",
   "whyThisIsTheMostSensibleNextStep": "",
   "whyNotOtherOptions": "",

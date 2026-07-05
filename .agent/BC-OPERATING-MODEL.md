@@ -63,6 +63,16 @@ Before any effective action, apply `.agent/SMART-DECISION-GATE.md` and write a S
 
 The decision must compare alternatives, check book context, source/evidence basis, expected effect, risk, fallback and beginner explanation. If the decision cannot be made, keep the route read-only and document the blocker instead of acting.
 
+## Consultant setup route decision
+
+For larger setup, migration or master-data topics, the agent must think like a Business Central consultant before choosing a click path. Manual UI entry is useful for learning, field understanding and screenshot evidence, but it is not automatically the best implementation route for a larger company.
+
+Before changing chart of accounts, posting groups, VAT setup, dimensions, number series, templates, customers, vendors, items or bulk setup, compare at least these options when relevant: manual UI entry, assisted setup, configuration packages/RapidStart, Excel import/export, templates, API route, AL extension and a deliberate no-change/park decision. Prefer official Microsoft Learn or implementation guidance for product semantics and use local Universaarl evidence for the concrete UI result.
+
+Configuration packages, imports and APIs are not shortcuts around fachliches Verstaendnis. If one of these routes is selected or proposed, the plan must still explain the affected tables/fields, validation step, dependency checks, rollback/cleanup strategy, reopen proof and how the book will teach both the individual UI concept and the scalable project route.
+
+Before deleting or replacing data, check dependencies: posted entries, referenced setup, master-data usage, default data, system tables, company scope and possible side effects. If this cannot be assessed, do not delete; classify the record as kept, parked, superseded or needing a dedicated cleanup case.
+
 ## Safety gates
 
 These actions are default locked:
