@@ -8,6 +8,10 @@ Last reviewed: 2026-07-05
 
 The project template should become complete, but not by creating a huge static document in one pass. Each refinement should make one part more useful for Jira, BC consulting, customer training, book curation and Playwright evidence.
 
+Current steering source: `UNIVERSAARL-EXECUTION-ROADMAP.md`.
+
+Do not treat this backlog as a flat queue. The execution roadmap decides the current sequence: finish local freeze/resume checks, return with read-first `TARGET-075`, create a Foundation Readiness Decision, then move toward VAT/USt, Dimensions, Posting Groups and master-data readiness.
+
 ## P0: Foundation structure
 
 - Create project template index.
@@ -345,4 +349,4 @@ Later create one compact dashboard:
 
 ## Current next best step
 
-`WS02-CASE-STUDY-CORE`, `WS04-MASTER-DATA-PRODUCT`, the first training module cards through customer/vendor/item master data, data-request candidates, realism review, simulated tables, route decision cards, concept review cadence, consulting-house benchmark and first read-first Playwright scenario catalog now exist as drafts. The next useful refinement is to create VAT/USt boundary and dimensions training cards, then use the freeze/resume gate to build read-first Playwright specs for master-data pages. That is the fastest way to make the next live Foundation/Master-Data pilot better rather than merely more automated.
+`UNIVERSAARL-EXECUTION-ROADMAP.md` is now the current control layer. The next useful refinement is not another broad planning document: run the freeze/resume checks, keep `TARGET-073` parked, use `TARGET-075` as the first read-first live pilot when allowed, and then create `FOUNDATION-READINESS-DECISION.md` before master-data or process work.

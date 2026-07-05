@@ -5,6 +5,7 @@ const root = process.cwd();
 const files = {
   readme: '.agent/project-template/README.md',
   projectPlan: '.agent/project-template/PROJECT-PLAN-DRAFT.md',
+  universaarlExecutionRoadmap: '.agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md',
   realCustomerOnboarding: '.agent/project-template/REAL-CUSTOMER-ONBOARDING-AND-PROJECT-SETUP-GUIDE-DRAFT.md',
   agentOperatingModel: '.agent/project-template/AGENT-OPERATING-MODEL-DRAFT.md',
   conceptRealismReviewCadence: '.agent/project-template/CONCEPT-REALISM-REVIEW-CADENCE-DRAFT.md',
@@ -86,6 +87,7 @@ if (allText) {
   for (const phrase of [
     'Universaarl BC Project Template',
     'Universaarl Business Central Project Plan Draft',
+    'Universaarl Execution Roadmap',
     'Real Customer Onboarding and Project Setup Guide Draft',
     'Agent Operating Model Draft',
     'Concept Realism Review Cadence Draft',
@@ -401,6 +403,21 @@ if (allText) {
     'Playwright evidence proves repeatable sandbox behavior'
   ], 10);
 
+  requireAtLeast('execution roadmap anchors', [
+    'Universaarl Execution Roadmap',
+    'Improvement Freeze / M0-M1 transition',
+    'TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION',
+    'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK',
+    'read-first, no writes',
+    'Phase 1 - End freeze safely',
+    'Phase 2 - Prove foundation before processes',
+    'FOUNDATION-READINESS-DECISION.md',
+    'PWS-MD-001',
+    'WORKSTREAM-BOOK-CHAPTER-MAP-DRAFT.md',
+    'Do not',
+    'setup, master-data, preview or posting case'
+  ], 10);
+
   requireAtLeast('spec-driven sideproject anchors', [
     'Spec-Driven Sideproject Draft',
     'BCSpec Pilot 001',
@@ -682,7 +699,7 @@ const output = {
   warnings,
   nextStep:
     errors.length === 0
-      ? 'Project template is usable as a local implementation planning anchor. Next use WORKSTREAM-BOOK-CHAPTER-MAP-DRAFT.md when creating the next process training/evidence package; after the freeze/resume gate build read-first Playwright proof for VAT setup and Dimensions/Dimension Values.'
+      ? 'Project template is usable as a local implementation planning anchor. Next use UNIVERSAARL-EXECUTION-ROADMAP.md: run freeze/resume checks, keep TARGET-073 parked, and resume only with TARGET-075 read-first before Foundation Readiness Decision.'
       : 'Fix the workbreakdown draft before using it as a planning anchor.'
 };
 

@@ -13,6 +13,7 @@ This dashboard is the project manager view. It should stay short and point to th
 | Area | Status | Note |
 | --- | --- | --- |
 | Project plan | draft | `PROJECT-PLAN-DRAFT.md` exists. |
+| Execution roadmap | active-draft | `UNIVERSAARL-EXECUTION-ROADMAP.md` is the current steering source from improvement freeze to read-first foundation validation and later process playthrough. |
 | Real customer onboarding/setup | draft | `REAL-CUSTOMER-ONBOARDING-AND-PROJECT-SETUP-GUIDE-DRAFT.md` exists and defines the realistic Confluence/Jira/GitHub/BC operating model. |
 | Agent operating model | draft | `AGENT-OPERATING-MODEL-DRAFT.md` defines orchestrator, specialist roles, model routing, review gates and exclusive `playthru` execution. |
 | Concept realism review cadence | draft | `CONCEPT-REALISM-REVIEW-CADENCE-DRAFT.md` defines recurring source-backed checks for whether the overall project concept should adapt. |
@@ -126,18 +127,14 @@ Status: mostly drafted, not yet reviewed as final.
 
 ## Next recommended work
 
-1. Use `CONCEPT-REALISM-REVIEW-CADENCE-DRAFT.md` for the next weekly-style review before expanding more structure.
-2. Use `CONSULTING-HOUSE-BENCHMARK-REVIEW-DRAFT.md` during the next concept review to challenge onboarding, data readiness, training, UAT, cutover and hypercare realism.
-3. Use `AGENT-OPERATING-MODEL-DRAFT.md` as governance for any further specialist-agent or subagent work; do not automate it yet.
-4. Turn the package-derived Jira ticket map into import-ready Jira rows or project tickets.
-5. Turn the first two Playwright catalog entries into read-only specs after the freeze is lifted or a read-only probe is approved.
-6. Build read-first Playwright specs for `PWS-MD-001`, `PWS-MD-002` and `PWS-MD-003` after the freeze/resume gate; do not create master data yet.
-7. Build read-first Playwright proof for VAT setup and Dimensions/Dimension Values after the freeze/resume gate; do not write setup during the proof.
-8. Run `BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md` as a small spec-driven pilot before adopting OpenSpec globally.
-9. Turn `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` into workstream-level Jira import candidates.
-10. Apply `REALISM-STANDARD-DRAFT.md` to storyline, scene cards and broader customer data simulation.
-11. Use `WORKSTREAM-BOOK-CHAPTER-MAP-DRAFT.md` when creating the next process training card or evidence package, so book output is not disconnected from UAT/training gates.
-12. After the freeze, resume live work with a read-first foundation/master-data preflight, not blind record creation.
+1. Use `UNIVERSAARL-EXECUTION-ROADMAP.md` as the single current steering source.
+2. Run the local freeze/resume checks before any Business Central or Playwright live work.
+3. Keep `TARGET-073` parked; do not resume the VAT Page 472 active-editor loop.
+4. Resume live work only with `TARGET-075` as read-first Chart of Accounts / Foundation consistency check.
+5. After TARGET-075, create or update `FOUNDATION-READINESS-DECISION.md`.
+6. Build VAT/USt, Dimensions and Posting Groups read-first proof before master data or process chapters.
+7. Use `WORKSTREAM-BOOK-CHAPTER-MAP-DRAFT.md` and the training evidence map before process training cards or book patches.
+8. Expand Jira import rows, BCSpec or broader concept reviews only when they directly support the next BC/training/evidence step.
 
 ## Update rule
 
