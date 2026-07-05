@@ -8,6 +8,7 @@ const files = {
   smartDecision: '.agent/SMART-DECISION-GATE.md',
   setupRouteDecision: '.agent/SETUP-ROUTE-DECISION.md',
   caseStudyArchitecture: '.agent/CASE-STUDY-ARCHITECTURE-GATE.md',
+  setupRouteSkill: '.agent/skills/bc-setup-route-decision.md',
   sourceSkill: '.agent/skills/bc-source-research.md',
   capabilities: '.agent/capabilities.json',
   sourceRegistry: 'playwright/projects/fibu-book5/BC-SOURCE-REGISTRY.md',
@@ -53,8 +54,10 @@ if (!errors.length) {
       const allText = JSON.stringify(setupCapability);
       if (!allText.includes(route)) errors.push(`bc_setup_route_decision must mention route ${route}`);
     }
-    if (!setupCapability.linkedSkills?.includes('bc-source-research')) {
-      errors.push('bc_setup_route_decision must link bc-source-research');
+    for (const skillId of ['bc-setup-route-decision', 'bc-source-research']) {
+      if (!setupCapability.linkedSkills?.includes(skillId)) {
+        errors.push(`bc_setup_route_decision must link ${skillId}`);
+      }
     }
     const setupCapabilityText = JSON.stringify(setupCapability);
     for (const phrase of ['caseStudyContext', 'caseStudyArchitecture']) {
@@ -95,6 +98,17 @@ if (!errors.length) {
     'After effective action'
   ]) {
     requirePhrase('setupRouteDecision', phrase, errors);
+  }
+
+  for (const phrase of [
+    '## Skill name',
+    'bc-setup-route-decision',
+    '"setupRouteAssessment"',
+    '"caseStudyArchitecture"',
+    'configuration packages/RapidStart',
+    'The only reason for the action is that the queue says so'
+  ]) {
+    requirePhrase('setupRouteSkill', phrase, errors);
   }
 
   for (const phrase of [
