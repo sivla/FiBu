@@ -3,73 +3,40 @@
   "purpose": "autopilot-result-normalized",
   "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
   "source": "playwright-auth-refresh-attempt",
-  "resultStatus": "blocked-auth-before-bc-shell",
+  "resultStatus": "observed-auth-shell-saved",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "page": "not reached - Microsoft sign-in page before Business Central shell",
-  "url": "redacted-login.microsoftonline.com",
+  "page": "Business Central shell reached",
+  "url": "redacted-businesscentral-url",
   "actionsTaken": [
-    "Closed the detached Playwright auth browser via Windows CloseMainWindow after it held playwright/.auth/bc-profile open.",
-    "Ran npm run auth:bc:capture-detached dry-run and confirmed canCapture=true.",
     "Ran npm run auth:bc:capture-detached -- --confirm for the active D31 auth refresh gate.",
     "The Playwright auth browser targeted playthru / UNIVERSAARL-DE.",
-    "The command waited 5000 ms and did not save a Business Central shell-validated storage state.",
-    "Updated auth.setup result guidance so detached capture failures keep the correct open-login-detached -> close -> capture sequence.",
-    "Launched npm run auth:bc:open-login-detached for the active Playwright profile.",
-    "Verified the duplicate-window guard reports launched=false when the detached Playwright auth browser is already open.",
-    "Added npm run auth:bc:focus-detached.",
-    "Focused the already-open detached Playwright auth window for playthru / UNIVERSAARL-DE.",
-    "Enhanced auth:bc:capture-detached to report the detached browser window title.",
-    "Confirmed the active Playwright auth window is titled Bei Ihrem Konto anmelden - Google Chrome for Testing."
+    "Business Central shell validation succeeded and Playwright storage state was saved."
   ],
   "actionsNotTaken": [
     "No D31 VAT Assisted Setup or Manual Setup page was opened by this auth command.",
     "No setup values were typed.",
     "No wizard Next, Finish, Apply or OK was clicked.",
     "No master data, document, Preview Posting, Posting, payment or API shortcut occurred.",
-    "No bookmaster change was made.",
-    "No W1 Foundation, SKR04, VAT setup, master data, draft, Preview Posting, Posting or API shortcut was executed.",
-    "No D31 VAT Assisted Setup or Manual Setup page was opened after the auth blocker.",
-    "No duplicate Playwright auth browser was launched after the guard detected the open profile browser.",
-    "No Business Central workflow was executed after focusing the auth window.",
-    "No Business Central workflow was executed while the auth browser remained at Microsoft login."
+    "No bookmaster change was made."
   ],
   "authDiagnosis": {
     "command": "npm run auth:bc:capture-detached -- --confirm",
     "underlyingCommand": "npm run auth:bc",
-    "timeoutMs": 5000,
+    "timeoutMs": 600000,
     "targetSource": "FIBU_BOOK5_BC_URL with current.json override",
     "expectedInstance": "playthru",
     "expectedCompany": "UNIVERSAARL-DE",
-    "diagnosisHost": "login.microsoftonline.com",
-    "diagnosisPathname": "/{tenant-guid}/oauth2/authorize",
-    "diagnosisTitle": "Bei Ihrem Konto anmelden",
-    "loginRedirect": {
-      "host": "businesscentral.dynamics.com",
-      "pathname": "/remote-sign-in",
-      "companyParamPresent": false,
-      "company": ""
-    },
-    "shellSignalDetected": false,
-    "matchedShellSignal": "",
-    "savedState": false
+    "diagnosisHost": "businesscentral.dynamics.com",
+    "diagnosisPathname": "/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru",
+    "diagnosisTitle": "",
+    "loginRedirect": null,
+    "shellSignalDetected": true,
+    "matchedShellSignal": "Business Central",
+    "savedState": true
   },
-  "operatorActionRequired": true,
-  "operatorAction": {
-    "reason": "The Playwright auth profile is not logged in to Business Central yet.",
-    "profilePath": "playwright/.auth/bc-profile",
-    "requiredWindow": "the detached browser window opened by npm run auth:bc:open-login-detached",
-    "steps": [
-      "Run npm run auth:bc:open-login-detached from this repo.",
-      "Complete sign-in and MFA in the detached Playwright profile browser window.",
-      "Wait until Business Central shell text such as Search/Tell Me, Role Center or My Settings is visible.",
-      "Close the detached browser window.",
-      "Run npm run auth:bc:capture-detached and require canCapture=true.",
-      "Run npm run auth:bc:capture-detached -- --confirm.",
-      "Then run npm run auth:bc:check and require canUseStoredAuth=true."
-    ],
-    "normalBrowserLoginIsNotEnough": true
-  },
+  "operatorActionRequired": false,
+  "operatorAction": null,
   "setupChanged": false,
   "setupChangeAttempted": false,
   "masterDataChanged": false,
@@ -80,52 +47,39 @@
   "screenshots": [],
   "proved": [
     "The auth refresh command uses the intended playthru / UNIVERSAARL-DE target override.",
-    "No Business Central shell signal was reached during this attempt.",
-    "No Playwright storage state was refreshed or saved.",
-    "D31 VAT discovery remains correctly blocked before any VAT UI action."
+    "A Business Central shell signal was reached.",
+    "Playwright storage state was refreshed and saved."
   ],
   "notProved": [
-    "playthru / UNIVERSAARL-DE shell context was not freshly confirmed.",
     "No Assisted Setup, Manual Setup or VAT Posting Setup route was observed.",
     "No VAT setup readiness, posting readiness, VAT Entries or G/L Entries are proven."
   ],
-  "blockedBy": [
-    "auth:playwright-window-stayed-before-business-central-shell",
-    "auth:shell-signal-not-detected",
-    "auth:storage-state-not-refreshed",
-    "storage-state-file-missing",
-    "detached-browser-still-uses-auth-profile"
-  ],
+  "blockedBy": [],
   "warnings": [
-    "Do not rerun D31 read-only discovery until auth:bc:check returns canUseStoredAuth=true.",
-    "Normal browser login or old storageState must not be accepted as current Business Central evidence.",
-    "Do not run W1 Foundation or VAT discovery until auth:bc:check is green.",
-    "Detached handoff does not write storage state by itself.",
-    "Use auth:bc:capture-detached dry-run before --confirm.",
-    "Use the already-open detached Playwright auth browser; do not launch repeated profile windows."
+    "Run npm run auth:bc:check before any Business Central workflow."
   ],
-  "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+  "nextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
   "nextStepDecision": {
     "currentCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "lastEvidenceSummary": "auth:bc:capture-detached now reports the open Playwright browser window title; it is still \"Bei Ihrem Konto anmelden\", so storageState capture must wait for Login/MFA and BC shell.",
+    "lastEvidenceSummary": "npm run auth:bc:capture-detached -- --confirm reached the Business Central shell and saved Playwright storage state; auth:bc:check must confirm freshness next.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The auth browser is open on the correct target URL but still at Microsoft login, so W1 Foundation must remain locked.",
+    "reason": "The auth gate can move to auth:bc:check and then D31 read-only discovery.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-        "status": "ready-next",
-        "reason": "Complete Login/MFA in the detached profile browser, wait for BC shell, close it, then capture."
+        "status": "ready-after-current",
+        "reason": "Requires auth:bc:check canUseStoredAuth=true."
       },
       {
         "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-        "status": "blocked",
+        "status": "ready-after-current",
         "reason": "Requires auth:bc:check canUseStoredAuth=true first."
       },
       {
         "caseId": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
         "status": "needs-ui-discovery-first",
-        "reason": "Requires D31 read-only route evidence after auth is green."
+        "reason": "Requires D31 read-only route evidence."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
@@ -138,22 +92,13 @@
         "reason": "Requires VAT and dimensions status."
       }
     ],
-    "queueChangesMade": [
-      "Enhanced auth:bc:capture-detached to include the detached browser window title in its JSON output."
-    ],
-    "selectedNextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "whySelectedNextCaseIsBest": "A valid Playwright storageState is still required before any safe Universaarl BC evidence or W1 Foundation work.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+    "whySelectedNextCaseIsBest": "Fresh auth is the prerequisite for safe D31 read-only VAT route discovery.",
     "risksBeforeNextCase": [
-      "Normal Chrome/Codex login does not refresh playwright/.auth/bc-user.json.",
-      "Capture will fail until the Playwright profile reaches the Business Central shell.",
-      "Running BC workflows before auth:bc:check is green would inspect login or stale pages."
+      "Do not run D31 until auth:bc:check confirms canUseStoredAuth=true."
     ],
     "requiredPreparation": [
-      "Complete Login/MFA in the detached Playwright profile browser titled Bei Ihrem Konto anmelden.",
-      "Wait until Business Central shell is visible for playthru / UNIVERSAARL-DE.",
-      "Close the detached browser window.",
-      "Run npm run auth:bc:capture-detached and require canCapture=true.",
-      "Run npm run auth:bc:capture-detached -- --confirm.",
       "Run npm run auth:bc:check and require canUseStoredAuth=true."
     ]
   },
@@ -164,94 +109,6 @@
   "requiresReview": false,
   "safeToFinalizeState": false,
   "statePatch": {},
-  "reason": "Active case blocked at Playwright auth shell validation before any Business Central UI evidence.",
-  "completedAt": "2026-07-03T13:00:09.014Z",
-  "latestDetachedCaptureGate": {
-    "at": "2026-07-03T12:48:48.518Z",
-    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "command": "npm run auth:bc:capture-detached",
-    "confirmedCommandAttempted": "npm run auth:bc:capture-detached -- --confirm",
-    "result": "blocked-profile-not-logged-in-to-bc-shell",
-    "profileExists": true,
-    "storageStateExists": false,
-    "canCapture": true,
-    "blockedBy": [
-      "storage-state-file-missing",
-      "auth:shell-signal-not-detected",
-      "auth:storage-state-not-refreshed"
-    ],
-    "nextStep": "Run npm run auth:bc:open-login-detached, complete Login/MFA in that detached Playwright profile browser until the Business Central shell for playthru / UNIVERSAARL-DE is visible, close it, then run npm run auth:bc:capture-detached and npm run auth:bc:capture-detached -- --confirm; finish with npm run auth:bc:check.",
-    "bcWorkflowRun": false,
-    "setupChanged": false,
-    "masterDataChanged": false,
-    "draftCreated": false,
-    "previewPosting": false,
-    "posted": false,
-    "apiShortcut": false
-  },
-  "latestDetachedAuthHandoffLaunch": {
-    "at": "2026-07-03T12:54:09.020Z",
-    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "command": "npm run auth:bc:open-login-detached",
-    "result": "detached-profile-browser-already-open-no-duplicate-launched",
-    "profileExists": true,
-    "storageStateExists": false,
-    "activeProfileBrowserDetected": true,
-    "targetInstance": "playthru",
-    "targetCompany": "UNIVERSAARL-DE",
-    "blockedBy": [
-      "detached-browser-still-uses-auth-profile",
-      "storage-state-file-missing"
-    ],
-    "nextStep": "Complete Login/MFA in the already-open detached Playwright profile browser for playthru / UNIVERSAARL-DE, wait until the Business Central shell is visible, close that browser, then run npm run auth:bc:capture-detached and npm run auth:bc:capture-detached -- --confirm; finish with npm run auth:bc:check.",
-    "bcWorkflowRun": false,
-    "setupChanged": false,
-    "masterDataChanged": false,
-    "draftCreated": false,
-    "previewPosting": false,
-    "posted": false,
-    "apiShortcut": false
-  },
-  "latestDetachedAuthFocus": {
-    "at": "2026-07-03T12:57:43.952Z",
-    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "command": "npm run auth:bc:focus-detached",
-    "result": "focused-detached-playwright-auth-window",
-    "targetInstance": "playthru",
-    "targetCompany": "UNIVERSAARL-DE",
-    "windowTitle": "Bei Ihrem Konto anmelden - Google Chrome for Testing",
-    "storageStateExists": false,
-    "bcWorkflowRun": false,
-    "setupChanged": false,
-    "masterDataChanged": false,
-    "draftCreated": false,
-    "previewPosting": false,
-    "posted": false,
-    "apiShortcut": false,
-    "nextStep": "Complete Login/MFA in the focused detached Playwright profile browser for playthru / UNIVERSAARL-DE, wait until the Business Central shell is visible, close that browser, then run npm run auth:bc:capture-detached and npm run auth:bc:capture-detached -- --confirm; finish with npm run auth:bc:check."
-  },
-  "latestDetachedCaptureObservation": {
-    "at": "2026-07-03T13:00:09.014Z",
-    "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "command": "npm run auth:bc:capture-detached",
-    "result": "blocked-detached-browser-still-uses-auth-profile",
-    "profileExists": true,
-    "storageStateExists": false,
-    "canCapture": false,
-    "activeBrowserWindowTitle": "Bei Ihrem Konto anmelden - Google Chrome for Testing",
-    "targetInstance": "playthru",
-    "targetCompany": "UNIVERSAARL-DE",
-    "blockedBy": [
-      "detached-browser-still-uses-auth-profile",
-      "storage-state-file-missing"
-    ],
-    "nextStep": "Complete Login/MFA in the detached Playwright profile browser currently titled \"Bei Ihrem Konto anmelden\", wait until the Business Central shell for playthru / UNIVERSAARL-DE is visible, close that browser, then run npm run auth:bc:capture-detached and npm run auth:bc:capture-detached -- --confirm; finish with npm run auth:bc:check.",
-    "bcWorkflowRun": false,
-    "setupChanged": false,
-    "masterDataChanged": false,
-    "draftCreated": false,
-    "previewPosting": false,
-    "posted": false,
-    "apiShortcut": false
-  }
+  "reason": "Auth refresh reached shell; state finalization still requires explicit downstream validation.",
+  "completedAt": "2026-07-05T13:54:31.536Z"
 }

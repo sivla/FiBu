@@ -1,16 +1,16 @@
 # TARGET-027D31 Auth Refresh Gate
 
-Status: blocked-auth-before-bc-shell
+Status: completed-auth-shell-saved
 
-The active auth refresh gate targets `playthru / UNIVERSAARL-DE`, but the Playwright auth profile is still not logged in to a Business Central shell. The latest bounded verification handoff ran `npm run auth:bc:open-login` with `BC_AUTH_OPEN_LOGIN_TIMEOUT_MS=60000`. The browser stayed on Microsoft sign-in, no Business Central shell signal was detected and no storage state was saved. The handoff command is intentionally bounded by default so failed attended login attempts finish with a result instead of leaving a long-running Playwright process behind.
+The active auth refresh gate targets `playthru / UNIVERSAARL-DE`. After the operator completed Login/MFA in the detached Playwright profile browser, `npm run auth:bc:capture-detached -- --confirm` reached the Business Central shell and saved `playwright/.auth/bc-user.json`. `npm run auth:bc:check` now reports `canUseStoredAuth=true` with fresh shell-validation metadata for `playthru / UNIVERSAARL-DE`.
 
-No Assisted Setup, Manual Setup, VAT Posting Setup, setup value, master data, document, Preview Posting, Posting, payment, API shortcut or bookmaster change occurred.
+No Assisted Setup, Manual Setup, VAT Posting Setup, setup value, master data, document, Preview Posting, Posting, payment, API shortcut or bookmaster change occurred. This evidence only resolves the auth gate. The VAT Assisted Setup route still has to be discovered in the next read-only case.
 
-Current gate state: the detached Playwright profile handoff has already been launched and `playwright/.auth/bc-profile` exists, but `playwright/.auth/bc-user.json` does not exist yet. `auth:bc:check`, `auth:bc:doctor` and `agent:run-plan` now point to the detached-capture sequence instead of blindly recommending another bounded login window.
+Current gate state: `auth:bc:check` is green. The next safe action is `TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY`, with runtime shell validation and screenshot QA before any later write gate.
 
-The next safe action is:
+Detached browser fallback retained for future refreshes:
 
-1. Complete Login/MFA in the detached Playwright profile browser window if it is still open.
+1. Complete Login/MFA in the detached Playwright profile browser window.
 2. Wait until the Business Central shell is visible for `playthru / UNIVERSAARL-DE`.
 3. Close that detached browser window.
 4. Run `npm run auth:bc:capture-detached` to verify that no detached browser still uses the profile.
@@ -39,9 +39,10 @@ If bounded handoffs keep timing out before Login/MFA can be completed, use the d
 
 The detached command does not write storage state by itself. It only gives the operator a browser window that is not closed by the agent command timeout.
 
-Current blocker:
+If the detached Playwright browser is stale and only blocks the profile, run `npm run auth:bc:close-detached` first. It is a dry run by default and reports only processes that use `playwright/.auth/bc-profile`. Use `npm run auth:bc:close-detached -- --confirm` only when that window can be closed or when Login/MFA should be restarted from a clean detached handoff.
 
-- `npm run auth:bc:capture-detached` is clear when no detached browser still uses the profile.
-- A confirmed capture still reached Microsoft sign-in instead of the Business Central shell, so `playwright/.auth/bc-user.json` was not written.
-- The next useful step is another detached login handoff: open the detached Playwright profile, complete Login/MFA there, wait for the Business Central shell for `playthru / UNIVERSAARL-DE`, close that browser, then capture.
-- If the detached Playwright browser is already open but hidden behind other windows, run `npm run auth:bc:focus-detached`.
+Current next step:
+
+- Run `npm run auth:bc:check` immediately before the next BC test.
+- Run the D31 read-only VAT Assisted Setup route discovery only if the shell confirms `playthru / UNIVERSAARL-DE`.
+- Keep VAT setup write, Preview Posting, Posting, master data and API shortcuts locked.

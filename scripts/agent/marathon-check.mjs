@@ -106,10 +106,15 @@ const doneQueueItems = queueItems.filter((entry) => normalize(entry.status) === 
 const nextQueueItem = openQueueItems[0] ?? null;
 const queueNotEmpty = openQueueItems.length > 0;
 const noEffectiveBusinessCentralActions = marathonQueue?.noEffectiveBusinessCentralActions === true;
+const storedAuthUsable =
+  current?.latestAuthGateResolution?.canUseStoredAuth === true ||
+  lastRun?.latestAuthGateResolution?.canUseStoredAuth === true ||
+  marathonQueue?.latestAuthGateResolution?.canUseStoredAuth === true;
 const authGateActive =
-  /auth/.test(normalize(current?.activeCase)) ||
-  /blocked-auth|auth:/.test(normalize(lastRun?.status)) ||
-  /auth:/.test(normalize(lastRun?.summary));
+  !storedAuthUsable &&
+  (/auth/.test(normalize(current?.activeCase)) ||
+    /blocked-auth|auth:/.test(normalize(lastRun?.status)) ||
+    /auth:/.test(normalize(lastRun?.summary)));
 
 if (noEffectiveBusinessCentralActions) {
   packageClassifications = doneQueueItems.map((entry) => ({
@@ -138,6 +143,8 @@ const minHighImpactExecutePackagesReached = highImpactExecutePackages >= (marath
 const onlyLightExecute = executePackages > 0 && highImpactExecutePackages === 0 && lightExecutePackages === executePackages;
 const nextBestLevers = authGateActive
   ? current?.activeCase ? [current.activeCase] : []
+  : nextQueueItem
+  ? [nextQueueItem.id]
   : noEffectiveBusinessCentralActions
   ? nextQueueItem ? [nextQueueItem.id] : []
   : Array.isArray(summary?.nextBestLevers) ? summary.nextBestLevers : [];

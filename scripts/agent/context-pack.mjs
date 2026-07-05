@@ -34,7 +34,10 @@ function buildAuthGate(current, activeCase) {
     joinedActions.includes('auth') ||
     joinedActions.includes('business-central');
 
+  const latestResolution = current.latestAuthGateResolution ?? activeCase.latestAuthGateResolution ?? {};
+  const resolutionCanUseStoredAuth = latestResolution.canUseStoredAuth === true;
   const resultPath =
+    latestResolution.resultPath ??
     current.latestAuthResultWriter?.lastResultPath ??
     current.latestTarget027D31AuthRefreshResult ??
     activeCase.latestAuthSetupResultWriter?.resultPath ??
@@ -43,15 +46,18 @@ function buildAuthGate(current, activeCase) {
   const latestWriter = current.latestAuthResultWriter ?? activeCase.latestAuthSetupResultWriter ?? {};
   const latestDoctor = current.latestAuthDoctor ?? activeCase.latestDoctor ?? {};
   const latestTarget = current.latestAuthTargetDiagnosis ?? activeCase.latestAuthTargetDiagnosis ?? {};
-  const operatorActionRequired =
-    latestWriter.operatorActionRequired === true ||
-    latestResult?.operatorActionRequired === true ||
-    latestDoctor.decision === 'operator-must-complete-playwright-auth-window';
-  const blockedBy = [
-    ...(latestResult?.blockedBy ?? []),
-    ...(latestResult?.blockedByAuth ?? []),
-    ...(latestWriter.blockedBy ?? []),
-  ];
+  const operatorActionRequired = resolutionCanUseStoredAuth
+    ? false
+    : latestWriter.operatorActionRequired === true ||
+      latestResult?.operatorActionRequired === true ||
+      latestDoctor.decision === 'operator-must-complete-playwright-auth-window';
+  const blockedBy = resolutionCanUseStoredAuth
+    ? []
+    : [
+      ...(latestResult?.blockedBy ?? []),
+      ...(latestResult?.blockedByAuth ?? []),
+      ...(latestWriter.blockedBy ?? []),
+    ];
 
   if (!authRelevant && !operatorActionRequired && blockedBy.length === 0) {
     return null;
@@ -62,7 +68,9 @@ function buildAuthGate(current, activeCase) {
     existsSync(resolve('playwright/.auth/bc-profile'));
   const detachedCaptureStep =
     'Complete Login/MFA in the detached Playwright profile browser if it is still open, wait for Business Central shell, close that browser, then run npm run auth:bc:capture-detached and, if clear, npm run auth:bc:capture-detached -- --confirm. Finish with npm run auth:bc:check.';
-  const nextSafeAction = (detachedCaptureAvailable
+  const nextSafeAction = (resolutionCanUseStoredAuth
+    ? current.nextStep ?? activeCase.nextStep
+    : detachedCaptureAvailable
     ? detachedCaptureStep
     : [
     latestDoctor.nextSafeAction,
@@ -75,24 +83,28 @@ function buildAuthGate(current, activeCase) {
 
   return {
     requiresAuth: authRelevant,
-    canRunBusinessCentralWorkflows: latestDoctor.canRunBusinessCentralWorkflows === true,
+    canRunBusinessCentralWorkflows:
+      resolutionCanUseStoredAuth || latestDoctor.canRunBusinessCentralWorkflows === true,
     operatorActionRequired,
-    decision:
-      latestDoctor.decision ??
+    decision: resolutionCanUseStoredAuth
+      ? 'stored-auth-usable-run-readonly-or-gated-target-tests'
+      : latestDoctor.decision ??
       (operatorActionRequired ? 'operator-must-complete-playwright-auth-window' : undefined),
     nextSafeAction,
-    preferredAuthHandoff: detachedCaptureAvailable ? 'detached-capture' : 'bounded-open-login',
+    preferredAuthHandoff: resolutionCanUseStoredAuth
+      ? 'stored-auth'
+      : detachedCaptureAvailable ? 'detached-capture' : 'bounded-open-login',
     blockedBy: firstItems([...new Set(blockedBy)], 8),
     resultPath,
     target: {
-      instance: latestTarget.targetEnvironment ?? current.instance,
-      company: latestTarget.targetCompany ?? current.company,
-      targetMatchesState: latestTarget.targetMatchesState,
+      instance: latestResolution.shellValidationMeta?.environment ?? latestTarget.targetEnvironment ?? current.instance,
+      company: latestResolution.shellValidationMeta?.company ?? latestTarget.targetCompany ?? current.company,
+      targetMatchesState: resolutionCanUseStoredAuth ? true : latestTarget.targetMatchesState,
     },
-    normalBrowserLoginIsNotEnough:
+    normalBrowserLoginIsNotEnough: !resolutionCanUseStoredAuth && (
       latestDoctor.operatorAction?.normalBrowserLoginIsNotEnough === true ||
       latestResult?.operatorAction?.normalBrowserLoginIsNotEnough === true ||
-      latestWriter.operatorActionRequired === true,
+      latestWriter.operatorActionRequired === true),
   };
 }
 

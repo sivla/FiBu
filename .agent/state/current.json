@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-03T13:00:09.014Z",
+  "updatedAt": "2026-07-05T13:58:46.992Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "activeArea": "universaarl-bc-auth-refresh-before-vat-assisted-setup",
-  "activeCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "active_case_file": ".agent/state/cases/target-027d31-auth-refresh-then-readonly-discovery.json",
+  "activeCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+  "active_case_file": ".agent/state/cases/target-027d31-vat-assisted-setup-readonly-discovery.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -19,12 +19,14 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "run-auth-bc-target-diagnosis",
-    "run-auth-bc-doctor",
-    "refresh-business-central-auth",
-    "run-auth-bc-check",
-    "confirm-instance-and-company-after-auth",
-    "rerun-d31-readonly-after-auth",
+    "open-business-central",
+    "confirm-instance-and-company",
+    "open-assisted-setup-readonly",
+    "search-vat-setup-guide-readonly",
+    "open-manual-setup-or-vat-setup-readonly-if-safe",
+    "hover-tooltips-and-inventory-actions",
+    "capture-screenshot-qa",
+    "inspect-dialogs-and-stop-before-write",
     "write-result-json",
     "update-state-and-queue"
   ],
@@ -34,22 +36,26 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "accept-login-page-as-bc-evidence",
-    "open-vat-setup-without-fresh-auth-check",
     "finish-assisted-setup",
     "click-next-if-it-writes",
     "click-apply-ok-or-finish-on-setup-dialog",
     "write-vat-posting-setup",
     "type-values",
+    "import-configuration-package",
+    "export-configuration-package",
+    "validate-or-apply-configuration-package",
     "create-master-data",
     "create-document-or-draft",
     "preview-posting",
     "post",
     "payment",
-    "api-shortcut"
+    "api-shortcut",
+    "repeat-rejected-page472-grid-new-edit-list-cell-route",
+    "claim-vat-correctness",
+    "claim-posting-readiness"
   ],
-  "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "nextStep": "Complete Login/MFA in the detached Playwright profile browser currently titled \"Bei Ihrem Konto anmelden\", wait until the Business Central shell for playthru / UNIVERSAARL-DE is visible, close that browser, then run npm run auth:bc:capture-detached and npm run auth:bc:capture-detached -- --confirm; finish with npm run auth:bc:check.",
+  "nextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+  "nextStep": "Run TARGET-027D31 VAT Assisted Setup read-only discovery after confirming auth:bc:check remains green; do not change VAT setup, master data, drafts, Preview Posting, Posting or API shortcuts.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -3863,7 +3869,7 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/target-027d31-auth-refresh-then-readonly-discovery.json",
+  "activeCaseFile": ".agent/state/cases/target-027d31-vat-assisted-setup-readonly-discovery.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
@@ -7955,53 +7961,47 @@
   "nextStepDecision": {
     "currentCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "lastEvidenceSummary": "auth:bc:capture-detached now reports the open Playwright browser window title; it is still \"Bei Ihrem Konto anmelden\", so storageState capture must wait for Login/MFA and BC shell.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "The auth browser is open on the correct target URL but still at Microsoft login, so W1 Foundation must remain locked.",
+    "lastEvidenceSummary": "Playwright storageState was refreshed through the detached auth profile; auth:bc:check now reports canUseStoredAuth=true for playthru / UNIVERSAARL-DE.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The auth blocker is solved. Repeating the auth case would waste time; the next useful step is the previously blocked D31 read-only VAT route discovery.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-        "status": "ready-next",
-        "reason": "Complete Login/MFA in the detached profile browser, wait for BC shell, close it, then capture."
-      },
-      {
         "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-        "status": "blocked",
-        "reason": "Requires auth:bc:check canUseStoredAuth=true first."
+        "status": "ready-next",
+        "reason": "Auth is fresh; D31 can now run as read-only Assisted Setup / Manual Setup route discovery without changing VAT setup."
       },
       {
         "caseId": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
         "status": "needs-ui-discovery-first",
-        "reason": "Requires D31 read-only route evidence after auth is green."
+        "reason": "Write decision requires D31 page/action evidence first."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-after-current",
-        "reason": "Can resume after VAT auth/discovery is resolved or intentionally parked."
+        "reason": "Can resume after VAT route is observed or intentionally parked."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Requires VAT and dimensions status."
+        "reason": "Foundation checkpoint still depends on VAT and dimensions status."
       }
     ],
     "queueChangesMade": [
-      "Enhanced auth:bc:capture-detached to include the detached browser window title in its JSON output."
+      "Marked TARGET-027D31 auth refresh gate as completed after auth:bc:check canUseStoredAuth=true.",
+      "Moved selected next case back to TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY.",
+      "Kept VAT setup changes, Preview Posting, Posting, master data and API shortcuts locked for the next read-only run."
     ],
-    "selectedNextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "whySelectedNextCaseIsBest": "A valid Playwright storageState is still required before any safe Universaarl BC evidence or W1 Foundation work.",
+    "selectedNextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+    "whySelectedNextCaseIsBest": "It is the smallest useful W1 Foundation step unlocked by the fixed auth gate and produces UI/page evidence before any VAT write decision.",
     "risksBeforeNextCase": [
-      "Normal Chrome/Codex login does not refresh playwright/.auth/bc-user.json.",
-      "Capture will fail until the Playwright profile reaches the Business Central shell.",
-      "Running BC workflows before auth:bc:check is green would inspect login or stale pages."
+      "Live tests must still validate the Business Central shell at start.",
+      "D31 must remain read-only: no wizard finish, no setup save, no posting, no API shortcut.",
+      "If the page lands outside playthru / UNIVERSAARL-DE, abort and document the mismatch."
     ],
     "requiredPreparation": [
-      "Complete Login/MFA in the detached Playwright profile browser titled Bei Ihrem Konto anmelden.",
-      "Wait until Business Central shell is visible for playthru / UNIVERSAARL-DE.",
-      "Close the detached browser window.",
-      "Run npm run auth:bc:capture-detached and require canCapture=true.",
-      "Run npm run auth:bc:capture-detached -- --confirm.",
-      "Run npm run auth:bc:check and require canUseStoredAuth=true."
+      "Run npm run auth:bc:check and require canUseStoredAuth=true immediately before D31.",
+      "Open only playthru / UNIVERSAARL-DE.",
+      "Capture screenshot QA and page/action inventory before any later write gate."
     ]
   },
   "latestTarget037MasterdataFoundationCheckpoint": {
@@ -8392,14 +8392,10 @@
     "rawTenantOrAuthDetailsCommitted": false,
     "nextRequiredAction": "Complete attended Login/MFA in the auth browser until Business Central Role Center/Search/My Settings is visible; then run npm run auth:bc:check before rerunning D2F. If sign-in stalls or times out, run npm run auth:bc:diagnose for a short redacted diagnosis."
   },
-  "blockedBy": [
-    "auth:playwright-window-stayed-on-microsoft-sign-in",
-    "auth:shell-signal-not-detected",
-    "auth:storage-state-not-refreshed"
-  ],
+  "blockedBy": [],
   "warnings": [
-    "D31 remains the right next VAT route, but it must wait for a fresh Business Central shell validation.",
-    "Do not interpret a browser login page as Business Central evidence."
+    "Auth is green, but every BC test must still validate playthru / UNIVERSAARL-DE at runtime.",
+    "D31 is read-only discovery only; no VAT setup write, Preview Posting, Posting, master data or API shortcut."
   ],
   "stateConsistencyNote": {
     "status": "aligned-with-active-case",
@@ -8538,11 +8534,12 @@
     "summary": "1140 Waren (Bestand) selected as source-backed SKR04-oriented inventory balance candidate; no Business Central account proof yet."
   },
   "acceptanceCriteria": [
-    "Business Central visible context remains playthru / UNIVERSAARL-DE.",
-    "Before screenshot shows Page 472 and current row state.",
-    "If a write occurs, after screenshot and reopen screenshot show one INLAND/VAT19 row with 19, Normale MwSt., 3806 and 1406.",
-    "Result JSON keeps previewPosting=false, posted=false, draftCreated=false and apiShortcut=false.",
-    "No German VAT final correctness or posting readiness is claimed."
+    "Business Central stays in playthru / UNIVERSAARL-DE.",
+    "Assisted Setup or Manual Setup VAT route is observed read-only, or a precise blocker is documented.",
+    "Screenshot QA captures page title, company context, visible VAT setup guide/manual setup terms and action boundaries.",
+    "No wizard finish/apply/OK/Next action is clicked if it could write setup.",
+    "No VAT Posting Setup value, master data, document, Preview Posting, Posting or API shortcut occurs.",
+    "Result JSON states whether D32 write-gate decision is justified or whether VAT remains parked."
   ],
   "latestTarget048CInventoryAccount1140BalanceCorrection": {
     "caseId": "TARGET-048C-INVENTORY-ACCOUNT-1140-BALANCE-SHEET-CORRECTION",
@@ -9588,5 +9585,36 @@
     "previewPosting": false,
     "posted": false,
     "apiShortcut": false
-  }
+  },
+  "latestAuthGateResolution": {
+    "status": "auth-shell-saved-and-check-green",
+    "resolvedAt": "2026-07-05T13:57:56.982Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
+    "commands": [
+      "npm run auth:bc:capture-detached",
+      "npm run auth:bc:capture-detached -- --confirm",
+      "npm run auth:bc:check"
+    ],
+    "canUseStoredAuth": true,
+    "shellValidationMeta": {
+      "generatedAt": "2026-07-05T13:54:31.533Z",
+      "host": "businesscentral.dynamics.com",
+      "environment": "playthru",
+      "company": "UNIVERSAARL-DE",
+      "matchedShellSignal": "Business Central"
+    },
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false
+  },
+  "stopIf": [
+    "Instance is not playthru or company is not UNIVERSAARL-DE.",
+    "The route requires completing a wizard or confirming setup before read-only evidence is captured.",
+    "Only the already parked Page 472 grid/New/Edit List/cell route is available.",
+    "A dialog asks for OK, Yes, Ja, Next, Finish, Apply, Import, Export, Validate or Publish with possible setup impact.",
+    "BC shell/auth context is unclear."
+  ]
 }

@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "status": "blocked-auth-before-bc-shell",
+  "status": "completed-auth-shell-saved",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "mode": "universaarl-target-execution",
   "targetWorld": "Universaarl",
   "activeArea": "universaarl-bc-auth-refresh-before-vat-assisted-setup",
   "mayRunPlaywright": true,
-  "mayWorkEffectively": false,
+  "mayWorkEffectively": true,
   "effectiveBcActionsAllowed": false,
   "sourceBlockedCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
   "purpose": "Refresh local Business Central Playwright auth shell validation for playthru / UNIVERSAARL-DE before rerunning the D31 VAT Assisted Setup read-only discovery.",
@@ -96,8 +96,8 @@
     "canRunBusinessCentralWorkflows": false,
     "lastAuthRefreshResult": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json"
   },
-  "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "updatedAt": "2026-07-03T13:00:09.014Z",
+  "nextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+  "updatedAt": "2026-07-05T13:57:56.982Z",
   "latestAuthSetupResultWriter": {
     "at": "2026-07-03T10:20:00.000Z",
     "script": "playwright/core/auth.setup.ts",
@@ -154,7 +154,7 @@
     "previewPosting": false,
     "posted": false
   },
-  "nextStep": "Complete Login/MFA in the detached Playwright profile browser currently titled \"Bei Ihrem Konto anmelden\", wait until the Business Central shell for playthru / UNIVERSAARL-DE is visible, close that browser, then run npm run auth:bc:capture-detached and npm run auth:bc:capture-detached -- --confirm; finish with npm run auth:bc:check.",
+  "nextStep": "Run TARGET-027D31 VAT Assisted Setup read-only discovery after confirming auth:bc:check remains green; do not change VAT setup, master data, drafts, Preview Posting, Posting or API shortcuts.",
   "latestAuthProbe": {
     "at": "2026-07-03T14:25:00.000Z",
     "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
@@ -254,12 +254,7 @@
     "nextSafeAction": "Business Central workflows remain blocked. Complete Login/MFA in the Playwright-opened auth window until Business Central shell is visible, then run npm run auth:bc:check and require canUseStoredAuth=true."
   },
   "latestAuthRefreshResult": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
-  "blockedBy": [
-    "auth:playwright-window-stayed-before-business-central-shell",
-    "auth:shell-signal-not-detected",
-    "auth:storage-state-not-refreshed",
-    "auth:storage-state-file-missing-after-reset-until-successful-login"
-  ],
+  "blockedBy": [],
   "latestAuthProfileResetFallback": {
     "at": "2026-07-03T10:24:59.943Z",
     "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
@@ -541,53 +536,47 @@
   "nextStepDecision": {
     "currentCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "lastEvidenceSummary": "auth:bc:capture-detached now reports the open Playwright browser window title; it is still \"Bei Ihrem Konto anmelden\", so storageState capture must wait for Login/MFA and BC shell.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "The auth browser is open on the correct target URL but still at Microsoft login, so W1 Foundation must remain locked.",
+    "lastEvidenceSummary": "Playwright storageState was refreshed through the detached auth profile; auth:bc:check now reports canUseStoredAuth=true for playthru / UNIVERSAARL-DE.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The auth blocker is solved. Repeating the auth case would waste time; the next useful step is the previously blocked D31 read-only VAT route discovery.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-        "status": "ready-next",
-        "reason": "Complete Login/MFA in the detached profile browser, wait for BC shell, close it, then capture."
-      },
-      {
         "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-        "status": "blocked",
-        "reason": "Requires auth:bc:check canUseStoredAuth=true first."
+        "status": "ready-next",
+        "reason": "Auth is fresh; D31 can now run as read-only Assisted Setup / Manual Setup route discovery without changing VAT setup."
       },
       {
         "caseId": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
         "status": "needs-ui-discovery-first",
-        "reason": "Requires D31 read-only route evidence after auth is green."
+        "reason": "Write decision requires D31 page/action evidence first."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-after-current",
-        "reason": "Can resume after VAT auth/discovery is resolved or intentionally parked."
+        "reason": "Can resume after VAT route is observed or intentionally parked."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Requires VAT and dimensions status."
+        "reason": "Foundation checkpoint still depends on VAT and dimensions status."
       }
     ],
     "queueChangesMade": [
-      "Enhanced auth:bc:capture-detached to include the detached browser window title in its JSON output."
+      "Marked TARGET-027D31 auth refresh gate as completed after auth:bc:check canUseStoredAuth=true.",
+      "Moved selected next case back to TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY.",
+      "Kept VAT setup changes, Preview Posting, Posting, master data and API shortcuts locked for the next read-only run."
     ],
-    "selectedNextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "whySelectedNextCaseIsBest": "A valid Playwright storageState is still required before any safe Universaarl BC evidence or W1 Foundation work.",
+    "selectedNextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+    "whySelectedNextCaseIsBest": "It is the smallest useful W1 Foundation step unlocked by the fixed auth gate and produces UI/page evidence before any VAT write decision.",
     "risksBeforeNextCase": [
-      "Normal Chrome/Codex login does not refresh playwright/.auth/bc-user.json.",
-      "Capture will fail until the Playwright profile reaches the Business Central shell.",
-      "Running BC workflows before auth:bc:check is green would inspect login or stale pages."
+      "Live tests must still validate the Business Central shell at start.",
+      "D31 must remain read-only: no wizard finish, no setup save, no posting, no API shortcut.",
+      "If the page lands outside playthru / UNIVERSAARL-DE, abort and document the mismatch."
     ],
     "requiredPreparation": [
-      "Complete Login/MFA in the detached Playwright profile browser titled Bei Ihrem Konto anmelden.",
-      "Wait until Business Central shell is visible for playthru / UNIVERSAARL-DE.",
-      "Close the detached browser window.",
-      "Run npm run auth:bc:capture-detached and require canCapture=true.",
-      "Run npm run auth:bc:capture-detached -- --confirm.",
-      "Run npm run auth:bc:check and require canUseStoredAuth=true."
+      "Run npm run auth:bc:check and require canUseStoredAuth=true immediately before D31.",
+      "Open only playthru / UNIVERSAARL-DE.",
+      "Capture screenshot QA and page/action inventory before any later write gate."
     ]
   },
   "latestDetachedAuthFallback": {
@@ -691,6 +680,31 @@
     ],
     "nextStep": "Complete Login/MFA in the detached Playwright profile browser currently titled \"Bei Ihrem Konto anmelden\", wait until the Business Central shell for playthru / UNIVERSAARL-DE is visible, close that browser, then run npm run auth:bc:capture-detached and npm run auth:bc:capture-detached -- --confirm; finish with npm run auth:bc:check.",
     "bcWorkflowRun": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false
+  },
+  "completedAt": "2026-07-05T13:57:56.982Z",
+  "latestAuthGateResolution": {
+    "status": "auth-shell-saved-and-check-green",
+    "resolvedAt": "2026-07-05T13:57:56.982Z",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
+    "commands": [
+      "npm run auth:bc:capture-detached",
+      "npm run auth:bc:capture-detached -- --confirm",
+      "npm run auth:bc:check"
+    ],
+    "canUseStoredAuth": true,
+    "shellValidationMeta": {
+      "generatedAt": "2026-07-05T13:54:31.533Z",
+      "host": "businesscentral.dynamics.com",
+      "environment": "playthru",
+      "company": "UNIVERSAARL-DE",
+      "matchedShellSignal": "Business Central"
+    },
     "setupChanged": false,
     "masterDataChanged": false,
     "draftCreated": false,
