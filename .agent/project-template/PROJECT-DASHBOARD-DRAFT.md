@@ -36,7 +36,7 @@ This dashboard is the project manager view. It should stay short and point to th
 | Customer data catalog | draft | Initial data requests exist; Jira-ready candidates are tracked separately. |
 | Data request Jira candidates | draft | First five candidates exist for core company/organization data and customer/vendor/item master data. |
 | Customer data simulation | draft | `CUSTOMER-DATA-SIMULATION-DRAFT.md` exists. |
-| Simulated core/master data tables | draft | First fictional planning tables exist for company information, organization model, customers, vendors and items/services; master-data setup remains blocked by dependencies. |
+| Simulated core/master data tables | draft | Five concrete simulated packages exist: `UNIVERSAARL_CORE_CompanyInformation`, `UNIVERSAARL_CORE_OrganizationModel`, `UNIVERSAARL_MD_Customers`, `UNIVERSAARL_MD_Vendors` and `UNIVERSAARL_MD_ItemsServices`; all are Jira-ready, none are BC-setup-ready yet. |
 | Foundation/master-data route decisions | draft | Route cards exist for numbering, posting groups, payment terms and product/UOM setup before live master-data work. |
 | Decision log | draft | Initial decisions captured. |
 | Risk register | draft | Initial risks captured. |
@@ -116,13 +116,13 @@ Status: mostly drafted, not yet reviewed as final.
 
 ## Next recommended work
 
-1. Create training module cards for customer/vendor/item master data using the route boundaries.
+1. Convert the five simulated data packages into Jira Data Request candidates and dependency tickets.
 2. Turn the first two Playwright catalog entries into read-only specs after the freeze is lifted or a read-only probe is approved.
-3. Run `BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md` as a small spec-driven pilot before adopting OpenSpec globally.
-4. Turn `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` into workstream-level Jira import candidates.
-5. Apply `REALISM-STANDARD-DRAFT.md` to storyline, scene cards and broader customer data simulation.
-6. Create workstream-to-book-chapter map.
-7. Create project plan review checklist.
+3. Create training module cards for customer/vendor/item master data using the package dependencies, not before them.
+4. Run `BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md` as a small spec-driven pilot before adopting OpenSpec globally.
+5. Turn `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` into workstream-level Jira import candidates.
+6. Apply `REALISM-STANDARD-DRAFT.md` to storyline, scene cards and broader customer data simulation.
+7. Create workstream-to-book-chapter map.
 8. After the freeze, resume live work with a read-first foundation/master-data preflight, not blind record creation.
 
 ## Update rule

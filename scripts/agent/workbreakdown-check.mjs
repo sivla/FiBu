@@ -375,20 +375,32 @@ if (allText) {
 
   requireAtLeast('simulated core master data anchors', [
     'Simulated Data Tables - Core and Master Data Draft',
-    'CORE-001 Company Information',
-    'CORE-002 Organization Model',
-    'MD-001 Customers',
-    'MD-002 Vendors',
-    'MD-003 Items, Services and Non-Inventory Items',
-    'complete-for-planning',
-    'needs-review',
+    'UNIVERSAARL_CORE_CompanyInformation',
+    'UNIVERSAARL_CORE_OrganizationModel',
+    'UNIVERSAARL_MD_Customers',
+    'UNIVERSAARL_MD_Vendors',
+    'UNIVERSAARL_MD_ItemsServices',
+    'Record ID',
+    'Business purpose',
+    'Customer owner',
+    'Internal owner',
+    'Required fields',
+    'Optional fields',
+    'Validation rules',
+    'Dependency status',
+    'BC setup readiness',
+    'Route candidate',
+    'UAT impact',
+    'Training impact',
+    'Playwright evidence need',
+    'Open questions',
+    'Risk if missing or wrong',
+    'Next action',
+    'jira-ready',
     'blocked',
     'parked',
-    'Numbering policy',
-    'Posting groups',
-    'Units of measure',
     'not import files'
-  ], 12);
+  ], 22);
 
   requireAtLeast('foundation route decision anchors', [
     'Route Decision Cards - Foundation and Master Data Draft',
@@ -446,7 +458,7 @@ const output = {
   warnings,
   nextStep:
     errors.length === 0
-      ? 'Project template is usable as a local implementation planning anchor. Next create customer/vendor/item training module cards using the route boundaries and scenario catalog.'
+      ? 'Project template is usable as a local implementation planning anchor. Next convert the five simulated data packages into Jira Data Request candidates and dependency tickets.'
       : 'Fix the workbreakdown draft before using it as a planning anchor.'
 };
 

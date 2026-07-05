@@ -1,181 +1,92 @@
 # Simulated Data Tables - Core and Master Data Draft
 
 Status: draft
-Purpose: First simulated customer data tables for Universaarl core context and master-data planning.
+Purpose: Concrete simulated Universaarl data packages for Jira data requests, BC route decisions, UAT planning, training and book examples.
 Last reviewed: 2026-07-05
 
 ## Boundary
 
-These tables are fictional planning data for the Universaarl case study. They are not import files and do not authorize Business Central setup.
+All values in this file are fictional and simulated for the Universaarl case study. They are not Business Central import files and do not authorize setup, master-data creation or tax/legal claims.
 
-Use them to:
+Use these packages to:
 
-- test whether data requests are understandable
-- identify missing fields before live setup
-- plan Jira tickets, UAT scenarios, training exercises and book examples
-- decide whether manual UI, templates, configuration packages, Excel import, API or park route is appropriate
+- turn customer data needs into Jira-ready data requests
+- test whether owners, required fields, validation rules and dependencies are understandable
+- decide whether UI, Assisted Setup, templates, configuration packages, Excel-assisted import, API, AL, integration or parking is the right route
+- plan UAT, training, handbook and Playwright evidence
+- keep the `playthru` reference implementation realistic without inventing setup readiness
 
-Do not use them to:
+Do not use these packages to:
 
+- create records in Business Central without a later gated setup case
 - claim production-ready customer data
-- claim tax or legal approval
-- create Business Central records without a later gated setup case
-- store real customer, contact, bank or credential data
+- store real customer, contact, bank, tax, credential or personal data
+- bypass official source review, UAT or customer sign-off
 
-## Validation status values
+## Readiness values
 
-- `complete-for-planning`: enough to design a route, not necessarily enough for BC setup.
-- `needs-review`: plausible but needs consultant/customer review.
-- `blocked`: cannot drive setup until missing dependencies are resolved.
+- `jira-ready`: enough structure exists to create a Jira Data Request or Task.
+- `bc-setup-ready`: enough setup and validation exists for a later gated BC setup case.
+- `blocked`: a dependency must be resolved first.
 - `parked`: useful later, not phase 1.
 
-## CORE-001 Company Information
+## UNIVERSAARL_CORE_CompanyInformation
 
-Source data request: `DR-CORE-001`
-Customer owner: Jonas Weber
-Internal owner: Adrian Vogt / Eva Krueger
-Validation status: `needs-review`
-BC usage: Company Information, accounting-period context, training and book introduction.
+| Record ID | Business purpose | Customer owner | Internal owner | Required fields | Optional fields | Validation rules | Dependency status | BC setup readiness | Route candidate: UI / Assisted Setup / Template / Configuration Package / Excel-assisted / API / AL / Integration / Parked | UAT impact | Training impact | Playwright evidence need | Open questions | Risk if missing or wrong | Next action |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| SIM-CORE-COMPANY-001 | [SIMULATED] Define the legal identity for the Universaarl GmbH reference company so every later setup, screenshot and book chapter has one company context. | Jonas Weber, CFO, simulated | Adrian Vogt, BC solution architect, simulated | Legal name `Universaarl GmbH`; target company code `UNIVERSAARL-DE`; environment `playthru`; country/region `DE`; local currency `EUR`; primary language `de-DE` | Website placeholder; phone placeholder; logo placeholder; address detail placeholder | Must be marked simulated; must not contain real tax, contact, bank or credential data; company code must match active project truth; no final compliance claim | Company exists, but Company Information content needs read-first review before writing | blocked | UI for read-first proof; UI or Configuration Package for later controlled setup; API parked | Defines all later UAT context and prevents users testing in the wrong company | Required in Environment/Company training and handbook opening | PWS-CORE-001 must capture environment, company and Company Information page context before any write | Which address fields are safe as simulated? Should phone/email remain blank? | Wrong company identity contaminates screenshots, UAT, training and book examples | Create Jira Data Request for simulated Company Information and plan a read-first Company Information proof |
+| SIM-CORE-COMPANY-002 | [SIMULATED] Establish finance calendar assumptions for planning accounting periods and fiscal training. | Jonas Weber, CFO, simulated | Eva Krueger, finance consultant, simulated | Fiscal year start `2026-01-01`; first training period `2026-01`; local currency `EUR` | Closing calendar notes; monthly close owner; holiday calendar | Fiscal year is a planning assumption until accounting periods are reviewed; no statutory claim | Accounting-period setup not reviewed in current freeze | blocked | Parked until Finance Foundation route; later UI or Configuration Package | UAT period filters, posting date tests and close training depend on this | Needed for accounting-period and posting-date training | PWS-FF accounting-period read-first scenario needed before setup | Should first book year be 2026 or a rolling current year? | Wrong calendar causes misleading posting-date and period-close examples | Add accounting-period decision ticket before BC write |
+| SIM-CORE-COMPANY-003 | [SIMULATED] Capture tax context boundary for German domestic examples without pretending tax advisor approval. | Jonas Weber, CFO, simulated | Eva Krueger, finance consultant, simulated | Country/region `DE`; VAT context `German domestic training scenario`; currency `EUR`; tax advisor boundary `required before final claim` | VAT registration number intentionally blank; tax office intentionally blank | No fake VAT registration; no GoBD/AO/USt final claim; official/attorney/tax review required for legal wording | VAT setup and tax registration not finalized | blocked | Parked for tax advisor/source review; later UI/Configuration Package only after decision | UAT for VAT examples cannot be final until this is reviewed | Finance and tax-boundary training must explain what is simulated | PWS-FF VAT read-first proof only; no write until VAT case | Which VAT fields can be safely fictionalized? | Fake tax identity would make the book and sandbox evidence misleading | Create tax-boundary decision and source review task |
 
-| Field | Simulated value | Validation status | Notes |
-| --- | --- | --- | --- |
-| LegalName | Universaarl GmbH | complete-for-planning | Fictional legal entity for the case study. |
-| TargetCompanyCode | UNIVERSAARL-DE | complete-for-planning | First German foundation company in `playthru`. |
-| CountryRegion | DE | complete-for-planning | Drives German localization boundary. |
-| LocalCurrency | EUR | complete-for-planning | Phase-1 local currency. |
-| PrimaryLanguage | de-DE | complete-for-planning | Training/book language context. |
-| FiscalYearStart | 2026-01-01 | needs-review | Must be confirmed before accounting-period setup. |
-| VATRegistrationContext | German domestic VAT context | needs-review | Review input only; not tax approval. |
-| ManagementOwner | Mara Stein | complete-for-planning | Fictional sponsor. |
-| FinanceOwner | Jonas Weber | complete-for-planning | Fictional CFO/finance sign-off. |
-| ITOwner | Sami Yilmaz | complete-for-planning | Fictional M365/BC access owner. |
-| TrainingOwner | Julia Meier | complete-for-planning | Fictional training coordinator. |
-| DataQualityNote | Tax wording and fiscal year need review | needs-review | Create follow-up before final book/setup claim. |
+## UNIVERSAARL_CORE_OrganizationModel
 
-Follow-up questions:
+| Record ID | Business purpose | Customer owner | Internal owner | Required fields | Optional fields | Validation rules | Dependency status | BC setup readiness | Route candidate: UI / Assisted Setup / Template / Configuration Package / Excel-assisted / API / AL / Integration / Parked | UAT impact | Training impact | Playwright evidence need | Open questions | Risk if missing or wrong | Next action |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| SIM-ORG-FIN-001 | [SIMULATED] Finance responsibility area for approvals, dimensions, training audience and month-end ownership. | Jonas Weber, CFO, simulated | Eva Krueger, finance consultant, simulated | Organization value `FIN`; display name `Finance`; phase `1`; owner `Jonas Weber`; classification `department candidate` | Possible dimension code `DEPARTMENT`; role group `Finance Key Users` | Must decide whether this is a dimension, training group, approval group or all three | Dimension model is not fully recovered | blocked | Parked for dimension decision; later UI for first value, Configuration Package/Excel-assisted for multiple values | Finance UAT cases need clear ownership and filter values | Finance users need role-specific navigation and validation training | PWS-CORE-002 and future dimension read-first proof | Is `FIN` a global dimension value or only a role/training audience? | Wrong model creates dimensions that users do not understand or use | Add dimension/organization mapping decision |
+| SIM-ORG-PUR-001 | [SIMULATED] Purchasing responsibility area for vendors, purchase documents and approval route examples. | Tobias Brandt, purchasing lead, simulated | Felix Roth, BC consultant, simulated | Organization value `PUR`; display name `Purchasing`; phase `1`; owner `Tobias Brandt`; classification `department candidate` | Buyer role group; possible approval workflow owner | Must not create dimensions before posting/dimension route is approved | Dimension/workflow route open | blocked | Parked for dimension and workflow route; Configuration Package candidate later | P2P UAT needs buyer ownership and escalation path | Purchasing training uses this owner and scenario | PWS-MD-002 and later P2P scenarios | Should purchasing be a dimension or only role/workflow context? | Missing owner makes vendor and P2P UAT artificial | Link to vendor data request and approval-training card |
+| SIM-ORG-SAL-001 | [SIMULATED] Sales responsibility area for customers, sales orders and revenue reporting examples. | Pia Neumann, sales operations, simulated | Felix Roth, BC consultant, simulated | Organization value `SAL`; display name `Sales`; phase `1`; owner `Pia Neumann`; classification `department candidate` | Sales role group; possible customer owner; sales channel note | Must align with dimension/channel model before BC creation | Dimension/channel design open | blocked | Parked for dimension decision; UI for later learning value; Configuration Package for bulk | O2C UAT and customer training need sales ownership | Sales users need customer and order training context | PWS-MD-001 and later O2C read/write scenarios | Is sales department separate from sales channel? | Wrong classification causes weak reporting and confusing training | Add to organization/dimension mapping review |
+| SIM-ORG-INV-001 | [SIMULATED] Inventory responsibility area for stock, items, locations and warehouse learning path. | Elena Fischer, inventory lead, simulated | Sarah Klein, solution architect, simulated | Organization value `INV`; display name `Inventory`; phase `1`; owner `Elena Fischer`; classification `department candidate` | Warehouse role group; location owner; stock count owner | Do not create inventory dimensions or locations before inventory route is known | Inventory setup and location model open | blocked | Parked until inventory/location design; Configuration Package candidate later | Inventory UAT depends on who owns stock accuracy | Inventory users need item, location and count training | PWS-MD-003 and future inventory read-first proof | Is warehouse in phase 1 or phase 2? | Premature locations/dimensions create cleanup and valuation confusion | Add inventory/location dependency ticket |
+| SIM-ORG-SITE-001 | [SIMULATED] Saarland headquarters as physical site context for company story and training examples. | Mara Stein, sponsor, simulated | Adrian Vogt, BC solution architect, simulated | Site code `SAAR-HQ`; display name `Saarland headquarters`; phase `1`; classification `physical site` | Address placeholder; main training room; management office | Must not become a BC Location unless logistics need is approved | Company story ready, BC location dependency open | jira-ready | Parked for BC setup; book/training story use only for now | UAT can reference site context without creating stock location | Helps users understand that company story is not the same as BC Location setup | Screenshot not needed until location setup exists | Should `SAAR-HQ` ever become a BC Location? | Treating story site as stock location too early pollutes inventory setup | Keep as story/training context until location route |
+| SIM-ORG-SITE-002 | [SIMULATED] Main warehouse candidate for later inventory and warehouse processes. | Elena Fischer, inventory lead, simulated | Sarah Klein, solution architect, simulated | Candidate site code `SAAR-WH`; display name `Main warehouse`; phase `later unless inventory foundation approves`; classification `possible BC Location` | Bin/zone placeholder; receiving area placeholder | Must not create as BC Location until inventory posting, location and warehouse scope are approved | Inventory/warehouse foundation not ready | blocked | Parked; later UI for first Location or Configuration Package for locations | Inventory and warehouse UAT cannot start without a conscious location decision | Warehouse users need later training; not phase-1 finance training | Future PWS inventory/location read-first proof | Does Universaarl need basic locations or advanced warehouse? | Wrong location setup creates later correction complexity | Create inventory-location route decision after finance foundation |
 
-- Should the fiscal year start remain January 1 for the first book volume?
-- Which company information fields should remain blank until a final customer-like decision exists?
-- Which VAT registration wording can be shown safely as fictional/training data?
+## UNIVERSAARL_MD_Customers
 
-## CORE-002 Organization Model
+| Record ID | Business purpose | Customer owner | Internal owner | Required fields | Optional fields | Validation rules | Dependency status | BC setup readiness | Route candidate: UI / Assisted Setup / Template / Configuration Package / Excel-assisted / API / AL / Integration / Parked | UAT impact | Training impact | Playwright evidence need | Open questions | Risk if missing or wrong | Next action |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| SIM-CUST-10000 | [SIMULATED] Domestic B2B customer for first sales quote/order/invoice and receivables training. | Pia Neumann, sales operations, simulated | Felix Roth, BC consultant, simulated | Customer no. candidate `U-CUST-10000`; name `Saarland Maschinenbau GmbH`; country `DE`; currency `EUR`; customer posting group `TBD`; gen. business posting group `TBD`; VAT business posting group `TBD`; payment terms `TBD` | Delivery address placeholder; contact role placeholder; credit limit placeholder | No real customer or contact data; all posting, VAT, payment and numbering fields must be approved before BC write | Number series, posting groups, VAT groups and payment terms open | blocked | Template + Configuration Package after dependencies; one UI record later for training; API parked | O2C UAT depends on this being complete and valid | Customer-card training, sales document training and error checks use this as clean example | PWS-MD-001 read-first proof before write; later create/reopen proof | Which customer template and numbering route will be used? | Incomplete customer blocks sales documents or creates wrong ledger posting | Create data request ticket and keep BC creation blocked |
+| SIM-CUST-10010 | [SIMULATED] Customer with delivery-address variation for shipping, posting and invoice-address learning. | Pia Neumann, sales operations, simulated | Felix Roth, BC consultant, simulated | Customer no. candidate `U-CUST-10010`; name `Mosel Retail Partner KG`; country `DE`; currency `EUR`; posting/VAT/payment fields `TBD` | Ship-to address placeholder; buyer contact placeholder; email placeholder intentionally non-real | Same validation as clean customer plus delivery-address review | Same setup dependencies as first customer | blocked | Configuration Package candidate after first manual/customer-template proof | Needed for UAT of delivery-address and customer-list filtering | Helps train difference between customer card and document delivery context | PWS-MD-001 plus later sales document proof | Is delivery address needed in phase 1? | Weak address model makes sales training unrealistic | Park until first customer route is approved |
+| SIM-CUST-ERR90 | [SIMULATED] Incomplete customer used later to teach validation errors and blocked sales document routes. | Pia Neumann, sales operations, simulated | Milena Brand, QA/UAT lead, simulated | Customer no. candidate `U-CUST-ERR90`; name `Incomplete Training Customer`; country `DE`; intentionally missing posting/VAT/payment fields | Notes explaining intended error scenario | Must not be used for normal setup; only create later if an error-handling training case authorizes it | Error-training scope not active | parked | Parked; possible UI-only later for controlled error training | Useful for UAT negative tests only | Teaches why master-data completeness matters | Future error-handling Playwright scenario | Do we need negative customer setup in first book volume? | If used accidentally, it creates noisy blockers instead of learning | Keep as parked training idea |
 
-Source data request: `DR-CORE-002`
-Customer owner: Claudia Schulte / Sami Yilmaz
-Internal owner: Adrian Vogt / Sarah Klein
-Validation status: `needs-review`
-BC usage: dimensions, locations, roles, reporting and training audiences.
+## UNIVERSAARL_MD_Vendors
 
-| OrganizationValue | DisplayName | Classification | Phase | Owner | BC candidate | Validation status | Notes |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| FIN | Finance | dimension candidate | phase 1 | Lena Hartmann | Department dimension | complete-for-planning | Needed for finance training and reporting examples. |
-| PUR | Purchasing | dimension candidate | phase 1 | Tobias Brandt | Department dimension | complete-for-planning | Needed for P2P scenarios. |
-| SAL | Sales | dimension candidate | phase 1 | Pia Neumann | Department dimension | complete-for-planning | Needed for O2C scenarios. |
-| INV | Inventory | dimension candidate | phase 1 | Elena Fischer | Department dimension | complete-for-planning | Needed for inventory training and stock ownership. |
-| ADM | Administration | role group | phase 1 | Sami Yilmaz | permission/training audience | needs-review | May be role group, not dimension. |
-| SAAR-HQ | Saarland headquarters | site/location | phase 1 | Mara Stein | location/site context | needs-review | Physical site; BC Location only if inventory/storage use is defined. |
-| SAAR-WH | Main warehouse | site/location | phase 1 | Elena Fischer | possible BC Location | needs-review | Needs inventory/warehouse design before setup. |
-| SERVICE | Service operations | business unit | later | Mara Stein | parked | parked | Useful when Service Management scope is unlocked. |
-| HOLDING | Holding/management view | reporting-only | later | Jonas Weber | parked | parked | Do not create as company without legal/intercompany decision. |
+| Record ID | Business purpose | Customer owner | Internal owner | Required fields | Optional fields | Validation rules | Dependency status | BC setup readiness | Route candidate: UI / Assisted Setup / Template / Configuration Package / Excel-assisted / API / AL / Integration / Parked | UAT impact | Training impact | Playwright evidence need | Open questions | Risk if missing or wrong | Next action |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| SIM-VEND-20000 | [SIMULATED] Domestic material vendor for first purchase order/invoice, payables and P2P training. | Tobias Brandt, purchasing lead, simulated | Felix Roth, BC consultant, simulated | Vendor no. candidate `U-VEND-20000`; name `Saarstahl Komponenten GmbH`; country `DE`; currency `EUR`; vendor posting group `TBD`; gen. business posting group `TBD`; VAT business posting group `TBD`; payment terms `TBD`; payment method `TBD` | Contact role placeholder; vendor category placeholder; bank details intentionally excluded | No real vendor, bank or contact data; payment fields must not imply real payment capability | Vendor posting groups, VAT groups, payment terms/methods and numbering open | blocked | Template + Configuration Package after dependencies; one UI record later for training; API parked | P2P UAT depends on valid vendor setup | Vendor-card and purchase-document training use this as clean example | PWS-MD-002 read-first proof before write; later create/reopen proof | Which payment method can be safely simulated without bank data? | Wrong vendor setup blocks purchase posting or creates bad payables examples | Create data request ticket and keep BC creation blocked |
+| SIM-VEND-20010 | [SIMULATED] Domestic service vendor for non-inventory/service purchase examples. | Tobias Brandt, purchasing lead, simulated | Eva Krueger, finance consultant, simulated | Vendor no. candidate `U-VEND-20010`; name `IT Services Saar GmbH`; country `DE`; currency `EUR`; posting/VAT/payment fields `TBD` | Service category; contract owner; recurring service note | Must align with expense/service posting route before first use | Posting/VAT/payment dependencies open | blocked | Configuration Package candidate after vendor template proof | Supports UAT for service invoices and expense review | Teaches service procurement without inventory | PWS-MD-002 and later purchase invoice/service line proof | Which expense account/product posting group belongs to service purchases? | Service purchases may post incorrectly if product/posting groups are weak | Park until service posting route decision |
+| SIM-VEND-FA10 | [SIMULATED] Fixed-asset supplier candidate for later asset acquisition process. | Jonas Weber, CFO, simulated | Eva Krueger, finance consultant, simulated | Vendor no. candidate `U-VEND-FA10`; name `Anlagenbau Homburg GmbH`; country `DE`; currency `EUR`; posting/VAT/payment fields `TBD` | Asset category placeholder; delivery lead time placeholder | Must not drive fixed-asset process until FA setup route is approved | Fixed Assets and vendor dependencies open | parked | Parked until Fixed Assets workstream; later Configuration Package or UI | FA UAT later needs vendor context | Later training for asset acquisition can reuse it | Future FA read-first/create proof | Is fixed-asset purchasing phase 1? | Premature vendor use creates misleading FA claims | Keep parked until FA workstream |
 
-Follow-up questions:
+## UNIVERSAARL_MD_ItemsServices
 
-- Which values are true dimensions versus role groups?
-- Is `SAAR-WH` only a physical site now or a phase-1 BC Location?
-- Which values should remain parked until intercompany, service or advanced reporting is in scope?
+| Record ID | Business purpose | Customer owner | Internal owner | Required fields | Optional fields | Validation rules | Dependency status | BC setup readiness | Route candidate: UI / Assisted Setup / Template / Configuration Package / Excel-assisted / API / AL / Integration / Parked | UAT impact | Training impact | Playwright evidence need | Open questions | Risk if missing or wrong | Next action |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| SIM-ITEM-1000 | [SIMULATED] Inventory item for purchase, receipt, sale, inventory and valuation learning. | Elena Fischer, inventory lead, simulated | Sarah Klein, solution architect, simulated | Item no. candidate `U-ITEM-1000`; description `Steel component set`; type `Inventory`; base UOM `PCS`; item category `TBD`; inventory posting group `TBD`; gen. product posting group `TBD`; VAT product posting group `TBD`; costing method `TBD` | Replenishment note; lead time; vendor item number placeholder | Must not be created until UOM, item categories, posting groups, inventory posting and costing route are approved | Product setup, UOM, posting groups and inventory setup open | blocked | UI for one learning item after dependencies; Configuration Package/Excel-assisted for item list; API/integration parked | Inventory/O2C/P2P UAT depends on realistic item setup | Core item training and later warehouse training depend on this | PWS-MD-003 read-first proof before write; later item create/reopen proof | FIFO or standard costing for the book? Basic location or warehouse? | Wrong item setup causes misleading inventory value and posting examples | Add product/UOM/posting dependency tickets |
+| SIM-SERV-1000 | [SIMULATED] Service item for installation or consulting service lines without stock quantity. | Pia Neumann, sales operations, simulated | Felix Roth, BC consultant, simulated | Item no. candidate `U-SERV-1000`; description `Installation service`; type `Service`; base UOM `HOUR`; gen. product posting group `TBD`; VAT product posting group `TBD` | Service category; default unit price placeholder | Must not claim inventory behavior; must align with sales/service revenue posting setup | Product posting and VAT product groups open | blocked | UI for one learning record after dependencies; Template/Configuration Package later | O2C and purchase/service UAT can use it after posting route | Teaches difference between service and inventory item | PWS-MD-003 read-first proof; later sales line proof | Should service be represented as Item type Service or G/L line in phase 1? | Wrong route confuses stock, revenue and service examples | Decide service-item route before BC write |
+| SIM-NONINV-1000 | [SIMULATED] Non-inventory item for consumables or printed material that appears on documents without stock valuation. | Tobias Brandt, purchasing lead, simulated | Sarah Klein, solution architect, simulated | Item no. candidate `U-NONINV-1000`; description `Printed manual package`; type `Non-Inventory`; base UOM `PCS`; gen. product posting group `TBD`; VAT product posting group `TBD` | Supplier note; usage note; category placeholder | Must not be used for stock valuation; route must match book explanation | Product posting and UOM dependencies open | blocked | Parked until product model decision; UI or Configuration Package later | Useful for document-line UAT without inventory valuation | Teaches item type differences | PWS-MD-003 read-first proof | Is non-inventory needed before warehouse chapter? | Premature use may blur inventory vs expense concepts | Park until product model route is approved |
+| SIM-ITEM-ERR900 | [SIMULATED] Incomplete product record for later training on validation and blocked document lines. | Elena Fischer, inventory lead, simulated | Milena Brand, QA/UAT lead, simulated | Item no. candidate `U-ITEM-ERR900`; description `Incomplete product training record`; intentionally missing UOM/posting groups | Error scenario notes | Do not use for productive setup; only create in a controlled negative-test case | Error-training scope not active | parked | Parked for future error-handling training | Useful for negative UAT only | Teaches why item setup completeness matters | Future error-handling Playwright scenario | Is a negative item scenario needed in first book volume? | Accidental creation adds noise and confusing blockers | Keep parked |
 
-## MD-001 Customers
+## Critical readiness check
 
-Source data request: `DR-MD-001`
-Customer owner: Pia Neumann / Lena Hartmann
-Internal owner: Felix Roth / Eva Krueger / Milena Brand
-Validation status: `blocked`
-BC usage: customer card, sales documents, customer ledger entries, O2C training.
-
-| CustomerNo | Name | CountryRegion | CustomerPostingGroup | GenBusPostingGroup | VATBusPostingGroup | PaymentTerms | Currency | ScenarioPurpose | Validation status | Notes |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| U-CUST-10000 | Saarland Maschinenbau GmbH | DE | TBD-CUSTOMER | TBD-INLAND | TBD-INLAND | TBD-14D | EUR | simple B2B sales order and payment training | blocked | Needs posting groups, VAT group and payment terms. |
-| U-CUST-10010 | Mosel Retail Partner KG | DE | TBD-CUSTOMER | TBD-INLAND | TBD-INLAND | TBD-30D | EUR | customer with delivery/address variation | blocked | Useful after customer template decision. |
-| U-CUST-ERR90 | Incomplete Training Customer | DE | missing | missing | missing | missing | EUR | training error: incomplete master data | parked | Use later to teach validation, not for setup now. |
-
-Follow-up questions:
-
-- Which numbering route is used: number series or explicit `U-CUST-*` values?
-- Which customer posting group is valid for phase 1?
-- Which payment terms should exist before customer setup?
-- Which VAT business groups are needed for domestic phase-1 sales?
-
-Route note:
-
-Create one customer manually for book/training only after finance dependencies exist. Use templates or configuration package for repeated customers after validation.
-
-## MD-002 Vendors
-
-Source data request: `DR-MD-002`
-Customer owner: Tobias Brandt / Lena Hartmann
-Internal owner: Felix Roth / Eva Krueger / Milena Brand
-Validation status: `blocked`
-BC usage: vendor card, purchase documents, vendor ledger entries, payment and P2P training.
-
-| VendorNo | Name | CountryRegion | VendorPostingGroup | GenBusPostingGroup | VATBusPostingGroup | PaymentTerms | PaymentMethod | ScenarioPurpose | Validation status | Notes |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| U-VEND-20000 | Saarstahl Komponenten GmbH | DE | TBD-VENDOR | TBD-INLAND | TBD-INLAND | TBD-14D | TBD-BANK | material purchase training | blocked | No real bank data; payment method dependency open. |
-| U-VEND-20010 | IT Services Saar GmbH | DE | TBD-VENDOR | TBD-INLAND | TBD-INLAND | TBD-30D | TBD-BANK | service purchase training | blocked | Useful for non-inventory/service expense scenario. |
-| U-VEND-FA10 | Anlagenbau Homburg GmbH | DE | TBD-VENDOR | TBD-INLAND | TBD-INLAND | TBD-30D | TBD-BANK | later fixed-asset purchase candidate | parked | Do not use until fixed-asset route is unlocked. |
-
-Follow-up questions:
-
-- Which vendor posting group is valid for phase 1?
-- Which payment method should be trained without real bank data?
-- Which vendor is the first manual training example?
-- Which vendors should be loaded by template/configuration package later?
-
-Route note:
-
-Create one vendor manually for book/training only after posting groups, VAT groups, payment terms and payment method are clear. Keep bank data out of the first simulated table.
-
-## MD-003 Items, Services and Non-Inventory Items
-
-Source data request: `DR-MD-003`
-Customer owner: Elena Fischer / Tobias Brandt / Pia Neumann / Claudia Schulte
-Internal owner: Felix Roth / Eva Krueger / Milena Brand
-Validation status: `blocked`
-BC usage: item card, sales/purchase lines, inventory/value entries, product training.
-
-| ItemNo | Description | Type | BaseUOM | ItemCategory | InventoryPostingGroup | GenProdPostingGroup | VATProdPostingGroup | CostingMethod | ScenarioPurpose | Validation status | Notes |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| U-ITEM-1000 | Steel component set | Inventory | PCS | COMPONENTS | TBD-INVENTORY | TBD-GOODS | TBD-VAT19 | FIFO | purchase, receipt, sale and inventory training | blocked | Needs UOM, posting groups, costing and inventory setup. |
-| U-SERV-1000 | Installation service | Service | HOUR | SERVICES | n/a | TBD-SERVICE | TBD-VAT19 | n/a | service sales/purchase example | blocked | No inventory valuation claim. |
-| U-NONINV-1000 | Printed manual package | Non-Inventory | PCS | SUPPLIES | n/a | TBD-NONINV | TBD-VAT19 | n/a | non-inventory document-line example | blocked | Useful to contrast with inventory item. |
-| U-ITEM-ERR900 | Incomplete item training record | Inventory | missing | missing | missing | missing | missing | missing | training error: blocked item setup | parked | Do not create casually; later error-handling scenario only. |
-
-Follow-up questions:
-
-- Which base units of measure should be created first?
-- Which product posting groups are needed for goods, services and non-inventory items?
-- Which inventory posting group and inventory setup are required before stock scenarios?
-- Which item should be the first manual training example?
-
-Route note:
-
-Use manual item creation for one learning record only after dependencies are clear. Use configuration package or Excel-assisted package for larger item lists after template and validation rules are approved.
-
-## Cross-table readiness
-
-| Dependency | Status | Impact |
-| --- | --- | --- |
-| Company context | planned | Must be proven in `playthru` / `UNIVERSAARL-DE` before live setup. |
-| Numbering policy | open | Blocks customer, vendor and item setup route. |
-| Posting groups | open | Blocks realistic customers, vendors and items. |
-| VAT groups | open | Blocks tax-sensitive master data and document scenarios. |
-| Payment terms/methods | open | Blocks customer/vendor usability. |
-| Units of measure | open | Blocks item setup. |
-| Inventory posting setup | open | Blocks inventory item evidence. |
-| Tax advisor review boundary | open | Blocks final tax/compliance claims. |
+| Data package | Jira-ready | BC-setup-ready | Blocked reason | Recommended next route |
+| --- | --- | --- | --- | --- |
+| UNIVERSAARL_CORE_CompanyInformation | yes | no | Company Information needs read-first proof and safe simulated field decision. | Jira Data Request, then UI read-first proof in `playthru` / `UNIVERSAARL-DE`. |
+| UNIVERSAARL_CORE_OrganizationModel | yes | no | Dimension/location/workflow classification is not final. | Jira Decision + Data Request; park BC writes. |
+| UNIVERSAARL_MD_Customers | yes | no | Number series, posting groups, VAT groups and payment terms are open. | Data Request plus route decision; no customer creation yet. |
+| UNIVERSAARL_MD_Vendors | yes | no | Number series, vendor posting, VAT, payment terms/methods and no-bank-data boundary are open. | Data Request plus route decision; no vendor creation yet. |
+| UNIVERSAARL_MD_ItemsServices | yes | no | UOM, product posting groups, inventory posting, item categories and costing route are open. | Data Request plus product/UOM route decision; no item creation yet. |
 
 ## Next project use
 
-1. Convert these tables into Jira-linked data request pages or simulated spreadsheet files.
-2. Add route decision cards for numbering, posting groups, payment terms and product posting setup.
-3. Create Playwright scenario catalog entries for read-first validation of Company Information, customer cards, vendor cards and item cards.
-4. Use the tables for book/training examples only with clear labels: fictional, simulated and not production-ready.
+1. Convert the five packages into Jira Data Request candidates and dependency tickets.
+2. Use the route cards for numbering, posting groups, payment terms, UOM and product setup before any BC write.
+3. Use Playwright only for read-first page/context proof until dependencies are resolved.
+4. Use these records in the book only as clearly simulated planning examples, not as completed BC setup.
