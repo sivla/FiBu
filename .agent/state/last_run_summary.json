@@ -1,26 +1,37 @@
 {
   "schemaVersion": 1,
-  "activeCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "status": "observed-auth-shell-saved",
+  "activeCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+  "status": "blocked",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "mode": "universaarl-target-execution",
   "activeArea": "universaarl-vat-assisted-setup-readonly-discovery",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json",
-  "summary": "Detached Playwright auth capture reached the Business Central shell for playthru / UNIVERSAARL-DE and refreshed playwright/.auth/bc-user.json; auth:bc:check is green.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-vat-assisted-setup-readonly-discovery/TARGET-027D31-result.json",
+  "summary": "TARGET-027D31 ran read-only in playthru / UNIVERSAARL-DE. Tell-Me offered only search-overlay results for VAT Setup and Manual Setup, so no safe VAT setup page was accepted and no write gate is justified.",
   "proved": [
-    "Stored Playwright auth exists and is readable.",
-    "Shell validation metadata is fresh for playthru / UNIVERSAARL-DE.",
-    "auth:bc:check reports canUseStoredAuth=true."
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "0/2 VAT Assisted/Manual Setup route contexts passed read-only screenshot QA.",
+    "No VAT setup, configuration package, master data, document draft, Preview Posting, Posting or API shortcut was executed."
   ],
   "notProved": [
-    "No VAT Assisted Setup route was tested in this auth-only step.",
-    "No W1 Foundation setup value was changed.",
-    "No posting or preview posting was attempted."
+    "No VAT setup value is ready to write.",
+    "No INLAND/VAT19 row is proven complete.",
+    "No German VAT final correctness.",
+    "No VAT Entries.",
+    "No G/L Entries.",
+    "No Preview Posting.",
+    "No Posting.",
+    "Assisted Setup VAT route: route context not accepted.",
+    "Manual Setup VAT route: route context not accepted."
   ],
-  "blockedBy": [],
+  "blockedBy": [
+    "No accepted read-only setup context for Assisted Setup VAT route.",
+    "Visible text still looks like Tell-Me/search overlay for Assisted Setup VAT route.",
+    "No accepted read-only setup context for Manual Setup VAT route.",
+    "Visible text still looks like Tell-Me/search overlay for Manual Setup VAT route."
+  ],
   "warnings": [
-    "D31 must still validate the Business Central shell before route discovery."
+    "Write-capable or wizard-advance actions are visible, but were not clicked."
   ],
   "setupChanged": false,
   "setupChangeAttempted": false,
@@ -29,25 +40,24 @@
   "previewPosting": false,
   "posted": false,
   "apiShortcut": false,
-  "screenshots": [],
-  "nextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-  "nextStep": "Run TARGET-027D31 VAT Assisted Setup read-only discovery after confirming auth:bc:check remains green; do not change VAT setup, master data, drafts, Preview Posting, Posting or API shortcuts.",
+  "screenshots": [
+    "shell-context.png",
+    "assisted-setup-vat.png",
+    "manual-setup-vat.png"
+  ],
+  "nextCase": "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP",
+  "nextStep": "Run TARGET-027D31B read-only VAT setup route UI/source follow-up; do not write VAT setup, master data, drafts, Preview Posting, Posting or API shortcuts.",
   "nextStepDecision": {
-    "currentCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "lastEvidenceSummary": "Playwright storageState was refreshed through the detached auth profile; auth:bc:check now reports canUseStoredAuth=true for playthru / UNIVERSAARL-DE.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "The auth blocker is solved. Repeating the auth case would waste time; the next useful step is the previously blocked D31 read-only VAT route discovery.",
+    "currentCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+    "lastEvidenceSummary": "Auth is fresh for playthru / UNIVERSAARL-DE; D31 can inspect VAT Assisted/Manual Setup routes read-only.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "No safe Assisted/Manual VAT setup context was accepted; setup writes stay locked.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-        "status": "ready-next",
-        "reason": "Auth is fresh; D31 can now run as read-only Assisted Setup / Manual Setup route discovery without changing VAT setup."
-      },
-      {
         "caseId": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
-        "status": "needs-ui-discovery-first",
-        "reason": "Write decision requires D31 page/action evidence first."
+        "status": "blocked",
+        "reason": "Needs a safe VAT setup route context first."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
@@ -57,31 +67,32 @@
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Foundation checkpoint still depends on VAT and dimensions status."
+        "reason": "Requires VAT and dimensions status."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Master/process work remains locked until W1 Foundation is clearer."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-027D31 auth refresh gate as completed after auth:bc:check canUseStoredAuth=true.",
-      "Moved selected next case back to TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY.",
-      "Kept VAT setup changes, Preview Posting, Posting, master data and API shortcuts locked for the next read-only run."
+      "Select TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP after TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY."
     ],
-    "selectedNextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-    "whySelectedNextCaseIsBest": "It is the smallest useful W1 Foundation step unlocked by the fixed auth gate and produces UI/page evidence before any VAT write decision.",
+    "selectedNextCase": "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP",
+    "whySelectedNextCaseIsBest": "It keeps setup writes locked and narrows the remaining blocker to route/source/UI discovery.",
     "risksBeforeNextCase": [
-      "Live tests must still validate the Business Central shell at start.",
-      "D31 must remain read-only: no wizard finish, no setup save, no posting, no API shortcut.",
-      "If the page lands outside playthru / UNIVERSAARL-DE, abort and document the mismatch."
+      "Do not click Next, Finish, Apply, OK or any setup-saving action without a separate Smart Decision Gate.",
+      "Do not claim VAT correctness without setup row, preview/posting and ledger evidence.",
+      "Abort if runtime shell is not playthru / UNIVERSAARL-DE."
     ],
     "requiredPreparation": [
-      "Run npm run auth:bc:check and require canUseStoredAuth=true immediately before D31.",
-      "Open only playthru / UNIVERSAARL-DE.",
-      "Capture screenshot QA and page/action inventory before any later write gate."
+      "Use source/UI follow-up to locate the exact VAT Assisted/Manual setup route."
     ]
   },
-  "runId": "TARGET-027D31-AUTH-RESET-AND-FRESH-INTERACTIVE-BLOCKED",
-  "completedAt": "2026-07-05T13:57:56.982Z",
-  "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "resultStatus": "observed",
+  "runId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+  "completedAt": "2026-07-05T14:14:56.102Z",
+  "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+  "resultStatus": "blocked",
   "latestTarget027D31AuthRefreshAttempt": {
     "at": "2026-07-03T10:35:00.000Z",
     "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
@@ -112,70 +123,27 @@
     "apiShortcut": false,
     "nextSafeAction": "Run npm run auth:bc:open-login and finish Login/MFA inside the Playwright auth window until a Business Central shell signal is visible, require auth:bc:check canUseStoredAuth=true, then rerun D31 read-only discovery."
   },
-  "updatedAt": "2026-07-05T13:57:56.982Z",
+  "updatedAt": "2026-07-05T14:14:56.102Z",
   "actionsTaken": [
-    "Ran git status --short and git pull --ff-only; repository was up to date.",
-    "Ran auth:bc:check and confirmed stored auth was unusable.",
-    "Ran auth:bc:reset-profile as a dry run, then with -- --confirm.",
-    "Removed ignored local Playwright auth profile and storage-state files.",
-    "Ran auth:bc:interactive for a fresh login attempt; Business Central shell was not reached.",
-    "Added beginner-friendly SKR04 starter-account book substance to playwright/projects/fibu-book5/book-drafts/universaarl-foundation-ch06-draft.md based on existing Universaarl evidence.",
-    "Improved playwright/core/auth.setup.ts auth shell detection to handle a valid Business Central URL context when strict shell text matching is too narrow.",
-    "Ran a bounded 180000 ms auth:bc:interactive retry after the shell detection hardening.",
-    "Added auth:bc:open-login and updated auth doctor/check/run-plan hints to prefer the guided Playwright login handoff.",
-    "Ran the guided auth:bc:open-login handoff for 600000 ms; the Playwright page stayed on Microsoft sign-in.",
-    "Ran corrected auth:bc:probe for 30000 ms; the Playwright page stayed on Microsoft sign-in.",
-    "Ran auth:bc:open-login for 300000 ms; the Playwright page stayed on Microsoft sign-in.",
-    "Updated Auth evidence README and Playwright pattern rules for the current D31 blocker.",
-    "Changed auth:bc:open-login default wait to a bounded 300000 ms and documented longer handoffs via BC_AUTH_OPEN_LOGIN_TIMEOUT_MS.",
-    "Ran auth:bc:open-login with BC_AUTH_OPEN_LOGIN_TIMEOUT_MS=30000 to verify it writes a red blocked auth result instead of timing out silently.",
-    "Updated agent:marathon:check to suppress stale execute levers when the active case/status/summary indicates an auth gate.",
-    "Synchronized marathon_queue nextStep and decision card with the bounded D31 auth handoff result.",
-    "Aligned auth-state-check, auth-doctor, run-plan, reset-profile and interactive auth messages with bounded auth:bc:open-login guidance.",
-    "Verified auth:bc:check, auth:bc:doctor, agent:run-plan and auth:bc:reset-profile outputs after the text update.",
-    "Ran BC_AUTH_OPEN_LOGIN_TIMEOUT_MS=60000 npm run auth:bc:open-login; it stayed on Microsoft sign-in and saved no storage state.",
-    "Tried Chrome session diagnostic via Codex Chrome extension; browser was not available, and no Chrome auth data was read or copied.",
-    "Updated D31 auth evidence README and state with the fresh blocker.",
-    "Added npm run auth:bc:open-login-detached as a timeout-resistant Playwright profile login fallback.",
-    "Updated auth doctor/check/run-plan guidance and D31 README with the detached fallback sequence.",
-    "Launched npm run auth:bc:open-login-detached.",
-    "Added npm run auth:bc:capture-detached as a safe dry-run/confirm wrapper.",
-    "Ran auth:bc:capture-detached dry-run and confirmed it detects the open detached browser profile.",
-    "Blocked confirmed capture because the profile is still in use.",
-    "Closed the detached Playwright auth browser via Windows CloseMainWindow.",
-    "Confirmed auth:bc:capture-detached dry-run canCapture=true.",
-    "Ran a bounded confirmed capture; it reached Microsoft sign-in and saved no storageState.",
-    "Updated auth.setup result guidance to preserve the detached-login capture sequence.",
-    "Launched npm run auth:bc:open-login-detached for the active Playwright profile.",
-    "Verified auth:bc:open-login-detached now detects an already-open profile browser and does not launch a duplicate window.",
-    "Added npm run auth:bc:focus-detached.",
-    "Focused the already-open detached Playwright auth window for playthru / UNIVERSAARL-DE.",
-    "Enhanced auth:bc:capture-detached to report the detached browser window title.",
-    "Confirmed the active Playwright auth window is titled Bei Ihrem Konto anmelden - Google Chrome for Testing."
+    "Opened Business Central in playthru / UNIVERSAARL-DE.",
+    "Validated shell context before route discovery.",
+    "Searched VAT Setup and Manual Setup read-only.",
+    "Opened only search-result/page contexts and inventoried boundary actions.",
+    "Captured screenshot QA and route candidate JSON."
   ],
   "actionsNotTaken": [
-    "No D31 VAT Assisted Setup or Manual Setup page was opened.",
-    "No setup values were typed.",
-    "No master data, document, Preview Posting, Posting, payment or API shortcut occurred.",
-    "No BC workflow or Playwright business test was run because auth:bc:check remains blocked.",
-    "No bookmaster change was made; only the existing Foundation draft was improved.",
-    "No D31 VAT Assisted Setup or Manual Setup page was opened by this auth command.",
-    "No wizard Next, Finish, Apply or OK was clicked.",
-    "No additional Business Central auth browser was opened after adding auth:bc:open-login.",
-    "No bookmaster change was made.",
-    "No BC workflow was run after the red auth probe.",
-    "No BC workflow was run after the red open-login attempt.",
-    "No BC workflow was run while auth:bc:check remained red.",
-    "No BC workflow was run while auth:bc:check remained red after the bounded handoff verification.",
-    "No setup, master data, draft, Preview Posting, Posting or API shortcut was executed.",
-    "No Business Central workflow was run while auth:bc:check reported storage-state-file-missing.",
-    "No W1 Foundation/SKR04/VAT setup step was attempted while auth was red.",
-    "No Business Central workflow was run because auth:bc:check remains red.",
-    "No normal Chrome cookies or auth data were read or copied.",
-    "No W1 Foundation, SKR04, VAT setup, master data, draft, Preview Posting, Posting or API shortcut was executed.",
-    "Did not run W1 Foundation, SKR04, VAT setup, master data, draft, Preview Posting, Posting or API shortcut while auth:bc:check remained red.",
-    "Did not copy cookies or auth files from Chrome.",
-    "Did not run npm run auth:bc yet because detached Login/MFA must be completed and the detached browser closed first."
+    "No Next/Weiter",
+    "No Finish/Fertig stellen",
+    "No Apply/Anwenden",
+    "No OK/Ja confirmation",
+    "No VAT setup write",
+    "No configuration package import/export/validate",
+    "No master data",
+    "No document draft",
+    "No Preview Posting",
+    "No Posting",
+    "No API shortcut",
+    "No company switch"
   ],
   "latestAuthContextGate": {
     "at": "2026-07-03T10:55:00.000Z",

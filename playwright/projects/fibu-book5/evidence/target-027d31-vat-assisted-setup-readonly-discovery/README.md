@@ -1,11 +1,21 @@
-# TARGET-027D31 VAT Assisted Setup Read-only Discovery
+# TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY
 
-Status: blocked-auth-before-bc-shell
+Instanz: playthru
+Company: UNIVERSAARL-DE
 
-This run did not reach Business Central. The stored Playwright authentication state was older than the allowed 12 hours. A fresh auth attempt timed out and the redacted diagnosis remained on Microsoft sign-in instead of a validated Business Central shell.
+## Ergebnis
 
-Follow-up on 2026-07-03: a second `auth:bc:check`, `auth:bc`, and `auth:bc:diagnose` sequence produced the same safe blocker. The Playwright auth browser did not reach a Business Central shell signal and no storage state was saved.
+VAT Assisted/Manual Setup route discovery stayed blocked; setup writes remain locked.
 
-No Assisted Setup, Manual Setup, VAT Posting Setup, setup value, master data, document, Preview Posting, Posting, payment or API shortcut was executed.
+## Screenshot-QA
 
-Next safe action: refresh Business Central auth until `npm run auth:bc:check` returns `canUseStoredAuth=true`, then rerun D31 read-only discovery in `playthru / UNIVERSAARL-DE`.
+- Akzeptiert wird nur sichtbarer Business-Central-Kontext, nicht nur eine Tell-Me-Suche.
+- Wizard-/Setup-Grenzen werden inventarisiert, aber nicht bestaetigt.
+- Next, Finish, Apply, OK, New/Edit und Setup-Werte bleiben gesperrt.
+
+## Grenzen
+
+- Keine MwSt.-Einrichtung wurde angelegt oder geaendert.
+- Keine Konfigurationspakete wurden importiert, exportiert oder validiert.
+- Keine Stammdaten, kein Beleg, keine Preview und keine Buchung.
+- Keine finale deutsche USt-Behauptung.

@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP",
+  "status": "ready-next",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-target-execution",
+  "targetWorld": "Universaarl",
+  "activeArea": "universaarl-vat-setup-route-ui-source-followup",
+  "mayRunPlaywright": true,
+  "mayWorkEffectively": false,
+  "effectiveBcActionsAllowed": false,
+  "sourceDecision": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+  "purpose": "Recover a safe VAT setup discovery route after Tell-Me only offered search-overlay results for VAT Setup and Manual Setup.",
+  "allowedActions": [
+    "open-business-central",
+    "confirm-instance-and-company",
+    "inspect-current-shell-readonly",
+    "use-role-center-navigation-readonly",
+    "use-page-url-or-known-page-route-readonly-if-source-backed",
+    "hover-tooltips-and-inventory-actions",
+    "capture-screenshot-qa",
+    "inspect-dialogs-and-stop-before-write",
+    "write-result-json",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "finish-assisted-setup",
+    "click-next-if-it-writes",
+    "click-apply-ok-or-finish-on-setup-dialog",
+    "write-vat-posting-setup",
+    "type-values",
+    "import-configuration-package",
+    "export-configuration-package",
+    "validate-or-apply-configuration-package",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "repeat-rejected-page472-grid-new-edit-list-cell-route",
+    "claim-vat-correctness",
+    "claim-posting-readiness"
+  ],
+  "sourceRefs": [
+    "https://learn.microsoft.com/en-gb/dynamics365/business-central/finance-setup-vat",
+    "https://learn.microsoft.com/en-us/training/modules/set-up-vat-dynamics-365-business-central/"
+  ],
+  "acceptanceCriteria": [
+    "Business Central stays in playthru / UNIVERSAARL-DE.",
+    "A source-backed VAT setup page or route is observed read-only, or a precise blocker is documented.",
+    "Screenshot QA separates shell/search-overlay text from real setup-page context.",
+    "No wizard finish/apply/OK/Next action is clicked if it could write setup.",
+    "No VAT Posting Setup value, master data, document, Preview Posting, Posting or API shortcut occurs.",
+    "Result JSON states whether a later VAT write-gate decision is justified or VAT setup remains parked."
+  ],
+  "stopIf": [
+    "Instance is not playthru or company is not UNIVERSAARL-DE.",
+    "The route requires completing a wizard or confirming setup before read-only evidence is captured.",
+    "Only Tell-Me search overlay results such as 'Nach VAT Setup suchen' are visible.",
+    "Only the already parked Page 472 grid/New/Edit List/cell route is available.",
+    "A dialog asks for OK, Yes, Ja, Next, Finish, Apply, Import, Export, Validate or Publish with possible setup impact.",
+    "BC shell/auth context is unclear."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
+    "lastEvidenceSummary": "D31 stayed in playthru / UNIVERSAARL-DE but Tell-Me offered only search-overlay results for VAT Setup and Manual Setup. No safe setup page was accepted.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "A VAT write-gate is not sensible until a real setup page or source-backed route is visible. D31B narrows the next step to read-only UI/source route recovery.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP",
+        "status": "ready-next",
+        "reason": "It directly addresses the observed Tell-Me/search-overlay blocker without writing VAT setup."
+      },
+      {
+        "caseId": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
+        "status": "needs-ui-discovery-first",
+        "reason": "Write-gate decision requires accepted setup-page evidence first."
+      },
+      {
+        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "status": "ready-after-current",
+        "reason": "Can resume after VAT setup route is observed or intentionally parked."
+      },
+      {
+        "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+        "status": "needs-setup-first",
+        "reason": "Foundation checkpoint depends on VAT and dimensions status."
+      }
+    ],
+    "queueChangesMade": [
+      "Inserted TARGET-027D31B as the next read-only route-recovery case.",
+      "Kept VAT setup changes, master data, drafts, Preview Posting, Posting and API shortcuts locked."
+    ],
+    "selectedNextCase": "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP",
+    "whySelectedNextCaseIsBest": "It is the smallest useful follow-up to the observed D31 blocker and prevents a premature VAT write decision.",
+    "risksBeforeNextCase": [
+      "Tell-Me search overlay can look like navigation success if screenshot QA is too weak.",
+      "Assisted setup routes can expose Next/Finish/Apply actions that must remain untouched.",
+      "A page may be read-only visible without proving VAT posting readiness."
+    ],
+    "requiredPreparation": [
+      "Use only playthru / UNIVERSAARL-DE.",
+      "Prefer source-backed page routes or stable Role Center navigation over blind Tell-Me results.",
+      "Capture screenshot QA and action boundaries before any later setup write case."
+    ]
+  },
+  "nextCase": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
+  "updatedAt": "2026-07-05T14:20:00.000Z"
+}

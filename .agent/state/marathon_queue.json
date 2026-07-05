@@ -5,7 +5,7 @@
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "queueId": "TARGET-MARATHON-002-UNIVERSAARL-REPO-READONLY-PREP",
-  "reason": "TARGET-027D31 remains blocked by Playwright auth; detached auth profile window was launched for operator Login/MFA.",
+  "reason": "TARGET-027D31 produced read-only VAT setup route evidence but blocked because Tell-Me stayed in search overlay; D31B is the next route-recovery case.",
   "noEffectiveBusinessCentralActions": false,
   "forbiddenUntilUnblocked": [],
   "unblockCriteria": [
@@ -4665,7 +4665,7 @@
       "id": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
       "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
       "order": 10209,
-      "status": "pending",
+      "status": "blocked",
       "priority": "high",
       "category": "vat-assisted-setup-readonly-discovery",
       "expectedImpact": "discover-source-backed-vat-setup-route-without-writing",
@@ -4677,7 +4677,7 @@
       "targetWorld": "Universaarl",
       "noFinalGermanClaimWithoutUniversaarlEvidence": true,
       "caseFile": ".agent/state/cases/target-027d31-vat-assisted-setup-readonly-discovery.json",
-      "lookaheadStatus": "ready-next",
+      "lookaheadStatus": "blocked",
       "dependsOn": [
         "TARGET-027D30-VAT-MATRIX-PARK-OR-SOURCE-ROUTE-DECISION"
       ],
@@ -4717,16 +4717,21 @@
         "claim-vat-correctness",
         "claim-posting-readiness"
       ],
-      "completedAt": "2026-07-03T07:37:43.712Z",
-      "result": "Blocked before VAT Assisted Setup discovery because Playwright auth did not reach a validated Business Central shell.",
+      "completedAt": "2026-07-05T14:14:56.102Z",
+      "result": "Read-only VAT Assisted/Manual Setup route discovery stayed in Tell-Me search overlay; no setup page accepted.",
       "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31-vat-assisted-setup-readonly-discovery/TARGET-027D31-result.json",
       "setupChanged": false,
       "masterDataChanged": false,
       "previewPosting": false,
       "posted": false,
       "apiShortcut": false,
-      "blockedBy": [],
-      "nextCase": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
+      "blockedBy": [
+        "No accepted read-only setup context for Assisted Setup VAT route.",
+        "Visible text still looks like Tell-Me/search overlay for Assisted Setup VAT route.",
+        "No accepted read-only setup context for Manual Setup VAT route.",
+        "Visible text still looks like Tell-Me/search overlay for Manual Setup VAT route."
+      ],
+      "nextCase": "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP",
       "nextStepDecision": {
         "currentCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
         "plannedNextCaseBeforeReview": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
@@ -4773,6 +4778,23 @@
           "Capture screenshot QA and page/action inventory before any later write gate."
         ]
       }
+    },
+    {
+      "id": "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP",
+      "order": 10211,
+      "status": "pending",
+      "category": "vat-setup-route-discovery",
+      "expectedImpact": "recover-safe-vat-setup-route-before-write-gate",
+      "mayWorkEffectively": false,
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "goal": "Recover a source-backed read-only VAT setup page route after Tell-Me search-overlay blocker.",
+      "sourceCompany": "UNIVERSAARL-DE",
+      "targetWorld": "Universaarl",
+      "noFinalGermanClaimWithoutUniversaarlEvidence": false,
+      "lookaheadStatus": "ready-next",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-027d31b-vat-setup-route-ui-source-followup/TARGET-027D31B-result.json",
+      "nextCase": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION"
     },
     {
       "id": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
@@ -5017,23 +5039,18 @@
   },
   "updatedAt": "2026-07-05T13:57:56.982Z",
   "lastCompletedCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-  "nextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+  "nextCase": "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "lastEvidenceSummary": "Playwright storageState was refreshed through the detached auth profile; auth:bc:check now reports canUseStoredAuth=true for playthru / UNIVERSAARL-DE.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "The auth blocker is solved. Repeating the auth case would waste time; the next useful step is the previously blocked D31 read-only VAT route discovery.",
+    "currentCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+    "lastEvidenceSummary": "Auth is fresh for playthru / UNIVERSAARL-DE; D31 can inspect VAT Assisted/Manual Setup routes read-only.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "No safe Assisted/Manual VAT setup context was accepted; setup writes stay locked.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-        "status": "ready-next",
-        "reason": "Auth is fresh; D31 can now run as read-only Assisted Setup / Manual Setup route discovery without changing VAT setup."
-      },
-      {
         "caseId": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
-        "status": "needs-ui-discovery-first",
-        "reason": "Write decision requires D31 page/action evidence first."
+        "status": "blocked",
+        "reason": "Needs a safe VAT setup route context first."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
@@ -5043,59 +5060,54 @@
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Foundation checkpoint still depends on VAT and dimensions status."
+        "reason": "Requires VAT and dimensions status."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Master/process work remains locked until W1 Foundation is clearer."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-027D31 auth refresh gate as completed after auth:bc:check canUseStoredAuth=true.",
-      "Moved selected next case back to TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY.",
-      "Kept VAT setup changes, Preview Posting, Posting, master data and API shortcuts locked for the next read-only run."
+      "Select TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP after TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY."
     ],
-    "selectedNextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-    "whySelectedNextCaseIsBest": "It is the smallest useful W1 Foundation step unlocked by the fixed auth gate and produces UI/page evidence before any VAT write decision.",
+    "selectedNextCase": "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP",
+    "whySelectedNextCaseIsBest": "It keeps setup writes locked and narrows the remaining blocker to route/source/UI discovery.",
     "risksBeforeNextCase": [
-      "Live tests must still validate the Business Central shell at start.",
-      "D31 must remain read-only: no wizard finish, no setup save, no posting, no API shortcut.",
-      "If the page lands outside playthru / UNIVERSAARL-DE, abort and document the mismatch."
+      "Do not click Next, Finish, Apply, OK or any setup-saving action without a separate Smart Decision Gate.",
+      "Do not claim VAT correctness without setup row, preview/posting and ledger evidence.",
+      "Abort if runtime shell is not playthru / UNIVERSAARL-DE."
     ],
     "requiredPreparation": [
-      "Run npm run auth:bc:check and require canUseStoredAuth=true immediately before D31.",
-      "Open only playthru / UNIVERSAARL-DE.",
-      "Capture screenshot QA and page/action inventory before any later write gate."
+      "Use source/UI follow-up to locate the exact VAT Assisted/Manual setup route."
     ]
   },
-  "nextStep": "Run TARGET-027D31 VAT Assisted Setup read-only discovery after confirming auth:bc:check remains green; do not change VAT setup, master data, drafts, Preview Posting, Posting or API shortcuts.",
+  "nextStep": "Run TARGET-027D31B read-only VAT setup route UI/source follow-up; do not write VAT setup, master data, drafts, Preview Posting, Posting or API shortcuts.",
   "openItems": [
-    "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY"
+    "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP"
   ],
   "nextQueueItem": {
-    "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+    "caseId": "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP",
     "status": "pending",
-    "reason": "Auth blocker cleared; VAT Assisted Setup read-only discovery is the next bounded W1 Foundation step."
+    "reason": "Recover a safe source/UI route before any VAT setup write gate."
   },
   "nextCases": [
-    "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+    "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP",
     "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
     "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
     "TARGET-034-FOUNDATION-READY-CHECKPOINT"
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "lastEvidenceSummary": "Playwright storageState was refreshed through the detached auth profile; auth:bc:check now reports canUseStoredAuth=true for playthru / UNIVERSAARL-DE.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "The auth blocker is solved. Repeating the auth case would waste time; the next useful step is the previously blocked D31 read-only VAT route discovery.",
+    "currentCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+    "lastEvidenceSummary": "Auth is fresh for playthru / UNIVERSAARL-DE; D31 can inspect VAT Assisted/Manual Setup routes read-only.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "No safe Assisted/Manual VAT setup context was accepted; setup writes stay locked.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-        "status": "ready-next",
-        "reason": "Auth is fresh; D31 can now run as read-only Assisted Setup / Manual Setup route discovery without changing VAT setup."
-      },
-      {
         "caseId": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
-        "status": "needs-ui-discovery-first",
-        "reason": "Write decision requires D31 page/action evidence first."
+        "status": "blocked",
+        "reason": "Needs a safe VAT setup route context first."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
@@ -5105,30 +5117,31 @@
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Foundation checkpoint still depends on VAT and dimensions status."
+        "reason": "Requires VAT and dimensions status."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Master/process work remains locked until W1 Foundation is clearer."
       }
     ],
     "queueChangesMade": [
-      "Marked TARGET-027D31 auth refresh gate as completed after auth:bc:check canUseStoredAuth=true.",
-      "Moved selected next case back to TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY.",
-      "Kept VAT setup changes, Preview Posting, Posting, master data and API shortcuts locked for the next read-only run."
+      "Select TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP after TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY."
     ],
-    "selectedNextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-    "whySelectedNextCaseIsBest": "It is the smallest useful W1 Foundation step unlocked by the fixed auth gate and produces UI/page evidence before any VAT write decision.",
+    "selectedNextCase": "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP",
+    "whySelectedNextCaseIsBest": "It keeps setup writes locked and narrows the remaining blocker to route/source/UI discovery.",
     "risksBeforeNextCase": [
-      "Live tests must still validate the Business Central shell at start.",
-      "D31 must remain read-only: no wizard finish, no setup save, no posting, no API shortcut.",
-      "If the page lands outside playthru / UNIVERSAARL-DE, abort and document the mismatch."
+      "Do not click Next, Finish, Apply, OK or any setup-saving action without a separate Smart Decision Gate.",
+      "Do not claim VAT correctness without setup row, preview/posting and ledger evidence.",
+      "Abort if runtime shell is not playthru / UNIVERSAARL-DE."
     ],
     "requiredPreparation": [
-      "Run npm run auth:bc:check and require canUseStoredAuth=true immediately before D31.",
-      "Open only playthru / UNIVERSAARL-DE.",
-      "Capture screenshot QA and page/action inventory before any later write gate."
+      "Use source/UI follow-up to locate the exact VAT Assisted/Manual setup route."
     ]
   },
-  "total": 196,
-  "done": 154,
-  "blocked": 37,
+  "total": 209,
+  "done": 161,
+  "blocked": 43,
   "latestAuthOpenLoginHandoff": {
     "at": "2026-07-03T13:35:00.000Z",
     "command": "npm run auth:bc:open-login",

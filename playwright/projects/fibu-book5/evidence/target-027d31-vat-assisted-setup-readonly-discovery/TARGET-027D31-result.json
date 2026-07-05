@@ -2,49 +2,36 @@
   "schemaVersion": 1,
   "purpose": "autopilot-result-normalized",
   "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-  "source": "playwright-auth-gate-diagnosis",
-  "resultStatus": "blocked-auth-before-bc-shell",
+  "source": "playwright-universaarl-vat-assisted-manual-setup-readonly",
+  "resultStatus": "blocked",
+  "runPlanId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY-PLAN",
+  "selectedTaskClass": "monkey_work",
+  "selectedModelClass": "gpt-4-mini-low",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "page": "not reached - Microsoft sign-in page before Business Central shell",
-  "url": "redacted-login.microsoftonline.com",
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?company=UNIVERSAARL-DE",
+  "page": "VAT Assisted/Manual Setup route discovery",
   "actionsTaken": [
-    "Ran npm run auth:bc:check.",
-    "Ran npm run auth:bc after stale-auth blocker; command timed out without shell validation.",
-    "Ran npm run auth:bc:diagnose for redacted diagnosis.",
-    "Stopped before D31 Business Central UI discovery because shell context was not validated.",
-    "Ran a second npm run auth:bc:check on 2026-07-03; stored Playwright auth was still too old.",
-    "Ran a second npm run auth:bc with a 10 minute timeout; the browser did not reach a Business Central shell signal.",
-    "Ran a second npm run auth:bc:diagnose; the redacted diagnosis remained on Microsoft sign-in."
+    "Opened Business Central in playthru / UNIVERSAARL-DE.",
+    "Validated shell context before route discovery.",
+    "Searched VAT Setup and Manual Setup read-only.",
+    "Opened only search-result/page contexts and inventoried boundary actions.",
+    "Captured screenshot QA and route candidate JSON."
   ],
   "actionsNotTaken": [
-    "No Business Central shell page was accepted as evidence.",
-    "No Assisted Setup or Manual Setup page was opened.",
-    "No VAT setup page was changed.",
-    "No values were typed.",
-    "No wizard Next/Finish/Apply/OK was clicked.",
-    "No master data, document, Preview Posting, Posting, payment or API shortcut occurred."
+    "No Next/Weiter",
+    "No Finish/Fertig stellen",
+    "No Apply/Anwenden",
+    "No OK/Ja confirmation",
+    "No VAT setup write",
+    "No configuration package import/export/validate",
+    "No master data",
+    "No document draft",
+    "No Preview Posting",
+    "No Posting",
+    "No API shortcut",
+    "No company switch"
   ],
-  "authDiagnosis": {
-    "authCheckBlockedBy": [
-      "storage-state-too-old",
-      "shell-validation-meta-too-old"
-    ],
-    "diagnosisHost": "login.microsoftonline.com",
-    "diagnosisTitle": "Bei Ihrem Konto anmelden",
-    "shellSignalDetected": false,
-    "savedState": false,
-    "followUp20260703": {
-      "authCheckBlockedBy": [
-        "storage-state-too-old",
-        "shell-validation-meta-too-old"
-      ],
-      "diagnosisHost": "login.microsoftonline.com",
-      "diagnosisTitle": "Bei Ihrem Konto anmelden",
-      "shellSignalDetected": false,
-      "savedState": false
-    }
-  },
   "setupChanged": false,
   "setupChangeAttempted": false,
   "masterDataChanged": false,
@@ -52,94 +39,153 @@
   "previewPosting": false,
   "posted": false,
   "apiShortcut": false,
-  "screenshots": [],
+  "sourceRefs": [
+    "https://learn.microsoft.com/en-gb/dynamics365/business-central/finance-setup-vat",
+    "https://learn.microsoft.com/en-us/training/modules/set-up-vat-dynamics-365-business-central/"
+  ],
   "proved": [
-    "The local Playwright auth state is too old for D31 live evidence.",
-    "The fresh auth attempt did not reach a validated Business Central shell within the command timeout.",
-    "The redacted diagnosis stayed on Microsoft sign-in and did not detect a Business Central shell signal.",
-    "D31 VAT discovery was correctly not executed under unclear auth context.",
-    "A normal browser login is not sufficient for target workflows; the Playwright auth browser must reach a Business Central shell and auth:bc:check must be green."
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "0/2 VAT Assisted/Manual Setup route contexts passed read-only screenshot QA.",
+    "No VAT setup, configuration package, master data, document draft, Preview Posting, Posting or API shortcut was executed."
   ],
   "notProved": [
-    "No playthru / UNIVERSAARL-DE shell context was confirmed in this run.",
-    "No Assisted Setup / Manual Setup VAT route was observed.",
-    "No INLAND/VAT19 VAT Posting Setup row was written or proven.",
-    "No VAT correctness, posting readiness, VAT Entries or G/L Entries are proven."
+    "No VAT setup value is ready to write.",
+    "No INLAND/VAT19 row is proven complete.",
+    "No German VAT final correctness.",
+    "No VAT Entries.",
+    "No G/L Entries.",
+    "No Preview Posting.",
+    "No Posting.",
+    "Assisted Setup VAT route: route context not accepted.",
+    "Manual Setup VAT route: route context not accepted."
   ],
   "blockedBy": [
-    "auth:storage-state-too-old",
-    "auth:shell-validation-meta-too-old",
-    "auth:fresh-auth-diagnosis-stayed-on-microsoft-sign-in"
+    "No accepted read-only setup context for Assisted Setup VAT route.",
+    "Visible text still looks like Tell-Me/search overlay for Assisted Setup VAT route.",
+    "No accepted read-only setup context for Manual Setup VAT route.",
+    "Visible text still looks like Tell-Me/search overlay for Manual Setup VAT route."
   ],
   "warnings": [
-    "D31 remains the right next VAT route, but it must wait for a fresh Business Central shell validation.",
-    "Do not interpret a browser login page as Business Central evidence.",
-    "Do not rerun D31 until the Playwright auth gate is refreshed in its own browser context."
+    "Write-capable or wizard-advance actions are visible, but were not clicked."
   ],
+  "screenshots": [
+    "shell-context.png",
+    "assisted-setup-vat.png",
+    "manual-setup-vat.png"
+  ],
+  "evidenceRefs": [
+    "TARGET-027D31-result.json",
+    "README.md",
+    "shell-context.txt",
+    "shell-context.png",
+    "shell-context.screenshot.json",
+    "assisted-setup-vat.txt",
+    "assisted-setup-vat.png",
+    "assisted-setup-vat.screenshot.json",
+    "assisted-setup-vat-search-candidates.json",
+    "manual-setup-vat.txt",
+    "manual-setup-vat.png",
+    "manual-setup-vat.screenshot.json",
+    "manual-setup-vat-search-candidates.json"
+  ],
+  "routeResults": [
+    {
+      "id": "assisted-setup-vat",
+      "label": "Assisted Setup VAT route",
+      "status": "blocked",
+      "searchTerm": "VAT Setup",
+      "clickedSearchResult": true,
+      "clickError": "",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?company=UNIVERSAARL-DE",
+      "textFile": "assisted-setup-vat.txt",
+      "screenshot": "assisted-setup-vat.png",
+      "screenshotMetadata": "assisted-setup-vat.screenshot.json",
+      "candidatesFile": "assisted-setup-vat-search-candidates.json",
+      "blockedBy": [
+        "No accepted read-only setup context for Assisted Setup VAT route.",
+        "Visible text still looks like Tell-Me/search overlay for Assisted Setup VAT route."
+      ],
+      "warnings": [
+        "Write-capable or wizard-advance actions are visible, but were not clicked."
+      ]
+    },
+    {
+      "id": "manual-setup-vat",
+      "label": "Manual Setup VAT route",
+      "status": "blocked",
+      "searchTerm": "Manual Setup",
+      "clickedSearchResult": true,
+      "clickError": "",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?company=UNIVERSAARL-DE",
+      "textFile": "manual-setup-vat.txt",
+      "screenshot": "manual-setup-vat.png",
+      "screenshotMetadata": "manual-setup-vat.screenshot.json",
+      "candidatesFile": "manual-setup-vat-search-candidates.json",
+      "blockedBy": [
+        "No accepted read-only setup context for Manual Setup VAT route.",
+        "Visible text still looks like Tell-Me/search overlay for Manual Setup VAT route."
+      ],
+      "warnings": [
+        "Write-capable or wizard-advance actions are visible, but were not clicked."
+      ]
+    }
+  ],
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "safeToFinalizeState": false,
+  "requiresReview": true,
+  "statePatch": {},
   "nextStepDecision": {
     "currentCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-    "lastEvidenceSummary": "TARGET-027D30 selected D31 as the next materially different VAT route, but auth:bc:check and auth:bc:diagnose show the local Playwright storageState is too old and the fresh auth attempt stayed on Microsoft sign-in instead of Business Central shell.",
+    "lastEvidenceSummary": "Auth is fresh for playthru / UNIVERSAARL-DE; D31 can inspect VAT Assisted/Manual Setup routes read-only.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "D31 remains the best VAT next step, but it cannot run until Business Central shell validation is refreshed for playthru / UNIVERSAARL-DE.",
+    "reason": "No safe Assisted/Manual VAT setup context was accepted; setup writes stay locked.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-        "status": "blocked",
-        "reason": "Blocked only by stale/missing Playwright shell validation; no VAT setup route was attempted."
-      },
-      {
-        "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-        "status": "ready-next",
-        "reason": "First refresh auth state, then run the same D31 read-only discovery without changing VAT setup."
-      },
-      {
         "caseId": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
-        "status": "ready-after-current",
-        "reason": "Only possible after D31 observes a bounded Assisted Setup / Manual Setup route."
+        "status": "blocked",
+        "reason": "Needs a safe VAT setup route context first."
       },
       {
         "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
         "status": "ready-after-current",
-        "reason": "Can resume after VAT status is observed or explicitly parked with D31 blocker."
+        "reason": "Can resume after VAT route is observed or intentionally parked."
       },
       {
         "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
         "status": "needs-setup-first",
-        "reason": "Foundation checkpoint must include VAT and General Posting Setup boundaries."
+        "reason": "Requires VAT and dimensions status."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Master/process work remains locked until W1 Foundation is clearer."
       }
     ],
     "queueChangesMade": [
-      "Recorded TARGET-027D31 as blocked by auth, not by VAT UI.",
-      "Kept VAT write, Preview Posting, Posting, master data and API shortcuts locked.",
-      "Selected auth refresh plus D31 read-only discovery as next practical action."
+      "Select TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP after TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY."
     ],
-    "selectedNextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "whySelectedNextCaseIsBest": "It solves the real current blocker before any VAT UI discovery and prevents false setup progress from stale auth.",
+    "selectedNextCase": "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP",
+    "whySelectedNextCaseIsBest": "It keeps setup writes locked and narrows the remaining blocker to route/source/UI discovery.",
     "risksBeforeNextCase": [
-      "Do not use stale storageState for BC proof.",
-      "Do not continue to VAT setup pages until playthru / UNIVERSAARL-DE shell is confirmed.",
-      "Do not click wizard Next/Finish/Apply after auth is refreshed."
+      "Do not click Next, Finish, Apply, OK or any setup-saving action without a separate Smart Decision Gate.",
+      "Do not claim VAT correctness without setup row, preview/posting and ledger evidence.",
+      "Abort if runtime shell is not playthru / UNIVERSAARL-DE."
     ],
     "requiredPreparation": [
-      "Run npm run auth:bc and complete Login/MFA until Business Central shell is visible.",
-      "Run npm run auth:bc:check and require canUseStoredAuth=true.",
-      "Then run D31 read-only discovery with screenshot QA."
+      "Use source/UI follow-up to locate the exact VAT Assisted/Manual setup route."
     ]
   },
-  "changedFiles": [
-    "playwright/projects/fibu-book5/evidence/target-027d31-vat-assisted-setup-readonly-discovery/TARGET-027D31-result.json",
-    "playwright/projects/fibu-book5/evidence/target-027d31-vat-assisted-setup-readonly-discovery/README.md",
-    ".agent/state/current.json",
-    ".agent/state/last_run_summary.json",
-    ".agent/state/marathon_queue.json",
-    ".agent/state/cases/target-027d31-vat-assisted-setup-readonly-discovery.json"
-  ],
-  "evidenceRefs": [],
-  "requiresReview": false,
-  "safeToFinalizeState": false,
-  "statePatch": {},
-  "reason": "D31 was stopped before BC UI discovery because auth shell validation could not be refreshed.",
-  "nextCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-  "completedAt": "2026-07-03T08:08:00.000Z"
+  "nextCase": "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP",
+  "reason": "VAT Assisted/Manual Setup route discovery stayed blocked; setup writes remain locked."
 }
