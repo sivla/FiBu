@@ -5,7 +5,7 @@ Started: 2026-07-05
 
 Consolidated decision: `.agent/PROJECT-DECISION.md`.
 
-The freeze is not a permanent stop. It pauses TARGET-073 and prevents another blind VAT Page 472 editor retry. The intended resume path is TARGET-074 as a foundation checkpoint, followed by a small capability-referenced pilot live case when the resume conditions below are met.
+The freeze is not a permanent stop. It pauses TARGET-073 and prevents another blind VAT Page 472 editor retry. TARGET-074 is completed as the local foundation checkpoint. The prepared resume pilot is TARGET-075 as a read-first Chart of Accounts / Foundation consistency check when the resume conditions below are met.
 
 ## Purpose
 
@@ -42,6 +42,7 @@ Resume live queue only after:
 - `npm run agent:quality:audit` has been reviewed
 - the next live case explicitly references the relevant skill/capability IDs
 - the active case confirms whether the freeze is lifted or the queue is deliberately re-ordered
+- TARGET-075 remains read-only unless a later case explicitly unlocks setup or master-data writes
 
 ## Immediate improvement priorities
 

@@ -87,15 +87,14 @@ Diese Gates sollen entscheiden, begrenzen oder umordnen. Sie sollen nicht automa
 1. Diese Projektentscheidung als zentrale Referenz nutzen.
 2. Freeze nicht durch weitere Reviews verlaengern.
 3. TARGET-073 eingefroren/geparkt lassen.
-4. TARGET-074 als lokalen Foundation-Checkpoint vorbereiten.
-5. Naechsten Live-Pilot nur mit expliziten Capability-Verweisen planen.
+4. TARGET-074 als lokalen Foundation-Checkpoint abgeschlossen halten.
+5. TARGET-075 als kleinen, read-first Foundation-Pilot mit expliziten Capability-Verweisen nutzen.
 
 ### Als naechstes
 
-1. TARGET-074 ausfuehren: Foundation-Stand auf `ready`, `limited-learning-path-only` oder `blocked` klassifizieren.
-2. Danach einen kleinen Live-Pilot waehlen, der das Betriebsmodell testet, bevorzugt Karten-/Stammdatenlogik statt VAT-Grid.
-3. Candidate: `TARGET-075-FIRST-VENDOR-CARD-CONTROLLED-FIT`, falls Nummernserie und Kreditorenbuchungsgruppe ausreichend geklaert sind.
-4. Alternative: `TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK`, falls Stammdaten fachlich noch zu frueh sind.
+1. TARGET-075 vorbereiten oder ausfuehren, sobald der Freeze bewusst geliftet wird: Chart of Accounts und Foundation-Kontext read-only pruefen.
+2. Danach entscheiden, ob `TARGET-075-FIRST-VENDOR-CARD-CONTROLLED-FIT` fachlich reif ist.
+3. VAT Page 472 erst wieder anfassen, wenn eine neue, nicht wiederholende Editor-/Helper-Hypothese existiert.
 
 ### Spaeter
 
@@ -116,7 +115,7 @@ Diese Gates sollen entscheiden, begrenzen oder umordnen. Sie sollen nicht automa
 
 ## 5. Erste konkrete Umsetzung
 
-Dieses Dokument ist das erste Umsetzungspaket.
+Dieses Dokument war das erste Umsetzungspaket. Der aktuelle lokale Anschluss ist TARGET-074 als abgeschlossener Foundation-Checkpoint und TARGET-075 als vorbereiteter Resume-Pilot.
 
 Zweck:
 
@@ -133,17 +132,18 @@ TARGET-073 bleibt eingefroren und wird nicht als naechster Live-Case wiederholt.
 Der wahrscheinlich beste Resume-Pfad ist:
 
 1. `TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK`
-   - lokal oder read-only
-   - klassifiziert Foundation-Grenzen
-   - entscheidet, ob begrenzter Lernpfad, Helper-first oder Setup-Recovery folgt
+   - erledigt als lokaler Checkpoint
+   - klassifiziert Foundation als `limited-learning-path-only`
+   - parkt TARGET-073 als Wiederholungsroute ohne neue Helper-Hypothese
 
-2. Danach bevorzugter Live-Pilot:
-   - `TARGET-075-FIRST-VENDOR-CARD-CONTROLLED-FIT`
-   - nur wenn Nummernserie, Kreditorenbuchungsgruppe, Page Context, aktiver Editor und Reopen-Proof planbar sind
-
-3. Alternative Live-/Read-only-Pilot:
+2. Aktueller Resume-Pilot:
    - `TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK`
-   - wenn Stammdaten fachlich noch nicht sauber genug vorbereitet sind
+   - read-first, kein Setup-Write, keine Stammdaten, kein Preview/Post
+   - prueft `playthru / UNIVERSAARL-DE`, Kontenplan und Setup-Grenzen als Buch- und Evidence-Basis
+
+3. Danach moeglicher Stammdaten-Pilot:
+   - `TARGET-075-FIRST-VENDOR-CARD-CONTROLLED-FIT`
+   - nur wenn der Foundation-Checkpoint keine neuen Blocker zeigt und Nummernserie/Kreditorenbuchungsgruppe ausreichend geklaert sind
 
 Vor Resume muessen erfuellt sein:
 

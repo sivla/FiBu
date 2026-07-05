@@ -4,7 +4,7 @@ This file defines how agents operate Business Central for FiBu Buch 5. It is a c
 
 Current consolidated project decision: `.agent/PROJECT-DECISION.md`.
 
-Use that file as the short strategic layer before choosing a live case. It resolves the current freeze conflict: TARGET-073 stays parked, Superrechte remain usable inside the sandbox when the active case allows them, and the next resume path starts with TARGET-074 rather than another VAT Page 472 editor retry.
+Use that file as the short strategic layer before choosing a live case. It resolves the current freeze conflict: TARGET-073 stays parked, Superrechte remain usable inside the sandbox when the active case allows them, TARGET-074 is completed as the local checkpoint, and the prepared resume pilot is TARGET-075 as a read-first Chart of Accounts / Foundation consistency check rather than another VAT Page 472 editor retry.
 
 ## Core rule
 
