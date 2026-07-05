@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
+  "status": "ready-next",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-target-execution",
+  "targetWorld": "Universaarl",
+  "activeArea": "universaarl-general-posting-setup-purchase-account-route-decision",
+  "mayRunPlaywright": false,
+  "mayWorkEffectively": false,
+  "effectiveBcActionsAllowed": false,
+  "purpose": "Decide a materially new source-backed route for the missing General Posting Setup purchase account 5400 on the partial INLAND/WAREN row, without repeating exhausted Page 314 list/cell routes.",
+  "allowedActions": [
+    "read-existing-result-json",
+    "read-source-registry",
+    "read-coverage-and-catalog",
+    "classify-general-posting-setup-route-status",
+    "write-local-decision-result",
+    "update-state-and-queue"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "execute-playwright",
+    "write-general-posting-setup",
+    "write-vat-posting-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "repeat-target-032o-list-edit-geometry-route"
+  ],
+  "acceptanceCriteria": [
+    "Existing Page 314 blocker chain is classified without another UI click.",
+    "The next route is materially new, source-backed, Page-Inspection-backed or explicitly parked.",
+    "No setup, master data, document, Preview Posting or Posting is unlocked by this decision alone.",
+    "No posting-readiness claim is made."
+  ],
+  "stopIf": [
+    "A conclusion would require a new BC or Playwright run.",
+    "The decision would repeat the failed Page 314 list/edit/cell geometry route.",
+    "The decision would write 5400 without a separate gated write case."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-055-FOUNDATION-READY-RECHECK-AFTER-VAT-PARK",
+    "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+    "lastEvidenceSummary": "TARGET-055 classified Foundation as partial. U-VEND D2G/D2H and item/inventory follow-ups already exist; General Posting Setup still lacks purchase account 5400.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The missing 5400 purchase account is the next unresolved Foundation blocker that directly affects later P2P and posting readiness.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+        "status": "blocked",
+        "reason": "VAT remains parked after D31E."
+      },
+      {
+        "caseId": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
+        "status": "obsolete",
+        "reason": "Already executed and superseded by D2H."
+      },
+      {
+        "caseId": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
+        "status": "ready-next",
+        "reason": "Targets the remaining INLAND/WAREN/5400 General Posting Setup gap without a write."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "blocked",
+        "reason": "Needs posting/VAT setup boundaries first."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "It attacks a real Foundation setup gap, avoids old VAT and U-VEND loops, and keeps process documents locked.",
+    "risksBeforeNextCase": [
+      "Repeating failed Page 314 geometry would waste time.",
+      "Writing 5400 without a fresh route gate could corrupt setup.",
+      "Posting readiness must remain false."
+    ],
+    "requiredPreparation": [
+      "Use TARGET-032K through TARGET-032P evidence.",
+      "Use sources or Page Inspection before any later write case."
+    ]
+  },
+  "nextCase": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
+  "updatedAt": "2026-07-05T17:05:00.000Z"
+}

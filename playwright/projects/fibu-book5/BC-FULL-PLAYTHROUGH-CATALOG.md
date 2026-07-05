@@ -28,10 +28,10 @@ Zero-Open-Questions-Regel: Jeder Bereich in diesem Katalog muss seine offenen Ob
 
 | Prioritaet | Case | Warum |
 | --- | --- | --- |
-| 1 | `TARGET-055-FOUNDATION-READY-RECHECK-AFTER-VAT-PARK` | D31E hat die aktuelle Page-470-Route bewusst geparkt. Jetzt muss die Foundation sauber neu klassifiziert werden: bewiesen, partiell, geparkt oder blockiert. |
+| 1 | `TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION` | TARGET-055 hat W1 Foundation als partiell und nicht posting-ready klassifiziert. D2G/D2H haben `U-VEND Manuelle Anz.` bereits geparkt; der engste aktuelle Setup-Blocker ist jetzt das fehlende Einkaufskonto `5400` in General Posting Setup. |
 | 2 | `TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION` | Blockiert, solange Page 470 nicht sichtbar reproduzierbar ist oder eine wirklich neue Source-/Page-Inspection-Route begruendet wurde. D31E allein gibt keine USt-Schreibfreigabe. |
-| 3 | `TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION` | Moeglicher enger Follow-up nach TARGET-055, weil der Kreditor noch durch die U-VEND-Nummernseriengrenze blockiert ist. |
-| 4 | `TARGET-028-POSTING-GROUPS-PREFLIGHT` | Wartet auf die klare VAT-/General-Posting-Groups-/Dimensions-Grenze; kein Posting-Readiness-Claim ohne Setup- und Preview-Evidence. |
+| 3 | `TARGET-028-POSTING-GROUPS-PREFLIGHT` | Wartet auf die klare VAT-/General-Posting-Groups-/Dimensions-Grenze; kein Posting-Readiness-Claim ohne Setup- und Preview-Evidence. |
+| 4 | `TARGET-LOOKFEEL-001-LIST-SEARCH-SORT-FILTER` | Buchrelevant nach dem naechsten Foundation-Blocker, aber nicht vor U-VEND, wenn der erste Kreditor weiter blockiert. |
 | 5 | `TARGET-038-O2C-PREFLIGHT` | Bleibt gesperrt, bis Inventory Posting Setup, VAT Setup, General Posting Setup und Dimensionen bewusst geprueft sind. |
 | 6 | `PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING` | Quellen bleiben als Unterstuetzung aktiv, ersetzen aber keine Universaarl-UI- und Posting-Evidence. |
 | 7 | `PREP-031-COMPANIES-PAGE-READONLY-PLAYWRIGHT` | Erledigt: Read-only Companies Page zeigt `Neu`, Pfeil neben `Neu`, `Neues Unternehmen erstellen`, `Kopieren` und `Testunternehmen` ohne Company-Anlage. |

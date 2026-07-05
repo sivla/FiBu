@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-055-FOUNDATION-READY-RECHECK-AFTER-VAT-PARK",
-  "status": "ready-next",
+  "status": "done",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "mode": "universaarl-target-execution",
@@ -52,46 +52,58 @@
     "The decision would unlock VAT or General Posting Setup writes without a separate case."
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-027D31E-VAT-BUSINESS-GROUPS-SOURCE-OR-PAGEINSPECTION-DECISION",
+    "currentCase": "TARGET-055-FOUNDATION-READY-RECHECK-AFTER-VAT-PARK",
     "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
-    "lastEvidenceSummary": "D31E parks the current Page-470 route and keeps VAT writes locked.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "After parking VAT, the next useful move is to recheck Foundation boundaries before choosing any write or process case.",
+    "lastEvidenceSummary": "D31E parks VAT Page 470. D2G/D2H already handled the U-VEND route decision and parked Manual Nos. Item/inventory follow-ups through TARGET-054 also exist. General Posting Setup still lacks purchase account 5400.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "VAT write-gate is blocked, U-VEND D2G/D2H is already done, and the next real Foundation gap is the missing 5400 purchase account route.",
     "lookaheadReviewed": [
       {
         "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
         "status": "blocked",
-        "reason": "Still lacks visible Page-470 proof or a materially new source route."
-      },
-      {
-        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "Needs Foundation boundary classification first."
+        "reason": "Needs Page 470 or a materially new source route first."
       },
       {
         "caseId": "TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION",
-        "status": "ready-after-current",
-        "reason": "Vendor blocker may be a narrower next route after Foundation recheck."
+        "status": "obsolete",
+        "reason": "Already executed; D2H is also done and parked U-VEND Manual Nos."
+      },
+      {
+        "caseId": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
+        "status": "ready-next",
+        "reason": "Targets the unresolved General Posting Setup 5400 gap without BC/Playwright or writes."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "blocked",
+        "reason": "O2C needs posting/VAT setup boundaries and no posting readiness is proven."
       },
       {
         "caseId": "TARGET-LOOKFEEL-001-LIST-SEARCH-SORT-FILTER",
-        "status": "needs-book-context-first",
-        "reason": "Useful for the book, but data richness and Foundation boundaries come first."
+        "status": "ready-after-current",
+        "reason": "Book-useful later, but the Foundation setup gap comes first."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-055-FOUNDATION-READY-RECHECK-AFTER-VAT-PARK",
-    "whySelectedNextCaseIsBest": "It prevents a VAT click loop and avoids jumping into master data or process documents while Foundation is still partial.",
+    "queueChangesMade": [
+      "Marked TARGET-055 done.",
+      "Selected TARGET-056 as the next active case."
+    ],
+    "selectedNextCase": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "It addresses a real Foundation setup blocker, avoids old VAT/U-VEND loops, and keeps all writes/posting locked.",
     "risksBeforeNextCase": [
-      "False posting-readiness claim.",
-      "Treating parked setup routes as solved.",
-      "Repeating already obsolete dimensions or checkpoint cases."
+      "Repeating failed Page 314 geometry routes.",
+      "Mistaking partial INLAND/WAREN/4400 evidence for posting readiness.",
+      "Creating documents before setup boundaries are settled."
     ],
     "requiredPreparation": [
-      "Use existing TARGET-026 through TARGET-054 evidence.",
-      "Keep all BC and Playwright execution locked unless a later case explicitly allows it."
+      "Read TARGET-032K through TARGET-032P evidence.",
+      "Use source or Page Inspection before any later write case."
     ]
   },
-  "nextCase": "TARGET-055-FOUNDATION-READY-RECHECK-AFTER-VAT-PARK",
-  "updatedAt": "2026-07-05T16:20:00.000Z"
+  "nextCase": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION",
+  "updatedAt": "2026-07-05T17:05:00.000Z",
+  "completedAt": "2026-07-05T17:05:00.000Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-055-foundation-ready-recheck-after-vat-park/TARGET-055-result.json",
+  "resultStatus": "observed-local-decision",
+  "decision": "foundation-partial-not-posting-ready-select-u-vend-manual-nos-decision"
 }

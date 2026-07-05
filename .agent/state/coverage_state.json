@@ -862,7 +862,7 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-07-05T16:20:00.000Z",
+  "updatedAt": "2026-07-05T17:05:00.000Z",
   "activeArea": "universaarl-general-posting-setup-alternative-route-discovery",
   "currentBlock": "Foundation checkpoint needed before master data: General Posting Setup Page 314 and VAT matrix are parked; Dimensions starter set is visible but Global/Default Dimensions and posting effects are not proven.",
   "latestPracticalCase": "TARGET-051-ITEM-POSTING-FIELDS-CONTROLLED-ASSIGNMENT-GATE",
@@ -1088,7 +1088,7 @@
     "playwright/projects/fibu-book5/BC-ERROR-BLOCKER-ATLAS.md",
     "playwright/projects/fibu-book5/BC-PROCESS-COVERAGE-ROADMAP.md"
   ],
-  "currentCoverageFocus": "TARGET-027D31E parks Page 470 / VAT Business Posting Groups after D31D returned to Role Center. VAT setup writes remain locked; no VAT correctness, Preview Posting, Posting or Entries are proven. Next: TARGET-055 Foundation recheck after VAT park.",
+  "currentCoverageFocus": "TARGET-055: W1 Foundation is partial and not posting-ready. VAT remains parked, U-VEND Manual Nos is already parked by D2G/D2H, and the next active gap is General Posting Setup purchase account 5400 on INLAND/WAREN.",
   "latestCoverageUpdate": {
     "at": "2026-06-28T19:28:00.000+02:00",
     "type": "p2p-011-purchase-lines-action-discovery-tested",
@@ -5268,10 +5268,24 @@
     "summary": "Inventory account and Inventory Posting Group remain blocked pending SKR04 source gate; no write unlocked."
   },
   "currentFoundationBoundary": {
-    "caseId": "TARGET-032H-GENERAL-POSTING-SETUP-ALTERNATIVE-ROUTE-DISCOVERY",
-    "status": "page314-readonly-weak-route-signal-needs-classification",
-    "boundary": "General Posting Setup remains unresolved. TARGET-032H proves Page 314 action/tooltip context only, not a saved INLAND/WAREN matrix row.",
-    "nextCase": "TARGET-032I-GENERAL-POSTING-SETUP-ROUTE-CANDIDATE-DECISION"
+    "status": "partial-not-posting-ready",
+    "proven": [
+      "Universaarl company/context",
+      "starter accounts partial",
+      "SAAR-HL",
+      "WARE item posting group",
+      "SAAR-HL/WARE/1140 inventory posting setup",
+      "U-ITEM-HW100 with STK/WARE/VAT19"
+    ],
+    "blockedOrParked": [
+      "VAT Page 470 route",
+      "VAT Posting Setup matrix",
+      "General Posting Setup purchase account 5400",
+      "U-VEND Manual Nos",
+      "Preview Posting",
+      "Posting"
+    ],
+    "nextCase": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION"
   },
   "latestTarget048InventoryAccountSkr04SourceGate": {
     "caseId": "TARGET-048-INVENTORY-ACCOUNT-SKR04-SOURCE-GATE",
@@ -5846,5 +5860,38 @@
       "Posting"
     ],
     "nextCase": "TARGET-055-FOUNDATION-READY-RECHECK-AFTER-VAT-PARK"
+  },
+  "latestTarget055Result": "playwright/projects/fibu-book5/evidence/target-055-foundation-ready-recheck-after-vat-park/TARGET-055-result.json",
+  "latestTarget055FoundationRecheck": {
+    "caseId": "TARGET-055-FOUNDATION-READY-RECHECK-AFTER-VAT-PARK",
+    "status": "observed-local-decision",
+    "overall": "partial-not-posting-ready",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-055-foundation-ready-recheck-after-vat-park/TARGET-055-result.json",
+    "proven": [
+      "UNIVERSAARL-DE exists in playthru.",
+      "Universaarl GmbH is visible in Company Information evidence.",
+      "SKR04-oriented starter accounts are partially proven as individual starter accounts, not as a complete chart of accounts.",
+      "SAAR-HL location, WARE item posting group, inventory posting setup SAAR-HL/WARE/1140 and U-ITEM-HW100 item basis are proven by earlier reopen evidence.",
+      "U-ITEM-HW100 shows WAREN and VAT19 after reopen."
+    ],
+    "partial": [
+      "General Posting Setup has partial INLAND/WAREN/4400 evidence, but purchase account 5400 is not proven.",
+      "VAT setup has Page 471/Page 472/Page 1801 read-only context, but no accepted Page 470 route and no correct VAT matrix row.",
+      "Number Series have U-* lines and some setup assignments, but U-VEND Manual Nos is not proven active.",
+      "Dimensions starter values exist, but global/default dimensions and posting effects remain unproven."
+    ],
+    "parked": [
+      "Page 470 VAT Business Posting Groups route.",
+      "Page 472 VAT matrix write route.",
+      "Page 314 purchase account 5400 write route.",
+      "D31C/D31D VAT search-click route."
+    ],
+    "blocked": [
+      "Posting readiness.",
+      "Preview Posting readiness.",
+      "Vendor creation through U-VEND until Manual Nos is resolved.",
+      "O2C/P2P process starts before VAT and General Posting Setup boundaries are solved or explicitly accepted."
+    ],
+    "nextCase": "TARGET-056-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-SOURCE-ROUTE-DECISION"
   }
 }
