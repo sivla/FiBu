@@ -26,6 +26,10 @@ The target is one integrated system:
   - How to keep documentation current while work happens.
 - `PROJECT-ARTIFACT-TEMPLATES.md`
   - Reusable templates for issues, data requests, decisions, risks, UAT, training and book output.
+- `REFINEMENT-BACKLOG.md`
+  - Ordered refinement backlog for turning the draft into Jira-ready project material.
+- `WORKSTREAM-03-FINANCE-FOUNDATION-JIRA-DRAFT.md`
+  - First detailed workstream draft for finance foundation, setup decisions, Playwright scenarios and book outputs.
 
 ## Working rule
 

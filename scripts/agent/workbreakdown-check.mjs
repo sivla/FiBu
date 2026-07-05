@@ -7,7 +7,9 @@ const files = {
   workbreakdown: '.agent/project-template/BC-IMPLEMENTATION-WORKBREAKDOWN-DRAFT.md',
   jiraModel: '.agent/project-template/JIRA-WORK-ITEM-MODEL.md',
   cadence: '.agent/project-template/DOCUMENTATION-CADENCE.md',
-  artifactTemplates: '.agent/project-template/PROJECT-ARTIFACT-TEMPLATES.md'
+  artifactTemplates: '.agent/project-template/PROJECT-ARTIFACT-TEMPLATES.md',
+  refinementBacklog: '.agent/project-template/REFINEMENT-BACKLOG.md',
+  financeFoundationDraft: '.agent/project-template/WORKSTREAM-03-FINANCE-FOUNDATION-JIRA-DRAFT.md'
 };
 
 function absolute(relativePath) {
@@ -52,6 +54,8 @@ if (allText) {
     'Jira Work Item Model',
     'Documentation Cadence',
     'Project Artifact Templates',
+    'Project Template Refinement Backlog',
+    'WS03 Finance Foundation Jira Draft',
     'Universaarl Business Central Implementation, Book, Training and Evidence System',
     'Workstream',
     'Epic',
@@ -61,7 +65,15 @@ if (allText) {
     'Playwright validation',
     'Book curation',
     'Finance Foundation and Control Model',
-    'Recommended first refinement target: Finance Foundation and Control Model'
+    'Recommended first refinement target: Finance Foundation and Control Model',
+    'Current next best step',
+    'Finish `WORKSTREAM-03-FINANCE-FOUNDATION-JIRA-DRAFT.md`',
+    'Epic FF-01: General Ledger Setup and Accounting Periods',
+    'Epic FF-02: Chart of Accounts and Account Categories',
+    'Epic FF-03: Posting Groups and Posting Setup',
+    'Epic FF-04: VAT/USt Setup',
+    'Workstream-level Playwright scenarios',
+    'Workstream-level book outputs'
   ]) {
     requirePhrase(phrase);
   }
