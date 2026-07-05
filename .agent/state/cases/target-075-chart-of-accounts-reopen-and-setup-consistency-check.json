@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
+  "status": "prepared-pending-freeze-lift",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-target-execution",
+  "activeArea": "universaarl-w1-foundation-consistency-pilot",
+  "mayRunPlaywright": true,
+  "effectiveBcActionsAllowed": false,
+  "purpose": "Use the first post-freeze live pilot to verify the existing W1 Foundation context read-only before any new write-heavy setup, VAT, posting group or master data case.",
+  "whyNow": "TARGET-074 completed the local checkpoint and showed W1 Foundation remains limited-learning-path-only. A low-risk read/reopen proof is safer and more book-useful than repeating TARGET-073 Page 472 editor probes or starting master data too early.",
+  "scope": {
+    "type": "read-only-live-pilot-after-freeze-lift",
+    "pagesToInspect": [
+      "Chart of Accounts / Kontenplan",
+      "General Posting Groups / Geschaeftsbuchungsgruppen",
+      "Gen. Product Posting Groups / Produktbuchungsgruppen",
+      "General Posting Setup / Buchungsmatrix Einrichtung, read-only only if route is safe",
+      "VAT Posting Setup / MwSt.-Buchungsmatrix, read-only only; no write retry"
+    ],
+    "starterAccountsToVerify": [
+      "1200",
+      "1406",
+      "1800",
+      "3300",
+      "3806",
+      "4400",
+      "5400"
+    ],
+    "setupRowsToObserveOnly": [
+      "General Business Posting Group INLAND",
+      "General Product Posting Group WAREN",
+      "General Posting Setup INLAND/WAREN, if visible without unsafe editor actions",
+      "VAT Posting Setup INLAND/VAT19, if visible without unsafe editor actions"
+    ]
+  },
+  "requiredCapabilities": [
+    "bc_page_context_guard",
+    "screenshot_truth_gate",
+    "evidence_pack_writer",
+    "bc_dialog_gate",
+    "bc_source_research"
+  ],
+  "optionalCapabilities": [
+    "bc_active_editor_diagnosis",
+    "bc_scoped_action_click"
+  ],
+  "allowedActions": [
+    "run-auth-bc-check",
+    "open-business-central-after-freeze-lift",
+    "confirm-instance-playthru",
+    "confirm-company-universaarl-de",
+    "navigate-readonly-to-chart-of-accounts",
+    "reopen-existing-setup-pages-readonly",
+    "capture-screenshot-truth",
+    "write-evidence-result",
+    "write-beginner-facing-draft-notes-if-evidence-bounded"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "continue-target-073-as-is",
+    "type-business-central-values",
+    "write-setup",
+    "write-vat-posting-setup",
+    "write-general-posting-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "cleanup-delete",
+    "claim-foundation-ready"
+  ],
+  "smartDecision": {
+    "decision": "Run read-only Foundation consistency pilot after freeze lift.",
+    "whyThisStepNow": "It verifies the company, chart and setup context with low risk and gives the book a reliable Foundation boundary before the agent resumes writes.",
+    "evidenceSupportingIt": [
+      "TARGET-074 local checkpoint",
+      "TARGET-073 Page 472 active-editor route blocker",
+      "TARGET-068 W1 Foundation limited-learning-path checkpoint"
+    ],
+    "fieldsChanged": [],
+    "fieldsUntouched": [
+      "All G/L account fields",
+      "All General Posting Setup fields",
+      "All VAT Posting Setup fields",
+      "All master data fields"
+    ],
+    "risk": "Low if strictly read-only; medium if the UI enters edit mode or a dialog asks for confirmation.",
+    "fallback": "Abort, document the page/dialog state, and create a narrower UI diagnosis case.",
+    "bookUse": "Supports beginner explanation of what a starter chart and setup boundary look like before postings are possible."
+  },
+  "acceptanceCriteria": [
+    "playthru / UNIVERSAARL-DE is visibly confirmed in the live session.",
+    "Chart of Accounts context is captured with a page title, URL and screenshot-truth metadata.",
+    "Existing starter accounts are classified as visible, missing, unclear or unsafe-to-verify.",
+    "General/VAT setup pages are observed only if navigation is safe and read-only.",
+    "Result JSON includes proved, notProved, blockedBy and nextStepDecision.",
+    "No setup, master data, draft, Preview Posting, Posting, payment, cleanup or API shortcut is executed."
+  ],
+  "stopIf": [
+    "Business Central opens outside playthru.",
+    "Company is not UNIVERSAARL-DE.",
+    "A page enters a write/editor state unexpectedly.",
+    "A dialog asks for OK, Yes, Ja, Delete, Post, Preview, Finish or similar confirmation.",
+    "The page context is only Role Center/overlay/search and not the target page.",
+    "The route requires repeating TARGET-073 Page 472 active-editor probes.",
+    "A screenshot cannot clearly identify page, company, step and visible facts."
+  ],
+  "evidencePlan": {
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-075-chart-of-accounts-reopen-and-setup-consistency-check/TARGET-075-result.json",
+    "readmePath": "playwright/projects/fibu-book5/evidence/target-075-chart-of-accounts-reopen-and-setup-consistency-check/README.md",
+    "screenshotDirectory": "playwright/projects/fibu-book5/evidence/target-075-chart-of-accounts-reopen-and-setup-consistency-check/",
+    "requiredFlags": {
+      "setupChanged": false,
+      "masterDataChanged": false,
+      "draftCreated": false,
+      "previewPosting": false,
+      "posted": false,
+      "payment": false,
+      "apiShortcut": false
+    }
+  },
+  "lookaheadReviewed": [
+    {
+      "caseId": "TARGET-075-FIRST-VENDOR-CARD-CONTROLLED-FIT",
+      "status": "ready-after-current",
+      "reason": "Vendor card is useful, but only after the Foundation consistency pilot confirms minimum setup boundaries."
+    },
+    {
+      "caseId": "TARGET-071B-VAT-POSTING-SETUP-REOPEN-AND-SOURCE-REVIEW",
+      "status": "needs-ui-discovery-first",
+      "reason": "No saved INLAND/VAT19 row exists and Page 472 write route remains parked."
+    },
+    {
+      "caseId": "TARGET-038-O2C-PREFLIGHT",
+      "status": "blocked",
+      "reason": "O2C is too early for final claims while Foundation remains limited-learning-path-only."
+    }
+  ],
+  "nextCase": "TARGET-075-FIRST-VENDOR-CARD-CONTROLLED-FIT",
+  "updatedAt": "2026-07-05T23:59:30.000+02:00"
+}

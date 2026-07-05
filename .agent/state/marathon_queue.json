@@ -5394,9 +5394,32 @@
       "resultPath": "playwright/projects/fibu-book5/evidence/target-074-w1-foundation-checkpoint-after-vat-editor-park/TARGET-074-result.json",
       "result": "W1 Foundation remains limited-learning-path-only after the Page 472 active-editor route park; TARGET-073 stays frozen for as-is retry; next recommended pilot is a low-risk Chart of Accounts/Foundation consistency check.",
       "nextCase": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK"
+    },
+    {
+      "id": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
+      "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
+      "order": 224,
+      "status": "pending",
+      "category": "w1-foundation-consistency-pilot",
+      "expectedImpact": "safe-live-resume-pilot-foundation-readonly",
+      "mayRunPlaywright": true,
+      "effectiveBcActionsAllowed": false,
+      "goal": "After freeze lift, confirm playthru / UNIVERSAARL-DE and inspect Chart of Accounts plus setup boundaries read-only before any new write-heavy case.",
+      "dependencies": [
+        "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK"
+      ],
+      "caseFile": ".agent/state/cases/target-075-chart-of-accounts-reopen-and-setup-consistency-check.json",
+      "requiredCapabilities": [
+        "bc_page_context_guard",
+        "screenshot_truth_gate",
+        "evidence_pack_writer",
+        "bc_dialog_gate"
+      ],
+      "lookaheadStatus": "ready-next",
+      "freezeGate": "project-improvement-freeze-must-be-lifted-before-live-execution"
     }
   ],
-  "lastUpdated": "2026-07-05T23:20:00.000+02:00",
+  "lastUpdated": "2026-07-05T23:59:30.000+02:00",
   "nextStepDecisionGate": {
     "active": true,
     "policyPath": ".agent/NEXT-STEP-DECISION-GATE.md",
@@ -5508,125 +5531,132 @@
       ]
     }
   },
-  "updatedAt": "2026-07-05T23:20:00.000+02:00",
-  "lastCompletedCase": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
-  "nextCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
+  "updatedAt": "2026-07-05T23:59:45.000+02:00",
+  "lastCompletedCase": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
+  "nextCase": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
-    "plannedNextCaseBeforeReview": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
-    "lastEvidenceSummary": "TARGET-027D32 approved only a narrow Page 472 live gate after Page 472/Table 325 field truth and Page 470 parking.",
+    "currentCase": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
+    "plannedNextCaseBeforeReview": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
+    "lastEvidenceSummary": "TARGET-074 completed the local checkpoint: W1 Foundation remains limited-learning-path-only and TARGET-073 Page 472 editor retry is parked.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "TARGET-071 is the smallest practical W1 Foundation step for the missing INLAND/VAT19 VAT Posting Setup row.",
+    "reason": "TARGET-075 is a low-risk read-only live pilot that checks chart/setup context before any write-heavy setup or master-data case.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-071B-VAT-POSTING-SETUP-REOPEN-AND-SOURCE-REVIEW",
-        "status": "blocked",
-        "reason": "No saved VAT setup row exists, so 071B is premature."
-      },
-      {
-        "caseId": "TARGET-032P-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PARK",
-        "status": "obsolete",
-        "reason": "The older General Posting Setup park case is already complete; do not jump backward as active next case."
-      },
-      {
-        "caseId": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
+        "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
         "status": "ready-next",
-        "reason": "Page 472 opens, but the active editor route for target cells is not proven."
+        "reason": "Best bounded return pilot after freeze lift."
       },
       {
-        "caseId": "TARGET-072-VAT-PAGE472-NAVIGATION-ROUTE-DECISION",
-        "status": "done",
-        "reason": "TARGET-072 already proved the bounded visible Page 472 navigation route."
-      },
-      {
-        "caseId": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
+        "caseId": "TARGET-075-FIRST-VENDOR-CARD-CONTROLLED-FIT",
         "status": "ready-after-current",
-        "reason": "Foundation checkpoint is useful only after VAT/Page472 and General Posting blockers are classified."
+        "reason": "Useful master-data pilot after Foundation boundaries are rechecked."
+      },
+      {
+        "caseId": "TARGET-071B-VAT-POSTING-SETUP-REOPEN-AND-SOURCE-REVIEW",
+        "status": "needs-ui-discovery-first",
+        "reason": "Requires a materially new Page 472 editor/helper route."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "blocked",
-        "reason": "O2C remains blocked until VAT and General Posting Setup are proven or consciously limited as learning-only."
+        "reason": "Too early while Foundation is limited-learning-path-only."
       }
     ],
     "queueChangesMade": [
-      "TARGET-072 route learning was applied to TARGET-071.",
-      "TARGET-071 blocked on active-editor detection, so TARGET-073 was created."
+      "TARGET-075 case file created.",
+      "TARGET-075 added as prepared pending freeze lift.",
+      "Top-level queue nextCase moved away from TARGET-073/TARGET-074."
     ],
-    "selectedNextCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-    "whySelectedNextCaseIsBest": "TARGET-071 reached Page 472 using TARGET-072 route, but no true active editor was detected. The next useful step is active-editor diagnosis, not another navigation check.",
+    "selectedNextCase": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
+    "whySelectedNextCaseIsBest": "It tests the improved operating model in live BC with read-only, book-relevant Foundation evidence before any new write action.",
     "risksBeforeNextCase": [
-      "Do not claim final German VAT correctness before Preview Posting, VAT Entries and G/L Entries.",
-      "Do not create master data or documents before Foundation readiness.",
-      "Do not delete or clean up VAT rows outside an explicit cleanup case."
+      "Stored auth must resolve to playthru / UNIVERSAARL-DE.",
+      "No setup write or master data creation is allowed in this pilot.",
+      "Any unexpected dialog or edit mode must stop the run."
     ],
     "requiredPreparation": [
-      "Review TARGET-071 screenshots and blockers before choosing any further VAT route."
+      "Run auth:bc:check before live execution.",
+      "Use bc_page_context_guard, screenshot_truth_gate, evidence_pack_writer and bc_dialog_gate.",
+      "Keep TARGET-073 parked unless a materially new helper or route exists."
     ]
   },
-  "nextStep": "Run TARGET-074 local checkpoint after VAT editor route park.",
+  "nextStep": "After freeze lift, run TARGET-075 as the bounded read-only Foundation consistency pilot; confirm playthru / UNIVERSAARL-DE, capture screenshot truth, and do not write setup or master data.",
   "openItems": 1,
   "nextQueueItem": {
-    "id": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
-    "caseId": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
-    "order": 223,
+    "id": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
+    "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
+    "order": 224,
     "status": "pending",
-    "category": "w1-foundation-checkpoint-after-vat-editor-park",
-    "expectedImpact": "foundation-limitation-refresh-after-vat-editor-block",
-    "mayRunPlaywright": false,
+    "category": "w1-foundation-consistency-pilot",
+    "expectedImpact": "safe-live-resume-pilot-foundation-readonly",
+    "mayRunPlaywright": true,
     "effectiveBcActionsAllowed": false,
-    "goal": "Classify W1 Foundation honestly after Page 472 active editor route remains blocked; select one non-repeating next setup route.",
+    "goal": "After freeze lift, confirm playthru / UNIVERSAARL-DE and inspect Chart of Accounts plus setup boundaries read-only before any new write-heavy case.",
     "dependencies": [
-      "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
-      "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION"
+      "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK"
     ],
-    "caseFile": ".agent/state/cases/target-074-w1-foundation-checkpoint-after-vat-editor-park.json",
-    "lookaheadStatus": "ready-next"
+    "caseFile": ".agent/state/cases/target-075-chart-of-accounts-reopen-and-setup-consistency-check.json",
+    "requiredCapabilities": [
+      "bc_page_context_guard",
+      "screenshot_truth_gate",
+      "evidence_pack_writer",
+      "bc_dialog_gate"
+    ],
+    "lookaheadStatus": "ready-next",
+    "freezeGate": "project-improvement-freeze-must-be-lifted-before-live-execution"
   },
   "nextCases": [
-    "TARGET-070D-VAT-PAGE472-TABLE325-ALTERNATIVE-ROUTE-DECISION"
+    "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
+    "TARGET-075-FIRST-VENDOR-CARD-CONTROLLED-FIT",
+    "TARGET-071B-VAT-POSTING-SETUP-REOPEN-AND-SOURCE-REVIEW"
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-    "lastEvidenceSummary": "TARGET-071 reached Page 472 but did not detect a true active editor for target fields.",
+    "currentCase": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
+    "plannedNextCaseBeforeReview": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
+    "lastEvidenceSummary": "TARGET-074 completed the local checkpoint: W1 Foundation remains limited-learning-path-only and TARGET-073 Page 472 editor retry is parked.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "TARGET-073 is the narrowest non-writing diagnosis before another VAT setup write gate.",
+    "reason": "TARGET-075 is a low-risk read-only live pilot that checks chart/setup context before any write-heavy setup or master-data case.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
-        "status": "blocked",
-        "reason": "Still no active editor route; repeating TARGET-071 would be blind."
+        "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
+        "status": "ready-next",
+        "reason": "Best bounded return pilot after freeze lift."
+      },
+      {
+        "caseId": "TARGET-075-FIRST-VENDOR-CARD-CONTROLLED-FIT",
+        "status": "ready-after-current",
+        "reason": "Useful master-data pilot after Foundation boundaries are rechecked."
       },
       {
         "caseId": "TARGET-071B-VAT-POSTING-SETUP-REOPEN-AND-SOURCE-REVIEW",
-        "status": "blocked",
-        "reason": "No saved INLAND/VAT19 row exists."
-      },
-      {
-        "caseId": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
-        "status": "ready-next",
-        "reason": "Fresh checkpoint after TARGET-073 should classify the current VAT editor limitation and choose a non-repeating next setup route."
+        "status": "needs-ui-discovery-first",
+        "reason": "Requires a materially new Page 472 editor/helper route."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "blocked",
-        "reason": "O2C remains blocked until VAT and General Posting Setup are proven or consciously limited."
+        "reason": "Too early while Foundation is limited-learning-path-only."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
-    "whySelectedNextCaseIsBest": "The Page 472 editor route remains blocked after materially new probes, so a fresh Foundation checkpoint is more honest than another write attempt or reusing an older completed checkpoint.",
+    "queueChangesMade": [
+      "TARGET-075 case file created.",
+      "TARGET-075 added as prepared pending freeze lift.",
+      "Top-level queue nextCase moved away from TARGET-073/TARGET-074."
+    ],
+    "selectedNextCase": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
+    "whySelectedNextCaseIsBest": "It tests the improved operating model in live BC with read-only, book-relevant Foundation evidence before any new write action.",
     "risksBeforeNextCase": [
-      "Do not type VAT target values without a row-scoped editor.",
-      "Do not claim final German VAT correctness before Preview Posting, VAT Entries and G/L Entries.",
-      "Do not create master data or documents before Foundation readiness."
+      "Stored auth must resolve to playthru / UNIVERSAARL-DE.",
+      "No setup write or master data creation is allowed in this pilot.",
+      "Any unexpected dialog or edit mode must stop the run."
     ],
     "requiredPreparation": [
-      "Update the Foundation checkpoint with VAT matrix route limitation and choose a non-repeating next setup route."
+      "Run auth:bc:check before live execution.",
+      "Use bc_page_context_guard, screenshot_truth_gate, evidence_pack_writer and bc_dialog_gate.",
+      "Keep TARGET-073 parked unless a materially new helper or route exists."
     ]
   },
-  "total": 223,
+  "total": 224,
   "done": 168,
   "blocked": 49,
   "latestAuthOpenLoginHandoff": {
@@ -5935,7 +5965,7 @@
     "posted": false,
     "apiShortcut": false
   },
-  "activeCase": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
+  "activeCase": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
   "latestRouteDecision": {
     "caseId": "TARGET-059-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-ROUTE-ESCALATION-OR-PARK",
     "resultPath": "playwright/projects/fibu-book5/evidence/target-059-general-posting-setup-purchase-account-route-escalation-or-park/TARGET-059-result.json",
