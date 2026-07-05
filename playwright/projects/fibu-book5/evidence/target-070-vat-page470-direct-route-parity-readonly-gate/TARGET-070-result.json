@@ -1,0 +1,206 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
+  "source": "playwright-universaarl-vat-page470-direct-route-parity-readonly",
+  "resultStatus": "blocked",
+  "runPlanId": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE-PLAN",
+  "selectedTaskClass": "monkey_work",
+  "selectedModelClass": "gpt-4-mini-low",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?company=UNIVERSAARL-DE&dc=0",
+  "actionsTaken": [
+    "Opened Business Central read-only in playthru / UNIVERSAARL-DE.",
+    "Tried TARGET-020 direct Page 470 URL pattern first.",
+    "Direct route did not pass QA; tried TARGET-027C4 exact result route as fallback.",
+    "Exact result text route did not pass QA; tried row-chevron geometry click as a BC UI learning fallback.",
+    "Captured compact text, screenshot QA metadata and result JSON."
+  ],
+  "actionsNotTaken": [
+    "No VAT Business Posting Group create/edit",
+    "No VAT Product Posting Group create/edit",
+    "No VAT Posting Setup write",
+    "No New action",
+    "No Edit List action",
+    "No setup change",
+    "No master data",
+    "No document draft",
+    "No Preview Posting",
+    "No Posting",
+    "No API shortcut",
+    "No Company switch"
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "No VAT setup, master data, document draft, Preview Posting, Posting or API shortcut was executed."
+  ],
+  "notProved": [
+    "Page 470 MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups did not pass screenshot QA.",
+    "No INLAND or VAT19 group exists or was changed by this run.",
+    "No VAT Posting Setup matrix row exists.",
+    "No German 19 percent VAT calculation is proven.",
+    "No VAT Entries or G/L Entries exist."
+  ],
+  "attempts": [
+    {
+      "route": "target020-direct-page-470",
+      "clicked": false,
+      "accepted": false,
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?company=UNIVERSAARL-DE&dc=0",
+      "screenshot": "target-070-001-target020-direct-page-470.png",
+      "textFile": "target-070-001-target020-direct-page-470.txt",
+      "metadata": "target-070-001-target020-direct-page-470.screenshot.json",
+      "blockedBy": [
+        "Page 470 title not visible.",
+        "Code column not visible.",
+        "Visible state still looks like Role Center, not Page 470."
+      ],
+      "signals": {
+        "titleVisible": false,
+        "codeColumnVisible": false,
+        "descriptionColumnVisible": true,
+        "searchOverlayVisible": false,
+        "dangerousDialogVisible": false,
+        "roleCenterVisible": true
+      }
+    },
+    {
+      "route": "target027c4-exact-result-locator-or-geometry-click",
+      "clicked": false,
+      "accepted": false,
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?company=UNIVERSAARL-DE&dc=0",
+      "screenshot": "target-070-002-target027c4-exact-result-locator-or-geometry-click.png",
+      "textFile": "target-070-002-target027c4-exact-result-locator-or-geometry-click.txt",
+      "metadata": "target-070-002-target027c4-exact-result-locator-or-geometry-click.screenshot.json",
+      "blockedBy": [
+        "Code column not visible.",
+        "Visible state still looks like Tell-Me/search overlay.",
+        "Visible state still looks like Role Center, not Page 470."
+      ],
+      "signals": {
+        "titleVisible": true,
+        "codeColumnVisible": false,
+        "descriptionColumnVisible": true,
+        "searchOverlayVisible": true,
+        "dangerousDialogVisible": false,
+        "roleCenterVisible": true
+      }
+    },
+    {
+      "route": "target070-row-chevron-geometry-click",
+      "clicked": true,
+      "accepted": false,
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?company=UNIVERSAARL-DE&dc=0",
+      "screenshot": "target-070-003-target070-row-chevron-geometry-click.png",
+      "textFile": "target-070-003-target070-row-chevron-geometry-click.txt",
+      "metadata": "target-070-003-target070-row-chevron-geometry-click.screenshot.json",
+      "blockedBy": [
+        "Code column not visible.",
+        "Visible state still looks like Tell-Me/search overlay.",
+        "Visible state still looks like Role Center, not Page 470."
+      ],
+      "signals": {
+        "titleVisible": true,
+        "codeColumnVisible": false,
+        "descriptionColumnVisible": true,
+        "searchOverlayVisible": true,
+        "dangerousDialogVisible": false,
+        "roleCenterVisible": true
+      }
+    }
+  ],
+  "screenshots": [
+    "target-070-000-search-overlay-before-click.png",
+    "target-070-001-target020-direct-page-470.png",
+    "target-070-002-target027c4-exact-result-locator-or-geometry-click.png",
+    "target-070-003-target070-row-chevron-geometry-click.png"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/TARGET-070-result.json",
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/target-070-search-candidates.json",
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/target-070-geometry-search-candidates.json",
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/target-070-search-overlay-before-click.txt",
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/target-070-000-search-overlay-before-click.png",
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/target-070-001-target020-direct-page-470.txt",
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/target-070-001-target020-direct-page-470.png",
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/target-070-001-target020-direct-page-470.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/target-070-002-target027c4-exact-result-locator-or-geometry-click.txt",
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/target-070-002-target027c4-exact-result-locator-or-geometry-click.png",
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/target-070-002-target027c4-exact-result-locator-or-geometry-click.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/target-070-003-target070-row-chevron-geometry-click.txt",
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/target-070-003-target070-row-chevron-geometry-click.png",
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/target-070-003-target070-row-chevron-geometry-click.screenshot.json"
+  ],
+  "blockedBy": [
+    "Page 470 title not visible.",
+    "Code column not visible.",
+    "Visible state still looks like Role Center, not Page 470.",
+    "Visible state still looks like Tell-Me/search overlay."
+  ],
+  "warnings": [
+    "This is navigation/surface recovery only; visible New/Edit actions remain unclicked.",
+    "Page 470 visibility is a prerequisite for VAT group writes, not a VAT setup correctness proof."
+  ],
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "nextStepDecisionCard": {
+    "currentCase": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
+    "lastEvidenceSummary": "TARGET-069 found conflicting Page 470 route evidence: older TARGET-020/TARGET-027C4 positive signals versus newer D31D/D31E blocked routes.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The next write-gate depends on current Page 470 screenshot truth, so route parity must be settled before VAT setup work.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-071-VAT-GROUPS-CONTROLLED-WRITE-GATE-DECISION",
+        "status": "blocked",
+        "reason": "No write-gate before current Page 470 proof."
+      },
+      {
+        "caseId": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
+        "status": "needs-setup-first",
+        "reason": "The VAT matrix row depends on VAT Business and Product Posting Groups first."
+      },
+      {
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Posting Groups remain downstream of VAT group/matrix readiness."
+      },
+      {
+        "caseId": "TARGET-012-W1-FOUNDATION-READINESS",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness cannot be claimed while VAT write gates remain unresolved."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS",
+    "whySelectedNextCaseIsBest": "Repeating the same route would waste time; the next useful work is helper/Page Inspection diagnosis.",
+    "risksBeforeNextCase": [
+      "Do not click New/Edit/List actions without the controlled write case.",
+      "Do not claim German VAT correctness before matrix, Preview Posting, VAT Entries and G/L Entries."
+    ],
+    "requiredPreparation": [
+      "Use Page Inspection or a materially different UI route; do not repeat the failed search-click path."
+    ]
+  },
+  "safeToFinalizeState": false,
+  "requiresReview": true,
+  "statePatch": {},
+  "nextCase": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS",
+  "reason": "Page 470 visible route parity remains blocked; setup writes stay locked."
+}

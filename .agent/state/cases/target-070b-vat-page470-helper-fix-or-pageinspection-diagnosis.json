@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS",
+  "status": "ready-next",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-target-execution",
+  "activeArea": "universaarl-vat-page470-route-diagnosis",
+  "mayRunPlaywright": true,
+  "effectiveBcActionsAllowed": false,
+  "purpose": "Diagnose why Page 470 VAT Business Posting Groups remains in Tell-Me or Role Center after direct, exact-result and row-geometry routes, and define the next non-repeating helper or Page Inspection route.",
+  "whyNow": "TARGET-070 proved the target context but blocked Page 470 screenshot truth after three materially different read-only activation routes. A helper/Page Inspection diagnosis is now cheaper and safer than another blind click attempt.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/TARGET-070-result.json",
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/target-070-001-target020-direct-page-470.png",
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/target-070-002-target027c4-exact-result-locator-or-geometry-click.png",
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/target-070-003-target070-row-chevron-geometry-click.png"
+  ],
+  "allowedActions": [
+    "open-business-central-readonly",
+    "confirm-playthru-instance",
+    "confirm-universaarl-de-company",
+    "inspect-tell-me-result-dom-and-geometry",
+    "try-page-inspection-readonly-if-visible",
+    "capture-screenshot-qa",
+    "write-result-json",
+    "propose-helper-fix-or-next-route"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "write-vat-business-posting-group",
+    "write-vat-product-posting-group",
+    "write-vat-posting-setup",
+    "write-setup",
+    "click-new",
+    "click-edit-list",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "repeat-target020-direct-page470-route",
+    "repeat-target027c4-text-click-route",
+    "repeat-target070-row-geometry-click-route"
+  ],
+  "acceptanceCriteria": [
+    "The run stays in playthru / UNIVERSAARL-DE.",
+    "The diagnosis explains whether the issue is direct URL fallback, Tell-Me result activation, iframe focus, route construction, personalization, or Page Inspection visibility.",
+    "No VAT setup, master data, draft, Preview Posting, Posting or API action is executed.",
+    "The result selects a non-repeating next route or parks Page 470 with a source-backed reason."
+  ],
+  "stopIf": [
+    "The target instance is not playthru.",
+    "The target company is not UNIVERSAARL-DE.",
+    "A dialog asks to confirm setup/write/delete/post/preview.",
+    "The only available action is repeating TARGET-070 routes without new UI evidence."
+  ],
+  "nextIfSuccessful": "TARGET-071-VAT-GROUPS-CONTROLLED-WRITE-GATE-DECISION",
+  "nextIfBlocked": "TARGET-070C-VAT-PAGE470-SOURCE-OBJECT-OR-ALTERNATIVE-ROUTE-DECISION",
+  "nextCase": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS"
+}

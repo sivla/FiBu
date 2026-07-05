@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-05T17:38:41.261Z",
+  "updatedAt": "2026-07-05T17:58:45.888Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-vat-page470-route-parity",
-  "activeCase": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
-  "active_case_file": ".agent/state/cases/target-070-vat-page470-direct-route-parity-readonly-gate.json",
+  "activeArea": "universaarl-vat-page470-route-diagnosis",
+  "activeCase": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS",
+  "active_case_file": ".agent/state/cases/target-070b-vat-page470-helper-fix-or-pageinspection-diagnosis.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -22,11 +22,11 @@
     "open-business-central-readonly",
     "confirm-playthru-instance",
     "confirm-universaarl-de-company",
-    "try-target020-direct-page470-readonly-pattern",
-    "try-target027c4-exact-result-readonly-pattern-only-if-direct-pattern-fails",
+    "inspect-tell-me-result-dom-and-geometry",
+    "try-page-inspection-readonly-if-visible",
     "capture-screenshot-qa",
     "write-result-json",
-    "update-state-and-coverage-plan"
+    "propose-helper-fix-or-next-route"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -47,11 +47,12 @@
     "post",
     "payment",
     "api-shortcut",
-    "treat-role-center-or-search-overlay-as-page470-proof",
-    "repeat-failed-page-470-search-click-route-without-direct-pattern"
+    "repeat-target020-direct-page470-route",
+    "repeat-target027c4-text-click-route",
+    "repeat-target070-row-geometry-click-route"
   ],
-  "nextCase": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
-  "nextStep": "Run TARGET-070 as a read-only Page-470 route parity gate. Do not write VAT setup, master data, drafts, Preview Posting, Posting or API shortcuts.",
+  "nextCase": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS",
+  "nextStep": "Run TARGET-070B: diagnose Page 470 Tell-Me/direct-route activation with read-only Page Inspection or helper evidence; do not repeat TARGET-020/TARGET-027C4/TARGET-070 click routes.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -234,7 +235,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "TARGET-063 blocked strong posting-group screenshot QA because direct Page 314/Page 470/Page 111 probes stayed on Role Center or lacked page-caption signals. Next is TARGET-064 route recovery, still read-only.",
+  "currentCoverageFocus": "TARGET-070 blocked current Page 470 screenshot truth: direct page=470 fell back to Role Center, exact-result text click and row-chevron geometry click stayed in Tell-Me overlay. Next is TARGET-070B helper/Page Inspection diagnosis before any VAT write gate.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -3856,7 +3857,7 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/target-070-vat-page470-direct-route-parity-readonly-gate.json",
+  "activeCaseFile": ".agent/state/cases/target-070b-vat-page470-helper-fix-or-pageinspection-diagnosis.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
@@ -10018,5 +10019,27 @@
     },
     "nextCase": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
     "updatedAt": "2026-07-05T17:38:41.261Z"
+  },
+  "latestBlockedCase": {
+    "caseId": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/TARGET-070-result.json",
+    "status": "blocked",
+    "conclusion": "Page 470 visible route parity remains blocked; setup writes stay locked.",
+    "blockedBy": [
+      "Page 470 title not visible.",
+      "Code column not visible.",
+      "Visible state still looks like Role Center, not Page 470.",
+      "Visible state still looks like Tell-Me/search overlay."
+    ],
+    "nextCase": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS",
+    "updatedAt": "2026-07-05T17:57:49.644Z"
+  },
+  "latestPracticalCase": {
+    "caseId": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/TARGET-070-result.json",
+    "status": "blocked",
+    "impact": "Page 470 route parity tested read-only with direct, exact-result and row-chevron geometry routes; setup writes remain locked.",
+    "nextCase": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS",
+    "updatedAt": "2026-07-05T17:57:49.644Z"
   }
 }

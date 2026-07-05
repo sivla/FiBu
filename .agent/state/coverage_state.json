@@ -869,12 +869,19 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-07-05T17:38:41.261Z",
-  "activeArea": "universaarl-vat-page470-route-parity",
+  "updatedAt": "2026-07-05T17:57:49.644Z",
+  "activeArea": "universaarl-vat-page470-route-diagnosis",
   "currentBlock": "Page 314 Wareneinkaufskonto / Purch. Account 5400 is still not persisted. TARGET-058 showed List Edit and a row-bound target cell, but the controlled attempt opened the column menu and Reopen proof showed no 5400.",
-  "latestPracticalCase": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
+  "latestPracticalCase": {
+    "caseId": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/TARGET-070-result.json",
+    "status": "blocked",
+    "impact": "Page 470 route parity tested read-only with direct, exact-result and row-chevron geometry routes; setup writes remain locked.",
+    "nextCase": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS",
+    "updatedAt": "2026-07-05T17:57:49.644Z"
+  },
   "latestReviewCase": "WAREHOUSE-025-SOURCE-PO-LOCATION-ALTERNATIVE-OR-HELPER-DECISION",
-  "nextCase": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
+  "nextCase": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS",
   "latestBank013": {
     "caseId": "BANK-013-CONTROLLED-NEXT-EVIDENCE-STEP",
     "status": [
@@ -992,7 +999,20 @@
   "latestLocalHelperCase": "FIXEDASSETS-179-JOURNAL-GRID-GEOMETRY-CANDIDATE-HELPER",
   "latestLocalReviewCase": "FIXEDASSETS-183-FA-GL-JOURNAL-BALACCOUNT-VALUE-REVIEW",
   "latestDecisionCase": "WAREHOUSE-015-WAREHOUSE-SOURCE-DOCUMENT-ROUTE-DECISION",
-  "latestBlockedCase": "FIXEDASSETS-202-FA-GL-JOURNAL-PREVIEW-POSTING-AFTER-FA-POSTING-TYPE",
+  "latestBlockedCase": {
+    "caseId": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/TARGET-070-result.json",
+    "status": "blocked",
+    "conclusion": "Page 470 visible route parity remains blocked; setup writes stay locked.",
+    "blockedBy": [
+      "Page 470 title not visible.",
+      "Code column not visible.",
+      "Visible state still looks like Role Center, not Page 470.",
+      "Visible state still looks like Tell-Me/search overlay."
+    ],
+    "nextCase": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS",
+    "updatedAt": "2026-07-05T17:57:49.644Z"
+  },
   "acquisitionPostingTrace": "book-synced: controlled FA G/L Journal lab posting performed once for G05001; posted G/L Entries show 82000/12210 and +/-120.000,00; posted FA Ledger Entries are visible via Page 5604 for FA-CNC-01/G05001/HGB/Acquisition Cost/amount. Page 5606 remains a rejected empty Preview path.",
   "nextAcquisitionRoute": "do-not-repeat-posting",
   "nextDepreciationRoute": "fa-gl-journal-assets-default-readonly",
@@ -1095,13 +1115,19 @@
     "playwright/projects/fibu-book5/BC-ERROR-BLOCKER-ATLAS.md",
     "playwright/projects/fibu-book5/BC-PROCESS-COVERAGE-ROADMAP.md"
   ],
-  "currentCoverageFocus": "TARGET-062 classified TARGET-061 as useful boundary evidence but weak screenshot truth. Next is TARGET-063: read-only screenshot-QA recovery for Page 314, Page 470 and Page 111 before any setup-write or Foundation-ready claim.",
+  "currentCoverageFocus": "TARGET-070 blocked current Page 470 screenshot truth: direct page=470 fell back to Role Center, exact-result text click and row-chevron geometry click stayed in Tell-Me overlay. Next is TARGET-070B helper/Page Inspection diagnosis before any VAT write gate.",
   "latestCoverageUpdate": {
-    "at": "2026-06-28T19:28:00.000+02:00",
-    "type": "p2p-011-purchase-lines-action-discovery-tested",
-    "result": "labor-blocked",
-    "evidencePath": "playwright/projects/fibu-book5/evidence/p2p-011/",
-    "nextCoverageStep": "Switch to Purchase Journal/Item Journal or clean lab company route; no more PO Lines micro-retries without a new concrete UI hypothesis."
+    "caseId": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/TARGET-070-result.json",
+    "status": "blocked",
+    "coverageEffect": "VAT Business Posting Groups Page 470 remains not accepted as current visible proof; VAT writes stay locked. The next step is a non-repeating helper/Page Inspection diagnosis.",
+    "screenshots": [
+      "target-070-000-search-overlay-before-click.png",
+      "target-070-001-target020-direct-page-470.png",
+      "target-070-002-target027c4-exact-result-locator-or-geometry-click.png",
+      "target-070-003-target070-row-chevron-geometry-click.png"
+    ],
+    "updatedAt": "2026-07-05T17:57:49.644Z"
   },
   "companyUsecase": {
     "path": "playwright/projects/fibu-book5/BC-COMPANY-USECASE.md",

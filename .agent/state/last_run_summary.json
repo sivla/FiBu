@@ -1,99 +1,87 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
-  "caseId": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
-  "status": "observed-local-decision",
+  "runId": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE-RUN",
+  "caseId": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
+  "status": "blocked",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "TARGET-069 kept VAT writes locked and selected TARGET-070 as the read-only Page-470 direct-route parity gate.",
+  "summary": "Page 470 visible route parity remains blocked; setup writes stay locked.",
   "proved": [
-    "VAT Business Posting Groups, VAT Product Posting Groups and VAT Posting Setup are source-backed product concepts, but source truth alone does not prove Universaarl setup.",
-    "Page 471 and Page 472 have accepted earlier read-only Universaarl context.",
-    "Page 470 has conflicting route evidence: older TARGET-027C4/TARGET-027S/TARGET-020 route references are positive, while newer TARGET-027D31D/D31E and TARGET-063/TARGET-064 style routes are blocked or not accepted.",
-    "TARGET-027D32 VAT write gate is not the next sensible step while current helper/page-route parity is unresolved.",
-    "A materially new next step exists: read-only Page-470 direct-route parity proof, not another failed Tell-Me/search-click repetition."
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "No VAT setup, master data, document draft, Preview Posting, Posting or API shortcut was executed."
   ],
   "notProved": [
-    "No current Page 470 screenshot was produced by TARGET-069.",
-    "No VAT Business Posting Group is proven current by TARGET-069.",
-    "No INLAND/VAT19 VAT Posting Setup matrix row is proven.",
+    "Page 470 MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups did not pass screenshot QA.",
+    "No INLAND or VAT19 group exists or was changed by this run.",
+    "No VAT Posting Setup matrix row exists.",
     "No German 19 percent VAT calculation is proven.",
-    "No VAT Entry, G/L Entry, Preview Posting or Posting exists from this run.",
-    "No tax advisor approval or final German tax correctness is proven."
+    "No VAT Entries or G/L Entries exist."
   ],
   "blockedBy": [
-    "VAT write gate remains blocked by Page-470 route parity.",
-    "Current helper/search routes must not treat Role Center, search overlay or hidden text as Page-470 proof.",
-    "General Posting Setup purchase account 5400 remains separately parked."
+    "Page 470 title not visible.",
+    "Code column not visible.",
+    "Visible state still looks like Role Center, not Page 470.",
+    "Visible state still looks like Tell-Me/search overlay."
   ],
   "warnings": [
-    "Do not combine older positive Page-470 evidence with newer blocked helper evidence into a write gate without a current parity run.",
-    "VAT19 on the item card does not replace VAT Posting Setup.",
-    "A read-only Page-470 proof would still not prove VAT setup correctness; it only unlocks a later local write-gate decision."
+    "This is navigation/surface recovery only; visible New/Edit actions remain unclicked.",
+    "Page 470 visibility is a prerequisite for VAT group writes, not a VAT setup correctness proof."
   ],
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/target-027c4-vat-business-result-click-recovery/TARGET-027C4-result.json",
-    "playwright/projects/fibu-book5/evidence/target-027s-vat-business-posting-groups-route-followup/TARGET-027S-result.json",
-    "playwright/projects/fibu-book5/evidence/target-027d31b-vat-setup-route-ui-source-followup/TARGET-027D31B-result.json",
-    "playwright/projects/fibu-book5/evidence/target-027d31c-vat-setup-route-blocker-review/TARGET-027D31C-result.json",
-    "playwright/projects/fibu-book5/evidence/target-027d31d-vat-business-posting-groups-alternative-route/TARGET-027D31D-result.json",
-    "playwright/projects/fibu-book5/evidence/target-027d31e-vat-business-groups-source-or-pageinspection-decision/TARGET-027D31E-result.json",
-    "playwright/projects/fibu-book5/evidence/target-066-foundation-limitation-check-after-posting-group-route-blocker/TARGET-066-result.json",
-    "playwright/projects/fibu-book5/evidence/target-068-w1-foundation-ready-checkpoint-after-dimension-park/TARGET-068-result.json",
-    "playwright/projects/fibu-book5/BC-MICROSOFT-LEARN-MAPPING.md",
-    "playwright/projects/fibu-book5/BC-SOURCE-REGISTRY.md"
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/TARGET-070-result.json",
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/target-070-search-candidates.json",
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/target-070-geometry-search-candidates.json",
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/target-070-search-overlay-before-click.txt",
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/target-070-000-search-overlay-before-click.png",
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/target-070-001-target020-direct-page-470.txt",
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/target-070-001-target020-direct-page-470.png",
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/target-070-001-target020-direct-page-470.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/target-070-002-target027c4-exact-result-locator-or-geometry-click.txt",
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/target-070-002-target027c4-exact-result-locator-or-geometry-click.png",
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/target-070-002-target027c4-exact-result-locator-or-geometry-click.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/target-070-003-target070-row-chevron-geometry-click.txt",
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/target-070-003-target070-row-chevron-geometry-click.png",
+    "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/target-070-003-target070-row-chevron-geometry-click.screenshot.json"
   ],
-  "nextStep": "Run TARGET-070 as a read-only Page-470 route parity gate. Do not write VAT setup, master data, drafts, Preview Posting, Posting or API shortcuts.",
-  "nextCase": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
+  "nextStep": "Diagnose Page 470 activation with TARGET-070B using Page Inspection/helper evidence; do not repeat direct/text/row click routes.",
+  "nextCase": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS",
   "nextStepDecision": {
-    "currentCase": "TARGET-069-VAT-BUSINESS-GROUPS-SOURCE-ROUTE-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
-    "lastEvidenceSummary": "TARGET-068 kept W1 Foundation limited-learning-path-only. TARGET-027D31E and TARGET-066 parked Page 470 and VAT setup writes; older TARGET-027C4/TARGET-027S evidence shows a possible direct-route proof that newer helpers failed to reproduce.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "A write gate would outrun the current route truth. The best next step is a read-only route parity gate that proves or rejects the older Page-470 direct/C4 route under current screenshot QA.",
+    "currentCase": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
+    "plannedNextCaseBeforeReview": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
+    "lastEvidenceSummary": "TARGET-069 found conflicting Page 470 route evidence: older TARGET-020/TARGET-027C4 positive signals versus newer D31D/D31E blocked routes.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The next write-gate depends on current Page 470 screenshot truth, so route parity must be settled before VAT setup work.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
-        "status": "ready-next",
-        "reason": "It is materially new compared with D31D/D31E because it tests direct/C4 route parity and remains read-only."
-      },
-      {
         "caseId": "TARGET-071-VAT-GROUPS-CONTROLLED-WRITE-GATE-DECISION",
-        "status": "ready-after-current",
-        "reason": "Only sensible if TARGET-070 produces accepted current Page-470 proof."
-      },
-      {
-        "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
         "status": "blocked",
-        "reason": "Premature until Page-470 parity and VAT group write decision are resolved."
+        "reason": "No write-gate before current Page 470 proof."
       },
       {
-        "caseId": "TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE",
-        "status": "obsolete",
-        "reason": "Already completed; Page-314/5400 route remains parked and must not interrupt VAT parity."
+        "caseId": "TARGET-027D-VAT-POSTING-SETUP-MATRIX-WRITE",
+        "status": "needs-setup-first",
+        "reason": "The VAT matrix row depends on VAT Business and Product Posting Groups first."
       },
       {
-        "caseId": "TARGET-038-O2C-PREFLIGHT",
-        "status": "blocked",
-        "reason": "Process preflight remains blocked until VAT and General Posting Setup boundaries are narrowed."
+        "caseId": "TARGET-028-POSTING-GROUPS-PREFLIGHT",
+        "status": "needs-setup-first",
+        "reason": "Posting Groups remain downstream of VAT group/matrix readiness."
+      },
+      {
+        "caseId": "TARGET-012-W1-FOUNDATION-READINESS",
+        "status": "needs-setup-first",
+        "reason": "Foundation readiness cannot be claimed while VAT write gates remain unresolved."
       }
     ],
-    "queueChangesMade": [
-      "Closed TARGET-069 as observed-local-decision.",
-      "Created TARGET-070 as the next read-only route parity gate.",
-      "Kept TARGET-027D32 and process cases blocked."
-    ],
-    "selectedNextCase": "TARGET-070-VAT-PAGE470-DIRECT-ROUTE-PARITY-READONLY-GATE",
-    "whySelectedNextCaseIsBest": "It converts a stale conflict between older Page-470 proof and newer helper failures into one reproducible, screenshot-QA-gated read-only case.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-070B-VAT-PAGE470-HELPER-FIX-OR-PAGEINSPECTION-DIAGNOSIS",
+    "whySelectedNextCaseIsBest": "Repeating the same route would waste time; the next useful work is helper/Page Inspection diagnosis.",
     "risksBeforeNextCase": [
-      "TARGET-070 must reject Role Center and Tell-Me overlay as proof.",
-      "TARGET-070 must not click New/Edit/List or write setup.",
-      "A successful Page-470 screenshot still does not prove VAT correctness."
+      "Do not click New/Edit/List actions without the controlled write case.",
+      "Do not claim German VAT correctness before matrix, Preview Posting, VAT Entries and G/L Entries."
     ],
     "requiredPreparation": [
-      "Use stored auth only after agent context permits BC workflows.",
-      "Prefer TARGET-020 direct Page-470 pattern before C4 exact-result fallback.",
-      "Capture screenshot QA and result JSON with no-write flags."
+      "Use Page Inspection or a materially different UI route; do not repeat the failed search-click path."
     ]
   },
   "flags": {
@@ -105,10 +93,8 @@
     "noMasterDataChange": true,
     "noCompanySwitch": true,
     "noApiShortcut": true,
-    "noBusinessCentralRun": true,
-    "noPlaywrightRun": true,
-    "noBookMasterChange": true
+    "noBookChange": true
   },
-  "updatedAt": "2026-07-05T17:38:41.261Z",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-069-vat-business-groups-source-route-decision/TARGET-069-result.json"
+  "updatedAt": "2026-07-05T17:57:49.644Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/TARGET-070-result.json"
 }
