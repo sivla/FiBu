@@ -69,7 +69,7 @@ The target is one integrated system:
 - `CUSTOMER-DATA-CATALOG-DRAFT.md`
   - Structured customer data request catalog by workstream and data category.
 - `DATA-REQUEST-JIRA-CANDIDATES-DRAFT.md`
-  - First Jira-ready Data Request candidates for company information, organization model, customers, vendors and items/services.
+  - First Jira-ready Data Request candidates and package-derived dependency tickets for company information, organization model, customers, vendors and items/services.
 - `CUSTOMER-DATA-SIMULATION-DRAFT.md`
   - Simulated customer data packages, file structures, validation rules and consultant review flow.
 - `SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md`

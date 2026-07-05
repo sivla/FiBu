@@ -120,11 +120,11 @@ Refine the initial catalog into Jira-ready data requests:
 
 Each data request should include owner, due date, format, validation rule and BC usage. The initial file exists as `CUSTOMER-DATA-CATALOG-DRAFT.md`.
 
-Current status: first Jira-ready candidates for `DR-CORE-001`, `DR-CORE-002`, `DR-MD-001`, `DR-MD-002` and `DR-MD-003` exist in `DATA-REQUEST-JIRA-CANDIDATES-DRAFT.md`. Next refinement should apply the realism standard, then convert accepted candidates into Jira import rows or simulated data tables.
+Current status: first Jira-ready candidates for `DR-CORE-001`, `DR-CORE-002`, `DR-MD-001`, `DR-MD-002` and `DR-MD-003` exist in `DATA-REQUEST-JIRA-CANDIDATES-DRAFT.md`. The file now also contains a package-derived Jira ticket map for `UNIVERSAARL_CORE_CompanyInformation`, `UNIVERSAARL_CORE_OrganizationModel`, `UNIVERSAARL_MD_Customers`, `UNIVERSAARL_MD_Vendors` and `UNIVERSAARL_MD_ItemsServices`, including dependency tickets. Next refinement should turn those rows into import-ready Jira rows or project tickets.
 
 Realism review status: the first five candidates were reviewed in `REALISM-REVIEW-DATA-REQUESTS-2026-07-05.md`. They are planning-ready but intentionally not BC-setup-ready. Next work should create simulated data tables and validation columns before live setup or import planning.
 
-Simulation status: first simulated tables now exist in `SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md`. They expose blockers for numbering, posting groups, VAT groups, payment terms, UOM and inventory posting setup before any live master-data creation.
+Simulation status: first simulated tables now exist in `SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md`. They expose blockers for numbering, posting groups, VAT groups, payment terms, UOM and inventory posting setup before any live master-data creation. Those blockers are now mirrored in the Jira candidate dependency queue.
 
 Route decision status: first route decision cards now exist in `ROUTE-DECISION-CARDS-FOUNDATION-MASTER-DATA-DRAFT.md`. They recommend read-first proof and gated setup before number series, posting groups, payment terms, UOM or item/master-data work.
 

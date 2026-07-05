@@ -34,7 +34,7 @@ This dashboard is the project manager view. It should stay short and point to th
 | Finance workstream | draft | First detailed workstream draft exists. |
 | Master data/product workstream | draft | Detailed WS04 draft exists and compares manual UI, templates, configuration packages, Excel import, API and park routes. |
 | Customer data catalog | draft | Initial data requests exist; Jira-ready candidates are tracked separately. |
-| Data request Jira candidates | draft | First five candidates exist for core company/organization data and customer/vendor/item master data. |
+| Data request Jira candidates | draft | First five candidates exist and now include a package-derived Jira ticket map with dependency tickets for Company Information, organization model, customers, vendors and items/services. |
 | Customer data simulation | draft | `CUSTOMER-DATA-SIMULATION-DRAFT.md` exists. |
 | Simulated core/master data tables | draft | Five concrete simulated packages exist: `UNIVERSAARL_CORE_CompanyInformation`, `UNIVERSAARL_CORE_OrganizationModel`, `UNIVERSAARL_MD_Customers`, `UNIVERSAARL_MD_Vendors` and `UNIVERSAARL_MD_ItemsServices`; all are Jira-ready, none are BC-setup-ready yet. |
 | Foundation/master-data route decisions | draft | Route cards exist for numbering, posting groups, payment terms and product/UOM setup before live master-data work. |
@@ -116,7 +116,7 @@ Status: mostly drafted, not yet reviewed as final.
 
 ## Next recommended work
 
-1. Convert the five simulated data packages into Jira Data Request candidates and dependency tickets.
+1. Turn the package-derived Jira ticket map into import-ready Jira rows or project tickets.
 2. Turn the first two Playwright catalog entries into read-only specs after the freeze is lifted or a read-only probe is approved.
 3. Create training module cards for customer/vendor/item master data using the package dependencies, not before them.
 4. Run `BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md` as a small spec-driven pilot before adopting OpenSpec globally.

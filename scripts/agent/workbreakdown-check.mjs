@@ -373,6 +373,29 @@ if (allText) {
     'configuration-package route decision'
   ], 10);
 
+  requireAtLeast('package-derived jira ticket anchors', [
+    'Package-derived Jira ticket map',
+    'DR-CORE-COMPANY-001',
+    'DEC-CORE-TAX-001',
+    'DR-CORE-ORG-001',
+    'DEC-ORG-DIM-001',
+    'DEC-ORG-LOC-001',
+    'DR-MD-CUST-001',
+    'DR-MD-VEND-001',
+    'DEC-PAYMENT-001',
+    'DR-MD-ITEM-001',
+    'DEC-MD-UOM-001',
+    'DEC-MD-PRODUCT-001',
+    'Dependency queue from the five packages',
+    'TASK-PWS-CORE-001',
+    'TASK-PWS-MD-001',
+    'TASK-PWS-MD-002',
+    'TASK-PWS-MD-003',
+    'DEC-MD-NUM-001',
+    'DEC-FF-POSTING-001',
+    'DEC-FF-VAT-001'
+  ], 16);
+
   requireAtLeast('simulated core master data anchors', [
     'Simulated Data Tables - Core and Master Data Draft',
     'UNIVERSAARL_CORE_CompanyInformation',
@@ -458,7 +481,7 @@ const output = {
   warnings,
   nextStep:
     errors.length === 0
-      ? 'Project template is usable as a local implementation planning anchor. Next convert the five simulated data packages into Jira Data Request candidates and dependency tickets.'
+      ? 'Project template is usable as a local implementation planning anchor. Next turn the package-derived Jira ticket map into import-ready Jira rows or project tickets.'
       : 'Fix the workbreakdown draft before using it as a planning anchor.'
 };
 

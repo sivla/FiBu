@@ -19,6 +19,38 @@ They do not contain real customer data. They do not authorize Business Central w
 - A request is not ready for BC setup until validation rules and dependencies are satisfied.
 - If data is incomplete, create a follow-up `Data Request`, `Decision` or `Risk`; do not hide the gap in setup.
 
+## Package-derived Jira ticket map
+
+Source: `SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md`
+
+These tickets are the first operational bridge from simulated Universaarl data packages to Jira-style project work. They are not import jobs and do not authorize Business Central writes.
+
+| Jira key candidate | Issue type | Source package | Workstream | Epic | Business purpose | Customer owner | Internal owner | Status | Blocks BC setup? | Dependency / child tickets | Acceptance criteria | Next action |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `DR-CORE-COMPANY-001` | Data Request | `UNIVERSAARL_CORE_CompanyInformation` | WS02 | CS-01; CS-05 | Collect safe simulated Company Information fields for Universaarl GmbH in `playthru` / `UNIVERSAARL-DE`. | Jonas Weber | Adrian Vogt; Eva Krueger | jira-ready | yes | `DEC-CORE-TAX-001`; `TASK-PWS-CORE-001` | Required fields are provided or explicitly open; no real tax/contact/bank/auth data; BC write remains blocked until read-first proof and Smart Decision. | Create Jira Data Request and read-first proof task; keep setup blocked. |
+| `DEC-CORE-TAX-001` | Decision | `UNIVERSAARL_CORE_CompanyInformation` | WS03 | FF-04 | Decide which VAT/tax identity fields may be fictionalized and which must remain blank or source-reviewed. | Jonas Weber; Robert Klein | Eva Krueger | blocked | yes | official-source/tax-review task | Decision says what can be shown in book/training, what stays blank, and what requires external review. | Open Decision before any VAT/tax Company Information field is written. |
+| `DR-CORE-ORG-001` | Data Request | `UNIVERSAARL_CORE_OrganizationModel` | WS02 | CS-02 | Classify departments, sites, role groups and reporting values before dimensions, locations or workflows are created. | Claudia Schulte; Sami Yilmaz | Adrian Vogt; Sarah Klein | jira-ready | yes | `DEC-ORG-DIM-001`; `DEC-ORG-LOC-001` | Every value is classified as dimension candidate, role group, site/location, legal entity or reporting-only; parked values are explicit. | Create Jira Data Request and two route decisions. |
+| `DEC-ORG-DIM-001` | Decision | `UNIVERSAARL_CORE_OrganizationModel` | WS03 | FF Dimensions | Decide which organization values become dimensions and which stay training/reporting context. | Claudia Schulte; Jonas Weber | Eva Krueger | blocked | yes | dimension strategy task | No dimension value is created until business purpose, owner, phase and defaulting rule are known. | Add before any dimension setup case. |
+| `DEC-ORG-LOC-001` | Decision | `UNIVERSAARL_CORE_OrganizationModel` | WS07 | Inventory/location model | Decide whether `SAAR-HQ` and `SAAR-WH` are story sites, BC Locations or later warehouse scope. | Elena Fischer | Sarah Klein | blocked | yes | inventory/location design task | Location setup route is clear; warehouse is either phase 1, later or parked. | Park BC Location creation until inventory route exists. |
+| `DR-MD-CUST-001` | Data Request | `UNIVERSAARL_MD_Customers` | WS04 | MD-01 | Collect simulated customers for O2C, receivables, training and book examples without hiding posting dependencies. | Pia Neumann; Lena Hartmann | Felix Roth; Eva Krueger; Milena Brand | jira-ready | yes | `DEC-MD-NUM-001`; `DEC-FF-POSTING-001`; `DEC-FF-VAT-001`; `TASK-PWS-MD-001` | Customer names are simulated; posting/VAT/payment/numbering fields are known or explicitly blocked; no customer BC write is triggered. | Create Jira Data Request; keep master-data creation blocked. |
+| `DR-MD-VEND-001` | Data Request | `UNIVERSAARL_MD_Vendors` | WS04 | MD-02 | Collect simulated vendors for P2P, payables, payment training and later fixed-asset scenarios. | Tobias Brandt; Lena Hartmann | Felix Roth; Eva Krueger; Milena Brand | jira-ready | yes | `DEC-MD-NUM-001`; `DEC-FF-POSTING-001`; `DEC-FF-VAT-001`; `DEC-PAYMENT-001`; `TASK-PWS-MD-002` | Vendor names are simulated; no real bank data; payment method/terms are known or blocked; no vendor BC write is triggered. | Create Jira Data Request; separate payment/bank decision. |
+| `DEC-PAYMENT-001` | Decision | `UNIVERSAARL_MD_Vendors` | WS03; WS13 | Finance payment controls | Decide how payment methods are simulated without storing real bank details or implying live payment readiness. | Lena Hartmann | Eva Krueger | blocked | yes | payment training boundary task | Payment method examples are safe, fictional and separated from real banking setup. | Open before vendor payment fields or payment training scenarios. |
+| `DR-MD-ITEM-001` | Data Request | `UNIVERSAARL_MD_ItemsServices` | WS04 | MD-03; MD-06 | Collect simulated inventory, service and non-inventory records for product-model, P2P, O2C, inventory and training scenarios. | Elena Fischer; Tobias Brandt; Pia Neumann | Felix Roth; Sarah Klein; Eva Krueger | jira-ready | yes | `DEC-MD-UOM-001`; `DEC-MD-PRODUCT-001`; `DEC-FF-POSTING-001`; `TASK-PWS-MD-003` | Item type, UOM, posting, VAT, inventory and costing dependencies are known or blocked; no item BC write is triggered. | Create Jira Data Request and product/UOM route decisions. |
+| `DEC-MD-UOM-001` | Decision | `UNIVERSAARL_MD_ItemsServices` | WS04 | MD-03 | Decide first phase units of measure such as `PCS` and `HOUR` before item creation. | Elena Fischer; Pia Neumann | Sarah Klein | blocked | yes | UOM setup route task | UOM list is small, realistic and aligned with item/service examples. | Add before item setup. |
+| `DEC-MD-PRODUCT-001` | Decision | `UNIVERSAARL_MD_ItemsServices` | WS04; WS07 | Product model and inventory boundary | Decide type split, costing route, inventory posting boundary and whether non-inventory items are in phase 1. | Elena Fischer; Tobias Brandt; Pia Neumann | Sarah Klein; Eva Krueger | blocked | yes | inventory/posting route task | Inventory, service and non-inventory behavior are not conflated; BC setup route is selected. | Add before product setup or item-card creation. |
+
+## Dependency queue from the five packages
+
+| Dependency ticket | Issue type | Why it exists | Unlocks | Current status |
+| --- | --- | --- | --- | --- |
+| `TASK-PWS-CORE-001` | Task | Read-first proof of Company Information and company context before any setup write. | Company Information setup and book screenshots | ready-after-freeze |
+| `TASK-PWS-MD-001` | Task | Read-first customer list/card context before customer creation route. | Customer training and O2C master-data setup | ready-after-foundation |
+| `TASK-PWS-MD-002` | Task | Read-first vendor list/card context before vendor creation route. | Vendor training and P2P master-data setup | ready-after-foundation |
+| `TASK-PWS-MD-003` | Task | Read-first item/service/non-inventory page context before product setup route. | Item training, product model and inventory route | ready-after-foundation |
+| `DEC-MD-NUM-001` | Decision | Numbering policy must be explicit before customer/vendor/item numbers are created. | Customer, vendor and item setup | blocked-by-foundation |
+| `DEC-FF-POSTING-001` | Decision | Posting groups are required before realistic customer/vendor/item setup. | Customers, vendors, items, P2P and O2C | blocked-by-finance-foundation |
+| `DEC-FF-VAT-001` | Decision | VAT groups must be defined before tax-sensitive master data and documents. | Customers, vendors, items, sales and purchase documents | blocked-by-vat-source-and-setup |
+
 ## Candidate status values
 
 - `draft`: candidate is structured but not customer-confirmed.
