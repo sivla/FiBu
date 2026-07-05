@@ -229,9 +229,11 @@ Create training module cards for:
 - Business Central navigation - draft exists in `TRAINING-MODULE-CARDS-DRAFT.md`
 - chart of accounts - draft exists in `TRAINING-MODULE-CARDS-DRAFT.md`
 - posting groups - draft exists in `TRAINING-MODULE-CARDS-DRAFT.md`
+- customer master data - draft exists in `TRAINING-MODULE-CARDS-DRAFT.md`; blocked by foundation dependencies
+- vendor master data - draft exists in `TRAINING-MODULE-CARDS-DRAFT.md`; blocked by foundation and payment-boundary dependencies
+- items, services and non-inventory items - draft exists in `TRAINING-MODULE-CARDS-DRAFT.md`; blocked by product model, UOM, posting, VAT, inventory posting and costing decisions
 - VAT/USt boundary
 - dimensions
-- customer/vendor/item master data
 - purchasing process
 - sales process
 - inventory quantity/value
@@ -339,4 +341,4 @@ Later create one compact dashboard:
 
 ## Current next best step
 
-`WS02-CASE-STUDY-CORE`, `WS04-MASTER-DATA-PRODUCT`, the first training module cards, data-request candidates, realism review, simulated tables, route decision cards, concept review cadence, consulting-house benchmark and first read-first Playwright scenario catalog now exist as drafts. The next useful refinement is to create training module cards for customer, vendor and item master data using the new route boundaries, while using the consulting-house benchmark to challenge data readiness, training, UAT, cutover and hypercare gaps. That is the fastest way to make the next live Foundation/Master-Data pilot better rather than merely more automated.
+`WS02-CASE-STUDY-CORE`, `WS04-MASTER-DATA-PRODUCT`, the first training module cards through customer/vendor/item master data, data-request candidates, realism review, simulated tables, route decision cards, concept review cadence, consulting-house benchmark and first read-first Playwright scenario catalog now exist as drafts. The next useful refinement is to create VAT/USt boundary and dimensions training cards, then use the freeze/resume gate to build read-first Playwright specs for master-data pages. That is the fastest way to make the next live Foundation/Master-Data pilot better rather than merely more automated.

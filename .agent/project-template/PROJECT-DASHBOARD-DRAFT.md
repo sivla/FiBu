@@ -24,7 +24,7 @@ This dashboard is the project manager view. It should stay short and point to th
 | Project scene cards | draft | `PROJECT-SCENE-CARDS-DRAFT.md` exists. |
 | Training strategy | draft | `TRAINING-STRATEGY-AND-CURRICULUM-DRAFT.md` exists. |
 | Role training matrix | draft | `ROLE-BASED-TRAINING-MATRIX-DRAFT.md` exists. |
-| Training module cards | draft | First cards exist for environment/company, navigation, chart of accounts and posting groups. |
+| Training module cards | draft | Cards exist for environment/company, navigation, chart of accounts, posting groups, customer master data, vendor master data and item/service/non-inventory master data; WS04 cards are dependency-blocked, not trainer-ready. |
 | Playwright training evidence map | draft | `PLAYWRIGHT-TRAINING-EVIDENCE-MAP-DRAFT.md` exists. |
 | Playwright scenario catalog | draft | Read-first WS02/WS03/WS04 scenario catalog exists; no live execution authorized. |
 | Realism standard | draft | `REALISM-STANDARD-DRAFT.md` exists. |
@@ -43,7 +43,7 @@ This dashboard is the project manager view. It should stay short and point to th
 | Foundation/master-data route decisions | draft | Route cards exist for numbering, posting groups, payment terms and product/UOM setup before live master-data work. |
 | Decision log | draft | Initial decisions captured. |
 | Risk register | draft | Initial risks captured. |
-| UAT/training plan | draft | Training strategy, role matrix, evidence map and first module cards exist; more role/process cards still needed. |
+| UAT/training plan | draft | Training strategy, role matrix, evidence map and module cards exist through WS04 master-data training; process cards still needed. |
 | Book map | missing | Workstream-to-chapter mapping still needed. |
 | Playwright scenario catalog | draft | Read-first context/navigation/setup-dependency scenarios exist for WS02/WS03/WS04. |
 
@@ -131,12 +131,13 @@ Status: mostly drafted, not yet reviewed as final.
 3. Use `AGENT-OPERATING-MODEL-DRAFT.md` as governance for any further specialist-agent or subagent work; do not automate it yet.
 4. Turn the package-derived Jira ticket map into import-ready Jira rows or project tickets.
 5. Turn the first two Playwright catalog entries into read-only specs after the freeze is lifted or a read-only probe is approved.
-6. Create training module cards for customer/vendor/item master data using the package dependencies, not before them.
-7. Run `BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md` as a small spec-driven pilot before adopting OpenSpec globally.
-8. Turn `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` into workstream-level Jira import candidates.
-9. Apply `REALISM-STANDARD-DRAFT.md` to storyline, scene cards and broader customer data simulation.
-10. Create workstream-to-book-chapter map.
-11. After the freeze, resume live work with a read-first foundation/master-data preflight, not blind record creation.
+6. Build read-first Playwright specs for `PWS-MD-001`, `PWS-MD-002` and `PWS-MD-003` after the freeze/resume gate; do not create master data yet.
+7. Create VAT/USt boundary and dimensions training cards before first tax-sensitive or dimension-heavy process training.
+8. Run `BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md` as a small spec-driven pilot before adopting OpenSpec globally.
+9. Turn `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` into workstream-level Jira import candidates.
+10. Apply `REALISM-STANDARD-DRAFT.md` to storyline, scene cards and broader customer data simulation.
+11. Create workstream-to-book-chapter map.
+12. After the freeze, resume live work with a read-first foundation/master-data preflight, not blind record creation.
 
 ## Update rule
 

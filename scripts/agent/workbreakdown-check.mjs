@@ -338,10 +338,32 @@ if (allText) {
     'TR-01-01 Role Center and Navigation',
     'TR-02-01 Chart of Accounts',
     'TR-02-02 Posting Groups',
+    'TR-03-01 Customer Master Data',
+    'TR-03-02 Vendor Master Data',
+    'TR-03-03 Items, Services and Non-Inventory Items',
     'Would a serious Business Central consultant',
     'RISK-011',
     'DEC-009'
-  ], 12);
+  ], 15);
+
+  requireAtLeast('master data training module anchors', [
+    'TR-03-01 Customer Master Data',
+    'SIM-CUST-10000',
+    'Customer master data: more than an address',
+    'PWS-MD-001',
+    'TR-03-02 Vendor Master Data',
+    'SIM-VEND-20000',
+    'no-real-bank-data boundary',
+    'PWS-MD-002',
+    'TR-03-03 Items, Services and Non-Inventory Items',
+    'SIM-ITEM-1000',
+    'SIM-SERV-1000',
+    'SIM-NONINV-1000',
+    'inventory vs service vs non-inventory',
+    'PWS-MD-003',
+    'blocked-by-foundation',
+    'blocked-by-product-model'
+  ], 14);
 
   requireAtLeast('spec-driven sideproject anchors', [
     'Spec-Driven Sideproject Draft',
@@ -624,7 +646,7 @@ const output = {
   warnings,
   nextStep:
     errors.length === 0
-      ? 'Project template is usable as a local implementation planning anchor. Next review the five-row Jira CSV preview against actual Jira project fields, or build the first read-first Playwright spec after the freeze/resume gate.'
+      ? 'Project template is usable as a local implementation planning anchor. Next create VAT/USt and dimensions training cards, or after the freeze/resume gate build read-first Playwright specs for PWS-MD-001, PWS-MD-002 and PWS-MD-003 without creating master data.'
       : 'Fix the workbreakdown draft before using it as a planning anchor.'
 };
 

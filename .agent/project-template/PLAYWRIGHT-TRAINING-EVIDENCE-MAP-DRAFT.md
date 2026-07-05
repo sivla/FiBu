@@ -42,9 +42,9 @@ Technical probes are not training material until translated into customer-facing
 | TR-02-03 VAT/USt boundary | User understands BC VAT setup vs tax finality | Microsoft source, setup evidence, tax boundary | source-only | Create VAT boundary card and avoid final legal claim |
 | TR-02-04 Dimensions | User understands reporting dimensions | Dimension setup and later entry/report proof | source-only | Define dimensions after organization model |
 | TR-02-05 Journals, preview and posting | User understands journal route and posting effect | Preview/posting scenario with G/L entries | blocked | Needs explicit unlock and evidence plan |
-| TR-03-01 Customer master data | User reviews customer required fields | Customer card/list proof | planned | Build after master-data workstream expansion |
-| TR-03-02 Vendor master data | User reviews vendor required fields | Vendor card/list proof | planned | Build after master-data workstream expansion |
-| TR-03-03 Items, services and non-inventory items | User classifies item types | Item card/list proof and source | planned | Build item/product model evidence |
+| TR-03-01 Customer master data | User reviews customer required fields and setup dependencies | Customer card/list proof plus data-package dependency review | blocked | Build `PWS-MD-001` read-first proof after freeze/resume gate; keep BC creation blocked until numbering, posting, VAT and payment terms decisions |
+| TR-03-02 Vendor master data | User reviews vendor required fields, payment boundary and setup dependencies | Vendor card/list proof plus no-real-bank-data boundary | blocked | Build `PWS-MD-002` read-first proof after freeze/resume gate; keep BC creation blocked until numbering, posting, VAT, payment terms and payment method decisions |
+| TR-03-03 Items, services and non-inventory items | User classifies item types and setup blockers | Item card/list proof, source support and product-model route decision | blocked | Build `PWS-MD-003` read-first proof after freeze/resume gate; keep BC creation blocked until UOM, product model, posting, VAT, inventory posting and costing decisions |
 | TR-03-04 Configuration packages and imports | User understands scalable data route | Package/import artifact plus UI validation | blocked | Needs route decision before sample import |
 | TR-04-01 Purchase order to invoice | User follows purchasing process | Playwright process scenario and UAT | planned | Build after finance/master-data prerequisites |
 | TR-05-01 Sales quote/order/invoice | User follows sales process | Playwright process scenario and UAT | planned | Build after finance/master-data prerequisites |
@@ -102,3 +102,6 @@ Create concrete evidence cards for:
 - TR-01-01 navigation
 - TR-02-01 chart of accounts
 - TR-02-02 posting groups
+- TR-03-01 customer master data
+- TR-03-02 vendor master data
+- TR-03-03 items, services and non-inventory items

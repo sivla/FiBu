@@ -398,3 +398,305 @@ Acceptance criteria:
 - Module includes at least one plain-language account-determination example.
 - Missing setup rows are documented as blockers or decisions.
 - No VAT/final posting claim is made from source-only evidence.
+
+## TR-03-01 Customer Master Data
+
+Workstream: `WS04-MASTER-DATA-PRODUCT`
+Epic: `MD-01 Customer Master Data`
+Issue type: Training Item
+Status: `blocked-by-foundation`
+
+Business purpose:
+
+Sales and finance users need to understand that a customer card is not just an address record. It carries the data Business Central needs for sales documents, receivables, VAT treatment, payment terms, posting groups and later reporting.
+
+Target roles:
+
+- sales operations
+- finance/accounts receivable
+- customer service
+- key users
+- UAT testers
+- training/book team
+
+Customer/example data:
+
+- simulated package: `UNIVERSAARL_MD_Customers`
+- clean example: `SIM-CUST-10000` / `U-CUST-10000` / `Saarland Maschinenbau GmbH`
+- delivery-address example: `SIM-CUST-10010` / `U-CUST-10010` / `Mosel Retail Partner KG`
+- negative training idea: `SIM-CUST-ERR90`, parked and not used for normal setup
+
+BC concept or process:
+
+- customer list and customer card
+- customer number and naming policy
+- customer posting group
+- general business posting group
+- VAT business posting group
+- payment terms
+- blocked or incomplete customer data
+- customer templates or configuration packages as scalable setup route
+
+Exercise:
+
+1. Review the simulated customer records and identify which fields are business identity, posting/VAT setup, payment behavior and training-only context.
+2. Mark every `TBD` posting, VAT, payment and numbering field as blocked rather than guessing a value.
+3. Decide whether the first customer should be created manually for learning or by template/configuration package after dependencies are resolved.
+4. Explain why an incomplete customer should be used only in a controlled negative-training case.
+
+Typical mistakes:
+
+- treating the customer as an address-only record
+- creating customers before posting groups, VAT groups and payment terms are clear
+- using real customer/contact/bank data in a training sandbox
+- making the first import too broad before one card route has been read-first validated
+- using an intentionally incomplete customer in a normal UAT process
+
+Success check:
+
+- The participant can name the minimum customer fields that are still blocked.
+- The participant can explain why customer posting setup affects later ledger entries.
+- The participant can distinguish a clean training customer from a negative-test customer.
+- The participant can choose a safe setup route: manual first proof, then template/configuration package.
+
+Escalation path:
+
+- If posting/VAT/payment values are missing, escalate to finance foundation decisions.
+- If real customer data appears, stop and replace it with fictional/simulated data.
+- If a sales process needs this customer before dependencies are resolved, park the process and create a dependency ticket.
+
+Handbook/book output:
+
+- handbook section: "Customer master data: more than an address"
+- checklist for customer data owners
+- beginner explanation of posting groups and payment terms on the customer card
+- warning that simulated data is not customer production data
+
+Source/evidence status:
+
+- Business Central customer master-data concept needs official source support before trainer-ready.
+- Universaarl customer list/card read-first proof is still needed.
+- Current simulated data is Jira-ready but not BC-setup-ready.
+
+UAT status:
+
+- planned; blocked until numbering, posting groups, VAT groups, payment terms and read-first customer-card proof are available
+
+Playwright/evidence output:
+
+- `PWS-MD-001` customer list/card read-first proof
+- later controlled create/reopen proof for one clean customer after dependencies
+- evidence card separating customer concept, simulated data and actual BC setup
+
+Realism note:
+
+Customer setup is often delayed because sales knows the customer names while finance owns posting, VAT and payment rules. The training should make this split visible instead of pretending one role can safely complete the card alone.
+
+Acceptance criteria:
+
+- Module uses only simulated customer values.
+- Every setup-sensitive field has a dependency or decision.
+- No customer creation is implied before the finance foundation gates are resolved.
+
+## TR-03-02 Vendor Master Data
+
+Workstream: `WS04-MASTER-DATA-PRODUCT`
+Epic: `MD-02 Vendor Master Data`
+Issue type: Training Item
+Status: `blocked-by-foundation`
+
+Business purpose:
+
+Purchasing and finance users need to understand that vendor master data controls purchase documents, payables, payment behavior and later auditability. A vendor card must be complete enough for the intended process, but safe training data must not include real bank or confidential supplier data.
+
+Target roles:
+
+- purchasing
+- finance/accounts payable
+- procurement key users
+- payment process owner
+- UAT testers
+- training/book team
+
+Customer/example data:
+
+- simulated package: `UNIVERSAARL_MD_Vendors`
+- material vendor: `SIM-VEND-20000` / `U-VEND-20000` / `Saarstahl Komponenten GmbH`
+- service vendor: `SIM-VEND-20010` / `U-VEND-20010` / `IT Services Saar GmbH`
+- fixed-asset supplier candidate: `SIM-VEND-FA10`, parked until the Fixed Assets workstream
+
+BC concept or process:
+
+- vendor list and vendor card
+- vendor number and naming policy
+- vendor posting group
+- general business posting group
+- VAT business posting group
+- payment terms and payment method
+- no-real-bank-data boundary
+- material, service and fixed-asset vendor use cases
+
+Exercise:
+
+1. Review the vendor examples and classify them as material, service or later fixed-asset supplier.
+2. Identify which fields affect P2P posting, VAT and payment behavior.
+3. Mark bank/payment-sensitive values as simulated, blocked or intentionally excluded.
+4. Decide which vendor is suitable for first P2P UAT only after posting/VAT/payment dependencies are resolved.
+
+Typical mistakes:
+
+- entering real bank or supplier contact details in a sandbox training package
+- assuming a vendor can be used for purchase orders before posting groups are ready
+- confusing payment terms with payment method
+- using a fixed-asset vendor before the asset workstream has setup and evidence
+- importing many vendors before one clean route has been validated
+
+Success check:
+
+- The participant can identify why vendor posting groups matter.
+- The participant can explain the no-real-bank-data boundary.
+- The participant can choose between material, service and parked fixed-asset vendor examples.
+- The participant can describe which dependencies block first vendor creation.
+
+Escalation path:
+
+- If payment method/bank data is unclear, escalate to `DEC-PAYMENT-001`.
+- If VAT or posting setup is missing, escalate to finance foundation.
+- If a vendor is needed for Fixed Assets, park it until the FA route is approved.
+
+Handbook/book output:
+
+- handbook section: "Vendor master data and payment boundaries"
+- checklist for vendor data owners
+- beginner explanation of vendor posting group, VAT group, payment terms and payment method
+- warning that sandbox vendor data must not contain real bank details
+
+Source/evidence status:
+
+- Official source support needed for vendor setup explanation.
+- Universaarl vendor list/card read-first proof is still needed.
+- Current simulated data is Jira-ready but not BC-setup-ready.
+
+UAT status:
+
+- planned; blocked until numbering, vendor posting, VAT, payment terms/methods and read-first vendor-card proof are available
+
+Playwright/evidence output:
+
+- `PWS-MD-002` vendor list/card read-first proof
+- later controlled create/reopen proof for one clean material vendor after dependencies
+- evidence card separating vendor concept, payment boundary and actual setup
+
+Realism note:
+
+Vendor setup is cross-functional: purchasing knows supplier purpose, finance owns posting and payment controls. The module should train that split explicitly because it is a common project bottleneck.
+
+Acceptance criteria:
+
+- Module excludes real bank, contact and supplier data.
+- Payment-sensitive fields are blocked or decision-linked.
+- No purchase document scenario is implied before vendor setup dependencies are resolved.
+
+## TR-03-03 Items, Services and Non-Inventory Items
+
+Workstream: `WS04-MASTER-DATA-PRODUCT`
+Epic: `MD-03 Product Model, Items, Services and Non-Inventory Items`
+Issue type: Training Item
+Status: `blocked-by-product-model`
+
+Business purpose:
+
+Users need to understand the difference between inventory items, service items and non-inventory items before they create sales or purchase documents. The item type determines whether Business Central tracks stock, value, document behavior and later inventory entries.
+
+Target roles:
+
+- inventory/warehouse
+- purchasing
+- sales operations
+- finance
+- product data owner
+- UAT testers
+- training/book team
+
+Customer/example data:
+
+- simulated package: `UNIVERSAARL_MD_ItemsServices`
+- inventory item: `SIM-ITEM-1000` / `U-ITEM-1000` / `Steel component set`
+- service item: `SIM-SERV-1000` / `U-SERV-1000` / `Installation service`
+- non-inventory item: `SIM-NONINV-1000` / `U-NONINV-1000` / `Printed manual package`
+- negative training idea: `SIM-ITEM-ERR900`, parked and not used for normal setup
+
+BC concept or process:
+
+- item list and item card
+- item type: inventory, service, non-inventory
+- base unit of measure
+- item category
+- inventory posting group
+- general product posting group
+- VAT product posting group
+- costing method
+- product templates or configuration packages as scalable setup route
+
+Exercise:
+
+1. Classify each simulated product record as inventory, service, non-inventory or parked negative example.
+2. Identify which fields affect stock, valuation, posting and VAT.
+3. Mark all `TBD` setup values as blockers.
+4. Decide whether the first product should be created manually for learning or by template/configuration package after UOM, posting and costing decisions.
+5. Explain why a service line can be a valid product model but must not be taught as stock behavior.
+
+Typical mistakes:
+
+- treating all sellable things as inventory
+- using a service or non-inventory item in an inventory valuation lesson
+- creating item records before UOM, posting groups and costing method are understood
+- using item setup to bypass missing finance foundation decisions
+- importing a broad item list before one card route has been validated
+
+Success check:
+
+- The participant can explain inventory vs service vs non-inventory in plain language.
+- The participant can identify which fields block first item creation.
+- The participant can explain why item setup affects purchase, sales, inventory and ledger evidence.
+- The participant can park a negative-training item instead of using it in normal UAT.
+
+Escalation path:
+
+- If UOM is unclear, escalate to `DEC-MD-UOM-001`.
+- If item type or inventory boundary is unclear, escalate to `DEC-MD-PRODUCT-001`.
+- If posting/VAT setup is missing, escalate to finance foundation.
+- If costing or location/warehouse scope is unclear, park inventory process training.
+
+Handbook/book output:
+
+- handbook section: "Inventory item, service item or non-inventory item?"
+- product data owner checklist
+- beginner explanation of item type, UOM, posting groups and costing boundary
+- warning that product records are not BC-setup-ready until foundation decisions are resolved
+
+Source/evidence status:
+
+- Official source support needed for item type and inventory behavior.
+- Universaarl item/service/non-inventory list/card read-first proof is still needed.
+- Current simulated data is Jira-ready but not BC-setup-ready.
+
+UAT status:
+
+- planned; blocked until UOM, product model, posting groups, VAT product groups, inventory posting and costing route are available
+
+Playwright/evidence output:
+
+- `PWS-MD-003` item/service/non-inventory list/card read-first proof
+- later controlled create/reopen proof for one product type after dependencies
+- evidence card separating product model concept, simulated records and actual setup
+
+Realism note:
+
+Product master data often exposes disagreements between sales, purchasing, warehouse and finance. A realistic training module should show that classification is a business decision, not a field-filling exercise.
+
+Acceptance criteria:
+
+- Module separates inventory, service and non-inventory behavior.
+- All setup-sensitive fields are blocked or decision-linked.
+- No inventory valuation, warehouse or posting claim is made before evidence exists.
