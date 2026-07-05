@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION",
-  "status": "ready-next",
+  "status": "observed-local-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "mode": "universaarl-target-execution",
@@ -53,5 +53,90 @@
     "The decision assumes global dimension assignment from dimension value visibility.",
     "The next step would start master data or documents."
   ],
-  "nextCase": "TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION"
+  "nextCase": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-067-dimension-defaults-next-route-decision/TARGET-067-result.json",
+  "completedAt": "2026-07-05T17:25:19.400Z",
+  "proved": [
+    "TARGET-023B already proves the starter Dimension Values in playthru / UNIVERSAARL-DE.",
+    "PRODUCTLINE, COSTCENTER and CHANNEL can be described as visible starter dimensions with visible starter values.",
+    "Global Dimension Code 1/2 assignment is not proven and must not be retried through the same blocked Page-118/Page-577 routes.",
+    "Default Dimensions are not useful as a write target until concrete master data records are selected.",
+    "A Foundation Ready checkpoint is now the next honest step after Dimensions are classified."
+  ],
+  "notProved": [
+    "PRODUCTLINE is not proven as Global Dimension Code 1.",
+    "COSTCENTER is not proven as Global Dimension Code 2.",
+    "No Default Dimensions for customers, vendors, items or accounts are proven.",
+    "No Dimension Set Entries, posted entries or reporting filters are proven.",
+    "No Foundation Ready, Preview Posting, Posting or process readiness is proven."
+  ],
+  "blockedBy": [
+    "Global Dimension assignment route remains parked from TARGET-024H.",
+    "Default Dimensions need concrete target master data records.",
+    "Foundation still has VAT and General Posting Setup blockers outside the dimension lane."
+  ],
+  "warnings": [
+    "Do not claim global dimensions are assigned in book or coverage.",
+    "Do not write default dimensions before selecting target master data records.",
+    "Do not treat visible dimension values as reporting proof.",
+    "Do not start O2C, P2P, journals, Preview Posting or Posting from this decision."
+  ],
+  "dimensionDecision": {
+    "starterDimensions": "proven-visible",
+    "starterValues": "proven-visible",
+    "globalDimensions": "parked-needs-materially-new-route",
+    "defaultDimensions": "parked-until-concrete-master-data-targets",
+    "dimensionSetEntries": "not-proven",
+    "reportingEffect": "not-proven"
+  },
+  "nextStepDecision": {
+    "currentCase": "TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
+    "lastEvidenceSummary": "TARGET-066 classified W1 Foundation as partial-not-posting-ready and selected the dimension/defaults lane; TARGET-023B is already done and TARGET-024H parks global dimensions.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Rerunning TARGET-023B would repeat a completed setup-values proof. The correct next step is a Foundation Ready checkpoint after explicitly parking global/default dimensions.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
+        "status": "ready-next",
+        "reason": "It can summarize W1 readiness after chart, posting groups, VAT and dimension boundaries are now explicit."
+      },
+      {
+        "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+        "status": "blocked",
+        "reason": "VAT write gate remains blocked by Page 470 and incomplete INLAND/VAT19 matrix proof."
+      },
+      {
+        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
+        "status": "obsolete",
+        "reason": "Replaced by TARGET-068, which is more specific to the current post-dimension-park state."
+      },
+      {
+        "caseId": "TARGET-LOOKFEEL-001-LIST-SEARCH-SORT-FILTER",
+        "status": "ready-after-current",
+        "reason": "Useful for book UX after the Foundation checkpoint, but not a substitute for readiness."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "blocked",
+        "reason": "O2C remains locked until Foundation readiness or explicit learning-boundary approval exists."
+      }
+    ],
+    "queueChangesMade": [
+      "Selected TARGET-068 as the next active case.",
+      "Kept TARGET-027D32 blocked.",
+      "Marked TARGET-040 as superseded by TARGET-068 for this branch state."
+    ],
+    "selectedNextCase": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
+    "whySelectedNextCaseIsBest": "It is the first checkpoint after all currently known W1 lanes have explicit proven/partial/parked boundaries, and it prevents accidental master-data or process starts.",
+    "risksBeforeNextCase": [
+      "Foundation Ready may still fail because VAT and General Posting Setup remain parked.",
+      "A checkpoint must not silently unlock process work."
+    ],
+    "requiredPreparation": [
+      "Use TARGET-026O, TARGET-030/031B, TARGET-050/054, TARGET-065, TARGET-066 and TARGET-067 as boundary evidence.",
+      "Do not run BC or Playwright for the checkpoint unless a later case explicitly allows it."
+    ]
+  },
+  "nextStep": "Run TARGET-068 local W1 Foundation Ready checkpoint after dimension park. Do not unlock master data, VAT writes, General Posting Setup writes, Preview Posting or Posting unless the checkpoint explicitly narrows the next dependency."
 }

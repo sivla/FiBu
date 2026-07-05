@@ -1,11 +1,54 @@
 {
   "schemaVersion": 1,
-  "runId": "TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION",
+  "purpose": "autopilot-result-normalized",
   "caseId": "TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION",
-  "status": "observed-local-decision",
+  "source": "local-dimension-route-decision",
+  "resultStatus": "observed-local-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "TARGET-067 kept Universaarl starter dimensions and values as proven-visible, parked global/default dimensions, updated the Dimensions bookdraft and Full Playthrough Catalog, and selected TARGET-068 as the W1 Foundation Ready checkpoint.",
+  "url": "n/a-local-decision-no-business-central-opened",
+  "page": "n/a-local-decision",
+  "actionsTaken": [
+    "Read TARGET-023B, TARGET-024B, TARGET-024H and TARGET-033 dimension evidence.",
+    "Classified TARGET-023B as done and not suitable for rerun.",
+    "Classified global dimension assignment as parked until a materially new route exists.",
+    "Classified default dimensions as parked until concrete master data target records are selected.",
+    "Updated the Dimensions bookdraft with the current reader-facing boundary.",
+    "Updated the Full Playthrough Catalog to point to a Foundation Ready checkpoint after dimension park."
+  ],
+  "actionsNotTaken": [
+    "No Business Central execution.",
+    "No Playwright execution.",
+    "No setup write.",
+    "No global dimension write.",
+    "No default dimension write.",
+    "No master data creation.",
+    "No document or draft creation.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No payment.",
+    "No API shortcut."
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "bookChanged": true,
+  "bookChangedFiles": [
+    "playwright/projects/fibu-book5/book-drafts/universaarl-dimensions-foundation-draft.md"
+  ],
+  "screenshots": [],
+  "dimensionDecision": {
+    "starterDimensions": "proven-visible",
+    "starterValues": "proven-visible",
+    "globalDimensions": "parked-needs-materially-new-route",
+    "defaultDimensions": "parked-until-concrete-master-data-targets",
+    "dimensionSetEntries": "not-proven",
+    "reportingEffect": "not-proven"
+  },
   "proved": [
     "TARGET-023B already proves the starter Dimension Values in playthru / UNIVERSAARL-DE.",
     "PRODUCTLINE, COSTCENTER and CHANNEL can be described as visible starter dimensions with visible starter values.",
@@ -31,14 +74,6 @@
     "Do not treat visible dimension values as reporting proof.",
     "Do not start O2C, P2P, journals, Preview Posting or Posting from this decision."
   ],
-  "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/target-067-dimension-defaults-next-route-decision/TARGET-067-result.json",
-    "playwright/projects/fibu-book5/evidence/target-067-dimension-defaults-next-route-decision/README.md",
-    "playwright/projects/fibu-book5/book-drafts/universaarl-dimensions-foundation-draft.md",
-    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md"
-  ],
-  "nextStep": "Run TARGET-068 local W1 Foundation Ready checkpoint after dimension park. Do not unlock master data, VAT writes, General Posting Setup writes, Preview Posting or Posting unless the checkpoint explicitly narrows the next dependency.",
-  "nextCase": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
   "nextStepDecision": {
     "currentCase": "TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION",
     "plannedNextCaseBeforeReview": "TARGET-023B-DIMENSION-VALUES-ROUTE-RECOVERY",
@@ -88,19 +123,42 @@
       "Do not run BC or Playwright for the checkpoint unless a later case explicitly allows it."
     ]
   },
-  "flags": {
-    "noWrite": true,
-    "noPost": true,
-    "noPreview": true,
-    "noDraft": true,
-    "noSetupChange": true,
-    "noMasterDataChange": true,
-    "noCompanySwitch": true,
-    "noApiShortcut": true,
-    "noBusinessCentralRun": true,
-    "noPlaywrightRun": true,
-    "bookMasterChanged": false
+  "statePatch": {
+    "current": {
+      "activeCase": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
+      "active_case_file": ".agent/state/cases/target-068-w1-foundation-ready-checkpoint-after-dimension-park.json",
+      "activeCaseFile": ".agent/state/cases/target-068-w1-foundation-ready-checkpoint-after-dimension-park.json",
+      "activeArea": "universaarl-w1-foundation-ready-checkpoint-after-dimension-park",
+      "nextCase": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
+      "nextStep": "Run TARGET-068 local W1 Foundation Ready checkpoint after dimension park. Do not unlock master data, VAT writes, General Posting Setup writes, Preview Posting or Posting unless the checkpoint explicitly narrows the next dependency."
+    },
+    "lastRunSummary": {
+      "caseId": "TARGET-067-DIMENSION-DEFAULTS-NEXT-ROUTE-DECISION",
+      "status": "observed-local-decision",
+      "instance": "playthru",
+      "company": "UNIVERSAARL-DE",
+      "summary": "TARGET-067 kept starter dimension values as proven-visible, parked global/default dimensions, updated the Dimensions draft and catalog, and selected TARGET-068 as the W1 Foundation Ready checkpoint.",
+      "nextCase": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK"
+    },
+    "activeCase": {
+      "status": "observed-local-decision",
+      "resultPath": "playwright/projects/fibu-book5/evidence/target-067-dimension-defaults-next-route-decision/TARGET-067-result.json",
+      "nextCase": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK"
+    }
   },
-  "updatedAt": "2026-07-05T17:25:19.400Z",
-  "resultPath": "playwright/projects/fibu-book5/evidence/target-067-dimension-defaults-next-route-decision/TARGET-067-result.json"
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/target-067-dimension-defaults-next-route-decision/README.md",
+    "playwright/projects/fibu-book5/evidence/target-067-dimension-defaults-next-route-decision/TARGET-067-result.json",
+    "playwright/projects/fibu-book5/book-drafts/universaarl-dimensions-foundation-draft.md",
+    "playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md",
+    ".agent/state/cases/target-068-w1-foundation-ready-checkpoint-after-dimension-park.json",
+    ".agent/state/current.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/state/coverage_state.json",
+    ".agent/state/cases/target-067-dimension-defaults-next-route-decision.json"
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "reason": "Local decision only; no setup writes and no live actions.",
+  "nextCase": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK"
 }

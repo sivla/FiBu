@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK",
+  "status": "ready-next",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-target-execution",
+  "activeArea": "universaarl-w1-foundation-ready-checkpoint-after-dimension-park",
+  "mayRunPlaywright": false,
+  "effectiveBcActionsAllowed": false,
+  "purpose": "Run a local W1 Foundation Ready checkpoint after chart, posting-group, VAT and dimension boundaries are explicit.",
+  "whyNow": "TARGET-067 parks global/default dimensions and TARGET-066 parks posting-group/VAT blockers. The next useful step is to decide whether Foundation remains blocked, which exact dependency is next, or whether a limited master-data learning path is justified without claiming posting readiness.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-026o-chart-of-accounts-visible-screenshot-recovery/TARGET-026O-result.json",
+    "playwright/projects/fibu-book5/evidence/target-030-posting-groups-vendor-inland-write-gate/TARGET-030-result.json",
+    "playwright/projects/fibu-book5/evidence/target-031b-customer-posting-group-inland-write-gate/TARGET-031B-result.json",
+    "playwright/projects/fibu-book5/evidence/target-050-inventory-posting-setup-controlled-write/TARGET-050-result.json",
+    "playwright/projects/fibu-book5/evidence/target-054-item-product-vat-field-assignment/TARGET-054-result.json",
+    "playwright/projects/fibu-book5/evidence/target-065-posting-groups-pageinspection-or-source-route-decision/TARGET-065-result.json",
+    "playwright/projects/fibu-book5/evidence/target-066-foundation-limitation-check-after-posting-group-route-blocker/TARGET-066-result.json",
+    "playwright/projects/fibu-book5/evidence/target-067-dimension-defaults-next-route-decision/TARGET-067-result.json"
+  ],
+  "allowedActions": [
+    "read-foundation-evidence-results",
+    "write-local-foundation-ready-checkpoint-result",
+    "update-state-and-coverage-plan",
+    "update-catalog-or-bookdraft-if-reader-facing-and-evidence-bounded"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright",
+    "write-setup",
+    "write-vat-posting-setup",
+    "write-general-posting-setup",
+    "write-default-dimensions",
+    "write-global-dimensions",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-foundation-ready-with-open-blockers"
+  ],
+  "acceptanceCriteria": [
+    "Classify Foundation Ready as pass, fail or limited-learning-path-only.",
+    "List the exact blocking dependencies.",
+    "Select one narrow next case without starting master data or processes.",
+    "Write a Next-Step Decision Card with a 3-5 step lookahead."
+  ],
+  "stopIf": [
+    "The checkpoint would claim posting readiness while VAT or General Posting Setup remains parked.",
+    "The checkpoint would unlock master data without explicit limitations.",
+    "The next step would require BC/Playwright execution without a new case."
+  ],
+  "nextCase": "TARGET-068-W1-FOUNDATION-READY-CHECKPOINT-AFTER-DIMENSION-PARK"
+}

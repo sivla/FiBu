@@ -6,15 +6,17 @@ In Business Central sind Dimensionen keine eigenen Konten. Sie ergaenzen Buchung
 
 ## Die Seite Dimensionen
 
-Die Seite `Dimensionen` ist die zentrale Liste der Dimensionscodes. Dort stehen normalerweise Codes wie `PRODUCTLINE`, `CHANNEL` oder `COSTCENTER`. Zu jedem Dimensionscode gehoeren Dimensionswerte. Bei `PRODUCTLINE` koennten das zum Beispiel `SOFTWARE`, `SERVICE` oder `HARDWARE` sein.
+Die Seite `Dimensionen` ist die zentrale Liste der Dimensionscodes. Dort stehen Codes wie `PRODUCTLINE`, `CHANNEL` oder `COSTCENTER`. Zu jedem Dimensionscode gehoeren Dimensionswerte. Bei `PRODUCTLINE` sind das zum Beispiel Werte wie `SOFTWARE`, `SERVICE` oder `TRAINING`.
 
-In der Universaarl-Company ist die Dimensionsseite erreichbar. Die aktuelle Ansicht zeigt aber noch keine Zeilen. Das ist ein wichtiger Befund: Die Seite ist vorhanden, aber daraus entsteht noch keine fertige Reportingstruktur.
+In der Universaarl-Company sind die Starterdimensionen jetzt sichtbar. Fuer den Anfang werden drei Achsen verwendet:
 
-Bevor erste Kunden, Lieferanten, Artikel oder Belege angelegt werden, muss entschieden werden, welche Dimensionen fuer das Buch wirklich gebraucht werden. Fuer die Universaarl GmbH sind als erste Achsen sinnvoll:
+- `PRODUCTLINE` fuer Produktlinien,
+- `COSTCENTER` fuer Kostenstellen,
+- `CHANNEL` fuer Vertriebskanaele.
 
-- Produktlinie
-- Vertriebskanal
-- Kostenstelle
+Zu diesen Dimensionen gehoeren erste Werte. `PRODUCTLINE` enthaelt `SOFTWARE`, `SERVICE` und `TRAINING`. `COSTCENTER` enthaelt `ADMIN`, `SALES` und `OPERATIONS`. `CHANNEL` enthaelt `DIRECT` und `PARTNER`.
+
+Damit sind die wichtigsten Auswertungsachsen fuer die ersten Beispiele vorhanden. Das ist aber noch keine fertige Reportingstruktur. Eine Dimension wird erst dann im Prozess sichtbar, wenn sie auf Stammdaten, Belegen oder Posten verwendet wird.
 
 ## Globale Dimensionen
 
@@ -22,7 +24,9 @@ In der Seite `Finanzbuchhaltung Einrichtung` gibt es den Abschnitt `Dimensionen`
 
 Globale Dimensionen sind besonders wichtige Dimensionen. Business Central kann sie in vielen Listen, Posten und Auswertungen direkter anzeigen und filtern. Deshalb sollten sie bewusst gewaehlt werden. Wenn spaeter zum Beispiel Produktlinie und Kostenstelle in vielen Auswertungen gebraucht werden, sind sie Kandidaten fuer globale Dimensionen.
 
-In der Universaarl-Company sind diese Felder sichtbar. Es wurde aber noch kein Wert geaendert. Das ist richtig: Globale Dimensionen beeinflussen spaeter Buchungen und Auswertungen und gehoeren deshalb in einen eigenen Setup-Schritt.
+In der Universaarl-Company sind diese Felder erreichbar, aber `PRODUCTLINE` und `COSTCENTER` sind noch nicht als globale Dimensionen gespeichert. Die bisher geprueften Wege haben nach erneutem Oeffnen keine dauerhaft sichtbare Zuordnung gezeigt. Deshalb bleibt dieser Schritt bewusst offen.
+
+Das ist kein Grund, Dimensionen komplett zu verwerfen. Die normalen Dimensionen und Werte koennen spaeter auf Stammdaten oder Belegen verwendet werden. Die globale Zuordnung ist nur die besondere, systemweite Hervorhebung fuer Auswertungen und Postenfilter. Sie wird erst wieder angefasst, wenn ein sauberer Bedienweg mit erneutem Oeffnen als Kontrolle vorhanden ist.
 
 ## Was vor Stammdaten geklaert wird
 
@@ -40,4 +44,6 @@ Erst danach werden Stammdaten angelegt. Sonst entstehen spaeter Kunden, Artikel 
 
 Die sichtbare Dimensionsseite beweist noch keine Auswertung. Eine Auswertung ist erst bewiesen, wenn eine Buchung mit Dimensionen entstanden ist und diese Dimensionen in Posten, Dimensionsposten oder Berichten sichtbar werden.
 
-Der naechste fachliche Schritt ist deshalb kein Verkaufs- oder Einkaufsbeleg. Zuerst wird entschieden, welche Universaarl-Dimensionen und Dimensionswerte angelegt werden.
+Standarddimensionen werden ebenfalls noch nicht gesetzt. Sie gehoeren auf konkrete Stammdaten wie Debitoren, Kreditoren, Artikel oder Sachkonten. Solange diese Stammdaten noch nicht als naechster enger Schritt freigegeben sind, gibt es keinen guten Ziel-Datensatz fuer eine Standarddimension.
+
+Der sichere Stand lautet deshalb: Die Dimensionen und ihre Starterwerte sind vorhanden. Globale Dimensionen, Standarddimensionen, Dimensionsposten und Reportingwirkung bleiben offen. Diese Grenze ist wichtig, damit ein spaeterer Bericht nicht schon aus der sichtbaren Dimensionsliste als bewiesen gilt.
