@@ -46,6 +46,7 @@ function runStep(id, command, args, options = {}) {
 
 const steps = [
   runStep('agent-preflight', npmCmd, ['run', '--silent', 'agent:preflight'], { keepStdout: true }),
+  runStep('freeze-status', nodeCmd, ['scripts/agent/freeze-status-check.mjs'], { parseJson: true }),
   runStep('quality-audit', nodeCmd, ['scripts/agent/quality-audit.mjs'], { parseJson: true }),
   runStep('target-075-readiness', nodeCmd, ['scripts/agent/target-075-readiness-check.mjs'], { parseJson: true }),
   runStep('encoding', npmCmd, ['run', '--silent', 'check:encoding'], { keepStdout: true }),
