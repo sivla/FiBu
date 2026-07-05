@@ -15,6 +15,7 @@ const files = {
   roleTrainingMatrix: '.agent/project-template/ROLE-BASED-TRAINING-MATRIX-DRAFT.md',
   trainingModuleCards: '.agent/project-template/TRAINING-MODULE-CARDS-DRAFT.md',
   playwrightTrainingEvidenceMap: '.agent/project-template/PLAYWRIGHT-TRAINING-EVIDENCE-MAP-DRAFT.md',
+  playwrightScenarioCatalogWs02Ws03Ws04: '.agent/project-template/PLAYWRIGHT-SCENARIO-CATALOG-WS02-WS03-WS04-DRAFT.md',
   realismStandard: '.agent/project-template/REALISM-STANDARD-DRAFT.md',
   dataRequestRealismReview: '.agent/project-template/REALISM-REVIEW-DATA-REQUESTS-2026-07-05.md',
   specDrivenSideproject: '.agent/project-template/SPEC-DRIVEN-SIDEPROJECT-DRAFT.md',
@@ -88,6 +89,7 @@ if (allText) {
     'Role-Based Training Matrix Draft',
     'Training Module Cards Draft',
     'Playwright Training Evidence Map Draft',
+    'Playwright Scenario Catalog - WS02/WS03/WS04 Draft',
     'Realism Standard Draft',
     'Realism Review - Data Requests 2026-07-05',
     'Spec-Driven Sideproject Draft',
@@ -125,6 +127,7 @@ if (allText) {
     'Data request realism review',
     'Simulated core/master data tables',
     'Foundation/master-data route decisions',
+    'Read-first WS02/WS03/WS04 scenario catalog',
     'WORKSTREAM-02-CASE-STUDY-CORE-JIRA-DRAFT.md',
     'Epic CS-01: Company Story and Legal Entity Model',
     'Epic CS-02: Organization, Locations and Responsibility Model',
@@ -403,6 +406,21 @@ if (allText) {
     'DEC-013'
   ], 11);
 
+  requireAtLeast('playwright scenario catalog anchors', [
+    'Playwright Scenario Catalog - WS02/WS03/WS04 Draft',
+    'PWS-CORE-001 Company context proof',
+    'PWS-CORE-002 Navigation and page-type read-only proof',
+    'PWS-FF-001 Number series read-first context',
+    'PWS-FF-002 Posting group pages read-first proof',
+    'PWS-FF-003 Payment terms read-first proof',
+    'PWS-MD-001 Customer card/list read-first proof',
+    'PWS-MD-002 Vendor card/list read-first proof',
+    'PWS-MD-003 Item/service/non-inventory read-first proof',
+    'PWS-MD-004 Configuration package/import route read-first proof',
+    'No `New`, `Edit`, `Delete`, `Post`, `Preview Posting`',
+    'company/environment proof'
+  ], 10);
+
   if (/password|client_secret|refresh_token|access_token|Bearer |eyJ/i.test(allText)) {
     errors.push('.agent/project-template appears to contain secret-like text');
   }
@@ -428,7 +446,7 @@ const output = {
   warnings,
   nextStep:
     errors.length === 0
-      ? 'Project template is usable as a local implementation planning anchor. Next create a Playwright scenario catalog for read-first validation of WS02/WS03/WS04 setup dependencies.'
+      ? 'Project template is usable as a local implementation planning anchor. Next create customer/vendor/item training module cards using the route boundaries and scenario catalog.'
       : 'Fix the workbreakdown draft before using it as a planning anchor.'
 };
 

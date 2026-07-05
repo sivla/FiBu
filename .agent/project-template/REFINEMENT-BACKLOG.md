@@ -128,6 +128,8 @@ Simulation status: first simulated tables now exist in `SIMULATED-DATA-TABLES-CO
 
 Route decision status: first route decision cards now exist in `ROUTE-DECISION-CARDS-FOUNDATION-MASTER-DATA-DRAFT.md`. They recommend read-first proof and gated setup before number series, posting groups, payment terms, UOM or item/master-data work.
 
+Playwright catalog status: read-first scenario catalog now exists in `PLAYWRIGHT-SCENARIO-CATALOG-WS02-WS03-WS04-DRAFT.md`. It maps company context, navigation, setup dependency pages and master-data card/list checks to training, route decisions and stop rules.
+
 ## P1: Build simulated customer data packets
 
 Use `CUSTOMER-DATA-SIMULATION-DRAFT.md` to create the first realistic data packets:
@@ -291,4 +293,4 @@ Later create one compact dashboard:
 
 ## Current next best step
 
-`WS02-CASE-STUDY-CORE`, `WS04-MASTER-DATA-PRODUCT`, the first training module cards, data-request candidates, realism review, simulated tables and route decision cards now exist as drafts. The next useful refinement is to create a Playwright scenario catalog for read-first validation of the setup dependencies in WS02/WS03/WS04. That is the fastest way to make the next live Foundation/Master-Data pilot better rather than merely more automated.
+`WS02-CASE-STUDY-CORE`, `WS04-MASTER-DATA-PRODUCT`, the first training module cards, data-request candidates, realism review, simulated tables, route decision cards and first read-first Playwright scenario catalog now exist as drafts. The next useful refinement is to create training module cards for customer, vendor and item master data using the new route boundaries. That is the fastest way to make the next live Foundation/Master-Data pilot better rather than merely more automated.

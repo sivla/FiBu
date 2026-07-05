@@ -23,6 +23,7 @@ This dashboard is the project manager view. It should stay short and point to th
 | Role training matrix | draft | `ROLE-BASED-TRAINING-MATRIX-DRAFT.md` exists. |
 | Training module cards | draft | First cards exist for environment/company, navigation, chart of accounts and posting groups. |
 | Playwright training evidence map | draft | `PLAYWRIGHT-TRAINING-EVIDENCE-MAP-DRAFT.md` exists. |
+| Playwright scenario catalog | draft | Read-first WS02/WS03/WS04 scenario catalog exists; no live execution authorized. |
 | Realism standard | draft | `REALISM-STANDARD-DRAFT.md` exists. |
 | Data request realism review | draft | First five core/master-data requests were reviewed against realism gates; all are planning-ready but not BC-setup-ready. |
 | Spec-driven sideproject | proposed | `SPEC-DRIVEN-SIDEPROJECT-DRAFT.md` and `BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md` test whether OpenSpec-style workflow helps this BC project. |
@@ -41,7 +42,7 @@ This dashboard is the project manager view. It should stay short and point to th
 | Risk register | draft | Initial risks captured. |
 | UAT/training plan | draft | Training strategy, role matrix, evidence map and first module cards exist; more role/process cards still needed. |
 | Book map | missing | Workstream-to-chapter mapping still needed. |
-| Playwright scenario catalog | missing | Needs mapping to workstreams and UAT. |
+| Playwright scenario catalog | draft | Read-first context/navigation/setup-dependency scenarios exist for WS02/WS03/WS04. |
 
 ## Current milestone
 
@@ -115,8 +116,8 @@ Status: mostly drafted, not yet reviewed as final.
 
 ## Next recommended work
 
-1. Create Playwright scenario catalog mapped to read-first validation for WS02/WS03/WS04 setup dependencies.
-2. Create training module cards for customer/vendor/item master data using the route boundaries.
+1. Create training module cards for customer/vendor/item master data using the route boundaries.
+2. Turn the first two Playwright catalog entries into read-only specs after the freeze is lifted or a read-only probe is approved.
 3. Run `BCSPEC-PILOT-001-MASTER-DATA-PRODUCT-TRAINING.md` as a small spec-driven pilot before adopting OpenSpec globally.
 4. Turn `BOOK-PROJECT-TICKET-BACKLOG-DRAFT.md` into workstream-level Jira import candidates.
 5. Apply `REALISM-STANDARD-DRAFT.md` to storyline, scene cards and broader customer data simulation.

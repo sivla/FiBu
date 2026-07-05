@@ -46,6 +46,8 @@ The target is one integrated system:
   - First concrete training cards with role, exercise, typical mistakes, success check, escalation, handbook output, UAT and evidence status.
 - `PLAYWRIGHT-TRAINING-EVIDENCE-MAP-DRAFT.md`
   - Mapping from training modules to Playwright, sandbox evidence, UAT and handbook readiness.
+- `PLAYWRIGHT-SCENARIO-CATALOG-WS02-WS03-WS04-DRAFT.md`
+  - Read-first Playwright scenario catalog for company context, navigation, finance-foundation setup dependencies and master-data pages.
 - `REALISM-STANDARD-DRAFT.md`
   - Quality gate for keeping the fictional Universaarl project realistic instead of demo-perfect.
 - `REALISM-REVIEW-DATA-REQUESTS-2026-07-05.md`
