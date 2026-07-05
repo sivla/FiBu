@@ -53,7 +53,8 @@ Usage:
   node scripts/agent/run-target-075-foundation-consistency-pilot.mjs --live-approved
 
 Default behavior refuses to open Business Central while the improvement freeze is active.
-Use --live-approved only after explicit freeze lift or active-case approval for TARGET-075.`);
+Use --live-approved only after explicit freeze lift or active-case approval for TARGET-075.
+The runner checks stored Playwright auth before any live execution.`);
   process.exit(0);
 }
 
@@ -103,6 +104,43 @@ if (freezeStatus.freezeActive && !liveApproved) {
     )
   );
   process.exit(2);
+}
+
+const auth = run('npm', ['run', '--silent', 'auth:bc:check']);
+if (auth.status !== 0) {
+  printChildFailure('auth:bc:check', auth);
+  process.exit(typeof auth.status === 'number' ? auth.status : 1);
+}
+
+let authStatus;
+try {
+  authStatus = parseJsonOutput('auth:bc:check', auth.stdout);
+} catch (error) {
+  console.error(String(error instanceof Error ? error.message : error));
+  process.exit(1);
+}
+
+if (authStatus.canUseStoredAuth !== true) {
+  console.error(
+    JSON.stringify(
+      {
+        schemaVersion: 1,
+        purpose: 'target-075-auth-state-guard',
+        canRun: false,
+        businessCentralOpened: false,
+        playwrightLiveRunExecuted: false,
+        targetCase: 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK',
+        blockedBy: authStatus.blockedBy ?? ['stored-auth-not-usable'],
+        expectedInstance: authStatus.expectedInstance ?? 'playthru',
+        expectedCompany: authStatus.expectedCompany ?? 'UNIVERSAARL-DE',
+        reason: 'Stored Playwright auth is not usable for TARGET-075.',
+        nextStep: authStatus.nextStep ?? 'Refresh Playwright auth before running TARGET-075.'
+      },
+      null,
+      2
+    )
+  );
+  process.exit(3);
 }
 
 const passthroughArgs = rawArgs.filter((arg) => arg !== '--live-approved');

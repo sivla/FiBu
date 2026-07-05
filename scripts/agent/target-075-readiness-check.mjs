@@ -149,6 +149,9 @@ if (guardedRunner) {
   if (!guardedRunner.includes('agent:target075:readiness')) {
     errors.push(`${guardedRunnerPath}: guarded runner must check agent:target075:readiness`);
   }
+  if (!guardedRunner.includes('auth:bc:check') || !guardedRunner.includes('canUseStoredAuth')) {
+    errors.push(`${guardedRunnerPath}: guarded runner must check stored auth before live execution`);
+  }
   if (!guardedRunner.includes('--live-approved')) {
     errors.push(`${guardedRunnerPath}: guarded runner must require --live-approved for live execution while freeze is active`);
   }
