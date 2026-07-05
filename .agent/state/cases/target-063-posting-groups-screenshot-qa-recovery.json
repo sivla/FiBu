@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY",
-  "status": "ready-next",
+  "status": "blocked",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "mode": "universaarl-target-execution",
@@ -92,48 +92,118 @@
     "The screenshot QA cannot identify page-specific signals after direct route and safe layout inspection."
   ],
   "nextStepDecision": {
-    "currentCase": "TARGET-062-POSTING-GROUPS-BOUNDARY-ROUTE-DECISION-AFTER-READONLY-REFRESH",
+    "currentCase": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY",
     "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
-    "lastEvidenceSummary": "TARGET-061 refreshed screenshots but showed weak/generic text extraction. TARGET-062 classified that as a screenshot-QA problem, not a setup-write unlock.",
+    "lastEvidenceSummary": "TARGET-061 had weak screenshot acceptance/rejection signals; TARGET-062 required a stronger read-only recovery before any write gate.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "A VAT or posting-groups write gate would rely on weak page proof. Screenshot truth must be recovered first.",
+    "reason": "A write gate is still premature until the posting-group boundary evidence is classified with stronger page-specific signals.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY",
+        "caseId": "TARGET-064-POSTING-GROUPS-ROUTE-RECOVERY-AFTER-STRONG-QA",
         "status": "ready-next",
-        "reason": "It fixes the immediate evidence-quality problem without changing setup."
+        "reason": "Some page routes still need recovery before write gates."
       },
       {
         "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
         "status": "blocked",
-        "reason": "Page 470 and VAT values still lack strong evidence and source-backed write decision."
+        "reason": "VAT write gate remains blocked until route evidence and source-backed setup values are clear."
       },
       {
         "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
         "status": "needs-setup-first",
-        "reason": "Foundation cannot be ready while screenshot truth and setup gaps remain open."
+        "reason": "Foundation cannot be ready while setup pages and posting groups are not safely classified."
       },
       {
         "caseId": "TARGET-038-O2C-PREFLIGHT",
         "status": "blocked",
-        "reason": "O2C remains blocked before Foundation readiness."
+        "reason": "O2C remains blocked before Foundation readiness and posting group setup."
       }
     ],
-    "queueChangesMade": [
-      "Created TARGET-063 as the next read-only screenshot-QA recovery case."
-    ],
-    "selectedNextCase": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY",
-    "whySelectedNextCaseIsBest": "It improves Playwright learning and prevents weak screenshots from becoming false book or setup truth.",
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-064-POSTING-GROUPS-ROUTE-RECOVERY-AFTER-STRONG-QA",
+    "whySelectedNextCaseIsBest": "The next safe step is route recovery for the pages that still lack strong screenshot proof.",
     "risksBeforeNextCase": [
-      "Generic UI words can make a screenshot look accepted even when the actual page is uncertain.",
-      "A setup write gate based on weak page proof would be unsafe.",
-      "Book screenshots need page-specific explanation, not just file existence."
+      "Weak screenshot proof could create false setup/book truth."
     ],
     "requiredPreparation": [
-      "Filter platform configuration strings from text evidence.",
-      "Require page-specific title/heading/grid/header signals before accepting screenshots.",
-      "Keep writes, master data, Preview Posting and Posting locked."
+      "Keep all setup/write/posting gates locked until the local boundary decision is complete."
     ]
   },
-  "nextCase": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY"
+  "nextCase": "TARGET-064-POSTING-GROUPS-ROUTE-RECOVERY-AFTER-STRONG-QA",
+  "completedAt": "2026-07-05T16:46:55.084Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/TARGET-063-result.json",
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "0/3 target setup pages passed stronger page-specific screenshot QA.",
+    "Generic words such as Code, Beschreibung, New/Neu are treated as supporting signals only, not as proof.",
+    "No setup value, master data, draft, Preview Posting, Posting, payment or API shortcut occurred."
+  ],
+  "notProved": [
+    "W1 Foundation is not posting-ready.",
+    "No VAT setup, general posting setup, customer posting group or vendor posting group correctness is proven.",
+    "No German tax correctness, SKR04 completeness, Preview Posting, Posting, G/L Entry, VAT Entry or ledger trace is proven.",
+    "Buchungsmatrix Einrichtung / General Posting Setup: Direct page route stayed on the Role Center; navigation words are not accepted as page proof.",
+    "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups: Required page-specific screenshot signals were not visible enough.",
+    "Kreditorenbuchungsgruppen / Vendor Posting Groups: Direct page route stayed on the Role Center; navigation words are not accepted as page proof."
+  ],
+  "blockedBy": [
+    "general-posting-setup: missing page-caption",
+    "vat-business-posting-groups: missing page-caption",
+    "vendor-posting-groups: missing page-caption"
+  ],
+  "pages": [
+    {
+      "id": "general-posting-setup",
+      "pageId": 314,
+      "label": "Buchungsmatrix Einrichtung / General Posting Setup",
+      "status": "rejected",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=314&company=UNIVERSAARL-DE&dc=0",
+      "screenshot": "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/target-063-010-general-posting-setup-strong-qa.png",
+      "screenshotMetadata": "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/target-063-010-general-posting-setup-strong-qa.screenshot.json",
+      "signalJson": "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/target-063-010-general-posting-setup-strong-qa.signals.json",
+      "visibleTextFile": "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/target-063-010-general-posting-setup-strong-qa.visible-text.txt",
+      "matchedSignals": [
+        "generic-description"
+      ],
+      "missingSignals": [
+        "page-caption"
+      ],
+      "reason": "Direct page route stayed on the Role Center; navigation words are not accepted as page proof."
+    },
+    {
+      "id": "vat-business-posting-groups",
+      "pageId": 470,
+      "label": "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups",
+      "status": "rejected",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=470&company=UNIVERSAARL-DE&dc=0",
+      "screenshot": "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/target-063-020-vat-business-posting-groups-strong-qa.png",
+      "screenshotMetadata": "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/target-063-020-vat-business-posting-groups-strong-qa.screenshot.json",
+      "signalJson": "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/target-063-020-vat-business-posting-groups-strong-qa.signals.json",
+      "visibleTextFile": "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/target-063-020-vat-business-posting-groups-strong-qa.visible-text.txt",
+      "matchedSignals": [],
+      "missingSignals": [
+        "page-caption"
+      ],
+      "reason": "Required page-specific screenshot signals were not visible enough."
+    },
+    {
+      "id": "vendor-posting-groups",
+      "pageId": 111,
+      "label": "Kreditorenbuchungsgruppen / Vendor Posting Groups",
+      "status": "rejected",
+      "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=111&company=UNIVERSAARL-DE&dc=0",
+      "screenshot": "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/target-063-030-vendor-posting-groups-strong-qa.png",
+      "screenshotMetadata": "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/target-063-030-vendor-posting-groups-strong-qa.screenshot.json",
+      "signalJson": "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/target-063-030-vendor-posting-groups-strong-qa.signals.json",
+      "visibleTextFile": "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/target-063-030-vendor-posting-groups-strong-qa.visible-text.txt",
+      "matchedSignals": [
+        "vendor-terminology",
+        "generic-description"
+      ],
+      "missingSignals": [
+        "page-caption"
+      ],
+      "reason": "Direct page route stayed on the Role Center; navigation words are not accepted as page proof."
+    }
+  ]
 }

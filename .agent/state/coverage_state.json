@@ -864,7 +864,7 @@
   "hardExclusions": {
     "shopify": "Do not run, document or reactivate Shopify/Online Store scope for FiBu Buch 5."
   },
-  "updatedAt": "2026-07-05T16:37:01.564Z",
+  "updatedAt": "2026-07-05T16:48:13.910Z",
   "activeArea": "universaarl-posting-groups-screenshot-qa-recovery",
   "currentBlock": "Page 314 Wareneinkaufskonto / Purch. Account 5400 is still not persisted. TARGET-058 showed List Edit and a row-bound target cell, but the controlled attempt opened the column menu and Reopen proof showed no 5400.",
   "latestPracticalCase": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
@@ -2623,7 +2623,7 @@
     "status": "legacy-labor-reference",
     "rule": "Existing RM-DEMO/Rhein-Main/CRONUS coverage remains archive evidence only until superseded by Universaarl proof."
   },
-  "currentFocus": "universaarl-companies-readonly-ui-discovery",
+  "currentFocus": "TARGET-064 route recovery after TARGET-063 proved direct posting-group page routes can fall back to Role Center.",
   "latestUniversaarlTarget": {
     "caseId": "TARGET-005-COMPANY-CREATION-SOURCE-BACKED-ALTERNATIVE-ROUTE",
     "status": "blocked-route-opened-but-data-basis-not-proven",
@@ -6040,5 +6040,88 @@
     "resultPath": "playwright/projects/fibu-book5/evidence/target-062-posting-groups-boundary-route-decision-after-readonly-refresh/TARGET-062-result.json",
     "coverageEffect": "Keeps Foundation partial-not-posting-ready and redirects to screenshot-QA recovery instead of a write gate.",
     "nextCase": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY"
+  },
+  "latestTarget063PostingGroupsScreenshotQaRecovery": {
+    "caseId": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY",
+    "status": "blocked",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/TARGET-063-result.json",
+    "completedAt": "2026-07-05T16:46:55.084Z",
+    "proved": [
+      "Business Central stayed in playthru / UNIVERSAARL-DE.",
+      "0/3 target setup pages passed stronger page-specific screenshot QA.",
+      "Generic words such as Code, Beschreibung, New/Neu are treated as supporting signals only, not as proof.",
+      "No setup value, master data, draft, Preview Posting, Posting, payment or API shortcut occurred."
+    ],
+    "notProved": [
+      "W1 Foundation is not posting-ready.",
+      "No VAT setup, general posting setup, customer posting group or vendor posting group correctness is proven.",
+      "No German tax correctness, SKR04 completeness, Preview Posting, Posting, G/L Entry, VAT Entry or ledger trace is proven.",
+      "Buchungsmatrix Einrichtung / General Posting Setup: Direct page route stayed on the Role Center; navigation words are not accepted as page proof.",
+      "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups: Required page-specific screenshot signals were not visible enough.",
+      "Kreditorenbuchungsgruppen / Vendor Posting Groups: Direct page route stayed on the Role Center; navigation words are not accepted as page proof."
+    ],
+    "blockedBy": [
+      "general-posting-setup: missing page-caption",
+      "vat-business-posting-groups: missing page-caption",
+      "vendor-posting-groups: missing page-caption"
+    ],
+    "pages": [
+      {
+        "id": "general-posting-setup",
+        "pageId": 314,
+        "status": "rejected",
+        "reason": "Direct page route stayed on the Role Center; navigation words are not accepted as page proof.",
+        "matchedSignals": [
+          "generic-description"
+        ],
+        "missingSignals": [
+          "page-caption"
+        ],
+        "screenshot": "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/target-063-010-general-posting-setup-strong-qa.png",
+        "signalJson": "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/target-063-010-general-posting-setup-strong-qa.signals.json"
+      },
+      {
+        "id": "vat-business-posting-groups",
+        "pageId": 470,
+        "status": "rejected",
+        "reason": "Required page-specific screenshot signals were not visible enough.",
+        "matchedSignals": [],
+        "missingSignals": [
+          "page-caption"
+        ],
+        "screenshot": "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/target-063-020-vat-business-posting-groups-strong-qa.png",
+        "signalJson": "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/target-063-020-vat-business-posting-groups-strong-qa.signals.json"
+      },
+      {
+        "id": "vendor-posting-groups",
+        "pageId": 111,
+        "status": "rejected",
+        "reason": "Direct page route stayed on the Role Center; navigation words are not accepted as page proof.",
+        "matchedSignals": [
+          "vendor-terminology",
+          "generic-description"
+        ],
+        "missingSignals": [
+          "page-caption"
+        ],
+        "screenshot": "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/target-063-030-vendor-posting-groups-strong-qa.png",
+        "signalJson": "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/target-063-030-vendor-posting-groups-strong-qa.signals.json"
+      }
+    ],
+    "flags": {
+      "noWrite": true,
+      "noPost": true,
+      "noPreview": true,
+      "noDraft": true,
+      "noSetupChange": true,
+      "noMasterDataChange": true,
+      "noCompanySwitch": true,
+      "noApiShortcut": true,
+      "genericSignalsAreNotSufficient": true
+    },
+    "coverageEffect": "Improved screenshot truth: Role Center fallback and generic navigation words are rejected as target-page proof. No setup/write/posting gate unlocked.",
+    "nextCase": "TARGET-064-POSTING-GROUPS-ROUTE-RECOVERY-AFTER-STRONG-QA"
   }
 }

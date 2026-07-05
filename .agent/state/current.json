@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-05T16:20:36.466Z",
+  "updatedAt": "2026-07-05T16:49:57.132Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "activeArea": "universaarl-posting-groups-screenshot-qa-recovery",
-  "activeCase": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY",
-  "active_case_file": ".agent/state/cases/target-063-posting-groups-screenshot-qa-recovery.json",
+  "activeArea": "universaarl-posting-groups-route-recovery-after-strong-qa",
+  "activeCase": "TARGET-064-POSTING-GROUPS-ROUTE-RECOVERY-AFTER-STRONG-QA",
+  "active_case_file": ".agent/state/cases/target-064-posting-groups-route-recovery-after-strong-qa.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-target-execution",
@@ -21,8 +21,9 @@
   "allowedActions": [
     "open-playthru-business-central-readonly",
     "confirm-UNIVERSAARL-DE-context",
-    "open-target-pages-by-direct-page-url-readonly",
-    "capture-strong-screenshot-qa",
+    "inspect-navigation-routes-readonly",
+    "inspect-tell-me-route-readonly-without-opening-edit-actions",
+    "capture-route-and-screenshot-qa",
     "write-result-json-and-next-step-decision",
     "update-coverage-and-atlases"
   ],
@@ -46,8 +47,8 @@
     "api-shortcut",
     "claim-posting-readiness"
   ],
-  "nextCase": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY",
-  "nextStep": "Run TARGET-063 as a read-only screenshot-QA recovery in playthru / UNIVERSAARL-DE. Improve page-specific screenshot truth for Page 314, Page 470 and Page 111; no setup write, master data, draft, Preview Posting or Posting.",
+  "nextCase": "TARGET-064-POSTING-GROUPS-ROUTE-RECOVERY-AFTER-STRONG-QA",
+  "nextStep": "Run TARGET-064 as a read-only route-recovery follow-up. TARGET-063 proved that direct page URLs can stay on the Role Center, so do not unlock VAT/posting-group write gates until target pages are actually reached and page-specific screenshot QA passes.",
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
     "requiredBeforeEffectiveActions": true,
@@ -230,7 +231,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "TARGET-060 classified W1 Foundation as partial-not-posting-ready after the 5400 route park. Next is TARGET-061: fresh read-only setup-boundary screenshots after TARGET-059, without writes.",
+  "currentCoverageFocus": "TARGET-063 blocked strong posting-group screenshot QA because direct Page 314/Page 470/Page 111 probes stayed on Role Center or lacked page-caption signals. Next is TARGET-064 route recovery, still read-only.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -3852,7 +3853,7 @@
     "nextCase": "PREP-006-BOOKMASTER-UNIVERSAARL-FALLSTUDIE-REWRITE-PLAN",
     "updatedAt": "2026-06-29T21:54:54.534Z"
   },
-  "activeCaseFile": ".agent/state/cases/target-063-posting-groups-screenshot-qa-recovery.json",
+  "activeCaseFile": ".agent/state/cases/target-064-posting-groups-route-recovery-after-strong-qa.json",
   "previousCase": "PREP-026-MICROSOFT-LEARN-SOURCE-MAPPING",
   "latestPrepCase": {
     "caseId": "PREP-034-ROLE-CENTER-READONLY-SHELL-MAP",
@@ -9742,7 +9743,7 @@
     "nextCase": "TARGET-057-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-PAGEINSPECTION-READONLY-GATE",
     "updatedAt": "2026-07-05T18:10:00.000Z"
   },
-  "mayRunPlaywright": false,
+  "mayRunPlaywright": true,
   "mayWorkEffectively": false,
   "effectiveBcActionsAllowed": false,
   "latestTarget058GeneralPostingSetupPurchaseAccountControlledWriteGate": {
@@ -9919,5 +9920,88 @@
     "completedAt": "2026-07-05T16:37:01.564Z",
     "decision": "Do not unlock write gates. TARGET-063 must recover screenshot QA first.",
     "nextCase": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY"
+  },
+  "latestTarget063PostingGroupsScreenshotQaRecovery": {
+    "caseId": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY",
+    "status": "blocked",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "resultPath": "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/TARGET-063-result.json",
+    "completedAt": "2026-07-05T16:46:55.084Z",
+    "proved": [
+      "Business Central stayed in playthru / UNIVERSAARL-DE.",
+      "0/3 target setup pages passed stronger page-specific screenshot QA.",
+      "Generic words such as Code, Beschreibung, New/Neu are treated as supporting signals only, not as proof.",
+      "No setup value, master data, draft, Preview Posting, Posting, payment or API shortcut occurred."
+    ],
+    "notProved": [
+      "W1 Foundation is not posting-ready.",
+      "No VAT setup, general posting setup, customer posting group or vendor posting group correctness is proven.",
+      "No German tax correctness, SKR04 completeness, Preview Posting, Posting, G/L Entry, VAT Entry or ledger trace is proven.",
+      "Buchungsmatrix Einrichtung / General Posting Setup: Direct page route stayed on the Role Center; navigation words are not accepted as page proof.",
+      "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups: Required page-specific screenshot signals were not visible enough.",
+      "Kreditorenbuchungsgruppen / Vendor Posting Groups: Direct page route stayed on the Role Center; navigation words are not accepted as page proof."
+    ],
+    "blockedBy": [
+      "general-posting-setup: missing page-caption",
+      "vat-business-posting-groups: missing page-caption",
+      "vendor-posting-groups: missing page-caption"
+    ],
+    "pages": [
+      {
+        "id": "general-posting-setup",
+        "pageId": 314,
+        "status": "rejected",
+        "reason": "Direct page route stayed on the Role Center; navigation words are not accepted as page proof.",
+        "matchedSignals": [
+          "generic-description"
+        ],
+        "missingSignals": [
+          "page-caption"
+        ],
+        "screenshot": "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/target-063-010-general-posting-setup-strong-qa.png",
+        "signalJson": "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/target-063-010-general-posting-setup-strong-qa.signals.json"
+      },
+      {
+        "id": "vat-business-posting-groups",
+        "pageId": 470,
+        "status": "rejected",
+        "reason": "Required page-specific screenshot signals were not visible enough.",
+        "matchedSignals": [],
+        "missingSignals": [
+          "page-caption"
+        ],
+        "screenshot": "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/target-063-020-vat-business-posting-groups-strong-qa.png",
+        "signalJson": "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/target-063-020-vat-business-posting-groups-strong-qa.signals.json"
+      },
+      {
+        "id": "vendor-posting-groups",
+        "pageId": 111,
+        "status": "rejected",
+        "reason": "Direct page route stayed on the Role Center; navigation words are not accepted as page proof.",
+        "matchedSignals": [
+          "vendor-terminology",
+          "generic-description"
+        ],
+        "missingSignals": [
+          "page-caption"
+        ],
+        "screenshot": "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/target-063-030-vendor-posting-groups-strong-qa.png",
+        "signalJson": "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/target-063-030-vendor-posting-groups-strong-qa.signals.json"
+      }
+    ],
+    "flags": {
+      "noWrite": true,
+      "noPost": true,
+      "noPreview": true,
+      "noDraft": true,
+      "noSetupChange": true,
+      "noMasterDataChange": true,
+      "noCompanySwitch": true,
+      "noApiShortcut": true,
+      "genericSignalsAreNotSufficient": true
+    },
+    "coverageEffect": "Improved screenshot truth: Role Center fallback and generic navigation words are rejected as target-page proof. No setup/write/posting gate unlocked.",
+    "nextCase": "TARGET-064-POSTING-GROUPS-ROUTE-RECOVERY-AFTER-STRONG-QA"
   }
 }

@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-064-POSTING-GROUPS-ROUTE-RECOVERY-AFTER-STRONG-QA",
+  "status": "ready-next",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-target-execution",
+  "activeArea": "universaarl-posting-groups-route-recovery-after-strong-qa",
+  "mayRunPlaywright": true,
+  "effectiveBcActionsAllowed": false,
+  "purpose": "Recover the posting-groups page routes after TARGET-063 proved that direct page URLs can stay on the Role Center and must not be accepted as page proof.",
+  "whyNow": "TARGET-063 improved screenshot truth: generic navigation words are no longer accepted, but Page 314, Page 470 and Page 111 were not reached as target pages. Before any VAT, posting-group or foundation-ready gate, the UI route must be discovered read-only.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/TARGET-063-result.json",
+    "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/*.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/target-063-posting-groups-screenshot-qa-recovery/*.signals.json"
+  ],
+  "targetPages": [
+    {
+      "id": "general-posting-setup",
+      "pageId": 314,
+      "page": "Buchungsmatrix Einrichtung / General Posting Setup"
+    },
+    {
+      "id": "vat-business-posting-groups",
+      "pageId": 470,
+      "page": "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups"
+    },
+    {
+      "id": "vendor-posting-groups",
+      "pageId": 111,
+      "page": "Kreditorenbuchungsgruppen / Vendor Posting Groups"
+    }
+  ],
+  "allowedActions": [
+    "open-playthru-business-central-readonly",
+    "confirm-UNIVERSAARL-DE-context",
+    "inspect-navigation-routes-readonly",
+    "inspect-tell-me-route-readonly-without-opening-edit-actions",
+    "capture-route-and-screenshot-qa",
+    "write-result-json-and-next-step-decision",
+    "update-coverage-and-atlases"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "company-switch",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "click-new-edit-delete-or-copy-actions",
+    "write-setup",
+    "write-vat-posting-setup",
+    "write-general-posting-setup",
+    "write-customer-or-vendor-posting-groups",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-posting-readiness"
+  ],
+  "acceptanceCriteria": [
+    "Do not accept the Role Center as target-page proof.",
+    "Document which route was tried for each target page.",
+    "Accept a target page only when page-specific caption/header/grid signals are visible.",
+    "No setup write, master data, draft, Preview Posting, Posting, payment or API shortcut occurs.",
+    "If Tell-Me/search is used, it must be used only as read-only route discovery and must not click New/Edit/write actions."
+  ],
+  "stopIf": [
+    "The browser is outside playthru / UNIVERSAARL-DE.",
+    "A dialog asks for OK, Yes, Ja, New, Edit, Delete, Apply, Preview Posting or Post.",
+    "The route requires typing a setup value or confirming a change.",
+    "A route opens an edit/new card or wizard instead of a read-only list page."
+  ],
+  "nextStepDecision": {
+    "currentCase": "TARGET-063-POSTING-GROUPS-SCREENSHOT-QA-RECOVERY",
+    "plannedNextCaseBeforeReview": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+    "lastEvidenceSummary": "TARGET-063 proved playthru / UNIVERSAARL-DE and no writes, but all three direct page probes failed strong target-page proof because the route stayed on the Role Center or lacked page caption signals.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "A write gate remains unsafe while the actual target pages are not reliably opened and recognized.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "TARGET-064-POSTING-GROUPS-ROUTE-RECOVERY-AFTER-STRONG-QA",
+        "status": "ready-next",
+        "reason": "It fixes the concrete route/screenshot blocker found by TARGET-063 without writing setup."
+      },
+      {
+        "caseId": "TARGET-027D32-VAT-SETUP-WRITE-GATE-DECISION",
+        "status": "blocked",
+        "reason": "VAT write decisions need reliable Page 470/Page 472 route proof and source-backed values."
+      },
+      {
+        "caseId": "TARGET-040-FOUNDATION-READY-RECHECK",
+        "status": "needs-setup-first",
+        "reason": "Foundation cannot be ready before posting-group and VAT boundaries are reliably proven."
+      },
+      {
+        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "status": "blocked",
+        "reason": "O2C remains blocked until Foundation readiness is proven."
+      }
+    ],
+    "queueChangesMade": [
+      "Created TARGET-064 as a read-only route-recovery follow-up after TARGET-063."
+    ],
+    "selectedNextCase": "TARGET-064-POSTING-GROUPS-ROUTE-RECOVERY-AFTER-STRONG-QA",
+    "whySelectedNextCaseIsBest": "It addresses the real blocker: Business Central route/page proof, not setup values.",
+    "risksBeforeNextCase": [
+      "Direct page URLs may silently show the Role Center.",
+      "Generic navigation words can look like page proof.",
+      "Setup gates must not unlock from route failures."
+    ],
+    "requiredPreparation": [
+      "Keep all write/posting gates locked.",
+      "Use screenshot QA that rejects Role Center fallback.",
+      "Document each route tried."
+    ]
+  },
+  "nextCase": "TARGET-064-POSTING-GROUPS-ROUTE-RECOVERY-AFTER-STRONG-QA"
+}
