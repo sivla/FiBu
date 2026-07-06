@@ -185,6 +185,13 @@ const passthroughArgs = rawArgs.filter((arg) => arg !== '--live-approved');
 exitWith(
   run('npx', ['playwright', 'test', specPath, ...passthroughArgs], {
     stdio: 'inherit',
-    env: { TARGET_075_LIVE_APPROVED: '1' }
+    env: {
+      TARGET_075_LIVE_APPROVED: '1',
+      TARGET_075_AUTH_AGE_HOURS: String(authStatus.ageHours ?? ''),
+      TARGET_075_AUTH_MAX_AGE_HOURS: String(authStatus.maxAgeHours ?? ''),
+      TARGET_075_AUTH_EXPIRES_IN_HOURS: String(authStatus.expiresInHours ?? ''),
+      TARGET_075_AUTH_WARN_EXPIRES_IN_HOURS: String(authStatus.warnExpiresInHours ?? ''),
+      TARGET_075_AUTH_WARNINGS: JSON.stringify(authStatus.warnings ?? [])
+    }
   })
 );

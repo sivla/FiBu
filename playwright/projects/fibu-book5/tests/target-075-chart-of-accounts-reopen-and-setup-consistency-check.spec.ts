@@ -195,6 +195,20 @@ function accountSignals(text: string) {
   }));
 }
 
+function numericEnv(name: string) {
+  const value = Number(process.env[name] ?? '');
+  return Number.isFinite(value) ? value : null;
+}
+
+function authWarningsEnv() {
+  try {
+    const parsed = JSON.parse(process.env.TARGET_075_AUTH_WARNINGS ?? '[]');
+    return Array.isArray(parsed) ? parsed.filter((entry): entry is string => typeof entry === 'string') : [];
+  } catch {
+    return ['target-075-auth-warnings-env-invalid'];
+  }
+}
+
 async function fullText(page: Page) {
   const body = await pageText(page).catch(() => '');
   const frameTexts = await Promise.all(page.frames().map((frame) => frame.locator('body').innerText({ timeout: 1000 }).catch(() => '')));
@@ -321,6 +335,15 @@ test('TARGET-075 runs a read-only Foundation consistency pilot', async ({ page }
         ? 'partially-completed'
         : 'observed';
   const statusFor = (id: string) => results.find((entry) => entry.id === id)?.status ?? 'blocked';
+  const authGate = {
+    checkedByGuard: true,
+    secretsPrinted: false,
+    ageHours: numericEnv('TARGET_075_AUTH_AGE_HOURS'),
+    maxAgeHours: numericEnv('TARGET_075_AUTH_MAX_AGE_HOURS'),
+    expiresInHours: numericEnv('TARGET_075_AUTH_EXPIRES_IN_HOURS'),
+    warnExpiresInHours: numericEnv('TARGET_075_AUTH_WARN_EXPIRES_IN_HOURS'),
+    warnings: authWarningsEnv()
+  };
 
   const nextCase = 'FOUNDATION-READINESS-DECISION';
 
@@ -337,6 +360,7 @@ test('TARGET-075 runs a read-only Foundation consistency pilot', async ({ page }
     company: TARGET_COMPANY,
     page: 'Foundation read-only context',
     url: chart?.url ?? '',
+    authGate,
     actionsTaken: [
       'Opened Business Central with stored auth after the freeze-prepared case.',
       'Opened target Foundation pages by direct page URL inside playthru / UNIVERSAARL-DE.',
@@ -384,7 +408,7 @@ test('TARGET-075 runs a read-only Foundation consistency pilot', async ({ page }
       ...blocked.flatMap((entry) => entry.blockedBy),
       ...(chart && chart.status === 'observed' ? [] : ['Chart of Accounts was not accepted as visible read-only proof.'])
     ],
-    warnings: Array.from(new Set(results.flatMap((entry) => entry.warnings))),
+    warnings: Array.from(new Set([...results.flatMap((entry) => entry.warnings), ...authGate.warnings])),
     accountFindings,
     pages: results,
     foundationReadinessInput: {
