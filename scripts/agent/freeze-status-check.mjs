@@ -10,6 +10,8 @@ const freezeCasePath = '.agent/state/cases/project-improvement-freeze-001.json';
 const readinessPath = '.agent/TARGET-075-PILOT-READINESS.md';
 const packagePath = 'package.json';
 const frozenScriptName = 'fibu:target:vat-page472-active-editor-route-decision';
+const target075ScriptName = 'fibu:target:foundation-consistency-pilot';
+const target075RunnerPath = 'scripts/agent/run-target-075-foundation-consistency-pilot.mjs';
 
 function readText(relativePath) {
   return fs.readFileSync(path.resolve(root, relativePath), 'utf8');
@@ -91,6 +93,13 @@ if (packageJson) {
   if (/playwright\s+test/i.test(frozenScript)) {
     errors.push(`${packagePath}: ${frozenScriptName} must not directly run Playwright while TARGET-073 is frozen`);
   }
+  const target075Script = packageJson.scripts?.[target075ScriptName] ?? '';
+  if (!target075Script.includes(target075RunnerPath)) {
+    errors.push(`${packagePath}: ${target075ScriptName} must route through ${target075RunnerPath}`);
+  }
+  if (/playwright\s+test/i.test(target075Script)) {
+    errors.push(`${packagePath}: ${target075ScriptName} must not directly run Playwright while the freeze gate is active`);
+  }
 }
 
 for (const [filePath, text, requiredPhrases] of [
@@ -126,7 +135,7 @@ const output = {
   targetCompany: current?.company ?? '',
   frozenLiveCase: current?.freezeStatus?.frozenLiveCase ?? '',
   resumeCandidateAfterFreeze: current?.freezeStatus?.resumeCandidateAfterFreeze ?? '',
-  checkedFiles: [currentPath, freezePath, projectDecisionPath, freezeCasePath, readinessPath, packagePath],
+  checkedFiles: [currentPath, freezePath, projectDecisionPath, freezeCasePath, readinessPath, packagePath, target075RunnerPath],
   errors,
   warnings,
   nextStep:
