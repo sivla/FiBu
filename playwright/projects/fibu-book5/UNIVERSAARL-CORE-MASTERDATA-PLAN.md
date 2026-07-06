@@ -1,6 +1,6 @@
 # Universaarl Core Master Data Plan
 
-Status: `planned-for-ui-preflight`
+Status: `planned-after-foundation-decision`
 
 Dieser Plan legt die ersten Stammdaten fuer `UNIVERSAARL-DE` fest. Er erzeugt keine Datensaetze in Business Central. Die Datensaetze werden erst angelegt, wenn die passenden Karten, Templates, Pflichtfelder, Buchungsgruppen, USt-Gruppen und Nummernserien in der UI geprueft sind.
 
@@ -62,9 +62,16 @@ TARGET-023B hat Dimension Values fuer `PRODUCTLINE`, `COSTCENTER` und `CHANNEL` 
 - Default Dimensions bekommen erst nach Karten-/Template-Preflight einen eigenen Case.
 - Gebuchte Dimension Set Entries und Reportingfilter bleiben unbewiesen, bis erste Belege mit Dimensionen gebucht sind.
 
-## Naechster UI-Preflight
+## Naechster Read-first-Preflight
 
-Naechster Case: `TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT`
+Naechster Live-Schritt bleibt zuerst `TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK`.
+Erst danach entscheidet `FOUNDATION-READINESS-DECISION.md`, ob Master Data als lesender Preflight sinnvoll ist.
+
+Die naechsten Master-Data-Kandidaten sind keine Schreibfaelle:
+
+- `PWS-MD-001` Debitoren (Customers) Kontext
+- `PWS-MD-002` Kreditoren (Vendors) Kontext
+- `PWS-MD-003` Artikel/Services/Nichtlagerartikel Kontext
 
 Der Preflight oeffnet die relevanten Listen/Karten read-only oder mit klarer Abbruchlogik:
 
@@ -73,6 +80,8 @@ Der Preflight oeffnet die relevanten Listen/Karten read-only oder mit klarer Abb
 3. Artikelliste und Artikelkarte: Welche Typen, Basiseinheiten, Produktbuchungsgruppen, Lagerbuchungsgruppen und USt-Gruppen sind sichtbar?
 4. Lagerorte: Welche Felder machen einen einfachen Lagerort aus, und welche Warehouse-Felder wuerden spaeter neue Pflichtlogik erzeugen?
 5. Screenshot-QA: Jede Karte braucht sichtbaren Seitentitel, Company-Kontext, relevante FastTabs und klare Not-Proof-Grenzen.
+
+Keine Stammdatenanlage, kein Template-Write und kein Import entstehen direkt aus diesem Plan.
 
 ## Stop-Regeln fuer den Preflight
 
