@@ -53,6 +53,24 @@ Master Data darf nach dieser Entscheidung nur als naechster Block vorbereitet we
 - Keine Setupwerte, Stammdaten, Belege, Buchungsvorschau, Buchung, Zahlung oder API-Shortcuts wurden ausgefuehrt.
 - Offene Foundation-Luecken sind benannt und nicht als erledigt umgedeutet.
 
+## Master-Data-Read-first-Handoff
+
+Diese Tabelle wird erst nach TARGET-075 ausgefuellt. Sie gibt keine Schreibfreigabe, sondern waehlt hoechstens den naechsten lesenden Master-Data-Probe.
+
+| Kandidat | Entscheidung nach TARGET-075 | Mindestgrundlage | Bleibt verboten |
+| --- | --- | --- | --- |
+| `PWS-MD-001` Debitoren (Customers) | `pending-target075-evidence` | Company, Kontenplan, Debitoren-/Buchungsgruppen-/Payment-Abhaengigkeiten sind fuer Read-first ausreichend sichtbar oder als Luecke benannt. | Debitor speichern, Vorlage aendern, Verkaufsbeleg anlegen. |
+| `PWS-MD-002` Kreditoren (Vendors) | `pending-target075-evidence` | Company, Kontenplan, Kreditoren-/Buchungsgruppen-/Payment-Abhaengigkeiten sind fuer Read-first ausreichend sichtbar oder als Luecke benannt; Bankdaten bleiben ausserhalb. | Kreditor speichern, Bankdaten erfassen, Einkaufsbeleg oder Zahlung anlegen. |
+| `PWS-MD-003` Artikel/Services/Nichtlagerartikel | `pending-target075-evidence` | Company, Kontenplan, Produktbuchungsgruppen, USt-Produktkontext, Basiseinheiten und Inventory-/Costing-Grenzen sind fuer Read-first ausreichend sichtbar oder als Luecke benannt. | Artikel speichern, Basiseinheit anlegen, Lager-/Bewertungs-/Buchungssetup aendern, Lagerwert oder Wertposten behaupten. |
+
+Erlaubte Klassifikationen nach TARGET-075:
+
+- Debitoren: `ready-for-customer-write-gate`, `needs-foundation-follow-up`, `needs-template-discovery`, `blocked`.
+- Kreditoren: `ready-for-vendor-write-gate`, `needs-foundation-follow-up`, `needs-template-discovery`, `needs-payment-boundary-decision`, `blocked`.
+- Artikel/Services: `ready-for-item-write-gate`, `needs-uom-follow-up`, `needs-product-posting-follow-up`, `needs-inventory-setup-follow-up`, `needs-service-route-decision`, `blocked`.
+
+Jede `ready-for-*-write-gate`-Klassifikation bedeutet nur: Ein spaeterer Smart-Decision-Case darf einen Schreib-Gate vorbereiten. Sie bedeutet nicht, dass direkt geschrieben, importiert, gebucht oder gepostet werden darf.
+
 ## UAT, Training und Buch
 
 | Output | Regel |
