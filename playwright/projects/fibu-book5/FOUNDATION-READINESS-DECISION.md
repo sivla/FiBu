@@ -30,6 +30,13 @@ Praktische Entscheidung:
 - Es folgt kein VAT-Write-Gate aus TARGET-073B. Die Foundation-Entscheidung muss nun eine nicht wiederholende Route waehlen: VAT Setup bewusst als Foundation-Gap parken, eine andere standardnahe Setup-Route begruenden oder einen separaten UI-Discovery-Case mit neuer Hypothese definieren.
 - Page-314-/Page-472-Screenshots duerfen nur als Proof gelten, wenn sie die Zielseite, relevante Felder/Spalten und den aktiven Kontext sichtbar zeigen; Role Center, Suche/Tell-Me oder versteckter Text reichen nicht.
 
+Consultant-Korrektur nach TARGET-073B:
+
+- Der naechste Live-Versuch darf nicht nur ein technisch anderer Klick auf dieselbe Matrix sein. Er braucht vorher eine fachliche Routenentscheidung: manuelle UI, Konfigurationspaket/Import, Assisted Setup, API/AL oder bewusstes Parken.
+- Vor jedem neuen UI-Versuch muss der Lauf die BC-Oberflaeche wie ein Nutzer lesen: Hauptbereich, Seitentitel, aktive Page, FastTabs/Grid, FactBox, Command-Bar-Dropdowns, Tooltip/Accessible Name und sichtbarer Nachzustand gehoeren zusammen.
+- Page Inspection ist technische Wahrheit ueber Page und Tabelle, aber kein Buch- oder Schreibbeweis. Nach Page Inspection muss die Hauptoberflaeche erneut sichtbar sein, bevor der Screenshot als Page-Proof zaehlt.
+- Jeder weitere Blocker muss eine Lernnotiz erzeugen: was wurde falsch gelesen, welche neue Regel gilt, und welcher naechste Versuch ist wirklich anders.
+
 ## No-Write-Grenze aus TARGET-075
 
 - Setup geaendert: nein
@@ -166,6 +173,7 @@ Erlaubte Anschlussklassifikationen:
 - PWS-FF-002 nicht als akzeptierten Buchungsmatrix-Nachweis verwenden; der Screenshot zeigt Rollencenter statt Page 314.
 - PWS-FF-002B nicht wiederholen, solange keine neue Route-Hypothese vorliegt; direkte URL und scoped Search-Click sind als aktueller Weg blockiert.
 - TARGET-073 und TARGET-073B nicht als as-is Retry wiederholen; TARGET-073B ist konsumierte blockierte No-Write-Evidence.
+- Vor einem neuen VAT-/Posting-Setup-Schreibversuch zuerst eine source-backed Route Decision erstellen: Standard-UI nur bei sicherem Editor, sonst Konfigurationspaket/Import oder bewusstes Parken begruenden.
 - Starterkonten erneut sichtbar pruefen, wenn der Kontenplan Setup- oder Buchaussagen tragen soll.
 - Master Data, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt, bis die Foundation-Grenzen geklaert sind.
 - Classify master-data readiness only after chart/setup context is accepted.

@@ -17,6 +17,20 @@ Vor einem UI-Blocker pruefen:
 9. Command-Bar-Overflow und Dropdowns,
 10. Page Inspection, Personalisierung oder Quellencheck, wenn UI-Sichtbarkeit nicht reicht.
 
+## Consultant-Leseregel fuer BC-Oberflaechen
+
+Der Agent bewertet eine Business-Central-Oberflaeche wie ein Consultant im Kundenprojekt, nicht wie ein reiner DOM-Tester. Vor einer fachlichen Aussage muss er zuerst beschreiben koennen:
+
+- welche Page oder Karte der Nutzer wirklich sieht,
+- welcher Bereich der Page aktiv ist,
+- ob ein Button, Pfeil, Menueintrag, FastTab, Grid, FactBox oder Dialog gemeint ist,
+- welche sichtbare Reaktion Business Central nach der Aktion zeigt,
+- welche fachliche Bedeutung die Reaktion fuer Setup, Stammdaten, Prozess oder Buchung hat.
+
+DOM-Text, ARIA-Namen, Page-Inspection-Seitenleisten und Suchtreffer sind Diagnosehilfen. Sie ersetzen nicht den sichtbaren Hauptbereich der Business-Central-Seite. Wenn Diagnose und Screenshot auseinanderlaufen, gewinnt die Screenshot-QA: Der Pfad ist `blocked` oder `rejected-path`, bis die sichtbare Oberflaeche den Claim traegt.
+
+Jeder UI-Blocker erzeugt eine kurze Lernnotiz im Result, README, Atlas oder aktiven Decision-File: Was wurde falsch oder unvollstaendig gelesen, was ist die neue Regel, und welcher naechste Versuch ist wirklich anders? Ohne diese Lernnotiz darf derselbe Klickpfad nicht wiederholt werden.
+
 ## PREP-010: Splitbuttons, Tooltips und sichtbarer Zielbeweis
 
 Business Central zeigt viele Aktionen als Kombi aus Hauptbutton, kleinem Pfeil und Menueintraegen. Diese drei Ziele duerfen nie gleichgesetzt werden.
@@ -27,6 +41,7 @@ Pflichtregel:
 - Vor mehrdeutigen Aktionen den Button hovern und Tooltip oder Accessible Name erfassen.
 - Nach dem Klick pruefen, ob wirklich der erwartete Zielzustand sichtbar ist.
 - Wenn der falsche Zielzustand erscheint, den Schritt als `rejected-path` oder `blocked` dokumentieren, nicht als Erfolg.
+- Bei wirksamen Actions den Tooltip oder Accessible Name nur als Vorbeweis verwenden. Der eigentliche Beweis ist der sichtbare Nachzustand der Page oder des Dialogs.
 
 Beispiel `Mandanten`:
 
@@ -61,6 +76,7 @@ Jeder UI-Lauf braucht vor dem Abschluss eine kurze Screenshot-QA:
 - Was beweist das Bild?
 - Was beweist das Bild ausdruecklich nicht?
 - Ist der Screenshot Buchkandidat, Debugging-Kontext, rejected path oder nur interner Nachweis?
+- Welche UI-Lernregel folgt daraus fuer den naechsten Lauf?
 
 Wenn ein Screenshot nur zeigt, dass "irgendwo Text im DOM existiert", aber der relevante UI-Bereich nicht sichtbar ist, ist er kein Buchkandidat.
 
