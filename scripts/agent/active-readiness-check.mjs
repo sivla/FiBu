@@ -12,7 +12,14 @@ const checksByCase = new Map([
     {
       id: 'target-075-readiness',
       scriptPath: 'scripts/agent/target-075-readiness-check.mjs',
-      reason: 'TARGET-075 is the active read-first resume pilot and must stay prepared before any freeze lift.'
+      reason: 'TARGET-075 is the active read-first resume pilot and must stay prepared before any freeze lift.',
+      secondaryChecks: [
+        {
+          id: 'masterdata-readfirst-handoff',
+          scriptPath: 'scripts/agent/masterdata-readfirst-check.mjs',
+          reason: 'After TARGET-075, the prepared Master Data read-first pilots must stay discoverable and blocked until Foundation Readiness Decision.'
+        }
+      ]
     }
   ]
 ]);
@@ -79,30 +86,54 @@ function parseJsonOutput(text) {
   return null;
 }
 
-function runCheck(check) {
+function runScript(check) {
   const result = spawnSync(nodeCmd, [check.scriptPath], {
     cwd: root,
     encoding: 'utf8',
     maxBuffer: 10 * 1024 * 1024
   });
   const parsed = parseJsonOutput(result.stdout) ?? parseJsonOutput(result.stderr);
+  return {
+    id: check.id,
+    scriptPath: check.scriptPath,
+    reason: check.reason,
+    ok: result.status === 0,
+    exitCode: result.status,
+    error: result.error?.message ?? null,
+    output: parsed
+  };
+}
+
+function runCheck(check) {
+  const primary = runScript(check);
+  const secondaryChecks = (check.secondaryChecks ?? []).map(runScript);
+  const failed = [primary, ...secondaryChecks].filter((entry) => !entry.ok);
   const output = {
     schemaVersion: 1,
     purpose: 'active-readiness-check',
-    ok: result.status === 0,
+    ok: failed.length === 0,
     selectedCheck: check.id,
     selectedCheckScript: check.scriptPath,
     reason: check.reason,
-    childExitCode: result.status,
-    childError: result.error?.message ?? null,
-    childOutput: parsed,
+    childExitCode: primary.exitCode,
+    childError: primary.error,
+    childOutput: primary.output,
+    secondaryChecks: secondaryChecks.map((entry) => ({
+      id: entry.id,
+      scriptPath: entry.scriptPath,
+      reason: entry.reason,
+      ok: entry.ok,
+      exitCode: entry.exitCode,
+      error: entry.error,
+      output: entry.output
+    })),
     liveActionsExecuted: false,
     businessCentralOpened: false,
     playwrightLiveRunExecuted: false
   };
 
   console.log(JSON.stringify(output, null, 2));
-  if (result.status !== 0) process.exitCode = result.status ?? 1;
+  if (failed.length) process.exitCode = failed[0].exitCode ?? 1;
 }
 
 const current = readJson(currentPath);
