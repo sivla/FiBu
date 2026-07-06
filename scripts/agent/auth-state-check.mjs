@@ -7,6 +7,8 @@ const authProfileDir = path.resolve('playwright/.auth/bc-profile');
 const currentStateFile = path.resolve('.agent/state/current.json');
 const maxAgeHours = Number(process.env.BC_AUTH_MAX_AGE_HOURS ?? 12);
 const warnExpiresInHours = Number(process.env.BC_AUTH_WARN_EXPIRES_IN_HOURS ?? 2);
+const minExpiresArg = process.argv.find((arg) => arg.startsWith('--min-expires-hours='));
+const minExpiresInHours = minExpiresArg ? Number(minExpiresArg.split('=').at(1)) : null;
 const now = Date.now();
 const authUnblockStep =
   'Run npm run auth:bc:open-login and complete Login/MFA in the Playwright-opened browser window until the Business Central shell is visible. ' +
@@ -31,6 +33,7 @@ function result(overrides, target = {}) {
     metaAgeHours: null,
     maxAgeHours,
     warnExpiresInHours,
+    minExpiresInHours,
     expiresInHours: null,
     expectedInstance: target.expectedInstance ?? '',
     expectedCompany: target.expectedCompany ?? '',
@@ -159,6 +162,9 @@ async function main() {
   if (ageHours > maxAgeHours) blockedBy.push('storage-state-too-old');
   if (metaAgeHours !== null && metaAgeHours > maxAgeHours) blockedBy.push('shell-validation-meta-too-old');
   if (!cookies.length) blockedBy.push('storage-state-has-no-cookies');
+  if (Number.isFinite(minExpiresInHours) && expiresInHours < minExpiresInHours) {
+    blockedBy.push('storage-state-expires-before-required-window');
+  }
   if (blockedBy.length === 0 && expiresInHours <= warnExpiresInHours) {
     warnings.push('storage-state-expires-soon');
   }
@@ -186,6 +192,8 @@ async function main() {
             ? 'Stored auth has local shell-validation metadata. Live tests must still validate the Business Central shell.'
             : blockedBy.length === 0
               ? 'Stored auth is usable but close to the freshness limit. Refresh Playwright auth before long unattended Business Central work.'
+              : blockedBy.includes('storage-state-expires-before-required-window')
+                ? `Stored auth is usable in principle but does not meet the required ${minExpiresInHours}h window. Refresh Playwright auth before unattended Business Central work.`
             : unblockStep
       }),
       null,
