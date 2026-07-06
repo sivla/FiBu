@@ -30,6 +30,11 @@ function requirePhrase(fileKey, phrase, errors) {
   if (!text.includes(phrase)) errors.push(`${files[fileKey]} must mention: ${phrase}`);
 }
 
+function forbidPhrase(fileKey, phrase, errors) {
+  const text = readText(files[fileKey]);
+  if (text.includes(phrase)) errors.push(`${files[fileKey]} must not mention active-stale phrase: ${phrase}`);
+}
+
 const errors = [];
 const warnings = [];
 
@@ -85,11 +90,26 @@ if (!errors.length) {
     projectDecision: ['Universaarl GmbH', 'SKR04-orientierter Kontenplan', 'nicht queue-getrieben'],
     architectureGate: ['Universaarl GmbH', 'SKR04-oriented starter chart', 'departments, product lines, channels, regions and locations'],
     companyUsecase: ['UNIVERSAARL-DE', 'Mehr-Company-Fallstudie', 'SKR04 ist der Zielkontenplan'],
-    datasetBlueprint: ['DATA-FOUNDATION', 'W1-FINANCE-FOUNDATION', 'MD-CUSTOMERS-01', 'PROC-O2C-01'],
+    datasetBlueprint: [
+      'DATA-FOUNDATION',
+      'W1-FINANCE-FOUNDATION',
+      'MD-CUSTOMERS-01',
+      'PROC-O2C-01',
+      'TARGET-075',
+      'FOUNDATION-READINESS-DECISION.md',
+      'PWS-MD-001'
+    ],
     fullCatalog: ['Business Central Full Playthrough Catalog - Universaarl', 'Shopify / Online Store: `excluded-shopify`', 'TARGET-075']
   })) {
     for (const phrase of phrases) requirePhrase(fileKey, phrase, errors);
   }
+
+  forbidPhrase(
+    'datasetBlueprint',
+    'Naechster Schritt: `TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT`',
+    errors
+  );
+  forbidPhrase('datasetBlueprint', 'bis zum UI-Preflight gesperrt', errors);
 }
 
 const output = {
