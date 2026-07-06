@@ -24,7 +24,7 @@ Do not resume TARGET-073 as the next live case. TARGET-073 is parked until a mat
 
 Last checked: 2026-07-06.
 
-Most recent resume check: 2026-07-06. Local readiness is green (`canResumeAfterFreezeLift=true`), but live execution is still blocked (`canRunNow=false`) by `improvement-freeze-active` and `open-business-central-live-forbidden`. Stored auth is usable for normal local resume checks, but the stricter overnight gate now requires at least 9 hours of remaining auth window. The current stored auth is below that overnight window and must be refreshed before unattended or later live work. TARGET-075 must still validate the live shell after an explicit freeze/live-gate lift.
+Most recent resume check: 2026-07-06. Local readiness is green (`canResumeAfterFreezeLift=true`), but live execution is still blocked (`canRunNow=false`) by `improvement-freeze-active` and `open-business-central-live-forbidden`. Stored auth was refreshed and passed the stricter overnight gate in the latest check, but auth freshness remains a runtime precondition. TARGET-075 must still validate the live shell after an explicit freeze/live-gate lift.
 
 | Gate | Result | Meaning |
 | --- | --- | --- |
@@ -38,7 +38,7 @@ Most recent resume check: 2026-07-06. Local readiness is green (`canResumeAfterF
 | `npm run fibu:target:foundation-consistency-pilot -- --list` | passed, 1 test listed | The TARGET-075 spec is discoverable through the guarded runner. |
 | `npm run agent:foundation:decision:check` | passed locally, result missing as expected | The Foundation Readiness Decision must not be written before TARGET-075 evidence exists. |
 | `npm run agent:masterdata:readfirst:check` | passed locally, live still blocked | PWS-MD-001/002/003 are all prepared and correctly blocked until TARGET-075 evidence, Foundation Readiness Decision and live-gate lift. |
-| `npm run agent:resume:check:overnight` | blocks as intended until auth is refreshed | The stricter overnight gate requires at least 9 hours of remaining auth window. Normal local readiness can still pass, but unattended/later live work must refresh auth first. |
+| `npm run agent:resume:check:overnight` | passed in the latest check | The stricter overnight gate requires at least 9 hours of remaining auth window. If it fails later, refresh auth before unattended or delayed live work. |
 | `npm run check:encoding` | passed | Text encoding is clean enough for this readiness package. |
 
 Current decision: stop broad cleanup here. The next useful project movement is either explicit freeze lift plus TARGET-075 live read-first execution, or a narrow local fix only if a gate changes from green to red.
