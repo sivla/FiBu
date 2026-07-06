@@ -14,6 +14,8 @@ const incompleteSetupInputPath = path.join(tempDir, 'TARGET-075-incomplete-setup
 const incompleteSetupOutputPath = path.join(tempDir, 'FOUNDATION-READINESS-INCOMPLETE-SETUP.md');
 const rejectedPageInputPath = path.join(tempDir, 'TARGET-075-rejected-page-result.json');
 const rejectedPageOutputPath = path.join(tempDir, 'FOUNDATION-READINESS-REJECTED-PAGE.md');
+const incompleteEvidenceListInputPath = path.join(tempDir, 'TARGET-075-incomplete-evidence-list-result.json');
+const incompleteEvidenceListOutputPath = path.join(tempDir, 'FOUNDATION-READINESS-INCOMPLETE-EVIDENCE-LIST.md');
 const missingAuthTargetInputPath = path.join(tempDir, 'TARGET-075-missing-auth-target-result.json');
 const missingAuthTargetOutputPath = path.join(tempDir, 'FOUNDATION-READINESS-MISSING-AUTH-TARGET.md');
 
@@ -66,33 +68,76 @@ const fixture = {
     {
       id: 'chart-of-accounts',
       status: 'observed',
+      textFile: 'target-075-chart-of-accounts.txt',
       screenshot: 'target-075-chart-of-accounts.png',
       screenshotMetadata: 'target-075-chart-of-accounts.screenshot.json'
     },
     {
       id: 'general-business-posting-groups',
       status: 'observed',
+      textFile: 'target-075-general-business-posting-groups.txt',
       screenshot: 'target-075-general-business-posting-groups.png',
       screenshotMetadata: 'target-075-general-business-posting-groups.screenshot.json'
     },
     {
       id: 'general-product-posting-groups',
       status: 'observed',
+      textFile: 'target-075-general-product-posting-groups.txt',
       screenshot: 'target-075-general-product-posting-groups.png',
       screenshotMetadata: 'target-075-general-product-posting-groups.screenshot.json'
     },
     {
       id: 'general-posting-setup',
       status: 'observed',
+      textFile: 'target-075-general-posting-setup.txt',
       screenshot: 'target-075-general-posting-setup.png',
       screenshotMetadata: 'target-075-general-posting-setup.screenshot.json'
     },
     {
       id: 'vat-posting-setup',
       status: 'observed',
+      textFile: 'target-075-vat-posting-setup.txt',
       screenshot: 'target-075-vat-posting-setup.png',
       screenshotMetadata: 'target-075-vat-posting-setup.screenshot.json'
     }
+  ],
+  evidenceRefs: [
+    'TARGET-075-result.json',
+    'README.md',
+    'target-075-chart-of-accounts.txt',
+    'target-075-chart-of-accounts.png',
+    'target-075-chart-of-accounts.screenshot.json',
+    'target-075-general-business-posting-groups.txt',
+    'target-075-general-business-posting-groups.png',
+    'target-075-general-business-posting-groups.screenshot.json',
+    'target-075-general-product-posting-groups.txt',
+    'target-075-general-product-posting-groups.png',
+    'target-075-general-product-posting-groups.screenshot.json',
+    'target-075-general-posting-setup.txt',
+    'target-075-general-posting-setup.png',
+    'target-075-general-posting-setup.screenshot.json',
+    'target-075-vat-posting-setup.txt',
+    'target-075-vat-posting-setup.png',
+    'target-075-vat-posting-setup.screenshot.json'
+  ],
+  changedFiles: [
+    'TARGET-075-result.json',
+    'README.md',
+    'target-075-chart-of-accounts.txt',
+    'target-075-chart-of-accounts.png',
+    'target-075-chart-of-accounts.screenshot.json',
+    'target-075-general-business-posting-groups.txt',
+    'target-075-general-business-posting-groups.png',
+    'target-075-general-business-posting-groups.screenshot.json',
+    'target-075-general-product-posting-groups.txt',
+    'target-075-general-product-posting-groups.png',
+    'target-075-general-product-posting-groups.screenshot.json',
+    'target-075-general-posting-setup.txt',
+    'target-075-general-posting-setup.png',
+    'target-075-general-posting-setup.screenshot.json',
+    'target-075-vat-posting-setup.txt',
+    'target-075-vat-posting-setup.png',
+    'target-075-vat-posting-setup.screenshot.json'
   ],
   foundationReadinessInput: {
     decisionStatus: 'ready-for-foundation-readiness-decision',
@@ -158,6 +203,12 @@ fs.writeFileSync(incompleteSetupInputPath, `${JSON.stringify(incompleteSetupFixt
 const rejectedPageFixture = JSON.parse(JSON.stringify(fixture));
 rejectedPageFixture.pages[2].status = 'rejected';
 fs.writeFileSync(rejectedPageInputPath, `${JSON.stringify(rejectedPageFixture, null, 2)}\n`, 'utf8');
+
+const incompleteEvidenceListFixture = JSON.parse(JSON.stringify(fixture));
+incompleteEvidenceListFixture.changedFiles = incompleteEvidenceListFixture.changedFiles.filter(
+  (entry) => entry !== 'target-075-vat-posting-setup.screenshot.json'
+);
+fs.writeFileSync(incompleteEvidenceListInputPath, `${JSON.stringify(incompleteEvidenceListFixture, null, 2)}\n`, 'utf8');
 
 const missingScreenshotMetadataFixture = JSON.parse(JSON.stringify(fixture));
 delete missingScreenshotMetadataFixture.pages[0].screenshotMetadata;
@@ -234,6 +285,25 @@ if (!rejectedPageOutput.includes('Master Data bleibt geparkt')) {
 }
 if (/Master Data kann als naechster Block vorbereitet werden/.test(rejectedPageOutput)) {
   errors.push('rejected page fixture must not allow Master Data preparation.');
+}
+
+const incompleteEvidenceListWrite = run([
+  `--input=${incompleteEvidenceListInputPath}`,
+  `--output=${incompleteEvidenceListOutputPath}`,
+  '--write'
+]);
+
+if (incompleteEvidenceListWrite.status === 0) errors.push('incomplete evidence list write mode must fail.');
+if (incompleteEvidenceListWrite.parsed?.canWrite !== false) errors.push('incomplete evidence list fixture must not be writable.');
+if (
+  !incompleteEvidenceListWrite.parsed?.errors?.includes(
+    'TARGET-075 changedFiles is missing evidence file target-075-vat-posting-setup.screenshot.json.'
+  )
+) {
+  errors.push('incomplete evidence list fixture must report the missing changedFiles evidence file.');
+}
+if (fs.existsSync(incompleteEvidenceListOutputPath)) {
+  errors.push('incomplete evidence list fixture must not write a Foundation decision output.');
 }
 
 const missingScreenshotMetadataWrite = run([

@@ -82,6 +82,21 @@ function validateTarget075(result) {
   if (result.resultStatus === 'observed' && (!Array.isArray(result.screenshots) || result.screenshots.length < 5)) {
     errors.push('TARGET-075 observed result must include screenshots for all five Foundation probes.');
   }
+  const evidenceRefs = asArray(result.evidenceRefs);
+  const changedFiles = asArray(result.changedFiles);
+  if (!evidenceRefs.length) errors.push('TARGET-075 result must include evidenceRefs.');
+  if (!changedFiles.length) errors.push('TARGET-075 result must include changedFiles.');
+  for (const evidenceFile of evidenceRefs) {
+    if (!changedFiles.includes(evidenceFile)) {
+      errors.push(`TARGET-075 changedFiles is missing evidence file ${evidenceFile}.`);
+    }
+  }
+  for (const pageEntry of asArray(result.pages)) {
+    for (const evidenceFile of [pageEntry.textFile, pageEntry.screenshot, pageEntry.screenshotMetadata].filter(Boolean)) {
+      if (!evidenceRefs.includes(evidenceFile)) errors.push(`TARGET-075 evidenceRefs is missing page evidence ${evidenceFile}.`);
+      if (!changedFiles.includes(evidenceFile)) errors.push(`TARGET-075 changedFiles is missing page evidence ${evidenceFile}.`);
+    }
+  }
 
   if (!result.authGate) {
     errors.push('TARGET-075 result is missing authGate.');
