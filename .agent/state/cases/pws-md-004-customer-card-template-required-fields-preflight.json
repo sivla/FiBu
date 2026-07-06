@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PWS-MD-004-CUSTOMER-CARD-TEMPLATE-REQUIRED-FIELDS-PREFLIGHT",
+  "status": "planned-readfirst-prewrite",
+  "mode": "universaarl-masterdata-preflight",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w2-core-masterdata",
+  "purpose": "Inspect the customer card, New/dropdown or tooltip context, templates and required-field signals before any customer write gate.",
+  "workstream": "WS04 Master Data / Product Model",
+  "epic": "Master Data first controlled write gate",
+  "issueType": "Task",
+  "businessPurpose": "Prepare the first customer master-data write gate with enough UI evidence for a beginner-friendly handbook and a reversible Smart Decision.",
+  "mayRunPlaywright": true,
+  "mayOpenBusinessCentral": true,
+  "effectiveBcActionsAllowed": false,
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/pws-md-001-customer-context-readonly/PWS-MD-001-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-md-002-vendor-context-readonly/PWS-MD-002-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-md-003-item-service-context-readonly/PWS-MD-003-result.json",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    "playwright/projects/fibu-book5/UNIVERSAARL-CORE-MASTERDATA-PLAN.md"
+  ],
+  "allowedActions": [
+    "run-playwright-readonly",
+    "open-business-central-readonly",
+    "confirm-playthru-instance",
+    "confirm-universaarl-company",
+    "open-customers-readonly",
+    "inspect-new-button-hover-or-dropdown-without-save",
+    "inspect-customer-card-or-template-dialog-only-if-cancellable",
+    "capture-screenshot-qa",
+    "write-evidence-result",
+    "update-state-summary"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "save-customer",
+    "create-customer",
+    "edit-customer",
+    "change-customer-template",
+    "change-posting-group",
+    "change-payment-terms",
+    "change-dimension",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "company-switch",
+    "claim-master-data-ready",
+    "claim-sales-process-ready"
+  ],
+  "smartDecision": {
+    "decision": "Run a customer preflight, not a customer creation.",
+    "whyNow": "Customer is the lowest-risk and most useful first master-data candidate after customer/vendor/item read-first evidence.",
+    "whyNotVendor": "Vendor adds payment, bank and purchase-process dependencies.",
+    "whyNotItem": "Item adds UOM, inventory, product posting, VAT product and costing dependencies, and U-ITEM-HW100 already exists.",
+    "risk": "Business Central New/template routes can create a draft or force a save if handled blindly.",
+    "fallback": "Stop with screenshots and no data write if the route cannot be inspected without creating or saving a record."
+  },
+  "screenshotQaRequired": [
+    "customer list context",
+    "New/Neu button, dropdown or tooltip context",
+    "template dialog or customer-card route only if safely cancellable",
+    "visible required fields or FastTabs",
+    "Page Inspection context"
+  ],
+  "acceptanceCriteria": [
+    "The run confirms playthru / UNIVERSAARL-DE before inspecting any UI.",
+    "The run captures more than one screenshot checkpoint, not only an end-state screenshot.",
+    "The run documents whether New/Neu exposes a dropdown, tooltip, template dialog or direct card route.",
+    "The run stops before any save/create/confirm action.",
+    "The result names required fields or clearly states why they could not be observed safely.",
+    "The result says what the screenshots prove and what they do not prove."
+  ],
+  "stopIf": [
+    "Company is not UNIVERSAARL-DE.",
+    "A dialog would create or save a customer before the route is understood.",
+    "The template dialog cannot be cancelled safely.",
+    "Required fields are hidden and layout, FastTabs, FactBox, focus mode and Page Inspection have not been checked.",
+    "The route requires force clicks or coordinate clicks as the normal strategy.",
+    "Any Preview Posting, Posting, payment, API or document action appears in the path."
+  ],
+  "trainingImpact": "Creates beginner-facing material for Customer List, New/Neu, customer card/template route and required-field awareness.",
+  "uatImpact": "Prepares, but does not execute, the first customer master-data UAT setup step.",
+  "bookImpact": "Supports a handbook section on how a customer record is started and which fields must be understood before saving.",
+  "nextStepDecision": {
+    "currentCase": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
+    "lastEvidenceSummary": "Customer, vendor and item/service contexts were observed read-only. Customer is the least dependent first write-gate candidate, but the UI route, template behavior and required fields are not proven.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The next useful move is a no-save customer preflight with screenshot QA, not another broad read-only list proof and not a blind customer creation.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "PWS-MD-004-CUSTOMER-CARD-TEMPLATE-REQUIRED-FIELDS-PREFLIGHT",
+        "status": "ready-next",
+        "reason": "Needed before any customer create gate."
+      },
+      {
+        "caseId": "PWS-MD-005-CUSTOMER-U-CUST-100-CONTROLLED-CREATE-GATE",
+        "status": "ready-after-current",
+        "reason": "Only sensible if PWS-MD-004 proves a safe, cancellable route and required fields."
+      },
+      {
+        "caseId": "PWS-MD-VENDOR-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Parked until customer route and payment/bank boundary are clearer."
+      },
+      {
+        "caseId": "PWS-MD-ITEM-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Parked until UOM, product posting, VAT product, inventory and costing dependencies are checked."
+      }
+    ],
+    "queueChangesMade": [
+      "Selected PWS-MD-004 as the next concrete prewrite case."
+    ],
+    "selectedNextCase": "PWS-MD-004-CUSTOMER-CARD-TEMPLATE-REQUIRED-FIELDS-PREFLIGHT",
+    "whySelectedNextCaseIsBest": "It turns the screenshot-learning issue into a bounded UI-proof step and prevents a blind New/customer save.",
+    "risksBeforeNextCase": [
+      "Do not click through a template dialog if it creates or saves a customer.",
+      "Do not claim customer setup readiness from visible fields alone.",
+      "Do not create sales documents or posting evidence in this case."
+    ],
+    "requiredPreparation": [
+      "Review PWS-MD-001 screenshots and reuse the multi-checkpoint screenshot QA pattern."
+    ]
+  },
+  "nextCase": "PWS-MD-004-CUSTOMER-CARD-TEMPLATE-REQUIRED-FIELDS-PREFLIGHT",
+  "updatedAt": "2026-07-06T22:10:00.000Z"
+}

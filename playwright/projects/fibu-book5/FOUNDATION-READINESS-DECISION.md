@@ -199,14 +199,28 @@ Erlaubte Anschlussklassifikationen:
 
 `ready-for-*-write-gate` bedeutet nur, dass ein spaeterer Smart-Decision-Case vorbereitet werden darf. Es erlaubt kein direktes Schreiben, Importieren, Buchen oder Posten.
 
+## FOUNDATION-MASTER-DATA-ROUTE-DECISION
+
+- Quelle: PWS-MD-001, PWS-MD-002 und PWS-MD-003 Result JSONs.
+- Status: completed-local-decision
+- Entscheidung: Debitoren (Customers) sind der erste Master-Data-Kandidat, aber noch nicht als direkter Anlagefall. Der naechste Live-Case ist ein enger Debitoren-Karten-/Vorlagen-/Pflichtfeld-Preflight mit Screenshot-QA und ohne Speichern.
+- Warum Debitoren zuerst: Ein Debitor ist fuer Anfaenger didaktisch am einfachsten, traegt spaeter O2C, OP-Liste, Zahlung und Buchkapitel, und hat weniger technische Abhaengigkeiten als Artikel/Services. Er braucht keine Bankdaten und keine Lager-/Kostenbewertungslogik.
+- Warum nicht Kreditoren zuerst: Kreditoren fuehren schnell in Zahlungsbedingungen, Bank-/Zahlungsdaten, P2P, Eingangsrechnung und Zahlungsvorschlag. Das ist fachlich wichtig, aber als erster Write-Gate-Kandidat riskanter.
+- Warum nicht Artikel/Services zuerst: Artikel haengen an Basiseinheit, Artikelart, Lagerbuchungsgruppe, Produktbuchungsgruppe, USt-Produktbuchungsgruppe, Kalkulationsmethode, Lager-/Bewertungssetup und spaeter Wertposten. Zudem existiert `U-ITEM-HW100` bereits sichtbar; ein blindes Duplikat waere schlechter Projektstil.
+- Naechster Case: `PWS-MD-004-CUSTOMER-CARD-TEMPLATE-REQUIRED-FIELDS-PREFLIGHT`.
+- Schreibgrenze: kein Debitor, keine Vorlage, keine Buchungsgruppe, keine Zahlungsbedingung, keine Dimension, kein Verkaufsbeleg, keine Buchungsvorschau, keine Buchung.
+- Pflicht-Screenshot-QA fuer den naechsten Case: Debitorenliste, `Neu`-/Dropdown- oder Tooltip-Kontext, ggf. Vorlagendialog nur wenn ohne Speichern abbrechbar, sichtbare Pflichtfelder/FastTabs, Page Inspection.
+- Stop-Regeln: Stop, wenn `UNIVERSAARL-DE` nicht eindeutig aktiv ist, ein Dialog Speichern/Erstellen erzwingt, ein Template nicht abbrechbar ist, Buchungsgruppen oder Nummernserien nicht sichtbar/erklaerbar sind oder ein Feld nur ueber fragiles Force-/Koordinatenklicken erreichbar waere.
+- UAT/Training-Auswirkung: Der Preflight liefert Schulungsmaterial fuer Debitorenliste, Debitorenkarte, Pflichtfelder und sichere Abbruchlogik. Er beweist noch keine Debitorenanlage und keine Verkaufsprozessbereitschaft.
+
 ## Naechste Projektoutputs
 
 - PWS-FF-002C als aktuelle Buchungsmatrix-Grenze konsumieren: Page 314 ist partiell bekannt, aber nicht posting-ready.
 - PWS-FF-006 als akzeptierten Kontenplan-Starterkonten-Nachweis konsumieren; keine weitere Starterkonten-Wiederholung ohne neuen Claim.
-- Master-Data-Schreibfaelle, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt, bis die Foundation-Grenzen geklaert sind.
+- Master-Data-Schreibfaelle, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt. Erlaubt ist nur der Debitoren-Karten-/Vorlagen-/Pflichtfeld-Preflight ohne Speichern.
 - PWS-FF-005B als beobachteten no-write Dimensionswerte-Proof konsumieren.
 - PWS-FF-001 als beobachteten no-write Nummernserien-Proof konsumieren.
-- `PWS-MD-001`, `PWS-MD-002` und `PWS-MD-003` sind als read-only Kontext beobachtet. Naechster Schritt ist eine Route Decision fuer den ersten Master-Data-Write-Gate-Kandidaten.
+- `PWS-MD-001`, `PWS-MD-002` und `PWS-MD-003` sind als read-only Kontext beobachtet. Die Route Decision waehlt Debitoren als ersten Kandidaten, aber zuerst nur als Preflight.
 - Classify master-data readiness only after chart/setup context is accepted.
 - Use accepted screenshots as draft handbook/training evidence, not final compliance proof.
 
@@ -224,4 +238,4 @@ Erlaubte Anschlussklassifikationen:
 
 ## Naechster Case
 
-- `FOUNDATION-MASTER-DATA-ROUTE-DECISION`: Debitoren/Kreditoren/Artikel-Read-first-Evidence auswerten und entscheiden, ob als erstes ein Debitor-, Kreditor- oder Artikel-Write-Gate fachlich sinnvoll, datenbereit und korrigierbar ist. Keine direkte Stammdatenanlage aus dieser Entscheidung ableiten.
+- `PWS-MD-004-CUSTOMER-CARD-TEMPLATE-REQUIRED-FIELDS-PREFLIGHT`: Debitorenliste/-karte, `Neu`-/Dropdown- oder Tooltip-Kontext, Vorlagen-/Pflichtfeldsignale, FastTabs und Page Inspection pruefen. Keine Debitorenanlage, kein Speichern, keine Vorlage aendern, kein Beleg.

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
-  "status": "planned-local-decision",
+  "status": "completed-local-decision",
   "mode": "universaarl-masterdata-route-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -82,10 +82,10 @@
       }
     ],
     "queueChangesMade": [
-      "PWS-MD-002 and PWS-MD-003 moved to observed-readfirst; route decision selected next."
+      "PWS-MD-004 selected as next active case."
     ],
-    "selectedNextCase": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
-    "whySelectedNextCaseIsBest": "It prevents blindly creating master data after read-only evidence and converts observations into a consultant-grade route decision.",
+    "selectedNextCase": "PWS-MD-004-CUSTOMER-CARD-TEMPLATE-REQUIRED-FIELDS-PREFLIGHT",
+    "whySelectedNextCaseIsBest": "It creates the missing UI and screenshot proof before the first customer write gate.",
     "risksBeforeNextCase": [
       "Do not turn read-only visibility into setup-ready claims.",
       "Do not create master data before one narrow write gate is selected."
@@ -94,6 +94,17 @@
       "Read PWS-MD-001/002/003 results and simulated data packages."
     ]
   },
-  "nextCase": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
-  "updatedAt": "2026-07-06T21:21:30.856Z"
+  "nextCase": "PWS-MD-004-CUSTOMER-CARD-TEMPLATE-REQUIRED-FIELDS-PREFLIGHT",
+  "updatedAt": "2026-07-06T22:10:00.000Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/foundation-master-data-route-decision/FOUNDATION-MASTER-DATA-ROUTE-DECISION-result.json",
+  "completedAt": "2026-07-06T22:10:00.000Z",
+  "result": {
+    "status": "completed-local-decision",
+    "selectedFirstCandidate": "Debitoren (Customers)",
+    "selectedNextCase": "PWS-MD-004-CUSTOMER-CARD-TEMPLATE-REQUIRED-FIELDS-PREFLIGHT",
+    "noBusinessCentralOpened": true,
+    "noPlaywrightLive": true,
+    "noWrite": true,
+    "rationale": "Customer is the lowest-risk first master-data candidate; a no-save UI/template/required-field preflight is required before any create gate."
+  }
 }

@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
+  "source": "local-foundation-decision",
+  "resultStatus": "completed-local-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "actionsTaken": [
+    "Compared PWS-MD-001 customer, PWS-MD-002 vendor and PWS-MD-003 item/service read-first evidence.",
+    "Compared first-write candidate risk and book/training value.",
+    "Selected customer as the first master-data candidate, but only through a no-save preflight first."
+  ],
+  "actionsNotTaken": [
+    "No Business Central opened.",
+    "No Playwright live run executed.",
+    "No customer created.",
+    "No vendor created.",
+    "No item or service created.",
+    "No template changed.",
+    "No setup changed.",
+    "No document or draft created.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No API shortcut."
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "proved": [
+    "Customer, vendor and item/service contexts have enough read-first evidence to support a route decision.",
+    "Customer is the lowest-risk first master-data candidate compared with vendor and item/service.",
+    "A direct customer write is not yet justified; customer card/template/required-field preflight is required first."
+  ],
+  "notProved": [
+    "No customer setup readiness.",
+    "No customer creation route.",
+    "No customer template correctness.",
+    "No posting group correctness.",
+    "No VAT correctness.",
+    "No O2C process readiness.",
+    "No UAT acceptance."
+  ],
+  "candidateDecision": {
+    "customer": {
+      "status": "selected-for-prewrite-preflight",
+      "reason": "Lower dependency count, high handbook value and direct O2C learning path.",
+      "missingBeforeWrite": [
+        "safe New/Neu or template route",
+        "required fields",
+        "customer posting group",
+        "general business posting group",
+        "VAT business posting group",
+        "payment terms",
+        "number-series behavior",
+        "reopen-proof strategy"
+      ]
+    },
+    "vendor": {
+      "status": "parked-after-customer",
+      "reason": "Adds payment, bank and purchase-process dependencies."
+    },
+    "itemService": {
+      "status": "parked-after-customer",
+      "reason": "Adds UOM, product posting, VAT product, inventory posting and costing dependencies; U-ITEM-HW100 already exists and must not be duplicated blindly."
+    }
+  },
+  "nextStepDecision": {
+    "currentCase": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
+    "lastEvidenceSummary": "PWS-MD-001/002/003 are observed read-first with multi-checkpoint screenshot QA.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The local route decision was the right step after three read-first contexts.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "PWS-MD-004-CUSTOMER-CARD-TEMPLATE-REQUIRED-FIELDS-PREFLIGHT",
+        "status": "ready-next",
+        "reason": "Needed before any customer write gate."
+      },
+      {
+        "caseId": "PWS-MD-005-CUSTOMER-U-CUST-100-CONTROLLED-CREATE-GATE",
+        "status": "ready-after-current",
+        "reason": "Only valid if PWS-MD-004 proves a safe route and required fields."
+      },
+      {
+        "caseId": "PWS-MD-VENDOR-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Payment/bank/P2P dependencies make it a later candidate."
+      },
+      {
+        "caseId": "PWS-MD-ITEM-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "UOM/posting/VAT/inventory/costing dependencies make it a later candidate."
+      }
+    ],
+    "queueChangesMade": [
+      "PWS-MD-004 selected as next active case."
+    ],
+    "selectedNextCase": "PWS-MD-004-CUSTOMER-CARD-TEMPLATE-REQUIRED-FIELDS-PREFLIGHT",
+    "whySelectedNextCaseIsBest": "It creates the missing UI and screenshot proof before the first customer write gate.",
+    "risksBeforeNextCase": [
+      "Do not save or create a customer in the preflight.",
+      "Do not mistake visible fields for setup readiness."
+    ],
+    "requiredPreparation": [
+      "Reuse MD001 multi-checkpoint screenshot QA.",
+      "Capture New/Neu dropdown or tooltip context instead of blindly clicking through it."
+    ]
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/pws-md-001-customer-context-readonly/PWS-MD-001-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-md-002-vendor-context-readonly/PWS-MD-002-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-md-003-item-service-context-readonly/PWS-MD-003-result.json",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md"
+  ],
+  "screenshots": [],
+  "warnings": [
+    "This is a local decision result; it does not add new Business Central screenshots.",
+    "The next live case must capture multiple screenshots before any later write gate."
+  ],
+  "blockedBy": [],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "nextCase": "PWS-MD-004-CUSTOMER-CARD-TEMPLATE-REQUIRED-FIELDS-PREFLIGHT",
+  "completedAt": "2026-07-06T22:10:00.000Z"
+}

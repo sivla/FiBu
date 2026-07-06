@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-06T21:21:30.856Z",
+  "updatedAt": "2026-07-06T22:10:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -8,12 +8,12 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w2-core-masterdata",
-  "activeCase": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
-  "active_case_file": ".agent/state/cases/foundation-master-data-route-decision.json",
-  "activeCaseFile": ".agent/state/cases/foundation-master-data-route-decision.json",
+  "activeCase": "PWS-MD-004-CUSTOMER-CARD-TEMPLATE-REQUIRED-FIELDS-PREFLIGHT",
+  "active_case_file": ".agent/state/cases/pws-md-004-customer-card-template-required-fields-preflight.json",
+  "activeCaseFile": ".agent/state/cases/pws-md-004-customer-card-template-required-fields-preflight.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-masterdata-route-decision",
+  "mode": "universaarl-masterdata-preflight",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -34,11 +34,16 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-masterdata-readfirst-evidence",
-    "compare-customer-vendor-item-write-gate-candidates",
-    "update-foundation-readiness-decision",
-    "update-state-summary",
-    "prepare-one-next-write-gate-or-source-check-case"
+    "run-playwright-readonly",
+    "open-business-central-readonly",
+    "confirm-playthru-instance",
+    "confirm-universaarl-company",
+    "open-customers-readonly",
+    "inspect-new-button-hover-or-dropdown-without-save",
+    "inspect-customer-card-or-template-dialog-only-if-cancellable",
+    "capture-screenshot-qa",
+    "write-evidence-result",
+    "update-state-summary"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -46,14 +51,13 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "open-business-central",
-    "run-playwright-live",
-    "write-setup",
+    "save-customer",
     "create-customer",
-    "create-vendor",
-    "create-item",
-    "create-service",
-    "change-template",
+    "edit-customer",
+    "change-customer-template",
+    "change-posting-group",
+    "change-payment-terms",
+    "change-dimension",
     "create-document-or-draft",
     "preview-posting",
     "post",
@@ -61,11 +65,11 @@
     "api-shortcut",
     "company-switch",
     "claim-master-data-ready",
-    "claim-process-ready"
+    "claim-sales-process-ready"
   ],
-  "nextCase": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
-  "nextStep": "Run the local FOUNDATION-MASTER-DATA-ROUTE-DECISION: compare PWS-MD-001/002/003 evidence and choose exactly one next write-gate candidate or a source/setup follow-up. No Business Central, no Playwright live, no master-data write.",
-  "preparedNextCaseFile": ".agent/state/cases/foundation-master-data-route-decision.json",
+  "nextCase": "PWS-MD-004-CUSTOMER-CARD-TEMPLATE-REQUIRED-FIELDS-PREFLIGHT",
+  "nextStep": "Run PWS-MD-004 as a no-save customer card/template/required-field preflight in playthru / UNIVERSAARL-DE. Capture multiple screenshots including New/Neu dropdown or tooltip context, safe template/card context if cancellable, FastTabs/required fields and Page Inspection. Do not save or create a customer.",
+  "preparedNextCaseFile": ".agent/state/cases/pws-md-004-customer-card-template-required-fields-preflight.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -10805,5 +10809,23 @@
     ],
     "screenshotQa": "accepted with 4 checkpoints",
     "nextBoundary": "No item/service write before route decision."
+  },
+  "latestFoundationMasterDataRouteDecision": {
+    "caseId": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
+    "status": "completed-local-decision",
+    "resultPath": "playwright/projects/fibu-book5/evidence/foundation-master-data-route-decision/FOUNDATION-MASTER-DATA-ROUTE-DECISION-result.json",
+    "decisionPath": "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    "selectedFirstCandidate": "Debitoren (Customers)",
+    "selectedNextCase": "PWS-MD-004-CUSTOMER-CARD-TEMPLATE-REQUIRED-FIELDS-PREFLIGHT",
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "decision": "Customer is the first master-data candidate, but only a no-save preflight is allowed before any write gate.",
+    "why": "Customer has fewer dependencies than vendor or item/service and gives the clearest handbook/training value for the first master-data write gate.",
+    "boundary": "No customer write, template change, document, preview or posting until PWS-MD-004 proves a safe route and required fields.",
+    "updatedAt": "2026-07-06T22:10:00.000Z"
   }
 }

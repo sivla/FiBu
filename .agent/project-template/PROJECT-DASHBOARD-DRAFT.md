@@ -55,7 +55,7 @@ M0 ist als Arbeitsrahmen nutzbar. Der naechste sinnvolle Fortschritt ist keine w
 | Freeze/Resume | passed-for-read-first-history | TARGET-075 ist gelaufen; neue Live-Arbeit braucht trotzdem aktuellen Auth-/Case-Gate. |
 | Finance Foundation | blocked-by-specific-gaps | Foundation-Decision aktuell halten: Page 314 und Page 472 active editor sind die harten UI-/Setup-Grenzen; TARGET-073B ist als no-write Proof gelaufen und blockiert. |
 | VAT/USt, Dimensions, Posting Groups | partial/blocked | INLAND/VAT19 sichtbar, Page 472-Hauptoberflaeche und Page Inspection/Tabelle 325 bewiesen; VAT-Matrix-Schreibroute und Page 314 bleiben nicht posting-ready. |
-| Master Data | planned-blocked | Erst nach Foundation Readiness Decision in BC schreiben. |
+| Master Data | prewrite-preflight-next | Debitoren sind als erster Kandidat gewaehlt; naechster Case ist `PWS-MD-004` Customer Card/Template/Required Fields Preflight ohne Speichern. |
 | Buch/Handbuch/Training | draft | Nur auf Basis offizieller Quellen, Universaarl-Evidence oder klar markierter Annahmen ausbauen. |
 | Playwright/Evidence | draft | Read-first Specs und Screenshot-QA stabilisieren; keine Legacy-Routen als aktive Tests nutzen. |
 | Legacy-Decommission | active-work | Legacy nur inventarisieren, neutralisieren, portieren oder parken; Evidence nicht blind loeschen. |
@@ -90,7 +90,7 @@ M0 ist als Arbeitsrahmen nutzbar. Der naechste sinnvolle Fortschritt ist keine w
 3. Vor Live-Arbeit: `agent:preflight`, `check:encoding`, `agent:quality:audit`, `agent:resume:check || true`, `agent:freeze:status || true`.
 4. `TARGET-073` bleibt geparkt.
 5. Kein as-is Retry von TARGET-073 oder TARGET-073B; TARGET-073B ist konsumierte blockierte No-Write-Evidence.
-6. `FOUNDATION-READINESS-DECISION.md` als aktuelle Grenze fuer Master Data, VAT-Write, Posting Groups und Prozessstarts nutzen.
+6. `FOUNDATION-READINESS-DECISION.md` als aktuelle Grenze nutzen: Debitoren zuerst, aber nur `PWS-MD-004` no-save Preflight; keine Stammdatenanlage vor sicherer Karte/Vorlage/Pflichtfeld-Evidence.
 
 ## Update rule
 

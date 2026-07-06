@@ -226,7 +226,7 @@ Required artifact after Phase 2:
 
 ## Phase 3 - Build master data as customer project
 
-Current status: dependency-blocked.
+Current status: prewrite-preflight-next.
 
 Use existing data packages:
 
@@ -247,9 +247,10 @@ For each package choose a route:
 
 Read-first Playwright specs before any master-data write:
 
-- `PWS-MD-001` Customer context
-- `PWS-MD-002` Vendor context
-- `PWS-MD-003` Item/Service context
+- `PWS-MD-001` Customer context observed read-first
+- `PWS-MD-002` Vendor context observed read-first
+- `PWS-MD-003` Item/Service context observed read-first
+- `PWS-MD-004` Customer card/template/required-field preflight selected next, no save/no create
 
 Writes are allowed only after a Smart Decision and only with:
 
