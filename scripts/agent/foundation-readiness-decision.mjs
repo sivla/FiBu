@@ -4,6 +4,8 @@ import path from 'node:path';
 const root = process.cwd();
 const defaultResultPath =
   'playwright/projects/fibu-book5/evidence/target-075-chart-of-accounts-reopen-and-setup-consistency-check/TARGET-075-result.json';
+const defaultChartStarterAccountsPath =
+  'playwright/projects/fibu-book5/evidence/pws-ff-006-chart-of-accounts-starter-accounts-readfirst/PWS-FF-006-result.json';
 const defaultDecisionPath = 'playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md';
 const templatePath = 'playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.template.md';
 const rawArgs = process.argv.slice(2);
@@ -18,6 +20,7 @@ function valueArg(name, fallback) {
 }
 
 const resultPath = valueArg('--input', defaultResultPath);
+const chartStarterAccountsPath = valueArg('--chart-input', defaultChartStarterAccountsPath);
 const decisionPath = valueArg('--output', defaultDecisionPath);
 
 function resolve(relativePath) {
@@ -240,6 +243,76 @@ function validateTarget075(result) {
   return { errors, warnings };
 }
 
+function validateChartStarterAccounts(result) {
+  const errors = [];
+  const warnings = [];
+
+  if (!result) return { errors, warnings };
+  if (result.caseId !== 'PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST') {
+    errors.push('PWS-FF-006 result has an unexpected caseId.');
+  }
+  if (result.instance !== 'playthru') errors.push('PWS-FF-006 result must use instance playthru.');
+  if (result.company !== 'UNIVERSAARL-DE') errors.push('PWS-FF-006 result must use company UNIVERSAARL-DE.');
+  if (result.resultStatus !== 'observed') {
+    warnings.push('PWS-FF-006 did not finish observed; keep TARGET-075 starter-account uncertainty.');
+  }
+  for (const flag of [
+    'setupChanged',
+    'setupChangeAttempted',
+    'masterDataChanged',
+    'draftCreated',
+    'previewPosting',
+    'posted',
+    'payment',
+    'apiShortcut'
+  ]) {
+    if (result[flag] !== false) errors.push(`PWS-FF-006 read-first result must keep ${flag}=false.`);
+  }
+  const flags = result.flags ?? {};
+  for (const flag of [
+    'noWrite',
+    'noPost',
+    'noPreview',
+    'noDraft',
+    'noSetupChange',
+    'noMasterDataChange',
+    'noCompanySwitch',
+    'noApiShortcut'
+  ]) {
+    if (flags[flag] !== true) errors.push(`PWS-FF-006 flags.${flag} must be true.`);
+  }
+  if (!Array.isArray(result.accountFindings) || result.accountFindings.length === 0) {
+    errors.push('PWS-FF-006 result must include accountFindings.');
+  }
+  if (!Array.isArray(result.screenshots) || result.screenshots.length === 0) {
+    errors.push('PWS-FF-006 result must include screenshot evidence.');
+  }
+  if (Array.isArray(result.blockedBy) && result.blockedBy.length > 0) {
+    warnings.push('PWS-FF-006 has blockers; do not use it as accepted starter-account proof.');
+  }
+
+  return { errors, warnings };
+}
+
+function chartStarterAccountSummary(result) {
+  if (!result || result.resultStatus !== 'observed' || asArray(result.blockedBy).length > 0) {
+    return null;
+  }
+  const findings = asArray(result.accountFindings);
+  const visible = findings.filter((entry) => entry?.visible === true).map((entry) => String(entry.no));
+  const missing = findings.filter((entry) => entry?.visible !== true).map((entry) => String(entry.no));
+  return {
+    status: 'observed',
+    visible,
+    missing,
+    routeUsed: result.route?.routeUsed ?? 'unknown',
+    resultPath: chartStarterAccountsPath,
+    screenshots: asArray(result.screenshots),
+    proved: asArray(result.proved),
+    notProved: asArray(result.notProved)
+  };
+}
+
 function statusLine(value) {
   if (value === true) return 'ja';
   if (value === false) return 'nein';
@@ -334,7 +407,7 @@ function renderFoundationFollowupHandoff(handoff, readyForMasterData) {
   ].join('\n');
 }
 
-function renderNextProjectOutputs(input, readyForMasterData) {
+function renderNextProjectOutputs(input, readyForMasterData, chartStarterSummary) {
   const sourceOutputs = asArray(input.nextProjectOutputs).filter(
     (output) => !/^Update or create FOUNDATION-READINESS-DECISION\.md/i.test(String(output))
   );
@@ -342,23 +415,29 @@ function renderNextProjectOutputs(input, readyForMasterData) {
     ? ['Einen engen Master-Data-Read-first-Pilot waehlen; Datensaetze erst mit spaeterem Smart Decision Gate schreiben.']
     : [
         'Den abgelehnten Nachweis zur Buchungsmatrix Einrichtung vor Master Data klaeren oder bewusst als Grenze akzeptieren.',
-        'Starterkonten erneut sichtbar pruefen, wenn der Kontenplan Setup- oder Buchaussagen tragen soll.',
+        chartStarterSummary
+          ? 'PWS-FF-006 als akzeptierten Kontenplan-Starterkonten-Nachweis konsumieren; keine weitere Starterkonten-Wiederholung ohne neuen Claim.'
+          : 'Starterkonten erneut sichtbar pruefen, wenn der Kontenplan Setup- oder Buchaussagen tragen soll.',
         'Master Data, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt, bis die Foundation-Grenzen geklaert sind.'
       ];
   return bullet([...decisionOutputs, ...sourceOutputs]);
 }
 
-function renderDecision(result) {
+function renderDecision(result, chartStarterResult) {
   const input = result.foundationReadinessInput ?? {};
   const chart = input.chartOfAccounts ?? {};
+  const chartStarterSummary = chartStarterAccountSummary(chartStarterResult);
   const setup = input.setupContext ?? {};
   const blockedBy = unique(asArray(result.blockedBy));
   const warnings = unique(asArray(result.warnings));
   const proven = unique(asArray(result.proved));
-  const notProved = unique(asArray(result.notProved));
-  const starterVisible = asArray(chart.starterAccountsVisible);
-  const starterMissing = asArray(chart.starterAccountsMissingOrUnclear);
+  const notProved = unique(asArray(result.notProved)).filter(
+    (entry) => !chartStarterSummary || !/^Starter account \d+ was not visible in compact chart evidence\./i.test(String(entry))
+  );
+  const starterVisible = chartStarterSummary?.visible ?? asArray(chart.starterAccountsVisible);
+  const starterMissing = chartStarterSummary?.missing ?? asArray(chart.starterAccountsMissingOrUnclear);
   const screenshots = asArray(result.screenshots);
+  const evidenceScreenshots = unique([...screenshots, ...(chartStarterSummary?.screenshots ?? [])]);
   const pages = asArray(result.pages);
   const authTarget = result.authGate?.authTarget ?? {};
   const authGate = result.authGate ?? {};
@@ -417,6 +496,20 @@ function renderDecision(result) {
     '## Bewiesen',
     '',
     bullet(proven),
+    chartStarterSummary
+      ? [
+          '',
+          '## PWS-FF-006 Folgeproof: Kontenplan-Starterkonten',
+          '',
+          `- Quelle: ${chartStarterSummary.resultPath}`,
+          `- Status: ${chartStarterSummary.status}`,
+          `- Route: ${chartStarterSummary.routeUsed}`,
+          `- Sichtbare Starterkonten: ${chartStarterSummary.visible.length ? chartStarterSummary.visible.join(', ') : 'keine'}`,
+          `- Fehlend oder unklar: ${chartStarterSummary.missing.length ? chartStarterSummary.missing.join(', ') : 'keine'}`,
+          '- Schreibgrenze: keine Kontoanlage, keine Kontenaenderung, kein Setup, keine Stammdaten, keine Buchungsvorschau und keine Buchung.',
+          '- Fachgrenze: Sichtbare Starterkonten sind noch kein vollstaendiger SKR04, keine Steuerberaterfreigabe und keine Posting Readiness.'
+        ].join('\n')
+      : '',
     '',
     '## Nicht bewiesen',
     '',
@@ -424,7 +517,7 @@ function renderDecision(result) {
     '',
     '## Kontenplan',
     '',
-    `- Status: ${chart.status ?? 'unbekannt'}`,
+    `- Status: ${chartStarterSummary?.status ?? chart.status ?? 'unbekannt'}`,
     `- Sichtbare Starterkonten: ${starterVisible.length ? starterVisible.join(', ') : 'keine'}`,
     `- Fehlend oder unklar: ${starterMissing.length ? starterMissing.join(', ') : 'keine'}`,
     `- Buchgrenze: ${chart.bookBoundary ?? 'Keine Buchgrenze im Result angegeben.'}`,
@@ -469,15 +562,17 @@ function renderDecision(result) {
     '',
     '## Naechste Projektoutputs',
     '',
-    renderNextProjectOutputs(input, readyForMasterData),
+    renderNextProjectOutputs(input, readyForMasterData, chartStarterSummary),
     '',
     '## Evidence',
     '',
-    bullet(screenshots.map((screenshot) => `Screenshot: ${screenshot}`)),
+    bullet(evidenceScreenshots.map((screenshot) => `Screenshot: ${screenshot}`)),
     '',
     '## Naechster Case',
     '',
-    readyForMasterData
+    chartStarterSummary
+      ? '- `PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION`: Buchungsmatrix Einrichtung als naechsten Foundation-Gap lokal entscheiden; PWS-FF-006 nicht wiederholen und keine Page-314-Route ohne neue Hypothese live starten.'
+      : readyForMasterData
       ? '- Einen engen Master-Data-Read-first-Pilot waehlen und vor jedem Write ein Smart Decision Gate dokumentieren.'
       : '- Foundation-Grenzen zuerst klaeren; keine Master-Data-, VAT-, Posting- oder Prozess-Writes starten.',
     ''
@@ -507,12 +602,20 @@ if (!exists(resultPath)) {
 }
 
 const result = readJson(resultPath);
+const chartStarterResult = exists(chartStarterAccountsPath) ? readJson(chartStarterAccountsPath) : null;
 const validation = validateTarget075(result);
-const canWrite = validation.errors.length === 0;
+const chartValidation = validateChartStarterAccounts(chartStarterResult);
+const combinedErrors = [...validation.errors, ...chartValidation.errors];
+const combinedWarnings = [
+  ...validation.warnings,
+  ...chartValidation.warnings,
+  ...(chartStarterResult ? [] : [`Optional PWS-FF-006 chart starter account result not found: ${chartStarterAccountsPath}`])
+];
+const canWrite = combinedErrors.length === 0;
 
 if (write && canWrite) {
   fs.mkdirSync(path.dirname(resolve(decisionPath)), { recursive: true });
-  fs.writeFileSync(resolve(decisionPath), renderDecision(result), 'utf8');
+  fs.writeFileSync(resolve(decisionPath), renderDecision(result, chartStarterResult), 'utf8');
 }
 
 const output = {
@@ -525,20 +628,22 @@ const output = {
   businessCentralOpened: false,
   playwrightLiveRunExecuted: false,
   resultPath,
+  chartStarterAccountsPath,
+  chartStarterAccountsConsumed: Boolean(chartStarterAccountSummary(chartStarterResult)),
   decisionPath,
   templatePath,
   resultStatus: result.resultStatus,
   instance: result.instance,
   company: result.company,
   nextCase: result.nextCase,
-  errors: validation.errors,
-  warnings: validation.warnings,
+  errors: combinedErrors,
+  warnings: combinedWarnings,
   nextStep: canWrite
     ? write
-      ? `${decisionPath} was updated from TARGET-075 evidence.`
-      : `TARGET-075 evidence is valid for ${decisionPath}; run with --write after review.`
+      ? `${decisionPath} was updated from TARGET-075 and optional PWS-FF-006 evidence.`
+      : `TARGET-075 evidence is valid for ${decisionPath}; optional PWS-FF-006 consumed when present; run with --write after review.`
     : 'Fix TARGET-075 result shape before writing the Foundation Readiness Decision.'
 };
 
 console.log(JSON.stringify(output, null, 2));
-if (validation.errors.length) process.exitCode = 1;
+if (combinedErrors.length) process.exitCode = 1;

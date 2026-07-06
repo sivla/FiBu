@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION",
+  "status": "planned-local-decision",
+  "mode": "universaarl-foundation-readfirst",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w1-foundation",
+  "purpose": "Decide the next materially different route for Buchungsmatrix Einrichtung / General Posting Setup after TARGET-075 accepted only 4/5 Foundation pages and PWS-FF-002/PWS-FF-002B blocked the direct Page 314 and Tell-Me capture routes.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/pws-ff-006-chart-of-accounts-starter-accounts-readfirst/PWS-FF-006-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-ff-002-general-posting-setup-readfirst-recovery/PWS-FF-002-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-ff-002b-page314-navigation-capture-recovery/PWS-FF-002B-result.json",
+    "playwright/projects/fibu-book5/BC-CARD-ATLAS.md",
+    "playwright/projects/fibu-book5/BC-ACTION-ATLAS.md"
+  ],
+  "mayRunPlaywright": false,
+  "mayOpenBusinessCentral": false,
+  "effectiveBcActionsAllowed": false,
+  "allowedActions": [
+    "read-foundation-evidence",
+    "classify-page314-as-foundation-gap-or-new-route-needed",
+    "select-next-foundation-gap-route",
+    "update-state-summary",
+    "write-local-project-artifacts"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright-live",
+    "repeat-pws-ff-002b-without-new-route-hypothesis",
+    "type-business-central-values",
+    "write-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "cleanup-delete",
+    "api-shortcut",
+    "company-switch",
+    "claim-posting-readiness",
+    "claim-master-data-readiness"
+  ],
+  "acceptanceCriteria": [
+    "PWS-FF-006 is treated as consumed chart starter-account evidence and is not selected again.",
+    "PWS-FF-002 and PWS-FF-002B are treated as blocked Page 314 route evidence, not accepted General Posting Setup proof.",
+    "The next General Posting Setup route is either parked with explicit downstream limits or replaced by a materially different hypothesis.",
+    "No live Business Central or Playwright action is performed by this local decision case.",
+    "Master Data remains parked unless the decision explicitly accepts the General Posting Setup gap with a narrow training/book limitation."
+  ],
+  "routeOptionsToCompare": [
+    "park-page314-gap-and-continue-vat-or-dimensions-readfirst",
+    "new-page314-route-via-action-inventory-or-page-inspection-first",
+    "configuration-package-route-only-if-cleanup-and-existing-record-hypothesis-is-new",
+    "assisted-setup-discovery-only-no-finish",
+    "api-or-al-only-with-explicit-later-gate"
+  ],
+  "nextStepDecision": {
+    "currentCase": "PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "FOUNDATION-READINESS-DECISION",
+    "lastEvidenceSummary": "PWS-FF-006 closed the starter-account visibility gap. General Posting Setup remains rejected/blocked because Page 314 evidence did not prove the target page.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The next useful work is a local route decision, not another live Page 314 retry.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "PWS-FF-004-VAT-SETUP-BOUNDARY",
+        "status": "ready-after-current",
+        "reason": "VAT remains a separate read-first Foundation gap, but no VAT write follows from this case."
+      },
+      {
+        "caseId": "PWS-FF-005-DIMENSIONS-READFIRST",
+        "status": "ready-after-current",
+        "reason": "Dimensions can be checked read-first after the Page 314 route decision if selected as the next safer Foundation lane."
+      },
+      {
+        "caseId": "PWS-MD-001-CUSTOMER-CONTEXT-READFIRST",
+        "status": "needs-setup-first",
+        "reason": "Master Data remains parked until Foundation readiness explicitly accepts or resolves setup gaps."
+      }
+    ],
+    "queueChangesMade": [
+      "PWS-FF-006 consumed.",
+      "PWS-FF-002C selected as local route decision before further live Foundation work."
+    ],
+    "selectedNextCase": "PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "It prevents another blind Page 314 retry and turns the remaining Foundation blocker into a concrete consultant decision.",
+    "risksBeforeNextCase": [
+      "Accepting Page 314 too early would make downstream Master Data and posting setup claims look stronger than the evidence supports."
+    ],
+    "requiredPreparation": [
+      "Read FOUNDATION-READINESS-DECISION.md and the PWS-FF-002/PWS-FF-002B blocked results.",
+      "Choose park, materially new UI route, source-backed setup route, or a different Foundation lane."
+    ]
+  },
+  "nextCase": "PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION",
+  "updatedAt": "2026-07-06T00:00:00.000Z"
+}

@@ -8,7 +8,7 @@
 - Instanz: playthru
 - Company: UNIVERSAARL-DE
 - Result-Status: partially-completed
-- Erzeugt am: 2026-07-06T17:14:40.050Z
+- Erzeugt am: 2026-07-06T19:59:12.674Z
 - Auth-Ziel: playthru / UNIVERSAARL-DE
 - Auth-Ziel aus aktuellem State aufgebaut: ja
 - Auth-Ziel passt zum State: ja
@@ -18,40 +18,6 @@
 ## Entscheidung
 
 Master Data bleibt geparkt, bis die offenen Foundation-Grenzen geprueft oder bewusst akzeptiert sind.
-
-## Konsolidierter Stand nach den Folgeprobes
-
-Die Foundation ist fuer Schulung und Buch als Lernpfad nutzbar, aber noch nicht posting-ready. TARGET-075 hat mehrere Foundation-Seiten lesend sichtbar gemacht. PWS-FF-002 und PWS-FF-002B zeigen aber, dass die aktuelle Page-314-Route zur Buchungsmatrix Einrichtung nicht als sichtbarer Seitennachweis akzeptiert werden darf. Der VAT-Strang ist weiter fortgeschritten: INLAND und VAT19 sind nach TARGET-027C-RETRY per Screenshot-QA sichtbar, Page 472 ist erreichbar, und TARGET-073B beweist die sichtbare Page-472-Hauptoberflaeche plus Page Inspection fuer `VAT Posting Setup (472, List)` / Tabelle 325. Trotzdem bleibt der Write-Gate blockiert, weil kein sicherer row-scoped aktiver Editor fuer die Matrixzellen bewiesen wurde.
-
-Praktische Entscheidung:
-
-- Master Data, O2C, P2P, Journale, Buchungsvorschau und Buchung bleiben blockiert.
-- TARGET-073 und TARGET-073B bleiben als as-is Retry geparkt. TARGET-073B hat die Oberflaeche besser verstanden, aber keinen sicheren Editor bewiesen.
-- Es folgt kein VAT-Write-Gate aus TARGET-073B. Die Foundation-Entscheidung muss nun eine nicht wiederholende Route waehlen: VAT Setup bewusst als Foundation-Gap parken, eine andere standardnahe Setup-Route begruenden oder einen separaten UI-Discovery-Case mit neuer Hypothese definieren.
-- Page-314-/Page-472-Screenshots duerfen nur als Proof gelten, wenn sie die Zielseite, relevante Felder/Spalten und den aktiven Kontext sichtbar zeigen; Role Center, Suche/Tell-Me oder versteckter Text reichen nicht.
-
-Consultant-Korrektur nach TARGET-073B:
-
-- Der naechste Live-Versuch darf nicht nur ein technisch anderer Klick auf dieselbe Matrix sein. Er braucht vorher eine fachliche Routenentscheidung: manuelle UI, Konfigurationspaket/Import, Assisted Setup, API/AL oder bewusstes Parken.
-- Vor jedem neuen UI-Versuch muss der Lauf die BC-Oberflaeche wie ein Nutzer lesen: Hauptbereich, Seitentitel, aktive Page, FastTabs/Grid, FactBox, Command-Bar-Dropdowns, Tooltip/Accessible Name und sichtbarer Nachzustand gehoeren zusammen.
-- Page Inspection ist technische Wahrheit ueber Page und Tabelle, aber kein Buch- oder Schreibbeweis. Nach Page Inspection muss die Hauptoberflaeche erneut sichtbar sein, bevor der Screenshot als Page-Proof zaehlt.
-- Jeder weitere Blocker muss eine Lernnotiz erzeugen: was wurde falsch gelesen, welche neue Regel gilt, und welcher naechste Versuch ist wirklich anders.
-
-## Source-backed Route Decision fuer VAT und Posting Setup
-
-Microsoft Learn stuetzt die fachliche Struktur, aber nicht den konkreten Universaarl-Zustand: Posting Groups verbinden Buchungslogik mit Sachkonten, VAT Posting Setup kombiniert MwSt.-Geschaeftsgruppe, MwSt.-Produktgruppe, Satz, Berechnungsart und Konten. Microsoft beschreibt ausserdem Konfigurationspakete, Excel-Import und RapidStart als Standardwege, um strukturierte Daten in Business Central zu importieren und anzuwenden.
-
-Entscheidung fuer den naechsten Schritt:
-
-| Route | Bewertung fuer Universaarl | Entscheidung |
-| --- | --- | --- |
-| Manuelle UI auf Page 472 | Fachlich gut fuer Schulung und Feldverstaendnis, aber TARGET-071/TARGET-073/TARGET-073B beweisen keinen sicheren zeilen-/spaltengebundenen Editor. | Kein weiterer Write-Versuch ohne neue, sichtbare Editor-Hypothese. |
-| Konfigurationspaket / Excel-assisted Import | Standardnahe Projekt-Route fuer strukturierte Setupdaten; D19/D21 haben die Route bereits untersucht. Page 8615 war sichtbar, aber Tabelle 325 wurde nicht als sichere Paketzeile bewiesen; `U-VAT325-DISC` blieb Metadaten. D23/D23B parken die Route wegen unsicherem Cleanup. | Nicht naechster Schritt. Nur mit neuer Cleanup- oder Existing-Record-Hypothese wieder aufnehmen. |
-| Assisted Setup | Produktstandard fuer Grundsetup, aber aktuell kein Beweis, dass der Assistent die konkrete Universaarl-`INLAND`/`VAT19`-Matrix sauber erzeugt. | Nur als Discovery, kein Finish ohne eigenen Case. |
-| API/AL | Technisch moeglich fuer Automatisierung, aber fuer Buch, Schulung und Erstsetup zu indirekt, solange UI/Package-Route nicht verstanden ist. | Geparkt, nur mit explizitem Gate. |
-| Bewusst parken | Fachlich vertretbar, weil keine getestete Route die konkrete `INLAND`/`VAT19`-Matrix sicher schreibt und prueft. | Aktueller Sicherheitszustand aus TARGET-027D24: VAT-Matrix geparkt, keine VAT-Finalitaet, kein Preview, kein Posting. |
-
-Naechster konkreter Projektfortschritt ist daher kein Page-472-Write und keine Wiederholung der Konfigurationspaket-Discovery. TARGET-027D24 hat die VAT-Matrix bewusst geparkt; die spaetere Posting-Group-Kette darf nur aus ihrer aktuellen Evidence heraus fortgesetzt werden. Der Freeze ist fuer Foundation Readiness read-first/no-write aufgehoben. Bis zur naechsten ausdruecklichen Write-Gate-Entscheidung gibt es weiterhin keine Setupwerte, keine Master Data, keine Buchungsvorschau und keine Buchung.
 
 ## No-Write-Grenze aus TARGET-075
 
@@ -73,6 +39,16 @@ Naechster konkreter Projektfortschritt ist daher kein Page-472-Write und keine W
 - Produktbuchungsgruppen / Gen. Product Posting Groups was visible read-only.
 - MwSt.-Buchungsmatrix / VAT Posting Setup was visible read-only.
 
+## PWS-FF-006 Folgeproof: Kontenplan-Starterkonten
+
+- Quelle: playwright/projects/fibu-book5/evidence/pws-ff-006-chart-of-accounts-starter-accounts-readfirst/PWS-FF-006-result.json
+- Status: observed
+- Route: tell-me-search-kontenplan
+- Sichtbare Starterkonten: 1200, 1406, 1800, 3300, 3806, 4400, 5400
+- Fehlend oder unklar: keine
+- Schreibgrenze: keine Kontoanlage, keine Kontenaenderung, kein Setup, keine Stammdaten, keine Buchungsvorschau und keine Buchung.
+- Fachgrenze: Sichtbare Starterkonten sind noch kein vollstaendiger SKR04, keine Steuerberaterfreigabe und keine Posting Readiness.
+
 ## Nicht bewiesen
 
 - No complete SKR04 chart of accounts.
@@ -82,19 +58,12 @@ Naechster konkreter Projektfortschritt ist daher kein Page-472-Write und keine W
 - No master data readiness.
 - No document, Preview Posting, Posting or ledger trace.
 - Buchungsmatrix Einrichtung / General Posting Setup was not visible enough for accepted proof.
-- Starter account 1200 was not visible in compact chart evidence.
-- Starter account 1406 was not visible in compact chart evidence.
-- Starter account 1800 was not visible in compact chart evidence.
-- Starter account 3300 was not visible in compact chart evidence.
-- Starter account 3806 was not visible in compact chart evidence.
-- Starter account 4400 was not visible in compact chart evidence.
-- Starter account 5400 was not visible in compact chart evidence.
 
 ## Kontenplan
 
 - Status: observed
-- Sichtbare Starterkonten: keine
-- Fehlend oder unklar: 1200, 1406, 1800, 3300, 3806, 4400, 5400
+- Sichtbare Starterkonten: 1200, 1406, 1800, 3300, 3806, 4400, 5400
+- Fehlend oder unklar: keine
 - Buchgrenze: Use as beginner-facing chart visibility only, not as complete SKR04 or posting readiness proof.
 
 ## Setup-Kontext
@@ -104,42 +73,6 @@ Naechster konkreter Projektfortschritt ist daher kein Page-472-Write und keine W
 - Buchungsmatrix Einrichtung: rejected
 - USt-Buchungsmatrix Einrichtung: observed
 - Grenze: Use as setup-page visibility and dependency map only; do not claim setup correctness from read-only visibility.
-
-## PWS-FF-002 Folgeproof: Buchungsmatrix Einrichtung
-
-- Quelle: playwright/projects/fibu-book5/evidence/pws-ff-002-general-posting-setup-readfirst-recovery/PWS-FF-002-result.json
-- Status: blocked
-- Instanz/Company: playthru / UNIVERSAARL-DE
-- Route: direkte Page-314-URL, danach Tell-Me/Search-Fallback
-- Geaendert: nein
-- Nicht ausgefuehrt: Neu, Bearbeiten/Liste bearbeiten, Konten vorschlagen, Stammdaten, Draft, Buchungsvorschau, Buchung, API Shortcut
-- Screenshot-QA: rejected, weil der Screenshot das Rollencenter zeigt und nicht die Buchungsmatrix Einrichtung.
-- Ergebnis: Die Business-Central-Session und Company sind erreichbar, aber die aktuelle PWS-FF-002-Navigation/Capture-Route beweist die Buchungsmatrix nicht.
-- Blocker: Page 314 bleibt fuer Foundation Readiness ungeprueft; der naechste Versuch muss zuerst die Navigation auf die konkrete Setup-Seite beweisen, bevor Zeilen oder Kontospalten bewertet werden.
-- Naechste sinnvolle Route: enger UI-/Navigation-Recovery-Probe mit Seitentitel-/URL-/Text-Gate vor Screenshot-Akzeptanz. Keine Master Data und keine Setup-Writes.
-
-## PWS-FF-002B Recovery-Probe: Page-314-Navigation
-
-- Quelle: playwright/projects/fibu-book5/evidence/pws-ff-002b-page314-navigation-capture-recovery/PWS-FF-002B-result.json
-- Status: blocked
-- Instanz/Company: playthru / UNIVERSAARL-DE
-- Route: direkte Page-314-URL, danach Tell-Me/Search-Fallback mit scoped Search-Click
-- Geaendert: nein
-- Nicht ausgefuehrt: Neu, Bearbeiten/Liste bearbeiten, Konten vorschlagen, Stammdaten, Draft, Buchungsvorschau, Buchung, API Shortcut
-- Screenshot-QA: rejected, weil Screenshot und Text weiterhin das Rollencenter zeigen und nicht die Buchungsmatrix Einrichtung.
-- Ergebnis: Der Auth-/Instanz-/Company-Kontext funktioniert, aber die aktuelle Page-314-Navigation ist fuer Playwright nicht als Zielseite beweisbar.
-- Naechste Entscheidung: Nicht denselben Live-Weg wiederholen. Entweder Page 314 als Foundation-Gap parken und Master Data weiter blockieren oder eine wirklich neue Route begruenden, zum Beispiel ueber eine gezielte BC-URL-/Page-Route-Analyse statt weiterer Tell-Me-Varianten.
-
-## VAT-/USt-Folgeproofs
-
-- TARGET-027R/TARGET-027S: MwSt.-Produktbuchungsgruppen und MwSt.-Buchungsmatrix sind sichtbar; MwSt.-Geschaeftsbuchungsgruppen ist nur mit Route-Parity-Warnung belastbar.
-- TARGET-027B: Zielwerte wurden lokal entschieden, ohne BC zu schreiben: INLAND, VAT19, 19 Prozent, Normale MwSt., 3806 Umsatzsteuerkonto und 1406 Vorsteuerkonto.
-- TARGET-027C-RETRY: INLAND und VAT19 sind nach Reopen per Screenshot-QA sichtbar. Der Text-Extractor hat BC-Grid-Zellwerte teilweise nicht erfasst; deshalb ist Screenshot-QA hier der staerkere Nachweis.
-- TARGET-071: Page 472 wurde erreicht, aber der kontrollierte Write-Gate hat gestoppt, weil fuer die Zielzellen kein echter aktiver Editor erkannt wurde.
-- TARGET-073: Zusätzliche aktive-Editor-Probes ohne Zielwerteingabe blieben blockiert. Deshalb ist TARGET-073 als Wiederholung ohne neue Route-Hypothese nicht sinnvoll.
-- TARGET-073B: Die sichtbare Page-472-Hauptoberflaeche und Page Inspection fuer `VAT Posting Setup (472, List)` / Tabelle 325 sind bewiesen. Der Lauf hat `Liste bearbeiten` sichtbar aktiviert, aber kein Eingabe-Control fuer die Zielzellen gefunden und keine Zielwerte getippt. Deshalb bleibt VAT Posting Setup als Schreibroute blockiert.
-
-Grenze: Diese VAT-Evidence beweist noch keine korrekte deutsche USt-Berechnung. Es gibt keinen Preview-Posting-Nachweis, keine MwSt.-Posten, keine Sachposten und keine steuerliche Finalfreigabe.
 
 ## Foundation-Read-first-Folgeprobes
 
@@ -186,11 +119,7 @@ Erlaubte Anschlussklassifikationen:
 ## Naechste Projektoutputs
 
 - Den abgelehnten Nachweis zur Buchungsmatrix Einrichtung vor Master Data klaeren oder bewusst als Grenze akzeptieren.
-- PWS-FF-002 nicht als akzeptierten Buchungsmatrix-Nachweis verwenden; der Screenshot zeigt Rollencenter statt Page 314.
-- PWS-FF-002B nicht wiederholen, solange keine neue Route-Hypothese vorliegt; direkte URL und scoped Search-Click sind als aktueller Weg blockiert.
-- TARGET-073 und TARGET-073B nicht als as-is Retry wiederholen; TARGET-073B ist konsumierte blockierte No-Write-Evidence.
-- Vor einem neuen VAT-/Posting-Setup-Schreibversuch TARGET-027D19 bis TARGET-027D24 konsumieren: Page-472-UI-Write und Konfigurationspaket-Route sind geparkt. Eine neue VAT-Route braucht eine wirklich neue UI-, Assisted-Setup-, Existing-Record-, Cleanup- oder Import-Hypothese.
-- Starterkonten erneut sichtbar pruefen, wenn der Kontenplan Setup- oder Buchaussagen tragen soll.
+- PWS-FF-006 als akzeptierten Kontenplan-Starterkonten-Nachweis konsumieren; keine weitere Starterkonten-Wiederholung ohne neuen Claim.
 - Master Data, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt, bis die Foundation-Grenzen geklaert sind.
 - Classify master-data readiness only after chart/setup context is accepted.
 - Use accepted screenshots as draft handbook/training evidence, not final compliance proof.
@@ -202,7 +131,8 @@ Erlaubte Anschlussklassifikationen:
 - Screenshot: playwright/projects/fibu-book5/evidence/target-075-chart-of-accounts-reopen-and-setup-consistency-check/target-075-003-general-product-posting-groups.png
 - Screenshot: playwright/projects/fibu-book5/evidence/target-075-chart-of-accounts-reopen-and-setup-consistency-check/target-075-004-general-posting-setup.png
 - Screenshot: playwright/projects/fibu-book5/evidence/target-075-chart-of-accounts-reopen-and-setup-consistency-check/target-075-005-vat-posting-setup.png
+- Screenshot: playwright/projects/fibu-book5/evidence/pws-ff-006-chart-of-accounts-starter-accounts-readfirst/pws-ff-006-010-chart-of-accounts-starter-accounts.png
 
 ## Naechster Case
 
-- `PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST`: Kontenplan read-only oeffnen und die Sichtbarkeit der Starterkonten `1200`, `1406`, `1800`, `3300`, `3806`, `4400` und `5400` pruefen. Keine Kontoanlage, keine Kontenaenderung, keine Setupwerte, keine Master Data, keine Buchungsvorschau und keine Buchung.
+- `PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION`: Buchungsmatrix Einrichtung als naechsten Foundation-Gap lokal entscheiden; PWS-FF-006 nicht wiederholen und keine Page-314-Route ohne neue Hypothese live starten.

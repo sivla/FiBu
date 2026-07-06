@@ -22,6 +22,9 @@ const missingHandoffInputPath = path.join(tempDir, 'TARGET-075-missing-handoff-r
 const missingHandoffOutputPath = path.join(tempDir, 'FOUNDATION-READINESS-MISSING-HANDOFF.md');
 const missingLiveEvidenceInputPath = path.join(tempDir, 'TARGET-075-missing-live-evidence-result.json');
 const missingLiveEvidenceOutputPath = path.join(tempDir, 'FOUNDATION-READINESS-MISSING-LIVE-EVIDENCE.md');
+const missingChartStarterAccountsPath = path.join(tempDir, 'missing-pws-ff-006-result.json');
+const chartStarterAccountsInputPath = path.join(tempDir, 'PWS-FF-006-result.json');
+const chartStarterAccountsOutputPath = path.join(tempDir, 'FOUNDATION-READINESS-WITH-PWS-FF-006.md');
 
 const fixture = {
   schemaVersion: 1,
@@ -311,6 +314,56 @@ fs.writeFileSync(
   'utf8'
 );
 
+fs.writeFileSync(
+  chartStarterAccountsInputPath,
+  `${JSON.stringify(
+    {
+      schemaVersion: 1,
+      caseId: 'PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST',
+      resultStatus: 'observed',
+      instance: 'playthru',
+      company: 'UNIVERSAARL-DE',
+      source: 'playwright-readonly-foundation-followup',
+      setupChanged: false,
+      masterDataChanged: false,
+      draftCreated: false,
+      previewPosting: false,
+      posted: false,
+      apiShortcut: false,
+      flags: {
+        noWrite: true,
+        noPost: true,
+        noPreview: true,
+        noDraft: true,
+        noSetupChange: true,
+        noMasterDataChange: true,
+        noCompanySwitch: true,
+        noApiShortcut: true
+      },
+      routeUsed: 'Tell-Me Suche nach Kontenplan',
+      accountFindings: [
+        { no: '1200', visible: true },
+        { no: '1406', visible: true },
+        { no: '1800', visible: true },
+        { no: '3300', visible: true },
+        { no: '3806', visible: true },
+        { no: '4400', visible: true },
+        { no: '5400', visible: true }
+      ],
+      screenshots: ['pws-ff-006-chart-of-accounts-starter-accounts.png'],
+      setupChangeAttempted: false,
+      payment: false,
+      proved: ['Starter accounts 1200, 1406, 1800, 3300, 3806, 4400 and 5400 were visible read-only.'],
+      notProved: ['No complete SKR04 chart of accounts was proven.'],
+      blockedBy: [],
+      warnings: []
+    },
+    null,
+    2
+  )}\n`,
+  'utf8'
+);
+
 const missingAuthTargetFixture = JSON.parse(JSON.stringify(fixture));
 delete missingAuthTargetFixture.authGate.authTarget;
 fs.writeFileSync(missingAuthTargetInputPath, `${JSON.stringify(missingAuthTargetFixture, null, 2)}\n`, 'utf8');
@@ -354,7 +407,10 @@ const missingScreenshotMetadataOutputPath = path.join(tempDir, 'FOUNDATION-READI
 fs.writeFileSync(missingScreenshotMetadataInputPath, `${JSON.stringify(missingScreenshotMetadataFixture, null, 2)}\n`, 'utf8');
 
 function run(args) {
-  const result = spawnSync(process.execPath, [scriptPath, ...args], {
+  const scopedArgs = args.some((arg) => arg.startsWith('--chart-input='))
+    ? args
+    : [...args, `--chart-input=${missingChartStarterAccountsPath}`];
+  const result = spawnSync(process.execPath, [scriptPath, ...scopedArgs], {
     cwd: root,
     encoding: 'utf8',
     maxBuffer: 5 * 1024 * 1024
@@ -382,6 +438,34 @@ const write = run([`--input=${inputPath}`, `--output=${outputPath}`, '--write'])
 if (write.status !== 0) errors.push(`write mode exited ${write.status}: ${write.stderr || write.stdout}`);
 if (write.parsed?.wroteFile !== true) errors.push('write mode should report wroteFile=true.');
 if (!fs.existsSync(outputPath)) errors.push('write mode did not create FOUNDATION-READINESS-DECISION.md.');
+
+const chartStarterWrite = run([
+  `--input=${inputPath}`,
+  `--output=${chartStarterAccountsOutputPath}`,
+  `--chart-input=${chartStarterAccountsInputPath}`,
+  '--write'
+]);
+
+if (chartStarterWrite.status !== 0) {
+  errors.push(`chart starter account write mode exited ${chartStarterWrite.status}: ${chartStarterWrite.stderr || chartStarterWrite.stdout}`);
+}
+if (chartStarterWrite.parsed?.chartStarterAccountsConsumed !== true) {
+  errors.push('chart starter account fixture should be consumed.');
+}
+const chartStarterOutput = fs.existsSync(chartStarterAccountsOutputPath)
+  ? fs.readFileSync(chartStarterAccountsOutputPath, 'utf8')
+  : '';
+for (const phrase of [
+  'PWS-FF-006 Folgeproof: Kontenplan-Starterkonten',
+  'Sichtbare Starterkonten: 1200, 1406, 1800, 3300, 3806, 4400, 5400',
+  'Fehlend oder unklar: keine',
+  'PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION'
+]) {
+  if (!chartStarterOutput.includes(phrase)) errors.push(`chart starter output is missing phrase: ${phrase}`);
+}
+if (chartStarterOutput.includes('Starter account 3806 was not visible in compact chart evidence.')) {
+  errors.push('chart starter output must not keep old missing-starter-account limits for 3806.');
+}
 
 const blockedWrite = run([`--input=${blockedInputPath}`, `--output=${blockedOutputPath}`, '--write']);
 
