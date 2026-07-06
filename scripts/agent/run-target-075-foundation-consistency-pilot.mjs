@@ -237,6 +237,7 @@ if (checkOnly) {
         authDoctor: {
           decision: authDoctorStatus.decision,
           canRunBusinessCentralWorkflows: authDoctorStatus.canRunBusinessCentralWorkflows,
+          authTarget: authDoctorStatus.authTarget,
           liveGate: authDoctorStatus.liveGate,
           nextSafeAction: authDoctorStatus.nextSafeAction
         },

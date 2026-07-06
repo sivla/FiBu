@@ -189,6 +189,7 @@ const output = {
         authExpiresInHours: target075SafeCheck.authExpiresInHours,
         authWarnExpiresInHours: target075SafeCheck.authWarnExpiresInHours,
         authWarnings: target075SafeCheck.authWarnings ?? [],
+        authTarget: target075SafeCheck.authDoctor?.authTarget ?? null,
         blockedBy: target075SafeCheck.blockedBy
       }
     : null,
@@ -208,6 +209,7 @@ const output = {
         decision: authDoctor.decision,
         canRunBusinessCentralWorkflows: authDoctor.canRunBusinessCentralWorkflows,
         operatorActionRequired: authDoctor.operatorActionRequired,
+        authTarget: authDoctor.authTarget ?? null,
         liveGate: authDoctor.liveGate,
         nextSafeAction: authDoctor.nextSafeAction
       }
