@@ -147,6 +147,10 @@ const result = {
   proposedPatches,
   blockedBy,
   requiresReview: Boolean(normalized.requiresReview),
+  authGate: normalized.authGate ?? null,
+  foundationReadinessInput: normalized.foundationReadinessInput ?? null,
+  nextStepDecision: normalized.nextStepDecision ?? null,
+  nextCase: normalized.nextCase ?? '',
   reason: canWrite
     ? writeMode
       ? 'State patches were written because the normalized result was marked safe to finalize.'
