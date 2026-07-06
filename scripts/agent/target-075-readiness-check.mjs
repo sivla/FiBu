@@ -42,6 +42,26 @@ function includesAll(values, required) {
   return required.filter((value) => !set.has(value));
 }
 
+function asArray(value) {
+  return Array.isArray(value) ? value : [];
+}
+
+function isTextEvidencePath(relativePath) {
+  return ['.json', '.md', '.txt'].includes(path.extname(relativePath).toLowerCase());
+}
+
+const forbiddenEvidencePatterns = [
+  { id: 'access-token', re: /access[_-]?token/i },
+  { id: 'refresh-token', re: /refresh[_-]?token/i },
+  { id: 'id-token', re: /id[_-]?token/i },
+  { id: 'client-secret', re: /client[_-]?secret/i },
+  { id: 'authorization-bearer', re: /authorization\s*:\s*bearer/i },
+  { id: 'cookie-header', re: /\b(set-cookie|cookie)\s*:/i },
+  { id: 'aad-tenant-id', re: /aadTenantId/i },
+  { id: 'client-id', re: /clientId/i },
+  { id: 'user-principal-name', re: /upn:/i }
+];
+
 const errors = [];
 const warnings = [];
 
@@ -576,6 +596,20 @@ if (target075Result) {
   }
   if (target075Result.nextCase !== 'FOUNDATION-READINESS-DECISION') {
     errors.push(`${target075ResultPath}: nextCase must be FOUNDATION-READINESS-DECISION`);
+  }
+
+  const textEvidenceRefs = Array.from(new Set([target075ResultPath, ...asArray(target075Result.evidenceRefs)]));
+  for (const evidenceFile of textEvidenceRefs.filter(isTextEvidencePath)) {
+    if (!exists(evidenceFile)) {
+      errors.push(`${target075ResultPath}: text evidence file is missing: ${evidenceFile}`);
+      continue;
+    }
+    const evidenceText = readText(evidenceFile);
+    for (const pattern of forbiddenEvidencePatterns) {
+      if (pattern.re.test(evidenceText)) {
+        errors.push(`${evidenceFile}: text evidence contains forbidden auth/secret signal ${pattern.id}`);
+      }
+    }
   }
 }
 
