@@ -118,6 +118,8 @@ const output = {
   caseId: 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK',
   authMinExpiresInHours: minAuthExpiresInHours,
   canResumeAfterFreezeLift: localResumeReady,
+  canResumeAfterFreezeLiftMeaning:
+    'local-readiness-only; Business Central/Playwright execution still requires the active live gate to clear',
   canRunNow: localResumeReady && liveGateAllowsNow,
   freezeActive,
   requiresFreezeLift: freezeActive,
