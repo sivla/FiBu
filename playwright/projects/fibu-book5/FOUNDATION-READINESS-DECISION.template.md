@@ -33,19 +33,23 @@ Aktive Zielwelt:
 
 | Bereich | Ergebnis | Grenze |
 | --- | --- | --- |
-| Instanz und Company | `pending` | Nur `playthru / UNIVERSAARL-DE` ist gueltig. |
+| Instanz und Company | `pending` | Nur `playthru / UNIVERSAARL-DE` mit Auth-Zielnachweis aus aktuellem State ist gueltig. |
 | Kontenplan / Sachkonten | `pending` | Sichtbarkeit ist noch keine SKR04-Vollstaendigkeit. |
+| Geschaeftsbuchungsgruppen | `pending` | Sichtbarkeit ist noch keine Buchungsfaehigkeit. |
+| Produktbuchungsgruppen | `pending` | Sichtbarkeit ist noch keine Buchungsfaehigkeit. |
 | General Posting Setup | `pending` | Sichtbarkeit ist noch keine Buchungsfaehigkeit. |
 | VAT Posting Setup | `pending` | Keine deutsche Steuer- oder Compliance-Finalbehauptung. |
 | Dimensionskontext | `pending` | Kein Reporting- oder Postenclaim ohne spaeteren Prozessbeweis. |
-| Screenshot-QA | `pending` | Screenshot muss Seite, Company und relevante Felder zeigen. |
+| Screenshot-QA | `pending` | Alle TARGET-075 Foundation-Pages brauchen beobachtete Page-Evidence, Screenshot und Screenshot-Metadaten. |
 
 ## Master-Data-Gate
 
 Master Data darf nach dieser Entscheidung nur als naechster Block vorbereitet werden, wenn TARGET-075 mindestens zeigt:
 
 - `playthru / UNIVERSAARL-DE` ist eindeutig aktiv.
-- Foundation-Seiten sind read-first erreichbar.
+- Das Auth-Ziel wurde aus dem aktuellen State auf `playthru / UNIVERSAARL-DE` aufgebaut.
+- Kontenplan, Geschaeftsbuchungsgruppen, Produktbuchungsgruppen, General Posting Setup und VAT Posting Setup haben beobachtete Page-Evidence.
+- Jede dieser Foundation-Pages hat Screenshot und Screenshot-Metadaten.
 - Keine Setupwerte, Stammdaten, Belege, Buchungsvorschau, Buchung, Zahlung oder API-Shortcuts wurden ausgefuehrt.
 - Offene Foundation-Luecken sind benannt und nicht als erledigt umgedeutet.
 
