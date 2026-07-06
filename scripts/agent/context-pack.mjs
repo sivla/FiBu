@@ -21,7 +21,7 @@ function readJsonIfExists(path) {
   return readJson(path);
 }
 
-function buildAuthGate(current, activeCase) {
+function buildAuthGate(current, activeCase, liveBlocked) {
   const joinedActions = [
     ...(activeCase.allowedActions ?? []),
     ...(current.allowedActions ?? []),
@@ -84,7 +84,7 @@ function buildAuthGate(current, activeCase) {
   return {
     requiresAuth: authRelevant,
     canRunBusinessCentralWorkflows:
-      resolutionCanUseStoredAuth || latestDoctor.canRunBusinessCentralWorkflows === true,
+      !liveBlocked && (resolutionCanUseStoredAuth || latestDoctor.canRunBusinessCentralWorkflows === true),
     operatorActionRequired,
     decision: resolutionCanUseStoredAuth
       ? 'stored-auth-usable-run-readonly-or-gated-target-tests'
@@ -184,7 +184,29 @@ const bookScreenshotValues = Object.values(bookScreenshots);
 const openProofs = bookScreenshotValues.filter((value) => value === 'open').length;
 const availableProofs = bookScreenshotValues.filter((value) =>
   typeof value === 'string' && value.includes('available')).length;
-const authGate = buildAuthGate(current, activeCase);
+const freezeActive =
+  current.freezeStatus?.status === 'active' ||
+  current.activeArea === 'project-improvement-freeze' ||
+  current.mode === 'project-improvement-freeze';
+const liveBlocked =
+  freezeActive ||
+  new Set([...(current.forbiddenActions ?? []), ...(activeCase.forbiddenActions ?? [])]).has('open-business-central-live');
+const liveGate = {
+  businessCentralLiveAllowed: !liveBlocked,
+  freezeActive,
+  blockedBy: [
+    ...(freezeActive ? ['improvement-freeze-active'] : []),
+    ...(
+      new Set([...(current.forbiddenActions ?? []), ...(activeCase.forbiddenActions ?? [])]).has('open-business-central-live')
+        ? ['open-business-central-live-forbidden']
+        : []
+    ),
+  ],
+  parkedCase: current.freezeStatus?.frozenLiveCase,
+  resumeCandidate: current.freezeStatus?.resumeCandidateAfterFreeze ?? current.nextCase,
+  nextLiveType: current.implementationOperatingSystem?.currentLiveBoundary?.resumePilotMode,
+};
+const authGate = buildAuthGate(current, activeCase, liveBlocked);
 
 const contextPack = {
   schemaVersion: 1,
@@ -226,6 +248,7 @@ const contextPack = {
   forbiddenActions: firstItems(activeCase.forbiddenActions ?? current.forbiddenActions, 16),
   acceptanceCriteria: firstItems(activeCase.acceptanceCriteria, 6),
   hardExclusions: coverage.hardExclusions ?? {},
+  liveGate,
   ...(authGate ? { authGate } : {}),
   nextStep: current.nextStep ?? lastRun.nextStep,
 };
