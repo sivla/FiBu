@@ -155,6 +155,9 @@ if (guardedRunner) {
   if (!guardedRunner.includes('--live-approved')) {
     errors.push(`${guardedRunnerPath}: guarded runner must require --live-approved for live execution while freeze is active`);
   }
+  if (!guardedRunner.includes('--check')) {
+    errors.push(`${guardedRunnerPath}: guarded runner must offer --check for safe readiness/auth validation without live execution`);
+  }
 }
 
 if (readiness) {

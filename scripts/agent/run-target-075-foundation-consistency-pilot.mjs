@@ -6,6 +6,7 @@ const specPath =
 const rawArgs = process.argv.slice(2);
 const liveApproved = rawArgs.includes('--live-approved');
 const listOnly = rawArgs.includes('--list');
+const checkOnly = rawArgs.includes('--check');
 const help = rawArgs.includes('--help') || rawArgs.includes('-h');
 
 function commandName(base) {
@@ -49,10 +50,12 @@ if (help) {
   console.log(`TARGET-075 guarded runner
 
 Usage:
+  node scripts/agent/run-target-075-foundation-consistency-pilot.mjs --check
   node scripts/agent/run-target-075-foundation-consistency-pilot.mjs [--list]
   node scripts/agent/run-target-075-foundation-consistency-pilot.mjs --live-approved
 
 Default behavior refuses to open Business Central while the improvement freeze is active.
+Use --check to validate readiness, freeze status and stored auth without opening Business Central.
 Use --live-approved only after explicit freeze lift or active-case approval for TARGET-075.
 The runner checks stored Playwright auth before any live execution.`);
   process.exit(0);
@@ -82,7 +85,7 @@ try {
   process.exit(1);
 }
 
-if (freezeStatus.freezeActive && !liveApproved) {
+if (freezeStatus.freezeActive && !liveApproved && !checkOnly) {
   console.error(
     JSON.stringify(
       {
@@ -141,6 +144,37 @@ if (authStatus.canUseStoredAuth !== true) {
     )
   );
   process.exit(3);
+}
+
+if (checkOnly) {
+  console.log(
+    JSON.stringify(
+      {
+        schemaVersion: 1,
+        purpose: 'target-075-runner-safe-check',
+        targetCase: 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK',
+        canResumeAfterFreezeLift: true,
+        canRunNow: freezeStatus.freezeActive !== true,
+        freezeActive: freezeStatus.freezeActive === true,
+        requiresFreezeLift: freezeStatus.freezeActive === true,
+        businessCentralOpened: false,
+        playwrightLiveRunExecuted: false,
+        authStateChecked: true,
+        authSecretsPrinted: false,
+        expectedInstance: authStatus.expectedInstance ?? 'playthru',
+        expectedCompany: authStatus.expectedCompany ?? 'UNIVERSAARL-DE',
+        authAgeHours: authStatus.ageHours,
+        blockedBy: freezeStatus.freezeActive === true ? ['improvement-freeze-active'] : [],
+        nextStep:
+          freezeStatus.freezeActive === true
+            ? 'Stored auth and local readiness are usable, but the freeze is still active. Do not open Business Central until explicit freeze lift or active-case approval.'
+            : 'Stored auth and local readiness are usable. Run TARGET-075 only with live shell/context validation.'
+      },
+      null,
+      2
+    )
+  );
+  process.exit(0);
 }
 
 const passthroughArgs = rawArgs.filter((arg) => arg !== '--live-approved');
