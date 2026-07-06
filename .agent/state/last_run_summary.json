@@ -1,41 +1,52 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION",
-  "caseId": "PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION",
-  "status": "observed-local-decision",
+  "runId": "PWS-FF-005-DIMENSIONS-READFIRST",
+  "caseId": "PWS-FF-005-DIMENSIONS-READFIRST",
+  "status": "partially-completed",
   "completedAt": "2026-07-06T00:00:00.000+02:00",
   "mode": "universaarl-foundation-readfirst",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "PWS-FF-002C consumed the Page 314 route evidence. PWS-FF-002/PWS-FF-002B direct/search routes are rejected, TARGET-057 Page 314/Table 252/Purch. Account field truth is accepted as technical Foundation evidence, and TARGET-058/TARGET-059 park the 5400 persistence route. General Posting Setup remains partial-not-posting-ready.",
-  "resultPath": "playwright/projects/fibu-book5/evidence/pws-ff-002c-general-posting-setup-route-decision/PWS-FF-002C-result.json",
+  "summary": "PWS-FF-005 ran read-only in Business Central. Stored auth and live gate were valid. The Dimensions list was accepted through Tell-Me and screenshot QA proves CHANNEL, COSTCENTER and PRODUCTLINE in playthru / UNIVERSAARL-DE. Direct Page 537 and Tell-Me Dimensionswerte did not open the target Dimension Values page; the search route shows Intercompany Dimension Value Assignment instead. General Ledger Setup dimension context was not accepted. No setup, master data, draft, Preview Posting, Posting, API shortcut or company switch was executed.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/pws-ff-005-dimensions-readfirst/PWS-FF-005-result.json",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/pws-ff-002c-general-posting-setup-route-decision/PWS-FF-002C-result.json",
-    "playwright/projects/fibu-book5/evidence/pws-ff-002c-general-posting-setup-route-decision/README.md",
-    "playwright/projects/fibu-book5/evidence/pws-ff-002-general-posting-setup-readfirst-recovery/PWS-FF-002-result.json",
-    "playwright/projects/fibu-book5/evidence/pws-ff-002b-page314-navigation-capture-recovery/PWS-FF-002B-result.json",
-    "playwright/projects/fibu-book5/evidence/target-057-general-posting-setup-purchase-account-pageinspection-readonly-gate/TARGET-057-result.json",
-    "playwright/projects/fibu-book5/evidence/target-058-general-posting-setup-purchase-account-controlled-write-gate/TARGET-058-result.json",
-    "playwright/projects/fibu-book5/evidence/target-059-general-posting-setup-purchase-account-route-escalation-or-park/TARGET-059-result.json"
+    "playwright/projects/fibu-book5/evidence/pws-ff-005-dimensions-readfirst/PWS-FF-005-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-ff-005-dimensions-readfirst/README.md",
+    "playwright/projects/fibu-book5/evidence/pws-ff-005-dimensions-readfirst/pws-ff-005-001-dimensions-list.png",
+    "playwright/projects/fibu-book5/evidence/pws-ff-005-dimensions-readfirst/pws-ff-005-002-productline-values.png",
+    "playwright/projects/fibu-book5/evidence/pws-ff-005-dimensions-readfirst/pws-ff-005-003-costcenter-values.png",
+    "playwright/projects/fibu-book5/evidence/pws-ff-005-dimensions-readfirst/pws-ff-005-004-channel-values.png",
+    "playwright/projects/fibu-book5/evidence/pws-ff-005-dimensions-readfirst/pws-ff-005-005-general-ledger-dimension-context.png"
   ],
-  "screenshots": [],
+  "screenshots": [
+    "playwright/projects/fibu-book5/evidence/pws-ff-005-dimensions-readfirst/pws-ff-005-001-dimensions-list.png",
+    "playwright/projects/fibu-book5/evidence/pws-ff-005-dimensions-readfirst/pws-ff-005-002-productline-values.png",
+    "playwright/projects/fibu-book5/evidence/pws-ff-005-dimensions-readfirst/pws-ff-005-003-costcenter-values.png",
+    "playwright/projects/fibu-book5/evidence/pws-ff-005-dimensions-readfirst/pws-ff-005-004-channel-values.png",
+    "playwright/projects/fibu-book5/evidence/pws-ff-005-dimensions-readfirst/pws-ff-005-005-general-ledger-dimension-context.png"
+  ],
   "actionsTaken": [
-    "Reviewed Foundation Readiness and Page 314 route evidence locally.",
-    "Classified Page 314 General Posting Setup as partial-not-posting-ready.",
-    "Rejected repeating PWS-FF-002/PWS-FF-002B and TARGET-058 routes without a materially new hypothesis.",
-    "Selected PWS-FF-005 Dimensions read-first as the next safe Foundation lane."
+    "Checked overnight Business Central auth and confirmed stored auth is usable for playthru / UNIVERSAARL-DE.",
+    "Added a guarded PWS-FF-005 runner and package script.",
+    "Added a Universaarl read-only PWS-FF-005 Playwright spec with screenshot QA and Grid value extraction.",
+    "Ran PWS-FF-005 read-only in Business Central.",
+    "Visually inspected screenshot QA and rejected Role Center/search-overlay false positives.",
+    "Created PWS-FF-005B as the next narrow related-action route recovery case."
   ],
   "actionsNotTaken": [
-    "No Business Central opened.",
-    "No Playwright live run executed.",
     "No setup changed.",
+    "No Dimension or Dimension Value created or edited.",
+    "No Global Dimension Code changed.",
+    "No Default Dimension assigned.",
     "No master data created.",
     "No document or draft created.",
     "No Preview Posting.",
     "No Posting.",
+    "No payment.",
     "No API shortcut.",
-    "No company switch."
+    "No company switch.",
+    "No book claim promoted to final."
   ],
   "setupChanged": false,
   "setupChangeAttempted": false,
@@ -46,69 +57,72 @@
   "payment": false,
   "apiShortcut": false,
   "proved": [
-    "The active Page 314 issue is no longer a generic navigation mystery; it is a partial setup and 5400 persistence boundary.",
-    "PWS-FF-002/PWS-FF-002B are blocked route evidence, not accepted Page 314 proof.",
-    "TARGET-057 is the stronger accepted Page 314 field-truth source.",
-    "Master Data and posting remain blocked by Foundation boundaries."
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Dimensions list context is visible read-only.",
+    "CHANNEL, COSTCENTER and PRODUCTLINE are visible in the Dimensions list screenshot.",
+    "Direct Page 536 can fall back to Role Center; Tell-Me is the accepted read-only route for Dimensionen.",
+    "Search for Dimensionswerte can open the wrong page family, so it is not accepted as Dimension Values proof."
   ],
   "notProved": [
-    "No Wareneinkaufskonto / Purch. Account 5400 persistence.",
-    "No complete General Posting Setup row.",
-    "No VAT Posting Setup correctness.",
-    "No Master Data readiness.",
-    "No Preview Posting, Posting or ledger trace."
+    "Dimension Values for PRODUCTLINE, COSTCENTER or CHANNEL.",
+    "General Ledger Setup dimension fields.",
+    "Global Dimension Code 1/2 persistence.",
+    "Default Dimensions for customers, vendors, items or accounts.",
+    "Reporting readiness.",
+    "Master Data readiness.",
+    "Preview Posting or Posting readiness."
   ],
   "blockedBy": [
-    "General Posting Setup remains partial-not-posting-ready until a materially different 5400 route exists or the limitation is consciously accepted for a narrow learning-only path."
+    "Dimension Values related-action route was not yet proven.",
+    "General Ledger Setup route was not accepted.",
+    "Master Data remains parked until Foundation Readiness consumes or parks the dimension boundary."
   ],
   "warnings": [
-    "Do not claim posting readiness from partial Page 314 evidence.",
-    "Do not create a parallel phantom VAT case while the existing TARGET-027/TARGET-071/TARGET-073 branch is authoritative."
+    "Screenshot QA must reject Role Center, search overlay and Intercompany Dimension Value Assignment as Dimension Values proof.",
+    "Do not treat visible dimensions as reporting or posting readiness."
   ],
-  "nextCase": "PWS-FF-005-DIMENSIONS-READFIRST",
-  "nextStep": "Run PWS-FF-005 as read-first only: confirm playthru / UNIVERSAARL-DE, inspect Dimensions, Dimension Values and General Ledger Setup dimension context if safely reachable, capture screenshot QA and result JSON, and do not change setup or default dimensions.",
+  "nextCase": "PWS-FF-005B-DIMENSION-VALUES-RELATED-ACTION-ROUTE-RECOVERY",
+  "nextStep": "Run PWS-FF-005B read-only: open accepted Dimensionen list, select existing PRODUCTLINE/COSTCENTER/CHANNEL rows, use Dimension > Dimensionswerte if safely visible, capture screenshot QA, and do not create or edit Dimension Values.",
   "nextStepDecision": {
-    "currentCase": "PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION",
-    "plannedNextCaseBeforeReview": "PWS-FF-004-VAT-SETUP-BOUNDARY",
-    "lastEvidenceSummary": "Starter accounts are consumed by PWS-FF-006. General Posting Setup is partial: Page 314 field truth exists, but 5400 persistence is parked. VAT write/editor routes are already separately parked.",
+    "currentCase": "PWS-FF-005-DIMENSIONS-READFIRST",
+    "plannedNextCaseBeforeReview": "FOUNDATION-READINESS-DECISION-REFRESH-AFTER-DIMENSIONS",
+    "lastEvidenceSummary": "PWS-FF-005 proved the Dimensions list but not Dimension Values or General Ledger Setup dimension context.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "PWS-FF-004 would duplicate an existing VAT evidence branch. Dimensions read-first is the next independent Foundation lane with useful reporting/training/book value and no write requirement.",
+    "reason": "Refreshing Foundation Readiness now would only record a known route blocker. The more useful next step is a narrow Dimension Values related-action recovery before deciding Master Data readiness.",
     "lookaheadReviewed": [
       {
-        "caseId": "PWS-FF-005-DIMENSIONS-READFIRST",
+        "caseId": "PWS-FF-005B-DIMENSION-VALUES-RELATED-ACTION-ROUTE-RECOVERY",
         "status": "ready-next",
-        "reason": "No-write Foundation lane; supports reporting, UAT and training context."
+        "reason": "It is a materially new route based on the accepted Dimensionen list."
       },
       {
-        "caseId": "PWS-MD-001-CUSTOMER-CONTEXT-READFIRST",
-        "status": "needs-setup-first",
-        "reason": "Master Data remains parked until Foundation readiness accepts or resolves setup gaps."
+        "caseId": "FOUNDATION-READINESS-DECISION-REFRESH-AFTER-DIMENSIONS",
+        "status": "ready-after-current",
+        "reason": "Useful after Dimension Values route is proven or deliberately parked."
       },
       {
         "caseId": "PWS-FF-001-NUMBER-SERIES-READFIRST",
         "status": "ready-after-current",
-        "reason": "Number Series may follow if Dimensions read-first still leaves Master Data blocked."
+        "reason": "Independent Foundation lane after current dimension boundary."
       },
       {
-        "caseId": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
-        "status": "obsolete",
-        "reason": "Already executed and parked as no-persist route; do not repeat without new hypothesis."
+        "caseId": "PWS-MD-001-CUSTOMER-CONTEXT-READFIRST",
+        "status": "needs-setup-first",
+        "reason": "Master Data remains parked until Foundation Readiness classifies dimensions, VAT, posting groups and number series."
       }
     ],
     "queueChangesMade": [
-      "PWS-FF-002C result created.",
-      "PWS-FF-005-DIMENSIONS-READFIRST created and selected as active next case.",
-      "PWS-FF-004 demoted as phantom parallel VAT case."
+      "Created PWS-FF-005B and selected it as active next case."
     ],
-    "selectedNextCase": "PWS-FF-005-DIMENSIONS-READFIRST",
-    "whySelectedNextCaseIsBest": "It moves Foundation forward without pretending Page 314 or VAT write readiness and gives the book/training track useful reporting context.",
+    "selectedNextCase": "PWS-FF-005B-DIMENSION-VALUES-RELATED-ACTION-ROUTE-RECOVERY",
+    "whySelectedNextCaseIsBest": "It solves the exact UI-understanding gap found by screenshot QA without writing setup or data.",
     "risksBeforeNextCase": [
-      "Do not change Global Dimensions or Default Dimensions in a read-first run.",
-      "Do not treat visible dimensions as reporting readiness until setup and usage are proven."
+      "Do not click Neu, Liste bearbeiten, Loeschen or setup-changing actions.",
+      "Do not accept Intercompany Dimension Value Assignment as target proof.",
+      "Do not create or edit Dimension Values in route recovery."
     ],
     "requiredPreparation": [
-      "Use screenshot QA for page title, company context and visible dimension values.",
-      "Stop if the route opens a wizard, edit dialog or unsafe setup action."
+      "Use screenshot QA for selected row, Dimension action group and resulting page identity."
     ]
   },
   "updatedAt": "2026-07-06T00:00:00.000+02:00"

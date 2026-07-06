@@ -19,7 +19,9 @@
 
 Master Data bleibt geparkt, bis die offenen Foundation-Grenzen geprueft oder bewusst akzeptiert sind.
 
-PWS-FF-002C hat die Buchungsmatrix Einrichtung neu eingeordnet: Page 314 ist nicht als generischer Navigationsblocker zu behandeln. TARGET-057 ist der staerkere Page-314-/Table-252-/Feldwahrheitsnachweis; TARGET-058/TARGET-059 parken aber den persistierten Wert `Wareneinkaufskonto 5400`. Die Buchungsmatrix bleibt deshalb partiell und nicht posting-ready. Der naechste sichere Fortschritt ist `PWS-FF-005-DIMENSIONS-READFIRST`, nicht ein weiterer Page-314- oder VAT-Schreibversuch.
+PWS-FF-002C hat die Buchungsmatrix Einrichtung neu eingeordnet: Page 314 ist nicht als generischer Navigationsblocker zu behandeln. TARGET-057 ist der staerkere Page-314-/Table-252-/Feldwahrheitsnachweis; TARGET-058/TARGET-059 parken aber den persistierten Wert `Wareneinkaufskonto 5400`. Die Buchungsmatrix bleibt deshalb partiell und nicht posting-ready.
+
+PWS-FF-005 hat die Dimensionsliste als read-only Kontext in `playthru / UNIVERSAARL-DE` nachgewiesen: `CHANNEL`, `COSTCENTER` und `PRODUCTLINE` sind im Screenshot sichtbar. Dimensionswerte und der Dimensionskontext der Finanzbuchhaltung Einrichtung sind aber noch nicht als Zielseiten akzeptiert. Der naechste sichere Fortschritt ist `PWS-FF-005B-DIMENSION-VALUES-RELATED-ACTION-ROUTE-RECOVERY`, nicht Master Data, globale Dimensionen oder ein weiterer VAT-Schreibversuch.
 
 ## No-Write-Grenze aus TARGET-075
 
@@ -86,6 +88,16 @@ PWS-FF-002C hat die Buchungsmatrix Einrichtung neu eingeordnet: Page 314 ist nic
 - Offene Grenze: `Wareneinkaufskonto 5400`, vollstaendige Buchungsmatrix, Posting Readiness, Preview Posting und Posten.
 - Praktische Folge: keine Wiederholung der verworfenen Page-314-Routen ohne materiell neue Hypothese; Master Data bleibt geparkt.
 
+## PWS-FF-005 Dimensionen Read-first
+
+- Quelle: playwright/projects/fibu-book5/evidence/pws-ff-005-dimensions-readfirst/PWS-FF-005-result.json
+- Status: partially-completed
+- Akzeptiert: Dimensionsliste ueber Tell-Me-Route, Screenshot mit `CHANNEL`, `COSTCENTER`, `PRODUCTLINE`.
+- Verworfen: direkte Page-537-/Tell-Me-Route fuer Dimensionswerte; sie oeffnet beziehungsweise zeigt nicht die Zielseite fuer Dimensionswerte.
+- Offen: Dimensionswerte fuer PRODUCTLINE, COSTCENTER, CHANNEL; Finanzbuchhaltung Einrichtung mit globalen Dimensionsfeldern.
+- Schreibgrenze: keine Dimension, kein Dimensionswert, keine globale Dimension, keine Standarddimension, keine Stammdaten, keine Buchungsvorschau, keine Buchung.
+- Praktische Folge: `PWS-FF-005B` muss zuerst die read-only Related-Action-Route `Dimensionen -> Dimension -> Dimensionswerte` pruefen oder den Blocker bewusst parken.
+
 ## Foundation-Read-first-Folgeprobes
 
 Diese Tabelle verhindert den Sprung in Stammdaten, wenn TARGET-075 zuerst eine engere Foundation-Luecke zeigt. Sie gibt keine Schreibfreigabe.
@@ -133,7 +145,7 @@ Erlaubte Anschlussklassifikationen:
 - PWS-FF-002C als aktuelle Buchungsmatrix-Grenze konsumieren: Page 314 ist partiell bekannt, aber nicht posting-ready.
 - PWS-FF-006 als akzeptierten Kontenplan-Starterkonten-Nachweis konsumieren; keine weitere Starterkonten-Wiederholung ohne neuen Claim.
 - Master Data, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt, bis die Foundation-Grenzen geklaert sind.
-- PWS-FF-005 Dimensions read-first als naechste no-write Foundation-Spur vorbereiten.
+- PWS-FF-005B als naechste no-write Foundation-Spur vorbereiten: Dimensionswerte ueber die Related-Action-Route aus der akzeptierten Dimensionsliste pruefen.
 - Classify master-data readiness only after chart/setup context is accepted.
 - Use accepted screenshots as draft handbook/training evidence, not final compliance proof.
 
@@ -148,4 +160,4 @@ Erlaubte Anschlussklassifikationen:
 
 ## Naechster Case
 
-- `PWS-FF-005-DIMENSIONS-READFIRST`: Dimensionen, Dimensionswerte und wenn sicher erreichbar den Dimensionskontext der Finanzbuchhaltung Einrichtung read-only pruefen. Keine Dimensionsanlage, keine Standarddimensionsaenderung, keine Stammdaten, keine Buchungsvorschau und keine Buchung.
+- `PWS-FF-005B-DIMENSION-VALUES-RELATED-ACTION-ROUTE-RECOVERY`: Aus der akzeptierten Dimensionsliste heraus die read-only Route zu Dimensionswerten pruefen. Keine Dimensionsanlage, keine Dimensionswertaenderung, keine Standarddimensionsaenderung, keine Stammdaten, keine Buchungsvorschau und keine Buchung.

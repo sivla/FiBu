@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PWS-FF-005B-DIMENSION-VALUES-RELATED-ACTION-ROUTE-RECOVERY",
+  "status": "planned-readfirst",
+  "mode": "universaarl-foundation-readfirst",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w1-foundation",
+  "purpose": "Recover a reliable read-only UI route from the accepted Dimensionen list to Dimensionswerte for PRODUCTLINE, COSTCENTER and CHANNEL before any master-data or global-dimension write gate.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/pws-ff-005-dimensions-readfirst/PWS-FF-005-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-ff-005-dimensions-readfirst/pws-ff-005-001-dimensions-list.png"
+  ],
+  "mayRunPlaywright": true,
+  "mayOpenBusinessCentral": true,
+  "effectiveBcActionsAllowed": false,
+  "allowedActions": [
+    "run-playwright-readonly",
+    "open-business-central-readonly",
+    "confirm-playthru-instance",
+    "confirm-universaarl-company",
+    "open-dimensions-list-readonly",
+    "select-existing-dimension-row-readonly",
+    "open-dimension-values-related-action-readonly",
+    "capture-screenshot-qa",
+    "write-evidence-result",
+    "update-state-summary"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "write-setup",
+    "create-dimension",
+    "edit-dimension",
+    "create-dimension-value",
+    "edit-dimension-value",
+    "set-global-dimension",
+    "set-default-dimension",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "cleanup-delete",
+    "api-shortcut",
+    "company-switch",
+    "claim-reporting-readiness",
+    "claim-posting-readiness",
+    "claim-master-data-readiness"
+  ],
+  "acceptanceCriteria": [
+    "playthru / UNIVERSAARL-DE context is proven before any Dimension page interaction.",
+    "Dimensions list is accepted only with visible Dimensionen title and dimension codes.",
+    "Dimension Values are accepted only when the page/dialog visibly belongs to the selected dimension code.",
+    "Search overlay, Role Center and Intercompany Dimension Value Assignment are rejected as Dimension Values proof.",
+    "No Dimension, Dimension Value, setup, default dimension, master data, draft, Preview Posting, Posting or API shortcut is executed.",
+    "Screenshots explain what a key user sees and what the route still does not prove."
+  ],
+  "nextStepDecision": {
+    "currentCase": "PWS-FF-005B-DIMENSION-VALUES-RELATED-ACTION-ROUTE-RECOVERY",
+    "plannedNextCaseBeforeReview": "PWS-FF-005B-DIMENSION-VALUES-RELATED-ACTION-ROUTE-RECOVERY",
+    "lastEvidenceSummary": "PWS-FF-005 accepted the Dimensionen list through Tell-Me, but rejected Dimension Values and General Ledger Setup routes. The search route for Dimensionswerte opens Intercompany Dimension Value Assignment, not the target Dimension Values page.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Before Master Data or global-dimension writes, the project needs a reproducible read-only route to the existing Dimension Values for the visible Universaarl starter dimensions.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "FOUNDATION-READINESS-DECISION-REFRESH-AFTER-DIMENSIONS",
+        "status": "ready-after-current",
+        "reason": "Refresh only after Dimension Values route is either proven or explicitly parked."
+      },
+      {
+        "caseId": "PWS-FF-001-NUMBER-SERIES-READFIRST",
+        "status": "ready-after-current",
+        "reason": "Number Series is useful after the current Dimension route boundary is classified."
+      },
+      {
+        "caseId": "PWS-MD-001-CUSTOMER-CONTEXT-READFIRST",
+        "status": "needs-setup-first",
+        "reason": "Master Data remains parked until Foundation Readiness classifies dimensions, VAT, posting groups and number series."
+      }
+    ],
+    "queueChangesMade": [
+      "PWS-FF-005B created from PWS-FF-005 screenshot QA."
+    ],
+    "selectedNextCase": "PWS-FF-005B-DIMENSION-VALUES-RELATED-ACTION-ROUTE-RECOVERY",
+    "whySelectedNextCaseIsBest": "It is the smallest materially new UI hypothesis: use the accepted Dimensionen list and its Dimension action instead of repeating direct Page 537 or Tell-Me Dimensionswerte routes.",
+    "risksBeforeNextCase": [
+      "Do not click Neu, Liste bearbeiten, Loeschen or any setup-changing action.",
+      "Do not treat Intercompany Dimension Value Assignment as Dimension Values proof.",
+      "Do not create or change values during route recovery."
+    ],
+    "requiredPreparation": [
+      "Use screenshot QA for selected row, Dimension action group and resulting page/dialog identity.",
+      "Stop if the route opens a setup wizard, edit dialog, Intercompany assignment page or search overlay only."
+    ]
+  },
+  "nextCase": "PWS-FF-005B-DIMENSION-VALUES-RELATED-ACTION-ROUTE-RECOVERY",
+  "updatedAt": "2026-07-06T00:00:00.000Z"
+}
