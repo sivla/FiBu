@@ -169,9 +169,13 @@ const result = {
         expectedEnvironment: authTarget.output.expectedEnvironment ?? '',
         sourceCompanyParamPresent: authTarget.output.sourceCompanyParamPresent === true,
         targetCompanyParamPresent: authTarget.output.targetCompanyParamPresent === true,
+        sourceCompany: authTarget.output.sourceCompany ?? '',
         expectedCompany: authTarget.output.expectedCompany ?? '',
         targetCompany: authTarget.output.targetCompany ?? '',
+        sourceDiffersFromTarget: authTarget.output.sourceDiffersFromTarget === true,
+        targetBuiltFromCurrentState: authTarget.output.targetBuiltFromCurrentState === true,
         targetMatchesState: authTarget.output.targetMatchesState === true,
+        warnings: Array.isArray(authTarget.output.warnings) ? authTarget.output.warnings : [],
       }
     : {
         exitCode: authTarget.exitCode,

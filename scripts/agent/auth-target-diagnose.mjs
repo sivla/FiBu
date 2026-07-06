@@ -68,6 +68,19 @@ if (expectedCompany) {
 
 const beforePathParts = before.pathname.split('/').filter(Boolean);
 const afterPathParts = after.pathname.split('/').filter(Boolean);
+const sourceEnvironmentCandidate = beforePathParts.at(-1) ?? '';
+const targetEnvironment = afterPathParts.at(-1) ?? '';
+const sourceCompany = before.searchParams.get('company') ?? '';
+const targetCompany = after.searchParams.get('company') ?? '';
+const sourceDiffersFromTarget =
+  sourceEnvironmentCandidate !== targetEnvironment || (sourceCompany && sourceCompany !== targetCompany);
+const warnings = [];
+
+if (sourceDiffersFromTarget) {
+  warnings.push(
+    'Source URL differs from active state; this is acceptable only because the diagnostic target URL is rebuilt from .agent/state/current.json.'
+  );
+}
 
 const result = {
   schemaVersion: 1,
@@ -77,15 +90,18 @@ const result = {
   host: before.hostname,
   sourcePathRedacted: redactPath(before.pathname),
   targetPathRedacted: redactPath(after.pathname),
-  sourceEnvironmentCandidate: beforePathParts.at(-1) ?? '',
-  targetEnvironment: afterPathParts.at(-1) ?? '',
+  sourceEnvironmentCandidate,
+  targetEnvironment,
   expectedEnvironment,
   sourceCompanyParamPresent: before.searchParams.has('company'),
   targetCompanyParamPresent: after.searchParams.has('company'),
+  sourceCompany,
   expectedCompany,
-  targetCompany: after.searchParams.get('company') ?? '',
-  targetMatchesState:
-    afterPathParts.at(-1) === expectedEnvironment && (after.searchParams.get('company') ?? '') === expectedCompany,
+  targetCompany,
+  sourceDiffersFromTarget,
+  targetBuiltFromCurrentState: true,
+  targetMatchesState: targetEnvironment === expectedEnvironment && targetCompany === expectedCompany,
+  warnings,
   redaction: 'Full URL, tenant IDs, auth values, cookies and tokens are intentionally not printed.',
 };
 
