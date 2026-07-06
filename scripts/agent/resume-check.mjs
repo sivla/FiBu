@@ -195,6 +195,16 @@ if ((authCheck?.blockedBy ?? []).includes('storage-state-expires-before-required
     `Stored auth does not meet the requested ${minAuthExpiresInHours}h minimum window; refresh it before unattended Business Central work.`
   );
 }
+if (
+  Number.isFinite(minAuthExpiresInHours) &&
+  Number.isFinite(authCheck?.expiresInHours) &&
+  authCheck.expiresInHours >= minAuthExpiresInHours &&
+  authCheck.expiresInHours < minAuthExpiresInHours + 1
+) {
+  warnings.push(
+    `Stored auth meets the requested ${minAuthExpiresInHours}h minimum window with less than 1h buffer; refresh it before longer unattended Business Central work.`
+  );
+}
 if (authDoctor?.decision === 'stored-auth-usable-but-live-gate-blocked') {
   warnings.push('Stored auth is usable, but the active live gate still blocks Business Central/Playwright execution.');
 }
@@ -342,6 +352,10 @@ const output = {
         ageHours: authCheck.ageHours,
         maxAgeHours: authCheck.maxAgeHours,
         expiresInHours: authCheck.expiresInHours,
+        minWindowBufferHours:
+          Number.isFinite(minAuthExpiresInHours) && Number.isFinite(authCheck.expiresInHours)
+            ? Number((authCheck.expiresInHours - minAuthExpiresInHours).toFixed(3))
+            : null,
         warnExpiresInHours: authCheck.warnExpiresInHours,
         warnings: authCheck.warnings ?? [],
         expectedInstance: authCheck.expectedInstance,
