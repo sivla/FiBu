@@ -251,7 +251,7 @@ Spaeter muessen sichtbar sein:
 3. Company Information pflegen. Name erledigt; Adresse, Land/Region und USt-ID bleiben offen.
 4. Foundation Setup und Nummernserien pruefen. Teilweise erledigt; offene Nummernserien-Zuweisungen sind geparkt.
 5. Dimensionen und Buchungsgruppen vorbereiten. Dimension Values erledigt; globale Dimensionen geparkt; Buchungsgruppen/USt sind read-only klassifiziert.
-6. Erste Debitoren-, Kreditoren-, Artikel- und Lagerort-Templates pruefen. Naechster Schritt: `TARGET-025-CUSTOMER-VENDOR-ITEM-TEMPLATES-PREFLIGHT`.
+6. Erste Debitoren-, Kreditoren-, Artikel- und Lagerort-Kontexte erst nach `TARGET-075` und `FOUNDATION-READINESS-DECISION.md` wieder pruefen. Naechste Kandidaten sind `PWS-MD-001`, `PWS-MD-002` und `PWS-MD-003` als read-first/no-write-Probes.
 7. Datenfamilien klein starten und dann pro Prozess erweitern.
 
 ## PREP-013 Entscheidung
@@ -260,4 +260,4 @@ Dieser Blueprint ist eine Vorbereitungsdatei. Er ist keine Business-Central-Evid
 
 ## TARGET-024 Entscheidung
 
-`playwright/projects/fibu-book5/UNIVERSAARL-CORE-MASTERDATA-PLAN.md` ist ab TARGET-024 die fuehrende Planung fuer das erste Core-Masterdata-Paket. Es definiert konkrete Debitoren, Kreditoren, Artikel und Lagerorte, aber laesst alle wirksamen Anlagen bis zum UI-Preflight gesperrt.
+`playwright/projects/fibu-book5/UNIVERSAARL-CORE-MASTERDATA-PLAN.md` ist ab TARGET-024 die fuehrende Planung fuer das erste Core-Masterdata-Paket. Es definiert konkrete Debitoren, Kreditoren, Artikel und Lagerorte, aber laesst alle wirksamen Anlagen bis nach TARGET-075, Foundation Readiness und einem eigenen Schreib-Gate gesperrt.
