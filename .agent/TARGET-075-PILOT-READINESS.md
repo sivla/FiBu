@@ -24,6 +24,8 @@ Do not resume TARGET-073 as the next live case. TARGET-073 is parked until a mat
 
 Last checked: 2026-07-06.
 
+Most recent resume check: 2026-07-06 10:20 Europe/Berlin. Local readiness is green (`canResumeAfterFreezeLift=true`), but live execution is still blocked (`canRunNow=false`) by `improvement-freeze-active` and `open-business-central-live-forbidden`. Stored auth is usable for `playthru / UNIVERSAARL-DE` at the time of the check; TARGET-075 must still validate the live shell after an explicit freeze/live-gate lift.
+
 | Gate | Result | Meaning |
 | --- | --- | --- |
 | `git pull --ff-only` | passed | Branch was already up to date before the readiness refresh. |
