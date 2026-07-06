@@ -321,6 +321,15 @@ if (guardedRunner) {
   if (!guardedRunner.includes('contextLiveGate')) {
     errors.push(`${guardedRunnerPath}: guarded runner --check output must expose contextLiveGate`);
   }
+  if (!guardedRunner.includes('const canResumeAfterFreezeLift = authTargetOk')) {
+    errors.push(`${guardedRunnerPath}: guarded runner --check must block freeze-lift readiness when authTargetOk is false`);
+  }
+  if (!guardedRunner.includes('requiresTargetFix')) {
+    errors.push(`${guardedRunnerPath}: guarded runner --check output must expose requiresTargetFix`);
+  }
+  if (!guardedRunner.includes('auth-target-does-not-match-current-state')) {
+    errors.push(`${guardedRunnerPath}: guarded runner must report auth-target-does-not-match-current-state when target diagnosis fails`);
+  }
   if (!guardedRunner.includes('auth:bc:check') || !guardedRunner.includes('canUseStoredAuth')) {
     errors.push(`${guardedRunnerPath}: guarded runner must check stored auth before live execution`);
   }
