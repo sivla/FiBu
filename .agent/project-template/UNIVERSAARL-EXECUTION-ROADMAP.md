@@ -17,7 +17,7 @@ Leitregel:
 
 ## Current operating decision
 
-The project is in `Foundation Readiness consolidation after read-first resume`.
+The project is in `Foundation Readiness consolidation after read-first resume`. The earlier `Improvement Freeze / M0-M1 transition` is no longer the active operating phase; it remains the historical transition that led into the current read-first Foundation boundary.
 
 The read-first return has happened. Further live work must now start from the consolidated Foundation boundary, not from stale TARGET-075 preparation or an as-is retry of the parked VAT active-editor route.
 
@@ -26,7 +26,7 @@ The read-first return has happened. Further live work must now start from the co
 | Target environment | `playthru` only |
 | Target company | `UNIVERSAARL-DE` |
 | Reference company name | Universaarl GmbH |
-| Current live status | read-first resume has produced Foundation evidence; further live work needs a current case gate |
+| Current live status | read-first resume has produced Foundation evidence; default next live posture is read-first, no writes unless a later case explicitly opens a write gate |
 | Parked case | `TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION` |
 | Completed resume pilot | `TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK` |
 | Next live type | none selected; TARGET-073B ran as no-write Surface-/Editor-Diagnose and is blocked |
@@ -144,7 +144,9 @@ Do not:
 - expand Jira imports unless they directly support the next BC/training/evidence step
 - mass-delete historical evidence without a replacement, supersession or explicit purge decision
 
-## Phase 1 - Freeze read-first abschliessen
+## Phase 1 - End freeze safely
+
+German operating note: Freeze read-first abschliessen, then keep live work behind the current Foundation gate.
 
 Current status: completed for the TARGET-075 / Foundation-Readiness handoff.
 

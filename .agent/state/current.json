@@ -64,8 +64,8 @@
     "claim-posting-readiness",
     "claim-master-data-readiness"
   ],
-  "nextCase": "PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST",
-  "nextStep": "Foundation Readiness is the active boundary. TARGET-075 is consumed as read-first evidence; TARGET-073 and TARGET-073B are parked as blocked/as-is retries; TARGET-027D19 through TARGET-027D24 already consumed and parked the VAT configuration-package route. The next materially different Foundation gap is PWS-FF-006: read-only Chart of Accounts starter-account visibility for 1200, 1406, 1800, 3300, 3806, 4400 and 5400. No setup write, Master Data, VAT write, Posting Group write, Preview Posting, Posting or API shortcut.",
+  "nextCase": "FOUNDATION-READINESS-DECISION",
+  "nextStep": "Foundation Readiness is the active boundary. TARGET-075 is consumed as read-first evidence; PWS-FF-006 now proves read-only Chart of Accounts starter-account visibility for 1200, 1406, 1800, 3300, 3806, 4400 and 5400 in playthru / UNIVERSAARL-DE. The next step is a local Foundation Readiness decision that classifies whether VAT, Posting Groups, Dimensions or Master Data should follow. No setup write, Master Data, VAT write, Posting Group write, Preview Posting, Posting or API shortcut.",
   "preparedNextCaseFile": ".agent/state/cases/pws-ff-006-chart-of-accounts-starter-accounts-readfirst.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
@@ -94,6 +94,34 @@
       "VAT or posting correctness"
     ],
     "nextBoundary": "Master Data remains parked until Foundation gaps are resolved or consciously accepted."
+  },
+  "latestPwsFf006ChartStarterAccounts": {
+    "caseId": "PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST",
+    "status": "observed-read-first",
+    "resultPath": "playwright/projects/fibu-book5/evidence/pws-ff-006-chart-of-accounts-starter-accounts-readfirst/PWS-FF-006-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "routeUsed": "tell-me-search-kontenplan",
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "proved": [
+      "Chart of Accounts page is visible read-only in playthru / UNIVERSAARL-DE.",
+      "Starter accounts 1200, 1406, 1800, 3300, 3806, 4400 and 5400 are visible in captured evidence."
+    ],
+    "notProved": [
+      "No complete SKR04 chart of accounts.",
+      "No tax advisor, GoBD, HGB or AO correctness claim.",
+      "No VAT setup correctness.",
+      "No posting group correctness.",
+      "No master-data readiness.",
+      "No posting readiness."
+    ],
+    "uiLearning": "Direct Page 16 URL can return to Role Center; the visible Role Center Kontenplan menuitem may not be Playwright-actionable. Tell-Me search is an acceptable documented read-only fallback after direct and scoped control routes fail.",
+    "nextBoundary": "Foundation Readiness must consume PWS-FF-006 before choosing VAT read-first, Posting Groups, Dimensions or Master Data."
   },
   "latestTarget073BPage472SurfaceEditorProof": {
     "caseId": "TARGET-073B-VAT-PAGE472-SURFACE-AND-EDITOR-PROOF",

@@ -1,8 +1,16 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Frame, type Page } from '@playwright/test';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import { compactPageText, dismissTours, pageText, requireBcUrl, waitForBusinessCentralShell } from '../../../core/bc-helpers';
+import {
+  compactPageText,
+  dismissTours,
+  openSearchResult,
+  pageText,
+  requireBcUrl,
+  searchFor,
+  waitForBusinessCentralShell
+} from '../../../core/bc-helpers';
 import { evidencePath, writeJsonEvidence, writeTextEvidence } from '../../../core/evidence';
 
 test.use({
@@ -117,6 +125,126 @@ async function fullText(page: Page) {
   return clean(`${body}\n${frameTexts.join('\n')}`);
 }
 
+function chartIdentitySignalCount(text: string) {
+  return [
+    /Kontenplan|Chart of Accounts/i,
+    /\bNr\.|\bNo\.|Kontonr\.|Account No\./i,
+    /Kontoart|Account Type|GuV\/Bilanz|Balance Sheet|Income Statement/i
+  ].filter(
+    (signal) => signal.test(text)
+  ).length;
+}
+
+async function openChartFromRoleCenterIfNeeded(page: Page) {
+  const initialText = await fullText(page);
+  const looksLikeRoleCenter =
+    /Kontenplan/i.test(initialText) && /Guten|Aktivitaeten|Aktivitäten|Laufender Verkauf|Laufende Eink|Verkaufsangebot|Einkaufsanfrage/i.test(initialText);
+  if (!looksLikeRoleCenter) {
+    return {
+      routeUsed: 'direct-page-url',
+      routeNote: 'Direct page URL produced enough chart-context signals before fallback navigation.'
+    };
+  }
+
+  const menuItem = page.getByRole('menuitem', { name: /^Kontenplan\b/i }).first();
+  const link = page.getByRole('link', { name: /^Kontenplan$/ }).first();
+  const textFallback = page.getByText(/^Kontenplan$/).first();
+  if (await menuItem.isVisible({ timeout: 3000 }).catch(() => false)) {
+    await menuItem.click();
+  } else if (await link.isVisible({ timeout: 3000 }).catch(() => false)) {
+    await link.click();
+  } else if (await textFallback.isVisible({ timeout: 3000 }).catch(() => false)) {
+    await textFallback.click();
+  } else {
+    return {
+      routeUsed: 'direct-page-url-role-center-fallback-blocked',
+      routeNote: 'Role Center showed Kontenplan text, but no scoped visible Kontenplan navigation control was clickable.'
+    };
+  }
+
+  await waitForBusinessCentralShell(page);
+  await page.waitForLoadState('domcontentloaded').catch(() => undefined);
+  await expect.poll(async () => chartIdentitySignalCount(await fullText(page)), { timeout: 30_000 }).toBeGreaterThanOrEqual(2);
+  await page.keyboard.press('Escape').catch(() => undefined);
+  return {
+    routeUsed: 'role-center-kontenplan-link',
+    routeNote: 'Direct page URL landed on Role Center; clicked the visible Kontenplan navigation link read-only.'
+  };
+}
+
+async function firstVisibleKontenplanControl(page: Page) {
+  const scopes: Array<Page | Frame> = [page, ...page.frames()];
+  for (const scope of scopes) {
+    const candidates = [
+      scope.getByRole('menuitem', { name: /^Kontenplan\b/i }).first(),
+      scope.getByRole('link', { name: /^Kontenplan$/i }).first(),
+      scope.getByText(/^Kontenplan$/i).first(),
+      scope.locator('[role="menuitem"]').filter({ hasText: /^Kontenplan\b/i }).first(),
+      scope.locator('a, button, [role="button"], [role="menuitem"], span, div').filter({ hasText: /^Kontenplan$/i }).first()
+    ];
+    for (const candidate of candidates) {
+      const canClick = await candidate
+        .click({ timeout: 1000, trial: true })
+        .then(() => true)
+        .catch(() => false);
+      if (canClick) {
+        return candidate;
+      }
+    }
+  }
+  return null;
+}
+
+async function openChartWithFrameAwareFallback(page: Page) {
+  const initialText = await fullText(page);
+  const initialSignals = chartIdentitySignalCount(initialText);
+  if (initialSignals >= 2) {
+    return {
+      routeUsed: 'direct-page-url',
+      routeNote: 'Direct page URL produced enough chart-context signals before fallback navigation.',
+      routeReachedChart: true
+    };
+  }
+
+  const control = /Kontenplan/i.test(initialText) ? await firstVisibleKontenplanControl(page) : null;
+  if (!control) {
+    const searchReachedChart = await searchFor(page, 'Kontenplan')
+      .then(async () => {
+        await openSearchResult(page, /^Kontenplan\b/i);
+        await waitForBusinessCentralShell(page);
+        await page.waitForLoadState('domcontentloaded').catch(() => undefined);
+        return expect
+          .poll(async () => chartIdentitySignalCount(await fullText(page)), { timeout: 30_000 })
+          .toBeGreaterThanOrEqual(2)
+          .then(() => true)
+          .catch(() => false);
+      })
+      .catch(() => false);
+    return {
+      routeUsed: searchReachedChart ? 'tell-me-search-kontenplan' : 'direct-page-url-role-center-fallback-blocked',
+      routeNote: searchReachedChart
+        ? 'Direct page URL and scoped Role Center control did not open the list; used Tell-Me search for Kontenplan read-only.'
+        : 'Direct page URL did not produce enough chart-context signals, no scoped visible Kontenplan navigation control was clickable, and Tell-Me search did not reach the list.',
+      routeReachedChart: searchReachedChart
+    };
+  }
+
+  await control.click();
+  await waitForBusinessCentralShell(page);
+  await page.waitForLoadState('domcontentloaded').catch(() => undefined);
+  const routeReachedChart = await expect
+    .poll(async () => chartIdentitySignalCount(await fullText(page)), { timeout: 30_000 })
+    .toBeGreaterThanOrEqual(2)
+    .then(() => true)
+    .catch(() => false);
+  await page.keyboard.press('Escape').catch(() => undefined);
+  return {
+    routeUsed: 'role-center-kontenplan-link',
+    routeNote: 'Direct page URL did not produce enough chart-context signals; clicked the visible Kontenplan navigation control read-only.',
+    routeReachedChart
+  };
+}
+
 async function visibleDialogs(page: Page) {
   const chunks: string[] = [];
   for (const scope of [page, ...page.frames()]) {
@@ -158,6 +286,7 @@ test('PWS-FF-006 captures starter account visibility read-only', async ({ page }
   await waitForBusinessCentralShell(page);
   await dismissTours(page);
   await page.keyboard.press('Escape').catch(() => undefined);
+  const route = await openChartWithFrameAwareFallback(page);
 
   await expect.poll(async () => page.url(), { timeout: 30_000 }).toContain(EXPECTED_INSTANCE);
 
@@ -179,9 +308,7 @@ test('PWS-FF-006 captures starter account visibility read-only', async ({ page }
     }).catch(() => '')
   );
   const text = compact || rawText;
-  const chartSignals = [/Kontenplan|Chart of Accounts/i, /Nr\.|No\.|Name/i, /Kontoart|Account Type|GuV|Bilanz|Balance Sheet|Income Statement/i].filter(
-    (signal) => signal.test(rawText)
-  ).length;
+  const chartSignals = chartIdentitySignalCount(rawText);
   const findings = accountFindings(text);
   const visibleAccounts = findings.filter((entry) => entry.visible).map((entry) => entry.no);
   const absentOrUnclearAccounts = findings.filter((entry) => !entry.visible).map((entry) => entry.no);
@@ -203,6 +330,7 @@ test('PWS-FF-006 captures starter account visibility read-only', async ({ page }
     importantUi: ['Page title', 'company context', 'account number/name/type columns', 'visible starter account rows if present'],
     visibleSignals: text.split('\n').slice(0, 45),
     accountFindings: findings,
+    route,
     internallyProves:
       resultStatus === 'blocked'
         ? 'Chart of Accounts context was not accepted.'
@@ -246,9 +374,17 @@ test('PWS-FF-006 captures starter account visibility read-only', async ({ page }
     playwrightLiveRunExecuted: true,
     actionsTaken: [
       'Opened Chart of Accounts directly in playthru / UNIVERSAARL-DE through the guarded runner.',
+      route.routeUsed === 'role-center-kontenplan-link'
+        ? 'Direct page URL landed on Role Center, then clicked the visible Kontenplan navigation link read-only.'
+        : route.routeUsed === 'tell-me-search-kontenplan'
+          ? 'Direct page URL and visible Role Center control did not open the list; used Tell-Me search for Kontenplan read-only.'
+        : route.routeUsed === 'direct-page-url'
+          ? 'Direct page URL was kept because it produced enough chart context.'
+          : 'Direct page URL did not produce enough chart context and the read-only Kontenplan fallback stayed blocked.',
       'Captured compact page text, screenshot and screenshot metadata.',
       'Classified starter account visibility for Foundation Readiness.'
     ],
+    route,
     actionsNotTaken: [
       'No New/Neu action clicked.',
       'No Edit/Bearbeiten action clicked.',
@@ -328,7 +464,8 @@ test('PWS-FF-006 captures starter account visibility read-only', async ({ page }
       noMasterDataChange: true,
       noCompanySwitch: true,
       noApiShortcut: true,
-      readOnlyDirectPageRoute: true
+      readOnlyDirectPageRoute: route.routeUsed === 'direct-page-url',
+      readOnlyTellMeFallback: route.routeUsed === 'tell-me-search-kontenplan'
     },
     evidenceRefs,
     nextCase: 'FOUNDATION-READINESS-DECISION',
