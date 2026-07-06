@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PWS-FF-001-NUMBER-SERIES-READFIRST",
+  "status": "planned-readfirst",
+  "mode": "universaarl-foundation-readfirst",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w1-foundation",
+  "purpose": "Observe Number Series and relevant numbering context read-only before any customer, vendor or item write gate.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/pws-ff-005b-dimension-values-related-action-route-recovery/PWS-FF-005B-result.json"
+  ],
+  "mayRunPlaywright": true,
+  "mayOpenBusinessCentral": true,
+  "effectiveBcActionsAllowed": false,
+  "allowedActions": [
+    "run-playwright-readonly",
+    "open-business-central-readonly",
+    "confirm-playthru-instance",
+    "confirm-universaarl-company",
+    "open-number-series-readonly",
+    "capture-screenshot-qa",
+    "write-evidence-result",
+    "update-state-summary"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "write-setup",
+    "create-number-series",
+    "edit-number-series",
+    "create-number-series-line",
+    "edit-number-series-line",
+    "assign-number-series-to-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "cleanup-delete",
+    "api-shortcut",
+    "company-switch",
+    "claim-numbering-readiness",
+    "claim-master-data-readiness",
+    "claim-posting-readiness"
+  ],
+  "acceptanceCriteria": [
+    "playthru / UNIVERSAARL-DE context is proven before any Number Series page interaction.",
+    "Number Series page/context is accepted only with visible page title and numbering-related table/list signals.",
+    "Screenshots include enough checkpoints to show page context, visible rows/columns and any inspected action/dropdown state.",
+    "No Number Series, Number Series Line, setup assignment, master data, draft, Preview Posting, Posting or API shortcut is executed.",
+    "Result clearly states what numbering context was observed and what remains unproven for customer/vendor/item creation."
+  ],
+  "nextStepDecision": {
+    "currentCase": "PWS-FF-005B-DIMENSION-VALUES-RELATED-ACTION-ROUTE-RECOVERY",
+    "plannedNextCaseBeforeReview": "FOUNDATION-READINESS-DECISION-REFRESH-AFTER-DIMENSIONS",
+    "lastEvidenceSummary": "Dimensions and Dimension Values are now read-only observed; global/default dimensions and reporting/posting effects remain unproven.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The Foundation decision was refreshed inside this batch. The next concrete Foundation gap is Number Series read-first context before Master Data.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "PWS-FF-001-NUMBER-SERIES-READFIRST",
+        "status": "ready-next",
+        "reason": "Number Series controls later customer/vendor/item numbering and must be understood before write-gated Master Data."
+      },
+      {
+        "caseId": "PWS-MD-001-CUSTOMER-CONTEXT-READFIRST",
+        "status": "needs-setup-first",
+        "reason": "Master Data remains parked until Number Series and remaining Foundation boundaries are classified."
+      },
+      {
+        "caseId": "FOUNDATION-READINESS-DECISION-REFRESH-AFTER-NUMBER-SERIES",
+        "status": "ready-after-current",
+        "reason": "Refresh readiness after Number Series read-first proof."
+      }
+    ],
+    "queueChangesMade": [
+      "Consumed PWS-FF-005B as observed Dimensions/Dimension Values evidence.",
+      "Selected PWS-FF-001 as the next no-write Foundation lane."
+    ],
+    "selectedNextCase": "PWS-FF-001-NUMBER-SERIES-READFIRST",
+    "whySelectedNextCaseIsBest": "It is the smallest remaining Foundation read-first dependency before customer/vendor/item write gates.",
+    "risksBeforeNextCase": [
+      "Do not create, edit or assign number series in the read-first case.",
+      "Do not create master data before numbering route and setup impact are understood."
+    ],
+    "requiredPreparation": [
+      "Use checkpoint screenshot QA if a dropdown, line list or setup relation is inspected."
+    ]
+  },
+  "nextCase": "PWS-FF-001-NUMBER-SERIES-READFIRST",
+  "updatedAt": "2026-07-06T20:41:05.847Z"
+}

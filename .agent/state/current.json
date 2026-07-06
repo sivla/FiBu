@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-06T00:00:00.000Z",
+  "updatedAt": "2026-07-06T20:41:05.840Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -8,9 +8,9 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w1-foundation",
-  "activeCase": "PWS-FF-005B-DIMENSION-VALUES-RELATED-ACTION-ROUTE-RECOVERY",
-  "active_case_file": ".agent/state/cases/pws-ff-005b-dimension-values-related-action-route-recovery.json",
-  "activeCaseFile": ".agent/state/cases/pws-ff-005b-dimension-values-related-action-route-recovery.json",
+  "activeCase": "PWS-FF-001-NUMBER-SERIES-READFIRST",
+  "active_case_file": ".agent/state/cases/pws-ff-001-number-series-readfirst.json",
+  "activeCaseFile": ".agent/state/cases/pws-ff-001-number-series-readfirst.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-foundation-readfirst",
@@ -38,9 +38,7 @@
     "open-business-central-readonly",
     "confirm-playthru-instance",
     "confirm-universaarl-company",
-    "open-dimensions-list-readonly",
-    "select-existing-dimension-row-readonly",
-    "open-dimension-values-related-action-readonly",
+    "open-number-series-readonly",
     "capture-screenshot-qa",
     "write-evidence-result",
     "update-state-summary"
@@ -52,12 +50,11 @@
     "fake-evidence",
     "book-claim-without-evidence",
     "write-setup",
-    "create-dimension",
-    "edit-dimension",
-    "create-dimension-value",
-    "edit-dimension-value",
-    "set-global-dimension",
-    "set-default-dimension",
+    "create-number-series",
+    "edit-number-series",
+    "create-number-series-line",
+    "edit-number-series-line",
+    "assign-number-series-to-setup",
     "create-master-data",
     "create-document-or-draft",
     "preview-posting",
@@ -66,13 +63,13 @@
     "cleanup-delete",
     "api-shortcut",
     "company-switch",
-    "claim-reporting-readiness",
-    "claim-posting-readiness",
-    "claim-master-data-readiness"
+    "claim-numbering-readiness",
+    "claim-master-data-readiness",
+    "claim-posting-readiness"
   ],
-  "nextCase": "PWS-FF-005B-DIMENSION-VALUES-RELATED-ACTION-ROUTE-RECOVERY",
-  "nextStep": "PWS-FF-005 accepted the Dimensionen list in playthru / UNIVERSAARL-DE through a Tell-Me read-only route, but rejected direct Page 537 and Tell-Me Dimensionswerte as target-page proof. The next useful Foundation progress is PWS-FF-005B: recover the read-only Dimensionen -> Dimension -> Dimensionswerte related-action route for PRODUCTLINE, COSTCENTER and CHANNEL. No setup write, Dimension Value change, default dimension change, Master Data, Draft, Preview Posting, Posting or API shortcut.",
-  "preparedNextCaseFile": ".agent/state/cases/pws-ff-005b-dimension-values-related-action-route-recovery.json",
+  "nextCase": "PWS-FF-001-NUMBER-SERIES-READFIRST",
+  "nextStep": "PWS-FF-005B observed the Dimensionen -> Dimension -> Dimensionswerte read-only route for PRODUCTLINE, COSTCENTER and CHANNEL in playthru / UNIVERSAARL-DE. Foundation Readiness can now consume dimensions as read-only observed, but global/default dimensions, reporting readiness, master data readiness, Preview Posting and Posting remain unproven. The next useful no-write Foundation lane is PWS-FF-001: Number Series read-first context and screenshot QA before any master data write gate.",
+  "preparedNextCaseFile": ".agent/state/cases/pws-ff-001-number-series-readfirst.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -209,9 +206,9 @@
     "source": "top-level-current-state-and-universaarl-execution-roadmap",
     "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
-    "activeCaseFile": ".agent/state/cases/pws-ff-005-dimensions-readfirst.json",
+    "activeCaseFile": ".agent/state/cases/pws-ff-001-number-series-readfirst.json",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "current.json contains many historical result summaries with old nextStep/nextCase fields. They are traceability only and must not override activeCase, nextCase or the execution roadmap."
+    "reason": "current.json top-level activeCase/nextCase and the Universaarl execution roadmap win over historical latest* result summaries. PWS-FF-005B is consumed as observed Dimension Values evidence; PWS-FF-001 is the next no-write Foundation lane."
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -255,7 +252,7 @@
       "Foundation Readiness Decision before master-data or process work",
       "chapter map and training evidence map before book/process readiness claims"
     ],
-    "nextStep": "Prepare PWS-FF-006 Chart of Accounts starter-account read-first proof as the next materially different Foundation gap. Do not repeat PWS-FF-002/PWS-FF-002B Page 314 recovery or TARGET-073/TARGET-073B Page 472 active-editor routes as-is."
+    "nextStep": "Run PWS-FF-001 Number Series read-first as the next materially different Foundation lane before any Master Data write gate."
   },
   "implementationOperatingSystem": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -325,7 +322,7 @@
     "currentLiveBoundary": {
       "freezeActive": false,
       "parkedCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-      "resumePilot": "FOUNDATION-READINESS-DECISION",
+      "resumePilot": "PWS-FF-001-NUMBER-SERIES-READFIRST",
       "resumePilotMode": "read-first-no-writes"
     },
     "legacyScriptGuard": {
@@ -10663,5 +10660,36 @@
     ],
     "nextCase": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
     "coverageImpact": "Page 472 is reachable and the matrix can be placed in edit/new diagnosis state, but no safe row-scoped editor route exists for INLAND/VAT19/19/3806/1406."
+  },
+  "latestPwsFf005BDimensionValuesRoute": {
+    "caseId": "PWS-FF-005B-DIMENSION-VALUES-RELATED-ACTION-ROUTE-RECOVERY",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/pws-ff-005b-dimension-values-related-action-route-recovery/PWS-FF-005B-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "proved": [
+      "4/4 dimension-related pages produced accepted read-only context signals in playthru/UNIVERSAARL-DE.",
+      "Dimensions page context is visible read-only.",
+      "PRODUCTLINE Dimension Values context is visible read-only.",
+      "COSTCENTER Dimension Values context is visible read-only.",
+      "CHANNEL Dimension Values context is visible read-only.",
+      "No Dimension, Dimension Value, Global Dimension, Default Dimension, master data, document draft, preview posting or posting was created."
+    ],
+    "notProved": [
+      "No reporting readiness.",
+      "No Dimension Set Entry, G/L Entry or posted transaction with dimensions.",
+      "No Global Dimension Code 1/2 persistence.",
+      "No Default Dimension assignment for customers, vendors, items or accounts.",
+      "No Master Data readiness.",
+      "No Preview Posting or Posting readiness."
+    ],
+    "routeLearning": "BC Dimensions page opens Dimension > Dimensionswerte from a selected row. Intermediate screenshots are required for BC action-bar/dropdown/grid routes; end screenshots alone can hide wrong assumptions.",
+    "nextBoundary": "Number Series read-first before master data; do not claim global/default dimensions or reporting readiness from visible Dimension Values."
   }
 }
