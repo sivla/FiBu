@@ -12,8 +12,10 @@ const budgets = readJson('.agent/budgets.json');
 const gitignore = existsSync('.gitignore') ? readFileSync('.gitignore', 'utf8') : '';
 const authorityPath = '.agent/PLAYTHRU-AUTHORITY-CHARTER.md';
 const operatingModelPath = '.agent/BC-OPERATING-MODEL.md';
+const authRefreshResultPath = 'playwright/projects/fibu-book5/evidence/auth-bc-refresh-active-resume/AUTH-BC-REFRESH-result.json';
 const authorityText = existsSync(authorityPath) ? readFileSync(authorityPath, 'utf8') : '';
 const operatingModelText = existsSync(operatingModelPath) ? readFileSync(operatingModelPath, 'utf8') : '';
+const authRefreshResultText = existsSync(authRefreshResultPath) ? readFileSync(authRefreshResultPath, 'utf8') : '';
 
 const configuredInstance = project.businessCentral?.instance;
 const configuredCompany = project.businessCentral?.primaryCompany;
@@ -77,6 +79,20 @@ for (const ignored of ['.env', 'playwright/.auth/', 'playwright-report/', 'test-
 for (const pattern of budgets.neverReadOrCommit ?? []) {
   if (pattern.endsWith('/') && !gitignore.includes(pattern)) {
     errors.push(`neverReadOrCommit directory should be ignored: ${pattern}`);
+  }
+}
+
+if (authRefreshResultText) {
+  const authRefreshResult = JSON.parse(authRefreshResultText);
+  const diagnosisPathname = String(authRefreshResult.authDiagnosis?.diagnosisPathname ?? '');
+  if (/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i.test(authRefreshResultText)) {
+    errors.push(`${authRefreshResultPath} must not contain raw tenant or object GUIDs; use {tenant-guid} redaction`);
+  }
+  if (/access_token|refresh_token|id_token|client_secret|password|Bearer |Set-Cookie|eyJ/i.test(authRefreshResultText)) {
+    errors.push(`${authRefreshResultPath} must not contain auth secrets, cookies or token-like payloads`);
+  }
+  if (diagnosisPathname && !diagnosisPathname.includes('{tenant-guid}')) {
+    errors.push(`${authRefreshResultPath} authDiagnosis.diagnosisPathname must use {tenant-guid} redaction`);
   }
 }
 
