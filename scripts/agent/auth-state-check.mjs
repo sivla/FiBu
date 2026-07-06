@@ -29,6 +29,7 @@ function result(overrides, target = {}) {
     ageHours: null,
     metaAgeHours: null,
     maxAgeHours,
+    expiresInHours: null,
     expectedInstance: target.expectedInstance ?? '',
     expectedCompany: target.expectedCompany ?? '',
     shellValidationMeta: null,
@@ -85,6 +86,7 @@ async function main() {
   }
 
   const ageHours = Math.round(((now - stats.mtimeMs) / 36_000) * 10) / 1000;
+  const expiresInHours = Math.max(0, Math.round((maxAgeHours - ageHours) * 1000) / 1000);
   let parsed;
   try {
     parsed = JSON.parse(await fs.readFile(authFile, 'utf8'));
@@ -97,6 +99,7 @@ async function main() {
           exists: true,
           profileExists,
           ageHours,
+          expiresInHours,
           blockedBy: ['storage-state-json-invalid'],
           nextStep: unblockStep
         }, target),
@@ -164,6 +167,7 @@ async function main() {
         hasShellValidationMeta,
         ageHours,
         metaAgeHours,
+        expiresInHours,
         expectedInstance,
         expectedCompany,
         shellValidationMeta,

@@ -164,6 +164,8 @@ if (checkOnly) {
         expectedInstance: authStatus.expectedInstance ?? 'playthru',
         expectedCompany: authStatus.expectedCompany ?? 'UNIVERSAARL-DE',
         authAgeHours: authStatus.ageHours,
+        authMaxAgeHours: authStatus.maxAgeHours,
+        authExpiresInHours: authStatus.expiresInHours,
         blockedBy: freezeStatus.freezeActive === true ? ['improvement-freeze-active'] : [],
         nextStep:
           freezeStatus.freezeActive === true

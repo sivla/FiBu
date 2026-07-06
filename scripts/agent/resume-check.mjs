@@ -138,6 +138,9 @@ const output = {
         authSecretsPrinted: target075SafeCheck.authSecretsPrinted,
         expectedInstance: target075SafeCheck.expectedInstance,
         expectedCompany: target075SafeCheck.expectedCompany,
+        authAgeHours: target075SafeCheck.authAgeHours,
+        authMaxAgeHours: target075SafeCheck.authMaxAgeHours,
+        authExpiresInHours: target075SafeCheck.authExpiresInHours,
         blockedBy: target075SafeCheck.blockedBy
       }
     : null,
@@ -155,6 +158,7 @@ const output = {
         canUseStoredAuth: authCheck.canUseStoredAuth,
         ageHours: authCheck.ageHours,
         maxAgeHours: authCheck.maxAgeHours,
+        expiresInHours: authCheck.expiresInHours,
         expectedInstance: authCheck.expectedInstance,
         expectedCompany: authCheck.expectedCompany,
         shellValidationMeta: authCheck.shellValidationMeta
