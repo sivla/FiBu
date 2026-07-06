@@ -167,6 +167,8 @@ try {
 }
 
 const explicitFreezeOverride = freezeStatus.freezeActive === true && liveApproved && freezeOverrideApproved;
+const liveGateAllowsNow = authDoctorStatus.canRunBusinessCentralWorkflows === true;
+const liveGateBlockedBy = authDoctorStatus.liveGate?.blockedBy ?? [];
 if (!checkOnly && authDoctorStatus.canRunBusinessCentralWorkflows !== true && !explicitFreezeOverride) {
   console.error(
     JSON.stringify(
@@ -200,9 +202,12 @@ if (checkOnly) {
         purpose: 'target-075-runner-safe-check',
         targetCase: 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK',
         canResumeAfterFreezeLift: true,
-        canRunNow: freezeStatus.freezeActive !== true,
+        canResumeAfterFreezeLiftMeaning:
+          'local-readiness-only; Business Central/Playwright execution still requires the active live gate to clear',
+        canRunNow: liveGateAllowsNow,
         freezeActive: freezeStatus.freezeActive === true,
         requiresFreezeLift: freezeStatus.freezeActive === true,
+        requiresLiveGateLift: !liveGateAllowsNow,
         requiresFreezeOverrideWhenFreezeActive: freezeStatus.freezeActive === true,
         businessCentralOpened: false,
         playwrightLiveRunExecuted: false,
@@ -221,10 +226,10 @@ if (checkOnly) {
           liveGate: authDoctorStatus.liveGate,
           nextSafeAction: authDoctorStatus.nextSafeAction
         },
-        blockedBy: freezeStatus.freezeActive === true ? ['improvement-freeze-active'] : [],
+        blockedBy: liveGateBlockedBy,
         nextStep:
-          freezeStatus.freezeActive === true
-            ? 'Stored auth and local readiness are usable, but the freeze is still active. Do not open Business Central until explicit freeze lift or a second explicit freeze override.'
+          !liveGateAllowsNow
+            ? 'Stored auth and local readiness are usable, but the active live gate still blocks Business Central/Playwright execution. Do not open Business Central until explicit freeze/live-gate lift or a second explicit freeze override.'
             : 'Stored auth and local readiness are usable. Run TARGET-075 only with live shell/context validation.'
       },
       null,
