@@ -690,8 +690,15 @@ if (allText) {
     errors.push('.agent/project-template appears to contain secret-like text');
   }
 
-  if (allText.includes('RM-DEMO') || allText.includes('MCP_1_20260210')) {
-    warnings.push('.agent/project-template mentions legacy target names; keep this draft Universaarl-first unless explicitly archiving history.');
+  const mentionsLegacyTargets = /RM-DEMO|MCP_1_20260210|CRONUS|Rhein-Main|RM-\*/.test(allText);
+  const marksLegacyAsBoundary =
+    /(not active target truth|keine aktive Projektwahrheit|Legacy-Grenze|legacy-purge-source)/i.test(allText) &&
+    /legacy-purge-source/.test(allText) &&
+    /playthru \/ UNIVERSAARL-DE \/ Universaarl GmbH/.test(allText);
+  if (mentionsLegacyTargets && !marksLegacyAsBoundary) {
+    warnings.push(
+      '.agent/project-template mentions legacy target names without the active Universaarl truth and legacy-boundary language.'
+    );
   }
 
   if (!workbreakdownText.includes('Recommended first refinement target: Finance Foundation and Control Model')) {
