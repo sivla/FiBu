@@ -33,6 +33,8 @@ Last checked: 2026-07-06.
 | `npm run agent:freeze:status` | freeze active | Live execution remains blocked until the freeze is explicitly lifted or the active case confirms TARGET-075 may run. |
 | `npm run fibu:target:foundation-consistency-pilot -- --check` | passed locally | The guarded TARGET-075 runner is ready without opening Business Central. |
 | `npm run fibu:target:foundation-consistency-pilot -- --list` | passed, 1 test listed | The TARGET-075 spec is discoverable through the guarded runner. |
+| `npm run agent:foundation:decision:check` | passed locally, result missing as expected | The Foundation Readiness Decision must not be written before TARGET-075 evidence exists. |
+| `npm run agent:resume:check:overnight` | passed locally, live still blocked | Stored auth was usable for the target `playthru / UNIVERSAARL-DE`, but the freeze/live gate still blocks Business Central. |
 | `npm run check:encoding` | passed | Text encoding is clean enough for this readiness package. |
 
 Current decision: stop broad cleanup here. The next useful project movement is either explicit freeze lift plus TARGET-075 live read-first execution, or a narrow local fix only if a gate changes from green to red.
@@ -45,6 +47,7 @@ Current decision: stop broad cleanup here. The next useful project movement is e
 - `npm run check:encoding`
 - `npm run fibu:target:foundation-consistency-pilot -- --check`
 - `npm run fibu:target:foundation-consistency-pilot -- --list`
+- `npm run agent:foundation:decision:check`
 - explicit freeze lift or active-case confirmation that TARGET-075 may run
 - stored auth must resolve to `playthru / UNIVERSAARL-DE`
 
@@ -77,6 +80,6 @@ It cannot prove final SKR04 completeness, VAT correctness, posting readiness, ma
 
 ## Required handoff after TARGET-075
 
-After TARGET-075, create or update `FOUNDATION-READINESS-DECISION.md` before selecting any master-data, vendor, customer, item, setup-write, Preview Posting or Posting pilot. Use `playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.template.md` as the no-evidence handoff template until a TARGET-075 result exists.
+After TARGET-075, create or update `FOUNDATION-READINESS-DECISION.md` before selecting any master-data, vendor, customer, item, setup-write, Preview Posting or Posting pilot. Use `npm run agent:foundation:decision:check` before TARGET-075 evidence exists, and only use `npm run agent:foundation:decision:write` after the TARGET-075 result exists and validates. Use `playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.template.md` as the no-evidence handoff template until a TARGET-075 result exists.
 
 That decision must classify the TARGET-075 evidence as proven, parked, blocked or not enough for setup readiness. A visible page is only read-first evidence; it is not a release to create master data.
