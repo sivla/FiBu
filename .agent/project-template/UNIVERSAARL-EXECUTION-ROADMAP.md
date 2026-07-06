@@ -29,7 +29,7 @@ The read-first return has happened. Further live work must now start from the co
 | Current live status | read-first resume has produced Foundation evidence; further live work needs a current case gate |
 | Parked case | `TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION` |
 | Completed resume pilot | `TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK` |
-| Next live type | only a gated, non-repeating Foundation route with screenshot QA |
+| Next live type | `TARGET-073B-VAT-PAGE472-SURFACE-AND-EDITOR-PROOF`: no-write Surface-/Editor-Diagnose with screenshot QA |
 | Artifact classification | `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` |
 | Next local control task | keep roadmap, dashboard, state and artifact classification aligned; demote historical next-step noise instead of adding new layers |
 
@@ -314,14 +314,14 @@ Use this exact order:
 
 1. Keep this roadmap, dashboard, backlog and state aligned only when the active truth changes.
 2. Do not start another broad cleanup pass.
-3. If the freeze remains active, wait for explicit freeze lift or do only a narrow gate fix.
-4. If the freeze is lifted, run `TARGET-075` as read-first only.
-5. After TARGET-075, create or update `FOUNDATION-READINESS-DECISION.md`.
+3. Keep `FOUNDATION-READINESS-DECISION.md` as the active boundary.
+4. Do not repeat `TARGET-073` as-is.
+5. Prepare/run `TARGET-073B-VAT-PAGE472-SURFACE-AND-EDITOR-PROOF` only as no-write Page-472 surface/editor diagnosis; no setup value, master data, draft, Preview Posting or Posting.
 
 ## Acceptance criteria
 
 - A new agent can identify the active environment, active company, parked case, resume pilot and no-write boundary from this file.
 - Dashboard and state point to this roadmap.
 - `TARGET-073` is not resumed by accident.
-- `TARGET-075` cannot be interpreted as a setup, master-data, preview or posting case.
+- `TARGET-073B` cannot be interpreted as a VAT write, setup, master-data, preview or posting case.
 - Book, UAT, training and evidence work use the chapter map and training evidence map before claiming readiness.

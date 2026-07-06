@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "caseId": "TARGET-073B-VAT-PAGE472-SURFACE-AND-EDITOR-PROOF",
+  "status": "prepared",
+  "mode": "universaarl-target-execution",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "targetWorld": "Universaarl",
+  "activeArea": "w1-foundation",
+  "purpose": "Run one materially new no-write Page 472 diagnostic after TARGET-071/TARGET-073 failed to prove a row-scoped active editor. The goal is better Business Central UI understanding before any VAT Posting Setup write is considered again.",
+  "sourceCases": [
+    "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
+    "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
+    "FOUNDATION-READINESS-DECISION"
+  ],
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-071-vat-posting-setup-page472-controlled-write-gate/TARGET-071-result.json",
+    "playwright/projects/fibu-book5/evidence/target-073-vat-page472-active-editor-route-decision/TARGET-073-result.json",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    ".agent/skills/bc-active-editor.md",
+    ".agent/BC-UI-LOOK-AND-FEEL-GUIDE.md"
+  ],
+  "mayRunPlaywright": true,
+  "mayOpenBusinessCentral": true,
+  "effectiveBcActionsAllowed": false,
+  "allowedActions": [
+    "open-business-central-readonly",
+    "confirm-instance-playthru",
+    "confirm-company-universaarl-de",
+    "open-page472-using-proven-visible-route",
+    "capture-surface-truth-screenshots",
+    "close-irrelevant-help-or-teaching-overlays",
+    "use-focus-or-maximize-for-grid-diagnosis",
+    "hide-or-document-factbox-if-it-blocks-grid",
+    "horizontal-or-vertical-scroll-correct-grid-region",
+    "hover-target-fields-and-actions-for-tooltip-context",
+    "use-page-inspection-as-diagnostic-context",
+    "probe-active-editor-without-typing-target-values",
+    "write-result-json"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "type-inland",
+    "type-vat19",
+    "type-19",
+    "type-3806",
+    "type-1406",
+    "write-vat-posting-setup",
+    "write-vat-business-posting-group",
+    "write-vat-product-posting-group",
+    "configuration-package-import-export-validate-apply",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "company-switch",
+    "book-claim-without-evidence"
+  ],
+  "materialNewHypotheses": [
+    "Prove surface truth before editor truth: reject Role Center, Search Overlay and stale DOM text even when target words exist.",
+    "Use Page Inspection to record Page 472 / Table 325 and target field names as diagnostic context.",
+    "Use Business Central layout moves before declaring a grid blocker: focus/maximize, FactBox handling and correct-region scroll.",
+    "Bind editor candidates by visible target row and column geometry or accessibility context, not by generic activeElement text.",
+    "If a row menu, details button or tooltip exposes a standard non-grid route, classify it without typing values."
+  ],
+  "doNotRepeatAsIs": [
+    "single-click cell probe",
+    "double-click cell probe",
+    "Enter key probe",
+    "F2 key probe",
+    "unscoped nth input probe",
+    "claiming Page 472 from Search Overlay text",
+    "claiming editor readiness from header or row-header focus"
+  ],
+  "smartDecision": {
+    "whyNow": "Foundation remains blocked not by VAT source decision but by insufficient Business Central surface/editor proof. The next useful live work must improve UI understanding, not repeat blind cell-edit attempts.",
+    "fieldsThatMayChange": [],
+    "fieldsThatMustRemainUntouched": [
+      "VAT Business Posting Group",
+      "VAT Product Posting Group",
+      "VAT %",
+      "VAT Calculation Type",
+      "Sales VAT Account",
+      "Purchase VAT Account"
+    ],
+    "risk": "A visible VAT matrix can still be read-only or focus shell/header/menu controls rather than the target data cell.",
+    "fallback": "If surface truth is good but editor proof remains missing, keep VAT Posting Setup writes parked and document the exact missing UI affordance. If surface truth itself fails, return to Foundation readiness with Page 472 route blocked."
+  },
+  "requiredEvidence": [
+    "Screenshot that proves playthru / UNIVERSAARL-DE context.",
+    "Screenshot that proves the actual Page 472 VAT Posting Setup surface, not Search Overlay or Role Center.",
+    "Screenshot QA explaining visible page, grid, row/field area, and what the image does not prove.",
+    "Page Inspection or equivalent diagnostic note if available.",
+    "Active editor diagnosis JSON with activeElement tag/role/text, bounding-box or row/column binding, and safeToType=false unless fully proven.",
+    "Result JSON with setupChanged=false, masterDataChanged=false, draftCreated=false, previewPosting=false, posted=false, apiShortcut=false."
+  ],
+  "successCriteria": [
+    "The run produces a stronger Page 472 surface/editor diagnosis than TARGET-073.",
+    "No VAT target values are typed.",
+    "No setup values are saved.",
+    "The next step is either a later separate write-gate with true editor proof, or an honest Foundation limitation if no material editor route exists."
+  ],
+  "nextIfSurfaceAndEditorProven": "TARGET-071C-VAT-POSTING-SETUP-PAGE472-SEPARATE-WRITE-GATE",
+  "nextIfSurfaceProvenEditorBlocked": "FOUNDATION-READINESS-DECISION",
+  "nextIfSurfaceBlocked": "FOUNDATION-READINESS-DECISION",
+  "updatedAt": "2026-07-06T00:00:00.000Z"
+}

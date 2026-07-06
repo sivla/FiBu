@@ -53,7 +53,7 @@ M0 ist als Arbeitsrahmen nutzbar. Der naechste sinnvolle Fortschritt ist keine w
 | --- | --- | --- |
 | Projektsteuerung | usable-draft | Roadmap, Dashboard, State und Klassifikation schlank synchron halten. |
 | Freeze/Resume | passed-for-read-first-history | TARGET-075 ist gelaufen; neue Live-Arbeit braucht trotzdem aktuellen Auth-/Case-Gate. |
-| Finance Foundation | blocked-by-specific-gaps | Foundation-Decision aktuell halten: Page 314 und Page 472 active editor sind die harten UI-/Setup-Grenzen. |
+| Finance Foundation | blocked-by-specific-gaps | Foundation-Decision aktuell halten: Page 314 und Page 472 active editor sind die harten UI-/Setup-Grenzen; naechster konkreter no-write Folgecase ist `TARGET-073B`. |
 | VAT/USt, Dimensions, Posting Groups | partial/blocked | INLAND/VAT19 sichtbar, Page 472 erreichbar; VAT-Matrix-Zeile und Page 314 bleiben nicht posting-ready. |
 | Master Data | planned-blocked | Erst nach Foundation Readiness Decision in BC schreiben. |
 | Buch/Handbuch/Training | draft | Nur auf Basis offizieller Quellen, Universaarl-Evidence oder klar markierter Annahmen ausbauen. |
@@ -89,7 +89,7 @@ M0 ist als Arbeitsrahmen nutzbar. Der naechste sinnvolle Fortschritt ist keine w
 2. Naechsten kleinen Batch waehlen, der aktive Steuerung, Legacy-Isolation oder Universaarl-Readiness verbessert.
 3. Vor Live-Arbeit: `agent:preflight`, `check:encoding`, `agent:quality:audit`, `agent:resume:check || true`, `agent:freeze:status || true`.
 4. `TARGET-073` bleibt geparkt.
-5. Kein as-is Retry von TARGET-073; neuer Live-Versuch nur mit neuer Page-472-/Editor-Hypothese und Screenshot-QA.
+5. Kein as-is Retry von TARGET-073; naechster Live-Versuch ist `TARGET-073B-VAT-PAGE472-SURFACE-AND-EDITOR-PROOF` als no-write Surface-/Editor-Diagnose mit Screenshot-QA.
 6. `FOUNDATION-READINESS-DECISION.md` als aktuelle Grenze fuer Master Data, VAT-Write, Posting Groups und Prozessstarts nutzen.
 
 ## Update rule

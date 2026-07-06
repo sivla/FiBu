@@ -64,6 +64,21 @@ Jeder UI-Lauf braucht vor dem Abschluss eine kurze Screenshot-QA:
 
 Wenn ein Screenshot nur zeigt, dass "irgendwo Text im DOM existiert", aber der relevante UI-Bereich nicht sichtbar ist, ist er kein Buchkandidat.
 
+## Surface-Truth-Gate vor Editor- oder Schreibbeweis
+
+Ein Business-Central-Lauf darf erst von einer Page, Zeile oder einem Editor sprechen, wenn die sichtbare Oberflaeche dazu passt.
+
+Pflichtbeweise:
+
+1. Shell/Instanz/Company sind richtig.
+2. Tell-Me/Search-Overlay ist entweder bewusst der Beweisgegenstand oder geschlossen.
+3. Der Screenshot zeigt die Zielpage selbst, nicht nur Role Center, Navigation, Suchtreffer oder versteckten DOM-Text.
+4. Bei Listen/Grids ist der Zielbereich gross genug: FactBox/Infobox, Fokusmodus, Maximize, horizontales/vertikales Scrollen und sichtbare Spalten wurden sinnvoll behandelt.
+5. Die Zielzeile und Zielspalte sind getrennt bewiesen.
+6. Ein aktiver Editor zaehlt nur, wenn das fokussierte Control sichtbar, enabled, nicht readonly, im Vordergrund und zeilen-/feldgebunden ist.
+
+Wenn einer dieser Punkte fehlt, ist das Ergebnis `blocked` oder `rejected-path`. Dann darf der Test nicht behaupten, das Feld sei nicht vorhanden oder eine Schreibroute sei fachlich bereit.
+
 ## Overlays und Hilfe
 
 Hilfe unten links, Tour-Hinweise, Coachmarks, Help-Bubbles oder Copilot-/Help-Overlays duerfen geschlossen werden, wenn sie den aktuellen Beweis nicht betreffen und wichtige UI verdecken.

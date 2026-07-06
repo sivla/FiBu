@@ -90,6 +90,21 @@ const checksByCase = new Map([
         }
       ]
     }
+  ],
+  [
+    'TARGET-073B-VAT-PAGE472-SURFACE-AND-EDITOR-PROOF',
+    {
+      id: 'target-073b-page472-surface-editor-proof',
+      scriptPath: 'scripts/agent/target-073b-readiness-check.mjs',
+      reason: 'TARGET-073B is the next materially new no-write Page 472 surface/editor diagnostic and must not become another VAT write attempt.',
+      secondaryChecks: [
+        {
+          id: 'foundation-readiness-decision',
+          scriptPath: 'scripts/agent/foundation-readiness-decision.mjs',
+          reason: 'Foundation Readiness must remain the boundary until TARGET-073B produces stronger surface/editor evidence.'
+        }
+      ]
+    }
   ]
 ]);
 

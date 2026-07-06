@@ -27,7 +27,7 @@ Praktische Entscheidung:
 
 - Master Data, O2C, P2P, Journale, Buchungsvorschau und Buchung bleiben blockiert.
 - TARGET-073 bleibt als as-is Retry geparkt, weil single-click, double-click, Enter und F2 keinen echten aktiven Editor bewiesen haben.
-- Ein neuer Live-Versuch ist nur sinnvoll, wenn er eine materiell neue UI-Hypothese nutzt, zum Beispiel Page Inspection, BC-Page-/Table-Kontext, Fokusmodus/Tabellenbereich, spaltengebundene Zelladressierung oder eine andere standardnahe Route.
+- Der naechste neue Live-Versuch ist `TARGET-073B-VAT-PAGE472-SURFACE-AND-EDITOR-PROOF`. Dieser Case darf nur no-write diagnostizieren: sichtbare Page-472-Oberflaeche, Layout/Fokus/Scroll-Zustand, Page-Inspection-Kontext und row-/column-bound aktiven Editor beweisen oder sauber blockieren.
 - Page-314-/Page-472-Screenshots duerfen nur als Proof gelten, wenn sie die Zielseite, relevante Felder/Spalten und den aktiven Kontext sichtbar zeigen; Role Center, Suche/Tell-Me oder versteckter Text reichen nicht.
 
 ## No-Write-Grenze aus TARGET-075
@@ -164,7 +164,7 @@ Erlaubte Anschlussklassifikationen:
 - Den abgelehnten Nachweis zur Buchungsmatrix Einrichtung vor Master Data klaeren oder bewusst als Grenze akzeptieren.
 - PWS-FF-002 nicht als akzeptierten Buchungsmatrix-Nachweis verwenden; der Screenshot zeigt Rollencenter statt Page 314.
 - PWS-FF-002B nicht wiederholen, solange keine neue Route-Hypothese vorliegt; direkte URL und scoped Search-Click sind als aktueller Weg blockiert.
-- TARGET-073 nicht als as-is Retry wiederholen; der naechste VAT-/Page-472-Schritt braucht eine neue UI- oder Page-Inspection-Hypothese.
+- TARGET-073 nicht als as-is Retry wiederholen; als naechsten no-write Live-Folgecase `TARGET-073B-VAT-PAGE472-SURFACE-AND-EDITOR-PROOF` verwenden.
 - Starterkonten erneut sichtbar pruefen, wenn der Kontenplan Setup- oder Buchaussagen tragen soll.
 - Master Data, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt, bis die Foundation-Grenzen geklaert sind.
 - Classify master-data readiness only after chart/setup context is accepted.
