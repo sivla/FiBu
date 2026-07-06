@@ -149,6 +149,7 @@ function renderDecision(result) {
   const screenshots = asArray(result.screenshots);
   const pages = asArray(result.pages);
   const authTarget = result.authGate?.authTarget ?? {};
+  const foundationPageEvidenceObserved = pages.length >= 5 && pages.every((pageEntry) => pageEntry.status === 'observed');
   const foundationSetupPagesObserved = [
     setup.generalBusinessPostingGroups,
     setup.generalProductPostingGroups,
@@ -162,7 +163,7 @@ function renderDecision(result) {
     starterMissing.length === 0 &&
     foundationSetupPagesObserved &&
     screenshots.length >= 5 &&
-    pages.length >= 5;
+    foundationPageEvidenceObserved;
 
   const decision = readyForMasterData
     ? 'Master Data kann als naechster Block vorbereitet werden, aber nur mit eigenem Smart Decision Gate.'

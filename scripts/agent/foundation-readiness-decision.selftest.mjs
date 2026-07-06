@@ -12,6 +12,8 @@ const blockedInputPath = path.join(tempDir, 'TARGET-075-blocked-result.json');
 const blockedOutputPath = path.join(tempDir, 'FOUNDATION-READINESS-BLOCKED.md');
 const incompleteSetupInputPath = path.join(tempDir, 'TARGET-075-incomplete-setup-result.json');
 const incompleteSetupOutputPath = path.join(tempDir, 'FOUNDATION-READINESS-INCOMPLETE-SETUP.md');
+const rejectedPageInputPath = path.join(tempDir, 'TARGET-075-rejected-page-result.json');
+const rejectedPageOutputPath = path.join(tempDir, 'FOUNDATION-READINESS-REJECTED-PAGE.md');
 const missingAuthTargetInputPath = path.join(tempDir, 'TARGET-075-missing-auth-target-result.json');
 const missingAuthTargetOutputPath = path.join(tempDir, 'FOUNDATION-READINESS-MISSING-AUTH-TARGET.md');
 
@@ -153,6 +155,10 @@ incompleteSetupFixture.foundationReadinessInput.setupContext.generalPostingSetup
 incompleteSetupFixture.foundationReadinessInput.setupContext.vatPostingSetup = 'observed';
 fs.writeFileSync(incompleteSetupInputPath, `${JSON.stringify(incompleteSetupFixture, null, 2)}\n`, 'utf8');
 
+const rejectedPageFixture = JSON.parse(JSON.stringify(fixture));
+rejectedPageFixture.pages[2].status = 'rejected';
+fs.writeFileSync(rejectedPageInputPath, `${JSON.stringify(rejectedPageFixture, null, 2)}\n`, 'utf8');
+
 const missingScreenshotMetadataFixture = JSON.parse(JSON.stringify(fixture));
 delete missingScreenshotMetadataFixture.pages[0].screenshotMetadata;
 const missingScreenshotMetadataInputPath = path.join(tempDir, 'TARGET-075-missing-screenshot-metadata-result.json');
@@ -216,6 +222,18 @@ if (!incompleteSetupOutput.includes('Master Data bleibt geparkt')) {
 }
 if (/Master Data kann als naechster Block vorbereitet werden/.test(incompleteSetupOutput)) {
   errors.push('incomplete setup fixture must not allow Master Data preparation.');
+}
+
+const rejectedPageWrite = run([`--input=${rejectedPageInputPath}`, `--output=${rejectedPageOutputPath}`, '--write']);
+
+if (rejectedPageWrite.status !== 0) errors.push(`rejected page write mode exited ${rejectedPageWrite.status}.`);
+if (rejectedPageWrite.parsed?.wroteFile !== true) errors.push('rejected page fixture should write a parked decision file.');
+const rejectedPageOutput = fs.existsSync(rejectedPageOutputPath) ? fs.readFileSync(rejectedPageOutputPath, 'utf8') : '';
+if (!rejectedPageOutput.includes('Master Data bleibt geparkt')) {
+  errors.push('rejected page fixture must keep Master Data parked.');
+}
+if (/Master Data kann als naechster Block vorbereitet werden/.test(rejectedPageOutput)) {
+  errors.push('rejected page fixture must not allow Master Data preparation.');
 }
 
 const missingScreenshotMetadataWrite = run([
