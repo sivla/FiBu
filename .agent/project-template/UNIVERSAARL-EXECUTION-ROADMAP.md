@@ -88,7 +88,7 @@ Latest local check result: TARGET-075 readiness refresh, 2026-07-06.
 | `check:encoding` | passed | Text files are clean enough for this package. |
 | `agent:quality:audit` | passed with risk findings | Quality risks remain visible: active-pilot/core TypeScript coverage only, direct storageState usage and legacy Playwright flake surface. |
 | `agent:resume:check` | passed locally | `TARGET-075` is locally prepared, but this does not lift the freeze. |
-| `agent:resume:check:overnight` | passed locally, live still blocked | Stored auth was usable for `playthru / UNIVERSAARL-DE`; freeze/live gate still blocks execution. |
+| `agent:resume:check:overnight` | blocks until auth is refreshed | The overnight gate now requires at least 9 hours of remaining auth window. Normal local readiness may pass, but unattended or later live work must refresh auth first. |
 | `agent:freeze:status` | freeze active | Live execution remains blocked until the freeze is explicitly lifted. |
 | `agent:foundation:decision:check` | passed locally, result missing as expected | `FOUNDATION-READINESS-DECISION.md` must not be written before TARGET-075 evidence exists. |
 | `npm run fibu:target:foundation-consistency-pilot -- --check` | passed locally | The guarded TARGET-075 runner is ready without opening Business Central. |
