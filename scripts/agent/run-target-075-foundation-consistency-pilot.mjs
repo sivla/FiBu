@@ -19,7 +19,7 @@ function run(base, args, options = {}) {
     cwd: process.cwd(),
     stdio: options.stdio ?? 'pipe',
     shell: process.platform === 'win32',
-    env: process.env,
+    env: { ...process.env, ...(options.env ?? {}) },
     ...(inheritedStdio ? {} : { encoding: 'utf8' })
   });
 }
@@ -180,4 +180,9 @@ if (checkOnly) {
 }
 
 const passthroughArgs = rawArgs.filter((arg) => arg !== '--live-approved');
-exitWith(run('npx', ['playwright', 'test', specPath, ...passthroughArgs], { stdio: 'inherit' }));
+exitWith(
+  run('npx', ['playwright', 'test', specPath, ...passthroughArgs], {
+    stdio: 'inherit',
+    env: { TARGET_075_LIVE_APPROVED: '1' }
+  })
+);

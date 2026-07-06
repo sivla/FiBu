@@ -158,6 +158,9 @@ if (guardedRunner) {
   if (!guardedRunner.includes('--check')) {
     errors.push(`${guardedRunnerPath}: guarded runner must offer --check for safe readiness/auth validation without live execution`);
   }
+  if (!guardedRunner.includes('TARGET_075_LIVE_APPROVED')) {
+    errors.push(`${guardedRunnerPath}: guarded runner must set TARGET_075_LIVE_APPROVED only for approved live execution`);
+  }
 }
 
 if (readiness) {
@@ -206,6 +209,9 @@ if (spec) {
   }
   if (!spec.includes('TARGET_COMPANY = \'UNIVERSAARL-DE\'')) {
     errors.push(`${specPath}: expected company guard missing`);
+  }
+  if (!spec.includes('TARGET_075_LIVE_APPROVED') || !spec.includes('test.skip')) {
+    errors.push(`${specPath}: direct Playwright execution must be skipped unless TARGET_075_LIVE_APPROVED is set by the guarded runner`);
   }
 }
 
