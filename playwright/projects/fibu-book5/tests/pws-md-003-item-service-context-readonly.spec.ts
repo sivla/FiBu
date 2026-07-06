@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Locator, type Page } from '@playwright/test';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
@@ -114,6 +114,56 @@ async function screenshotWithMetadata(page: Page, fileName: string, metadata: Re
   };
 }
 
+type Capture = {
+  screenshot: string;
+  screenshotMetadata: string;
+};
+
+async function captureReadOnlyCheckpoint(
+  page: Page,
+  fileName: string,
+  metadata: Record<string, unknown>,
+  captures: Capture[]
+) {
+  const shot = await screenshotWithMetadata(page, fileName, metadata);
+  captures.push(shot);
+  return shot;
+}
+
+async function tryHoverFirst(page: Page, labels: RegExp[]) {
+  for (const label of labels) {
+    const candidate = page.getByRole('button', { name: label }).first();
+    if (await candidate.isVisible({ timeout: 1500 }).catch(() => false)) {
+      await candidate.hover({ timeout: 2000 }).catch(() => undefined);
+      return label.source;
+    }
+  }
+  return '';
+}
+
+async function clickFirstVisible(page: Page, label: RegExp) {
+  for (const [scopeIndex, scope] of [page, ...page.frames()].entries()) {
+    const candidates: Array<{ name: string; locator: Locator }> = [
+      { name: 'role-link', locator: scope.getByRole('link', { name: label }).first() },
+      { name: 'role-button', locator: scope.getByRole('button', { name: label }).first() },
+      { name: 'anchor-text', locator: scope.locator('a').filter({ hasText: label }).first() },
+      { name: 'visible-text', locator: scope.getByText(label).first() }
+    ];
+    for (const candidate of candidates) {
+      if (await candidate.locator.isVisible({ timeout: 1000 }).catch(() => false)) {
+        await candidate.locator.scrollIntoViewIfNeeded({ timeout: 2000 }).catch(() => undefined);
+        await candidate.locator.click({ timeout: 5000 });
+        return `${candidate.name}-scope-${scopeIndex}`;
+      }
+    }
+  }
+  return '';
+}
+
+function itemListSignalCount(text: string) {
+  return [/Artikel|Item/i, /Nr\.|No\.|Beschreibung|Description|Typ|Type/i].filter((signal) => signal.test(text)).length;
+}
+
 test('PWS-MD-003 captures item and service list context read-only', async ({ page }) => {
   await fs.mkdir(EVIDENCE_DIR, { recursive: true });
   const startedAt = new Date().toISOString();
@@ -122,10 +172,111 @@ test('PWS-MD-003 captures item and service list context read-only', async ({ pag
   await waitForBusinessCentralShell(page);
   await dismissTours(page);
   await page.keyboard.press('Escape').catch(() => undefined);
+  const captures: Capture[] = [];
 
   await expect.poll(async () => page.url(), { timeout: 30_000 }).toContain(EXPECTED_INSTANCE);
 
-  const rawText = await fullText(page);
+  const rawTextAfterOpen = await fullText(page);
+  await captureReadOnlyCheckpoint(
+    page,
+    'pws-md-003-010-item-service-list-context.png',
+    {
+      page: 'Artikel / Items',
+      pageId: 31,
+      step: 'Item/service list/page context after open',
+      importantUi: ['Page title', 'company context', 'item/service list signals', 'visible columns or empty-list state'],
+      visibleSignals: rawTextAfterOpen.split('\n').slice(0, 45),
+      internallyProves: 'Business Central reached the item/service context surface or produced enough text to diagnose the route.',
+      doesNotProve: ['No item or service created', 'No template changed', 'No posting, costing or inventory readiness'],
+      finalScreenshotStatus: 'draft-candidate',
+      noWrite: true,
+      noPost: true,
+      noPreview: true
+    },
+    captures
+  );
+
+  let rawTextAfterItemRoute = rawTextAfterOpen;
+  let itemRouteUsed = '';
+  if (itemListSignalCount(rawTextAfterOpen) < 2) {
+    itemRouteUsed = await clickFirstVisible(page, /^Artikel$|^Items$|^Services$|^Dienstleistungen$/i);
+    if (itemRouteUsed) {
+      await waitForBusinessCentralShell(page);
+      await dismissTours(page);
+      await expect
+        .poll(async () => itemListSignalCount(await fullText(page)), { timeout: 20_000 })
+        .toBeGreaterThanOrEqual(2);
+      rawTextAfterItemRoute = await fullText(page);
+      await captureReadOnlyCheckpoint(
+        page,
+        'pws-md-003-015-item-service-link-route-context.png',
+        {
+          page: 'Artikel / Items',
+          pageId: 31,
+          step: 'Role Center Artikel link route to item/service list',
+          routeUsed: itemRouteUsed,
+          routeLearning:
+            'Direct page=31 navigation can land on the Role Center; the visible Artikel link is the safer user-like route to the item/service list.',
+          importantUi: ['Artikel link route', 'item/service list title', 'type/description/unit/posting columns or empty-list state'],
+          visibleSignals: rawTextAfterItemRoute.split('\n').slice(0, 55),
+          internallyProves: 'The run used the visible Role Center Artikel navigation route without clicking New, Edit, item templates or inventory actions.',
+          doesNotProve: ['No item or service created', 'No unit/posting/costing setup', 'No sales, purchase, inventory or posting readiness'],
+          finalScreenshotStatus: 'draft-candidate',
+          noWrite: true,
+          noPost: true,
+          noPreview: true
+        },
+        captures
+      );
+    }
+  }
+
+  const hoveredAction = await tryHoverFirst(page, [/Search|Suchen/i, /Filter|Filtern/i, /Open in Excel|In Excel oeffnen/i, /Share|Teilen/i]);
+  const rawTextAfterActionHover = await fullText(page);
+  await captureReadOnlyCheckpoint(
+    page,
+    'pws-md-003-020-item-service-action-or-hover-context.png',
+    {
+      page: 'Artikel / Items',
+      pageId: 31,
+      step: 'Read-only action or hover context',
+      hoveredAction: hoveredAction || 'no safe read-only toolbar action hovered',
+      importantUi: ['Toolbar/action bar', 'read-only utility actions', 'possible New/Edit/item/inventory action visibility without clicking them'],
+      visibleSignals: rawTextAfterActionHover.split('\n').slice(0, 45),
+      internallyProves: 'The run inspected item/service-page action context without clicking New, Edit, templates or inventory actions.',
+      doesNotProve: ['No write-capable action was tested', 'No action was accepted as safe for data changes'],
+      finalScreenshotStatus: 'draft-candidate',
+      noWrite: true,
+      noPost: true,
+      noPreview: true
+    },
+    captures
+  );
+
+  await page.keyboard.press('Control+Alt+F1').catch(() => undefined);
+  await expect.poll(async () => (await fullText(page)).length, { timeout: 5000 }).toBeGreaterThan(20);
+  const rawTextAfterInspection = await fullText(page);
+  await captureReadOnlyCheckpoint(
+    page,
+    'pws-md-003-030-item-service-page-inspection-context.png',
+    {
+      page: 'Artikel / Items',
+      pageId: 31,
+      step: 'Page Inspection / technical context if available',
+      importantUi: ['Page Inspection pane', 'page id/name', 'table/source context if available'],
+      visibleSignals: rawTextAfterInspection.split('\n').slice(0, 55),
+      internallyProves: 'The run attempted a technical page-context check for reproducibility.',
+      doesNotProve: ['No object model completeness', 'No API or AL shortcut'],
+      finalScreenshotStatus: 'draft-candidate',
+      noWrite: true,
+      noPost: true,
+      noPreview: true
+    },
+    captures
+  );
+  await page.keyboard.press('Escape').catch(() => undefined);
+
+  const rawText = clean(`${rawTextAfterOpen}\n${rawTextAfterItemRoute}\n${rawTextAfterActionHover}\n${rawTextAfterInspection}`);
   const compact = clean(
     await compactPageText(page, {
       include: [
@@ -136,33 +287,11 @@ test('PWS-MD-003 captures item and service list context read-only', async ({ pag
     }).catch(() => '')
   );
   const text = compact || rawText;
-  const itemSignals = [/Artikel|Item/i, /Nr\.|No\.|Beschreibung|Description|Typ|Type/i].filter((signal) => signal.test(rawText)).length;
+  const itemSignals = itemListSignalCount(rawText);
   const status = itemSignals >= 2 ? 'observed' : 'blocked';
   const blockedBy = status === 'observed' ? [] : ['Item/service list/page context was not visible enough for read-first proof.'];
   const textFile = 'pws-md-003-010-item-service-context.txt';
   await writeTextEvidence(evidencePath(PROJECT, EVIDENCE_ID, textFile), text || 'No compact page text captured.');
-  const shot = await screenshotWithMetadata(page, 'pws-md-003-010-item-service-context.png', {
-    page: 'Artikel / Items',
-    pageId: 31,
-    step: 'Read-only item/service context proof',
-    status,
-    importantUi: ['Page title', 'company context', 'item/service list signals', 'type/unit/posting/VAT/costing field signals if visible'],
-    visibleSignals: text.split('\n').slice(0, 45),
-    internallyProves: status === 'observed' ? 'Item/service context page is visible read-only in playthru / UNIVERSAARL-DE.' : 'Item/service context was not accepted.',
-    doesNotProve: [
-      'No item or service created',
-      'No item template changed',
-      'No unit of measure setup',
-      'No product posting group correctness',
-      'No VAT product group correctness',
-      'No inventory posting setup',
-      'No costing or stock readiness'
-    ],
-    finalScreenshotStatus: status === 'observed' ? 'draft-candidate' : 'rejected',
-    noWrite: true,
-    noPost: true,
-    noPreview: true
-  });
 
   const result = {
     schemaVersion: 1,
@@ -181,7 +310,8 @@ test('PWS-MD-003 captures item and service list context read-only', async ({ pag
     playwrightLiveRunExecuted: true,
     actionsTaken: [
       'Opened the item/service context page read-only after guarded runner approval.',
-      'Captured compact page text, screenshot and screenshot metadata.',
+      'Captured checkpoint screenshots for page context, action/hover context and Page Inspection context.',
+      'Captured compact page text and screenshot metadata.',
       'Classified visible item/service-context signals for the Master Data and Inventory handoff.'
     ],
     actionsNotTaken: [
@@ -206,7 +336,21 @@ test('PWS-MD-003 captures item and service list context read-only', async ({ pag
     posted: false,
     payment: false,
     apiShortcut: false,
-    screenshots: [shot.screenshot],
+    screenshots: captures.map((capture) => capture.screenshot),
+    screenshotQa: {
+      requiredCheckpoints: [
+        'item/service list/page context',
+        'Role Center Artikel link route if direct page navigation resolves to Role Center',
+        'safe action or hover context',
+        'Page Inspection or technical context'
+      ],
+      capturedCheckpoints: captures.map((capture) => capture.screenshot),
+      accepted: status === 'observed' && captures.length >= 3,
+      reason:
+        status === 'observed' && captures.length >= 3
+          ? 'Mehrere UI-Zustaende wurden dokumentiert; der Lauf stuetzt sich nicht auf einen einzelnen End-Screenshot.'
+          : 'Item/service context or screenshot checkpoint coverage was not sufficient.'
+    },
     proved: status === 'observed' ? ['Item/service context page is visible read-only in playthru / UNIVERSAARL-DE.'] : [],
     notProved: [
       'No item or service setup readiness.',
@@ -232,7 +376,11 @@ test('PWS-MD-003 captures item and service list context read-only', async ({ pag
       noInventoryChange: true,
       readOnlyDirectPageRoute: true
     },
-    evidenceRefs: [`${EVIDENCE_DIR_REL}/${textFile}`, shot.screenshot, shot.screenshotMetadata, `${EVIDENCE_DIR_REL}/PWS-MD-003-result.json`],
+    evidenceRefs: [
+      `${EVIDENCE_DIR_REL}/${textFile}`,
+      ...captures.flatMap((capture) => [capture.screenshot, capture.screenshotMetadata]),
+      `${EVIDENCE_DIR_REL}/PWS-MD-003-result.json`
+    ],
     nextCase: 'FOUNDATION-MASTER-DATA-ROUTE-DECISION',
     requiresReview: status !== 'observed',
     safeToFinalizeState: false

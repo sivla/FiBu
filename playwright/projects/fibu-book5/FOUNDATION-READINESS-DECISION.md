@@ -135,6 +135,28 @@ PWS-FF-001 hat die Nummernserien-Seite read-only beobachtet: sieben Universaarl-
 - Fachgrenze: sichtbare Debitorenfelder beweisen keine Debitorenanlage, keine Buchungsgruppen-Korrektheit, keine USt-Korrektheit und keine Verkaufsprozessbereitschaft.
 - Praktische Folge: Der naechste sinnvolle Master-Data-Probe ist `PWS-MD-002` Kreditoren read-only, aber nur mit derselben mehrstufigen Screenshot-QA.
 
+## PWS-MD-002 Kreditoren-Kontext Read-first
+
+- Quelle: playwright/projects/fibu-book5/evidence/pws-md-002-vendor-context-readonly/PWS-MD-002-result.json
+- Status: observed
+- Akzeptiert: Die Kreditorenliste `Vendor List (27, List)` wurde read-only in `playthru / UNIVERSAARL-DE` geoeffnet.
+- Sichtbar: leere Kreditorenliste, Import-/Datenmigration-Hinweis, `Neu`, `Loeschen`, FactBox `Kreditorenstatistik` und Page Inspection zu `Vendor (23)` mit Feldern wie `No.`, `Name`, `Vendor Posting Group`, `Payment Terms Code` und `Payment Method Code`.
+- UI-Learning: Die PWS-MD-001-Route mit frame-aware Role-Center-Navigation und mehrstufiger Screenshot-QA ist auf Kreditoren uebertragbar.
+- Schreibgrenze: kein Kreditor, keine Kreditorenvorlage, keine Bankdaten, kein Einkaufsbeleg, keine Zahlung, keine Buchungsvorschau, keine Buchung.
+- Fachgrenze: sichtbare Kreditorenfelder beweisen keine Kreditorenanlage, keine Zahlungs-/Bankbereitschaft, keine Buchungsgruppen-Korrektheit und keine Einkaufsprozessbereitschaft.
+- Praktische Folge: Der naechste sinnvolle Master-Data-Probe ist `PWS-MD-003` Artikel/Services read-only, aber ohne Artikelanlage oder Setup-Aenderung.
+
+## PWS-MD-003 Artikel-/Service-Kontext Read-first
+
+- Quelle: playwright/projects/fibu-book5/evidence/pws-md-003-item-service-context-readonly/PWS-MD-003-result.json
+- Status: observed
+- Akzeptiert: Die Artikelliste `Item List (31, List)` wurde read-only in `playthru / UNIVERSAARL-DE` geoeffnet.
+- Sichtbar: vorhandener Artikel `U-ITEM-HW100`, Beschreibung `Universaarl Hardware 100Inventory`, Art `Bestand`, Basiseinheit `STK`, Lagerbestand `0`, FactBox-Details zu Fakturierung/Planung und Page Inspection zu `Item (27)`.
+- UI-Learning: Auch Artikel/Services brauchen mehrstufige Screenshot-QA, weil vorhandene Datensaetze und FactBoxen leicht zu starken Prozessclaims verleiten.
+- Schreibgrenze: kein Artikel, kein Service, keine Vorlage, keine Einheit, keine Buchungsgruppe, keine Lager-/Kosten-/Planungseinrichtung, kein Einkaufs- oder Verkaufsbeleg, keine Buchungsvorschau, keine Buchung.
+- Fachgrenze: sichtbarer Artikelbestand und sichtbare Artikel-Felder beweisen keine Artikelanlage dieses Laufs, keine Product-Posting-/VAT-Product-/Inventory-Posting-Korrektheit, keine Costing-Method-Korrektheit und keine O2C-/P2P-/Inventory-Bereitschaft.
+- Praktische Folge: Nach Debitoren, Kreditoren und Artikeln ist kein weiterer blinder Read-first-Microcase sinnvoll. Naechster Schritt ist eine kleine `FOUNDATION-MASTER-DATA-ROUTE-DECISION`: Was darf als naechstes geschrieben werden, was braucht vorher Setup-/Template-/Datenentscheidung?
+
 ## Foundation-Read-first-Folgeprobes
 
 Diese Tabelle verhindert den Sprung in Stammdaten, wenn TARGET-075 zuerst eine engere Foundation-Luecke zeigt. Sie gibt keine Schreibfreigabe.
@@ -166,8 +188,8 @@ Diese Entscheidung gibt keine Schreibfreigabe. Sie waehlt hoechstens den naechst
 | Kandidat | Entscheidung | Mindestgrundlage | Bleibt verboten |
 | --- | --- | --- | --- |
 | `PWS-MD-001` Debitoren (Customers) | observed-readfirst | Debitorenliste und zentrale Felder wurden read-only mit mehrstufiger Screenshot-QA beobachtet. | Debitor speichern, Vorlage aendern, Verkaufsbeleg anlegen |
-| `PWS-MD-002` Kreditoren (Vendors) | ready-next-readfirst | Kreditoren koennen nach dem Debitoren-Kontext analog read-only geprueft werden; Bankdaten bleiben ausserhalb. | Kreditor speichern, Bankdaten erfassen, Einkaufsbeleg oder Zahlung anlegen |
-| `PWS-MD-003` Artikel/Services/Nichtlagerartikel | ready-after-vendor-readfirst | Artikel-/Service-Kontext braucht zusaetzlich Produktbuchungsgruppen-, USt-Produkt- und Einheitenbewusstsein; daher nach Debitor/Kreditor. | Artikel speichern, Basiseinheit anlegen, Lager-/Bewertungs-/Buchungssetup aendern, Lagerwert oder Wertposten behaupten |
+| `PWS-MD-002` Kreditoren (Vendors) | observed-readfirst | Kreditorenliste und zentrale Felder wurden read-only mit mehrstufiger Screenshot-QA beobachtet. | Kreditor speichern, Bankdaten erfassen, Einkaufsbeleg oder Zahlung anlegen |
+| `PWS-MD-003` Artikel/Services/Nichtlagerartikel | observed-readfirst | Artikelliste, vorhandener Artikel `U-ITEM-HW100` und zentrale Felder wurden read-only mit mehrstufiger Screenshot-QA beobachtet. | Artikel speichern, Basiseinheit anlegen, Lager-/Bewertungs-/Buchungssetup aendern, Lagerwert oder Wertposten behaupten |
 
 Erlaubte Anschlussklassifikationen:
 
@@ -184,7 +206,7 @@ Erlaubte Anschlussklassifikationen:
 - Master-Data-Schreibfaelle, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt, bis die Foundation-Grenzen geklaert sind.
 - PWS-FF-005B als beobachteten no-write Dimensionswerte-Proof konsumieren.
 - PWS-FF-001 als beobachteten no-write Nummernserien-Proof konsumieren.
-- `PWS-MD-001` Debitoren ist als read-only Kontext beobachtet. Der naechste Master-Data-Readfirst ist `PWS-MD-002` Kreditoren, nach Uebernahme der mehrstufigen Screenshot-QA.
+- `PWS-MD-001`, `PWS-MD-002` und `PWS-MD-003` sind als read-only Kontext beobachtet. Naechster Schritt ist eine Route Decision fuer den ersten Master-Data-Write-Gate-Kandidaten.
 - Classify master-data readiness only after chart/setup context is accepted.
 - Use accepted screenshots as draft handbook/training evidence, not final compliance proof.
 
@@ -202,4 +224,4 @@ Erlaubte Anschlussklassifikationen:
 
 ## Naechster Case
 
-- `PWS-MD-002-VENDOR-CONTEXT-READFIRST`: Kreditoren (Vendors) read-only oeffnen, die PWS-MD-001-Screenshot-QA auf Kreditoren uebertragen und keine Stammdaten, Bankdaten, Templates, Belege, Zahlungen, Buchungsvorschau oder Buchung erzeugen.
+- `FOUNDATION-MASTER-DATA-ROUTE-DECISION`: Debitoren/Kreditoren/Artikel-Read-first-Evidence auswerten und entscheiden, ob als erstes ein Debitor-, Kreditor- oder Artikel-Write-Gate fachlich sinnvoll, datenbereit und korrigierbar ist. Keine direkte Stammdatenanlage aus dieser Entscheidung ableiten.

@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
+  "status": "planned-local-decision",
+  "mode": "universaarl-masterdata-route-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w2-core-masterdata",
+  "purpose": "Use PWS-MD-001/002/003 read-first evidence to decide the first narrow Master Data write-gate candidate without writing data.",
+  "mayRunPlaywright": false,
+  "mayOpenBusinessCentral": false,
+  "effectiveBcActionsAllowed": false,
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/pws-md-001-customer-context-readonly/PWS-MD-001-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-md-002-vendor-context-readonly/PWS-MD-002-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-md-003-item-service-context-readonly/PWS-MD-003-result.json",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    "playwright/projects/fibu-book5/UNIVERSAARL-DATASET-BLUEPRINT.md"
+  ],
+  "allowedActions": [
+    "read-masterdata-readfirst-evidence",
+    "compare-customer-vendor-item-write-gate-candidates",
+    "update-foundation-readiness-decision",
+    "update-state-summary",
+    "prepare-one-next-write-gate-or-source-check-case"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright-live",
+    "write-setup",
+    "create-customer",
+    "create-vendor",
+    "create-item",
+    "create-service",
+    "change-template",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "company-switch",
+    "claim-master-data-ready",
+    "claim-process-ready"
+  ],
+  "acceptanceCriteria": [
+    "Decision compares customer, vendor and item/service as first write-gate candidates.",
+    "Decision names missing setup, template, data, UAT/training and rollback/reopen requirements.",
+    "Decision selects exactly one next case or parks all writes with a concrete source/setup follow-up.",
+    "No Business Central or Playwright live action is executed in this local decision."
+  ],
+  "nextStepDecision": {
+    "currentCase": "PWS-MD-003-ITEM-SERVICE-CONTEXT-READFIRST",
+    "plannedNextCaseBeforeReview": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
+    "lastEvidenceSummary": "Customer, Vendor and Item List contexts were observed read-only with multi-checkpoint screenshot QA in playthru / UNIVERSAARL-DE.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "After three Master Data context proofs, another read-only list probe has lower value than deciding the first safe, useful write-gate candidate.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
+        "status": "ready-next",
+        "reason": "Evidence exists for customer, vendor and item/service contexts."
+      },
+      {
+        "caseId": "PWS-MD-CUSTOMER-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Customer template/posting/payment dependencies must be checked before creation."
+      },
+      {
+        "caseId": "PWS-MD-VENDOR-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Vendor bank/payment and posting dependencies are higher risk."
+      },
+      {
+        "caseId": "PWS-MD-ITEM-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Item has UOM, posting, inventory and costing dependencies."
+      }
+    ],
+    "queueChangesMade": [
+      "PWS-MD-002 and PWS-MD-003 moved to observed-readfirst; route decision selected next."
+    ],
+    "selectedNextCase": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "It prevents blindly creating master data after read-only evidence and converts observations into a consultant-grade route decision.",
+    "risksBeforeNextCase": [
+      "Do not turn read-only visibility into setup-ready claims.",
+      "Do not create master data before one narrow write gate is selected."
+    ],
+    "requiredPreparation": [
+      "Read PWS-MD-001/002/003 results and simulated data packages."
+    ]
+  },
+  "nextCase": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
+  "updatedAt": "2026-07-06T21:21:30.856Z"
+}

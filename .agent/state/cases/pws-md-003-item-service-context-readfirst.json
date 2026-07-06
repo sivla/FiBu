@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PWS-MD-003-ITEM-SERVICE-CONTEXT-READFIRST",
+  "status": "observed-readfirst",
+  "mode": "universaarl-masterdata-readfirst",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w2-core-masterdata",
+  "purpose": "Open the item/service context read-only and capture page/list/action/field context before any item/service write gate.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/pws-md-001-customer-context-readonly/PWS-MD-001-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-md-002-vendor-context-readonly/PWS-MD-002-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-md-003-item-service-context-readonly/PWS-MD-003-result.json"
+  ],
+  "mayRunPlaywright": true,
+  "mayOpenBusinessCentral": true,
+  "effectiveBcActionsAllowed": false,
+  "allowedActions": [
+    "run-playwright-readonly",
+    "open-business-central-readonly",
+    "confirm-playthru-instance",
+    "confirm-universaarl-company",
+    "open-items-readonly",
+    "capture-screenshot-qa",
+    "write-evidence-result",
+    "update-state-summary"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "write-setup",
+    "create-item",
+    "create-service",
+    "edit-item",
+    "change-item-template",
+    "create-master-data",
+    "change-unit-of-measure",
+    "change-posting-group",
+    "change-inventory-setup",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "company-switch",
+    "claim-item-readiness",
+    "claim-inventory-readiness",
+    "claim-sales-readiness",
+    "claim-purchase-readiness",
+    "claim-posting-readiness"
+  ],
+  "acceptanceCriteria": [
+    "playthru / UNIVERSAARL-DE context is proven before any item page interaction.",
+    "The item page/context is accepted only with visible page title and item-list or item-card signals.",
+    "Screenshots include page context, Role Center link route if needed, list/card state, action context and Page Inspection when available.",
+    "No item, service, template, unit, posting group, setup, document, draft, Preview Posting, Posting or API shortcut is executed.",
+    "Result states what item/service context was observed and what remains unproven for item creation, costing, inventory, purchasing, sales and posting."
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/pws-md-003-item-service-context-readonly/PWS-MD-003-result.json",
+  "result": {
+    "status": "observed",
+    "proved": [
+      "Item List (31, List) was visible read-only in playthru / UNIVERSAARL-DE with existing U-ITEM-HW100."
+    ],
+    "screenshotQa": "accepted: list context, Artikel link route, action/hover context and Page Inspection were captured.",
+    "noWrite": true,
+    "nextCase": "FOUNDATION-MASTER-DATA-ROUTE-DECISION"
+  },
+  "nextCase": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
+  "completedAt": "2026-07-06T21:21:30.856Z",
+  "updatedAt": "2026-07-06T21:21:30.856Z"
+}

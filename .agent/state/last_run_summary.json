@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "PWS-FF-001-NUMBER-SERIES-READFIRST",
-  "caseId": "PWS-MD-001-CUSTOMER-CONTEXT-READFIRST",
+  "runId": "PWS-MD-002-003-READFIRST",
+  "caseId": "PWS-MD-003-ITEM-SERVICE-CONTEXT-READFIRST",
   "status": "observed",
-  "completedAt": "2026-07-06T20:53:05.483Z",
-  "mode": "universaarl-foundation-readfirst",
+  "completedAt": "2026-07-06T21:21:30.856Z",
+  "mode": "universaarl-masterdata-readfirst",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "PWS-MD-001 observed Customer List (22, List) read-only after improving screenshot QA and frame-aware Role Center navigation. No writes were performed.",
-  "resultPath": "playwright/projects/fibu-book5/evidence/pws-md-001-customer-context-readonly/PWS-MD-001-result.json",
+  "summary": "PWS-MD-002 and PWS-MD-003 observed vendor and item/service contexts read-only with multi-checkpoint screenshot QA. No writes were performed. Next is a local Master Data route decision.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/pws-md-003-item-service-context-readonly/PWS-MD-003-result.json",
   "evidenceRefs": [
     "playwright/projects/fibu-book5/evidence/pws-ff-001-number-series-readfirst/PWS-FF-001-result.json",
     "playwright/projects/fibu-book5/evidence/pws-ff-001-number-series-readfirst/README.md",
@@ -94,8 +94,8 @@
     "UI learning: Number Series search result appears as Nummernserie Verwaltung; Specs must accept the observed BC result label rather than over-strict exact titles.",
     "UI learning: After Zeilen/Lines opens a dialog, treat the target dialog as success instead of retrying the underlying action button."
   ],
-  "nextCase": "PWS-MD-002-VENDOR-CONTEXT-READFIRST",
-  "nextStep": "Prepare and run PWS-MD-002 Vendor Context read-first in playthru / UNIVERSAARL-DE. First port the PWS-MD-001 multi-checkpoint screenshot QA and frame-aware Role Center navigation pattern to the vendor spec; then run read-only. No New/Neu, no vendor creation/edit, no bank details, no documents, no payments, no Preview Posting, no Posting.",
+  "nextCase": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
+  "nextStep": "Run the local FOUNDATION-MASTER-DATA-ROUTE-DECISION: compare PWS-MD-001/002/003 evidence and choose exactly one next write-gate candidate or a source/setup follow-up. No Business Central, no Playwright live, no master-data write.",
   "nextStepDecision": {
     "currentCase": "PWS-FF-001-NUMBER-SERIES-READFIRST",
     "plannedNextCaseBeforeReview": "PWS-FF-001-NUMBER-SERIES-READFIRST",
@@ -136,14 +136,20 @@
       "Normalize this result and refresh Foundation Readiness plan-only."
     ]
   },
-  "updatedAt": "2026-07-06T21:10:57.635Z",
+  "updatedAt": "2026-07-06T21:21:30.856Z",
   "businessCentralOpened": true,
   "playwrightLiveRunExecuted": true,
   "changedFilesIntent": [
+    "playwright/projects/fibu-book5/tests/pws-md-002-vendor-context-readonly.spec.ts",
+    "playwright/projects/fibu-book5/tests/pws-md-003-item-service-context-readonly.spec.ts",
     "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
-    ".agent/state/cases/pws-md-001-customer-context-readfirst.json",
-    "playwright/projects/fibu-book5/tests/pws-md-001-customer-context-readonly.spec.ts",
     ".agent/state/current.json",
-    ".agent/state/last_run_summary.json"
+    ".agent/state/last_run_summary.json",
+    ".agent/state/cases/pws-md-002-vendor-context-readfirst.json",
+    ".agent/state/cases/pws-md-003-item-service-context-readfirst.json",
+    ".agent/state/cases/foundation-master-data-route-decision.json"
+  ],
+  "supportingResultPaths": [
+    "playwright/projects/fibu-book5/evidence/pws-md-002-vendor-context-readonly/PWS-MD-002-result.json"
   ]
 }

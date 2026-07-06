@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-06T21:10:57.635Z",
+  "updatedAt": "2026-07-06T21:21:30.856Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -8,12 +8,12 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w2-core-masterdata",
-  "activeCase": "PWS-MD-002-VENDOR-CONTEXT-READFIRST",
-  "active_case_file": ".agent/state/cases/pws-md-002-vendor-context-readfirst.json",
-  "activeCaseFile": ".agent/state/cases/pws-md-002-vendor-context-readfirst.json",
+  "activeCase": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
+  "active_case_file": ".agent/state/cases/foundation-master-data-route-decision.json",
+  "activeCaseFile": ".agent/state/cases/foundation-master-data-route-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-masterdata-readfirst",
+  "mode": "universaarl-masterdata-route-decision",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -34,15 +34,11 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "update-playwright-readonly-spec",
-    "run-playwright-readonly",
-    "open-business-central-readonly",
-    "confirm-playthru-instance",
-    "confirm-universaarl-company",
-    "open-vendors-readonly",
-    "capture-screenshot-qa",
-    "write-evidence-result",
-    "update-state-summary"
+    "read-masterdata-readfirst-evidence",
+    "compare-customer-vendor-item-write-gate-candidates",
+    "update-foundation-readiness-decision",
+    "update-state-summary",
+    "prepare-one-next-write-gate-or-source-check-case"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -50,26 +46,26 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright-live",
     "write-setup",
+    "create-customer",
     "create-vendor",
-    "edit-vendor",
-    "change-vendor-template",
-    "create-master-data",
-    "enter-bank-details",
+    "create-item",
+    "create-service",
+    "change-template",
     "create-document-or-draft",
     "preview-posting",
     "post",
     "payment",
     "api-shortcut",
     "company-switch",
-    "claim-vendor-readiness",
-    "claim-purchase-readiness",
-    "claim-payment-readiness",
-    "claim-posting-readiness"
+    "claim-master-data-ready",
+    "claim-process-ready"
   ],
-  "nextCase": "PWS-MD-002-VENDOR-CONTEXT-READFIRST",
-  "nextStep": "Prepare and run PWS-MD-002 Vendor Context read-first in playthru / UNIVERSAARL-DE. First port the PWS-MD-001 multi-checkpoint screenshot QA and frame-aware Role Center navigation pattern to the vendor spec; then run read-only. No New/Neu, no vendor creation/edit, no bank details, no documents, no payments, no Preview Posting, no Posting.",
-  "preparedNextCaseFile": ".agent/state/cases/pws-md-002-vendor-context-readfirst.json",
+  "nextCase": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
+  "nextStep": "Run the local FOUNDATION-MASTER-DATA-ROUTE-DECISION: compare PWS-MD-001/002/003 evidence and choose exactly one next write-gate candidate or a source/setup follow-up. No Business Central, no Playwright live, no master-data write.",
+  "preparedNextCaseFile": ".agent/state/cases/foundation-master-data-route-decision.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -10763,5 +10759,51 @@
     "routeLearning": "Direct Page 22 can land on Role Center; use visible Debitoren Role Center link with frame-aware locator search.",
     "screenshotQa": "accepted with 4 checkpoints",
     "nextBoundary": "PWS-MD-002 vendor read-first after porting the same screenshot QA route."
+  },
+  "latestPwsMd002VendorContext": {
+    "caseId": "PWS-MD-002-VENDOR-CONTEXT-READFIRST",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/pws-md-002-vendor-context-readonly/PWS-MD-002-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "proved": [
+      "Vendor List (27, List) visible read-only with Page Inspection fields including Vendor Posting Group, Payment Terms Code and Payment Method Code."
+    ],
+    "notProved": [
+      "No vendor creation.",
+      "No vendor bank/payment readiness.",
+      "No purchase or posting readiness."
+    ],
+    "screenshotQa": "accepted with 4 checkpoints",
+    "nextBoundary": "No vendor write before route decision."
+  },
+  "latestPwsMd003ItemServiceContext": {
+    "caseId": "PWS-MD-003-ITEM-SERVICE-CONTEXT-READFIRST",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/pws-md-003-item-service-context-readonly/PWS-MD-003-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "proved": [
+      "Item List (31, List) visible read-only with existing U-ITEM-HW100, Type Bestand, Base Unit STK and inventory/costing context."
+    ],
+    "notProved": [
+      "No item/service creation.",
+      "No UOM/posting/VAT/inventory/costing correctness.",
+      "No O2C/P2P/inventory readiness."
+    ],
+    "screenshotQa": "accepted with 4 checkpoints",
+    "nextBoundary": "No item/service write before route decision."
   }
 }
