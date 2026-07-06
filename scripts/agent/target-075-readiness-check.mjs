@@ -418,6 +418,8 @@ if (resumeCheck) {
     'authDoctorTargetOk',
     'targetUrlPassedToLiveSpec',
     'foundation-decision-check',
+    'masterdata-readfirst-check',
+    'masterDataReadFirstCheck',
     'canResumeAfterFreezeLift',
     'canRunNow',
     'Do not run TARGET-075 until explicit freeze/live-gate lift'
