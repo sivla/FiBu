@@ -29,6 +29,7 @@ Last reviewed: 2026-07-06
 | Artifact | Class | Why it controls |
 | --- | --- | --- |
 | `README.md` | `active-control` | Root entrypoint for new humans and agents; must not steer to legacy worlds. |
+| `HANDOVER.md` | `active-control` | Short handover entrypoint for new Codex accounts; must mirror roadmap, state and freeze/TARGET-075 boundary. |
 | `.agent/project-template/README.md` | `active-control` | Short index for the project-template folder; points to classification instead of listing every draft as active. |
 | `.agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md` | `active-control` | Single current roadmap, freeze/resume order and TARGET-075 boundary. |
 | `.agent/project-template/PROJECT-DASHBOARD-DRAFT.md` | `active-control` | Compact project manager view. |
@@ -47,6 +48,7 @@ Last reviewed: 2026-07-06
 | `.agent/project-template/TRAINING-MODULE-CARDS-DRAFT.md` | `active-work` | Training cards only where dependencies are explicit. |
 | `.agent/project-template/WORKSTREAM-BOOK-CHAPTER-MAP-DRAFT.md` | `active-work` | Book patches must use this map before claiming readiness. |
 | `.agent/project-template/SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md` | `active-work` | Data packages are Jira-ready, not BC-setup-ready. |
+| `playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md` | `active-work` | Business Central scope map; follows TARGET-075 then Foundation Readiness, not historical queues. |
 
 ## State and case classification
 
