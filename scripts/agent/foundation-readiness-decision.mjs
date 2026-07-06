@@ -64,6 +64,25 @@ function validateTarget075(result) {
     if (result[flag] !== false) errors.push(`TARGET-075 read-first result must keep ${flag}=false.`);
   }
 
+  if (!Array.isArray(result.screenshots) || result.screenshots.length === 0) {
+    errors.push('TARGET-075 result must include screenshot evidence.');
+  }
+  if (!Array.isArray(result.pages) || result.pages.length === 0) {
+    errors.push('TARGET-075 result must include page-level evidence entries.');
+  } else {
+    for (const pageEntry of result.pages) {
+      if (!pageEntry.id) errors.push('TARGET-075 page evidence entry is missing id.');
+      if (!pageEntry.status) errors.push(`TARGET-075 page evidence ${pageEntry.id ?? 'unknown'} is missing status.`);
+      if (!pageEntry.screenshot) errors.push(`TARGET-075 page evidence ${pageEntry.id ?? 'unknown'} is missing screenshot.`);
+      if (!pageEntry.screenshotMetadata) {
+        errors.push(`TARGET-075 page evidence ${pageEntry.id ?? 'unknown'} is missing screenshotMetadata.`);
+      }
+    }
+  }
+  if (result.resultStatus === 'observed' && (!Array.isArray(result.screenshots) || result.screenshots.length < 5)) {
+    errors.push('TARGET-075 observed result must include screenshots for all five Foundation probes.');
+  }
+
   if (!result.authGate) {
     errors.push('TARGET-075 result is missing authGate.');
   } else {
@@ -128,6 +147,7 @@ function renderDecision(result) {
   const starterVisible = asArray(chart.starterAccountsVisible);
   const starterMissing = asArray(chart.starterAccountsMissingOrUnclear);
   const screenshots = asArray(result.screenshots);
+  const pages = asArray(result.pages);
   const authTarget = result.authGate?.authTarget ?? {};
   const foundationSetupPagesObserved = [
     setup.generalBusinessPostingGroups,
@@ -140,7 +160,9 @@ function renderDecision(result) {
     result.resultStatus === 'observed' &&
     blockedBy.length === 0 &&
     starterMissing.length === 0 &&
-    foundationSetupPagesObserved;
+    foundationSetupPagesObserved &&
+    screenshots.length >= 5 &&
+    pages.length >= 5;
 
   const decision = readyForMasterData
     ? 'Master Data kann als naechster Block vorbereitet werden, aber nur mit eigenem Smart Decision Gate.'

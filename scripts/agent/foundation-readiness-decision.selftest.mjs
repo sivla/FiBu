@@ -53,7 +53,45 @@ const fixture = {
   notProved: ['Posting readiness was not proven.'],
   blockedBy: [],
   warnings: [],
-  screenshots: ['target-075-chart-of-accounts.png'],
+  screenshots: [
+    'target-075-chart-of-accounts.png',
+    'target-075-general-business-posting-groups.png',
+    'target-075-general-product-posting-groups.png',
+    'target-075-general-posting-setup.png',
+    'target-075-vat-posting-setup.png'
+  ],
+  pages: [
+    {
+      id: 'chart-of-accounts',
+      status: 'observed',
+      screenshot: 'target-075-chart-of-accounts.png',
+      screenshotMetadata: 'target-075-chart-of-accounts.screenshot.json'
+    },
+    {
+      id: 'general-business-posting-groups',
+      status: 'observed',
+      screenshot: 'target-075-general-business-posting-groups.png',
+      screenshotMetadata: 'target-075-general-business-posting-groups.screenshot.json'
+    },
+    {
+      id: 'general-product-posting-groups',
+      status: 'observed',
+      screenshot: 'target-075-general-product-posting-groups.png',
+      screenshotMetadata: 'target-075-general-product-posting-groups.screenshot.json'
+    },
+    {
+      id: 'general-posting-setup',
+      status: 'observed',
+      screenshot: 'target-075-general-posting-setup.png',
+      screenshotMetadata: 'target-075-general-posting-setup.screenshot.json'
+    },
+    {
+      id: 'vat-posting-setup',
+      status: 'observed',
+      screenshot: 'target-075-vat-posting-setup.png',
+      screenshotMetadata: 'target-075-vat-posting-setup.screenshot.json'
+    }
+  ],
   foundationReadinessInput: {
     decisionStatus: 'ready-for-foundation-readiness-decision',
     chartOfAccounts: {
@@ -115,6 +153,12 @@ incompleteSetupFixture.foundationReadinessInput.setupContext.generalPostingSetup
 incompleteSetupFixture.foundationReadinessInput.setupContext.vatPostingSetup = 'observed';
 fs.writeFileSync(incompleteSetupInputPath, `${JSON.stringify(incompleteSetupFixture, null, 2)}\n`, 'utf8');
 
+const missingScreenshotMetadataFixture = JSON.parse(JSON.stringify(fixture));
+delete missingScreenshotMetadataFixture.pages[0].screenshotMetadata;
+const missingScreenshotMetadataInputPath = path.join(tempDir, 'TARGET-075-missing-screenshot-metadata-result.json');
+const missingScreenshotMetadataOutputPath = path.join(tempDir, 'FOUNDATION-READINESS-MISSING-SCREENSHOT-METADATA.md');
+fs.writeFileSync(missingScreenshotMetadataInputPath, `${JSON.stringify(missingScreenshotMetadataFixture, null, 2)}\n`, 'utf8');
+
 function run(args) {
   const result = spawnSync(process.execPath, [scriptPath, ...args], {
     cwd: root,
@@ -172,6 +216,27 @@ if (!incompleteSetupOutput.includes('Master Data bleibt geparkt')) {
 }
 if (/Master Data kann als naechster Block vorbereitet werden/.test(incompleteSetupOutput)) {
   errors.push('incomplete setup fixture must not allow Master Data preparation.');
+}
+
+const missingScreenshotMetadataWrite = run([
+  `--input=${missingScreenshotMetadataInputPath}`,
+  `--output=${missingScreenshotMetadataOutputPath}`,
+  '--write'
+]);
+
+if (missingScreenshotMetadataWrite.status === 0) errors.push('missing screenshot metadata write mode must fail.');
+if (missingScreenshotMetadataWrite.parsed?.canWrite !== false) {
+  errors.push('missing screenshot metadata fixture must not be writable.');
+}
+if (
+  !missingScreenshotMetadataWrite.parsed?.errors?.includes(
+    'TARGET-075 page evidence chart-of-accounts is missing screenshotMetadata.'
+  )
+) {
+  errors.push('missing screenshot metadata fixture must report the missing screenshotMetadata.');
+}
+if (fs.existsSync(missingScreenshotMetadataOutputPath)) {
+  errors.push('missing screenshot metadata fixture must not write a Foundation decision output.');
 }
 
 const output = fs.existsSync(outputPath) ? fs.readFileSync(outputPath, 'utf8') : '';
