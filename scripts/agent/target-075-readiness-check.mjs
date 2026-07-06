@@ -166,6 +166,11 @@ if (guardedRunner) {
   if (!guardedRunner.includes('--live-approved')) {
     errors.push(`${guardedRunnerPath}: guarded runner must require --live-approved for live execution while freeze is active`);
   }
+  if (!guardedRunner.includes('TARGET_075_FREEZE_OVERRIDE_APPROVED')) {
+    errors.push(
+      `${guardedRunnerPath}: guarded runner must require TARGET_075_FREEZE_OVERRIDE_APPROVED=1 before bypassing an active freeze`
+    );
+  }
   if (!guardedRunner.includes('--check')) {
     errors.push(`${guardedRunnerPath}: guarded runner must offer --check for safe readiness/auth validation without live execution`);
   }

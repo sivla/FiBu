@@ -137,6 +137,7 @@ const output = {
         canRunNow: target075SafeCheck.canRunNow,
         freezeActive: target075SafeCheck.freezeActive,
         requiresFreezeLift: target075SafeCheck.requiresFreezeLift,
+        requiresFreezeOverrideWhenFreezeActive: target075SafeCheck.requiresFreezeOverrideWhenFreezeActive,
         authStateChecked: target075SafeCheck.authStateChecked,
         authSecretsPrinted: target075SafeCheck.authSecretsPrinted,
         expectedInstance: target075SafeCheck.expectedInstance,
@@ -185,7 +186,7 @@ const output = {
   nextStep: !localResumeReady
     ? 'Fix failed local resume checks before considering TARGET-075.'
     : freezeActive
-      ? 'Local resume checks passed, including stored auth, but the freeze is still active. Do not run TARGET-075 until explicit freeze lift or active-case approval.'
+      ? 'Local resume checks passed, including stored auth, but the freeze is still active. Do not run TARGET-075 until explicit freeze lift or a second explicit freeze override.'
       : 'All local resume checks passed, including stored auth. Run TARGET-075 only with live shell/context validation.'
 };
 

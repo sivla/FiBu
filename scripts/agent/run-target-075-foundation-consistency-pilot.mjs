@@ -8,6 +8,7 @@ const liveApproved = rawArgs.includes('--live-approved');
 const listOnly = rawArgs.includes('--list');
 const checkOnly = rawArgs.includes('--check');
 const help = rawArgs.includes('--help') || rawArgs.includes('-h');
+const freezeOverrideApproved = process.env.TARGET_075_FREEZE_OVERRIDE_APPROVED === '1';
 
 function commandName(base) {
   return process.platform === 'win32' ? `${base}.cmd` : base;
@@ -56,7 +57,8 @@ Usage:
 
 Default behavior refuses to open Business Central while the improvement freeze is active.
 Use --check to validate readiness, freeze status and stored auth without opening Business Central.
-Use --live-approved only after explicit freeze lift or active-case approval for TARGET-075.
+Use --live-approved only after explicit freeze lift for TARGET-075.
+If the freeze is still active, --live-approved also requires TARGET_075_FREEZE_OVERRIDE_APPROVED=1.
 The runner checks stored Playwright auth before any live execution.`);
   process.exit(0);
 }
@@ -85,7 +87,7 @@ try {
   process.exit(1);
 }
 
-if (freezeStatus.freezeActive && !liveApproved && !checkOnly) {
+if (freezeStatus.freezeActive && !checkOnly && (!liveApproved || !freezeOverrideApproved)) {
   console.error(
     JSON.stringify(
       {
@@ -93,14 +95,18 @@ if (freezeStatus.freezeActive && !liveApproved && !checkOnly) {
         purpose: 'target-075-live-runner-guard',
         canRun: false,
         freezeActive: true,
+        liveApproved,
+        freezeOverrideApproved,
         businessCentralOpened: false,
         playwrightLiveRunExecuted: false,
         targetCase: 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK',
-        blockedBy: ['improvement-freeze-active'],
+        blockedBy: liveApproved
+          ? ['improvement-freeze-active', 'missing-target-075-freeze-override-approval']
+          : ['improvement-freeze-active', 'missing-live-approved-flag'],
         reason:
-          'TARGET-075 is prepared as the read-first return pilot, but the improvement freeze still blocks Business Central live execution.',
+          'TARGET-075 is prepared as the read-first return pilot, but the improvement freeze still blocks Business Central live execution without a second explicit freeze override.',
         nextStep:
-          'Run local freeze/resume checks and use --live-approved only after explicit freeze lift or active-case approval.'
+          'Run local freeze/resume checks. Prefer lifting the freeze first; only use TARGET_075_FREEZE_OVERRIDE_APPROVED=1 for an explicit active-case override.'
       },
       null,
       2
@@ -157,6 +163,7 @@ if (checkOnly) {
         canRunNow: freezeStatus.freezeActive !== true,
         freezeActive: freezeStatus.freezeActive === true,
         requiresFreezeLift: freezeStatus.freezeActive === true,
+        requiresFreezeOverrideWhenFreezeActive: freezeStatus.freezeActive === true,
         businessCentralOpened: false,
         playwrightLiveRunExecuted: false,
         authStateChecked: true,
@@ -171,7 +178,7 @@ if (checkOnly) {
         blockedBy: freezeStatus.freezeActive === true ? ['improvement-freeze-active'] : [],
         nextStep:
           freezeStatus.freezeActive === true
-            ? 'Stored auth and local readiness are usable, but the freeze is still active. Do not open Business Central until explicit freeze lift or active-case approval.'
+            ? 'Stored auth and local readiness are usable, but the freeze is still active. Do not open Business Central until explicit freeze lift or a second explicit freeze override.'
             : 'Stored auth and local readiness are usable. Run TARGET-075 only with live shell/context validation.'
       },
       null,
