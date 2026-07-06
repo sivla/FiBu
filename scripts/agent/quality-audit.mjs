@@ -38,15 +38,38 @@ function lineNo(text, offset) {
 const files = scanRoots.flatMap((scanRoot) => walk(path.resolve(root, scanRoot)));
 const counts = Object.fromEntries(patterns.map((pattern) => [pattern.id, 0]));
 const samples = Object.fromEntries(patterns.map((pattern) => [pattern.id, []]));
+const authGuard = {
+  guardedDirectStorageState: 0,
+  unguardedDirectStorageState: 0,
+  guardedSamples: [],
+  unguardedSamples: [],
+};
 
 for (const file of files) {
   const text = fs.readFileSync(file, 'utf8');
+  const relativeFile = path.relative(root, file).replaceAll(path.sep, '/');
+  const hasDirectStorageState = /storageState\s*:\s*['"]playwright\/\.auth\/bc-user\.json['"]/.test(text);
+  if (hasDirectStorageState) {
+    const hasRunnerGuard =
+      /RUNNER_GUARD_CHECKED/.test(text) &&
+      /LIVE_APPROVED/.test(text) &&
+      /test\.skip/.test(text);
+    const bucket = hasRunnerGuard ? 'guardedSamples' : 'unguardedSamples';
+    const countKey = hasRunnerGuard ? 'guardedDirectStorageState' : 'unguardedDirectStorageState';
+    authGuard[countKey] += 1;
+    if (authGuard[bucket].length < 12) {
+      authGuard[bucket].push({
+        file: relativeFile,
+        line: lineNo(text, text.search(/storageState\s*:/)),
+      });
+    }
+  }
   for (const pattern of patterns) {
     for (const match of text.matchAll(pattern.re)) {
       counts[pattern.id] += 1;
       if (samples[pattern.id].length < 12) {
         samples[pattern.id].push({
-          file: path.relative(root, file).replaceAll(path.sep, '/'),
+          file: relativeFile,
           line: lineNo(text, match.index ?? 0),
         });
       }
@@ -67,11 +90,11 @@ if (tsconfigFileCount !== null && tsconfigFileCount < Math.max(20, Math.floor(ts
   });
 }
 
-if (counts.directStorageState > 0) {
+if (authGuard.unguardedDirectStorageState > 0) {
   risks.push({
     id: 'auth-check-not-enforced',
     severity: 'warn',
-    message: `${counts.directStorageState} direct storageState references can run without an auth freshness preflight.`,
+    message: `${authGuard.unguardedDirectStorageState} direct storageState files appear unguarded by a runner/live approval check.`,
   });
 }
 
@@ -90,11 +113,12 @@ const result = {
   tsFilesInRepo,
   tsconfigFileCount,
   counts,
+  authGuard,
   samples,
   risks,
   recommendation: [
     'Expand TypeScript coverage before trusting tsc as a project health signal.',
-    'Add an auth freshness wrapper before live Business Central specs.',
+    'Use guarded runners with auth freshness and live-gate checks before active Business Central specs.',
     'Promote repeated wait/force/coordinate patterns into audited helpers or rejected-path notes.',
   ],
 };
