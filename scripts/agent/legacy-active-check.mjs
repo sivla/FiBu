@@ -19,6 +19,8 @@ const activeSteeringFiles = [
   '.agent/project-template/PROJECT-DASHBOARD-DRAFT.md',
   '.agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md',
   '.agent/project-template/REFINEMENT-BACKLOG.md',
+  '.agent/state/last_run_summary.json',
+  '.agent/state/marathon_queue.json',
   'playwright/projects/fibu-book5/BC-COMPANY-USECASE.md',
   'playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md'
 ];
