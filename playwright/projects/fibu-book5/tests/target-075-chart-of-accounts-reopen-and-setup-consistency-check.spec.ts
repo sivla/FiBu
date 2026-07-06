@@ -127,9 +127,19 @@ function clean(value: string | null | undefined) {
     .trim();
 }
 
-function buildTargetUrl(pageId: number) {
+function targetInstanceUrl() {
   const url = new URL(requireBcUrl('FIBU_BOOK5'));
-  url.pathname = url.pathname.replace(/\/MCP_1_20260210(\/|$)/i, '/playthru$1');
+  const segments = url.pathname.split('/').filter(Boolean);
+  if (!segments.length) {
+    throw new Error('Business Central URL must include a tenant/environment path before TARGET-075 can build a page URL.');
+  }
+  segments[segments.length - 1] = EXPECTED_INSTANCE;
+  url.pathname = `/${segments.join('/')}`;
+  return url;
+}
+
+function buildTargetUrl(pageId: number) {
+  const url = targetInstanceUrl();
   url.searchParams.set('company', TARGET_COMPANY);
   url.searchParams.set('page', String(pageId));
   url.searchParams.set('dc', '0');

@@ -180,6 +180,11 @@ if (freeze) {
 }
 
 if (spec) {
+  for (const legacyTerm of ['MCP_1_20260210', 'RM-DEMO', 'CRONUS', 'Rhein-Main']) {
+    if (spec.includes(legacyTerm)) {
+      errors.push(`${specPath}: active TARGET-075 spec must not contain legacy target term ${legacyTerm}`);
+    }
+  }
   const riskyPatterns = [
     { id: 'forceTrue', re: /force\s*:\s*true/ },
     { id: 'mouseClick', re: /\bmouse\.click\s*\(/ },
