@@ -5,6 +5,7 @@ const specPath =
   'playwright/projects/fibu-book5/tests/target-075-chart-of-accounts-reopen-and-setup-consistency-check.spec.ts';
 const EXPECTED_INSTANCE = 'playthru';
 const TARGET_COMPANY = 'UNIVERSAARL-DE';
+const MIN_LIVE_AUTH_EXPIRES_IN_HOURS = 9;
 
 const rawArgs = process.argv.slice(2);
 const liveApproved = rawArgs.includes('--live-approved');
@@ -165,16 +166,15 @@ if (freezeStatus.freezeActive && !checkOnly && (!liveApproved || !freezeOverride
   process.exit(2);
 }
 
-const auth = run('npm', ['run', '--silent', 'auth:bc:check']);
-if (auth.status !== 0) {
-  printChildFailure('auth:bc:check', auth);
-  process.exit(typeof auth.status === 'number' ? auth.status : 1);
-}
-
 let authStatus;
+const auth = run('npm', ['run', '--silent', 'auth:bc:check:overnight']);
 try {
-  authStatus = parseJsonOutput('auth:bc:check', auth.stdout);
+  authStatus = parseJsonOutput('auth:bc:check:overnight', auth.stdout);
 } catch (error) {
+  if (auth.status !== 0) {
+    printChildFailure('auth:bc:check:overnight', auth);
+    process.exit(typeof auth.status === 'number' ? auth.status : 1);
+  }
   console.error(String(error instanceof Error ? error.message : error));
   process.exit(1);
 }
@@ -189,10 +189,14 @@ if (authStatus.canUseStoredAuth !== true) {
         businessCentralOpened: false,
         playwrightLiveRunExecuted: false,
         targetCase: 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK',
+        authStateCheckScript: 'auth:bc:check:overnight',
+        authMinExpiresInHours: MIN_LIVE_AUTH_EXPIRES_IN_HOURS,
+        authExpiresInHours: authStatus.expiresInHours,
         blockedBy: authStatus.blockedBy ?? ['stored-auth-not-usable'],
         expectedInstance: authStatus.expectedInstance ?? 'playthru',
         expectedCompany: authStatus.expectedCompany ?? 'UNIVERSAARL-DE',
-        reason: 'Stored Playwright auth is not usable for TARGET-075.',
+        reason:
+          'Stored Playwright auth is not usable for TARGET-075 or does not meet the required live auth window.',
         nextStep: authStatus.nextStep ?? 'Refresh Playwright auth before running TARGET-075.'
       },
       null,
@@ -227,6 +231,11 @@ const authTargetOk =
   authDoctorStatus.authTarget?.targetCompany === TARGET_COMPANY;
 const targetUrl = authTargetOk ? targetUrlFromConfiguredUrl() : '';
 const targetUrlReady = Boolean(targetUrl);
+const authMeetsLiveWindow =
+  authStatus.canUseStoredAuth === true &&
+  Number.isFinite(Number(authStatus.expiresInHours)) &&
+  Number(authStatus.expiresInHours) >= MIN_LIVE_AUTH_EXPIRES_IN_HOURS &&
+  !((authStatus.blockedBy ?? []).includes('storage-state-expires-before-required-window'));
 if (!checkOnly && authTargetOk && !targetUrlReady) {
   console.error(
     JSON.stringify(
@@ -302,7 +311,8 @@ if (!checkOnly && !authTargetOk) {
 if (checkOnly) {
   const checkBlockedBy = [...liveGateBlockedBy];
   if (!authTargetOk) checkBlockedBy.unshift('auth-target-does-not-match-current-state');
-  const canResumeAfterFreezeLift = authTargetOk && targetUrlReady;
+  if (!authMeetsLiveWindow) checkBlockedBy.unshift('storage-state-expires-before-required-window');
+  const canResumeAfterFreezeLift = authTargetOk && targetUrlReady && authMeetsLiveWindow;
   console.log(
     JSON.stringify(
       {
@@ -324,6 +334,9 @@ if (checkOnly) {
         businessCentralOpened: false,
         playwrightLiveRunExecuted: false,
         authStateChecked: true,
+        authStateCheckScript: 'auth:bc:check:overnight',
+        authMinExpiresInHours: MIN_LIVE_AUTH_EXPIRES_IN_HOURS,
+        authMeetsLiveWindow,
         authSecretsPrinted: false,
         expectedInstance: authStatus.expectedInstance ?? 'playthru',
         expectedCompany: authStatus.expectedCompany ?? 'UNIVERSAARL-DE',
@@ -352,6 +365,8 @@ if (checkOnly) {
             ? 'Fix .agent/state/current.json or FIBU_BOOK5_BC_URL target diagnosis before lifting the freeze for TARGET-075.'
             : !targetUrlReady
             ? 'Fix BC_AUTH_URL, FIBU_BOOK5_BC_URL or BC_URL so the guarded runner can pass a verified target URL to TARGET-075.'
+            : !authMeetsLiveWindow
+            ? 'Refresh Playwright auth before lifting the freeze for TARGET-075; the guarded runner requires a 9h stored-auth window.'
             : !liveGateAllowsNow
             ? 'Stored auth and local readiness are usable, but the active live gate still blocks Business Central/Playwright execution. Do not open Business Central until explicit freeze/live-gate lift or a second explicit freeze override.'
             : 'Stored auth and local readiness are usable. Run TARGET-075 only with live shell/context validation.'
@@ -374,6 +389,7 @@ exitWith(
       TARGET_075_FREEZE_OVERRIDE_USED: String(freezeOverrideApproved),
       TARGET_075_AUTH_AGE_HOURS: String(authStatus.ageHours ?? ''),
       TARGET_075_AUTH_MAX_AGE_HOURS: String(authStatus.maxAgeHours ?? ''),
+      TARGET_075_AUTH_MIN_EXPIRES_IN_HOURS: String(MIN_LIVE_AUTH_EXPIRES_IN_HOURS),
       TARGET_075_AUTH_EXPIRES_IN_HOURS: String(authStatus.expiresInHours ?? ''),
       TARGET_075_AUTH_WARN_EXPIRES_IN_HOURS: String(authStatus.warnExpiresInHours ?? ''),
       TARGET_075_AUTH_WARNINGS: JSON.stringify(authStatus.warnings ?? []),

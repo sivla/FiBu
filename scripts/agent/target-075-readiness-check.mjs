@@ -377,6 +377,21 @@ if (guardedRunner) {
   if (!guardedRunner.includes('auth:bc:check') || !guardedRunner.includes('canUseStoredAuth')) {
     errors.push(`${guardedRunnerPath}: guarded runner must check stored auth before live execution`);
   }
+  if (!guardedRunner.includes('auth:bc:check:overnight')) {
+    errors.push(`${guardedRunnerPath}: guarded runner must require the overnight auth freshness check before live execution`);
+  }
+  if (!guardedRunner.includes('MIN_LIVE_AUTH_EXPIRES_IN_HOURS = 9')) {
+    errors.push(`${guardedRunnerPath}: guarded runner must define a 9h minimum live auth freshness window`);
+  }
+  if (!guardedRunner.includes('authMeetsLiveWindow')) {
+    errors.push(`${guardedRunnerPath}: guarded runner --check output must expose authMeetsLiveWindow`);
+  }
+  if (!guardedRunner.includes('authMinExpiresInHours')) {
+    errors.push(`${guardedRunnerPath}: guarded runner --check output must expose authMinExpiresInHours`);
+  }
+  if (!guardedRunner.includes('storage-state-expires-before-required-window')) {
+    errors.push(`${guardedRunnerPath}: guarded runner must block when stored auth does not meet the required live window`);
+  }
   if (!guardedRunner.includes('auth:bc:doctor') || !guardedRunner.includes('canRunBusinessCentralWorkflows')) {
     errors.push(`${guardedRunnerPath}: guarded runner must check auth:bc:doctor live-gate status before live execution`);
   }
@@ -405,6 +420,7 @@ if (guardedRunner) {
   for (const envName of [
     'TARGET_075_AUTH_AGE_HOURS',
     'TARGET_075_AUTH_MAX_AGE_HOURS',
+    'TARGET_075_AUTH_MIN_EXPIRES_IN_HOURS',
     'TARGET_075_AUTH_EXPIRES_IN_HOURS',
     'TARGET_075_AUTH_WARN_EXPIRES_IN_HOURS',
     'TARGET_075_AUTH_WARNINGS',
