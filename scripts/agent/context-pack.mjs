@@ -71,7 +71,10 @@ function buildAuthGate(current, activeCase, liveBlocked) {
     existsSync(resolve('playwright/.auth/bc-profile'));
   const detachedCaptureStep =
     'Complete Login/MFA in the detached Playwright profile browser if it is still open, wait for Business Central shell, close that browser, then run npm run auth:bc:capture-detached and, if clear, npm run auth:bc:capture-detached -- --confirm. Finish with npm run auth:bc:check.';
-  const nextSafeAction = (resolutionCanUseStoredAuth
+  const nextSafeAction = (resolutionCanUseStoredAuth && liveBlocked
+    ? latestDoctor.nextSafeAction ??
+      'Stored auth is usable, but Business Central live work remains blocked by the active live gate. Use only local planning/checks until the freeze is lifted or an explicit case override is approved.'
+    : resolutionCanUseStoredAuth
     ? current.nextStep ?? activeCase.nextStep
     : detachedCaptureAvailable
     ? detachedCaptureStep
@@ -89,7 +92,9 @@ function buildAuthGate(current, activeCase, liveBlocked) {
     canRunBusinessCentralWorkflows:
       !liveBlocked && (resolutionCanUseStoredAuth || latestDoctor.canRunBusinessCentralWorkflows === true),
     operatorActionRequired,
-    decision: resolutionCanUseStoredAuth
+    decision: resolutionCanUseStoredAuth && liveBlocked
+      ? 'stored-auth-usable-but-live-gate-blocked'
+      : resolutionCanUseStoredAuth
       ? 'stored-auth-usable-run-readonly-or-gated-target-tests'
       : latestDoctor.decision ??
       (operatorActionRequired ? 'operator-must-complete-playwright-auth-window' : undefined),
