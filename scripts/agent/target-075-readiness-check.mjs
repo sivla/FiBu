@@ -620,6 +620,29 @@ if (exists(foundationDecisionPath) && !target075Result) {
   errors.push(`${foundationDecisionPath}: must not exist before ${target075ResultPath} provides TARGET-075 evidence`);
 }
 
+if (exists(foundationDecisionPath) && target075Result) {
+  const foundationDecision = readText(foundationDecisionPath);
+  if (foundationDecision.includes('template/no-evidence')) {
+    errors.push(`${foundationDecisionPath}: must not remain a template/no-evidence file after TARGET-075 evidence exists`);
+  }
+  for (const phrase of [
+    '# FOUNDATION-READINESS-DECISION',
+    target075ResultPath,
+    'Instanz: playthru',
+    'Company: UNIVERSAARL-DE',
+    'No-Write-Grenze aus TARGET-075',
+    'Master-Data-Read-first-Handoff',
+    'PWS-MD-001',
+    'PWS-MD-002',
+    'PWS-MD-003',
+    'Es erlaubt kein direktes Schreiben, Importieren, Buchen oder Posten.'
+  ]) {
+    if (!foundationDecision.includes(phrase)) {
+      errors.push(`${foundationDecisionPath}: missing Foundation decision phrase: ${phrase}`);
+    }
+  }
+}
+
 if (target075Result) {
   if (target075Result.caseId !== 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK') {
     errors.push(`${target075ResultPath}: unexpected caseId ${target075Result.caseId}`);
