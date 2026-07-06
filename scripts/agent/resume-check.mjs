@@ -62,6 +62,9 @@ const steps = [
   runStep('target-075-safe-check', npmCmd, ['run', '--silent', 'fibu:target:foundation-consistency-pilot', '--', '--check'], {
     parseJson: true
   }),
+  runStep('foundation-decision-check', npmCmd, ['run', '--silent', 'agent:foundation:decision', '--', '--check'], {
+    parseJson: true
+  }),
   runStep('encoding', npmCmd, ['run', '--silent', 'check:encoding'], { keepStdout: true }),
   runStep('target-075-guarded-list', npmCmd, ['run', '--silent', 'fibu:target:foundation-consistency-pilot', '--', '--list'], {
     keepStdout: true
@@ -75,6 +78,7 @@ const readiness = steps.find((step) => step.id === 'target-075-readiness')?.pars
 const authCheck = steps.find((step) => step.id === 'auth-state-check')?.parsedJson;
 const authDoctor = steps.find((step) => step.id === 'auth-doctor')?.parsedJson;
 const target075SafeCheck = steps.find((step) => step.id === 'target-075-safe-check')?.parsedJson;
+const foundationDecisionCheck = steps.find((step) => step.id === 'foundation-decision-check')?.parsedJson;
 const qualityRiskIds = (qualityAudit?.risks ?? []).map((risk) => risk.id);
 const localResumeReady =
   failed.length === 0 &&
@@ -175,6 +179,17 @@ const output = {
         authWarnExpiresInHours: target075SafeCheck.authWarnExpiresInHours,
         authWarnings: target075SafeCheck.authWarnings ?? [],
         blockedBy: target075SafeCheck.blockedBy
+      }
+    : null,
+  foundationDecisionCheck: foundationDecisionCheck
+    ? {
+        canWrite: foundationDecisionCheck.canWrite,
+        resultMissing: foundationDecisionCheck.resultMissing === true,
+        resultPath: foundationDecisionCheck.resultPath,
+        decisionPath: foundationDecisionCheck.decisionPath,
+        errors: foundationDecisionCheck.errors ?? [],
+        warnings: foundationDecisionCheck.warnings ?? [],
+        nextStep: foundationDecisionCheck.nextStep
       }
     : null,
   authDoctor: authDoctor

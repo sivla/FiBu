@@ -9,6 +9,7 @@ const capabilitiesPath = '.agent/capabilities.json';
 const packagePath = 'package.json';
 const specPath = 'playwright/projects/fibu-book5/tests/target-075-chart-of-accounts-reopen-and-setup-consistency-check.spec.ts';
 const guardedRunnerPath = 'scripts/agent/run-target-075-foundation-consistency-pilot.mjs';
+const foundationDecisionScriptPath = 'scripts/agent/foundation-readiness-decision.mjs';
 const target075ResultPath =
   'playwright/projects/fibu-book5/evidence/target-075-chart-of-accounts-reopen-and-setup-consistency-check/TARGET-075-result.json';
 const foundationDecisionPath = 'playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md';
@@ -34,7 +35,16 @@ function includesAll(values, required) {
 const errors = [];
 const warnings = [];
 
-for (const requiredFile of [casePath, readinessPath, freezePath, capabilitiesPath, packagePath, specPath, guardedRunnerPath]) {
+for (const requiredFile of [
+  casePath,
+  readinessPath,
+  freezePath,
+  capabilitiesPath,
+  packagePath,
+  specPath,
+  guardedRunnerPath,
+  foundationDecisionScriptPath
+]) {
   if (!exists(requiredFile)) errors.push(`missing required file: ${requiredFile}`);
 }
 
@@ -147,6 +157,30 @@ if (packageJson) {
   const script = packageJson.scripts?.[scriptName] ?? '';
   if (!script.includes(guardedRunnerPath) && !script.includes(specPath.replaceAll('\\', '/'))) {
     errors.push(`${packagePath}: script ${scriptName} must reference the guarded runner or ${specPath}`);
+  }
+  const foundationDecisionScript = packageJson.scripts?.['agent:foundation:decision'] ?? '';
+  if (!foundationDecisionScript.includes(foundationDecisionScriptPath)) {
+    errors.push(`${packagePath}: script agent:foundation:decision must reference ${foundationDecisionScriptPath}`);
+  }
+}
+
+if (exists(foundationDecisionScriptPath)) {
+  const foundationDecisionScript = readText(foundationDecisionScriptPath);
+  for (const requiredSignal of [
+    target075ResultPath,
+    foundationDecisionPath,
+    'foundationReadinessInput',
+    'authGate',
+    'executionGate',
+    'setupChanged',
+    'masterDataChanged',
+    'previewPosting',
+    'posted',
+    '--write'
+  ]) {
+    if (!foundationDecisionScript.includes(requiredSignal)) {
+      errors.push(`${foundationDecisionScriptPath}: missing required handoff signal ${requiredSignal}`);
+    }
   }
 }
 
@@ -350,7 +384,16 @@ if (target075Result) {
   }
 }
 
-const checkedFiles = [casePath, readinessPath, freezePath, capabilitiesPath, packagePath, specPath, guardedRunnerPath];
+const checkedFiles = [
+  casePath,
+  readinessPath,
+  freezePath,
+  capabilitiesPath,
+  packagePath,
+  specPath,
+  guardedRunnerPath,
+  foundationDecisionScriptPath
+];
 if (exists(target075ResultPath)) checkedFiles.push(target075ResultPath);
 if (exists(foundationDecisionPath)) checkedFiles.push(foundationDecisionPath);
 
