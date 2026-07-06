@@ -18,6 +18,9 @@ const skillPath = '.agent/skills/bc-active-editor.md';
 const uiGuidePath = '.agent/BC-UI-LOOK-AND-FEEL-GUIDE.md';
 const roadmapPath = '.agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md';
 const dashboardPath = '.agent/project-template/PROJECT-DASHBOARD-DRAFT.md';
+const specPath = 'playwright/projects/fibu-book5/tests/target-073b-vat-page472-surface-and-editor-proof.spec.ts';
+const runnerPath = 'scripts/agent/run-target-073b-vat-page472-surface-and-editor-proof.mjs';
+const packagePath = 'package.json';
 
 const current = readJson(currentPath);
 const activeCase = readJson(casePath);
@@ -26,6 +29,9 @@ const skill = readText(skillPath);
 const uiGuide = readText(uiGuidePath);
 const roadmap = readText(roadmapPath);
 const dashboard = readText(dashboardPath);
+const spec = readText(specPath);
+const runner = readText(runnerPath);
+const packageJson = readJson(packagePath);
 
 const errors = [];
 const warnings = [];
@@ -40,6 +46,10 @@ function requireIncludes(list, value, label) {
 
 function requireText(text, pattern, label) {
   if (!pattern.test(text)) errors.push(`${label}: missing ${pattern}`);
+}
+
+function requireNotText(text, pattern, label) {
+  if (pattern.test(text)) errors.push(`${label}: must not contain ${pattern}`);
 }
 
 requireEqual(current.instance, 'playthru', `${currentPath} instance`);
@@ -80,6 +90,22 @@ requireText(skill, /proof order is fixed/i, skillPath);
 requireText(uiGuide, /Surface-Truth-Gate/i, uiGuidePath);
 requireText(roadmap, /TARGET-073B-VAT-PAGE472-SURFACE-AND-EDITOR-PROOF/, roadmapPath);
 requireText(dashboard, /TARGET-073B-VAT-PAGE472-SURFACE-AND-EDITOR-PROOF/, dashboardPath);
+requireText(spec, /TARGET_073B_LIVE_APPROVED/, specPath);
+requireText(spec, /No INLAND typed/, specPath);
+requireText(spec, /setupChanged:\s*false/, specPath);
+requireText(spec, /No-Write-Proof: Neu\/New is not clicked/i, specPath);
+requireNotText(spec, /force:\s*true/i, `${specPath} no force click`);
+requireText(runner, /--live-approved/, runnerPath);
+requireText(runner, /auth:bc:check:overnight/, runnerPath);
+requireText(runner, /TARGET_073B_LIVE_APPROVED/, runnerPath);
+requireText(runner, /target-073b-readiness-check/, runnerPath);
+
+if (
+  packageJson.scripts?.['fibu:target:vat-page472-surface-editor-proof'] !==
+  'node scripts/agent/run-target-073b-vat-page472-surface-and-editor-proof.mjs'
+) {
+  errors.push(`${packagePath}: missing fibu:target:vat-page472-surface-editor-proof runner script`);
+}
 
 if ((activeCase.doNotRepeatAsIs ?? []).some((entry) => !entry)) {
   warnings.push(`${casePath}: doNotRepeatAsIs contains an empty entry`);
@@ -92,7 +118,7 @@ const output = {
   liveActionsExecuted: false,
   businessCentralOpened: false,
   playwrightLiveRunExecuted: false,
-  checkedFiles: [currentPath, casePath, foundationPath, skillPath, uiGuidePath, roadmapPath, dashboardPath],
+  checkedFiles: [currentPath, casePath, foundationPath, skillPath, uiGuidePath, roadmapPath, dashboardPath, specPath, runnerPath, packagePath],
   errors,
   warnings,
   nextStep: errors.length
