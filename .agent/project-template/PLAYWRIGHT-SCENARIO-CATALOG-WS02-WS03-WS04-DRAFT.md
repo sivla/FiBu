@@ -271,6 +271,15 @@ Inputs:
 - route cards `RD-FOUND-001`, `RD-FOUND-002`, `RD-FOUND-003`
 - training card `TR-03-01 Customer Master Data`
 
+Foundation decision handoff:
+
+| Foundation result after TARGET-075 | PWS-MD-001 decision |
+| --- | --- |
+| Company context, Chart of Accounts and customer/posting/payment dependency pages are visible enough for read-first explanation | Run PWS-MD-001 as read-first/no-write probe. |
+| Company context is proven, but posting groups or payment terms are missing/unclear | Run only list/card/template visibility; mark setup dependencies as blocking any customer creation. |
+| Company context is unclear or `FOUNDATION-READINESS-DECISION.md` is missing | Block PWS-MD-001. Do not open customer pages as the next live case. |
+| Foundation decision says setup is not ready for master-data read-first probes | Block PWS-MD-001 and create a narrow Foundation follow-up instead. |
+
 Evidence output:
 
 - Customers page title and URL
@@ -279,6 +288,7 @@ Evidence output:
 - data-changing actions explicitly not clicked
 - dependencies for `DR-MD-001`
 - whether Number Series, Customer Posting Group, General Business Posting Group, VAT Business Posting Group and Payment Terms are visible, hidden, absent or blocked
+- next-step classification: `ready-for-customer-write-gate`, `needs-foundation-follow-up`, `needs-template-discovery`, `blocked`
 
 Stop if:
 
