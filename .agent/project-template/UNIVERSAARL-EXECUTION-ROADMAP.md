@@ -17,19 +17,19 @@ Leitregel:
 
 ## Current operating decision
 
-The project is in `Improvement Freeze / M0-M1 transition`.
+The project is in `Foundation Readiness consolidation after read-first resume`.
 
-The freeze is not a permanent stop, but it must not be skipped. The next live work is a controlled read-first return pilot, not a continuation of the parked VAT active-editor retry.
+The read-first return has happened. Further live work must now start from the consolidated Foundation boundary, not from stale TARGET-075 preparation or an as-is retry of the parked VAT active-editor route.
 
 | Topic | Current decision |
 | --- | --- |
 | Target environment | `playthru` only |
 | Target company | `UNIVERSAARL-DE` |
 | Reference company name | Universaarl GmbH |
-| Current live status | freeze active until resume gates are checked |
+| Current live status | read-first resume has produced Foundation evidence; further live work needs a current case gate |
 | Parked case | `TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION` |
-| First resume pilot | `TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK` |
-| Next live type | read-first, no writes |
+| Completed resume pilot | `TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK` |
+| Next live type | only a gated, non-repeating Foundation route with screenshot QA |
 | Artifact classification | `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` |
 | Next local control task | keep roadmap, dashboard, state and artifact classification aligned; demote historical next-step noise instead of adding new layers |
 
@@ -44,7 +44,7 @@ Active truth:
 - Reference legal entity: Universaarl GmbH
 - Currency and market context: EUR, German customer/training logic
 - Execution boundary: all practical Business Central and Playwright proof work happens only in `playthru`
-- Current resume pilot: `TARGET-075`
+- Current local decision: `FOUNDATION-READINESS-DECISION`
 - Parked live case: `TARGET-073`
 
 Legacy truth:
@@ -80,7 +80,7 @@ This split is practical, not bureaucratic. If a work item cannot improve project
 
 ## Local check snapshot
 
-Latest local check result: TARGET-075 readiness refresh, 2026-07-06.
+Latest local check result: Foundation Readiness consolidation, 2026-07-06.
 
 | Check | Result | Roadmap consequence |
 | --- | --- | --- |
@@ -89,8 +89,8 @@ Latest local check result: TARGET-075 readiness refresh, 2026-07-06.
 | `agent:quality:audit` | passed with risk findings | Quality risks remain visible: active-pilot/core TypeScript coverage only, direct storageState usage and legacy Playwright flake surface. |
 | `agent:resume:check` | passed locally | `TARGET-075` is locally prepared, but this does not lift the freeze. |
 | `agent:resume:check:overnight` | passed in the latest check | The overnight gate requires at least 9 hours of remaining auth window. If it fails later, refresh auth before unattended or delayed live work. |
-| `agent:freeze:status` | freeze active | Live execution remains blocked until the freeze is explicitly lifted. |
-| `agent:foundation:decision:check` | passed locally, result missing as expected | `FOUNDATION-READINESS-DECISION.md` must not be written before TARGET-075 evidence exists. |
+| `agent:freeze:status` | historical gate passed for TARGET-075 work | Future live work still requires current case/auth gates. |
+| `agent:foundation:decision:check` | passed locally | `FOUNDATION-READINESS-DECISION.md` is the active boundary before Master Data or process work. |
 | `npm run fibu:target:foundation-consistency-pilot -- --check` | passed locally | The guarded TARGET-075 runner is ready without opening Business Central. |
 | `npm run fibu:target:foundation-consistency-pilot -- --list` | passed, 1 test listed | The TARGET-075 spec is discoverable through the guarded runner. |
 
@@ -99,8 +99,8 @@ Quality-audit boundary:
 - `tsconfig.json` covers the active TARGET-075/core TypeScript set, but is not full project health proof yet.
 - Auth freshness remains a live-run precondition.
 - Legacy waits, force clicks and coordinate clicks remain technical debt.
-- `TARGET-075` stays read-first precisely because this risk surface still exists.
-- Cleanup is now bounded. Further work should return to TARGET-075, Foundation Readiness, route decisions, UAT/training or book/evidence output.
+- TARGET-075 remains a read-first evidence source, not an active next case.
+- Cleanup is now bounded. Further work should return to Foundation Readiness, non-repeating route decisions, UAT/training or book/evidence output.
 
 ## Three operating tracks
 

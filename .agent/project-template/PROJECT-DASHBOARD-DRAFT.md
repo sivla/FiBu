@@ -9,11 +9,12 @@ Last reviewed: 2026-07-06
 | Feld | Aktueller Stand |
 | --- | --- |
 | Zielwelt | `playthru / UNIVERSAARL-DE / Universaarl GmbH` |
-| Projektphase | Improvement Freeze / M0-M1 Uebergang |
+| Projektphase | Foundation-Readiness-Konsolidierung nach read-first Resume |
 | Aktive Steuerungsquelle | `.agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md` |
 | Artefakt-Klassifikation | `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` |
 | Geparkter Live-Case | `TARGET-073` |
-| Erster erlaubter Resume-Pilot | `TARGET-075`, read-first, no-write |
+| Letzter Resume-Pilot | `TARGET-075`, read-first, no-write, abgeschlossen |
+| Aktiver lokaler Case | `FOUNDATION-READINESS-DECISION` |
 | Legacy-Grenze | RM-DEMO, MCP_1_20260210, CRONUS, Rhein-Main und RM-* sind keine aktive Projektwahrheit. |
 
 ## Steuerungsregel
@@ -31,7 +32,7 @@ Detaildateien werden ueber `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` eingeordne
 
 Current milestone: `M0 Project mobilized`
 
-M0 ist weitgehend entworfen, aber noch nicht als voll abgenommen zu behandeln. Der naechste sinnvolle Fortschritt ist keine weitere Methodikschicht, sondern ein sauberer Freeze/Resume-Uebergang mit `TARGET-075` als lesendem Foundation-Pilot.
+M0 ist als Arbeitsrahmen nutzbar. Der naechste sinnvolle Fortschritt ist keine weitere Methodikschicht, sondern die ehrliche Foundation-Entscheidung aus TARGET-075, PWS-FF-002B und den bestehenden VAT-/Page-472-Blockern.
 
 ## Overall status
 
@@ -51,9 +52,9 @@ M0 ist weitgehend entworfen, aber noch nicht als voll abgenommen zu behandeln. D
 | Bereich | Status | Naechste sinnvolle Aktion |
 | --- | --- | --- |
 | Projektsteuerung | usable-draft | Roadmap, Dashboard, State und Klassifikation schlank synchron halten. |
-| Freeze/Resume | gated | Lokale Freeze/Resume-Checks ausfuehren, bevor Business Central oder Playwright live laufen. |
-| Finance Foundation | pending-read-first | `TARGET-075` fuer Kontenplan/Foundation-Kontext lesen, keine Writes. |
-| VAT/USt, Dimensions, Posting Groups | planned | Erst nach TARGET-075 als read-first Proofs angehen. |
+| Freeze/Resume | passed-for-read-first-history | TARGET-075 ist gelaufen; neue Live-Arbeit braucht trotzdem aktuellen Auth-/Case-Gate. |
+| Finance Foundation | blocked-by-specific-gaps | Foundation-Decision aktuell halten: Page 314 und Page 472 active editor sind die harten UI-/Setup-Grenzen. |
+| VAT/USt, Dimensions, Posting Groups | partial/blocked | INLAND/VAT19 sichtbar, Page 472 erreichbar; VAT-Matrix-Zeile und Page 314 bleiben nicht posting-ready. |
 | Master Data | planned-blocked | Erst nach Foundation Readiness Decision in BC schreiben. |
 | Buch/Handbuch/Training | draft | Nur auf Basis offizieller Quellen, Universaarl-Evidence oder klar markierter Annahmen ausbauen. |
 | Playwright/Evidence | draft | Read-first Specs und Screenshot-QA stabilisieren; keine Legacy-Routen als aktive Tests nutzen. |
@@ -88,8 +89,8 @@ M0 ist weitgehend entworfen, aber noch nicht als voll abgenommen zu behandeln. D
 2. Naechsten kleinen Batch waehlen, der aktive Steuerung, Legacy-Isolation oder Universaarl-Readiness verbessert.
 3. Vor Live-Arbeit: `agent:preflight`, `check:encoding`, `agent:quality:audit`, `agent:resume:check || true`, `agent:freeze:status || true`.
 4. `TARGET-073` bleibt geparkt.
-5. Live-Resume nur mit `TARGET-075`, read-first und no-write.
-6. Nach `TARGET-075`: `FOUNDATION-READINESS-DECISION.md` erstellen oder aktualisieren.
+5. Kein as-is Retry von TARGET-073; neuer Live-Versuch nur mit neuer Page-472-/Editor-Hypothese und Screenshot-QA.
+6. `FOUNDATION-READINESS-DECISION.md` als aktuelle Grenze fuer Master Data, VAT-Write, Posting Groups und Prozessstarts nutzen.
 
 ## Update rule
 

@@ -19,6 +19,17 @@
 
 Master Data bleibt geparkt, bis die offenen Foundation-Grenzen geprueft oder bewusst akzeptiert sind.
 
+## Konsolidierter Stand nach den Folgeprobes
+
+Die Foundation ist fuer Schulung und Buch als Lernpfad nutzbar, aber noch nicht posting-ready. TARGET-075 hat mehrere Foundation-Seiten lesend sichtbar gemacht. PWS-FF-002 und PWS-FF-002B zeigen aber, dass die aktuelle Page-314-Route zur Buchungsmatrix Einrichtung nicht als sichtbarer Seitennachweis akzeptiert werden darf. Der VAT-Strang ist weiter fortgeschritten: INLAND und VAT19 sind nach TARGET-027C-RETRY per Screenshot-QA sichtbar, Page 472 ist erreichbar, aber TARGET-071/TARGET-073 beweisen keinen row-scoped aktiven Editor fuer die INLAND/VAT19-Matrixzeile.
+
+Praktische Entscheidung:
+
+- Master Data, O2C, P2P, Journale, Buchungsvorschau und Buchung bleiben blockiert.
+- TARGET-073 bleibt als as-is Retry geparkt, weil single-click, double-click, Enter und F2 keinen echten aktiven Editor bewiesen haben.
+- Ein neuer Live-Versuch ist nur sinnvoll, wenn er eine materiell neue UI-Hypothese nutzt, zum Beispiel Page Inspection, BC-Page-/Table-Kontext, Fokusmodus/Tabellenbereich, spaltengebundene Zelladressierung oder eine andere standardnahe Route.
+- Page-314-/Page-472-Screenshots duerfen nur als Proof gelten, wenn sie die Zielseite, relevante Felder/Spalten und den aktiven Kontext sichtbar zeigen; Role Center, Suche/Tell-Me oder versteckter Text reichen nicht.
+
 ## No-Write-Grenze aus TARGET-075
 
 - Setup geaendert: nein
@@ -96,6 +107,16 @@ Master Data bleibt geparkt, bis die offenen Foundation-Grenzen geprueft oder bew
 - Ergebnis: Der Auth-/Instanz-/Company-Kontext funktioniert, aber die aktuelle Page-314-Navigation ist fuer Playwright nicht als Zielseite beweisbar.
 - Naechste Entscheidung: Nicht denselben Live-Weg wiederholen. Entweder Page 314 als Foundation-Gap parken und Master Data weiter blockieren oder eine wirklich neue Route begruenden, zum Beispiel ueber eine gezielte BC-URL-/Page-Route-Analyse statt weiterer Tell-Me-Varianten.
 
+## VAT-/USt-Folgeproofs
+
+- TARGET-027R/TARGET-027S: MwSt.-Produktbuchungsgruppen und MwSt.-Buchungsmatrix sind sichtbar; MwSt.-Geschaeftsbuchungsgruppen ist nur mit Route-Parity-Warnung belastbar.
+- TARGET-027B: Zielwerte wurden lokal entschieden, ohne BC zu schreiben: INLAND, VAT19, 19 Prozent, Normale MwSt., 3806 Umsatzsteuerkonto und 1406 Vorsteuerkonto.
+- TARGET-027C-RETRY: INLAND und VAT19 sind nach Reopen per Screenshot-QA sichtbar. Der Text-Extractor hat BC-Grid-Zellwerte teilweise nicht erfasst; deshalb ist Screenshot-QA hier der staerkere Nachweis.
+- TARGET-071: Page 472 wurde erreicht, aber der kontrollierte Write-Gate hat gestoppt, weil fuer die Zielzellen kein echter aktiver Editor erkannt wurde.
+- TARGET-073: Zusätzliche aktive-Editor-Probes ohne Zielwerteingabe blieben blockiert. Deshalb ist TARGET-073 als Wiederholung ohne neue Route-Hypothese nicht sinnvoll.
+
+Grenze: Diese VAT-Evidence beweist noch keine korrekte deutsche USt-Berechnung. Es gibt keinen Preview-Posting-Nachweis, keine MwSt.-Posten, keine Sachposten und keine steuerliche Finalfreigabe.
+
 ## Foundation-Read-first-Folgeprobes
 
 Diese Tabelle verhindert den Sprung in Stammdaten, wenn TARGET-075 zuerst eine engere Foundation-Luecke zeigt. Sie gibt keine Schreibfreigabe.
@@ -143,6 +164,7 @@ Erlaubte Anschlussklassifikationen:
 - Den abgelehnten Nachweis zur Buchungsmatrix Einrichtung vor Master Data klaeren oder bewusst als Grenze akzeptieren.
 - PWS-FF-002 nicht als akzeptierten Buchungsmatrix-Nachweis verwenden; der Screenshot zeigt Rollencenter statt Page 314.
 - PWS-FF-002B nicht wiederholen, solange keine neue Route-Hypothese vorliegt; direkte URL und scoped Search-Click sind als aktueller Weg blockiert.
+- TARGET-073 nicht als as-is Retry wiederholen; der naechste VAT-/Page-472-Schritt braucht eine neue UI- oder Page-Inspection-Hypothese.
 - Starterkonten erneut sichtbar pruefen, wenn der Kontenplan Setup- oder Buchaussagen tragen soll.
 - Master Data, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt, bis die Foundation-Grenzen geklaert sind.
 - Classify master-data readiness only after chart/setup context is accepted.
