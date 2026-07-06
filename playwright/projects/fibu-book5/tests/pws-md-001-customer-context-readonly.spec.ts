@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Frame, type Locator, type Page } from '@playwright/test';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
@@ -87,6 +87,11 @@ function unsafeActionWarnings(text: string) {
   ].filter(Boolean);
 }
 
+type Capture = {
+  screenshot: string;
+  screenshotMetadata: string;
+};
+
 async function fullText(page: Page) {
   const body = await pageText(page).catch(() => '');
   const frameTexts = await Promise.all(page.frames().map((frame) => frame.locator('body').innerText({ timeout: 1000 }).catch(() => '')));
@@ -113,6 +118,51 @@ async function screenshotWithMetadata(page: Page, fileName: string, metadata: Re
   };
 }
 
+async function captureReadOnlyCheckpoint(
+  page: Page,
+  fileName: string,
+  metadata: Record<string, unknown>,
+  captures: Capture[]
+) {
+  const shot = await screenshotWithMetadata(page, fileName, metadata);
+  captures.push(shot);
+  return shot;
+}
+
+async function tryHoverFirst(page: Page, labels: RegExp[]) {
+  for (const label of labels) {
+    const candidate = page.getByRole('button', { name: label }).first();
+    if (await candidate.isVisible({ timeout: 1500 }).catch(() => false)) {
+      await candidate.hover({ timeout: 2000 }).catch(() => undefined);
+      return label.source;
+    }
+  }
+  return '';
+}
+
+async function clickFirstVisible(page: Page, label: RegExp) {
+  for (const [scopeIndex, scope] of [page, ...page.frames()].entries()) {
+    const candidates: Array<{ name: string; locator: Locator }> = [
+      { name: 'role-link', locator: scope.getByRole('link', { name: label }).first() },
+      { name: 'role-button', locator: scope.getByRole('button', { name: label }).first() },
+      { name: 'anchor-text', locator: scope.locator('a').filter({ hasText: label }).first() },
+      { name: 'visible-text', locator: scope.getByText(label).first() }
+    ];
+    for (const candidate of candidates) {
+      if (await candidate.locator.isVisible({ timeout: 1000 }).catch(() => false)) {
+        await candidate.locator.scrollIntoViewIfNeeded({ timeout: 2000 }).catch(() => undefined);
+        await candidate.locator.click({ timeout: 5000 });
+        return `${candidate.name}-scope-${scopeIndex}`;
+      }
+    }
+  }
+  return '';
+}
+
+function customerListSignalCount(text: string) {
+  return [/Debitor|Customer|Kunde/i, /Nr\.|No\.|Name/i].filter((signal) => signal.test(text)).length;
+}
+
 test('PWS-MD-001 captures customer list context read-only', async ({ page }) => {
   await fs.mkdir(EVIDENCE_DIR, { recursive: true });
   const startedAt = new Date().toISOString();
@@ -121,10 +171,111 @@ test('PWS-MD-001 captures customer list context read-only', async ({ page }) => 
   await waitForBusinessCentralShell(page);
   await dismissTours(page);
   await page.keyboard.press('Escape').catch(() => undefined);
+  const captures: Capture[] = [];
 
   await expect.poll(async () => page.url(), { timeout: 30_000 }).toContain(EXPECTED_INSTANCE);
 
-  const rawText = await fullText(page);
+  const rawTextAfterOpen = await fullText(page);
+  await captureReadOnlyCheckpoint(
+    page,
+    'pws-md-001-010-customer-list-context.png',
+    {
+      page: 'Debitoren / Customers',
+      pageId: 22,
+      step: 'Customer list/page context after open',
+      importantUi: ['Page title', 'company context', 'customer list/card signals', 'visible columns or empty-list state'],
+      visibleSignals: rawTextAfterOpen.split('\n').slice(0, 40),
+      internallyProves: 'Business Central reached the customer context surface or produced enough text to diagnose the route.',
+      doesNotProve: ['No customer created', 'No customer template changed', 'No posting or sales readiness'],
+      finalScreenshotStatus: 'draft-candidate',
+      noWrite: true,
+      noPost: true,
+      noPreview: true
+    },
+    captures
+  );
+
+  let rawTextAfterCustomerRoute = rawTextAfterOpen;
+  let customerRouteUsed = '';
+  if (customerListSignalCount(rawTextAfterOpen) < 2) {
+    customerRouteUsed = await clickFirstVisible(page, /^Debitoren$|^Customers$|^Kunden$/i);
+    if (customerRouteUsed) {
+      await waitForBusinessCentralShell(page);
+      await dismissTours(page);
+      await expect
+        .poll(async () => customerListSignalCount(await fullText(page)), { timeout: 20_000 })
+        .toBeGreaterThanOrEqual(2);
+      rawTextAfterCustomerRoute = await fullText(page);
+      await captureReadOnlyCheckpoint(
+        page,
+        'pws-md-001-015-customer-link-route-context.png',
+        {
+          page: 'Debitoren / Customers',
+          pageId: 22,
+          step: 'Role Center Debitoren link route to customer list',
+          routeUsed: customerRouteUsed,
+          routeLearning:
+            'Direct page=22 navigation can land on the Role Center; the visible Debitoren link is the safer user-like route to the customer list.',
+          importantUi: ['Debitoren link route', 'customer list title', 'customer list columns or empty-list state'],
+          visibleSignals: rawTextAfterCustomerRoute.split('\n').slice(0, 50),
+          internallyProves: 'The run used the visible Role Center Debitoren navigation route without clicking New or Edit.',
+          doesNotProve: ['No customer created', 'No customer template changed', 'No sales or posting readiness'],
+          finalScreenshotStatus: 'draft-candidate',
+          noWrite: true,
+          noPost: true,
+          noPreview: true
+        },
+        captures
+      );
+    }
+  }
+
+  const hoveredAction = await tryHoverFirst(page, [/Search|Suchen/i, /Filter|Filtern/i, /Open in Excel|In Excel oeffnen/i, /Share|Teilen/i]);
+  const rawTextAfterActionHover = await fullText(page);
+  await captureReadOnlyCheckpoint(
+    page,
+    'pws-md-001-020-customer-action-or-hover-context.png',
+    {
+      page: 'Debitoren / Customers',
+      pageId: 22,
+      step: 'Read-only action or hover context',
+      hoveredAction: hoveredAction || 'no safe read-only toolbar action hovered',
+      importantUi: ['Toolbar/action bar', 'read-only utility actions', 'possible New/Edit action visibility without clicking them'],
+      visibleSignals: rawTextAfterActionHover.split('\n').slice(0, 40),
+      internallyProves: 'The run inspected customer-page action context without clicking New, Edit or templates.',
+      doesNotProve: ['No write-capable action was tested', 'No action was accepted as safe for data changes'],
+      finalScreenshotStatus: 'draft-candidate',
+      noWrite: true,
+      noPost: true,
+      noPreview: true
+    },
+    captures
+  );
+
+  await page.keyboard.press('Control+Alt+F1').catch(() => undefined);
+  await expect.poll(async () => (await fullText(page)).length, { timeout: 5000 }).toBeGreaterThan(20);
+  const rawTextAfterInspection = await fullText(page);
+  await captureReadOnlyCheckpoint(
+    page,
+    'pws-md-001-030-customer-page-inspection-context.png',
+    {
+      page: 'Debitoren / Customers',
+      pageId: 22,
+      step: 'Page Inspection / technical context if available',
+      importantUi: ['Page Inspection pane', 'page id/name', 'table/source context if available'],
+      visibleSignals: rawTextAfterInspection.split('\n').slice(0, 50),
+      internallyProves: 'The run attempted a technical page-context check for reproducibility.',
+      doesNotProve: ['No object model completeness', 'No API or AL shortcut'],
+      finalScreenshotStatus: 'draft-candidate',
+      noWrite: true,
+      noPost: true,
+      noPreview: true
+    },
+    captures
+  );
+  await page.keyboard.press('Escape').catch(() => undefined);
+
+  const rawText = clean(`${rawTextAfterOpen}\n${rawTextAfterCustomerRoute}\n${rawTextAfterActionHover}\n${rawTextAfterInspection}`);
   const compact = clean(
     await compactPageText(page, {
       include: [
@@ -135,31 +286,11 @@ test('PWS-MD-001 captures customer list context read-only', async ({ page }) => 
     }).catch(() => '')
   );
   const text = compact || rawText;
-  const customerSignals = [/Debitor|Customer|Kunde/i, /Nr\.|No\.|Name/i].filter((signal) => signal.test(rawText)).length;
+  const customerSignals = customerListSignalCount(rawText);
   const status = customerSignals >= 2 ? 'observed' : 'blocked';
   const blockedBy = status === 'observed' ? [] : ['Customer list/page context was not visible enough for read-first proof.'];
   const textFile = 'pws-md-001-010-customer-context.txt';
   await writeTextEvidence(evidencePath(PROJECT, EVIDENCE_ID, textFile), text || 'No compact page text captured.');
-  const shot = await screenshotWithMetadata(page, 'pws-md-001-010-customer-context.png', {
-    page: 'Debitoren / Customers',
-    pageId: 22,
-    step: 'Read-only customer context proof',
-    status,
-    importantUi: ['Page title', 'company context', 'customer list/card signals', 'posting/payment/template field signals if visible'],
-    visibleSignals: text.split('\n').slice(0, 40),
-    internallyProves: status === 'observed' ? 'Customer context page is visible read-only in playthru / UNIVERSAARL-DE.' : 'Customer context was not accepted.',
-    doesNotProve: [
-      'No customer created',
-      'No customer template changed',
-      'No posting group correctness',
-      'No VAT correctness',
-      'No sales document readiness'
-    ],
-    finalScreenshotStatus: status === 'observed' ? 'draft-candidate' : 'rejected',
-    noWrite: true,
-    noPost: true,
-    noPreview: true
-  });
 
   const result = {
     schemaVersion: 1,
@@ -178,7 +309,8 @@ test('PWS-MD-001 captures customer list context read-only', async ({ page }) => 
     playwrightLiveRunExecuted: true,
     actionsTaken: [
       'Opened the customer context page read-only after guarded runner approval.',
-      'Captured compact page text, screenshot and screenshot metadata.',
+      'Captured checkpoint screenshots for page context, action/hover context and Page Inspection context.',
+      'Captured compact page text and screenshot metadata.',
       'Classified visible customer-context signals for the Master Data handoff.'
     ],
     actionsNotTaken: [
@@ -199,7 +331,21 @@ test('PWS-MD-001 captures customer list context read-only', async ({ page }) => 
     posted: false,
     payment: false,
     apiShortcut: false,
-    screenshots: [shot.screenshot],
+    screenshots: captures.map((capture) => capture.screenshot),
+    screenshotQa: {
+      requiredCheckpoints: [
+        'customer list/page context',
+        'Role Center Debitoren link route if direct page navigation resolves to Role Center',
+        'safe action or hover context',
+        'Page Inspection or technical context'
+      ],
+      capturedCheckpoints: captures.map((capture) => capture.screenshot),
+      accepted: status === 'observed' && captures.length >= 3,
+      reason:
+        status === 'observed' && captures.length >= 3
+          ? 'Mehrere UI-Zustaende wurden dokumentiert; der Lauf stuetzt sich nicht auf einen einzelnen End-Screenshot.'
+          : 'Customer context or screenshot checkpoint coverage was not sufficient.'
+    },
     proved: status === 'observed' ? ['Customer context page is visible read-only in playthru / UNIVERSAARL-DE.'] : [],
     notProved: [
       'No customer setup readiness.',
@@ -221,7 +367,11 @@ test('PWS-MD-001 captures customer list context read-only', async ({ page }) => 
       noApiShortcut: true,
       readOnlyDirectPageRoute: true
     },
-    evidenceRefs: [`${EVIDENCE_DIR_REL}/${textFile}`, shot.screenshot, shot.screenshotMetadata, `${EVIDENCE_DIR_REL}/PWS-MD-001-result.json`],
+    evidenceRefs: [
+      `${EVIDENCE_DIR_REL}/${textFile}`,
+      ...captures.flatMap((capture) => [capture.screenshot, capture.screenshotMetadata]),
+      `${EVIDENCE_DIR_REL}/PWS-MD-001-result.json`
+    ],
     nextCase: 'PWS-MD-002-VENDOR-CONTEXT-READFIRST',
     requiresReview: status !== 'observed',
     safeToFinalizeState: false

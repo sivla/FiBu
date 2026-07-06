@@ -17,7 +17,7 @@
 
 ## Entscheidung
 
-Master Data bleibt geparkt, bis die offenen Foundation-Grenzen geprueft oder bewusst akzeptiert sind.
+Master-Data-Schreibfaelle bleiben geparkt. Lesende Master-Data-Kontextprobes duerfen jetzt einzeln starten, weil Company, Kontenplan, Nummernserien und Dimensionen ausreichend sichtbar sind, um Debitoren-/Kreditoren-/Artikel-Oberflaechen ohne Datenanlage zu verstehen. Diese Entscheidung gibt keine Freigabe fuer Stammdatenanlage, Templates, Belege, Buchungsvorschau oder Buchung.
 
 PWS-FF-002C hat die Buchungsmatrix Einrichtung neu eingeordnet: Page 314 ist nicht als generischer Navigationsblocker zu behandeln. TARGET-057 ist der staerkere Page-314-/Table-252-/Feldwahrheitsnachweis; TARGET-058/TARGET-059 parken aber den persistierten Wert `Wareneinkaufskonto 5400`. Die Buchungsmatrix bleibt deshalb partiell und nicht posting-ready.
 
@@ -88,7 +88,7 @@ PWS-FF-001 hat die Nummernserien-Seite read-only beobachtet: sieben Universaarl-
 - TARGET-058/TARGET-059: getestete List-Edit-/Grid-/Headerroute fuer `5400` ist geparkt; keine Persistenz nach Reopen.
 - Akzeptierter Teilstand: `INLAND` / `WAREN` / `Warenverkaufskonto 4400`.
 - Offene Grenze: `Wareneinkaufskonto 5400`, vollstaendige Buchungsmatrix, Posting Readiness, Preview Posting und Posten.
-- Praktische Folge: keine Wiederholung der verworfenen Page-314-Routen ohne materiell neue Hypothese; Master Data bleibt geparkt.
+- Praktische Folge: keine Wiederholung der verworfenen Page-314-Routen ohne materiell neue Hypothese; Master-Data-Schreibfaelle bleiben geparkt. Lesende Debitoren-/Kreditoren-/Artikel-Kontextprobes duerfen erst nach dieser Foundation-Entscheidung einzeln laufen.
 
 ## PWS-FF-005 Dimensionen Read-first
 
@@ -121,7 +121,19 @@ PWS-FF-001 hat die Nummernserien-Seite read-only beobachtet: sieben Universaarl-
 - Screenshot-QA: Liste, U-CUST-Zeilenauswahl, Checkbox-Hover, Zeilenkontext und Page Inspection wurden getrennt erfasst.
 - Schreibgrenze: keine Nummernserie, keine Nummernserienzeile, keine Setup-Zuweisung, keine Stammdaten, keine Buchungsvorschau, keine Buchung.
 - Fachgrenze: sichtbare U-Nummernserien beweisen keine Vollstaendigkeit, keine Persistenz durch Schreib-/Reopen-Zyklus, keine rechtliche Nummerierungs-/Audit-Readiness und keine Master-Data-Readiness.
-- Praktische Folge: Nummernserien duerfen als read-only Foundation-Baustein fuer Training/Handbuch eingeordnet werden. Master Data bleibt bis zur Foundation-Readiness-Aktualisierung geparkt.
+- Praktische Folge: Nummernserien duerfen als read-only Foundation-Baustein fuer Training/Handbuch eingeordnet werden. Der naechste sinnvolle Schritt ist ein einzelner Debitoren-Readfirst-Probe, nicht eine Debitorenanlage.
+
+## PWS-MD-001 Debitoren-Kontext Read-first
+
+- Quelle: playwright/projects/fibu-book5/evidence/pws-md-001-customer-context-readonly/PWS-MD-001-result.json
+- Status: observed
+- Akzeptiert: Die Debitorenliste `Customer List (22, List)` wurde read-only in `playthru / UNIVERSAARL-DE` geoeffnet.
+- Sichtbar: Page Inspection zeigt `Customer (18)` mit Feldern wie `No.`, `Name`, `Customer Posting Group` und `Payment Terms Code`.
+- UI-Learning: Direkte Page-22-Navigation kann im Rollencenter landen. Die sichtbare `Debitoren`-Navigation aus dem Rollencenter ist die bessere Nutzerroute; Playwright muss solche sichtbaren BC-Links frame-aware suchen.
+- Screenshot-QA: Rollencenter/Listenkontext, Debitoren-Linkroute, Aktions-/Hover-Kontext und Page Inspection wurden getrennt erfasst.
+- Schreibgrenze: kein Debitor, keine Debitorenvorlage, kein Verkaufsbeleg, keine Buchungsvorschau, keine Buchung.
+- Fachgrenze: sichtbare Debitorenfelder beweisen keine Debitorenanlage, keine Buchungsgruppen-Korrektheit, keine USt-Korrektheit und keine Verkaufsprozessbereitschaft.
+- Praktische Folge: Der naechste sinnvolle Master-Data-Probe ist `PWS-MD-002` Kreditoren read-only, aber nur mit derselben mehrstufigen Screenshot-QA.
 
 ## Foundation-Read-first-Folgeprobes
 
@@ -143,9 +155,9 @@ Diese Tabelle verhindert den Sprung in Stammdaten, wenn TARGET-075 zuerst eine e
 
 ## UAT und Training
 
-- Shows key users where chart and posting setup context lives.
-- Supports a Foundation checkpoint exercise before master data entry.
-- Defines stop conditions for setup pages that expose write actions or unclear dialogs.
+- Key User sehen, wo Kontenplan-, Buchungsgruppen-, Nummernserien- und Stammdatenkontext liegen.
+- Der Foundation-Checkpoint wird als Uebung vor der ersten Stammdatenerfassung nutzbar.
+- Stop-Bedingungen fuer Setup- und Stammdatenseiten bleiben sichtbar: Schreibaktionen, unklare Dialoge oder fehlende Page-/Feld-Evidence stoppen den naechsten wirksamen Schritt.
 
 ## Master-Data-Read-first-Handoff
 
@@ -153,9 +165,9 @@ Diese Entscheidung gibt keine Schreibfreigabe. Sie waehlt hoechstens den naechst
 
 | Kandidat | Entscheidung | Mindestgrundlage | Bleibt verboten |
 | --- | --- | --- | --- |
-| `PWS-MD-001` Debitoren (Customers) | blocked-or-needs-foundation-follow-up | Company, Kontenplan, Debitoren-/Buchungsgruppen-/Payment-Abhaengigkeiten sind sichtbar oder als Luecke benannt. | Debitor speichern, Vorlage aendern, Verkaufsbeleg anlegen |
-| `PWS-MD-002` Kreditoren (Vendors) | blocked-or-needs-foundation-follow-up | Company, Kontenplan, Kreditoren-/Buchungsgruppen-/Payment-Abhaengigkeiten sind sichtbar oder als Luecke benannt; Bankdaten bleiben ausserhalb. | Kreditor speichern, Bankdaten erfassen, Einkaufsbeleg oder Zahlung anlegen |
-| `PWS-MD-003` Artikel/Services/Nichtlagerartikel | blocked-or-needs-foundation-follow-up | Company, Kontenplan, Produktbuchungsgruppen, USt-Produktkontext, Basiseinheiten und Inventory-/Costing-Grenzen sind sichtbar oder als Luecke benannt. | Artikel speichern, Basiseinheit anlegen, Lager-/Bewertungs-/Buchungssetup aendern, Lagerwert oder Wertposten behaupten |
+| `PWS-MD-001` Debitoren (Customers) | observed-readfirst | Debitorenliste und zentrale Felder wurden read-only mit mehrstufiger Screenshot-QA beobachtet. | Debitor speichern, Vorlage aendern, Verkaufsbeleg anlegen |
+| `PWS-MD-002` Kreditoren (Vendors) | ready-next-readfirst | Kreditoren koennen nach dem Debitoren-Kontext analog read-only geprueft werden; Bankdaten bleiben ausserhalb. | Kreditor speichern, Bankdaten erfassen, Einkaufsbeleg oder Zahlung anlegen |
+| `PWS-MD-003` Artikel/Services/Nichtlagerartikel | ready-after-vendor-readfirst | Artikel-/Service-Kontext braucht zusaetzlich Produktbuchungsgruppen-, USt-Produkt- und Einheitenbewusstsein; daher nach Debitor/Kreditor. | Artikel speichern, Basiseinheit anlegen, Lager-/Bewertungs-/Buchungssetup aendern, Lagerwert oder Wertposten behaupten |
 
 Erlaubte Anschlussklassifikationen:
 
@@ -169,10 +181,10 @@ Erlaubte Anschlussklassifikationen:
 
 - PWS-FF-002C als aktuelle Buchungsmatrix-Grenze konsumieren: Page 314 ist partiell bekannt, aber nicht posting-ready.
 - PWS-FF-006 als akzeptierten Kontenplan-Starterkonten-Nachweis konsumieren; keine weitere Starterkonten-Wiederholung ohne neuen Claim.
-- Master Data, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt, bis die Foundation-Grenzen geklaert sind.
+- Master-Data-Schreibfaelle, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt, bis die Foundation-Grenzen geklaert sind.
 - PWS-FF-005B als beobachteten no-write Dimensionswerte-Proof konsumieren.
 - PWS-FF-001 als beobachteten no-write Nummernserien-Proof konsumieren.
-- Foundation Readiness nach Nummernserien aktualisieren und erst dann entscheiden, ob ein Master-Data-Readfirst-Probe sinnvoll ist.
+- `PWS-MD-001` Debitoren ist als read-only Kontext beobachtet. Der naechste Master-Data-Readfirst ist `PWS-MD-002` Kreditoren, nach Uebernahme der mehrstufigen Screenshot-QA.
 - Classify master-data readiness only after chart/setup context is accepted.
 - Use accepted screenshots as draft handbook/training evidence, not final compliance proof.
 
@@ -190,4 +202,4 @@ Erlaubte Anschlussklassifikationen:
 
 ## Naechster Case
 
-- `FOUNDATION-READINESS-DECISION-REFRESH-AFTER-NUMBER-SERIES`: PWS-FF-001 konsumieren und entscheiden, ob als naechstes ein Master-Data-Readfirst-Probe sinnvoll ist. Keine Schreibfreigabe aus der sichtbaren Nummernserienliste ableiten.
+- `PWS-MD-002-VENDOR-CONTEXT-READFIRST`: Kreditoren (Vendors) read-only oeffnen, die PWS-MD-001-Screenshot-QA auf Kreditoren uebertragen und keine Stammdaten, Bankdaten, Templates, Belege, Zahlungen, Buchungsvorschau oder Buchung erzeugen.

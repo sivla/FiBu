@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PWS-MD-001-CUSTOMER-CONTEXT-READFIRST",
+  "status": "observed-readfirst",
+  "mode": "universaarl-masterdata-readfirst",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w2-core-masterdata",
+  "purpose": "Open the customer context read-only after Foundation Readiness and capture page/list/action/field context before any customer write gate.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/pws-ff-001-number-series-readfirst/PWS-FF-001-result.json",
+    "playwright/projects/fibu-book5/UNIVERSAARL-DATASET-BLUEPRINT.md"
+  ],
+  "mayRunPlaywright": true,
+  "mayOpenBusinessCentral": true,
+  "effectiveBcActionsAllowed": false,
+  "allowedActions": [
+    "run-playwright-readonly",
+    "open-business-central-readonly",
+    "confirm-playthru-instance",
+    "confirm-universaarl-company",
+    "open-customers-readonly",
+    "capture-screenshot-qa",
+    "write-evidence-result",
+    "update-state-summary"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "write-setup",
+    "create-customer",
+    "edit-customer",
+    "change-customer-template",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "company-switch",
+    "claim-customer-readiness",
+    "claim-sales-readiness",
+    "claim-posting-readiness"
+  ],
+  "acceptanceCriteria": [
+    "playthru / UNIVERSAARL-DE context is proven before any customer page interaction.",
+    "The customer page/context is accepted only with visible page title and customer-list or customer-card signals.",
+    "Screenshots include enough checkpoints to show page context, list/card state, relevant actions and visible setup/dependency fields when available.",
+    "No customer, template, setup, document, draft, Preview Posting, Posting, payment or API shortcut is executed.",
+    "Result states what customer context was observed and what remains unproven for customer creation, sales and posting."
+  ],
+  "nextStepDecision": {
+    "currentCase": "FOUNDATION-READINESS-DECISION-REFRESH-AFTER-NUMBER-SERIES",
+    "plannedNextCaseBeforeReview": "PWS-MD-001-CUSTOMER-CONTEXT-READFIRST",
+    "lastEvidenceSummary": "PWS-FF-001 observed Number Series read-only with seven Universaarl U-* rows, checkbox context, Lines context and Page Inspection. Foundation Readiness now permits a single customer read-first probe but no customer write gate.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Debitoren (Customers) are the smallest useful Master Data surface after Foundation read-first evidence. They support training, handbook, O2C planning and data-request validation without creating records.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "PWS-MD-001-CUSTOMER-CONTEXT-READFIRST",
+        "status": "ready-next",
+        "reason": "Customer context can be inspected read-only without setup or master-data writes."
+      },
+      {
+        "caseId": "PWS-MD-002-VENDOR-CONTEXT-READFIRST",
+        "status": "ready-after-current",
+        "reason": "Vendor context should follow customer context to reuse the same screenshot QA pattern."
+      },
+      {
+        "caseId": "PWS-MD-003-ITEM-SERVICE-CONTEXT-READFIRST",
+        "status": "ready-after-current",
+        "reason": "Item/service context has more product posting, UOM and inventory dependencies; inspect after customer/vendor."
+      }
+    ],
+    "queueChangesMade": [
+      "Foundation Readiness now distinguishes Master Data read-first from Master Data writes."
+    ],
+    "selectedNextCase": "PWS-MD-001-CUSTOMER-CONTEXT-READFIRST",
+    "whySelectedNextCaseIsBest": "It converts Foundation evidence into the first customer-facing Master Data surface while preserving no-write gates.",
+    "risksBeforeNextCase": [
+      "Do not click New/Neu or edit templates.",
+      "Do not claim customer creation, sales readiness or posting readiness from page visibility."
+    ],
+    "requiredPreparation": [
+      "Use screenshot QA with multiple checkpoints, not a single endpoint screenshot."
+    ]
+  },
+  "nextCase": "PWS-MD-002-VENDOR-CONTEXT-READFIRST",
+  "updatedAt": "2026-07-06T21:10:57.635Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/pws-md-001-customer-context-readonly/PWS-MD-001-result.json",
+  "completedAt": "2026-07-06T21:10:57.635Z",
+  "result": {
+    "status": "observed",
+    "proved": [
+      "Customer List (22, List) was visible read-only in playthru / UNIVERSAARL-DE."
+    ],
+    "routeLearning": "Direct Page 22 navigation can land on the Role Center; the visible Debitoren Role Center link must be searched frame-aware.",
+    "screenshotQa": "accepted: Role Center/list context, Debitoren link route, action/hover context and Page Inspection were captured.",
+    "noWrite": true,
+    "nextCase": "PWS-MD-002-VENDOR-CONTEXT-READFIRST"
+  }
+}

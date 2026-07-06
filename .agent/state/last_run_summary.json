@@ -2,14 +2,14 @@
   "schemaVersion": 1,
   "purpose": "last-run-summary",
   "runId": "PWS-FF-001-NUMBER-SERIES-READFIRST",
-  "caseId": "PWS-FF-001-NUMBER-SERIES-READFIRST",
+  "caseId": "PWS-MD-001-CUSTOMER-CONTEXT-READFIRST",
   "status": "observed",
   "completedAt": "2026-07-06T20:53:05.483Z",
   "mode": "universaarl-foundation-readfirst",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "PWS-FF-001 ran read-only in Business Central and observed Number Series page 456 in playthru / UNIVERSAARL-DE. It captured five checkpoint screenshots for list context, U-CUST row selection, Standardnr./Manuelle Anz. checkbox hover context, Zeilen/Lines context and Page Inspection. Seven Universaarl U-* number-series rows were visible; no setup, master data, draft, Preview Posting, Posting, payment, API shortcut or company switch occurred.",
-  "resultPath": "playwright/projects/fibu-book5/evidence/pws-ff-001-number-series-readfirst/PWS-FF-001-result.json",
+  "summary": "PWS-MD-001 observed Customer List (22, List) read-only after improving screenshot QA and frame-aware Role Center navigation. No writes were performed.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/pws-md-001-customer-context-readonly/PWS-MD-001-result.json",
   "evidenceRefs": [
     "playwright/projects/fibu-book5/evidence/pws-ff-001-number-series-readfirst/PWS-FF-001-result.json",
     "playwright/projects/fibu-book5/evidence/pws-ff-001-number-series-readfirst/README.md",
@@ -35,11 +35,10 @@
     "playwright/projects/fibu-book5/evidence/pws-ff-001-number-series-readfirst/pws-ff-001-050-page-inspection-context.screenshot.json"
   ],
   "screenshots": [
-    "playwright/projects/fibu-book5/evidence/pws-ff-001-number-series-readfirst/pws-ff-001-010-number-series-list-context.png",
-    "playwright/projects/fibu-book5/evidence/pws-ff-001-number-series-readfirst/pws-ff-001-020-u-cust-row-selected.png",
-    "playwright/projects/fibu-book5/evidence/pws-ff-001-number-series-readfirst/pws-ff-001-030-checkbox-hover-context.png",
-    "playwright/projects/fibu-book5/evidence/pws-ff-001-number-series-readfirst/pws-ff-001-040-lines-action-context.png",
-    "playwright/projects/fibu-book5/evidence/pws-ff-001-number-series-readfirst/pws-ff-001-050-page-inspection-context.png"
+    "playwright/projects/fibu-book5/evidence/pws-md-001-customer-context-readonly/pws-md-001-010-customer-list-context.png",
+    "playwright/projects/fibu-book5/evidence/pws-md-001-customer-context-readonly/pws-md-001-015-customer-link-route-context.png",
+    "playwright/projects/fibu-book5/evidence/pws-md-001-customer-context-readonly/pws-md-001-020-customer-action-or-hover-context.png",
+    "playwright/projects/fibu-book5/evidence/pws-md-001-customer-context-readonly/pws-md-001-030-customer-page-inspection-context.png"
   ],
   "actionsTaken": [
     "Opened Number Series page 456 read-only via tell-me-search-number-series.",
@@ -95,8 +94,8 @@
     "UI learning: Number Series search result appears as Nummernserie Verwaltung; Specs must accept the observed BC result label rather than over-strict exact titles.",
     "UI learning: After Zeilen/Lines opens a dialog, treat the target dialog as success instead of retrying the underlying action button."
   ],
-  "nextCase": "FOUNDATION-READINESS-DECISION-REFRESH-AFTER-NUMBER-SERIES",
-  "nextStep": "PWS-FF-001 observed Number Series page 456 read-only in playthru / UNIVERSAARL-DE. Seven Universaarl U-* number-series rows, checkbox context, Lines context and Page Inspection are visible, but numbering completeness, setup assignment, master data readiness, Preview Posting and Posting remain unproven. Next local step: refresh Foundation Readiness after Number Series before any Master Data probe.",
+  "nextCase": "PWS-MD-002-VENDOR-CONTEXT-READFIRST",
+  "nextStep": "Prepare and run PWS-MD-002 Vendor Context read-first in playthru / UNIVERSAARL-DE. First port the PWS-MD-001 multi-checkpoint screenshot QA and frame-aware Role Center navigation pattern to the vendor spec; then run read-only. No New/Neu, no vendor creation/edit, no bank details, no documents, no payments, no Preview Posting, no Posting.",
   "nextStepDecision": {
     "currentCase": "PWS-FF-001-NUMBER-SERIES-READFIRST",
     "plannedNextCaseBeforeReview": "PWS-FF-001-NUMBER-SERIES-READFIRST",
@@ -137,5 +136,14 @@
       "Normalize this result and refresh Foundation Readiness plan-only."
     ]
   },
-  "updatedAt": "2026-07-06T20:55:41.500Z"
+  "updatedAt": "2026-07-06T21:10:57.635Z",
+  "businessCentralOpened": true,
+  "playwrightLiveRunExecuted": true,
+  "changedFilesIntent": [
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    ".agent/state/cases/pws-md-001-customer-context-readfirst.json",
+    "playwright/projects/fibu-book5/tests/pws-md-001-customer-context-readonly.spec.ts",
+    ".agent/state/current.json",
+    ".agent/state/last_run_summary.json"
+  ]
 }

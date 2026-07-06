@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-06T20:56:49.017Z",
+  "updatedAt": "2026-07-06T21:10:57.635Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
-  "activeArea": "w1-foundation",
-  "activeCase": "FOUNDATION-READINESS-DECISION-REFRESH-AFTER-NUMBER-SERIES",
-  "active_case_file": ".agent/state/cases/foundation-readiness-decision-refresh-after-number-series.json",
-  "activeCaseFile": ".agent/state/cases/foundation-readiness-decision-refresh-after-number-series.json",
+  "activeArea": "w2-core-masterdata",
+  "activeCase": "PWS-MD-002-VENDOR-CONTEXT-READFIRST",
+  "active_case_file": ".agent/state/cases/pws-md-002-vendor-context-readfirst.json",
+  "activeCaseFile": ".agent/state/cases/pws-md-002-vendor-context-readfirst.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-foundation-readfirst",
+  "mode": "universaarl-masterdata-readfirst",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -34,10 +34,15 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-foundation-evidence",
-    "update-foundation-readiness-decision",
-    "update-state-summary",
-    "select-next-readfirst-case"
+    "update-playwright-readonly-spec",
+    "run-playwright-readonly",
+    "open-business-central-readonly",
+    "confirm-playthru-instance",
+    "confirm-universaarl-company",
+    "open-vendors-readonly",
+    "capture-screenshot-qa",
+    "write-evidence-result",
+    "update-state-summary"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -45,22 +50,26 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "open-business-central",
-    "run-playwright-live",
     "write-setup",
+    "create-vendor",
+    "edit-vendor",
+    "change-vendor-template",
     "create-master-data",
+    "enter-bank-details",
     "create-document-or-draft",
     "preview-posting",
     "post",
     "payment",
     "api-shortcut",
-    "claim-numbering-readiness",
-    "claim-master-data-readiness",
+    "company-switch",
+    "claim-vendor-readiness",
+    "claim-purchase-readiness",
+    "claim-payment-readiness",
     "claim-posting-readiness"
   ],
-  "nextCase": "FOUNDATION-READINESS-DECISION-REFRESH-AFTER-NUMBER-SERIES",
-  "nextStep": "PWS-FF-001 observed Number Series page 456 read-only in playthru / UNIVERSAARL-DE. Seven Universaarl U-* number-series rows, checkbox context, Lines context and Page Inspection are visible, but numbering completeness, setup assignment, master data readiness, Preview Posting and Posting remain unproven. Next local step: refresh Foundation Readiness after Number Series before any Master Data probe.",
-  "preparedNextCaseFile": ".agent/state/cases/foundation-readiness-decision-refresh-after-number-series.json",
+  "nextCase": "PWS-MD-002-VENDOR-CONTEXT-READFIRST",
+  "nextStep": "Prepare and run PWS-MD-002 Vendor Context read-first in playthru / UNIVERSAARL-DE. First port the PWS-MD-001 multi-checkpoint screenshot QA and frame-aware Role Center navigation pattern to the vendor spec; then run read-only. No New/Neu, no vendor creation/edit, no bank details, no documents, no payments, no Preview Posting, no Posting.",
+  "preparedNextCaseFile": ".agent/state/cases/pws-md-002-vendor-context-readfirst.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -10714,5 +10723,45 @@
       "playwright/projects/fibu-book5/evidence/pws-ff-001-number-series-readfirst/pws-ff-001-050-page-inspection-context.png"
     ],
     "updatedAt": "2026-07-06T20:55:41.500Z"
+  },
+  "latestFoundationReadinessRefresh": {
+    "caseId": "FOUNDATION-READINESS-DECISION-REFRESH-AFTER-NUMBER-SERIES",
+    "status": "completed-local-decision",
+    "decisionPath": "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    "consumedEvidence": "playwright/projects/fibu-book5/evidence/pws-ff-001-number-series-readfirst/PWS-FF-001-result.json",
+    "decision": "Master Data write gates remain parked; the next useful step is a single customer context read-first probe with stronger screenshot QA.",
+    "selectedNextCase": "PWS-MD-001-CUSTOMER-CONTEXT-READFIRST",
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "updatedAt": "2026-07-06T21:03:48.295Z"
+  },
+  "latestPwsMd001CustomerContext": {
+    "caseId": "PWS-MD-001-CUSTOMER-CONTEXT-READFIRST",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/pws-md-001-customer-context-readonly/PWS-MD-001-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "proved": [
+      "Customer List (22, List) visible read-only with Page Inspection fields No., Name, Customer Posting Group and Payment Terms Code."
+    ],
+    "notProved": [
+      "No customer creation.",
+      "No customer posting group correctness.",
+      "No VAT correctness.",
+      "No sales or posting readiness."
+    ],
+    "routeLearning": "Direct Page 22 can land on Role Center; use visible Debitoren Role Center link with frame-aware locator search.",
+    "screenshotQa": "accepted with 4 checkpoints",
+    "nextBoundary": "PWS-MD-002 vendor read-first after porting the same screenshot QA route."
   }
 }

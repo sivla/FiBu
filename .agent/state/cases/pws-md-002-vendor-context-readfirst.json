@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PWS-MD-002-VENDOR-CONTEXT-READFIRST",
+  "status": "planned-readfirst",
+  "mode": "universaarl-masterdata-readfirst",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w2-core-masterdata",
+  "purpose": "Open the vendor context read-only after PWS-MD-001 and capture page/list/action/field context before any vendor write gate.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/pws-md-001-customer-context-readonly/PWS-MD-001-result.json",
+    "playwright/projects/fibu-book5/UNIVERSAARL-DATASET-BLUEPRINT.md"
+  ],
+  "mayRunPlaywright": true,
+  "mayOpenBusinessCentral": true,
+  "effectiveBcActionsAllowed": false,
+  "requiredPreparation": [
+    "Port the PWS-MD-001 multi-checkpoint screenshot QA and frame-aware Role Center navigation pattern to the vendor read-first spec before live execution."
+  ],
+  "allowedActions": [
+    "update-playwright-readonly-spec",
+    "run-playwright-readonly",
+    "open-business-central-readonly",
+    "confirm-playthru-instance",
+    "confirm-universaarl-company",
+    "open-vendors-readonly",
+    "capture-screenshot-qa",
+    "write-evidence-result",
+    "update-state-summary"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "write-setup",
+    "create-vendor",
+    "edit-vendor",
+    "change-vendor-template",
+    "create-master-data",
+    "enter-bank-details",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "company-switch",
+    "claim-vendor-readiness",
+    "claim-purchase-readiness",
+    "claim-payment-readiness",
+    "claim-posting-readiness"
+  ],
+  "acceptanceCriteria": [
+    "playthru / UNIVERSAARL-DE context is proven before any vendor page interaction.",
+    "The vendor page/context is accepted only with visible page title and vendor-list or vendor-card signals.",
+    "Screenshots include enough checkpoints to show page context, Role Center link route if needed, list/card state, relevant actions and Page Inspection when available.",
+    "No vendor, template, bank detail, setup, document, draft, payment, Preview Posting, Posting or API shortcut is executed.",
+    "Result states what vendor context was observed and what remains unproven for vendor creation, purchasing, payments and posting."
+  ],
+  "nextStepDecision": {
+    "currentCase": "PWS-MD-001-CUSTOMER-CONTEXT-READFIRST",
+    "plannedNextCaseBeforeReview": "PWS-MD-002-VENDOR-CONTEXT-READFIRST",
+    "lastEvidenceSummary": "PWS-MD-001 observed Customer List (22, List) after learning that direct Page 22 can land on Role Center and the Debitoren link requires frame-aware navigation.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Kreditoren are the next Master Data surface after Debitoren and support P2P, payment boundaries, training and data-request validation without creating records.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "PWS-MD-002-VENDOR-CONTEXT-READFIRST",
+        "status": "ready-next",
+        "reason": "Vendor context can be inspected read-only after porting the MD001 screenshot QA route."
+      },
+      {
+        "caseId": "PWS-MD-003-ITEM-SERVICE-CONTEXT-READFIRST",
+        "status": "ready-after-current",
+        "reason": "Item/service context should follow customer/vendor because it has stronger UOM, posting-group and inventory dependencies."
+      },
+      {
+        "caseId": "PWS-MD-WRITE-GATE-CUSTOMER",
+        "status": "needs-setup-first",
+        "reason": "Customer write gate is premature until customer templates, posting groups and required fields are understood."
+      }
+    ],
+    "queueChangesMade": [
+      "PWS-MD-001 moved to observed-readfirst; PWS-MD-002 selected as next read-first case."
+    ],
+    "selectedNextCase": "PWS-MD-002-VENDOR-CONTEXT-READFIRST",
+    "whySelectedNextCaseIsBest": "It reuses the newly proven screenshot QA/navigation pattern on the next critical Master Data surface without writes.",
+    "risksBeforeNextCase": [
+      "Do not click New/Neu or edit vendor templates.",
+      "Do not open or change vendor bank data.",
+      "Do not claim purchasing/payment/posting readiness from page visibility."
+    ],
+    "requiredPreparation": [
+      "Port PWS-MD-001 multi-checkpoint screenshot QA to the vendor spec before live execution."
+    ]
+  },
+  "nextCase": "PWS-MD-002-VENDOR-CONTEXT-READFIRST",
+  "updatedAt": "2026-07-06T21:10:57.635Z"
+}
