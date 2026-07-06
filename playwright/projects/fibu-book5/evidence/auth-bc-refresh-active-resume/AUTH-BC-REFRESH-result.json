@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized",
+  "caseId": "AUTH-BC-REFRESH-FOR-ACTIVE-RESUME",
+  "source": "playwright-auth-refresh-attempt",
+  "resultStatus": "observed-auth-shell-saved",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "Business Central shell reached",
+  "url": "redacted-businesscentral-url",
+  "actionsTaken": [
+    "Ran npm run auth:bc:capture-detached -- --confirm for the active Business Central auth refresh gate.",
+    "The Playwright auth browser targeted playthru / UNIVERSAARL-DE.",
+    "Business Central shell validation succeeded and Playwright storage state was saved."
+  ],
+  "actionsNotTaken": [
+    "No Business Central setup, master-data, process or VAT page was opened intentionally by this auth command.",
+    "No setup values were typed.",
+    "No wizard Next, Finish, Apply or OK was clicked.",
+    "No master data, document, Preview Posting, Posting, payment or API shortcut occurred.",
+    "No bookmaster change was made."
+  ],
+  "authDiagnosis": {
+    "command": "npm run auth:bc:capture-detached -- --confirm",
+    "underlyingCommand": "npm run auth:bc",
+    "timeoutMs": 600000,
+    "targetSource": "FIBU_BOOK5_BC_URL with current.json override",
+    "expectedInstance": "playthru",
+    "expectedCompany": "UNIVERSAARL-DE",
+    "diagnosisHost": "businesscentral.dynamics.com",
+    "diagnosisPathname": "/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru",
+    "diagnosisTitle": "",
+    "loginRedirect": null,
+    "shellSignalDetected": true,
+    "matchedShellSignal": "Business Central",
+    "savedState": true
+  },
+  "operatorActionRequired": false,
+  "operatorAction": null,
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "screenshots": [],
+  "proved": [
+    "The auth refresh command uses the intended playthru / UNIVERSAARL-DE target override.",
+    "A Business Central shell signal was reached.",
+    "Playwright storage state was refreshed and saved."
+  ],
+  "notProved": [
+    "No Assisted Setup, Manual Setup or VAT Posting Setup route was observed.",
+    "No VAT setup readiness, posting readiness, VAT Entries or G/L Entries are proven."
+  ],
+  "blockedBy": [],
+  "warnings": [
+    "Run npm run auth:bc:check before any Business Central workflow."
+  ],
+  "nextCase": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
+  "nextStepDecision": {
+    "currentCase": "AUTH-BC-REFRESH-FOR-ACTIVE-RESUME",
+    "plannedNextCaseBeforeReview": "AUTH-BC-REFRESH-FOR-ACTIVE-RESUME",
+    "lastEvidenceSummary": "npm run auth:bc:capture-detached -- --confirm reached the Business Central shell and saved Playwright storage state; auth:bc:check must confirm freshness next.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The auth gate can move to auth:bc:check and then the active resume candidate TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "AUTH-BC-REFRESH-FOR-ACTIVE-RESUME",
+        "status": "ready-after-current",
+        "reason": "Requires auth:bc:check canUseStoredAuth=true."
+      },
+      {
+        "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
+        "status": "ready-after-current",
+        "reason": "Requires auth:bc:check canUseStoredAuth=true first."
+      },
+      {
+        "caseId": "FOUNDATION-READINESS-DECISION",
+        "status": "ready-after-current",
+        "reason": "Requires TARGET-075 result evidence first."
+      },
+      {
+        "caseId": "VAT/USt read-first proof",
+        "status": "ready-after-current",
+        "reason": "Can be selected only after TARGET-075 and the Foundation Readiness Decision."
+      },
+      {
+        "caseId": "Master Data read-first pilots",
+        "status": "blocked",
+        "reason": "Blocked until Foundation Readiness classifies chart, VAT/USt, dimensions and posting groups."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
+    "whySelectedNextCaseIsBest": "Fresh auth is the prerequisite for the active read-first resume candidate TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK.",
+    "risksBeforeNextCase": [
+      "Do not run the active resume candidate until auth:bc:check confirms canUseStoredAuth=true."
+    ],
+    "requiredPreparation": [
+      "Run npm run auth:bc:check and require canUseStoredAuth=true."
+    ]
+  },
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/auth-bc-refresh-active-resume/AUTH-BC-REFRESH-result.json"
+  ],
+  "evidenceRefs": [],
+  "requiresReview": false,
+  "safeToFinalizeState": false,
+  "statePatch": {},
+  "reason": "Auth refresh reached shell; state finalization still requires explicit downstream validation.",
+  "completedAt": "2026-07-06T05:10:03.303Z"
+}
