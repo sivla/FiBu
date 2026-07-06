@@ -170,6 +170,14 @@ if (packageJson) {
   if (!foundationDecisionScript.includes(foundationDecisionScriptPath)) {
     errors.push(`${packagePath}: script agent:foundation:decision must reference ${foundationDecisionScriptPath}`);
   }
+  const foundationDecisionCheckScript = packageJson.scripts?.['agent:foundation:decision:check'] ?? '';
+  if (!foundationDecisionCheckScript.includes(foundationDecisionScriptPath) || !foundationDecisionCheckScript.includes('--check')) {
+    errors.push(`${packagePath}: script agent:foundation:decision:check must run ${foundationDecisionScriptPath} --check`);
+  }
+  const foundationDecisionWriteScript = packageJson.scripts?.['agent:foundation:decision:write'] ?? '';
+  if (!foundationDecisionWriteScript.includes(foundationDecisionScriptPath) || !foundationDecisionWriteScript.includes('--write')) {
+    errors.push(`${packagePath}: script agent:foundation:decision:write must run ${foundationDecisionScriptPath} --write`);
+  }
   const foundationDecisionSelftest = packageJson.scripts?.['agent:foundation:decision:test'] ?? '';
   if (!foundationDecisionSelftest.includes(foundationDecisionSelftestPath)) {
     errors.push(`${packagePath}: script agent:foundation:decision:test must reference ${foundationDecisionSelftestPath}`);
