@@ -213,6 +213,17 @@ Erlaubte Anschlussklassifikationen:
 - Stop-Regeln: Stop, wenn `UNIVERSAARL-DE` nicht eindeutig aktiv ist, ein Dialog Speichern/Erstellen erzwingt, ein Template nicht abbrechbar ist, Buchungsgruppen oder Nummernserien nicht sichtbar/erklaerbar sind oder ein Feld nur ueber fragiles Force-/Koordinatenklicken erreichbar waere.
 - UAT/Training-Auswirkung: Der Preflight liefert Schulungsmaterial fuer Debitorenliste, Debitorenkarte, Pflichtfelder und sichere Abbruchlogik. Er beweist noch keine Debitorenanlage und keine Verkaufsprozessbereitschaft.
 
+## PWS-MD-004 Customer Prewrite Boundary
+
+- Quelle: playwright/projects/fibu-book5/evidence/pws-md-004-customer-card-template-required-fields-preflight/PWS-MD-004-result.json
+- Status: observed-prewrite-boundary
+- Akzeptiert: Debitorenliste, `Neu`-/Hover-Kontext und no-click Menuegrenze wurden mit mehreren Screenshots dokumentiert.
+- Sichtbar: `U-CUST-100` / `Universaarl Kunde 100` existiert bereits in `playthru / UNIVERSAARL-DE`.
+- UI-Learning: Mehr Screenshots haben einen falschen Folgeschritt verhindert. Page Inspection landete auf dem Role Center Shell und ist deshalb kein Debitoren-Tabellenbeweis.
+- Schreibgrenze: kein `Neu`-Create geklickt, keine Vorlage gewaehlt, kein Debitor gespeichert, keine Werte getippt, kein Verkaufsbeleg, keine Buchungsvorschau, keine Buchung.
+- Folgeentscheidung: `PWS-MD-005-CUSTOMER-U-CUST-100-CONTROLLED-CREATE-GATE` ist fuer `U-CUST-100` obsolete. Naechster sinnvoller Case ist `PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF`.
+- Fachgrenze: Sichtbarkeit eines Debitors beweist keine Debitorenkarten-Vollstaendigkeit, keine Buchungsgruppen-/USt-Korrektheit, keine Verkaufsprozessbereitschaft und keinen Reopen-/Feldbeweis.
+
 ## Naechste Projektoutputs
 
 - PWS-FF-002C als aktuelle Buchungsmatrix-Grenze konsumieren: Page 314 ist partiell bekannt, aber nicht posting-ready.
@@ -238,4 +249,4 @@ Erlaubte Anschlussklassifikationen:
 
 ## Naechster Case
 
-- `PWS-MD-004-CUSTOMER-CARD-TEMPLATE-REQUIRED-FIELDS-PREFLIGHT`: Debitorenliste/-karte, `Neu`-/Dropdown- oder Tooltip-Kontext, Vorlagen-/Pflichtfeldsignale, FastTabs und Page Inspection pruefen. Keine Debitorenanlage, kein Speichern, keine Vorlage aendern, kein Beleg.
+- `PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF`: vorhandenen Debitor `U-CUST-100` / `Universaarl Kunde 100` ohne Speichern oeffnen/selektieren, Karten-/Feld-/FastTab-/FactBox-Kontext und Page-Inspection-Grenze pruefen. Keine Debitorenanlage, kein Speichern, keine Vorlage aendern, kein Beleg.

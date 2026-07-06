@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
+  "status": "planned-readfirst-existing-record",
+  "mode": "universaarl-masterdata-preflight",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w2-core-masterdata",
+  "purpose": "Open existing customer U-CUST-100 / Universaarl Kunde 100 without saving and prove key card fields, posting groups, payment terms and page context before any customer write or sales process gate.",
+  "workstream": "WS04 Master Data / Product Model",
+  "epic": "Customer master data controlled evidence",
+  "issueType": "Task",
+  "businessPurpose": "Consume PWS-MD-004 evidence that U-CUST-100 already exists and avoid duplicate customer creation.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/pws-md-004-customer-card-template-required-fields-preflight/PWS-MD-004-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-md-004-customer-card-template-required-fields-preflight/pws-md-004-020-new-hover-or-tooltip-context.png",
+    "playwright/projects/fibu-book5/evidence/pws-md-004-customer-card-template-required-fields-preflight/pws-md-004-030-menu-boundary-context.png"
+  ],
+  "mayRunPlaywright": true,
+  "mayOpenBusinessCentral": true,
+  "effectiveBcActionsAllowed": false,
+  "allowedActions": [
+    "run-playwright-readonly",
+    "open-business-central-readonly",
+    "confirm-playthru-instance",
+    "confirm-universaarl-company",
+    "open-customers-readonly",
+    "open-existing-customer-u-cust-100-readonly-or-card-safe",
+    "inspect-fasttabs-fields-and-factboxes",
+    "capture-screenshot-qa",
+    "write-evidence-result",
+    "update-state-summary"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "save-customer",
+    "create-customer",
+    "edit-customer",
+    "delete-customer",
+    "change-customer-template",
+    "change-posting-group",
+    "change-payment-terms",
+    "change-dimension",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "company-switch",
+    "claim-master-data-ready",
+    "claim-sales-process-ready"
+  ],
+  "smartDecision": {
+    "decision": "Reopen/prove existing U-CUST-100 instead of creating a duplicate customer.",
+    "whyNow": "PWS-MD-004 shows U-CUST-100 / Universaarl Kunde 100 already visible in the Debitoren list.",
+    "risk": "Opening the row must not enter an edit/save path or imply sales readiness.",
+    "fallback": "Stop with screenshots if the customer card cannot be opened or inspected safely without saving."
+  },
+  "screenshotQaRequired": [
+    "customer list with U-CUST-100 selected",
+    "safe open/card route checkpoint",
+    "customer card visible fields/FastTabs",
+    "posting group/payment terms/dimension context if visible",
+    "FactBox or Page Inspection boundary"
+  ],
+  "acceptanceCriteria": [
+    "The run confirms playthru / UNIVERSAARL-DE before opening customer context.",
+    "The run opens or selects existing U-CUST-100 without creating a new customer.",
+    "The run captures multiple screenshots and states what each screenshot proves and does not prove.",
+    "The run does not save, edit, create a document, preview or post.",
+    "The result decides whether customer master-data evidence is enough for handbook/training draft only or whether another read-first route is needed."
+  ],
+  "stopIf": [
+    "Company is not UNIVERSAARL-DE.",
+    "U-CUST-100 is not visible and the only route would create a new customer.",
+    "Opening the record requires edit/save/create confirmation.",
+    "Required fields or posting-group fields are hidden and layout, FastTabs, FactBox, focus mode and Page Inspection have not been checked.",
+    "The route requires force clicks or coordinate clicks as the normal strategy."
+  ],
+  "nextStepDecision": {
+    "currentCase": "PWS-MD-004-CUSTOMER-CARD-TEMPLATE-REQUIRED-FIELDS-PREFLIGHT",
+    "plannedNextCaseBeforeReview": "PWS-MD-005-CUSTOMER-U-CUST-100-CONTROLLED-CREATE-GATE",
+    "lastEvidenceSummary": "PWS-MD-004 observed U-CUST-100 / Universaarl Kunde 100 in the customer list and did not click New/Neu or save.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "A create gate is obsolete while the target customer already exists. Existing customer field proof is the safer and more useful next step.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
+        "status": "ready-next",
+        "reason": "Consumes existing customer evidence and improves handbook/training material without duplicate data."
+      },
+      {
+        "caseId": "PWS-MD-005-CUSTOMER-U-CUST-100-CONTROLLED-CREATE-GATE",
+        "status": "obsolete",
+        "reason": "U-CUST-100 already exists visibly."
+      },
+      {
+        "caseId": "PWS-MD-VENDOR-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Vendor remains parked behind customer/card route and payment/bank boundaries."
+      },
+      {
+        "caseId": "PWS-MD-ITEM-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Item remains parked behind UOM, posting, VAT product, inventory and costing checks."
+      }
+    ],
+    "queueChangesMade": [
+      "Replaced customer create-gate direction with existing customer reopen/field proof."
+    ],
+    "selectedNextCase": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
+    "whySelectedNextCaseIsBest": "It turns the screenshot learning into direct BC understanding and avoids duplicate master data.",
+    "risksBeforeNextCase": [
+      "Do not edit or save the existing customer.",
+      "Do not claim sales readiness from customer card visibility alone."
+    ],
+    "requiredPreparation": [
+      "Review PWS-MD-004 screenshots before implementing the reopen route."
+    ]
+  },
+  "trainingImpact": "Supports a beginner handbook section about the Debitoren list, existing customer cards, FactBoxes and field meaning.",
+  "uatImpact": "Prepares customer master-data UAT validation without changing data.",
+  "bookImpact": "Supports a customer master-data chapter from real Universaarl evidence rather than a duplicate creation exercise.",
+  "nextCase": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
+  "updatedAt": "2026-07-06T23:45:00.000+02:00"
+}
