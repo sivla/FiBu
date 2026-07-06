@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-READINESS-DECISION",
+  "status": "active-local-decision",
+  "mode": "universaarl-foundation-readfirst",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w1-foundation",
+  "purpose": "Consume TARGET-075, PWS-FF-002 and PWS-FF-002B evidence into a practical Foundation Readiness decision before any Master Data, VAT write, Posting Group write, Preview Posting or Posting work continues.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/target-075-chart-of-accounts-reopen-and-setup-consistency-check/TARGET-075-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-ff-002-general-posting-setup-readfirst-recovery/PWS-FF-002-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-ff-002b-page314-navigation-capture-recovery/PWS-FF-002B-result.json",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    "playwright/projects/fibu-book5/BC-ACTION-ATLAS.md"
+  ],
+  "mayRunPlaywright": false,
+  "mayOpenBusinessCentral": false,
+  "effectiveBcActionsAllowed": false,
+  "allowedActions": [
+    "read-foundation-evidence",
+    "update-foundation-readiness-decision",
+    "classify-page314-as-foundation-gap-or-new-route-needed",
+    "keep-master-data-parked",
+    "update-state-summary",
+    "write-local-project-artifacts"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright-live",
+    "continue-target-073",
+    "repeat-pws-ff-002b-without-new-route-hypothesis",
+    "write-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "company-switch",
+    "claim-posting-readiness",
+    "claim-master-data-readiness"
+  ],
+  "acceptanceCriteria": [
+    "Foundation Readiness explicitly consumes PWS-FF-002B as blocked evidence.",
+    "Master Data remains parked unless the Foundation gap is consciously accepted with a clear limitation.",
+    "The next live case is not another direct Page 314 URL/search retry unless a materially new route hypothesis is documented.",
+    "No final posting, VAT, setup correctness or German compliance claim is created from the blocked Page 314 evidence."
+  ],
+  "nextStepDecision": {
+    "currentCase": "FOUNDATION-READINESS-DECISION",
+    "plannedNextCaseBeforeReview": "PWS-FF-004-VAT-SETUP-BOUNDARY",
+    "lastEvidenceSummary": "PWS-FF-002B found the Buchungsmatrix Einrichtung search label but screenshot/text QA still showed Role Center, so Page 314 remains unproven.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The project needs a Foundation decision before moving to VAT, Dimensions or Master Data; otherwise the same Page 314 weakness will keep leaking into downstream claims.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "PWS-FF-004-VAT-SETUP-BOUNDARY",
+        "status": "needs-book-context-first",
+        "reason": "VAT can remain read-first, but the Foundation decision must say whether Page 314 is a blocking gap or a consciously parked gap."
+      },
+      {
+        "caseId": "PWS-FF-005-DIMENSIONS-READFIRST",
+        "status": "ready-after-current",
+        "reason": "Dimensions are a separate read-first Foundation lane after this decision."
+      },
+      {
+        "caseId": "PWS-MD-001-CUSTOMER-CONTEXT-READFIRST",
+        "status": "needs-setup-first",
+        "reason": "Master Data remains parked until Foundation gaps are resolved or accepted with explicit limits."
+      }
+    ],
+    "queueChangesMade": [
+      "Promoted FOUNDATION-READINESS-DECISION to active local case after blocked PWS-FF-002B."
+    ],
+    "selectedNextCase": "FOUNDATION-READINESS-DECISION",
+    "whySelectedNextCaseIsBest": "It turns the Page 314 UI misunderstanding into a project decision instead of another blind Playwright attempt.",
+    "risksBeforeNextCase": [
+      "Moving to VAT or Master Data could imply Foundation readiness that Page 314 evidence does not prove."
+    ],
+    "requiredPreparation": [
+      "Keep this case local-only.",
+      "Do not run Business Central or Playwright live.",
+      "Use PWS-FF-002B only as blocked/read-first evidence."
+    ]
+  },
+  "nextCase": "FOUNDATION-READINESS-DECISION",
+  "updatedAt": "2026-07-06T00:00:00.000Z"
+}

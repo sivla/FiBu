@@ -8,9 +8,9 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w1-foundation",
-  "activeCase": "PWS-FF-002B-PAGE314-NAVIGATION-CAPTURE-RECOVERY",
-  "active_case_file": ".agent/state/cases/pws-ff-002b-page314-navigation-capture-recovery.json",
-  "activeCaseFile": ".agent/state/cases/pws-ff-002b-page314-navigation-capture-recovery.json",
+  "activeCase": "FOUNDATION-READINESS-DECISION",
+  "active_case_file": ".agent/state/cases/foundation-readiness-decision.json",
+  "activeCaseFile": ".agent/state/cases/foundation-readiness-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-foundation-readfirst",
@@ -34,14 +34,12 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "validate-playthru-url",
-    "validate-universaarl-company",
-    "open-page-314-readonly",
-    "use-readonly-navigation-fallback",
-    "capture-page-title-url-text-gate",
-    "capture-compact-text",
-    "capture-screenshot",
-    "write-evidence-result"
+    "read-foundation-evidence",
+    "update-foundation-readiness-decision",
+    "classify-page314-as-foundation-gap-or-new-route-needed",
+    "keep-master-data-parked",
+    "update-state-summary",
+    "write-local-project-artifacts"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -49,8 +47,10 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright-live",
     "continue-target-073",
-    "type-business-central-values",
+    "repeat-pws-ff-002b-without-new-route-hypothesis",
     "write-setup",
     "create-master-data",
     "create-document-or-draft",
@@ -58,9 +58,9 @@
     "post",
     "payment",
     "api-shortcut",
-    "cleanup-delete",
     "company-switch",
-    "claim-posting-readiness"
+    "claim-posting-readiness",
+    "claim-master-data-readiness"
   ],
   "nextCase": "FOUNDATION-READINESS-DECISION",
   "nextStep": "Consume the blocked PWS-FF-002B Page 314 navigation/capture result in FOUNDATION-READINESS-DECISION.md. Do not repeat Page 314 direct URL, scoped search-click or keyboard search routes without a new route hypothesis.",
@@ -148,7 +148,7 @@
     "source": "top-level-current-state-and-universaarl-execution-roadmap",
     "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
-    "activeCaseFile": ".agent/state/cases/pws-ff-002b-page314-navigation-capture-recovery.json",
+    "activeCaseFile": ".agent/state/cases/foundation-readiness-decision.json",
     "ignoreHistoricalResultNextSteps": true,
     "reason": "current.json contains many historical result summaries with old nextStep/nextCase fields. They are traceability only and must not override activeCase, nextCase or the execution roadmap."
   },

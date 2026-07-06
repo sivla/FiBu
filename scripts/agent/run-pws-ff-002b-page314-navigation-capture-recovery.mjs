@@ -153,6 +153,8 @@ const routeAlreadyBlocked =
   existingResult?.caseId === ACTIVE_CASE &&
   existingResult?.resultStatus === 'blocked' &&
   existingResult?.nextCase === 'FOUNDATION-READINESS-DECISION';
+const activeCaseAcceptable =
+  current.activeCase === ACTIVE_CASE || (routeAlreadyBlocked && current.activeCase === 'FOUNDATION-READINESS-DECISION');
 const targetUrl = targetUrlFromConfiguredUrl();
 const liveGateAllowsNow = contextStatus.details?.canRunBusinessCentralWorkflows === true;
 const authMeetsLiveWindow =
@@ -162,7 +164,7 @@ const authMeetsLiveWindow =
   !((authStatus.blockedBy ?? []).includes('storage-state-expires-before-required-window'));
 const blockedBy = [
   existsSync(casePath) ? '' : 'pws-ff-002b-case-file-missing',
-  current.activeCase === ACTIVE_CASE ? '' : 'active-case-is-not-pws-ff-002b',
+  activeCaseAcceptable ? '' : 'active-case-is-not-pws-ff-002b-or-foundation-decision',
   priorReady.ready ? '' : 'prior-pws-ff-002-blocked-screenshot-qa-not-recorded',
   routeAlreadyBlocked ? 'pws-ff-002b-current-route-already-blocked-consume-foundation-decision' : '',
   targetUrl ? '' : 'target-url-could-not-be-built-from-configured-url',
