@@ -272,6 +272,8 @@ if (spec) {
     'freezeOverrideUsed',
     'TARGET_075_AUTH_EXPIRES_IN_HOURS',
     'TARGET_075_AUTH_WARNINGS',
+    'doctorDecision',
+    'doctorLiveGate',
     'foundationReadinessInput',
     'decisionStatus',
     'chartOfAccounts',
