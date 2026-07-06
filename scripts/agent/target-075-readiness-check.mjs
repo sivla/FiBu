@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root = process.cwd();
+const currentPath = '.agent/state/current.json';
 const casePath = '.agent/state/cases/target-075-chart-of-accounts-reopen-and-setup-consistency-check.json';
 const readinessPath = '.agent/TARGET-075-PILOT-READINESS.md';
 const freezePath = '.agent/IMPROVEMENT-FREEZE.md';
@@ -45,6 +46,7 @@ const errors = [];
 const warnings = [];
 
 for (const requiredFile of [
+  currentPath,
   casePath,
   readinessPath,
   freezePath,
@@ -67,6 +69,7 @@ for (const requiredFile of [
 }
 
 let targetCase = null;
+let currentState = null;
 let packageJson = null;
 let capabilities = null;
 let readiness = '';
@@ -83,6 +86,7 @@ let foundationDecisionTemplate = '';
 let target075Result = null;
 
 if (!errors.length) {
+  currentState = readJson(currentPath);
   targetCase = readJson(casePath);
   packageJson = readJson(packagePath);
   capabilities = readJson(capabilitiesPath);
@@ -98,6 +102,27 @@ if (!errors.length) {
   guardedRunner = readText(guardedRunnerPath);
   foundationDecisionTemplate = readText(foundationDecisionTemplatePath);
   if (exists(target075ResultPath)) target075Result = readJson(target075ResultPath);
+}
+
+if (currentState) {
+  if (currentState.instance !== 'playthru') errors.push(`${currentPath}: instance must be playthru`);
+  if (currentState.company !== 'UNIVERSAARL-DE') errors.push(`${currentPath}: company must be UNIVERSAARL-DE`);
+  if (currentState.activeCase !== 'PROJECT-IMPROVEMENT-FREEZE-001') {
+    errors.push(`${currentPath}: activeCase must remain PROJECT-IMPROVEMENT-FREEZE-001 while freeze is active`);
+  }
+  if (currentState.nextCase !== 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK') {
+    errors.push(`${currentPath}: nextCase must remain TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK`);
+  }
+  if (currentState.activeNextStepAuthority?.roadmap !== executionRoadmapPath) {
+    errors.push(`${currentPath}: activeNextStepAuthority.roadmap must point to ${executionRoadmapPath}`);
+  }
+  if (currentState.activeNextStepAuthority?.dashboard !== projectDashboardPath) {
+    errors.push(`${currentPath}: activeNextStepAuthority.dashboard must point to ${projectDashboardPath}`);
+  }
+  const forbiddenActions = new Set(currentState.forbiddenActions ?? []);
+  for (const action of ['open-business-central-live', 'continue-target-073', 'setup-change', 'master-data-change']) {
+    if (!forbiddenActions.has(action)) errors.push(`${currentPath}: forbiddenActions must include ${action} during freeze`);
+  }
 }
 
 if (targetCase) {
@@ -511,6 +536,7 @@ if (target075Result) {
 }
 
 const checkedFiles = [
+  currentPath,
   casePath,
   readinessPath,
   freezePath,
