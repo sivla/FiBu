@@ -7,6 +7,7 @@ Neue Agents, Projektleiter, Business-Central-Consultants und Solution Architects
 ```text
 README.md
 .agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md
+.agent/TARGET-075-PILOT-READINESS.md
 .agent/ACTIVE-ARTIFACT-CLASSIFICATION.md
 .agent/project-template/PROJECT-DASHBOARD-DRAFT.md
 .agent/state/current.json

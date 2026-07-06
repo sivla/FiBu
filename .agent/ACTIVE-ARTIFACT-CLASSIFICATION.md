@@ -33,6 +33,7 @@ Last reviewed: 2026-07-06
 | `HANDOVER.md` | `active-control` | Short handover entrypoint for new Codex accounts; must mirror roadmap, state and freeze/TARGET-075 boundary. |
 | `.agent/project-template/README.md` | `active-control` | Short index for the project-template folder; points to classification instead of listing every draft as active. |
 | `.agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md` | `active-control` | Single current roadmap, freeze/resume order and TARGET-075 boundary. |
+| `.agent/TARGET-075-PILOT-READINESS.md` | `active-control` | Concrete TARGET-075 runbook with auth, freeze, runner and no-write gates for the first resume pilot. |
 | `.agent/project-template/PROJECT-DASHBOARD-DRAFT.md` | `active-control` | Compact project manager view. |
 | `.agent/state/current.json` top-level active truth and `implementationOperatingSystem` block | `active-control` | Machine-readable active instance, company, freeze and next case. |
 | `.agent/project-template/REFINEMENT-BACKLOG.md` first sections | `active-control` | Work ordering only when it follows the roadmap. |

@@ -7,6 +7,7 @@ Neue Agents, Projektleiter, Business-Central-Consultants und Solution Architects
 ```text
 HANDOVER.md
 .agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md
+.agent/TARGET-075-PILOT-READINESS.md
 .agent/ACTIVE-ARTIFACT-CLASSIFICATION.md
 .agent/project-template/PROJECT-DASHBOARD-DRAFT.md
 .agent/state/current.json
@@ -63,6 +64,7 @@ Das Ziel ist nicht maximale Dokumentmenge. Das Ziel ist ein belastbarer Blueprin
 |---|---|
 | `HANDOVER.md` | kurzer Uebergabe-Einstieg fuer neue Codex-Accounts und neue Projektbeteiligte |
 | `.agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md` | aktuelle Roadmap und naechste erlaubte Aktion |
+| `.agent/TARGET-075-PILOT-READINESS.md` | konkrete Readiness-, Auth-, Freeze- und Runner-Grenzen fuer den ersten read-first/no-write Resume-Pilot |
 | `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` | Einordnung in `active-control`, `active-work`, `reference`, `parked`, `legacy-purge-source` und `superseded/remove-candidate` |
 | `.agent/project-template/PROJECT-DASHBOARD-DRAFT.md` | kompakte Projektleiter-Sicht |
 | `.agent/state/current.json` | maschinenlesbarer State; top-level aktive Wahrheit gewinnt gegen historische `latest*`-Bloecke |
