@@ -29,7 +29,7 @@ npm run fibu:target:foundation-consistency-pilot -- --check
 npm run fibu:target:foundation-consistency-pilot -- --list
 ```
 
-`agent:foundation:decision:write` belongs after a valid TARGET-075 result, not before.
+`agent:foundation:decision:write` belongs after a valid TARGET-075 result, not before. It writes `FOUNDATION-READINESS-DECISION.md`.
 
 ## What This Folder Is
 

@@ -5,6 +5,10 @@ const root = process.cwd();
 const casePath = '.agent/state/cases/target-075-chart-of-accounts-reopen-and-setup-consistency-check.json';
 const readinessPath = '.agent/TARGET-075-PILOT-READINESS.md';
 const freezePath = '.agent/IMPROVEMENT-FREEZE.md';
+const rootReadmePath = 'README.md';
+const handoverPath = 'HANDOVER.md';
+const projectTemplateReadmePath = '.agent/project-template/README.md';
+const executionRoadmapPath = '.agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md';
 const capabilitiesPath = '.agent/capabilities.json';
 const packagePath = 'package.json';
 const specPath = 'playwright/projects/fibu-book5/tests/target-075-chart-of-accounts-reopen-and-setup-consistency-check.spec.ts';
@@ -42,6 +46,10 @@ for (const requiredFile of [
   casePath,
   readinessPath,
   freezePath,
+  rootReadmePath,
+  handoverPath,
+  projectTemplateReadmePath,
+  executionRoadmapPath,
   capabilitiesPath,
   packagePath,
   specPath,
@@ -59,6 +67,10 @@ let packageJson = null;
 let capabilities = null;
 let readiness = '';
 let freeze = '';
+let rootReadme = '';
+let handover = '';
+let projectTemplateReadme = '';
+let executionRoadmap = '';
 let spec = '';
 let guardedRunner = '';
 let foundationDecisionTemplate = '';
@@ -70,6 +82,10 @@ if (!errors.length) {
   capabilities = readJson(capabilitiesPath);
   readiness = readText(readinessPath);
   freeze = readText(freezePath);
+  rootReadme = readText(rootReadmePath);
+  handover = readText(handoverPath);
+  projectTemplateReadme = readText(projectTemplateReadmePath);
+  executionRoadmap = readText(executionRoadmapPath);
   spec = readText(specPath);
   guardedRunner = readText(guardedRunnerPath);
   foundationDecisionTemplate = readText(foundationDecisionTemplatePath);
@@ -281,6 +297,35 @@ if (readiness) {
   }
 }
 
+for (const [controlPath, text] of [
+  [rootReadmePath, rootReadme],
+  [handoverPath, handover],
+  [projectTemplateReadmePath, projectTemplateReadme],
+  [executionRoadmapPath, executionRoadmap]
+]) {
+  for (const phrase of ['playthru', 'UNIVERSAARL-DE', 'TARGET-073', 'TARGET-075', 'read-first']) {
+    if (!text.includes(phrase)) errors.push(`${controlPath}: missing active-control phrase: ${phrase}`);
+  }
+  if (!text.includes('FOUNDATION-READINESS-DECISION')) {
+    errors.push(`${controlPath}: must hand off to FOUNDATION-READINESS-DECISION after TARGET-075`);
+  }
+}
+
+for (const [controlPath, text] of [
+  [handoverPath, handover],
+  [projectTemplateReadmePath, projectTemplateReadme],
+  [executionRoadmapPath, executionRoadmap]
+]) {
+  for (const phrase of [
+    'agent:resume:check:overnight',
+    'agent:foundation:decision:check',
+    'fibu:target:foundation-consistency-pilot -- --check',
+    'fibu:target:foundation-consistency-pilot -- --list'
+  ]) {
+    if (!text.includes(phrase)) errors.push(`${controlPath}: missing TARGET-075 gate command: ${phrase}`);
+  }
+}
+
 if (foundationDecisionTemplate) {
   for (const phrase of [
     'Status: `template/no-evidence`',
@@ -459,6 +504,10 @@ const checkedFiles = [
   casePath,
   readinessPath,
   freezePath,
+  rootReadmePath,
+  handoverPath,
+  projectTemplateReadmePath,
+  executionRoadmapPath,
   capabilitiesPath,
   packagePath,
   specPath,

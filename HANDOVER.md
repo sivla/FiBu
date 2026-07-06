@@ -81,7 +81,7 @@ npm run fibu:target:foundation-consistency-pilot -- --list
 
 Live-Ausfuehrung nur nach explizitem Freeze-Lift und gueltigem Gate.
 
-Nach TARGET-075 erst `npm run agent:foundation:decision:write` verwenden, wenn das TARGET-075-Result vorhanden ist und validiert. Vorher bleibt `agent:foundation:decision:check` der sichere No-Write-Modus.
+Nach TARGET-075 erst `npm run agent:foundation:decision:write` verwenden, wenn das TARGET-075-Result vorhanden ist und validiert. Vorher bleibt `agent:foundation:decision:check` der sichere No-Write-Modus. Zielartefakt ist `FOUNDATION-READINESS-DECISION.md`.
 
 ## Arbeitsregel
 
