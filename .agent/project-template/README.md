@@ -24,6 +24,7 @@ Minimum local gate check before any live resume:
 npm run agent:preflight
 npm run agent:resume:check:overnight
 npm run agent:freeze:status
+npm run agent:target075:readiness
 npm run agent:foundation:decision:check
 npm run fibu:target:foundation-consistency-pilot -- --check
 npm run fibu:target:foundation-consistency-pilot -- --list

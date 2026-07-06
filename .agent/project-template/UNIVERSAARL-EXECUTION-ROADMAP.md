@@ -148,6 +148,7 @@ Before any Business Central or Playwright live work:
 - `npm run agent:resume:check || true`
 - `npm run agent:resume:check:overnight || true`
 - `npm run agent:freeze:status || true`
+- `npm run agent:target075:readiness`
 - `npm run agent:foundation:decision:check`
 - `npm run fibu:target:foundation-consistency-pilot -- --check`
 - `npm run fibu:target:foundation-consistency-pilot -- --list`

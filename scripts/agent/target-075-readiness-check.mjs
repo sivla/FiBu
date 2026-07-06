@@ -453,6 +453,7 @@ for (const [controlPath, text] of [
   [executionRoadmapPath, executionRoadmap]
 ]) {
   for (const phrase of [
+    'agent:target075:readiness',
     'agent:resume:check:overnight',
     'agent:foundation:decision:check',
     'fibu:target:foundation-consistency-pilot -- --check',
