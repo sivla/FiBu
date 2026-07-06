@@ -9,6 +9,9 @@ const capabilitiesPath = '.agent/capabilities.json';
 const packagePath = 'package.json';
 const specPath = 'playwright/projects/fibu-book5/tests/target-075-chart-of-accounts-reopen-and-setup-consistency-check.spec.ts';
 const guardedRunnerPath = 'scripts/agent/run-target-075-foundation-consistency-pilot.mjs';
+const target075ResultPath =
+  'playwright/projects/fibu-book5/evidence/target-075-chart-of-accounts-reopen-and-setup-consistency-check/TARGET-075-result.json';
+const foundationDecisionPath = 'playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md';
 const scriptName = 'fibu:target:foundation-consistency-pilot';
 
 function readText(relativePath) {
@@ -42,6 +45,7 @@ let readiness = '';
 let freeze = '';
 let spec = '';
 let guardedRunner = '';
+let target075Result = null;
 
 if (!errors.length) {
   targetCase = readJson(casePath);
@@ -51,6 +55,7 @@ if (!errors.length) {
   freeze = readText(freezePath);
   spec = readText(specPath);
   guardedRunner = readText(guardedRunnerPath);
+  if (exists(target075ResultPath)) target075Result = readJson(target075ResultPath);
 }
 
 if (targetCase) {
@@ -228,6 +233,39 @@ if (spec) {
   }
 }
 
+if (exists(foundationDecisionPath) && !target075Result) {
+  errors.push(`${foundationDecisionPath}: must not exist before ${target075ResultPath} provides TARGET-075 evidence`);
+}
+
+if (target075Result) {
+  if (target075Result.caseId !== 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK') {
+    errors.push(`${target075ResultPath}: unexpected caseId ${target075Result.caseId}`);
+  }
+  if (!target075Result.foundationReadinessInput) {
+    errors.push(`${target075ResultPath}: missing foundationReadinessInput for FOUNDATION-READINESS-DECISION.md handoff`);
+  }
+  for (const [flag, expected] of Object.entries({
+    setupChanged: false,
+    masterDataChanged: false,
+    draftCreated: false,
+    previewPosting: false,
+    posted: false,
+    payment: false,
+    apiShortcut: false
+  })) {
+    if (target075Result[flag] !== expected) {
+      errors.push(`${target075ResultPath}: ${flag} must remain ${expected} for read-first Foundation handoff`);
+    }
+  }
+  if (target075Result.nextCase !== 'FOUNDATION-READINESS-DECISION') {
+    errors.push(`${target075ResultPath}: nextCase must be FOUNDATION-READINESS-DECISION`);
+  }
+}
+
+const checkedFiles = [casePath, readinessPath, freezePath, capabilitiesPath, packagePath, specPath, guardedRunnerPath];
+if (exists(target075ResultPath)) checkedFiles.push(target075ResultPath);
+if (exists(foundationDecisionPath)) checkedFiles.push(foundationDecisionPath);
+
 const result = {
   schemaVersion: 1,
   purpose: 'target-075-readiness-check',
@@ -235,7 +273,7 @@ const result = {
   liveActionsExecuted: false,
   businessCentralOpened: false,
   playwrightLiveRunExecuted: false,
-  checkedFiles: [casePath, readinessPath, freezePath, capabilitiesPath, packagePath, specPath, guardedRunnerPath],
+  checkedFiles,
   errors,
   warnings,
   nextStep:
