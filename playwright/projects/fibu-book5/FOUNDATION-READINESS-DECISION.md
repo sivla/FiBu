@@ -256,13 +256,13 @@ Erlaubte Anschlussklassifikationen:
 - Schreibgrenze: kein Debitor angelegt, bearbeitet oder gespeichert; keine Vorlage, keine Buchungsgruppe, keine Zahlungsbedingung, keine USt-/VAT-Einstellung, keine Dimension, kein Verkaufsbeleg, keine Buchungsvorschau, keine Buchung.
 - Folgeentscheidung: Die Screenshots reichen fuer eine kundentaugliche Debitorenkarten-Schulung. Sie reichen nicht fuer Debitoren-Write-Gate, O2C-Readiness, USt-Korrektheit, Buchungsgruppen-Korrektheit oder Posting.
 - Folgeoutput: Trainingskarte `TR-03-01A Debitorenkarte lesen: Fakturierung und Zahlungen` wurde in `.agent/project-template/TRAINING-MODULE-CARDS-DRAFT.md` erstellt. Die lokale Route Decision `CUSTOMER-SETUP-ROUTE-DECISION` waehlt danach einen read-first UI-/Template-Preflight vor jedem Debitoren-Write.
-- Naechster Case: `CUSTOMER-SETUP-UI-TEMPLATE-PREFLIGHT`.
+- Aktueller Folgepunkt: `CUSTOMER-SETUP-UI-TEMPLATE-PREFLIGHT` und `PWS-MD-004B` sind inzwischen konsumiert. Der naechste sinnvolle Schritt ist `CUSTOMER-CONFIG-PACKAGE-FIELD-MAP`, damit realistische fiktive Universaarl-Kundendaten feldweise gegen echte BC-Felder und Setup-Abhaengigkeiten vorbereitet werden.
 
 ## Naechste Projektoutputs
 
 - PWS-FF-002C als aktuelle Buchungsmatrix-Grenze konsumieren: Page 314 ist partiell bekannt, aber nicht posting-ready.
 - PWS-FF-006 als akzeptierten Kontenplan-Starterkonten-Nachweis konsumieren; keine weitere Starterkonten-Wiederholung ohne neuen Claim.
-- Master-Data-Schreibfaelle, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt. Naechster Schritt ist ein read-first Debitoren UI-/Template-Preflight mit echter `playthru`-Oberflaeche, aber ohne Speichern, Import, Vorlage anwenden oder O2C.
+- Master-Data-Schreibfaelle, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt. Naechster Schritt ist eine lokale Debitoren-Feldkarte auf Basis echter `playthru`-Oberflaeche: keine Live-Ausfuehrung, kein Speichern, kein Import, keine Vorlage anwenden und kein O2C.
 - PWS-FF-005B als beobachteten no-write Dimensionswerte-Proof konsumieren.
 - PWS-FF-001 als beobachteten no-write Nummernserien-Proof konsumieren.
 - `PWS-MD-001`, `PWS-MD-002` und `PWS-MD-003` sind als read-only Kontext beobachtet. Die Route Decision waehlt Debitoren als ersten Kandidaten, aber zuerst nur als Preflight.
@@ -283,4 +283,4 @@ Erlaubte Anschlussklassifikationen:
 
 ## Naechster Case
 
-- `CUSTOMER-SETUP-UI-TEMPLATE-PREFLIGHT`: Debitorenliste, `Neu`-Dropdown/Tooltip, Template-Kontext und ggf. Kartenoberflaeche read-first pruefen. Keine Anlage, kein Speichern, kein Import, kein O2C.
+- `CUSTOMER-CONFIG-PACKAGE-FIELD-MAP`: Debitorenfelder aus PWS-MD-004B/004C in eine knappe Feld-/Routenkarte ueberfuehren. Realistische fiktive Kundendaten vorbereiten, Setup-Abhaengigkeiten markieren, keine BC-Live-Ausfuehrung, kein Speichern, kein Import, kein O2C.

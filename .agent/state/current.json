@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-06T22:52:08.538Z",
+  "updatedAt": "2026-07-07T00:30:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -8,12 +8,12 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w2-core-masterdata",
-  "activeCase": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
-  "active_case_file": ".agent/state/cases/pws-md-004b-customer-reopen-and-field-proof.json",
-  "activeCaseFile": ".agent/state/cases/pws-md-004b-customer-reopen-and-field-proof.json",
+  "activeCase": "CUSTOMER-CONFIG-PACKAGE-FIELD-MAP",
+  "active_case_file": ".agent/state/cases/customer-config-package-field-map.json",
+  "activeCaseFile": ".agent/state/cases/customer-config-package-field-map.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-masterdata-preflight",
+  "mode": "universaarl-masterdata-route-decision",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -34,16 +34,10 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "run-playwright-readonly",
-    "open-business-central-readonly",
-    "confirm-playthru-instance",
-    "confirm-universaarl-company",
-    "open-customers-readonly",
-    "open-existing-customer-u-cust-100-readonly-or-card-safe",
-    "inspect-fasttabs-fields-and-factboxes",
-    "capture-screenshot-qa",
-    "write-evidence-result",
-    "update-state-summary"
+    "write-local-field-map",
+    "classify-realistic-fictional-customer-data",
+    "compare-ui-template-configuration-package-excel-api-al-parked",
+    "update-dashboard-state-and-readiness-summary"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -51,26 +45,23 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "save-customer",
+    "open-business-central-live",
+    "run-playwright-live",
+    "use-confidential-real-customer-data",
     "create-customer",
     "edit-customer",
+    "save-customer",
     "delete-customer",
-    "change-customer-template",
-    "change-posting-group",
-    "change-payment-terms",
-    "change-dimension",
     "create-document-or-draft",
     "preview-posting",
     "post",
-    "payment",
     "api-shortcut",
-    "company-switch",
     "claim-master-data-ready",
     "claim-sales-process-ready"
   ],
-  "nextCase": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
-  "nextStep": "Open existing U-CUST-100 read-first in playthru / UNIVERSAARL-DE and prove customer card fields, FastTabs, FactBox/Page Inspection boundaries and no-save state. Do not edit, save, create a document, preview, post or use real customer data.",
-  "preparedNextCaseFile": ".agent/state/cases/pws-md-004b-customer-reopen-and-field-proof.json",
+  "nextCase": "CUSTOMER-CONFIG-PACKAGE-FIELD-MAP",
+  "nextStep": "Use PWS-MD-004B/004C real Business Central customer-card evidence to maintain a concise customer field and route map for realistic fictional Universaarl customers. Do not open Business Central, do not use real confidential customer data, do not create or save customers.",
+  "preparedNextCaseFile": ".agent/state/cases/customer-config-package-field-map.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -207,9 +198,9 @@
     "source": "top-level-current-state-and-universaarl-execution-roadmap",
     "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
-    "activeCaseFile": ".agent/state/cases/pws-ff-001-number-series-readfirst.json",
+    "activeCaseFile": ".agent/state/cases/customer-config-package-field-map.json",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "current.json top-level activeCase/nextCase and the Universaarl execution roadmap win over historical latest* result summaries. PWS-FF-005B is consumed as observed Dimension Values evidence; PWS-FF-001 is the next no-write Foundation lane."
+    "reason": "Top-level current state selects the local customer field-map case after PWS-MD-004B/004C/preflight were consumed. Historical nextStep blocks must not loop back to completed customer preflight cases."
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -10981,5 +10972,51 @@
     ],
     "screenshotQa": "Mehrere Oberflaechen-Zustaende wurden dokumentiert. Page Inspection landete jedoch auf dem Role Center und ist deshalb kein Debitoren-Tabellenbeweis.",
     "nextBoundary": "Existing customer U-CUST-100 should be reopened read-first; do not create duplicate customer data."
+  },
+  "latestPwsMd004BCustomerReopen": {
+    "caseId": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
+    "status": "observed-existing-customer-boundary",
+    "resultPath": "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/PWS-MD-004B-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "businessCentralOpened": true,
+    "playwrightLiveRunExecuted": true,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "screenshotQa": "Accepted: Debitoren list, existing U-CUST-100 card context and Page Inspection Customer Card (21) / Customer (18) were captured.",
+    "proved": [
+      "Existing customer U-CUST-100 / Universaarl Kunde 100 is visible in playthru / UNIVERSAARL-DE.",
+      "The existing customer can be opened or selected without creating a duplicate customer.",
+      "Page Inspection confirms Customer Card (21, Card) and Customer (18) context."
+    ],
+    "notProved": [
+      "No customer creation route.",
+      "No customer write gate approval.",
+      "No customer setup correctness.",
+      "No O2C readiness.",
+      "No Preview Posting or Posting."
+    ],
+    "nextBoundary": "Use this as real UI evidence for field mapping and training only; do not claim customer setup or O2C readiness."
+  },
+  "latestCustomerFieldMap": {
+    "caseId": "CUSTOMER-CONFIG-PACKAGE-FIELD-MAP",
+    "status": "active-local-field-map",
+    "path": "playwright/projects/fibu-book5/UNIVERSAARL-CUSTOMER-FIELD-MAP.md",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "businessCentralOpened": false,
+    "playwrightLiveRunExecuted": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "realismBoundary": "Use real Business Central field evidence with realistic fictional Universaarl customers; no UI mockups and no confidential real customer data.",
+    "nextBoundary": "Prepare one narrow customer write gate only after field dependencies are explicit."
   }
 }

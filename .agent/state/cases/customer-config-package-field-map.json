@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "caseId": "CUSTOMER-CONFIG-PACKAGE-FIELD-MAP",
+  "status": "active-local-field-map",
+  "mode": "universaarl-masterdata-route-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w2-core-masterdata",
+  "workstream": "WS04 Master Data / Product Model",
+  "epic": "Customer master data realistic data route",
+  "issueType": "Task",
+  "purpose": "Turn observed real Business Central customer-card fields into a practical field and route map for realistic fictional Universaarl customers.",
+  "businessPurpose": "Prepare customer master data so the later write gate uses realistic project data and a consultant-grade route decision instead of mockups, blind clicks or confidential real customer data.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/PWS-MD-004B-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-md-004c-customer-billing-payments-fasttabs-readfirst/PWS-MD-004C-result.json",
+    "playwright/projects/fibu-book5/UNIVERSAARL-CUSTOMER-FIELD-MAP.md"
+  ],
+  "mayRunPlaywright": false,
+  "mayOpenBusinessCentral": false,
+  "effectiveBcActionsAllowed": false,
+  "allowedActions": [
+    "write-local-field-map",
+    "classify-realistic-fictional-customer-data",
+    "compare-ui-template-configuration-package-excel-api-al-parked",
+    "update-dashboard-state-and-readiness-summary"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central-live",
+    "run-playwright-live",
+    "use-confidential-real-customer-data",
+    "create-customer",
+    "edit-customer",
+    "save-customer",
+    "delete-customer",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-master-data-ready",
+    "claim-sales-process-ready"
+  ],
+  "acceptanceCriteria": [
+    "A concise field map exists and cites real playthru screenshots/evidence.",
+    "The next customer write gate is not opened until setup dependencies are explicit.",
+    "Realism is improved without using confidential real customer data.",
+    "No Business Central or Playwright live execution occurs in this case."
+  ],
+  "stopIf": [
+    "A field value would be invented as setup-ready without BC evidence.",
+    "A route decision would require live observation.",
+    "The work starts adding broad methodology instead of the customer field map."
+  ],
+  "result": {
+    "fieldMapPath": "playwright/projects/fibu-book5/UNIVERSAARL-CUSTOMER-FIELD-MAP.md",
+    "businessCentralOpened": false,
+    "playwrightLiveRunExecuted": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false
+  },
+  "nextStepDecision": {
+    "currentCase": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
+    "plannedNextCaseBeforeReview": "PWS-MD-CUSTOMER-SETUP-GAP-DECISION",
+    "lastEvidenceSummary": "PWS-MD-004B proved the real Customer Card and Customer table context for existing U-CUST-100; PWS-MD-004C had already expanded billing/payment FastTabs.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The setup-gap and training decisions already exist. The useful next step is to convert the observed fields into a realistic customer field map before any write gate.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "CUSTOMER-CONFIG-PACKAGE-FIELD-MAP",
+        "status": "ready-next",
+        "reason": "Turns real BC field evidence into route-ready customer data preparation."
+      },
+      {
+        "caseId": "PWS-MD-005-CUSTOMER-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Customer write remains blocked until posting/VAT/payment/dimension dependencies are consciously selected or parked."
+      },
+      {
+        "caseId": "O2C-MINIMAL-ROUTE-DECISION",
+        "status": "needs-setup-first",
+        "reason": "O2C needs customer, item/service, VAT and posting group readiness."
+      },
+      {
+        "caseId": "PWS-MD-VENDOR-WRITE-GATE",
+        "status": "ready-after-current",
+        "reason": "Vendor can follow the same read-first-to-field-map pattern after customer route is clarified."
+      }
+    ],
+    "queueChangesMade": [
+      "Do not loop back to CUSTOMER-SETUP-UI-TEMPLATE-PREFLIGHT after the preflight and reopen proof have completed.",
+      "Select a local customer field-map case before any customer write gate."
+    ],
+    "selectedNextCase": "CUSTOMER-CONFIG-PACKAGE-FIELD-MAP",
+    "whySelectedNextCaseIsBest": "It makes the next BC work more realistic and safer without adding broad meta-structure.",
+    "risksBeforeNextCase": [
+      "Do not use real confidential customer data.",
+      "Do not claim setup-ready fields from visible labels alone."
+    ],
+    "requiredPreparation": [
+      "Use PWS-MD-004B and PWS-MD-004C evidence only as field/context proof."
+    ]
+  },
+  "nextCase": "CUSTOMER-CONFIG-PACKAGE-FIELD-MAP",
+  "updatedAt": "2026-07-07T00:30:00.000Z"
+}
