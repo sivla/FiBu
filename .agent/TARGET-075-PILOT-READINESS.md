@@ -28,6 +28,7 @@ Last checked: 2026-07-06.
 | --- | --- | --- |
 | `git pull --ff-only` | passed | Branch was already up to date before the readiness refresh. |
 | `npm run agent:preflight` | passed | Agent state, budgets, safety, model routing, capabilities and skills are locally consistent. |
+| `npm run agent:active-readiness` | passed | The active State selects TARGET-075 readiness as the current pilot gate. |
 | `npm run agent:quality:audit` | passed with known risk findings | The pilot may proceed only as read-first; TypeScript coverage, auth freshness and legacy Playwright flake surface remain bounded risks. |
 | `npm run agent:resume:check` | passed locally | TARGET-075 is prepared after freeze lift; this check does not open Business Central and does not lift the freeze. |
 | `npm run agent:freeze:status` | freeze active | Live execution remains blocked until the freeze is explicitly lifted or the active case confirms TARGET-075 may run. |
@@ -45,6 +46,7 @@ Current decision: stop broad cleanup here. The next useful project movement is e
 - `npm run agent:resume:check:overnight`
 - `npm run agent:freeze:status`
 - `npm run agent:preflight`
+- `npm run agent:active-readiness`
 - `npm run check:encoding`
 - `npm run fibu:target:foundation-consistency-pilot -- --check`
 - `npm run fibu:target:foundation-consistency-pilot -- --list`
