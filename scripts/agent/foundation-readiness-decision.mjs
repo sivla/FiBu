@@ -2,14 +2,25 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root = process.cwd();
-const resultPath =
+const defaultResultPath =
   'playwright/projects/fibu-book5/evidence/target-075-chart-of-accounts-reopen-and-setup-consistency-check/TARGET-075-result.json';
-const decisionPath = 'playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md';
-const args = new Set(process.argv.slice(2));
+const defaultDecisionPath = 'playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md';
+const rawArgs = process.argv.slice(2);
+const args = new Set(rawArgs);
 const write = args.has('--write');
 const check = args.has('--check') || !write;
 
+function valueArg(name, fallback) {
+  const prefix = `${name}=`;
+  const match = rawArgs.find((arg) => arg.startsWith(prefix));
+  return match ? match.slice(prefix.length) : fallback;
+}
+
+const resultPath = valueArg('--input', defaultResultPath);
+const decisionPath = valueArg('--output', defaultDecisionPath);
+
 function resolve(relativePath) {
+  if (path.isAbsolute(relativePath)) return relativePath;
   return path.resolve(root, relativePath);
 }
 
@@ -220,6 +231,7 @@ const validation = validateTarget075(result);
 const canWrite = validation.errors.length === 0;
 
 if (write && canWrite) {
+  fs.mkdirSync(path.dirname(resolve(decisionPath)), { recursive: true });
   fs.writeFileSync(resolve(decisionPath), renderDecision(result), 'utf8');
 }
 

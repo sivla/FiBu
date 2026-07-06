@@ -10,6 +10,7 @@ const packagePath = 'package.json';
 const specPath = 'playwright/projects/fibu-book5/tests/target-075-chart-of-accounts-reopen-and-setup-consistency-check.spec.ts';
 const guardedRunnerPath = 'scripts/agent/run-target-075-foundation-consistency-pilot.mjs';
 const foundationDecisionScriptPath = 'scripts/agent/foundation-readiness-decision.mjs';
+const foundationDecisionSelftestPath = 'scripts/agent/foundation-readiness-decision.selftest.mjs';
 const target075ResultPath =
   'playwright/projects/fibu-book5/evidence/target-075-chart-of-accounts-reopen-and-setup-consistency-check/TARGET-075-result.json';
 const foundationDecisionPath = 'playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md';
@@ -43,7 +44,8 @@ for (const requiredFile of [
   packagePath,
   specPath,
   guardedRunnerPath,
-  foundationDecisionScriptPath
+  foundationDecisionScriptPath,
+  foundationDecisionSelftestPath
 ]) {
   if (!exists(requiredFile)) errors.push(`missing required file: ${requiredFile}`);
 }
@@ -161,6 +163,10 @@ if (packageJson) {
   const foundationDecisionScript = packageJson.scripts?.['agent:foundation:decision'] ?? '';
   if (!foundationDecisionScript.includes(foundationDecisionScriptPath)) {
     errors.push(`${packagePath}: script agent:foundation:decision must reference ${foundationDecisionScriptPath}`);
+  }
+  const foundationDecisionSelftest = packageJson.scripts?.['agent:foundation:decision:test'] ?? '';
+  if (!foundationDecisionSelftest.includes(foundationDecisionSelftestPath)) {
+    errors.push(`${packagePath}: script agent:foundation:decision:test must reference ${foundationDecisionSelftestPath}`);
   }
 }
 
@@ -392,7 +398,8 @@ const checkedFiles = [
   packagePath,
   specPath,
   guardedRunnerPath,
-  foundationDecisionScriptPath
+  foundationDecisionScriptPath,
+  foundationDecisionSelftestPath
 ];
 if (exists(target075ResultPath)) checkedFiles.push(target075ResultPath);
 if (exists(foundationDecisionPath)) checkedFiles.push(foundationDecisionPath);

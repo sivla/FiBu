@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "purpose": "autopilot-result-normalized",
-  "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+  "caseId": "AUTH-BC-REFRESH-FOR-ACTIVE-RESUME",
   "source": "playwright-auth-refresh-attempt",
   "resultStatus": "observed-auth-shell-saved",
   "instance": "playthru",
@@ -9,12 +9,12 @@
   "page": "Business Central shell reached",
   "url": "redacted-businesscentral-url",
   "actionsTaken": [
-    "Ran npm run auth:bc:capture-detached -- --confirm for the active D31 auth refresh gate.",
+    "Ran npm run auth:bc:capture-detached -- --confirm for the active Business Central auth refresh gate.",
     "The Playwright auth browser targeted playthru / UNIVERSAARL-DE.",
     "Business Central shell validation succeeded and Playwright storage state was saved."
   ],
   "actionsNotTaken": [
-    "No D31 VAT Assisted Setup or Manual Setup page was opened by this auth command.",
+    "No Business Central setup, master-data, process or VAT page was opened intentionally by this auth command.",
     "No setup values were typed.",
     "No wizard Next, Finish, Apply or OK was clicked.",
     "No master data, document, Preview Posting, Posting, payment or API shortcut occurred.",
@@ -58,45 +58,45 @@
   "warnings": [
     "Run npm run auth:bc:check before any Business Central workflow."
   ],
-  "nextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+  "nextCase": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
   "nextStepDecision": {
-    "currentCase": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+    "currentCase": "AUTH-BC-REFRESH-FOR-ACTIVE-RESUME",
+    "plannedNextCaseBeforeReview": "AUTH-BC-REFRESH-FOR-ACTIVE-RESUME",
     "lastEvidenceSummary": "npm run auth:bc:capture-detached -- --confirm reached the Business Central shell and saved Playwright storage state; auth:bc:check must confirm freshness next.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The auth gate can move to auth:bc:check and then D31 read-only discovery.",
+    "reason": "The auth gate can move to auth:bc:check and then the active resume candidate TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+        "caseId": "AUTH-BC-REFRESH-FOR-ACTIVE-RESUME",
         "status": "ready-after-current",
         "reason": "Requires auth:bc:check canUseStoredAuth=true."
       },
       {
-        "caseId": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
+        "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
         "status": "ready-after-current",
         "reason": "Requires auth:bc:check canUseStoredAuth=true first."
       },
       {
-        "caseId": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
-        "status": "needs-ui-discovery-first",
-        "reason": "Requires D31 read-only route evidence."
-      },
-      {
-        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "caseId": "FOUNDATION-READINESS-DECISION",
         "status": "ready-after-current",
-        "reason": "Can resume after VAT auth/discovery is resolved or intentionally parked."
+        "reason": "Requires TARGET-075 result evidence first."
       },
       {
-        "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
-        "status": "needs-setup-first",
-        "reason": "Requires VAT and dimensions status."
+        "caseId": "VAT/USt read-first proof",
+        "status": "ready-after-current",
+        "reason": "Can be selected only after TARGET-075 and the Foundation Readiness Decision."
+      },
+      {
+        "caseId": "Master Data read-first pilots",
+        "status": "blocked",
+        "reason": "Blocked until Foundation Readiness classifies chart, VAT/USt, dimensions and posting groups."
       }
     ],
     "queueChangesMade": [],
-    "selectedNextCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-    "whySelectedNextCaseIsBest": "Fresh auth is the prerequisite for safe D31 read-only VAT route discovery.",
+    "selectedNextCase": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
+    "whySelectedNextCaseIsBest": "Fresh auth is the prerequisite for the active read-first resume candidate TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK.",
     "risksBeforeNextCase": [
-      "Do not run D31 until auth:bc:check confirms canUseStoredAuth=true."
+      "Do not run the active resume candidate until auth:bc:check confirms canUseStoredAuth=true."
     ],
     "requiredPreparation": [
       "Run npm run auth:bc:check and require canUseStoredAuth=true."
@@ -110,5 +110,5 @@
   "safeToFinalizeState": false,
   "statePatch": {},
   "reason": "Auth refresh reached shell; state finalization still requires explicit downstream validation.",
-  "completedAt": "2026-07-05T23:35:48.431Z"
+  "completedAt": "2026-07-06T05:04:17.577Z"
 }

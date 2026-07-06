@@ -25,9 +25,19 @@ const expectedUrl = new URL(bcUrl);
 const currentState = JSON.parse(await fs.readFile('.agent/state/current.json', 'utf8')) as {
   instance?: string;
   company?: string;
+  activeCase?: string;
+  nextCase?: string;
+  freezeStatus?: {
+    resumeCandidateAfterFreeze?: string;
+  };
 };
 const expectedEnvironment = currentState.instance ?? expectedUrl.pathname.split('/').filter(Boolean).at(-1) ?? '';
 const expectedCompany = currentState.company ?? expectedUrl.searchParams.get('company') ?? '';
+const activeAuthCase = 'AUTH-BC-REFRESH-FOR-ACTIVE-RESUME';
+const resumeCandidate =
+  currentState.freezeStatus?.resumeCandidateAfterFreeze ??
+  currentState.nextCase ??
+  'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK';
 if (expectedEnvironment) {
   const pathParts = expectedUrl.pathname.split('/').filter(Boolean);
   if (pathParts.length) {
@@ -104,7 +114,7 @@ async function writeAuthResult(args: AuthResultArgs) {
   const result = {
     schemaVersion: 1,
     purpose: 'autopilot-result-normalized',
-    caseId: 'TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY',
+    caseId: activeAuthCase,
     source: 'playwright-auth-refresh-attempt',
     resultStatus: args.resultStatus,
     instance: expectedEnvironment,
@@ -112,14 +122,14 @@ async function writeAuthResult(args: AuthResultArgs) {
     page: reachedShell ? 'Business Central shell reached' : 'not reached - Microsoft sign-in page before Business Central shell',
     url: diagnosisHost.includes('login.microsoftonline.com') ? 'redacted-login.microsoftonline.com' : 'redacted-businesscentral-url',
     actionsTaken: [
-      `Ran ${authCommandLabel} for the active D31 auth refresh gate.`,
+      `Ran ${authCommandLabel} for the active Business Central auth refresh gate.`,
       `The Playwright auth browser targeted ${expectedEnvironment || '(unknown)'} / ${expectedCompany || '(unknown)'}.`,
       reachedShell
         ? 'Business Central shell validation succeeded and Playwright storage state was saved.'
         : `The command waited ${authTimeoutMs} ms and did not save a Business Central shell-validated storage state.`
     ],
     actionsNotTaken: [
-      'No D31 VAT Assisted Setup or Manual Setup page was opened by this auth command.',
+      'No Business Central setup, master-data, process or VAT page was opened intentionally by this auth command.',
       'No setup values were typed.',
       'No wizard Next, Finish, Apply or OK was clicked.',
       'No master data, document, Preview Posting, Posting, payment or API shortcut occurred.',
@@ -168,7 +178,7 @@ async function writeAuthResult(args: AuthResultArgs) {
           'The auth refresh command uses the intended playthru / UNIVERSAARL-DE target override.',
           'No Business Central shell signal was reached during this attempt.',
           'No Playwright storage state was refreshed or saved.',
-          'D31 VAT discovery remains correctly blocked before any VAT UI action.'
+          'The active resume candidate remains blocked before any Business Central workflow.'
         ],
     notProved: reachedShell
       ? [
@@ -184,60 +194,56 @@ async function writeAuthResult(args: AuthResultArgs) {
     warnings: reachedShell
       ? ['Run npm run auth:bc:check before any Business Central workflow.']
       : [
-          'Do not rerun D31 read-only discovery until auth:bc:check returns canUseStoredAuth=true.',
+          'Do not run the active resume candidate until auth:bc:check returns canUseStoredAuth=true.',
           'Normal browser login or old storageState must not be accepted as current Business Central evidence.'
         ],
-    nextCase: reachedShell
-      ? 'TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY'
-      : 'TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY',
+    nextCase: reachedShell ? resumeCandidate : activeAuthCase,
     nextStepDecision: {
-      currentCase: 'TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY',
-      plannedNextCaseBeforeReview: 'TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY',
+      currentCase: activeAuthCase,
+      plannedNextCaseBeforeReview: activeAuthCase,
       lastEvidenceSummary: reachedShell
         ? `${authCommandLabel} reached the Business Central shell and saved Playwright storage state; auth:bc:check must confirm freshness next.`
         : `${authCommandLabel} stayed before Business Central shell for ${authTimeoutMs} ms and saved no Playwright storage state.`,
       isPlannedNextCaseStillSensible: true,
       reason: reachedShell
-        ? 'The auth gate can move to auth:bc:check and then D31 read-only discovery.'
-        : 'The active blocker is still Playwright shell auth, not VAT UI or setup logic.',
+        ? `The auth gate can move to auth:bc:check and then the active resume candidate ${resumeCandidate}.`
+        : 'The active blocker is still Playwright shell auth, not Business Central UI or setup logic.',
       lookaheadReviewed: [
         {
-          caseId: 'TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY',
+          caseId: activeAuthCase,
           status: reachedShell ? 'ready-after-current' : 'blocked',
           reason: reachedShell
             ? 'Requires auth:bc:check canUseStoredAuth=true.'
             : 'Needs Login/MFA completion inside the Playwright auth browser until BC shell appears.'
         },
         {
-          caseId: 'TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY',
+          caseId: resumeCandidate,
           status: reachedShell ? 'ready-after-current' : 'blocked',
           reason: 'Requires auth:bc:check canUseStoredAuth=true first.'
         },
         {
-          caseId: 'TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION',
-          status: 'needs-ui-discovery-first',
-          reason: 'Requires D31 read-only route evidence.'
-        },
-        {
-          caseId: 'TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS',
+          caseId: 'FOUNDATION-READINESS-DECISION',
           status: 'ready-after-current',
-          reason: 'Can resume after VAT auth/discovery is resolved or intentionally parked.'
+          reason: 'Requires TARGET-075 result evidence first.'
         },
         {
-          caseId: 'TARGET-034-FOUNDATION-READY-CHECKPOINT',
-          status: 'needs-setup-first',
-          reason: 'Requires VAT and dimensions status.'
+          caseId: 'VAT/USt read-first proof',
+          status: 'ready-after-current',
+          reason: 'Can be selected only after TARGET-075 and the Foundation Readiness Decision.'
+        },
+        {
+          caseId: 'Master Data read-first pilots',
+          status: 'blocked',
+          reason: 'Blocked until Foundation Readiness classifies chart, VAT/USt, dimensions and posting groups.'
         }
       ],
       queueChangesMade: [],
-      selectedNextCase: reachedShell
-        ? 'TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY'
-        : 'TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY',
+      selectedNextCase: reachedShell ? resumeCandidate : activeAuthCase,
       whySelectedNextCaseIsBest: reachedShell
-        ? 'Fresh auth is the prerequisite for safe D31 read-only VAT route discovery.'
+        ? `Fresh auth is the prerequisite for the active read-first resume candidate ${resumeCandidate}.`
         : 'It is the remaining gate that prevents false BC evidence and unsafe VAT discovery.',
       risksBeforeNextCase: reachedShell
-        ? ['Do not run D31 until auth:bc:check confirms canUseStoredAuth=true.']
+        ? ['Do not run the active resume candidate until auth:bc:check confirms canUseStoredAuth=true.']
         : [
             isDetachedCapture
               ? 'Confirmed detached capture will keep timing out if the persistent profile is not already logged in to the Business Central shell.'
