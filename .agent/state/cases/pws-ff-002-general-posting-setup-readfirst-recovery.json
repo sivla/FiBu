@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PWS-FF-002-GENERAL-POSTING-SETUP-READFIRST-RECOVERY",
+  "status": "prepared-pending-live-gate",
+  "mode": "universaarl-foundation-readfirst",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w1-foundation",
+  "purpose": "Resolve the TARGET-075 Foundation gap for Buchungsmatrix Einrichtung / General Posting Setup with a narrow read-first recovery proof before Master Data or posting-group writes resume.",
+  "sourceDecision": "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+  "triggeredBy": [
+    "TARGET-075 marked General Posting Setup accepted proof as not proven.",
+    "Master Data remains parked until Foundation gaps are resolved or consciously accepted."
+  ],
+  "mayRunPlaywright": true,
+  "mayOpenBusinessCentral": true,
+  "effectiveBcActionsAllowed": false,
+  "allowedActions": [
+    "validate-playthru-url",
+    "validate-universaarl-company",
+    "open-page-314-readonly",
+    "capture-compact-text",
+    "capture-screenshot",
+    "write-evidence-result"
+  ],
+  "forbiddenActions": [
+    "continue-target-073",
+    "type-business-central-values",
+    "write-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "cleanup-delete",
+    "company-switch",
+    "claim-posting-readiness"
+  ],
+  "smartDecision": {
+    "whyNow": "General Posting Setup is the narrowest documented blocker after TARGET-075 and must be understood before Master Data or Posting Groups writes.",
+    "evidenceBefore": [
+      "TARGET-075 result",
+      "FOUNDATION-READINESS-DECISION.md",
+      "Existing Page 314 atlas notes as historical Universaarl pattern only"
+    ],
+    "risk": "Page 314 exposes write actions such as Neu, Liste bearbeiten and Konten vorschlagen.",
+    "fallback": "If Page 314 is not accepted read-only, write a blocked result and do not proceed to Master Data."
+  },
+  "expectedEvidence": {
+    "resultPath": "playwright/projects/fibu-book5/evidence/pws-ff-002-general-posting-setup-readfirst-recovery/PWS-FF-002-result.json",
+    "screenshotDirectory": "playwright/projects/fibu-book5/evidence/pws-ff-002-general-posting-setup-readfirst-recovery/",
+    "mustProve": [
+      "playthru / UNIVERSAARL-DE context",
+      "Page 314 or equivalent Buchungsmatrix Einrichtung context",
+      "Visible row or blocked reason for INLAND / WAREN",
+      "Visible account columns or blocked reason for Warenverkaufskonto and Wareneinkaufskonto"
+    ],
+    "mustNotClaim": [
+      "General Posting Setup correctness",
+      "Posting readiness",
+      "VAT correctness",
+      "Master Data readiness"
+    ]
+  },
+  "nextIfSuccessful": "FOUNDATION-READINESS-DECISION",
+  "nextIfBlocked": "FOUNDATION-READINESS-DECISION",
+  "updatedAt": "2026-07-06T00:00:00.000Z"
+}

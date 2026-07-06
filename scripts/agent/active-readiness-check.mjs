@@ -15,6 +15,12 @@ const checksByCase = new Map([
       reason: 'TARGET-075 is the active read-first resume pilot and must stay prepared before any freeze lift.',
       secondaryChecks: [
         {
+          id: 'foundation-gap-general-posting-setup-readfirst',
+          scriptPath: 'scripts/agent/run-pws-ff-002-general-posting-setup-readonly.mjs',
+          args: ['--check'],
+          reason: 'General Posting Setup is the next narrow read-first Foundation gap after TARGET-075 and must be prepared before Master Data.'
+        },
+        {
           id: 'masterdata-readfirst-handoff',
           scriptPath: 'scripts/agent/masterdata-readfirst-check.mjs',
           reason: 'After TARGET-075, the prepared Master Data read-first pilots must stay discoverable and blocked until Foundation Readiness Decision.'
@@ -29,6 +35,12 @@ const checksByCase = new Map([
       scriptPath: 'scripts/agent/foundation-readiness-decision.mjs',
       reason: 'TARGET-075 has run; Foundation Readiness Decision must stay valid before any Master Data or write pilot.',
       secondaryChecks: [
+        {
+          id: 'foundation-gap-general-posting-setup-readfirst',
+          scriptPath: 'scripts/agent/run-pws-ff-002-general-posting-setup-readonly.mjs',
+          args: ['--check'],
+          reason: 'General Posting Setup is the next narrow read-first Foundation gap after TARGET-075 and must be prepared before Master Data.'
+        },
         {
           id: 'masterdata-readfirst-handoff',
           scriptPath: 'scripts/agent/masterdata-readfirst-check.mjs',
@@ -102,7 +114,7 @@ function parseJsonOutput(text) {
 }
 
 function runScript(check) {
-  const result = spawnSync(nodeCmd, [check.scriptPath], {
+  const result = spawnSync(nodeCmd, [check.scriptPath, ...(check.args ?? [])], {
     cwd: root,
     encoding: 'utf8',
     maxBuffer: 10 * 1024 * 1024
@@ -111,6 +123,7 @@ function runScript(check) {
   return {
     id: check.id,
     scriptPath: check.scriptPath,
+    args: check.args ?? [],
     reason: check.reason,
     ok: result.status === 0,
     exitCode: result.status,
@@ -136,6 +149,7 @@ function runCheck(check) {
     secondaryChecks: secondaryChecks.map((entry) => ({
       id: entry.id,
       scriptPath: entry.scriptPath,
+      args: entry.args,
       reason: entry.reason,
       ok: entry.ok,
       exitCode: entry.exitCode,
