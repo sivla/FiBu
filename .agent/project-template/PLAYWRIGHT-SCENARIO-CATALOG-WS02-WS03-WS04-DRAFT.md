@@ -328,6 +328,16 @@ Inputs:
 - payment boundary decision placeholder `DEC-PAYMENT-001`
 - training card `TR-03-02 Vendor Master Data`
 
+Foundation decision handoff:
+
+| Foundation result after TARGET-075 | PWS-MD-002 decision |
+| --- | --- |
+| Company context, Chart of Accounts and vendor/posting/payment dependency pages are visible enough for read-first explanation | Run PWS-MD-002 as read-first/no-write probe. |
+| Company context is proven, but vendor posting groups, payment terms or payment methods are missing/unclear | Run only list/card/template visibility; mark setup dependencies as blocking any vendor creation. |
+| Bank/payment context appears but payment boundary is not decided | Continue read-only field observation only; do not inspect, enter or invent real bank data. |
+| Company context is unclear or `FOUNDATION-READINESS-DECISION.md` is missing | Block PWS-MD-002. Do not open vendor pages as the next live case. |
+| Foundation decision says setup is not ready for master-data read-first probes | Block PWS-MD-002 and create a narrow Foundation follow-up instead. |
+
 Evidence output:
 
 - Vendors page title and URL
@@ -336,6 +346,7 @@ Evidence output:
 - warning that real bank data is out of scope
 - dependencies for `DR-MD-002`
 - whether Vendor Posting Group, General Business Posting Group, VAT Business Posting Group, Payment Terms and Payment Method fields are visible, hidden, absent or blocked
+- next-step classification: `ready-for-vendor-write-gate`, `needs-foundation-follow-up`, `needs-template-discovery`, `needs-payment-boundary-decision`, `blocked`
 
 Stop if:
 
