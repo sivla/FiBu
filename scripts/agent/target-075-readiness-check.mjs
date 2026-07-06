@@ -172,6 +172,17 @@ if (guardedRunner) {
   if (!guardedRunner.includes('TARGET_075_LIVE_APPROVED')) {
     errors.push(`${guardedRunnerPath}: guarded runner must set TARGET_075_LIVE_APPROVED only for approved live execution`);
   }
+  for (const envName of [
+    'TARGET_075_AUTH_AGE_HOURS',
+    'TARGET_075_AUTH_MAX_AGE_HOURS',
+    'TARGET_075_AUTH_EXPIRES_IN_HOURS',
+    'TARGET_075_AUTH_WARN_EXPIRES_IN_HOURS',
+    'TARGET_075_AUTH_WARNINGS'
+  ]) {
+    if (!guardedRunner.includes(envName)) {
+      errors.push(`${guardedRunnerPath}: guarded runner must pass ${envName} into TARGET-075 evidence`);
+    }
+  }
 }
 
 if (readiness) {
@@ -232,6 +243,11 @@ if (spec) {
     errors.push(`${specPath}: nextCase must be hard-gated to FOUNDATION-READINESS-DECISION`);
   }
   for (const requiredResultSignal of [
+    'authGate',
+    'checkedByGuard',
+    'secretsPrinted',
+    'TARGET_075_AUTH_EXPIRES_IN_HOURS',
+    'TARGET_075_AUTH_WARNINGS',
     'foundationReadinessInput',
     'decisionStatus',
     'chartOfAccounts',
@@ -254,6 +270,19 @@ if (target075Result) {
   }
   if (!target075Result.foundationReadinessInput) {
     errors.push(`${target075ResultPath}: missing foundationReadinessInput for FOUNDATION-READINESS-DECISION.md handoff`);
+  }
+  if (!target075Result.authGate) {
+    errors.push(`${target075ResultPath}: missing authGate for guarded TARGET-075 evidence`);
+  } else {
+    if (target075Result.authGate.checkedByGuard !== true) {
+      errors.push(`${target075ResultPath}: authGate.checkedByGuard must be true`);
+    }
+    if (target075Result.authGate.secretsPrinted !== false) {
+      errors.push(`${target075ResultPath}: authGate.secretsPrinted must be false`);
+    }
+    if (!Array.isArray(target075Result.authGate.warnings)) {
+      errors.push(`${target075ResultPath}: authGate.warnings must be an array`);
+    }
   }
   for (const [flag, expected] of Object.entries({
     setupChanged: false,
