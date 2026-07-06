@@ -88,6 +88,13 @@ Empfehlung: Nach einer positiven Foundation-Decision zuerst `PWS-MD-001` und `PW
 - Beweisziel: Debitoren-/Customer-Kontext, sichtbare Felder/Aktionen und Screenshot-QA.
 - Keine Freigabe fuer Debitorenanlage, Vorlagenaenderung, Verkaufsbeleg, Import, API oder Posting.
 
+`PWS-MD-002` ist lokal als gegateter read-first Pilot vorbereitet:
+
+- Script: `npm run fibu:pws:md002:vendor-context -- --check`
+- Live erst nach `FOUNDATION-READINESS-DECISION.md`, offenem Live-Gate und `--live-approved`.
+- Beweisziel: Kreditoren-/Vendor-Kontext, sichtbare Felder/Aktionen, Zahlungs-/Bankdaten-Grenze und Screenshot-QA.
+- Keine Freigabe fuer Kreditorenanlage, Vorlagenaenderung, Bankdaten, Einkaufsbeleg, Zahlung, Import, API oder Posting.
+
 ## RD-FOUND-001 Numbering policy for customers, vendors and items
 
 Workstream: `WS03-FINANCE-FOUNDATION`, `WS04-MASTER-DATA-PRODUCT`

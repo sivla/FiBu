@@ -85,6 +85,7 @@ Last reviewed: 2026-07-06
 | Package scripts with `legacy-target-file-reference` findings | `legacy-purge-source` | Warning inventory until the target tests are ported, blocked or archived. |
 | `playwright/projects/fibu-book5/tests/*target-075*` | `active-work` | First resume pilot area only, still gated by freeze/resume checks. |
 | `playwright/projects/fibu-book5/tests/pws-md-001-customer-context-readonly.spec.ts` and `fibu:pws:md001:customer-context` | `active-work` | Prepared Debitoren/Customer read-first pilot after `FOUNDATION-READINESS-DECISION.md`; not the active live case and no-write. |
+| `playwright/projects/fibu-book5/tests/pws-md-002-vendor-context-readonly.spec.ts` and `fibu:pws:md002:vendor-context` | `active-work` | Prepared Kreditoren/Vendor read-first pilot after `FOUNDATION-READINESS-DECISION.md`; not the active live case and no-write/no-payment. |
 | RM-DEMO/MCP/CRONUS/Rhein-Main Playwright tests | `legacy-purge-source` | Reuse helper patterns only after neutralization or Universaarl port. |
 | `playwright/projects/fibu-book5/evidence/**` | `reference` or `legacy-purge-source` | Preserve evidence chain; do not edit screenshots/results to make them look current. |
 
