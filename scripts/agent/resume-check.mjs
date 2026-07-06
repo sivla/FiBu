@@ -8,6 +8,66 @@ const authCheckArgs = Number.isFinite(minAuthExpiresInHours)
   ? ['scripts/agent/auth-state-check.mjs', `--min-expires-hours=${minAuthExpiresInHours}`]
   : null;
 
+function findJsonObjects(text) {
+  const objects = [];
+  let start = -1;
+  let depth = 0;
+  let inString = false;
+  let escaped = false;
+
+  for (let index = 0; index < text.length; index += 1) {
+    const char = text[index];
+    if (inString) {
+      if (escaped) {
+        escaped = false;
+      } else if (char === '\\') {
+        escaped = true;
+      } else if (char === '"') {
+        inString = false;
+      }
+      continue;
+    }
+
+    if (char === '"') {
+      inString = true;
+      continue;
+    }
+    if (char === '{') {
+      if (depth === 0) start = index;
+      depth += 1;
+      continue;
+    }
+    if (char === '}' && depth > 0) {
+      depth -= 1;
+      if (depth === 0 && start >= 0) {
+        objects.push(text.slice(start, index + 1));
+        start = -1;
+      }
+    }
+  }
+
+  return objects;
+}
+
+function parseJsonFromStream(text, streamName) {
+  const trimmed = (text ?? '').trim();
+  if (!trimmed) {
+    throw new Error(`${streamName} did not contain JSON output`);
+  }
+  try {
+    return JSON.parse(trimmed);
+  } catch (wholeStreamError) {
+    for (const candidate of findJsonObjects(trimmed).reverse()) {
+      try {
+        return JSON.parse(candidate);
+      } catch {
+        // Keep looking for the last valid JSON object in noisy command output.
+      }
+    }
+    throw wholeStreamError;
+  }
+}
+
 function runStep(id, command, args, options = {}) {
   const startedAt = new Date().toISOString();
   const result = spawnSync(command, args, {
@@ -20,21 +80,29 @@ function runStep(id, command, args, options = {}) {
   const stdout = result.stdout ?? '';
   const stderr = result.stderr ?? '';
   let parsedJson = null;
+  let parsedJsonSource = null;
   if (options.parseJson) {
     try {
-      parsedJson = JSON.parse(stdout);
-    } catch (error) {
-      return {
-        id,
-        command: [command, ...args].join(' '),
-        startedAt,
-        exitCode: result.status ?? 1,
-        ok: false,
-        commandError,
-        parseError: error.message,
-        stdoutTail: stdout.slice(-2000),
-        stderrTail: stderr.slice(-2000)
-      };
+      parsedJson = parseJsonFromStream(stdout, 'stdout');
+      parsedJsonSource = 'stdout';
+    } catch (stdoutError) {
+      try {
+        parsedJson = parseJsonFromStream(stderr, 'stderr');
+        parsedJsonSource = 'stderr';
+      } catch (stderrError) {
+        return {
+          id,
+          command: [command, ...args].join(' '),
+          startedAt,
+          exitCode: result.status ?? 1,
+          ok: false,
+          commandError,
+          parseError: stdoutError.message,
+          stderrParseError: stderrError.message,
+          stdoutTail: stdout.slice(-2000),
+          stderrTail: stderr.slice(-2000)
+        };
+      }
     }
   }
   return {
@@ -45,6 +113,7 @@ function runStep(id, command, args, options = {}) {
     ok: !commandError && (result.status ?? 0) === 0,
     commandError,
     parsedJson,
+    parsedJsonSource,
     stdoutTail: options.keepStdout ? stdout.slice(-2000) : undefined,
     stderrTail: stderr ? stderr.slice(-2000) : undefined
   };
@@ -151,6 +220,8 @@ const output = {
     exitCode: step.exitCode,
     commandError: step.commandError,
     parseError: step.parseError,
+    stderrParseError: step.stderrParseError,
+    parsedJsonSource: step.parsedJsonSource,
     stdoutTail: step.stdoutTail,
     stderrTail: step.stderrTail
   })),
