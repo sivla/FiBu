@@ -22,6 +22,7 @@ function pass(details) {
 const current = JSON.parse(readFileSync('.agent/state/current.json', 'utf8'));
 const fakeSourceUrl =
   'https://businesscentral.dynamics.com/11111111-2222-3333-4444-555555555555/MCP_1_20260210?company=RM-DEMO';
+const invalidSourceUrl = 'not a valid business central url';
 
 let output;
 try {
@@ -76,6 +77,53 @@ if (errors.length) {
   });
 }
 
+let invalidOutput = '';
+let invalidExitCode = 0;
+try {
+  invalidOutput = execFileSync(process.execPath, ['scripts/agent/auth-target-diagnose.mjs'], {
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'pipe'],
+    env: {
+      ...process.env,
+      BC_AUTH_URL: invalidSourceUrl,
+    },
+  });
+} catch (error) {
+  invalidExitCode = error.status;
+  invalidOutput = error.stdout?.toString() ?? '';
+}
+
+let invalidDiagnosis;
+try {
+  invalidDiagnosis = JSON.parse(invalidOutput);
+} catch (error) {
+  fail('invalid URL diagnosis did not produce parseable JSON.', {
+    error: error.message,
+    output: invalidOutput,
+  });
+}
+
+if (invalidExitCode !== 1) {
+  fail('invalid URL diagnosis must exit with code 1.', {
+    invalidExitCode,
+    invalidDiagnosis,
+  });
+}
+if (invalidDiagnosis.canBuildTargetUrl !== false) errors.push('invalid URL should set canBuildTargetUrl=false.');
+if (!invalidDiagnosis.blockedBy?.includes('invalid-bc-url-env')) {
+  errors.push('invalid URL should be classified as invalid-bc-url-env.');
+}
+if (JSON.stringify(invalidDiagnosis).includes(invalidSourceUrl)) {
+  errors.push('invalid URL diagnostic output must not print the raw URL.');
+}
+
+if (errors.length) {
+  fail('auth target diagnosis did not handle invalid URLs safely.', {
+    errors,
+    invalidDiagnosis,
+  });
+}
+
 pass({
   sourceEnvironmentCandidate: diagnosis.sourceEnvironmentCandidate,
   sourceCompany: diagnosis.sourceCompany,
@@ -83,4 +131,5 @@ pass({
   targetCompany: diagnosis.targetCompany,
   sourceDiffersFromTarget: diagnosis.sourceDiffersFromTarget,
   targetMatchesState: diagnosis.targetMatchesState,
+  invalidUrlBlockedBy: invalidDiagnosis.blockedBy,
 });

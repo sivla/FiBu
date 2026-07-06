@@ -32,7 +32,12 @@ function targetUrlFromConfiguredUrl() {
   const env = { ...localEnv, ...process.env };
   const rawUrl = env.BC_AUTH_URL ?? env.FIBU_BOOK5_BC_URL ?? env.BC_URL ?? '';
   if (!rawUrl) return '';
-  const url = new URL(rawUrl);
+  let url;
+  try {
+    url = new URL(rawUrl);
+  } catch {
+    return '';
+  }
   const pathParts = url.pathname.split('/').filter(Boolean);
   if (!pathParts.length) return '';
   pathParts[pathParts.length - 1] = EXPECTED_INSTANCE;

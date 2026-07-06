@@ -49,8 +49,29 @@ if (!rawUrl) {
   process.exit(1);
 }
 
-const before = new URL(rawUrl);
-const after = new URL(rawUrl);
+let before;
+let after;
+try {
+  before = new URL(rawUrl);
+  after = new URL(rawUrl);
+} catch {
+  console.log(
+    JSON.stringify(
+      {
+        schemaVersion: 1,
+        purpose: 'business-central-auth-target-diagnosis',
+        canBuildTargetUrl: false,
+        blockedBy: ['invalid-bc-url-env'],
+        source,
+        redaction: 'Full URL, tenant IDs, auth values, cookies and tokens are intentionally not printed.',
+      },
+      null,
+      2
+    )
+  );
+  process.exit(1);
+}
+
 const expectedEnvironment = current.instance ?? before.pathname.split('/').filter(Boolean).at(-1) ?? '';
 const expectedCompany = current.company ?? before.searchParams.get('company') ?? '';
 
