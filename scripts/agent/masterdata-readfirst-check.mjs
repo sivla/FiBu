@@ -65,6 +65,11 @@ for (const check of checks) {
       expectedCompany: parsed.expectedCompany,
       foundationReady: parsed.foundationReady,
       targetUrlReady: parsed.targetUrlReady,
+      authStateChecked: parsed.authStateChecked,
+      authStateCheckScript: parsed.authStateCheckScript,
+      authMinExpiresInHours: parsed.authMinExpiresInHours,
+      authExpiresInHours: parsed.authExpiresInHours,
+      authMeetsLiveWindow: parsed.authMeetsLiveWindow,
       canRunNow: parsed.canRunNow,
       blockedBy: parsed.blockedBy ?? [],
       nextStep: parsed.nextStep
@@ -81,7 +86,15 @@ for (const check of checks) {
   }
 }
 
-const allPrepared = results.every((result) => result.runnerOk === true && result.targetUrlReady === true);
+const allPrepared = results.every(
+  (result) =>
+    result.runnerOk === true &&
+    result.targetUrlReady === true &&
+    result.authStateChecked === true &&
+    result.authStateCheckScript === 'auth:bc:check:overnight' &&
+    result.authMinExpiresInHours === 9 &&
+    result.authMeetsLiveWindow === true
+);
 const anyUnexpectedLiveReady = results.some((result) => result.canRunNow === true);
 const blockedByLiveGateOrFoundation = results.every((result) => {
   const blockers = result.blockedBy ?? [];

@@ -5,6 +5,7 @@ const specPath = 'playwright/projects/fibu-book5/tests/pws-md-003-item-service-c
 const foundationDecisionPath = 'playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md';
 const EXPECTED_INSTANCE = 'playthru';
 const TARGET_COMPANY = 'UNIVERSAARL-DE';
+const MIN_LIVE_AUTH_EXPIRES_IN_HOURS = 9;
 
 const rawArgs = process.argv.slice(2);
 const liveApproved = rawArgs.includes('--live-approved');
@@ -120,13 +121,32 @@ try {
   process.exit(1);
 }
 
+const auth = run('npm', ['run', '--silent', 'auth:bc:check:overnight']);
+let authStatus;
+try {
+  authStatus = parseJsonOutput('auth:bc:check:overnight', auth.stdout);
+} catch (error) {
+  if (auth.status !== 0) {
+    printChildFailure('auth:bc:check:overnight', auth);
+    process.exit(typeof auth.status === 'number' ? auth.status : 1);
+  }
+  console.error(String(error instanceof Error ? error.message : error));
+  process.exit(1);
+}
+
 const foundationReady = foundationDecisionReady();
 const targetUrl = targetUrlFromConfiguredUrl();
 const targetUrlReady = Boolean(targetUrl);
 const liveGateAllowsNow = contextStatus.details?.canRunBusinessCentralWorkflows === true;
+const authMeetsLiveWindow =
+  authStatus.canUseStoredAuth === true &&
+  Number.isFinite(Number(authStatus.expiresInHours)) &&
+  Number(authStatus.expiresInHours) >= MIN_LIVE_AUTH_EXPIRES_IN_HOURS &&
+  !((authStatus.blockedBy ?? []).includes('storage-state-expires-before-required-window'));
 const blockedBy = [
   foundationReady ? '' : 'foundation-readiness-decision-missing-or-not-finalized-for-pws-md-003',
   targetUrlReady ? '' : 'target-url-could-not-be-built-from-configured-url',
+  authMeetsLiveWindow ? '' : 'storage-state-expires-before-required-window',
   liveGateAllowsNow ? '' : 'business-central-live-gate-blocked'
 ].filter(Boolean);
 
@@ -142,6 +162,11 @@ if (checkOnly) {
         foundationDecisionPath,
         foundationReady,
         targetUrlReady,
+        authStateChecked: true,
+        authStateCheckScript: 'auth:bc:check:overnight',
+        authMinExpiresInHours: MIN_LIVE_AUTH_EXPIRES_IN_HOURS,
+        authExpiresInHours: authStatus.expiresInHours,
+        authMeetsLiveWindow,
         canRunNow: blockedBy.length === 0,
         liveActionsExecuted: false,
         businessCentralOpened: false,
@@ -180,40 +205,6 @@ if (!liveApproved || blockedBy.length > 0) {
     )
   );
   process.exit(2);
-}
-
-const auth = run('npm', ['run', '--silent', 'auth:bc:check']);
-if (auth.status !== 0) {
-  printChildFailure('auth:bc:check', auth);
-  process.exit(typeof auth.status === 'number' ? auth.status : 1);
-}
-
-let authStatus;
-try {
-  authStatus = parseJsonOutput('auth:bc:check', auth.stdout);
-} catch (error) {
-  console.error(String(error instanceof Error ? error.message : error));
-  process.exit(1);
-}
-
-if (authStatus.canUseStoredAuth !== true) {
-  console.error(
-    JSON.stringify(
-      {
-        schemaVersion: 1,
-        purpose: 'pws-md-003-auth-state-guard',
-        canRun: false,
-        liveActionsExecuted: false,
-        businessCentralOpened: false,
-        playwrightLiveRunExecuted: false,
-        blockedBy: authStatus.blockedBy ?? ['stored-auth-not-usable'],
-        nextStep: authStatus.nextStep ?? 'Refresh Playwright auth before running PWS-MD-003.'
-      },
-      null,
-      2
-    )
-  );
-  process.exit(3);
 }
 
 exitWith(
