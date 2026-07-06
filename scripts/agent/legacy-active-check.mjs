@@ -44,6 +44,30 @@ const staleActiveSteeringPatterns = [
   {
     pattern: /FOUNDATION-001.*RM-DEMO|FIBU_BOOK5_BC_URL=.*RM-DEMO/i,
     message: 'Active onboarding must not use old RM-DEMO foundation routes'
+  },
+  {
+    pattern: /\| Finance Foundation \|[^\n]*\| TARGET-069 VAT Source-\/Route-Entscheid \|/i,
+    message: 'Finance Foundation catalog row must hand off to TARGET-075 and FOUNDATION-READINESS-DECISION.md, not TARGET-069'
+  },
+  {
+    pattern: /\| Posting Groups \|[^\n]*\| `TARGET-032K-GENERAL-POSTING-SETUP-NEW-ACTION-EMPTY-RECORD-GATE` \|/i,
+    message: 'Posting Groups catalog row must not directly reactivate old Page-314 routes before Foundation Readiness'
+  },
+  {
+    pattern: /\| VAT Setup \/ USt \|[^\n]*\| `TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE` \|/i,
+    message: 'VAT catalog row must wait for TARGET-075 and FOUNDATION-READINESS-DECISION.md before any write gate'
+  },
+  {
+    pattern: /\| Customers \|[^\n]*\| `TARGET-046-ITEM-INVENTORY-POSTING-GROUP-SOURCE-MAPPING` \|/i,
+    message: 'Customer catalog row must not jump to item/posting mapping before Foundation Readiness'
+  },
+  {
+    pattern: /\| Vendors \|[^\n]*\| `TARGET-036D2G-U-VEND-MANUAL-NOS-SOURCE-OR-ASSISTED-ROUTE-DECISION` \|/i,
+    message: 'Vendor catalog row must not jump to U-VEND setup routes before Foundation Readiness'
+  },
+  {
+    pattern: /\| Items \|[^\n]*\| `TARGET-027D25-VAT-MATRIX-ROUTE-REOPEN-DECISION` \|/i,
+    message: 'Item catalog row must not jump to VAT matrix routes before Foundation Readiness'
   }
 ];
 
