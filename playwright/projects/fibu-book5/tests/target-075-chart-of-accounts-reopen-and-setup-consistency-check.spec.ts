@@ -365,6 +365,11 @@ test('TARGET-075 runs a read-only Foundation consistency pilot', async ({ page }
   };
 
   const nextCase = 'FOUNDATION-READINESS-DECISION';
+  const evidenceFiles = [
+    `${EVIDENCE_DIR_REL}/TARGET-075-result.json`,
+    `${EVIDENCE_DIR_REL}/README.md`,
+    ...results.flatMap((entry) => [entry.textFile, entry.screenshot, entry.screenshotMetadata])
+  ];
 
   const result = {
     schemaVersion: 1,
@@ -471,11 +476,7 @@ test('TARGET-075 runs a read-only Foundation consistency pilot', async ({ page }
       noApiShortcut: true,
       readOnlyDirectPageRoutes: true
     },
-    evidenceRefs: [
-      `${EVIDENCE_DIR_REL}/TARGET-075-result.json`,
-      `${EVIDENCE_DIR_REL}/README.md`,
-      ...results.flatMap((entry) => [entry.textFile, entry.screenshot, entry.screenshotMetadata])
-    ],
+    evidenceRefs: evidenceFiles,
     nextStepDecision: {
       currentCase: CASE_ID,
       plannedNextCaseBeforeReview: CASE_ID,
@@ -522,13 +523,7 @@ test('TARGET-075 runs a read-only Foundation consistency pilot', async ({ page }
           ? ['Create or update FOUNDATION-READINESS-DECISION.md from TARGET-075 result evidence before selecting any master-data pilot.']
           : ['Review rejected screenshots and blocked page contexts.']
     },
-    changedFiles: [
-      `${EVIDENCE_DIR_REL}/TARGET-075-result.json`,
-      `${EVIDENCE_DIR_REL}/README.md`,
-      `${EVIDENCE_DIR_REL}/target-075-*.txt`,
-      `${EVIDENCE_DIR_REL}/target-075-*.png`,
-      `${EVIDENCE_DIR_REL}/target-075-*.screenshot.json`
-    ],
+    changedFiles: evidenceFiles,
     requiresReview: resultStatus !== 'observed',
     safeToFinalizeState: false,
     reason:
