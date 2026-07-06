@@ -24,7 +24,7 @@ Do not resume TARGET-073 as the next live case. TARGET-073 is parked until a mat
 
 Last checked: 2026-07-06.
 
-Most recent resume check: 2026-07-06 10:20 Europe/Berlin. Local readiness is green (`canResumeAfterFreezeLift=true`), but live execution is still blocked (`canRunNow=false`) by `improvement-freeze-active` and `open-business-central-live-forbidden`. Stored auth is usable for `playthru / UNIVERSAARL-DE` at the time of the check; TARGET-075 must still validate the live shell after an explicit freeze/live-gate lift.
+Most recent resume check: 2026-07-06 10:45 Europe/Berlin. Local readiness is green (`canResumeAfterFreezeLift=true`), but live execution is still blocked (`canRunNow=false`) by `improvement-freeze-active` and `open-business-central-live-forbidden`. Stored auth is usable for `playthru / UNIVERSAARL-DE` at the time of the check and expires in about 8.4 hours; TARGET-075 must still validate the live shell after an explicit freeze/live-gate lift.
 
 | Gate | Result | Meaning |
 | --- | --- | --- |
@@ -37,6 +37,7 @@ Most recent resume check: 2026-07-06 10:20 Europe/Berlin. Local readiness is gre
 | `npm run fibu:target:foundation-consistency-pilot -- --check` | passed locally | The guarded TARGET-075 runner is ready without opening Business Central. |
 | `npm run fibu:target:foundation-consistency-pilot -- --list` | passed, 1 test listed | The TARGET-075 spec is discoverable through the guarded runner. |
 | `npm run agent:foundation:decision:check` | passed locally, result missing as expected | The Foundation Readiness Decision must not be written before TARGET-075 evidence exists. |
+| `npm run agent:masterdata:readfirst:check` | passed locally, live still blocked | PWS-MD-001/002/003 are all prepared and correctly blocked until TARGET-075 evidence, Foundation Readiness Decision and live-gate lift. |
 | `npm run agent:resume:check:overnight` | passed locally, live still blocked | Stored auth was usable for the target `playthru / UNIVERSAARL-DE`, but the freeze/live gate still blocks Business Central. |
 | `npm run check:encoding` | passed | Text encoding is clean enough for this readiness package. |
 
