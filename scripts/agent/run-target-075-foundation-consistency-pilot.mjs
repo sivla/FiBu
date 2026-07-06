@@ -2,6 +2,8 @@ import { spawnSync } from 'node:child_process';
 
 const specPath =
   'playwright/projects/fibu-book5/tests/target-075-chart-of-accounts-reopen-and-setup-consistency-check.spec.ts';
+const EXPECTED_INSTANCE = 'playthru';
+const TARGET_COMPANY = 'UNIVERSAARL-DE';
 
 const rawArgs = process.argv.slice(2);
 const liveApproved = rawArgs.includes('--live-approved');
@@ -183,6 +185,12 @@ try {
 const explicitFreezeOverride = freezeStatus.freezeActive === true && liveApproved && freezeOverrideApproved;
 const liveGateAllowsNow = authDoctorStatus.canRunBusinessCentralWorkflows === true;
 const liveGateBlockedBy = authDoctorStatus.liveGate?.blockedBy ?? [];
+const authTargetOk =
+  authDoctorStatus.authTarget?.canBuildTargetUrl === true &&
+  authDoctorStatus.authTarget?.targetMatchesState === true &&
+  authDoctorStatus.authTarget?.targetBuiltFromCurrentState === true &&
+  authDoctorStatus.authTarget?.targetEnvironment === EXPECTED_INSTANCE &&
+  authDoctorStatus.authTarget?.targetCompany === TARGET_COMPANY;
 if (!checkOnly && authDoctorStatus.canRunBusinessCentralWorkflows !== true && !explicitFreezeOverride) {
   console.error(
     JSON.stringify(
@@ -208,6 +216,31 @@ if (!checkOnly && authDoctorStatus.canRunBusinessCentralWorkflows !== true && !e
   process.exit(4);
 }
 
+if (!checkOnly && !authTargetOk) {
+  console.error(
+    JSON.stringify(
+      {
+        schemaVersion: 1,
+        purpose: 'target-075-auth-target-guard',
+        canRun: false,
+        businessCentralOpened: false,
+        playwrightLiveRunExecuted: false,
+        targetCase: 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK',
+        expectedInstance: EXPECTED_INSTANCE,
+        expectedCompany: TARGET_COMPANY,
+        authTarget: authDoctorStatus.authTarget ?? null,
+        blockedBy: ['auth-target-does-not-match-current-state'],
+        reason:
+          'auth:bc:doctor did not confirm that the Business Central target URL can be rebuilt from current state for playthru / UNIVERSAARL-DE.',
+        nextStep: 'Fix .agent/state/current.json or FIBU_BOOK5_BC_URL target diagnosis before running TARGET-075 live.'
+      },
+      null,
+      2
+    )
+  );
+  process.exit(5);
+}
+
 if (checkOnly) {
   console.log(
     JSON.stringify(
@@ -223,6 +256,7 @@ if (checkOnly) {
         requiresFreezeLift: freezeStatus.freezeActive === true,
         requiresLiveGateLift: !liveGateAllowsNow,
         requiresFreezeOverrideWhenFreezeActive: freezeStatus.freezeActive === true,
+        authTargetOk,
         businessCentralOpened: false,
         playwrightLiveRunExecuted: false,
         authStateChecked: true,

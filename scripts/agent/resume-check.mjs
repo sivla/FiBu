@@ -82,11 +82,19 @@ const authDoctor = steps.find((step) => step.id === 'auth-doctor')?.parsedJson;
 const target075SafeCheck = steps.find((step) => step.id === 'target-075-safe-check')?.parsedJson;
 const foundationDecisionCheck = steps.find((step) => step.id === 'foundation-decision-check')?.parsedJson;
 const qualityRiskIds = (qualityAudit?.risks ?? []).map((risk) => risk.id);
+const authDoctorStoredAuthOk = authDoctor?.authCheck?.canUseStoredAuth === true;
+const authDoctorTargetOk =
+  authDoctor?.authTarget?.canBuildTargetUrl === true &&
+  authDoctor?.authTarget?.targetMatchesState === true &&
+  authDoctor?.authTarget?.targetBuiltFromCurrentState === true &&
+  authDoctor?.authTarget?.targetEnvironment === 'playthru' &&
+  authDoctor?.authTarget?.targetCompany === 'UNIVERSAARL-DE';
 const localResumeReady =
   failed.length === 0 &&
   readiness?.canProceedAfterFreezeLift === true &&
   authCheck?.canUseStoredAuth === true &&
-  authDoctor?.authCheck?.canUseStoredAuth === true &&
+  authDoctorStoredAuthOk &&
+  authDoctorTargetOk &&
   target075SafeCheck?.canResumeAfterFreezeLift === true;
 const freezeActive = freezeStatus?.freezeActive === true;
 const liveGateAllowsNow = authDoctor?.canRunBusinessCentralWorkflows === true;
@@ -209,6 +217,17 @@ const output = {
         decision: authDoctor.decision,
         canRunBusinessCentralWorkflows: authDoctor.canRunBusinessCentralWorkflows,
         operatorActionRequired: authDoctor.operatorActionRequired,
+        authCheck: authDoctor.authCheck
+          ? {
+              canUseStoredAuth: authDoctor.authCheck.canUseStoredAuth,
+              expectedInstance: authDoctor.authCheck.expectedInstance,
+              expectedCompany: authDoctor.authCheck.expectedCompany,
+              ageHours: authDoctor.authCheck.ageHours,
+              maxAgeHours: authDoctor.authCheck.maxAgeHours,
+              profileExists: authDoctor.authCheck.profileExists
+            }
+          : null,
+        authTargetOk: authDoctorTargetOk,
         authTarget: authDoctor.authTarget ?? null,
         liveGate: authDoctor.liveGate,
         nextSafeAction: authDoctor.nextSafeAction
@@ -246,7 +265,13 @@ const output = {
       }
     : null,
   warnings,
-  errors: failed.map((step) => `${step.id} failed with exit code ${step.exitCode}`),
+  errors: [
+    ...failed.map((step) => `${step.id} failed with exit code ${step.exitCode}`),
+    ...(authDoctor && !authDoctorStoredAuthOk ? ['auth-doctor did not confirm usable stored auth'] : []),
+    ...(authDoctor && !authDoctorTargetOk
+      ? ['auth-doctor did not confirm target URL can be built from current state for playthru / UNIVERSAARL-DE']
+      : [])
+  ],
   nextStep: !localResumeReady
     ? 'Fix failed local resume checks before considering TARGET-075.'
     : !liveGateAllowsNow
@@ -260,7 +285,8 @@ if (
   failed.length ||
   readiness?.canProceedAfterFreezeLift !== true ||
   authCheck?.canUseStoredAuth !== true ||
-  authDoctor?.authCheck?.canUseStoredAuth !== true ||
+  !authDoctorStoredAuthOk ||
+  !authDoctorTargetOk ||
   target075SafeCheck?.canResumeAfterFreezeLift !== true
 ) {
   process.exitCode = 1;
