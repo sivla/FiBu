@@ -16,6 +16,7 @@ const capabilitiesPath = '.agent/capabilities.json';
 const packagePath = 'package.json';
 const specPath = 'playwright/projects/fibu-book5/tests/target-075-chart-of-accounts-reopen-and-setup-consistency-check.spec.ts';
 const guardedRunnerPath = 'scripts/agent/run-target-075-foundation-consistency-pilot.mjs';
+const resumeCheckPath = 'scripts/agent/resume-check.mjs';
 const contextPackSelftestPath = 'scripts/agent/context-pack.selftest.mjs';
 const authTargetSelftestPath = 'scripts/agent/auth-target-diagnose.selftest.mjs';
 const foundationDecisionScriptPath = 'scripts/agent/foundation-readiness-decision.mjs';
@@ -81,6 +82,7 @@ for (const requiredFile of [
   packagePath,
   specPath,
   guardedRunnerPath,
+  resumeCheckPath,
   contextPackSelftestPath,
   authTargetSelftestPath,
   foundationDecisionScriptPath,
@@ -104,6 +106,7 @@ let projectDashboard = '';
 let activeArtifactClassification = '';
 let spec = '';
 let guardedRunner = '';
+let resumeCheck = '';
 let foundationDecisionTemplate = '';
 let target075Result = null;
 
@@ -122,6 +125,7 @@ if (!errors.length) {
   activeArtifactClassification = readText(activeArtifactClassificationPath);
   spec = readText(specPath);
   guardedRunner = readText(guardedRunnerPath);
+  resumeCheck = readText(resumeCheckPath);
   foundationDecisionTemplate = readText(foundationDecisionTemplatePath);
   if (exists(target075ResultPath)) target075Result = readJson(target075ResultPath);
 }
@@ -385,6 +389,23 @@ if (guardedRunner) {
   ]) {
     if (!guardedRunner.includes(envName)) {
       errors.push(`${guardedRunnerPath}: guarded runner must pass ${envName} into TARGET-075 evidence`);
+    }
+  }
+}
+
+if (resumeCheck) {
+  for (const requiredSignal of [
+    'target-075-readiness',
+    'scripts/agent/target-075-readiness-check.mjs',
+    'authDoctorTargetOk',
+    'targetUrlPassedToLiveSpec',
+    'foundation-decision-check',
+    'canResumeAfterFreezeLift',
+    'canRunNow',
+    'Do not run TARGET-075 until explicit freeze/live-gate lift'
+  ]) {
+    if (!resumeCheck.includes(requiredSignal)) {
+      errors.push(`${resumeCheckPath}: resume check must keep TARGET-075 gate signal ${requiredSignal}`);
     }
   }
 }
@@ -708,6 +729,7 @@ const checkedFiles = [
   packagePath,
   specPath,
   guardedRunnerPath,
+  resumeCheckPath,
   contextPackSelftestPath,
   authTargetSelftestPath,
   foundationDecisionScriptPath,
