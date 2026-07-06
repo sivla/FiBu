@@ -2,7 +2,7 @@
 
 Status: draft
 Purpose: Projektentscheidungen fuer Universaarl Business Central nachvollziehbar halten.
-Last reviewed: 2026-07-05
+Last reviewed: 2026-07-06
 
 ## Principle
 
@@ -730,3 +730,58 @@ Risks:
 Reversal/correction path:
 
 If a technical artifact becomes harder to maintain in German, keep technical names stable and add German explanation around them instead of renaming code-level identifiers.
+
+### DEC-019 Use RD-FOUND route cards as the master-data foundation decision frame
+
+Date: 2026-07-06
+Workstream: `WS03-FINANCE-FOUNDATION`, `WS04-MASTER-DATA-PRODUCT`
+Status: accepted-as-framework, write-blocked
+
+Problem:
+
+Master Data would become arbitrary if customers, vendors and items were created before numbering, posting groups, payment terms and product setup routes are consciously decided.
+
+Decision:
+
+Use `ROUTE-DECISION-CARDS-FOUNDATION-MASTER-DATA-DRAFT.md` as the decision frame for:
+
+- `RD-FOUND-001` numbering policy for customers, vendors and items
+- `RD-FOUND-002` posting group model before master data
+- `RD-FOUND-003` payment terms and payment method route
+- `RD-FOUND-004` product setup route for units of measure, product posting groups and item loading
+
+These cards allow planning, Jira/Data Request preparation, UAT/training drafts and read-first Playwright probes. They do not authorize setup writes, master-data creation, imports, API shortcuts, Preview Posting or Posting.
+
+Reason:
+
+The cards connect Business Central setup choices to customer data, training, UAT and book output. They also prevent a quick but weak path where records are created before the underlying account-determination and due-date/product model is understandable.
+
+Source basis:
+
+- Microsoft Learn / MB-800-oriented setup, posting group, number series, payment terms, units of measure and configuration package guidance as referenced in the route-card file.
+
+Sandbox/evidence basis:
+
+- No new Business Central or Playwright live work was executed for this decision.
+- `TARGET-075` and `FOUNDATION-READINESS-DECISION.md` remain the required read-first gate before any master-data follow-up.
+
+Customer impact:
+
+Customer-facing data requests can ask for realistic customers, vendors and products without implying that those records are already setup-ready in Business Central.
+
+Book impact:
+
+The book can explain why master data depends on numbering, posting groups, payment terms and product setup before showing creation steps.
+
+Playwright impact:
+
+The next master-data Playwright work stays read-first: `PWS-MD-001`, `PWS-MD-002` and `PWS-MD-003` may only inspect list/card/template context after the Foundation Decision allows it.
+
+Risks:
+
+- If the cards are treated as execution instructions, the project could skip Foundation evidence.
+- If configuration packages are chosen too early, they may hide the UI concepts the book and training need to explain.
+
+Reversal/correction path:
+
+If TARGET-075 or the Foundation Decision shows missing setup context, keep the route cards as planning references and create a narrow Foundation follow-up instead of opening master-data write gates.
