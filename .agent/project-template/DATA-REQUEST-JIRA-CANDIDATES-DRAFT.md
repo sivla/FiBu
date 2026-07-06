@@ -2,7 +2,7 @@
 
 Status: draft
 Purpose: Jira-ready candidate tickets for the first Universaarl customer data requests.
-Last reviewed: 2026-07-05
+Last reviewed: 2026-07-06
 
 ## Scope
 
@@ -45,9 +45,9 @@ These tickets are the first operational bridge from simulated Universaarl data p
 | Dependency ticket | Issue type | Why it exists | Unlocks | Current status |
 | --- | --- | --- | --- | --- |
 | `TASK-PWS-CORE-001` | Task | Read-first proof of Company Information and company context before any setup write. | Company Information setup and book screenshots | ready-after-freeze |
-| `TASK-PWS-MD-001` | Task | Read-first customer list/card context before customer creation route. | Customer training and O2C master-data setup | ready-after-foundation |
-| `TASK-PWS-MD-002` | Task | Read-first vendor list/card context before vendor creation route. | Vendor training and P2P master-data setup | ready-after-foundation |
-| `TASK-PWS-MD-003` | Task | Read-first item/service/non-inventory page context before product setup route. | Item training, product model and inventory route | ready-after-foundation |
+| `TASK-PWS-MD-001` | Task | Read-first customer list/card context before customer creation route. | Customer training and O2C master-data setup | ready-after-foundation-decision |
+| `TASK-PWS-MD-002` | Task | Read-first vendor list/card context before vendor creation route. | Vendor training and P2P master-data setup | ready-after-foundation-decision |
+| `TASK-PWS-MD-003` | Task | Read-first item/service/non-inventory page context before product setup route. | Item training, product model and inventory route | ready-after-foundation-decision |
 | `DEC-MD-NUM-001` | Decision | Numbering policy must be explicit before customer/vendor/item numbers are created. | Customer, vendor and item setup | blocked-by-foundation |
 | `DEC-FF-POSTING-001` | Decision | Posting groups are required before realistic customer/vendor/item setup. | Customers, vendors, items, P2P and O2C | blocked-by-finance-foundation |
 | `DEC-FF-VAT-001` | Decision | VAT groups must be defined before tax-sensitive master data and documents. | Customers, vendors, items, sales and purchase documents | blocked-by-vat-source-and-setup |

@@ -2,7 +2,7 @@
 
 Status: draft
 Purpose: Read-first Playwright scenario catalog for Universaarl case-study core, finance foundation and master-data/product prerequisites.
-Last reviewed: 2026-07-05
+Last reviewed: 2026-07-06
 
 ## Boundary
 
@@ -20,6 +20,7 @@ Every scenario starts with company/environment proof. If the active environment 
 - `planned`: useful scenario, not yet implemented.
 - `needs-source-first`: needs official source or route decision before automation.
 - `needs-ui-discovery-first`: page behavior is not stable enough yet.
+- `ready-after-foundation-decision`: implement as read-first proof only after `FOUNDATION-READINESS-DECISION.md` accepts the dependency boundary.
 - `ready-for-readonly-probe`: can be implemented as read-only Playwright proof.
 - `blocked`: dependency or permission prevents safe proof.
 - `superseded`: no longer needed.
@@ -250,7 +251,7 @@ Supports explanation of payment terms as everyday due-date logic, separate from 
 Workstream: `WS04-MASTER-DATA-PRODUCT`
 Training module: `TR-03-01 Customer master data`
 Related route decision: `RD-FOUND-001`, `RD-FOUND-002`, `RD-FOUND-003`
-Status: `planned`
+Status: `ready-after-foundation-decision`
 
 Purpose:
 
@@ -259,7 +260,16 @@ Read Customer list/card structure and identify required fields, actions, templat
 Start state:
 
 - `PWS-CORE-001` has passed.
+- `FOUNDATION-READINESS-DECISION.md` exists from TARGET-075 and does not block customer read-first work.
+- `DR-MD-CUST-001` remains simulated/Jira-ready, not BC-setup-ready.
 - No customer creation allowed.
+
+Inputs:
+
+- simulated package `UNIVERSAARL_MD_Customers`
+- data request `DR-MD-CUST-001`
+- route cards `RD-FOUND-001`, `RD-FOUND-002`, `RD-FOUND-003`
+- training card `TR-03-01 Customer Master Data`
 
 Evidence output:
 
@@ -268,27 +278,45 @@ Evidence output:
 - available action dropdowns/templates without executing
 - data-changing actions explicitly not clicked
 - dependencies for `DR-MD-001`
+- whether Number Series, Customer Posting Group, General Business Posting Group, VAT Business Posting Group and Payment Terms are visible, hidden, absent or blocked
 
 Stop if:
 
+- `FOUNDATION-READINESS-DECISION.md` is missing or says Foundation is not ready for master-data read-first probes
 - opening a card would create or edit a record
 - no safe existing record is available
 - template/action inspection risks creating data
+- the page suggests a default template/write flow before field context is understood
 
 Book/training use:
 
-Supports customer master-data training without pretending setup is complete.
+Supports customer master-data training without pretending setup is complete. The handbook output should explain which customer-card fields control later documents and postings, but it must not claim that any simulated customer has been created in Business Central.
 
 ## PWS-MD-002 Vendor card/list read-first proof
 
 Workstream: `WS04-MASTER-DATA-PRODUCT`
 Training module: `TR-03-02 Vendor master data`
 Related route decision: `RD-FOUND-001`, `RD-FOUND-002`, `RD-FOUND-003`
-Status: `planned`
+Status: `ready-after-foundation-decision`
 
 Purpose:
 
 Read Vendor list/card structure and identify required fields, payment boundaries and setup dependencies before creating any vendor.
+
+Start state:
+
+- `PWS-CORE-001` has passed.
+- `FOUNDATION-READINESS-DECISION.md` exists from TARGET-075 and does not block vendor read-first work.
+- `DR-MD-VEND-001` remains simulated/Jira-ready, not BC-setup-ready.
+- No vendor creation allowed.
+
+Inputs:
+
+- simulated package `UNIVERSAARL_MD_Vendors`
+- data request `DR-MD-VEND-001`
+- route cards `RD-FOUND-001`, `RD-FOUND-002`, `RD-FOUND-003`
+- payment boundary decision placeholder `DEC-PAYMENT-001`
+- training card `TR-03-02 Vendor Master Data`
 
 Evidence output:
 
@@ -297,27 +325,45 @@ Evidence output:
 - payment terms/method fields if visible
 - warning that real bank data is out of scope
 - dependencies for `DR-MD-002`
+- whether Vendor Posting Group, General Business Posting Group, VAT Business Posting Group, Payment Terms and Payment Method fields are visible, hidden, absent or blocked
 
 Stop if:
 
+- `FOUNDATION-READINESS-DECISION.md` is missing or says Foundation is not ready for master-data read-first probes
 - page would create/edit vendor
 - bank/payment fields require real data
 - company context unclear
+- template/action inspection would create a vendor or imply payment readiness
 
 Book/training use:
 
-Supports vendor master-data chapter and payment-boundary explanation.
+Supports vendor master-data chapter and payment-boundary explanation. The handbook output should separate vendor setup from bank/payment execution and must not store or invent real bank details.
 
 ## PWS-MD-003 Item/service/non-inventory read-first proof
 
 Workstream: `WS04-MASTER-DATA-PRODUCT`, `WS07-INVENTORY-COSTING-STOCK`
 Training module: `TR-03-03 Items, services and non-inventory items`
 Related route decision: `RD-FOUND-004`
-Status: `planned`
+Status: `ready-after-foundation-decision`
 
 Purpose:
 
 Read item card/list context, item type, UOM and posting-group fields before creating inventory/service/non-inventory examples.
+
+Start state:
+
+- `PWS-CORE-001` has passed.
+- `FOUNDATION-READINESS-DECISION.md` exists from TARGET-075 and does not block item/product read-first work.
+- `DR-MD-ITEM-001`, `DEC-MD-UOM-001` and `DEC-MD-PRODUCT-001` are still planning artifacts, not BC setup approval.
+- No item, service item or non-inventory item creation allowed.
+
+Inputs:
+
+- simulated package `UNIVERSAARL_MD_ItemsServices`
+- data request `DR-MD-ITEM-001`
+- route card `RD-FOUND-004`
+- decisions `DEC-MD-UOM-001`, `DEC-MD-PRODUCT-001`
+- training card `TR-03-03 Items, Services and Non-Inventory Items`
 
 Evidence output:
 
@@ -326,17 +372,20 @@ Evidence output:
 - action/template observations
 - dependencies for `DR-MD-003`
 - clear boundary that inventory valuation is not proven
+- whether Base Unit of Measure, Item Type, Gen. Product Posting Group, VAT Product Posting Group, Inventory Posting Group, Costing Method and Item Category are visible, hidden, absent or blocked
 
 Stop if:
 
+- `FOUNDATION-READINESS-DECISION.md` is missing or says Foundation is not ready for master-data/product read-first probes
 - item creation wizard opens
 - item type/UOM fields are hidden and layout options were not checked
 - inventory setup dependency is unresolved
 - route would imply valuation proof
+- product setup route would treat inventory, service and non-inventory items as the same concept
 
 Book/training use:
 
-Supports product model chapter and prevents treating item cards as generic line labels.
+Supports product model chapter and prevents treating item cards as generic line labels. The handbook output should teach the difference between inventory, service and non-inventory records before any sales, purchase or inventory process is claimed.
 
 ## PWS-MD-004 Configuration package/import route read-first proof
 
@@ -368,7 +417,7 @@ Supports route-comparison chapter: manual learning record vs scalable data load.
 
 ## Catalog next steps
 
-1. Turn `PWS-CORE-001` and `PWS-CORE-002` into read-only Playwright specs first.
-2. Use those specs to harden company-context, page-type, dropdown and screenshot-QA helpers.
-3. Only then implement read-first setup dependency scenarios.
-4. Do not run write/setup scenarios until the active case explicitly unlocks them.
+1. Keep `TARGET-075` as the first live resume pilot and generate `FOUNDATION-READINESS-DECISION.md` from its result before master-data probes.
+2. If the Foundation decision allows read-first master-data context, implement `PWS-MD-001`, `PWS-MD-002` and `PWS-MD-003` as no-write probes.
+3. Use those probes to harden company-context, page-type, dropdown, tooltip and screenshot-QA helpers.
+4. Do not run write/setup scenarios until the active case explicitly unlocks them and a Smart Decision names the fields, route, proof and cleanup/keep strategy.
