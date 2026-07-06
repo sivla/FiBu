@@ -65,7 +65,9 @@ Vor Live-Arbeit zuerst lokal pruefen:
 npm run auth:bc:check
 npm run agent:preflight
 npm run agent:resume:check
+npm run agent:resume:check:overnight
 npm run agent:freeze:status
+npm run agent:foundation:decision:check
 npm run check:encoding
 git diff --check
 ```
@@ -78,6 +80,8 @@ npm run fibu:target:foundation-consistency-pilot -- --list
 ```
 
 Live-Ausfuehrung nur nach explizitem Freeze-Lift und gueltigem Gate.
+
+Nach TARGET-075 erst `npm run agent:foundation:decision:write` verwenden, wenn das TARGET-075-Result vorhanden ist und validiert. Vorher bleibt `agent:foundation:decision:check` der sichere No-Write-Modus.
 
 ## Arbeitsregel
 
