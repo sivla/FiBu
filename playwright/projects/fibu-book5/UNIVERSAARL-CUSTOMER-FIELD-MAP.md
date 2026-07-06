@@ -37,7 +37,7 @@ Die Zielkunden sind realistisch fiktiv. Sie duerfen wie echte Kunden wirken, ent
 
 | Zielcode | Zielname | Zielrolle | Aktueller BC-Stand | Realitaetsentscheidung vor Write-Gate | Setup-Abhaengigkeit | Naechste Aktion |
 | --- | --- | --- | --- | --- | --- | --- |
-| `U-CUST-100` | Saarland Maschinenbau AG | Standardkunde fuer ersten O2C-Prozess | existiert als `Universaarl Kunde 100`; nur Karte/Felder read-first bewiesen | nicht blind neu anlegen; entscheiden, ob bestehender Platzhalter umbenannt oder als technischer Lernkunde geparkt wird | Debitorenbuchungsgruppe, Geschaeftsbuchungsgruppe, USt.-Geschaeftsbuchungsgruppe, Zahlungsbedingung | Datenqualitaetsentscheidung und enger Write-Gate |
+| `U-CUST-100` | Saarland Maschinenbau AG | Standardkunde fuer ersten O2C-Prozess | existiert als `Universaarl Kunde 100`; Karte, Statistik/FactBoxes und Debitorenposten-Kontext read-first beobachtet | nicht blind neu anlegen; naechster Schritt ist Entscheidung: kontrollierte Umwandlung oder neue Nummer | Debitorenbuchungsgruppe, Geschaeftsbuchungsgruppe, USt.-Geschaeftsbuchungsgruppe, Zahlungsbedingung | Conversion-or-alternate-number decision |
 | `U-CUST-110` | Pfalz Technik GmbH | zweiter Kunde fuer Listen, Filter, Vergleich | nicht bewiesen | spaeter ueber Konfigurationspaket/Excel-assisted sinnvoll | wie `U-CUST-100`, plus Region/Dimension | Data Request vervollstaendigen |
 | `U-CUST-120` | Mosel Projektbau GmbH | Projekt-/Service-nahe Folgefaelle | nicht bewiesen | parken bis Jobs/Service-Kontext | Kundenvorlage, Zahlungsbedingung, ggf. Projekt-/Service-Dimensionen | parked |
 | `U-CUST-190` | Privatkunde Schulung | einfacher B2C-/Schulungsfall | nicht bewiesen | erst nach USt.-Gate und Datenschutz-/B2C-Grenze | USt.-Kontext, Zahlungsbedingung, keine echten personenbezogenen Daten | parked |
@@ -57,12 +57,12 @@ Diese Werte sind nicht in Business Central angelegt. Sie sind ein realistischer 
 
 ## Datenqualitaetsentscheidung fuer `U-CUST-100`
 
-`U-CUST-100` bleibt die bevorzugte Nummer fuer den ersten realistischen Universaarl-Debitor. Der bestehende BC-Datensatz `Universaarl Kunde 100` wird nicht dupliziert und nicht blind ueberschrieben. Der naechste Live-Schritt ist ein read-first Abhaengigkeitscheck: Karte, Saldo, moegliche Posten/Belege und relevante Feldwerte werden nur gelesen und mit Screenshots belegt.
+`U-CUST-100` bleibt die bevorzugte Nummer fuer den ersten realistischen Universaarl-Debitor. Der bestehende BC-Datensatz `Universaarl Kunde 100` wird nicht dupliziert und nicht blind ueberschrieben. Der read-first Abhaengigkeitscheck wurde in `playthru / UNIVERSAARL-DE` ausgefuehrt: Debitorenliste, Debitorenkarte, Page Inspection, Statistik-/FactBox-Signale und Debitorenposten-Kontext wurden mit Screenshots erfasst.
 
-Wenn der Abhaengigkeitscheck zeigt, dass der Datensatz keine kritischen Buchungs- oder Belegabhaengigkeiten hat, ist der fachlich sauberste spaetere Write-Gate eine kontrollierte Umwandlung dieses Platzhalters in `Saarland Maschinenbau AG` mit Reopen-Proof. Wenn Abhaengigkeiten sichtbar werden, wird `U-CUST-100` als technischer Lern-/Platzhalter geparkt und der erste realistische O2C-Kunde bekommt eine neue Nummer, voraussichtlich `U-CUST-110` oder `U-CUST-101`.
+Die beobachteten Signale sprechen fuer einen engen naechsten Entscheidungsfall: kontrollierte Umwandlung dieses Platzhalters in `Saarland Maschinenbau AG` oder bewusstes Parken und Nutzung einer neuen Nummer. Das ist noch kein Write-Gate. Vor einer Aenderung muessen die Zielwerte, Setup-Grenzen und der Reopen-Proof explizit feststehen.
 
 Diese Entscheidung nutzt realistische fiktive Kundendaten und echte Business-Central-Oberflaechen-Evidence. Sie verwendet keine vertraulichen echten Kundendaten und oeffnet keinen Schreib-Gate.
 
 ## Naechster sinnvoller Schritt
 
-`CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST` ist der naechste sinnvolle Live-Case. Er darf `playthru / UNIVERSAARL-DE` und die Debitorenkarte von `U-CUST-100` nur lesen. Erst danach wird entschieden, ob ein kontrollierter Umwandlungs-Write-Gate fuer `Saarland Maschinenbau AG` fachlich vertretbar ist.
+`CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST` ist beobachtet. Der naechste sinnvolle Fall ist `CUSTOMER-U-CUST-100-CONVERSION-OR-ALTERNATE-NUMBER-DECISION`: lokal entscheiden, ob die beobachtete Read-first-Evidence fuer einen engen Umwandlungs-Write-Gate reicht oder ob ein neuer realistischer Kundencode sicherer ist.

@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized-compatible",
+  "caseId": "CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST",
+  "source": "playwright-readonly-customer-dependency-proof",
+  "resultStatus": "observed-read-first-dependency-context",
+  "startedAt": "2026-07-06T23:23:18.450Z",
+  "completedAt": "2026-07-06T23:23:35.235Z",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "Debitorenkarte / Debitorenposten",
+  "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?company=UNIVERSAARL-DE&dc=0",
+  "liveActionsExecuted": true,
+  "businessCentralOpened": true,
+  "playwrightLiveRunExecuted": true,
+  "actionsTaken": [
+    "Opened guarded Business Central context for playthru / UNIVERSAARL-DE.",
+    "Opened Customers list read-only.",
+    "Opened existing customer through row-double-click-scope-2.",
+    "Opened Customer Ledger Entries read-only for dependency context.",
+    "Captured customer list, card, Page Inspection, ledger-entry dependency and no-save end screenshots.",
+    "Kept the run read-first and no-save."
+  ],
+  "actionsNotTaken": [
+    "No New/Neu action clicked.",
+    "No customer created.",
+    "No customer edited.",
+    "No customer saved.",
+    "No customer deleted.",
+    "No customer template changed.",
+    "No posting group, payment terms, dimensions or VAT setup changed.",
+    "No sales document or draft created.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No payment.",
+    "No API shortcut.",
+    "No confidential real customer data used."
+  ],
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "screenshots": [
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/customer-u-cust-100-010-customer-list-context.png",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/customer-u-cust-100-020-customer-card-context.png",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/customer-u-cust-100-030-page-inspection-context.png",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/customer-u-cust-100-040-customer-ledger-entries-context.png",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/customer-u-cust-100-050-no-save-end-context.png"
+  ],
+  "screenshotQa": {
+    "requiredCheckpoints": [
+      "customer list with U-CUST-100",
+      "U-CUST-100 customer card context with zero-statistics/FactBox signals",
+      "Page Inspection customer boundary",
+      "Customer Ledger Entries route or equivalent card statistics dependency context",
+      "no-save end context"
+    ],
+    "capturedCheckpoints": [
+      "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/customer-u-cust-100-010-customer-list-context.png",
+      "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/customer-u-cust-100-020-customer-card-context.png",
+      "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/customer-u-cust-100-030-page-inspection-context.png",
+      "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/customer-u-cust-100-040-customer-ledger-entries-context.png",
+      "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/customer-u-cust-100-050-no-save-end-context.png"
+    ],
+    "acceptedForDependencyDecision": true,
+    "acceptedForCustomerWriteGate": false,
+    "acceptedForO2CReady": false,
+    "reason": "Multiple real Business Central screenshots show the existing customer and read-only dependency signals from card statistics/FactBoxes; the direct ledger route is helpful but not required for this no-write decision."
+  },
+  "dependencyStatus": "observed-ledger-context",
+  "proved": [
+    "Existing customer U-CUST-100 / Universaarl Kunde 100 is visible in playthru / UNIVERSAARL-DE.",
+    "The existing customer can be opened/read without duplicate creation or save.",
+    "Customer-related Page Inspection context was attempted and captured.",
+    "Customer card statistics/FactBoxes show zero visible balance, open sales and posted sales-history signals for the inspected placeholder.",
+    "Customer Ledger Entries / Debitorenposten context was reached read-only for dependency inspection.",
+    "No customer, setup, document, Preview Posting, Posting, payment or API shortcut was changed."
+  ],
+  "notProved": [
+    "No full cross-table dependency audit across every possible customer reference.",
+    "No customer conversion write gate approval.",
+    "No customer setup correctness.",
+    "No full deletion-safety guarantee from all BC tables; this is a customer-facing read-first dependency signal, not a destructive cleanup approval.",
+    "No O2C readiness.",
+    "No VAT or posting group correctness.",
+    "No Preview Posting, Posting, payment or ledger trace from a new process.",
+    "Page Inspection was customer-related, but no field enforcement or save/reopen cycle was tested."
+  ],
+  "blockedBy": [],
+  "warnings": [
+    "New/Neu may be visible but was not clicked.",
+    "Edit/List Edit may be visible but was not clicked.",
+    "Posting/Preview text may be visible but was not clicked."
+  ],
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "readOnlyDirectPageRoute": true
+  },
+  "nextStepDecision": {
+    "currentCase": "CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST",
+    "plannedNextCaseBeforeReview": "CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST",
+    "lastEvidenceSummary": "U-CUST-100 customer card and read-only ledger/dependency context were observed in playthru / UNIVERSAARL-DE.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The dependency read-first proof is enough to plan the next data-quality decision, but not enough to write automatically.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "CUSTOMER-U-CUST-100-CONVERSION-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "A conversion write gate still needs explicit setup field boundaries and a final smart decision."
+      },
+      {
+        "caseId": "CUSTOMER-ALTERNATE-FIRST-REALISTIC-NUMBER-DECISION",
+        "status": "ready-after-current",
+        "reason": "Use only if dependencies make conversion unsuitable."
+      },
+      {
+        "caseId": "PWS-MD-CUSTOMER-CONFIG-PACKAGE-ROUTE",
+        "status": "ready-after-current",
+        "reason": "Batch route stays useful after first-record policy is settled."
+      },
+      {
+        "caseId": "O2C-FIRST-CUSTOMER-PROCESS",
+        "status": "blocked",
+        "reason": "Blocked until customer setup, item/service setup and posting/VAT boundaries are consciously handled."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "CUSTOMER-U-CUST-100-CONVERSION-OR-ALTERNATE-NUMBER-DECISION",
+    "whySelectedNextCaseIsBest": "The next step should decide whether the observed dependency context permits a narrow conversion write gate or whether a new customer number is safer.",
+    "risksBeforeNextCase": [
+      "Do not edit or save U-CUST-100 without a fresh write gate.",
+      "Do not claim customer setup or O2C readiness from dependency visibility alone.",
+      "Do not use confidential real customer data."
+    ],
+    "requiredPreparation": [
+      "Review screenshots and decide conversion versus alternate-number route."
+    ]
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/customer-u-cust-100-010-dependency-context.txt",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/customer-u-cust-100-010-customer-list-context.png",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/customer-u-cust-100-010-customer-list-context.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/customer-u-cust-100-020-customer-card-context.png",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/customer-u-cust-100-020-customer-card-context.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/customer-u-cust-100-030-page-inspection-context.png",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/customer-u-cust-100-030-page-inspection-context.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/customer-u-cust-100-040-customer-ledger-entries-context.png",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/customer-u-cust-100-040-customer-ledger-entries-context.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/customer-u-cust-100-050-no-save-end-context.png",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/customer-u-cust-100-050-no-save-end-context.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST-result.json"
+  ],
+  "nextCase": "CUSTOMER-U-CUST-100-CONVERSION-OR-ALTERNATE-NUMBER-DECISION",
+  "requiresReview": false,
+  "safeToFinalizeState": true
+}

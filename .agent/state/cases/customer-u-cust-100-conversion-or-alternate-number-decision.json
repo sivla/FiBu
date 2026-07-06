@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "caseId": "CUSTOMER-U-CUST-100-CONVERSION-OR-ALTERNATE-NUMBER-DECISION",
+  "status": "planned-local-decision",
+  "mode": "universaarl-masterdata-route-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w2-core-masterdata",
+  "workstream": "WS04 Master Data / Product Model",
+  "epic": "Customer master data realistic data route",
+  "issueType": "Decision",
+  "purpose": "Decide whether existing placeholder customer U-CUST-100 can become the first realistic Universaarl customer or whether a new customer number is safer.",
+  "businessPurpose": "Keep the customer master-data route realistic without duplicating customer numbers or overwriting a record without explicit write-gate boundaries.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST-result.json",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/README.md",
+    "playwright/projects/fibu-book5/UNIVERSAARL-CUSTOMER-FIELD-MAP.md"
+  ],
+  "mayRunPlaywright": false,
+  "mayOpenBusinessCentral": false,
+  "effectiveBcActionsAllowed": false,
+  "allowedActions": [
+    "read-existing-evidence",
+    "review-screenshot-metadata",
+    "decide-conversion-versus-new-number",
+    "prepare-next-case",
+    "update-state-dashboard-and-field-map"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "use-confidential-real-customer-data",
+    "open-business-central-live",
+    "run-playwright-live",
+    "create-customer",
+    "edit-customer",
+    "save-customer",
+    "delete-customer",
+    "change-customer-template",
+    "change-posting-group",
+    "change-payment-terms",
+    "change-dimensions",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-master-data-ready",
+    "claim-sales-process-ready"
+  ],
+  "decisionOptions": [
+    {
+      "option": "prepare-conversion-write-gate",
+      "meaning": "Use U-CUST-100 for Saarland Maschinenbau AG, but only in a later guarded write case with explicit target fields, setup boundaries and reopen-proof.",
+      "whenToChoose": "Choose if read-first evidence remains accepted and no critical dependency or training reason argues against converting the placeholder."
+    },
+    {
+      "option": "park-placeholder-use-new-number",
+      "meaning": "Leave U-CUST-100 as a technical placeholder and use a fresh customer number for Saarland Maschinenbau AG.",
+      "whenToChoose": "Choose if dependency risk, training clarity or audit readability is better with a new customer number."
+    }
+  ],
+  "acceptanceCriteria": [
+    "Decision result names one selected route.",
+    "No Business Central live run is executed.",
+    "No customer or setup data is changed.",
+    "Next case is either a narrow conversion write gate or an alternate-number preparation case.",
+    "Book/training boundary says that real-looking data is simulated and not confidential real customer data."
+  ],
+  "stopIf": [
+    "Evidence is insufficient to decide between conversion and new number.",
+    "A proposed route would require confidential real customer data.",
+    "A proposed route would skip setup-field boundaries or reopen-proof."
+  ],
+  "nextCase": "CUSTOMER-U-CUST-100-CONVERSION-OR-ALTERNATE-NUMBER-DECISION",
+  "updatedAt": "2026-07-07T01:35:00.000+02:00"
+}

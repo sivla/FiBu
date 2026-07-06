@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-07T01:20:00.000+02:00",
+  "updatedAt": "2026-07-07T01:30:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -8,12 +8,12 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w2-core-masterdata",
-  "activeCase": "CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST",
-  "active_case_file": ".agent/state/cases/customer-u-cust-100-dependency-readfirst.json",
-  "activeCaseFile": ".agent/state/cases/customer-u-cust-100-dependency-readfirst.json",
+  "activeCase": "CUSTOMER-U-CUST-100-CONVERSION-OR-ALTERNATE-NUMBER-DECISION",
+  "active_case_file": ".agent/state/cases/customer-u-cust-100-conversion-or-alternate-number-decision.json",
+  "activeCaseFile": ".agent/state/cases/customer-u-cust-100-conversion-or-alternate-number-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-masterdata-readfirst",
+  "mode": "universaarl-masterdata-route-decision",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -34,15 +34,10 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "run-playwright-readonly",
-    "open-business-central-readonly",
-    "confirm-playthru-instance",
-    "confirm-universaarl-company",
-    "open-customers-list-readonly",
-    "open-existing-customer-card-readonly",
-    "inspect-balance-entries-statistics-readonly",
-    "capture-screenshot-qa",
-    "write-evidence-result",
+    "read-existing-evidence",
+    "review-screenshot-metadata",
+    "decide-conversion-versus-new-number",
+    "prepare-next-case",
     "update-state-dashboard-and-field-map"
   ],
   "forbiddenActions": [
@@ -52,6 +47,8 @@
     "fake-evidence",
     "book-claim-without-evidence",
     "use-confidential-real-customer-data",
+    "open-business-central-live",
+    "run-playwright-live",
     "create-customer",
     "edit-customer",
     "save-customer",
@@ -67,9 +64,9 @@
     "claim-master-data-ready",
     "claim-sales-process-ready"
   ],
-  "nextCase": "CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST",
-  "nextStep": "Run a read-first/no-write dependency proof for existing U-CUST-100 before deciding whether it can become Saarland Maschinenbau AG. Confirm playthru / UNIVERSAARL-DE, inspect customer list/card and dependency signals with screenshot QA, and do not edit or save anything.",
-  "preparedNextCaseFile": ".agent/state/cases/customer-u-cust-100-dependency-readfirst.json",
+  "nextCase": "CUSTOMER-U-CUST-100-CONVERSION-OR-ALTERNATE-NUMBER-DECISION",
+  "nextStep": "Decide locally whether observed U-CUST-100 dependency evidence is enough to prepare a narrow conversion write gate for Saarland Maschinenbau AG or whether a fresh customer number is safer. Do not open Business Central or write customer data in this decision case.",
+  "preparedNextCaseFile": ".agent/state/cases/customer-u-cust-100-conversion-or-alternate-number-decision.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -11050,12 +11047,46 @@
   },
   "latestCustomerUCust100DependencyReadfirst": {
     "caseId": "CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST",
-    "status": "planned-read-first",
+    "status": "observed-read-first-dependency-context",
+    "resultPath": "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST-result.json",
     "instance": "playthru",
     "company": "UNIVERSAARL-DE",
-    "effectiveBcActionsAllowed": false,
-    "purpose": "Read-only dependency proof for U-CUST-100 before customer conversion/write gate.",
-    "nextBoundary": "No customer edit/save/import/O2C until this read-first proof is observed or blocked.",
-    "updatedAt": "2026-07-07T01:20:00.000+02:00"
+    "businessCentralOpened": true,
+    "playwrightLiveRunExecuted": true,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "dependencyStatus": "observed-ledger-context",
+    "screenshotQa": "Multiple real Business Central screenshots show the existing customer and read-only dependency signals from card statistics/FactBoxes; the direct ledger route is helpful but not required for this no-write decision.",
+    "proved": [
+      "Existing customer U-CUST-100 / Universaarl Kunde 100 is visible in playthru / UNIVERSAARL-DE.",
+      "The existing customer can be opened/read without duplicate creation or save.",
+      "Customer-related Page Inspection context was attempted and captured.",
+      "Customer card statistics/FactBoxes show zero visible balance, open sales and posted sales-history signals for the inspected placeholder.",
+      "Customer Ledger Entries / Debitorenposten context was reached read-only for dependency inspection.",
+      "No customer, setup, document, Preview Posting, Posting, payment or API shortcut was changed."
+    ],
+    "notProved": [
+      "No full cross-table dependency audit across every possible customer reference.",
+      "No customer conversion write gate approval.",
+      "No customer setup correctness.",
+      "No full deletion-safety guarantee from all BC tables; this is a customer-facing read-first dependency signal, not a destructive cleanup approval.",
+      "No O2C readiness.",
+      "No VAT or posting group correctness.",
+      "No Preview Posting, Posting, payment or ledger trace from a new process.",
+      "Page Inspection was customer-related, but no field enforcement or save/reopen cycle was tested."
+    ],
+    "screenshots": [
+      "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/customer-u-cust-100-010-customer-list-context.png",
+      "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/customer-u-cust-100-020-customer-card-context.png",
+      "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/customer-u-cust-100-030-page-inspection-context.png",
+      "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/customer-u-cust-100-040-customer-ledger-entries-context.png",
+      "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/customer-u-cust-100-050-no-save-end-context.png"
+    ],
+    "nextCase": "CUSTOMER-U-CUST-100-CONVERSION-OR-ALTERNATE-NUMBER-DECISION",
+    "updatedAt": "2026-07-07T01:30:00.000+02:00"
   }
 }

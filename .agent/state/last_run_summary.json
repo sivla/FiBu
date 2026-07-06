@@ -1,37 +1,51 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "CUSTOMER-FIRST-RECORD-DATA-QUALITY-DECISION",
-  "caseId": "CUSTOMER-FIRST-RECORD-DATA-QUALITY-DECISION",
-  "status": "completed-local-decision",
-  "completedAt": "2026-07-07T01:20:00.000+02:00",
-  "mode": "universaarl-masterdata-route-decision",
+  "runId": "CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST",
+  "caseId": "CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST",
+  "status": "observed-read-first-dependency-context",
+  "completedAt": "2026-07-07T01:30:00.000+02:00",
+  "mode": "universaarl-masterdata-readfirst",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Completed the local first-customer data-quality decision. U-CUST-100 remains the preferred first realistic customer number, but the existing placeholder Universaarl Kunde 100 must be checked read-first for dependencies before any conversion write gate. No Business Central or Playwright live execution occurred.",
-  "resultPath": "playwright/projects/fibu-book5/evidence/customer-first-record-data-quality-decision/CUSTOMER-FIRST-RECORD-DATA-QUALITY-DECISION-result.json",
+  "summary": "Observed existing customer U-CUST-100 / Universaarl Kunde 100 read-only in real Business Central playthru / UNIVERSAARL-DE with customer list, customer card, Page Inspection, statistics/FactBoxes and Customer Ledger Entries context. No customer, setup, document, Preview Posting, Posting, payment or API action was changed.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST-result.json",
   "changedArtifacts": [
+    "package.json",
+    "scripts/agent/run-customer-u-cust-100-dependency-readfirst.mjs",
+    "playwright/projects/fibu-book5/tests/customer-u-cust-100-dependency-readfirst.spec.ts",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/",
     "playwright/projects/fibu-book5/UNIVERSAARL-CUSTOMER-FIELD-MAP.md",
-    "playwright/projects/fibu-book5/evidence/customer-first-record-data-quality-decision/CUSTOMER-FIRST-RECORD-DATA-QUALITY-DECISION-result.json",
-    ".agent/state/cases/customer-first-record-data-quality-decision.json",
     ".agent/state/cases/customer-u-cust-100-dependency-readfirst.json",
+    ".agent/state/cases/customer-u-cust-100-conversion-or-alternate-number-decision.json",
     ".agent/state/current.json",
     ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md"
   ],
   "actionsTaken": [
-    "Selected read-first dependency proof before converting or replacing U-CUST-100.",
-    "Kept realistic fictional data separate from confidential real customer data.",
-    "Prepared the next no-write customer dependency case."
+    "Opened guarded Business Central context for playthru / UNIVERSAARL-DE.",
+    "Opened Customers list read-only.",
+    "Opened existing customer through row-double-click-scope-2.",
+    "Opened Customer Ledger Entries read-only for dependency context.",
+    "Captured customer list, card, Page Inspection, ledger-entry dependency and no-save end screenshots.",
+    "Kept the run read-first and no-save."
   ],
   "actionsNotTaken": [
-    "No Business Central opened.",
-    "No Playwright live run executed.",
-    "No customer created, edited, saved, deleted or imported.",
-    "No document, draft, Preview Posting or Posting.",
-    "No API shortcut and no confidential real customer data."
+    "No New/Neu action clicked.",
+    "No customer created.",
+    "No customer edited.",
+    "No customer saved.",
+    "No customer deleted.",
+    "No customer template changed.",
+    "No posting group, payment terms, dimensions or VAT setup changed.",
+    "No sales document or draft created.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No payment.",
+    "No API shortcut.",
+    "No confidential real customer data used."
   ],
-  "businessCentralOpened": false,
-  "playwrightLiveRunExecuted": false,
+  "businessCentralOpened": true,
+  "playwrightLiveRunExecuted": true,
   "setupChanged": false,
   "setupChangeAttempted": false,
   "masterDataChanged": false,
@@ -41,15 +55,29 @@
   "payment": false,
   "apiShortcut": false,
   "proved": [
-    "The realistic first customer path must avoid duplicate U-CUST-100 creation.",
-    "The next BC work should be read-only dependency proof, not a write gate.",
-    "U-CUST-100 can become Saarland Maschinenbau AG only after dependency proof."
+    "Existing customer U-CUST-100 / Universaarl Kunde 100 is visible in playthru / UNIVERSAARL-DE.",
+    "The existing customer can be opened/read without duplicate creation or save.",
+    "Customer-related Page Inspection context was attempted and captured.",
+    "Customer card statistics/FactBoxes show zero visible balance, open sales and posted sales-history signals for the inspected placeholder.",
+    "Customer Ledger Entries / Debitorenposten context was reached read-only for dependency inspection.",
+    "No customer, setup, document, Preview Posting, Posting, payment or API shortcut was changed."
   ],
   "notProved": [
-    "No customer dependency status was observed in this local run.",
-    "No customer setup correctness, O2C readiness, Preview Posting, Posting or ledger trace."
+    "No full cross-table dependency audit across every possible customer reference.",
+    "No customer conversion write gate approval.",
+    "No customer setup correctness.",
+    "No full deletion-safety guarantee from all BC tables; this is a customer-facing read-first dependency signal, not a destructive cleanup approval.",
+    "No O2C readiness.",
+    "No VAT or posting group correctness.",
+    "No Preview Posting, Posting, payment or ledger trace from a new process.",
+    "Page Inspection was customer-related, but no field enforcement or save/reopen cycle was tested."
   ],
-  "nextCase": "CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST",
-  "nextStep": "Run CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST with screenshot QA and no writes.",
-  "updatedAt": "2026-07-07T01:20:00.000+02:00"
+  "warnings": [
+    "New/Neu may be visible but was not clicked.",
+    "Edit/List Edit may be visible but was not clicked.",
+    "Posting/Preview text may be visible but was not clicked."
+  ],
+  "nextCase": "CUSTOMER-U-CUST-100-CONVERSION-OR-ALTERNATE-NUMBER-DECISION",
+  "nextStep": "Run CUSTOMER-U-CUST-100-CONVERSION-OR-ALTERNATE-NUMBER-DECISION locally before any customer write. Decide conversion write gate versus fresh customer number.",
+  "updatedAt": "2026-07-07T01:30:00.000+02:00"
 }
