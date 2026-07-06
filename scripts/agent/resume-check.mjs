@@ -83,6 +83,8 @@ const localResumeReady =
   authDoctor?.authCheck?.canUseStoredAuth === true &&
   target075SafeCheck?.canResumeAfterFreezeLift === true;
 const freezeActive = freezeStatus?.freezeActive === true;
+const liveGateAllowsNow = authDoctor?.canRunBusinessCentralWorkflows === true;
+const liveGateBlockedBy = authDoctor?.liveGate?.blockedBy ?? [];
 
 const warnings = [];
 if (qualityRiskIds.includes('narrow-tsconfig')) {
@@ -116,9 +118,11 @@ const output = {
   caseId: 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK',
   authMinExpiresInHours: minAuthExpiresInHours,
   canResumeAfterFreezeLift: localResumeReady,
-  canRunNow: localResumeReady && !freezeActive,
+  canRunNow: localResumeReady && liveGateAllowsNow,
   freezeActive,
   requiresFreezeLift: freezeActive,
+  requiresLiveGateLift: localResumeReady && !liveGateAllowsNow,
+  liveGateBlockedBy,
   liveActionsExecuted: false,
   businessCentralOpened: false,
   playwrightLiveRunExecuted: false,
@@ -213,8 +217,8 @@ const output = {
   errors: failed.map((step) => `${step.id} failed with exit code ${step.exitCode}`),
   nextStep: !localResumeReady
     ? 'Fix failed local resume checks before considering TARGET-075.'
-    : freezeActive
-      ? 'Local resume checks passed, including stored auth, but the freeze is still active. Do not run TARGET-075 until explicit freeze lift or a second explicit freeze override.'
+    : !liveGateAllowsNow
+      ? 'Local resume checks passed, including stored auth, but the active live gate still blocks Business Central/Playwright execution. Do not run TARGET-075 until explicit freeze/live-gate lift or a second explicit freeze override.'
       : 'All local resume checks passed, including stored auth. Run TARGET-075 only with live shell/context validation.'
 };
 
@@ -224,6 +228,7 @@ if (
   failed.length ||
   readiness?.canProceedAfterFreezeLift !== true ||
   authCheck?.canUseStoredAuth !== true ||
+  authDoctor?.authCheck?.canUseStoredAuth !== true ||
   target075SafeCheck?.canResumeAfterFreezeLift !== true
 ) {
   process.exitCode = 1;
