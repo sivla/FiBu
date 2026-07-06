@@ -135,6 +135,9 @@ const steps = [
   runStep('foundation-decision-check', npmCmd, ['run', '--silent', 'agent:foundation:decision', '--', '--check'], {
     parseJson: true
   }),
+  runStep('masterdata-readfirst-check', npmCmd, ['run', '--silent', 'agent:masterdata:readfirst:check'], {
+    parseJson: true
+  }),
   runStep('encoding', npmCmd, ['run', '--silent', 'check:encoding'], { keepStdout: true }),
   runStep('target-075-guarded-list', npmCmd, ['run', '--silent', 'fibu:target:foundation-consistency-pilot', '--', '--list'], {
     keepStdout: true
@@ -150,6 +153,7 @@ const authCheck = steps.find((step) => step.id === 'auth-state-check')?.parsedJs
 const authDoctor = steps.find((step) => step.id === 'auth-doctor')?.parsedJson;
 const target075SafeCheck = steps.find((step) => step.id === 'target-075-safe-check')?.parsedJson;
 const foundationDecisionCheck = steps.find((step) => step.id === 'foundation-decision-check')?.parsedJson;
+const masterDataReadFirstCheck = steps.find((step) => step.id === 'masterdata-readfirst-check')?.parsedJson;
 const qualityRiskIds = (qualityAudit?.risks ?? []).map((risk) => risk.id);
 const authDoctorStoredAuthOk = authDoctor?.authCheck?.canUseStoredAuth === true;
 const authDoctorTargetOk =
@@ -285,6 +289,21 @@ const output = {
         errors: foundationDecisionCheck.errors ?? [],
         warnings: foundationDecisionCheck.warnings ?? [],
         nextStep: foundationDecisionCheck.nextStep
+      }
+    : null,
+  masterDataReadFirstCheck: masterDataReadFirstCheck
+    ? {
+        ok: masterDataReadFirstCheck.ok === true,
+        allPrepared: masterDataReadFirstCheck.allPrepared === true,
+        anyUnexpectedLiveReady: masterDataReadFirstCheck.anyUnexpectedLiveReady === true,
+        blockedByLiveGateOrFoundation: masterDataReadFirstCheck.blockedByLiveGateOrFoundation === true,
+        checks: (masterDataReadFirstCheck.checks ?? []).map((check) => ({
+          id: check.id,
+          runnerOk: check.runnerOk,
+          canRunNow: check.canRunNow,
+          blockedBy: check.blockedBy
+        })),
+        nextStep: masterDataReadFirstCheck.nextStep
       }
     : null,
   authDoctor: authDoctor
