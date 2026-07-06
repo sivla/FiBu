@@ -46,12 +46,12 @@ Entscheidung fuer den naechsten Schritt:
 | Route | Bewertung fuer Universaarl | Entscheidung |
 | --- | --- | --- |
 | Manuelle UI auf Page 472 | Fachlich gut fuer Schulung und Feldverstaendnis, aber TARGET-071/TARGET-073/TARGET-073B beweisen keinen sicheren zeilen-/spaltengebundenen Editor. | Kein weiterer Write-Versuch ohne neue, sichtbare Editor-Hypothese. |
-| Konfigurationspaket / Excel-assisted Import | Standardnahe Projekt-Route fuer strukturierte Setupdaten; passt besser zu einer grossen Firma, wenn Tabellen/Felder, Validierung, Apply, Reopen-Proof und Cleanup/Keep-Strategie dokumentiert sind. | Naechster Kandidat fuer eine read-first Route Discovery, noch kein Apply/Import. |
+| Konfigurationspaket / Excel-assisted Import | Standardnahe Projekt-Route fuer strukturierte Setupdaten; D19/D21 haben die Route bereits untersucht. Page 8615 war sichtbar, aber Tabelle 325 wurde nicht als sichere Paketzeile bewiesen; `U-VAT325-DISC` blieb Metadaten. D23/D23B parken die Route wegen unsicherem Cleanup. | Nicht naechster Schritt. Nur mit neuer Cleanup- oder Existing-Record-Hypothese wieder aufnehmen. |
 | Assisted Setup | Produktstandard fuer Grundsetup, aber aktuell kein Beweis, dass der Assistent die konkrete Universaarl-`INLAND`/`VAT19`-Matrix sauber erzeugt. | Nur als Discovery, kein Finish ohne eigenen Case. |
 | API/AL | Technisch moeglich fuer Automatisierung, aber fuer Buch, Schulung und Erstsetup zu indirekt, solange UI/Package-Route nicht verstanden ist. | Geparkt, nur mit explizitem Gate. |
-| Bewusst parken | Fachlich vertretbar, wenn Master Data noch nicht starten soll und Foundation weiter unvollstaendig bleibt. | Aktueller Sicherheitszustand: VAT-/Posting-Writes bleiben geparkt. |
+| Bewusst parken | Fachlich vertretbar, weil keine getestete Route die konkrete `INLAND`/`VAT19`-Matrix sicher schreibt und prueft. | Aktueller Sicherheitszustand aus TARGET-027D24: VAT-Matrix geparkt, keine VAT-Finalitaet, kein Preview, kein Posting. |
 
-Naechster konkreter Projektfortschritt ist daher kein Page-472-Write, sondern eine schmale, lesende Discovery fuer Konfigurationspakete/Setup-Import als moegliche Foundation-Route. Diese Discovery darf nur Page, Tabellen-/Feldkontext, Import-/Apply-Risiken, Validierung und Screenshot-QA erfassen. Sie darf kein Paket anwenden, keine Setupdaten schreiben und keine Master Data freigeben.
+Naechster konkreter Projektfortschritt ist daher kein Page-472-Write und keine Wiederholung der Konfigurationspaket-Discovery. TARGET-027D24 hat die VAT-Matrix bewusst geparkt; die spaetere Posting-Group-Kette darf nur aus ihrer aktuellen Evidence heraus fortgesetzt werden. Vor jedem Live-Resume muss zusaetzlich die Freeze-State-Konsistenz stimmen: entweder bleibt `PROJECT-IMPROVEMENT-FREEZE-001` formal aktiv, oder der Freeze wird bewusst im State aufgehoben. Bis dahin gibt es keine Setupwerte, keine Master Data, keine Buchungsvorschau und keine Buchung.
 
 ## No-Write-Grenze aus TARGET-075
 
@@ -189,7 +189,7 @@ Erlaubte Anschlussklassifikationen:
 - PWS-FF-002 nicht als akzeptierten Buchungsmatrix-Nachweis verwenden; der Screenshot zeigt Rollencenter statt Page 314.
 - PWS-FF-002B nicht wiederholen, solange keine neue Route-Hypothese vorliegt; direkte URL und scoped Search-Click sind als aktueller Weg blockiert.
 - TARGET-073 und TARGET-073B nicht als as-is Retry wiederholen; TARGET-073B ist konsumierte blockierte No-Write-Evidence.
-- Vor einem neuen VAT-/Posting-Setup-Schreibversuch zuerst die Konfigurationspaket-/Import-Route read-only untersuchen oder eine andere standardnahe Route mit Quelle begruenden.
+- Vor einem neuen VAT-/Posting-Setup-Schreibversuch TARGET-027D19 bis TARGET-027D24 konsumieren: Page-472-UI-Write und Konfigurationspaket-Route sind geparkt. Eine neue VAT-Route braucht eine wirklich neue UI-, Assisted-Setup-, Existing-Record-, Cleanup- oder Import-Hypothese.
 - Starterkonten erneut sichtbar pruefen, wenn der Kontenplan Setup- oder Buchaussagen tragen soll.
 - Master Data, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt, bis die Foundation-Grenzen geklaert sind.
 - Classify master-data readiness only after chart/setup context is accepted.
@@ -205,4 +205,4 @@ Erlaubte Anschlussklassifikationen:
 
 ## Naechster Case
 
-- Foundation-Grenzen zuerst klaeren; keine Master-Data-, VAT-, Posting- oder Prozess-Writes starten.
+- Freeze-State-Konsistenz klaeren und danach die aktuelle Foundation-Evidence-Kette fortsetzen; keine Master-Data-, VAT-, Posting- oder Prozess-Writes starten, solange der Freeze formal aktiv oder widerspruechlich ist.
