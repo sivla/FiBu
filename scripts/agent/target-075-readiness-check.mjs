@@ -297,8 +297,8 @@ if (packageJson) {
     errors.push(`${packagePath}: script agent:resume:check must reference ${resumeCheckPath}`);
   }
   const overnightResumeCheckScript = packageJson.scripts?.['agent:resume:check:overnight'] ?? '';
-  if (!overnightResumeCheckScript.includes(resumeCheckPath) || !overnightResumeCheckScript.includes('--min-auth-expires-hours=8')) {
-    errors.push(`${packagePath}: script agent:resume:check:overnight must run ${resumeCheckPath} --min-auth-expires-hours=8`);
+  if (!overnightResumeCheckScript.includes(resumeCheckPath) || !overnightResumeCheckScript.includes('--min-auth-expires-hours=9')) {
+    errors.push(`${packagePath}: script agent:resume:check:overnight must run ${resumeCheckPath} --min-auth-expires-hours=9`);
   }
 }
 
