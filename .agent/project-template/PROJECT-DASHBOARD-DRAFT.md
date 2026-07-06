@@ -2,7 +2,7 @@
 
 Status: active-control
 Purpose: Kompakte Projektleiter-Sicht fuer Universaarl Business Central Implementierung, Buch, Training, UAT und Playwright-Evidence.
-Last reviewed: 2026-07-06
+Last reviewed: 2026-07-07
 
 ## Aktive Wahrheit
 
@@ -14,7 +14,7 @@ Last reviewed: 2026-07-06
 | Artefakt-Klassifikation | `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` |
 | Geparkter Live-Case | `TARGET-073` |
 | Letzter Resume-Pilot | `TARGET-075`, read-first, no-write, abgeschlossen |
-| Aktiver Case | `PWS-MD-004C-CUSTOMER-BILLING-PAYMENTS-FASTTABS-READFIRST` |
+| Aktiver Case | `TRAINING-CUSTOMER-CARD-BASICS-DRAFT` |
 | Legacy-Grenze | RM-DEMO, MCP_1_20260210, CRONUS, Rhein-Main und RM-* sind keine aktive Projektwahrheit. |
 
 ## Steuerungsregel
@@ -55,7 +55,7 @@ M0 ist als Arbeitsrahmen nutzbar. Der naechste sinnvolle Fortschritt ist keine w
 | Freeze/Resume | passed-for-read-first-history | TARGET-075 ist gelaufen; neue Live-Arbeit braucht trotzdem aktuellen Auth-/Case-Gate. |
 | Finance Foundation | blocked-by-specific-gaps | Foundation-Decision aktuell halten: Page 314 und Page 472 active editor sind die harten UI-/Setup-Grenzen; TARGET-073B ist als no-write Proof gelaufen und blockiert. |
 | VAT/USt, Dimensions, Posting Groups | partial/blocked | INLAND/VAT19 sichtbar, Page 472-Hauptoberflaeche und Page Inspection/Tabelle 325 bewiesen; VAT-Matrix-Schreibroute und Page 314 bleiben nicht posting-ready. |
-| Master Data | customer-fasttab-readfirst-next | Setup-Gap-Decision abgeschlossen: `U-CUST-100` reicht fuer Handbuch-/Training-Draft zur Debitorenkarte, aber nicht fuer O2C/Posting. Naechster Case ist `PWS-MD-004C`: `Fakturierung` und `Zahlungen` read-only aufklappen, mit mehreren Screenshots pruefen, nichts speichern. |
+| Master Data | customer-fasttabs-observed-training-next | `U-CUST-100` wurde read-only auf der Debitorenkarte beobachtet; `Fakturierung` und `Zahlungen` sind per Screenshot-QA fuer Handbuch/Training nutzbar, aber nicht fuer O2C/Posting. Naechster Case ist lokal: Debitorenkarten-Schulung schreiben, keine Live-UI. |
 | Buch/Handbuch/Training | draft | Nur auf Basis offizieller Quellen, Universaarl-Evidence oder klar markierter Annahmen ausbauen. |
 | Playwright/Evidence | draft | Read-first Specs und Screenshot-QA stabilisieren; keine Legacy-Routen als aktive Tests nutzen. |
 | Legacy-Decommission | active-work | Legacy nur inventarisieren, neutralisieren, portieren oder parken; Evidence nicht blind loeschen. |
@@ -90,7 +90,7 @@ M0 ist als Arbeitsrahmen nutzbar. Der naechste sinnvolle Fortschritt ist keine w
 3. Vor Live-Arbeit: `agent:preflight`, `check:encoding`, `agent:quality:audit`, `agent:resume:check || true`, `agent:freeze:status || true`.
 4. `TARGET-073` bleibt geparkt.
 5. Kein as-is Retry von TARGET-073 oder TARGET-073B; TARGET-073B ist konsumierte blockierte No-Write-Evidence.
-6. `FOUNDATION-READINESS-DECISION.md` als aktuelle Grenze nutzen: `U-CUST-100` ist als Debitorenkarte beobachtet; naechster Live-Schritt ist nur read-only FastTab-Pruefung von `Fakturierung` und `Zahlungen`, keine Duplikat-Anlage und kein O2C-Sprung.
+6. `FOUNDATION-READINESS-DECISION.md` als aktuelle Grenze nutzen: `U-CUST-100`, `Fakturierung` und `Zahlungen` sind read-only beobachtet; naechster Schritt ist eine lokale Debitorenkarten-Schulung, keine Duplikat-Anlage und kein O2C-Sprung.
 
 ## Update rule
 

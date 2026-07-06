@@ -246,11 +246,22 @@ Erlaubte Anschlussklassifikationen:
 - Schreibgrenze: kein Debitor anlegen, bearbeiten oder speichern; keine Vorlage, Buchungsgruppe, Zahlungsbedingung, USt-/VAT-Einstellung, Dimension, Verkaufsbeleg, Buchungsvorschau oder Buchung.
 - Naechster Case: `PWS-MD-004C-CUSTOMER-BILLING-PAYMENTS-FASTTABS-READFIRST`.
 
+## PWS-MD-004C Customer Billing and Payments FastTabs
+
+- Quelle: playwright/projects/fibu-book5/evidence/pws-md-004c-customer-billing-payments-fasttabs-readfirst/PWS-MD-004C-result.json
+- Status: observed-read-first-fasttabs
+- Akzeptiert fuer Training: vorhandener Debitor `U-CUST-100` / `Universaarl Kunde 100` wurde read-only auf der Debitorenkarte geoeffnet. `Fakturierung` und `Zahlungen` wurden aufgeklappt und mit mehreren Screenshots sowie Page Inspection dokumentiert.
+- Sichtbar: `Fakturierung` zeigt abrechnungs- und buchungsnahe Felder wie USt-/E-Rechnungs-/Geschaeftsbuchungsgruppen-Kontext. `Zahlungen` zeigt Zahlungsfeld-Kontext wie `Zlg.-Bedingungscode`.
+- UI-Learning: Screenshot-QA muss vor der Bewertung kommen. Der direkte Karten-URL-Kontext kann auf das Role Center zurueckfallen, `Escape` kann eine Karte schliessen, und FastTab-Ueberschriften koennen mehrfach vorkommen oder durch aktive Eingabefelder abgefangen werden.
+- Schreibgrenze: kein Debitor angelegt, bearbeitet oder gespeichert; keine Vorlage, keine Buchungsgruppe, keine Zahlungsbedingung, keine USt-/VAT-Einstellung, keine Dimension, kein Verkaufsbeleg, keine Buchungsvorschau, keine Buchung.
+- Folgeentscheidung: Die Screenshots reichen fuer eine kundentaugliche Debitorenkarten-Schulung. Sie reichen nicht fuer Debitoren-Write-Gate, O2C-Readiness, USt-Korrektheit, Buchungsgruppen-Korrektheit oder Posting.
+- Naechster Case: `TRAINING-CUSTOMER-CARD-BASICS-DRAFT`.
+
 ## Naechste Projektoutputs
 
 - PWS-FF-002C als aktuelle Buchungsmatrix-Grenze konsumieren: Page 314 ist partiell bekannt, aber nicht posting-ready.
 - PWS-FF-006 als akzeptierten Kontenplan-Starterkonten-Nachweis konsumieren; keine weitere Starterkonten-Wiederholung ohne neuen Claim.
-- Master-Data-Schreibfaelle, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt. Erlaubt ist als naechster Live-Schritt nur `PWS-MD-004C`: vorhandenen Debitor `U-CUST-100` read-only oeffnen, `Fakturierung` und `Zahlungen` aufklappen, mehrere Screenshots erfassen, nichts speichern.
+- Master-Data-Schreibfaelle, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt. Naechster Schritt ist lokal: aus PWS-MD-004B/PWS-MD-004C eine Debitorenkarten-Schulung erstellen, keine weitere Live-UI oeffnen.
 - PWS-FF-005B als beobachteten no-write Dimensionswerte-Proof konsumieren.
 - PWS-FF-001 als beobachteten no-write Nummernserien-Proof konsumieren.
 - `PWS-MD-001`, `PWS-MD-002` und `PWS-MD-003` sind als read-only Kontext beobachtet. Die Route Decision waehlt Debitoren als ersten Kandidaten, aber zuerst nur als Preflight.
@@ -271,4 +282,4 @@ Erlaubte Anschlussklassifikationen:
 
 ## Naechster Case
 
-- `PWS-MD-004C-CUSTOMER-BILLING-PAYMENTS-FASTTABS-READFIRST`: vorhandenen Debitor `U-CUST-100` read-only oeffnen und die FastTabs `Fakturierung` und `Zahlungen` mit starker Screenshot-QA pruefen.
+- `TRAINING-CUSTOMER-CARD-BASICS-DRAFT`: vorhandene Screenshots zur Debitorenkarte, `Fakturierung`, `Zahlungen` und Page Inspection in kundentauglichen Trainings-/Handbuchtext ueberfuehren. Keine BC-/Playwright-Ausfuehrung.

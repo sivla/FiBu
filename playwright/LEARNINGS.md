@@ -139,3 +139,10 @@ Wenn ein neuer Codex-Account übernimmt, muss er ohne Chatverlauf arbeiten könn
 - Nach jedem Test automatisch eine Markdown-Bildauswertung vorbereiten.
 - Fundstellen halbautomatisch aus Screenshots und Seitentiteln erfassen.
 - Recherchequellen pro Fundstelle dokumentieren.
+
+## Business Central UI Learning: Customer Card FastTabs
+
+- `PWS-MD-004C`: Vor einer BC-UI-Bewertung braucht der Lauf mehrere Screenshot-Checkpoints: Liste, Karte, geoeffnete FastTabs, Page Inspection und Endzustand. Einzelne DOM- oder Textsignale reichen nicht, weil sie den falschen Kontext treffen koennen.
+- Direkte Karten-URLs koennen in der aktuellen Session auf das Role Center zurueckfallen. Fuer belastbare Kundenkarten-Evidence ist die Route ueber Debitorenliste plus gezieltes Oeffnen des Datensatzes robuster.
+- Auf Business-Central-Karten kann `Escape` die Karte schliessen. Vor FastTab-, Button- oder Feldanalyse kein generisches `Escape` verwenden.
+- FastTab-Ueberschriften koennen mehrfach im DOM vorkommen oder durch aktive Eingabefelder abgefangen werden. Mehrere sichtbare Kandidaten pruefen, danach per Screenshot und Feldsignalen validieren; kein `force: true` und keine Koordinatenklicks als Normalweg.

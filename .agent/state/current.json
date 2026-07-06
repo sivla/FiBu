@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-07T00:18:00.000+02:00",
+  "updatedAt": "2026-07-07T00:42:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
-  "activeArea": "w2-core-masterdata",
-  "activeCase": "PWS-MD-004C-CUSTOMER-BILLING-PAYMENTS-FASTTABS-READFIRST",
-  "active_case_file": ".agent/state/cases/pws-md-004c-customer-billing-payments-fasttabs-readfirst.json",
-  "activeCaseFile": ".agent/state/cases/pws-md-004c-customer-billing-payments-fasttabs-readfirst.json",
+  "activeArea": "w2-core-masterdata-training",
+  "activeCase": "TRAINING-CUSTOMER-CARD-BASICS-DRAFT",
+  "active_case_file": ".agent/state/cases/training-customer-card-basics-draft.json",
+  "activeCaseFile": ".agent/state/cases/training-customer-card-basics-draft.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-masterdata-preflight",
+  "mode": "universaarl-training-handbook-draft",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -34,15 +34,10 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central-readonly",
-    "confirm-playthru-instance",
-    "confirm-universaarl-de-company",
-    "open-existing-customer-u-cust-100",
-    "expand-fakturierung-fasttab-readonly",
-    "expand-zahlungen-fasttab-readonly",
-    "capture-screenshots",
-    "capture-page-inspection",
-    "write-result-json"
+    "write-local-training-draft",
+    "reference-existing-screenshots",
+    "update-foundation-boundary",
+    "update-dashboard"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -50,28 +45,22 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
+    "open-business-central-live",
+    "run-playwright-live",
     "new-customer",
     "edit-customer",
     "save-customer",
     "delete-customer",
-    "change-customer-template",
-    "change-posting-group",
-    "change-payment-terms",
-    "change-payment-method",
-    "change-vat-setup",
-    "change-dimension",
     "create-document-or-draft",
     "preview-posting",
     "post",
-    "payment",
     "api-shortcut",
-    "company-switch",
     "claim-master-data-ready",
     "claim-sales-process-ready"
   ],
-  "nextCase": "PWS-MD-004C-CUSTOMER-BILLING-PAYMENTS-FASTTABS-READFIRST",
-  "nextStep": "Run a read-only/no-save customer FastTab proof for existing U-CUST-100 in playthru / UNIVERSAARL-DE: capture list, card, expanded Fakturierung, expanded Zahlungen, Page Inspection and end-state screenshots; do not edit, save, create documents, Preview Posting or Post.",
-  "preparedNextCaseFile": ".agent/state/cases/pws-md-004c-customer-billing-payments-fasttabs-readfirst.json",
+  "nextCase": "TRAINING-CUSTOMER-CARD-BASICS-DRAFT",
+  "nextStep": "Create a local customer-card basics training/handbook draft from PWS-MD-004B and PWS-MD-004C real Business Central screenshots. Explain Debitorenkarte, Fakturierung and Zahlungen for beginners, use realistic fictional Universaarl customer context instead of mockups/placeholders, mark setup/O2C boundaries clearly, and do not open Business Central or Playwright.",
+  "preparedNextCaseFile": ".agent/state/cases/training-customer-card-basics-draft.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -10848,5 +10837,37 @@
     "screenshotQaLearning": "Next BC UI evaluation needs multiple checkpoints: list, card, expanded FastTabs, Page Inspection and no-save end state.",
     "selectedNextCase": "PWS-MD-004C-CUSTOMER-BILLING-PAYMENTS-FASTTABS-READFIRST",
     "updatedAt": "2026-07-07T00:18:00.000+02:00"
+  },
+  "latestPwsMd004CCustomerFasttabs": {
+    "caseId": "PWS-MD-004C-CUSTOMER-BILLING-PAYMENTS-FASTTABS-READFIRST",
+    "status": "observed-read-first-fasttabs",
+    "resultPath": "playwright/projects/fibu-book5/evidence/pws-md-004c-customer-billing-payments-fasttabs-readfirst/PWS-MD-004C-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "businessCentralOpened": true,
+    "playwrightLiveRunExecuted": true,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "screenshotQa": "Accepted for handbook/training draft: list route, customer card, expanded Fakturierung, expanded Zahlungen, Page Inspection and no-save end state were captured.",
+    "routeLearning": [
+      "Direct Customer Card URL can fall back to Role Center in the current session; list-to-card route is safer.",
+      "On a BC card, generic Escape can close the card and must not be used before FastTab evaluation.",
+      "FastTab headings can have duplicate text and intercepted clicks; evaluate multiple candidates, validate field signals and screenshots, and avoid force or coordinate clicks."
+    ],
+    "proved": [
+      "Existing customer U-CUST-100 can be inspected read-only on the Customer Card in playthru / UNIVERSAARL-DE.",
+      "Fakturierung is visible enough to explain billing setup areas, but not to claim setup correctness.",
+      "Zahlungen is visible enough to explain payment setup areas, but not to claim setup correctness."
+    ],
+    "notProved": [
+      "No customer setup field value was changed or proven complete.",
+      "No customer write gate, O2C readiness, VAT correctness, posting group correctness, Preview Posting, Posting or ledger trace is proven."
+    ],
+    "nextCase": "TRAINING-CUSTOMER-CARD-BASICS-DRAFT",
+    "updatedAt": "2026-07-07T00:42:00.000+02:00"
   }
 }
