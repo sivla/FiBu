@@ -19,7 +19,7 @@ test.use({
 test.setTimeout(240_000);
 test.skip(
   process.env.TARGET_075_LIVE_APPROVED !== '1',
-  'TARGET-075 must be run through the guarded runner with --live-approved after freeze lift or active-case approval.'
+  'TARGET-075 must be run through the guarded runner with --live-approved after freeze lift; active freeze also requires TARGET_075_FREEZE_OVERRIDE_APPROVED=1.'
 );
 
 const CASE_ID = 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK';
