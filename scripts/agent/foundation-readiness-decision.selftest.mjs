@@ -18,6 +18,8 @@ const incompleteEvidenceListInputPath = path.join(tempDir, 'TARGET-075-incomplet
 const incompleteEvidenceListOutputPath = path.join(tempDir, 'FOUNDATION-READINESS-INCOMPLETE-EVIDENCE-LIST.md');
 const missingAuthTargetInputPath = path.join(tempDir, 'TARGET-075-missing-auth-target-result.json');
 const missingAuthTargetOutputPath = path.join(tempDir, 'FOUNDATION-READINESS-MISSING-AUTH-TARGET.md');
+const missingHandoffInputPath = path.join(tempDir, 'TARGET-075-missing-handoff-result.json');
+const missingHandoffOutputPath = path.join(tempDir, 'FOUNDATION-READINESS-MISSING-HANDOFF.md');
 
 const fixture = {
   schemaVersion: 1,
@@ -193,6 +195,11 @@ const missingAuthTargetFixture = JSON.parse(JSON.stringify(fixture));
 delete missingAuthTargetFixture.authGate.authTarget;
 fs.writeFileSync(missingAuthTargetInputPath, `${JSON.stringify(missingAuthTargetFixture, null, 2)}\n`, 'utf8');
 
+const missingHandoffFixture = JSON.parse(JSON.stringify(fixture));
+missingHandoffFixture.foundationReadinessInput.nextProjectOutputs = [];
+delete missingHandoffFixture.foundationReadinessInput.uatTrainingImpact;
+fs.writeFileSync(missingHandoffInputPath, `${JSON.stringify(missingHandoffFixture, null, 2)}\n`, 'utf8');
+
 const incompleteSetupFixture = JSON.parse(JSON.stringify(fixture));
 incompleteSetupFixture.foundationReadinessInput.setupContext.generalBusinessPostingGroups = 'blocked';
 incompleteSetupFixture.foundationReadinessInput.setupContext.generalProductPostingGroups = 'observed';
@@ -261,6 +268,22 @@ if (!missingAuthTargetWrite.parsed?.errors?.includes('authGate.authTarget is req
 }
 if (fs.existsSync(missingAuthTargetOutputPath)) {
   errors.push('missing authTarget fixture must not write a Foundation decision output.');
+}
+
+const missingHandoffWrite = run([`--input=${missingHandoffInputPath}`, `--output=${missingHandoffOutputPath}`, '--write']);
+
+if (missingHandoffWrite.status === 0) errors.push('missing handoff write mode must fail.');
+if (missingHandoffWrite.parsed?.canWrite !== false) errors.push('missing handoff fixture must not be writable.');
+for (const expectedError of [
+  'foundationReadinessInput.nextProjectOutputs must be a non-empty array.',
+  'foundationReadinessInput.uatTrainingImpact must be a non-empty array.'
+]) {
+  if (!missingHandoffWrite.parsed?.errors?.includes(expectedError)) {
+    errors.push(`missing handoff fixture must report: ${expectedError}`);
+  }
+}
+if (fs.existsSync(missingHandoffOutputPath)) {
+  errors.push('missing handoff fixture must not write a Foundation decision output.');
 }
 
 const incompleteSetupWrite = run([`--input=${incompleteSetupInputPath}`, `--output=${incompleteSetupOutputPath}`, '--write']);

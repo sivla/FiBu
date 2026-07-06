@@ -138,8 +138,12 @@ function validateTarget075(result) {
     if (!input.decisionStatus) errors.push('foundationReadinessInput.decisionStatus is required.');
     if (!input.chartOfAccounts) errors.push('foundationReadinessInput.chartOfAccounts is required.');
     if (!input.setupContext) errors.push('foundationReadinessInput.setupContext is required.');
-    if (!Array.isArray(input.nextProjectOutputs)) warnings.push('foundationReadinessInput.nextProjectOutputs should be an array.');
-    if (!Array.isArray(input.uatTrainingImpact)) warnings.push('foundationReadinessInput.uatTrainingImpact should be an array.');
+    if (!Array.isArray(input.nextProjectOutputs) || input.nextProjectOutputs.length === 0) {
+      errors.push('foundationReadinessInput.nextProjectOutputs must be a non-empty array.');
+    }
+    if (!Array.isArray(input.uatTrainingImpact) || input.uatTrainingImpact.length === 0) {
+      errors.push('foundationReadinessInput.uatTrainingImpact must be a non-empty array.');
+    }
   }
 
   return { errors, warnings };
