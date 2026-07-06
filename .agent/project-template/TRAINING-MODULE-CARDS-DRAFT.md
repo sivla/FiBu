@@ -689,6 +689,110 @@ Acceptance criteria:
 - Every setup-sensitive field has a dependency or decision.
 - No customer creation is implied before the finance foundation gates are resolved.
 
+### TR-03-01A Debitorenkarte lesen: Fakturierung und Zahlungen
+
+Workstream: `WS04-MASTER-DATA-PRODUCT`
+Epic: `MD-01 Customer Master Data`
+Issue type: Training Item
+Status: `training-draft-from-playthru-evidence`
+
+Business purpose:
+
+Sales, finance and key users must be able to open a customer card and understand why the card is more than an address record. The customer card carries fields that influence invoices, receivables, VAT treatment, payment terms, payment method and later reporting. This module trains the read-first habit before users create or change customer data.
+
+Target roles:
+
+- sales operations
+- finance/accounts receivable
+- customer service
+- key users
+- UAT testers
+- training/book team
+
+Customer/example data:
+
+- active company: `UNIVERSAARL-DE`
+- observed record: `U-CUST-100` / `Universaarl Kunde 100`
+- realistic fictional training persona: a future domestic B2B customer for Universaarl, not a real customer and not a mockup
+- no confidential real customer data, no bank data and no personal production contact data
+
+BC concept or process:
+
+- Debitorenliste (Customers)
+- Debitorenkarte (Customer Card)
+- FastTab `Fakturierung`
+- FastTab `Zahlungen`
+- Page Inspection as internal technical context only
+- read-only review before setup or process work
+
+Exercise:
+
+1. Open the Debitorenliste and find `U-CUST-100`.
+2. Open the Debitorenkarte without clicking `Neu`, `Bearbeiten`, `Vorlage anwenden`, document actions or posting-related actions.
+3. Identify the visible areas `Allgemein`, `Fakturierung` and `Zahlungen`.
+4. In `Fakturierung`, explain which visible field areas are business/setup sensitive: VAT, e-document context, business posting group and customer posting group.
+5. In `Zahlungen`, explain why payment terms and payment method are not "nice to have" fields. They affect due dates, payment behavior, collections and later customer ledger work.
+6. Mark all missing or unclear setup values as blocked instead of inventing a value.
+
+Typical mistakes:
+
+- treating a customer card as an address-only screen
+- assuming visible field names prove setup correctness
+- clicking `Neu` or `Vorlage anwenden` during a read-first review
+- pressing `Escape` on a Business Central card and unintentionally leaving the card
+- starting O2C training before billing, payment, VAT and posting-group dependencies are understood
+- using generic demo customers or screenshots instead of realistic fictional Universaarl data and real `playthru` evidence
+
+Success check:
+
+- The participant can explain why `Fakturierung` is relevant before a sales document is created.
+- The participant can explain why `Zahlungen` matters before payment and reminder processes.
+- The participant can name at least three fields or field areas that are setup-sensitive.
+- The participant can say what the screenshots prove: card context and visible FastTabs.
+- The participant can say what the screenshots do not prove: setup completeness, O2C readiness, Preview Posting, Posting or ledger trace.
+
+Escalation path:
+
+- If posting group, VAT group, payment terms or payment method values are missing or unclear, create a setup/data decision before using the customer in O2C.
+- If a user needs a real customer for training, replace it with a realistic fictional Universaarl customer first.
+- If a screenshot does not show the relevant FastTab or company context, request a new read-first screenshot set before updating handbook text.
+
+Handbook/book output:
+
+- customer-facing section: "Die Debitorenkarte sicher lesen"
+- short explanation of why `Fakturierung` and `Zahlungen` are business-critical
+- field checklist for customer data owners
+- warning box: visible fields are not proof of posting readiness
+
+Source/evidence status:
+
+- Universaarl evidence available: `PWS-MD-004B` and `PWS-MD-004C`.
+- `PWS-MD-004C` provides real Business Central screenshots from `playthru / UNIVERSAARL-DE`, not UI mockups.
+- Official Microsoft Learn source remains needed before promoting this module to trainer-ready product explanation.
+
+UAT status:
+
+- draft only; useful for key-user orientation
+- not accepted as customer setup UAT
+- not accepted as O2C UAT
+
+Playwright/evidence output:
+
+- `PWS-MD-004C-CUSTOMER-BILLING-PAYMENTS-FASTTABS-READFIRST`
+- screenshots: customer list route, customer card, `Fakturierung`, `Zahlungen`, Page Inspection, no-save end state
+- no write, no save, no document, no Preview Posting, no Posting
+
+Realism note:
+
+In a real project, sales often knows the customer relationship, while finance owns posting groups, VAT behavior, payment terms and receivables control. A realistic training module must show this ownership split. The first customer card is therefore a learning object and setup-gap example, not proof that the sales process is ready.
+
+Acceptance criteria:
+
+- Module uses real Business Central screenshots from `playthru`.
+- Module uses realistic fictional Universaarl customer context.
+- Module excludes confidential real customer data.
+- Module does not imply setup, O2C, Preview Posting or Posting readiness.
+
 ## TR-03-02 Vendor Master Data
 
 Workstream: `WS04-MASTER-DATA-PRODUCT`

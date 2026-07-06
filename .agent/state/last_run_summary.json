@@ -1,46 +1,44 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "PWS-MD-004C-CUSTOMER-BILLING-PAYMENTS-FASTTABS-READFIRST",
-  "caseId": "PWS-MD-004C-CUSTOMER-BILLING-PAYMENTS-FASTTABS-READFIRST",
-  "status": "observed-read-first-fasttabs",
-  "completedAt": "2026-07-07T00:42:00.000+02:00",
-  "mode": "universaarl-masterdata-readfirst",
+  "runId": "TRAINING-CUSTOMER-CARD-BASICS-DRAFT",
+  "caseId": "TRAINING-CUSTOMER-CARD-BASICS-DRAFT",
+  "status": "completed-local-training-draft",
+  "completedAt": "2026-07-07T01:05:00.000+02:00",
+  "mode": "universaarl-training-handbook-draft",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "PWS-MD-004C opened existing customer U-CUST-100 read-only, expanded Fakturierung and Zahlungen on the customer card, captured list/card/FastTab/Page-Inspection/no-save screenshots, and confirmed that the evidence is useful for handbook/training but not for customer write, O2C, Preview Posting or Posting readiness.",
-  "resultPath": "playwright/projects/fibu-book5/evidence/pws-md-004c-customer-billing-payments-fasttabs-readfirst/PWS-MD-004C-result.json",
-  "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/pws-md-004c-customer-billing-payments-fasttabs-readfirst/PWS-MD-004C-result.json",
-    "playwright/projects/fibu-book5/evidence/pws-md-004c-customer-billing-payments-fasttabs-readfirst/README.md",
-    "playwright/projects/fibu-book5/evidence/pws-md-004c-customer-billing-payments-fasttabs-readfirst/pws-md-004c-010-customer-list-route-context.png",
-    "playwright/projects/fibu-book5/evidence/pws-md-004c-customer-billing-payments-fasttabs-readfirst/pws-md-004c-020-customer-card-before-fasttabs.png",
-    "playwright/projects/fibu-book5/evidence/pws-md-004c-customer-billing-payments-fasttabs-readfirst/pws-md-004c-030-fakturierung-expanded.png",
-    "playwright/projects/fibu-book5/evidence/pws-md-004c-customer-billing-payments-fasttabs-readfirst/pws-md-004c-040-zahlungen-expanded.png",
-    "playwright/projects/fibu-book5/evidence/pws-md-004c-customer-billing-payments-fasttabs-readfirst/pws-md-004c-050-page-inspection-after-fasttabs.png",
-    "playwright/projects/fibu-book5/evidence/pws-md-004c-customer-billing-payments-fasttabs-readfirst/pws-md-004c-060-no-save-end-context.png"
+  "summary": "Created training module TR-03-01A for reading the Debitorenkarte with Fakturierung and Zahlungen. The module uses real Business Central playthru screenshots from PWS-MD-004C and realistic fictional Universaarl customer context, not mockups or confidential real customer data.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/PWS-MD-004B-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-md-004c-customer-billing-payments-fasttabs-readfirst/PWS-MD-004C-result.json"
+  ],
+  "changedArtifacts": [
+    ".agent/project-template/TRAINING-MODULE-CARDS-DRAFT.md",
+    "playwright/projects/fibu-book5/BC-SCREENSHOT-INVENTORY.md",
+    ".agent/state/cases/training-customer-card-basics-draft.json",
+    ".agent/state/cases/customer-setup-route-decision.json",
+    ".agent/state/current.json",
+    ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md"
   ],
   "actionsTaken": [
-    "Confirmed guarded runner checks and active live approval.",
-    "Opened Business Central only through the PWS-MD-004C guarded read-first route.",
-    "Used the Debitoren list route and row double-click to open U-CUST-100 instead of trusting a direct card URL.",
-    "Expanded Fakturierung and Zahlungen read-only.",
-    "Captured screenshots for list, card, Fakturierung, Zahlungen, Page Inspection and no-save end state.",
-    "Wrote PWS-MD-004C result JSON and evidence README."
+    "Added TR-03-01A Debitorenkarte lesen: Fakturierung und Zahlungen.",
+    "Added PWS-MD-004C screenshots to the screenshot inventory with proof boundaries.",
+    "Marked the training case as completed-local-training-draft.",
+    "Selected CUSTOMER-SETUP-ROUTE-DECISION as the next local no-BC case."
   ],
   "actionsNotTaken": [
-    "No customer created.",
-    "No customer edited or saved.",
+    "No Business Central opened.",
+    "No Playwright live run executed.",
+    "No customer created, edited or saved.",
     "No setup changed.",
-    "No document or draft created.",
+    "No sales document or draft created.",
     "No Preview Posting.",
     "No Posting.",
-    "No payment.",
-    "No API shortcut.",
-    "No company switch."
+    "No API shortcut."
   ],
-  "businessCentralOpened": true,
-  "playwrightLiveRunExecuted": true,
+  "businessCentralOpened": false,
+  "playwrightLiveRunExecuted": false,
   "setupChanged": false,
   "setupChangeAttempted": false,
   "masterDataChanged": false,
@@ -50,89 +48,70 @@
   "payment": false,
   "apiShortcut": false,
   "proved": [
-    "Existing customer U-CUST-100 can be inspected read-only on the Customer Card in playthru / UNIVERSAARL-DE.",
-    "Fakturierung is visible enough to explain billing setup areas in training/handbook material.",
-    "Zahlungen is visible enough to explain payment setup areas in training/handbook material.",
-    "Multiple screenshots are required for reliable BC UI interpretation."
+    "A customer-card training draft now exists and is grounded in real playthru screenshots.",
+    "The training draft explains why Fakturierung and Zahlungen matter for customers.",
+    "The draft excludes mockups and confidential real customer data."
   ],
   "notProved": [
-    "No customer setup field value was changed or proven complete.",
+    "No customer setup route has been selected yet.",
     "No customer write gate is open.",
-    "No O2C process is ready.",
-    "No VAT, posting group, payment terms or dimension correctness is proven.",
-    "No sales document, Preview Posting, Posting or ledger trace exists."
+    "No O2C readiness, Preview Posting, Posting or ledger trace is proven."
   ],
   "warnings": [
-    "Direct Customer Card URL can fall back to Role Center in the current session; prefer list-to-card proof when context matters.",
-    "Generic Escape on a BC card can close the card; do not use it before FastTab/action evaluation.",
-    "Do not treat visible field names as setup correctness proof."
+    "Training value is not the same as setup readiness.",
+    "Visible field areas are not correctness proof.",
+    "The next route decision must compare manual UI, templates, configuration packages, Excel-assisted import, API/AL later and parked route."
   ],
-  "nextCase": "TRAINING-CUSTOMER-CARD-BASICS-DRAFT",
-  "nextStep": "Create a local no-BC/no-Playwright training and handbook draft for the customer card using PWS-MD-004B and PWS-MD-004C real Business Central screenshots. Explain Debitorenkarte, Fakturierung and Zahlungen for beginners with realistic fictional Universaarl customer context, while keeping setup/O2C/posting readiness blocked.",
+  "nextCase": "CUSTOMER-SETUP-ROUTE-DECISION",
+  "nextStep": "Create a local customer setup route decision for realistic fictional Universaarl customers. Compare manual UI, templates, configuration packages, Excel-assisted import, API/AL later and parked route. Do not open Business Central or Playwright.",
   "nextStepDecision": {
-    "currentCase": "PWS-MD-004C-CUSTOMER-BILLING-PAYMENTS-FASTTABS-READFIRST",
-    "plannedNextCaseBeforeReview": "PWS-MD-004C-CUSTOMER-BILLING-PAYMENTS-FASTTABS-READFIRST",
-    "lastEvidenceSummary": "PWS-MD-004C observed U-CUST-100 on the customer card with Fakturierung and Zahlungen expanded read-only plus Page Inspection and no-save screenshots.",
+    "currentCase": "TRAINING-CUSTOMER-CARD-BASICS-DRAFT",
+    "plannedNextCaseBeforeReview": "TRAINING-CUSTOMER-CARD-BASICS-DRAFT",
+    "lastEvidenceSummary": "PWS-MD-004C proved read-only customer-card FastTab context and TR-03-01A converted it into a training draft.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "The live proof is complete; repeating it would add screenshot volume but little project value. The next value is converting the accepted screenshots into customer-facing training/handbook substance.",
+    "reason": "The training draft is complete enough for the current evidence. Repeating it would add wording, not new project value.",
     "lookaheadReviewed": [
       {
-        "caseId": "TRAINING-CUSTOMER-CARD-BASICS-DRAFT",
-        "status": "ready-next",
-        "reason": "Existing screenshots are accepted for handbook/training draft and do not require another BC run."
-      },
-      {
         "caseId": "CUSTOMER-SETUP-ROUTE-DECISION",
-        "status": "ready-after-current",
-        "reason": "A route decision can follow once the customer-card basics are explained and the setup gaps are visible to readers."
+        "status": "ready-next",
+        "reason": "The training module exposes exactly which setup areas block customer write and O2C."
       },
       {
-        "caseId": "PWS-MD-VENDOR-WRITE-GATE",
+        "caseId": "CUSTOMER-WRITE-GATE",
         "status": "needs-setup-first",
-        "reason": "Vendor write work should wait until the customer setup pattern and posting/payment boundaries are clearer."
-      },
-      {
-        "caseId": "PWS-MD-ITEM-WRITE-GATE",
-        "status": "needs-setup-first",
-        "reason": "Item/service write work depends on product, UOM, posting, VAT product, inventory and costing setup."
+        "reason": "A write gate must wait for the route decision and Foundation gap classification."
       },
       {
         "caseId": "O2C-MINIMAL-ROUTE-DECISION",
         "status": "blocked",
-        "reason": "O2C remains blocked until customer billing/payment and related posting/VAT setup are consciously handled."
+        "reason": "O2C remains blocked until customer, item/service, VAT and posting group setup are consciously handled."
+      },
+      {
+        "caseId": "PWS-MD-VENDOR-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Vendor work should follow the same route-decision discipline after customer route is clear."
+      },
+      {
+        "caseId": "PWS-MD-ITEM-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Item/service work depends on product model, UOM, VAT/product posting and inventory boundaries."
       }
     ],
     "queueChangesMade": [
-      "Selected TRAINING-CUSTOMER-CARD-BASICS-DRAFT as the next local case.",
-      "Kept O2C, vendor write and item write gates parked."
+      "Selected CUSTOMER-SETUP-ROUTE-DECISION as the next local case."
     ],
-    "selectedNextCase": "TRAINING-CUSTOMER-CARD-BASICS-DRAFT",
-    "whySelectedNextCaseIsBest": "It converts accepted screenshot evidence into useful customer-facing project output without another live UI action.",
+    "selectedNextCase": "CUSTOMER-SETUP-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "It turns the realistic training insight into a practical implementation decision without prematurely writing customer data.",
     "risksBeforeNextCase": [
-      "Do not imply customer setup correctness.",
-      "Do not imply O2C readiness.",
-      "Do not use agent/evidence meta-language in reader-facing text.",
-      "Do not use UI mockups or generic demo customers where realistic fictional Universaarl business partners are needed."
+      "Do not treat training screenshots as setup correctness.",
+      "Do not use real customer data.",
+      "Do not jump directly to O2C."
     ],
     "requiredPreparation": [
-      "Use PWS-MD-004B and PWS-MD-004C evidence only.",
-      "Keep BC/Playwright closed.",
-      "Write beginner-friendly reader text and role-based training notes.",
-      "Use realistic fictional customer context only; do not commit confidential real customer data."
+      "Use PWS-MD-004C and TR-03-01A.",
+      "Keep Business Central and Playwright closed.",
+      "Compare implementation routes like a BC consultant: UI, template, configuration package, Excel-assisted import, API/AL later or parked."
     ]
   },
-  "changedFilesIntent": [
-    "playwright/projects/fibu-book5/evidence/pws-md-004c-customer-billing-payments-fasttabs-readfirst/",
-    "playwright/projects/fibu-book5/tests/pws-md-004c-customer-billing-payments-fasttabs-readfirst.spec.ts",
-    "scripts/agent/run-pws-md-004c-customer-billing-payments-fasttabs-readfirst.mjs",
-    "package.json",
-    ".agent/state/cases/pws-md-004c-customer-billing-payments-fasttabs-readfirst.json",
-    ".agent/state/cases/training-customer-card-basics-draft.json",
-    ".agent/state/current.json",
-    ".agent/state/last_run_summary.json",
-    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
-    ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
-    "playwright/LEARNINGS.md"
-  ],
-  "updatedAt": "2026-07-07T00:42:00.000+02:00"
+  "updatedAt": "2026-07-07T01:05:00.000+02:00"
 }

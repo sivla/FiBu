@@ -255,13 +255,14 @@ Erlaubte Anschlussklassifikationen:
 - UI-Learning: Screenshot-QA muss vor der Bewertung kommen. Der direkte Karten-URL-Kontext kann auf das Role Center zurueckfallen, `Escape` kann eine Karte schliessen, und FastTab-Ueberschriften koennen mehrfach vorkommen oder durch aktive Eingabefelder abgefangen werden.
 - Schreibgrenze: kein Debitor angelegt, bearbeitet oder gespeichert; keine Vorlage, keine Buchungsgruppe, keine Zahlungsbedingung, keine USt-/VAT-Einstellung, keine Dimension, kein Verkaufsbeleg, keine Buchungsvorschau, keine Buchung.
 - Folgeentscheidung: Die Screenshots reichen fuer eine kundentaugliche Debitorenkarten-Schulung. Sie reichen nicht fuer Debitoren-Write-Gate, O2C-Readiness, USt-Korrektheit, Buchungsgruppen-Korrektheit oder Posting.
-- Naechster Case: `TRAINING-CUSTOMER-CARD-BASICS-DRAFT`.
+- Folgeoutput: Trainingskarte `TR-03-01A Debitorenkarte lesen: Fakturierung und Zahlungen` wurde in `.agent/project-template/TRAINING-MODULE-CARDS-DRAFT.md` erstellt.
+- Naechster Case: `CUSTOMER-SETUP-ROUTE-DECISION`.
 
 ## Naechste Projektoutputs
 
 - PWS-FF-002C als aktuelle Buchungsmatrix-Grenze konsumieren: Page 314 ist partiell bekannt, aber nicht posting-ready.
 - PWS-FF-006 als akzeptierten Kontenplan-Starterkonten-Nachweis konsumieren; keine weitere Starterkonten-Wiederholung ohne neuen Claim.
-- Master-Data-Schreibfaelle, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt. Naechster Schritt ist lokal: aus PWS-MD-004B/PWS-MD-004C eine Debitorenkarten-Schulung erstellen, keine weitere Live-UI oeffnen.
+- Master-Data-Schreibfaelle, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt. Naechster Schritt ist lokal: Debitoren-Setup-Route fuer realistische fiktive Universaarl-Kunden entscheiden, keine weitere Live-UI oeffnen.
 - PWS-FF-005B als beobachteten no-write Dimensionswerte-Proof konsumieren.
 - PWS-FF-001 als beobachteten no-write Nummernserien-Proof konsumieren.
 - `PWS-MD-001`, `PWS-MD-002` und `PWS-MD-003` sind als read-only Kontext beobachtet. Die Route Decision waehlt Debitoren als ersten Kandidaten, aber zuerst nur als Preflight.
@@ -282,4 +283,4 @@ Erlaubte Anschlussklassifikationen:
 
 ## Naechster Case
 
-- `TRAINING-CUSTOMER-CARD-BASICS-DRAFT`: vorhandene Screenshots zur Debitorenkarte, `Fakturierung`, `Zahlungen` und Page Inspection in kundentauglichen Trainings-/Handbuchtext ueberfuehren. Keine BC-/Playwright-Ausfuehrung.
+- `CUSTOMER-SETUP-ROUTE-DECISION`: lokale Routenentscheidung fuer Debitoren-Setup erstellen. Varianten vergleichen: manuelle UI, Vorlage/Template, Konfigurationspaket, Excel-assisted Import, API/AL spaeter oder bewusstes Parken. Keine BC-/Playwright-Ausfuehrung.

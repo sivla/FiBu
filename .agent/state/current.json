@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-07T00:42:00.000+02:00",
+  "updatedAt": "2026-07-07T01:05:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
-  "activeArea": "w2-core-masterdata-training",
-  "activeCase": "TRAINING-CUSTOMER-CARD-BASICS-DRAFT",
-  "active_case_file": ".agent/state/cases/training-customer-card-basics-draft.json",
-  "activeCaseFile": ".agent/state/cases/training-customer-card-basics-draft.json",
+  "activeArea": "w2-core-masterdata-route-decision",
+  "activeCase": "CUSTOMER-SETUP-ROUTE-DECISION",
+  "active_case_file": ".agent/state/cases/customer-setup-route-decision.json",
+  "activeCaseFile": ".agent/state/cases/customer-setup-route-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-training-handbook-draft",
+  "mode": "universaarl-masterdata-route-decision",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -34,10 +34,10 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "write-local-training-draft",
-    "reference-existing-screenshots",
-    "update-foundation-boundary",
-    "update-dashboard"
+    "write-local-route-decision",
+    "compare-ui-template-configuration-package-excel-api-al-parked",
+    "update-dashboard-and-state",
+    "update-data-dependencies"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -58,9 +58,9 @@
     "claim-master-data-ready",
     "claim-sales-process-ready"
   ],
-  "nextCase": "TRAINING-CUSTOMER-CARD-BASICS-DRAFT",
-  "nextStep": "Create a local customer-card basics training/handbook draft from PWS-MD-004B and PWS-MD-004C real Business Central screenshots. Explain Debitorenkarte, Fakturierung and Zahlungen for beginners, use realistic fictional Universaarl customer context instead of mockups/placeholders, mark setup/O2C boundaries clearly, and do not open Business Central or Playwright.",
-  "preparedNextCaseFile": ".agent/state/cases/training-customer-card-basics-draft.json",
+  "nextCase": "CUSTOMER-SETUP-ROUTE-DECISION",
+  "nextStep": "Create a local customer setup route decision from PWS-MD-004C and TR-03-01A: compare manual UI, template, configuration package, Excel-assisted import, API/AL later and parked route for realistic fictional Universaarl customers. Do not open Business Central or Playwright.",
+  "preparedNextCaseFile": ".agent/state/cases/customer-setup-route-decision.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -10869,5 +10869,35 @@
     ],
     "nextCase": "TRAINING-CUSTOMER-CARD-BASICS-DRAFT",
     "updatedAt": "2026-07-07T00:42:00.000+02:00"
+  },
+  "latestTrainingCustomerCardBasicsDraft": {
+    "caseId": "TRAINING-CUSTOMER-CARD-BASICS-DRAFT",
+    "status": "completed-local-training-draft",
+    "trainingModule": "TR-03-01A Debitorenkarte lesen: Fakturierung und Zahlungen",
+    "path": ".agent/project-template/TRAINING-MODULE-CARDS-DRAFT.md",
+    "screenshotInventory": "playwright/projects/fibu-book5/BC-SCREENSHOT-INVENTORY.md",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "businessCentralOpened": false,
+    "playwrightLiveRunExecuted": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "realismBoundary": "Uses real Business Central screenshots from playthru and realistic fictional Universaarl customer context; no UI mockups and no confidential real customer data.",
+    "proved": [
+      "PWS-MD-004C screenshots can support a customer-card training draft.",
+      "Fakturierung and Zahlungen are explainable as business-critical FastTabs.",
+      "The module clearly separates orientation/training value from setup and O2C readiness."
+    ],
+    "notProved": [
+      "No customer setup route is selected yet.",
+      "No customer write gate is open.",
+      "No O2C, Preview Posting, Posting or ledger trace is proven."
+    ],
+    "nextCase": "CUSTOMER-SETUP-ROUTE-DECISION",
+    "updatedAt": "2026-07-07T01:05:00.000+02:00"
   }
 }

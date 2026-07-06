@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "caseId": "CUSTOMER-SETUP-ROUTE-DECISION",
+  "status": "planned-local-decision",
+  "mode": "universaarl-masterdata-route-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w2-core-masterdata-route-decision",
+  "workstream": "WS04 Master Data / Product Model",
+  "epic": "Customer master data setup route",
+  "issueType": "Decision",
+  "purpose": "Decide the next customer setup route after PWS-MD-004C and TR-03-01A without opening Business Central.",
+  "businessPurpose": "Choose whether the next Debitoren step should be manual UI, template, configuration package, Excel-assisted import, API/AL later, or parked, based on realistic fictional Universaarl customers and current Foundation gaps.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/pws-md-004c-customer-billing-payments-fasttabs-readfirst/PWS-MD-004C-result.json",
+    ".agent/project-template/TRAINING-MODULE-CARDS-DRAFT.md",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md"
+  ],
+  "mayRunPlaywright": false,
+  "mayOpenBusinessCentral": false,
+  "effectiveBcActionsAllowed": false,
+  "allowedActions": [
+    "write-local-route-decision",
+    "compare-ui-template-configuration-package-excel-api-al-parked",
+    "update-dashboard-and-state",
+    "update-data-dependencies"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central-live",
+    "run-playwright-live",
+    "new-customer",
+    "edit-customer",
+    "save-customer",
+    "delete-customer",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-master-data-ready",
+    "claim-sales-process-ready"
+  ],
+  "acceptanceCriteria": [
+    "Decision compares UI, template, configuration package, Excel-assisted import, API/AL and parked route.",
+    "Decision uses realistic fictional Universaarl customers, not mockups and not confidential real customer data.",
+    "Decision states which Foundation gaps block customer write or O2C.",
+    "No Business Central or Playwright live execution occurs."
+  ],
+  "stopIf": [
+    "The decision would require a new live BC observation.",
+    "The decision would imply setup-ready or O2C-ready without Foundation proof.",
+    "The decision would use real customer data."
+  ],
+  "nextCase": "CUSTOMER-SETUP-ROUTE-DECISION",
+  "updatedAt": "2026-07-07T01:05:00.000+02:00"
+}
