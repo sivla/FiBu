@@ -444,6 +444,9 @@ test('TARGET-075 runs a read-only Foundation consistency pilot', async ({ page }
     company: TARGET_COMPANY,
     page: 'Foundation read-only context',
     url: chart?.url ?? '',
+    liveActionsExecuted: true,
+    businessCentralOpened: true,
+    playwrightLiveRunExecuted: true,
     authGate,
     executionGate,
     actionsTaken: [
@@ -466,6 +469,7 @@ test('TARGET-075 runs a read-only Foundation consistency pilot', async ({ page }
       'No company switch.'
     ],
     setupChanged: false,
+    setupChangeAttempted: false,
     masterDataChanged: false,
     draftCreated: false,
     previewPosting: false,

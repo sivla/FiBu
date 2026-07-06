@@ -58,10 +58,52 @@ function validateTarget075(result) {
   if (result.nextCase !== 'FOUNDATION-READINESS-DECISION') {
     errors.push('TARGET-075 result must hand off to FOUNDATION-READINESS-DECISION.');
   }
+  if (result.source !== 'playwright-readonly-foundation-consistency-pilot') {
+    errors.push('TARGET-075 result must use source playwright-readonly-foundation-consistency-pilot.');
+  }
+  if (!result.page) errors.push('TARGET-075 result must include page.');
+  if (!result.url) errors.push('TARGET-075 result must include url.');
+  if (result.liveActionsExecuted !== true) {
+    errors.push('TARGET-075 result must confirm liveActionsExecuted=true for the read-first Business Central pilot.');
+  }
+  if (result.businessCentralOpened !== true) {
+    errors.push('TARGET-075 result must confirm businessCentralOpened=true.');
+  }
+  if (result.playwrightLiveRunExecuted !== true) {
+    errors.push('TARGET-075 result must confirm playwrightLiveRunExecuted=true.');
+  }
 
-  const falseFlags = ['setupChanged', 'masterDataChanged', 'draftCreated', 'previewPosting', 'posted', 'payment', 'apiShortcut'];
+  const falseFlags = [
+    'setupChanged',
+    'setupChangeAttempted',
+    'masterDataChanged',
+    'draftCreated',
+    'previewPosting',
+    'posted',
+    'payment',
+    'apiShortcut'
+  ];
   for (const flag of falseFlags) {
     if (result[flag] !== false) errors.push(`TARGET-075 read-first result must keep ${flag}=false.`);
+  }
+  if (!Array.isArray(result.actionsTaken) || result.actionsTaken.length === 0) {
+    errors.push('TARGET-075 result must include actionsTaken.');
+  }
+  if (!Array.isArray(result.actionsNotTaken) || result.actionsNotTaken.length === 0) {
+    errors.push('TARGET-075 result must include actionsNotTaken.');
+  }
+  const flags = result.flags ?? {};
+  for (const flag of [
+    'noWrite',
+    'noPost',
+    'noPreview',
+    'noDraft',
+    'noSetupChange',
+    'noMasterDataChange',
+    'noCompanySwitch',
+    'noApiShortcut'
+  ]) {
+    if (flags[flag] !== true) errors.push(`TARGET-075 flags.${flag} must be true.`);
   }
 
   if (!Array.isArray(result.screenshots) || result.screenshots.length === 0) {

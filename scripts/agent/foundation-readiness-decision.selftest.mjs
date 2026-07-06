@@ -20,16 +20,24 @@ const missingAuthTargetInputPath = path.join(tempDir, 'TARGET-075-missing-auth-t
 const missingAuthTargetOutputPath = path.join(tempDir, 'FOUNDATION-READINESS-MISSING-AUTH-TARGET.md');
 const missingHandoffInputPath = path.join(tempDir, 'TARGET-075-missing-handoff-result.json');
 const missingHandoffOutputPath = path.join(tempDir, 'FOUNDATION-READINESS-MISSING-HANDOFF.md');
+const missingLiveEvidenceInputPath = path.join(tempDir, 'TARGET-075-missing-live-evidence-result.json');
+const missingLiveEvidenceOutputPath = path.join(tempDir, 'FOUNDATION-READINESS-MISSING-LIVE-EVIDENCE.md');
 
 const fixture = {
   schemaVersion: 1,
   caseId: 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK',
-  source: 'selftest-fixture',
+  source: 'playwright-readonly-foundation-consistency-pilot',
   resultStatus: 'observed',
+  liveActionsExecuted: true,
+  businessCentralOpened: true,
+  playwrightLiveRunExecuted: true,
   instance: 'playthru',
   company: 'UNIVERSAARL-DE',
+  page: 'Foundation read-only context',
+  url: 'https://businesscentral.dynamics.com/{tenant}/playthru?company=UNIVERSAARL-DE&page=16',
   nextCase: 'FOUNDATION-READINESS-DECISION',
   setupChanged: false,
+  setupChangeAttempted: false,
   masterDataChanged: false,
   draftCreated: false,
   previewPosting: false,
@@ -61,6 +69,17 @@ const fixture = {
   notProved: ['Posting readiness was not proven.'],
   blockedBy: [],
   warnings: [],
+  actionsTaken: [
+    'Opened Business Central with stored auth after the freeze-prepared case.',
+    'Opened target Foundation pages by direct page URL inside playthru / UNIVERSAARL-DE.'
+  ],
+  actionsNotTaken: [
+    'No values typed.',
+    'No setup changed.',
+    'No master data changed.',
+    'No Preview Posting.',
+    'No Posting.'
+  ],
   screenshots: [
     'target-075-chart-of-accounts.png',
     'target-075-general-business-posting-groups.png',
@@ -143,6 +162,16 @@ const fixture = {
     'target-075-vat-posting-setup.png',
     'target-075-vat-posting-setup.screenshot.json'
   ],
+  flags: {
+    noWrite: true,
+    noPost: true,
+    noPreview: true,
+    noDraft: true,
+    noSetupChange: true,
+    noMasterDataChange: true,
+    noCompanySwitch: true,
+    noApiShortcut: true
+  },
   foundationReadinessInput: {
     decisionStatus: 'ready-for-foundation-readiness-decision',
     chartOfAccounts: {
@@ -255,6 +284,14 @@ delete missingHandoffFixture.foundationReadinessInput.uatTrainingImpact;
 delete missingHandoffFixture.foundationReadinessInput.masterDataReadFirstHandoff;
 fs.writeFileSync(missingHandoffInputPath, `${JSON.stringify(missingHandoffFixture, null, 2)}\n`, 'utf8');
 
+const missingLiveEvidenceFixture = JSON.parse(JSON.stringify(fixture));
+delete missingLiveEvidenceFixture.businessCentralOpened;
+delete missingLiveEvidenceFixture.playwrightLiveRunExecuted;
+missingLiveEvidenceFixture.liveActionsExecuted = false;
+delete missingLiveEvidenceFixture.actionsTaken;
+missingLiveEvidenceFixture.flags.noWrite = false;
+fs.writeFileSync(missingLiveEvidenceInputPath, `${JSON.stringify(missingLiveEvidenceFixture, null, 2)}\n`, 'utf8');
+
 const incompleteSetupFixture = JSON.parse(JSON.stringify(fixture));
 incompleteSetupFixture.foundationReadinessInput.setupContext.generalBusinessPostingGroups = 'blocked';
 incompleteSetupFixture.foundationReadinessInput.setupContext.generalProductPostingGroups = 'observed';
@@ -340,6 +377,29 @@ for (const expectedError of [
 }
 if (fs.existsSync(missingHandoffOutputPath)) {
   errors.push('missing handoff fixture must not write a Foundation decision output.');
+}
+
+const missingLiveEvidenceWrite = run([
+  `--input=${missingLiveEvidenceInputPath}`,
+  `--output=${missingLiveEvidenceOutputPath}`,
+  '--write'
+]);
+
+if (missingLiveEvidenceWrite.status === 0) errors.push('missing live evidence write mode must fail.');
+if (missingLiveEvidenceWrite.parsed?.canWrite !== false) errors.push('missing live evidence fixture must not be writable.');
+for (const expectedError of [
+  'TARGET-075 result must confirm liveActionsExecuted=true for the read-first Business Central pilot.',
+  'TARGET-075 result must confirm businessCentralOpened=true.',
+  'TARGET-075 result must confirm playwrightLiveRunExecuted=true.',
+  'TARGET-075 result must include actionsTaken.',
+  'TARGET-075 flags.noWrite must be true.'
+]) {
+  if (!missingLiveEvidenceWrite.parsed?.errors?.includes(expectedError)) {
+    errors.push(`missing live evidence fixture must report: ${expectedError}`);
+  }
+}
+if (fs.existsSync(missingLiveEvidenceOutputPath)) {
+  errors.push('missing live evidence fixture must not write a Foundation decision output.');
 }
 
 const incompleteSetupWrite = run([`--input=${incompleteSetupInputPath}`, `--output=${incompleteSetupOutputPath}`, '--write']);
