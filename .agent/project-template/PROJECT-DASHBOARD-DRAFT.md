@@ -69,6 +69,7 @@ M0 ist weitgehend entworfen, aber noch nicht als voll abgenommen zu behandeln. D
 | DEC-010 | Realismus ist Qualitaetsgate fuer Projekt, Buch und Training | accepted |
 | DEC-017 | Universaarl Implementation Operating System ist aktive Wahrheit | accepted |
 | DEC-018 | Deutsch ist fuehrende Projekt- und Buchsprache | accepted |
+| DEC-019 | Foundation-/Master-Data-Route-Cards steuern Planung, aber keine Writes | accepted-as-framework, write-blocked |
 
 ## Top active risks
 
