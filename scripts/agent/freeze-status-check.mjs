@@ -12,6 +12,9 @@ const packagePath = 'package.json';
 const frozenScriptName = 'fibu:target:vat-page472-active-editor-route-decision';
 const target075ScriptName = 'fibu:target:foundation-consistency-pilot';
 const target075RunnerPath = 'scripts/agent/run-target-075-foundation-consistency-pilot.mjs';
+const target075ResultPath =
+  'playwright/projects/fibu-book5/evidence/target-075-chart-of-accounts-reopen-and-setup-consistency-check/TARGET-075-result.json';
+const foundationDecisionPath = 'playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md';
 
 function readText(relativePath) {
   return fs.readFileSync(path.resolve(root, relativePath), 'utf8');
@@ -42,6 +45,7 @@ let freezeText = '';
 let decisionText = '';
 let readinessText = '';
 let packageJson = null;
+let target075Result = null;
 
 if (!errors.length) {
   current = readJson(currentPath);
@@ -50,14 +54,26 @@ if (!errors.length) {
   decisionText = readText(projectDecisionPath);
   readinessText = readText(readinessPath);
   packageJson = readJson(packagePath);
+  if (fs.existsSync(path.resolve(root, target075ResultPath))) target075Result = readJson(target075ResultPath);
 }
+
+const target075CompletedHandoff =
+  current?.nextCase === 'FOUNDATION-READINESS-DECISION' &&
+  target075Result?.caseId === 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK' &&
+  target075Result?.nextCase === 'FOUNDATION-READINESS-DECISION' &&
+  fs.existsSync(path.resolve(root, foundationDecisionPath));
 
 if (current) {
   if (current.mode !== 'project-improvement-freeze') errors.push(`${currentPath}: mode must be project-improvement-freeze`);
   if (current.activeArea !== 'project-improvement-freeze') errors.push(`${currentPath}: activeArea must be project-improvement-freeze`);
   if (current.activeCase !== 'PROJECT-IMPROVEMENT-FREEZE-001') errors.push(`${currentPath}: activeCase must be PROJECT-IMPROVEMENT-FREEZE-001`);
-  if (current.nextCase !== 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK') {
-    errors.push(`${currentPath}: nextCase must remain TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK while freeze is active`);
+  if (
+    current.nextCase !== 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK' &&
+    !target075CompletedHandoff
+  ) {
+    errors.push(
+      `${currentPath}: nextCase must remain TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK while freeze is active, unless TARGET-075 already handed off to FOUNDATION-READINESS-DECISION`
+    );
   }
   if (current.freezeStatus?.status !== 'active') errors.push(`${currentPath}: freezeStatus.status must be active`);
   if (current.freezeStatus?.frozenLiveCase !== 'TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION') {
@@ -149,12 +165,25 @@ const output = {
   targetCompany: current?.company ?? '',
   frozenLiveCase: current?.freezeStatus?.frozenLiveCase ?? '',
   resumeCandidateAfterFreeze: current?.freezeStatus?.resumeCandidateAfterFreeze ?? '',
-  checkedFiles: [currentPath, freezePath, projectDecisionPath, freezeCasePath, readinessPath, packagePath, target075RunnerPath],
+  target075CompletedHandoff,
+  checkedFiles: [
+    currentPath,
+    freezePath,
+    projectDecisionPath,
+    freezeCasePath,
+    readinessPath,
+    packagePath,
+    target075RunnerPath,
+    target075ResultPath,
+    foundationDecisionPath
+  ],
   errors,
   warnings,
   nextStep:
     errors.length === 0
-      ? 'Freeze invariants are consistent. Continue local improvement work or explicitly lift the freeze before TARGET-075 live execution.'
+      ? target075CompletedHandoff
+        ? 'Freeze invariants are consistent after TARGET-075 handoff. Keep live work blocked until the next read-first Foundation gap case is explicitly selected and gated.'
+        : 'Freeze invariants are consistent. Continue local improvement work or explicitly lift the freeze before TARGET-075 live execution.'
       : 'Fix freeze invariant errors before any live resume.'
 };
 

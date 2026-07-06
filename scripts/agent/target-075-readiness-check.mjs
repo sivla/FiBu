@@ -130,14 +130,25 @@ if (!errors.length) {
   if (exists(target075ResultPath)) target075Result = readJson(target075ResultPath);
 }
 
+const target075CompletedHandoff =
+  currentState?.nextCase === 'FOUNDATION-READINESS-DECISION' &&
+  target075Result?.caseId === 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK' &&
+  target075Result?.nextCase === 'FOUNDATION-READINESS-DECISION' &&
+  exists(foundationDecisionPath);
+
 if (currentState) {
   if (currentState.instance !== 'playthru') errors.push(`${currentPath}: instance must be playthru`);
   if (currentState.company !== 'UNIVERSAARL-DE') errors.push(`${currentPath}: company must be UNIVERSAARL-DE`);
   if (currentState.activeCase !== 'PROJECT-IMPROVEMENT-FREEZE-001') {
     errors.push(`${currentPath}: activeCase must remain PROJECT-IMPROVEMENT-FREEZE-001 while freeze is active`);
   }
-  if (currentState.nextCase !== 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK') {
-    errors.push(`${currentPath}: nextCase must remain TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK`);
+  if (
+    currentState.nextCase !== 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK' &&
+    !target075CompletedHandoff
+  ) {
+    errors.push(
+      `${currentPath}: nextCase must remain TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK before TARGET-075, or FOUNDATION-READINESS-DECISION after TARGET-075 handoff`
+    );
   }
   if (currentState.activeNextStepAuthority?.roadmap !== executionRoadmapPath) {
     errors.push(`${currentPath}: activeNextStepAuthority.roadmap must point to ${executionRoadmapPath}`);
@@ -910,6 +921,7 @@ const result = {
   schemaVersion: 1,
   purpose: 'target-075-readiness-check',
   canProceedAfterFreezeLift: errors.length === 0,
+  target075CompletedHandoff,
   liveActionsExecuted: false,
   businessCentralOpened: false,
   playwrightLiveRunExecuted: false,
@@ -918,7 +930,9 @@ const result = {
   warnings,
   nextStep:
     errors.length === 0
-      ? 'TARGET-075 is locally prepared as a read-only pilot. Freeze lift and auth/context validation are still required before live execution.'
+      ? target075CompletedHandoff
+        ? 'TARGET-075 has already handed off to FOUNDATION-READINESS-DECISION. Select the next read-first Foundation gap case before any live work.'
+        : 'TARGET-075 is locally prepared as a read-only pilot. Freeze lift and auth/context validation are still required before live execution.'
       : 'Fix readiness errors before considering TARGET-075 for live execution.'
 };
 
