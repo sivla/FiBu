@@ -445,6 +445,14 @@ if (spec) {
   if (!spec.includes('TARGET_COMPANY = \'UNIVERSAARL-DE\'')) {
     errors.push(`${specPath}: expected company guard missing`);
   }
+  if (!spec.includes('function sanitizeUrl') || !spec.includes('/{tenant}/')) {
+    errors.push(`${specPath}: TARGET-075 must sanitize captured URLs before writing evidence`);
+  }
+  for (const secretPattern of ['access[_-]?token', 'refresh[_-]?token', 'clientId', 'aadTenantId', 'upn:']) {
+    if (!spec.includes(secretPattern)) {
+      errors.push(`${specPath}: compact page evidence must filter secret/auth signal ${secretPattern}`);
+    }
+  }
   if (!spec.includes('TARGET_075_LIVE_APPROVED') || !spec.includes('TARGET_075_RUNNER_GUARD_CHECKED') || !spec.includes('test.skip')) {
     errors.push(
       `${specPath}: direct Playwright execution must be skipped unless TARGET_075_LIVE_APPROVED and TARGET_075_RUNNER_GUARD_CHECKED are set by the guarded runner`
