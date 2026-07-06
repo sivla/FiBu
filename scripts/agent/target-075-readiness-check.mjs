@@ -470,6 +470,16 @@ for (const [controlPath, text] of [
 for (const [controlPath, text] of [
   [rootReadmePath, rootReadme],
   [handoverPath, handover],
+  [activeArtifactClassificationPath, activeArtifactClassification]
+]) {
+  if (!text.includes(readinessPath)) {
+    errors.push(`${controlPath}: must point to ${readinessPath} as the concrete TARGET-075 runbook`);
+  }
+}
+
+for (const [controlPath, text] of [
+  [rootReadmePath, rootReadme],
+  [handoverPath, handover],
   [projectTemplateReadmePath, projectTemplateReadme],
   [executionRoadmapPath, executionRoadmap]
 ]) {
