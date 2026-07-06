@@ -4,7 +4,7 @@ import { resolve } from 'node:path';
 
 function readJson(path) {
   try {
-    return JSON.parse(readFileSync(resolve(path), 'utf8'));
+    return JSON.parse(readFileSync(resolve(path), 'utf8').replace(/^\uFEFF/, ''));
   } catch (error) {
     throw new Error(`${path}: ${error.message}`);
   }
@@ -83,6 +83,11 @@ const normalized = {
   changedFiles,
   statePatch: input?.statePatch ?? {},
   evidenceRefs,
+  flags: input?.flags ?? {},
+  authGate: input?.authGate ?? null,
+  foundationReadinessInput: input?.foundationReadinessInput ?? null,
+  nextStepDecision: input?.nextStepDecision ?? null,
+  nextCase: input?.nextCase ?? '',
   warnings,
   blockedBy,
   requiresReview,
