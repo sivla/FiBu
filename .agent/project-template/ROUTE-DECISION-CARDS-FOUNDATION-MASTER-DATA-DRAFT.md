@@ -1,8 +1,30 @@
 # Route Decision Cards - Foundation and Master Data Draft
 
-Status: draft
+Status: active-work
 Purpose: Decide the implementation route for the first Universaarl foundation dependencies before live Business Central setup or master-data creation.
-Last reviewed: 2026-07-05
+Last reviewed: 2026-07-06
+
+## Aktueller Gate-Status
+
+Aktive Zielwelt: `playthru / UNIVERSAARL-DE / Universaarl GmbH`.
+
+Der naechste Business-Central-Schritt ist nicht Master-Data-Anlage, Import oder Setup-Write, sondern `TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK` als lesender Erstnachweis. Diese Route Cards duerfen erst nach TARGET-075 und der `FOUNDATION-READINESS-DECISION.md` als Grundlage fuer wirksame Stammdaten- oder Setup-Aktionen verwendet werden.
+
+Bis dahin sind die Karten ein lokaler Entscheidungsrahmen:
+
+- `jira-ready`: Datenanforderung, UAT-/Training-Aufgabe oder Buchentwurf darf vorbereitet werden.
+- `read-first-ready`: Playwright darf nach Freeze-Lift nur Seitenkontext, Felder, Templates und sichtbare Abhaengigkeiten pruefen.
+- `write-blocked`: Business Central darf noch keine Stammdaten, Setupwerte, Vorlagen, Importpakete oder API-Daten schreiben.
+
+Naechster sinnvoller Einsatz nach TARGET-075:
+
+| Schritt | Erlaubte Entscheidung | Bleibt blockiert |
+| --- | --- | --- |
+| `FOUNDATION-READINESS-DECISION.md` | Welche Foundation-Bereiche sind sichtbar, geparkt oder blockerhaft? | Setup-Write, Stammdaten-Write, Preview Posting, Posting |
+| Master-Data-Read-first-Pilot | Welche Kunden-/Lieferanten-/Artikelkarten, Templates und Pflichtfelder sind sichtbar? | Speichern von Kunden, Lieferanten, Artikeln oder Importdaten |
+| Route Decision Review | Ob UI-Lernbeispiel, Template oder Konfigurationspaket spaeter sinnvoller ist | API/AL/Integration und Bulk-Import ohne eigenes Gate |
+
+TARGET-073 bleibt geparkt. Alte RM-DEMO/MCP/CRONUS/Rhein-Main-Evidence darf nur als historische Lernquelle genutzt werden, nicht als Universaarl-Setupfreigabe.
 
 ## Boundary
 
@@ -46,6 +68,18 @@ Interpretation for this project:
 - `needs-sandbox-evidence`: needs read-first proof in `playthru`.
 - `needs-customer-approval`: customer-like owner decision is missing.
 - `parked`: not phase 1.
+
+## Post-TARGET-075 master-data route selection
+
+Wenn TARGET-075 eine ausreichende Foundation-Sichtbarkeit liefert, ist der naechste Master-Data-Schritt trotzdem zuerst lesend. Die Reihenfolge soll die spaetere Buch- und Schulungswirkung maximieren, nicht moeglichst schnell Daten speichern.
+
+| Kandidat | Status nach TARGET-075 | Warum diese Reihenfolge | Read-first Evidence | Darf noch nicht |
+| --- | --- | --- | --- | --- |
+| `PWS-MD-001` Debitoren (Customers) Kontext | `ready-after-foundation-decision` | Debitoren tragen O2C, offene Posten, Zahlungen, Reporting und einfache Benutzertrainings. | Debitorenliste, Debitorenkarte, Vorlagen/Templates, Nummern-/Pflichtfeldkontext, sichtbare Buchungsgruppenfelder. | Debitor speichern, Vorlage aendern, Verkaufsbeleg anlegen. |
+| `PWS-MD-002` Kreditoren (Vendors) Kontext | `ready-after-foundation-decision` | Kreditoren tragen P2P, Zahlungsvorschlag, Eingangsrechnung und spaetere Anlagenbeschaffung. | Kreditorenliste, Kreditorenkarte, Vorlagen/Templates, Zahlungsbedingungen, Zahlungsart-/Bankdaten-Grenze, Buchungsgruppenfelder. | Kreditor speichern, Bankdaten erfassen, Einkaufsbeleg anlegen. |
+| `PWS-MD-003` Artikel/Services Kontext | `ready-after-foundation-decision` | Artikel und Services sind fachlich dichter, weil UOM, Produktbuchungsgruppen, USt, Lager und Kostenlogik zusammenspielen. | Artikelliste, Artikelkarte, Typ, Basiseinheit, Vorlagen/Templates, Buchungsgruppen-, UOM- und Lagerfeldkontext. | Artikel speichern, Basiseinheit anlegen, Lager-/Kosten-/Buchungssetup aendern. |
+
+Empfehlung: Nach einer positiven Foundation-Decision zuerst `PWS-MD-001` und `PWS-MD-002` als lesende Karten-/Template-Proofs ausfuehren. Artikel/Services folgen danach, weil sie mehr Foundation-Abhaengigkeiten haben. Wenn TARGET-075 Foundation-Luecken zeigt, bleiben alle drei Kandidaten `blocked` und die Luecke wird als Foundation-Folgecase behandelt.
 
 ## RD-FOUND-001 Numbering policy for customers, vendors and items
 
