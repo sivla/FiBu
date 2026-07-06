@@ -92,6 +92,22 @@ const checksByCase = new Map([
     }
   ],
   [
+    'PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST',
+    {
+      id: 'foundation-chart-of-accounts-starter-accounts-readfirst',
+      scriptPath: 'scripts/agent/run-pws-ff-006-chart-of-accounts-starter-accounts-readonly.mjs',
+      args: ['--check'],
+      reason: 'PWS-FF-006 is the selected read-first Foundation gap and must stay no-write before any live run.',
+      secondaryChecks: [
+        {
+          id: 'foundation-readiness-decision',
+          scriptPath: 'scripts/agent/foundation-readiness-decision.mjs',
+          reason: 'PWS-FF-006 must feed Foundation Readiness instead of starting Master Data or setup writes directly.'
+        }
+      ]
+    }
+  ],
+  [
     'TARGET-073B-VAT-PAGE472-SURFACE-AND-EDITOR-PROOF',
     {
       id: 'target-073b-page472-surface-editor-proof',

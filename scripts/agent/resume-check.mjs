@@ -135,6 +135,9 @@ const steps = [
   runStep('target-075-safe-check', npmCmd, ['run', '--silent', 'fibu:target:foundation-consistency-pilot', '--', '--check'], {
     parseJson: true
   }),
+  runStep('pws-ff-006-safe-check', npmCmd, ['run', '--silent', 'fibu:pws:ff006:chart-of-accounts-starter-accounts', '--', '--check'], {
+    parseJson: true
+  }),
   runStep('foundation-decision-check', npmCmd, ['run', '--silent', 'agent:foundation:decision', '--', '--check'], {
     parseJson: true
   }),
@@ -144,10 +147,18 @@ const steps = [
   runStep('encoding', npmCmd, ['run', '--silent', 'check:encoding'], { keepStdout: true }),
   runStep('target-075-guarded-list', npmCmd, ['run', '--silent', 'fibu:target:foundation-consistency-pilot', '--', '--list'], {
     keepStdout: true
+  }),
+  runStep('pws-ff-006-guarded-list', npmCmd, ['run', '--silent', 'fibu:pws:ff006:chart-of-accounts-starter-accounts', '--', '--list'], {
+    keepStdout: true
   })
 ];
 
-const failed = steps.filter((step) => !step.ok);
+const ignoredFailureIds = new Set(
+  selectedNextCase === 'PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST'
+    ? ['target-075-safe-check', 'masterdata-readfirst-check']
+    : []
+);
+const failed = steps.filter((step) => !step.ok && !ignoredFailureIds.has(step.id));
 const freezeStatus = steps.find((step) => step.id === 'freeze-status')?.parsedJson;
 const contextLiveGate = steps.find((step) => step.id === 'context-live-gate')?.parsedJson;
 const qualityAudit = steps.find((step) => step.id === 'quality-audit')?.parsedJson;
@@ -155,6 +166,7 @@ const readiness = steps.find((step) => step.id === 'target-075-readiness')?.pars
 const authCheck = steps.find((step) => step.id === 'auth-state-check')?.parsedJson;
 const authDoctor = steps.find((step) => step.id === 'auth-doctor')?.parsedJson;
 const target075SafeCheck = steps.find((step) => step.id === 'target-075-safe-check')?.parsedJson;
+const pwsFf006SafeCheck = steps.find((step) => step.id === 'pws-ff-006-safe-check')?.parsedJson;
 const foundationDecisionCheck = steps.find((step) => step.id === 'foundation-decision-check')?.parsedJson;
 const masterDataReadFirstCheck = steps.find((step) => step.id === 'masterdata-readfirst-check')?.parsedJson;
 const qualityRiskIds = (qualityAudit?.risks ?? []).map((risk) => risk.id);
@@ -171,7 +183,9 @@ const localResumeReady =
   authCheck?.canUseStoredAuth === true &&
   authDoctorStoredAuthOk &&
   authDoctorTargetOk &&
-  target075SafeCheck?.canResumeAfterFreezeLift === true;
+  (selectedNextCase === 'PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST'
+    ? pwsFf006SafeCheck?.canRunNow === true
+    : target075SafeCheck?.canResumeAfterFreezeLift === true);
 const freezeActive = freezeStatus?.freezeActive === true;
 const liveGateAllowsNow = authDoctor?.canRunBusinessCentralWorkflows === true;
 const liveGateBlockedBy = authDoctor?.liveGate?.blockedBy ?? [];
@@ -181,6 +195,8 @@ const missingForLiveRun = operatorDecisionRequired ? liveGateBlockedBy : [];
 const safeLivePilotCommand =
   selectedNextCase === 'PWS-FF-002-GENERAL-POSTING-SETUP-READFIRST-RECOVERY'
     ? 'npm run fibu:pws:ff002:general-posting-setup -- --live-approved'
+    : selectedNextCase === 'PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST'
+      ? 'npm run fibu:pws:ff006:chart-of-accounts-starter-accounts -- --live-approved'
     : selectedNextCase === 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK'
       ? 'npm run fibu:target:foundation-consistency-pilot -- --live-approved'
       : null;
@@ -315,6 +331,22 @@ const output = {
         blockedBy: target075SafeCheck.blockedBy
       }
     : null,
+  pwsFf006SafeCheck: pwsFf006SafeCheck
+    ? {
+        canRunNow: pwsFf006SafeCheck.canRunNow,
+        localCaseReady: pwsFf006SafeCheck.localCaseReady,
+        targetUrlReady: pwsFf006SafeCheck.targetUrlReady,
+        authStateChecked: pwsFf006SafeCheck.authStateChecked,
+        authMeetsLiveWindow: pwsFf006SafeCheck.authMeetsLiveWindow,
+        authUsableForReadFirst: pwsFf006SafeCheck.authUsableForReadFirst,
+        overnightCheck: pwsFf006SafeCheck.overnightCheck,
+        authExpiresInHours: pwsFf006SafeCheck.authExpiresInHours,
+        expectedInstance: pwsFf006SafeCheck.expectedInstance,
+        expectedCompany: pwsFf006SafeCheck.expectedCompany,
+        blockedBy: pwsFf006SafeCheck.blockedBy ?? [],
+        nextStep: pwsFf006SafeCheck.nextStep
+      }
+    : null,
   foundationDecisionCheck: foundationDecisionCheck
     ? {
         canWrite: foundationDecisionCheck.canWrite,
@@ -422,7 +454,9 @@ if (
   authCheck?.canUseStoredAuth !== true ||
   !authDoctorStoredAuthOk ||
   !authDoctorTargetOk ||
-  target075SafeCheck?.canResumeAfterFreezeLift !== true
+  (selectedNextCase === 'PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST'
+    ? pwsFf006SafeCheck?.canRunNow !== true
+    : target075SafeCheck?.canResumeAfterFreezeLift !== true)
 ) {
   process.exitCode = 1;
 }
