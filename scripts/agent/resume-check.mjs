@@ -144,6 +144,8 @@ const output = {
         authAgeHours: target075SafeCheck.authAgeHours,
         authMaxAgeHours: target075SafeCheck.authMaxAgeHours,
         authExpiresInHours: target075SafeCheck.authExpiresInHours,
+        authWarnExpiresInHours: target075SafeCheck.authWarnExpiresInHours,
+        authWarnings: target075SafeCheck.authWarnings ?? [],
         blockedBy: target075SafeCheck.blockedBy
       }
     : null,
