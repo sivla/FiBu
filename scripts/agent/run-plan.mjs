@@ -116,6 +116,7 @@ const authCheck = needsBusinessCentralAuth ? runAuthCheck() : null;
 const authDoctor = needsBusinessCentralAuth ? runAuthDoctor() : null;
 const authBlockedBy = authCheck && !authCheck.canUseStoredAuth ? authCheck.blockedBy ?? [] : [];
 const operatorActionRequired = authDoctor?.output?.operatorActionRequired === true;
+const authRecoveryNeeded = needsBusinessCentralAuth && (authBlockedBy.length > 0 || operatorActionRequired);
 const operatorAction = authDoctor?.output?.lastAuthRefreshAttempt?.operatorAction ?? null;
 const operatorAuthUnblockStep =
   operatorActionRequired && operatorAction
@@ -141,54 +142,56 @@ steps.push(step('run-command', {
 
 if (needsBusinessCentralAuth) {
   steps.push(step('run-command', {
-    command: 'npm run auth:bc:target',
-    reason: 'Print a redacted Business Central target URL diagnosis so source environment and current-state override are clear before auth retry.',
-    allowed: true,
-    requiredBefore: ['npm run auth:bc:open-login', 'execute-playwright', 'execute-business-central'],
-    expectedFailureMeans: 'Fix the local BC target URL or current.json instance/company before any auth retry or BC workflow.',
-  }));
-  steps.push(step('run-command', {
-    command: 'npm run auth:bc:doctor',
-    reason: 'Summarize Business Central auth go/no-go, target context and last auth blocker before any expensive retry or BC workflow.',
-    allowed: true,
-    requiredBefore: ['npm run auth:bc:open-login', 'execute-playwright', 'execute-business-central'],
-    expectedFailureMeans: operatorAuthUnblockStep,
-  }));
-  steps.push(step('run-command', {
     command: 'npm run auth:bc:check',
     reason: 'Validate local Business Central storageState shape and shell-validation metadata before any later Playwright/BC execution.',
     allowed: true,
     requiredBefore: ['execute-playwright', 'execute-business-central'],
     expectedFailureMeans: operatorAuthUnblockStep,
   }));
-  steps.push(step('run-command', {
-    command: 'npm run auth:bc:probe',
-    reason: 'Run a short attended Playwright auth probe when a human believes login is complete, so repeated login waits are avoided.',
-    allowed: true,
-    requiredBefore: ['npm run auth:bc:open-login', 'execute-playwright', 'execute-business-central'],
-    expectedFailureMeans: 'The Playwright auth window is still before Business Central shell; complete Login/MFA in that window or avoid rerunning long auth loops.',
-  }));
-  steps.push(step('run-command', {
-    command: 'npm run auth:bc:reset-profile',
-    reason: 'Dry-run the ignored local Playwright auth profile reset if repeated interactive attempts stay on Microsoft sign-in.',
-    allowed: true,
-    requiredBefore: ['npm run auth:bc:open-login'],
-    expectedFailureMeans: 'Do not delete auth artifacts automatically; use -- --confirm only when the operator intentionally wants a fresh Playwright auth profile.',
-  }));
-  steps.push(step('run-command', {
-    command: 'npm run auth:bc:open-login',
-    reason: 'Open the Playwright auth profile with a bounded attended handoff when the operator is ready to complete Login/MFA.',
-    allowed: true,
-    requiredBefore: ['npm run auth:bc:check', 'execute-playwright', 'execute-business-central'],
-    expectedFailureMeans: 'Login/MFA still did not reach Business Central shell in the Playwright auth window; do not run BC workflows. For a longer attended handoff, set BC_AUTH_OPEN_LOGIN_TIMEOUT_MS explicitly.',
-  }));
-  steps.push(step('run-command', {
-    command: 'npm run auth:bc:open-login-detached',
-    reason: 'Open the same Playwright auth profile in a detached browser when bounded handoffs repeatedly close before Login/MFA can be completed.',
-    allowed: true,
-    requiredBefore: ['npm run auth:bc:capture-detached', 'npm run auth:bc:check', 'execute-playwright', 'execute-business-central'],
-    expectedFailureMeans: 'Detached login only prepares the persistent profile. Close the browser after Business Central shell loads, then run npm run auth:bc:capture-detached to verify and capture storage state.',
-  }));
+  if (authRecoveryNeeded) {
+    steps.push(step('run-command', {
+      command: 'npm run auth:bc:target',
+      reason: 'Print a redacted Business Central target URL diagnosis so source environment and current-state override are clear before auth retry.',
+      allowed: true,
+      requiredBefore: ['npm run auth:bc:open-login', 'execute-playwright', 'execute-business-central'],
+      expectedFailureMeans: 'Fix the local BC target URL or current.json instance/company before any auth retry or BC workflow.',
+    }));
+    steps.push(step('run-command', {
+      command: 'npm run auth:bc:doctor',
+      reason: 'Summarize Business Central auth go/no-go, target context and last auth blocker before any expensive retry or BC workflow.',
+      allowed: true,
+      requiredBefore: ['npm run auth:bc:open-login', 'execute-playwright', 'execute-business-central'],
+      expectedFailureMeans: operatorAuthUnblockStep,
+    }));
+    steps.push(step('run-command', {
+      command: 'npm run auth:bc:probe',
+      reason: 'Run a short attended Playwright auth probe when a human believes login is complete, so repeated login waits are avoided.',
+      allowed: true,
+      requiredBefore: ['npm run auth:bc:open-login', 'execute-playwright', 'execute-business-central'],
+      expectedFailureMeans: 'The Playwright auth window is still before Business Central shell; complete Login/MFA in that window or avoid rerunning long auth loops.',
+    }));
+    steps.push(step('run-command', {
+      command: 'npm run auth:bc:reset-profile',
+      reason: 'Dry-run the ignored local Playwright auth profile reset if repeated interactive attempts stay on Microsoft sign-in.',
+      allowed: true,
+      requiredBefore: ['npm run auth:bc:open-login'],
+      expectedFailureMeans: 'Do not delete auth artifacts automatically; use -- --confirm only when the operator intentionally wants a fresh Playwright auth profile.',
+    }));
+    steps.push(step('run-command', {
+      command: 'npm run auth:bc:open-login',
+      reason: 'Open the Playwright auth profile with a bounded attended handoff when the operator is ready to complete Login/MFA.',
+      allowed: true,
+      requiredBefore: ['npm run auth:bc:check', 'execute-playwright', 'execute-business-central'],
+      expectedFailureMeans: 'Login/MFA still did not reach Business Central shell in the Playwright auth window; do not run BC workflows. For a longer attended handoff, set BC_AUTH_OPEN_LOGIN_TIMEOUT_MS explicitly.',
+    }));
+    steps.push(step('run-command', {
+      command: 'npm run auth:bc:open-login-detached',
+      reason: 'Open the same Playwright auth profile in a detached browser when bounded handoffs repeatedly close before Login/MFA can be completed.',
+      allowed: true,
+      requiredBefore: ['npm run auth:bc:capture-detached', 'npm run auth:bc:check', 'execute-playwright', 'execute-business-central'],
+      expectedFailureMeans: 'Detached login only prepares the persistent profile. Close the browser after Business Central shell loads, then run npm run auth:bc:capture-detached to verify and capture storage state.',
+    }));
+  }
 }
 
 for (const path of dryRun.filesToRead ?? []) {
@@ -311,10 +314,10 @@ const runPlan = {
     'npm run agent:preflight',
     'npm run agent:dry-run',
     'npm run agent:run-plan',
-    ...(needsBusinessCentralAuth ? ['npm run auth:bc:target'] : []),
-    ...(needsBusinessCentralAuth ? ['npm run auth:bc:doctor'] : []),
     ...(needsBusinessCentralAuth ? ['npm run auth:bc:check'] : []),
-    ...(needsBusinessCentralAuth ? ['npm run auth:bc:probe'] : []),
+    ...(authRecoveryNeeded ? ['npm run auth:bc:target'] : []),
+    ...(authRecoveryNeeded ? ['npm run auth:bc:doctor'] : []),
+    ...(authRecoveryNeeded ? ['npm run auth:bc:probe'] : []),
     'npm run check:encoding',
     'git diff --check',
   ],
