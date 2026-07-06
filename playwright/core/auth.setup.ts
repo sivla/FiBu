@@ -331,6 +331,9 @@ try {
     { timeout: authTimeoutMs }
   );
   const shellValidation = await shellValidationHandle.jsonValue();
+  if (!shellValidation) {
+    throw new Error('Business Central shell validation returned an empty result after waitForFunction.');
+  }
   const actualEnvironment = String(shellValidation.pathname ?? '').split('/').filter(Boolean).at(-1) ?? '';
   const actualCompany = String(shellValidation.company ?? '');
   if (expectedEnvironment && actualEnvironment !== expectedEnvironment) {

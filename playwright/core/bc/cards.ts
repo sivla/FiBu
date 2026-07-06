@@ -264,7 +264,7 @@ export async function collectActiveCardControlDiagnostics(
             }))
             .slice(0, 4);
 
-          const diagnosis = !selected
+          const diagnosis: BcCardControlDiagnostic['diagnosis'] = !selected
             ? rejectedBackgroundCandidates.length > 0
               ? 'background-list-only'
               : 'caption-not-visible'
