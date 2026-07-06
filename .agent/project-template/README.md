@@ -18,6 +18,19 @@ The active target world is `playthru / UNIVERSAARL-DE / Universaarl GmbH`.
 
 `TARGET-073` is parked. The first planned live resume pilot is `TARGET-075`, read-first and no-write, only after the freeze/resume gates have been checked.
 
+Minimum local gate check before any live resume:
+
+```powershell
+npm run agent:preflight
+npm run agent:resume:check:overnight
+npm run agent:freeze:status
+npm run agent:foundation:decision:check
+npm run fibu:target:foundation-consistency-pilot -- --check
+npm run fibu:target:foundation-consistency-pilot -- --list
+```
+
+`agent:foundation:decision:write` belongs after a valid TARGET-075 result, not before.
+
 ## What This Folder Is
 
 This folder contains the project file for a realistic Business Central implementation, customer handbook, training path, UAT work and book curation. It is not a queue by itself.
