@@ -267,7 +267,7 @@ Create training module cards for:
 
 Each module must define audience, learning objective, exercise, handbook output, source/evidence status, Playwright/UAT link and acceptance criteria.
 
-Current next useful refinement: after freeze/resume gate, build read-first Playwright proof for VAT setup and Dimensions/Dimension Values, or create purchasing/sales process cards only as dependency-blocked drafts that do not assume missing foundation evidence.
+Current next useful refinement: after freeze/resume gate, use the existing read-first catalog entries for VAT setup and Dimensions/Dimension Values as narrow follow-ups if TARGET-075 exposes those Foundation gaps. Purchasing/sales process cards remain dependency-blocked drafts until Foundation and master-data read-first evidence exist.
 
 ## P1: Apply realism standard
 

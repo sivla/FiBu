@@ -214,6 +214,93 @@ Book/training use:
 
 Supports posting-group explanation before master-data creation.
 
+## PWS-FF-004 VAT/USt setup boundary read-first proof
+
+Workstream: `WS03-FINANCE-FOUNDATION`
+Training module: `TR-02-03 VAT/USt Boundary`
+Related route decision: `RD-FOUND-002`
+Status: `ready-after-foundation-decision`
+
+Purpose:
+
+Read VAT/USt setup context after TARGET-075 without treating visible rows as German tax finality or setup approval.
+
+Start state:
+
+- `PWS-CORE-001` has passed.
+- `FOUNDATION-READINESS-DECISION.md` exists from TARGET-075 and does not block VAT/USt read-first follow-up.
+- No VAT group, VAT Posting Setup, tax account, Preview Posting or Posting change is allowed.
+
+Pages in scope:
+
+- VAT Business Posting Groups / MwSt.-Geschäftsbuchungsgruppen
+- VAT Product Posting Groups / MwSt.-Produktbuchungsgruppen
+- VAT Posting Setup / MwSt.-Buchungsmatrix Einrichtung
+
+Evidence output:
+
+- page title and URL for each safely reached page
+- visible row list or filtered result
+- whether candidate rows such as domestic business/product groups are visible, missing, unclear or unsafe to verify
+- screenshot truth notes for row context, field names and page identity
+- `notProved` list for tax correctness, VAT entries, G/L entries and compliance
+
+Stop if:
+
+- page route falls back to Role Center, search overlay or ambiguous navigation text
+- a page opens in edit/new mode
+- a dialog asks for confirmation
+- route would repeat the parked Page 472 active-editor write probe
+- screenshot cannot prove page, row or company context
+
+Book/training use:
+
+Supports the VAT/USt boundary module. The handbook may explain what BC VAT setup pages do, but must not claim final German tax correctness from read-first evidence.
+
+## PWS-FF-005 Dimensions and dimension values read-first proof
+
+Workstream: `WS03-FINANCE-FOUNDATION`, `WS04-MASTER-DATA-PRODUCT`
+Training module: `TR-02-04 Dimensions`
+Related route decision: `RD-FOUND-002`
+Status: `ready-after-foundation-decision`
+
+Purpose:
+
+Read Dimensions and Dimension Values context before using dimensions in master data, reporting, UAT or process evidence.
+
+Start state:
+
+- `PWS-CORE-001` has passed.
+- `FOUNDATION-READINESS-DECISION.md` exists from TARGET-075 and does not block dimensions read-first follow-up.
+- Organization-model decisions are still planning inputs, not setup approval.
+- No dimension, dimension value, default dimension or General Ledger Setup change is allowed.
+
+Pages in scope:
+
+- Dimensions
+- Dimension Values for safely visible candidate dimensions
+- General Ledger Setup only as read-only context if reached safely
+
+Evidence output:
+
+- page title and URL
+- visible dimension codes, names and blocked/limited-use markers if shown
+- dimension value list context when safely reachable
+- whether global/shortcut dimension context is visible, hidden, parked or unsafe to verify
+- screenshot truth notes and `notProved` boundaries for reporting, posted entries and defaulting behavior
+
+Stop if:
+
+- route requires New/Edit/Delete or value creation
+- FastTabs, FactBox, layout or overflow were not checked before calling a field absent
+- page context is ambiguous
+- user would need to switch company
+- result would be used to claim posted-entry or reporting proof
+
+Book/training use:
+
+Supports the Dimensions training module and keeps reporting claims parked until later posted-entry evidence exists.
+
 ## PWS-FF-003 Payment terms read-first proof
 
 Workstream: `WS03-FINANCE-FOUNDATION`, `WS04-MASTER-DATA-PRODUCT`
@@ -451,6 +538,7 @@ Supports route-comparison chapter: manual learning record vs scalable data load.
 ## Catalog next steps
 
 1. Keep `TARGET-075` as the first live resume pilot and generate `FOUNDATION-READINESS-DECISION.md` from its result before master-data probes.
-2. If the Foundation decision allows read-first master-data context, implement `PWS-MD-001`, `PWS-MD-002` and `PWS-MD-003` as no-write probes.
-3. Use those probes to harden company-context, page-type, dropdown, tooltip and screenshot-QA helpers.
-4. Do not run write/setup scenarios until the active case explicitly unlocks them and a Smart Decision names the fields, route, proof and cleanup/keep strategy.
+2. If TARGET-075 shows Foundation gaps, run the narrow read-first follow-up that matches the gap: posting groups, VAT/USt, dimensions, payment terms or number series.
+3. If the Foundation decision allows read-first master-data context, implement `PWS-MD-001`, `PWS-MD-002` and `PWS-MD-003` as no-write probes.
+4. Use those probes to harden company-context, page-type, dropdown, tooltip and screenshot-QA helpers.
+5. Do not run write/setup scenarios until the active case explicitly unlocks them and a Smart Decision names the fields, route, proof and cleanup/keep strategy.
