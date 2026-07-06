@@ -9,6 +9,8 @@ const rootReadmePath = 'README.md';
 const handoverPath = 'HANDOVER.md';
 const projectTemplateReadmePath = '.agent/project-template/README.md';
 const executionRoadmapPath = '.agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md';
+const projectDashboardPath = '.agent/project-template/PROJECT-DASHBOARD-DRAFT.md';
+const activeArtifactClassificationPath = '.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md';
 const capabilitiesPath = '.agent/capabilities.json';
 const packagePath = 'package.json';
 const specPath = 'playwright/projects/fibu-book5/tests/target-075-chart-of-accounts-reopen-and-setup-consistency-check.spec.ts';
@@ -50,6 +52,8 @@ for (const requiredFile of [
   handoverPath,
   projectTemplateReadmePath,
   executionRoadmapPath,
+  projectDashboardPath,
+  activeArtifactClassificationPath,
   capabilitiesPath,
   packagePath,
   specPath,
@@ -71,6 +75,8 @@ let rootReadme = '';
 let handover = '';
 let projectTemplateReadme = '';
 let executionRoadmap = '';
+let projectDashboard = '';
+let activeArtifactClassification = '';
 let spec = '';
 let guardedRunner = '';
 let foundationDecisionTemplate = '';
@@ -86,6 +92,8 @@ if (!errors.length) {
   handover = readText(handoverPath);
   projectTemplateReadme = readText(projectTemplateReadmePath);
   executionRoadmap = readText(executionRoadmapPath);
+  projectDashboard = readText(projectDashboardPath);
+  activeArtifactClassification = readText(activeArtifactClassificationPath);
   spec = readText(specPath);
   guardedRunner = readText(guardedRunnerPath);
   foundationDecisionTemplate = readText(foundationDecisionTemplatePath);
@@ -301,7 +309,9 @@ for (const [controlPath, text] of [
   [rootReadmePath, rootReadme],
   [handoverPath, handover],
   [projectTemplateReadmePath, projectTemplateReadme],
-  [executionRoadmapPath, executionRoadmap]
+  [executionRoadmapPath, executionRoadmap],
+  [projectDashboardPath, projectDashboard],
+  [activeArtifactClassificationPath, activeArtifactClassification]
 ]) {
   for (const phrase of ['playthru', 'UNIVERSAARL-DE', 'TARGET-073', 'TARGET-075', 'read-first']) {
     if (!text.includes(phrase)) errors.push(`${controlPath}: missing active-control phrase: ${phrase}`);
@@ -508,6 +518,8 @@ const checkedFiles = [
   handoverPath,
   projectTemplateReadmePath,
   executionRoadmapPath,
+  projectDashboardPath,
+  activeArtifactClassificationPath,
   capabilitiesPath,
   packagePath,
   specPath,

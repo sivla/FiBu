@@ -12,6 +12,7 @@ Last reviewed: 2026-07-06
 - Live status: Improvement Freeze remains active until resume gates are checked.
 - Parked live case: `TARGET-073`
 - First allowed resume pilot: `TARGET-075`, read-first and no-write.
+- Foundation handoff: `FOUNDATION-READINESS-DECISION.md` follows TARGET-075 before setup, master data or process work.
 
 ## Classification rules
 
