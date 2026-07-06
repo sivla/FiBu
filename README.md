@@ -60,6 +60,7 @@ Das Ziel ist nicht maximale Dokumentmenge. Das Ziel ist ein belastbarer Blueprin
 
 | Datei/Ordner | Zweck |
 |---|---|
+| `HANDOVER.md` | kurzer Uebergabe-Einstieg fuer neue Codex-Accounts und neue Projektbeteiligte |
 | `.agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md` | aktuelle Roadmap und naechste erlaubte Aktion |
 | `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` | Einordnung in `active-control`, `active-work`, `reference`, `parked`, `legacy-purge-source` und `superseded/remove-candidate` |
 | `.agent/project-template/PROJECT-DASHBOARD-DRAFT.md` | kompakte Projektleiter-Sicht |
