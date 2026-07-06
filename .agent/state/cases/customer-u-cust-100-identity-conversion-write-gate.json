@@ -1,0 +1,165 @@
+{
+  "schemaVersion": 1,
+  "caseId": "CUSTOMER-U-CUST-100-IDENTITY-CONVERSION-WRITE-GATE",
+  "status": "completed-with-reopen-proof",
+  "mode": "universaarl-masterdata-controlled-write",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w2-core-masterdata",
+  "workstream": "WS04 Master Data / Product Model",
+  "epic": "Customer master data realistic data route",
+  "issueType": "ControlledWriteEvidence",
+  "purpose": "Convert the existing placeholder customer U-CUST-100 into the realistic fictional first customer Saarland Maschinenbau AG using a narrow identity/contact write gate.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/customer-u-cust-100-identity-conversion-write-gate/CUSTOMER-U-CUST-100-IDENTITY-CONVERSION-WRITE-GATE-result.json",
+  "resultStatus": "observed-already-converted",
+  "businessPurpose": "Make the first customer master record useful for training, handbook and later O2C preparation without duplicating customer numbers or touching accounting setup.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST-result.json",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-conversion-or-alternate-number-decision/CUSTOMER-U-CUST-100-CONVERSION-OR-ALTERNATE-NUMBER-DECISION-result.json",
+    "playwright/projects/fibu-book5/UNIVERSAARL-CUSTOMER-FIELD-MAP.md"
+  ],
+  "mayRunPlaywright": true,
+  "mayOpenBusinessCentral": true,
+  "effectiveBcActionsAllowed": true,
+  "allowedActions": [
+    "run-playwright-controlled-write",
+    "open-business-central",
+    "confirm-playthru-instance",
+    "confirm-universaarl-company",
+    "open-existing-customer-card",
+    "verify-u-cust-100-placeholder-before-write",
+    "edit-customer-identity-fields-only",
+    "save-customer-card",
+    "reopen-customer-card",
+    "capture-before-after-reopen-screenshot-qa",
+    "write-evidence-result",
+    "update-state-dashboard-and-field-map"
+  ],
+  "targetRecord": {
+    "table": "Customer",
+    "page": "Customer Card",
+    "no": "U-CUST-100",
+    "previousExpectedName": "Universaarl Kunde 100",
+    "targetName": "Saarland Maschinenbau AG"
+  },
+  "fieldsAllowedToChange": [
+    "Name",
+    "Search Name",
+    "Address",
+    "Post Code",
+    "City",
+    "Country/Region Code",
+    "Contact",
+    "E-Mail"
+  ],
+  "targetValues": {
+    "Name": "Saarland Maschinenbau AG",
+    "Search Name": "SAARLAND MASCHINENBAU AG",
+    "Address": "Hafenstrasse 12",
+    "Post Code": "66111",
+    "City": "Saarbruecken",
+    "Country/Region Code": "DE",
+    "Contact": "Martina Weber",
+    "E-Mail": "einkauf@example.invalid"
+  },
+  "fieldsExplicitlyOutOfScope": [
+    "Customer Posting Group",
+    "Gen. Bus. Posting Group",
+    "VAT Bus. Posting Group",
+    "Payment Terms Code",
+    "Payment Method Code",
+    "Global Dimension 1 Code",
+    "Global Dimension 2 Code",
+    "Credit Limit",
+    "Bill-to Customer No.",
+    "Prices Including VAT",
+    "Currency Code",
+    "Customer Template Code"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "use-confidential-real-customer-data",
+    "create-customer",
+    "delete-customer",
+    "change-customer-template",
+    "change-posting-group",
+    "change-payment-terms",
+    "change-dimensions",
+    "change-vat-setup",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-master-data-ready",
+    "claim-sales-process-ready"
+  ],
+  "smartDecision": {
+    "whyNow": "The placeholder U-CUST-100 has read-first zero-dependency signals and blocks the intended first realistic customer number. A narrow identity conversion is more realistic than creating a duplicate.",
+    "sourceBasis": [
+      "Read-first evidence observed U-CUST-100 with customer card, statistics/FactBoxes and Customer Ledger Entries context.",
+      "Local route decision selected controlled conversion over alternate number."
+    ],
+    "fieldsToChange": [
+      "Name",
+      "Search Name",
+      "Address",
+      "Post Code",
+      "City",
+      "Country/Region Code",
+      "Contact",
+      "E-Mail"
+    ],
+    "fieldsToLeaveUntouched": [
+      "posting groups",
+      "VAT groups",
+      "payment terms",
+      "payment methods",
+      "dimensions",
+      "templates",
+      "documents"
+    ],
+    "risk": "Customer identity becomes more realistic, but accounting setup remains incomplete. The result must not be used as O2C or posting readiness.",
+    "fallback": "If the card is not the expected placeholder or field editing is unsafe, stop and write a blocked result; do not create a second customer."
+  },
+  "screenshotQaRequired": [
+    "Before screenshot showing U-CUST-100 / Universaarl Kunde 100 in playthru / UNIVERSAARL-DE",
+    "Edit/write screenshot or text checkpoint showing only identity/contact fields targeted",
+    "After-save screenshot showing Saarland Maschinenbau AG",
+    "Reopen proof screenshot showing persisted Saarland Maschinenbau AG",
+    "No-document/no-preview/no-post end state"
+  ],
+  "acceptanceCriteria": [
+    "U-CUST-100 is changed from Universaarl Kunde 100 to Saarland Maschinenbau AG only if the expected placeholder state is visible before write.",
+    "Only allowed identity/contact fields are changed.",
+    "No posting group, VAT group, payment term, dimension, template, document, Preview Posting, Posting, payment or API shortcut is touched.",
+    "Reopen proof confirms the changed identity persisted.",
+    "Result JSON clearly states masterDataChanged true and setupChanged false.",
+    "Next case remains setup/payment/posting readiness, not O2C execution."
+  ],
+  "stopIf": [
+    "Instance is not playthru.",
+    "Company is not UNIVERSAARL-DE.",
+    "Customer U-CUST-100 is missing.",
+    "Customer U-CUST-100 no longer has the expected placeholder name before write.",
+    "Unexpected balance, open document or dependency signal appears.",
+    "The route would need posting, VAT, payment, dimensions, template or document changes.",
+    "A dialog asks to post, preview, create a document, change setup or confirm a broader operation.",
+    "Screenshot QA cannot prove before/after/reopen state."
+  ],
+  "completedScope": [
+    "U-CUST-100 / Saarland Maschinenbau AG is visible after save/autosave and after reopen proof.",
+    "Address, post code, city, e-mail and contact are visible on the Customer Card.",
+    "No setup, document, Preview Posting, Posting, payment or API shortcut was executed in the successful proof run."
+  ],
+  "remainingScope": [
+    "Country/Region Code DE is not proven on the visible card.",
+    "Search Name/Suchbegriff is not proven on the current card layout.",
+    "Customer Posting Group, Gen. Bus. Posting Group, VAT Bus. Posting Group, Payment Terms, Payment Method and Dimensions remain separate read-first/setup dependencies."
+  ],
+  "nextCase": "CUSTOMER-SETUP-POSTING-PAYMENT-READFIRST",
+  "updatedAt": "2026-07-07T02:35:00.000+02:00"
+}

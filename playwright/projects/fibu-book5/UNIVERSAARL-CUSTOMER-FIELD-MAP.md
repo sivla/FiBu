@@ -14,7 +14,7 @@ Diese Feldkarte uebersetzt die beobachtete Debitorenkarte in eine spaetere Einri
 | Debitorennummer | Debitorenkarte / Allgemein | `No.` / `Nr.` | ja | Nummernserie oder manuelle Nummernlogik | UI fuer Einzelbeispiel, spaeter Configuration Package | PWS-MD-004B Page Inspection, PWS-FF-001 Nummernserien | Key User muessen verstehen, ob Nummern manuell oder automatisch vergeben werden. | observed-readfirst |
 | Name | Debitorenkarte / Allgemein | `Name` | ja | keine harte Setup-Abhaengigkeit | UI fuer Einzelbeispiel, spaeter Configuration Package | PWS-MD-004B | Name ist der wichtigste Such- und Beleganzeigewert. | observed-readfirst |
 | Suchbegriff | Debitorenkarte / Allgemein | `Search Name` | empfohlen | Namenskonvention | Template oder Configuration Package | PWS-MD-004B Page Inspection | Hilft Suche und Dublettenpruefung. | observed-readfirst |
-| Adresse | Debitorenkarte / Adresse und Kontakt | `Address`, `Address 2`, PLZ/Ort nicht vollstaendig im Inspect sichtbar | ja fuer realistische Belege | Laender-/Adressstandard | UI fuer Einzelbeispiel, spaeter Configuration Package | PWS-MD-004B Screenshot und Kontexttext | Ohne Adresse sind Belege und Kundenkommunikation nicht realistisch. | needs-field-confirmation |
+| Adresse | Debitorenkarte / Adresse und Kontakt | `Address`, `Post Code`, `City` | ja fuer realistische Belege | Laender-/Adressstandard | UI fuer Einzelbeispiel, spaeter Configuration Package | CUSTOMER-U-CUST-100-IDENTITY-CONVERSION-WRITE-GATE | Ohne Adresse sind Belege und Kundenkommunikation nicht realistisch. | observed-reopen-proof |
 | Kontakt | Debitorenkarte / Adresse und Kontakt | `Contact`, `Phone No.` | empfohlen | Kontaktprozess | UI oder Configuration Package | PWS-MD-004B | Endanwender muessen Kontaktfelder von Belegadressen unterscheiden. | observed-readfirst |
 | Debitorenbuchungsgruppe | Debitorenkarte / Fakturierung | `Customer Posting Group` / `Debitorenbuchungsgruppe` | ja vor O2C/Posting | Customer Posting Groups und G/L Mapping | blocked bis Setup-Readiness | PWS-MD-004B/004C | Dieses Feld steuert Forderungskonto und Buchungslogik; nicht raten. | blocked-setup |
 | Geschaeftsbuchungsgruppe | Debitorenkarte / Fakturierung | `Geschaeftsbuchungsgruppe` sichtbar | ja vor O2C/Posting | General Business Posting Groups und General Posting Setup | blocked bis Foundation geklaert | PWS-MD-004C | Kunden muessen verstehen, dass dieses Feld die Erlos-/Aufwandslogik mitsteuert. | blocked-setup |
@@ -37,7 +37,7 @@ Die Zielkunden sind realistisch fiktiv. Sie duerfen wie echte Kunden wirken, ent
 
 | Zielcode | Zielname | Zielrolle | Aktueller BC-Stand | Realitaetsentscheidung vor Write-Gate | Setup-Abhaengigkeit | Naechste Aktion |
 | --- | --- | --- | --- | --- | --- | --- |
-| `U-CUST-100` | Saarland Maschinenbau AG | Standardkunde fuer ersten O2C-Prozess | existiert als `Universaarl Kunde 100`; Karte, Statistik/FactBoxes und Debitorenposten-Kontext read-first beobachtet | nicht blind neu anlegen; naechster Schritt ist Entscheidung: kontrollierte Umwandlung oder neue Nummer | Debitorenbuchungsgruppe, Geschaeftsbuchungsgruppe, USt.-Geschaeftsbuchungsgruppe, Zahlungsbedingung | Conversion-or-alternate-number decision |
+| `U-CUST-100` | Saarland Maschinenbau AG | Standardkunde fuer ersten O2C-Prozess | als `Saarland Maschinenbau AG` mit Adresse/Kontakt nach Reopen sichtbar | keine Duplikat-Neuanlage; Identitaet/Kontakt ist belegt, Laendercode/Suchbegriff bleiben Datenqualitaetsgrenze | Debitorenbuchungsgruppe, Geschaeftsbuchungsgruppe, USt.-Geschaeftsbuchungsgruppe, Zahlungsbedingung, Laender-/Regionscode | Customer setup/payment read-first |
 | `U-CUST-110` | Pfalz Technik GmbH | zweiter Kunde fuer Listen, Filter, Vergleich | nicht bewiesen | spaeter ueber Konfigurationspaket/Excel-assisted sinnvoll | wie `U-CUST-100`, plus Region/Dimension | Data Request vervollstaendigen |
 | `U-CUST-120` | Mosel Projektbau GmbH | Projekt-/Service-nahe Folgefaelle | nicht bewiesen | parken bis Jobs/Service-Kontext | Kundenvorlage, Zahlungsbedingung, ggf. Projekt-/Service-Dimensionen | parked |
 | `U-CUST-190` | Privatkunde Schulung | einfacher B2C-/Schulungsfall | nicht bewiesen | erst nach USt.-Gate und Datenschutz-/B2C-Grenze | USt.-Kontext, Zahlungsbedingung, keine echten personenbezogenen Daten | parked |
@@ -49,7 +49,7 @@ Diese Werte sind nicht in Business Central angelegt. Sie sind ein realistischer 
 
 | Code | Name | Adresse | Kontakt | Kundentyp | Vorgeschlagene Route | Noch blockiert durch |
 | --- | --- | --- | --- | --- | --- | --- |
-| `U-CUST-100` | Saarland Maschinenbau AG | Hafenstrasse 12, 66111 Saarbruecken, DE | Einkauf: Martina Weber, einkauf@example.invalid | B2B Inland | enger UI-Write-Gate oder kontrolliertes Umbenennen des bestehenden Platzhalters | Buchungsgruppen, USt.-Gruppe, Zahlungsbedingung, Datenqualitaetsentscheidung |
+| `U-CUST-100` | Saarland Maschinenbau AG | Hafenstrasse 12, 66111 Saarbruecken, DE | Einkauf: Martina Weber, einkauf@example.invalid | B2B Inland | enger UI-Write-Gate fuer Identitaet/Adresse/Kontakt | Buchungsgruppen, USt.-Gruppe, Zahlungsbedingung bleiben eigene Setup-Gates |
 | `U-CUST-110` | Pfalz Technik GmbH | Industriestrasse 8, 67655 Kaiserslautern, DE | Buchhaltung: Leon Braun, buchhaltung@example.invalid | B2B Inland | Konfigurationspaket/Excel-assisted nach Feldmapping | Setup-Readiness und Importvorlage |
 | `U-CUST-120` | Mosel Projektbau GmbH | Projektweg 4, 54290 Trier, DE | Projektleitung: Anna Schmitt, projekt@example.invalid | Projektkunde | spaeter, wenn Projekt-/Service-Prozesse geplant sind | Jobs/Service-Entscheidung |
 | `U-CUST-190` | Privatkunde Schulung | fiktive Schulungsadresse, DE | keine echte Person | B2C Schulung | spaeter separater Schulungsfall | USt.-Gate und Datenschutzgrenze |
@@ -57,12 +57,12 @@ Diese Werte sind nicht in Business Central angelegt. Sie sind ein realistischer 
 
 ## Datenqualitaetsentscheidung fuer `U-CUST-100`
 
-`U-CUST-100` bleibt die bevorzugte Nummer fuer den ersten realistischen Universaarl-Debitor. Der bestehende BC-Datensatz `Universaarl Kunde 100` wird nicht dupliziert und nicht blind ueberschrieben. Der read-first Abhaengigkeitscheck wurde in `playthru / UNIVERSAARL-DE` ausgefuehrt: Debitorenliste, Debitorenkarte, Page Inspection, Statistik-/FactBox-Signale und Debitorenposten-Kontext wurden mit Screenshots erfasst.
+`U-CUST-100` bleibt die bevorzugte Nummer fuer den ersten realistischen Universaarl-Debitor. Der bestehende BC-Datensatz wurde nicht dupliziert. Nach dem kontrollierten Write-Gate ist `U-CUST-100 / Saarland Maschinenbau AG` mit Adresse, PLZ/Ort, E-Mail und Kontakt nach Reopen auf der echten Business-Central-Debitorenkarte sichtbar.
 
-Die beobachteten Signale sprechen fuer einen engen naechsten Entscheidungsfall: kontrollierte Umwandlung dieses Platzhalters in `Saarland Maschinenbau AG` oder bewusstes Parken und Nutzung einer neuen Nummer. Das ist noch kein Write-Gate. Vor einer Aenderung muessen die Zielwerte, Setup-Grenzen und der Reopen-Proof explizit feststehen.
+Das ist kein Freibrief fuer O2C oder Setup: Laender-/Regionscode `DE` und Suchbegriff sind nicht bewiesen. Buchungsgruppen, USt.-Gruppen, Zahlungsbedingungen, Zahlungsarten, Dimensionen, Vorlagen und Belege bleiben gesperrt.
 
 Diese Entscheidung nutzt realistische fiktive Kundendaten und echte Business-Central-Oberflaechen-Evidence. Sie verwendet keine vertraulichen echten Kundendaten und oeffnet keinen Schreib-Gate.
 
 ## Naechster sinnvoller Schritt
 
-`CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST` ist beobachtet. Der naechste sinnvolle Fall ist `CUSTOMER-U-CUST-100-CONVERSION-OR-ALTERNATE-NUMBER-DECISION`: lokal entscheiden, ob die beobachtete Read-first-Evidence fuer einen engen Umwandlungs-Write-Gate reicht oder ob ein neuer realistischer Kundencode sicherer ist.
+`CUSTOMER-U-CUST-100-IDENTITY-CONVERSION-WRITE-GATE` ist mit Reopen-Proof erledigt. Der naechste sinnvolle Fall ist `CUSTOMER-SETUP-POSTING-PAYMENT-READFIRST`: Buchungsgruppen, USt.-Gruppe, Zahlungsbedingungen, Zahlungsart, Dimensionen, Laender-/Regionscode und Suchbegriff nur lesen und als Setup-/Datenqualitaetsgrenze bewerten.

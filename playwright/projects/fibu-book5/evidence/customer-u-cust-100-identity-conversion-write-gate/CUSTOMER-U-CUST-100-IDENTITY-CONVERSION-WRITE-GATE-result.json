@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized-compatible",
+  "caseId": "CUSTOMER-U-CUST-100-IDENTITY-CONVERSION-WRITE-GATE",
+  "source": "playwright-controlled-customer-identity-write-gate",
+  "resultStatus": "observed-already-converted",
+  "startedAt": "2026-07-06T23:48:33.789Z",
+  "completedAt": "2026-07-06T23:49:07.686Z",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "Debitorenkarte / Customer Card",
+  "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=21&company=UNIVERSAARL-DE&dc=0",
+  "businessCentralOpened": true,
+  "playwrightLiveRunExecuted": true,
+  "liveActionsExecuted": true,
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "targetRecord": {
+    "table": "Customer",
+    "no": "U-CUST-100",
+    "previousExpectedName": "Universaarl Kunde 100",
+    "targetName": "Saarland Maschinenbau AG"
+  },
+  "fieldsChangedOrVerified": [],
+  "actionsTaken": [
+    "Opened guarded Business Central context for playthru / UNIVERSAARL-DE.",
+    "Opened Customers list and existing U-CUST-100 Customer Card.",
+    "Customer already had target identity; no write was needed.",
+    "Captured before, after-save and reopen proof screenshots."
+  ],
+  "actionsNotTaken": [
+    "No customer was created.",
+    "No customer was deleted.",
+    "No customer template changed.",
+    "No customer posting group changed.",
+    "No business posting group changed.",
+    "No VAT posting group changed.",
+    "No payment terms or payment method changed.",
+    "No dimensions changed.",
+    "No sales document or draft created.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No payment.",
+    "No API shortcut.",
+    "No confidential real customer data used."
+  ],
+  "screenshots": [
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-identity-conversion-write-gate/customer-u-cust-100-conversion-010-before-card.png",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-identity-conversion-write-gate/customer-u-cust-100-conversion-020-after-save.png",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-identity-conversion-write-gate/customer-u-cust-100-conversion-030-reopen-proof.png"
+  ],
+  "screenshotQa": {
+    "requiredCheckpoints": [
+      "before customer card with U-CUST-100 placeholder or target identity",
+      "after save customer card with Saarland Maschinenbau AG",
+      "reopen proof with Saarland Maschinenbau AG",
+      "no posting/setup/document context"
+    ],
+    "capturedCheckpoints": [
+      "playwright/projects/fibu-book5/evidence/customer-u-cust-100-identity-conversion-write-gate/customer-u-cust-100-conversion-010-before-card.png",
+      "playwright/projects/fibu-book5/evidence/customer-u-cust-100-identity-conversion-write-gate/customer-u-cust-100-conversion-020-after-save.png",
+      "playwright/projects/fibu-book5/evidence/customer-u-cust-100-identity-conversion-write-gate/customer-u-cust-100-conversion-030-reopen-proof.png"
+    ],
+    "acceptedForIdentityConversion": true,
+    "acceptedForSetupReadiness": false,
+    "acceptedForO2CReady": false
+  },
+  "proved": [
+    "Existing customer U-CUST-100 is available in playthru / UNIVERSAARL-DE.",
+    "U-CUST-100 already showed Saarland Maschinenbau AG identity; no additional write was needed.",
+    "Reopen proof shows Saarland Maschinenbau AG on the customer card.",
+    "No setup, document, Preview Posting, Posting, payment or API shortcut was executed."
+  ],
+  "notProved": [
+    "Country/Region Code DE is not proven; the visible field remains a later setup/data-quality boundary.",
+    "Search Name/Suchbegriff is not proven on the current card layout.",
+    "No customer posting group correctness.",
+    "No general business posting group correctness.",
+    "No VAT business posting group correctness.",
+    "No payment term correctness.",
+    "No dimension default correctness.",
+    "No O2C readiness.",
+    "No Preview Posting, Posting, payment or ledger trace.",
+    "No UAT acceptance."
+  ],
+  "blockedBy": [],
+  "flags": {
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "identityWriteGateOnly": true
+  },
+  "nextStepDecision": {
+    "currentCase": "CUSTOMER-U-CUST-100-IDENTITY-CONVERSION-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "CUSTOMER-U-CUST-100-IDENTITY-CONVERSION-WRITE-GATE",
+    "lastEvidenceSummary": "U-CUST-100 identity/contact route is proven with reopen proof.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The identity conversion gate is complete; setup fields remain the next separate dependency.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "CUSTOMER-SETUP-POSTING-PAYMENT-READFIRST",
+        "status": "ready-next",
+        "reason": "Posting groups, VAT groups and payment terms must be read/decided separately before O2C."
+      },
+      {
+        "caseId": "PWS-MD-CUSTOMER-CONFIG-PACKAGE-ROUTE",
+        "status": "ready-after-current",
+        "reason": "Batch route follows after first manual example and field boundaries."
+      },
+      {
+        "caseId": "O2C-FIRST-CUSTOMER-PROCESS",
+        "status": "blocked",
+        "reason": "Blocked until customer setup, item/service setup and posting/VAT boundaries are consciously handled."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "CUSTOMER-SETUP-POSTING-PAYMENT-READFIRST",
+    "whySelectedNextCaseIsBest": "The customer now has realistic identity data; setup/payment/posting fields are the next real dependency.",
+    "risksBeforeNextCase": [
+      "Do not claim customer setup or O2C readiness from identity data alone.",
+      "Do not use confidential real customer data.",
+      "Do not create sales documents until setup fields are decided."
+    ],
+    "requiredPreparation": [
+      "Review which customer setup fields remain empty or blocked.",
+      "Prepare read-first setup/payment field route before any O2C process."
+    ]
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-identity-conversion-write-gate/customer-u-cust-100-conversion-010-context.txt",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-identity-conversion-write-gate/customer-u-cust-100-conversion-010-before-card.png",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-identity-conversion-write-gate/customer-u-cust-100-conversion-010-before-card.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-identity-conversion-write-gate/customer-u-cust-100-conversion-020-after-save.png",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-identity-conversion-write-gate/customer-u-cust-100-conversion-020-after-save.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-identity-conversion-write-gate/customer-u-cust-100-conversion-030-reopen-proof.png",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-identity-conversion-write-gate/customer-u-cust-100-conversion-030-reopen-proof.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-identity-conversion-write-gate/CUSTOMER-U-CUST-100-IDENTITY-CONVERSION-WRITE-GATE-result.json"
+  ],
+  "nextCase": "CUSTOMER-SETUP-POSTING-PAYMENT-READFIRST",
+  "requiresReview": false,
+  "safeToFinalizeState": true
+}

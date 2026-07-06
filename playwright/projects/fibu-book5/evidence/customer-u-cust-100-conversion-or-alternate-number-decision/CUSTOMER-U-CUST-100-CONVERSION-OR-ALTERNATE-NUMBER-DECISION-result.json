@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized-compatible",
+  "caseId": "CUSTOMER-U-CUST-100-CONVERSION-OR-ALTERNATE-NUMBER-DECISION",
+  "source": "local-customer-masterdata-route-decision",
+  "resultStatus": "completed-local-decision",
+  "completedAt": "2026-07-07T01:50:00.000+02:00",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "businessCentralOpened": false,
+  "playwrightLiveRunExecuted": false,
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "decision": {
+    "selectedRoute": "prepare-conversion-write-gate",
+    "rejectedRoute": "park-placeholder-use-new-number",
+    "reason": "U-CUST-100 is the preferred first realistic customer number, the placeholder customer is visible with zero read-first dependency signals, and converting the existing placeholder avoids duplicate customer numbers in the training and handbook storyline.",
+    "businessCentralConsultantView": "A real project should not create a duplicate first customer when an unused placeholder already occupies the intended number. The clean route is a narrow identity conversion with reopen proof, while posting groups, VAT groups, payment terms and dimensions remain separate setup decisions.",
+    "solutionArchitectView": "The write gate must be narrow, reversible in sandbox, evidence-backed and non-transactional. It changes customer identity/contact data only and must not claim O2C, VAT, posting or setup readiness."
+  },
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST-result.json",
+    "playwright/projects/fibu-book5/UNIVERSAARL-CUSTOMER-FIELD-MAP.md"
+  ],
+  "proved": [
+    "The next customer step should not create a duplicate U-CUST-100.",
+    "The observed read-first evidence is strong enough to prepare a narrow identity conversion write gate.",
+    "The conversion write gate must exclude posting groups, VAT groups, payment terms, dimensions, sales documents, Preview Posting and Posting.",
+    "Realistic customer-like data remains simulated Universaarl data and not confidential real customer data."
+  ],
+  "notProved": [
+    "No customer identity data was changed in this local decision.",
+    "No customer setup correctness.",
+    "No O2C readiness.",
+    "No VAT, posting group, payment term or dimension readiness.",
+    "No Preview Posting, Posting, payment or ledger trace.",
+    "No UAT acceptance."
+  ],
+  "nextStepDecision": {
+    "currentCase": "CUSTOMER-U-CUST-100-CONVERSION-OR-ALTERNATE-NUMBER-DECISION",
+    "plannedNextCaseBeforeReview": "CUSTOMER-U-CUST-100-CONVERSION-OR-ALTERNATE-NUMBER-DECISION",
+    "lastEvidenceSummary": "U-CUST-100 exists as Universaarl Kunde 100 with read-first card, statistics/FactBox and customer-ledger context evidence.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The local decision is complete; the next useful step is the guarded identity conversion write gate.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "CUSTOMER-U-CUST-100-IDENTITY-CONVERSION-WRITE-GATE",
+        "status": "ready-next",
+        "reason": "A narrow identity/contact update can make the first customer realistic without touching posting setup."
+      },
+      {
+        "caseId": "CUSTOMER-SETUP-POSTING-PAYMENT-READFIRST",
+        "status": "ready-after-current",
+        "reason": "Posting groups, VAT groups and payment terms remain separate read-first/setup decisions after identity is realistic."
+      },
+      {
+        "caseId": "PWS-MD-CUSTOMER-CONFIG-PACKAGE-ROUTE",
+        "status": "ready-after-current",
+        "reason": "Batch customer route should follow after the first manual example and field boundaries are proven."
+      },
+      {
+        "caseId": "O2C-FIRST-CUSTOMER-PROCESS",
+        "status": "blocked",
+        "reason": "Blocked until customer setup, item/service setup and posting/VAT boundaries are consciously handled."
+      }
+    ],
+    "queueChangesMade": [
+      "Select CUSTOMER-U-CUST-100-IDENTITY-CONVERSION-WRITE-GATE as next active case."
+    ],
+    "selectedNextCase": "CUSTOMER-U-CUST-100-IDENTITY-CONVERSION-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It produces real project progress and better training data while staying below posting/setup risk.",
+    "risksBeforeNextCase": [
+      "Do not change posting groups, VAT groups, payment terms or dimensions.",
+      "Stop if U-CUST-100 no longer shows the expected placeholder state.",
+      "Stop if Business Central opens outside playthru / UNIVERSAARL-DE.",
+      "Stop if save/reopen proof cannot be captured."
+    ],
+    "requiredPreparation": [
+      "Use existing customer card route from read-first proof.",
+      "Capture before, write, after and reopen screenshots.",
+      "Keep target data simulated and use example.invalid for non-real contact data."
+    ]
+  },
+  "actionsTaken": [
+    "Reviewed read-first dependency evidence for existing customer U-CUST-100.",
+    "Selected controlled identity conversion rather than duplicate new customer creation.",
+    "Prepared the next narrow write-gate boundary."
+  ],
+  "actionsNotTaken": [
+    "No Business Central opened.",
+    "No Playwright live run executed.",
+    "No customer created, edited, saved or deleted.",
+    "No customer setup, posting group, VAT group, payment term or dimension changed.",
+    "No document, draft, Preview Posting, Posting, payment or API shortcut.",
+    "No confidential real customer data used."
+  ],
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-conversion-or-alternate-number-decision/CUSTOMER-U-CUST-100-CONVERSION-OR-ALTERNATE-NUMBER-DECISION-result.json",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-dependency-readfirst/CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST-result.json"
+  ],
+  "nextCase": "CUSTOMER-U-CUST-100-IDENTITY-CONVERSION-WRITE-GATE",
+  "requiresReview": false,
+  "safeToFinalizeState": true
+}

@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "caseId": "CUSTOMER-SETUP-POSTING-PAYMENT-READFIRST",
+  "status": "planned-read-first",
+  "mode": "universaarl-masterdata-readfirst",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w2-core-masterdata",
+  "workstream": "WS04 Master Data / Product Model",
+  "epic": "Customer setup dependencies before O2C",
+  "issueType": "ReadFirstEvidence",
+  "purpose": "Read the setup-critical fields on U-CUST-100 after the realistic identity conversion and decide which customer setup dependencies block O2C.",
+  "businessPurpose": "Keep the first realistic Universaarl customer useful for handbook/training while preventing false claims about posting, VAT, payment or O2C readiness.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-identity-conversion-write-gate/CUSTOMER-U-CUST-100-IDENTITY-CONVERSION-WRITE-GATE-result.json",
+    "playwright/projects/fibu-book5/UNIVERSAARL-CUSTOMER-FIELD-MAP.md"
+  ],
+  "mayRunPlaywright": true,
+  "mayOpenBusinessCentral": true,
+  "effectiveBcActionsAllowed": false,
+  "allowedActions": [
+    "run-playwright-readfirst",
+    "open-business-central",
+    "confirm-playthru-instance",
+    "confirm-universaarl-company",
+    "open-existing-customer-card",
+    "expand-fakturierung-and-zahlungen-fasttabs",
+    "capture-screenshot-qa",
+    "write-evidence-result",
+    "update-state-dashboard-and-field-map"
+  ],
+  "fieldsToRead": [
+    "Customer Posting Group",
+    "Gen. Bus. Posting Group",
+    "VAT Bus. Posting Group",
+    "Payment Terms Code",
+    "Payment Method Code",
+    "Country/Region Code",
+    "Search Name",
+    "Global Dimension 1 Code",
+    "Global Dimension 2 Code"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "use-confidential-real-customer-data",
+    "create-customer",
+    "delete-customer",
+    "edit-customer",
+    "change-customer-template",
+    "change-posting-group",
+    "change-payment-terms",
+    "change-dimensions",
+    "change-vat-setup",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-master-data-ready",
+    "claim-sales-process-ready"
+  ],
+  "smartDecision": {
+    "whyNow": "U-CUST-100 now has realistic visible identity/contact data, but setup and O2C readiness are explicitly not proven.",
+    "fieldsToRead": [
+      "billing/posting fields",
+      "VAT business field",
+      "payment fields",
+      "country/search-name data-quality fields",
+      "dimension defaults"
+    ],
+    "risk": "Creating a sales document before these fields are understood could produce misleading book evidence or blocked posting routes.",
+    "fallback": "If a field is hidden, stop with screenshot QA and update the field map; do not write values in this case."
+  },
+  "screenshotQaRequired": [
+    "Customer Card header with U-CUST-100 / Saarland Maschinenbau AG",
+    "Fakturierung FastTab or visible billing/posting field area",
+    "Zahlungen FastTab or visible payment field area",
+    "No-save/no-document end state"
+  ],
+  "acceptanceCriteria": [
+    "playthru / UNIVERSAARL-DE is confirmed.",
+    "U-CUST-100 / Saarland Maschinenbau AG is visible.",
+    "Setup-critical customer fields are either visible with values or explicitly marked hidden/blocked.",
+    "No customer field, setup, document, Preview Posting, Posting, payment or API shortcut is changed.",
+    "Result JSON explains which fields block O2C and which are only training/handbook context."
+  ],
+  "stopIf": [
+    "Instance is not playthru.",
+    "Company is not UNIVERSAARL-DE.",
+    "Customer U-CUST-100 is missing.",
+    "Any route requires editing or confirming a dialog.",
+    "Screenshot QA cannot prove the visible customer-card context."
+  ],
+  "nextCase": "CUSTOMER-SETUP-POSTING-PAYMENT-READFIRST",
+  "updatedAt": "2026-07-07T02:35:00.000+02:00"
+}
