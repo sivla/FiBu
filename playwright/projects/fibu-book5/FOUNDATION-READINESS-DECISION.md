@@ -51,7 +51,7 @@ Entscheidung fuer den naechsten Schritt:
 | API/AL | Technisch moeglich fuer Automatisierung, aber fuer Buch, Schulung und Erstsetup zu indirekt, solange UI/Package-Route nicht verstanden ist. | Geparkt, nur mit explizitem Gate. |
 | Bewusst parken | Fachlich vertretbar, weil keine getestete Route die konkrete `INLAND`/`VAT19`-Matrix sicher schreibt und prueft. | Aktueller Sicherheitszustand aus TARGET-027D24: VAT-Matrix geparkt, keine VAT-Finalitaet, kein Preview, kein Posting. |
 
-Naechster konkreter Projektfortschritt ist daher kein Page-472-Write und keine Wiederholung der Konfigurationspaket-Discovery. TARGET-027D24 hat die VAT-Matrix bewusst geparkt; die spaetere Posting-Group-Kette darf nur aus ihrer aktuellen Evidence heraus fortgesetzt werden. Vor jedem Live-Resume muss zusaetzlich die Freeze-State-Konsistenz stimmen: entweder bleibt `PROJECT-IMPROVEMENT-FREEZE-001` formal aktiv, oder der Freeze wird bewusst im State aufgehoben. Bis dahin gibt es keine Setupwerte, keine Master Data, keine Buchungsvorschau und keine Buchung.
+Naechster konkreter Projektfortschritt ist daher kein Page-472-Write und keine Wiederholung der Konfigurationspaket-Discovery. TARGET-027D24 hat die VAT-Matrix bewusst geparkt; die spaetere Posting-Group-Kette darf nur aus ihrer aktuellen Evidence heraus fortgesetzt werden. Der Freeze ist fuer Foundation Readiness read-first/no-write aufgehoben. Bis zur naechsten ausdruecklichen Write-Gate-Entscheidung gibt es weiterhin keine Setupwerte, keine Master Data, keine Buchungsvorschau und keine Buchung.
 
 ## No-Write-Grenze aus TARGET-075
 
@@ -205,4 +205,4 @@ Erlaubte Anschlussklassifikationen:
 
 ## Naechster Case
 
-- Freeze-State-Konsistenz klaeren und danach die aktuelle Foundation-Evidence-Kette fortsetzen; keine Master-Data-, VAT-, Posting- oder Prozess-Writes starten, solange der Freeze formal aktiv oder widerspruechlich ist.
+- `PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST`: Kontenplan read-only oeffnen und die Sichtbarkeit der Starterkonten `1200`, `1406`, `1800`, `3300`, `3806`, `4400` und `5400` pruefen. Keine Kontoanlage, keine Kontenaenderung, keine Setupwerte, keine Master Data, keine Buchungsvorschau und keine Buchung.

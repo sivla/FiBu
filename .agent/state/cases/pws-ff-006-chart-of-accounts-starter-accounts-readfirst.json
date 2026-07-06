@@ -1,0 +1,157 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST",
+  "status": "prepared",
+  "mode": "universaarl-foundation-readfirst",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w1-foundation",
+  "workstream": "WS03-FINANCE-FOUNDATION",
+  "purpose": "Read-only verification of Universaarl starter account visibility in the Chart of Accounts before Master Data, VAT write, Posting Group write or process work continues.",
+  "businessPurpose": "A Business Central consultant needs to know whether the minimal Universaarl starter accounts are actually visible in the Kontenplan before using them in setup, training, UAT or book examples.",
+  "targetPage": {
+    "germanName": "Kontenplan",
+    "englishName": "Chart of Accounts",
+    "expectedContext": "UNIVERSAARL-DE in playthru"
+  },
+  "targetAccounts": [
+    {
+      "no": "1200",
+      "purpose": "Bank starter account"
+    },
+    {
+      "no": "1406",
+      "purpose": "Input VAT starter account"
+    },
+    {
+      "no": "1800",
+      "purpose": "Cash or liquidity starter account"
+    },
+    {
+      "no": "3300",
+      "purpose": "Vendor liabilities starter account"
+    },
+    {
+      "no": "3806",
+      "purpose": "Output VAT starter account"
+    },
+    {
+      "no": "4400",
+      "purpose": "Domestic sales revenue starter account"
+    },
+    {
+      "no": "5400",
+      "purpose": "Purchasing/material expense starter account"
+    }
+  ],
+  "mayRunPlaywright": true,
+  "mayOpenBusinessCentral": true,
+  "effectiveBcActionsAllowed": false,
+  "allowedActions": [
+    "verify-playthru-instance",
+    "verify-universaarl-company",
+    "open-chart-of-accounts-readonly",
+    "use-filter-or-find-readonly",
+    "capture-visible-account-context",
+    "write-result-json",
+    "update-foundation-readiness-decision"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "continue-target-073",
+    "repeat-pws-ff-002b-without-new-route-hypothesis",
+    "type-business-central-values",
+    "create-or-edit-account",
+    "write-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "cleanup-delete",
+    "api-shortcut",
+    "company-switch",
+    "claim-skr04-complete",
+    "claim-posting-readiness",
+    "claim-master-data-readiness"
+  ],
+  "smartDecision": {
+    "whyNow": "TARGET-075 proved Chart of Accounts visibility but did not visibly prove the starter accounts needed by later setup and training examples.",
+    "whyThisRoute": "The Kontenplan is a materially different, low-risk read-first gap from Page 314 and Page 472 editor blockers.",
+    "fieldsOrValuesChanged": [],
+    "fallback": "If the account list cannot be proven read-only, keep Master Data parked and update Foundation Readiness with a Chart of Accounts visibility blocker."
+  },
+  "evidencePlan": {
+    "resultPath": "playwright/projects/fibu-book5/evidence/pws-ff-006-chart-of-accounts-starter-accounts-readfirst/PWS-FF-006-result.json",
+    "screenshotsRequired": [
+      "chart-of-accounts-page-context",
+      "starter-account-visible-or-absent-proof"
+    ],
+    "provedMustSay": [
+      "which starter accounts are visible",
+      "which starter accounts are absent or not proven",
+      "that no account/setup/master-data/document/preview/posting action was executed"
+    ],
+    "notProvedMustSay": [
+      "no complete SKR04 chart of accounts",
+      "no tax or compliance finality",
+      "no posting readiness",
+      "no master-data readiness"
+    ]
+  },
+  "stopIf": [
+    "Business Central is not in playthru",
+    "active company is not UNIVERSAARL-DE",
+    "Chart of Accounts page is not visibly proven",
+    "a dialog asks to create, edit, suggest, import, apply, confirm or change setup",
+    "the run would require account creation/editing or any write action"
+  ],
+  "trainingImpact": "Supports Finance and Key User training by showing whether the starter accounts used in later examples are visible in the Kontenplan.",
+  "bookImpact": "Can support a beginner-facing explanation of checking the chart of accounts before using account numbers in posting setup or process examples, but only as read-first evidence.",
+  "nextStepDecision": {
+    "currentCase": "FOUNDATION-READINESS-DECISION",
+    "plannedNextCaseBeforeReview": "FOUNDATION-READINESS-DECISION",
+    "lastEvidenceSummary": "TARGET-075 saw the Kontenplan but did not visibly prove the starter accounts; Page 314 and Page 472 write/editor routes remain blocked.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The local Foundation decision is now clear enough to choose a concrete read-first follow-up.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST",
+        "status": "ready-next",
+        "reason": "It is read-only, materially different from blocked setup-matrix routes and directly answers a Foundation gap from TARGET-075."
+      },
+      {
+        "caseId": "PWS-FF-004-VAT-SETUP-BOUNDARY",
+        "status": "ready-after-current",
+        "reason": "VAT remains important, but Page 472 write/editor and package routes are already parked; account visibility can be clarified first without writing."
+      },
+      {
+        "caseId": "PWS-FF-005-DIMENSIONS-READFIRST",
+        "status": "ready-after-current",
+        "reason": "Dimensions are a separate Foundation lane after chart/account visibility."
+      },
+      {
+        "caseId": "PWS-MD-001-CUSTOMER-CONTEXT-READFIRST",
+        "status": "needs-setup-first",
+        "reason": "Master Data stays parked until Foundation gaps are accepted or resolved."
+      }
+    ],
+    "queueChangesMade": [
+      "Prepared PWS-FF-006 as the next non-repeating Foundation read-first gap case."
+    ],
+    "selectedNextCase": "PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST",
+    "whySelectedNextCaseIsBest": "It improves Foundation readiness without repeating blocked VAT/Page-314 routes or writing setup.",
+    "risksBeforeNextCase": [
+      "Do not treat visible account rows as SKR04 completeness or posting readiness."
+    ],
+    "requiredPreparation": [
+      "Run current preflight/context/run-plan/resume/auth checks before any live Playwright execution."
+    ]
+  },
+  "nextCase": "PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST",
+  "updatedAt": "2026-07-06T00:00:00.000Z"
+}

@@ -12,7 +12,7 @@ Current steering source: `UNIVERSAARL-EXECUTION-ROADMAP.md`.
 
 Artifact classification source: `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md`.
 
-Do not treat this backlog as a flat queue. The execution roadmap decides the current sequence: finish local freeze/resume checks, return with read-first `TARGET-075`, create a Foundation Readiness Decision, then move toward VAT/USt, Dimensions, Posting Groups and master-data readiness.
+Do not treat this backlog as a flat queue. The execution roadmap decides the current sequence: consume the completed read-first `TARGET-075` and blocked `TARGET-073B` evidence through Foundation Readiness, then move to the next materially different Foundation gap before any master-data, VAT-write, posting-group-write or process work.
 
 Active truth rule:
 
@@ -42,11 +42,12 @@ Immediate controls:
 - keep `UNIVERSAARL-EXECUTION-ROADMAP.md`, dashboard and `current.json` aligned on `playthru / UNIVERSAARL-DE`
 - keep `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` aligned so active-control files stay few and obvious
 - keep `TARGET-073` parked until a conscious resume decision changes that
-- keep `TARGET-075` read-first and no-write
+- keep `TARGET-075` as completed read-first/no-write evidence, not an active next case
+- keep `TARGET-073B` as consumed blocked no-write evidence, not an as-is retry
 - classify legacy references as historical traceability, neutral pattern source, purge candidate or superseded-by-Universaarl
 - do not mass-delete evidence without a replacement/supersession decision
 
-Useful first cleanup candidates after the freeze/resume checks:
+Useful cleanup candidates only when they unblock the next Foundation gap:
 
 - package scripts or test names that imply RM/MCP/CRONUS is a normal active path
 - README/current-state/dashboard lines that could steer a new agent to legacy
@@ -60,7 +61,7 @@ Use `.agent/SKILL-SYSTEM.md` only for reusable patterns that reduce risk, repeat
 Immediate active skills:
 
 - `playthru-context-check` before practical BC/Playwright work
-- `read-first-page-proof` for TARGET-075 and Foundation read-first checks
+- `read-first-page-proof` for Foundation read-first checks
 - `bc-write-gate` before setup, master data, drafts, imports, cleanup, preview, posting or payment
 - `legacy-reference-finder` when scripts/tests/book/state references can steer back to RM/MCP/CRONUS
 - `state-sync-check` when Roadmap, Dashboard, State or Backlog next steps change
@@ -267,7 +268,7 @@ Create training module cards for:
 
 Each module must define audience, learning objective, exercise, handbook output, source/evidence status, Playwright/UAT link and acceptance criteria.
 
-Current next useful refinement: after freeze/resume gate, use the existing read-first catalog entries for VAT setup and Dimensions/Dimension Values as narrow follow-ups if TARGET-075 exposes those Foundation gaps. Purchasing/sales process cards remain dependency-blocked drafts until Foundation and master-data read-first evidence exist.
+Current next useful refinement: use the existing read-first catalog entries only when they answer a current Foundation gap. The immediate gap is starter-account visibility in the Kontenplan, because TARGET-075 did not visibly prove `1200`, `1406`, `1800`, `3300`, `3806`, `4400` or `5400`. Purchasing/sales process cards remain dependency-blocked drafts until Foundation and master-data read-first evidence exist.
 
 ## P1: Apply realism standard
 
@@ -371,4 +372,4 @@ Later create one compact dashboard:
 
 ## Current next best step
 
-`UNIVERSAARL-EXECUTION-ROADMAP.md` is now the current control layer. The next useful refinement is not another broad planning document: run the freeze/resume checks, keep `TARGET-073` parked, use `TARGET-075` as the first read-first live pilot when allowed, and then create `FOUNDATION-READINESS-DECISION.md` before master-data or process work.
+`UNIVERSAARL-EXECUTION-ROADMAP.md` is now the current control layer. The next useful refinement is not another broad planning document: keep `TARGET-073` and `TARGET-073B` parked as consumed/blocked routes, keep `FOUNDATION-READINESS-DECISION.md` as the active boundary, and prepare `PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST` as the next materially different no-write Foundation gap before master-data or process work.

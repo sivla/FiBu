@@ -29,7 +29,8 @@ const scriptName = 'fibu:target:foundation-consistency-pilot';
 const allowedNextCasesAfterTarget075Handoff = new Set([
   'FOUNDATION-READINESS-DECISION',
   'PWS-FF-002-GENERAL-POSTING-SETUP-READFIRST-RECOVERY',
-  'PWS-FF-002B-PAGE314-NAVIGATION-CAPTURE-RECOVERY'
+  'PWS-FF-002B-PAGE314-NAVIGATION-CAPTURE-RECOVERY',
+  'PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST'
 ]);
 
 function readText(relativePath) {
@@ -480,12 +481,17 @@ if (resumeCheck) {
     'masterDataReadFirstCheck',
     'const requiresLiveGateLift = liveGateBlockedBy.length > 0',
     'canResumeAfterFreezeLift',
-    'canRunNow',
-    'Do not run TARGET-075 until explicit freeze/live-gate lift'
+    'canRunNow'
   ]) {
     if (!resumeCheck.includes(requiredSignal)) {
       errors.push(`${resumeCheckPath}: resume check must keep TARGET-075 gate signal ${requiredSignal}`);
     }
+  }
+  if (
+    !resumeCheck.includes('Do not run TARGET-075 until explicit freeze/live-gate lift') &&
+    !resumeCheck.includes('do not rerun TARGET-075 as a substitute')
+  ) {
+    errors.push(`${resumeCheckPath}: resume check must keep a TARGET-075 no-rerun/no-ungated-run boundary`);
   }
 }
 

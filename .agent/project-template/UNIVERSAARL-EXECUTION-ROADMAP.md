@@ -144,11 +144,11 @@ Do not:
 - expand Jira imports unless they directly support the next BC/training/evidence step
 - mass-delete historical evidence without a replacement, supersession or explicit purge decision
 
-## Phase 1 - End freeze safely
+## Phase 1 - Freeze read-first abschliessen
 
-Current status: pending gates.
+Current status: completed for the TARGET-075 / Foundation-Readiness handoff.
 
-Before any Business Central or Playwright live work:
+Before any further Business Central or Playwright live work:
 
 - `npm run agent:preflight`
 - `npm run check:encoding`
@@ -164,17 +164,18 @@ Before any Business Central or Playwright live work:
 Resume decision:
 
 - `TARGET-073` remains parked.
-- `TARGET-075` is the first live pilot.
-- `TARGET-075` is read-first only.
+- `TARGET-075` is completed as read-first evidence.
+- `TARGET-073B` is consumed as no-write Page-472 surface/editor evidence and is blocked for as-is retry.
+- The next live case must be a materially different Foundation gap case, not another Page-314 direct/search retry or Page-472 active-editor retry.
 
-TARGET-075 may:
+Any next read-first Foundation case may:
 
 - verify `playthru`
 - verify `UNIVERSAARL-DE`
-- open Chart of Accounts and Foundation context
+- open one explicitly scoped Foundation page
 - capture visible values, screenshots and compact evidence
 
-TARGET-075 must not:
+Any next read-first Foundation case must not:
 
 - write setup
 - create or edit master data
@@ -186,27 +187,31 @@ TARGET-075 must not:
 
 ## Phase 2 - Prove foundation before processes
 
-Current status: planned after freeze/resume gates.
+Current status: active after TARGET-075, PWS-FF-002B and TARGET-073B.
 
 Order:
 
-1. `TARGET-075` - Chart of Accounts / Foundation read-first reopen check.
-2. VAT/USt read-first proof:
+1. `TARGET-075` - Chart of Accounts / Foundation read-first reopen check. Done as read-first evidence; not a write or posting proof.
+2. Starter account visibility read-first proof:
+   - targeted Chart of Accounts check for `1200`, `1406`, `1800`, `3300`, `3806`, `4400`, `5400`
+   - no account create/edit
+   - no SKR04 completeness claim
+3. VAT/USt read-first proof:
    - VAT Business Posting Groups
    - VAT Product Posting Groups
    - VAT Posting Setup
    - no final German tax claim
-3. Dimensions read-first proof:
+4. Dimensions read-first proof:
    - Dimensions
    - Dimension Values
    - General Ledger Setup read-only
    - no repeated global-dimension write retry without a materially new hypothesis
-4. Posting Groups read-first proof:
+5. Posting Groups read-first proof:
    - Customer Posting Groups
    - Vendor Posting Groups
    - General Posting Setup
    - missing setup rows are blockers, not guessed values
-5. Foundation readiness decision:
+6. Foundation readiness decision:
    - proven
    - parked
    - blocks master data
@@ -324,12 +329,13 @@ Use this exact order:
 2. Do not start another broad cleanup pass.
 3. Keep `FOUNDATION-READINESS-DECISION.md` as the active boundary.
 4. Do not repeat `TARGET-073` as-is.
-5. Prepare/run `TARGET-073B-VAT-PAGE472-SURFACE-AND-EDITOR-PROOF` only as no-write Page-472 surface/editor diagnosis; no setup value, master data, draft, Preview Posting or Posting.
+5. Prepare the next materially different Foundation gap case: `PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST`.
+6. Keep Master Data, VAT writes, Posting Group writes, Preview Posting and Posting parked until that evidence is consumed by Foundation Readiness.
 
 ## Acceptance criteria
 
 - A new agent can identify the active environment, active company, parked case, resume pilot and no-write boundary from this file.
 - Dashboard and state point to this roadmap.
 - `TARGET-073` is not resumed by accident.
-- `TARGET-073B` cannot be interpreted as a VAT write, setup, master-data, preview or posting case.
+- `TARGET-073B` cannot be interpreted as an active next case or as a VAT write, setup, master-data, preview or posting case.
 - Book, UAT, training and evidence work use the chapter map and training evidence map before claiming readiness.

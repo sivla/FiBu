@@ -181,7 +181,9 @@ const missingForLiveRun = operatorDecisionRequired ? liveGateBlockedBy : [];
 const safeLivePilotCommand =
   selectedNextCase === 'PWS-FF-002-GENERAL-POSTING-SETUP-READFIRST-RECOVERY'
     ? 'npm run fibu:pws:ff002:general-posting-setup -- --live-approved'
-    : 'npm run fibu:target:foundation-consistency-pilot -- --live-approved';
+    : selectedNextCase === 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK'
+      ? 'npm run fibu:target:foundation-consistency-pilot -- --live-approved'
+      : null;
 const requiresSecondOverrideWhileFreezeActive =
   freezeActive && selectedNextCase === 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK';
 const explicitFreezeOverrideEnv = requiresSecondOverrideWhileFreezeActive ? 'TARGET_075_FREEZE_OVERRIDE_APPROVED=1' : null;
@@ -404,10 +406,12 @@ const output = {
       : [])
   ],
   nextStep: !localResumeReady
-    ? 'Fix failed local resume checks before considering TARGET-075.'
+    ? 'Fix failed local resume checks before considering the selected read-first Foundation case.'
     : !liveGateAllowsNow
-      ? 'Local resume checks passed, including stored auth, but the active live gate still blocks Business Central/Playwright execution. Do not run TARGET-075 until explicit freeze/live-gate lift or a second explicit freeze override.'
-      : 'All local resume checks passed, including stored auth. Run TARGET-075 only with live shell/context validation.'
+      ? `Local resume checks passed, including stored auth, but the active live gate still blocks Business Central/Playwright execution. Do not run ${selectedNextCase || 'the selected read-first case'} until explicit freeze/live-gate lift.`
+      : safeLivePilotCommand
+        ? `All local resume checks passed, including stored auth. Run ${selectedNextCase} only with live shell/context validation.`
+        : `All local resume checks passed, including stored auth. ${selectedNextCase || 'The selected read-first Foundation case'} still needs its own guarded runner/spec before live execution; do not rerun TARGET-075 as a substitute.`
 };
 
 console.log(JSON.stringify(output, null, 2));
