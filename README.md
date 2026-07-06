@@ -5,6 +5,7 @@
 Neue Agents, Projektleiter, Business-Central-Consultants und Solution Architects starten hier:
 
 ```text
+HANDOVER.md
 .agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md
 .agent/ACTIVE-ARTIFACT-CLASSIFICATION.md
 .agent/project-template/PROJECT-DASHBOARD-DRAFT.md
