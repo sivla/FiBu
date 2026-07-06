@@ -175,7 +175,8 @@ if (readiness) {
     'Do not resume TARGET-073',
     'TARGET-075 stays read-only',
     'stored auth must resolve to `playthru / UNIVERSAARL-DE`',
-    'It cannot prove final SKR04 completeness'
+    'It cannot prove final SKR04 completeness',
+    'After TARGET-075, create or update `FOUNDATION-READINESS-DECISION.md` before selecting any master-data'
   ]) {
     if (!readiness.includes(phrase)) errors.push(`${readinessPath}: missing readiness phrase: ${phrase}`);
   }

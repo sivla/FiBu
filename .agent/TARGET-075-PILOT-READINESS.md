@@ -74,3 +74,9 @@ Current decision: stop broad cleanup here. The next useful project movement is e
 TARGET-075 can support a beginner-facing Foundation boundary: which chart/setup context is visible before the book moves into master data or process documents.
 
 It cannot prove final SKR04 completeness, VAT correctness, posting readiness, master-data readiness, or German compliance.
+
+## Required handoff after TARGET-075
+
+After TARGET-075, create or update `FOUNDATION-READINESS-DECISION.md` before selecting any master-data, vendor, customer, item, setup-write, Preview Posting or Posting pilot.
+
+That decision must classify the TARGET-075 evidence as proven, parked, blocked or not enough for setup readiness. A visible page is only read-first evidence; it is not a release to create master data.
