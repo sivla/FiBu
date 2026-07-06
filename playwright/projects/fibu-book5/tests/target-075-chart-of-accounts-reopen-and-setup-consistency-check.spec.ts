@@ -132,13 +132,17 @@ function clean(value: string | null | undefined) {
 }
 
 function targetInstanceUrl() {
-  const url = new URL(requireBcUrl('FIBU_BOOK5'));
+  const url = new URL(process.env.TARGET_075_BC_TARGET_URL || requireBcUrl('FIBU_BOOK5'));
   const segments = url.pathname.split('/').filter(Boolean);
   if (!segments.length) {
     throw new Error('Business Central URL must include a tenant/environment path before TARGET-075 can build a page URL.');
   }
   segments[segments.length - 1] = EXPECTED_INSTANCE;
   url.pathname = `/${segments.join('/')}`;
+  url.searchParams.set('company', TARGET_COMPANY);
+  if (!instancePathIsTarget(url.toString()) || !companyParamIsTarget(url.toString())) {
+    throw new Error('TARGET-075 target URL must resolve to playthru / UNIVERSAARL-DE before any page navigation.');
+  }
   return url;
 }
 

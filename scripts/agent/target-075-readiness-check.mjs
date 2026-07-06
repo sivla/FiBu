@@ -327,6 +327,12 @@ if (guardedRunner) {
   if (!guardedRunner.includes('requiresTargetFix')) {
     errors.push(`${guardedRunnerPath}: guarded runner --check output must expose requiresTargetFix`);
   }
+  if (!guardedRunner.includes('TARGET_075_BC_TARGET_URL')) {
+    errors.push(`${guardedRunnerPath}: guarded runner must pass TARGET_075_BC_TARGET_URL into approved live execution`);
+  }
+  if (!guardedRunner.includes('targetUrlPassedToLiveSpec')) {
+    errors.push(`${guardedRunnerPath}: guarded runner --check output must confirm targetUrlPassedToLiveSpec`);
+  }
   if (!guardedRunner.includes('auth-target-does-not-match-current-state')) {
     errors.push(`${guardedRunnerPath}: guarded runner must report auth-target-does-not-match-current-state when target diagnosis fails`);
   }
@@ -494,6 +500,12 @@ if (spec) {
     errors.push(
       `${specPath}: direct Playwright execution must be skipped unless TARGET_075_LIVE_APPROVED and TARGET_075_RUNNER_GUARD_CHECKED are set by the guarded runner`
     );
+  }
+  if (!spec.includes('TARGET_075_BC_TARGET_URL')) {
+    errors.push(`${specPath}: TARGET-075 must prefer the guarded runner target URL before falling back to requireBcUrl`);
+  }
+  if (!spec.includes('TARGET-075 target URL must resolve to playthru / UNIVERSAARL-DE')) {
+    errors.push(`${specPath}: TARGET-075 must fail before navigation when the guarded target URL is not playthru / UNIVERSAARL-DE`);
   }
   if (/TARGET-075-FIRST-VENDOR-CARD-CONTROLLED-FIT|first Vendor Card fit/i.test(spec)) {
     errors.push(`${specPath}: result handoff must be FOUNDATION-READINESS-DECISION before any first vendor pilot`);

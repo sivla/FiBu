@@ -134,7 +134,7 @@ const output = {
   canResumeAfterFreezeLift: localResumeReady,
   canResumeAfterFreezeLiftMeaning:
     target075SafeCheck?.canResumeAfterFreezeLiftMeaning ??
-    'local-readiness-and-auth-target-only; Business Central/Playwright execution still requires the active live gate to clear',
+    'local-readiness-auth-target-and-runtime-target-url-only; Business Central/Playwright execution still requires the active live gate to clear',
   canRunNow: localResumeReady && liveGateAllowsNow,
   freezeActive,
   requiresFreezeLift: freezeActive,
@@ -190,6 +190,8 @@ const output = {
         requiresLiveGateLift: target075SafeCheck.requiresLiveGateLift,
         requiresFreezeOverrideWhenFreezeActive: target075SafeCheck.requiresFreezeOverrideWhenFreezeActive,
         requiresTargetFix: target075SafeCheck.requiresTargetFix === true,
+        targetUrlReady: target075SafeCheck.targetUrlReady === true,
+        targetUrlPassedToLiveSpec: target075SafeCheck.targetUrlPassedToLiveSpec === true,
         authStateChecked: target075SafeCheck.authStateChecked,
         authSecretsPrinted: target075SafeCheck.authSecretsPrinted,
         expectedInstance: target075SafeCheck.expectedInstance,

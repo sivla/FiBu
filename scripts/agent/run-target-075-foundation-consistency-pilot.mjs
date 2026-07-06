@@ -1,4 +1,5 @@
 import { spawnSync } from 'node:child_process';
+import { existsSync, readFileSync } from 'node:fs';
 
 const specPath =
   'playwright/projects/fibu-book5/tests/target-075-chart-of-accounts-reopen-and-setup-consistency-check.spec.ts';
@@ -11,6 +12,34 @@ const listOnly = rawArgs.includes('--list');
 const checkOnly = rawArgs.includes('--check');
 const help = rawArgs.includes('--help') || rawArgs.includes('-h');
 const freezeOverrideApproved = process.env.TARGET_075_FREEZE_OVERRIDE_APPROVED === '1';
+
+function readDotEnv() {
+  if (!existsSync('.env')) return {};
+  const env = {};
+  for (const line of readFileSync('.env', 'utf8').split(/\r?\n/)) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) continue;
+    const match = trimmed.match(/^([A-Za-z_][A-Za-z0-9_]*)=(.*)$/);
+    if (!match) continue;
+    const [, key, rawValue] = match;
+    env[key] = rawValue.replace(/^['"]|['"]$/g, '');
+  }
+  return env;
+}
+
+function targetUrlFromConfiguredUrl() {
+  const localEnv = readDotEnv();
+  const env = { ...localEnv, ...process.env };
+  const rawUrl = env.BC_AUTH_URL ?? env.FIBU_BOOK5_BC_URL ?? env.BC_URL ?? '';
+  if (!rawUrl) return '';
+  const url = new URL(rawUrl);
+  const pathParts = url.pathname.split('/').filter(Boolean);
+  if (!pathParts.length) return '';
+  pathParts[pathParts.length - 1] = EXPECTED_INSTANCE;
+  url.pathname = `/${pathParts.join('/')}`;
+  url.searchParams.set('company', TARGET_COMPANY);
+  return url.toString();
+}
 
 function commandName(base) {
   return process.platform === 'win32' ? `${base}.cmd` : base;
@@ -191,6 +220,30 @@ const authTargetOk =
   authDoctorStatus.authTarget?.targetBuiltFromCurrentState === true &&
   authDoctorStatus.authTarget?.targetEnvironment === EXPECTED_INSTANCE &&
   authDoctorStatus.authTarget?.targetCompany === TARGET_COMPANY;
+const targetUrl = authTargetOk ? targetUrlFromConfiguredUrl() : '';
+const targetUrlReady = Boolean(targetUrl);
+if (!checkOnly && authTargetOk && !targetUrlReady) {
+  console.error(
+    JSON.stringify(
+      {
+        schemaVersion: 1,
+        purpose: 'target-075-target-url-builder-guard',
+        canRun: false,
+        businessCentralOpened: false,
+        playwrightLiveRunExecuted: false,
+        targetCase: 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK',
+        expectedInstance: EXPECTED_INSTANCE,
+        expectedCompany: TARGET_COMPANY,
+        blockedBy: ['target-url-could-not-be-built-from-configured-url'],
+        reason: 'The guarded runner could not build a TARGET-075 runtime URL from the configured Business Central URL.',
+        nextStep: 'Fix BC_AUTH_URL, FIBU_BOOK5_BC_URL or BC_URL before running TARGET-075 live.'
+      },
+      null,
+      2
+    )
+  );
+  process.exit(6);
+}
 if (!checkOnly && authDoctorStatus.canRunBusinessCentralWorkflows !== true && !explicitFreezeOverride) {
   console.error(
     JSON.stringify(
@@ -244,7 +297,7 @@ if (!checkOnly && !authTargetOk) {
 if (checkOnly) {
   const checkBlockedBy = [...liveGateBlockedBy];
   if (!authTargetOk) checkBlockedBy.unshift('auth-target-does-not-match-current-state');
-  const canResumeAfterFreezeLift = authTargetOk;
+  const canResumeAfterFreezeLift = authTargetOk && targetUrlReady;
   console.log(
     JSON.stringify(
       {
@@ -253,7 +306,7 @@ if (checkOnly) {
         targetCase: 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK',
         canResumeAfterFreezeLift,
         canResumeAfterFreezeLiftMeaning:
-          'local-readiness-and-auth-target-only; Business Central/Playwright execution still requires the active live gate to clear',
+          'local-readiness-auth-target-and-runtime-target-url-only; Business Central/Playwright execution still requires the active live gate to clear',
         canRunNow: liveGateAllowsNow,
         freezeActive: freezeStatus.freezeActive === true,
         requiresFreezeLift: freezeStatus.freezeActive === true,
@@ -261,6 +314,8 @@ if (checkOnly) {
         requiresFreezeOverrideWhenFreezeActive: freezeStatus.freezeActive === true,
         authTargetOk,
         requiresTargetFix: !authTargetOk,
+        targetUrlReady,
+        targetUrlPassedToLiveSpec: targetUrlReady,
         businessCentralOpened: false,
         playwrightLiveRunExecuted: false,
         authStateChecked: true,
@@ -290,6 +345,8 @@ if (checkOnly) {
         nextStep:
           !authTargetOk
             ? 'Fix .agent/state/current.json or FIBU_BOOK5_BC_URL target diagnosis before lifting the freeze for TARGET-075.'
+            : !targetUrlReady
+            ? 'Fix BC_AUTH_URL, FIBU_BOOK5_BC_URL or BC_URL so the guarded runner can pass a verified target URL to TARGET-075.'
             : !liveGateAllowsNow
             ? 'Stored auth and local readiness are usable, but the active live gate still blocks Business Central/Playwright execution. Do not open Business Central until explicit freeze/live-gate lift or a second explicit freeze override.'
             : 'Stored auth and local readiness are usable. Run TARGET-075 only with live shell/context validation.'
@@ -317,7 +374,8 @@ exitWith(
       TARGET_075_AUTH_WARNINGS: JSON.stringify(authStatus.warnings ?? []),
       TARGET_075_AUTH_DOCTOR_DECISION: String(authDoctorStatus.decision ?? ''),
       TARGET_075_AUTH_DOCTOR_LIVE_GATE: JSON.stringify(authDoctorStatus.liveGate ?? null),
-      TARGET_075_AUTH_TARGET: JSON.stringify(authDoctorStatus.authTarget ?? null)
+      TARGET_075_AUTH_TARGET: JSON.stringify(authDoctorStatus.authTarget ?? null),
+      TARGET_075_BC_TARGET_URL: targetUrl
     }
   })
 );
