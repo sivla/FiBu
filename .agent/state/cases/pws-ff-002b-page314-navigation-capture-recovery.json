@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "PWS-FF-002B-PAGE314-NAVIGATION-CAPTURE-RECOVERY",
-  "status": "prepared-local-after-blocked-pws-ff-002",
+  "status": "blocked-read-first",
   "mode": "universaarl-foundation-readfirst",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -50,26 +50,33 @@
     "Result remains no-write, no-preview, no-post and no-master-data.",
     "If navigation still lands on Role Center, classify this as a Playwright navigation/capture blocker and keep Master Data parked."
   ],
+  "result": {
+    "resultStatus": "blocked",
+    "resultPath": "playwright/projects/fibu-book5/evidence/pws-ff-002b-page314-navigation-capture-recovery/PWS-FF-002B-result.json",
+    "summary": "Direct Page 314 URL and scoped Tell-Me/Search click stayed on or returned to Role Center. Screenshot/text QA rejected the proof.",
+    "uiLearning": "A visible Tell-Me result is not enough. The active element, result row/container and resulting page context must be proven before accepting a Business Central navigation route.",
+    "noWriteConfirmed": true
+  },
   "stopIf": [
     "The route would click Neu, Liste bearbeiten, Konten vorschlagen or any write action.",
     "The active company or instance is not playthru / UNIVERSAARL-DE.",
     "The screenshot shows Role Center instead of the target setup page."
   ],
   "nextStepDecision": {
-    "currentCase": "PWS-FF-002-GENERAL-POSTING-SETUP-READFIRST-RECOVERY",
-    "plannedNextCaseBeforeReview": "FOUNDATION-READINESS-DECISION",
-    "lastEvidenceSummary": "PWS-FF-002 opened Business Central read-only but screenshot QA showed Role Center, not Page 314.",
+    "currentCase": "PWS-FF-002B-PAGE314-NAVIGATION-CAPTURE-RECOVERY",
+    "plannedNextCaseBeforeReview": "PWS-FF-004-VAT-SETUP-BOUNDARY",
+    "lastEvidenceSummary": "PWS-FF-002B opened Business Central read-only, found a visible Buchungsmatrix Einrichtung search result, but screenshot/text QA still showed Role Center instead of Page 314.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "Foundation Decision captured the blocked proof, but the next executable work needs a narrower navigation/capture recovery before Master Data or setup writes.",
+    "reason": "The blocked proof must be consumed by Foundation Readiness before any VAT, Master Data or setup write step. Repeating the same Page 314 URL/search route would not add evidence.",
     "lookaheadReviewed": [
       {
         "caseId": "PWS-FF-002B-PAGE314-NAVIGATION-CAPTURE-RECOVERY",
-        "status": "ready-next",
-        "reason": "Directly addresses the observed screenshot QA failure without changing setup."
+        "status": "blocked",
+        "reason": "Direct URL and scoped search-click were tested read-only and rejected by screenshot QA."
       },
       {
         "caseId": "PWS-FF-004-VAT-SETUP-BOUNDARY",
-        "status": "ready-after-current",
+        "status": "blocked",
         "reason": "VAT boundary remains Foundation work after the Page 314 capture blocker is classified."
       },
       {
@@ -79,18 +86,18 @@
       }
     ],
     "queueChangesMade": [
-      "Selected PWS-FF-002B before any Master Data read-first pilot."
+      "Selected FOUNDATION-READINESS-DECISION after blocked PWS-FF-002B; do not repeat the same Page 314 route without a new hypothesis."
     ],
-    "selectedNextCase": "PWS-FF-002B-PAGE314-NAVIGATION-CAPTURE-RECOVERY",
-    "whySelectedNextCaseIsBest": "It improves Playwright repeatability and prevents rejected Role Center screenshots from being mistaken for setup evidence.",
+    "selectedNextCase": "FOUNDATION-READINESS-DECISION",
+    "whySelectedNextCaseIsBest": "It keeps the project from looping on a misunderstood Business Central search surface and preserves the Master Data stop.",
     "risksBeforeNextCase": [
-      "Business Central search may surface broad Role Center actions unless the result is scoped and verified."
+      "Business Central search surfaced the right label, but the click did not prove navigation to the target page."
     ],
     "requiredPreparation": [
-      "Keep PWS-FF-002B read-only.",
-      "Require screenshot QA before accepting any Foundation proof."
+      "Update Foundation Readiness from the blocked result.",
+      "Define a genuinely new Page 314 route hypothesis before any further live recovery attempt."
     ]
   },
-  "nextCase": "PWS-FF-002B-PAGE314-NAVIGATION-CAPTURE-RECOVERY",
+  "nextCase": "FOUNDATION-READINESS-DECISION",
   "updatedAt": "2026-07-06T00:00:00.000Z"
 }

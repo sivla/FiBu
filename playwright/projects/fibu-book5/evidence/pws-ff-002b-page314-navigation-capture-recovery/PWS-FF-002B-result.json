@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized-compatible",
+  "caseId": "PWS-FF-002B-PAGE314-NAVIGATION-CAPTURE-RECOVERY",
+  "source": "playwright-readonly-page314-navigation-capture-recovery",
+  "resultStatus": "blocked",
+  "startedAt": "2026-07-06T18:03:02.248Z",
+  "completedAt": "2026-07-06T18:03:19.375Z",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "Buchungsmatrix Einrichtung / General Posting Setup",
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?company=UNIVERSAARL-DE&dc=0",
+  "liveActionsExecuted": true,
+  "businessCentralOpened": true,
+  "playwrightLiveRunExecuted": true,
+  "actionsTaken": [
+    "Opened direct Business Central Page 314 URL in playthru / UNIVERSAARL-DE.",
+    "Opened Tell Me/Search and searched for Buchungsmatrix Einrichtung.",
+    "Used a scoped Buchungsmatrix Einrichtung / General Posting Setup search result route."
+  ],
+  "actionsNotTaken": [
+    "No New/Neu action clicked.",
+    "No Edit/List Edit action clicked.",
+    "No Suggest Accounts action clicked.",
+    "No values typed.",
+    "No setup row saved.",
+    "No master data created.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No API shortcut."
+  ],
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "screenshots": [
+    "playwright/projects/fibu-book5/evidence/pws-ff-002b-page314-navigation-capture-recovery/pws-ff-002b-020-page314-context.png"
+  ],
+  "proved": [
+    "Business Central shell opened in playthru / UNIVERSAARL-DE read-only."
+  ],
+  "notProved": [
+    "No General Posting Setup correctness.",
+    "No INLAND/WAREN row or 4400/5400 account-column proof unless visible in screenshot/text.",
+    "No row write or reopen proof.",
+    "No VAT correctness.",
+    "No Master Data readiness.",
+    "No Preview Posting, Posting or ledger trace."
+  ],
+  "blockedBy": [
+    "Screenshot/text gate did not prove Buchungsmatrix Einrichtung / Page 314."
+  ],
+  "warnings": [],
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "signalSummary": {
+    "accepted": false,
+    "title": false,
+    "columns": true,
+    "notRoleCenter": false,
+    "urlKeepsPage": false,
+    "searchCandidateCount": 1,
+    "openRoute": "exact-search-result"
+  },
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/pws-ff-002b-page314-navigation-capture-recovery/pws-ff-002b-010-search-candidates.txt",
+    "playwright/projects/fibu-book5/evidence/pws-ff-002b-page314-navigation-capture-recovery/pws-ff-002b-020-page314-context.txt",
+    "playwright/projects/fibu-book5/evidence/pws-ff-002b-page314-navigation-capture-recovery/pws-ff-002b-020-page314-context.png",
+    "playwright/projects/fibu-book5/evidence/pws-ff-002b-page314-navigation-capture-recovery/pws-ff-002b-020-page314-context.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/pws-ff-002b-page314-navigation-capture-recovery/PWS-FF-002B-result.json"
+  ],
+  "nextStepDecision": {
+    "currentCase": "PWS-FF-002B-PAGE314-NAVIGATION-CAPTURE-RECOVERY",
+    "plannedNextCaseBeforeReview": "PWS-FF-004-VAT-SETUP-BOUNDARY",
+    "lastEvidenceSummary": "Page 314 navigation/capture remains blocked; do not start Master Data.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The immediate blocker is still navigation/capture, not VAT or Master Data.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "PWS-FF-004-VAT-SETUP-BOUNDARY",
+        "status": "blocked",
+        "reason": "VAT follows only after Page 314 capture is classified."
+      },
+      {
+        "caseId": "PWS-FF-005-DIMENSIONS-READFIRST",
+        "status": "ready-after-current",
+        "reason": "Dimensions are separate Foundation context, still read-first."
+      },
+      {
+        "caseId": "PWS-MD-001-CUSTOMER-CONTEXT-READFIRST",
+        "status": "needs-setup-first",
+        "reason": "Master Data remains parked until Foundation gaps are resolved or consciously accepted."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "FOUNDATION-READINESS-DECISION",
+    "whySelectedNextCaseIsBest": "Foundation Decision must consume the blocked navigation gate so the same Page 314 direct URL/search route is not repeated without a new hypothesis.",
+    "risksBeforeNextCase": [
+      "Screenshot/text gate did not prove Buchungsmatrix Einrichtung / Page 314."
+    ],
+    "requiredPreparation": [
+      "Normalize this result and update Foundation Readiness before any Master Data or setup write."
+    ]
+  },
+  "nextCase": "FOUNDATION-READINESS-DECISION"
+}

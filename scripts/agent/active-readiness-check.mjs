@@ -52,10 +52,16 @@ const checksByCase = new Map([
   [
     'PWS-FF-002B-PAGE314-NAVIGATION-CAPTURE-RECOVERY',
     {
-      id: 'foundation-readiness-decision-after-pws-ff-002-blocker',
-      scriptPath: 'scripts/agent/foundation-readiness-decision.mjs',
+      id: 'foundation-page314-navigation-capture-recovery',
+      scriptPath: 'scripts/agent/run-pws-ff-002b-page314-navigation-capture-recovery.mjs',
+      args: ['--check'],
       reason: 'PWS-FF-002B is selected only after PWS-FF-002 screenshot QA rejected Role Center as Page 314 evidence.',
       secondaryChecks: [
+        {
+          id: 'foundation-readiness-decision-after-pws-ff-002-blocker',
+          scriptPath: 'scripts/agent/foundation-readiness-decision.mjs',
+          reason: 'Foundation Readiness must keep the Page 314 blocked proof visible before any master-data handoff.'
+        },
         {
           id: 'masterdata-readfirst-handoff',
           scriptPath: 'scripts/agent/masterdata-readfirst-check.mjs',
@@ -72,10 +78,10 @@ const checksByCase = new Map([
       reason: 'TARGET-075 has run; Foundation Readiness Decision must stay valid before any Master Data or write pilot.',
       secondaryChecks: [
         {
-          id: 'foundation-gap-general-posting-setup-readfirst',
-          scriptPath: 'scripts/agent/run-pws-ff-002-general-posting-setup-readonly.mjs',
+          id: 'foundation-page314-navigation-capture-recovery-blocked-result',
+          scriptPath: 'scripts/agent/run-pws-ff-002b-page314-navigation-capture-recovery.mjs',
           args: ['--check'],
-          reason: 'General Posting Setup is the next narrow read-first Foundation gap after TARGET-075 and must be prepared before Master Data.'
+          reason: 'PWS-FF-002B is already blocked; Foundation Readiness must consume it instead of rerunning the same Page 314 route.'
         },
         {
           id: 'masterdata-readfirst-handoff',

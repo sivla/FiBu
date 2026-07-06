@@ -62,8 +62,8 @@
     "company-switch",
     "claim-posting-readiness"
   ],
-  "nextCase": "PWS-FF-002B-PAGE314-NAVIGATION-CAPTURE-RECOVERY",
-  "nextStep": "Run a narrow PWS-FF-002B Page 314 navigation/capture recovery before any Master Data or setup write. The PWS-FF-002 screenshot showed Role Center, not Buchungsmatrix Einrichtung.",
+  "nextCase": "FOUNDATION-READINESS-DECISION",
+  "nextStep": "Consume the blocked PWS-FF-002B Page 314 navigation/capture result in FOUNDATION-READINESS-DECISION.md. Do not repeat Page 314 direct URL, scoped search-click or keyboard search routes without a new route hypothesis.",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -117,6 +117,32 @@
     ],
     "screenshotQa": "rejected: screenshot shows Role Center instead of Buchungsmatrix Einrichtung / Page 314.",
     "nextBoundary": "Master Data remains parked. Next case must recover Page 314 navigation/capture before any setup write or process proof."
+  },
+  "latestPwsFf002BPage314NavigationCaptureRecovery": {
+    "caseId": "PWS-FF-002B-PAGE314-NAVIGATION-CAPTURE-RECOVERY",
+    "status": "blocked-read-first",
+    "resultPath": "playwright/projects/fibu-book5/evidence/pws-ff-002b-page314-navigation-capture-recovery/PWS-FF-002B-result.json",
+    "screenshotPath": "playwright/projects/fibu-book5/evidence/pws-ff-002b-page314-navigation-capture-recovery/pws-ff-002b-020-page314-context.png",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "proved": [
+      "Business Central opened in playthru / UNIVERSAARL-DE through the guarded read-first runner.",
+      "Direct Page 314 URL and scoped Tell-Me/Search click did not create or change data."
+    ],
+    "notProved": [
+      "Buchungsmatrix Einrichtung / General Posting Setup page content.",
+      "INLAND/WAREN row visibility.",
+      "4400/5400 account-column visibility.",
+      "Posting readiness or setup correctness."
+    ],
+    "screenshotQa": "rejected: screenshot/text gate still shows Role Center instead of Buchungsmatrix Einrichtung / Page 314.",
+    "nextBoundary": "Master Data remains parked. Next work must update Foundation Readiness and either accept this as a Foundation gap or define a genuinely new Page 314 route hypothesis before another live attempt."
   },
   "activeNextStepAuthority": {
     "source": "top-level-current-state-and-universaarl-execution-roadmap",
@@ -2582,7 +2608,7 @@
     "caseId": "WAREHOUSE-006-INBOUND-WAREHOUSE-RECEIPT-PREFLIGHT",
     "status": "blocked",
     "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-006/WAREHOUSE-006-result.json",
-    "decision": "Direct Warehouse Receipt route was blocked by missing Warehouse Employee setup for KAJETAN.KALICKI.",
+    "decision": "Direct Warehouse Receipt route was blocked by missing Warehouse Employee setup for [user].",
     "blockedBy": [
       "warehouse-inbound-route-not-found-by-direct-page-scout"
     ],
@@ -2596,7 +2622,7 @@
     "caseId": "WAREHOUSE-007-WAREHOUSE-EMPLOYEE-SETUP-FIT",
     "status": "observed",
     "resultPath": "playwright/projects/fibu-book5/evidence/warehouse-007/WAREHOUSE-007-result.json",
-    "decision": "Warehouse Employee setup for KAJETAN.KALICKI + FRA-ZL is visible and the previous Warehouse Receipt blocker is no longer visible.",
+    "decision": "Warehouse Employee setup for [user] + FRA-ZL is visible and the previous Warehouse Receipt blocker is no longer visible.",
     "setupChanged": true,
     "employeeExistsBefore": false,
     "employeeExistsAfter": true,

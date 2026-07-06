@@ -84,6 +84,18 @@ Master Data bleibt geparkt, bis die offenen Foundation-Grenzen geprueft oder bew
 - Blocker: Page 314 bleibt fuer Foundation Readiness ungeprueft; der naechste Versuch muss zuerst die Navigation auf die konkrete Setup-Seite beweisen, bevor Zeilen oder Kontospalten bewertet werden.
 - Naechste sinnvolle Route: enger UI-/Navigation-Recovery-Probe mit Seitentitel-/URL-/Text-Gate vor Screenshot-Akzeptanz. Keine Master Data und keine Setup-Writes.
 
+## PWS-FF-002B Recovery-Probe: Page-314-Navigation
+
+- Quelle: playwright/projects/fibu-book5/evidence/pws-ff-002b-page314-navigation-capture-recovery/PWS-FF-002B-result.json
+- Status: blocked
+- Instanz/Company: playthru / UNIVERSAARL-DE
+- Route: direkte Page-314-URL, danach Tell-Me/Search-Fallback mit scoped Search-Click
+- Geaendert: nein
+- Nicht ausgefuehrt: Neu, Bearbeiten/Liste bearbeiten, Konten vorschlagen, Stammdaten, Draft, Buchungsvorschau, Buchung, API Shortcut
+- Screenshot-QA: rejected, weil Screenshot und Text weiterhin das Rollencenter zeigen und nicht die Buchungsmatrix Einrichtung.
+- Ergebnis: Der Auth-/Instanz-/Company-Kontext funktioniert, aber die aktuelle Page-314-Navigation ist fuer Playwright nicht als Zielseite beweisbar.
+- Naechste Entscheidung: Nicht denselben Live-Weg wiederholen. Entweder Page 314 als Foundation-Gap parken und Master Data weiter blockieren oder eine wirklich neue Route begruenden, zum Beispiel ueber eine gezielte BC-URL-/Page-Route-Analyse statt weiterer Tell-Me-Varianten.
+
 ## Foundation-Read-first-Folgeprobes
 
 Diese Tabelle verhindert den Sprung in Stammdaten, wenn TARGET-075 zuerst eine engere Foundation-Luecke zeigt. Sie gibt keine Schreibfreigabe.
@@ -130,7 +142,7 @@ Erlaubte Anschlussklassifikationen:
 
 - Den abgelehnten Nachweis zur Buchungsmatrix Einrichtung vor Master Data klaeren oder bewusst als Grenze akzeptieren.
 - PWS-FF-002 nicht als akzeptierten Buchungsmatrix-Nachweis verwenden; der Screenshot zeigt Rollencenter statt Page 314.
-- Naechsten Foundation-Schritt als Page-314-Navigation/Capture-Recovery planen, nicht als Master-Data-Start.
+- PWS-FF-002B nicht wiederholen, solange keine neue Route-Hypothese vorliegt; direkte URL und scoped Search-Click sind als aktueller Weg blockiert.
 - Starterkonten erneut sichtbar pruefen, wenn der Kontenplan Setup- oder Buchaussagen tragen soll.
 - Master Data, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt, bis die Foundation-Grenzen geklaert sind.
 - Classify master-data readiness only after chart/setup context is accepted.
