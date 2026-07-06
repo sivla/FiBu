@@ -1,36 +1,43 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "TRAINING-CUSTOMER-CARD-BASICS-DRAFT",
-  "caseId": "TRAINING-CUSTOMER-CARD-BASICS-DRAFT",
-  "status": "completed-local-training-draft",
-  "completedAt": "2026-07-07T01:05:00.000+02:00",
-  "mode": "universaarl-training-handbook-draft",
+  "runId": "CUSTOMER-SETUP-ROUTE-DECISION",
+  "caseId": "CUSTOMER-SETUP-ROUTE-DECISION",
+  "status": "completed-local-decision",
+  "completedAt": "2026-07-07T01:35:00.000+02:00",
+  "mode": "universaarl-masterdata-route-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Created training module TR-03-01A for reading the Debitorenkarte with Fakturierung and Zahlungen. The module uses real Business Central playthru screenshots from PWS-MD-004C and realistic fictional Universaarl customer context, not mockups or confidential real customer data.",
+  "summary": "Decided the customer setup route for realistic fictional Universaarl customers. The next step is a read-first UI/template preflight before any customer write. A later first write should be one manual customer only after preflight; Configuration Package or Excel-assisted import is the better later batch route after field mapping. API/AL/O2C remain parked.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/customer-setup-route-decision/CUSTOMER-SETUP-ROUTE-DECISION-result.json",
   "sourceEvidence": [
-    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/PWS-MD-004B-result.json",
-    "playwright/projects/fibu-book5/evidence/pws-md-004c-customer-billing-payments-fasttabs-readfirst/PWS-MD-004C-result.json"
+    "playwright/projects/fibu-book5/evidence/pws-md-004c-customer-billing-payments-fasttabs-readfirst/PWS-MD-004C-result.json",
+    ".agent/project-template/TRAINING-MODULE-CARDS-DRAFT.md",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md"
+  ],
+  "sourceRefs": [
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/sales-how-register-new-customers",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/across-import-data-configuration-packages",
+    "https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/apply-company-configuration-packages"
   ],
   "changedArtifacts": [
-    ".agent/project-template/TRAINING-MODULE-CARDS-DRAFT.md",
-    "playwright/projects/fibu-book5/BC-SCREENSHOT-INVENTORY.md",
-    ".agent/state/cases/training-customer-card-basics-draft.json",
+    "playwright/projects/fibu-book5/evidence/customer-setup-route-decision/CUSTOMER-SETUP-ROUTE-DECISION-result.json",
     ".agent/state/cases/customer-setup-route-decision.json",
+    ".agent/state/cases/customer-setup-ui-template-preflight.json",
     ".agent/state/current.json",
-    ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md"
+    ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md"
   ],
   "actionsTaken": [
-    "Added TR-03-01A Debitorenkarte lesen: Fakturierung und Zahlungen.",
-    "Added PWS-MD-004C screenshots to the screenshot inventory with proof boundaries.",
-    "Marked the training case as completed-local-training-draft.",
-    "Selected CUSTOMER-SETUP-ROUTE-DECISION as the next local no-BC case."
+    "Compared UI, Template, Configuration Package, Excel-assisted, API, AL and Parked routes.",
+    "Selected read-first UI/template preflight as the next customer step.",
+    "Parked customer write, import, API, AL and O2C until their gates are explicit.",
+    "Prepared CUSTOMER-SETUP-UI-TEMPLATE-PREFLIGHT as the next read-first case."
   ],
   "actionsNotTaken": [
     "No Business Central opened.",
     "No Playwright live run executed.",
-    "No customer created, edited or saved.",
+    "No customer created, edited, imported or saved.",
     "No setup changed.",
     "No sales document or draft created.",
     "No Preview Posting.",
@@ -48,70 +55,67 @@
   "payment": false,
   "apiShortcut": false,
   "proved": [
-    "A customer-card training draft now exists and is grounded in real playthru screenshots.",
-    "The training draft explains why Fakturierung and Zahlungen matter for customers.",
-    "The draft excludes mockups and confidential real customer data."
+    "The next customer action should be read-first UI/template preflight, not a write.",
+    "Manual UI is the best first learning/write path after preflight.",
+    "Configuration Package or Excel-assisted import is the better later route for multiple customers after field mapping.",
+    "API/AL are not justified for the first customer setup route."
   ],
   "notProved": [
-    "No customer setup route has been selected yet.",
-    "No customer write gate is open.",
-    "No O2C readiness, Preview Posting, Posting or ledger trace is proven."
+    "No customer template content was observed in this local run.",
+    "No customer setup field value was written.",
+    "No O2C, Preview Posting, Posting or ledger trace is proven."
   ],
   "warnings": [
-    "Training value is not the same as setup readiness.",
-    "Visible field areas are not correctness proof.",
-    "The next route decision must compare manual UI, templates, configuration packages, Excel-assisted import, API/AL later and parked route."
+    "Use realistic fictional Universaarl customers only; do not commit real customer data.",
+    "Do not treat screenshots or templates as setup correctness without later reopen/write proof.",
+    "Configuration Package and Excel-assisted routes become effective only in a separate gated write/import case."
   ],
-  "nextCase": "CUSTOMER-SETUP-ROUTE-DECISION",
-  "nextStep": "Create a local customer setup route decision for realistic fictional Universaarl customers. Compare manual UI, templates, configuration packages, Excel-assisted import, API/AL later and parked route. Do not open Business Central or Playwright.",
+  "nextCase": "CUSTOMER-SETUP-UI-TEMPLATE-PREFLIGHT",
+  "nextStep": "Run a read-first Debitoren UI/template preflight in playthru / UNIVERSAARL-DE. Capture list context, Neu dropdown or tooltip, template dialog if safely visible, card/pre-create context and no-save end state. Do not save, apply template, import, create document, Preview Posting, Posting or use real customer data.",
   "nextStepDecision": {
-    "currentCase": "TRAINING-CUSTOMER-CARD-BASICS-DRAFT",
-    "plannedNextCaseBeforeReview": "TRAINING-CUSTOMER-CARD-BASICS-DRAFT",
-    "lastEvidenceSummary": "PWS-MD-004C proved read-only customer-card FastTab context and TR-03-01A converted it into a training draft.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "The training draft is complete enough for the current evidence. Repeating it would add wording, not new project value.",
+    "currentCase": "CUSTOMER-SETUP-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "CUSTOMER-SETUP-ROUTE-DECISION",
+    "lastEvidenceSummary": "PWS-MD-004C proved read-only customer-card FastTab context and TR-03-01A converted it into training context.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A route decision was required before any realistic customer write or import path.",
     "lookaheadReviewed": [
       {
-        "caseId": "CUSTOMER-SETUP-ROUTE-DECISION",
+        "caseId": "CUSTOMER-SETUP-UI-TEMPLATE-PREFLIGHT",
         "status": "ready-next",
-        "reason": "The training module exposes exactly which setup areas block customer write and O2C."
+        "reason": "Needed to inspect Neu/template/required-field behavior without saving."
       },
       {
-        "caseId": "CUSTOMER-WRITE-GATE",
-        "status": "needs-setup-first",
-        "reason": "A write gate must wait for the route decision and Foundation gap classification."
+        "caseId": "CUSTOMER-FIRST-MANUAL-WRITE-GATE",
+        "status": "ready-after-current",
+        "reason": "Only valid if UI/template preflight proves required fields and no-save boundary."
+      },
+      {
+        "caseId": "CUSTOMER-CONFIG-PACKAGE-FIELD-MAP",
+        "status": "ready-after-current",
+        "reason": "Useful after one manual example to prepare batch loading."
       },
       {
         "caseId": "O2C-MINIMAL-ROUTE-DECISION",
         "status": "blocked",
         "reason": "O2C remains blocked until customer, item/service, VAT and posting group setup are consciously handled."
-      },
-      {
-        "caseId": "PWS-MD-VENDOR-WRITE-GATE",
-        "status": "needs-setup-first",
-        "reason": "Vendor work should follow the same route-decision discipline after customer route is clear."
-      },
-      {
-        "caseId": "PWS-MD-ITEM-WRITE-GATE",
-        "status": "needs-setup-first",
-        "reason": "Item/service work depends on product model, UOM, VAT/product posting and inventory boundaries."
       }
     ],
     "queueChangesMade": [
-      "Selected CUSTOMER-SETUP-ROUTE-DECISION as the next local case."
+      "Selected CUSTOMER-SETUP-UI-TEMPLATE-PREFLIGHT as next case.",
+      "Kept write, import, API, AL and O2C routes parked."
     ],
-    "selectedNextCase": "CUSTOMER-SETUP-ROUTE-DECISION",
-    "whySelectedNextCaseIsBest": "It turns the realistic training insight into a practical implementation decision without prematurely writing customer data.",
+    "selectedNextCase": "CUSTOMER-SETUP-UI-TEMPLATE-PREFLIGHT",
+    "whySelectedNextCaseIsBest": "It gives the next live run a concrete read-first target and prevents premature customer creation.",
     "risksBeforeNextCase": [
-      "Do not treat training screenshots as setup correctness.",
+      "Do not click through a template dialog into a saved customer.",
       "Do not use real customer data.",
-      "Do not jump directly to O2C."
+      "Do not infer setup correctness from visible fields alone."
     ],
     "requiredPreparation": [
-      "Use PWS-MD-004C and TR-03-01A.",
-      "Keep Business Central and Playwright closed.",
-      "Compare implementation routes like a BC consultant: UI, template, configuration package, Excel-assisted import, API/AL later or parked."
+      "Use existing auth/context gates.",
+      "Capture multiple screenshots: list, New dropdown/tooltip, template dialog if visible, card before save, no-save end state.",
+      "Stop before save/create/OK if the dialog would create data."
     ]
   },
-  "updatedAt": "2026-07-07T01:05:00.000+02:00"
+  "updatedAt": "2026-07-07T01:35:00.000+02:00"
 }

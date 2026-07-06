@@ -1,0 +1,196 @@
+{
+  "schemaVersion": 1,
+  "caseId": "CUSTOMER-SETUP-ROUTE-DECISION",
+  "source": "local-route-decision",
+  "resultStatus": "completed-local-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "workstream": "WS04 Master Data / Product Model",
+  "businessPurpose": "Decide how realistic fictional Universaarl customers should be prepared before any new Debitoren write gate.",
+  "decision": {
+    "selectedRoute": "read-first-ui-template-preflight-before-first-manual-customer",
+    "summary": "Do not create the next customer yet. First run a read-first UI and template preflight on the Debitoren page/card. If the route proves templates, required fields, posting groups, VAT business group, payment terms and no-save boundary clearly enough, the first write gate may create exactly one realistic fictional customer manually in the UI. Configuration Packages or Excel-assisted import are the preferred later route for a small batch of multiple realistic customers after the field mapping and Foundation dependencies are clear.",
+    "whyThisRoute": [
+      "Microsoft Learn supports both manual Customer Card creation and templates for new customers.",
+      "Microsoft Learn also supports configuration packages and Excel-assisted import for customer data.",
+      "PWS-MD-004C proves customer-card FastTabs for training, but not setup correctness.",
+      "The book and training need one fully explained manual example before a batch-loading route becomes meaningful.",
+      "A real customer project would not load several customers until mandatory fields and setup dependencies are understood."
+    ]
+  },
+  "routeComparison": [
+    {
+      "route": "UI",
+      "status": "selected-for-first-write-after-preflight",
+      "fit": "Best for the first training/customer-handbook example because users see the Debitorenkarte, required fields, templates and business meaning directly.",
+      "risk": "Too slow and error-prone for many customers; must not be used before setup-sensitive fields are visible and understood.",
+      "nextAction": "Run read-first UI/template preflight; no save."
+    },
+    {
+      "route": "Template",
+      "status": "required-part-of-preflight",
+      "fit": "Good for consistent defaults such as posting group, VAT business group and payment terms if the template content is visible and source-backed.",
+      "risk": "A template can hide wrong defaults. Do not trust it without visible values and reopen proof after a later write.",
+      "nextAction": "Inspect template availability and visible/defaulted fields read-first."
+    },
+    {
+      "route": "Configuration Package",
+      "status": "preferred-later-for-batch-load-after-field-map",
+      "fit": "Best candidate for loading several realistic fictional customers once fields, dependencies and validation rules are known.",
+      "risk": "Package import/validate/apply are effective setup/data actions and require a separate write gate plus rollback/cleanup plan.",
+      "nextAction": "Park until one manual example and field mapping are proven."
+    },
+    {
+      "route": "Excel-assisted",
+      "status": "candidate-with-configuration-package",
+      "fit": "Useful for preparing customer data in a customer-project format and validating columns before import.",
+      "risk": "Excel can make bad defaults look clean; no import until BC validation and package gate exist.",
+      "nextAction": "Use as data preparation only until Configuration Package gate."
+    },
+    {
+      "route": "API",
+      "status": "parked",
+      "fit": "Potential later integration path, not needed for the first customer learning/write gate.",
+      "risk": "Bypasses the UI learning value and needs auth, integration ownership, idempotency and error handling.",
+      "nextAction": "Do not use for first Universaarl customer setup."
+    },
+    {
+      "route": "AL",
+      "status": "parked",
+      "fit": "Only justified for reusable extension logic or missing standard capability.",
+      "risk": "Overengineering for simple customer setup; requires build, publish, permissions and lifecycle governance.",
+      "nextAction": "Do not use unless a real recurring product gap appears."
+    },
+    {
+      "route": "Parked",
+      "status": "not-selected",
+      "fit": "Would be appropriate if Foundation gaps made even read-first customer route discovery misleading.",
+      "risk": "Parking now would slow training and book progress despite enough evidence for a no-write preflight.",
+      "nextAction": "Proceed with read-first preflight, not write."
+    }
+  ],
+  "realisticCustomerRule": {
+    "allowed": [
+      "Use realistic fictional Universaarl business partners.",
+      "Use real Business Central playthru screenshots.",
+      "Mark simulated customer data clearly.",
+      "Keep customer owner, internal owner, validation rules and UAT/training impact visible."
+    ],
+    "notAllowed": [
+      "No confidential real customer data.",
+      "No fake UI mockups as BC proof.",
+      "No CRONUS/RM-DEMO/Rhein-Main customers as active target truth.",
+      "No customer setup correctness claim from screenshots alone."
+    ]
+  },
+  "foundationGapsBlockingWrite": [
+    "Customer Posting Group correctness is not proven.",
+    "VAT Business Posting Group correctness is not proven.",
+    "General Business Posting Group/customer sales posting setup is not proven enough for O2C.",
+    "Payment Terms and Payment Method are not selected for the next real customer.",
+    "No O2C Preview Posting or ledger trace exists for Universaarl."
+  ],
+  "sourceRefs": [
+    {
+      "title": "Register new customers by creating a Customer Card",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/sales-how-register-new-customers",
+      "usedFor": "Manual Customer Card and template route."
+    },
+    {
+      "title": "Use Excel to import data - Business Central",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/across-import-data-configuration-packages",
+      "usedFor": "Configuration package and Excel-assisted import route."
+    },
+    {
+      "title": "Apply Company Configuration Packages",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/apply-company-configuration-packages",
+      "usedFor": "Package-based setup/data route boundary."
+    }
+  ],
+  "actionsTaken": [
+    "Compared UI, Template, Configuration Package, Excel-assisted, API, AL and Parked routes.",
+    "Selected read-first UI/template preflight as the next step.",
+    "Parked customer write, O2C, import, API and AL routes."
+  ],
+  "actionsNotTaken": [
+    "No Business Central opened.",
+    "No Playwright live run executed.",
+    "No customer created, edited, imported or saved.",
+    "No setup changed.",
+    "No sales document or draft created.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No API shortcut."
+  ],
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "proved": [
+    "The next customer action should be read-first UI/template preflight, not a write.",
+    "Manual UI is the best first learning/write path after preflight.",
+    "Configuration Package/Excel-assisted import is the better later route for multiple customers after field mapping.",
+    "API/AL are not justified for the first customer setup route."
+  ],
+  "notProved": [
+    "No new customer setup was written.",
+    "No customer template content was observed in this run.",
+    "No customer posting setup, VAT setup, payment terms or O2C readiness was proven.",
+    "No import route was executed."
+  ],
+  "warnings": [
+    "The next case may inspect UI/template routes only; it must not save a customer.",
+    "A realistic fictional customer is not the same as a real customer. Do not commit real customer data.",
+    "Configuration Package and Excel-assisted routes become write-capable once import/validate/apply is used."
+  ],
+  "nextStepDecision": {
+    "currentCase": "CUSTOMER-SETUP-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "CUSTOMER-SETUP-ROUTE-DECISION",
+    "lastEvidenceSummary": "PWS-MD-004C showed existing customer card FastTabs read-only and TR-03-01A turned them into training context.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A route decision is required before any realistic customer write or import path.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "CUSTOMER-SETUP-UI-TEMPLATE-PREFLIGHT",
+        "status": "ready-next",
+        "reason": "Needed to inspect Neu/template/required-field behavior without saving."
+      },
+      {
+        "caseId": "CUSTOMER-FIRST-MANUAL-WRITE-GATE",
+        "status": "ready-after-current",
+        "reason": "Only valid if UI/template preflight proves required fields and no-save boundary."
+      },
+      {
+        "caseId": "CUSTOMER-CONFIG-PACKAGE-FIELD-MAP",
+        "status": "ready-after-current",
+        "reason": "Useful after one manual example to prepare batch loading."
+      },
+      {
+        "caseId": "O2C-MINIMAL-ROUTE-DECISION",
+        "status": "blocked",
+        "reason": "O2C remains blocked until customer, item/service, VAT and posting group setup are consciously handled."
+      }
+    ],
+    "queueChangesMade": [
+      "Selected CUSTOMER-SETUP-UI-TEMPLATE-PREFLIGHT as next case.",
+      "Kept write, import, API, AL and O2C routes parked."
+    ],
+    "selectedNextCase": "CUSTOMER-SETUP-UI-TEMPLATE-PREFLIGHT",
+    "whySelectedNextCaseIsBest": "It gives the next live run a concrete read-first target and prevents premature customer creation.",
+    "risksBeforeNextCase": [
+      "Do not click through a template dialog into a saved customer.",
+      "Do not use real customer data.",
+      "Do not infer setup correctness from visible fields alone."
+    ],
+    "requiredPreparation": [
+      "Use existing auth/context gates.",
+      "Capture multiple screenshots: list, New dropdown/tooltip, template dialog if visible, card before save, no-save end state.",
+      "Stop before save/create/OK if the dialog would create data."
+    ]
+  },
+  "nextCase": "CUSTOMER-SETUP-UI-TEMPLATE-PREFLIGHT",
+  "completedAt": "2026-07-07T01:35:00.000+02:00"
+}

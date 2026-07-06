@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-07T01:05:00.000+02:00",
+  "updatedAt": "2026-07-07T01:35:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -8,12 +8,12 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w2-core-masterdata-route-decision",
-  "activeCase": "CUSTOMER-SETUP-ROUTE-DECISION",
-  "active_case_file": ".agent/state/cases/customer-setup-route-decision.json",
-  "activeCaseFile": ".agent/state/cases/customer-setup-route-decision.json",
+  "activeCase": "CUSTOMER-SETUP-UI-TEMPLATE-PREFLIGHT",
+  "active_case_file": ".agent/state/cases/customer-setup-ui-template-preflight.json",
+  "activeCaseFile": ".agent/state/cases/customer-setup-ui-template-preflight.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-masterdata-route-decision",
+  "mode": "universaarl-masterdata-readfirst",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -34,10 +34,15 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "write-local-route-decision",
-    "compare-ui-template-configuration-package-excel-api-al-parked",
-    "update-dashboard-and-state",
-    "update-data-dependencies"
+    "open-business-central-readonly",
+    "confirm-playthru-instance",
+    "confirm-universaarl-de-company",
+    "open-customers-list",
+    "hover-or-open-new-dropdown-readonly",
+    "inspect-template-dialog-without-confirming",
+    "capture-screenshot-qa",
+    "close-without-save",
+    "write-result-json"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -45,12 +50,11 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "open-business-central-live",
-    "run-playwright-live",
-    "new-customer",
+    "new-customer-save",
     "edit-customer",
     "save-customer",
     "delete-customer",
+    "apply-template-confirm",
     "create-document-or-draft",
     "preview-posting",
     "post",
@@ -58,9 +62,9 @@
     "claim-master-data-ready",
     "claim-sales-process-ready"
   ],
-  "nextCase": "CUSTOMER-SETUP-ROUTE-DECISION",
-  "nextStep": "Create a local customer setup route decision from PWS-MD-004C and TR-03-01A: compare manual UI, template, configuration package, Excel-assisted import, API/AL later and parked route for realistic fictional Universaarl customers. Do not open Business Central or Playwright.",
-  "preparedNextCaseFile": ".agent/state/cases/customer-setup-route-decision.json",
+  "nextCase": "CUSTOMER-SETUP-UI-TEMPLATE-PREFLIGHT",
+  "nextStep": "Run a read-first Debitoren UI/template preflight in playthru / UNIVERSAARL-DE: capture list context, Neu dropdown or tooltip, template dialog if safely visible, card/pre-create context and no-save end state. Do not save, apply template, import, create document, Preview Posting, Posting or use real customer data.",
+  "preparedNextCaseFile": ".agent/state/cases/customer-setup-ui-template-preflight.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -10899,5 +10903,38 @@
     ],
     "nextCase": "CUSTOMER-SETUP-ROUTE-DECISION",
     "updatedAt": "2026-07-07T01:05:00.000+02:00"
+  },
+  "latestCustomerSetupRouteDecision": {
+    "caseId": "CUSTOMER-SETUP-ROUTE-DECISION",
+    "status": "completed-local-decision",
+    "resultPath": "playwright/projects/fibu-book5/evidence/customer-setup-route-decision/CUSTOMER-SETUP-ROUTE-DECISION-result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "businessCentralOpened": false,
+    "playwrightLiveRunExecuted": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "selectedRoute": "read-first-ui-template-preflight-before-first-manual-customer",
+    "laterBatchRoute": "Configuration Package or Excel-assisted import after field mapping and Foundation dependencies",
+    "parkedRoutes": [
+      "API",
+      "AL",
+      "O2C"
+    ],
+    "proved": [
+      "The next customer step should be a read-first UI/template preflight, not a write.",
+      "The first later write should be one manual realistic fictional customer only after preflight.",
+      "Configuration Package or Excel-assisted import is the better later batch route after field mapping."
+    ],
+    "notProved": [
+      "No template contents were observed in this local run.",
+      "No customer setup, O2C, Preview Posting, Posting or ledger trace is proven."
+    ],
+    "nextCase": "CUSTOMER-SETUP-UI-TEMPLATE-PREFLIGHT",
+    "updatedAt": "2026-07-07T01:35:00.000+02:00"
   }
 }
