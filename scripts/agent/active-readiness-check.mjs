@@ -21,6 +21,21 @@ const checksByCase = new Map([
         }
       ]
     }
+  ],
+  [
+    'FOUNDATION-READINESS-DECISION',
+    {
+      id: 'foundation-readiness-decision',
+      scriptPath: 'scripts/agent/foundation-readiness-decision.mjs',
+      reason: 'TARGET-075 has run; Foundation Readiness Decision must stay valid before any Master Data or write pilot.',
+      secondaryChecks: [
+        {
+          id: 'masterdata-readfirst-handoff',
+          scriptPath: 'scripts/agent/masterdata-readfirst-check.mjs',
+          reason: 'Master Data read-first pilots must remain blocked while the Foundation decision parks Master Data.'
+        }
+      ]
+    }
   ]
 ]);
 

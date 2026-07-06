@@ -8,7 +8,7 @@
 - Instanz: playthru
 - Company: UNIVERSAARL-DE
 - Result-Status: partially-completed
-- Erzeugt am: 2026-07-06T17:06:56.278Z
+- Erzeugt am: 2026-07-06T17:14:40.050Z
 - Auth-Ziel: playthru / UNIVERSAARL-DE
 - Auth-Ziel aus aktuellem State aufgebaut: ja
 - Auth-Ziel passt zum State: ja
@@ -115,7 +115,9 @@ Erlaubte Anschlussklassifikationen:
 
 ## Naechste Projektoutputs
 
-- Update or create FOUNDATION-READINESS-DECISION.md after reviewing this result.
+- Den abgelehnten Nachweis zur Buchungsmatrix Einrichtung vor Master Data klaeren oder bewusst als Grenze akzeptieren.
+- Starterkonten erneut sichtbar pruefen, wenn der Kontenplan Setup- oder Buchaussagen tragen soll.
+- Master Data, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt, bis die Foundation-Grenzen geklaert sind.
 - Classify master-data readiness only after chart/setup context is accepted.
 - Use accepted screenshots as draft handbook/training evidence, not final compliance proof.
 

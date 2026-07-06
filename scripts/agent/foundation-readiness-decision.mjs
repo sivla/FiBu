@@ -334,6 +334,20 @@ function renderFoundationFollowupHandoff(handoff, readyForMasterData) {
   ].join('\n');
 }
 
+function renderNextProjectOutputs(input, readyForMasterData) {
+  const sourceOutputs = asArray(input.nextProjectOutputs).filter(
+    (output) => !/^Update or create FOUNDATION-READINESS-DECISION\.md/i.test(String(output))
+  );
+  const decisionOutputs = readyForMasterData
+    ? ['Einen engen Master-Data-Read-first-Pilot waehlen; Datensaetze erst mit spaeterem Smart Decision Gate schreiben.']
+    : [
+        'Den abgelehnten Nachweis zur Buchungsmatrix Einrichtung vor Master Data klaeren oder bewusst als Grenze akzeptieren.',
+        'Starterkonten erneut sichtbar pruefen, wenn der Kontenplan Setup- oder Buchaussagen tragen soll.',
+        'Master Data, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt, bis die Foundation-Grenzen geklaert sind.'
+      ];
+  return bullet([...decisionOutputs, ...sourceOutputs]);
+}
+
 function renderDecision(result) {
   const input = result.foundationReadinessInput ?? {};
   const chart = input.chartOfAccounts ?? {};
@@ -455,7 +469,7 @@ function renderDecision(result) {
     '',
     '## Naechste Projektoutputs',
     '',
-    bullet(input.nextProjectOutputs),
+    renderNextProjectOutputs(input, readyForMasterData),
     '',
     '## Evidence',
     '',
