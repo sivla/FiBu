@@ -4,17 +4,20 @@ const checks = [
   {
     id: 'PWS-MD-001',
     area: 'Debitoren / Customers',
-    script: 'fibu:pws:md001:customer-context'
+    script: 'fibu:pws:md001:customer-context',
+    expectedListSignal: 'pws-md-001-customer-context-readonly.spec.ts'
   },
   {
     id: 'PWS-MD-002',
     area: 'Kreditoren / Vendors',
-    script: 'fibu:pws:md002:vendor-context'
+    script: 'fibu:pws:md002:vendor-context',
+    expectedListSignal: 'pws-md-002-vendor-context-readonly.spec.ts'
   },
   {
     id: 'PWS-MD-003',
     area: 'Artikel und Services / Items and Services',
-    script: 'fibu:pws:md003:item-service-context'
+    script: 'fibu:pws:md003:item-service-context',
+    expectedListSignal: 'pws-md-003-item-service-context-readonly.spec.ts'
   }
 ];
 
@@ -24,6 +27,15 @@ function commandName(base) {
 
 function runCheck(script) {
   return spawnSync(commandName('npm'), ['run', '--silent', script, '--', '--check'], {
+    cwd: process.cwd(),
+    stdio: 'pipe',
+    shell: process.platform === 'win32',
+    encoding: 'utf8'
+  });
+}
+
+function runList(script) {
+  return spawnSync(commandName('npm'), ['run', '--silent', script, '--', '--list'], {
     cwd: process.cwd(),
     stdio: 'pipe',
     shell: process.platform === 'win32',
@@ -42,24 +54,31 @@ let ok = true;
 
 for (const check of checks) {
   const child = runCheck(check.script);
+  const listed = runList(check.script);
+  const listOk = listed.status === 0 && listed.stdout.includes(check.expectedListSignal);
   if (child.status !== 0) {
     ok = false;
     results.push({
       ...check,
       runnerOk: false,
+      listOk,
       canRunNow: false,
       blockedBy: ['runner-check-failed'],
       stderr: child.stderr?.trim() ?? '',
-      stdout: child.stdout?.trim() ?? ''
+      stdout: child.stdout?.trim() ?? '',
+      listStdoutTail: listed.stdout?.slice(-500) ?? '',
+      listStderr: listed.stderr?.trim() ?? ''
     });
     continue;
   }
+  if (!listOk) ok = false;
 
   try {
     const parsed = parseJson(child.stdout);
     results.push({
       ...check,
       runnerOk: true,
+      listOk,
       caseId: parsed.caseId,
       expectedInstance: parsed.expectedInstance,
       expectedCompany: parsed.expectedCompany,
@@ -72,13 +91,15 @@ for (const check of checks) {
       authMeetsLiveWindow: parsed.authMeetsLiveWindow,
       canRunNow: parsed.canRunNow,
       blockedBy: parsed.blockedBy ?? [],
-      nextStep: parsed.nextStep
+      nextStep: parsed.nextStep,
+      listStdoutTail: listed.stdout?.slice(-500) ?? ''
     });
   } catch (error) {
     ok = false;
     results.push({
       ...check,
       runnerOk: false,
+      listOk,
       canRunNow: false,
       blockedBy: ['runner-json-parse-failed'],
       error: error instanceof Error ? error.message : String(error)
@@ -89,6 +110,7 @@ for (const check of checks) {
 const allPrepared = results.every(
   (result) =>
     result.runnerOk === true &&
+    result.listOk === true &&
     result.targetUrlReady === true &&
     result.authStateChecked === true &&
     result.authStateCheckScript === 'auth:bc:check:overnight' &&
