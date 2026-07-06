@@ -1,10 +1,10 @@
 # Business Central Company Usecase
 
-Status: `german-final-candidate`, `company-to-be-created-through-book-process`.
+Status: `german-final-candidate`, `company-exists-foundation-in-progress`.
 
 ## Projektziel
 
-Dieses Projekt baut ein vollstaendiges Business-Central-Standard-Playthrough fuer ein anfaengerfreundliches, evidence-basiertes FiBu-Buch. Die aktive Buchwelt ist ab jetzt Universaarl: Zielinstanz `playthru`, Zielcompany `UNIVERSAARL-DE`, Musterfirma `Universaarl GmbH`. Die Zielcompany wird nicht vorausgesetzt, sondern als eigener UI-first Buchprozess angelegt und bewiesen.
+Dieses Projekt baut ein vollstaendiges Business-Central-Standard-Playthrough fuer ein anfaengerfreundliches, evidence-basiertes FiBu-Buch. Die aktive Buchwelt ist Universaarl: Zielinstanz `playthru`, Zielcompany `UNIVERSAARL-DE`, Musterfirma `Universaarl GmbH`. Die erste Zielcompany existiert bereits und wird als Foundation-, Daten-, UAT-, Trainings- und Buchbasis kontrolliert weiter aufgebaut.
 
 ## Aktive Zielwelt
 
@@ -13,7 +13,7 @@ Dieses Projekt baut ein vollstaendiges Business-Central-Standard-Playthrough fue
 | Instanz | `playthru` |
 | Erste Zielcompany | `UNIVERSAARL-DE` |
 | Rechtlicher Name | `Universaarl GmbH` |
-| Datenbasis | Universaarl-Musterfirma, UI-first aufzubauen |
+| Datenbasis | Universaarl-Musterfirma, in `playthru` kontrolliert aufzubauen |
 | Status | German-Final-Candidate, erste Company existiert und wird aufgebaut |
 | Harte Grenze | Keine Aktion ausserhalb der aktiven State-Instanz |
 

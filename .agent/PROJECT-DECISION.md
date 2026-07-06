@@ -97,7 +97,7 @@ Diese Gates sollen entscheiden, begrenzen oder umordnen. Sie sollen nicht automa
 ### Als naechstes
 
 1. TARGET-075 vorbereiten oder ausfuehren, sobald der Freeze bewusst geliftet wird: Chart of Accounts und Foundation-Kontext read-only pruefen.
-2. Danach entscheiden, ob `TARGET-075-FIRST-VENDOR-CARD-CONTROLLED-FIT` fachlich reif ist.
+2. Danach zuerst `FOUNDATION-READINESS-DECISION.md` erstellen oder aktualisieren; erst daraus folgt, ob ein Debitoren-/Kreditoren-/Artikel-Pilot fachlich reif ist.
 3. VAT Page 472 erst wieder anfassen, wenn eine neue, nicht wiederholende Editor-/Helper-Hypothese existiert.
 
 ### Spaeter
@@ -146,8 +146,8 @@ Der wahrscheinlich beste Resume-Pfad ist:
    - prueft `playthru / UNIVERSAARL-DE`, Kontenplan und Setup-Grenzen als Buch- und Evidence-Basis
 
 3. Danach moeglicher Stammdaten-Pilot:
-   - `TARGET-075-FIRST-VENDOR-CARD-CONTROLLED-FIT`
-   - nur wenn der Foundation-Checkpoint keine neuen Blocker zeigt und Nummernserie/Kreditorenbuchungsgruppe ausreichend geklaert sind
+   - konkrete Case-ID erst nach `FOUNDATION-READINESS-DECISION.md`
+   - Debitoren, Kreditoren oder Artikel nur, wenn Nummernserien, Buchungsgruppen, USt/VAT-Grenze und Trainings-/UAT-Zweck ausreichend geklaert sind
 
 Vor Resume muessen erfuellt sein:
 
