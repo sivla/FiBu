@@ -79,14 +79,35 @@ for (const file of files) {
 
 const tsconfig = JSON.parse(fs.readFileSync(path.resolve(root, 'tsconfig.json'), 'utf8'));
 const tsFilesInRepo = walk(root).filter((file) => file.endsWith('.ts')).length;
-const tsconfigFileCount = Array.isArray(tsconfig.files) ? tsconfig.files.length : null;
+const tsconfigFiles = Array.isArray(tsconfig.files) ? tsconfig.files : null;
+const tsconfigFileCount = tsconfigFiles ? tsconfigFiles.length : null;
+const activePilotTsFiles = [
+  'playwright.config.ts',
+  'playwright/core/auth.setup.ts',
+  'playwright/core/bc/actions.ts',
+  'playwright/core/bc/cards.ts',
+  'playwright/core/bc/dialogs.ts',
+  'playwright/core/bc/journal-grid-candidates.ts',
+  'playwright/core/bc/purchase-invoice-guards.ts',
+  'playwright/core/bc-api.ts',
+  'playwright/core/bc-helpers.ts',
+  'playwright/core/evidence.ts',
+  'playwright/projects/fibu-book5/project.ts',
+  'playwright/projects/fibu-book5/tests/target-075-chart-of-accounts-reopen-and-setup-consistency-check.spec.ts',
+];
+const activePilotMissingFromTsconfig = tsconfigFiles
+  ? activePilotTsFiles.filter((file) => !tsconfigFiles.includes(file))
+  : activePilotTsFiles;
+const activePilotTsCovered = tsconfigFiles !== null && activePilotMissingFromTsconfig.length === 0;
 const risks = [];
 
 if (tsconfigFileCount !== null && tsconfigFileCount < Math.max(20, Math.floor(tsFilesInRepo / 4))) {
   risks.push({
     id: 'narrow-tsconfig',
-    severity: 'error',
-    message: `tsconfig.json type-checks ${tsconfigFileCount} files while ${tsFilesInRepo} TypeScript files exist.`,
+    severity: activePilotTsCovered ? 'warn' : 'error',
+    message: activePilotTsCovered
+      ? `tsconfig.json type-checks ${tsconfigFileCount} files while ${tsFilesInRepo} TypeScript files exist. Active TARGET-075 TypeScript files are covered, but tsc is not full project health proof.`
+      : `tsconfig.json type-checks ${tsconfigFileCount} files while ${tsFilesInRepo} TypeScript files exist, and active TARGET-075 TypeScript coverage is incomplete.`,
   });
 }
 
@@ -112,12 +133,22 @@ const result = {
   filesScanned: files.length,
   tsFilesInRepo,
   tsconfigFileCount,
+  tsCoverage: {
+    mode: 'active-pilot-plus-core',
+    activePilot: 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK',
+    activePilotTsCovered,
+    activePilotTsFiles,
+    activePilotMissingFromTsconfig,
+    fullProjectTsHealthProven: false,
+  },
   counts,
   authGuard,
   samples,
   risks,
   recommendation: [
-    'Expand TypeScript coverage before trusting tsc as a project health signal.',
+    activePilotTsCovered
+      ? 'Treat tsc as active-pilot/core coverage only; expand TypeScript coverage before trusting it as full project health proof.'
+      : 'Add active TARGET-075 TypeScript files to tsconfig before trusting tsc for the resume pilot.',
     'Use guarded runners with auth freshness and live-gate checks before active Business Central specs.',
     'Promote repeated wait/force/coordinate patterns into audited helpers or rejected-path notes.',
   ],

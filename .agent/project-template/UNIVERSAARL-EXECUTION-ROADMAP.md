@@ -86,7 +86,7 @@ Latest local check result: TARGET-075 readiness refresh, 2026-07-06.
 | --- | --- | --- |
 | `agent:preflight` | passed | Local project state is consistent enough for planning. |
 | `check:encoding` | passed | Text files are clean enough for this package. |
-| `agent:quality:audit` | passed with risk findings | Quality risks remain visible: narrow TypeScript coverage, direct storageState usage and legacy Playwright flake surface. |
+| `agent:quality:audit` | passed with risk findings | Quality risks remain visible: active-pilot/core TypeScript coverage only, direct storageState usage and legacy Playwright flake surface. |
 | `agent:resume:check` | passed locally | `TARGET-075` is locally prepared, but this does not lift the freeze. |
 | `agent:resume:check:overnight` | passed locally, live still blocked | Stored auth was usable for `playthru / UNIVERSAARL-DE`; freeze/live gate still blocks execution. |
 | `agent:freeze:status` | freeze active | Live execution remains blocked until the freeze is explicitly lifted. |
@@ -96,7 +96,7 @@ Latest local check result: TARGET-075 readiness refresh, 2026-07-06.
 
 Quality-audit boundary:
 
-- `tsconfig.json` is not full project health proof yet.
+- `tsconfig.json` covers the active TARGET-075/core TypeScript set, but is not full project health proof yet.
 - Auth freshness remains a live-run precondition.
 - Legacy waits, force clicks and coordinate clicks remain technical debt.
 - `TARGET-075` stays read-first precisely because this risk surface still exists.

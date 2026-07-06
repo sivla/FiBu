@@ -16,7 +16,7 @@ Do not resume TARGET-073 as the next live case. TARGET-073 is parked until a mat
 
 | Audit risk | Decision for TARGET-075 |
 | --- | --- |
-| `tsconfig.json` covers only 14 of 450 TypeScript files | Do not use `tsc` as proof of full project health. Use local agent checks plus Playwright `--list` for this pilot. |
+| `tsconfig.json` covers the active TARGET-075/core TypeScript set, but only a narrow subset of all TypeScript files | Use `tsc` as active-pilot/core coverage only. Do not use it as proof of full project health. Use local agent checks plus Playwright `--list` for this pilot. |
 | 433 direct `storageState` files appear unguarded; TARGET-075 is the one guarded direct `storageState` spec | TARGET-075 must start through its guarded runner with auth/context checks. Wrong auth, wrong instance, wrong company or blocked live gate blocks the pilot. |
 | Many waits, force clicks and coordinate clicks exist in legacy tests | TARGET-075 stays read-only. No force-click value entry, no coordinate editing, no unscoped `New/Edit/Post/OK`. |
 
@@ -31,7 +31,7 @@ Most recent resume check: 2026-07-06 10:20 Europe/Berlin. Local readiness is gre
 | `git pull --ff-only` | passed | Branch was already up to date before the readiness refresh. |
 | `npm run agent:preflight` | passed | Agent state, budgets, safety, model routing, capabilities and skills are locally consistent. |
 | `npm run agent:active-readiness` | passed | The active State selects TARGET-075 readiness as the current pilot gate. |
-| `npm run agent:quality:audit` | passed with known risk findings | The pilot may proceed only as read-first; TypeScript coverage, auth freshness and legacy Playwright flake surface remain bounded risks. |
+| `npm run agent:quality:audit` | passed with known risk findings | The pilot may proceed only as read-first; active TARGET-075 TypeScript coverage is present, while full-project TypeScript coverage, auth freshness and legacy Playwright flake surface remain bounded risks. |
 | `npm run agent:resume:check` | passed locally | TARGET-075 is prepared after freeze lift; this check does not open Business Central and does not lift the freeze. |
 | `npm run agent:freeze:status` | freeze active | Live execution remains blocked until the freeze is explicitly lifted or the active case confirms TARGET-075 may run. |
 | `npm run fibu:target:foundation-consistency-pilot -- --check` | passed locally | The guarded TARGET-075 runner is ready without opening Business Central. |
