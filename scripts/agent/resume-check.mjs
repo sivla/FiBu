@@ -159,9 +159,11 @@ const output = {
   target075SafeCheck: target075SafeCheck
     ? {
         canResumeAfterFreezeLift: target075SafeCheck.canResumeAfterFreezeLift,
+        canResumeAfterFreezeLiftMeaning: target075SafeCheck.canResumeAfterFreezeLiftMeaning,
         canRunNow: target075SafeCheck.canRunNow,
         freezeActive: target075SafeCheck.freezeActive,
         requiresFreezeLift: target075SafeCheck.requiresFreezeLift,
+        requiresLiveGateLift: target075SafeCheck.requiresLiveGateLift,
         requiresFreezeOverrideWhenFreezeActive: target075SafeCheck.requiresFreezeOverrideWhenFreezeActive,
         authStateChecked: target075SafeCheck.authStateChecked,
         authSecretsPrinted: target075SafeCheck.authSecretsPrinted,
