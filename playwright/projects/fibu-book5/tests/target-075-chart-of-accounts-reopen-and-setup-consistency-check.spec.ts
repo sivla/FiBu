@@ -378,6 +378,51 @@ test('TARGET-075 runs a read-only Foundation consistency pilot', async ({ page }
   ];
   const masterDataHandoffDecision =
     resultStatus === 'observed' ? 'ready-for-read-first-review' : 'blocked-or-needs-foundation-follow-up';
+  const foundationFollowupDecision =
+    resultStatus === 'observed' ? 'run-if-target075-gap-matches' : 'required-before-master-data';
+  const foundationReadFirstHandoff = [
+    {
+      candidate: 'PWS-FF-002',
+      area: 'Buchungsgruppen (Posting Groups)',
+      decision: foundationFollowupDecision,
+      useWhen:
+        'TARGET-075 shows missing, rejected or unclear business/product/general posting group or posting setup context.',
+      remainsForbidden: ['Buchungsgruppen speichern', 'Buchungsmatrix-Zeilen aendern', 'Preview Posting', 'Posting']
+    },
+    {
+      candidate: 'PWS-FF-004',
+      area: 'USt/MwSt.-Einrichtung (VAT setup boundary)',
+      decision: foundationFollowupDecision,
+      useWhen: 'TARGET-075 shows VAT gaps, unclear VAT Posting Setup rows or weak screenshot QA.',
+      remainsForbidden: ['USt-Gruppen speichern', 'VAT Posting Setup schreiben', 'Steuerfinalitaet behaupten', 'Posting']
+    },
+    {
+      candidate: 'PWS-FF-005',
+      area: 'Dimensionen und Dimensionswerte',
+      decision: foundationFollowupDecision,
+      useWhen: 'TARGET-075 leaves dimensions, dimension values, global dimensions or reporting boundaries unclear.',
+      remainsForbidden: [
+        'Dimension speichern',
+        'Dimensionswert speichern',
+        'Standarddimension aendern',
+        'Reporting- oder Postenclaim behaupten'
+      ]
+    },
+    {
+      candidate: 'PWS-FF-003',
+      area: 'Zahlungsbedingungen (Payment Terms)',
+      decision: foundationFollowupDecision,
+      useWhen: 'TARGET-075 or the master-data handoff shows unclear customer/vendor payment terms.',
+      remainsForbidden: ['Zahlungsbedingung speichern', 'Zahlungsart oder Bankdaten erfassen', 'Zahlung vorbereiten']
+    },
+    {
+      candidate: 'PWS-FF-001',
+      area: 'Nummernserien (Number Series)',
+      decision: foundationFollowupDecision,
+      useWhen: 'TARGET-075 or the master-data handoff shows unclear numbering logic for customers, vendors or items.',
+      remainsForbidden: ['Nummernserie speichern', 'Setup zuweisen', 'Stammdatensatz anlegen']
+    }
+  ];
   const masterDataReadFirstHandoff = [
     {
       candidate: 'PWS-MD-001',
@@ -518,6 +563,7 @@ test('TARGET-075 runs a read-only Foundation consistency pilot', async ({ page }
         vatPostingSetup: statusFor('vat-posting-setup'),
         bookBoundary: 'Use as setup-page visibility and dependency map only; do not claim setup correctness from read-only visibility.'
       },
+      foundationReadFirstHandoff,
       masterDataReadFirstHandoff,
       nextProjectOutputs: [
         'Update or create FOUNDATION-READINESS-DECISION.md after reviewing this result.',

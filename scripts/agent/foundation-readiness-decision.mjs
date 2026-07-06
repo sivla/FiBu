@@ -215,6 +215,26 @@ function validateTarget075(result) {
         }
       }
     }
+    const foundationHandoff = asArray(input.foundationReadFirstHandoff);
+    if (!foundationHandoff.length) {
+      errors.push('foundationReadinessInput.foundationReadFirstHandoff must be a non-empty array.');
+    } else {
+      const candidates = new Set(foundationHandoff.map((entry) => entry?.candidate));
+      for (const candidate of ['PWS-FF-001', 'PWS-FF-002', 'PWS-FF-003', 'PWS-FF-004', 'PWS-FF-005']) {
+        if (!candidates.has(candidate)) {
+          errors.push(`foundationReadinessInput.foundationReadFirstHandoff must include ${candidate}.`);
+        }
+      }
+      for (const entry of foundationHandoff) {
+        const candidate = entry?.candidate ?? 'unknown';
+        if (!entry?.candidate) errors.push('foundationReadinessInput.foundationReadFirstHandoff entry is missing candidate.');
+        if (!entry?.decision) errors.push(`foundationReadinessInput.foundationReadFirstHandoff ${candidate} is missing decision.`);
+        if (!entry?.useWhen) errors.push(`foundationReadinessInput.foundationReadFirstHandoff ${candidate} is missing useWhen.`);
+        if (!Array.isArray(entry?.remainsForbidden) || entry.remainsForbidden.length === 0) {
+          errors.push(`foundationReadinessInput.foundationReadFirstHandoff ${candidate} must list remainsForbidden.`);
+        }
+      }
+    }
   }
 
   return { errors, warnings };

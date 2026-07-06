@@ -189,6 +189,43 @@ const fixture = {
     },
     nextProjectOutputs: ['Create the real Foundation Readiness Decision from real TARGET-075 evidence.'],
     uatTrainingImpact: ['Supports a Foundation checkpoint exercise.'],
+    foundationReadFirstHandoff: [
+      {
+        candidate: 'PWS-FF-002',
+        area: 'Buchungsgruppen (Posting Groups)',
+        decision: 'run-if-target075-gap-matches',
+        useWhen: 'TARGET-075 shows missing or unclear posting group context.',
+        remainsForbidden: ['Buchungsgruppen speichern', 'Buchungsmatrix-Zeilen aendern', 'Preview Posting', 'Posting']
+      },
+      {
+        candidate: 'PWS-FF-004',
+        area: 'USt/MwSt.-Einrichtung (VAT setup boundary)',
+        decision: 'run-if-target075-gap-matches',
+        useWhen: 'TARGET-075 shows VAT gaps or unclear VAT Posting Setup rows.',
+        remainsForbidden: ['USt-Gruppen speichern', 'VAT Posting Setup schreiben', 'Posting']
+      },
+      {
+        candidate: 'PWS-FF-005',
+        area: 'Dimensionen und Dimensionswerte',
+        decision: 'run-if-target075-gap-matches',
+        useWhen: 'TARGET-075 leaves dimensions or reporting boundaries unclear.',
+        remainsForbidden: ['Dimension speichern', 'Dimensionswert speichern', 'Standarddimension aendern']
+      },
+      {
+        candidate: 'PWS-FF-003',
+        area: 'Zahlungsbedingungen (Payment Terms)',
+        decision: 'run-if-target075-gap-matches',
+        useWhen: 'TARGET-075 shows unclear customer/vendor payment terms.',
+        remainsForbidden: ['Zahlungsbedingung speichern', 'Bankdaten erfassen', 'Zahlung vorbereiten']
+      },
+      {
+        candidate: 'PWS-FF-001',
+        area: 'Nummernserien (Number Series)',
+        decision: 'run-if-target075-gap-matches',
+        useWhen: 'TARGET-075 shows unclear numbering logic.',
+        remainsForbidden: ['Nummernserie speichern', 'Setup zuweisen', 'Stammdatensatz anlegen']
+      }
+    ],
     masterDataReadFirstHandoff: [
       {
         candidate: 'PWS-MD-001',
@@ -281,6 +318,7 @@ fs.writeFileSync(missingAuthTargetInputPath, `${JSON.stringify(missingAuthTarget
 const missingHandoffFixture = JSON.parse(JSON.stringify(fixture));
 missingHandoffFixture.foundationReadinessInput.nextProjectOutputs = [];
 delete missingHandoffFixture.foundationReadinessInput.uatTrainingImpact;
+delete missingHandoffFixture.foundationReadinessInput.foundationReadFirstHandoff;
 delete missingHandoffFixture.foundationReadinessInput.masterDataReadFirstHandoff;
 fs.writeFileSync(missingHandoffInputPath, `${JSON.stringify(missingHandoffFixture, null, 2)}\n`, 'utf8');
 
@@ -369,6 +407,7 @@ if (missingHandoffWrite.parsed?.canWrite !== false) errors.push('missing handoff
 for (const expectedError of [
   'foundationReadinessInput.nextProjectOutputs must be a non-empty array.',
   'foundationReadinessInput.uatTrainingImpact must be a non-empty array.',
+  'foundationReadinessInput.foundationReadFirstHandoff must be a non-empty array.',
   'foundationReadinessInput.masterDataReadFirstHandoff must be a non-empty array.'
 ]) {
   if (!missingHandoffWrite.parsed?.errors?.includes(expectedError)) {
