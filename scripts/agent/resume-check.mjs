@@ -2,6 +2,11 @@ import { spawnSync } from 'node:child_process';
 
 const npmCmd = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 const nodeCmd = process.execPath;
+const minAuthExpiresArg = process.argv.find((arg) => arg.startsWith('--min-auth-expires-hours='));
+const minAuthExpiresInHours = minAuthExpiresArg ? Number(minAuthExpiresArg.split('=').at(1)) : null;
+const authCheckArgs = Number.isFinite(minAuthExpiresInHours)
+  ? ['scripts/agent/auth-state-check.mjs', `--min-expires-hours=${minAuthExpiresInHours}`]
+  : null;
 
 function runStep(id, command, args, options = {}) {
   const startedAt = new Date().toISOString();
@@ -50,7 +55,9 @@ const steps = [
   runStep('freeze-status', nodeCmd, ['scripts/agent/freeze-status-check.mjs'], { parseJson: true }),
   runStep('quality-audit', nodeCmd, ['scripts/agent/quality-audit.mjs'], { parseJson: true }),
   runStep('target-075-readiness', nodeCmd, ['scripts/agent/target-075-readiness-check.mjs'], { parseJson: true }),
-  runStep('auth-state-check', npmCmd, ['run', '--silent', 'auth:bc:check'], { parseJson: true }),
+  runStep('auth-state-check', authCheckArgs ? nodeCmd : npmCmd, authCheckArgs ?? ['run', '--silent', 'auth:bc:check'], {
+    parseJson: true
+  }),
   runStep('target-075-safe-check', npmCmd, ['run', '--silent', 'fibu:target:foundation-consistency-pilot', '--', '--check'], {
     parseJson: true
   }),
@@ -91,11 +98,17 @@ if (qualityRiskIds.includes('playwright-flake-surface')) {
 if ((authCheck?.warnings ?? []).includes('storage-state-expires-soon')) {
   warnings.push('Stored auth is usable but close to the freshness limit; refresh it before long unattended Business Central work.');
 }
+if ((authCheck?.blockedBy ?? []).includes('storage-state-expires-before-required-window')) {
+  warnings.push(
+    `Stored auth does not meet the requested ${minAuthExpiresInHours}h minimum window; refresh it before unattended Business Central work.`
+  );
+}
 
 const output = {
   schemaVersion: 1,
   purpose: 'autopilot-resume-check',
   caseId: 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK',
+  authMinExpiresInHours: minAuthExpiresInHours,
   canResumeAfterFreezeLift: localResumeReady,
   canRunNow: localResumeReady && !freezeActive,
   freezeActive,
