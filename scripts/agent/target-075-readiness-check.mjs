@@ -473,7 +473,8 @@ if (spec) {
     'decisionStatus',
     'chartOfAccounts',
     'setupContext',
-    'nextProjectOutputs'
+    'nextProjectOutputs',
+    'uatTrainingImpact'
   ]) {
     if (!spec.includes(requiredResultSignal)) {
       errors.push(`${specPath}: result must include ${requiredResultSignal} for FOUNDATION-READINESS-DECISION.md handoff`);
@@ -491,6 +492,14 @@ if (target075Result) {
   }
   if (!target075Result.foundationReadinessInput) {
     errors.push(`${target075ResultPath}: missing foundationReadinessInput for FOUNDATION-READINESS-DECISION.md handoff`);
+  } else {
+    const input = target075Result.foundationReadinessInput;
+    if (!Array.isArray(input.nextProjectOutputs) || input.nextProjectOutputs.length === 0) {
+      errors.push(`${target075ResultPath}: foundationReadinessInput.nextProjectOutputs must be a non-empty array`);
+    }
+    if (!Array.isArray(input.uatTrainingImpact) || input.uatTrainingImpact.length === 0) {
+      errors.push(`${target075ResultPath}: foundationReadinessInput.uatTrainingImpact must be a non-empty array`);
+    }
   }
   if (!target075Result.authGate) {
     errors.push(`${target075ResultPath}: missing authGate for guarded TARGET-075 evidence`);
