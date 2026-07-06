@@ -28,7 +28,8 @@ const foundationDecisionPath = 'playwright/projects/fibu-book5/FOUNDATION-READIN
 const scriptName = 'fibu:target:foundation-consistency-pilot';
 const allowedNextCasesAfterTarget075Handoff = new Set([
   'FOUNDATION-READINESS-DECISION',
-  'PWS-FF-002-GENERAL-POSTING-SETUP-READFIRST-RECOVERY'
+  'PWS-FF-002-GENERAL-POSTING-SETUP-READFIRST-RECOVERY',
+  'PWS-FF-002B-PAGE314-NAVIGATION-CAPTURE-RECOVERY'
 ]);
 
 function readText(relativePath) {
@@ -140,11 +141,14 @@ const target075CompletedHandoff =
   exists(foundationDecisionPath);
 const nextCaseAllowedAfterTarget075Handoff =
   target075CompletedHandoff && allowedNextCasesAfterTarget075Handoff.has(currentState?.nextCase ?? '');
+const activeCaseAllowedAfterTarget075Handoff =
+  target075CompletedHandoff && allowedNextCasesAfterTarget075Handoff.has(currentState?.activeCase ?? '');
+const postTarget075Handoff = target075CompletedHandoff && nextCaseAllowedAfterTarget075Handoff && activeCaseAllowedAfterTarget075Handoff;
 
 if (currentState) {
   if (currentState.instance !== 'playthru') errors.push(`${currentPath}: instance must be playthru`);
   if (currentState.company !== 'UNIVERSAARL-DE') errors.push(`${currentPath}: company must be UNIVERSAARL-DE`);
-  if (currentState.activeCase !== 'PROJECT-IMPROVEMENT-FREEZE-001') {
+  if (!postTarget075Handoff && currentState.activeCase !== 'PROJECT-IMPROVEMENT-FREEZE-001') {
     errors.push(`${currentPath}: activeCase must remain PROJECT-IMPROVEMENT-FREEZE-001 while freeze is active`);
   }
   if (
@@ -161,23 +165,30 @@ if (currentState) {
   if (currentState.activeNextStepAuthority?.dashboard !== projectDashboardPath) {
     errors.push(`${currentPath}: activeNextStepAuthority.dashboard must point to ${projectDashboardPath}`);
   }
-  if (currentState.freezeStatus?.status !== 'active') {
+  if (!postTarget075Handoff && currentState.freezeStatus?.status !== 'active') {
     errors.push(`${currentPath}: freezeStatus.status must be active before TARGET-075 live resume`);
+  }
+  if (postTarget075Handoff && !['active', 'lifted-readfirst'].includes(currentState.freezeStatus?.status ?? '')) {
+    errors.push(`${currentPath}: freezeStatus.status must be active or lifted-readfirst after TARGET-075 handoff`);
   }
   if (currentState.freezeStatus?.frozenLiveCase !== 'TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION') {
     errors.push(`${currentPath}: freezeStatus.frozenLiveCase must remain TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION`);
   }
   if (
     currentState.freezeStatus?.resumeCandidateAfterFreeze !==
-    'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK'
+    'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK' &&
+    !allowedNextCasesAfterTarget075Handoff.has(currentState.freezeStatus?.resumeCandidateAfterFreeze ?? '')
   ) {
     errors.push(
       `${currentPath}: freezeStatus.resumeCandidateAfterFreeze must remain TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK`
     );
   }
   const liveBoundary = currentState.implementationOperatingSystem?.currentLiveBoundary;
-  if (liveBoundary?.freezeActive !== true) {
+  if (!postTarget075Handoff && liveBoundary?.freezeActive !== true) {
     errors.push(`${currentPath}: implementationOperatingSystem.currentLiveBoundary.freezeActive must be true`);
+  }
+  if (postTarget075Handoff && liveBoundary?.freezeActive !== false) {
+    errors.push(`${currentPath}: implementationOperatingSystem.currentLiveBoundary.freezeActive must be false after TARGET-075 handoff`);
   }
   if (liveBoundary?.parkedCase !== 'TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION') {
     errors.push(`${currentPath}: implementationOperatingSystem.currentLiveBoundary.parkedCase must be TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION`);
@@ -194,7 +205,10 @@ if (currentState) {
     errors.push(`${currentPath}: implementationOperatingSystem.currentLiveBoundary.resumePilotMode must be read-first-no-writes`);
   }
   const forbiddenActions = new Set(currentState.forbiddenActions ?? []);
-  for (const action of ['open-business-central-live', 'continue-target-073', 'setup-change', 'master-data-change']) {
+  const requiredForbiddenActions = postTarget075Handoff
+    ? ['continue-target-073', 'type-business-central-values', 'write-setup', 'create-master-data', 'cleanup-delete']
+    : ['open-business-central-live', 'continue-target-073', 'setup-change', 'master-data-change'];
+  for (const action of requiredForbiddenActions) {
     if (!forbiddenActions.has(action)) errors.push(`${currentPath}: forbiddenActions must include ${action} during freeze`);
   }
 }
@@ -933,6 +947,8 @@ const result = {
   canProceedAfterFreezeLift: errors.length === 0,
   target075CompletedHandoff,
   nextCaseAllowedAfterTarget075Handoff,
+  activeCaseAllowedAfterTarget075Handoff,
+  postTarget075Handoff,
   liveActionsExecuted: false,
   businessCentralOpened: false,
   playwrightLiveRunExecuted: false,
