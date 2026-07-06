@@ -344,6 +344,12 @@ test('TARGET-075 runs a read-only Foundation consistency pilot', async ({ page }
     warnExpiresInHours: numericEnv('TARGET_075_AUTH_WARN_EXPIRES_IN_HOURS'),
     warnings: authWarningsEnv()
   };
+  const executionGate = {
+    runnerGuardChecked: process.env.TARGET_075_RUNNER_GUARD_CHECKED === '1',
+    liveApproved: process.env.TARGET_075_LIVE_APPROVED === '1',
+    freezeActiveAtRunner: process.env.TARGET_075_FREEZE_ACTIVE === 'true',
+    freezeOverrideUsed: process.env.TARGET_075_FREEZE_OVERRIDE_USED === 'true'
+  };
 
   const nextCase = 'FOUNDATION-READINESS-DECISION';
 
@@ -361,6 +367,7 @@ test('TARGET-075 runs a read-only Foundation consistency pilot', async ({ page }
     page: 'Foundation read-only context',
     url: chart?.url ?? '',
     authGate,
+    executionGate,
     actionsTaken: [
       'Opened Business Central with stored auth after the freeze-prepared case.',
       'Opened target Foundation pages by direct page URL inside playthru / UNIVERSAARL-DE.',

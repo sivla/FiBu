@@ -195,6 +195,8 @@ exitWith(
     env: {
       TARGET_075_RUNNER_GUARD_CHECKED: '1',
       TARGET_075_LIVE_APPROVED: '1',
+      TARGET_075_FREEZE_ACTIVE: String(freezeStatus.freezeActive === true),
+      TARGET_075_FREEZE_OVERRIDE_USED: String(freezeOverrideApproved),
       TARGET_075_AUTH_AGE_HOURS: String(authStatus.ageHours ?? ''),
       TARGET_075_AUTH_MAX_AGE_HOURS: String(authStatus.maxAgeHours ?? ''),
       TARGET_075_AUTH_EXPIRES_IN_HOURS: String(authStatus.expiresInHours ?? ''),

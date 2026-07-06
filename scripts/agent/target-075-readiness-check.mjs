@@ -180,6 +180,11 @@ if (guardedRunner) {
   if (!guardedRunner.includes('TARGET_075_RUNNER_GUARD_CHECKED')) {
     errors.push(`${guardedRunnerPath}: guarded runner must set TARGET_075_RUNNER_GUARD_CHECKED for approved live execution`);
   }
+  for (const envName of ['TARGET_075_FREEZE_ACTIVE', 'TARGET_075_FREEZE_OVERRIDE_USED']) {
+    if (!guardedRunner.includes(envName)) {
+      errors.push(`${guardedRunnerPath}: guarded runner must pass ${envName} into TARGET-075 executionGate evidence`);
+    }
+  }
   for (const envName of [
     'TARGET_075_AUTH_AGE_HOURS',
     'TARGET_075_AUTH_MAX_AGE_HOURS',
@@ -254,8 +259,12 @@ if (spec) {
   }
   for (const requiredResultSignal of [
     'authGate',
+    'executionGate',
     'checkedByGuard',
     'secretsPrinted',
+    'runnerGuardChecked',
+    'freezeActiveAtRunner',
+    'freezeOverrideUsed',
     'TARGET_075_AUTH_EXPIRES_IN_HOURS',
     'TARGET_075_AUTH_WARNINGS',
     'foundationReadinessInput',
@@ -292,6 +301,22 @@ if (target075Result) {
     }
     if (!Array.isArray(target075Result.authGate.warnings)) {
       errors.push(`${target075ResultPath}: authGate.warnings must be an array`);
+    }
+  }
+  if (!target075Result.executionGate) {
+    errors.push(`${target075ResultPath}: missing executionGate for guarded TARGET-075 evidence`);
+  } else {
+    if (target075Result.executionGate.runnerGuardChecked !== true) {
+      errors.push(`${target075ResultPath}: executionGate.runnerGuardChecked must be true`);
+    }
+    if (target075Result.executionGate.liveApproved !== true) {
+      errors.push(`${target075ResultPath}: executionGate.liveApproved must be true`);
+    }
+    if (typeof target075Result.executionGate.freezeActiveAtRunner !== 'boolean') {
+      errors.push(`${target075ResultPath}: executionGate.freezeActiveAtRunner must be a boolean`);
+    }
+    if (typeof target075Result.executionGate.freezeOverrideUsed !== 'boolean') {
+      errors.push(`${target075ResultPath}: executionGate.freezeOverrideUsed must be a boolean`);
     }
   }
   for (const [flag, expected] of Object.entries({

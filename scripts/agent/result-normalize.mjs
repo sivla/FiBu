@@ -90,6 +90,7 @@ const normalized = {
   accountFindings: Array.isArray(input?.accountFindings) ? input.accountFindings : [],
   flags: input?.flags ?? {},
   authGate: input?.authGate ?? null,
+  executionGate: input?.executionGate ?? null,
   foundationReadinessInput: input?.foundationReadinessInput ?? null,
   nextStepDecision: input?.nextStepDecision ?? null,
   nextCase: input?.nextCase ?? '',

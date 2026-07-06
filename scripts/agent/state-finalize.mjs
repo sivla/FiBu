@@ -153,6 +153,7 @@ const result = {
   pages: normalized.pages ?? [],
   accountFindings: normalized.accountFindings ?? [],
   authGate: normalized.authGate ?? null,
+  executionGate: normalized.executionGate ?? null,
   foundationReadinessInput: normalized.foundationReadinessInput ?? null,
   nextStepDecision: normalized.nextStepDecision ?? null,
   nextCase: normalized.nextCase ?? '',
