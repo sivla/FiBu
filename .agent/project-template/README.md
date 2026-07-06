@@ -8,10 +8,11 @@ Last reviewed: 2026-07-06
 
 Read these files in this order before starting larger project, book, training, Playwright or Business Central work:
 
-1. `.agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md`
-2. `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md`
-3. `.agent/project-template/PROJECT-DASHBOARD-DRAFT.md`
-4. `.agent/state/current.json`
+1. `HANDOVER.md`
+2. `.agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md`
+3. `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md`
+4. `.agent/project-template/PROJECT-DASHBOARD-DRAFT.md`
+5. `.agent/state/current.json`
 
 The active target world is `playthru / UNIVERSAARL-DE / Universaarl GmbH`.
 
