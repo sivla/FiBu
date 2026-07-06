@@ -7,13 +7,13 @@
   "company": "UNIVERSAARL-DE",
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
-  "activeArea": "project-improvement-freeze",
-  "activeCase": "PROJECT-IMPROVEMENT-FREEZE-001",
-  "active_case_file": ".agent/state/cases/project-improvement-freeze-001.json",
-  "activeCaseFile": ".agent/state/cases/project-improvement-freeze-001.json",
+  "activeArea": "w1-foundation",
+  "activeCase": "PWS-FF-002B-PAGE314-NAVIGATION-CAPTURE-RECOVERY",
+  "active_case_file": ".agent/state/cases/pws-ff-002b-page314-navigation-capture-recovery.json",
+  "activeCaseFile": ".agent/state/cases/pws-ff-002b-page314-navigation-capture-recovery.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "project-improvement-freeze",
+  "mode": "universaarl-foundation-readfirst",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -34,35 +34,36 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "local-static-audit",
-    "skill-design",
-    "capability-registry-cleanup",
-    "book-quality-rule-design",
-    "helper-refactor-plan",
-    "official-source-research",
-    "non-bc-selftests"
+    "validate-playthru-url",
+    "validate-universaarl-company",
+    "open-page-314-readonly",
+    "use-readonly-navigation-fallback",
+    "capture-page-title-url-text-gate",
+    "capture-compact-text",
+    "capture-screenshot",
+    "write-evidence-result"
   ],
   "forbiddenActions": [
     "leave-instance",
     "commit-secrets",
     "show-env-or-auth",
     "fake-evidence",
-    "open-business-central-live",
+    "book-claim-without-evidence",
     "continue-target-073",
     "type-business-central-values",
-    "setup-change",
-    "master-data-change",
+    "write-setup",
+    "create-master-data",
     "create-document-or-draft",
     "preview-posting",
     "post",
     "payment",
+    "api-shortcut",
     "cleanup-delete",
     "company-switch",
-    "book-claim-without-evidence",
-    "book-claim-without-evidence-or-source"
+    "claim-posting-readiness"
   ],
-  "nextCase": "PWS-FF-002-GENERAL-POSTING-SETUP-READFIRST-RECOVERY",
-  "nextStep": "Run the prepared PWS-FF-002 General Posting Setup read-first recovery only after explicit live-gate/freeze lift; no writes, no Master Data, no Preview, no Posting. Then refresh FOUNDATION-READINESS-DECISION.md from the result.",
+  "nextCase": "PWS-FF-002B-PAGE314-NAVIGATION-CAPTURE-RECOVERY",
+  "nextStep": "Run a narrow PWS-FF-002B Page 314 navigation/capture recovery before any Master Data or setup write. The PWS-FF-002 screenshot showed Role Center, not Buchungsmatrix Einrichtung.",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -91,11 +92,37 @@
     ],
     "nextBoundary": "Master Data remains parked until Foundation gaps are resolved or consciously accepted."
   },
+  "latestPwsFf002GeneralPostingSetupRecovery": {
+    "caseId": "PWS-FF-002-GENERAL-POSTING-SETUP-READFIRST-RECOVERY",
+    "status": "blocked-read-first",
+    "resultPath": "playwright/projects/fibu-book5/evidence/pws-ff-002-general-posting-setup-readfirst-recovery/PWS-FF-002-result.json",
+    "screenshotPath": "playwright/projects/fibu-book5/evidence/pws-ff-002-general-posting-setup-readfirst-recovery/pws-ff-002-010-general-posting-setup-context.png",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "proved": [
+      "Business Central opened in playthru / UNIVERSAARL-DE through the guarded read-first runner.",
+      "Direct Page 314 and Tell-Me/Search fallback did not create or change data."
+    ],
+    "notProved": [
+      "Buchungsmatrix Einrichtung / General Posting Setup page content.",
+      "INLAND/WAREN row visibility.",
+      "4400/5400 account-column visibility.",
+      "Posting readiness or setup correctness."
+    ],
+    "screenshotQa": "rejected: screenshot shows Role Center instead of Buchungsmatrix Einrichtung / Page 314.",
+    "nextBoundary": "Master Data remains parked. Next case must recover Page 314 navigation/capture before any setup write or process proof."
+  },
   "activeNextStepAuthority": {
     "source": "top-level-current-state-and-universaarl-execution-roadmap",
     "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
-    "activeCaseFile": ".agent/state/cases/project-improvement-freeze-001.json",
+    "activeCaseFile": ".agent/state/cases/pws-ff-002b-page314-navigation-capture-recovery.json",
     "ignoreHistoricalResultNextSteps": true,
     "reason": "current.json contains many historical result summaries with old nextStep/nextCase fields. They are traceability only and must not override activeCase, nextCase or the execution roadmap."
   },
@@ -209,9 +236,9 @@
       "remove or park noise"
     ],
     "currentLiveBoundary": {
-      "freezeActive": true,
+      "freezeActive": false,
       "parkedCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-      "resumePilot": "PWS-FF-002-GENERAL-POSTING-SETUP-READFIRST-RECOVERY",
+      "resumePilot": "PWS-FF-002B-PAGE314-NAVIGATION-CAPTURE-RECOVERY",
       "resumePilotMode": "read-first-no-writes"
     },
     "legacyScriptGuard": {
@@ -291,10 +318,10 @@
     "antiPattern": "Do not copy partner marketing language into project truth, training, book text or setup route decisions without concrete artifact impact and source/evidence boundary."
   },
   "freezeStatus": {
-    "status": "active",
-    "caseId": "PROJECT-IMPROVEMENT-FREEZE-001",
+    "status": "lifted-readfirst",
+    "caseId": "PWS-FF-002B-PAGE314-NAVIGATION-CAPTURE-RECOVERY",
     "frozenLiveCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-    "resumeCandidateAfterFreeze": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
+    "resumeCandidateAfterFreeze": "PWS-FF-002B-PAGE314-NAVIGATION-CAPTURE-RECOVERY",
     "completedLocalCheckpoint": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
     "planFile": ".agent/PROJECT-IMPROVEMENT-PLAN.md"
   },

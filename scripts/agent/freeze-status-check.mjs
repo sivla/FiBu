@@ -17,7 +17,12 @@ const target075ResultPath =
 const foundationDecisionPath = 'playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md';
 const allowedNextCasesAfterTarget075Handoff = new Set([
   'FOUNDATION-READINESS-DECISION',
-  'PWS-FF-002-GENERAL-POSTING-SETUP-READFIRST-RECOVERY'
+  'PWS-FF-002-GENERAL-POSTING-SETUP-READFIRST-RECOVERY',
+  'PWS-FF-002B-PAGE314-NAVIGATION-CAPTURE-RECOVERY'
+]);
+const allowedReadFirstLiftCases = new Set([
+  'PWS-FF-002-GENERAL-POSTING-SETUP-READFIRST-RECOVERY',
+  'PWS-FF-002B-PAGE314-NAVIGATION-CAPTURE-RECOVERY'
 ]);
 
 function readText(relativePath) {
@@ -67,11 +72,17 @@ const target075CompletedHandoff =
   fs.existsSync(path.resolve(root, foundationDecisionPath));
 const nextCaseAllowedAfterTarget075Handoff =
   target075CompletedHandoff && allowedNextCasesAfterTarget075Handoff.has(current?.nextCase ?? '');
+const liftedReadFirst =
+  current?.freezeStatus?.status === 'lifted-readfirst' &&
+  allowedReadFirstLiftCases.has(current?.activeCase ?? '') &&
+  current?.activeArea === 'w1-foundation' &&
+  current?.mode === 'universaarl-foundation-readfirst' &&
+  current?.implementationOperatingSystem?.currentLiveBoundary?.freezeActive === false;
 
 if (current) {
-  if (current.mode !== 'project-improvement-freeze') errors.push(`${currentPath}: mode must be project-improvement-freeze`);
-  if (current.activeArea !== 'project-improvement-freeze') errors.push(`${currentPath}: activeArea must be project-improvement-freeze`);
-  if (current.activeCase !== 'PROJECT-IMPROVEMENT-FREEZE-001') errors.push(`${currentPath}: activeCase must be PROJECT-IMPROVEMENT-FREEZE-001`);
+  if (!liftedReadFirst && current.mode !== 'project-improvement-freeze') errors.push(`${currentPath}: mode must be project-improvement-freeze`);
+  if (!liftedReadFirst && current.activeArea !== 'project-improvement-freeze') errors.push(`${currentPath}: activeArea must be project-improvement-freeze`);
+  if (!liftedReadFirst && current.activeCase !== 'PROJECT-IMPROVEMENT-FREEZE-001') errors.push(`${currentPath}: activeCase must be PROJECT-IMPROVEMENT-FREEZE-001`);
   if (
     current.nextCase !== 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK' &&
     !nextCaseAllowedAfterTarget075Handoff
@@ -80,16 +91,31 @@ if (current) {
       `${currentPath}: nextCase must remain TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK while freeze is active, or be an allowed Foundation follow-up after TARGET-075 handoff`
     );
   }
-  if (current.freezeStatus?.status !== 'active') errors.push(`${currentPath}: freezeStatus.status must be active`);
+  if (!liftedReadFirst && current.freezeStatus?.status !== 'active') errors.push(`${currentPath}: freezeStatus.status must be active`);
   if (current.freezeStatus?.frozenLiveCase !== 'TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION') {
     errors.push(`${currentPath}: frozenLiveCase must remain TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION`);
   }
-  if (current.freezeStatus?.resumeCandidateAfterFreeze !== 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK') {
+  if (
+    current.freezeStatus?.resumeCandidateAfterFreeze !== 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK' &&
+    !allowedReadFirstLiftCases.has(current.freezeStatus?.resumeCandidateAfterFreeze ?? '')
+  ) {
     errors.push(`${currentPath}: resumeCandidateAfterFreeze must remain TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK`);
   }
   const forbidden = new Set(current.forbiddenActions ?? []);
-  for (const action of [
-    'open-business-central-live',
+  const requiredForbiddenActions = liftedReadFirst
+    ? [
+        'continue-target-073',
+        'type-business-central-values',
+        'write-setup',
+        'create-master-data',
+        'create-document-or-draft',
+        'preview-posting',
+        'post',
+        'payment',
+        'cleanup-delete',
+        'company-switch'
+      ]
+    : [
     'continue-target-073',
     'type-business-central-values',
     'setup-change',
@@ -100,8 +126,15 @@ if (current) {
     'payment',
     'cleanup-delete',
     'company-switch'
-  ]) {
+  ];
+  for (const action of requiredForbiddenActions) {
     if (!forbidden.has(action)) errors.push(`${currentPath}: forbiddenActions must include ${action}`);
+  }
+  if (!liftedReadFirst && !forbidden.has('open-business-central-live')) {
+    errors.push(`${currentPath}: forbiddenActions must include open-business-central-live while freeze is active`);
+  }
+  if (liftedReadFirst && forbidden.has('open-business-central-live')) {
+    errors.push(`${currentPath}: open-business-central-live must be lifted for PWS-FF-002 read-first resume`);
   }
   if (current.instance !== 'playthru') warnings.push(`${currentPath}: target instance is not playthru`);
   if (current.company !== 'UNIVERSAARL-DE') warnings.push(`${currentPath}: target company is not UNIVERSAARL-DE`);
@@ -162,7 +195,8 @@ for (const [filePath, text, requiredPhrases] of [
 const output = {
   schemaVersion: 1,
   purpose: 'improvement-freeze-status-check',
-  freezeActive: errors.length === 0,
+  freezeActive: errors.length === 0 ? !liftedReadFirst : true,
+  freezeLiftedReadFirst: errors.length === 0 && liftedReadFirst,
   liveActionsExecuted: false,
   businessCentralOpened: false,
   playwrightLiveRunExecuted: false,
@@ -187,7 +221,9 @@ const output = {
   warnings,
   nextStep:
     errors.length === 0
-      ? target075CompletedHandoff
+      ? liftedReadFirst
+        ? `Freeze is lifted only for ${current.activeCase} read-first/no-write. Do not resume TARGET-073 or any write case.`
+        : target075CompletedHandoff
         ? 'Freeze invariants are consistent after TARGET-075 handoff. Keep live work blocked until the next read-first Foundation gap case is explicitly selected and gated.'
         : 'Freeze invariants are consistent. Continue local improvement work or explicitly lift the freeze before TARGET-075 live execution.'
       : 'Fix freeze invariant errors before any live resume.'

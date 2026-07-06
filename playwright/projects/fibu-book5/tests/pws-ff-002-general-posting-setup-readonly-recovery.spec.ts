@@ -2,7 +2,15 @@ import { expect, test, type Page } from '@playwright/test';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import { compactPageText, dismissTours, pageText, requireBcUrl, waitForBusinessCentralShell } from '../../../core/bc-helpers';
+import {
+  compactPageText,
+  dismissTours,
+  openSearchResult,
+  pageText,
+  requireBcUrl,
+  searchFor,
+  waitForBusinessCentralShell
+} from '../../../core/bc-helpers';
 import { evidencePath, writeJsonEvidence, writeTextEvidence } from '../../../core/evidence';
 
 test.use({
@@ -94,6 +102,40 @@ async function fullText(page: Page) {
   return clean(`${body}\n${frameTexts.join('\n')}`);
 }
 
+async function compactGeneralPostingSetupText(page: Page) {
+  return clean(
+    await compactPageText(page, {
+      include: [
+        /Buchungsmatrix|General Posting Setup|Geschaeft|Geschaft|Produkt|Business Posting|Product Posting|Warenverkaufskonto|Wareneinkaufskonto|Sales Account|Purchase Account|INLAND|WAREN|4400|5400|Neu|New|Liste bearbeiten|Edit list|Konten vorschlagen/i
+      ],
+      maxLines: 180,
+      maxLineLength: 260
+    }).catch(() => '')
+  );
+}
+
+function generalPostingSetupSignals(text: string) {
+  const requiredSignals = [
+    /Buchungsmatrix|General Posting Setup/i,
+    /Geschaeft|Geschaft|Business Posting|Produkt|Product Posting/i,
+    /Warenverkaufskonto|Sales Account/i,
+    /Wareneinkaufskonto|Purchase Account/i
+  ];
+  const signalCount = requiredSignals.filter((signal) => signal.test(text)).length;
+  const rowSignals = [/INLAND/i, /WAREN/i].filter((signal) => signal.test(text)).length;
+  const accountSignals = [/4400/i, /5400/i].filter((signal) => signal.test(text)).length;
+  return {
+    signalCount,
+    rowSignals,
+    accountSignals,
+    inlandVisible: /INLAND/i.test(text),
+    warenVisible: /WAREN/i.test(text),
+    salesAccount4400Visible: /4400/i.test(text),
+    purchaseAccount5400Visible: /5400/i.test(text),
+    accepted: signalCount >= 3 && rowSignals >= 1
+  };
+}
+
 async function screenshotWithMetadata(page: Page, fileName: string, metadata: Record<string, unknown>) {
   const imagePath = evidencePath(PROJECT, EVIDENCE_ID, fileName);
   const metadataPath = evidencePath(PROJECT, EVIDENCE_ID, fileName.replace(/\.png$/i, '.screenshot.json'));
@@ -125,34 +167,33 @@ test('PWS-FF-002 captures General Posting Setup context read-only', async ({ pag
 
   await expect.poll(async () => page.url(), { timeout: 30_000 }).toContain(EXPECTED_INSTANCE);
 
-  const rawText = await fullText(page);
-  const compact = clean(
-    await compactPageText(page, {
-      include: [
-        /Buchungsmatrix|General Posting Setup|Geschaeft|Geschaft|Produkt|Business Posting|Product Posting|Warenverkaufskonto|Wareneinkaufskonto|Sales Account|Purchase Account|INLAND|WAREN|4400|5400|Neu|New|Liste bearbeiten|Edit list|Konten vorschlagen/i
-      ],
-      maxLines: 180,
-      maxLineLength: 260
-    }).catch(() => '')
-  );
-  const text = compact || rawText;
+  let openRoute = 'direct-page-314-url';
+  let rawText = await fullText(page);
+  let compact = await compactGeneralPostingSetupText(page);
+  let text = compact || rawText;
+  let signals = generalPostingSetupSignals(text);
+
+  if (!signals.accepted) {
+    await searchFor(page, 'Buchungsmatrix Einrichtung');
+    await openSearchResult(page, /Buchungsmatrix Einrichtung|General Posting Setup/i, { occurrence: 0 });
+    await dismissTours(page);
+    await page.keyboard.press('Escape').catch(() => undefined);
+    await page.waitForTimeout(1500);
+    openRoute = 'tell-me-search-buchungsmatrix-einrichtung';
+    rawText = await fullText(page);
+    compact = await compactGeneralPostingSetupText(page);
+    text = compact || rawText;
+    signals = generalPostingSetupSignals(text);
+  }
+
   const visibleSignals = text.split('\n').slice(0, 80);
-  const requiredSignals = [
-    /Buchungsmatrix|General Posting Setup/i,
-    /Geschaeft|Geschaft|Business Posting|Produkt|Product Posting/i,
-    /Warenverkaufskonto|Sales Account/i,
-    /Wareneinkaufskonto|Purchase Account/i
-  ];
-  const signalCount = requiredSignals.filter((signal) => signal.test(text)).length;
-  const rowSignals = [/INLAND/i, /WAREN/i].filter((signal) => signal.test(text)).length;
-  const accountSignals = [/4400/i, /5400/i].filter((signal) => signal.test(text)).length;
-  const status = signalCount >= 3 && rowSignals >= 1 ? 'observed' : 'blocked';
+  const status = signals.accepted ? 'observed' : 'blocked';
   const blockedBy =
     status === 'observed'
       ? []
       : [
           'General Posting Setup page 314 was not visible enough for accepted read-first recovery proof.',
-          `signalCount=${signalCount}, rowSignals=${rowSignals}, accountSignals=${accountSignals}`
+          `signalCount=${signals.signalCount}, rowSignals=${signals.rowSignals}, accountSignals=${signals.accountSignals}`
         ];
   const textFile = 'pws-ff-002-010-general-posting-setup-context.txt';
   await writeTextEvidence(evidencePath(PROJECT, EVIDENCE_ID, textFile), text || 'No compact page text captured.');
@@ -161,6 +202,7 @@ test('PWS-FF-002 captures General Posting Setup context read-only', async ({ pag
     pageId: 314,
     step: 'Read-only General Posting Setup recovery proof',
     status,
+    openRoute,
     importantUi: [
       'Page title',
       'company context',
@@ -203,6 +245,9 @@ test('PWS-FF-002 captures General Posting Setup context read-only', async ({ pag
     playwrightLiveRunExecuted: true,
     actionsTaken: [
       'Opened General Posting Setup page 314 read-only after guarded runner approval.',
+      ...(openRoute === 'tell-me-search-buchungsmatrix-einrichtung'
+        ? ['Used Tell Me/Search as a read-only fallback after direct page URL did not expose accepted page text.']
+        : []),
       'Captured compact page text, screenshot and screenshot metadata.',
       'Classified visible posting setup signals for Foundation Readiness.'
     ],
@@ -251,13 +296,8 @@ test('PWS-FF-002 captures General Posting Setup context read-only', async ({ pag
       noBookChange: true
     },
     signalSummary: {
-      signalCount,
-      rowSignals,
-      accountSignals,
-      inlandVisible: /INLAND/i.test(text),
-      warenVisible: /WAREN/i.test(text),
-      salesAccount4400Visible: /4400/i.test(text),
-      purchaseAccount5400Visible: /5400/i.test(text)
+      ...signals,
+      openRoute
     },
     changedFiles: [
       `${EVIDENCE_DIR_REL}/${textFile}`,

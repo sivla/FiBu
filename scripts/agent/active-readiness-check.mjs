@@ -50,6 +50,21 @@ const checksByCase = new Map([
     }
   ],
   [
+    'PWS-FF-002B-PAGE314-NAVIGATION-CAPTURE-RECOVERY',
+    {
+      id: 'foundation-readiness-decision-after-pws-ff-002-blocker',
+      scriptPath: 'scripts/agent/foundation-readiness-decision.mjs',
+      reason: 'PWS-FF-002B is selected only after PWS-FF-002 screenshot QA rejected Role Center as Page 314 evidence.',
+      secondaryChecks: [
+        {
+          id: 'masterdata-readfirst-handoff',
+          scriptPath: 'scripts/agent/masterdata-readfirst-check.mjs',
+          reason: 'Master Data must remain blocked while Page 314 navigation/capture recovery is pending.'
+        }
+      ]
+    }
+  ],
+  [
     'FOUNDATION-READINESS-DECISION',
     {
       id: 'foundation-readiness-decision',

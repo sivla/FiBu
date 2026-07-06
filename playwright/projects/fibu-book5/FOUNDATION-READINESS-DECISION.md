@@ -71,6 +71,19 @@ Master Data bleibt geparkt, bis die offenen Foundation-Grenzen geprueft oder bew
 - USt-Buchungsmatrix Einrichtung: observed
 - Grenze: Use as setup-page visibility and dependency map only; do not claim setup correctness from read-only visibility.
 
+## PWS-FF-002 Folgeproof: Buchungsmatrix Einrichtung
+
+- Quelle: playwright/projects/fibu-book5/evidence/pws-ff-002-general-posting-setup-readfirst-recovery/PWS-FF-002-result.json
+- Status: blocked
+- Instanz/Company: playthru / UNIVERSAARL-DE
+- Route: direkte Page-314-URL, danach Tell-Me/Search-Fallback
+- Geaendert: nein
+- Nicht ausgefuehrt: Neu, Bearbeiten/Liste bearbeiten, Konten vorschlagen, Stammdaten, Draft, Buchungsvorschau, Buchung, API Shortcut
+- Screenshot-QA: rejected, weil der Screenshot das Rollencenter zeigt und nicht die Buchungsmatrix Einrichtung.
+- Ergebnis: Die Business-Central-Session und Company sind erreichbar, aber die aktuelle PWS-FF-002-Navigation/Capture-Route beweist die Buchungsmatrix nicht.
+- Blocker: Page 314 bleibt fuer Foundation Readiness ungeprueft; der naechste Versuch muss zuerst die Navigation auf die konkrete Setup-Seite beweisen, bevor Zeilen oder Kontospalten bewertet werden.
+- Naechste sinnvolle Route: enger UI-/Navigation-Recovery-Probe mit Seitentitel-/URL-/Text-Gate vor Screenshot-Akzeptanz. Keine Master Data und keine Setup-Writes.
+
 ## Foundation-Read-first-Folgeprobes
 
 Diese Tabelle verhindert den Sprung in Stammdaten, wenn TARGET-075 zuerst eine engere Foundation-Luecke zeigt. Sie gibt keine Schreibfreigabe.
@@ -116,6 +129,8 @@ Erlaubte Anschlussklassifikationen:
 ## Naechste Projektoutputs
 
 - Den abgelehnten Nachweis zur Buchungsmatrix Einrichtung vor Master Data klaeren oder bewusst als Grenze akzeptieren.
+- PWS-FF-002 nicht als akzeptierten Buchungsmatrix-Nachweis verwenden; der Screenshot zeigt Rollencenter statt Page 314.
+- Naechsten Foundation-Schritt als Page-314-Navigation/Capture-Recovery planen, nicht als Master-Data-Start.
 - Starterkonten erneut sichtbar pruefen, wenn der Kontenplan Setup- oder Buchaussagen tragen soll.
 - Master Data, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt, bis die Foundation-Grenzen geklaert sind.
 - Classify master-data readiness only after chart/setup context is accepted.

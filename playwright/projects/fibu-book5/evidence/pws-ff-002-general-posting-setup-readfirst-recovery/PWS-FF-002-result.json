@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized-compatible",
+  "caseId": "PWS-FF-002-GENERAL-POSTING-SETUP-READFIRST-RECOVERY",
+  "source": "playwright-readonly-foundation-gap-recovery",
+  "resultStatus": "blocked",
+  "startedAt": "2026-07-06T17:42:56.046Z",
+  "completedAt": "2026-07-06T17:43:10.314Z",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "Buchungsmatrix Einrichtung / General Posting Setup",
+  "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?company=UNIVERSAARL-DE&dc=0",
+  "liveActionsExecuted": true,
+  "businessCentralOpened": true,
+  "playwrightLiveRunExecuted": true,
+  "actionsTaken": [
+    "Opened General Posting Setup page 314 read-only after guarded runner approval.",
+    "Used Tell Me/Search as a read-only fallback after direct page URL did not expose accepted page text.",
+    "Captured compact page text, screenshot and screenshot metadata.",
+    "Classified visible posting setup signals for Foundation Readiness."
+  ],
+  "actionsNotTaken": [
+    "No New/Neu action clicked.",
+    "No Edit/List Edit action clicked.",
+    "No Suggest Accounts action clicked.",
+    "No values typed.",
+    "No setup row saved.",
+    "No master data created.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No API shortcut."
+  ],
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "screenshots": [
+    "playwright/projects/fibu-book5/evidence/pws-ff-002-general-posting-setup-readfirst-recovery/pws-ff-002-010-general-posting-setup-context.png"
+  ],
+  "proved": [],
+  "notProved": [
+    "No General Posting Setup correctness.",
+    "No row write or reopen proof.",
+    "No VAT correctness.",
+    "No Master Data readiness.",
+    "No Preview Posting, Posting or ledger trace."
+  ],
+  "blockedBy": [
+    "General Posting Setup page 314 was not visible enough for accepted read-first recovery proof.",
+    "signalCount=1, rowSignals=0, accountSignals=0"
+  ],
+  "warnings": [
+    "New/Neu may be visible but was not clicked.",
+    "Edit/List Edit may be visible but was not clicked.",
+    "Posting/Preview text may be visible but was not clicked."
+  ],
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "signalSummary": {
+    "signalCount": 1,
+    "rowSignals": 0,
+    "accountSignals": 0,
+    "inlandVisible": false,
+    "warenVisible": false,
+    "salesAccount4400Visible": false,
+    "purchaseAccount5400Visible": false,
+    "accepted": false,
+    "openRoute": "tell-me-search-buchungsmatrix-einrichtung"
+  },
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/pws-ff-002-general-posting-setup-readfirst-recovery/pws-ff-002-010-general-posting-setup-context.txt",
+    "playwright/projects/fibu-book5/evidence/pws-ff-002-general-posting-setup-readfirst-recovery/pws-ff-002-010-general-posting-setup-context.png",
+    "playwright/projects/fibu-book5/evidence/pws-ff-002-general-posting-setup-readfirst-recovery/pws-ff-002-010-general-posting-setup-context.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/pws-ff-002-general-posting-setup-readfirst-recovery/PWS-FF-002-result.json"
+  ],
+  "nextStepDecision": {
+    "currentCase": "PWS-FF-002-GENERAL-POSTING-SETUP-READFIRST-RECOVERY",
+    "plannedNextCaseBeforeReview": "FOUNDATION-READINESS-DECISION",
+    "lastEvidenceSummary": "General Posting Setup remains blocked or weak after read-first recovery attempt.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Foundation Readiness must consume this page-specific recovery proof before Master Data or write gates.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "PWS-FF-004-VAT-SETUP-BOUNDARY",
+        "status": "ready-after-current",
+        "reason": "VAT read-first proof follows after posting setup gap is classified."
+      },
+      {
+        "caseId": "PWS-FF-005-DIMENSIONS-READFIRST",
+        "status": "ready-after-current",
+        "reason": "Dimensions remain Foundation context, but are not the immediate TARGET-075 rejected page."
+      },
+      {
+        "caseId": "PWS-MD-001-CUSTOMER-CONTEXT-READFIRST",
+        "status": "needs-setup-first",
+        "reason": "Master Data remains parked until Foundation gaps are resolved or explicitly accepted."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "FOUNDATION-READINESS-DECISION",
+    "whySelectedNextCaseIsBest": "The Foundation Decision is the control point that decides whether this read-first proof is enough or another gap remains.",
+    "risksBeforeNextCase": [
+      "Page 314 may still expose write actions that were only observed, not used."
+    ],
+    "requiredPreparation": [
+      "Normalize this result and refresh FOUNDATION-READINESS-DECISION.md after review."
+    ]
+  },
+  "nextCase": "FOUNDATION-READINESS-DECISION"
+}

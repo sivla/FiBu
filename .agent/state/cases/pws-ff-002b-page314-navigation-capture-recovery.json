@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PWS-FF-002B-PAGE314-NAVIGATION-CAPTURE-RECOVERY",
+  "status": "prepared-local-after-blocked-pws-ff-002",
+  "mode": "universaarl-foundation-readfirst",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w1-foundation",
+  "purpose": "Recover the blocked PWS-FF-002 proof by first proving that Playwright has actually navigated to Buchungsmatrix Einrichtung / Page 314 before any row or account-column evidence is accepted.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/pws-ff-002-general-posting-setup-readfirst-recovery/PWS-FF-002-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-ff-002-general-posting-setup-readfirst-recovery/pws-ff-002-010-general-posting-setup-context.screenshot.json",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md"
+  ],
+  "mayRunPlaywright": true,
+  "mayOpenBusinessCentral": true,
+  "effectiveBcActionsAllowed": false,
+  "allowedActions": [
+    "validate-playthru-url",
+    "validate-universaarl-company",
+    "open-page-314-readonly",
+    "use-readonly-navigation-fallback",
+    "capture-page-title-url-text-gate",
+    "capture-compact-text",
+    "capture-screenshot",
+    "write-evidence-result"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "continue-target-073",
+    "type-business-central-values",
+    "write-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "cleanup-delete",
+    "company-switch",
+    "claim-posting-readiness"
+  ],
+  "acceptanceCriteria": [
+    "Evidence distinguishes Role Center screenshots from accepted Page 314 screenshots.",
+    "No General Posting Setup row or account claim is accepted unless page-title/text/URL context proves Buchungsmatrix Einrichtung.",
+    "Result remains no-write, no-preview, no-post and no-master-data.",
+    "If navigation still lands on Role Center, classify this as a Playwright navigation/capture blocker and keep Master Data parked."
+  ],
+  "stopIf": [
+    "The route would click Neu, Liste bearbeiten, Konten vorschlagen or any write action.",
+    "The active company or instance is not playthru / UNIVERSAARL-DE.",
+    "The screenshot shows Role Center instead of the target setup page."
+  ],
+  "nextStepDecision": {
+    "currentCase": "PWS-FF-002-GENERAL-POSTING-SETUP-READFIRST-RECOVERY",
+    "plannedNextCaseBeforeReview": "FOUNDATION-READINESS-DECISION",
+    "lastEvidenceSummary": "PWS-FF-002 opened Business Central read-only but screenshot QA showed Role Center, not Page 314.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Foundation Decision captured the blocked proof, but the next executable work needs a narrower navigation/capture recovery before Master Data or setup writes.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "PWS-FF-002B-PAGE314-NAVIGATION-CAPTURE-RECOVERY",
+        "status": "ready-next",
+        "reason": "Directly addresses the observed screenshot QA failure without changing setup."
+      },
+      {
+        "caseId": "PWS-FF-004-VAT-SETUP-BOUNDARY",
+        "status": "ready-after-current",
+        "reason": "VAT boundary remains Foundation work after the Page 314 capture blocker is classified."
+      },
+      {
+        "caseId": "PWS-MD-001-CUSTOMER-CONTEXT-READFIRST",
+        "status": "needs-setup-first",
+        "reason": "Master Data stays parked until Foundation gaps are resolved or explicitly accepted."
+      }
+    ],
+    "queueChangesMade": [
+      "Selected PWS-FF-002B before any Master Data read-first pilot."
+    ],
+    "selectedNextCase": "PWS-FF-002B-PAGE314-NAVIGATION-CAPTURE-RECOVERY",
+    "whySelectedNextCaseIsBest": "It improves Playwright repeatability and prevents rejected Role Center screenshots from being mistaken for setup evidence.",
+    "risksBeforeNextCase": [
+      "Business Central search may surface broad Role Center actions unless the result is scoped and verified."
+    ],
+    "requiredPreparation": [
+      "Keep PWS-FF-002B read-only.",
+      "Require screenshot QA before accepting any Foundation proof."
+    ]
+  },
+  "nextCase": "PWS-FF-002B-PAGE314-NAVIGATION-CAPTURE-RECOVERY",
+  "updatedAt": "2026-07-06T00:00:00.000Z"
+}
