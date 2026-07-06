@@ -259,6 +259,61 @@ function renderMasterDataHandoff(handoff, readyForMasterData) {
   ].join('\n');
 }
 
+function renderFoundationFollowupHandoff(handoff, readyForMasterData) {
+  const entries = asArray(handoff);
+  const fallbackDecision = readyForMasterData ? 'optional-no-current-gap' : 'run-if-target075-gap-matches';
+  const rows = entries.length
+    ? entries
+    : [
+        {
+          candidate: 'PWS-FF-002',
+          area: 'Buchungsgruppen (Posting Groups)',
+          decision: fallbackDecision,
+          useWhen: 'TARGET-075 zeigt fehlende oder unklare Buchungsgruppen- oder Buchungsmatrix-Sichtbarkeit.',
+          remainsForbidden: ['Buchungsgruppen speichern', 'Buchungsmatrix-Zeilen aendern', 'Preview Posting', 'Posting']
+        },
+        {
+          candidate: 'PWS-FF-004',
+          area: 'USt/MwSt.-Einrichtung (VAT setup boundary)',
+          decision: fallbackDecision,
+          useWhen: 'TARGET-075 zeigt USt-/VAT-Luecken, unklare Setup-Zeilen oder zu schwache Screenshot-QA.',
+          remainsForbidden: ['USt-Gruppen speichern', 'VAT Posting Setup schreiben', 'Steuerfinalitaet behaupten', 'Preview Posting', 'Posting']
+        },
+        {
+          candidate: 'PWS-FF-005',
+          area: 'Dimensionen und Dimensionswerte',
+          decision: fallbackDecision,
+          useWhen: 'TARGET-075 zeigt unklare Dimensionen, Dimensionswerte, globale Dimensionen oder Reporting-Grenzen.',
+          remainsForbidden: ['Dimension speichern', 'Dimensionswert speichern', 'Standarddimension aendern', 'Reporting- oder Postenclaim behaupten']
+        },
+        {
+          candidate: 'PWS-FF-003',
+          area: 'Zahlungsbedingungen (Payment Terms)',
+          decision: fallbackDecision,
+          useWhen: 'TARGET-075 oder Master-Data-Handoff zeigt unklare Zahlungsbedingungen fuer Debitoren/Kreditoren.',
+          remainsForbidden: ['Zahlungsbedingung speichern', 'Zahlungsart/Bankdaten erfassen', 'Zahlung vorbereiten']
+        },
+        {
+          candidate: 'PWS-FF-001',
+          area: 'Nummernserien (Number Series)',
+          decision: fallbackDecision,
+          useWhen: 'TARGET-075 oder Master-Data-Handoff zeigt unklare Nummernlogik fuer Debitoren, Kreditoren oder Artikel.',
+          remainsForbidden: ['Nummernserie speichern', 'Setup zuweisen', 'Stammdatensatz anlegen']
+        }
+      ];
+
+  return [
+    '| Kandidat | Entscheidung | Nutzen nach TARGET-075 | Bleibt verboten |',
+    '| --- | --- | --- | --- |',
+    ...rows.map((entry) => {
+      const forbidden = asArray(entry.remainsForbidden).join(', ');
+      return `| \`${tableCell(entry.candidate)}\` ${tableCell(entry.area)} | ${tableCell(entry.decision)} | ${tableCell(
+        entry.useWhen
+      )} | ${tableCell(forbidden)} |`;
+    })
+  ].join('\n');
+}
+
 function renderDecision(result) {
   const input = result.foundationReadinessInput ?? {};
   const chart = input.chartOfAccounts ?? {};
@@ -347,6 +402,12 @@ function renderDecision(result) {
     `- Buchungsmatrix Einrichtung: ${setup.generalPostingSetup ?? 'unbekannt'}`,
     `- USt-Buchungsmatrix Einrichtung: ${setup.vatPostingSetup ?? 'unbekannt'}`,
     `- Grenze: ${setup.bookBoundary ?? 'Read-first Sichtbarkeit ersetzt keine Setup-Korrektheitspruefung.'}`,
+    '',
+    '## Foundation-Read-first-Folgeprobes',
+    '',
+    'Diese Tabelle verhindert den Sprung in Stammdaten, wenn TARGET-075 zuerst eine engere Foundation-Luecke zeigt. Sie gibt keine Schreibfreigabe.',
+    '',
+    renderFoundationFollowupHandoff(input.foundationReadFirstHandoff, readyForMasterData),
     '',
     '## Blocker und Warnungen',
     '',

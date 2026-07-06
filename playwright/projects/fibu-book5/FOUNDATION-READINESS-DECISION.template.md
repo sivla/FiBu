@@ -55,6 +55,18 @@ Master Data darf nach dieser Entscheidung nur als naechster Block vorbereitet we
 - Keine Setupwerte, Stammdaten, Belege, Buchungsvorschau, Buchung, Zahlung oder API-Shortcuts wurden ausgefuehrt.
 - Offene Foundation-Luecken sind benannt und nicht als erledigt umgedeutet.
 
+## Foundation-Read-first-Folgeprobes
+
+Diese Tabelle wird erst nach TARGET-075 ausgefuellt. Sie verhindert, dass der naechste Schritt zu schnell in Stammdaten springt, wenn zuerst eine engere Foundation-Luecke geklaert werden muss.
+
+| Kandidat | Entscheidung nach TARGET-075 | Nutzen nach TARGET-075 | Bleibt verboten |
+| --- | --- | --- | --- |
+| `PWS-FF-002` Buchungsgruppen (Posting Groups) | `pending-target075-evidence` | Wenn Buchungsgruppen, Produktbuchungsgruppen oder Buchungsmatrix-Kontext fehlen oder unklar sind. | Buchungsgruppen speichern, Buchungsmatrix-Zeilen aendern, Preview Posting, Posting. |
+| `PWS-FF-004` USt/MwSt.-Einrichtung (VAT setup boundary) | `pending-target075-evidence` | Wenn USt-/VAT-Luecken, unklare Setup-Zeilen oder zu schwache Screenshot-QA sichtbar werden. | USt-Gruppen speichern, VAT Posting Setup schreiben, Steuerfinalitaet behaupten, Preview Posting, Posting. |
+| `PWS-FF-005` Dimensionen und Dimensionswerte | `pending-target075-evidence` | Wenn Dimensionen, Dimensionswerte, globale Dimensionen oder Reporting-Grenzen unklar bleiben. | Dimension speichern, Dimensionswert speichern, Standarddimension aendern, Reporting- oder Postenclaim behaupten. |
+| `PWS-FF-003` Zahlungsbedingungen (Payment Terms) | `pending-target075-evidence` | Wenn Debitoren-/Kreditoren-Handoff durch unklare Zahlungsbedingungen blockiert ist. | Zahlungsbedingung speichern, Zahlungsart/Bankdaten erfassen, Zahlung vorbereiten. |
+| `PWS-FF-001` Nummernserien (Number Series) | `pending-target075-evidence` | Wenn Nummernlogik fuer Debitoren, Kreditoren oder Artikel unklar bleibt. | Nummernserie speichern, Setup zuweisen, Stammdatensatz anlegen. |
+
 ## Master-Data-Read-first-Handoff
 
 Diese Tabelle wird erst nach TARGET-075 ausgefuellt. Sie gibt keine Schreibfreigabe, sondern waehlt hoechstens den naechsten lesenden Master-Data-Probe.
