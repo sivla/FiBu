@@ -103,6 +103,8 @@ function validateTarget075(result) {
   } else {
     if (result.authGate.checkedByGuard !== true) errors.push('authGate.checkedByGuard must be true.');
     if (result.authGate.secretsPrinted !== false) errors.push('authGate.secretsPrinted must be false.');
+    if (result.authGate.targetUrlPassedToSpec !== true) errors.push('authGate.targetUrlPassedToSpec must be true.');
+    if (result.authGate.targetUrlPrinted !== false) errors.push('authGate.targetUrlPrinted must be false.');
     if (!('doctorDecision' in result.authGate)) errors.push('authGate.doctorDecision is required.');
     if (!('doctorLiveGate' in result.authGate)) errors.push('authGate.doctorLiveGate is required.');
     const authTarget = result.authGate.authTarget;

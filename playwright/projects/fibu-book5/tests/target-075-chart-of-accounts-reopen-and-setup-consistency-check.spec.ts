@@ -359,7 +359,9 @@ test('TARGET-075 runs a read-only Foundation consistency pilot', async ({ page }
     warnings: authWarningsEnv(),
     doctorDecision: process.env.TARGET_075_AUTH_DOCTOR_DECISION ?? '',
     doctorLiveGate: jsonEnv('TARGET_075_AUTH_DOCTOR_LIVE_GATE'),
-    authTarget: jsonEnv('TARGET_075_AUTH_TARGET')
+    authTarget: jsonEnv('TARGET_075_AUTH_TARGET'),
+    targetUrlPassedToSpec: Boolean(process.env.TARGET_075_BC_TARGET_URL),
+    targetUrlPrinted: false
   };
   const executionGate = {
     runnerGuardChecked: process.env.TARGET_075_RUNNER_GUARD_CHECKED === '1',

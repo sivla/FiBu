@@ -526,6 +526,8 @@ if (spec) {
     'doctorDecision',
     'doctorLiveGate',
     'authTarget',
+    'targetUrlPassedToSpec',
+    'targetUrlPrinted',
     'foundationReadinessInput',
     'decisionStatus',
     'chartOfAccounts',
@@ -598,6 +600,12 @@ if (target075Result) {
     }
     if (target075Result.authGate.secretsPrinted !== false) {
       errors.push(`${target075ResultPath}: authGate.secretsPrinted must be false`);
+    }
+    if (target075Result.authGate.targetUrlPassedToSpec !== true) {
+      errors.push(`${target075ResultPath}: authGate.targetUrlPassedToSpec must be true`);
+    }
+    if (target075Result.authGate.targetUrlPrinted !== false) {
+      errors.push(`${target075ResultPath}: authGate.targetUrlPrinted must be false`);
     }
     if (!Array.isArray(target075Result.authGate.warnings)) {
       errors.push(`${target075ResultPath}: authGate.warnings must be an array`);

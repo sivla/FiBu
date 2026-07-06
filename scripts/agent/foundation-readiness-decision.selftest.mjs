@@ -39,6 +39,8 @@ const fixture = {
   authGate: {
     checkedByGuard: true,
     secretsPrinted: false,
+    targetUrlPassedToSpec: true,
+    targetUrlPrinted: false,
     doctorDecision: 'stored-auth-usable-but-live-gate-blocked',
     doctorLiveGate: { businessCentralLiveAllowed: false, playwrightLiveAllowed: false },
     authTarget: {
