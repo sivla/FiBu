@@ -122,6 +122,34 @@ const operatorAuthUnblockStep =
   operatorActionRequired && operatorAction
     ? authDoctor.output.nextSafeAction
     : authUnblockStep;
+const combinedForbiddenActions = unique([
+  ...(current.forbiddenActions ?? []),
+  ...(activeCase.forbiddenActions ?? []),
+  ...(dryRun.forbiddenActions ?? []),
+]);
+const freezeActive =
+  current.freezeStatus?.status === 'active' ||
+  current.activeArea === 'project-improvement-freeze' ||
+  current.mode === 'project-improvement-freeze';
+const liveBlocked =
+  freezeActive ||
+  combinedForbiddenActions.includes('open-business-central-live') ||
+  combinedForbiddenActions.includes('business-central-execution') ||
+  combinedForbiddenActions.includes('playwright-execution');
+const liveGate = {
+  businessCentralLiveAllowed: !liveBlocked,
+  playwrightLiveAllowed: !liveBlocked && !combinedForbiddenActions.includes('playwright-execution'),
+  freezeActive,
+  blockedBy: unique([
+    ...(freezeActive ? ['improvement-freeze-active'] : []),
+    ...(combinedForbiddenActions.includes('open-business-central-live') ? ['open-business-central-live-forbidden'] : []),
+    ...(combinedForbiddenActions.includes('business-central-execution') ? ['business-central-execution-forbidden'] : []),
+    ...(combinedForbiddenActions.includes('playwright-execution') ? ['playwright-execution-forbidden'] : []),
+  ]),
+  parkedCase: current.freezeStatus?.frozenLiveCase,
+  resumeCandidate: current.freezeStatus?.resumeCandidateAfterFreeze ?? current.nextCase,
+  nextLiveType: current.implementationOperatingSystem?.currentLiveBoundary?.resumePilotMode,
+};
 
 const blockedLiveActions = unique([
   ...(dryRun.forbiddenActions ?? []),
@@ -301,6 +329,8 @@ const runPlan = {
       }
     : null,
   canProceed: canProceedWithAuth,
+  canProceedMeaning: 'local-plan-only; not Business Central live permission',
+  liveGate,
   steps,
   blockedLiveActions,
   approvalRequiredBefore: unique(approvalRequiredBefore),
