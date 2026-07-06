@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "caseId": "CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST",
+  "status": "planned-read-first",
+  "mode": "universaarl-masterdata-readfirst",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w2-core-masterdata",
+  "workstream": "WS04 Master Data / Product Model",
+  "epic": "Customer master data realistic data route",
+  "issueType": "ReadFirstEvidence",
+  "purpose": "Inspect the existing customer U-CUST-100 read-only before deciding whether it can be converted from a placeholder into the realistic first Universaarl customer Saarland Maschinenbau AG.",
+  "businessPurpose": "Prevent duplicate customer numbers and avoid overwriting a customer that may already have dependencies, while keeping the first customer route realistic and bookworthy.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/UNIVERSAARL-CUSTOMER-FIELD-MAP.md",
+    "playwright/projects/fibu-book5/evidence/customer-first-record-data-quality-decision/CUSTOMER-FIRST-RECORD-DATA-QUALITY-DECISION-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/PWS-MD-004B-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-md-004c-customer-billing-payments-fasttabs-readfirst/PWS-MD-004C-result.json"
+  ],
+  "mayRunPlaywright": true,
+  "mayOpenBusinessCentral": true,
+  "effectiveBcActionsAllowed": false,
+  "allowedActions": [
+    "run-playwright-readonly",
+    "open-business-central-readonly",
+    "confirm-playthru-instance",
+    "confirm-universaarl-company",
+    "open-customers-list-readonly",
+    "open-existing-customer-card-readonly",
+    "inspect-balance-entries-statistics-readonly",
+    "capture-screenshot-qa",
+    "write-evidence-result",
+    "update-state-dashboard-and-field-map"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "use-confidential-real-customer-data",
+    "create-customer",
+    "edit-customer",
+    "save-customer",
+    "delete-customer",
+    "change-customer-template",
+    "change-posting-group",
+    "change-payment-terms",
+    "change-dimensions",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "claim-master-data-ready",
+    "claim-sales-process-ready"
+  ],
+  "smartDecision": {
+    "whyNow": "The first realistic customer cannot be created as U-CUST-100 because that number already exists. A read-first dependency check is required before any conversion or alternate-number decision.",
+    "sourceBasis": [
+      "PWS-MD-004B observed U-CUST-100 / Universaarl Kunde 100 on the real Customer Card.",
+      "PWS-MD-004C observed billing/payment FastTabs read-only.",
+      "The customer field map selected Saarland Maschinenbau AG as the realistic target first customer."
+    ],
+    "fieldsToChange": [],
+    "fieldsToLeaveUntouched": [
+      "all customer card fields",
+      "posting groups",
+      "VAT groups",
+      "payment terms",
+      "dimensions",
+      "templates",
+      "documents"
+    ],
+    "risk": "Opening related pages may reveal missing context or navigation limits; any dialog that would change data must stop the run.",
+    "fallback": "If dependencies cannot be proven read-only, keep the conversion write gate blocked and create a narrower UI discovery case."
+  },
+  "screenshotQaRequired": [
+    "Business Central shell with playthru / UNIVERSAARL-DE context",
+    "Customers list with U-CUST-100 visible",
+    "U-CUST-100 customer card context",
+    "Balance/statistics/entries or equivalent dependency context if safely reachable read-only",
+    "No-save end state"
+  ],
+  "acceptanceCriteria": [
+    "Result states whether U-CUST-100 dependency status is observed, blocked or inconclusive.",
+    "Screenshots show enough context to judge whether the first customer write gate can be planned.",
+    "No customer, setup, document, draft, Preview Posting, Posting, payment or API shortcut is created or changed.",
+    "Next case is either a narrow conversion write gate, a further read-first dependency route, or an alternate-number decision."
+  ],
+  "stopIf": [
+    "Instance is not playthru.",
+    "Company is not UNIVERSAARL-DE.",
+    "A dialog asks to create, edit, save, delete, post, preview or confirm a data-changing action.",
+    "The route would require confidential real customer data.",
+    "Screenshot QA cannot prove the page being evaluated."
+  ],
+  "nextCase": "CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST",
+  "updatedAt": "2026-07-07T01:20:00.000+02:00"
+}

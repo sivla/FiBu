@@ -1,33 +1,34 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "CUSTOMER-CONFIG-PACKAGE-FIELD-MAP",
-  "caseId": "CUSTOMER-CONFIG-PACKAGE-FIELD-MAP",
-  "status": "completed-local-field-map",
-  "completedAt": "2026-07-07T00:55:00.000Z",
+  "runId": "CUSTOMER-FIRST-RECORD-DATA-QUALITY-DECISION",
+  "caseId": "CUSTOMER-FIRST-RECORD-DATA-QUALITY-DECISION",
+  "status": "completed-local-decision",
+  "completedAt": "2026-07-07T01:20:00.000+02:00",
   "mode": "universaarl-masterdata-route-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Completed the local Debitoren field map against real Business Central Customer Card evidence and the planned MD-CUSTOMERS-01 data package. The map now separates real UI evidence from realistic fictional customer data and identifies the key data-quality issue: U-CUST-100 exists as Universaarl Kunde 100, while the target project customer is Saarland Maschinenbau AG.",
-  "resultPath": "playwright/projects/fibu-book5/UNIVERSAARL-CUSTOMER-FIELD-MAP.md",
+  "summary": "Completed the local first-customer data-quality decision. U-CUST-100 remains the preferred first realistic customer number, but the existing placeholder Universaarl Kunde 100 must be checked read-first for dependencies before any conversion write gate. No Business Central or Playwright live execution occurred.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/customer-first-record-data-quality-decision/CUSTOMER-FIRST-RECORD-DATA-QUALITY-DECISION-result.json",
   "changedArtifacts": [
     "playwright/projects/fibu-book5/UNIVERSAARL-CUSTOMER-FIELD-MAP.md",
-    ".agent/state/cases/customer-config-package-field-map.json",
+    "playwright/projects/fibu-book5/evidence/customer-first-record-data-quality-decision/CUSTOMER-FIRST-RECORD-DATA-QUALITY-DECISION-result.json",
     ".agent/state/cases/customer-first-record-data-quality-decision.json",
+    ".agent/state/cases/customer-u-cust-100-dependency-readfirst.json",
     ".agent/state/current.json",
     ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md"
   ],
   "actionsTaken": [
-    "Mapped observed Customer Card fields to realistic fictional customer data needs.",
-    "Compared MD-CUSTOMERS-01 target records with the current observed U-CUST-100 placeholder.",
-    "Prepared a local data-quality decision before any customer write gate."
+    "Selected read-first dependency proof before converting or replacing U-CUST-100.",
+    "Kept realistic fictional data separate from confidential real customer data.",
+    "Prepared the next no-write customer dependency case."
   ],
   "actionsNotTaken": [
     "No Business Central opened.",
     "No Playwright live run executed.",
-    "No customer created, edited, saved or deleted.",
-    "No confidential real customer data used.",
-    "No import, document, Preview Posting or Posting."
+    "No customer created, edited, saved, deleted or imported.",
+    "No document, draft, Preview Posting or Posting.",
+    "No API shortcut and no confidential real customer data."
   ],
   "businessCentralOpened": false,
   "playwrightLiveRunExecuted": false,
@@ -40,18 +41,15 @@
   "payment": false,
   "apiShortcut": false,
   "proved": [
-    "The field map is grounded in real playthru Customer Card evidence from PWS-MD-004B/PWS-MD-004C.",
-    "The target customer data is realistic fictional Universaarl data, not a UI mockup and not confidential real customer data.",
-    "U-CUST-100 has a data-quality mismatch that must be resolved before the first customer write gate."
+    "The realistic first customer path must avoid duplicate U-CUST-100 creation.",
+    "The next BC work should be read-only dependency proof, not a write gate.",
+    "U-CUST-100 can become Saarland Maschinenbau AG only after dependency proof."
   ],
   "notProved": [
-    "No customer write route.",
-    "No customer setup correctness.",
-    "No import readiness.",
-    "No O2C readiness.",
-    "No Preview Posting, Posting or ledger trace."
+    "No customer dependency status was observed in this local run.",
+    "No customer setup correctness, O2C readiness, Preview Posting, Posting or ledger trace."
   ],
-  "nextCase": "CUSTOMER-FIRST-RECORD-DATA-QUALITY-DECISION",
-  "nextStep": "Decide locally whether to rename/update existing U-CUST-100, park it, or create a different realistic fictional customer number before any BC write gate.",
-  "updatedAt": "2026-07-07T00:55:00.000Z"
+  "nextCase": "CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST",
+  "nextStep": "Run CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST with screenshot QA and no writes.",
+  "updatedAt": "2026-07-07T01:20:00.000+02:00"
 }

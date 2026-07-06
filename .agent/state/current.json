@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-07T00:55:00.000Z",
+  "updatedAt": "2026-07-07T01:20:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -8,12 +8,12 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w2-core-masterdata",
-  "activeCase": "CUSTOMER-FIRST-RECORD-DATA-QUALITY-DECISION",
-  "active_case_file": ".agent/state/cases/customer-first-record-data-quality-decision.json",
-  "activeCaseFile": ".agent/state/cases/customer-first-record-data-quality-decision.json",
+  "activeCase": "CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST",
+  "active_case_file": ".agent/state/cases/customer-u-cust-100-dependency-readfirst.json",
+  "activeCaseFile": ".agent/state/cases/customer-u-cust-100-dependency-readfirst.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-masterdata-route-decision",
+  "mode": "universaarl-masterdata-readfirst",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -34,8 +34,15 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "write-local-data-quality-decision",
-    "compare-rename-existing-versus-new-customer-number",
+    "run-playwright-readonly",
+    "open-business-central-readonly",
+    "confirm-playthru-instance",
+    "confirm-universaarl-company",
+    "open-customers-list-readonly",
+    "open-existing-customer-card-readonly",
+    "inspect-balance-entries-statistics-readonly",
+    "capture-screenshot-qa",
+    "write-evidence-result",
     "update-state-dashboard-and-field-map"
   ],
   "forbiddenActions": [
@@ -44,13 +51,15 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "open-business-central-live",
-    "run-playwright-live",
     "use-confidential-real-customer-data",
     "create-customer",
     "edit-customer",
     "save-customer",
     "delete-customer",
+    "change-customer-template",
+    "change-posting-group",
+    "change-payment-terms",
+    "change-dimensions",
     "create-document-or-draft",
     "preview-posting",
     "post",
@@ -58,9 +67,9 @@
     "claim-master-data-ready",
     "claim-sales-process-ready"
   ],
-  "nextCase": "CUSTOMER-FIRST-RECORD-DATA-QUALITY-DECISION",
-  "nextStep": "Make a local data-quality decision for existing U-CUST-100 / Universaarl Kunde 100 before any customer write gate: rename/update existing placeholder, park it, or create a different realistic fictional customer number. Do not open Business Central or use confidential real customer data.",
-  "preparedNextCaseFile": ".agent/state/cases/customer-first-record-data-quality-decision.json",
+  "nextCase": "CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST",
+  "nextStep": "Run a read-first/no-write dependency proof for existing U-CUST-100 before deciding whether it can become Saarland Maschinenbau AG. Confirm playthru / UNIVERSAARL-DE, inspect customer list/card and dependency signals with screenshot QA, and do not edit or save anything.",
+  "preparedNextCaseFile": ".agent/state/cases/customer-u-cust-100-dependency-readfirst.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -194,12 +203,12 @@
     "nextBoundary": "Master Data remains parked. Next work must update Foundation Readiness and either accept this as a Foundation gap or define a genuinely new Page 314 route hypothesis before another live attempt."
   },
   "activeNextStepAuthority": {
-    "source": "top-level-current-state-and-universaarl-execution-roadmap",
+    "source": "top-level-current-state-and-customer-first-record-data-quality-decision",
     "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
-    "activeCaseFile": ".agent/state/cases/customer-first-record-data-quality-decision.json",
+    "activeCaseFile": ".agent/state/cases/customer-u-cust-100-dependency-readfirst.json",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "Top-level current state selects the local data-quality decision after the customer field map found the U-CUST-100 placeholder-versus-target mismatch."
+    "reason": "The local data-quality decision selected read-first dependency proof for U-CUST-100 before any realistic customer conversion or alternate-number write gate."
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -11023,7 +11032,8 @@
   },
   "latestCustomerFirstRecordDataQualityDecision": {
     "caseId": "CUSTOMER-FIRST-RECORD-DATA-QUALITY-DECISION",
-    "status": "planned-local-decision",
+    "status": "completed-local-decision",
+    "resultPath": "playwright/projects/fibu-book5/evidence/customer-first-record-data-quality-decision/CUSTOMER-FIRST-RECORD-DATA-QUALITY-DECISION-result.json",
     "instance": "playthru",
     "company": "UNIVERSAARL-DE",
     "businessCentralOpened": false,
@@ -11034,6 +11044,18 @@
     "previewPosting": false,
     "posted": false,
     "apiShortcut": false,
-    "whyNext": "U-CUST-100 exists as Universaarl Kunde 100 but the target data model wants Saarland Maschinenbau AG. This must be resolved before write or O2C work."
+    "decision": "U-CUST-100 remains preferred for the first realistic customer, but must pass read-first dependency proof before conversion.",
+    "nextCase": "CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST",
+    "updatedAt": "2026-07-07T01:20:00.000+02:00"
+  },
+  "latestCustomerUCust100DependencyReadfirst": {
+    "caseId": "CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST",
+    "status": "planned-read-first",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "effectiveBcActionsAllowed": false,
+    "purpose": "Read-only dependency proof for U-CUST-100 before customer conversion/write gate.",
+    "nextBoundary": "No customer edit/save/import/O2C until this read-first proof is observed or blocked.",
+    "updatedAt": "2026-07-07T01:20:00.000+02:00"
   }
 }

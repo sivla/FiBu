@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "caseId": "CUSTOMER-FIRST-RECORD-DATA-QUALITY-DECISION",
+  "status": "completed-local-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "source": "local-data-quality-decision",
+  "businessCentralOpened": false,
+  "playwrightLiveRunExecuted": false,
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "decision": "Use U-CUST-100 as the preferred first realistic Universaarl customer number, but do not duplicate or overwrite the existing placeholder blindly. Run a read-first dependency check before any write gate.",
+  "preferredPath": "If read-first dependency proof shows no critical posted/document dependencies, convert the existing U-CUST-100 placeholder into Saarland Maschinenbau AG in a later narrow write gate with reopen proof.",
+  "fallbackPath": "If dependencies or posted traces exist, park U-CUST-100 as a technical learning placeholder and use a new realistic fictional customer number for the first O2C/customer write gate.",
+  "realismBoundary": "Realistic fictional customer-like data is used. No confidential real customer data and no UI mockups are used.",
+  "actionsTaken": [
+    "Compared the observed BC customer U-CUST-100 / Universaarl Kunde 100 with the target fictional customer Saarland Maschinenbau AG.",
+    "Selected read-first dependency proof as the next step before any customer write.",
+    "Updated the customer field map and state handoff."
+  ],
+  "actionsNotTaken": [
+    "No Business Central live session was opened.",
+    "No Playwright live run was executed.",
+    "No customer was created, edited, saved, deleted or imported.",
+    "No document, draft, Preview Posting, Posting, payment or API shortcut was executed.",
+    "No confidential real customer data was used."
+  ],
+  "proved": [
+    "The first customer route must not blindly create a duplicate U-CUST-100.",
+    "The existing U-CUST-100 placeholder needs read-first dependency proof before it can become the first realistic customer.",
+    "The next live case should be read-only and evidence-driven, not a write gate."
+  ],
+  "notProved": [
+    "No customer ledger, document, sales, VAT, posting group or setup dependency status was proven in this local decision.",
+    "No customer write route is approved.",
+    "No O2C, Preview Posting, Posting or ledger trace readiness is proven."
+  ],
+  "nextStepDecision": {
+    "currentCase": "CUSTOMER-FIRST-RECORD-DATA-QUALITY-DECISION",
+    "plannedNextCaseBeforeReview": "CUSTOMER-FIRST-RECORD-DATA-QUALITY-DECISION",
+    "lastEvidenceSummary": "PWS-MD-004B and PWS-MD-004C proved the existing customer card context for U-CUST-100 / Universaarl Kunde 100, while the field map selected Saarland Maschinenbau AG as the realistic target customer.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The local decision is now complete; the next useful step is read-first dependency proof before any write.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST",
+        "status": "ready-next",
+        "reason": "Needed before deciding whether the placeholder can be converted into the realistic first customer."
+      },
+      {
+        "caseId": "CUSTOMER-U-CUST-100-CONVERSION-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Only possible after dependency proof and setup field boundaries are clear."
+      },
+      {
+        "caseId": "PWS-MD-CUSTOMER-CONFIG-PACKAGE-ROUTE",
+        "status": "ready-after-current",
+        "reason": "Useful for later batch route, but not before the first-record decision is resolved."
+      },
+      {
+        "caseId": "O2C-FIRST-CUSTOMER-PROCESS",
+        "status": "blocked",
+        "reason": "Blocked until customer setup, VAT/posting group readiness and first customer data are proven."
+      }
+    ],
+    "queueChangesMade": [
+      "Prepared CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST as the next active read-first case."
+    ],
+    "selectedNextCase": "CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST",
+    "whySelectedNextCaseIsBest": "It proves whether the existing placeholder can safely become the realistic first customer without creating duplicates or hiding dependencies.",
+    "risksBeforeNextCase": [
+      "Auth/session may need revalidation before the read-first run.",
+      "Existing customer may have hidden dependencies not visible from the list/card screenshots."
+    ],
+    "requiredPreparation": [
+      "Run standard preflight/context/dry-run checks.",
+      "Confirm playthru / UNIVERSAARL-DE before opening customer context.",
+      "Use screenshot QA checkpoints for list, card, balance/entries/statistics context and no-save end state."
+    ]
+  },
+  "nextCase": "CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST",
+  "updatedAt": "2026-07-07T01:20:00.000+02:00"
+}

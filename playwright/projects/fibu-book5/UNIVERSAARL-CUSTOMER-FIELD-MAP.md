@@ -55,6 +55,14 @@ Diese Werte sind nicht in Business Central angelegt. Sie sind ein realistischer 
 | `U-CUST-190` | Privatkunde Schulung | fiktive Schulungsadresse, DE | keine echte Person | B2C Schulung | spaeter separater Schulungsfall | USt.-Gate und Datenschutzgrenze |
 | `U-CUST-900` | Kundenanlage Fehlerfall | bewusst unvollstaendig | nicht verwenden | Fehlerfall | separater Error-Case | definierter Fehler, Stop- und Cleanup-Regel |
 
+## Datenqualitaetsentscheidung fuer `U-CUST-100`
+
+`U-CUST-100` bleibt die bevorzugte Nummer fuer den ersten realistischen Universaarl-Debitor. Der bestehende BC-Datensatz `Universaarl Kunde 100` wird nicht dupliziert und nicht blind ueberschrieben. Der naechste Live-Schritt ist ein read-first Abhaengigkeitscheck: Karte, Saldo, moegliche Posten/Belege und relevante Feldwerte werden nur gelesen und mit Screenshots belegt.
+
+Wenn der Abhaengigkeitscheck zeigt, dass der Datensatz keine kritischen Buchungs- oder Belegabhaengigkeiten hat, ist der fachlich sauberste spaetere Write-Gate eine kontrollierte Umwandlung dieses Platzhalters in `Saarland Maschinenbau AG` mit Reopen-Proof. Wenn Abhaengigkeiten sichtbar werden, wird `U-CUST-100` als technischer Lern-/Platzhalter geparkt und der erste realistische O2C-Kunde bekommt eine neue Nummer, voraussichtlich `U-CUST-110` oder `U-CUST-101`.
+
+Diese Entscheidung nutzt realistische fiktive Kundendaten und echte Business-Central-Oberflaechen-Evidence. Sie verwendet keine vertraulichen echten Kundendaten und oeffnet keinen Schreib-Gate.
+
 ## Naechster sinnvoller Schritt
 
-`CUSTOMER-CONFIG-PACKAGE-FIELD-MAP` ist lokal ausreichend fuer die naechste Entscheidung: Vor dem ersten Debitoren-Write muss entschieden werden, ob `U-CUST-100 / Universaarl Kunde 100` als Platzhalter umbenannt wird oder ob ein neuer realistischer Zielkunde mit anderer Nummer entsteht. Danach erst folgt ein enger Write-Gate mit Screenshot-QA, Reopen-Proof und klarer Setup-Grenze.
+`CUSTOMER-U-CUST-100-DEPENDENCY-READFIRST` ist der naechste sinnvolle Live-Case. Er darf `playthru / UNIVERSAARL-DE` und die Debitorenkarte von `U-CUST-100` nur lesen. Erst danach wird entschieden, ob ein kontrollierter Umwandlungs-Write-Gate fuer `Saarland Maschinenbau AG` fachlich vertretbar ist.
