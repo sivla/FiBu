@@ -42,6 +42,7 @@ Current decision: stop broad cleanup here. The next useful project movement is e
 ## Required before live execution
 
 - `npm run agent:resume:check`
+- `npm run agent:resume:check:overnight`
 - `npm run agent:freeze:status`
 - `npm run agent:preflight`
 - `npm run check:encoding`
@@ -50,6 +51,18 @@ Current decision: stop broad cleanup here. The next useful project movement is e
 - `npm run agent:foundation:decision:check`
 - explicit freeze lift or active-case confirmation that TARGET-075 may run
 - stored auth must resolve to `playthru / UNIVERSAARL-DE`
+
+## Safe operator run order
+
+1. Run `npm run agent:resume:check:overnight`.
+2. Run `npm run fibu:target:foundation-consistency-pilot -- --check`.
+3. Run `npm run fibu:target:foundation-consistency-pilot -- --list`.
+4. Confirm the freeze/live gate has been explicitly lifted for TARGET-075. If the freeze is still active, the live run requires the second explicit override `TARGET_075_FREEZE_OVERRIDE_APPROVED=1`.
+5. Run TARGET-075 only through `npm run fibu:target:foundation-consistency-pilot -- --live-approved`.
+6. After a result exists, run `npm run agent:target075:readiness` and `npm run agent:foundation:decision:check`.
+7. Use `npm run agent:foundation:decision:write` only after the TARGET-075 result exists, validates and is reviewed as read-first/no-write evidence.
+
+Stop before live execution if any check says the active target is not `playthru / UNIVERSAARL-DE`, if stored auth is unusable, if the freeze/live gate is still blocked without explicit override, or if the guarded runner cannot list exactly the TARGET-075 spec.
 
 ## Allowed pilot actions
 
