@@ -386,6 +386,17 @@ Inputs:
 - decisions `DEC-MD-UOM-001`, `DEC-MD-PRODUCT-001`
 - training card `TR-03-03 Items, Services and Non-Inventory Items`
 
+Foundation decision handoff:
+
+| Foundation result after TARGET-075 | PWS-MD-003 decision |
+| --- | --- |
+| Company context, Chart of Accounts, product posting, VAT product, UOM and inventory dependency pages are visible enough for read-first explanation | Run PWS-MD-003 as read-first/no-write probe. |
+| Company context is proven, but UOM or product posting groups are missing/unclear | Run only item-list/card field visibility; mark item creation and process use as blocked. |
+| Inventory Posting Setup, costing method or item valuation dependency is unclear | Observe fields read-only only; do not claim inventory valuation, stock readiness, value entries or item-ledger readiness. |
+| Service/non-inventory route is unclear | Keep service and non-inventory as conceptual training candidates; do not merge them with inventory-item proof. |
+| Company context is unclear or `FOUNDATION-READINESS-DECISION.md` is missing | Block PWS-MD-003. Do not open item pages as the next live case. |
+| Foundation decision says setup is not ready for product/master-data read-first probes | Block PWS-MD-003 and create a narrow Foundation or product-setup follow-up instead. |
+
 Evidence output:
 
 - Items page title and URL
@@ -394,6 +405,7 @@ Evidence output:
 - dependencies for `DR-MD-003`
 - clear boundary that inventory valuation is not proven
 - whether Base Unit of Measure, Item Type, Gen. Product Posting Group, VAT Product Posting Group, Inventory Posting Group, Costing Method and Item Category are visible, hidden, absent or blocked
+- next-step classification: `ready-for-item-write-gate`, `needs-uom-follow-up`, `needs-product-posting-follow-up`, `needs-inventory-setup-follow-up`, `needs-service-route-decision`, `blocked`
 
 Stop if:
 
