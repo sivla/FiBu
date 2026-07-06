@@ -7,6 +7,8 @@ const scripts = packageJson.scripts ?? {};
 const legacyPattern = /RM-DEMO|MCP_1_20260210|CRONUS|Rhein-Main|Rhein Main|RheinMain|rm-de-lab|rm-demo/i;
 const blockedScript = /legacy-script-blocked\.mjs/;
 const playwrightTargetPattern = /(?:^|\s)playwright\s+test\s+([^\s]+)/;
+const activeUnsafeApiWritePattern =
+  /accessToken|Authorization:\s*`Bearer|method:\s*['"`](POST|PATCH|DELETE)['"`]|bcApi\s*\(|fetch\s*\(/i;
 const sampleLimit = 12;
 const allowedScriptNames = new Set([
   'agent:legacy:active-check'
@@ -129,6 +131,15 @@ for (const [name, command] of Object.entries(scripts)) {
 
   targetFilesChecked += 1;
   const targetText = fs.readFileSync(targetFile, 'utf8');
+  if (!name.startsWith('fibu:target:') && activeUnsafeApiWritePattern.test(targetText)) {
+    summary.activeLegacyRoutes += 1;
+    activeLegacyRouteErrors.push(`package script ${name} runs a direct Playwright file with API/write shortcuts`);
+    addFinding({
+      script: name,
+      status: 'active-unsafe-api-write-route',
+      targetFile: path.normalize(targetFile)
+    });
+  }
   if (!legacyPattern.test(targetText)) continue;
 
   if (isUniversaarlTargetBoundaryReference(name, targetText)) {
