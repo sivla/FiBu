@@ -119,6 +119,33 @@ if (currentState) {
   if (currentState.activeNextStepAuthority?.dashboard !== projectDashboardPath) {
     errors.push(`${currentPath}: activeNextStepAuthority.dashboard must point to ${projectDashboardPath}`);
   }
+  if (currentState.freezeStatus?.status !== 'active') {
+    errors.push(`${currentPath}: freezeStatus.status must be active before TARGET-075 live resume`);
+  }
+  if (currentState.freezeStatus?.frozenLiveCase !== 'TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION') {
+    errors.push(`${currentPath}: freezeStatus.frozenLiveCase must remain TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION`);
+  }
+  if (
+    currentState.freezeStatus?.resumeCandidateAfterFreeze !==
+    'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK'
+  ) {
+    errors.push(
+      `${currentPath}: freezeStatus.resumeCandidateAfterFreeze must remain TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK`
+    );
+  }
+  const liveBoundary = currentState.implementationOperatingSystem?.currentLiveBoundary;
+  if (liveBoundary?.freezeActive !== true) {
+    errors.push(`${currentPath}: implementationOperatingSystem.currentLiveBoundary.freezeActive must be true`);
+  }
+  if (liveBoundary?.parkedCase !== 'TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION') {
+    errors.push(`${currentPath}: implementationOperatingSystem.currentLiveBoundary.parkedCase must be TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION`);
+  }
+  if (liveBoundary?.resumePilot !== 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK') {
+    errors.push(`${currentPath}: implementationOperatingSystem.currentLiveBoundary.resumePilot must be TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK`);
+  }
+  if (liveBoundary?.resumePilotMode !== 'read-first-no-writes') {
+    errors.push(`${currentPath}: implementationOperatingSystem.currentLiveBoundary.resumePilotMode must be read-first-no-writes`);
+  }
   const forbiddenActions = new Set(currentState.forbiddenActions ?? []);
   for (const action of ['open-business-central-live', 'continue-target-073', 'setup-change', 'master-data-change']) {
     if (!forbiddenActions.has(action)) errors.push(`${currentPath}: forbiddenActions must include ${action} during freeze`);
