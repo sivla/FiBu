@@ -17,6 +17,7 @@ const packagePath = 'package.json';
 const specPath = 'playwright/projects/fibu-book5/tests/target-075-chart-of-accounts-reopen-and-setup-consistency-check.spec.ts';
 const guardedRunnerPath = 'scripts/agent/run-target-075-foundation-consistency-pilot.mjs';
 const contextPackSelftestPath = 'scripts/agent/context-pack.selftest.mjs';
+const authTargetSelftestPath = 'scripts/agent/auth-target-diagnose.selftest.mjs';
 const foundationDecisionScriptPath = 'scripts/agent/foundation-readiness-decision.mjs';
 const foundationDecisionSelftestPath = 'scripts/agent/foundation-readiness-decision.selftest.mjs';
 const foundationDecisionTemplatePath = 'playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.template.md';
@@ -81,6 +82,7 @@ for (const requiredFile of [
   specPath,
   guardedRunnerPath,
   contextPackSelftestPath,
+  authTargetSelftestPath,
   foundationDecisionScriptPath,
   foundationDecisionSelftestPath,
   foundationDecisionTemplatePath
@@ -282,6 +284,10 @@ if (packageJson) {
   if (!contextPackSelftest.includes(contextPackSelftestPath)) {
     errors.push(`${packagePath}: script agent:context:test must reference ${contextPackSelftestPath}`);
   }
+  const authTargetSelftest = packageJson.scripts?.['auth:bc:target:selftest'] ?? '';
+  if (!authTargetSelftest.includes(authTargetSelftestPath)) {
+    errors.push(`${packagePath}: script auth:bc:target:selftest must reference ${authTargetSelftestPath}`);
+  }
 }
 
 if (exists(foundationDecisionScriptPath)) {
@@ -335,6 +341,9 @@ if (guardedRunner) {
   }
   if (!guardedRunner.includes('auth-target-does-not-match-current-state')) {
     errors.push(`${guardedRunnerPath}: guarded runner must report auth-target-does-not-match-current-state when target diagnosis fails`);
+  }
+  if (!guardedRunner.includes('target-url-could-not-be-built-from-configured-url')) {
+    errors.push(`${guardedRunnerPath}: guarded runner must report target-url-could-not-be-built-from-configured-url when URL derivation fails`);
   }
   if (!guardedRunner.includes('auth:bc:check') || !guardedRunner.includes('canUseStoredAuth')) {
     errors.push(`${guardedRunnerPath}: guarded runner must check stored auth before live execution`);
@@ -700,6 +709,7 @@ const checkedFiles = [
   specPath,
   guardedRunnerPath,
   contextPackSelftestPath,
+  authTargetSelftestPath,
   foundationDecisionScriptPath,
   foundationDecisionSelftestPath,
   foundationDecisionTemplatePath
