@@ -50,6 +50,10 @@ if (expectedCompany) {
 }
 const targetUrl = expectedUrl.toString();
 
+function redactPathname(value: string) {
+  return value.replace(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/gi, '{tenant-guid}');
+}
+
 await fs.mkdir('playwright/.auth', { recursive: true });
 await fs.mkdir(authProfileDir, { recursive: true });
 await fs.mkdir(authResultDir, { recursive: true });
@@ -71,9 +75,9 @@ async function writeAuthResult(args: AuthResultArgs) {
         : '';
   const diagnosisPathname =
     typeof args.shellDiagnosis?.pathname === 'string'
-      ? args.shellDiagnosis.pathname
+      ? redactPathname(args.shellDiagnosis.pathname)
       : typeof args.shellValidation?.pathname === 'string'
-        ? args.shellValidation.pathname
+        ? redactPathname(args.shellValidation.pathname)
         : '';
   const diagnosisTitle = typeof args.shellDiagnosis?.title === 'string' ? args.shellDiagnosis.title : '';
   const loginRedirect =

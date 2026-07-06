@@ -9,7 +9,7 @@
   "page": "Business Central shell reached",
   "url": "redacted-businesscentral-url",
   "actionsTaken": [
-    "Ran npm run auth:bc:capture-detached -- --confirm for the active Business Central auth refresh gate.",
+    "Ran npm run auth:bc for the active Business Central auth refresh gate.",
     "The Playwright auth browser targeted playthru / UNIVERSAARL-DE.",
     "Business Central shell validation succeeded and Playwright storage state was saved."
   ],
@@ -21,14 +21,13 @@
     "No bookmaster change was made."
   ],
   "authDiagnosis": {
-    "command": "npm run auth:bc:capture-detached -- --confirm",
-    "underlyingCommand": "npm run auth:bc",
-    "timeoutMs": 600000,
+    "command": "npm run auth:bc",
+    "timeoutMs": 180000,
     "targetSource": "FIBU_BOOK5_BC_URL with current.json override",
     "expectedInstance": "playthru",
     "expectedCompany": "UNIVERSAARL-DE",
     "diagnosisHost": "businesscentral.dynamics.com",
-    "diagnosisPathname": "/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru",
+    "diagnosisPathname": "/{tenant-guid}/playthru",
     "diagnosisTitle": "",
     "loginRedirect": null,
     "shellSignalDetected": true,
@@ -62,7 +61,7 @@
   "nextStepDecision": {
     "currentCase": "AUTH-BC-REFRESH-FOR-ACTIVE-RESUME",
     "plannedNextCaseBeforeReview": "AUTH-BC-REFRESH-FOR-ACTIVE-RESUME",
-    "lastEvidenceSummary": "npm run auth:bc:capture-detached -- --confirm reached the Business Central shell and saved Playwright storage state; auth:bc:check must confirm freshness next.",
+    "lastEvidenceSummary": "npm run auth:bc reached the Business Central shell and saved Playwright storage state; auth:bc:check must confirm freshness next.",
     "isPlannedNextCaseStillSensible": true,
     "reason": "The auth gate can move to auth:bc:check and then the active resume candidate TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK.",
     "lookaheadReviewed": [
@@ -110,5 +109,5 @@
   "safeToFinalizeState": false,
   "statePatch": {},
   "reason": "Auth refresh reached shell; state finalization still requires explicit downstream validation.",
-  "completedAt": "2026-07-06T05:10:03.303Z"
+  "completedAt": "2026-07-06T16:31:03.311Z"
 }
