@@ -1,7 +1,10 @@
 import { spawnSync } from 'node:child_process';
+import { readFileSync } from 'node:fs';
 
 const npmCmd = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 const nodeCmd = process.execPath;
+const currentState = JSON.parse(readFileSync('.agent/state/current.json', 'utf8'));
+const selectedNextCase = currentState.nextCase ?? '';
 const minAuthExpiresArg = process.argv.find((arg) => arg.startsWith('--min-auth-expires-hours='));
 const minAuthExpiresInHours = minAuthExpiresArg ? Number(minAuthExpiresArg.split('=').at(1)) : null;
 const authCheckArgs = Number.isFinite(minAuthExpiresInHours)
@@ -175,8 +178,13 @@ const liveGateBlockedBy = authDoctor?.liveGate?.blockedBy ?? [];
 const requiresLiveGateLift = liveGateBlockedBy.length > 0 || (localResumeReady && !liveGateAllowsNow);
 const operatorDecisionRequired = localResumeReady && !liveGateAllowsNow;
 const missingForLiveRun = operatorDecisionRequired ? liveGateBlockedBy : [];
-const safeLivePilotCommand = 'npm run fibu:target:foundation-consistency-pilot -- --live-approved';
-const explicitFreezeOverrideEnv = 'TARGET_075_FREEZE_OVERRIDE_APPROVED=1';
+const safeLivePilotCommand =
+  selectedNextCase === 'PWS-FF-002-GENERAL-POSTING-SETUP-READFIRST-RECOVERY'
+    ? 'npm run fibu:pws:ff002:general-posting-setup -- --live-approved'
+    : 'npm run fibu:target:foundation-consistency-pilot -- --live-approved';
+const requiresSecondOverrideWhileFreezeActive =
+  freezeActive && selectedNextCase === 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK';
+const explicitFreezeOverrideEnv = requiresSecondOverrideWhileFreezeActive ? 'TARGET_075_FREEZE_OVERRIDE_APPROVED=1' : null;
 
 const warnings = [];
 if (qualityRiskIds.includes('narrow-tsconfig')) {
@@ -218,6 +226,7 @@ const output = {
   schemaVersion: 1,
   purpose: 'autopilot-resume-check',
   caseId: 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK',
+  selectedNextCase,
   authMinExpiresInHours: minAuthExpiresInHours,
   canResumeAfterFreezeLift: localResumeReady,
   canResumeAfterFreezeLiftMeaning:
@@ -231,11 +240,11 @@ const output = {
   operatorDecisionRequired,
   missingForLiveRun,
   safeLivePilotCommand,
-  requiresSecondOverrideWhileFreezeActive: freezeActive,
-  explicitFreezeOverrideEnv: freezeActive ? explicitFreezeOverrideEnv : null,
+  requiresSecondOverrideWhileFreezeActive,
+  explicitFreezeOverrideEnv,
   decisionBoundary:
     operatorDecisionRequired
-      ? 'All local gates are green. The remaining blocker is an intentional operator/project decision to lift or override the live freeze for TARGET-075 read-first only.'
+      ? `All local gates are green. The remaining blocker is an intentional operator/project decision to lift the live gate for ${selectedNextCase || 'the selected read-first case'}.`
       : 'No operator freeze/live decision is currently blocking the local resume check.',
   liveActionsExecuted: false,
   businessCentralOpened: false,

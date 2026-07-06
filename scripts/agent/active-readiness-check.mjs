@@ -29,6 +29,27 @@ const checksByCase = new Map([
     }
   ],
   [
+    'PWS-FF-002-GENERAL-POSTING-SETUP-READFIRST-RECOVERY',
+    {
+      id: 'foundation-gap-general-posting-setup-readfirst',
+      scriptPath: 'scripts/agent/run-pws-ff-002-general-posting-setup-readonly.mjs',
+      args: ['--check'],
+      reason: 'General Posting Setup is the selected narrow read-first Foundation gap after TARGET-075.',
+      secondaryChecks: [
+        {
+          id: 'foundation-readiness-decision',
+          scriptPath: 'scripts/agent/foundation-readiness-decision.mjs',
+          reason: 'PWS-FF-002 must remain grounded in TARGET-075 Foundation Readiness before any live run.'
+        },
+        {
+          id: 'masterdata-readfirst-handoff',
+          scriptPath: 'scripts/agent/masterdata-readfirst-check.mjs',
+          reason: 'Master Data must remain blocked while PWS-FF-002 is the selected Foundation gap.'
+        }
+      ]
+    }
+  ],
+  [
     'FOUNDATION-READINESS-DECISION',
     {
       id: 'foundation-readiness-decision',

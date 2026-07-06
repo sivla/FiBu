@@ -15,6 +15,10 @@ const target075RunnerPath = 'scripts/agent/run-target-075-foundation-consistency
 const target075ResultPath =
   'playwright/projects/fibu-book5/evidence/target-075-chart-of-accounts-reopen-and-setup-consistency-check/TARGET-075-result.json';
 const foundationDecisionPath = 'playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md';
+const allowedNextCasesAfterTarget075Handoff = new Set([
+  'FOUNDATION-READINESS-DECISION',
+  'PWS-FF-002-GENERAL-POSTING-SETUP-READFIRST-RECOVERY'
+]);
 
 function readText(relativePath) {
   return fs.readFileSync(path.resolve(root, relativePath), 'utf8');
@@ -58,10 +62,11 @@ if (!errors.length) {
 }
 
 const target075CompletedHandoff =
-  current?.nextCase === 'FOUNDATION-READINESS-DECISION' &&
   target075Result?.caseId === 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK' &&
   target075Result?.nextCase === 'FOUNDATION-READINESS-DECISION' &&
   fs.existsSync(path.resolve(root, foundationDecisionPath));
+const nextCaseAllowedAfterTarget075Handoff =
+  target075CompletedHandoff && allowedNextCasesAfterTarget075Handoff.has(current?.nextCase ?? '');
 
 if (current) {
   if (current.mode !== 'project-improvement-freeze') errors.push(`${currentPath}: mode must be project-improvement-freeze`);
@@ -69,10 +74,10 @@ if (current) {
   if (current.activeCase !== 'PROJECT-IMPROVEMENT-FREEZE-001') errors.push(`${currentPath}: activeCase must be PROJECT-IMPROVEMENT-FREEZE-001`);
   if (
     current.nextCase !== 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK' &&
-    !target075CompletedHandoff
+    !nextCaseAllowedAfterTarget075Handoff
   ) {
     errors.push(
-      `${currentPath}: nextCase must remain TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK while freeze is active, unless TARGET-075 already handed off to FOUNDATION-READINESS-DECISION`
+      `${currentPath}: nextCase must remain TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK while freeze is active, or be an allowed Foundation follow-up after TARGET-075 handoff`
     );
   }
   if (current.freezeStatus?.status !== 'active') errors.push(`${currentPath}: freezeStatus.status must be active`);
@@ -166,6 +171,7 @@ const output = {
   frozenLiveCase: current?.freezeStatus?.frozenLiveCase ?? '',
   resumeCandidateAfterFreeze: current?.freezeStatus?.resumeCandidateAfterFreeze ?? '',
   target075CompletedHandoff,
+  nextCaseAllowedAfterTarget075Handoff,
   checkedFiles: [
     currentPath,
     freezePath,

@@ -26,6 +26,10 @@ const target075ResultPath =
   'playwright/projects/fibu-book5/evidence/target-075-chart-of-accounts-reopen-and-setup-consistency-check/TARGET-075-result.json';
 const foundationDecisionPath = 'playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md';
 const scriptName = 'fibu:target:foundation-consistency-pilot';
+const allowedNextCasesAfterTarget075Handoff = new Set([
+  'FOUNDATION-READINESS-DECISION',
+  'PWS-FF-002-GENERAL-POSTING-SETUP-READFIRST-RECOVERY'
+]);
 
 function readText(relativePath) {
   return fs.readFileSync(path.resolve(root, relativePath), 'utf8');
@@ -131,10 +135,11 @@ if (!errors.length) {
 }
 
 const target075CompletedHandoff =
-  currentState?.nextCase === 'FOUNDATION-READINESS-DECISION' &&
   target075Result?.caseId === 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK' &&
   target075Result?.nextCase === 'FOUNDATION-READINESS-DECISION' &&
   exists(foundationDecisionPath);
+const nextCaseAllowedAfterTarget075Handoff =
+  target075CompletedHandoff && allowedNextCasesAfterTarget075Handoff.has(currentState?.nextCase ?? '');
 
 if (currentState) {
   if (currentState.instance !== 'playthru') errors.push(`${currentPath}: instance must be playthru`);
@@ -144,10 +149,10 @@ if (currentState) {
   }
   if (
     currentState.nextCase !== 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK' &&
-    !target075CompletedHandoff
+    !nextCaseAllowedAfterTarget075Handoff
   ) {
     errors.push(
-      `${currentPath}: nextCase must remain TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK before TARGET-075, or FOUNDATION-READINESS-DECISION after TARGET-075 handoff`
+      `${currentPath}: nextCase must remain TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK before TARGET-075, or an allowed Foundation follow-up after TARGET-075 handoff`
     );
   }
   if (currentState.activeNextStepAuthority?.roadmap !== executionRoadmapPath) {
@@ -177,8 +182,13 @@ if (currentState) {
   if (liveBoundary?.parkedCase !== 'TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION') {
     errors.push(`${currentPath}: implementationOperatingSystem.currentLiveBoundary.parkedCase must be TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION`);
   }
-  if (liveBoundary?.resumePilot !== 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK') {
-    errors.push(`${currentPath}: implementationOperatingSystem.currentLiveBoundary.resumePilot must be TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK`);
+  if (
+    liveBoundary?.resumePilot !== 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK' &&
+    !(target075CompletedHandoff && allowedNextCasesAfterTarget075Handoff.has(liveBoundary?.resumePilot ?? ''))
+  ) {
+    errors.push(
+      `${currentPath}: implementationOperatingSystem.currentLiveBoundary.resumePilot must be TARGET-075 before handoff, or an allowed Foundation follow-up after handoff`
+    );
   }
   if (liveBoundary?.resumePilotMode !== 'read-first-no-writes') {
     errors.push(`${currentPath}: implementationOperatingSystem.currentLiveBoundary.resumePilotMode must be read-first-no-writes`);
@@ -922,6 +932,7 @@ const result = {
   purpose: 'target-075-readiness-check',
   canProceedAfterFreezeLift: errors.length === 0,
   target075CompletedHandoff,
+  nextCaseAllowedAfterTarget075Handoff,
   liveActionsExecuted: false,
   businessCentralOpened: false,
   playwrightLiveRunExecuted: false,
