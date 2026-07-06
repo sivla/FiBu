@@ -310,8 +310,18 @@ if (exists(foundationDecisionScriptPath)) {
     'foundationReadinessInput',
     'authGate',
     'executionGate',
+    'liveActionsExecuted',
+    'businessCentralOpened',
+    'playwrightLiveRunExecuted',
+    'actionsTaken',
+    'actionsNotTaken',
     'masterDataReadFirstHandoff',
+    'flags',
+    'noWrite',
+    'noSetupChange',
+    'noMasterDataChange',
     'setupChanged',
+    'setupChangeAttempted',
     'masterDataChanged',
     'previewPosting',
     'posted',
@@ -570,6 +580,11 @@ if (spec) {
     'authTarget',
     'targetUrlPassedToSpec',
     'targetUrlPrinted',
+    'liveActionsExecuted',
+    'businessCentralOpened',
+    'playwrightLiveRunExecuted',
+    'actionsTaken',
+    'actionsNotTaken',
     'foundationReadinessInput',
     'decisionStatus',
     'chartOfAccounts',
@@ -583,6 +598,20 @@ if (spec) {
   ]) {
     if (!spec.includes(requiredResultSignal)) {
       errors.push(`${specPath}: result must include ${requiredResultSignal} for FOUNDATION-READINESS-DECISION.md handoff`);
+    }
+  }
+  for (const requiredFlag of [
+    'noWrite',
+    'noPost',
+    'noPreview',
+    'noDraft',
+    'noSetupChange',
+    'noMasterDataChange',
+    'noCompanySwitch',
+    'noApiShortcut'
+  ]) {
+    if (!spec.includes(requiredFlag)) {
+      errors.push(`${specPath}: result flags must include ${requiredFlag} for FOUNDATION-READINESS-DECISION.md handoff`);
     }
   }
 }
@@ -694,6 +723,7 @@ if (target075Result) {
   }
   for (const [flag, expected] of Object.entries({
     setupChanged: false,
+    setupChangeAttempted: false,
     masterDataChanged: false,
     draftCreated: false,
     previewPosting: false,
@@ -703,6 +733,39 @@ if (target075Result) {
   })) {
     if (target075Result[flag] !== expected) {
       errors.push(`${target075ResultPath}: ${flag} must remain ${expected} for read-first Foundation handoff`);
+    }
+  }
+  for (const [field, expected] of Object.entries({
+    source: 'playwright-readonly-foundation-consistency-pilot',
+    liveActionsExecuted: true,
+    businessCentralOpened: true,
+    playwrightLiveRunExecuted: true
+  })) {
+    if (target075Result[field] !== expected) {
+      errors.push(`${target075ResultPath}: ${field} must be ${expected} for Foundation Readiness Decision handoff`);
+    }
+  }
+  if (!target075Result.page) errors.push(`${target075ResultPath}: page is required for Foundation Readiness Decision handoff`);
+  if (!target075Result.url) errors.push(`${target075ResultPath}: url is required for Foundation Readiness Decision handoff`);
+  if (!Array.isArray(target075Result.actionsTaken) || target075Result.actionsTaken.length === 0) {
+    errors.push(`${target075ResultPath}: actionsTaken must be a non-empty array`);
+  }
+  if (!Array.isArray(target075Result.actionsNotTaken) || target075Result.actionsNotTaken.length === 0) {
+    errors.push(`${target075ResultPath}: actionsNotTaken must be a non-empty array`);
+  }
+  const flags = target075Result.flags ?? {};
+  for (const flag of [
+    'noWrite',
+    'noPost',
+    'noPreview',
+    'noDraft',
+    'noSetupChange',
+    'noMasterDataChange',
+    'noCompanySwitch',
+    'noApiShortcut'
+  ]) {
+    if (flags[flag] !== true) {
+      errors.push(`${target075ResultPath}: flags.${flag} must be true`);
     }
   }
   if (target075Result.nextCase !== 'FOUNDATION-READINESS-DECISION') {
