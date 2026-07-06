@@ -276,7 +276,8 @@ exitWith(
       TARGET_075_AUTH_WARN_EXPIRES_IN_HOURS: String(authStatus.warnExpiresInHours ?? ''),
       TARGET_075_AUTH_WARNINGS: JSON.stringify(authStatus.warnings ?? []),
       TARGET_075_AUTH_DOCTOR_DECISION: String(authDoctorStatus.decision ?? ''),
-      TARGET_075_AUTH_DOCTOR_LIVE_GATE: JSON.stringify(authDoctorStatus.liveGate ?? null)
+      TARGET_075_AUTH_DOCTOR_LIVE_GATE: JSON.stringify(authDoctorStatus.liveGate ?? null),
+      TARGET_075_AUTH_TARGET: JSON.stringify(authDoctorStatus.authTarget ?? null)
     }
   })
 );

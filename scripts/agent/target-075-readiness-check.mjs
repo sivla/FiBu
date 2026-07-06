@@ -251,7 +251,8 @@ if (guardedRunner) {
     'TARGET_075_AUTH_WARN_EXPIRES_IN_HOURS',
     'TARGET_075_AUTH_WARNINGS',
     'TARGET_075_AUTH_DOCTOR_DECISION',
-    'TARGET_075_AUTH_DOCTOR_LIVE_GATE'
+    'TARGET_075_AUTH_DOCTOR_LIVE_GATE',
+    'TARGET_075_AUTH_TARGET'
   ]) {
     if (!guardedRunner.includes(envName)) {
       errors.push(`${guardedRunnerPath}: guarded runner must pass ${envName} into TARGET-075 evidence`);
@@ -347,6 +348,7 @@ if (spec) {
     'TARGET_075_AUTH_WARNINGS',
     'doctorDecision',
     'doctorLiveGate',
+    'authTarget',
     'foundationReadinessInput',
     'decisionStatus',
     'chartOfAccounts',
@@ -387,6 +389,23 @@ if (target075Result) {
     }
     if (!('doctorLiveGate' in target075Result.authGate)) {
       errors.push(`${target075ResultPath}: authGate.doctorLiveGate must record auth:bc:doctor liveGate`);
+    }
+    const authTarget = target075Result.authGate.authTarget;
+    if (!authTarget || typeof authTarget !== 'object') {
+      errors.push(`${target075ResultPath}: authGate.authTarget must record the redacted target URL diagnosis`);
+    } else {
+      if (authTarget.targetEnvironment !== 'playthru') {
+        errors.push(`${target075ResultPath}: authGate.authTarget.targetEnvironment must be playthru`);
+      }
+      if (authTarget.targetCompany !== 'UNIVERSAARL-DE') {
+        errors.push(`${target075ResultPath}: authGate.authTarget.targetCompany must be UNIVERSAARL-DE`);
+      }
+      if (authTarget.targetMatchesState !== true) {
+        errors.push(`${target075ResultPath}: authGate.authTarget.targetMatchesState must be true`);
+      }
+      if (authTarget.sourceDiffersFromTarget === true && authTarget.targetBuiltFromCurrentState !== true) {
+        errors.push(`${target075ResultPath}: authGate.authTarget must prove the target URL was rebuilt from current state when source differs`);
+      }
     }
   }
   if (!target075Result.executionGate) {
