@@ -8,6 +8,8 @@ const scriptPath = path.resolve(root, 'scripts/agent/foundation-readiness-decisi
 const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'foundation-readiness-decision-'));
 const inputPath = path.join(tempDir, 'TARGET-075-result.json');
 const outputPath = path.join(tempDir, 'FOUNDATION-READINESS-DECISION.md');
+const blockedInputPath = path.join(tempDir, 'TARGET-075-blocked-result.json');
+const blockedOutputPath = path.join(tempDir, 'FOUNDATION-READINESS-BLOCKED.md');
 
 const fixture = {
   schemaVersion: 1,
@@ -62,6 +64,34 @@ const fixture = {
 };
 
 fs.writeFileSync(inputPath, `${JSON.stringify(fixture, null, 2)}\n`, 'utf8');
+fs.writeFileSync(
+  blockedInputPath,
+  `${JSON.stringify(
+    {
+      ...fixture,
+      resultStatus: 'partially-completed',
+      blockedBy: ['VAT Posting Setup was rejected in compact evidence.'],
+      warnings: ['Edit action text was visible but not clicked.'],
+      foundationReadinessInput: {
+        ...fixture.foundationReadinessInput,
+        decisionStatus: 'needs-local-review-before-foundation-readiness-decision',
+        chartOfAccounts: {
+          ...fixture.foundationReadinessInput.chartOfAccounts,
+          starterAccountsVisible: ['1200', '3300'],
+          starterAccountsMissingOrUnclear: ['3806', '4400', '5400']
+        },
+        setupContext: {
+          ...fixture.foundationReadinessInput.setupContext,
+          generalPostingSetup: 'rejected',
+          vatPostingSetup: 'blocked'
+        }
+      }
+    },
+    null,
+    2
+  )}\n`,
+  'utf8'
+);
 
 function run(args) {
   const result = spawnSync(process.execPath, [scriptPath, ...args], {
@@ -93,6 +123,12 @@ if (write.status !== 0) errors.push(`write mode exited ${write.status}: ${write.
 if (write.parsed?.wroteFile !== true) errors.push('write mode should report wroteFile=true.');
 if (!fs.existsSync(outputPath)) errors.push('write mode did not create FOUNDATION-READINESS-DECISION.md.');
 
+const blockedWrite = run([`--input=${blockedInputPath}`, `--output=${blockedOutputPath}`, '--write']);
+
+if (blockedWrite.status !== 0) errors.push(`blocked write mode exited ${blockedWrite.status}: ${blockedWrite.stderr || blockedWrite.stdout}`);
+if (blockedWrite.parsed?.wroteFile !== true) errors.push('blocked write mode should still write a parked decision file.');
+if (!fs.existsSync(blockedOutputPath)) errors.push('blocked write mode did not create a decision output.');
+
 const output = fs.existsSync(outputPath) ? fs.readFileSync(outputPath, 'utf8') : '';
 for (const phrase of [
   '# FOUNDATION-READINESS-DECISION',
@@ -102,6 +138,19 @@ for (const phrase of [
   'Master Data kann als naechster Block vorbereitet werden'
 ]) {
   if (!output.includes(phrase)) errors.push(`output is missing phrase: ${phrase}`);
+}
+
+const blockedOutput = fs.existsSync(blockedOutputPath) ? fs.readFileSync(blockedOutputPath, 'utf8') : '';
+for (const phrase of [
+  'Master Data bleibt geparkt',
+  'Blocker: VAT Posting Setup was rejected in compact evidence.',
+  'Fehlend oder unklar: 3806, 4400, 5400',
+  'Foundation-Grenzen zuerst klaeren'
+]) {
+  if (!blockedOutput.includes(phrase)) errors.push(`blocked output is missing phrase: ${phrase}`);
+}
+if (/Master Data kann als naechster Block vorbereitet werden/.test(blockedOutput)) {
+  errors.push('blocked output must not allow Master Data preparation.');
 }
 
 fs.rmSync(tempDir, { recursive: true, force: true });
