@@ -37,6 +37,22 @@ Consultant-Korrektur nach TARGET-073B:
 - Page Inspection ist technische Wahrheit ueber Page und Tabelle, aber kein Buch- oder Schreibbeweis. Nach Page Inspection muss die Hauptoberflaeche erneut sichtbar sein, bevor der Screenshot als Page-Proof zaehlt.
 - Jeder weitere Blocker muss eine Lernnotiz erzeugen: was wurde falsch gelesen, welche neue Regel gilt, und welcher naechste Versuch ist wirklich anders.
 
+## Source-backed Route Decision fuer VAT und Posting Setup
+
+Microsoft Learn stuetzt die fachliche Struktur, aber nicht den konkreten Universaarl-Zustand: Posting Groups verbinden Buchungslogik mit Sachkonten, VAT Posting Setup kombiniert MwSt.-Geschaeftsgruppe, MwSt.-Produktgruppe, Satz, Berechnungsart und Konten. Microsoft beschreibt ausserdem Konfigurationspakete, Excel-Import und RapidStart als Standardwege, um strukturierte Daten in Business Central zu importieren und anzuwenden.
+
+Entscheidung fuer den naechsten Schritt:
+
+| Route | Bewertung fuer Universaarl | Entscheidung |
+| --- | --- | --- |
+| Manuelle UI auf Page 472 | Fachlich gut fuer Schulung und Feldverstaendnis, aber TARGET-071/TARGET-073/TARGET-073B beweisen keinen sicheren zeilen-/spaltengebundenen Editor. | Kein weiterer Write-Versuch ohne neue, sichtbare Editor-Hypothese. |
+| Konfigurationspaket / Excel-assisted Import | Standardnahe Projekt-Route fuer strukturierte Setupdaten; passt besser zu einer grossen Firma, wenn Tabellen/Felder, Validierung, Apply, Reopen-Proof und Cleanup/Keep-Strategie dokumentiert sind. | Naechster Kandidat fuer eine read-first Route Discovery, noch kein Apply/Import. |
+| Assisted Setup | Produktstandard fuer Grundsetup, aber aktuell kein Beweis, dass der Assistent die konkrete Universaarl-`INLAND`/`VAT19`-Matrix sauber erzeugt. | Nur als Discovery, kein Finish ohne eigenen Case. |
+| API/AL | Technisch moeglich fuer Automatisierung, aber fuer Buch, Schulung und Erstsetup zu indirekt, solange UI/Package-Route nicht verstanden ist. | Geparkt, nur mit explizitem Gate. |
+| Bewusst parken | Fachlich vertretbar, wenn Master Data noch nicht starten soll und Foundation weiter unvollstaendig bleibt. | Aktueller Sicherheitszustand: VAT-/Posting-Writes bleiben geparkt. |
+
+Naechster konkreter Projektfortschritt ist daher kein Page-472-Write, sondern eine schmale, lesende Discovery fuer Konfigurationspakete/Setup-Import als moegliche Foundation-Route. Diese Discovery darf nur Page, Tabellen-/Feldkontext, Import-/Apply-Risiken, Validierung und Screenshot-QA erfassen. Sie darf kein Paket anwenden, keine Setupdaten schreiben und keine Master Data freigeben.
+
 ## No-Write-Grenze aus TARGET-075
 
 - Setup geaendert: nein
@@ -173,7 +189,7 @@ Erlaubte Anschlussklassifikationen:
 - PWS-FF-002 nicht als akzeptierten Buchungsmatrix-Nachweis verwenden; der Screenshot zeigt Rollencenter statt Page 314.
 - PWS-FF-002B nicht wiederholen, solange keine neue Route-Hypothese vorliegt; direkte URL und scoped Search-Click sind als aktueller Weg blockiert.
 - TARGET-073 und TARGET-073B nicht als as-is Retry wiederholen; TARGET-073B ist konsumierte blockierte No-Write-Evidence.
-- Vor einem neuen VAT-/Posting-Setup-Schreibversuch zuerst eine source-backed Route Decision erstellen: Standard-UI nur bei sicherem Editor, sonst Konfigurationspaket/Import oder bewusstes Parken begruenden.
+- Vor einem neuen VAT-/Posting-Setup-Schreibversuch zuerst die Konfigurationspaket-/Import-Route read-only untersuchen oder eine andere standardnahe Route mit Quelle begruenden.
 - Starterkonten erneut sichtbar pruefen, wenn der Kontenplan Setup- oder Buchaussagen tragen soll.
 - Master Data, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt, bis die Foundation-Grenzen geklaert sind.
 - Classify master-data readiness only after chart/setup context is accepted.
