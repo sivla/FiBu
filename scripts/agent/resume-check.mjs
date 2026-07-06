@@ -172,6 +172,7 @@ const localResumeReady =
 const freezeActive = freezeStatus?.freezeActive === true;
 const liveGateAllowsNow = authDoctor?.canRunBusinessCentralWorkflows === true;
 const liveGateBlockedBy = authDoctor?.liveGate?.blockedBy ?? [];
+const requiresLiveGateLift = liveGateBlockedBy.length > 0 || (localResumeReady && !liveGateAllowsNow);
 
 const warnings = [];
 if (qualityRiskIds.includes('narrow-tsconfig')) {
@@ -221,7 +222,7 @@ const output = {
   canRunNow: localResumeReady && liveGateAllowsNow,
   freezeActive,
   requiresFreezeLift: freezeActive,
-  requiresLiveGateLift: localResumeReady && !liveGateAllowsNow,
+  requiresLiveGateLift,
   liveGateBlockedBy,
   liveActionsExecuted: false,
   businessCentralOpened: false,

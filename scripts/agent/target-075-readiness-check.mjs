@@ -427,6 +427,7 @@ if (resumeCheck) {
     'foundation-decision-check',
     'masterdata-readfirst-check',
     'masterDataReadFirstCheck',
+    'const requiresLiveGateLift = liveGateBlockedBy.length > 0',
     'canResumeAfterFreezeLift',
     'canRunNow',
     'Do not run TARGET-075 until explicit freeze/live-gate lift'
