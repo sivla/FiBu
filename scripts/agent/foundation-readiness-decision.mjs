@@ -230,6 +230,7 @@ function renderDecision(result) {
   const screenshots = asArray(result.screenshots);
   const pages = asArray(result.pages);
   const authTarget = result.authGate?.authTarget ?? {};
+  const authGate = result.authGate ?? {};
   const foundationPageEvidenceObserved = pages.length >= 5 && pages.every((pageEntry) => pageEntry.status === 'observed');
   const foundationSetupPagesObserved = [
     setup.generalBusinessPostingGroups,
@@ -265,6 +266,8 @@ function renderDecision(result) {
     `- Auth-Ziel: ${authTarget.targetEnvironment ?? 'unbekannt'} / ${authTarget.targetCompany ?? 'unbekannt'}`,
     `- Auth-Ziel aus aktuellem State aufgebaut: ${statusLine(authTarget.targetBuiltFromCurrentState)}`,
     `- Auth-Ziel passt zum State: ${statusLine(authTarget.targetMatchesState)}`,
+    `- Guard-Ziel-URL an TARGET-075 uebergeben: ${statusLine(authGate.targetUrlPassedToSpec)}`,
+    `- Guard-Ziel-URL im Result ausgegeben: ${statusLine(authGate.targetUrlPrinted)}`,
     '',
     '## Entscheidung',
     '',

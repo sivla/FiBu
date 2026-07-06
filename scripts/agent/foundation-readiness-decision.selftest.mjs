@@ -413,6 +413,8 @@ for (const phrase of [
   'Company: UNIVERSAARL-DE',
   'Auth-Ziel: playthru / UNIVERSAARL-DE',
   'Auth-Ziel passt zum State: ja',
+  'Guard-Ziel-URL an TARGET-075 uebergeben: ja',
+  'Guard-Ziel-URL im Result ausgegeben: nein',
   'No-Write-Grenze aus TARGET-075',
   'Master Data kann als naechster Block vorbereitet werden',
   'Master-Data-Read-first-Handoff',
