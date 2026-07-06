@@ -59,6 +59,13 @@ requireString(current, 'company', files.current, errors);
 requireString(current, 'activeArea', files.current, errors);
 requireString(current, 'activeCase', files.current, errors);
 requireString(current, 'active_case_file', files.current, errors);
+if (typeof current.activeNextStepAuthority !== 'object' || current.activeNextStepAuthority === null) {
+  errors.push(`${files.current}.activeNextStepAuthority must define the active next-step precedence`);
+} else if (current.activeNextStepAuthority.ignoreHistoricalResultNextSteps !== true) {
+  errors.push(
+    `${files.current}.activeNextStepAuthority.ignoreHistoricalResultNextSteps must be true so historical result blocks cannot override active next steps`,
+  );
+}
 if (current.activeCaseFile !== undefined && current.activeCaseFile !== current.active_case_file) {
   errors.push(
     `current.activeCaseFile must mirror current.active_case_file when present: ${current.activeCaseFile} vs ${current.active_case_file}`,
