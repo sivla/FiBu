@@ -1,48 +1,55 @@
-# Übergabe für neue Codex-Accounts
+# Uebergabe fuer neue Codex-Accounts
 
-## Zuerst Lesen
+## Zuerst lesen
 
-Neue Agents lesen zuerst:
+Neue Agents, Projektleiter, Business-Central-Consultants und Solution Architects starten mit diesen Dateien:
 
 ```text
-playwright/projects/fibu-book5/CURRENT-STATE.md
+README.md
+.agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md
+.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md
+.agent/project-template/PROJECT-DASHBOARD-DRAFT.md
+.agent/state/current.json
 ```
 
-Diese Datei enthält den aktuellen fachlichen Stand, harte Projektentscheidungen, offene Grenzen und den nächsten sinnvollen Schritt. Ohne diese Datei besteht die Gefahr, alte Chatlogik zu wiederholen oder CRONUS-Laborbefunde als deutsche Zielnachweise zu missverstehen.
+Diese Dateien enthalten die aktive Projektwahrheit, die erlaubte naechste Aktion, die Freeze-/Resume-Grenzen und die Legacy-Grenze. Alte Chatverlaeufe, alte `latest*`-State-Bloecke und historische Playwright-Tests duerfen diese aktive Fuehrung nicht ueberstimmen.
 
-Dieses Repository soll von anderen Codex-Accounts weiterbearbeitet werden können. Der Fokus liegt auf Business-Central-Playwright-Automation, Business-Central-Lernen und Buch-/Projektdokumentation.
+## Aktive Zielwelt
 
-## Ziel des Repositories
+- Business-Central-Instanz: `playthru`
+- Zielcompany: `UNIVERSAARL-DE`
+- Referenzfirma: Universaarl GmbH
+- Fuehrende Projektsprache: Deutsch
+- Geparkter Live-Case: `TARGET-073`
+- Erster Resume-Pilot: `TARGET-075`, read-first und no-write
 
-Das Repository enthält ein Markdown-Buchprojekt und eine Playwright-Automation, mit der Business-Central-Prozesse getestet, Testdaten erzeugt und Screenshots für bebilderte Klickanleitungen erstellt werden.
+Legacy-Grenze:
 
-Das übergeordnete Ziel ist, Business Central durch Nutzung systematisch zu lernen. Das Buch liefert die fachliche Route. Playwright prüft diese Route in einer echten BC-Umgebung. Was Business Central zusätzlich sichtbar macht, wird als Lern- und Recherchematerial behandelt.
+- `RM-DEMO`, `MCP_1_20260210`, CRONUS, Rhein-Main und RM-* sind keine aktive Projektwahrheit.
+- Historische Evidence bleibt als Trace erhalten, darf aber nicht als Universaarl-Beweis oder naechster Arbeitspfad genutzt werden.
+- Wiederverwendbare Muster aus Legacy muessen neutralisiert oder fuer Universaarl neu aufgebaut werden.
 
-Der Projektauftrag ist dreifach:
+## Aktueller Arbeitsmodus
 
-1. Das Buch lernen: Jede Anleitung wird als fachliche These behandelt und in Business Central nachgespielt.
-2. Business Central lernen: Jede sichtbare Funktion, jedes relevante Feld und jeder Fehlerzustand wird fachlich eingeordnet.
-3. Playwright lernen: Das Repo entwickelt robuste Muster, um BC zu bedienen, zu testen, Screenshots zu erzeugen und Evidence nachvollziehbar abzulegen.
+Der Improvement Freeze ist aktiv, bis die Resume-Gates bewusst geprueft und der Live-Resume freigegeben sind. Business Central live, Playwright-Live-Cases, Setup, Stammdaten, Drafts, Preview Posting, Posting, Payment, Cleanup und Company-Wechsel bleiben waehrend des Freeze gesperrt.
 
-Eine Anleitung gilt erst als belastbar, wenn sie funktioniert, bebildert ist, ihre sichtbaren BC-Elemente erklärt und ihre Voraussetzungen dokumentiert. Wenn eine Anleitung nicht funktioniert, wird nicht nur der Test angepasst: Ursache, Setup-Lücke, Workaround und Buchkorrektur werden dokumentiert.
+Der naechste fachlich sinnvolle Live-Pilot nach Freeze-Lift ist:
 
-## Wichtigste Dateien
+```text
+TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK
+```
 
-| Datei/Ordner | Bedeutung |
-|---|---|
-| `FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md` | aktuelles Buch 5 |
-| `playwright/core/` | wiederverwendbare Business-Central-Helfer |
-| `playwright/projects/fibu-book5/` | aktuelle Tests, Testdaten und Projektdoku für Buch 5 |
-| `playwright/projects/fibu-book5/LAB-FIT-STATUS.md` | blockuebergreifende Prozesslandkarte fuer Foundation, Stammdaten, Posting, Tax/VAT, O2C und weitere Buchbereiche |
-| `playwright/BC-LEARNING-MODEL.md` | Lernmodell für Business Central durch Playwright-Nutzung |
-| `playwright/FINDINGS.md` | offene Fundstellen aus Screenshots und Tests |
-| `playwright/projects/fibu-book5/UI-INVENTORY.md` | Nachweis der gesehenen, geklickten und verstandenen BC-Funktionen |
-| `playwright/PROJECTS.md` | Register für mehrere Playwright-Projekte |
-| `playwright/LEARNINGS.md` | projektübergreifende BC-Playwright-Erfahrungen |
-| `playwright/ENVIRONMENTS.md` | Umgang mit verschiedenen BC-Umgebungen |
-| `.env.example` | Vorlage für lokale Umgebungsvariablen |
+TARGET-075 darf nur lesen:
 
-## Erster Start auf einem neuen Rechner oder Account
+- `playthru` bestaetigen
+- `UNIVERSAARL-DE` bestaetigen
+- Kontenplan-/Foundation-Kontext oeffnen
+- sichtbare Werte, Screenshots und kompakte Evidence erfassen
+- keine Writes, keine Masterdaten, keine Drafts, kein Preview, kein Posting
+
+## Lokaler Start
+
+Auf einem neuen Rechner:
 
 ```powershell
 npm install
@@ -50,130 +57,57 @@ npx playwright install chromium
 Copy-Item .env.example .env
 ```
 
-Dann `.env` mit der konkreten Business-Central-URL füllen. Bei mehreren Projekten bevorzugt jedes Projekt eigene Prefix-Variablen, zum Beispiel:
+Danach `.env` lokal fuellen. Secrets, Auth-Dateien und echte Kundendaten werden nie committet.
 
-```text
-FIBU_BOOK5_BC_URL=https://businesscentral.dynamics.com/<tenant>/<environment>?company=RM-DEMO
-FIBU_BOOK5_BC_LOCALE=de-DE
-FIBU_BOOK5_BC_TIMEZONE=Europe/Berlin
-```
-
-Danach:
+Vor Live-Arbeit zuerst lokal pruefen:
 
 ```powershell
-npm run auth:bc
-npm run fibu:screenshots:start
-npm run fibu:foundation:company
-npm run fibu:foundation:company-info
+npm run auth:bc:check
+npm run agent:preflight
+npm run agent:resume:check
+npm run agent:freeze:status
+npm run check:encoding
+git diff --check
 ```
 
-## Arbeitsweise
+TARGET-075 wird nicht direkt per `npx playwright test` gestartet, sondern ueber den Guard:
 
-1. Neue BC-Anleitung im Buch identifizieren.
-2. Prüfen, welche Testdaten fehlen.
-3. Testdaten als JSON unter `playwright/projects/<projekt>/testdata/` dokumentieren.
-4. Playwright-Test schreiben, der Daten erzeugt oder prüft.
-5. Screenshots in `playwright/projects/fibu-book5/img/` erzeugen.
-6. Sichtbare, aber unerklärte BC-Funktionen in `playwright/FINDINGS.md` erfassen.
-7. Relevante Fundstellen recherchieren, bevorzugt mit Microsoft Learn, BC-Hilfe und eigenem Gegentest.
-8. Im Buch jeden Screenshot erklären:
-   - Was du im Bild siehst
-   - Warum das fachlich wichtig ist
-   - Feldlogik
-   - Prüfhinweis
-   - Typische Fehler
-   - Evidence Pack
-9. Learnings in `playwright/LEARNINGS.md` ergänzen, wenn etwas BC-spezifisch neu ist.
-10. Buch aktualisieren, wenn eine gefundene Funktion für Prozess, Prüfung, Fehlerdiagnose oder Evidence Pack relevant ist.
+```powershell
+npm run fibu:target:foundation-consistency-pilot -- --check
+npm run fibu:target:foundation-consistency-pilot -- --list
+```
+
+Live-Ausfuehrung nur nach explizitem Freeze-Lift und gueltigem Gate.
+
+## Arbeitsregel
+
+Arbeite in kleinen, pruefbaren Batches:
+
+1. Aktive Wahrheit lesen.
+2. Kleinsten sinnvollen Fortschritt waehlen.
+3. Legacy nicht als aktive Fuehrung nutzen.
+4. Ergebnis als bewiesen, beobachtet, Annahme, blockiert, geparkt, verworfen oder `legacy-purge-source` klassifizieren.
+5. Nur die Steuerdateien aktualisieren, deren Aussage sich wirklich geaendert hat.
+
+Kein neues Framework, keine neue Methodikdatei und keine breite Aufraeumrunde, wenn ein kleiner State-, Guard-, Evidence-, UAT-, Training- oder Buchschritt den naechsten Projektfortschritt besser vorbereitet.
 
 ## Commit-/Push-Regel
 
-Jeder Commit und jeder Push muss eine arbeitsfähige Übergabe garantieren. Vor dem Commit gilt:
+Vor einem Commit:
 
-- `playwright/projects/fibu-book5/CURRENT-STATE.md` ist aktuell.
-- Der nächste sinnvolle Schritt ist konkret benannt.
-- Bekannte fachliche Grenzen, Workarounds und offene Fehler sind dokumentiert.
-- Neue Screenshots, Evidence und Buchänderungen sind miteinander verknüpft.
-- Rohartefakte wie Playwright-Reports, Test-Traces, Auth-State, `.env`, `console-*.log` und `page-*.yml` bleiben uncommitted.
-- `npm run check:encoding` und `git diff --check` laufen ohne Fehler, wenn Textdateien geändert wurden.
-- `git status --short` ist nach dem Push sauber.
+- aktive Zielwelt bleibt `playthru / UNIVERSAARL-DE / Universaarl GmbH`
+- Roadmap, Dashboard und State widersprechen sich nicht
+- alte RM-/CRONUS-/MCP-Pfade fuehren nicht als normaler Einstieg
+- neue Evidence, Screenshots oder Buchtexte haben klaren Zweck
+- Rohartefakte, Reports, Traces, Auth-State, `.env`, Logs und Binaries bleiben uncommitted
+- relevante Checks laufen gruen oder bekannte Grenzen sind klar dokumentiert
 
-Wenn ein Commit diese Punkte nicht erfüllt, ist er noch kein vollständiger Projektstand.
-
-## Wichtige Projektentscheidungen
-
-- Die meisten Projekte werden Business-Central-Projekte sein.
-- `playwright/core` bleibt projektübergreifend.
-- Fachliche Tests liegen unter `playwright/projects/<projekt>/`.
-- Jedes Projekt kann eine eigene Business-Central-Umgebung haben.
-- Projektspezifische Umgebungen werden über Prefix-Variablen wie `FIBU_BOOK5_BC_URL` gesteuert.
-- Neue Projekte werden in `playwright/PROJECTS.md` registriert.
-- Ein Projekt ist fachlich definiert; die konkrete BC-Umgebung kann später wechseln.
-- Übergabefähigkeit ist ein Ziel: Wissen gehört in Markdown-Dateien, nicht nur in Chatverläufe.
-- Das Projekt lernt Business Central anhand des Buchs und anhand eigener Tests.
-- Ziel ist, sichtbare Business-Central-Funktionen schrittweise zu kennen und fachlich einzuordnen.
-- Eine Funktion gilt erst als verstanden, wenn sie praktisch gesehen, geklickt oder bewusst nicht ausgeführt, geprüft und dokumentiert wurde.
-- Unbekannte oder im Buch fehlende Funktionen werden als Fundstellen dokumentiert und nachrecherchiert.
-- Relevante Erkenntnisse werden ins Buch zurückgespielt.
-- Tests dürfen englische BC-Suchbegriffe verwenden.
-- Buchtexte und finale Anleitungen bleiben deutsch.
-- Finale Screenshots sollen später in möglichst deutscher Oberfläche neu erzeugt werden.
-- Lokale Secrets, `.env` und `playwright/.auth/` werden nie committet.
-
-## Aktueller Stand `fibu-book5`
-
-| Fall | Status |
-|---|---|
-| `UAT-START-001` | läuft |
-| `FOUNDATION-001` Company `RM-DEMO` aus CRONUS | läuft |
-| `FOUNDATION-002` Unternehmensdaten setzen | läuft |
-| BC-Seiten-Smoke-Test | läuft |
-
-Aktuelle Trainingscompany:
-
-```text
-RM-DEMO
-```
-
-Aktuelle Quelle:
-
-```text
-CRONUS USA, Inc.
-```
-
-## Wichtige Warnung
-
-Business Central ist UI-seitig nicht vollständig stabil wie eine klassische Web-App. Viele Inhalte liegen in Frames, manche Controls haben unzuverlässige ARIA-Rollen, und Einführungs-Popups stören Screenshots. Deshalb immer nach einem grünen Test mindestens einen Screenshot visuell prüfen.
-
-## Encoding-Warnung
-
-Dieses Repository nutzt UTF-8 fuer Markdown, JSON, TypeScript und Evidence-Textdateien.
-
-Vor groesseren Doku-Aenderungen:
-
-```powershell
-npm run check:encoding
-```
-
-Wenn PowerShell deutsche Umlaute sichtbar falsch ausgibt, zuerst die aktuelle Konsole auf UTF-8 stellen:
-
-```powershell
-. .\scripts\Use-Utf8Console.ps1
-```
-
-Unter macOS/Linux:
-
-```bash
-. ./scripts/use-utf8-console.sh
-```
-
-Nicht blind "Mojibake reparieren", bevor geprueft wurde, ob die Datei selbst oder nur die Konsolenausgabe betroffen ist.
-
-## Plattformregel
+## Plattform und Encoding
 
 Das Projekt wird fuer Windows und macOS gepflegt.
 
-- Keine neuen projektrelevanten Skripte nur als Windows-PowerShell bereitstellen, wenn eine Node- oder Shell-Variante sinnvoll moeglich ist.
-- `package.json`-Skripte sollen ohne Windows-spezifische Pfadtrenner funktionieren.
-- Lokale Auth-Dateien und `.env` werden pro Rechner neu erzeugt.
-- Playwright-Browser muessen pro Rechner installiert werden: `npx playwright install chromium`.
+- Node/npm-Skripte plattformneutral halten.
+- Pfade im Code ueber Node-`path` oder Playwright-Projektpfade bauen.
+- Textdateien als UTF-8 pflegen.
+- Playwright-Browser pro Rechner installieren: `npx playwright install chromium`.
+- Auth und `.env` pro Rechner lokal erzeugen.
