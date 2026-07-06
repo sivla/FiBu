@@ -1,51 +1,51 @@
 # Universaarl W1 Foundation Readiness Gate
 
-Status: `prep-done`
+Status: `active-reference-after-company-creation`
 
 Instanz: `playthru`
 
-Zielcompany: `UNIVERSAARL-DE` (`planned-not-yet-created`)
+Zielcompany: `UNIVERSAARL-DE` (`exists-current-target`)
 
-Dieser Gate-Plan gilt fuer die ersten wirksamen Schritte nach der Rechtefreigabe. Er ersetzt keine Business-Central-Evidence. Er verhindert, dass nach der Company-Anlage zu schnell Setup, Stammdaten oder Belege angefasst werden.
+Dieser Gate-Plan gilt fuer die ersten Foundation-Schritte in der bestehenden Zielcompany. Er ersetzt keine Business-Central-Evidence. Er verhindert, dass nach dem Freeze zu schnell Setup, Stammdaten oder Belege angefasst werden.
 
 ## Ausgangspunkt
 
-`TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE` bleibt geparkt, bis ausreichende Rechte fuer Company Creation bestaetigt sind.
+`UNIVERSAARL-DE` existiert bereits. Der alte Company-Creation-Fokus ist nicht mehr der aktive naechste Pfad.
 
-Nach der Rechtefreigabe ist die richtige Reihenfolge:
+Der richtige Wiedereinstieg nach Freeze-/Live-Gate-Freigabe ist:
 
-1. `UNIVERSAARL-DE` ueber die Mandantenliste und `Neues Unternehmen erstellen` anlegen oder sauber blockieren.
-2. Sichtbar pruefen, dass `UNIVERSAARL-DE` in der Mandantenliste steht.
-3. Company Context pruefen.
-4. Company Information oeffnen und pflegen.
-5. Datenbasis pruefen: keine unbemerkten Demo-/CRONUS-Daten als Zielbasis.
-6. Foundation Readiness fuer Nummernserien, Buchungsgruppen, USt und Dimensionen vorbereiten.
-7. Erst danach Stammdaten und erste Prozessbelege anlegen.
+1. `TARGET-075` als read-first/no-write Pilot ausfuehren.
+2. Instanz `playthru` und Company `UNIVERSAARL-DE` pruefen.
+3. Kontenplan und Foundation-Kontext nur lesend wieder oeffnen.
+4. Screenshot-QA und Result JSON erzeugen.
+5. `FOUNDATION-READINESS-DECISION.md` aus TARGET-075 ableiten.
+6. Erst danach entscheiden, welche Stammdaten-, Setup- oder Prozessroute fachlich sinnvoll ist.
 
 ## Gate 0 - Rechte und Instanz
 
 | Pruefung | Erwartung | Stop wenn |
 | --- | --- | --- |
 | Instanz | URL und Kontext zeigen `playthru`. | andere Instanz, Produktivumgebung oder unklare URL |
-| Rechte | Nutzer hat SUPER oder ausreichende Company-Creation-Rechte bestaetigt. | Rechte nicht bestaetigt |
-| Zielcompany | `UNIVERSAARL-DE` ist geplant, aber vor dem Lauf noch nicht als eigene Company belegt. | Company existiert, aber Herkunft/Datenbasis unklar |
-| Route | Mandantenliste -> Pfeil neben `Neu` -> `Neues Unternehmen erstellen`. | Hauptbutton `Neu` erzeugt falsche Listenzeile oder falschen Zielzustand |
+| Rechte | Gespeicherter Auth ist nutzbar und der Live-Gate ist ausdruecklich freigegeben. | Auth unklar, Freeze aktiv oder Live-Gate blockiert |
+| Zielcompany | `UNIVERSAARL-DE` ist die aktive Zielcompany. | andere Company, Company-Kontext nicht sichtbar oder Zielcompany unklar |
+| Route | TARGET-075 nutzt den geschuetzten Foundation-Runner read-first/no-write. | direkter Legacy-Test, ungeschuetzter Storage-State oder Schreibaktion |
 
-## Gate 1 - Company Creation
+## Gate 1 - Foundation Read-first
 
-Ziel ist nicht irgendeine Company, sondern eine kontrollierte Universaarl-Company.
+Ziel ist kein Setup-Write, sondern ein belastbarer lesender Wiedereinstieg in die Foundation.
 
-| Entscheidung | Bevorzugt | Nicht als finale Zielbasis verwenden |
+| Bereich | Erwartung | Nicht beweisen |
 | --- | --- | --- |
-| Datenbasis | `No Data` oder `Setup Data Only`, wenn Bedeutung sichtbar klar ist | `Testunternehmen`, Sample Data, unklare Demo-Route |
-| Kopie | nur mit eigenem, spaeterem Copy-Usecase | CRONUS-Kopie als Universaarl-Zielbasis |
-| Abschluss | nur mit sichtbarer Datenbasis und erwarteter Wirkung | `Finish`, `OK`, `Create`, wenn Datenbasis unklar ist |
+| Kontenplan | Seite und sichtbarer Foundation-Kontext sind erreichbar. | SKR04-Vollstaendigkeit oder Posting-Reife |
+| Buchungsgruppen | relevante Foundation-Seiten sind sichtbar oder Grenzen sind dokumentiert. | Buchungsfaehigkeit ohne Matrix- und Entry-Beweis |
+| USt/VAT | VAT-Setup-Kontext ist sichtbar oder blockiert. | deutsche Steuer- oder Compliance-Finalbehauptung |
+| Dimensionen | Dimensionskontext ist sichtbar oder blockiert. | Reportingwirkung ohne spaetere Posten |
 
-Erfolg liegt erst vor, wenn `UNIVERSAARL-DE` in der Mandantenliste lesbar ist.
+Erfolg liegt erst vor, wenn TARGET-075 Result JSON, Screenshot-QA und Page-Evidence erzeugt hat.
 
 ## Gate 2 - Company Context
 
-Nach der Anlage wird nicht sofort Setup ausgefuehrt. Zuerst wird der Kontext geprueft:
+Nach der Freeze-Freigabe wird nicht sofort Setup ausgefuehrt. Zuerst wird der Kontext geprueft:
 
 - aktuelle Company,
 - Rolle,
@@ -58,7 +58,7 @@ Wenn die Company nicht eindeutig aktiv oder erreichbar ist, wird nicht weiter ei
 
 ## Gate 3 - Company Information
 
-Die Seite `Unternehmensdaten` ist der erste Stammdatenpunkt der neuen Company.
+Die Seite `Unternehmensdaten` ist der zentrale Stammdatenpunkt der bestehenden Universaarl-Company.
 
 | Feldgruppe | Zweck | Screenshot muss zeigen |
 | --- | --- | --- |
@@ -141,16 +141,16 @@ Vor O2C, P2P, Inventory, Payment oder Fixed Assets muss klar sein:
 | VAT Setup steht | Steuerwirkung kann in Preview und Entries geprueft werden. |
 | Dimensionen stehen | Reportingachsen koennen von Anfang an mitlaufen. |
 
-## Lookahead nach Rechtefreigabe
+## Lookahead nach Freeze-Freigabe
 
-| Reihenfolge | Case | Status bis Rechtefreigabe |
+| Reihenfolge | Case / Artefakt | Status |
 | --- | --- | --- |
-| 1 | `TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE` | `blocked` |
-| 2 | `TARGET-COMPANY-INFO-001` | `needs-setup-first` |
-| 3 | `TARGET-005-NUMBER-SERIES-PREFLIGHT` | `ready-after-company` |
-| 4 | `TARGET-006-POSTING-GROUPS-PREFLIGHT` | `ready-after-number-series` |
-| 5 | `TARGET-008-VAT19-SETUP-READINESS` | `needs-source-and-setup-evidence` |
-| 6 | `TARGET-007-DIMENSIONS-FOUNDATION` | `ready-after-company` |
+| 1 | `TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK` | `ready-after-freeze-lift` |
+| 2 | `FOUNDATION-READINESS-DECISION.md` | `ready-after-target-075-result` |
+| 3 | VAT/USt read-first Proof | `needs-foundation-decision-first` |
+| 4 | Dimensions read-first Proof | `needs-foundation-decision-first` |
+| 5 | Posting Groups read-first Proof | `needs-foundation-decision-first` |
+| 6 | Master Data read-first | `blocked-until-foundation-decision` |
 
 ## Screenshot-QA
 
@@ -164,4 +164,3 @@ Jeder Foundation-Screenshot muss zeigen:
 - was der Screenshot nicht beweist.
 
 Wenn ein Bild nur Codes zeigt, aber die fachlich wichtige Feldgruppe nicht sichtbar ist, wird die Ansicht vergroessert, ein FastTab aufgeklappt, eine FactBox angepasst oder ein neuer Ausschnitt erstellt.
-
