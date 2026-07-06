@@ -322,10 +322,7 @@ test('TARGET-075 runs a read-only Foundation consistency pilot', async ({ page }
         : 'observed';
   const statusFor = (id: string) => results.find((entry) => entry.id === id)?.status ?? 'blocked';
 
-  const nextCase =
-    resultStatus === 'observed'
-      ? 'TARGET-075-FIRST-VENDOR-CARD-CONTROLLED-FIT'
-      : 'TARGET-075-FOUNDATION-CONSISTENCY-REVIEW';
+  const nextCase = 'FOUNDATION-READINESS-DECISION';
 
   const result = {
     schemaVersion: 1,
@@ -447,12 +444,12 @@ test('TARGET-075 runs a read-only Foundation consistency pilot', async ({ page }
           : 'The Foundation pilot must be reviewed before any master data or setup write.',
       lookaheadReviewed: [
         {
-          caseId: 'TARGET-075-FIRST-VENDOR-CARD-CONTROLLED-FIT',
-          status: resultStatus === 'observed' ? 'ready-next' : 'blocked',
+          caseId: 'FOUNDATION-READINESS-DECISION.md',
+          status: resultStatus === 'observed' ? 'ready-next' : 'needs-local-review-before-decision',
           reason:
             resultStatus === 'observed'
-              ? 'Foundation context is visible enough to try a first controlled vendor-card fit.'
-              : 'Do not start master data while Foundation context is unclear.'
+              ? 'TARGET-075 evidence can be classified into proven, parked and blocking Foundation areas before any master-data pilot.'
+              : 'Review blocked/rejected Foundation screenshots before deciding master-data or setup readiness.'
         },
         {
           caseId: 'TARGET-071B-VAT-POSTING-SETUP-REOPEN-AND-SOURCE-REVIEW',
@@ -469,8 +466,8 @@ test('TARGET-075 runs a read-only Foundation consistency pilot', async ({ page }
       selectedNextCase: nextCase,
       whySelectedNextCaseIsBest:
         resultStatus === 'observed'
-          ? 'Vendor card fit is the next small, book-relevant master-data pilot after Foundation visibility.'
-          : 'A local review is safer than starting writes after an unclear Foundation screenshot.',
+          ? 'Read-only Foundation visibility is not the same as setup readiness; a Foundation Readiness Decision is the required handoff before master data.'
+          : 'A local Foundation review is safer than starting writes after unclear screenshots.',
       risksBeforeNextCase: [
         'Do not treat read-only page visibility as posting readiness.',
         'Do not use Page 472 for writes without a new active-editor route.',
@@ -478,7 +475,7 @@ test('TARGET-075 runs a read-only Foundation consistency pilot', async ({ page }
       ],
       requiredPreparation:
         resultStatus === 'observed'
-          ? ['Prepare vendor-number-series and vendor posting-group checks before writing a vendor card.']
+          ? ['Create or update FOUNDATION-READINESS-DECISION.md from TARGET-075 result evidence before selecting any master-data pilot.']
           : ['Review rejected screenshots and blocked page contexts.']
     },
     changedFiles: [
