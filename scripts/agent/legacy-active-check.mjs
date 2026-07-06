@@ -11,6 +11,39 @@ const sampleLimit = 12;
 const allowedScriptNames = new Set([
   'agent:legacy:active-check'
 ]);
+const activeSteeringFiles = [
+  'README.md',
+  'HANDOVER.md',
+  '.agent/PROJECT-DECISION.md',
+  '.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md',
+  '.agent/project-template/PROJECT-DASHBOARD-DRAFT.md',
+  '.agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md',
+  '.agent/project-template/REFINEMENT-BACKLOG.md',
+  'playwright/projects/fibu-book5/BC-COMPANY-USECASE.md',
+  'playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md'
+];
+const staleActiveSteeringPatterns = [
+  {
+    pattern: /Naechster sinnvoller Schritt ist TARGET-073|Nächster sinnvoller Schritt ist TARGET-073/i,
+    message: 'TARGET-073 must not be described as the next active live step'
+  },
+  {
+    pattern: /TARGET-075-FIRST-VENDOR-CARD-CONTROLLED-FIT/i,
+    message: 'Do not name a first vendor pilot before FOUNDATION-READINESS-DECISION.md'
+  },
+  {
+    pattern: /company-to-be-created-through-book-process/i,
+    message: 'UNIVERSAARL-DE already exists; do not describe it as still to be created'
+  },
+  {
+    pattern: /UNIVERSAARL-DE[^.\n|]*nicht existiert|UNIVERSAARL-DE[^.\n|]*does not exist/i,
+    message: 'UNIVERSAARL-DE exists; active steering must not say otherwise'
+  },
+  {
+    pattern: /FOUNDATION-001.*RM-DEMO|FIBU_BOOK5_BC_URL=.*RM-DEMO/i,
+    message: 'Active onboarding must not use old RM-DEMO foundation routes'
+  }
+];
 
 const findings = [];
 const warnings = [];
@@ -18,7 +51,9 @@ const activeLegacyRouteErrors = [];
 const summary = {
   blockedLegacyRoutes: 0,
   activeLegacyRoutes: 0,
-  legacyTargetFileReferences: 0
+  legacyTargetFileReferences: 0,
+  activeSteeringFilesChecked: 0,
+  staleActiveSteeringFindings: 0
 };
 let targetFilesChecked = 0;
 
@@ -78,6 +113,24 @@ for (const [name, command] of Object.entries(scripts)) {
   }
 }
 
+for (const file of activeSteeringFiles) {
+  if (!fs.existsSync(file) || !fs.statSync(file).isFile()) continue;
+
+  summary.activeSteeringFilesChecked += 1;
+  const text = fs.readFileSync(file, 'utf8');
+  for (const { pattern, message } of staleActiveSteeringPatterns) {
+    if (!pattern.test(text)) continue;
+
+    summary.staleActiveSteeringFindings += 1;
+    activeLegacyRouteErrors.push(`${file}: ${message}`);
+    addFinding({
+      file,
+      status: 'stale-active-steering',
+      message
+    });
+  }
+}
+
 const errors = activeLegacyRouteErrors;
 
 const result = {
@@ -95,18 +148,20 @@ const result = {
   checked: {
     packageScripts: Object.keys(scripts).length,
     playwrightTargetFiles: targetFilesChecked,
+    activeSteeringFiles: summary.activeSteeringFilesChecked,
     sampleLimit
   },
   policy: {
     blocked: 'Script names or commands that directly expose RM-DEMO/MCP/CRONUS/Rhein-Main routes must be ported or routed through legacy-script-blocked.mjs.',
-    warning: 'Playwright target files containing legacy terms are migration inventory until the script is ported, blocked or archived; historical evidence is not mass-edited.'
+    warning: 'Playwright target files containing legacy terms are migration inventory until the script is ported, blocked or archived; historical evidence is not mass-edited.',
+    activeSteering: 'Active steering files may mention legacy only as a boundary. They must not describe TARGET-073, RM-DEMO, CRONUS or pre-existing company creation as the next active path.'
   },
   summary,
   findings,
   warnings,
   errors,
   nextStep: errors.length
-    ? 'Replace active legacy package scripts with Universaarl routes or legacy-script-blocked.mjs.'
+    ? 'Replace active legacy package scripts or stale steering text with the Universaarl/TARGET-075/Foundation-Readiness path.'
     : summary.legacyTargetFileReferences
       ? 'Port, block or archive package scripts whose target Playwright files still contain legacy environment/company terms.'
       : 'No unblocked package scripts point to RM-DEMO/MCP/CRONUS/Rhein-Main routes.'
