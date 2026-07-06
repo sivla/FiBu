@@ -292,6 +292,14 @@ if (packageJson) {
   if (!authTargetSelftest.includes(authTargetSelftestPath)) {
     errors.push(`${packagePath}: script auth:bc:target:selftest must reference ${authTargetSelftestPath}`);
   }
+  const resumeCheckScript = packageJson.scripts?.['agent:resume:check'] ?? '';
+  if (!resumeCheckScript.includes(resumeCheckPath)) {
+    errors.push(`${packagePath}: script agent:resume:check must reference ${resumeCheckPath}`);
+  }
+  const overnightResumeCheckScript = packageJson.scripts?.['agent:resume:check:overnight'] ?? '';
+  if (!overnightResumeCheckScript.includes(resumeCheckPath) || !overnightResumeCheckScript.includes('--min-auth-expires-hours=8')) {
+    errors.push(`${packagePath}: script agent:resume:check:overnight must run ${resumeCheckPath} --min-auth-expires-hours=8`);
+  }
 }
 
 if (exists(foundationDecisionScriptPath)) {
