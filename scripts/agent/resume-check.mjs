@@ -52,6 +52,7 @@ function runStep(id, command, args, options = {}) {
 
 const steps = [
   runStep('agent-preflight', npmCmd, ['run', '--silent', 'agent:preflight']),
+  runStep('context-live-gate', npmCmd, ['run', '--silent', 'agent:context:test'], { parseJson: true }),
   runStep('freeze-status', nodeCmd, ['scripts/agent/freeze-status-check.mjs'], { parseJson: true }),
   runStep('quality-audit', nodeCmd, ['scripts/agent/quality-audit.mjs'], { parseJson: true }),
   runStep('target-075-readiness', nodeCmd, ['scripts/agent/target-075-readiness-check.mjs'], { parseJson: true }),
@@ -73,6 +74,7 @@ const steps = [
 
 const failed = steps.filter((step) => !step.ok);
 const freezeStatus = steps.find((step) => step.id === 'freeze-status')?.parsedJson;
+const contextLiveGate = steps.find((step) => step.id === 'context-live-gate')?.parsedJson;
 const qualityAudit = steps.find((step) => step.id === 'quality-audit')?.parsedJson;
 const readiness = steps.find((step) => step.id === 'target-075-readiness')?.parsedJson;
 const authCheck = steps.find((step) => step.id === 'auth-state-check')?.parsedJson;
@@ -150,6 +152,15 @@ const output = {
         tsconfigFileCount: qualityAudit.tsconfigFileCount,
         counts: qualityAudit.counts,
         risks: qualityAudit.risks
+      }
+    : null,
+  contextLiveGate: contextLiveGate
+    ? {
+        ok: contextLiveGate.ok === true,
+        activeCase: contextLiveGate.details?.activeCase,
+        businessCentralLiveAllowed: contextLiveGate.details?.businessCentralLiveAllowed,
+        authDecision: contextLiveGate.details?.authDecision,
+        canRunBusinessCentralWorkflows: contextLiveGate.details?.canRunBusinessCentralWorkflows
       }
     : null,
   target075Readiness: readiness
