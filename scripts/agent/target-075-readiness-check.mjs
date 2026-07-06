@@ -292,6 +292,7 @@ if (exists(foundationDecisionScriptPath)) {
     'foundationReadinessInput',
     'authGate',
     'executionGate',
+    'masterDataReadFirstHandoff',
     'setupChanged',
     'masterDataChanged',
     'previewPosting',
@@ -422,7 +423,14 @@ if (foundationDecisionTemplate) {
     'Geschaeftsbuchungsgruppen',
     'Produktbuchungsgruppen',
     'beobachtete Page-Evidence',
-    'Screenshot-Metadaten'
+    'Screenshot-Metadaten',
+    'Master-Data-Read-first-Handoff',
+    'PWS-MD-001',
+    'PWS-MD-002',
+    'PWS-MD-003',
+    'ready-for-customer-write-gate',
+    'needs-payment-boundary-decision',
+    'needs-inventory-setup-follow-up'
   ]) {
     if (!foundationDecisionTemplate.includes(phrase)) {
       errors.push(`${foundationDecisionTemplatePath}: missing template phrase: ${phrase}`);
@@ -501,6 +509,10 @@ if (spec) {
     'decisionStatus',
     'chartOfAccounts',
     'setupContext',
+    'masterDataReadFirstHandoff',
+    'PWS-MD-001',
+    'PWS-MD-002',
+    'PWS-MD-003',
     'nextProjectOutputs',
     'uatTrainingImpact'
   ]) {
@@ -527,6 +539,34 @@ if (target075Result) {
     }
     if (!Array.isArray(input.uatTrainingImpact) || input.uatTrainingImpact.length === 0) {
       errors.push(`${target075ResultPath}: foundationReadinessInput.uatTrainingImpact must be a non-empty array`);
+    }
+    const handoff = asArray(input.masterDataReadFirstHandoff);
+    if (!handoff.length) {
+      errors.push(`${target075ResultPath}: foundationReadinessInput.masterDataReadFirstHandoff must be a non-empty array`);
+    } else {
+      const candidates = new Set(handoff.map((entry) => entry?.candidate));
+      for (const candidate of ['PWS-MD-001', 'PWS-MD-002', 'PWS-MD-003']) {
+        if (!candidates.has(candidate)) {
+          errors.push(`${target075ResultPath}: foundationReadinessInput.masterDataReadFirstHandoff must include ${candidate}`);
+        }
+      }
+      for (const entry of handoff) {
+        const candidate = entry?.candidate ?? 'unknown';
+        if (!entry?.decision) {
+          errors.push(`${target075ResultPath}: foundationReadinessInput.masterDataReadFirstHandoff ${candidate} is missing decision`);
+        }
+        if (!entry?.minimumBasis) {
+          errors.push(`${target075ResultPath}: foundationReadinessInput.masterDataReadFirstHandoff ${candidate} is missing minimumBasis`);
+        }
+        if (!Array.isArray(entry?.remainsForbidden) || entry.remainsForbidden.length === 0) {
+          errors.push(`${target075ResultPath}: foundationReadinessInput.masterDataReadFirstHandoff ${candidate} must list remainsForbidden`);
+        }
+        if (!Array.isArray(entry?.allowedClassifications) || entry.allowedClassifications.length === 0) {
+          errors.push(
+            `${target075ResultPath}: foundationReadinessInput.masterDataReadFirstHandoff ${candidate} must list allowedClassifications`
+          );
+        }
+      }
     }
   }
   if (!target075Result.authGate) {
