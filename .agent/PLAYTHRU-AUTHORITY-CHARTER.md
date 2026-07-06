@@ -131,6 +131,18 @@ Each material decision should include:
 
 Standard Business Central has priority. API, AL, extensions or integrations need explicit benefit and operating consequences.
 
+## Blocker handling
+
+A blocker is not a stopping habit. If a Business Central action, Playwright route, setup path or book claim cannot be completed, the agent must investigate why before closing the work:
+
+- check whether the problem is permissions, page context, company context, setup dependency, missing data, UI mechanics, source uncertainty or Playwright fragility
+- use Microsoft Learn or another authoritative source when the Business Central concept is unclear
+- test safe read-only alternatives before repeating a failed write or editor route
+- turn repeated blockers into a helper improvement, capability note, route decision, rejected path, data request or explicit follow-up case
+- stop only at a hard boundary: wrong environment, wrong company, secrets/auth exposure, destructive uncertainty, missing active-case permission or an unassessed compliance/accounting claim
+
+Within an authorized `playthru` case, the expected behavior is: reason, research if needed, choose the safest useful route, execute when allowed, prove the result, and document the correction or next route.
+
 ## Playwright and evidence mandate
 
 Playwright is a proof and learning tool, not a click machine.
