@@ -282,7 +282,12 @@ if (foundationDecisionTemplate) {
     'UNIVERSAARL-DE',
     'FOUNDATION-READINESS-DECISION.md',
     'keine Setup-Freigabe',
-    'keine Stammdaten-Freigabe'
+    'keine Stammdaten-Freigabe',
+    'Auth-Zielnachweis aus aktuellem State',
+    'Geschaeftsbuchungsgruppen',
+    'Produktbuchungsgruppen',
+    'beobachtete Page-Evidence',
+    'Screenshot-Metadaten'
   ]) {
     if (!foundationDecisionTemplate.includes(phrase)) {
       errors.push(`${foundationDecisionTemplatePath}: missing template phrase: ${phrase}`);
