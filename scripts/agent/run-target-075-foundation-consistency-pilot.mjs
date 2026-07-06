@@ -193,6 +193,7 @@ exitWith(
   run('npx', ['playwright', 'test', specPath, ...passthroughArgs], {
     stdio: 'inherit',
     env: {
+      TARGET_075_RUNNER_GUARD_CHECKED: '1',
       TARGET_075_LIVE_APPROVED: '1',
       TARGET_075_AUTH_AGE_HOURS: String(authStatus.ageHours ?? ''),
       TARGET_075_AUTH_MAX_AGE_HOURS: String(authStatus.maxAgeHours ?? ''),

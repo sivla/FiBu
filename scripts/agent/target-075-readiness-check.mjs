@@ -177,6 +177,9 @@ if (guardedRunner) {
   if (!guardedRunner.includes('TARGET_075_LIVE_APPROVED')) {
     errors.push(`${guardedRunnerPath}: guarded runner must set TARGET_075_LIVE_APPROVED only for approved live execution`);
   }
+  if (!guardedRunner.includes('TARGET_075_RUNNER_GUARD_CHECKED')) {
+    errors.push(`${guardedRunnerPath}: guarded runner must set TARGET_075_RUNNER_GUARD_CHECKED for approved live execution`);
+  }
   for (const envName of [
     'TARGET_075_AUTH_AGE_HOURS',
     'TARGET_075_AUTH_MAX_AGE_HOURS',
@@ -238,8 +241,10 @@ if (spec) {
   if (!spec.includes('TARGET_COMPANY = \'UNIVERSAARL-DE\'')) {
     errors.push(`${specPath}: expected company guard missing`);
   }
-  if (!spec.includes('TARGET_075_LIVE_APPROVED') || !spec.includes('test.skip')) {
-    errors.push(`${specPath}: direct Playwright execution must be skipped unless TARGET_075_LIVE_APPROVED is set by the guarded runner`);
+  if (!spec.includes('TARGET_075_LIVE_APPROVED') || !spec.includes('TARGET_075_RUNNER_GUARD_CHECKED') || !spec.includes('test.skip')) {
+    errors.push(
+      `${specPath}: direct Playwright execution must be skipped unless TARGET_075_LIVE_APPROVED and TARGET_075_RUNNER_GUARD_CHECKED are set by the guarded runner`
+    );
   }
   if (/TARGET-075-FIRST-VENDOR-CARD-CONTROLLED-FIT|first Vendor Card fit/i.test(spec)) {
     errors.push(`${specPath}: result handoff must be FOUNDATION-READINESS-DECISION before any first vendor pilot`);
