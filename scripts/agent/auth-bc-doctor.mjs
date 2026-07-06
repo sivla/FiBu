@@ -62,6 +62,24 @@ const authTarget = runAuthTargetDiagnosis();
 const check = authCheck.output ?? {};
 const blockedBy = Array.isArray(check.blockedBy) ? check.blockedBy : ['auth-check-unavailable'];
 const canUseStoredAuth = check.canUseStoredAuth === true;
+const combinedForbiddenActions = [
+  ...(current.forbiddenActions ?? []),
+];
+const freezeActive =
+  current.freezeStatus?.status === 'active' ||
+  current.activeArea === 'project-improvement-freeze' ||
+  current.mode === 'project-improvement-freeze';
+const liveBlocked =
+  freezeActive ||
+  combinedForbiddenActions.includes('open-business-central-live') ||
+  combinedForbiddenActions.includes('business-central-execution') ||
+  combinedForbiddenActions.includes('playwright-execution');
+const liveGateBlockedBy = [
+  ...(freezeActive ? ['improvement-freeze-active'] : []),
+  ...(combinedForbiddenActions.includes('open-business-central-live') ? ['open-business-central-live-forbidden'] : []),
+  ...(combinedForbiddenActions.includes('business-central-execution') ? ['business-central-execution-forbidden'] : []),
+  ...(combinedForbiddenActions.includes('playwright-execution') ? ['playwright-execution-forbidden'] : []),
+];
 const operatorActionRequired = !canUseStoredAuth && lastAuthResult?.operatorActionRequired === true;
 const detachedHandoffLaunched =
   current?.latestDetachedAuthHandoffLaunch?.result === 'detached-playwright-profile-window-launched';
@@ -107,7 +125,16 @@ const result = {
   activeCase: current.activeCase ?? '',
   instance: current.instance ?? '',
   company: current.company ?? '',
-  canRunBusinessCentralWorkflows: canUseStoredAuth,
+  canRunBusinessCentralWorkflows: canUseStoredAuth && !liveBlocked,
+  liveGate: {
+    businessCentralLiveAllowed: !liveBlocked,
+    playwrightLiveAllowed: !liveBlocked && !combinedForbiddenActions.includes('playwright-execution'),
+    freezeActive,
+    blockedBy: liveGateBlockedBy,
+    parkedCase: current.freezeStatus?.frozenLiveCase,
+    resumeCandidate: current.freezeStatus?.resumeCandidateAfterFreeze ?? current.nextCase,
+    nextLiveType: current.implementationOperatingSystem?.currentLiveBoundary?.resumePilotMode,
+  },
   authCheck: {
     canUseStoredAuth,
     exitCode: authCheck.exitCode,
@@ -153,12 +180,16 @@ const result = {
     : null,
   operatorActionRequired,
   preferredAuthHandoff,
-  decision: canUseStoredAuth
+  decision: canUseStoredAuth && liveBlocked
+    ? 'stored-auth-usable-but-live-gate-blocked'
+    : canUseStoredAuth
     ? 'stored-auth-usable-run-readonly-or-gated-target-tests'
     : operatorActionRequired
       ? 'operator-must-complete-playwright-auth-window'
     : 'do-not-run-business-central-workflows-refresh-playwright-auth-first',
-  nextSafeAction: canUseStoredAuth
+  nextSafeAction: canUseStoredAuth && liveBlocked
+    ? 'Stored auth is usable, but Business Central live work remains blocked by the active live gate. Use only local planning/checks until the freeze is lifted or an explicit case override is approved.'
+    : canUseStoredAuth
     ? 'Run only the active case allowed by agent:run-plan and keep normal BC shell/context checks enabled.'
     : operatorActionRequired
       ? nextInteractiveAction
