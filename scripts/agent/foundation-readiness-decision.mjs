@@ -129,13 +129,18 @@ function renderDecision(result) {
   const starterMissing = asArray(chart.starterAccountsMissingOrUnclear);
   const screenshots = asArray(result.screenshots);
   const authTarget = result.authGate?.authTarget ?? {};
+  const foundationSetupPagesObserved = [
+    setup.generalBusinessPostingGroups,
+    setup.generalProductPostingGroups,
+    setup.generalPostingSetup,
+    setup.vatPostingSetup
+  ].every((status) => status === 'observed');
 
   const readyForMasterData =
     result.resultStatus === 'observed' &&
     blockedBy.length === 0 &&
     starterMissing.length === 0 &&
-    setup.generalPostingSetup === 'observed' &&
-    setup.vatPostingSetup === 'observed';
+    foundationSetupPagesObserved;
 
   const decision = readyForMasterData
     ? 'Master Data kann als naechster Block vorbereitet werden, aber nur mit eigenem Smart Decision Gate.'

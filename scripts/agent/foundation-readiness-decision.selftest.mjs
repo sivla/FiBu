@@ -10,6 +10,8 @@ const inputPath = path.join(tempDir, 'TARGET-075-result.json');
 const outputPath = path.join(tempDir, 'FOUNDATION-READINESS-DECISION.md');
 const blockedInputPath = path.join(tempDir, 'TARGET-075-blocked-result.json');
 const blockedOutputPath = path.join(tempDir, 'FOUNDATION-READINESS-BLOCKED.md');
+const incompleteSetupInputPath = path.join(tempDir, 'TARGET-075-incomplete-setup-result.json');
+const incompleteSetupOutputPath = path.join(tempDir, 'FOUNDATION-READINESS-INCOMPLETE-SETUP.md');
 const missingAuthTargetInputPath = path.join(tempDir, 'TARGET-075-missing-auth-target-result.json');
 const missingAuthTargetOutputPath = path.join(tempDir, 'FOUNDATION-READINESS-MISSING-AUTH-TARGET.md');
 
@@ -106,6 +108,13 @@ const missingAuthTargetFixture = JSON.parse(JSON.stringify(fixture));
 delete missingAuthTargetFixture.authGate.authTarget;
 fs.writeFileSync(missingAuthTargetInputPath, `${JSON.stringify(missingAuthTargetFixture, null, 2)}\n`, 'utf8');
 
+const incompleteSetupFixture = JSON.parse(JSON.stringify(fixture));
+incompleteSetupFixture.foundationReadinessInput.setupContext.generalBusinessPostingGroups = 'blocked';
+incompleteSetupFixture.foundationReadinessInput.setupContext.generalProductPostingGroups = 'observed';
+incompleteSetupFixture.foundationReadinessInput.setupContext.generalPostingSetup = 'observed';
+incompleteSetupFixture.foundationReadinessInput.setupContext.vatPostingSetup = 'observed';
+fs.writeFileSync(incompleteSetupInputPath, `${JSON.stringify(incompleteSetupFixture, null, 2)}\n`, 'utf8');
+
 function run(args) {
   const result = spawnSync(process.execPath, [scriptPath, ...args], {
     cwd: root,
@@ -151,6 +160,18 @@ if (!missingAuthTargetWrite.parsed?.errors?.includes('authGate.authTarget is req
 }
 if (fs.existsSync(missingAuthTargetOutputPath)) {
   errors.push('missing authTarget fixture must not write a Foundation decision output.');
+}
+
+const incompleteSetupWrite = run([`--input=${incompleteSetupInputPath}`, `--output=${incompleteSetupOutputPath}`, '--write']);
+
+if (incompleteSetupWrite.status !== 0) errors.push(`incomplete setup write mode exited ${incompleteSetupWrite.status}.`);
+if (incompleteSetupWrite.parsed?.wroteFile !== true) errors.push('incomplete setup fixture should write a parked decision file.');
+const incompleteSetupOutput = fs.existsSync(incompleteSetupOutputPath) ? fs.readFileSync(incompleteSetupOutputPath, 'utf8') : '';
+if (!incompleteSetupOutput.includes('Master Data bleibt geparkt')) {
+  errors.push('incomplete setup fixture must keep Master Data parked.');
+}
+if (/Master Data kann als naechster Block vorbereitet werden/.test(incompleteSetupOutput)) {
+  errors.push('incomplete setup fixture must not allow Master Data preparation.');
 }
 
 const output = fs.existsSync(outputPath) ? fs.readFileSync(outputPath, 'utf8') : '';
