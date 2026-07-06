@@ -91,6 +91,12 @@ if (freezeCase) {
   if (freezeCase.mayRunPlaywright !== false) errors.push(`${freezeCasePath}: mayRunPlaywright must be false`);
   if (freezeCase.mayOpenBusinessCentral !== false) errors.push(`${freezeCasePath}: mayOpenBusinessCentral must be false`);
   if (freezeCase.effectiveBcActionsAllowed !== false) errors.push(`${freezeCasePath}: effectiveBcActionsAllowed must be false`);
+  if (freezeCase.resumeCandidateAfterFreeze !== 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK') {
+    errors.push(`${freezeCasePath}: resumeCandidateAfterFreeze must remain TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK`);
+  }
+  if (freezeCase.nextIfSuccessful !== 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK') {
+    errors.push(`${freezeCasePath}: nextIfSuccessful must point to TARGET-075, not another improvement round`);
+  }
 }
 
 if (packageJson) {
