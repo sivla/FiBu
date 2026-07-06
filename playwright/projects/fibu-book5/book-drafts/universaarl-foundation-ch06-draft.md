@@ -101,6 +101,24 @@ Der sichere Kontrollpunkt lautet deshalb:
 
 Solange USt-Buchungsmatrix, allgemeine Buchungsmatrix, Lagerbuchung, Bankeinrichtung und Stammdaten noch nicht vollstaendig zusammenpassen, bleibt die Foundation nicht buchungsbereit. Der Kontenplan ist dann ein vorbereiteter Baustein, aber noch kein Beweis fuer Belegvorschau, Posting, Steuerposten oder Sachposten.
 
+## Lesender Foundation-Check vor Stammdaten
+
+Bevor neue Debitoren, Kreditoren oder Artikel entstehen, wird die Foundation noch einmal nur gelesen. Das ist kein Rueckschritt. In Business Central haengen Stammdaten direkt an Einrichtungstabellen: Ein Debitor braucht spaeter eine Debitorenbuchungsgruppe, eine Geschaeftsbuchungsgruppe, eine USt-Geschaeftsbuchungsgruppe und Zahlungslogik. Ein Artikel braucht Basiseinheit, Produktbuchungsgruppe, USt-Produktbuchungsgruppe und spaeter Lager- oder Kostenlogik. Wenn diese Grundlagen unklar sind, entsteht beim ersten Beleg ein Fehler, den ein Anfaenger nur schwer einordnen kann.
+
+Der lesende Foundation-Check oeffnet deshalb die wichtigsten Seiten, ohne Werte zu aendern:
+
+| Seite | Was geprueft wird | Warum es vor Stammdaten wichtig ist |
+| --- | --- | --- |
+| Kontenplan | Starterkonten, `GuV/Bilanz`, `Kontoart` | Stammdaten und Buchungsgruppen duerfen nur auf passende Buchungskonten zeigen. |
+| Allgemeine Buchungsmatrix | Kombinationen aus Geschaefts- und Produktbuchungsgruppen | Verkauf und Einkauf brauchen eine nachvollziehbare Kontenfindung. |
+| USt-Buchungsmatrix | USt-Gruppen, Prozentsatz, Berechnungsart, Steuerkonten | Deutsche Steuerlogik darf nicht aus einem einzelnen Feld auf Artikel oder Kunde abgeleitet werden. |
+| Dimensionen | Dimensionen und Werte | Auswertungsachsen muessen fachlich klar sein, bevor sie auf Stammdaten oder Belegen wirken. |
+| Nummernserien | automatische und manuelle Nummernvergabe | Neue Stammdaten brauchen eine nachvollziehbare Nummernlogik. |
+
+In diesem Schritt werden keine Stammdaten angelegt, keine Einrichtung geaendert und keine Belege erzeugt. Der Nutzen liegt in der Entscheidung: Welche Grundlage ist sichtbar genug fuer den naechsten Stammdaten-Read-first-Schritt, und welche Luecke muss zuerst als eigener Setup-Schritt behandelt werden?
+
+Fuer das Handbuch ist dieser Kontrollpunkt wichtig, weil er den Alltag in Business Central realistischer macht. Gute Key User klicken nicht sofort auf `Neu`, nur weil eine Liste leer ist. Sie pruefen zuerst, ob Nummern, Buchungsgruppen, USt und Dimensionen die spaetere Buchung tragen koennen. Erst danach wird ein Kunde, Lieferant oder Artikel sinnvoll angelegt.
+
 ## Warum die Foundation noch nicht buchungsbereit ist
 
 Ein sichtbares Sachkonto ist nur der Anfang. Business Central bucht einen Verkaufs- oder Einkaufsbeleg nicht allein deshalb richtig, weil ein Konto im Kontenplan steht. Das System muss auch wissen, wann dieses Konto verwendet werden soll. Diese Entscheidung entsteht erst aus Buchungsgruppen, USt-Gruppen, Matrixzeilen und den Werten auf Stammdaten.
