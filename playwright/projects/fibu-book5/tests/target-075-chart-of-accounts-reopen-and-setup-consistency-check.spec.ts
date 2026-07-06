@@ -209,6 +209,16 @@ function authWarningsEnv() {
   }
 }
 
+function jsonEnv(name: string) {
+  const raw = process.env[name];
+  if (!raw) return null;
+  try {
+    return JSON.parse(raw) as unknown;
+  } catch {
+    return { parseError: `${name}-invalid-json` };
+  }
+}
+
 async function fullText(page: Page) {
   const body = await pageText(page).catch(() => '');
   const frameTexts = await Promise.all(page.frames().map((frame) => frame.locator('body').innerText({ timeout: 1000 }).catch(() => '')));
@@ -342,7 +352,9 @@ test('TARGET-075 runs a read-only Foundation consistency pilot', async ({ page }
     maxAgeHours: numericEnv('TARGET_075_AUTH_MAX_AGE_HOURS'),
     expiresInHours: numericEnv('TARGET_075_AUTH_EXPIRES_IN_HOURS'),
     warnExpiresInHours: numericEnv('TARGET_075_AUTH_WARN_EXPIRES_IN_HOURS'),
-    warnings: authWarningsEnv()
+    warnings: authWarningsEnv(),
+    doctorDecision: process.env.TARGET_075_AUTH_DOCTOR_DECISION ?? '',
+    doctorLiveGate: jsonEnv('TARGET_075_AUTH_DOCTOR_LIVE_GATE')
   };
   const executionGate = {
     runnerGuardChecked: process.env.TARGET_075_RUNNER_GUARD_CHECKED === '1',

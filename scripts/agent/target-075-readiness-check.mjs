@@ -307,6 +307,12 @@ if (target075Result) {
     if (!Array.isArray(target075Result.authGate.warnings)) {
       errors.push(`${target075ResultPath}: authGate.warnings must be an array`);
     }
+    if (!('doctorDecision' in target075Result.authGate)) {
+      errors.push(`${target075ResultPath}: authGate.doctorDecision must record auth:bc:doctor decision`);
+    }
+    if (!('doctorLiveGate' in target075Result.authGate)) {
+      errors.push(`${target075ResultPath}: authGate.doctorLiveGate must record auth:bc:doctor liveGate`);
+    }
   }
   if (!target075Result.executionGate) {
     errors.push(`${target075ResultPath}: missing executionGate for guarded TARGET-075 evidence`);
