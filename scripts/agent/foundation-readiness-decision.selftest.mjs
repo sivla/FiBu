@@ -30,7 +30,14 @@ const fixture = {
     checkedByGuard: true,
     secretsPrinted: false,
     doctorDecision: 'stored-auth-usable-but-live-gate-blocked',
-    doctorLiveGate: { businessCentralLiveAllowed: false, playwrightLiveAllowed: false }
+    doctorLiveGate: { businessCentralLiveAllowed: false, playwrightLiveAllowed: false },
+    authTarget: {
+      targetEnvironment: 'playthru',
+      targetCompany: 'UNIVERSAARL-DE',
+      sourceDiffersFromTarget: true,
+      targetBuiltFromCurrentState: true,
+      targetMatchesState: true
+    }
   },
   executionGate: {
     runnerGuardChecked: true,
@@ -134,6 +141,8 @@ for (const phrase of [
   '# FOUNDATION-READINESS-DECISION',
   'Instanz: playthru',
   'Company: UNIVERSAARL-DE',
+  'Auth-Ziel: playthru / UNIVERSAARL-DE',
+  'Auth-Ziel passt zum State: ja',
   'No-Write-Grenze aus TARGET-075',
   'Master Data kann als naechster Block vorbereitet werden'
 ]) {

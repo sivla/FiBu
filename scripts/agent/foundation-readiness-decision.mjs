@@ -71,6 +71,17 @@ function validateTarget075(result) {
     if (result.authGate.secretsPrinted !== false) errors.push('authGate.secretsPrinted must be false.');
     if (!('doctorDecision' in result.authGate)) errors.push('authGate.doctorDecision is required.');
     if (!('doctorLiveGate' in result.authGate)) errors.push('authGate.doctorLiveGate is required.');
+    const authTarget = result.authGate.authTarget;
+    if (!authTarget || typeof authTarget !== 'object') {
+      errors.push('authGate.authTarget is required.');
+    } else {
+      if (authTarget.targetEnvironment !== 'playthru') errors.push('authGate.authTarget.targetEnvironment must be playthru.');
+      if (authTarget.targetCompany !== 'UNIVERSAARL-DE') errors.push('authGate.authTarget.targetCompany must be UNIVERSAARL-DE.');
+      if (authTarget.targetMatchesState !== true) errors.push('authGate.authTarget.targetMatchesState must be true.');
+      if (authTarget.sourceDiffersFromTarget === true && authTarget.targetBuiltFromCurrentState !== true) {
+        errors.push('authGate.authTarget must prove targetBuiltFromCurrentState=true when sourceDiffersFromTarget=true.');
+      }
+    }
   }
 
   if (!result.executionGate) {
@@ -117,6 +128,7 @@ function renderDecision(result) {
   const starterVisible = asArray(chart.starterAccountsVisible);
   const starterMissing = asArray(chart.starterAccountsMissingOrUnclear);
   const screenshots = asArray(result.screenshots);
+  const authTarget = result.authGate?.authTarget ?? {};
 
   const readyForMasterData =
     result.resultStatus === 'observed' &&
@@ -141,6 +153,9 @@ function renderDecision(result) {
     `- Company: ${result.company}`,
     `- Result-Status: ${result.resultStatus}`,
     `- Erzeugt am: ${new Date().toISOString()}`,
+    `- Auth-Ziel: ${authTarget.targetEnvironment ?? 'unbekannt'} / ${authTarget.targetCompany ?? 'unbekannt'}`,
+    `- Auth-Ziel aus aktuellem State aufgebaut: ${statusLine(authTarget.targetBuiltFromCurrentState)}`,
+    `- Auth-Ziel passt zum State: ${statusLine(authTarget.targetMatchesState)}`,
     '',
     '## Entscheidung',
     '',
