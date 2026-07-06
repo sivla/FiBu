@@ -49,6 +49,7 @@ Last reviewed: 2026-07-06
 | `.agent/project-template/WORKSTREAM-BOOK-CHAPTER-MAP-DRAFT.md` | `active-work` | Book patches must use this map before claiming readiness. |
 | `.agent/project-template/SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md` | `active-work` | Data packages are Jira-ready, not BC-setup-ready. |
 | `playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md` | `active-work` | Business Central scope map; follows TARGET-075 then Foundation Readiness, not historical queues. |
+| `playwright/projects/fibu-book5/UNIVERSAARL-W1-FOUNDATION-READINESS-GATE.md` | `active-work` | Foundation boundary reference after company creation; aligns first live resume with TARGET-075 read-first/no-write before setup, master data or process work. |
 
 ## State and case classification
 
