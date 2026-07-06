@@ -21,13 +21,13 @@ Master Data bleibt geparkt, bis die offenen Foundation-Grenzen geprueft oder bew
 
 ## Konsolidierter Stand nach den Folgeprobes
 
-Die Foundation ist fuer Schulung und Buch als Lernpfad nutzbar, aber noch nicht posting-ready. TARGET-075 hat mehrere Foundation-Seiten lesend sichtbar gemacht. PWS-FF-002 und PWS-FF-002B zeigen aber, dass die aktuelle Page-314-Route zur Buchungsmatrix Einrichtung nicht als sichtbarer Seitennachweis akzeptiert werden darf. Der VAT-Strang ist weiter fortgeschritten: INLAND und VAT19 sind nach TARGET-027C-RETRY per Screenshot-QA sichtbar, Page 472 ist erreichbar, aber TARGET-071/TARGET-073 beweisen keinen row-scoped aktiven Editor fuer die INLAND/VAT19-Matrixzeile.
+Die Foundation ist fuer Schulung und Buch als Lernpfad nutzbar, aber noch nicht posting-ready. TARGET-075 hat mehrere Foundation-Seiten lesend sichtbar gemacht. PWS-FF-002 und PWS-FF-002B zeigen aber, dass die aktuelle Page-314-Route zur Buchungsmatrix Einrichtung nicht als sichtbarer Seitennachweis akzeptiert werden darf. Der VAT-Strang ist weiter fortgeschritten: INLAND und VAT19 sind nach TARGET-027C-RETRY per Screenshot-QA sichtbar, Page 472 ist erreichbar, und TARGET-073B beweist die sichtbare Page-472-Hauptoberflaeche plus Page Inspection fuer `VAT Posting Setup (472, List)` / Tabelle 325. Trotzdem bleibt der Write-Gate blockiert, weil kein sicherer row-scoped aktiver Editor fuer die Matrixzellen bewiesen wurde.
 
 Praktische Entscheidung:
 
 - Master Data, O2C, P2P, Journale, Buchungsvorschau und Buchung bleiben blockiert.
-- TARGET-073 bleibt als as-is Retry geparkt, weil single-click, double-click, Enter und F2 keinen echten aktiven Editor bewiesen haben.
-- Der naechste neue Live-Versuch ist `TARGET-073B-VAT-PAGE472-SURFACE-AND-EDITOR-PROOF`. Dieser Case darf nur no-write diagnostizieren: sichtbare Page-472-Oberflaeche, Layout/Fokus/Scroll-Zustand, Page-Inspection-Kontext und row-/column-bound aktiven Editor beweisen oder sauber blockieren.
+- TARGET-073 und TARGET-073B bleiben als as-is Retry geparkt. TARGET-073B hat die Oberflaeche besser verstanden, aber keinen sicheren Editor bewiesen.
+- Es folgt kein VAT-Write-Gate aus TARGET-073B. Die Foundation-Entscheidung muss nun eine nicht wiederholende Route waehlen: VAT Setup bewusst als Foundation-Gap parken, eine andere standardnahe Setup-Route begruenden oder einen separaten UI-Discovery-Case mit neuer Hypothese definieren.
 - Page-314-/Page-472-Screenshots duerfen nur als Proof gelten, wenn sie die Zielseite, relevante Felder/Spalten und den aktiven Kontext sichtbar zeigen; Role Center, Suche/Tell-Me oder versteckter Text reichen nicht.
 
 ## No-Write-Grenze aus TARGET-075
@@ -114,6 +114,7 @@ Praktische Entscheidung:
 - TARGET-027C-RETRY: INLAND und VAT19 sind nach Reopen per Screenshot-QA sichtbar. Der Text-Extractor hat BC-Grid-Zellwerte teilweise nicht erfasst; deshalb ist Screenshot-QA hier der staerkere Nachweis.
 - TARGET-071: Page 472 wurde erreicht, aber der kontrollierte Write-Gate hat gestoppt, weil fuer die Zielzellen kein echter aktiver Editor erkannt wurde.
 - TARGET-073: Zusätzliche aktive-Editor-Probes ohne Zielwerteingabe blieben blockiert. Deshalb ist TARGET-073 als Wiederholung ohne neue Route-Hypothese nicht sinnvoll.
+- TARGET-073B: Die sichtbare Page-472-Hauptoberflaeche und Page Inspection fuer `VAT Posting Setup (472, List)` / Tabelle 325 sind bewiesen. Der Lauf hat `Liste bearbeiten` sichtbar aktiviert, aber kein Eingabe-Control fuer die Zielzellen gefunden und keine Zielwerte getippt. Deshalb bleibt VAT Posting Setup als Schreibroute blockiert.
 
 Grenze: Diese VAT-Evidence beweist noch keine korrekte deutsche USt-Berechnung. Es gibt keinen Preview-Posting-Nachweis, keine MwSt.-Posten, keine Sachposten und keine steuerliche Finalfreigabe.
 
@@ -164,7 +165,7 @@ Erlaubte Anschlussklassifikationen:
 - Den abgelehnten Nachweis zur Buchungsmatrix Einrichtung vor Master Data klaeren oder bewusst als Grenze akzeptieren.
 - PWS-FF-002 nicht als akzeptierten Buchungsmatrix-Nachweis verwenden; der Screenshot zeigt Rollencenter statt Page 314.
 - PWS-FF-002B nicht wiederholen, solange keine neue Route-Hypothese vorliegt; direkte URL und scoped Search-Click sind als aktueller Weg blockiert.
-- TARGET-073 nicht als as-is Retry wiederholen; als naechsten no-write Live-Folgecase `TARGET-073B-VAT-PAGE472-SURFACE-AND-EDITOR-PROOF` verwenden.
+- TARGET-073 und TARGET-073B nicht als as-is Retry wiederholen; TARGET-073B ist konsumierte blockierte No-Write-Evidence.
 - Starterkonten erneut sichtbar pruefen, wenn der Kontenplan Setup- oder Buchaussagen tragen soll.
 - Master Data, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt, bis die Foundation-Grenzen geklaert sind.
 - Classify master-data readiness only after chart/setup context is accepted.

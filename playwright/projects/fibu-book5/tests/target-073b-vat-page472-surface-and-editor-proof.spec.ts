@@ -133,6 +133,53 @@ async function page472Text(page: Page) {
   );
 }
 
+async function mainPage472Surface(page: Page) {
+  const signals: string[] = [];
+  for (const frame of page.frames()) {
+    const frameSignals = await frame
+      .evaluate(() => {
+        const normalize = (value: string | null | undefined) => String(value ?? '').replace(/\s+/g, ' ').trim();
+        const rightPanelStart = Math.max(1280, window.innerWidth - 430);
+        return [...document.querySelectorAll<HTMLElement>('h1,h2,h3,[role="heading"],[role="button"],[role="menuitem"],[role="columnheader"],[role="gridcell"],[aria-label],td,th')]
+          .map((element) => {
+            const rect = element.getBoundingClientRect();
+            const style = window.getComputedStyle(element);
+            const text = normalize(element.innerText || element.textContent || element.getAttribute('aria-label') || element.getAttribute('title'));
+            if (
+              !text ||
+              rect.width <= 1 ||
+              rect.height <= 1 ||
+              rect.bottom <= 0 ||
+              rect.right <= 0 ||
+              rect.top >= window.innerHeight ||
+              rect.left >= rightPanelStart ||
+              style.visibility === 'hidden' ||
+              style.display === 'none' ||
+              Number(style.opacity || '1') <= 0
+            ) {
+              return null;
+            }
+            if (!/MwSt\.-?Buchungsmatrix|VAT Posting Setup|Liste bearbeiten|Edit List|Konten vorschlagen|Suggest Accounts|MwSt\.-?Gesch|VAT Bus|MwSt\.-?Produkt|VAT Prod|MwSt\. %|VAT %/i.test(text)) {
+              return null;
+            }
+            return text.slice(0, 180);
+          })
+          .filter(Boolean);
+      })
+      .catch(() => []);
+    signals.push(...(frameSignals as string[]));
+  }
+  const unique = [...new Set(signals)].slice(0, 80);
+  const hasTitle = unique.some((line) => /MwSt\.-?Buchungsmatrix|VAT Posting Setup/i.test(line));
+  const hasGridOrActions = unique.some((line) => /Liste bearbeiten|Edit List|Konten vorschlagen|Suggest Accounts|MwSt\.-?Gesch|VAT Bus|MwSt\.-?Produkt|VAT Prod|MwSt\. %|VAT %/i.test(line));
+  return {
+    visible: hasTitle && hasGridOrActions,
+    hasTitle,
+    hasGridOrActions,
+    signals: unique
+  };
+}
+
 async function assertContext(page: Page) {
   expect(instancePathIsTarget(page.url()), `Wrong instance URL: ${sanitizeEvidenceUrl(page.url())}`).toBe(true);
   expect(companyParamIsTarget(page.url()), `Wrong company URL: ${sanitizeEvidenceUrl(page.url())}`).toBe(true);
@@ -154,7 +201,8 @@ async function screenshot(page: Page, fileName: string, metadata: Record<string,
 async function capture(page: Page, prefix: string, step: string, extra: Record<string, unknown> = {}) {
   const text = await page472Text(page);
   const fullText = await visibleText(page);
-  const surfaceVisible = page472SurfaceVisible(text) || page472SurfaceVisible(fullText);
+  const mainSurface = await mainPage472Surface(page);
+  const surfaceVisible = mainSurface.visible;
   const rejectedSurface = looksLikeRejectedSurface(fullText);
   await writeText(`${prefix}.txt`, text || 'No compact Page-472 text captured.');
   await screenshot(page, `${prefix}.png`, {
@@ -165,6 +213,7 @@ async function capture(page: Page, prefix: string, step: string, extra: Record<s
       visibleTargetPage: surfaceVisible,
       rejectedSurface: rejectedSurface ? 'role-center-or-search-overlay-without-target-page' : '',
       screenshotShowsTarget: surfaceVisible,
+      mainSurfaceSignals: mainSurface.signals,
       searchOverlayOpen: /Nach .* suchen|Search results|Tell me/i.test(fullText),
       roleCenterStillVisible: /Rollencenter|Role Center/i.test(fullText)
     },
@@ -256,6 +305,7 @@ async function visibleCells(page: Page) {
     const found = await frame
       .evaluate((frameIndex) => {
         const normalize = (value: string | null | undefined) => String(value ?? '').replace(/\s+/g, ' ').trim();
+        const rightPanelStart = Math.max(1280, window.innerWidth - 430);
         return [...document.querySelectorAll<HTMLElement>('[role="gridcell"],[role="columnheader"],[role="row"],td,th,input,textarea,[contenteditable="true"]')]
           .map((element) => {
             const rect = element.getBoundingClientRect();
@@ -270,6 +320,7 @@ async function visibleCells(page: Page) {
               rect.right <= 0 ||
               rect.top >= window.innerHeight ||
               rect.left >= window.innerWidth ||
+              rect.left >= rightPanelStart ||
               style.visibility === 'hidden' ||
               style.display === 'none' ||
               Number(style.opacity || '1') <= 0
@@ -455,8 +506,14 @@ test('TARGET-073B proves Page 472 surface and editor readiness without typing VA
     blockedBy.push('Surface truth is still not strong enough for Page 472 after layout and Page Inspection diagnosis.');
   }
 
-  await page.keyboard.press('Escape').catch(() => undefined);
-  await page.waitForTimeout(600);
+  const returnRoute = await openMatrix(page);
+  actionsTaken.push(`Re-opened Page 472 after Page Inspection using route: ${returnRoute.route}.`);
+  const afterReturn = await capture(page, 'target-073b-035-return-to-main-surface', 'Main Page 472 surface proof after Page Inspection; side-panel signals are not enough.', {
+    returnRoute
+  });
+  if (!afterReturn.surfaceVisible) {
+    blockedBy.push('Main Page 472 surface was not visible after returning from Page Inspection; side-panel field metadata is not enough for editor proof.');
+  }
 
   const editList = await clickSafeAction(page, /^Liste bearbeiten$|^Edit List$/i);
   actionsTaken.push(`List edit no-write diagnosis: ${JSON.stringify(editList)}.`);
@@ -550,6 +607,7 @@ test('TARGET-073B proves Page 472 surface and editor readiness without typing VA
       'target-073b-010-surface-before-layout.png',
       'target-073b-020-surface-after-layout.png',
       'target-073b-030-page-inspection-diagnostic.png',
+      'target-073b-035-return-to-main-surface.png',
       'target-073b-040-before-editor-probes.png',
       'target-073b-060-after-editor-diagnosis-no-values.png'
     ],
@@ -557,6 +615,7 @@ test('TARGET-073B proves Page 472 surface and editor readiness without typing VA
       initialSurfaceVisible: initial.surfaceVisible,
       afterLayoutSurfaceVisible: afterLayout.surfaceVisible,
       afterInspectionSurfaceVisible: afterInspection.surfaceVisible,
+      afterReturnSurfaceVisible: afterReturn.surfaceVisible,
       pageInspectionVisible: pageInspection.visible,
       rejectedSurfaceSeen: initial.rejectedSurface || afterLayout.rejectedSurface || afterInspection.rejectedSurface
     },
@@ -578,7 +637,7 @@ test('TARGET-073B proves Page 472 surface and editor readiness without typing VA
       'Business Central stayed in playthru / UNIVERSAARL-DE.',
       'TARGET-073B did not type VAT target values.',
       'TARGET-073B did not execute setup, master data, document draft, Preview Posting, Posting, payment, API shortcut or company switch.',
-      ...(afterLayout.surfaceVisible || afterInspection.surfaceVisible || pageInspection.visible
+      ...(afterLayout.surfaceVisible || afterReturn.surfaceVisible
         ? ['Page 472 surface/context was diagnosed with stronger surface truth than TARGET-073.']
         : [])
     ],
@@ -651,8 +710,8 @@ test('TARGET-073B proves Page 472 surface and editor readiness without typing VA
     },
     nextCase,
     reason: trueEditorProven
-      ? 'TARGET-073B found a possible row/column-bound editor candidate but intentionally wrote nothing.'
-      : 'TARGET-073B improved Page-472 surface diagnosis but did not prove a safe editor route for VAT target values.'
+      ? 'TARGET-073B hat einen moeglichen zeilen-/spaltengebundenen Editor-Kandidaten gefunden, aber bewusst nichts geschrieben.'
+      : 'TARGET-073B hat die Page-472-Oberflaeche staerker bewiesen, aber keine sichere Editor-Route fuer USt-Zielwerte bewiesen.'
   };
 
   await writeJson(RESULT_PATH, result);

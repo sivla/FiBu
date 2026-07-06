@@ -29,7 +29,7 @@ The read-first return has happened. Further live work must now start from the co
 | Current live status | read-first resume has produced Foundation evidence; further live work needs a current case gate |
 | Parked case | `TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION` |
 | Completed resume pilot | `TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK` |
-| Next live type | `TARGET-073B-VAT-PAGE472-SURFACE-AND-EDITOR-PROOF`: no-write Surface-/Editor-Diagnose with screenshot QA |
+| Next live type | none selected; TARGET-073B ran as no-write Surface-/Editor-Diagnose and is blocked |
 | Artifact classification | `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` |
 | Next local control task | keep roadmap, dashboard, state and artifact classification aligned; demote historical next-step noise instead of adding new layers |
 
@@ -93,6 +93,14 @@ Latest local check result: Foundation Readiness consolidation, 2026-07-06.
 | `agent:foundation:decision:check` | passed locally | `FOUNDATION-READINESS-DECISION.md` is the active boundary before Master Data or process work. |
 | `npm run fibu:target:foundation-consistency-pilot -- --check` | passed locally | The guarded TARGET-075 runner is ready without opening Business Central. |
 | `npm run fibu:target:foundation-consistency-pilot -- --list` | passed, 1 test listed | The TARGET-075 spec is discoverable through the guarded runner. |
+
+TARGET-073B boundary:
+
+- Page 472 VAT Posting Setup / MwSt.-Buchungsmatrix was visible in the main Business Central surface.
+- Page Inspection confirmed `VAT Posting Setup (472, List)` and table `VAT Posting Setup (325)`.
+- `Liste bearbeiten` was visible/activated, but no safe row-scoped active editor was proven.
+- No VAT target values were typed; no setup, master data, draft, Preview Posting, Posting, payment, API shortcut or company switch happened.
+- Do not repeat TARGET-073B as-is. Foundation Readiness must choose a non-repeating route or consciously keep this as a setup limitation.
 
 Quality-audit boundary:
 

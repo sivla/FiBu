@@ -11,6 +11,7 @@
     "playwright/projects/fibu-book5/evidence/target-075-chart-of-accounts-reopen-and-setup-consistency-check/TARGET-075-result.json",
     "playwright/projects/fibu-book5/evidence/pws-ff-002-general-posting-setup-readfirst-recovery/PWS-FF-002-result.json",
     "playwright/projects/fibu-book5/evidence/pws-ff-002b-page314-navigation-capture-recovery/PWS-FF-002B-result.json",
+    "playwright/projects/fibu-book5/evidence/target-073b-vat-page472-surface-and-editor-proof/TARGET-073B-result.json",
     "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
     "playwright/projects/fibu-book5/BC-ACTION-ATLAS.md"
   ],
@@ -47,7 +48,7 @@
     "claim-master-data-readiness"
   ],
   "acceptanceCriteria": [
-    "Foundation Readiness explicitly consumes PWS-FF-002B as blocked evidence.",
+    "Foundation Readiness explicitly consumes PWS-FF-002B and TARGET-073B as blocked evidence.",
     "Master Data remains parked unless the Foundation gap is consciously accepted with a clear limitation.",
     "The next live case is not another direct Page 314 URL/search retry unless a materially new route hypothesis is documented.",
     "No final posting, VAT, setup correctness or German compliance claim is created from the blocked Page 314 evidence."
@@ -55,14 +56,14 @@
   "nextStepDecision": {
     "currentCase": "FOUNDATION-READINESS-DECISION",
     "plannedNextCaseBeforeReview": "PWS-FF-004-VAT-SETUP-BOUNDARY",
-    "lastEvidenceSummary": "PWS-FF-002B found the Buchungsmatrix Einrichtung search label but screenshot/text QA still showed Role Center, so Page 314 remains unproven. Existing VAT evidence is further along: INLAND/VAT19 are visible by screenshot QA, Page 472 is reachable, but TARGET-071/TARGET-073 did not prove a row-scoped active editor for the INLAND/VAT19 matrix row.",
+    "lastEvidenceSummary": "PWS-FF-002B found the Buchungsmatrix Einrichtung search label but screenshot/text QA still showed Role Center, so Page 314 remains unproven. Existing VAT evidence is further along: INLAND/VAT19 are visible by screenshot QA, and TARGET-073B proved the main Page 472 surface plus Page Inspection/Table 325 context, but still did not prove a safe row-scoped active editor for the matrix.",
     "isPlannedNextCaseStillSensible": false,
     "reason": "The project needs a consolidated Foundation decision before moving to VAT writes, Dimensions, Posting Groups or Master Data; otherwise Page 314 and Page 472 UI gaps keep leaking into downstream claims.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
+        "caseId": "TARGET-073B-VAT-PAGE472-SURFACE-AND-EDITOR-PROOF",
         "status": "obsolete",
-        "reason": "As-is retry is parked; single-click, double-click, Enter and F2 probes did not find a convincing row-scoped active editor."
+        "reason": "As-is retry is parked; the no-write surface proof succeeded, but the active editor proof stayed blocked."
       },
       {
         "caseId": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
@@ -82,20 +83,20 @@
     ],
     "queueChangesMade": [
       "Promoted FOUNDATION-READINESS-DECISION to active local case after blocked PWS-FF-002B.",
-      "Demoted PWS-FF-004 as a phantom next step; existing TARGET-027/TARGET-071/TARGET-073 evidence is the authoritative VAT branch."
+      "Demoted PWS-FF-004 as a phantom next step; existing TARGET-027/TARGET-071/TARGET-073/TARGET-073B evidence is the authoritative VAT branch."
     ],
-    "selectedNextCase": "TARGET-073B-VAT-PAGE472-SURFACE-AND-EDITOR-PROOF",
-    "whySelectedNextCaseIsBest": "The Foundation boundary is now explicit. The next practical live step must improve Business Central UI understanding with a materially new Page 472 surface/editor proof instead of repeating TARGET-073 as-is.",
+    "selectedNextCase": "FOUNDATION-READINESS-DECISION",
+    "whySelectedNextCaseIsBest": "TARGET-073B is now consumed as blocked no-write evidence. The next practical step is a local Foundation decision: keep VAT writes and Master Data parked, then choose a non-repeating route or consciously accept the current Foundation limitation.",
     "risksBeforeNextCase": [
       "Moving to VAT writes or Master Data could imply Foundation readiness that Page 314 and Page 472 editor evidence does not prove."
     ],
     "requiredPreparation": [
-      "Keep Foundation readiness as the boundary until TARGET-073B creates stronger evidence.",
-      "Do not repeat TARGET-073 click/key probes without Page Inspection, layout/focus/scroll or row/column-bound editor proof.",
+      "Keep Foundation readiness as the boundary because TARGET-073B did not unlock a VAT write route.",
+      "Do not repeat TARGET-073 or TARGET-073B without a materially new route hypothesis.",
       "Use PWS-FF-002B only as blocked/read-first evidence."
     ]
   },
-  "nextCase": "TARGET-073B-VAT-PAGE472-SURFACE-AND-EDITOR-PROOF",
-  "preparedNextCaseFile": ".agent/state/cases/target-073b-vat-page472-surface-and-editor-proof.json",
+  "nextCase": "FOUNDATION-READINESS-DECISION",
+  "preparedNextCaseFile": ".agent/state/cases/foundation-readiness-decision.json",
   "updatedAt": "2026-07-06T00:00:00.000Z"
 }
