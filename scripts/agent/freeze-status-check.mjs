@@ -24,7 +24,15 @@ function readJson(relativePath) {
 const errors = [];
 const warnings = [];
 
-for (const filePath of [currentPath, freezePath, projectDecisionPath, freezeCasePath, readinessPath, packagePath]) {
+for (const filePath of [
+  currentPath,
+  freezePath,
+  projectDecisionPath,
+  freezeCasePath,
+  readinessPath,
+  packagePath,
+  target075RunnerPath
+]) {
   if (!fs.existsSync(path.resolve(root, filePath))) errors.push(`missing required file: ${filePath}`);
 }
 
