@@ -17,6 +17,7 @@ Aktive Zielwelt:
 | Quelle | `playwright/projects/fibu-book5/evidence/target-075-chart-of-accounts-reopen-and-setup-consistency-check/TARGET-075-result.json` |
 | Case | `TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK` |
 | Erwarteter Modus | read-first/no-write |
+| Guard-Ziel-URL | Muss an TARGET-075 uebergeben werden, darf aber nicht im Result ausgegeben werden. |
 | Ausgabedatei | `playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md` |
 
 ## Entscheidung
@@ -48,6 +49,7 @@ Master Data darf nach dieser Entscheidung nur als naechster Block vorbereitet we
 
 - `playthru / UNIVERSAARL-DE` ist eindeutig aktiv.
 - Das Auth-Ziel wurde aus dem aktuellen State auf `playthru / UNIVERSAARL-DE` aufgebaut.
+- Die Guard-Ziel-URL wurde an TARGET-075 uebergeben und nicht im Result ausgegeben.
 - Kontenplan, Geschaeftsbuchungsgruppen, Produktbuchungsgruppen, General Posting Setup und VAT Posting Setup haben beobachtete Page-Evidence.
 - Jede dieser Foundation-Pages hat Screenshot und Screenshot-Metadaten.
 - Keine Setupwerte, Stammdaten, Belege, Buchungsvorschau, Buchung, Zahlung oder API-Shortcuts wurden ausgefuehrt.

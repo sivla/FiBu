@@ -435,6 +435,8 @@ if (foundationDecisionTemplate) {
     'keine Setup-Freigabe',
     'keine Stammdaten-Freigabe',
     'Auth-Zielnachweis aus aktuellem State',
+    'Guard-Ziel-URL',
+    'nicht im Result ausgegeben',
     'Geschaeftsbuchungsgruppen',
     'Produktbuchungsgruppen',
     'beobachtete Page-Evidence',
