@@ -58,6 +58,7 @@ const steps = [
   runStep('auth-state-check', authCheckArgs ? nodeCmd : npmCmd, authCheckArgs ?? ['run', '--silent', 'auth:bc:check'], {
     parseJson: true
   }),
+  runStep('auth-doctor', npmCmd, ['run', '--silent', 'auth:bc:doctor'], { parseJson: true }),
   runStep('target-075-safe-check', npmCmd, ['run', '--silent', 'fibu:target:foundation-consistency-pilot', '--', '--check'], {
     parseJson: true
   }),
@@ -72,12 +73,14 @@ const freezeStatus = steps.find((step) => step.id === 'freeze-status')?.parsedJs
 const qualityAudit = steps.find((step) => step.id === 'quality-audit')?.parsedJson;
 const readiness = steps.find((step) => step.id === 'target-075-readiness')?.parsedJson;
 const authCheck = steps.find((step) => step.id === 'auth-state-check')?.parsedJson;
+const authDoctor = steps.find((step) => step.id === 'auth-doctor')?.parsedJson;
 const target075SafeCheck = steps.find((step) => step.id === 'target-075-safe-check')?.parsedJson;
 const qualityRiskIds = (qualityAudit?.risks ?? []).map((risk) => risk.id);
 const localResumeReady =
   failed.length === 0 &&
   readiness?.canProceedAfterFreezeLift === true &&
   authCheck?.canUseStoredAuth === true &&
+  authDoctor?.authCheck?.canUseStoredAuth === true &&
   target075SafeCheck?.canResumeAfterFreezeLift === true;
 const freezeActive = freezeStatus?.freezeActive === true;
 
@@ -102,6 +105,9 @@ if ((authCheck?.blockedBy ?? []).includes('storage-state-expires-before-required
   warnings.push(
     `Stored auth does not meet the requested ${minAuthExpiresInHours}h minimum window; refresh it before unattended Business Central work.`
   );
+}
+if (authDoctor?.decision === 'stored-auth-usable-but-live-gate-blocked') {
+  warnings.push('Stored auth is usable, but the active live gate still blocks Business Central/Playwright execution.');
 }
 
 const output = {
@@ -161,6 +167,15 @@ const output = {
         authWarnExpiresInHours: target075SafeCheck.authWarnExpiresInHours,
         authWarnings: target075SafeCheck.authWarnings ?? [],
         blockedBy: target075SafeCheck.blockedBy
+      }
+    : null,
+  authDoctor: authDoctor
+    ? {
+        decision: authDoctor.decision,
+        canRunBusinessCentralWorkflows: authDoctor.canRunBusinessCentralWorkflows,
+        operatorActionRequired: authDoctor.operatorActionRequired,
+        liveGate: authDoctor.liveGate,
+        nextSafeAction: authDoctor.nextSafeAction
       }
     : null,
   freezeStatus: freezeStatus
