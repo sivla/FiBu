@@ -251,6 +251,30 @@ function renderDecision(result) {
     '',
     bullet(input.uatTrainingImpact),
     '',
+    '## Master-Data-Read-first-Handoff',
+    '',
+    'Diese Entscheidung gibt keine Schreibfreigabe. Sie waehlt hoechstens den naechsten lesenden Master-Data-Probe.',
+    '',
+    '| Kandidat | Entscheidung | Mindestgrundlage | Bleibt verboten |',
+    '| --- | --- | --- | --- |',
+    `| \`PWS-MD-001\` Debitoren (Customers) | ${
+      readyForMasterData ? 'ready-for-read-first-review' : 'blocked-or-needs-foundation-follow-up'
+    } | Company, Kontenplan, Debitoren-/Buchungsgruppen-/Payment-Abhaengigkeiten sind sichtbar oder als Luecke benannt. | Debitor speichern, Vorlage aendern, Verkaufsbeleg anlegen. |`,
+    `| \`PWS-MD-002\` Kreditoren (Vendors) | ${
+      readyForMasterData ? 'ready-for-read-first-review' : 'blocked-or-needs-foundation-follow-up'
+    } | Company, Kontenplan, Kreditoren-/Buchungsgruppen-/Payment-Abhaengigkeiten sind sichtbar oder als Luecke benannt; Bankdaten bleiben ausserhalb. | Kreditor speichern, Bankdaten erfassen, Einkaufsbeleg oder Zahlung anlegen. |`,
+    `| \`PWS-MD-003\` Artikel/Services/Nichtlagerartikel | ${
+      readyForMasterData ? 'ready-for-read-first-review' : 'blocked-or-needs-foundation-follow-up'
+    } | Company, Kontenplan, Produktbuchungsgruppen, USt-Produktkontext, Basiseinheiten und Inventory-/Costing-Grenzen sind sichtbar oder als Luecke benannt. | Artikel speichern, Basiseinheit anlegen, Lager-/Bewertungs-/Buchungssetup aendern, Lagerwert oder Wertposten behaupten. |`,
+    '',
+    'Erlaubte Anschlussklassifikationen:',
+    '',
+    '- Debitoren: `ready-for-customer-write-gate`, `needs-foundation-follow-up`, `needs-template-discovery`, `blocked`.',
+    '- Kreditoren: `ready-for-vendor-write-gate`, `needs-foundation-follow-up`, `needs-template-discovery`, `needs-payment-boundary-decision`, `blocked`.',
+    '- Artikel/Services: `ready-for-item-write-gate`, `needs-uom-follow-up`, `needs-product-posting-follow-up`, `needs-inventory-setup-follow-up`, `needs-service-route-decision`, `blocked`.',
+    '',
+    '`ready-for-*-write-gate` bedeutet nur, dass ein spaeterer Smart-Decision-Case vorbereitet werden darf. Es erlaubt kein direktes Schreiben, Importieren, Buchen oder Posten.',
+    '',
     '## Naechste Projektoutputs',
     '',
     bullet(input.nextProjectOutputs),

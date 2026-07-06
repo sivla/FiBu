@@ -358,7 +358,15 @@ for (const phrase of [
   'Auth-Ziel: playthru / UNIVERSAARL-DE',
   'Auth-Ziel passt zum State: ja',
   'No-Write-Grenze aus TARGET-075',
-  'Master Data kann als naechster Block vorbereitet werden'
+  'Master Data kann als naechster Block vorbereitet werden',
+  'Master-Data-Read-first-Handoff',
+  '`PWS-MD-001` Debitoren (Customers)',
+  '`PWS-MD-002` Kreditoren (Vendors)',
+  '`PWS-MD-003` Artikel/Services/Nichtlagerartikel',
+  'ready-for-customer-write-gate',
+  'needs-payment-boundary-decision',
+  'needs-inventory-setup-follow-up',
+  'Es erlaubt kein direktes Schreiben, Importieren, Buchen oder Posten.'
 ]) {
   if (!output.includes(phrase)) errors.push(`output is missing phrase: ${phrase}`);
 }
@@ -368,7 +376,8 @@ for (const phrase of [
   'Master Data bleibt geparkt',
   'Blocker: VAT Posting Setup was rejected in compact evidence.',
   'Fehlend oder unklar: 3806, 4400, 5400',
-  'Foundation-Grenzen zuerst klaeren'
+  'Foundation-Grenzen zuerst klaeren',
+  'blocked-or-needs-foundation-follow-up'
 ]) {
   if (!blockedOutput.includes(phrase)) errors.push(`blocked output is missing phrase: ${phrase}`);
 }
