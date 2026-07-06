@@ -81,6 +81,13 @@ Wenn TARGET-075 eine ausreichende Foundation-Sichtbarkeit liefert, ist der naech
 
 Empfehlung: Nach einer positiven Foundation-Decision zuerst `PWS-MD-001` und `PWS-MD-002` als lesende Karten-/Template-Proofs ausfuehren. Artikel/Services folgen danach, weil sie mehr Foundation-Abhaengigkeiten haben. Wenn TARGET-075 Foundation-Luecken zeigt, bleiben alle drei Kandidaten `blocked` und die Luecke wird als Foundation-Folgecase behandelt.
 
+`PWS-MD-001` ist lokal als gegateter read-first Pilot vorbereitet:
+
+- Script: `npm run fibu:pws:md001:customer-context -- --check`
+- Live erst nach `FOUNDATION-READINESS-DECISION.md`, offenem Live-Gate und `--live-approved`.
+- Beweisziel: Debitoren-/Customer-Kontext, sichtbare Felder/Aktionen und Screenshot-QA.
+- Keine Freigabe fuer Debitorenanlage, Vorlagenaenderung, Verkaufsbeleg, Import, API oder Posting.
+
 ## RD-FOUND-001 Numbering policy for customers, vendors and items
 
 Workstream: `WS03-FINANCE-FOUNDATION`, `WS04-MASTER-DATA-PRODUCT`
