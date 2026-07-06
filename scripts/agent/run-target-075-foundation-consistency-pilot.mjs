@@ -166,6 +166,8 @@ if (checkOnly) {
         authAgeHours: authStatus.ageHours,
         authMaxAgeHours: authStatus.maxAgeHours,
         authExpiresInHours: authStatus.expiresInHours,
+        authWarnExpiresInHours: authStatus.warnExpiresInHours,
+        authWarnings: authStatus.warnings ?? [],
         blockedBy: freezeStatus.freezeActive === true ? ['improvement-freeze-active'] : [],
         nextStep:
           freezeStatus.freezeActive === true

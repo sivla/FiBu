@@ -88,6 +88,9 @@ if (qualityRiskIds.includes('auth-check-not-enforced')) {
 if (qualityRiskIds.includes('playwright-flake-surface')) {
   warnings.push('Legacy Playwright risk surface remains; TARGET-075 stays read-only.');
 }
+if ((authCheck?.warnings ?? []).includes('storage-state-expires-soon')) {
+  warnings.push('Stored auth is usable but close to the freshness limit; refresh it before long unattended Business Central work.');
+}
 
 const output = {
   schemaVersion: 1,
@@ -159,6 +162,8 @@ const output = {
         ageHours: authCheck.ageHours,
         maxAgeHours: authCheck.maxAgeHours,
         expiresInHours: authCheck.expiresInHours,
+        warnExpiresInHours: authCheck.warnExpiresInHours,
+        warnings: authCheck.warnings ?? [],
         expectedInstance: authCheck.expectedInstance,
         expectedCompany: authCheck.expectedCompany,
         shellValidationMeta: authCheck.shellValidationMeta

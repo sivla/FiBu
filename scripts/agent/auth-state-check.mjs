@@ -6,6 +6,7 @@ const authMetaFile = path.resolve('playwright/.auth/bc-user.meta.json');
 const authProfileDir = path.resolve('playwright/.auth/bc-profile');
 const currentStateFile = path.resolve('.agent/state/current.json');
 const maxAgeHours = Number(process.env.BC_AUTH_MAX_AGE_HOURS ?? 12);
+const warnExpiresInHours = Number(process.env.BC_AUTH_WARN_EXPIRES_IN_HOURS ?? 2);
 const now = Date.now();
 const authUnblockStep =
   'Run npm run auth:bc:open-login and complete Login/MFA in the Playwright-opened browser window until the Business Central shell is visible. ' +
@@ -29,6 +30,7 @@ function result(overrides, target = {}) {
     ageHours: null,
     metaAgeHours: null,
     maxAgeHours,
+    warnExpiresInHours,
     expiresInHours: null,
     expectedInstance: target.expectedInstance ?? '',
     expectedCompany: target.expectedCompany ?? '',
@@ -114,6 +116,7 @@ async function main() {
   const cookies = Array.isArray(parsed.cookies) ? parsed.cookies : [];
   const origins = Array.isArray(parsed.origins) ? parsed.origins : [];
   const blockedBy = [];
+  const warnings = [];
   let metaAgeHours = null;
   let hasShellValidationMeta = false;
   let metaMtimeMs = null;
@@ -156,6 +159,9 @@ async function main() {
   if (ageHours > maxAgeHours) blockedBy.push('storage-state-too-old');
   if (metaAgeHours !== null && metaAgeHours > maxAgeHours) blockedBy.push('shell-validation-meta-too-old');
   if (!cookies.length) blockedBy.push('storage-state-has-no-cookies');
+  if (blockedBy.length === 0 && expiresInHours <= warnExpiresInHours) {
+    warnings.push('storage-state-expires-soon');
+  }
 
   console.log(
     JSON.stringify(
@@ -174,9 +180,12 @@ async function main() {
         cookieCount: cookies.length,
         originCount: origins.length,
         blockedBy,
+        warnings,
         nextStep:
-          blockedBy.length === 0
+          blockedBy.length === 0 && warnings.length === 0
             ? 'Stored auth has local shell-validation metadata. Live tests must still validate the Business Central shell.'
+            : blockedBy.length === 0
+              ? 'Stored auth is usable but close to the freshness limit. Refresh Playwright auth before long unattended Business Central work.'
             : unblockStep
       }),
       null,
