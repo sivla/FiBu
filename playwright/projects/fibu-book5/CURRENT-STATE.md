@@ -1,6 +1,8 @@
 # Current State fuer FiBu Buch 5
 
-Aktive Zielwelt ab jetzt: `playthru` / `UNIVERSAARL-DE` / `Universaarl GmbH`. Alte `MCP_1_20260210`-, `RM-DEMO`-, Rhein-Main- und CRONUS-Abschnitte in dieser Datei sind historische Laborupdates (`legacy-labor-reference`) und duerfen nicht mehr als aktive Zielwahrheit gelesen werden. Universaarl-Prozesse ersetzen alte Laborclaims Schritt fuer Schritt durch neue Evidence.
+Status: `legacy-purge-source` / historische Laborchronik, nicht aktive Steuerungsdatei.
+
+Aktive Zielwelt ab jetzt: `playthru` / `UNIVERSAARL-DE` / `Universaarl GmbH`. Die aktive Steuerung liegt in `README.md`, `.agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md`, `.agent/project-template/PROJECT-DASHBOARD-DRAFT.md` und `.agent/state/current.json` top-level. Alte `MCP_1_20260210`-, `RM-DEMO`-, Rhein-Main- und CRONUS-Abschnitte sowie alle darin genannten "Naechster Schritt"-Hinweise sind historische Laborupdates (`legacy-labor-reference`) und duerfen nicht mehr als aktive Zielwahrheit gelesen werden. Universaarl-Prozesse ersetzen alte Laborclaims Schritt fuer Schritt durch neue Evidence.
 
 Update nach `FIXEDASSETS-173-FA-GL-JOURNAL-BALACCOUNT-82000-RESULT-REVIEW`: Lokaler Judge-/Evidence-Review ohne BC-Lauf, ohne Playwright-Lauf, ohne Werteingabe, ohne Preview Posting, ohne Buchung und ohne Buchaenderung. Entscheidung: FA-172 wird als Labor-Kontext- und Blocker-Evidence akzeptiert, aber nicht als Zielbild fuer `Bal. Account No. = 82000`. Der Setup-Fit `MACHINES / Acquisition Cost Bal. Acc. = 82000` bleibt gueltig; der aktuelle Blocker ist das BC-Journalgrid/Subform-Handling: sichtbare Spalte und sichtbarer Gegenkonto-Typ liefern noch keine editierbare Zielzelle. Naechster Schritt ist `FIXEDASSETS-174-BC-LINES-JOURNAL-CELL-CANDIDATE-HELPER`: klein und lokal das Lines/Subform-Zellkandidaten-Pattern verbessern oder planen; kein BC, kein Playwright, kein Preview Posting und kein `Post`.
 

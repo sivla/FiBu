@@ -101,6 +101,7 @@ Last reviewed: 2026-07-06
 | Old evidence under `playwright/projects/fibu-book5/evidence/` | `legacy-purge-source` or `reference` | Preserve evidence chain; do not mass-edit screenshots/results. |
 | Package scripts flagged by `agent:legacy:active-check` as `legacy-target-file-reference` | `legacy-purge-source` | Warning inventory until ported, blocked or archived. |
 | `playwright/projects/fibu-book5/UNIVERSAARL-RM-DECOMMISSION-PLAN.md` | `active-work` | Controls legacy cleanup actions, not current BC execution. |
+| `playwright/projects/fibu-book5/CURRENT-STATE.md` | `legacy-purge-source` | Historical lab chronology only; its old next-step lines do not steer Universaarl execution. |
 
 ## Superseded/remove candidates
 
