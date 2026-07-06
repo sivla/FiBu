@@ -163,6 +163,9 @@ if (guardedRunner) {
   if (!guardedRunner.includes('auth:bc:check') || !guardedRunner.includes('canUseStoredAuth')) {
     errors.push(`${guardedRunnerPath}: guarded runner must check stored auth before live execution`);
   }
+  if (!guardedRunner.includes('auth:bc:doctor') || !guardedRunner.includes('canRunBusinessCentralWorkflows')) {
+    errors.push(`${guardedRunnerPath}: guarded runner must check auth:bc:doctor live-gate status before live execution`);
+  }
   if (!guardedRunner.includes('--live-approved')) {
     errors.push(`${guardedRunnerPath}: guarded runner must require --live-approved for live execution while freeze is active`);
   }
@@ -190,7 +193,9 @@ if (guardedRunner) {
     'TARGET_075_AUTH_MAX_AGE_HOURS',
     'TARGET_075_AUTH_EXPIRES_IN_HOURS',
     'TARGET_075_AUTH_WARN_EXPIRES_IN_HOURS',
-    'TARGET_075_AUTH_WARNINGS'
+    'TARGET_075_AUTH_WARNINGS',
+    'TARGET_075_AUTH_DOCTOR_DECISION',
+    'TARGET_075_AUTH_DOCTOR_LIVE_GATE'
   ]) {
     if (!guardedRunner.includes(envName)) {
       errors.push(`${guardedRunnerPath}: guarded runner must pass ${envName} into TARGET-075 evidence`);

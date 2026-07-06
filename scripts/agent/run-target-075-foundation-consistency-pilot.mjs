@@ -152,6 +152,46 @@ if (authStatus.canUseStoredAuth !== true) {
   process.exit(3);
 }
 
+const authDoctor = run('npm', ['run', '--silent', 'auth:bc:doctor']);
+if (authDoctor.status !== 0) {
+  printChildFailure('auth:bc:doctor', authDoctor);
+  process.exit(typeof authDoctor.status === 'number' ? authDoctor.status : 1);
+}
+
+let authDoctorStatus;
+try {
+  authDoctorStatus = parseJsonOutput('auth:bc:doctor', authDoctor.stdout);
+} catch (error) {
+  console.error(String(error instanceof Error ? error.message : error));
+  process.exit(1);
+}
+
+const explicitFreezeOverride = freezeStatus.freezeActive === true && liveApproved && freezeOverrideApproved;
+if (!checkOnly && authDoctorStatus.canRunBusinessCentralWorkflows !== true && !explicitFreezeOverride) {
+  console.error(
+    JSON.stringify(
+      {
+        schemaVersion: 1,
+        purpose: 'target-075-auth-doctor-live-gate',
+        canRun: false,
+        businessCentralOpened: false,
+        playwrightLiveRunExecuted: false,
+        targetCase: 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK',
+        blockedBy: authDoctorStatus.liveGate?.blockedBy ?? ['auth-doctor-live-gate-blocked'],
+        decision: authDoctorStatus.decision,
+        liveGate: authDoctorStatus.liveGate,
+        reason: 'auth:bc:doctor reports usable stored auth but no current Business Central live permission.',
+        nextStep:
+          authDoctorStatus.nextSafeAction ??
+          'Lift the freeze or update the active live gate before running TARGET-075.'
+      },
+      null,
+      2
+    )
+  );
+  process.exit(4);
+}
+
 if (checkOnly) {
   console.log(
     JSON.stringify(
@@ -175,6 +215,12 @@ if (checkOnly) {
         authExpiresInHours: authStatus.expiresInHours,
         authWarnExpiresInHours: authStatus.warnExpiresInHours,
         authWarnings: authStatus.warnings ?? [],
+        authDoctor: {
+          decision: authDoctorStatus.decision,
+          canRunBusinessCentralWorkflows: authDoctorStatus.canRunBusinessCentralWorkflows,
+          liveGate: authDoctorStatus.liveGate,
+          nextSafeAction: authDoctorStatus.nextSafeAction
+        },
         blockedBy: freezeStatus.freezeActive === true ? ['improvement-freeze-active'] : [],
         nextStep:
           freezeStatus.freezeActive === true
@@ -201,7 +247,9 @@ exitWith(
       TARGET_075_AUTH_MAX_AGE_HOURS: String(authStatus.maxAgeHours ?? ''),
       TARGET_075_AUTH_EXPIRES_IN_HOURS: String(authStatus.expiresInHours ?? ''),
       TARGET_075_AUTH_WARN_EXPIRES_IN_HOURS: String(authStatus.warnExpiresInHours ?? ''),
-      TARGET_075_AUTH_WARNINGS: JSON.stringify(authStatus.warnings ?? [])
+      TARGET_075_AUTH_WARNINGS: JSON.stringify(authStatus.warnings ?? []),
+      TARGET_075_AUTH_DOCTOR_DECISION: String(authDoctorStatus.decision ?? ''),
+      TARGET_075_AUTH_DOCTOR_LIVE_GATE: JSON.stringify(authDoctorStatus.liveGate ?? null)
     }
   })
 );
