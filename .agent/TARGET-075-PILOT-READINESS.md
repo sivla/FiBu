@@ -31,7 +31,8 @@ Last checked: 2026-07-06.
 | `npm run agent:quality:audit` | passed with known risk findings | The pilot may proceed only as read-first; TypeScript coverage, auth freshness and legacy Playwright flake surface remain bounded risks. |
 | `npm run agent:resume:check` | passed locally | TARGET-075 is prepared after freeze lift; this check does not open Business Central and does not lift the freeze. |
 | `npm run agent:freeze:status` | freeze active | Live execution remains blocked until the freeze is explicitly lifted or the active case confirms TARGET-075 may run. |
-| `npx playwright test --list playwright/projects/fibu-book5/tests/target-075-chart-of-accounts-reopen-and-setup-consistency-check.spec.ts` | passed, 1 test listed | The TARGET-075 spec is discoverable without opening Business Central. |
+| `npm run fibu:target:foundation-consistency-pilot -- --check` | passed locally | The guarded TARGET-075 runner is ready without opening Business Central. |
+| `npm run fibu:target:foundation-consistency-pilot -- --list` | passed, 1 test listed | The TARGET-075 spec is discoverable through the guarded runner. |
 | `npm run check:encoding` | passed | Text encoding is clean enough for this readiness package. |
 
 Current decision: stop broad cleanup here. The next useful project movement is either explicit freeze lift plus TARGET-075 live read-first execution, or a narrow local fix only if a gate changes from green to red.
@@ -42,7 +43,8 @@ Current decision: stop broad cleanup here. The next useful project movement is e
 - `npm run agent:freeze:status`
 - `npm run agent:preflight`
 - `npm run check:encoding`
-- `npx playwright test --list playwright/projects/fibu-book5/tests/target-075-chart-of-accounts-reopen-and-setup-consistency-check.spec.ts`
+- `npm run fibu:target:foundation-consistency-pilot -- --check`
+- `npm run fibu:target:foundation-consistency-pilot -- --list`
 - explicit freeze lift or active-case confirmation that TARGET-075 may run
 - stored auth must resolve to `playthru / UNIVERSAARL-DE`
 

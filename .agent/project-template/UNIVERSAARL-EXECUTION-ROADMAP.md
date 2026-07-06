@@ -89,7 +89,8 @@ Latest local check result: TARGET-075 readiness refresh, 2026-07-06.
 | `agent:quality:audit` | passed with risk findings | Quality risks remain visible: narrow TypeScript coverage, direct storageState usage and legacy Playwright flake surface. |
 | `agent:resume:check` | passed locally | `TARGET-075` is locally prepared, but this does not lift the freeze. |
 | `agent:freeze:status` | freeze active | Live execution remains blocked until the freeze is explicitly lifted. |
-| `npx playwright test --list ...target-075...spec.ts` | passed, 1 test listed | The TARGET-075 spec is discoverable without opening Business Central. |
+| `npm run fibu:target:foundation-consistency-pilot -- --check` | passed locally | The guarded TARGET-075 runner is ready without opening Business Central. |
+| `npm run fibu:target:foundation-consistency-pilot -- --list` | passed, 1 test listed | The TARGET-075 spec is discoverable through the guarded runner. |
 
 Quality-audit boundary:
 
