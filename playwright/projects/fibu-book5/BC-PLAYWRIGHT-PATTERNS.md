@@ -395,7 +395,7 @@ Regeln:
 
 ## Master Data List Preflight
 
-- TARGET-025 proves a safe read-only route for the core master-data lists in `playthru` / `UNIVERSAARL-DE`: Debitoren (Page 22), Kreditoren (Page 27), Artikel (Page 31) and Lagerorte (Page 15) can be opened directly without Tell-Me/search and without clicking `Neu`.
+- TARGET-025 is a historical helper lesson, not the active next master-data gate. It proves that the core master-data lists in `playthru` / `UNIVERSAARL-DE` can be opened read-only by direct page routes: Debitoren (Page 22), Kreditoren (Page 27), Artikel (Page 31) and Lagerorte (Page 15), without Tell-Me/search and without clicking `Neu`. Current master-data work still waits for TARGET-075 and `FOUNDATION-READINESS-DECISION.md`.
 - Empty lists are useful evidence, but only for current list state and page readiness. They do not prove templates, mandatory fields, posting groups, VAT defaults, number-series readiness or future card creation.
 - Teaching tips at the lower left are a double-edged BC pattern. They can explain import/template affordances for beginner screenshots, but they also obscure page content. Each screenshot must decide whether the tip is part of the learning target or should be closed before field-level evidence.
 - FactBoxes on the right are useful when they explain list context, statistics or card-side details. They must not be allowed to hide grid columns needed for the claim; for list/grid proof, prefer a wider viewport, focus mode or a collapsed FactBox when the table itself is the target.
