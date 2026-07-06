@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized-compatible",
+  "caseId": "PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION",
+  "source": "local-consultant-route-decision",
+  "resultStatus": "observed-local-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "Buchungsmatrix Einrichtung / General Posting Setup",
+  "url": "",
+  "liveActionsExecuted": false,
+  "businessCentralOpened": false,
+  "playwrightLiveRunExecuted": false,
+  "actionsTaken": [
+    "Read FOUNDATION-READINESS-DECISION.md.",
+    "Reviewed PWS-FF-002 and PWS-FF-002B as blocked Page 314 navigation/capture evidence.",
+    "Reviewed TARGET-057 as accepted read-only Page 314/Table 252/Purch. Account field-truth evidence.",
+    "Reviewed TARGET-058 and TARGET-059 as blocked/parked 5400 persistence evidence.",
+    "Classified General Posting Setup as partial Foundation evidence, not as posting-ready setup.",
+    "Selected Dimensions read-first as the next safer Foundation lane instead of repeating Page 314 or VAT editor attempts."
+  ],
+  "actionsNotTaken": [
+    "No Business Central opened.",
+    "No Playwright live run executed.",
+    "No Page 314 direct route retried.",
+    "No Tell-Me/Search route retried.",
+    "No New/Neu action clicked.",
+    "No Edit/List Edit action clicked.",
+    "No values typed.",
+    "No setup changed.",
+    "No master data created.",
+    "No document or draft created.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No Payment.",
+    "No API shortcut.",
+    "No company switch."
+  ],
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "screenshots": [],
+  "sourceRefs": [
+    {
+      "title": "Microsoft Learn - Posting group setup",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/finance-posting-groups",
+      "use": "Posting groups map entities and documents to G/L accounts; General Posting Setup is part of account determination."
+    },
+    {
+      "title": "Microsoft Learn training - Set up posting groups in Dynamics 365 Business Central",
+      "url": "https://learn.microsoft.com/en-us/training/modules/posting-groups-dynamics-365-business-central/",
+      "use": "The training path frames posting groups as a core finance foundation topic before process posting."
+    },
+    {
+      "title": "Microsoft Learn - Apply company configuration packages",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/apply-company-configuration-packages",
+      "use": "Configuration packages remain a valid later setup route, but not as a blind workaround without cleanup and table/field scope."
+    }
+  ],
+  "routeDecision": {
+    "pwsFf002DirectAndSearchRoute": "rejected",
+    "pwsFf002BScopedSearchRoute": "rejected",
+    "target057ReadOnlyFieldTruth": "accepted-as-technical-foundation-evidence",
+    "target058ListEditGridHeaderRoute": "parked-rejected-for-persistence",
+    "target059ParkDecision": "accepted",
+    "generalPostingSetupStatus": "partial-not-posting-ready",
+    "acceptedFoundationSignals": [
+      "Page 314 / General Posting Setup was proven read-only by TARGET-057.",
+      "Table 252 and Purch. Account field context were technically identified by Page Inspection/DOM inventory.",
+      "INLAND / WAREN / Warenverkaufskonto 4400 are accepted as partial setup context."
+    ],
+    "remainingGap": [
+      "Wareneinkaufskonto / Purch. Account 5400 is not proven as persisted on INLAND / WAREN.",
+      "The tested coordinate/header/list-edit route must not be repeated.",
+      "No posting readiness follows from partial General Posting Setup."
+    ],
+    "selectedNextLane": "PWS-FF-005-DIMENSIONS-READFIRST",
+    "whyNextLaneIsBest": "Dimensions are a separate Foundation topic that can be read and explained without writing setup, while Page 314 and VAT write/editor routes remain parked until a materially new route exists.",
+    "routesNotSelected": [
+      {
+        "route": "repeat Page 314 direct URL or Tell-Me/Search",
+        "reason": "Already rejected by PWS-FF-002 and PWS-FF-002B."
+      },
+      {
+        "route": "repeat TARGET-058 grid/header write",
+        "reason": "Already parked because it opened the column/header menu and did not prove 5400 after reopen."
+      },
+      {
+        "route": "configuration package for Table 252 now",
+        "reason": "Potentially valid later, but too broad for this small step without cleanup, existing-row and field-scope plan."
+      },
+      {
+        "route": "Master Data read/write now",
+        "reason": "Blocked because posting setup and VAT boundaries remain partial."
+      }
+    ]
+  },
+  "proved": [
+    "PWS-FF-002/PWS-FF-002B should not be repeated as Page 314 proof routes.",
+    "TARGET-057 is stronger evidence for Page 314 context than the later PWS-FF-002/B navigation attempts.",
+    "General Posting Setup can be used only as partial Foundation learning evidence, not as posting-ready setup.",
+    "The next useful Foundation progress is a separate read-first lane, not another blind Page 314 retry."
+  ],
+  "notProved": [
+    "No Wareneinkaufskonto / Purch. Account 5400 persistence.",
+    "No complete General Posting Setup row.",
+    "No VAT Posting Setup correctness.",
+    "No Master Data readiness.",
+    "No Preview Posting, Posting or ledger trace.",
+    "No final German tax, compliance or SKR04 correctness."
+  ],
+  "blockedBy": [
+    "Page 314 purchase account 5400 remains parked until a materially different UI, configuration-package, source-backed import or explicit setup-route hypothesis exists."
+  ],
+  "warnings": [
+    "Do not treat old accepted Page 314 field truth as a current write route.",
+    "Do not use partial General Posting Setup as a book claim for posting readiness."
+  ],
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "noBookChange": true
+  },
+  "nextStepDecision": {
+    "currentCase": "PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "PWS-FF-004-VAT-SETUP-BOUNDARY",
+    "lastEvidenceSummary": "Starter accounts are consumed by PWS-FF-006. Page 314 has older accepted field-truth evidence from TARGET-057, but the 5400 write/persistence route is parked by TARGET-058/TARGET-059. VAT/Page 472 editor routes are also parked without a safe write route.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "A phantom PWS-FF-004 case would duplicate a long existing VAT branch; the safer practical next step is Dimensions read-first, which is independent and no-write.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "PWS-FF-005-DIMENSIONS-READFIRST",
+        "status": "ready-next",
+        "reason": "Dimensions can be inspected read-first without changing setup and will support reporting/training/book structure."
+      },
+      {
+        "caseId": "PWS-FF-004-VAT-SETUP-BOUNDARY",
+        "status": "replace-with-better-case",
+        "reason": "Existing TARGET-027/TARGET-071/TARGET-073 evidence is the authoritative VAT branch; do not create a parallel phantom VAT case."
+      },
+      {
+        "caseId": "PWS-MD-001-CUSTOMER-CONTEXT-READFIRST",
+        "status": "needs-setup-first",
+        "reason": "Master Data remains parked until Foundation boundaries are explicitly accepted or resolved."
+      },
+      {
+        "caseId": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
+        "status": "obsolete",
+        "reason": "Already executed and parked as no-persist route; do not repeat without new hypothesis."
+      }
+    ],
+    "queueChangesMade": [
+      "PWS-FF-002C consumes PWS-FF-002/PWS-FF-002B, TARGET-057, TARGET-058 and TARGET-059.",
+      "General Posting Setup is classified partial-not-posting-ready.",
+      "PWS-FF-005-DIMENSIONS-READFIRST selected as next read-first Foundation lane."
+    ],
+    "selectedNextCase": "PWS-FF-005-DIMENSIONS-READFIRST",
+    "whySelectedNextCaseIsBest": "It produces useful Foundation, reporting, UAT and training context without pretending Page 314/VAT write readiness.",
+    "risksBeforeNextCase": [
+      "Do not claim posting readiness from partial Page 314 evidence.",
+      "Do not start Master Data or process documents after Dimensions read-first unless Foundation Readiness is updated."
+    ],
+    "requiredPreparation": [
+      "Create or use a read-only Dimensions case with no setup writes.",
+      "Capture Dimension, Dimension Values and General Ledger Setup context only.",
+      "Record what a key user must understand: global dimensions, dimension values, defaults and reporting boundaries."
+    ]
+  },
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/pws-ff-002c-general-posting-setup-route-decision/PWS-FF-002C-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-ff-002c-general-posting-setup-route-decision/README.md"
+  ],
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/pws-ff-002-general-posting-setup-readfirst-recovery/PWS-FF-002-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-ff-002b-page314-navigation-capture-recovery/PWS-FF-002B-result.json",
+    "playwright/projects/fibu-book5/evidence/target-057-general-posting-setup-purchase-account-pageinspection-readonly-gate/TARGET-057-result.json",
+    "playwright/projects/fibu-book5/evidence/target-058-general-posting-setup-purchase-account-controlled-write-gate/TARGET-058-result.json",
+    "playwright/projects/fibu-book5/evidence/target-059-general-posting-setup-purchase-account-route-escalation-or-park/TARGET-059-result.json"
+  ],
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "nextCase": "PWS-FF-005-DIMENSIONS-READFIRST"
+}

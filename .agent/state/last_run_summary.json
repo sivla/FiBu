@@ -1,37 +1,34 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST",
-  "caseId": "PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST",
-  "status": "observed-read-first",
+  "runId": "PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION",
+  "caseId": "PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION",
+  "status": "observed-local-decision",
   "completedAt": "2026-07-06T00:00:00.000+02:00",
   "mode": "universaarl-foundation-readfirst",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "PWS-FF-006 opened Business Central read-only and proved the visible Chart of Accounts starter-account rows 1200, 1406, 1800, 3300, 3806, 4400 and 5400 in playthru / UNIVERSAARL-DE. Direct Page 16 and Role Center control routes were not reliable enough, so the accepted read-only fallback was Tell-Me search for Kontenplan.",
-  "resultPath": "playwright/projects/fibu-book5/evidence/pws-ff-006-chart-of-accounts-starter-accounts-readfirst/PWS-FF-006-result.json",
+  "summary": "PWS-FF-002C consumed the Page 314 route evidence. PWS-FF-002/PWS-FF-002B direct/search routes are rejected, TARGET-057 Page 314/Table 252/Purch. Account field truth is accepted as technical Foundation evidence, and TARGET-058/TARGET-059 park the 5400 persistence route. General Posting Setup remains partial-not-posting-ready.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/pws-ff-002c-general-posting-setup-route-decision/PWS-FF-002C-result.json",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/pws-ff-006-chart-of-accounts-starter-accounts-readfirst/PWS-FF-006-result.json",
-    "playwright/projects/fibu-book5/evidence/pws-ff-006-chart-of-accounts-starter-accounts-readfirst/pws-ff-006-010-chart-of-accounts-starter-accounts.png",
-    "playwright/projects/fibu-book5/evidence/pws-ff-006-chart-of-accounts-starter-accounts-readfirst/pws-ff-006-010-chart-of-accounts-starter-accounts.screenshot.json",
-    "playwright/projects/fibu-book5/evidence/pws-ff-006-chart-of-accounts-starter-accounts-readfirst/pws-ff-006-010-chart-of-accounts-starter-accounts.txt",
-    "playwright/projects/fibu-book5/evidence/pws-ff-006-chart-of-accounts-starter-accounts-readfirst/README.md"
+    "playwright/projects/fibu-book5/evidence/pws-ff-002c-general-posting-setup-route-decision/PWS-FF-002C-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-ff-002c-general-posting-setup-route-decision/README.md",
+    "playwright/projects/fibu-book5/evidence/pws-ff-002-general-posting-setup-readfirst-recovery/PWS-FF-002-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-ff-002b-page314-navigation-capture-recovery/PWS-FF-002B-result.json",
+    "playwright/projects/fibu-book5/evidence/target-057-general-posting-setup-purchase-account-pageinspection-readonly-gate/TARGET-057-result.json",
+    "playwright/projects/fibu-book5/evidence/target-058-general-posting-setup-purchase-account-controlled-write-gate/TARGET-058-result.json",
+    "playwright/projects/fibu-book5/evidence/target-059-general-posting-setup-purchase-account-route-escalation-or-park/TARGET-059-result.json"
   ],
-  "screenshots": [
-    "playwright/projects/fibu-book5/evidence/pws-ff-006-chart-of-accounts-starter-accounts-readfirst/pws-ff-006-010-chart-of-accounts-starter-accounts.png"
-  ],
+  "screenshots": [],
   "actionsTaken": [
-    "Opened Chart of Accounts read-only through the guarded PWS-FF-006 runner.",
-    "Confirmed playthru / UNIVERSAARL-DE in the BC shell.",
-    "Used Tell-Me search as documented fallback after direct Page 16 and scoped Role Center control did not reliably open the list.",
-    "Captured screenshot, compact text evidence and screenshot metadata.",
-    "Classified starter account visibility for Foundation Readiness."
+    "Reviewed Foundation Readiness and Page 314 route evidence locally.",
+    "Classified Page 314 General Posting Setup as partial-not-posting-ready.",
+    "Rejected repeating PWS-FF-002/PWS-FF-002B and TARGET-058 routes without a materially new hypothesis.",
+    "Selected PWS-FF-005 Dimensions read-first as the next safe Foundation lane."
   ],
   "actionsNotTaken": [
-    "No New/Neu action clicked.",
-    "No Edit/Bearbeiten action clicked.",
-    "No values typed.",
-    "No account created or changed.",
+    "No Business Central opened.",
+    "No Playwright live run executed.",
     "No setup changed.",
     "No master data created.",
     "No document or draft created.",
@@ -46,67 +43,72 @@
   "draftCreated": false,
   "previewPosting": false,
   "posted": false,
+  "payment": false,
   "apiShortcut": false,
   "proved": [
-    "Chart of Accounts page is visible read-only in playthru / UNIVERSAARL-DE.",
-    "Starter accounts 1200, 1406, 1800, 3300, 3806, 4400 and 5400 are visible in captured evidence."
+    "The active Page 314 issue is no longer a generic navigation mystery; it is a partial setup and 5400 persistence boundary.",
+    "PWS-FF-002/PWS-FF-002B are blocked route evidence, not accepted Page 314 proof.",
+    "TARGET-057 is the stronger accepted Page 314 field-truth source.",
+    "Master Data and posting remain blocked by Foundation boundaries."
   ],
   "notProved": [
-    "No complete SKR04 chart of accounts.",
-    "No tax advisor, GoBD, HGB or AO correctness claim.",
-    "No VAT setup correctness.",
-    "No posting group correctness.",
-    "No master-data readiness.",
-    "No posting readiness."
+    "No Wareneinkaufskonto / Purch. Account 5400 persistence.",
+    "No complete General Posting Setup row.",
+    "No VAT Posting Setup correctness.",
+    "No Master Data readiness.",
+    "No Preview Posting, Posting or ledger trace."
   ],
-  "blockedBy": [],
+  "blockedBy": [
+    "General Posting Setup remains partial-not-posting-ready until a materially different 5400 route exists or the limitation is consciously accepted for a narrow learning-only path."
+  ],
   "warnings": [
-    "Visible starter accounts are a Foundation input, not a complete SKR04 or posting-ready claim.",
-    "Tell-Me search is acceptable here only because direct Page 16 and scoped Role Center control routes failed to prove page identity."
+    "Do not claim posting readiness from partial Page 314 evidence.",
+    "Do not create a parallel phantom VAT case while the existing TARGET-027/TARGET-071/TARGET-073 branch is authoritative."
   ],
-  "nextCase": "PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION",
-  "nextStep": "Foundation Readiness consumed PWS-FF-006 and closed the starter-account visibility gap. The next narrow local step is PWS-FF-002C: decide the materially different route for Buchungsmatrix Einrichtung / General Posting Setup, because PWS-FF-002 and PWS-FF-002B did not prove Page 314.",
+  "nextCase": "PWS-FF-005-DIMENSIONS-READFIRST",
+  "nextStep": "Run PWS-FF-005 as read-first only: confirm playthru / UNIVERSAARL-DE, inspect Dimensions, Dimension Values and General Ledger Setup dimension context if safely reachable, capture screenshot QA and result JSON, and do not change setup or default dimensions.",
   "nextStepDecision": {
-    "currentCase": "PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST",
-    "plannedNextCaseBeforeReview": "PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST",
-    "lastEvidenceSummary": "Chart of Accounts starter accounts are now visible in playthru / UNIVERSAARL-DE read-only evidence.",
+    "currentCase": "PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "PWS-FF-004-VAT-SETUP-BOUNDARY",
+    "lastEvidenceSummary": "Starter accounts are consumed by PWS-FF-006. General Posting Setup is partial: Page 314 field truth exists, but 5400 persistence is parked. VAT write/editor routes are already separately parked.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "PWS-FF-006 has been consumed; repeating it would add little value unless the page route helper is intentionally improved.",
+    "reason": "PWS-FF-004 would duplicate an existing VAT evidence branch. Dimensions read-first is the next independent Foundation lane with useful reporting/training/book value and no write requirement.",
     "lookaheadReviewed": [
       {
-        "caseId": "PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION",
+        "caseId": "PWS-FF-005-DIMENSIONS-READFIRST",
         "status": "ready-next",
-        "reason": "Must decide whether Page 314 is parked, gets a materially new route, or another Foundation lane should run first."
-      },
-      {
-        "caseId": "PWS-FF-004-VAT-SETUP-BOUNDARY",
-        "status": "ready-after-current",
-        "reason": "VAT remains a read-first Foundation gap; do not write Page 472 until a new safe route exists."
-      },
-      {
-        "caseId": "POSTING-GROUPS-READFIRST",
-        "status": "ready-after-current",
-        "reason": "Posting Groups should be checked read-only before Master Data."
+        "reason": "No-write Foundation lane; supports reporting, UAT and training context."
       },
       {
         "caseId": "PWS-MD-001-CUSTOMER-CONTEXT-READFIRST",
         "status": "needs-setup-first",
-        "reason": "Master Data remains parked until Foundation Readiness accepts or parks setup gaps."
+        "reason": "Master Data remains parked until Foundation readiness accepts or resolves setup gaps."
+      },
+      {
+        "caseId": "PWS-FF-001-NUMBER-SERIES-READFIRST",
+        "status": "ready-after-current",
+        "reason": "Number Series may follow if Dimensions read-first still leaves Master Data blocked."
+      },
+      {
+        "caseId": "TARGET-058-GENERAL-POSTING-SETUP-PURCHASE-ACCOUNT-CONTROLLED-WRITE-GATE",
+        "status": "obsolete",
+        "reason": "Already executed and parked as no-persist route; do not repeat without new hypothesis."
       }
     ],
     "queueChangesMade": [
-      "PWS-FF-006 marked consumed.",
-      "FOUNDATION-READINESS-DECISION updated from TARGET-075 and PWS-FF-006.",
-      "PWS-FF-002C selected as next local no-live route decision."
+      "PWS-FF-002C result created.",
+      "PWS-FF-005-DIMENSIONS-READFIRST created and selected as active next case.",
+      "PWS-FF-004 demoted as phantom parallel VAT case."
     ],
-    "selectedNextCase": "PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION",
-    "whySelectedNextCaseIsBest": "The visible account proof is consumed; the remaining Foundation blocker is General Posting Setup, and repeating old Page 314 routes would be blind.",
+    "selectedNextCase": "PWS-FF-005-DIMENSIONS-READFIRST",
+    "whySelectedNextCaseIsBest": "It moves Foundation forward without pretending Page 314 or VAT write readiness and gives the book/training track useful reporting context.",
     "risksBeforeNextCase": [
-      "Do not convert visible starter accounts into complete SKR04, tax or posting-readiness claims."
+      "Do not change Global Dimensions or Default Dimensions in a read-first run.",
+      "Do not treat visible dimensions as reporting readiness until setup and usage are proven."
     ],
     "requiredPreparation": [
-      "Use FOUNDATION-READINESS-DECISION.md, PWS-FF-002 and PWS-FF-002B blocked results as input.",
-      "Keep Master Data parked until Foundation decision says otherwise."
+      "Use screenshot QA for page title, company context and visible dimension values.",
+      "Stop if the route opens a wizard, edit dialog or unsafe setup action."
     ]
   },
   "updatedAt": "2026-07-06T00:00:00.000+02:00"

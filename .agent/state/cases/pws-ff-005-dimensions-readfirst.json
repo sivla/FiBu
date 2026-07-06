@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PWS-FF-005-DIMENSIONS-READFIRST",
+  "status": "planned-readfirst",
+  "mode": "universaarl-foundation-readfirst",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w1-foundation",
+  "purpose": "Read Dimensionen, Dimensionswerte and relevant General Ledger Setup context in playthru / UNIVERSAARL-DE without setup writes, so the Foundation can explain reporting structure before Master Data and process cases.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/pws-ff-002c-general-posting-setup-route-decision/PWS-FF-002C-result.json",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    "playwright/projects/fibu-book5/BC-CARD-ATLAS.md",
+    "playwright/projects/fibu-book5/BC-ACTION-ATLAS.md"
+  ],
+  "mayRunPlaywright": true,
+  "mayOpenBusinessCentral": true,
+  "effectiveBcActionsAllowed": false,
+  "allowedActions": [
+    "run-playwright-readonly",
+    "open-business-central-readonly",
+    "confirm-playthru-instance",
+    "confirm-universaarl-company",
+    "read-dimensions",
+    "read-dimension-values",
+    "read-general-ledger-setup-dimension-context",
+    "capture-screenshot-qa",
+    "write-evidence-result",
+    "update-state-summary"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "write-setup",
+    "create-dimension",
+    "edit-dimension",
+    "create-dimension-value",
+    "edit-dimension-value",
+    "set-global-dimension",
+    "set-default-dimension",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "cleanup-delete",
+    "api-shortcut",
+    "company-switch",
+    "claim-reporting-readiness",
+    "claim-posting-readiness",
+    "claim-master-data-readiness"
+  ],
+  "acceptanceCriteria": [
+    "playthru / UNIVERSAARL-DE context is proven before reading Dimension pages.",
+    "Dimensions and Dimension Values are captured only read-only.",
+    "General Ledger Setup dimension context is captured only read-only if safely reachable.",
+    "Screenshots prove the page, company context or clearly state the limitation.",
+    "No dimension, setup, master data, document, Preview Posting, Posting or API shortcut is executed.",
+    "The result states what key users should learn and what remains blocked before Master Data."
+  ],
+  "nextStepDecision": {
+    "currentCase": "PWS-FF-005-DIMENSIONS-READFIRST",
+    "plannedNextCaseBeforeReview": "PWS-FF-005-DIMENSIONS-READFIRST",
+    "lastEvidenceSummary": "PWS-FF-002C parks General Posting Setup as partial-not-posting-ready and selects Dimensions as the next safe read-first Foundation lane.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Dimensions are needed for reporting, UAT and training and can be observed without setup writes.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "FOUNDATION-READINESS-DECISION-REFRESH-AFTER-DIMENSIONS",
+        "status": "ready-after-current",
+        "reason": "After Dimensions read-first, update Foundation Readiness with the new boundary."
+      },
+      {
+        "caseId": "PWS-MD-001-CUSTOMER-CONTEXT-READFIRST",
+        "status": "needs-setup-first",
+        "reason": "Customer context remains blocked until Foundation Readiness accepts the open setup boundaries."
+      },
+      {
+        "caseId": "PWS-FF-001-NUMBER-SERIES-READFIRST",
+        "status": "ready-after-current",
+        "reason": "Number Series may become the next Foundation lane if Master Data remains blocked."
+      }
+    ],
+    "queueChangesMade": [
+      "PWS-FF-005 created as the next read-only Foundation case."
+    ],
+    "selectedNextCase": "PWS-FF-005-DIMENSIONS-READFIRST",
+    "whySelectedNextCaseIsBest": "It improves Foundation understanding and book/training readiness without needing a write gate.",
+    "risksBeforeNextCase": [
+      "Do not change global dimensions or default dimensions during this read-first run."
+    ],
+    "requiredPreparation": [
+      "Use screenshot QA: page title, company, visible dimension codes/values or explicit blocked reason.",
+      "Stop if the route opens a setup wizard or edit dialog."
+    ]
+  },
+  "nextCase": "PWS-FF-005-DIMENSIONS-READFIRST",
+  "updatedAt": "2026-07-06T00:00:00.000Z"
+}

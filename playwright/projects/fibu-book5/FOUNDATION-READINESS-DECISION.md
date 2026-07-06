@@ -19,6 +19,8 @@
 
 Master Data bleibt geparkt, bis die offenen Foundation-Grenzen geprueft oder bewusst akzeptiert sind.
 
+PWS-FF-002C hat die Buchungsmatrix Einrichtung neu eingeordnet: Page 314 ist nicht als generischer Navigationsblocker zu behandeln. TARGET-057 ist der staerkere Page-314-/Table-252-/Feldwahrheitsnachweis; TARGET-058/TARGET-059 parken aber den persistierten Wert `Wareneinkaufskonto 5400`. Die Buchungsmatrix bleibt deshalb partiell und nicht posting-ready. Der naechste sichere Fortschritt ist `PWS-FF-005-DIMENSIONS-READFIRST`, nicht ein weiterer Page-314- oder VAT-Schreibversuch.
+
 ## No-Write-Grenze aus TARGET-075
 
 - Setup geaendert: nein
@@ -70,9 +72,19 @@ Master Data bleibt geparkt, bis die offenen Foundation-Grenzen geprueft oder bew
 
 - Geschaeftsbuchungsgruppen: observed
 - Produktbuchungsgruppen: observed
-- Buchungsmatrix Einrichtung: rejected
+- Buchungsmatrix Einrichtung: partial-not-posting-ready
 - USt-Buchungsmatrix Einrichtung: observed
 - Grenze: Use as setup-page visibility and dependency map only; do not claim setup correctness from read-only visibility.
+
+## PWS-FF-002C Route Decision: Buchungsmatrix Einrichtung
+
+- Quelle: playwright/projects/fibu-book5/evidence/pws-ff-002c-general-posting-setup-route-decision/PWS-FF-002C-result.json
+- PWS-FF-002/PWS-FF-002B: direkte Page-314-URL und Tell-Me/Search-Routen sind als Zielseitennachweis verworfen.
+- TARGET-057: Page 314, Table 252 und `Purch. Account` Feldkontext sind als technische Feldwahrheit akzeptiert.
+- TARGET-058/TARGET-059: getestete List-Edit-/Grid-/Headerroute fuer `5400` ist geparkt; keine Persistenz nach Reopen.
+- Akzeptierter Teilstand: `INLAND` / `WAREN` / `Warenverkaufskonto 4400`.
+- Offene Grenze: `Wareneinkaufskonto 5400`, vollstaendige Buchungsmatrix, Posting Readiness, Preview Posting und Posten.
+- Praktische Folge: keine Wiederholung der verworfenen Page-314-Routen ohne materiell neue Hypothese; Master Data bleibt geparkt.
 
 ## Foundation-Read-first-Folgeprobes
 
@@ -118,9 +130,10 @@ Erlaubte Anschlussklassifikationen:
 
 ## Naechste Projektoutputs
 
-- Den abgelehnten Nachweis zur Buchungsmatrix Einrichtung vor Master Data klaeren oder bewusst als Grenze akzeptieren.
+- PWS-FF-002C als aktuelle Buchungsmatrix-Grenze konsumieren: Page 314 ist partiell bekannt, aber nicht posting-ready.
 - PWS-FF-006 als akzeptierten Kontenplan-Starterkonten-Nachweis konsumieren; keine weitere Starterkonten-Wiederholung ohne neuen Claim.
 - Master Data, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt, bis die Foundation-Grenzen geklaert sind.
+- PWS-FF-005 Dimensions read-first als naechste no-write Foundation-Spur vorbereiten.
 - Classify master-data readiness only after chart/setup context is accepted.
 - Use accepted screenshots as draft handbook/training evidence, not final compliance proof.
 
@@ -135,4 +148,4 @@ Erlaubte Anschlussklassifikationen:
 
 ## Naechster Case
 
-- `PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION`: Buchungsmatrix Einrichtung als naechsten Foundation-Gap lokal entscheiden; PWS-FF-006 nicht wiederholen und keine Page-314-Route ohne neue Hypothese live starten.
+- `PWS-FF-005-DIMENSIONS-READFIRST`: Dimensionen, Dimensionswerte und wenn sicher erreichbar den Dimensionskontext der Finanzbuchhaltung Einrichtung read-only pruefen. Keine Dimensionsanlage, keine Standarddimensionsaenderung, keine Stammdaten, keine Buchungsvorschau und keine Buchung.
