@@ -73,6 +73,12 @@ if (readiness.status !== 0) {
   process.exit(typeof readiness.status === 'number' ? readiness.status : 1);
 }
 
+const contextTest = run('npm', ['run', '--silent', 'agent:context:test']);
+if (contextTest.status !== 0) {
+  printChildFailure('agent:context:test', contextTest);
+  process.exit(typeof contextTest.status === 'number' ? contextTest.status : 1);
+}
+
 const freeze = run('npm', ['run', '--silent', 'agent:freeze:status']);
 if (freeze.status !== 0) {
   printChildFailure('agent:freeze:status', freeze);

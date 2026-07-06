@@ -9,6 +9,7 @@ const capabilitiesPath = '.agent/capabilities.json';
 const packagePath = 'package.json';
 const specPath = 'playwright/projects/fibu-book5/tests/target-075-chart-of-accounts-reopen-and-setup-consistency-check.spec.ts';
 const guardedRunnerPath = 'scripts/agent/run-target-075-foundation-consistency-pilot.mjs';
+const contextPackSelftestPath = 'scripts/agent/context-pack.selftest.mjs';
 const foundationDecisionScriptPath = 'scripts/agent/foundation-readiness-decision.mjs';
 const foundationDecisionSelftestPath = 'scripts/agent/foundation-readiness-decision.selftest.mjs';
 const target075ResultPath =
@@ -44,6 +45,7 @@ for (const requiredFile of [
   packagePath,
   specPath,
   guardedRunnerPath,
+  contextPackSelftestPath,
   foundationDecisionScriptPath,
   foundationDecisionSelftestPath
 ]) {
@@ -168,6 +170,10 @@ if (packageJson) {
   if (!foundationDecisionSelftest.includes(foundationDecisionSelftestPath)) {
     errors.push(`${packagePath}: script agent:foundation:decision:test must reference ${foundationDecisionSelftestPath}`);
   }
+  const contextPackSelftest = packageJson.scripts?.['agent:context:test'] ?? '';
+  if (!contextPackSelftest.includes(contextPackSelftestPath)) {
+    errors.push(`${packagePath}: script agent:context:test must reference ${contextPackSelftestPath}`);
+  }
 }
 
 if (exists(foundationDecisionScriptPath)) {
@@ -199,6 +205,9 @@ if (guardedRunner) {
   }
   if (!guardedRunner.includes('agent:target075:readiness')) {
     errors.push(`${guardedRunnerPath}: guarded runner must check agent:target075:readiness`);
+  }
+  if (!guardedRunner.includes('agent:context:test')) {
+    errors.push(`${guardedRunnerPath}: guarded runner must check agent:context:test before live execution`);
   }
   if (!guardedRunner.includes('auth:bc:check') || !guardedRunner.includes('canUseStoredAuth')) {
     errors.push(`${guardedRunnerPath}: guarded runner must check stored auth before live execution`);
@@ -398,6 +407,7 @@ const checkedFiles = [
   packagePath,
   specPath,
   guardedRunnerPath,
+  contextPackSelftestPath,
   foundationDecisionScriptPath,
   foundationDecisionSelftestPath
 ];
