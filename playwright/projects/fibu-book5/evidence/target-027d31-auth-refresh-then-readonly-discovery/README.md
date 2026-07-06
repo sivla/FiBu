@@ -1,12 +1,16 @@
 # TARGET-027D31 Auth Refresh Gate
 
-Status: completed-auth-shell-saved
+Status: historical-auth-evidence
+
+Dieser Ordner bleibt als historischer Auth-Nachweis erhalten. Der aktive generische Auth-Refresh schreibt neue Nachweise nach `playwright/projects/fibu-book5/evidence/auth-bc-refresh-active-resume/AUTH-BC-REFRESH-result.json` und richtet den naechsten Schritt nach `.agent/state/current.json` aus. Aktuell ist das `TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK`, nicht D31.
+
+Frueherer Status: completed-auth-shell-saved
 
 The active auth refresh gate targets `playthru / UNIVERSAARL-DE`. After the operator completed Login/MFA in the detached Playwright profile browser, `npm run auth:bc:capture-detached -- --confirm` reached the Business Central shell and saved `playwright/.auth/bc-user.json`. `npm run auth:bc:check` now reports `canUseStoredAuth=true` with fresh shell-validation metadata for `playthru / UNIVERSAARL-DE`.
 
-No Assisted Setup, Manual Setup, VAT Posting Setup, setup value, master data, document, Preview Posting, Posting, payment, API shortcut or bookmaster change occurred. This evidence only resolves the auth gate. The VAT Assisted Setup route still has to be discovered in the next read-only case.
+No Assisted Setup, Manual Setup, VAT Posting Setup, setup value, master data, document, Preview Posting, Posting, payment, API shortcut or bookmaster change occurred. This evidence only resolves the auth gate. The old VAT Assisted Setup next step is no longer active during the Improvement Freeze.
 
-Current gate state: `auth:bc:check` is green. The next safe action is `TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY`, with runtime shell validation and screenshot QA before any later write gate.
+Current gate state: use `npm run auth:bc:check` and `npm run agent:resume:check:overnight`. The active live-gate remains freeze-controlled and points to TARGET-075 as read-first/no-write resume pilot.
 
 Detached browser fallback retained for future refreshes:
 
@@ -44,5 +48,5 @@ If the detached Playwright browser is stale and only blocks the profile, run `np
 Current next step:
 
 - Run `npm run auth:bc:check` immediately before the next BC test.
-- Run the D31 read-only VAT Assisted Setup route discovery only if the shell confirms `playthru / UNIVERSAARL-DE`.
+- Run the active resume pilot from `.agent/state/current.json` only if the shell confirms `playthru / UNIVERSAARL-DE` and the live gate allows it.
 - Keep VAT setup write, Preview Posting, Posting, master data and API shortcuts locked.

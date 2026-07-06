@@ -53,9 +53,18 @@ function readJsonIfExists(path) {
 }
 
 const current = readJsonIfExists('.agent/state/current.json') ?? {};
+const activeAuthRefreshResultPath = 'playwright/projects/fibu-book5/evidence/auth-bc-refresh-active-resume/AUTH-BC-REFRESH-result.json';
+const legacyAuthRefreshResultPath = current.latestTarget027D31AuthRefreshResult;
+const lastAuthResultPath = existsSync(resolve(activeAuthRefreshResultPath))
+  ? activeAuthRefreshResultPath
+  : typeof current.latestAuthRefreshResult === 'string'
+    ? current.latestAuthRefreshResult
+    : typeof legacyAuthRefreshResultPath === 'string'
+      ? legacyAuthRefreshResultPath
+      : '';
 const lastAuthResult =
-  typeof current.latestTarget027D31AuthRefreshResult === 'string'
-    ? readJsonIfExists(current.latestTarget027D31AuthRefreshResult)
+  lastAuthResultPath
+    ? readJsonIfExists(lastAuthResultPath)
     : null;
 const authCheck = runAuthCheck();
 const authTarget = runAuthTargetDiagnosis();
@@ -85,6 +94,7 @@ const detachedHandoffLaunched =
   current?.latestDetachedAuthHandoffLaunch?.result === 'detached-playwright-profile-window-launched';
 const profileExists = existsSync(resolve('playwright/.auth/bc-profile'));
 const preferredAuthHandoff = detachedHandoffLaunched || profileExists ? 'detached-capture' : 'bounded-open-login';
+const activeResumeCandidate = current.freezeStatus?.resumeCandidateAfterFreeze ?? current.nextCase ?? 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK';
 const interactiveOperatorAction = {
   reason: 'The Playwright auth profile is not logged in to Business Central yet.',
   profilePath: 'playwright/.auth/bc-profile',
@@ -132,7 +142,7 @@ const result = {
     freezeActive,
     blockedBy: liveGateBlockedBy,
     parkedCase: current.freezeStatus?.frozenLiveCase,
-    resumeCandidate: current.freezeStatus?.resumeCandidateAfterFreeze ?? current.nextCase,
+    resumeCandidate: activeResumeCandidate,
     nextLiveType: current.implementationOperatingSystem?.currentLiveBoundary?.resumePilotMode,
   },
   authCheck: {
@@ -170,7 +180,7 @@ const result = {
       },
   lastAuthRefreshAttempt: lastAuthResult
     ? {
-        resultPath: current.latestTarget027D31AuthRefreshResult,
+        resultPath: lastAuthResultPath,
         resultStatus: lastAuthResult.resultStatus ?? '',
         blockedBy: lastAuthResult.blockedBy ?? [],
         authDiagnosis: lastAuthResult.authDiagnosis ?? null,
@@ -195,7 +205,7 @@ const result = {
       ? nextInteractiveAction
     : 'Run npm run auth:bc:open-login, complete Login/MFA in the Playwright-opened browser until Business Central shell is visible, then rerun npm run auth:bc:check. For longer attended login, set BC_AUTH_OPEN_LOGIN_TIMEOUT_MS explicitly. If bounded handoffs keep timing out, use npm run auth:bc:open-login-detached, close it after shell loads, then run npm run auth:bc:capture-detached.',
   forbiddenUntilGreen: [
-    'D31 VAT Assisted Setup read-only discovery',
+    activeResumeCandidate,
     'VAT setup pages',
     'setup changes',
     'master data',

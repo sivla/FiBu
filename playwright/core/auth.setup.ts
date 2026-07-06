@@ -7,8 +7,8 @@ import { BUSINESS_CENTRAL_AUTH_BLOCKER_RE, BUSINESS_CENTRAL_SHELL_RE } from './b
 const authFile = 'playwright/.auth/bc-user.json';
 const authMetaFile = 'playwright/.auth/bc-user.meta.json';
 const authProfileDir = 'playwright/.auth/bc-profile';
-const authResultFile =
-  'playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery/TARGET-027D31-AUTH-result.json';
+const authResultDir = 'playwright/projects/fibu-book5/evidence/auth-bc-refresh-active-resume';
+const authResultFile = `${authResultDir}/AUTH-BC-REFRESH-result.json`;
 const bcUrlSource =
   process.env.BC_AUTH_URL ? 'BC_AUTH_URL' : process.env.FIBU_BOOK5_BC_URL ? 'FIBU_BOOK5_BC_URL' : 'BC_URL';
 const bcUrl = process.env.BC_AUTH_URL ?? process.env.FIBU_BOOK5_BC_URL ?? process.env.BC_URL;
@@ -52,9 +52,7 @@ const targetUrl = expectedUrl.toString();
 
 await fs.mkdir('playwright/.auth', { recursive: true });
 await fs.mkdir(authProfileDir, { recursive: true });
-await fs.mkdir('playwright/projects/fibu-book5/evidence/target-027d31-auth-refresh-then-readonly-discovery', {
-  recursive: true
-});
+await fs.mkdir(authResultDir, { recursive: true });
 
 type AuthResultArgs = {
   resultStatus: string;

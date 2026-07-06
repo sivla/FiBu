@@ -22,6 +22,7 @@ function readJsonIfExists(path) {
 }
 
 function buildAuthGate(current, activeCase, liveBlocked) {
+  const activeAuthRefreshResultPath = 'playwright/projects/fibu-book5/evidence/auth-bc-refresh-active-resume/AUTH-BC-REFRESH-result.json';
   const joinedActions = [
     ...(activeCase.allowedActions ?? []),
     ...(current.allowedActions ?? []),
@@ -37,7 +38,9 @@ function buildAuthGate(current, activeCase, liveBlocked) {
   const latestResolution = current.latestAuthGateResolution ?? activeCase.latestAuthGateResolution ?? {};
   const resolutionCanUseStoredAuth = latestResolution.canUseStoredAuth === true;
   const resultPath =
+    (existsSync(resolve(activeAuthRefreshResultPath)) ? activeAuthRefreshResultPath : null) ??
     latestResolution.resultPath ??
+    current.latestAuthRefreshResult ??
     current.latestAuthResultWriter?.lastResultPath ??
     current.latestTarget027D31AuthRefreshResult ??
     activeCase.latestAuthSetupResultWriter?.resultPath ??
