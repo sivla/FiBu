@@ -22,36 +22,16 @@ Active truth rule:
 
 ## P0: Foundation structure
 
-- Create project template index.
-- Create complete project plan draft.
-- Create project dashboard draft.
-- Create real customer onboarding and project setup guide.
-- Create agent operating model draft.
-- Create concept realism review cadence.
-- Create consulting-house benchmark review.
-- Create goal transition protocol.
-- Create first goal transition card.
-- Create book-as-project-management model.
-- Create initial book/project ticket backlog.
-- Create simulated customer data package model.
-- Create project cast and stakeholder model.
-- Create end-to-end project storyline draft.
-- Create first project scene cards.
-- Create training strategy and curriculum.
-- Create role-based training matrix.
-- Create Playwright training evidence map.
-- Create realism standard.
-- Create spec-driven sideproject draft and first BCSpec pilot.
-- Define Jira work item model.
-- Define documentation cadence.
-- Define artifact templates.
-- Create initial customer data catalog.
-- Create first data-request Jira candidate draft.
-- Create initial decision log.
-- Create initial risk register.
-- Keep current workbreakdown draft aligned with workstreams and epics.
+Status: capped. The core project-template drafts exist; this backlog must not trigger another documentation build-out.
 
-Status: started, core files exist as drafts
+Use existing drafts as reference when they directly support the next project step:
+
+- roadmap, dashboard, handover and artifact classification for active control
+- data packages, route decisions and workstream drafts for Foundation and Master Data
+- training, UAT, book and evidence maps when a concrete BC scenario needs them
+- decision/risk/data-request templates only when a real decision, risk or data gap is being recorded
+
+Do not create more foundation/meta artifacts here. If a draft is too broad, shorten, merge, park or reference it through the active-control files.
 
 ## P0: Active truth and legacy eradication
 
