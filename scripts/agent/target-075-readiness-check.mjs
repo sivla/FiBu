@@ -209,6 +209,9 @@ if (guardedRunner) {
   if (!guardedRunner.includes('agent:context:test')) {
     errors.push(`${guardedRunnerPath}: guarded runner must check agent:context:test before live execution`);
   }
+  if (!guardedRunner.includes('contextLiveGate')) {
+    errors.push(`${guardedRunnerPath}: guarded runner --check output must expose contextLiveGate`);
+  }
   if (!guardedRunner.includes('auth:bc:check') || !guardedRunner.includes('canUseStoredAuth')) {
     errors.push(`${guardedRunnerPath}: guarded runner must check stored auth before live execution`);
   }

@@ -79,6 +79,14 @@ if (contextTest.status !== 0) {
   process.exit(typeof contextTest.status === 'number' ? contextTest.status : 1);
 }
 
+let contextTestStatus;
+try {
+  contextTestStatus = parseJsonOutput('agent:context:test', contextTest.stdout);
+} catch (error) {
+  console.error(String(error instanceof Error ? error.message : error));
+  process.exit(1);
+}
+
 const freeze = run('npm', ['run', '--silent', 'agent:freeze:status']);
 if (freeze.status !== 0) {
   printChildFailure('agent:freeze:status', freeze);
@@ -231,6 +239,13 @@ if (checkOnly) {
           canRunBusinessCentralWorkflows: authDoctorStatus.canRunBusinessCentralWorkflows,
           liveGate: authDoctorStatus.liveGate,
           nextSafeAction: authDoctorStatus.nextSafeAction
+        },
+        contextLiveGate: {
+          ok: contextTestStatus.ok === true,
+          activeCase: contextTestStatus.details?.activeCase,
+          businessCentralLiveAllowed: contextTestStatus.details?.businessCentralLiveAllowed,
+          authDecision: contextTestStatus.details?.authDecision,
+          canRunBusinessCentralWorkflows: contextTestStatus.details?.canRunBusinessCentralWorkflows
         },
         blockedBy: liveGateBlockedBy,
         nextStep:
