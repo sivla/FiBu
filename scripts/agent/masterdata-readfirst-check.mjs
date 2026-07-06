@@ -118,6 +118,9 @@ const allPrepared = results.every(
     result.authMeetsLiveWindow === true
 );
 const anyUnexpectedLiveReady = results.some((result) => result.canRunNow === true);
+const foundationParked = results.some((result) =>
+  (result.blockedBy ?? []).some((blocker) => String(blocker).includes('foundation-readiness-decision-parks-master-data'))
+);
 const blockedByLiveGateOrFoundation = results.every((result) => {
   const blockers = result.blockedBy ?? [];
   return (
@@ -141,9 +144,12 @@ const output = {
   playwrightLiveRunExecuted: false,
   allPrepared,
   anyUnexpectedLiveReady,
+  foundationParked,
   blockedByLiveGateOrFoundation,
   checks: results,
-  nextStep: allPrepared
+  nextStep: foundationParked
+    ? 'Resolve the Foundation gaps documented in FOUNDATION-READINESS-DECISION.md before any PWS-MD read-first pilot.'
+    : allPrepared
     ? 'Run TARGET-075 first. After FOUNDATION-READINESS-DECISION.md exists and live gate opens, approve one PWS-MD read-first pilot at a time with --live-approved.'
     : 'Fix the failing PWS-MD guarded runner before returning to live Master Data work.'
 };

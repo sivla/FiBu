@@ -81,10 +81,42 @@ function exitWith(result) {
   process.exit(typeof result.status === 'number' ? result.status : 1);
 }
 
-function foundationDecisionReady() {
-  if (!existsSync(foundationDecisionPath)) return false;
+function foundationDecisionStatus() {
+  const missingBlocker = 'foundation-readiness-decision-missing-or-not-finalized-for-pws-md-003';
+  if (!existsSync(foundationDecisionPath)) {
+    return {
+      ready: false,
+      blocker: missingBlocker,
+      nextStep: 'Run TARGET-075, write FOUNDATION-READINESS-DECISION.md and include PWS-MD-003 before item/service context read-first proof.'
+    };
+  }
   const text = readFileSync(foundationDecisionPath, 'utf8');
-  return !/template\/no-evidence|pending-target075-evidence/i.test(text) && text.includes('PWS-MD-003');
+  if (/template\/no-evidence|pending-target075-evidence/i.test(text)) {
+    return {
+      ready: false,
+      blocker: missingBlocker,
+      nextStep: 'Finalize FOUNDATION-READINESS-DECISION.md from TARGET-075 evidence before item/service context read-first proof.'
+    };
+  }
+  if (/Master Data bleibt geparkt/i.test(text)) {
+    return {
+      ready: false,
+      blocker: 'foundation-readiness-decision-parks-master-data-for-pws-md-003',
+      nextStep: 'Resolve Foundation gaps from FOUNDATION-READINESS-DECISION.md before PWS-MD-003 item/service context read-first proof.'
+    };
+  }
+  if (!text.includes('PWS-MD-003')) {
+    return {
+      ready: false,
+      blocker: 'foundation-readiness-decision-missing-pws-md-003',
+      nextStep: 'Add an explicit PWS-MD-003 handoff before item/service context read-first proof.'
+    };
+  }
+  return {
+    ready: true,
+    blocker: '',
+    nextStep: 'When live gate is open, run PWS-MD-003 only with --live-approved as read-first/no-write.'
+  };
 }
 
 if (help) {
@@ -134,7 +166,8 @@ try {
   process.exit(1);
 }
 
-const foundationReady = foundationDecisionReady();
+const foundationDecision = foundationDecisionStatus();
+const foundationReady = foundationDecision.ready;
 const targetUrl = targetUrlFromConfiguredUrl();
 const targetUrlReady = Boolean(targetUrl);
 const liveGateAllowsNow = contextStatus.details?.canRunBusinessCentralWorkflows === true;
@@ -144,7 +177,7 @@ const authMeetsLiveWindow =
   Number(authStatus.expiresInHours) >= MIN_LIVE_AUTH_EXPIRES_IN_HOURS &&
   !((authStatus.blockedBy ?? []).includes('storage-state-expires-before-required-window'));
 const blockedBy = [
-  foundationReady ? '' : 'foundation-readiness-decision-missing-or-not-finalized-for-pws-md-003',
+  foundationReady ? '' : foundationDecision.blocker,
   targetUrlReady ? '' : 'target-url-could-not-be-built-from-configured-url',
   authMeetsLiveWindow ? '' : 'storage-state-expires-before-required-window',
   liveGateAllowsNow ? '' : 'business-central-live-gate-blocked'
@@ -172,9 +205,7 @@ if (checkOnly) {
         businessCentralOpened: false,
         playwrightLiveRunExecuted: false,
         blockedBy,
-        nextStep: foundationReady
-          ? 'When live gate is open, run PWS-MD-003 only with --live-approved as read-first/no-write.'
-          : 'Run TARGET-075, write FOUNDATION-READINESS-DECISION.md and include PWS-MD-003 before item/service context read-first proof.'
+        nextStep: foundationDecision.nextStep
       },
       null,
       2

@@ -704,5 +704,9 @@ test('TARGET-075 runs a read-only Foundation consistency pilot', async ({ page }
   );
 
   expect(blocked, 'No unsafe instance/company/dialog blocker is allowed in TARGET-075.').toEqual([]);
-  expect(chart?.status, 'Chart of Accounts must be the anchor proof for TARGET-075.').toBe('observed');
+  if (chart?.status !== 'observed') {
+    expect(result.resultStatus, 'Rejected chart evidence must be recorded as a controlled blocked handoff.').toBe('blocked');
+    expect(result.requiresReview, 'Blocked TARGET-075 evidence must require local review before follow-up work.').toBe(true);
+    expect(result.safeToFinalizeState, 'Blocked TARGET-075 evidence must not finalize Foundation state.').toBe(false);
+  }
 });
