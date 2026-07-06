@@ -173,6 +173,10 @@ const freezeActive = freezeStatus?.freezeActive === true;
 const liveGateAllowsNow = authDoctor?.canRunBusinessCentralWorkflows === true;
 const liveGateBlockedBy = authDoctor?.liveGate?.blockedBy ?? [];
 const requiresLiveGateLift = liveGateBlockedBy.length > 0 || (localResumeReady && !liveGateAllowsNow);
+const operatorDecisionRequired = localResumeReady && !liveGateAllowsNow;
+const missingForLiveRun = operatorDecisionRequired ? liveGateBlockedBy : [];
+const safeLivePilotCommand = 'npm run fibu:target:foundation-consistency-pilot -- --live-approved';
+const explicitFreezeOverrideEnv = 'TARGET_075_FREEZE_OVERRIDE_APPROVED=1';
 
 const warnings = [];
 if (qualityRiskIds.includes('narrow-tsconfig')) {
@@ -224,6 +228,15 @@ const output = {
   requiresFreezeLift: freezeActive,
   requiresLiveGateLift,
   liveGateBlockedBy,
+  operatorDecisionRequired,
+  missingForLiveRun,
+  safeLivePilotCommand,
+  requiresSecondOverrideWhileFreezeActive: freezeActive,
+  explicitFreezeOverrideEnv: freezeActive ? explicitFreezeOverrideEnv : null,
+  decisionBoundary:
+    operatorDecisionRequired
+      ? 'All local gates are green. The remaining blocker is an intentional operator/project decision to lift or override the live freeze for TARGET-075 read-first only.'
+      : 'No operator freeze/live decision is currently blocking the local resume check.',
   liveActionsExecuted: false,
   businessCentralOpened: false,
   playwrightLiveRunExecuted: false,
