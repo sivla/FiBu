@@ -51,6 +51,9 @@ const steps = [
   runStep('quality-audit', nodeCmd, ['scripts/agent/quality-audit.mjs'], { parseJson: true }),
   runStep('target-075-readiness', nodeCmd, ['scripts/agent/target-075-readiness-check.mjs'], { parseJson: true }),
   runStep('auth-state-check', npmCmd, ['run', '--silent', 'auth:bc:check'], { parseJson: true }),
+  runStep('target-075-safe-check', npmCmd, ['run', '--silent', 'fibu:target:foundation-consistency-pilot', '--', '--check'], {
+    parseJson: true
+  }),
   runStep('encoding', npmCmd, ['run', '--silent', 'check:encoding'], { keepStdout: true }),
   runStep('target-075-guarded-list', npmCmd, ['run', '--silent', 'fibu:target:foundation-consistency-pilot', '--', '--list'], {
     keepStdout: true
@@ -62,9 +65,13 @@ const freezeStatus = steps.find((step) => step.id === 'freeze-status')?.parsedJs
 const qualityAudit = steps.find((step) => step.id === 'quality-audit')?.parsedJson;
 const readiness = steps.find((step) => step.id === 'target-075-readiness')?.parsedJson;
 const authCheck = steps.find((step) => step.id === 'auth-state-check')?.parsedJson;
+const target075SafeCheck = steps.find((step) => step.id === 'target-075-safe-check')?.parsedJson;
 const qualityRiskIds = (qualityAudit?.risks ?? []).map((risk) => risk.id);
 const localResumeReady =
-  failed.length === 0 && readiness?.canProceedAfterFreezeLift === true && authCheck?.canUseStoredAuth === true;
+  failed.length === 0 &&
+  readiness?.canProceedAfterFreezeLift === true &&
+  authCheck?.canUseStoredAuth === true &&
+  target075SafeCheck?.canResumeAfterFreezeLift === true;
 const freezeActive = freezeStatus?.freezeActive === true;
 
 const warnings = [];
@@ -121,6 +128,19 @@ const output = {
         nextStep: readiness.nextStep
       }
     : null,
+  target075SafeCheck: target075SafeCheck
+    ? {
+        canResumeAfterFreezeLift: target075SafeCheck.canResumeAfterFreezeLift,
+        canRunNow: target075SafeCheck.canRunNow,
+        freezeActive: target075SafeCheck.freezeActive,
+        requiresFreezeLift: target075SafeCheck.requiresFreezeLift,
+        authStateChecked: target075SafeCheck.authStateChecked,
+        authSecretsPrinted: target075SafeCheck.authSecretsPrinted,
+        expectedInstance: target075SafeCheck.expectedInstance,
+        expectedCompany: target075SafeCheck.expectedCompany,
+        blockedBy: target075SafeCheck.blockedBy
+      }
+    : null,
   freezeStatus: freezeStatus
     ? {
         freezeActive: freezeStatus.freezeActive,
@@ -160,6 +180,11 @@ const output = {
 
 console.log(JSON.stringify(output, null, 2));
 
-if (failed.length || readiness?.canProceedAfterFreezeLift !== true || authCheck?.canUseStoredAuth !== true) {
+if (
+  failed.length ||
+  readiness?.canProceedAfterFreezeLift !== true ||
+  authCheck?.canUseStoredAuth !== true ||
+  target075SafeCheck?.canResumeAfterFreezeLift !== true
+) {
   process.exitCode = 1;
 }
