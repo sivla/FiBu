@@ -448,6 +448,7 @@ for (const [controlPath, text] of [
 }
 
 for (const [controlPath, text] of [
+  [rootReadmePath, rootReadme],
   [handoverPath, handover],
   [projectTemplateReadmePath, projectTemplateReadme],
   [executionRoadmapPath, executionRoadmap]
