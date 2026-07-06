@@ -52,6 +52,7 @@ const summary = {
   blockedLegacyRoutes: 0,
   activeLegacyRoutes: 0,
   legacyTargetFileReferences: 0,
+  universaarlTargetBoundaryReferences: 0,
   activeSteeringFilesChecked: 0,
   staleActiveSteeringFindings: 0
 };
@@ -65,6 +66,12 @@ function addFinding(finding) {
 
 function normalizeTargetPath(rawTarget) {
   return rawTarget.replace(/^["']|["']$/g, '');
+}
+
+function isUniversaarlTargetBoundaryReference(scriptName, targetText) {
+  if (!scriptName.startsWith('fibu:target:')) return false;
+
+  return /playthru/i.test(targetText) && /UNIVERSAARL-DE|Universaarl GmbH/i.test(targetText);
 }
 
 for (const [name, command] of Object.entries(scripts)) {
@@ -97,6 +104,11 @@ for (const [name, command] of Object.entries(scripts)) {
   targetFilesChecked += 1;
   const targetText = fs.readFileSync(targetFile, 'utf8');
   if (!legacyPattern.test(targetText)) continue;
+
+  if (isUniversaarlTargetBoundaryReference(name, targetText)) {
+    summary.universaarlTargetBoundaryReferences += 1;
+    continue;
+  }
 
   summary.legacyTargetFileReferences += 1;
   const targetFinding = {
@@ -154,6 +166,7 @@ const result = {
   policy: {
     blocked: 'Script names or commands that directly expose RM-DEMO/MCP/CRONUS/Rhein-Main routes must be ported or routed through legacy-script-blocked.mjs.',
     warning: 'Playwright target files containing legacy terms are migration inventory until the script is ported, blocked or archived; historical evidence is not mass-edited.',
+    universaarlTargetBoundary: 'fibu:target:* files that clearly target playthru/UNIVERSAARL-DE may mention legacy terms only as rejected options, URL normalization, or boundary language without producing warning noise.',
     activeSteering: 'Active steering files may mention legacy only as a boundary. They must not describe TARGET-073, RM-DEMO, CRONUS or pre-existing company creation as the next active path.'
   },
   summary,
