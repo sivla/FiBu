@@ -16,11 +16,12 @@ test.skip(
   'PWS-MD-004 must be run through the guarded runner with --live-approved.'
 );
 
-const CASE_ID = 'PWS-MD-004-CUSTOMER-CARD-TEMPLATE-REQUIRED-FIELDS-PREFLIGHT';
+const CASE_ID = process.env.PWS_MD_004_CASE_ID || 'PWS-MD-004-CUSTOMER-CARD-TEMPLATE-REQUIRED-FIELDS-PREFLIGHT';
 const EXPECTED_INSTANCE = 'playthru';
 const TARGET_COMPANY = 'UNIVERSAARL-DE';
 const PROJECT = 'fibu-book5';
-const EVIDENCE_ID = 'pws-md-004-customer-card-template-required-fields-preflight';
+const EVIDENCE_ID = process.env.PWS_MD_004_EVIDENCE_ID || 'pws-md-004-customer-card-template-required-fields-preflight';
+const RESULT_FILE = process.env.PWS_MD_004_RESULT_FILE || 'PWS-MD-004-result.json';
 const EVIDENCE_DIR_REL = `playwright/projects/${PROJECT}/evidence/${EVIDENCE_ID}`;
 const EVIDENCE_DIR = path.resolve(EVIDENCE_DIR_REL);
 
@@ -537,18 +538,18 @@ test('PWS-MD-004 inspects customer New/template/required-field preflight without
     evidenceRefs: [
       `${EVIDENCE_DIR_REL}/${textFile}`,
       ...captures.flatMap((capture) => [capture.screenshot, capture.screenshotMetadata]),
-      `${EVIDENCE_DIR_REL}/PWS-MD-004-result.json`
+      `${EVIDENCE_DIR_REL}/${RESULT_FILE}`
     ],
     nextCase: 'PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF',
     requiresReview: false,
     safeToFinalizeState: false
   };
 
-  await writeJsonEvidence(evidencePath(PROJECT, EVIDENCE_ID, 'PWS-MD-004-result.json'), result);
+  await writeJsonEvidence(evidencePath(PROJECT, EVIDENCE_ID, RESULT_FILE), result);
   await writeTextEvidence(
     evidencePath(PROJECT, EVIDENCE_ID, 'README.md'),
     [
-      '# PWS-MD-004 Customer Card/Template Required-fields Preflight',
+      `# ${CASE_ID} Customer Card/Template Required-fields Preflight`,
       '',
       'Dieser Lauf ist ein lesender Prewrite-Grenznachweis. Er legt keinen Debitor an und gibt keine Debitorenanlage frei.',
       '',

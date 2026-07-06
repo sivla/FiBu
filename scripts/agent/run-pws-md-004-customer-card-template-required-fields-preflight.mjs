@@ -146,13 +146,13 @@ try {
   process.exit(1);
 }
 
-const auth = run('npm', ['run', '--silent', 'auth:bc:check:overnight']);
+const auth = run('npm', ['run', '--silent', 'auth:bc:check']);
 let authStatus;
 try {
-  authStatus = parseJsonOutput('auth:bc:check:overnight', auth.stdout);
+  authStatus = parseJsonOutput('auth:bc:check', auth.stdout);
 } catch (error) {
   if (auth.status !== 0) {
-    printChildFailure('auth:bc:check:overnight', auth);
+    printChildFailure('auth:bc:check', auth);
     process.exit(typeof auth.status === 'number' ? auth.status : 1);
   }
   console.error(String(error instanceof Error ? error.message : error));
@@ -189,7 +189,7 @@ if (checkOnly) {
         foundationReady,
         targetUrlReady,
         authStateChecked: true,
-        authStateCheckScript: 'auth:bc:check:overnight',
+        authStateCheckScript: 'auth:bc:check',
         authMinExpiresInHours: MIN_LIVE_AUTH_EXPIRES_IN_HOURS,
         authExpiresInHours: authStatus.expiresInHours,
         authMeetsLiveWindow,

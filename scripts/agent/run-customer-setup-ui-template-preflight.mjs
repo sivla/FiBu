@@ -1,10 +1,14 @@
 import { spawnSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 
-const specPath = 'playwright/projects/fibu-book5/tests/pws-md-004b-customer-reopen-and-field-proof.spec.ts';
-const foundationDecisionPath = 'playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md';
+const specPath = 'playwright/projects/fibu-book5/tests/pws-md-004-customer-card-template-required-fields-preflight.spec.ts';
+const statePath = '.agent/state/current.json';
+const casePath = '.agent/state/cases/customer-setup-ui-template-preflight.json';
+const CASE_ID = 'CUSTOMER-SETUP-UI-TEMPLATE-PREFLIGHT';
 const EXPECTED_INSTANCE = 'playthru';
 const TARGET_COMPANY = 'UNIVERSAARL-DE';
+const EVIDENCE_ID = 'customer-setup-ui-template-preflight';
+const RESULT_FILE = `${CASE_ID}-result.json`;
 const MIN_LIVE_AUTH_EXPIRES_IN_HOURS = 1;
 
 const rawArgs = process.argv.slice(2);
@@ -12,6 +16,10 @@ const liveApproved = rawArgs.includes('--live-approved');
 const listOnly = rawArgs.includes('--list');
 const checkOnly = rawArgs.includes('--check');
 const help = rawArgs.includes('--help') || rawArgs.includes('-h');
+
+function readJson(file) {
+  return JSON.parse(readFileSync(file, 'utf8'));
+}
 
 function readDotEnv() {
   if (!existsSync('.env')) return {};
@@ -25,25 +33,6 @@ function readDotEnv() {
     env[key] = rawValue.replace(/^['"]|['"]$/g, '');
   }
   return env;
-}
-
-function targetUrlFromConfiguredUrl() {
-  const localEnv = readDotEnv();
-  const env = { ...localEnv, ...process.env };
-  const rawUrl = env.BC_AUTH_URL ?? env.FIBU_BOOK5_BC_URL ?? env.BC_URL ?? '';
-  if (!rawUrl) return '';
-  let url;
-  try {
-    url = new URL(rawUrl);
-  } catch {
-    return '';
-  }
-  const pathParts = url.pathname.split('/').filter(Boolean);
-  if (!pathParts.length) return '';
-  pathParts[pathParts.length - 1] = EXPECTED_INSTANCE;
-  url.pathname = `/${pathParts.join('/')}`;
-  url.searchParams.set('company', TARGET_COMPANY);
-  return url.toString();
 }
 
 function commandName(base) {
@@ -81,50 +70,58 @@ function exitWith(result) {
   process.exit(typeof result.status === 'number' ? result.status : 1);
 }
 
-function foundationDecisionStatus() {
-  const missingBlocker = 'foundation-readiness-decision-missing-or-not-finalized';
-  if (!existsSync(foundationDecisionPath)) {
-    return {
-      ready: false,
-      blocker: missingBlocker,
-      nextStep: 'Write FOUNDATION-READINESS-DECISION.md before customer reopen proof.'
-    };
+function targetUrlFromConfiguredUrl() {
+  const localEnv = readDotEnv();
+  const env = { ...localEnv, ...process.env };
+  const rawUrl = env.BC_AUTH_URL ?? env.FIBU_BOOK5_BC_URL ?? env.BC_URL ?? '';
+  if (!rawUrl) return '';
+  let url;
+  try {
+    url = new URL(rawUrl);
+  } catch {
+    return '';
   }
-  const text = readFileSync(foundationDecisionPath, 'utf8');
-  if (/template\/no-evidence|pending-target075-evidence/i.test(text)) {
-    return {
-      ready: false,
-      blocker: missingBlocker,
-      nextStep: 'Finalize FOUNDATION-READINESS-DECISION.md before customer reopen proof.'
-    };
+  const pathParts = url.pathname.split('/').filter(Boolean);
+  if (!pathParts.length) return '';
+  pathParts[pathParts.length - 1] = EXPECTED_INSTANCE;
+  url.pathname = `/${pathParts.join('/')}`;
+  url.searchParams.set('company', TARGET_COMPANY);
+  return url.toString();
+}
+
+function localGateStatus() {
+  if (!existsSync(statePath)) {
+    return { ready: false, blockedBy: ['current-state-missing'] };
   }
-  if (!text.includes('PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF')) {
-    return {
-      ready: false,
-      blocker: 'foundation-readiness-decision-missing-pws-md-004b',
-      nextStep: 'Add an explicit PWS-MD-004B handoff before customer reopen proof.'
-    };
+  if (!existsSync(casePath)) {
+    return { ready: false, blockedBy: ['active-case-file-missing'] };
   }
-  return {
-    ready: true,
-    blocker: '',
-    nextStep: 'When live gate is open, run PWS-MD-004B only with --live-approved as read-first/no-save.'
-  };
+  const state = readJson(statePath);
+  const activeCase = readJson(casePath);
+  const blockedBy = [
+    state.activeCase === CASE_ID ? '' : `active-case-is-${state.activeCase || 'missing'}`,
+    state.instance === EXPECTED_INSTANCE ? '' : `instance-is-${state.instance || 'missing'}`,
+    state.company === TARGET_COMPANY ? '' : `company-is-${state.company || 'missing'}`,
+    activeCase.caseId === CASE_ID ? '' : `case-file-id-is-${activeCase.caseId || 'missing'}`,
+    activeCase.instance === EXPECTED_INSTANCE ? '' : `case-instance-is-${activeCase.instance || 'missing'}`,
+    activeCase.company === TARGET_COMPANY ? '' : `case-company-is-${activeCase.company || 'missing'}`,
+    activeCase.mayOpenBusinessCentral === true ? '' : 'case-does-not-allow-business-central-open',
+    activeCase.mayRunPlaywright === true ? '' : 'case-does-not-allow-playwright',
+    activeCase.effectiveBcActionsAllowed === false ? '' : 'case-is-not-read-first-only'
+  ].filter(Boolean);
+  return { ready: blockedBy.length === 0, blockedBy };
 }
 
 if (help) {
-  console.log(`PWS-MD-004B guarded runner
+  console.log(`Customer setup UI/template preflight guarded runner
 
 Usage:
-  node scripts/agent/run-pws-md-004b-customer-reopen-and-field-proof.mjs --check
-  node scripts/agent/run-pws-md-004b-customer-reopen-and-field-proof.mjs --list
-  node scripts/agent/run-pws-md-004b-customer-reopen-and-field-proof.mjs --live-approved
+  node scripts/agent/run-customer-setup-ui-template-preflight.mjs --check
+  node scripts/agent/run-customer-setup-ui-template-preflight.mjs --list
+  node scripts/agent/run-customer-setup-ui-template-preflight.mjs --live-approved
 
-This runner opens/selects existing U-CUST-100 without saving customer data. Live execution requires:
-- FOUNDATION-READINESS-DECISION.md with explicit PWS-MD-004B handoff
-- usable stored auth
-- live gate open for Business Central
-- --live-approved`);
+This runner opens Business Central read-only in playthru / UNIVERSAARL-DE and captures Debitoren UI/template
+surface evidence. It must not save, import, edit, delete or create customer data.`);
   process.exit(0);
 }
 
@@ -159,20 +156,18 @@ try {
   process.exit(1);
 }
 
-const foundationDecision = foundationDecisionStatus();
-const foundationReady = foundationDecision.ready;
+const localGate = localGateStatus();
 const targetUrl = targetUrlFromConfiguredUrl();
 const targetUrlReady = Boolean(targetUrl);
 const liveGateAllowsNow = contextStatus.details?.canRunBusinessCentralWorkflows === true;
 const authMeetsLiveWindow =
   authStatus.canUseStoredAuth === true &&
   Number.isFinite(Number(authStatus.expiresInHours)) &&
-  Number(authStatus.expiresInHours) >= MIN_LIVE_AUTH_EXPIRES_IN_HOURS &&
-  !((authStatus.blockedBy ?? []).includes('storage-state-expires-before-required-window'));
+  Number(authStatus.expiresInHours) >= MIN_LIVE_AUTH_EXPIRES_IN_HOURS;
 const blockedBy = [
-  foundationReady ? '' : foundationDecision.blocker,
+  ...localGate.blockedBy,
   targetUrlReady ? '' : 'target-url-could-not-be-built-from-configured-url',
-  authMeetsLiveWindow ? '' : 'storage-state-expires-before-required-window',
+  authMeetsLiveWindow ? '' : 'stored-auth-not-usable-for-one-hour-window',
   liveGateAllowsNow ? '' : 'business-central-live-gate-blocked'
 ].filter(Boolean);
 
@@ -181,15 +176,13 @@ if (checkOnly) {
     JSON.stringify(
       {
         schemaVersion: 1,
-        purpose: 'pws-md-004b-customer-reopen-and-field-proof-check',
-        caseId: 'PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF',
+        purpose: 'customer-setup-ui-template-preflight-check',
+        caseId: CASE_ID,
         expectedInstance: EXPECTED_INSTANCE,
         expectedCompany: TARGET_COMPANY,
-        foundationDecisionPath,
-        foundationReady,
         targetUrlReady,
+        localGateReady: localGate.ready,
         authStateChecked: true,
-        authStateCheckScript: 'auth:bc:check',
         authMinExpiresInHours: MIN_LIVE_AUTH_EXPIRES_IN_HOURS,
         authExpiresInHours: authStatus.expiresInHours,
         authMeetsLiveWindow,
@@ -198,7 +191,10 @@ if (checkOnly) {
         businessCentralOpened: false,
         playwrightLiveRunExecuted: false,
         blockedBy,
-        nextStep: foundationDecision.nextStep
+        nextStep:
+          blockedBy.length === 0
+            ? 'Run with --live-approved to capture read-first customer setup UI/template evidence.'
+            : 'Resolve blockers before opening Business Central.'
       },
       null,
       2
@@ -212,7 +208,7 @@ if (!liveApproved || blockedBy.length > 0) {
     JSON.stringify(
       {
         schemaVersion: 1,
-        purpose: 'pws-md-004b-customer-reopen-and-field-proof-guard',
+        purpose: 'customer-setup-ui-template-preflight-guard',
         canRun: false,
         liveApproved,
         expectedInstance: EXPECTED_INSTANCE,
@@ -221,8 +217,7 @@ if (!liveApproved || blockedBy.length > 0) {
         businessCentralOpened: false,
         playwrightLiveRunExecuted: false,
         blockedBy: liveApproved ? blockedBy : ['missing-live-approved-flag', ...blockedBy],
-        nextStep:
-          'Do not run PWS-MD-004B live before Foundation Readiness Decision, live gate, usable auth and --live-approved.'
+        nextStep: 'Do not run live before active case, auth, context and --live-approved gates are green.'
       },
       null,
       2
@@ -235,9 +230,12 @@ exitWith(
   run('npx', ['playwright', 'test', specPath], {
     stdio: 'inherit',
     env: {
-      PWS_MD_004B_RUNNER_GUARD_CHECKED: '1',
-      PWS_MD_004B_LIVE_APPROVED: '1',
-      PWS_MD_004B_BC_TARGET_URL: targetUrl
+      PWS_MD_004_RUNNER_GUARD_CHECKED: '1',
+      PWS_MD_004_LIVE_APPROVED: '1',
+      PWS_MD_004_BC_TARGET_URL: targetUrl,
+      PWS_MD_004_CASE_ID: CASE_ID,
+      PWS_MD_004_EVIDENCE_ID: EVIDENCE_ID,
+      PWS_MD_004_RESULT_FILE: RESULT_FILE
     }
   })
 );

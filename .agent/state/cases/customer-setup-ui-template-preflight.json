@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "CUSTOMER-SETUP-UI-TEMPLATE-PREFLIGHT",
-  "status": "planned-read-first",
+  "status": "completed-observed-read-first",
   "mode": "universaarl-masterdata-readfirst",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -70,6 +70,77 @@
     "The route would require real customer data.",
     "The UI context is ambiguous after screenshots."
   ],
-  "nextCase": "CUSTOMER-SETUP-UI-TEMPLATE-PREFLIGHT",
-  "updatedAt": "2026-07-07T01:35:00.000+02:00"
+  "nextCase": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
+  "updatedAt": "2026-07-06T22:52:08.538Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/customer-setup-ui-template-preflight/CUSTOMER-SETUP-UI-TEMPLATE-PREFLIGHT-result.json",
+  "resultStatus": "observed-prewrite-boundary",
+  "completedAt": "2026-07-06T22:50:21.740Z",
+  "observedScreenshots": [
+    "playwright/projects/fibu-book5/evidence/customer-setup-ui-template-preflight/pws-md-004-010-customer-list-context.png",
+    "playwright/projects/fibu-book5/evidence/customer-setup-ui-template-preflight/pws-md-004-015-customer-route-context.png",
+    "playwright/projects/fibu-book5/evidence/customer-setup-ui-template-preflight/pws-md-004-020-new-hover-or-tooltip-context.png",
+    "playwright/projects/fibu-book5/evidence/customer-setup-ui-template-preflight/pws-md-004-030-menu-boundary-context.png",
+    "playwright/projects/fibu-book5/evidence/customer-setup-ui-template-preflight/pws-md-004-040-page-inspection-context.png"
+  ],
+  "proved": [
+    "Customer context remains reachable in playthru / UNIVERSAARL-DE.",
+    "The New/Neu surface can be inspected without selecting a create/template action.",
+    "Multi-checkpoint screenshot QA gives a better UI basis than a single end-state screenshot.",
+    "Existing customer U-CUST-100 / Universaarl Kunde 100 is visible, so the next step should be reopen/field proof instead of blind duplicate creation."
+  ],
+  "notProved": [
+    "New/Neu surface was observed, but no create route was approved.",
+    "Customer list/Page Inspection field signals were observed, but required-field enforcement was not tested.",
+    "Page Inspection opened on the Role Center shell, not accepted as Customer table proof.",
+    "No customer card was saved.",
+    "No customer template correctness.",
+    "No customer posting group correctness.",
+    "No VAT correctness.",
+    "No sales process readiness.",
+    "No customer creation or reopen proof."
+  ],
+  "nextStepDecision": {
+    "currentCase": "CUSTOMER-SETUP-UI-TEMPLATE-PREFLIGHT",
+    "plannedNextCaseBeforeReview": "PWS-MD-005-CUSTOMER-U-CUST-100-CONTROLLED-CREATE-GATE",
+    "lastEvidenceSummary": "Customer list, New/Neu preflight surface and technical context were inspected without saving or creating a customer.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "U-CUST-100 is already visible. A create gate would risk duplicate work; the better next case is reopen/card field proof.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "PWS-MD-005-CUSTOMER-U-CUST-100-CONTROLLED-CREATE-GATE",
+        "status": "obsolete",
+        "reason": "U-CUST-100 already exists visibly; do not create a duplicate customer."
+      },
+      {
+        "caseId": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
+        "status": "ready-next",
+        "reason": "Open existing U-CUST-100 read-only/card-safe and prove key fields, posting groups, payment terms and no-save boundary."
+      },
+      {
+        "caseId": "PWS-MD-VENDOR-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Vendor remains parked behind customer route and payment/bank boundaries."
+      },
+      {
+        "caseId": "PWS-MD-ITEM-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Item remains parked behind UOM, posting, VAT product, inventory and costing checks."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
+    "whySelectedNextCaseIsBest": "Existing customer evidence should be consumed first; reopening it gives stronger customer-card evidence without duplicate creation.",
+    "risksBeforeNextCase": [
+      "Do not treat visible New/Neu as proof that saving a customer is safe."
+    ],
+    "requiredPreparation": [
+      "Review PWS-MD-004 screenshots and action-candidate metadata."
+    ]
+  },
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false
 }

@@ -1,27 +1,18 @@
 {
   "schemaVersion": 1,
-  "purpose": "last-run-summary",
-  "runId": "CUSTOMER-SETUP-UI-TEMPLATE-PREFLIGHT",
+  "purpose": "autopilot-result-normalized-compatible",
   "caseId": "CUSTOMER-SETUP-UI-TEMPLATE-PREFLIGHT",
-  "status": "observed-prewrite-boundary",
+  "source": "playwright-readonly-master-data-preflight",
+  "resultStatus": "observed-prewrite-boundary",
+  "startedAt": "2026-07-06T22:50:06.811Z",
   "completedAt": "2026-07-06T22:50:21.740Z",
-  "mode": "universaarl-masterdata-readfirst",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Ran the read-first Debitoren UI/template preflight in real Business Central UI. It confirmed playthru / UNIVERSAARL-DE, showed the Debitoren list with existing realistic fictional customer U-CUST-100 / Universaarl Kunde 100, captured New/Neu hover/menu-boundary/Page Inspection screenshots, and made no data changes.",
-  "resultPath": "playwright/projects/fibu-book5/evidence/customer-setup-ui-template-preflight/CUSTOMER-SETUP-UI-TEMPLATE-PREFLIGHT-result.json",
-  "changedArtifacts": [
-    "playwright/projects/fibu-book5/evidence/customer-setup-ui-template-preflight/CUSTOMER-SETUP-UI-TEMPLATE-PREFLIGHT-result.json",
-    "playwright/projects/fibu-book5/evidence/customer-setup-ui-template-preflight/README.md",
-    "scripts/agent/run-customer-setup-ui-template-preflight.mjs",
-    "scripts/agent/run-pws-md-004-customer-card-template-required-fields-preflight.mjs",
-    "scripts/agent/run-pws-md-004b-customer-reopen-and-field-proof.mjs",
-    "playwright/projects/fibu-book5/tests/pws-md-004-customer-card-template-required-fields-preflight.spec.ts",
-    ".agent/state/cases/customer-setup-ui-template-preflight.json",
-    ".agent/state/cases/pws-md-004b-customer-reopen-and-field-proof.json",
-    ".agent/state/current.json",
-    "package.json"
-  ],
+  "page": "Debitoren / Customers",
+  "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?company=UNIVERSAARL-DE&dc=0",
+  "liveActionsExecuted": true,
+  "businessCentralOpened": true,
+  "playwrightLiveRunExecuted": true,
   "actionsTaken": [
     "Opened the customer context page through the guarded runner.",
     "Captured customer list, New/Neu hover or tooltip context, menu-boundary context and Page Inspection context.",
@@ -41,8 +32,6 @@
     "No Posting.",
     "No API shortcut."
   ],
-  "businessCentralOpened": true,
-  "playwrightLiveRunExecuted": true,
   "setupChanged": false,
   "setupChangeAttempted": false,
   "masterDataChanged": false,
@@ -58,6 +47,25 @@
     "playwright/projects/fibu-book5/evidence/customer-setup-ui-template-preflight/pws-md-004-030-menu-boundary-context.png",
     "playwright/projects/fibu-book5/evidence/customer-setup-ui-template-preflight/pws-md-004-040-page-inspection-context.png"
   ],
+  "screenshotQa": {
+    "requiredCheckpoints": [
+      "customer list context",
+      "New/Neu button hover or tooltip context",
+      "safe dropdown/menu boundary if available",
+      "Page Inspection context"
+    ],
+    "capturedCheckpoints": [
+      "playwright/projects/fibu-book5/evidence/customer-setup-ui-template-preflight/pws-md-004-010-customer-list-context.png",
+      "playwright/projects/fibu-book5/evidence/customer-setup-ui-template-preflight/pws-md-004-015-customer-route-context.png",
+      "playwright/projects/fibu-book5/evidence/customer-setup-ui-template-preflight/pws-md-004-020-new-hover-or-tooltip-context.png",
+      "playwright/projects/fibu-book5/evidence/customer-setup-ui-template-preflight/pws-md-004-030-menu-boundary-context.png",
+      "playwright/projects/fibu-book5/evidence/customer-setup-ui-template-preflight/pws-md-004-040-page-inspection-context.png"
+    ],
+    "acceptedForSurfacePreflight": true,
+    "acceptedForCustomerWriteGate": false,
+    "pageInspectionCustomerAccepted": false,
+    "reason": "Mehrere Oberflaechen-Zustaende wurden dokumentiert. Page Inspection landete jedoch auf dem Role Center und ist deshalb kein Debitoren-Tabellenbeweis."
+  },
   "proved": [
     "Customer context remains reachable in playthru / UNIVERSAARL-DE.",
     "The New/Neu surface can be inspected without selecting a create/template action.",
@@ -75,13 +83,23 @@
     "No sales process readiness.",
     "No customer creation or reopen proof."
   ],
+  "blockedBy": [],
   "warnings": [
     "New/Neu may be visible but was not clicked as a write route.",
     "Edit/List Edit may be visible but was not clicked.",
     "Posting/Preview text may be visible but was not clicked."
   ],
-  "nextCase": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
-  "nextStep": "Open existing U-CUST-100 read-first in playthru / UNIVERSAARL-DE and prove customer card fields, FastTabs, FactBox/Page Inspection boundaries and no-save state. Do not edit, save, create a document, preview, post or use real customer data.",
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "readOnlyDirectPageRoute": true
+  },
   "nextStepDecision": {
     "currentCase": "CUSTOMER-SETUP-UI-TEMPLATE-PREFLIGHT",
     "plannedNextCaseBeforeReview": "PWS-MD-005-CUSTOMER-U-CUST-100-CONTROLLED-CREATE-GATE",
@@ -120,5 +138,21 @@
       "Review PWS-MD-004 screenshots and action-candidate metadata."
     ]
   },
-  "updatedAt": "2026-07-06T22:52:08.538Z"
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/customer-setup-ui-template-preflight/pws-md-004-010-customer-preflight-context.txt",
+    "playwright/projects/fibu-book5/evidence/customer-setup-ui-template-preflight/pws-md-004-010-customer-list-context.png",
+    "playwright/projects/fibu-book5/evidence/customer-setup-ui-template-preflight/pws-md-004-010-customer-list-context.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/customer-setup-ui-template-preflight/pws-md-004-015-customer-route-context.png",
+    "playwright/projects/fibu-book5/evidence/customer-setup-ui-template-preflight/pws-md-004-015-customer-route-context.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/customer-setup-ui-template-preflight/pws-md-004-020-new-hover-or-tooltip-context.png",
+    "playwright/projects/fibu-book5/evidence/customer-setup-ui-template-preflight/pws-md-004-020-new-hover-or-tooltip-context.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/customer-setup-ui-template-preflight/pws-md-004-030-menu-boundary-context.png",
+    "playwright/projects/fibu-book5/evidence/customer-setup-ui-template-preflight/pws-md-004-030-menu-boundary-context.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/customer-setup-ui-template-preflight/pws-md-004-040-page-inspection-context.png",
+    "playwright/projects/fibu-book5/evidence/customer-setup-ui-template-preflight/pws-md-004-040-page-inspection-context.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/customer-setup-ui-template-preflight/CUSTOMER-SETUP-UI-TEMPLATE-PREFLIGHT-result.json"
+  ],
+  "nextCase": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
+  "requiresReview": false,
+  "safeToFinalizeState": false
 }
