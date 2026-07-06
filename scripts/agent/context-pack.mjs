@@ -1,3 +1,4 @@
+import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
@@ -19,6 +20,18 @@ function readJsonIfExists(path) {
   }
 
   return readJson(path);
+}
+
+function runJsonIfAvailable(scriptPath) {
+  try {
+    const output = execFileSync(process.execPath, [scriptPath], {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    return JSON.parse(output);
+  } catch {
+    return null;
+  }
 }
 
 function buildAuthGate(current, activeCase, liveBlocked) {
@@ -49,6 +62,8 @@ function buildAuthGate(current, activeCase, liveBlocked) {
   const latestWriter = current.latestAuthResultWriter ?? activeCase.latestAuthSetupResultWriter ?? {};
   const latestDoctor = current.latestAuthDoctor ?? activeCase.latestDoctor ?? {};
   const latestTarget = current.latestAuthTargetDiagnosis ?? activeCase.latestAuthTargetDiagnosis ?? {};
+  const currentTargetDiagnosis = runJsonIfAvailable('scripts/agent/auth-target-diagnose.mjs');
+  const effectiveTarget = currentTargetDiagnosis ?? latestTarget;
   const operatorActionRequired = resolutionCanUseStoredAuth
     ? false
     : latestWriter.operatorActionRequired === true ||
@@ -105,9 +120,14 @@ function buildAuthGate(current, activeCase, liveBlocked) {
     blockedBy: firstItems([...new Set(blockedBy)], 8),
     resultPath,
     target: {
-      instance: latestResolution.shellValidationMeta?.environment ?? latestTarget.targetEnvironment ?? current.instance,
-      company: latestResolution.shellValidationMeta?.company ?? latestTarget.targetCompany ?? current.company,
-      targetMatchesState: resolutionCanUseStoredAuth ? true : latestTarget.targetMatchesState,
+      instance: latestResolution.shellValidationMeta?.environment ?? effectiveTarget.targetEnvironment ?? current.instance,
+      company: latestResolution.shellValidationMeta?.company ?? effectiveTarget.targetCompany ?? current.company,
+      sourceEnvironmentCandidate: effectiveTarget.sourceEnvironmentCandidate,
+      sourceCompany: effectiveTarget.sourceCompany,
+      sourceDiffersFromTarget: effectiveTarget.sourceDiffersFromTarget,
+      targetBuiltFromCurrentState: effectiveTarget.targetBuiltFromCurrentState,
+      targetMatchesState: resolutionCanUseStoredAuth ? true : effectiveTarget.targetMatchesState,
+      warnings: Array.isArray(effectiveTarget.warnings) ? effectiveTarget.warnings : [],
     },
     normalBrowserLoginIsNotEnough: !resolutionCanUseStoredAuth && (
       latestDoctor.operatorAction?.normalBrowserLoginIsNotEnough === true ||

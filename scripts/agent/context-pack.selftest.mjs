@@ -61,9 +61,27 @@ if (liveBlocked && storedAuthUsableButBlocked) {
   }
 }
 
+if (authGate.target) {
+  const target = authGate.target;
+  if (target.instance !== 'playthru' || target.company !== 'UNIVERSAARL-DE') {
+    fail('Auth target in context must reflect the active Universaarl target world.', {
+      target,
+    });
+  }
+
+  if (target.sourceDiffersFromTarget === true) {
+    if (target.targetBuiltFromCurrentState !== true || target.targetMatchesState !== true) {
+      fail('Legacy auth source must be marked as rebuilt from current state and matching the active target.', {
+        target,
+      });
+    }
+  }
+}
+
 pass({
   activeCase: context.activeCase,
   businessCentralLiveAllowed: liveGate.businessCentralLiveAllowed,
   authDecision: authGate.decision ?? null,
   canRunBusinessCentralWorkflows: authGate.canRunBusinessCentralWorkflows ?? null,
+  authTarget: authGate.target ?? null,
 });
