@@ -440,7 +440,7 @@ test('TARGET-075 runs a read-only Foundation consistency pilot', async ({ page }
       isPlannedNextCaseStillSensible: true,
       reason:
         resultStatus === 'observed'
-          ? 'The Foundation read-only pilot produced accepted chart/setup context and can hand off to the first Vendor Card fit.'
+          ? 'The Foundation read-only pilot produced accepted chart/setup context and can hand off to the Foundation Readiness Decision.'
           : 'The Foundation pilot must be reviewed before any master data or setup write.',
       lookaheadReviewed: [
         {

@@ -123,7 +123,7 @@ if (targetCase) {
   if (!(qualityAudit.mustHoldBeforePilot ?? []).some((entry) => /TARGET-075 remains read-only/i.test(entry))) {
     errors.push(`${casePath}: qualityAuditReview.mustHoldBeforePilot must keep TARGET-075 read-only`);
   }
-  if (JSON.stringify(targetCase).includes('TARGET-075-FIRST-VENDOR-CARD-CONTROLLED-FIT')) {
+  if (/TARGET-075-FIRST-VENDOR-CARD-CONTROLLED-FIT|first Vendor Card fit/i.test(JSON.stringify(targetCase))) {
     errors.push(`${casePath}: TARGET-075 must hand off to FOUNDATION-READINESS-DECISION.md before any first vendor pilot`);
   }
   if (targetCase.nextCase !== 'FOUNDATION-READINESS-DECISION') {
@@ -220,7 +220,7 @@ if (spec) {
   if (!spec.includes('TARGET_075_LIVE_APPROVED') || !spec.includes('test.skip')) {
     errors.push(`${specPath}: direct Playwright execution must be skipped unless TARGET_075_LIVE_APPROVED is set by the guarded runner`);
   }
-  if (spec.includes('TARGET-075-FIRST-VENDOR-CARD-CONTROLLED-FIT')) {
+  if (/TARGET-075-FIRST-VENDOR-CARD-CONTROLLED-FIT|first Vendor Card fit/i.test(spec)) {
     errors.push(`${specPath}: result handoff must be FOUNDATION-READINESS-DECISION before any first vendor pilot`);
   }
   if (!spec.includes("const nextCase = 'FOUNDATION-READINESS-DECISION'")) {
