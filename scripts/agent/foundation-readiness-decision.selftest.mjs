@@ -10,6 +10,8 @@ const inputPath = path.join(tempDir, 'TARGET-075-result.json');
 const outputPath = path.join(tempDir, 'FOUNDATION-READINESS-DECISION.md');
 const blockedInputPath = path.join(tempDir, 'TARGET-075-blocked-result.json');
 const blockedOutputPath = path.join(tempDir, 'FOUNDATION-READINESS-BLOCKED.md');
+const missingAuthTargetInputPath = path.join(tempDir, 'TARGET-075-missing-auth-target-result.json');
+const missingAuthTargetOutputPath = path.join(tempDir, 'FOUNDATION-READINESS-MISSING-AUTH-TARGET.md');
 
 const fixture = {
   schemaVersion: 1,
@@ -100,6 +102,10 @@ fs.writeFileSync(
   'utf8'
 );
 
+const missingAuthTargetFixture = JSON.parse(JSON.stringify(fixture));
+delete missingAuthTargetFixture.authGate.authTarget;
+fs.writeFileSync(missingAuthTargetInputPath, `${JSON.stringify(missingAuthTargetFixture, null, 2)}\n`, 'utf8');
+
 function run(args) {
   const result = spawnSync(process.execPath, [scriptPath, ...args], {
     cwd: root,
@@ -135,6 +141,17 @@ const blockedWrite = run([`--input=${blockedInputPath}`, `--output=${blockedOutp
 if (blockedWrite.status !== 0) errors.push(`blocked write mode exited ${blockedWrite.status}: ${blockedWrite.stderr || blockedWrite.stdout}`);
 if (blockedWrite.parsed?.wroteFile !== true) errors.push('blocked write mode should still write a parked decision file.');
 if (!fs.existsSync(blockedOutputPath)) errors.push('blocked write mode did not create a decision output.');
+
+const missingAuthTargetWrite = run([`--input=${missingAuthTargetInputPath}`, `--output=${missingAuthTargetOutputPath}`, '--write']);
+
+if (missingAuthTargetWrite.status === 0) errors.push('missing authTarget write mode must fail.');
+if (missingAuthTargetWrite.parsed?.canWrite !== false) errors.push('missing authTarget fixture must not be writable.');
+if (!missingAuthTargetWrite.parsed?.errors?.includes('authGate.authTarget is required.')) {
+  errors.push('missing authTarget fixture must report authGate.authTarget is required.');
+}
+if (fs.existsSync(missingAuthTargetOutputPath)) {
+  errors.push('missing authTarget fixture must not write a Foundation decision output.');
+}
 
 const output = fs.existsSync(outputPath) ? fs.readFileSync(outputPath, 'utf8') : '';
 for (const phrase of [
