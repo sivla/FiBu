@@ -12,6 +12,7 @@ const guardedRunnerPath = 'scripts/agent/run-target-075-foundation-consistency-p
 const contextPackSelftestPath = 'scripts/agent/context-pack.selftest.mjs';
 const foundationDecisionScriptPath = 'scripts/agent/foundation-readiness-decision.mjs';
 const foundationDecisionSelftestPath = 'scripts/agent/foundation-readiness-decision.selftest.mjs';
+const foundationDecisionTemplatePath = 'playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.template.md';
 const target075ResultPath =
   'playwright/projects/fibu-book5/evidence/target-075-chart-of-accounts-reopen-and-setup-consistency-check/TARGET-075-result.json';
 const foundationDecisionPath = 'playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md';
@@ -47,7 +48,8 @@ for (const requiredFile of [
   guardedRunnerPath,
   contextPackSelftestPath,
   foundationDecisionScriptPath,
-  foundationDecisionSelftestPath
+  foundationDecisionSelftestPath,
+  foundationDecisionTemplatePath
 ]) {
   if (!exists(requiredFile)) errors.push(`missing required file: ${requiredFile}`);
 }
@@ -59,6 +61,7 @@ let readiness = '';
 let freeze = '';
 let spec = '';
 let guardedRunner = '';
+let foundationDecisionTemplate = '';
 let target075Result = null;
 
 if (!errors.length) {
@@ -69,6 +72,7 @@ if (!errors.length) {
   freeze = readText(freezePath);
   spec = readText(specPath);
   guardedRunner = readText(guardedRunnerPath);
+  foundationDecisionTemplate = readText(foundationDecisionTemplatePath);
   if (exists(target075ResultPath)) target075Result = readJson(target075ResultPath);
 }
 
@@ -268,6 +272,23 @@ if (readiness) {
   }
 }
 
+if (foundationDecisionTemplate) {
+  for (const phrase of [
+    'Status: `template/no-evidence`',
+    'Diese Vorlage ist keine Evidence',
+    'TARGET-075',
+    'playthru',
+    'UNIVERSAARL-DE',
+    'FOUNDATION-READINESS-DECISION.md',
+    'keine Setup-Freigabe',
+    'keine Stammdaten-Freigabe'
+  ]) {
+    if (!foundationDecisionTemplate.includes(phrase)) {
+      errors.push(`${foundationDecisionTemplatePath}: missing template phrase: ${phrase}`);
+    }
+  }
+}
+
 if (freeze) {
   if (!/Status:\s*active/i.test(freeze)) errors.push(`${freezePath}: freeze must remain active`);
   if (!freeze.includes('TARGET-075 remains read-only')) {
@@ -412,7 +433,8 @@ const checkedFiles = [
   guardedRunnerPath,
   contextPackSelftestPath,
   foundationDecisionScriptPath,
-  foundationDecisionSelftestPath
+  foundationDecisionSelftestPath,
+  foundationDecisionTemplatePath
 ];
 if (exists(target075ResultPath)) checkedFiles.push(target075ResultPath);
 if (exists(foundationDecisionPath)) checkedFiles.push(foundationDecisionPath);

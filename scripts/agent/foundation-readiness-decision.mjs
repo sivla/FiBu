@@ -5,6 +5,7 @@ const root = process.cwd();
 const defaultResultPath =
   'playwright/projects/fibu-book5/evidence/target-075-chart-of-accounts-reopen-and-setup-consistency-check/TARGET-075-result.json';
 const defaultDecisionPath = 'playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md';
+const templatePath = 'playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.template.md';
 const rawArgs = process.argv.slice(2);
 const args = new Set(rawArgs);
 const write = args.has('--write');
@@ -217,6 +218,7 @@ if (!exists(resultPath)) {
     playwrightLiveRunExecuted: false,
     resultPath,
     decisionPath,
+    templatePath,
     errors: write ? [`Missing required TARGET-075 result: ${resultPath}`] : [],
     warnings: [`${decisionPath} must not be created before TARGET-075 evidence exists.`],
     nextStep: 'Run TARGET-075 read-first after freeze/live-gate lift, then run this script with --write.'
@@ -246,6 +248,7 @@ const output = {
   playwrightLiveRunExecuted: false,
   resultPath,
   decisionPath,
+  templatePath,
   resultStatus: result.resultStatus,
   instance: result.instance,
   company: result.company,

@@ -16,8 +16,8 @@ Do not resume TARGET-073 as the next live case. TARGET-073 is parked until a mat
 
 | Audit risk | Decision for TARGET-075 |
 | --- | --- |
-| `tsconfig.json` covers only 5 of 450 TypeScript files | Do not use `tsc` as proof of full project health. Use local agent checks plus Playwright `--list` for this pilot. |
-| Direct `storageState` references exist | TARGET-075 must start with auth/context checks. Wrong auth, wrong instance or wrong company blocks the pilot. |
+| `tsconfig.json` covers only 14 of 450 TypeScript files | Do not use `tsc` as proof of full project health. Use local agent checks plus Playwright `--list` for this pilot. |
+| 433 direct `storageState` files appear unguarded; TARGET-075 is the one guarded direct `storageState` spec | TARGET-075 must start through its guarded runner with auth/context checks. Wrong auth, wrong instance, wrong company or blocked live gate blocks the pilot. |
 | Many waits, force clicks and coordinate clicks exist in legacy tests | TARGET-075 stays read-only. No force-click value entry, no coordinate editing, no unscoped `New/Edit/Post/OK`. |
 
 ## Latest local gate snapshot
@@ -77,6 +77,6 @@ It cannot prove final SKR04 completeness, VAT correctness, posting readiness, ma
 
 ## Required handoff after TARGET-075
 
-After TARGET-075, create or update `FOUNDATION-READINESS-DECISION.md` before selecting any master-data, vendor, customer, item, setup-write, Preview Posting or Posting pilot.
+After TARGET-075, create or update `FOUNDATION-READINESS-DECISION.md` before selecting any master-data, vendor, customer, item, setup-write, Preview Posting or Posting pilot. Use `playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.template.md` as the no-evidence handoff template until a TARGET-075 result exists.
 
 That decision must classify the TARGET-075 evidence as proven, parked, blocked or not enough for setup readiness. A visible page is only read-first evidence; it is not a release to create master data.

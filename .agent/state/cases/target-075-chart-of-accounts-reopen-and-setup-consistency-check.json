@@ -100,17 +100,17 @@
   },
   "qualityAuditReview": {
     "reviewedCommand": "npm run agent:quality:audit",
-    "reviewedAt": "2026-07-05T20:05:46.230Z",
+    "reviewedAt": "2026-07-06T05:33:18.165Z",
     "risksAcceptedForThisCaseOnly": [
       {
         "id": "narrow-tsconfig",
-        "risk": "tsconfig.json type-checks only 5 files while the repo contains 450 TypeScript files.",
+        "risk": "tsconfig.json type-checks only 14 files while the repo contains 450 TypeScript files.",
         "caseDecision": "Do not treat tsc as full project health proof for TARGET-075. Use agent preflight, encoding, diff check and Playwright --list before any later live run."
       },
       {
         "id": "auth-check-not-enforced",
-        "risk": "Direct storageState references can run without auth freshness preflight.",
-        "caseDecision": "TARGET-075 must run auth/context checks before live execution; stale auth or wrong instance/company blocks the pilot."
+        "risk": "433 direct storageState files appear unguarded by a runner/live approval check; TARGET-075 is the guarded direct storageState spec.",
+        "caseDecision": "TARGET-075 must run through its guarded runner with auth/context/live-gate checks before live execution; stale auth, wrong instance/company or blocked live gate blocks the pilot."
       },
       {
         "id": "playwright-flake-surface",
