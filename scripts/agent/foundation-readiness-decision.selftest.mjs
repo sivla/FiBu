@@ -157,7 +157,59 @@ const fixture = {
       bookBoundary: 'Selftest fixture only.'
     },
     nextProjectOutputs: ['Create the real Foundation Readiness Decision from real TARGET-075 evidence.'],
-    uatTrainingImpact: ['Supports a Foundation checkpoint exercise.']
+    uatTrainingImpact: ['Supports a Foundation checkpoint exercise.'],
+    masterDataReadFirstHandoff: [
+      {
+        candidate: 'PWS-MD-001',
+        area: 'Debitoren (Customers)',
+        decision: 'ready-for-read-first-review',
+        minimumBasis:
+          'Company, Kontenplan, Debitoren-/Buchungsgruppen-/Payment-Abhaengigkeiten sind sichtbar oder als Luecke benannt.',
+        remainsForbidden: ['Debitor speichern', 'Vorlage aendern', 'Verkaufsbeleg anlegen'],
+        allowedClassifications: [
+          'ready-for-customer-write-gate',
+          'needs-foundation-follow-up',
+          'needs-template-discovery',
+          'blocked'
+        ]
+      },
+      {
+        candidate: 'PWS-MD-002',
+        area: 'Kreditoren (Vendors)',
+        decision: 'ready-for-read-first-review',
+        minimumBasis:
+          'Company, Kontenplan, Kreditoren-/Buchungsgruppen-/Payment-Abhaengigkeiten sind sichtbar oder als Luecke benannt; Bankdaten bleiben ausserhalb.',
+        remainsForbidden: ['Kreditor speichern', 'Bankdaten erfassen', 'Einkaufsbeleg oder Zahlung anlegen'],
+        allowedClassifications: [
+          'ready-for-vendor-write-gate',
+          'needs-foundation-follow-up',
+          'needs-template-discovery',
+          'needs-payment-boundary-decision',
+          'blocked'
+        ]
+      },
+      {
+        candidate: 'PWS-MD-003',
+        area: 'Artikel/Services/Nichtlagerartikel',
+        decision: 'ready-for-read-first-review',
+        minimumBasis:
+          'Company, Kontenplan, Produktbuchungsgruppen, USt-Produktkontext, Basiseinheiten und Inventory-/Costing-Grenzen sind sichtbar oder als Luecke benannt.',
+        remainsForbidden: [
+          'Artikel speichern',
+          'Basiseinheit anlegen',
+          'Lager-/Bewertungs-/Buchungssetup aendern',
+          'Lagerwert oder Wertposten behaupten'
+        ],
+        allowedClassifications: [
+          'ready-for-item-write-gate',
+          'needs-uom-follow-up',
+          'needs-product-posting-follow-up',
+          'needs-inventory-setup-follow-up',
+          'needs-service-route-decision',
+          'blocked'
+        ]
+      }
+    ]
   }
 };
 
@@ -198,6 +250,7 @@ fs.writeFileSync(missingAuthTargetInputPath, `${JSON.stringify(missingAuthTarget
 const missingHandoffFixture = JSON.parse(JSON.stringify(fixture));
 missingHandoffFixture.foundationReadinessInput.nextProjectOutputs = [];
 delete missingHandoffFixture.foundationReadinessInput.uatTrainingImpact;
+delete missingHandoffFixture.foundationReadinessInput.masterDataReadFirstHandoff;
 fs.writeFileSync(missingHandoffInputPath, `${JSON.stringify(missingHandoffFixture, null, 2)}\n`, 'utf8');
 
 const incompleteSetupFixture = JSON.parse(JSON.stringify(fixture));
@@ -276,7 +329,8 @@ if (missingHandoffWrite.status === 0) errors.push('missing handoff write mode mu
 if (missingHandoffWrite.parsed?.canWrite !== false) errors.push('missing handoff fixture must not be writable.');
 for (const expectedError of [
   'foundationReadinessInput.nextProjectOutputs must be a non-empty array.',
-  'foundationReadinessInput.uatTrainingImpact must be a non-empty array.'
+  'foundationReadinessInput.uatTrainingImpact must be a non-empty array.',
+  'foundationReadinessInput.masterDataReadFirstHandoff must be a non-empty array.'
 ]) {
   if (!missingHandoffWrite.parsed?.errors?.includes(expectedError)) {
     errors.push(`missing handoff fixture must report: ${expectedError}`);

@@ -370,6 +370,60 @@ test('TARGET-075 runs a read-only Foundation consistency pilot', async ({ page }
     `${EVIDENCE_DIR_REL}/README.md`,
     ...results.flatMap((entry) => [entry.textFile, entry.screenshot, entry.screenshotMetadata])
   ];
+  const masterDataHandoffDecision =
+    resultStatus === 'observed' ? 'ready-for-read-first-review' : 'blocked-or-needs-foundation-follow-up';
+  const masterDataReadFirstHandoff = [
+    {
+      candidate: 'PWS-MD-001',
+      area: 'Debitoren (Customers)',
+      decision: masterDataHandoffDecision,
+      minimumBasis:
+        'Company, Kontenplan, Debitoren-/Buchungsgruppen-/Payment-Abhaengigkeiten sind sichtbar oder als Luecke benannt.',
+      remainsForbidden: ['Debitor speichern', 'Vorlage aendern', 'Verkaufsbeleg anlegen'],
+      allowedClassifications: [
+        'ready-for-customer-write-gate',
+        'needs-foundation-follow-up',
+        'needs-template-discovery',
+        'blocked'
+      ]
+    },
+    {
+      candidate: 'PWS-MD-002',
+      area: 'Kreditoren (Vendors)',
+      decision: masterDataHandoffDecision,
+      minimumBasis:
+        'Company, Kontenplan, Kreditoren-/Buchungsgruppen-/Payment-Abhaengigkeiten sind sichtbar oder als Luecke benannt; Bankdaten bleiben ausserhalb.',
+      remainsForbidden: ['Kreditor speichern', 'Bankdaten erfassen', 'Einkaufsbeleg oder Zahlung anlegen'],
+      allowedClassifications: [
+        'ready-for-vendor-write-gate',
+        'needs-foundation-follow-up',
+        'needs-template-discovery',
+        'needs-payment-boundary-decision',
+        'blocked'
+      ]
+    },
+    {
+      candidate: 'PWS-MD-003',
+      area: 'Artikel/Services/Nichtlagerartikel',
+      decision: masterDataHandoffDecision,
+      minimumBasis:
+        'Company, Kontenplan, Produktbuchungsgruppen, USt-Produktkontext, Basiseinheiten und Inventory-/Costing-Grenzen sind sichtbar oder als Luecke benannt.',
+      remainsForbidden: [
+        'Artikel speichern',
+        'Basiseinheit anlegen',
+        'Lager-/Bewertungs-/Buchungssetup aendern',
+        'Lagerwert oder Wertposten behaupten'
+      ],
+      allowedClassifications: [
+        'ready-for-item-write-gate',
+        'needs-uom-follow-up',
+        'needs-product-posting-follow-up',
+        'needs-inventory-setup-follow-up',
+        'needs-service-route-decision',
+        'blocked'
+      ]
+    }
+  ];
 
   const result = {
     schemaVersion: 1,
@@ -454,6 +508,7 @@ test('TARGET-075 runs a read-only Foundation consistency pilot', async ({ page }
         vatPostingSetup: statusFor('vat-posting-setup'),
         bookBoundary: 'Use as setup-page visibility and dependency map only; do not claim setup correctness from read-only visibility.'
       },
+      masterDataReadFirstHandoff,
       nextProjectOutputs: [
         'Update or create FOUNDATION-READINESS-DECISION.md after reviewing this result.',
         'Classify master-data readiness only after chart/setup context is accepted.',

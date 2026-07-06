@@ -144,6 +144,33 @@ function validateTarget075(result) {
     if (!Array.isArray(input.uatTrainingImpact) || input.uatTrainingImpact.length === 0) {
       errors.push('foundationReadinessInput.uatTrainingImpact must be a non-empty array.');
     }
+    const handoff = asArray(input.masterDataReadFirstHandoff);
+    if (!handoff.length) {
+      errors.push('foundationReadinessInput.masterDataReadFirstHandoff must be a non-empty array.');
+    } else {
+      const candidates = new Set(handoff.map((entry) => entry?.candidate));
+      for (const candidate of ['PWS-MD-001', 'PWS-MD-002', 'PWS-MD-003']) {
+        if (!candidates.has(candidate)) {
+          errors.push(`foundationReadinessInput.masterDataReadFirstHandoff must include ${candidate}.`);
+        }
+      }
+      for (const entry of handoff) {
+        const candidate = entry?.candidate ?? 'unknown';
+        if (!entry?.candidate) errors.push('foundationReadinessInput.masterDataReadFirstHandoff entry is missing candidate.');
+        if (!entry?.decision) {
+          errors.push(`foundationReadinessInput.masterDataReadFirstHandoff ${candidate} is missing decision.`);
+        }
+        if (!entry?.minimumBasis) {
+          errors.push(`foundationReadinessInput.masterDataReadFirstHandoff ${candidate} is missing minimumBasis.`);
+        }
+        if (!Array.isArray(entry?.remainsForbidden) || entry.remainsForbidden.length === 0) {
+          errors.push(`foundationReadinessInput.masterDataReadFirstHandoff ${candidate} must list remainsForbidden.`);
+        }
+        if (!Array.isArray(entry?.allowedClassifications) || entry.allowedClassifications.length === 0) {
+          errors.push(`foundationReadinessInput.masterDataReadFirstHandoff ${candidate} must list allowedClassifications.`);
+        }
+      }
+    }
   }
 
   return { errors, warnings };
@@ -153,6 +180,39 @@ function statusLine(value) {
   if (value === true) return 'ja';
   if (value === false) return 'nein';
   return String(value ?? 'unbekannt');
+}
+
+function tableCell(value) {
+  return String(value ?? '')
+    .replace(/\r?\n/g, ' ')
+    .replace(/\|/g, '/')
+    .trim();
+}
+
+function renderMasterDataHandoff(handoff, readyForMasterData) {
+  const entries = asArray(handoff);
+  if (!entries.length) {
+    const decision = readyForMasterData ? 'ready-for-read-first-review' : 'blocked-or-needs-foundation-follow-up';
+    return [
+      '| Kandidat | Entscheidung | Mindestgrundlage | Bleibt verboten |',
+      '| --- | --- | --- | --- |',
+      `| \`PWS-MD-001\` Debitoren (Customers) | ${decision} | Company, Kontenplan, Debitoren-/Buchungsgruppen-/Payment-Abhaengigkeiten sind sichtbar oder als Luecke benannt. | Debitor speichern, Vorlage aendern, Verkaufsbeleg anlegen. |`,
+      `| \`PWS-MD-002\` Kreditoren (Vendors) | ${decision} | Company, Kontenplan, Kreditoren-/Buchungsgruppen-/Payment-Abhaengigkeiten sind sichtbar oder als Luecke benannt; Bankdaten bleiben ausserhalb. | Kreditor speichern, Bankdaten erfassen, Einkaufsbeleg oder Zahlung anlegen. |`,
+      `| \`PWS-MD-003\` Artikel/Services/Nichtlagerartikel | ${decision} | Company, Kontenplan, Produktbuchungsgruppen, USt-Produktkontext, Basiseinheiten und Inventory-/Costing-Grenzen sind sichtbar oder als Luecke benannt. | Artikel speichern, Basiseinheit anlegen, Lager-/Bewertungs-/Buchungssetup aendern, Lagerwert oder Wertposten behaupten. |`
+    ].join('\n');
+  }
+
+  return [
+    '| Kandidat | Entscheidung | Mindestgrundlage | Bleibt verboten |',
+    '| --- | --- | --- | --- |',
+    ...entries.map((entry) => {
+      const decision = readyForMasterData ? entry.decision : 'blocked-or-needs-foundation-follow-up';
+      const forbidden = asArray(entry.remainsForbidden).join(', ');
+      return `| \`${tableCell(entry.candidate)}\` ${tableCell(entry.area)} | ${tableCell(decision)} | ${tableCell(
+        entry.minimumBasis
+      )} | ${tableCell(forbidden)} |`;
+    })
+  ].join('\n');
 }
 
 function renderDecision(result) {
@@ -255,17 +315,7 @@ function renderDecision(result) {
     '',
     'Diese Entscheidung gibt keine Schreibfreigabe. Sie waehlt hoechstens den naechsten lesenden Master-Data-Probe.',
     '',
-    '| Kandidat | Entscheidung | Mindestgrundlage | Bleibt verboten |',
-    '| --- | --- | --- | --- |',
-    `| \`PWS-MD-001\` Debitoren (Customers) | ${
-      readyForMasterData ? 'ready-for-read-first-review' : 'blocked-or-needs-foundation-follow-up'
-    } | Company, Kontenplan, Debitoren-/Buchungsgruppen-/Payment-Abhaengigkeiten sind sichtbar oder als Luecke benannt. | Debitor speichern, Vorlage aendern, Verkaufsbeleg anlegen. |`,
-    `| \`PWS-MD-002\` Kreditoren (Vendors) | ${
-      readyForMasterData ? 'ready-for-read-first-review' : 'blocked-or-needs-foundation-follow-up'
-    } | Company, Kontenplan, Kreditoren-/Buchungsgruppen-/Payment-Abhaengigkeiten sind sichtbar oder als Luecke benannt; Bankdaten bleiben ausserhalb. | Kreditor speichern, Bankdaten erfassen, Einkaufsbeleg oder Zahlung anlegen. |`,
-    `| \`PWS-MD-003\` Artikel/Services/Nichtlagerartikel | ${
-      readyForMasterData ? 'ready-for-read-first-review' : 'blocked-or-needs-foundation-follow-up'
-    } | Company, Kontenplan, Produktbuchungsgruppen, USt-Produktkontext, Basiseinheiten und Inventory-/Costing-Grenzen sind sichtbar oder als Luecke benannt. | Artikel speichern, Basiseinheit anlegen, Lager-/Bewertungs-/Buchungssetup aendern, Lagerwert oder Wertposten behaupten. |`,
+    renderMasterDataHandoff(input.masterDataReadFirstHandoff, readyForMasterData),
     '',
     'Erlaubte Anschlussklassifikationen:',
     '',
