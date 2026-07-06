@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized-compatible",
+  "caseId": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
+  "source": "playwright-readonly-master-data-reopen-proof",
+  "resultStatus": "observed-existing-customer-boundary",
+  "startedAt": "2026-07-06T21:50:42.133Z",
+  "completedAt": "2026-07-06T21:50:56.617Z",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "Debitor / Customer",
+  "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=22&company=UNIVERSAARL-DE&dc=0",
+  "liveActionsExecuted": true,
+  "businessCentralOpened": true,
+  "playwrightLiveRunExecuted": true,
+  "actionsTaken": [
+    "Opened the customer context page through the guarded runner.",
+    "Opened or selected existing customer through customer-number-text.",
+    "Captured list, existing-customer open/select context and Page Inspection boundary screenshots.",
+    "Kept the run read-first and no-save."
+  ],
+  "actionsNotTaken": [
+    "No New/Neu action clicked.",
+    "No customer created.",
+    "No customer edited.",
+    "No customer saved.",
+    "No customer deleted.",
+    "No values typed.",
+    "No customer template changed.",
+    "No customer posting group changed.",
+    "No payment terms changed.",
+    "No sales document or draft created.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No API shortcut."
+  ],
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "screenshots": [
+    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-010-customer-list-before-open.png",
+    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-015-customer-list-route.png",
+    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-020-customer-card-or-selection-context.png",
+    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-030-page-inspection-boundary.png"
+  ],
+  "screenshotQa": {
+    "requiredCheckpoints": [
+      "customer list with U-CUST-100",
+      "safe open/card or selected-row context",
+      "FactBox or FastTab/field context",
+      "Page Inspection boundary"
+    ],
+    "capturedCheckpoints": [
+      "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-010-customer-list-before-open.png",
+      "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-015-customer-list-route.png",
+      "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-020-customer-card-or-selection-context.png",
+      "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-030-page-inspection-boundary.png"
+    ],
+    "acceptedForExistingCustomerHandbookDraft": true,
+    "acceptedForCustomerWriteGate": false,
+    "pageInspectionCustomerAccepted": true,
+    "reason": "Existing U-CUST-100 was observed and opened/selected without save. This supports handbook/training draft, not write or sales readiness."
+  },
+  "proved": [
+    "Existing customer U-CUST-100 / Universaarl Kunde 100 is visible in playthru / UNIVERSAARL-DE.",
+    "The existing customer can be opened or selected without creating a duplicate customer.",
+    "No-save screenshot QA gives usable customer master-data context for handbook/training draft."
+  ],
+  "notProved": [
+    "No customer creation route.",
+    "No customer write gate approval.",
+    "No customer template correctness.",
+    "No customer posting group correctness beyond visible UI context.",
+    "No VAT correctness.",
+    "No sales process readiness.",
+    "No posted entries, Preview Posting or ledger trace.",
+    "Page Inspection was customer-related, but no field enforcement or save/reopen cycle was tested."
+  ],
+  "blockedBy": [],
+  "warnings": [
+    "New/Neu may be visible but was not clicked.",
+    "Edit/List Edit may be visible but was not clicked.",
+    "Posting/Preview text may be visible but was not clicked."
+  ],
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true,
+    "readOnlyDirectPageRoute": true
+  },
+  "nextStepDecision": {
+    "currentCase": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
+    "plannedNextCaseBeforeReview": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
+    "lastEvidenceSummary": "Existing U-CUST-100 customer context was observed without write, duplicate creation or document creation.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The customer proof is enough for handbook/training draft; next work should decide whether customer setup gaps block O2C or whether vendor/customer route decisions should continue.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "PWS-MD-CUSTOMER-SETUP-GAP-DECISION",
+        "status": "ready-next",
+        "reason": "Use existing customer evidence to decide visible setup gaps before any O2C or write claim."
+      },
+      {
+        "caseId": "PWS-MD-VENDOR-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Vendor remains parked behind payment/bank boundaries and customer setup decision."
+      },
+      {
+        "caseId": "PWS-MD-ITEM-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Item remains parked behind UOM, posting, VAT product, inventory and costing checks."
+      },
+      {
+        "caseId": "O2C-MINIMAL-ROUTE-DECISION",
+        "status": "needs-setup-first",
+        "reason": "O2C is premature until customer setup, item/service setup and posting/VAT boundaries are consciously handled."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "PWS-MD-CUSTOMER-SETUP-GAP-DECISION",
+    "whySelectedNextCaseIsBest": "After proving existing customer context, the next useful progress is a setup-gap decision, not another customer surface screenshot.",
+    "risksBeforeNextCase": [
+      "Do not edit or save U-CUST-100.",
+      "Do not claim sales readiness from customer visibility alone.",
+      "Do not proceed to O2C before setup gaps are decided."
+    ],
+    "requiredPreparation": [
+      "Review PWS-MD-004B screenshots and visible field/FastTab signals."
+    ]
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-010-customer-reopen-context.txt",
+    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-010-customer-list-before-open.png",
+    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-010-customer-list-before-open.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-015-customer-list-route.png",
+    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-015-customer-list-route.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-020-customer-card-or-selection-context.png",
+    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-020-customer-card-or-selection-context.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-030-page-inspection-boundary.png",
+    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-030-page-inspection-boundary.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/PWS-MD-004B-result.json"
+  ],
+  "nextCase": "PWS-MD-CUSTOMER-SETUP-GAP-DECISION",
+  "requiresReview": false,
+  "safeToFinalizeState": false
+}

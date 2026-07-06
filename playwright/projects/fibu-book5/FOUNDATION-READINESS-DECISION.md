@@ -224,6 +224,17 @@ Erlaubte Anschlussklassifikationen:
 - Folgeentscheidung: `PWS-MD-005-CUSTOMER-U-CUST-100-CONTROLLED-CREATE-GATE` ist fuer `U-CUST-100` obsolete. Naechster sinnvoller Case ist `PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF`.
 - Fachgrenze: Sichtbarkeit eines Debitors beweist keine Debitorenkarten-Vollstaendigkeit, keine Buchungsgruppen-/USt-Korrektheit, keine Verkaufsprozessbereitschaft und keinen Reopen-/Feldbeweis.
 
+## PWS-MD-004B Customer Reopen and Field Proof
+
+- Quelle: playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/PWS-MD-004B-result.json
+- Status: observed-existing-customer-boundary
+- Akzeptiert: vorhandener Debitor `U-CUST-100` / `Universaarl Kunde 100` wurde ohne Anlage, Bearbeitung oder Speichern geoeffnet/selektiert.
+- Sichtbar: Debitorenkarte, `Nr.`, `Name`, leere Adress-/Kontaktfelder, FactBox, Pflicht-/Hinweismarker bei `Fakturierung` und `Zahlungen`, Page Inspection mit `Customer Card (21, Card)` und `Customer (18)`.
+- UI-Learning: Mehr Screenshots sind noetig, weil Listenansicht, Kartenansicht und Page Inspection unterschiedliche Wahrheiten liefern. In diesem Lauf ist Page Inspection als Debitoren-/Customer-Kontext akzeptiert.
+- Schreibgrenze: kein `Neu`, kein Debitor erstellt, kein Debitor bearbeitet, keine Werte getippt, keine Vorlage, keine Buchungsgruppe, keine Zahlungsbedingung, kein Verkaufsbeleg, keine Buchungsvorschau, keine Buchung.
+- Folgeentscheidung: Der Nachweis reicht fuer Handbuch-/Training-Draft zur Debitorenkarte. Er reicht nicht fuer Debitoren-Write-Gate, O2C-Readiness, USt-Korrektheit, Buchungsgruppen-Korrektheit oder Posting.
+- Naechster Case: `PWS-MD-CUSTOMER-SETUP-GAP-DECISION` lokal auswerten; keine weitere Live-UI oeffnen, bis die Setup-Gaps aus PWS-MD-004B entschieden sind.
+
 ## Naechste Projektoutputs
 
 - PWS-FF-002C als aktuelle Buchungsmatrix-Grenze konsumieren: Page 314 ist partiell bekannt, aber nicht posting-ready.
@@ -249,4 +260,4 @@ Erlaubte Anschlussklassifikationen:
 
 ## Naechster Case
 
-- `PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF`: vorhandenen Debitor `U-CUST-100` / `Universaarl Kunde 100` ohne Speichern oeffnen/selektieren, Karten-/Feld-/FastTab-/FactBox-Kontext und Page-Inspection-Grenze pruefen. Keine Debitorenanlage, kein Speichern, keine Vorlage aendern, kein Beleg.
+- `PWS-MD-CUSTOMER-SETUP-GAP-DECISION`: PWS-MD-004B lokal auswerten. Entscheiden, welche Debitorenfelder fuer Handbuch/Training reichen, welche Setup-Luecken O2C blockieren und welcher gezielte Read-first-Nachweis als naechstes noetig ist.

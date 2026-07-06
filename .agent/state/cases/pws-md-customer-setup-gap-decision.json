@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PWS-MD-CUSTOMER-SETUP-GAP-DECISION",
+  "status": "planned-local-decision",
+  "mode": "universaarl-masterdata-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w2-core-masterdata",
+  "purpose": "Decide from PWS-MD-004B evidence whether the existing customer U-CUST-100 is sufficient for handbook/training draft and which setup gaps must be resolved before O2C, vendor write gates or item/service write gates.",
+  "workstream": "WS04 Master Data / Product Model",
+  "epic": "Customer master data controlled evidence",
+  "issueType": "Task",
+  "businessPurpose": "Turn observed customer-card evidence into a practical setup-gap decision instead of collecting another customer screenshot or jumping into sales process work.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/PWS-MD-004B-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-020-customer-card-or-selection-context.png",
+    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-030-page-inspection-boundary.png"
+  ],
+  "mayRunPlaywright": false,
+  "mayOpenBusinessCentral": false,
+  "effectiveBcActionsAllowed": false,
+  "allowedActions": [
+    "read-pws-md-004b-evidence",
+    "classify-customer-setup-gaps",
+    "update-foundation-readiness",
+    "update-dashboard-state-summary",
+    "prepare-next-case"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright-live",
+    "save-customer",
+    "create-customer",
+    "edit-customer",
+    "delete-customer",
+    "change-customer-template",
+    "change-posting-group",
+    "change-payment-terms",
+    "change-dimension",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "company-switch",
+    "claim-master-data-ready",
+    "claim-sales-process-ready"
+  ],
+  "decisionQuestions": [
+    "Which customer-card fields are proven visible for handbook/training draft?",
+    "Which visible gaps block O2C or customer write/readiness claims?",
+    "Is another read-only customer card proof needed, or should the next step inspect customer posting/payment/VAT setup?",
+    "Which training/UAT points can be derived without claiming sales readiness?"
+  ],
+  "acceptanceCriteria": [
+    "The decision references PWS-MD-004B evidence and screenshots.",
+    "The decision clearly separates handbook/training draft value from setup-ready or O2C-ready claims.",
+    "No Business Central or Playwright live run is executed.",
+    "The next case is either a targeted setup-readfirst proof or a local training/UAT artifact, not a duplicate customer creation."
+  ],
+  "nextStepDecision": {
+    "currentCase": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
+    "plannedNextCaseBeforeReview": "PWS-MD-CUSTOMER-SETUP-GAP-DECISION",
+    "lastEvidenceSummary": "PWS-MD-004B proved existing customer U-CUST-100 / Universaarl Kunde 100 card context with Customer Card (21) and Customer (18) Page Inspection, no save and no duplicate creation.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The next useful move is to decide setup gaps before any O2C or write gate.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "PWS-MD-CUSTOMER-SETUP-GAP-DECISION",
+        "status": "ready-next",
+        "reason": "Consumes observed customer evidence into a practical project decision."
+      },
+      {
+        "caseId": "PWS-MD-VENDOR-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Vendor remains parked behind payment/bank and purchasing setup boundaries."
+      },
+      {
+        "caseId": "PWS-MD-ITEM-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Item remains parked behind UOM, posting, VAT product, inventory and costing checks."
+      },
+      {
+        "caseId": "O2C-MINIMAL-ROUTE-DECISION",
+        "status": "needs-setup-first",
+        "reason": "O2C is premature until customer, item/service, posting and VAT boundaries are consciously handled."
+      }
+    ],
+    "queueChangesMade": [
+      "Selected customer setup-gap decision after PWS-MD-004B observed evidence."
+    ],
+    "selectedNextCase": "PWS-MD-CUSTOMER-SETUP-GAP-DECISION",
+    "whySelectedNextCaseIsBest": "It converts evidence into a decision and prevents both duplicate screenshots and premature O2C.",
+    "risksBeforeNextCase": [
+      "Do not claim sales readiness from customer card visibility.",
+      "Do not create or edit customer/vendor/item data in this local decision."
+    ],
+    "requiredPreparation": [
+      "Review PWS-MD-004B result JSON and screenshots."
+    ]
+  },
+  "trainingImpact": "Derives customer-card training points from observed evidence.",
+  "uatImpact": "Clarifies what UAT can validate from customer-card visibility and what still needs setup/process proof.",
+  "bookImpact": "Prepares beginner-friendly customer master-data text boundaries without raw test-log language.",
+  "nextCase": "PWS-MD-CUSTOMER-SETUP-GAP-DECISION",
+  "updatedAt": "2026-07-06T23:58:00.000+02:00"
+}

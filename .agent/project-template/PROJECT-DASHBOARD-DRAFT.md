@@ -55,7 +55,7 @@ M0 ist als Arbeitsrahmen nutzbar. Der naechste sinnvolle Fortschritt ist keine w
 | Freeze/Resume | passed-for-read-first-history | TARGET-075 ist gelaufen; neue Live-Arbeit braucht trotzdem aktuellen Auth-/Case-Gate. |
 | Finance Foundation | blocked-by-specific-gaps | Foundation-Decision aktuell halten: Page 314 und Page 472 active editor sind die harten UI-/Setup-Grenzen; TARGET-073B ist als no-write Proof gelaufen und blockiert. |
 | VAT/USt, Dimensions, Posting Groups | partial/blocked | INLAND/VAT19 sichtbar, Page 472-Hauptoberflaeche und Page Inspection/Tabelle 325 bewiesen; VAT-Matrix-Schreibroute und Page 314 bleiben nicht posting-ready. |
-| Master Data | existing-customer-proof-next | `PWS-MD-004` zeigt `U-CUST-100` / `Universaarl Kunde 100` bereits sichtbar; keine Duplikat-Anlage. Naechster Case ist `PWS-MD-004B` Reopen-/Feldbeweis ohne Speichern. |
+| Master Data | customer-setup-gap-decision-next | `PWS-MD-004B` zeigt `U-CUST-100` / `Universaarl Kunde 100` auf der Debitorenkarte mit Customer Card (21) / Customer (18). Reicht fuer Handbuch-/Training-Draft, nicht fuer O2C/Posting. Naechster Case ist lokale Setup-Gap-Decision. |
 | Buch/Handbuch/Training | draft | Nur auf Basis offizieller Quellen, Universaarl-Evidence oder klar markierter Annahmen ausbauen. |
 | Playwright/Evidence | draft | Read-first Specs und Screenshot-QA stabilisieren; keine Legacy-Routen als aktive Tests nutzen. |
 | Legacy-Decommission | active-work | Legacy nur inventarisieren, neutralisieren, portieren oder parken; Evidence nicht blind loeschen. |
@@ -90,7 +90,7 @@ M0 ist als Arbeitsrahmen nutzbar. Der naechste sinnvolle Fortschritt ist keine w
 3. Vor Live-Arbeit: `agent:preflight`, `check:encoding`, `agent:quality:audit`, `agent:resume:check || true`, `agent:freeze:status || true`.
 4. `TARGET-073` bleibt geparkt.
 5. Kein as-is Retry von TARGET-073 oder TARGET-073B; TARGET-073B ist konsumierte blockierte No-Write-Evidence.
-6. `FOUNDATION-READINESS-DECISION.md` als aktuelle Grenze nutzen: `U-CUST-100` existiert bereits, also `PWS-MD-004B` Reopen-/Feldbeweis ohne Speichern; keine Duplikat-Anlage und keine Stammdaten-/Beleg-Schreibaktion.
+6. `FOUNDATION-READINESS-DECISION.md` als aktuelle Grenze nutzen: `U-CUST-100` ist als Debitorenkarte beobachtet; jetzt lokal Setup-Gaps entscheiden, keine Duplikat-Anlage und kein O2C-Sprung.
 
 ## Update rule
 

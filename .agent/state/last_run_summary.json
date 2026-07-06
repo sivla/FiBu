@@ -1,39 +1,41 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "PWS-MD-004-CUSTOMER-CARD-TEMPLATE-REQUIRED-FIELDS-PREFLIGHT",
-  "caseId": "PWS-MD-004-CUSTOMER-CARD-TEMPLATE-REQUIRED-FIELDS-PREFLIGHT",
-  "status": "observed-prewrite-boundary",
-  "completedAt": "2026-07-06T23:40:27.640+02:00",
+  "runId": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
+  "caseId": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
+  "status": "observed-existing-customer-boundary",
+  "completedAt": "2026-07-06T23:50:56.617+02:00",
   "mode": "universaarl-masterdata-preflight",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "PWS-MD-004 inspected the Debitoren/customer surface with multi-checkpoint screenshot QA. U-CUST-100 / Universaarl Kunde 100 is already visible, so a customer create gate is obsolete; the next useful case is existing customer reopen/card field proof.",
-  "resultPath": "playwright/projects/fibu-book5/evidence/pws-md-004-customer-card-template-required-fields-preflight/PWS-MD-004-result.json",
+  "summary": "PWS-MD-004B opened/selected existing customer U-CUST-100 / Universaarl Kunde 100 without saving or creating a duplicate. Customer Card (21, Card) and Customer (18) were visible in Page Inspection. The evidence is useful for handbook/training draft, but not for customer write gate, VAT correctness, sales readiness, Preview Posting or Posting.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/PWS-MD-004B-result.json",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/pws-md-004-customer-card-template-required-fields-preflight/PWS-MD-004-result.json",
-    "playwright/projects/fibu-book5/evidence/pws-md-004-customer-card-template-required-fields-preflight/README.md"
+    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/PWS-MD-004B-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/README.md"
   ],
   "screenshots": [
-    "playwright/projects/fibu-book5/evidence/pws-md-004-customer-card-template-required-fields-preflight/pws-md-004-010-customer-list-context.png",
-    "playwright/projects/fibu-book5/evidence/pws-md-004-customer-card-template-required-fields-preflight/pws-md-004-015-customer-route-context.png",
-    "playwright/projects/fibu-book5/evidence/pws-md-004-customer-card-template-required-fields-preflight/pws-md-004-020-new-hover-or-tooltip-context.png",
-    "playwright/projects/fibu-book5/evidence/pws-md-004-customer-card-template-required-fields-preflight/pws-md-004-030-menu-boundary-context.png",
-    "playwright/projects/fibu-book5/evidence/pws-md-004-customer-card-template-required-fields-preflight/pws-md-004-040-page-inspection-context.png"
+    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-010-customer-list-before-open.png",
+    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-015-customer-list-route.png",
+    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-020-customer-card-or-selection-context.png",
+    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-030-page-inspection-boundary.png"
   ],
   "actionsTaken": [
-    "Opened Business Central through the guarded PWS-MD-004 runner.",
+    "Opened Business Central through the guarded PWS-MD-004B runner.",
     "Confirmed playthru / UNIVERSAARL-DE context.",
-    "Captured customer list, New/Neu hover, no-click menu boundary and Page Inspection boundary screenshots.",
-    "Visually reviewed the screenshots and corrected the result boundary after Page Inspection landed on the Role Center shell."
+    "Opened or selected existing U-CUST-100 / Universaarl Kunde 100.",
+    "Captured list, card/selected-record and Page Inspection screenshots.",
+    "Visually reviewed screenshots and accepted Customer Card (21) / Customer (18) Page Inspection as customer-related proof."
   ],
   "actionsNotTaken": [
-    "No New/Neu create action clicked.",
-    "No template selected.",
-    "No customer saved.",
-    "No values typed.",
+    "No New/Neu action clicked.",
     "No customer created.",
-    "No customer posting group changed.",
+    "No customer edited.",
+    "No customer saved.",
+    "No customer deleted.",
+    "No values typed.",
+    "No customer template changed.",
+    "No posting group changed.",
     "No payment terms changed.",
     "No sales document or draft created.",
     "No Preview Posting.",
@@ -49,80 +51,82 @@
   "payment": false,
   "apiShortcut": false,
   "proved": [
-    "Customer context remains reachable in playthru / UNIVERSAARL-DE.",
-    "U-CUST-100 / Universaarl Kunde 100 is already visible in the customer list.",
-    "New/Neu can be inspected without selecting a create/template action.",
-    "Multi-checkpoint screenshot QA prevents a wrong next step."
+    "Existing customer U-CUST-100 / Universaarl Kunde 100 is visible in playthru / UNIVERSAARL-DE.",
+    "The existing customer can be opened or selected without creating a duplicate customer.",
+    "Customer Card (21, Card) and Customer (18) were visible in Page Inspection.",
+    "No-save screenshot QA gives usable customer master-data context for handbook/training draft."
   ],
   "notProved": [
-    "No customer create route approved.",
-    "No customer card reopen proof yet.",
-    "Page Inspection opened on the Role Center shell and is not accepted as Customer table proof.",
+    "No customer creation route.",
+    "No customer write gate approval.",
     "No customer template correctness.",
-    "No customer posting group correctness.",
-    "No sales process readiness."
+    "No customer posting group correctness beyond visible UI context.",
+    "No VAT correctness.",
+    "No sales process readiness.",
+    "No posted entries, Preview Posting or ledger trace."
   ],
   "blockedBy": [],
   "warnings": [
-    "U-CUST-100 already exists; do not create a duplicate customer.",
-    "Visible New/Neu is not proof that saving a customer is safe.",
-    "Page Inspection can describe the shell/Role Center instead of the apparent list surface."
+    "Visible customer-card fields support training/handbook draft, not O2C readiness.",
+    "Required sections such as Fakturierung and Zahlungen need setup-gap decision before sales process claims.",
+    "Do not edit or save U-CUST-100 in the next local decision."
   ],
-  "nextCase": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
-  "nextStep": "Run PWS-MD-004B as a no-save proof of existing customer U-CUST-100 / Universaarl Kunde 100. Capture list, safe open/card route, FastTabs/fields, FactBox and Page Inspection boundary screenshots.",
+  "nextCase": "PWS-MD-CUSTOMER-SETUP-GAP-DECISION",
+  "nextStep": "Consume PWS-MD-004B evidence locally: decide which U-CUST-100 customer-card fields support handbook/training draft, which setup gaps block O2C, and which targeted read-first proof should run next. Do not open Business Central or run Playwright in this decision case.",
   "nextStepDecision": {
-    "currentCase": "PWS-MD-004-CUSTOMER-CARD-TEMPLATE-REQUIRED-FIELDS-PREFLIGHT",
-    "plannedNextCaseBeforeReview": "PWS-MD-005-CUSTOMER-U-CUST-100-CONTROLLED-CREATE-GATE",
-    "lastEvidenceSummary": "Customer list and New/Neu boundary were observed without saving; U-CUST-100 already exists visibly.",
+    "currentCase": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
+    "plannedNextCaseBeforeReview": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
+    "lastEvidenceSummary": "Existing U-CUST-100 customer context was observed without write, duplicate creation or document creation.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "Creating U-CUST-100 would duplicate existing master data. Existing customer reopen/card field proof is the better next project step.",
+    "reason": "The customer proof is enough for handbook/training draft; next work should decide setup gaps before O2C or write gates.",
     "lookaheadReviewed": [
       {
-        "caseId": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
+        "caseId": "PWS-MD-CUSTOMER-SETUP-GAP-DECISION",
         "status": "ready-next",
-        "reason": "Consumes existing customer evidence and improves handbook/training material without duplicate data."
-      },
-      {
-        "caseId": "PWS-MD-005-CUSTOMER-U-CUST-100-CONTROLLED-CREATE-GATE",
-        "status": "obsolete",
-        "reason": "U-CUST-100 already exists visibly."
+        "reason": "Use existing customer evidence to decide visible setup gaps before any O2C or write claim."
       },
       {
         "caseId": "PWS-MD-VENDOR-WRITE-GATE",
         "status": "needs-setup-first",
-        "reason": "Vendor remains parked behind customer/card route and payment/bank boundaries."
+        "reason": "Vendor remains parked behind payment/bank boundaries and customer setup decision."
       },
       {
         "caseId": "PWS-MD-ITEM-WRITE-GATE",
         "status": "needs-setup-first",
         "reason": "Item remains parked behind UOM, posting, VAT product, inventory and costing checks."
+      },
+      {
+        "caseId": "O2C-MINIMAL-ROUTE-DECISION",
+        "status": "needs-setup-first",
+        "reason": "O2C is premature until customer setup, item/service setup and posting/VAT boundaries are consciously handled."
       }
     ],
     "queueChangesMade": [
-      "Replaced customer create-gate direction with PWS-MD-004B existing customer reopen/field proof."
+      "Selected customer setup-gap decision after PWS-MD-004B observed evidence."
     ],
-    "selectedNextCase": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
-    "whySelectedNextCaseIsBest": "It is the smallest real BC progress after discovering existing customer data and avoids a duplicate write path.",
+    "selectedNextCase": "PWS-MD-CUSTOMER-SETUP-GAP-DECISION",
+    "whySelectedNextCaseIsBest": "It converts evidence into a decision and prevents both duplicate screenshots and premature O2C.",
     "risksBeforeNextCase": [
       "Do not edit or save U-CUST-100.",
-      "Do not claim sales readiness from list or card visibility alone."
+      "Do not claim sales readiness from customer visibility alone.",
+      "Do not proceed to O2C before setup gaps are decided."
     ],
     "requiredPreparation": [
-      "Use PWS-MD-004 screenshot learnings and keep no-save screenshot QA."
+      "Review PWS-MD-004B result JSON and screenshots."
     ]
   },
   "businessCentralOpened": true,
   "playwrightLiveRunExecuted": true,
   "changedFilesIntent": [
-    "playwright/projects/fibu-book5/tests/pws-md-004-customer-card-template-required-fields-preflight.spec.ts",
-    "scripts/agent/run-pws-md-004-customer-card-template-required-fields-preflight.mjs",
+    "playwright/projects/fibu-book5/tests/pws-md-004b-customer-reopen-and-field-proof.spec.ts",
+    "scripts/agent/run-pws-md-004b-customer-reopen-and-field-proof.mjs",
     "package.json",
-    "playwright/projects/fibu-book5/evidence/pws-md-004-customer-card-template-required-fields-preflight/",
-    ".agent/state/cases/pws-md-004b-customer-reopen-and-field-proof.json",
+    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/",
+    ".agent/state/cases/pws-md-customer-setup-gap-decision.json",
     ".agent/state/current.json",
     ".agent/state/last_run_summary.json",
     "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
     ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md"
   ],
-  "updatedAt": "2026-07-06T23:45:00.000+02:00"
+  "updatedAt": "2026-07-06T23:58:00.000+02:00"
 }

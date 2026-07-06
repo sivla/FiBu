@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-06T23:45:00.000+02:00",
+  "updatedAt": "2026-07-06T23:58:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -8,9 +8,9 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w2-core-masterdata",
-  "activeCase": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
-  "active_case_file": ".agent/state/cases/pws-md-004b-customer-reopen-and-field-proof.json",
-  "activeCaseFile": ".agent/state/cases/pws-md-004b-customer-reopen-and-field-proof.json",
+  "activeCase": "PWS-MD-CUSTOMER-SETUP-GAP-DECISION",
+  "active_case_file": ".agent/state/cases/pws-md-customer-setup-gap-decision.json",
+  "activeCaseFile": ".agent/state/cases/pws-md-customer-setup-gap-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-masterdata-preflight",
@@ -34,16 +34,11 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "run-playwright-readonly",
-    "open-business-central-readonly",
-    "confirm-playthru-instance",
-    "confirm-universaarl-company",
-    "open-customers-readonly",
-    "open-existing-customer-u-cust-100-readonly-or-card-safe",
-    "inspect-fasttabs-fields-and-factboxes",
-    "capture-screenshot-qa",
-    "write-evidence-result",
-    "update-state-summary"
+    "read-pws-md-004b-evidence",
+    "classify-customer-setup-gaps",
+    "update-foundation-readiness",
+    "update-dashboard-state-summary",
+    "prepare-next-case"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -51,6 +46,8 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright-live",
     "save-customer",
     "create-customer",
     "edit-customer",
@@ -68,9 +65,9 @@
     "claim-master-data-ready",
     "claim-sales-process-ready"
   ],
-  "nextCase": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
-  "nextStep": "Run PWS-MD-004B as a no-save proof of existing customer U-CUST-100 / Universaarl Kunde 100 in playthru / UNIVERSAARL-DE. Open/select the existing customer safely, capture list/card/FastTab/FactBox/Page-Inspection-boundary screenshots, and do not save, edit, create a duplicate, create a document, preview or post.",
-  "preparedNextCaseFile": ".agent/state/cases/pws-md-004b-customer-reopen-and-field-proof.json",
+  "nextCase": "PWS-MD-CUSTOMER-SETUP-GAP-DECISION",
+  "nextStep": "Consume PWS-MD-004B evidence locally: decide which U-CUST-100 customer-card fields support handbook/training draft, which setup gaps block O2C, and which targeted read-first proof should run next. Do not open Business Central or run Playwright in this decision case.",
+  "preparedNextCaseFile": ".agent/state/cases/pws-md-customer-setup-gap-decision.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
