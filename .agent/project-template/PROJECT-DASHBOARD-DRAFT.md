@@ -14,7 +14,7 @@ Last reviewed: 2026-07-07
 | Artefakt-Klassifikation | `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` |
 | Geparkter Live-Case | `TARGET-073` |
 | Letzter Resume-Pilot | `TARGET-075`, read-first, no-write, abgeschlossen |
-| Aktiver Case | `CUSTOMER-CONFIG-PACKAGE-FIELD-MAP` |
+| Aktiver Case | `CUSTOMER-FIRST-RECORD-DATA-QUALITY-DECISION` |
 | Legacy-Grenze | RM-DEMO, MCP_1_20260210, CRONUS, Rhein-Main und RM-* sind keine aktive Projektwahrheit. |
 
 ## Steuerungsregel
@@ -55,7 +55,7 @@ M0 ist als Arbeitsrahmen nutzbar. Der naechste sinnvolle Fortschritt ist keine w
 | Freeze/Resume | passed-for-read-first-history | TARGET-075 ist gelaufen; neue Live-Arbeit braucht trotzdem aktuellen Auth-/Case-Gate. |
 | Finance Foundation | blocked-by-specific-gaps | Foundation-Decision aktuell halten: Page 314 und Page 472 active editor sind die harten UI-/Setup-Grenzen; TARGET-073B ist als no-write Proof gelaufen und blockiert. |
 | VAT/USt, Dimensions, Posting Groups | partial/blocked | INLAND/VAT19 sichtbar, Page 472-Hauptoberflaeche und Page Inspection/Tabelle 325 bewiesen; VAT-Matrix-Schreibroute und Page 314 bleiben nicht posting-ready. |
-| Master Data | customer-field-map-next | Debitorenliste, vorhandener Debitor `U-CUST-100`, Debitorenkarte, Page Inspection sowie Fakturierung/Zahlungen sind read-first belegt. Naechster Schritt ist die Feldkarte fuer realistische fiktive Universaarl-Kunden; kein Debitoren-Write-Gate vor Setup-Abhaengigkeiten. |
+| Master Data | customer-data-quality-decision-next | Debitorenliste, vorhandener Debitor `U-CUST-100`, Debitorenkarte, Page Inspection sowie Fakturierung/Zahlungen sind read-first belegt. Die Feldkarte zeigt: `U-CUST-100` existiert als `Universaarl Kunde 100`, passt aber noch nicht zum Zielkunden `Saarland Maschinenbau AG`; vor jedem Write-Gate braucht es eine Datenqualitaetsentscheidung. |
 | Buch/Handbuch/Training | draft-with-customer-card-module | Debitorenkarten-Training `TR-03-01A` ist als Draft vorhanden; Screenshots stammen aus echter `playthru`-Oberflaeche, nicht aus Mockups. |
 | Playwright/Evidence | draft | Read-first Specs und Screenshot-QA stabilisieren; keine Legacy-Routen als aktive Tests nutzen. |
 | Legacy-Decommission | active-work | Legacy nur inventarisieren, neutralisieren, portieren oder parken; Evidence nicht blind loeschen. |
@@ -90,7 +90,7 @@ M0 ist als Arbeitsrahmen nutzbar. Der naechste sinnvolle Fortschritt ist keine w
 3. Vor Live-Arbeit: `agent:preflight`, `check:encoding`, `agent:quality:audit`, `agent:resume:check || true`, `agent:freeze:status || true`.
 4. `TARGET-073` bleibt geparkt.
 5. Kein as-is Retry von TARGET-073 oder TARGET-073B; TARGET-073B ist konsumierte blockierte No-Write-Evidence.
-6. `CUSTOMER-SETUP-UI-TEMPLATE-PREFLIGHT`, `PWS-MD-004B` und `PWS-MD-004C` sind als read-first/no-write Nachweise konsumiert. Naechster Schritt ist `CUSTOMER-CONFIG-PACKAGE-FIELD-MAP`: lokale Feld-/Routenkarte fuer realistische fiktive Universaarl-Kunden, keine BC-Live-Ausfuehrung, kein Speichern, kein Import, kein O2C-Sprung.
+6. `CUSTOMER-CONFIG-PACKAGE-FIELD-MAP` ist als lokale Feld-/Routenkarte erstellt. Naechster Schritt ist `CUSTOMER-FIRST-RECORD-DATA-QUALITY-DECISION`: entscheiden, ob der bestehende Platzhalter `U-CUST-100 / Universaarl Kunde 100` in den Zielkunden umbenannt, geparkt oder durch eine andere Nummer ersetzt wird. Keine BC-Live-Ausfuehrung, kein Speichern, kein Import, kein O2C-Sprung.
 
 ## Update rule
 

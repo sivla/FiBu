@@ -31,6 +31,30 @@ Diese Feldkarte uebersetzt die beobachtete Debitorenkarte in eine spaetere Einri
 - Fuer mehrere Kunden ist ein Konfigurationspaket oder Excel-assisted Import fachlich sinnvoller, sobald die Feldkarte und die Setup-Abhaengigkeiten stabil sind.
 - API/AL bleibt geparkt, bis ein echter Integrationszweck vorliegt.
 
+## Abgleich mit `MD-CUSTOMERS-01`
+
+Die Zielkunden sind realistisch fiktiv. Sie duerfen wie echte Kunden wirken, enthalten aber keine vertraulichen echten Kundendaten. Der aktuelle BC-Stand darf nicht blind ueberschrieben werden: `U-CUST-100` existiert bereits als `Universaarl Kunde 100`, passt aber fachlich noch nicht zur Zielrolle `Saarland Maschinenbau AG`.
+
+| Zielcode | Zielname | Zielrolle | Aktueller BC-Stand | Realitaetsentscheidung vor Write-Gate | Setup-Abhaengigkeit | Naechste Aktion |
+| --- | --- | --- | --- | --- | --- | --- |
+| `U-CUST-100` | Saarland Maschinenbau AG | Standardkunde fuer ersten O2C-Prozess | existiert als `Universaarl Kunde 100`; nur Karte/Felder read-first bewiesen | nicht blind neu anlegen; entscheiden, ob bestehender Platzhalter umbenannt oder als technischer Lernkunde geparkt wird | Debitorenbuchungsgruppe, Geschaeftsbuchungsgruppe, USt.-Geschaeftsbuchungsgruppe, Zahlungsbedingung | Datenqualitaetsentscheidung und enger Write-Gate |
+| `U-CUST-110` | Pfalz Technik GmbH | zweiter Kunde fuer Listen, Filter, Vergleich | nicht bewiesen | spaeter ueber Konfigurationspaket/Excel-assisted sinnvoll | wie `U-CUST-100`, plus Region/Dimension | Data Request vervollstaendigen |
+| `U-CUST-120` | Mosel Projektbau GmbH | Projekt-/Service-nahe Folgefaelle | nicht bewiesen | parken bis Jobs/Service-Kontext | Kundenvorlage, Zahlungsbedingung, ggf. Projekt-/Service-Dimensionen | parked |
+| `U-CUST-190` | Privatkunde Schulung | einfacher B2C-/Schulungsfall | nicht bewiesen | erst nach USt.-Gate und Datenschutz-/B2C-Grenze | USt.-Kontext, Zahlungsbedingung, keine echten personenbezogenen Daten | parked |
+| `U-CUST-900` | Kundenanlage Fehlerfall | Fehler- und Korrekturfall | nicht bewiesen | nur separater Fehlercase; nicht in Standardprozessen verwenden | definierter Fehlerzweck und Cleanup-/Keep-Regel | parked |
+
+## Simulierte Kundendaten fuer den ersten Data Request
+
+Diese Werte sind nicht in Business Central angelegt. Sie sind ein realistischer fiktiver Datenvorschlag fuer Data Request, UAT und spaetere Einrichtung.
+
+| Code | Name | Adresse | Kontakt | Kundentyp | Vorgeschlagene Route | Noch blockiert durch |
+| --- | --- | --- | --- | --- | --- | --- |
+| `U-CUST-100` | Saarland Maschinenbau AG | Hafenstrasse 12, 66111 Saarbruecken, DE | Einkauf: Martina Weber, einkauf@example.invalid | B2B Inland | enger UI-Write-Gate oder kontrolliertes Umbenennen des bestehenden Platzhalters | Buchungsgruppen, USt.-Gruppe, Zahlungsbedingung, Datenqualitaetsentscheidung |
+| `U-CUST-110` | Pfalz Technik GmbH | Industriestrasse 8, 67655 Kaiserslautern, DE | Buchhaltung: Leon Braun, buchhaltung@example.invalid | B2B Inland | Konfigurationspaket/Excel-assisted nach Feldmapping | Setup-Readiness und Importvorlage |
+| `U-CUST-120` | Mosel Projektbau GmbH | Projektweg 4, 54290 Trier, DE | Projektleitung: Anna Schmitt, projekt@example.invalid | Projektkunde | spaeter, wenn Projekt-/Service-Prozesse geplant sind | Jobs/Service-Entscheidung |
+| `U-CUST-190` | Privatkunde Schulung | fiktive Schulungsadresse, DE | keine echte Person | B2C Schulung | spaeter separater Schulungsfall | USt.-Gate und Datenschutzgrenze |
+| `U-CUST-900` | Kundenanlage Fehlerfall | bewusst unvollstaendig | nicht verwenden | Fehlerfall | separater Error-Case | definierter Fehler, Stop- und Cleanup-Regel |
+
 ## Naechster sinnvoller Schritt
 
-`CUSTOMER-CONFIG-PACKAGE-FIELD-MAP` bleibt lokal: Die Feldkarte gegen vorhandene simulierte Kundendatenpakete abgleichen, fehlende Kundendaten als Data Request markieren und erst danach einen engen Write-Gate fuer genau einen realistischen fiktiven Beispieldebitor vorbereiten.
+`CUSTOMER-CONFIG-PACKAGE-FIELD-MAP` ist lokal ausreichend fuer die naechste Entscheidung: Vor dem ersten Debitoren-Write muss entschieden werden, ob `U-CUST-100 / Universaarl Kunde 100` als Platzhalter umbenannt wird oder ob ein neuer realistischer Zielkunde mit anderer Nummer entsteht. Danach erst folgt ein enger Write-Gate mit Screenshot-QA, Reopen-Proof und klarer Setup-Grenze.

@@ -1,44 +1,36 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
-  "caseId": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
-  "status": "observed-existing-customer-boundary-plus-field-map-handoff",
-  "completedAt": "2026-07-07T00:20:00.000Z",
-  "mode": "universaarl-masterdata-readfirst-to-field-map",
+  "runId": "CUSTOMER-CONFIG-PACKAGE-FIELD-MAP",
+  "caseId": "CUSTOMER-CONFIG-PACKAGE-FIELD-MAP",
+  "status": "completed-local-field-map",
+  "completedAt": "2026-07-07T00:55:00.000Z",
+  "mode": "universaarl-masterdata-route-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Ran the read-first customer reopen proof in real Business Central UI. It confirmed playthru / UNIVERSAARL-DE, opened or selected existing realistic fictional customer U-CUST-100 / Universaarl Kunde 100, accepted Customer Card (21) / Customer (18) Page Inspection, and made no data changes. The follow-up local artifact maps observed fields to realistic fictional customer-data preparation; no mockups and no confidential real customer data.",
-  "resultPath": "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/PWS-MD-004B-result.json",
+  "summary": "Completed the local Debitoren field map against real Business Central Customer Card evidence and the planned MD-CUSTOMERS-01 data package. The map now separates real UI evidence from realistic fictional customer data and identifies the key data-quality issue: U-CUST-100 exists as Universaarl Kunde 100, while the target project customer is Saarland Maschinenbau AG.",
+  "resultPath": "playwright/projects/fibu-book5/UNIVERSAARL-CUSTOMER-FIELD-MAP.md",
   "changedArtifacts": [
-    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/PWS-MD-004B-result.json",
-    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/README.md",
     "playwright/projects/fibu-book5/UNIVERSAARL-CUSTOMER-FIELD-MAP.md",
-    ".agent/state/cases/pws-md-004b-customer-reopen-and-field-proof.json",
     ".agent/state/cases/customer-config-package-field-map.json",
+    ".agent/state/cases/customer-first-record-data-quality-decision.json",
     ".agent/state/current.json",
-    ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
-    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
-    "scripts/agent/run-pws-md-004c-customer-billing-payments-fasttabs-readfirst.mjs"
+    ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md"
   ],
   "actionsTaken": [
-    "Opened the guarded customer context route.",
-    "Opened or selected existing customer U-CUST-100 without creating a duplicate.",
-    "Captured list, card/selection and Customer Card Page Inspection screenshots.",
-    "Created a concise local customer field map from observed real BC fields."
+    "Mapped observed Customer Card fields to realistic fictional customer data needs.",
+    "Compared MD-CUSTOMERS-01 target records with the current observed U-CUST-100 placeholder.",
+    "Prepared a local data-quality decision before any customer write gate."
   ],
   "actionsNotTaken": [
-    "No Business Central write after the read-first proof.",
-    "No New/Neu action clicked.",
+    "No Business Central opened.",
+    "No Playwright live run executed.",
     "No customer created, edited, saved or deleted.",
-    "No real confidential customer data used.",
-    "No document or draft created.",
-    "No Preview Posting.",
-    "No Posting.",
-    "No API shortcut."
+    "No confidential real customer data used.",
+    "No import, document, Preview Posting or Posting."
   ],
-  "businessCentralOpened": true,
-  "playwrightLiveRunExecuted": true,
+  "businessCentralOpened": false,
+  "playwrightLiveRunExecuted": false,
   "setupChanged": false,
   "setupChangeAttempted": false,
   "masterDataChanged": false,
@@ -47,30 +39,19 @@
   "posted": false,
   "payment": false,
   "apiShortcut": false,
-  "screenshots": [
-    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-010-customer-list-before-open.png",
-    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-015-customer-list-route.png",
-    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-020-customer-card-or-selection-context.png",
-    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-030-page-inspection-boundary.png"
-  ],
   "proved": [
-    "Existing customer U-CUST-100 / Universaarl Kunde 100 is visible in playthru / UNIVERSAARL-DE.",
-    "The customer can be opened or selected without duplicate creation.",
-    "Page Inspection confirms Customer Card (21, Card) and Customer (18).",
-    "Observed fields can now drive a local customer field map for realistic fictional Universaarl data."
+    "The field map is grounded in real playthru Customer Card evidence from PWS-MD-004B/PWS-MD-004C.",
+    "The target customer data is realistic fictional Universaarl data, not a UI mockup and not confidential real customer data.",
+    "U-CUST-100 has a data-quality mismatch that must be resolved before the first customer write gate."
   ],
   "notProved": [
-    "No customer creation route.",
+    "No customer write route.",
     "No customer setup correctness.",
-    "No customer write gate.",
+    "No import readiness.",
     "No O2C readiness.",
     "No Preview Posting, Posting or ledger trace."
   ],
-  "warnings": [
-    "Use realistic fictional customers, not confidential real customer data.",
-    "Visible fields are field-context proof, not setup-readiness proof."
-  ],
-  "nextCase": "CUSTOMER-CONFIG-PACKAGE-FIELD-MAP",
-  "nextStep": "Use the new field map to align realistic fictional customer data and setup dependencies before any customer write gate.",
-  "updatedAt": "2026-07-07T00:20:00.000Z"
+  "nextCase": "CUSTOMER-FIRST-RECORD-DATA-QUALITY-DECISION",
+  "nextStep": "Decide locally whether to rename/update existing U-CUST-100, park it, or create a different realistic fictional customer number before any BC write gate.",
+  "updatedAt": "2026-07-07T00:55:00.000Z"
 }
