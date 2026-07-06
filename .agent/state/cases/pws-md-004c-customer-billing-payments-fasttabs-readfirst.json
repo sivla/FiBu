@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "caseId": "PWS-MD-004C-CUSTOMER-BILLING-PAYMENTS-FASTTABS-READFIRST",
+  "status": "planned-read-first",
+  "mode": "universaarl-masterdata-readfirst",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w2-core-masterdata",
+  "workstream": "WS04 Master Data / Product Model",
+  "epic": "Customer master data controlled evidence",
+  "issueType": "Task",
+  "purpose": "Open existing U-CUST-100 read-only and inspect the Fakturierung and Zahlungen FastTabs that block customer setup/O2C readiness claims.",
+  "businessPurpose": "Understand customer billing and payment setup gaps like a BC consultant before any customer write gate, sales document, Preview Posting or Posting is considered.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/pws-md-customer-setup-gap-decision/PWS-MD-CUSTOMER-SETUP-GAP-DECISION-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/PWS-MD-004B-result.json"
+  ],
+  "mayRunPlaywright": true,
+  "mayOpenBusinessCentral": true,
+  "effectiveBcActionsAllowed": false,
+  "allowedActions": [
+    "open-business-central-readonly",
+    "confirm-playthru-instance",
+    "confirm-universaarl-de-company",
+    "open-existing-customer-u-cust-100",
+    "expand-fakturierung-fasttab-readonly",
+    "expand-zahlungen-fasttab-readonly",
+    "capture-screenshots",
+    "capture-page-inspection",
+    "write-result-json"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "new-customer",
+    "edit-customer",
+    "save-customer",
+    "delete-customer",
+    "change-customer-template",
+    "change-posting-group",
+    "change-payment-terms",
+    "change-payment-method",
+    "change-vat-setup",
+    "change-dimension",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "company-switch",
+    "claim-master-data-ready",
+    "claim-sales-process-ready"
+  ],
+  "requiredScreenshotCheckpoints": [
+    "Role Center or customer-list route context in playthru / UNIVERSAARL-DE",
+    "U-CUST-100 customer-card context before expanding FastTabs",
+    "Fakturierung FastTab expanded with visible fields",
+    "Zahlungen FastTab expanded with visible fields",
+    "Page Inspection while customer-card field context is visible",
+    "End context proving no save/edit/draft/post path was used"
+  ],
+  "acceptanceCriteria": [
+    "Result JSON states whether billing/payment fields were visible and what remains unproven.",
+    "At least five screenshot checkpoints are captured and QA-classified.",
+    "No customer, setup, document, Preview Posting, Posting, payment or API change occurs.",
+    "The next case is either a customer setup route decision, a training card, or a parked boundary with reason."
+  ],
+  "stopIf": [
+    "Instance is not playthru.",
+    "Company is not UNIVERSAARL-DE.",
+    "U-CUST-100 is not visible or cannot be opened without edit/save risk.",
+    "Expanding a FastTab triggers an edit/save/dialog risk.",
+    "A route requires force click or coordinate click without a diagnostic reason."
+  ],
+  "trainingImpact": "Provides role-based training material for why customer billing and payment fields matter.",
+  "uatImpact": "Defines whether U-CUST-100 can become a UAT customer candidate or remains a setup-gap example.",
+  "bookImpact": "Supports beginner-friendly customer-card explanation without claiming O2C readiness.",
+  "nextCase": "PWS-MD-004C-CUSTOMER-BILLING-PAYMENTS-FASTTABS-READFIRST",
+  "updatedAt": "2026-07-07T00:18:00.000+02:00"
+}

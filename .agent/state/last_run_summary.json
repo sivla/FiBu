@@ -1,47 +1,42 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
-  "caseId": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
-  "status": "observed-existing-customer-boundary",
-  "completedAt": "2026-07-06T23:50:56.617+02:00",
-  "mode": "universaarl-masterdata-preflight",
+  "runId": "PWS-MD-CUSTOMER-SETUP-GAP-DECISION",
+  "caseId": "PWS-MD-CUSTOMER-SETUP-GAP-DECISION",
+  "status": "completed-local-decision",
+  "completedAt": "2026-07-07T00:18:00.000+02:00",
+  "mode": "universaarl-masterdata-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "PWS-MD-004B opened/selected existing customer U-CUST-100 / Universaarl Kunde 100 without saving or creating a duplicate. Customer Card (21, Card) and Customer (18) were visible in Page Inspection. The evidence is useful for handbook/training draft, but not for customer write gate, VAT correctness, sales readiness, Preview Posting or Posting.",
-  "resultPath": "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/PWS-MD-004B-result.json",
+  "summary": "PWS-MD-004B was consumed locally. Existing customer U-CUST-100 / Universaarl Kunde 100 is useful for handbook/training draft about the Debitorenkarte, but billing/payment setup gaps block customer write, O2C, VAT, posting group, Preview Posting and Posting readiness claims. Next case is a read-only FastTab proof with stronger screenshot QA.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/pws-md-customer-setup-gap-decision/PWS-MD-CUSTOMER-SETUP-GAP-DECISION-result.json",
   "evidenceRefs": [
-    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/PWS-MD-004B-result.json",
-    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/README.md"
+    "playwright/projects/fibu-book5/evidence/pws-md-customer-setup-gap-decision/PWS-MD-CUSTOMER-SETUP-GAP-DECISION-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-md-customer-setup-gap-decision/README.md"
   ],
-  "screenshots": [
-    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-010-customer-list-before-open.png",
-    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-015-customer-list-route.png",
+  "consumedEvidence": [
+    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/PWS-MD-004B-result.json",
     "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-020-customer-card-or-selection-context.png",
     "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/pws-md-004b-030-page-inspection-boundary.png"
   ],
   "actionsTaken": [
-    "Opened Business Central through the guarded PWS-MD-004B runner.",
-    "Confirmed playthru / UNIVERSAARL-DE context.",
-    "Opened or selected existing U-CUST-100 / Universaarl Kunde 100.",
-    "Captured list, card/selected-record and Page Inspection screenshots.",
-    "Visually reviewed screenshots and accepted Customer Card (21) / Customer (18) Page Inspection as customer-related proof."
+    "Reviewed PWS-MD-004B result and screenshots locally.",
+    "Separated handbook/training value from setup-ready and O2C-ready claims.",
+    "Selected the next narrow read-first case for Fakturierung and Zahlungen FastTabs.",
+    "Updated Foundation Readiness, dashboard, current state and case files."
   ],
   "actionsNotTaken": [
-    "No New/Neu action clicked.",
-    "No customer created.",
-    "No customer edited.",
-    "No customer saved.",
-    "No customer deleted.",
-    "No values typed.",
-    "No customer template changed.",
-    "No posting group changed.",
-    "No payment terms changed.",
+    "No Business Central opened.",
+    "No Playwright live run executed.",
+    "No customer created, edited, saved or deleted.",
+    "No setup, posting group, VAT, payment terms or dimensions changed.",
     "No sales document or draft created.",
     "No Preview Posting.",
     "No Posting.",
     "No API shortcut."
   ],
+  "businessCentralOpened": false,
+  "playwrightLiveRunExecuted": false,
   "setupChanged": false,
   "setupChangeAttempted": false,
   "masterDataChanged": false,
@@ -51,82 +46,82 @@
   "payment": false,
   "apiShortcut": false,
   "proved": [
-    "Existing customer U-CUST-100 / Universaarl Kunde 100 is visible in playthru / UNIVERSAARL-DE.",
-    "The existing customer can be opened or selected without creating a duplicate customer.",
-    "Customer Card (21, Card) and Customer (18) were visible in Page Inspection.",
-    "No-save screenshot QA gives usable customer master-data context for handbook/training draft."
+    "PWS-MD-004B supports a beginner-oriented handbook/training draft about reading an existing customer card.",
+    "PWS-MD-004B does not support customer write readiness, O2C readiness, VAT correctness, posting group correctness, Preview Posting or Posting.",
+    "The next useful live step is read-only expansion and screenshot QA of Fakturierung and Zahlungen on U-CUST-100."
   ],
   "notProved": [
-    "No customer creation route.",
-    "No customer write gate approval.",
-    "No customer template correctness.",
-    "No customer posting group correctness beyond visible UI context.",
-    "No VAT correctness.",
-    "No sales process readiness.",
-    "No posted entries, Preview Posting or ledger trace."
+    "No customer setup values were proven complete.",
+    "No customer write gate is open.",
+    "No O2C process is ready.",
+    "No sales document, Preview Posting, Posting or ledger trace exists."
   ],
-  "blockedBy": [],
   "warnings": [
-    "Visible customer-card fields support training/handbook draft, not O2C readiness.",
-    "Required sections such as Fakturierung and Zahlungen need setup-gap decision before sales process claims.",
-    "Do not edit or save U-CUST-100 in the next local decision."
+    "Future UI evaluations need more screenshots: list, card, expanded FastTabs, Page Inspection and no-save end state.",
+    "Do not use U-CUST-100 as proof that master data is setup-ready.",
+    "Do not jump to O2C before billing/payment FastTabs and dependent setup are understood."
   ],
-  "nextCase": "PWS-MD-CUSTOMER-SETUP-GAP-DECISION",
-  "nextStep": "Consume PWS-MD-004B evidence locally: decide which U-CUST-100 customer-card fields support handbook/training draft, which setup gaps block O2C, and which targeted read-first proof should run next. Do not open Business Central or run Playwright in this decision case.",
+  "nextCase": "PWS-MD-004C-CUSTOMER-BILLING-PAYMENTS-FASTTABS-READFIRST",
+  "nextStep": "Run a read-only/no-save proof for existing U-CUST-100 in playthru / UNIVERSAARL-DE. Capture list, card, expanded Fakturierung, expanded Zahlungen, Page Inspection and no-save end-state screenshots. Do not edit, save, create documents, Preview Posting or Post.",
   "nextStepDecision": {
-    "currentCase": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
-    "plannedNextCaseBeforeReview": "PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF",
-    "lastEvidenceSummary": "Existing U-CUST-100 customer context was observed without write, duplicate creation or document creation.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "The customer proof is enough for handbook/training draft; next work should decide setup gaps before O2C or write gates.",
+    "currentCase": "PWS-MD-CUSTOMER-SETUP-GAP-DECISION",
+    "plannedNextCaseBeforeReview": "PWS-MD-CUSTOMER-SETUP-GAP-DECISION",
+    "lastEvidenceSummary": "PWS-MD-004B proved U-CUST-100 exists and can be viewed on the Debitorenkarte with Customer Card (21) / Customer (18), no write.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The local decision was needed to prevent duplicate customer creation and premature O2C claims.",
     "lookaheadReviewed": [
       {
-        "caseId": "PWS-MD-CUSTOMER-SETUP-GAP-DECISION",
+        "caseId": "PWS-MD-004C-CUSTOMER-BILLING-PAYMENTS-FASTTABS-READFIRST",
         "status": "ready-next",
-        "reason": "Use existing customer evidence to decide visible setup gaps before any O2C or write claim."
+        "reason": "It directly addresses the visible required/warning markers on Fakturierung and Zahlungen with stronger screenshot QA."
       },
       {
         "caseId": "PWS-MD-VENDOR-WRITE-GATE",
         "status": "needs-setup-first",
-        "reason": "Vendor remains parked behind payment/bank boundaries and customer setup decision."
+        "reason": "Vendor write work should wait until the customer setup-gap pattern and payment boundary are clearer."
       },
       {
         "caseId": "PWS-MD-ITEM-WRITE-GATE",
         "status": "needs-setup-first",
-        "reason": "Item remains parked behind UOM, posting, VAT product, inventory and costing checks."
+        "reason": "Item/service write work depends on UOM, posting, VAT product, inventory and costing setup."
       },
       {
         "caseId": "O2C-MINIMAL-ROUTE-DECISION",
-        "status": "needs-setup-first",
-        "reason": "O2C is premature until customer setup, item/service setup and posting/VAT boundaries are consciously handled."
+        "status": "blocked",
+        "reason": "O2C remains blocked until customer billing/payment fields and related posting/VAT setup are consciously handled."
+      },
+      {
+        "caseId": "TRAINING-CUSTOMER-CARD-BASICS-DRAFT",
+        "status": "ready-after-current",
+        "reason": "A short training card can be drafted after or alongside the FastTab proof, but it should not replace the setup-gap read-first evidence."
       }
     ],
     "queueChangesMade": [
-      "Selected customer setup-gap decision after PWS-MD-004B observed evidence."
+      "Selected PWS-MD-004C as the next targeted read-first case.",
+      "Kept O2C, vendor write and item write gates parked."
     ],
-    "selectedNextCase": "PWS-MD-CUSTOMER-SETUP-GAP-DECISION",
-    "whySelectedNextCaseIsBest": "It converts evidence into a decision and prevents both duplicate screenshots and premature O2C.",
+    "selectedNextCase": "PWS-MD-004C-CUSTOMER-BILLING-PAYMENTS-FASTTABS-READFIRST",
+    "whySelectedNextCaseIsBest": "It is the smallest useful live proof: read-only, no save, and focused on the exact customer-card FastTabs that currently block setup/O2C claims.",
     "risksBeforeNextCase": [
-      "Do not edit or save U-CUST-100.",
-      "Do not claim sales readiness from customer visibility alone.",
-      "Do not proceed to O2C before setup gaps are decided."
+      "Do not click Edit/New or save the customer.",
+      "Do not change posting groups, payment terms, VAT or dimensions.",
+      "Do not treat visible field names as correctness proof.",
+      "Capture multiple screenshots before drawing conclusions."
     ],
     "requiredPreparation": [
-      "Review PWS-MD-004B result JSON and screenshots."
+      "Use the existing customer U-CUST-100.",
+      "Confirm playthru / UNIVERSAARL-DE.",
+      "Capture list context, card context, expanded Fakturierung, expanded Zahlungen, Page Inspection and no-save end context."
     ]
   },
-  "businessCentralOpened": true,
-  "playwrightLiveRunExecuted": true,
   "changedFilesIntent": [
-    "playwright/projects/fibu-book5/tests/pws-md-004b-customer-reopen-and-field-proof.spec.ts",
-    "scripts/agent/run-pws-md-004b-customer-reopen-and-field-proof.mjs",
-    "package.json",
-    "playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/",
+    "playwright/projects/fibu-book5/evidence/pws-md-customer-setup-gap-decision/",
     ".agent/state/cases/pws-md-customer-setup-gap-decision.json",
+    ".agent/state/cases/pws-md-004c-customer-billing-payments-fasttabs-readfirst.json",
     ".agent/state/current.json",
     ".agent/state/last_run_summary.json",
     "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
     ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md"
   ],
-  "updatedAt": "2026-07-06T23:58:00.000+02:00"
+  "updatedAt": "2026-07-07T00:18:00.000+02:00"
 }
