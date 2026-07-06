@@ -231,6 +231,17 @@ if (spec) {
   if (!spec.includes("const nextCase = 'FOUNDATION-READINESS-DECISION'")) {
     errors.push(`${specPath}: nextCase must be hard-gated to FOUNDATION-READINESS-DECISION`);
   }
+  for (const requiredResultSignal of [
+    'foundationReadinessInput',
+    'decisionStatus',
+    'chartOfAccounts',
+    'setupContext',
+    'nextProjectOutputs'
+  ]) {
+    if (!spec.includes(requiredResultSignal)) {
+      errors.push(`${specPath}: result must include ${requiredResultSignal} for FOUNDATION-READINESS-DECISION.md handoff`);
+    }
+  }
 }
 
 if (exists(foundationDecisionPath) && !target075Result) {
