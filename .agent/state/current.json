@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-06T20:41:05.840Z",
+  "updatedAt": "2026-07-06T20:56:49.017Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -8,9 +8,9 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w1-foundation",
-  "activeCase": "PWS-FF-001-NUMBER-SERIES-READFIRST",
-  "active_case_file": ".agent/state/cases/pws-ff-001-number-series-readfirst.json",
-  "activeCaseFile": ".agent/state/cases/pws-ff-001-number-series-readfirst.json",
+  "activeCase": "FOUNDATION-READINESS-DECISION-REFRESH-AFTER-NUMBER-SERIES",
+  "active_case_file": ".agent/state/cases/foundation-readiness-decision-refresh-after-number-series.json",
+  "activeCaseFile": ".agent/state/cases/foundation-readiness-decision-refresh-after-number-series.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-foundation-readfirst",
@@ -34,14 +34,10 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "run-playwright-readonly",
-    "open-business-central-readonly",
-    "confirm-playthru-instance",
-    "confirm-universaarl-company",
-    "open-number-series-readonly",
-    "capture-screenshot-qa",
-    "write-evidence-result",
-    "update-state-summary"
+    "read-foundation-evidence",
+    "update-foundation-readiness-decision",
+    "update-state-summary",
+    "select-next-readfirst-case"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -49,27 +45,22 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright-live",
     "write-setup",
-    "create-number-series",
-    "edit-number-series",
-    "create-number-series-line",
-    "edit-number-series-line",
-    "assign-number-series-to-setup",
     "create-master-data",
     "create-document-or-draft",
     "preview-posting",
     "post",
     "payment",
-    "cleanup-delete",
     "api-shortcut",
-    "company-switch",
     "claim-numbering-readiness",
     "claim-master-data-readiness",
     "claim-posting-readiness"
   ],
-  "nextCase": "PWS-FF-001-NUMBER-SERIES-READFIRST",
-  "nextStep": "PWS-FF-005B observed the Dimensionen -> Dimension -> Dimensionswerte read-only route for PRODUCTLINE, COSTCENTER and CHANNEL in playthru / UNIVERSAARL-DE. Foundation Readiness can now consume dimensions as read-only observed, but global/default dimensions, reporting readiness, master data readiness, Preview Posting and Posting remain unproven. The next useful no-write Foundation lane is PWS-FF-001: Number Series read-first context and screenshot QA before any master data write gate.",
-  "preparedNextCaseFile": ".agent/state/cases/pws-ff-001-number-series-readfirst.json",
+  "nextCase": "FOUNDATION-READINESS-DECISION-REFRESH-AFTER-NUMBER-SERIES",
+  "nextStep": "PWS-FF-001 observed Number Series page 456 read-only in playthru / UNIVERSAARL-DE. Seven Universaarl U-* number-series rows, checkbox context, Lines context and Page Inspection are visible, but numbering completeness, setup assignment, master data readiness, Preview Posting and Posting remain unproven. Next local step: refresh Foundation Readiness after Number Series before any Master Data probe.",
+  "preparedNextCaseFile": ".agent/state/cases/foundation-readiness-decision-refresh-after-number-series.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -8862,10 +8853,10 @@
     "summary": "1140 Waren (Bestand) selected as source-backed SKR04-oriented inventory balance candidate; no Business Central account proof yet."
   },
   "acceptanceCriteria": [
-    "playthru and UNIVERSAARL-DE are confirmed.",
-    "Page 472 is reached using the TARGET-072 route.",
-    "The test proves either a true active editor route or a well-documented editor blocker.",
-    "No target VAT values are typed and no setup values are saved."
+    "PWS-FF-001 is consumed as observed Number Series read-first evidence.",
+    "The decision distinguishes visible numbering context from full setup or master-data readiness.",
+    "The next case is chosen from the smallest remaining useful read-first dependency.",
+    "No Business Central, Playwright live, setup, master data, draft, Preview Posting, Posting or API shortcut is executed."
   ],
   "latestTarget048CInventoryAccount1140BalanceCorrection": {
     "caseId": "TARGET-048C-INVENTORY-ACCOUNT-1140-BALANCE-SHEET-CORRECTION",
@@ -10691,5 +10682,37 @@
     ],
     "routeLearning": "BC Dimensions page opens Dimension > Dimensionswerte from a selected row. Intermediate screenshots are required for BC action-bar/dropdown/grid routes; end screenshots alone can hide wrong assumptions.",
     "nextBoundary": "Number Series read-first before master data; do not claim global/default dimensions or reporting readiness from visible Dimension Values."
+  },
+  "latestResult": "playwright/projects/fibu-book5/evidence/pws-ff-001-number-series-readfirst/PWS-FF-001-result.json",
+  "latestEvidence": "playwright/projects/fibu-book5/evidence/pws-ff-001-number-series-readfirst/",
+  "lastObservedCase": {
+    "caseId": "PWS-FF-001-NUMBER-SERIES-READFIRST",
+    "status": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/pws-ff-001-number-series-readfirst/PWS-FF-001-result.json",
+    "summary": "Number Series read-first context observed with checkpoint screenshot QA: list, U-CUST row, checkbox hover, Lines context and Page Inspection.",
+    "proved": [
+      "Number Series read-first context was observed in playthru/UNIVERSAARL-DE.",
+      "Number Series or Number Series Lines page title/context was visible.",
+      "Numbering checkbox context such as Standardnr./Default Nos. or Manuelle Anz./Manual Nos. was visible.",
+      "7 Universaarl U-* number-series codes were visible in captured UI text.",
+      "Number Series Lines context/signals were visible read-only.",
+      "No number-series setup, master data, draft, Preview Posting, Posting, payment, API shortcut or company switch was executed."
+    ],
+    "notProved": [
+      "No number-series correctness or completeness.",
+      "No persisted checkbox value was changed or newly proven by a write/reopen cycle.",
+      "No setup assignment for customer/vendor/item/document number series.",
+      "No master data readiness.",
+      "No legal numbering policy or audit readiness.",
+      "No Preview Posting or Posting readiness."
+    ],
+    "screenshots": [
+      "playwright/projects/fibu-book5/evidence/pws-ff-001-number-series-readfirst/pws-ff-001-010-number-series-list-context.png",
+      "playwright/projects/fibu-book5/evidence/pws-ff-001-number-series-readfirst/pws-ff-001-020-u-cust-row-selected.png",
+      "playwright/projects/fibu-book5/evidence/pws-ff-001-number-series-readfirst/pws-ff-001-030-checkbox-hover-context.png",
+      "playwright/projects/fibu-book5/evidence/pws-ff-001-number-series-readfirst/pws-ff-001-040-lines-action-context.png",
+      "playwright/projects/fibu-book5/evidence/pws-ff-001-number-series-readfirst/pws-ff-001-050-page-inspection-context.png"
+    ],
+    "updatedAt": "2026-07-06T20:55:41.500Z"
   }
 }

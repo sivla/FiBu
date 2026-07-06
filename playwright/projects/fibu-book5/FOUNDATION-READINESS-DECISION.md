@@ -23,6 +23,8 @@ PWS-FF-002C hat die Buchungsmatrix Einrichtung neu eingeordnet: Page 314 ist nic
 
 PWS-FF-005 hat die Dimensionsliste als read-only Kontext in `playthru / UNIVERSAARL-DE` nachgewiesen: `CHANNEL`, `COSTCENTER` und `PRODUCTLINE` sind im Screenshot sichtbar. PWS-FF-005B hat danach die echte UI-Route aus der Dimensionsliste ueber `Dimension > Dimensionswerte` fuer `PRODUCTLINE`, `COSTCENTER` und `CHANNEL` read-only nachgewiesen. Das reicht fuer Foundation-Verstaendnis, UAT-/Trainingserklaerung und spaetere Handbuchsubstanz, aber nicht fuer globale Dimensionen, Standarddimensionen, Reporting Readiness, Master Data Readiness, Preview Posting oder Posting.
 
+PWS-FF-001 hat die Nummernserien-Seite read-only beobachtet: sieben Universaarl-U-Nummernserien sind sichtbar, `Standardnr.`/`Default Nos.` und `Manuelle Anz.`/`Manual Nos.` wurden als Checkboxkontext erfasst, `Zeilen`/`Lines` und Page Inspection lieferten zusaetzliche UI-Wahrheit. Das reicht fuer Foundation-Verstaendnis und Schulungs-/Handbuchvorbereitung, aber nicht fuer vollstaendige Nummerierungs-, Setup-, Master-Data-, Audit-, Preview- oder Posting-Readiness.
+
 ## No-Write-Grenze aus TARGET-075
 
 - Setup geaendert: nein
@@ -107,7 +109,19 @@ PWS-FF-005 hat die Dimensionsliste als read-only Kontext in `playthru / UNIVERSA
 - UI-Learning: Fuer Business-Central-Action-Bar-, Dropdown- und Grid-Routen sind Zwischen-Screenshots Pflicht. End-Screenshots allein koennen falsche Annahmen verbergen.
 - Schreibgrenze: keine Dimension, kein Dimensionswert, keine globale Dimension, keine Standarddimension, keine Stammdaten, keine Buchungsvorschau, keine Buchung.
 - Fachgrenze: sichtbare Dimensionswerte beweisen keine Reporting-, UAT-, Master-Data-, Preview- oder Posting-Bereitschaft.
-- Praktische Folge: Dimensionen duerfen als read-only Foundation-Baustein fuer Training/Handbuch eingeordnet werden. Der naechste Foundation-Probe ist Nummernserien read-first.
+- Praktische Folge: Dimensionen duerfen als read-only Foundation-Baustein fuer Training/Handbuch eingeordnet werden.
+
+## PWS-FF-001 Nummernserien Read-first
+
+- Quelle: playwright/projects/fibu-book5/evidence/pws-ff-001-number-series-readfirst/PWS-FF-001-result.json
+- Status: observed
+- Akzeptiert: Nummernserien-Seite Page 456 wurde ueber Tell-Me/Suche read-only geoeffnet.
+- Sichtbar: `U-CUST`, `U-VEND`, `U-ITEM`, `U-SO`, `U-SINV`, `U-PO`, `U-PINV` mit Start-/Endsignalen.
+- UI-Learning: Suchtreffer heisst in dieser Oberflaeche `Nummernserie Verwaltung`; zu strenge Tell-Me-Erwartungen blockieren korrekte BC-Navigation. Nach `Zeilen`/`Lines` muss Playwright sofort auf den Ziel-Dialog pruefen, weil BC-Dialoge den alten Button ueberlagern koennen.
+- Screenshot-QA: Liste, U-CUST-Zeilenauswahl, Checkbox-Hover, Zeilenkontext und Page Inspection wurden getrennt erfasst.
+- Schreibgrenze: keine Nummernserie, keine Nummernserienzeile, keine Setup-Zuweisung, keine Stammdaten, keine Buchungsvorschau, keine Buchung.
+- Fachgrenze: sichtbare U-Nummernserien beweisen keine Vollstaendigkeit, keine Persistenz durch Schreib-/Reopen-Zyklus, keine rechtliche Nummerierungs-/Audit-Readiness und keine Master-Data-Readiness.
+- Praktische Folge: Nummernserien duerfen als read-only Foundation-Baustein fuer Training/Handbuch eingeordnet werden. Master Data bleibt bis zur Foundation-Readiness-Aktualisierung geparkt.
 
 ## Foundation-Read-first-Folgeprobes
 
@@ -157,7 +171,8 @@ Erlaubte Anschlussklassifikationen:
 - PWS-FF-006 als akzeptierten Kontenplan-Starterkonten-Nachweis konsumieren; keine weitere Starterkonten-Wiederholung ohne neuen Claim.
 - Master Data, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt, bis die Foundation-Grenzen geklaert sind.
 - PWS-FF-005B als beobachteten no-write Dimensionswerte-Proof konsumieren.
-- PWS-FF-001 als naechste no-write Foundation-Spur vorbereiten: Nummernserien lesen, Screenshot-QA mit Zwischenbildern nutzen und keine Nummernserie anlegen, aendern oder zuweisen.
+- PWS-FF-001 als beobachteten no-write Nummernserien-Proof konsumieren.
+- Foundation Readiness nach Nummernserien aktualisieren und erst dann entscheiden, ob ein Master-Data-Readfirst-Probe sinnvoll ist.
 - Classify master-data readiness only after chart/setup context is accepted.
 - Use accepted screenshots as draft handbook/training evidence, not final compliance proof.
 
@@ -169,7 +184,10 @@ Erlaubte Anschlussklassifikationen:
 - Screenshot: playwright/projects/fibu-book5/evidence/target-075-chart-of-accounts-reopen-and-setup-consistency-check/target-075-004-general-posting-setup.png
 - Screenshot: playwright/projects/fibu-book5/evidence/target-075-chart-of-accounts-reopen-and-setup-consistency-check/target-075-005-vat-posting-setup.png
 - Screenshot: playwright/projects/fibu-book5/evidence/pws-ff-006-chart-of-accounts-starter-accounts-readfirst/pws-ff-006-010-chart-of-accounts-starter-accounts.png
+- Screenshot: playwright/projects/fibu-book5/evidence/pws-ff-001-number-series-readfirst/pws-ff-001-010-number-series-list-context.png
+- Screenshot: playwright/projects/fibu-book5/evidence/pws-ff-001-number-series-readfirst/pws-ff-001-030-checkbox-hover-context.png
+- Screenshot: playwright/projects/fibu-book5/evidence/pws-ff-001-number-series-readfirst/pws-ff-001-040-lines-action-context.png
 
 ## Naechster Case
 
-- `PWS-FF-001-NUMBER-SERIES-READFIRST`: Nummernserien und ihren sichtbaren Kontext read-only pruefen. Keine Nummernserie anlegen, keine Zeile aendern, keine Setup-Zuweisung, keine Stammdaten, keine Buchungsvorschau und keine Buchung.
+- `FOUNDATION-READINESS-DECISION-REFRESH-AFTER-NUMBER-SERIES`: PWS-FF-001 konsumieren und entscheiden, ob als naechstes ein Master-Data-Readfirst-Probe sinnvoll ist. Keine Schreibfreigabe aus der sichtbaren Nummernserienliste ableiten.

@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-READINESS-DECISION-REFRESH-AFTER-NUMBER-SERIES",
+  "status": "planned-local-decision",
+  "mode": "universaarl-foundation-readfirst",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w1-foundation",
+  "purpose": "Consume PWS-FF-001 Number Series read-first evidence and decide whether Master Data read-first probes can start or which Foundation gap remains.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/pws-ff-001-number-series-readfirst/PWS-FF-001-result.json",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md"
+  ],
+  "mayRunPlaywright": false,
+  "mayOpenBusinessCentral": false,
+  "effectiveBcActionsAllowed": false,
+  "allowedActions": [
+    "read-foundation-evidence",
+    "update-foundation-readiness-decision",
+    "update-state-summary",
+    "select-next-readfirst-case"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright-live",
+    "write-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "claim-numbering-readiness",
+    "claim-master-data-readiness",
+    "claim-posting-readiness"
+  ],
+  "acceptanceCriteria": [
+    "PWS-FF-001 is consumed as observed Number Series read-first evidence.",
+    "The decision distinguishes visible numbering context from full setup or master-data readiness.",
+    "The next case is chosen from the smallest remaining useful read-first dependency.",
+    "No Business Central, Playwright live, setup, master data, draft, Preview Posting, Posting or API shortcut is executed."
+  ],
+  "nextStepDecision": {
+    "currentCase": "PWS-FF-001-NUMBER-SERIES-READFIRST",
+    "plannedNextCaseBeforeReview": "FOUNDATION-READINESS-DECISION-REFRESH-AFTER-NUMBER-SERIES",
+    "lastEvidenceSummary": "PWS-FF-001 observed Number Series page 456 read-only in playthru / UNIVERSAARL-DE with seven Universaarl U-* rows, checkbox context, Lines context and Page Inspection.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The Foundation decision must consume numbering evidence before any Master Data read-first or write-gated case.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "PWS-MD-001-CUSTOMER-CONTEXT-READFIRST",
+        "status": "ready-after-current",
+        "reason": "Customer context can be read-only inspected only after Foundation Readiness explicitly parks or accepts remaining setup boundaries."
+      },
+      {
+        "caseId": "PWS-MD-002-VENDOR-CONTEXT-READFIRST",
+        "status": "ready-after-current",
+        "reason": "Vendor context depends on the same Foundation boundary decision."
+      },
+      {
+        "caseId": "PWS-MD-003-ITEM-SERVICE-CONTEXT-READFIRST",
+        "status": "ready-after-current",
+        "reason": "Item/service context depends on numbering, posting group, VAT and item setup boundaries."
+      }
+    ],
+    "queueChangesMade": [
+      "PWS-FF-001 is now observed; a local Foundation readiness refresh is selected instead of another live page probe."
+    ],
+    "selectedNextCase": "FOUNDATION-READINESS-DECISION-REFRESH-AFTER-NUMBER-SERIES",
+    "whySelectedNextCaseIsBest": "It prevents jumping from visible Number Series UI directly into Master Data and keeps the next step local, fast and decision-oriented.",
+    "risksBeforeNextCase": [
+      "Do not treat visible U-* number series as full numbering policy or setup assignment readiness.",
+      "Do not create customer/vendor/item records before the readiness decision chooses a read-first or write-gated path."
+    ],
+    "requiredPreparation": [
+      "Read PWS-FF-001 result and Foundation Readiness Decision only."
+    ]
+  },
+  "nextCase": "FOUNDATION-READINESS-DECISION-REFRESH-AFTER-NUMBER-SERIES",
+  "updatedAt": "2026-07-06T22:00:00.000Z"
+}
