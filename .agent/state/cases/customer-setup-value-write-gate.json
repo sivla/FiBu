@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "caseId": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
+  "status": "prepared-after-payment-terms-proof",
+  "mode": "universaarl-masterdata-customer-setup-value-write-gate",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w2-core-masterdata-customer-setup-values",
+  "workstream": "WS04 Master Data / Finance Setup",
+  "epic": "Customer master data setup values",
+  "issueType": "Task",
+  "purpose": "Assign only the already evidenced setup values needed on U-CUST-100 before O2C route work.",
+  "businessPurpose": "The first realistic Universaarl customer needs bounded setup values before sales documents can be tested. This case must only write values that already have Universaarl evidence and must not create documents or posting effects.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-identity-conversion-write-gate/CUSTOMER-U-CUST-100-IDENTITY-CONVERSION-WRITE-GATE-result.json",
+    "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/result.json",
+    "playwright/projects/fibu-book5/evidence/customer-setup-value-selection-decision/result.json",
+    "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/result.json"
+  ],
+  "targetCustomer": {
+    "no": "U-CUST-100",
+    "name": "Saarland Maschinenbau AG",
+    "dataType": "realistic-fictional-universaarl-training-data"
+  },
+  "selectedValues": {
+    "customerPostingGroup": "INLAND",
+    "genBusinessPostingGroup": "INLAND",
+    "paymentTermsCode": "NET30"
+  },
+  "candidateOnlyNotWrittenYet": {
+    "vatBusinessPostingGroup": "INLAND",
+    "countryRegionCode": "DE",
+    "paymentMethodCode": "",
+    "dimensions": []
+  },
+  "allowedActions": [
+    "open-business-central-playthru-only",
+    "confirm-company-universaarl-de",
+    "open-customer-list",
+    "open-u-cust-100-card",
+    "capture-before-screenshot",
+    "set-customer-posting-group-inland-if-field-visible-and-currently-empty",
+    "set-gen-business-posting-group-inland-if-field-visible-and-currently-empty",
+    "set-payment-terms-code-net30-if-field-visible-and-currently-empty",
+    "save-or-allow-autosave",
+    "capture-after-screenshot",
+    "reopen-customer-card",
+    "capture-reopen-proof",
+    "write-result-json"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "change-vat-setup",
+    "change-dimensions",
+    "change-payment-method",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "use-confidential-real-customer-data"
+  ],
+  "smartDecision": {
+    "whyNow": "NET30 is now visible on the real Payment Terms page with reopen proof, so the customer setup value write gate can stop using a blocked or guessed payment term.",
+    "sourceBasis": [
+      "U-CUST-100 exists as the first realistic fictional Universaarl customer.",
+      "Customer setup read-first evidence showed Customer Posting Group, Gen. Business Posting Group and Payment Terms Code were empty.",
+      "Value-selection evidence selected INLAND for Customer Posting Group and Gen. Business Posting Group.",
+      "Payment Terms write-gate evidence proves NET30 / 30 Tage netto / 30T exists after reopen."
+    ],
+    "fieldsChangedOnlyIfSafe": [
+      "Customer Posting Group = INLAND",
+      "Gen. Business Posting Group = INLAND",
+      "Payment Terms Code = NET30"
+    ],
+    "fieldsNotTouched": [
+      "VAT Business Posting Group",
+      "Payment Method Code",
+      "Dimensions",
+      "Credit Limit",
+      "Prices/Discounts",
+      "Documents",
+      "Preview Posting",
+      "Posting"
+    ],
+    "fallback": "If any field is missing, ambiguous, already conflicting or opens an unexpected dialog, stop with screenshots and keep the case blocked instead of guessing."
+  },
+  "acceptanceCriteria": [
+    "Business Central shell proves playthru / UNIVERSAARL-DE.",
+    "Before screenshot shows U-CUST-100 on the customer card before setup value write.",
+    "Only Customer Posting Group, Gen. Business Posting Group and Payment Terms Code are changed or verified.",
+    "After screenshot shows the intended values.",
+    "Reopen proof shows the same intended values still present.",
+    "No VAT setup, dimensions, payment method, document, Preview Posting, Posting, payment or API shortcut occurs.",
+    "Result JSON states what is proven and what remains unproven."
+  ],
+  "stopIf": [
+    "Wrong instance or company.",
+    "U-CUST-100 customer card cannot be screenshot-proven.",
+    "Any target field is already populated with a conflicting value.",
+    "Any target value is not available in the lookup or field.",
+    "VAT Business Posting Group, dimensions or payment method would be required to save.",
+    "Any document, posting preview, posting, payment or API route would be needed."
+  ],
+  "nextCaseIfReady": "CUSTOMER-U-CUST-100-SETUP-REOPEN-PROOF",
+  "nextCaseIfBlocked": "CUSTOMER-SETUP-VALUE-WRITE-GATE-RECOVERY",
+  "updatedAt": "2026-07-07T04:45:00.000Z"
+}

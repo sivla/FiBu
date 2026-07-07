@@ -29,6 +29,7 @@ const targetPaymentTerm = {
   code: 'NET30',
   description: '30 Tage netto',
   dueDateCalculation: '<30D>',
+  dueDateInput: '30T',
   localizedDueDateCandidates: ['<30D>', '30D', '30T', '<30T>'],
   discountDateCalculation: '',
   discountPercent: '0'
@@ -48,6 +49,13 @@ type FillAttempt = {
   before?: string;
   after?: string;
   error?: string;
+};
+
+type CleanupAction = {
+  target: string;
+  status: 'not-needed' | 'deleted' | 'blocked';
+  route?: string;
+  reason?: string;
 };
 
 function clean(value: string | null | undefined) {
@@ -76,9 +84,14 @@ function targetInstanceUrl() {
   return url;
 }
 
-function buildTargetUrl() {
+function buildTargetUrl(options: { page?: number; dc?: string; profile?: string } = {}) {
   const url = targetInstanceUrl();
-  url.searchParams.set('page', '4');
+  if (options.page) url.searchParams.set('page', String(options.page));
+  if (typeof options.dc === 'string') {
+    if (options.dc) url.searchParams.set('dc', options.dc);
+    else url.searchParams.delete('dc');
+  }
+  if (options.profile) url.searchParams.set('profile', options.profile);
   return url.toString();
 }
 
@@ -129,12 +142,13 @@ async function capture(page: Page, fileName: string, metadata: Record<string, un
 }
 
 async function paymentTermsText(page: Page) {
+  const compact = await compactPageText(page, {
+    include: [/Zahlungsbedingungen|Payment Terms|Code|Beschreibung|Description|Falligkeitsformel|Faelligkeitsformel|Due Date|Skonto|NET30|30 Tage|30D|30T|Neu|Liste bearbeiten/i],
+    maxLines: 180,
+    maxLineLength: 260
+  }).catch(() => '');
   return clean(
-    await compactPageText(page, {
-      include: [/Zahlungsbedingungen|Payment Terms|Code|Beschreibung|Description|Falligkeitsformel|Faelligkeitsformel|Due Date|Skonto|NET30|30 Tage|30D|30T|Neu|Liste bearbeiten/i],
-      maxLines: 180,
-      maxLineLength: 260
-    }).catch(async () => fullText(page))
+    `${compact}\n${await fullText(page)}`
   );
 }
 
@@ -146,13 +160,21 @@ function net30LooksVisible(text: string) {
   return /NET30/i.test(text) && /30 Tage netto/i.test(text) && /<?30[DT]>?/i.test(text);
 }
 
+function partialBadPaymentTermLooksVisible(text: string) {
+  return /30 TAGE NE/i.test(text) && /30 Tage netto/i.test(text) && !/NET30/i.test(text);
+}
+
 async function openPaymentTermsPage(page: Page) {
-  for (let attempt = 0; attempt < 2; attempt += 1) {
-    await page.goto(buildTargetUrl(), { waitUntil: 'domcontentloaded', timeout: 120_000 });
+  const directRoutes = [
+    buildTargetUrl({ page: 4, dc: '0' }),
+    buildTargetUrl({ page: 4, dc: '' }),
+    buildTargetUrl({ page: 4, dc: '0', profile: 'Business Manager' })
+  ];
+  for (let attempt = 0; attempt < directRoutes.length; attempt += 1) {
+    await page.goto(directRoutes[attempt], { waitUntil: 'domcontentloaded', timeout: 120_000 });
     await waitForBusinessCentralShell(page);
     await dismissTours(page);
     await dismissSafeInfoDialogs(page);
-    await page.keyboard.press('Escape').catch(() => undefined);
     await page.waitForTimeout(1800 + attempt * 1200);
     await dismissSafeInfoDialogs(page);
     await page.waitForTimeout(500);
@@ -212,6 +234,64 @@ async function clickFirstVisible(page: Page, label: RegExp) {
     }
   }
   return '';
+}
+
+async function confirmYesIfVisible(page: Page) {
+  for (const scope of [page, ...page.frames()]) {
+    const yes = scope.getByRole('button', { name: /^Ja$|^Yes$/i }).first();
+    if (await yes.isVisible({ timeout: 1500 }).catch(() => false)) {
+      await yes.click({ timeout: 5000 });
+      await page.waitForTimeout(1500);
+      return true;
+    }
+  }
+  return false;
+}
+
+async function deleteVisibleRowByText(page: Page, rowText: RegExp): Promise<CleanupAction> {
+  const before = await paymentTermsText(page);
+  if (!partialBadPaymentTermLooksVisible(before)) {
+    return { target: 'partial-bad-payment-term-30-tage-ne', status: 'not-needed' };
+  }
+
+  for (const [scopeIndex, scope] of [page, ...page.frames()].entries()) {
+    const row = scope.getByText(rowText).first();
+    if (!(await row.isVisible({ timeout: 1000 }).catch(() => false))) continue;
+    await row.scrollIntoViewIfNeeded({ timeout: 2000 }).catch(() => undefined);
+    await row.click({ timeout: 5000 });
+    await page.waitForTimeout(800);
+    const deleteRoute = await clickFirstVisible(page, /^Loschen$|^Löschen$|^Delete$/i);
+    if (!deleteRoute) {
+      return {
+        target: 'partial-bad-payment-term-30-tage-ne',
+        status: 'blocked',
+        route: `row-text-scope-${scopeIndex}`,
+        reason: 'Delete action was not visible after selecting the partial row.'
+      };
+    }
+    await confirmYesIfVisible(page);
+    await page.keyboard.press('Control+S').catch(() => undefined);
+    await page.waitForTimeout(2500);
+    const after = await paymentTermsText(page);
+    return partialBadPaymentTermLooksVisible(after)
+      ? {
+          target: 'partial-bad-payment-term-30-tage-ne',
+          status: 'blocked',
+          route: `row-text-scope-${scopeIndex}+${deleteRoute}`,
+          reason: 'Partial row was still visible after delete attempt.'
+        }
+      : {
+          target: 'partial-bad-payment-term-30-tage-ne',
+          status: 'deleted',
+          route: `row-text-scope-${scopeIndex}+${deleteRoute}`
+        };
+  }
+
+  return {
+    target: 'partial-bad-payment-term-30-tage-ne',
+    status: 'blocked',
+    reason: 'Partial row was detected in text but not selectable by visible row text.'
+  };
 }
 
 async function collectVisibleInputValues(page: Page) {
@@ -328,6 +408,56 @@ async function fillByVisibleInputOrder(page: Page) {
   return attempts;
 }
 
+async function createNet30ViaKeyboardLineRoute(page: Page, newRoute: string) {
+  const attempts: FillAttempt[] = [];
+  const before = await paymentTermsText(page);
+  try {
+    await page.keyboard.type(targetPaymentTerm.code, { delay: 35 });
+    await page.keyboard.press('Tab');
+    await page.waitForTimeout(350);
+    await page.keyboard.type(targetPaymentTerm.dueDateInput, { delay: 35 });
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab');
+    await page.waitForTimeout(350);
+    await page.keyboard.type(targetPaymentTerm.description, { delay: 35 });
+    await page.keyboard.press('Control+S').catch(() => undefined);
+    await page.keyboard.press('Enter').catch(() => undefined);
+    await page.waitForTimeout(3000);
+    const after = await paymentTermsText(page);
+    attempts.push(
+      { field: 'Code', value: targetPaymentTerm.code, status: /NET30/i.test(after) ? 'filled' : 'not-editable', before },
+      {
+        field: 'Due Date Calculation',
+        value: targetPaymentTerm.dueDateInput,
+        status: /<?30[DT]>?/i.test(after) ? 'filled' : 'not-editable'
+      },
+      {
+        field: 'Description',
+        value: targetPaymentTerm.description,
+        status: /30 Tage netto/i.test(after) ? 'filled' : 'not-editable'
+      }
+    );
+    return {
+      route: `new-action-${newRoute}-keyboard-line-route`,
+      attempts
+    };
+  } catch (error) {
+    return {
+      route: `new-action-${newRoute}-keyboard-line-route`,
+      attempts: [
+        {
+          field: 'keyboard-line-route',
+          value: `${targetPaymentTerm.code} / ${targetPaymentTerm.dueDateInput} / ${targetPaymentTerm.description}`,
+          status: 'not-editable' as const,
+          error: String(error instanceof Error ? error.message : error)
+        }
+      ]
+    };
+  }
+}
+
 async function createOrVerifyNet30(page: Page) {
   const beforeText = await paymentTermsText(page);
   if (net30LooksVisible(beforeText)) {
@@ -335,7 +465,19 @@ async function createOrVerifyNet30(page: Page) {
       route: 'already-visible',
       setupChanged: false,
       attempts: [] as FillAttempt[],
+      cleanupActions: [{ target: 'partial-bad-payment-term-30-tage-ne', status: 'not-needed' as const }] as CleanupAction[],
       blockedBy: [] as string[]
+    };
+  }
+
+  const cleanupAction = await deleteVisibleRowByText(page, /^30 TAGE NE$/i);
+  if (cleanupAction.status === 'blocked') {
+    return {
+      route: cleanupAction.route ?? 'blocked-cleanup-partial-row',
+      setupChanged: false,
+      attempts: [] as FillAttempt[],
+      cleanupActions: [cleanupAction],
+      blockedBy: [cleanupAction.reason ?? 'Partial bad Payment Terms row could not be cleaned up safely.']
     };
   }
 
@@ -345,14 +487,27 @@ async function createOrVerifyNet30(page: Page) {
       route: 'blocked-no-new-action',
       setupChanged: false,
       attempts: [] as FillAttempt[],
+      cleanupActions: [cleanupAction],
       blockedBy: ['New/Neu action was not visible or not safely clickable on Payment Terms page.']
+    };
+  }
+
+  const keyboardRoute = await createNet30ViaKeyboardLineRoute(page, newRoute);
+  let afterText = await paymentTermsText(page);
+  if (net30LooksVisible(afterText)) {
+    return {
+      route: keyboardRoute.route,
+      setupChanged: true,
+      attempts: keyboardRoute.attempts,
+      cleanupActions: [cleanupAction],
+      blockedBy: [] as string[]
     };
   }
 
   const attempts = [
     await fillByMeta(page, 'Code', /^Code$|Code/i, targetPaymentTerm.code),
     await fillByMeta(page, 'Description', /Beschreibung|Description/i, targetPaymentTerm.description),
-    await fillByMeta(page, 'Due Date Calculation', /Falligkeitsformel|Faelligkeitsformel|Due Date/i, targetPaymentTerm.dueDateCalculation)
+    await fillByMeta(page, 'Due Date Calculation', /Falligkeitsformel|Faelligkeitsformel|Due Date/i, targetPaymentTerm.dueDateInput)
   ];
   const metaRouteWorked = attempts.every((attempt) => attempt.status === 'filled' || attempt.status === 'already-target');
   const finalAttempts = metaRouteWorked ? attempts : await fillByVisibleInputOrder(page);
@@ -361,12 +516,13 @@ async function createOrVerifyNet30(page: Page) {
   await page.keyboard.press('Enter').catch(() => undefined);
   await page.waitForTimeout(2500);
 
-  const afterText = await paymentTermsText(page);
+  afterText = await paymentTermsText(page);
   const accepted = net30LooksVisible(afterText);
   return {
-    route: metaRouteWorked ? `new-action-${newRoute}-accessible-labels` : `new-action-${newRoute}-visible-input-order`,
+    route: accepted ? (metaRouteWorked ? `new-action-${newRoute}-accessible-labels` : `new-action-${newRoute}-visible-input-order`) : keyboardRoute.route,
     setupChanged: accepted,
-    attempts: finalAttempts,
+    attempts: accepted ? finalAttempts : [...keyboardRoute.attempts, ...finalAttempts],
+    cleanupActions: [cleanupAction],
     blockedBy: accepted
       ? []
       : [
@@ -429,6 +585,7 @@ test('CUSTOMER-PAYMENT-TERMS-WRITE-GATE creates or verifies NET30 only', async (
       pageId: 4,
       step: 'After NET30 write or verify route',
       route: routeResult.route,
+      cleanupActions: routeResult.cleanupActions,
       fillAttempts: routeResult.attempts,
       visibleInputValues: await collectVisibleInputValues(page),
       visibleSignals: afterText.split('\n').slice(0, 180),
@@ -487,6 +644,7 @@ test('CUSTOMER-PAYMENT-TERMS-WRITE-GATE creates or verifies NET30 only', async (
     businessCentralOpened: true,
     playwrightLiveRunExecuted: true,
     setupChanged: routeResult.setupChanged,
+    cleanupChanged: routeResult.cleanupActions.some((entry) => entry.status === 'deleted'),
     setupChangeAttempted: routeResult.route !== 'already-visible' && routeResult.route !== 'not-attempted' && routeResult.route !== 'blocked-no-new-action',
     masterDataChanged: false,
     draftCreated: false,
@@ -497,10 +655,14 @@ test('CUSTOMER-PAYMENT-TERMS-WRITE-GATE creates or verifies NET30 only', async (
     confidentialRealCustomerDataUsed: false,
     selectedValue: targetPaymentTerm,
     route: routeResult.route,
+    cleanupActions: routeResult.cleanupActions,
     fillAttempts: routeResult.attempts,
     actionsTaken: [
       'Opened guarded Business Central context for playthru / UNIVERSAARL-DE.',
       'Opened Payment Terms page 4.',
+      routeResult.cleanupActions.some((entry) => entry.status === 'deleted')
+        ? 'Deleted one partial bad Payment Terms row created by the earlier blocked route.'
+        : 'No partial bad Payment Terms cleanup was needed or performed.',
       routeResult.route === 'already-visible' ? 'Verified NET30 already visible.' : `Attempted bounded NET30 setup route: ${routeResult.route}.`,
       'Captured before, after and reopen proof screenshots.'
     ],
@@ -624,7 +786,9 @@ test('CUSTOMER-PAYMENT-TERMS-WRITE-GATE creates or verifies NET30 only', async (
       `Instanz: ${EXPECTED_INSTANCE}`,
       `Company: ${TARGET_COMPANY}`,
       '',
-      'Dieser Lauf prueft oder erstellt genau eine Zahlungsbedingung fuer Universaarl:',
+      resultStatus === 'blocked'
+        ? 'Dieser Lauf sollte genau eine Zahlungsbedingung fuer Universaarl pruefen oder erstellen, wurde aber vor einer unbewiesenen oder unsicheren Aenderung gestoppt:'
+        : 'Dieser Lauf prueft oder erstellt genau eine Zahlungsbedingung fuer Universaarl:',
       '',
       '- Code: NET30',
       '- Beschreibung: 30 Tage netto',

@@ -1,18 +1,16 @@
 # CUSTOMER-PAYMENT-TERMS-WRITE-GATE
 
-Status: blocked
+Status: observed-setup-written
 Instanz: playthru
 Company: UNIVERSAARL-DE
 
-Dieser Lauf sollte genau eine Zahlungsbedingung fuer Universaarl pruefen oder erstellen:
+Dieser Lauf prueft oder erstellt genau eine Zahlungsbedingung fuer Universaarl:
 
 - Code: NET30
 - Beschreibung: 30 Tage netto
 - Faelligkeitsformel: <30D> oder sichtbarer lokalisierter 30-Tage-Wert
 
-Er wurde vor jeder Aenderung gestoppt, weil die Screenshots nicht die echte Zahlungsbedingungen-Liste, sondern Role Center / Informationsdialog-Kontext zeigten.
-
-Nicht enthalten: keine Setup-Aenderung, keine Debitorenkarte, keine Belege, keine Buchungsvorschau, keine Buchung, kein API Shortcut und keine vertraulichen echten Kundendaten.
+Nicht enthalten: keine Debitorenkarte, keine Belege, keine Buchungsvorschau, keine Buchung, kein API Shortcut und keine vertraulichen echten Kundendaten.
 
 ## Evidence-Dateien
 

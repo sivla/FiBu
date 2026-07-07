@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-07T04:00:00.000Z",
+  "updatedAt": "2026-07-07T04:50:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
-  "activeArea": "w2-core-masterdata-customer-payment-terms-route-recovery",
-  "activeCase": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE-RECOVERY",
-  "active_case_file": ".agent/state/cases/customer-payment-terms-write-gate-recovery.json",
-  "activeCaseFile": ".agent/state/cases/customer-payment-terms-write-gate-recovery.json",
+  "activeArea": "w2-core-masterdata-customer-setup-values",
+  "activeCase": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
+  "active_case_file": ".agent/state/cases/customer-setup-value-write-gate.json",
+  "activeCaseFile": ".agent/state/cases/customer-setup-value-write-gate.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-masterdata-payment-terms-route-recovery",
+  "mode": "universaarl-masterdata-customer-setup-value-write-gate",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -36,10 +36,16 @@
   "allowedActions": [
     "open-business-central-playthru-only",
     "confirm-company-universaarl-de",
-    "dismiss-safe-info-dialogs",
-    "open-payment-terms-page-readonly",
-    "capture-search-overlay-screenshots",
-    "capture-page-inspection",
+    "open-customer-list",
+    "open-u-cust-100-card",
+    "capture-before-screenshot",
+    "set-customer-posting-group-inland-if-field-visible-and-currently-empty",
+    "set-gen-business-posting-group-inland-if-field-visible-and-currently-empty",
+    "set-payment-terms-code-net30-if-field-visible-and-currently-empty",
+    "save-or-allow-autosave",
+    "capture-after-screenshot",
+    "reopen-customer-card",
+    "capture-reopen-proof",
     "write-result-json"
   ],
   "forbiddenActions": [
@@ -48,12 +54,9 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "create-or-edit-payment-term",
-    "edit-customer",
-    "save-customer",
-    "change-posting-group",
     "change-vat-setup",
     "change-dimensions",
+    "change-payment-method",
     "create-document-or-draft",
     "preview-posting",
     "post",
@@ -61,8 +64,8 @@
     "api-shortcut",
     "use-confidential-real-customer-data"
   ],
-  "nextCase": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE-RECOVERY",
-  "nextStep": "Recover the Payment Terms route read-first. The latest write gate stayed on Role Center with a delayed Power BI information dialog, so do not retry NET30 writing until Payment Terms page context is screenshot-proven.",
+  "nextCase": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
+  "nextStep": "Run CUSTOMER-SETUP-VALUE-WRITE-GATE only after guard checks: open U-CUST-100, set or verify only Customer Posting Group INLAND, Gen. Business Posting Group INLAND and Payment Terms Code NET30, then capture after and reopen proof. Do not touch VAT, dimensions, payment method, documents, Preview Posting, Posting, payment or API.",
   "preparedNextCaseFile": ".agent/state/cases/customer-setup-dependency-readfirst.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
@@ -197,12 +200,12 @@
     "nextBoundary": "Master Data remains parked. Next work must update Foundation Readiness and either accept this as a Foundation gap or define a genuinely new Page 314 route hypothesis before another live attempt."
   },
   "activeNextStepAuthority": {
-    "source": "customer-payment-terms-setup-decision",
+    "source": "customer-payment-terms-write-gate-result",
     "roadMap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
-    "activeCaseFile": ".agent/state/cases/customer-payment-terms-write-gate.json",
+    "activeCaseFile": ".agent/state/cases/customer-setup-value-write-gate.json",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "Payment Terms was the blocker for customer setup values. The local decision selected NET30 from Microsoft Learn product basis plus real empty-page evidence; the next step is a narrow UI-first write gate."
+    "reason": "NET30 is now real playthru evidence with screenshot and reopen proof, so the next useful project step is the narrow customer setup value write gate."
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -11341,8 +11344,56 @@
   },
   "latestCustomerPaymentTermsWriteGate": {
     "caseId": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
-    "status": "blocked-no-write",
+    "status": "observed-setup-written",
     "resultPath": "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "businessCentralOpened": true,
+    "playwrightLiveRunExecuted": true,
+    "setupChanged": true,
+    "cleanupChanged": true,
+    "cleanupActions": [
+      {
+        "target": "partial-bad-payment-term-30-tage-ne",
+        "status": "deleted",
+        "route": "row-text-scope-2+role-menuitem-scope-2"
+      }
+    ],
+    "setupChangeAttempted": true,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "payment": false,
+    "apiShortcut": false,
+    "route": "new-action-role-menuitem-scope-2-keyboard-line-route",
+    "screenshots": [
+      "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/customer-payment-terms-010-before.png",
+      "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/customer-payment-terms-020-after.png",
+      "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/customer-payment-terms-030-reopen-proof.png"
+    ],
+    "screenshotQa": "accepted: real Payment Terms page shows NET30 / 30T / 30 Tage netto after reopen proof; no UI mockup.",
+    "proved": [
+      "playthru / UNIVERSAARL-DE was used.",
+      "Payment Terms page 4 was visible.",
+      "NET30 / 30 Tage netto with a 30-day due-date formula is visible after reopen proof.",
+      "No customer, document, Preview Posting, Posting, payment or API shortcut was executed."
+    ],
+    "notProved": [
+      "No customer Payment Terms Code was updated.",
+      "No invoice due-date calculation was proven.",
+      "No customer setup completeness.",
+      "No O2C readiness.",
+      "No Preview Posting, Posting, payment or ledger trace.",
+      "No UAT acceptance."
+    ],
+    "nextCase": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
+    "updatedAt": "2026-07-07T04:50:00.000Z"
+  },
+  "latestCustomerPaymentTermsRouteRecovery": {
+    "caseId": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE-RECOVERY",
+    "status": "observed-read-first-route",
+    "resultPath": "playwright/projects/fibu-book5/evidence/customer-payment-terms-route-recovery/result.json",
     "instance": "playthru",
     "company": "UNIVERSAARL-DE",
     "businessCentralOpened": true,
@@ -11355,12 +11406,18 @@
     "posted": false,
     "payment": false,
     "apiShortcut": false,
-    "blockedBy": [
-      "Payment Terms page was not proven before write attempt.",
-      "Screenshot QA showed Role Center and a delayed Power BI information dialog, not the Payment Terms list."
+    "acceptedRoute": "direct-page-4-business-manager-profile",
+    "proved": [
+      "Payment Terms page 4 is reachable in playthru / UNIVERSAARL-DE when the URL includes profile=Business Manager.",
+      "Screenshot QA and Page Inspection confirm Payment Terms (4, List) and Payment Terms (3).",
+      "The Payment Terms list is currently empty in the captured view."
     ],
-    "uiLearning": "Do not trust Page 4 URL or narrow text extraction alone. Payment Terms recovery needs screenshots that separate Role Center, safe information dialogs, search overlay and the true list.",
-    "nextCase": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE-RECOVERY",
-    "updatedAt": "2026-07-07T04:00:00.000Z"
+    "notProved": [
+      "NET30 was not created or verified.",
+      "No customer Payment Terms Code was updated.",
+      "No invoice due-date calculation, O2C readiness or UAT acceptance."
+    ],
+    "nextCase": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
+    "updatedAt": "2026-07-07T04:20:00.000Z"
   }
 }

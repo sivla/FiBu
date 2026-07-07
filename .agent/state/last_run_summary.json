@@ -3,27 +3,40 @@
   "purpose": "last-run-summary",
   "runId": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
   "caseId": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
-  "status": "blocked-no-write",
-  "completedAt": "2026-07-07T04:00:00.000Z",
+  "status": "observed-setup-written",
+  "completedAt": "2026-07-07T02:25:55.371Z",
   "mode": "universaarl-masterdata-payment-terms-write-gate",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Built and ran a guarded Payment Terms write-gate runner for NET30. The runner confirmed playthru / UNIVERSAARL-DE and produced screenshots, but screenshot QA showed Role Center plus a delayed Power BI information dialog instead of the Payment Terms list. No setup, master data, draft, Preview Posting, Posting, payment or API shortcut was changed.",
+  "summary": "Created real Universaarl Payment Terms setup NET30 / 30 Tage netto / 30T in Business Central playthru after deleting the bad partial row from the previous blocked attempt. Reopen screenshot proves NET30 persisted. No customer, document, Preview Posting, Posting, payment, API or confidential real customer data was used.",
   "resultPath": "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/result.json",
   "changedArtifacts": [
-    "scripts/agent/run-customer-payment-terms-write-gate.mjs",
     "playwright/projects/fibu-book5/tests/customer-payment-terms-write-gate.spec.ts",
     "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/",
-    ".agent/state/cases/customer-payment-terms-write-gate-recovery.json",
+    "playwright/projects/fibu-book5/tests/customer-payment-terms-route-recovery.spec.ts",
+    "playwright/projects/fibu-book5/evidence/customer-payment-terms-route-recovery/",
+    "scripts/agent/run-customer-payment-terms-route-recovery.mjs",
+    "scripts/agent/customer-setup-value-write-gate-check.mjs",
+    ".agent/state/cases/customer-setup-value-write-gate.json",
     ".agent/state/current.json",
     ".agent/state/last_run_summary.json",
+    ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
+    ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "package.json",
     "scripts/agent/active-readiness-check.mjs"
   ],
   "businessCentralOpened": true,
   "playwrightLiveRunExecuted": true,
-  "setupChanged": false,
-  "setupChangeAttempted": false,
+  "setupChanged": true,
+  "cleanupChanged": true,
+  "cleanupActions": [
+    {
+      "target": "partial-bad-payment-term-30-tage-ne",
+      "status": "deleted",
+      "route": "row-text-scope-2+role-menuitem-scope-2"
+    }
+  ],
+  "setupChangeAttempted": true,
   "masterDataChanged": false,
   "draftCreated": false,
   "previewPosting": false,
@@ -32,73 +45,75 @@
   "apiShortcut": false,
   "confidentialRealCustomerDataUsed": false,
   "proved": [
-    "playthru / UNIVERSAARL-DE auth and live gate were usable.",
-    "The guarded runner and active-readiness hook exist for the Payment Terms write gate.",
-    "The current route must not be accepted as Payment Terms proof because screenshots show Role Center / information-dialog context.",
-    "No customer, setup row, document, Preview Posting, Posting, payment or API shortcut was changed."
+    "playthru / UNIVERSAARL-DE was used.",
+    "Payment Terms page 4 was visible.",
+    "NET30 / 30 Tage netto with a 30-day due-date formula is visible after reopen proof.",
+    "No customer, document, Preview Posting, Posting, payment or API shortcut was executed."
   ],
   "notProved": [
-    "NET30 was not created or verified.",
-    "Payment Terms page context was not accepted in the write-gate run.",
-    "Customer setup values remain blocked.",
-    "No invoice due-date calculation, O2C readiness, Preview Posting, Posting or UAT acceptance."
+    "No customer Payment Terms Code was updated.",
+    "No invoice due-date calculation was proven.",
+    "No customer setup completeness.",
+    "No O2C readiness.",
+    "No Preview Posting, Posting, payment or ledger trace.",
+    "No UAT acceptance."
   ],
-  "blockedBy": [
-    "Direct Page 4 route landed on Role Center in the write-gate runner.",
-    "A delayed Power BI information dialog appeared and must be handled before route proof.",
-    "The current text extraction only saw Neu/Neue/Beschreibung and is insufficient for Payment Terms proof."
+  "blockedBy": [],
+  "screenshots": [
+    "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/customer-payment-terms-010-before.png",
+    "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/customer-payment-terms-020-after.png",
+    "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/customer-payment-terms-030-reopen-proof.png"
   ],
   "screenshotQa": {
-    "acceptedForPaymentTerms": false,
-    "screenshots": [
+    "requiredCheckpoints": [
+      "before Payment Terms page",
+      "after NET30 route",
+      "reopen proof"
+    ],
+    "capturedCheckpoints": [
       "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/customer-payment-terms-010-before.png",
       "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/customer-payment-terms-020-after.png",
       "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/customer-payment-terms-030-reopen-proof.png"
     ],
-    "reason": "Screenshots are useful blocker evidence, but not Payment Terms page proof."
+    "acceptedForPaymentTerms": true,
+    "acceptedForCustomerSetupWrite": false,
+    "acceptedForO2CReady": false
   },
-  "uiLearning": "Business Central route proof must use screenshot QA before write actions. Direct page-id navigation can silently stay on the Role Center, and delayed info dialogs can appear after the first wait.",
+  "uiLearning": "Payment Terms page requires the Business Manager profile route. For editable BC list rows, keyboard row flow is safer than guessing visible input order. German date formula 30T is the visible persisted form. Screenshot QA caught and enabled cleanup of the earlier bad partial row.",
   "nextStepDecision": {
     "currentCase": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
     "plannedNextCaseBeforeReview": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "NET30 is not proven; customer setup value write must stay blocked.",
-    "selectedNextCase": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE-RECOVERY",
-    "whySelectedNextCaseIsBest": "It isolates the real UI/navigation blocker before any setup write.",
+    "lastEvidenceSummary": "NET30 payment term is available with reopen proof.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Payment Terms is no longer blocking the customer setup value write gate.",
     "lookaheadReviewed": [
       {
-        "caseId": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE-RECOVERY",
-        "status": "ready-next",
-        "reason": "Needs read-first route proof with more screenshots and no writes."
-      },
-      {
-        "caseId": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
-        "status": "ready-after-current",
-        "reason": "Only after the Payment Terms page route is screenshot-proven."
-      },
-      {
         "caseId": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
-        "status": "blocked",
-        "reason": "Blocked until NET30 exists and is reopen-proven."
+        "status": "ready-next",
+        "reason": "Payment Terms prerequisite is proven."
+      },
+      {
+        "caseId": "CUSTOMER-U-CUST-100-SETUP-REOPEN-PROOF",
+        "status": "ready-after-current",
+        "reason": "Customer setup values need their own bounded write and reopen proof."
       },
       {
         "caseId": "O2C-MINIMAL-ROUTE-DECISION",
         "status": "needs-setup-first",
-        "reason": "Still needs customer setup, item/service and posting/VAT boundaries."
+        "reason": "Sales process remains blocked until customer, item/service, posting and VAT setup are consciously handled."
       }
     ],
-    "queueChangesMade": [
-      "Active case changed to CUSTOMER-PAYMENT-TERMS-WRITE-GATE-RECOVERY."
-    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "The next customer setup write can now use a real payment term instead of a guessed or mock value.",
     "risksBeforeNextCase": [
-      "Do not treat Role Center screenshots as setup page evidence.",
-      "Do not write NET30 until Payment Terms page context is accepted."
+      "Do not use NET30 as proof of invoice behavior until a document case calculates due dates."
     ],
     "requiredPreparation": [
-      "Run route recovery read-first with explicit screenshots for dialog, search overlay, explorer and true list context."
+      "Prepare customer setup value write gate with Customer Posting Group, Gen. Bus. Posting Group and Payment Terms only."
     ]
   },
-  "nextCase": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE-RECOVERY",
-  "nextStep": "Run CUSTOMER-PAYMENT-TERMS-WRITE-GATE-RECOVERY read-first: capture screenshots for Role Center, delayed Power BI info dialog, search/explorer route and the true Payment Terms list before any NET30 setup write.",
-  "updatedAt": "2026-07-07T04:00:00.000Z"
+  "nextCase": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
+  "nextStep": "Prepare and run CUSTOMER-SETUP-VALUE-WRITE-GATE: set/verify only Customer Posting Group INLAND, Gen. Business Posting Group INLAND and Payment Terms Code NET30 on U-CUST-100 with after and reopen proof.",
+  "updatedAt": "2026-07-07T04:50:00.000Z"
 }

@@ -26,10 +26,10 @@ The read-first return has happened. Further live work must now start from the co
 | Target environment | `playthru` only |
 | Target company | `UNIVERSAARL-DE` |
 | Reference company name | Universaarl GmbH |
-| Current live status | read-first resume and customer setup route recovery have produced Foundation/Master-Data dependency evidence; Payment Terms route recovery is now required before the NET30 setup write |
+| Current live status | read-first resume and customer setup route recovery have produced Foundation/Master-Data dependency evidence; Payment Terms route recovery proved Page 4 through `profile=Business Manager`, and the NET30 write gate wrote `NET30 / 30 Tage netto / 30T` with reopen proof |
 | Parked case | `TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION` |
 | Completed resume pilot | `TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK` |
-| Next live type | read-first route recovery: `CUSTOMER-PAYMENT-TERMS-WRITE-GATE-RECOVERY`, no writes |
+| Next live type | gated UI-first master-data setup write: `CUSTOMER-SETUP-VALUE-WRITE-GATE`, only U-CUST-100 setup values already supported by Universaarl evidence |
 | Artifact classification | `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` |
 | Next local control task | keep roadmap, dashboard, state and artifact classification aligned; demote historical next-step noise instead of adding new layers |
 
@@ -333,7 +333,7 @@ Use this exact order:
 3. Keep `FOUNDATION-READINESS-DECISION.md` as the active boundary.
 4. Do not repeat `TARGET-073` as-is.
 5. Consume the latest customer setup route recovery: 3/4 setup pages were recovered in the current runner; Page 312/Geschaeftsbuchungsgruppen remains a runner-specific search blocker but has stronger accepted Universaarl Foundation evidence in `TARGET-032A/TARGET-032B`.
-6. Run `CUSTOMER-PAYMENT-TERMS-WRITE-GATE-RECOVERY` next: prove the real Payment Terms page route read-first with screenshots that distinguish Role Center, safe information dialogs, search overlay and the true list. Do not write `NET30` until the page context is accepted.
+6. Run `CUSTOMER-SETUP-VALUE-WRITE-GATE` next: open `U-CUST-100`, set or verify only Customer Posting Group `INLAND`, Gen. Business Posting Group `INLAND` and Payment Terms Code `NET30`, then capture after and reopen proof. Do not touch VAT, dimensions, payment method, documents, Preview Posting, Posting or API.
 
 ## Acceptance criteria
 

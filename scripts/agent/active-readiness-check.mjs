@@ -127,8 +127,31 @@ const checksByCase = new Map([
     'CUSTOMER-PAYMENT-TERMS-WRITE-GATE-RECOVERY',
     {
       id: 'customer-payment-terms-write-gate-recovery',
-      scriptPath: 'scripts/agent/foundation-readiness-decision.mjs',
-      reason: 'The Payment Terms write gate is blocked no-write; the selected recovery stays read-first until the Payment Terms page route is screenshot-proven.'
+      scriptPath: 'scripts/agent/run-customer-payment-terms-route-recovery.mjs',
+      args: ['--check'],
+      reason: 'The Payment Terms write gate is blocked no-write; the selected recovery stays read-first until the Payment Terms page route is screenshot-proven.',
+      secondaryChecks: [
+        {
+          id: 'foundation-readiness-decision',
+          scriptPath: 'scripts/agent/foundation-readiness-decision.mjs',
+          reason: 'Payment Terms recovery is a Master Data dependency and must stay inside the Foundation boundary.'
+        }
+      ]
+    }
+  ],
+  [
+    'CUSTOMER-SETUP-VALUE-WRITE-GATE',
+    {
+      id: 'customer-setup-value-write-gate-prepared',
+      scriptPath: 'scripts/agent/customer-setup-value-write-gate-check.mjs',
+      reason: 'CUSTOMER-SETUP-VALUE-WRITE-GATE may only follow real Payment Terms evidence and must stay inside the Foundation/Master Data boundary until its own guarded runner exists.',
+      secondaryChecks: [
+        {
+          id: 'foundation-readiness-decision',
+          scriptPath: 'scripts/agent/foundation-readiness-decision.mjs',
+          reason: 'The customer setup value gate depends on Foundation boundaries as well as the NET30 prerequisite.'
+        }
+      ]
     }
   ],
   [
