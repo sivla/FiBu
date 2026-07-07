@@ -1,15 +1,15 @@
 # Universaarl Read-only UI Look-and-Feel Map
 
-Status: `prep-done`, `readonly-ui-map`, `needs-universaarl-final-company`
+Status: `active-reference`, `readonly-ui-map`, `universaarl-company-exists`
 
 Aktive Zielwelt:
 
 - Instanz: `playthru`
-- Zielcompany: `UNIVERSAARL-DE` noch nicht angelegt
+- Zielcompany: `UNIVERSAARL-DE` existiert und ist die aktive Zielcompany
 - Musterfirma: `Universaarl GmbH`
 - Alte RM-/CRONUS-/Demo-Evidence: nur `legacy-labor-reference`
 
-Diese Map sammelt wiederverwendbare Regeln fuer Business-Central-Oberflaeche, Klickpfade und Screenshot-QA. Sie ersetzt keine finale Universaarl-Evidence. Sie verhindert aber, dass der Autopilot oder das Buch sichtbare UI falsch deutet.
+Diese Map sammelt wiederverwendbare Regeln fuer Business-Central-Oberflaeche, Klickpfade und Screenshot-QA. Sie ersetzt keine konkrete Fall-Evidence. Sie verhindert aber, dass der Autopilot oder das Buch sichtbare UI falsch deutet.
 
 ## Grundregel
 
@@ -139,11 +139,14 @@ Sofort stoppen und als Gate dokumentieren, wenn sichtbar wird:
 
 ## Naechster praktischer Nutzen
 
-Wenn die Rechte vorhanden sind, wird TARGET-009 nicht blind wiederholt. Der naechste Lauf prueft zuerst:
+Der naechste Foundation-/VAT-/Posting-Readfirst-Lauf darf nicht nur einen End-Screenshot erzeugen. Er braucht eine kleine Bildkette, damit die sichtbare Business-Central-Oberflaeche fachlich bewertet werden kann:
 
-1. Page `Mandanten` sichtbar.
-2. Tooltip/Accessible Name des richtigen `Neu`-Elements.
-3. Dropdown-Pfeil und Menuepunkt `Neues Unternehmen erstellen` sichtbar.
-4. Keine Auswahl von `Kopieren` oder `Testunternehmen`.
-5. Nach Auswahl: Screenshot-QA des tatsaechlichen Wizard-/ListPart-Kontexts.
-6. Wenn ein Fehler erscheint: exakter Fehlertext, sichtbare Page und keine weitere Aktion.
+1. Startkontext: Shell/Role Center oder Ausgangsseite mit `playthru` / `UNIVERSAARL-DE`.
+2. Navigation: Suchbegriff, sichtbarer Treffer oder sichtbarer Menue-/Linkpfad.
+3. Zielseite: Seitentitel, Listentitel oder Kartenname im Vordergrund.
+4. Bedienkontext: relevante Action, Dropdown, Tooltip oder Accessible Name, falls ein Button mehrdeutig ist.
+5. Inhaltskontext: Zielzeile, relevante Spalten, geoeffnete FastTabs, FactBox-Zustand oder horizontaler Scrollbereich.
+6. Technischer Kontext: Page Inspection oder strukturierte Page-/Table-/Field-Evidence, wenn Feld- oder Tabellenclaims entstehen.
+7. Grenze: ein Bild oder Result-Feld, das sagt, was nicht bewiesen wurde und welche Route nicht wiederholt werden darf.
+
+Ein einzelnes Bild nach einem Klick reicht nur dann, wenn genau dieser sichtbare Zielzustand das Lernziel ist.
