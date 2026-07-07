@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-07T02:35:00.000+02:00",
+  "updatedAt": "2026-07-07T03:00:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
-  "activeArea": "w2-core-masterdata",
-  "activeCase": "CUSTOMER-SETUP-POSTING-PAYMENT-READFIRST",
-  "active_case_file": ".agent/state/cases/customer-setup-posting-payment-readfirst.json",
-  "activeCaseFile": ".agent/state/cases/customer-setup-posting-payment-readfirst.json",
+  "activeArea": "w2-core-masterdata-setup",
+  "activeCase": "CUSTOMER-SETUP-VALUE-DECISION",
+  "active_case_file": ".agent/state/cases/customer-setup-value-decision.json",
+  "activeCaseFile": ".agent/state/cases/customer-setup-value-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-masterdata-readfirst",
+  "mode": "universaarl-masterdata-setup-decision",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -34,15 +34,10 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "run-playwright-readfirst",
-    "open-business-central",
-    "confirm-playthru-instance",
-    "confirm-universaarl-company",
-    "open-existing-customer-card",
-    "expand-fakturierung-and-zahlungen-fasttabs",
-    "capture-screenshot-qa",
-    "write-evidence-result",
-    "update-state-dashboard-and-field-map"
+    "research-official-bc-setup-logic-if-needed",
+    "choose-or-park-customer-setup-values",
+    "write-local-decision",
+    "update-dashboard-state-field-map"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -50,25 +45,22 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "use-confidential-real-customer-data",
-    "create-customer",
-    "delete-customer",
+    "open-business-central-live",
+    "run-playwright-live",
     "edit-customer",
-    "change-customer-template",
     "change-posting-group",
     "change-payment-terms",
-    "change-dimensions",
     "change-vat-setup",
+    "change-dimensions",
     "create-document-or-draft",
     "preview-posting",
     "post",
     "api-shortcut",
-    "claim-master-data-ready",
-    "claim-sales-process-ready"
+    "use-confidential-real-customer-data"
   ],
-  "nextCase": "CUSTOMER-SETUP-POSTING-PAYMENT-READFIRST",
-  "nextStep": "Run read-first customer setup dependency proof for U-CUST-100 / Saarland Maschinenbau AG: inspect billing/posting, VAT, payment, country/search-name and dimension fields with screenshot QA; do not edit customer data, setup, documents, Preview Posting or Posting.",
-  "preparedNextCaseFile": ".agent/state/cases/customer-setup-posting-payment-readfirst.json",
+  "nextCase": "CUSTOMER-SETUP-VALUE-DECISION",
+  "nextStep": "Decide realistic customer setup values for U-CUST-100 from read-first evidence before any narrow write gate; no BC/Playwright live run in this decision case.",
+  "preparedNextCaseFile": ".agent/state/cases/customer-setup-value-decision.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -205,9 +197,9 @@
     "source": "top-level-current-state-and-customer-first-record-data-quality-decision",
     "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
-    "activeCaseFile": ".agent/state/cases/customer-u-cust-100-dependency-readfirst.json",
+    "activeCaseFile": ".agent/state/cases/customer-setup-value-decision.json",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "The local data-quality decision selected read-first dependency proof for U-CUST-100 before any realistic customer conversion or alternate-number write gate."
+    "reason": "Read-first customer setup/payment evidence is complete; next step is a local setup value decision before any narrow write gate."
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -11161,5 +11153,37 @@
     "routeLearning": "Customer list navigation must handle long Business Central menuitem accessible names; screenshot QA and visible input values are more reliable than broad frame text after card overlays.",
     "nextCase": "CUSTOMER-SETUP-POSTING-PAYMENT-READFIRST",
     "updatedAt": "2026-07-07T02:35:00.000+02:00"
+  },
+  "latestCustomerSetupPostingPaymentReadfirst": {
+    "caseId": "CUSTOMER-SETUP-POSTING-PAYMENT-READFIRST",
+    "status": "observed-read-first-fasttabs",
+    "resultPath": "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "businessCentralOpened": true,
+    "playwrightLiveRunExecuted": true,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "screenshotQa": "Accepted: customer list, customer card, Fakturierung, Zahlungen, Page Inspection and no-save end context captured from real Business Central UI.",
+    "proved": [
+      "U-CUST-100 / Saarland Maschinenbau AG can be inspected read-only on the Customer Card.",
+      "Customer Posting Group, Gen. Business Posting Group and Payment Terms Code are visibly empty.",
+      "Country/Region Code is visibly empty.",
+      "Search Name is visible in Page Inspection as SAARLAND MASCHINENBAU AG.",
+      "No setup, master data, document, Preview Posting, Posting, payment or API shortcut was changed."
+    ],
+    "notProved": [
+      "No customer setup correctness or completeness.",
+      "No VAT business posting group value.",
+      "No payment method value.",
+      "No dimension default values.",
+      "No O2C readiness, Preview Posting, Posting or ledger trace."
+    ],
+    "nextCase": "CUSTOMER-SETUP-VALUE-DECISION",
+    "updatedAt": "2026-07-07T02:55:00.000+02:00"
   }
 }

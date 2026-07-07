@@ -2,7 +2,8 @@ import { spawnSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 
 const specPath = 'playwright/projects/fibu-book5/tests/pws-md-004c-customer-billing-payments-fasttabs-readfirst.spec.ts';
-const casePath = '.agent/state/cases/pws-md-004c-customer-billing-payments-fasttabs-readfirst.json';
+const casePath = '.agent/state/cases/customer-setup-posting-payment-readfirst.json';
+const CASE_ID = 'CUSTOMER-SETUP-POSTING-PAYMENT-READFIRST';
 const EXPECTED_INSTANCE = 'playthru';
 const TARGET_COMPANY = 'UNIVERSAARL-DE';
 const MIN_LIVE_AUTH_EXPIRES_IN_HOURS = 1;
@@ -87,7 +88,7 @@ function caseStatus() {
     return {
       ready: false,
       blocker: missingBlocker,
-      nextStep: 'Create the PWS-MD-004C case file before running the FastTab proof.'
+      nextStep: 'Create the customer setup/payment read-first case file before running the FastTab proof.'
     };
   }
   const text = readFileSync(casePath, 'utf8');
@@ -98,10 +99,10 @@ function caseStatus() {
     return {
       ready: false,
       blocker: 'case-file-invalid-json',
-      nextStep: 'Fix the PWS-MD-004C case JSON before running the FastTab proof.'
+      nextStep: 'Fix the customer setup/payment read-first case JSON before running the FastTab proof.'
     };
   }
-  const correctCase = parsed.caseId === 'PWS-MD-004C-CUSTOMER-BILLING-PAYMENTS-FASTTABS-READFIRST';
+  const correctCase = parsed.caseId === CASE_ID;
   const readOnly = parsed.effectiveBcActionsAllowed === false;
   const correctTarget = parsed.instance === EXPECTED_INSTANCE && parsed.company === TARGET_COMPANY;
   const mayRun = parsed.mayRunPlaywright === true && parsed.mayOpenBusinessCentral === true;
@@ -110,13 +111,13 @@ function caseStatus() {
     ready,
     blocker: ready ? '' : 'case-file-does-not-match-readonly-target-gate',
     nextStep: ready
-      ? 'When live gate is open, run PWS-MD-004C only with --live-approved as read-first/no-save.'
+      ? 'When live gate is open, run the customer setup/payment FastTab proof only with --live-approved as read-first/no-save.'
       : 'Align case file to playthru / UNIVERSAARL-DE read-first/no-write before running.'
   };
 }
 
 if (help) {
-  console.log(`PWS-MD-004C guarded runner
+  console.log(`Customer setup/payment FastTabs guarded runner
 
 Usage:
   node scripts/agent/run-pws-md-004c-customer-billing-payments-fasttabs-readfirst.mjs --check
@@ -162,7 +163,7 @@ const activeCase = caseStatus();
 const targetUrl = targetUrlFromConfiguredUrl();
 const targetUrlReady = Boolean(targetUrl);
 const liveGateAllowsNow = contextStatus.details?.canRunBusinessCentralWorkflows === true;
-const activeCaseMatches = contextStatus.details?.activeCase === 'PWS-MD-004C-CUSTOMER-BILLING-PAYMENTS-FASTTABS-READFIRST';
+const activeCaseMatches = contextStatus.details?.activeCase === CASE_ID;
 const authMeetsLiveWindow =
   authStatus.canUseStoredAuth === true &&
   Number.isFinite(Number(authStatus.expiresInHours)) &&
@@ -170,7 +171,7 @@ const authMeetsLiveWindow =
   !((authStatus.blockedBy ?? []).includes('storage-state-expires-before-required-window'));
 const blockedBy = [
   activeCase.ready ? '' : activeCase.blocker,
-  activeCaseMatches ? '' : 'active-case-is-not-pws-md-004c',
+  activeCaseMatches ? '' : 'active-case-is-not-customer-setup-posting-payment-readfirst',
   targetUrlReady ? '' : 'target-url-could-not-be-built-from-configured-url',
   authMeetsLiveWindow ? '' : 'storage-state-expires-before-required-window',
   liveGateAllowsNow ? '' : 'business-central-live-gate-blocked'
@@ -181,8 +182,8 @@ if (checkOnly) {
     JSON.stringify(
       {
         schemaVersion: 1,
-        purpose: 'pws-md-004c-customer-billing-payments-fasttabs-readfirst-check',
-        caseId: 'PWS-MD-004C-CUSTOMER-BILLING-PAYMENTS-FASTTABS-READFIRST',
+        purpose: 'customer-setup-posting-payment-readfirst-check',
+        caseId: CASE_ID,
         expectedInstance: EXPECTED_INSTANCE,
         expectedCompany: TARGET_COMPANY,
         casePath,
@@ -213,7 +214,7 @@ if (!liveApproved || blockedBy.length > 0) {
     JSON.stringify(
       {
         schemaVersion: 1,
-        purpose: 'pws-md-004c-customer-billing-payments-fasttabs-readfirst-guard',
+        purpose: 'customer-setup-posting-payment-readfirst-guard',
         canRun: false,
         liveApproved,
         expectedInstance: EXPECTED_INSTANCE,
@@ -222,7 +223,7 @@ if (!liveApproved || blockedBy.length > 0) {
         businessCentralOpened: false,
         playwrightLiveRunExecuted: false,
         blockedBy: liveApproved ? blockedBy : ['missing-live-approved-flag', ...blockedBy],
-        nextStep: 'Do not run PWS-MD-004C live before case gate, live gate, usable auth and --live-approved.'
+        nextStep: 'Do not run the customer setup/payment FastTab proof live before case gate, live gate, usable auth and --live-approved.'
       },
       null,
       2

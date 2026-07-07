@@ -14,7 +14,7 @@ Last reviewed: 2026-07-07
 | Artefakt-Klassifikation | `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` |
 | Geparkter Live-Case | `TARGET-073` |
 | Letzter Resume-Pilot | `TARGET-075`, read-first, no-write, abgeschlossen |
-| Aktiver Case | `CUSTOMER-SETUP-POSTING-PAYMENT-READFIRST` |
+| Aktiver Case | `CUSTOMER-SETUP-VALUE-DECISION` |
 | Legacy-Grenze | RM-DEMO, MCP_1_20260210, CRONUS, Rhein-Main und RM-* sind keine aktive Projektwahrheit. |
 
 ## Steuerungsregel
@@ -55,7 +55,7 @@ M0 ist als Arbeitsrahmen nutzbar. Der naechste sinnvolle Fortschritt ist keine w
 | Freeze/Resume | passed-for-read-first-history | TARGET-075 ist gelaufen; neue Live-Arbeit braucht trotzdem aktuellen Auth-/Case-Gate. |
 | Finance Foundation | blocked-by-specific-gaps | Foundation-Decision aktuell halten: Page 314 und Page 472 active editor sind die harten UI-/Setup-Grenzen; TARGET-073B ist als no-write Proof gelaufen und blockiert. |
 | VAT/USt, Dimensions, Posting Groups | partial/blocked | INLAND/VAT19 sichtbar, Page 472-Hauptoberflaeche und Page Inspection/Tabelle 325 bewiesen; VAT-Matrix-Schreibroute und Page 314 bleiben nicht posting-ready. |
-| Master Data | customer-identity-proven-setup-readfirst-next | Debitor `U-CUST-100 / Saarland Maschinenbau AG` ist auf echter `playthru`-Debitorenkarte mit After-save- und Reopen-Screenshot sichtbar. Identitaet, Adresse, PLZ/Ort, E-Mail und Kontakt sind belegt. Nicht belegt: Laender-/Regionscode, Suchbegriff, Debitorenbuchungsgruppe, Geschaeftsbuchungsgruppe, USt.-Geschaeftsbuchungsgruppe, Zahlungsbedingungen, Zahlungsart und Dimensionen. |
+| Master Data | customer-setup-value-decision-next | Debitor `U-CUST-100 / Saarland Maschinenbau AG` ist auf echter `playthru`-Debitorenkarte sichtbar. Fakturierung und Zahlungen wurden read-first mit Screenshot-QA geprueft. Sichtbar leer: Laender-/Regionscode, Debitorenbuchungsgruppe, Geschaeftsbuchungsgruppe und Zahlungsbedingung. Nicht belegt: USt.-Geschaeftsbuchungsgruppe, Zahlungsart und Dimensionswerte. |
 | Buch/Handbuch/Training | draft-with-customer-card-module | Debitorenkarten-Training `TR-03-01A` ist als Draft vorhanden; Screenshots stammen aus echter `playthru`-Oberflaeche, nicht aus Mockups. |
 | Playwright/Evidence | draft | Read-first Specs und Screenshot-QA stabilisieren; keine Legacy-Routen als aktive Tests nutzen. |
 | Legacy-Decommission | active-work | Legacy nur inventarisieren, neutralisieren, portieren oder parken; Evidence nicht blind loeschen. |
@@ -90,7 +90,7 @@ M0 ist als Arbeitsrahmen nutzbar. Der naechste sinnvolle Fortschritt ist keine w
 3. Vor Live-Arbeit: `agent:preflight`, `check:encoding`, `agent:quality:audit`, `agent:resume:check || true`, `agent:freeze:status || true`.
 4. `TARGET-073` bleibt geparkt.
 5. Kein as-is Retry von TARGET-073 oder TARGET-073B; TARGET-073B ist konsumierte blockierte No-Write-Evidence.
-6. `CUSTOMER-U-CUST-100-IDENTITY-CONVERSION-WRITE-GATE` ist mit Reopen-Proof erledigt. Naechster Schritt ist `CUSTOMER-SETUP-POSTING-PAYMENT-READFIRST`: die noch offenen Setup- und Datenqualitaetsfelder auf der Debitorenkarte nur lesen und mit Screenshot-QA bewerten. Keine Stammdatenaenderung, keine Buchungsgruppen-/USt.-/Zahlungsbedingungs-Aenderung, kein Beleg, kein Preview, kein Posting.
+6. `CUSTOMER-SETUP-POSTING-PAYMENT-READFIRST` ist read-first erledigt. Naechster Schritt ist `CUSTOMER-SETUP-VALUE-DECISION`: fachlich entscheiden, welche Debitorenbuchungsgruppe, Geschaeftsbuchungsgruppe, Zahlungsbedingung, Laenderlogik, USt.-Grenze und Dimensionsgrenze fuer `U-CUST-100` sinnvoll sind. Keine Live-BC-Aktion im Decision-Case; ein spaeterer Write-Gate muss eng und separat sein.
 
 ## Update rule
 

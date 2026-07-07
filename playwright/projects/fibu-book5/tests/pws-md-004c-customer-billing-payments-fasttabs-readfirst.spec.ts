@@ -13,16 +13,16 @@ test.use({
 test.setTimeout(180_000);
 test.skip(
   process.env.PWS_MD_004C_LIVE_APPROVED !== '1' || process.env.PWS_MD_004C_RUNNER_GUARD_CHECKED !== '1',
-  'PWS-MD-004C must be run through the guarded runner with --live-approved.'
+  'Customer setup/payment read-first must be run through the guarded runner with --live-approved.'
 );
 
-const CASE_ID = 'PWS-MD-004C-CUSTOMER-BILLING-PAYMENTS-FASTTABS-READFIRST';
+const CASE_ID = 'CUSTOMER-SETUP-POSTING-PAYMENT-READFIRST';
 const EXPECTED_INSTANCE = 'playthru';
 const TARGET_COMPANY = 'UNIVERSAARL-DE';
 const TARGET_CUSTOMER = 'U-CUST-100';
-const TARGET_CUSTOMER_NAME = 'Universaarl Kunde 100';
+const TARGET_CUSTOMER_NAME = 'Saarland Maschinenbau AG';
 const PROJECT = 'fibu-book5';
-const EVIDENCE_ID = 'pws-md-004c-customer-billing-payments-fasttabs-readfirst';
+const EVIDENCE_ID = 'customer-setup-posting-payment-readfirst';
 const EVIDENCE_DIR_REL = `playwright/projects/${PROJECT}/evidence/${EVIDENCE_ID}`;
 const EVIDENCE_DIR = path.resolve(EVIDENCE_DIR_REL);
 
@@ -50,16 +50,16 @@ function targetInstanceUrl() {
   const url = new URL(process.env.PWS_MD_004C_BC_TARGET_URL || requireBcUrl('FIBU_BOOK5'));
   const segments = url.pathname.split('/').filter(Boolean);
   if (!segments.length) {
-    throw new Error('Business Central URL must include a tenant/environment path before PWS-MD-004C can build a page URL.');
+    throw new Error('Business Central URL must include a tenant/environment path before the customer setup/payment proof can build a page URL.');
   }
   segments[segments.length - 1] = EXPECTED_INSTANCE;
   url.pathname = `/${segments.join('/')}`;
   url.searchParams.set('company', TARGET_COMPANY);
   if (!url.pathname.toLowerCase().split('/').filter(Boolean).includes(EXPECTED_INSTANCE)) {
-    throw new Error('PWS-MD-004C target URL must resolve to playthru before navigation.');
+    throw new Error('Customer setup/payment target URL must resolve to playthru before navigation.');
   }
   if ((url.searchParams.get('company') ?? '').toUpperCase() !== TARGET_COMPANY) {
-    throw new Error('PWS-MD-004C target URL must resolve to UNIVERSAARL-DE before navigation.');
+    throw new Error('Customer setup/payment target URL must resolve to UNIVERSAARL-DE before navigation.');
   }
   return url;
 }
@@ -137,6 +137,7 @@ async function clickFirstVisible(page: Page, label: RegExp) {
     const candidates: Array<{ name: string; locator: Locator }> = [
       { name: 'role-link', locator: scope.getByRole('link', { name: label }).first() },
       { name: 'role-button', locator: scope.getByRole('button', { name: label }).first() },
+      { name: 'role-menuitem', locator: scope.getByRole('menuitem', { name: label }).first() },
       { name: 'anchor-text', locator: scope.locator('a').filter({ hasText: label }).first() },
       { name: 'visible-text', locator: scope.getByText(label).first() }
     ];
@@ -156,7 +157,7 @@ function customerListSignalCount(text: string) {
 }
 
 function hasCustomerCardContext(text: string) {
-  return /Debitorenkarte|Customer Card/i.test(text) && /U-CUST-100/i.test(text) && /Universaarl Kunde 100/i.test(text);
+  return /Debitorenkarte|Customer Card/i.test(text) && /U-CUST-100/i.test(text) && /Saarland Maschinenbau AG/i.test(text);
 }
 
 function hasBillingSignals(text: string) {
@@ -194,7 +195,7 @@ async function openCustomerList(page: Page, captures: Capture[]) {
 
   let text = await fullText(page);
   if (customerListSignalCount(text) < 2 || !new RegExp(TARGET_CUSTOMER, 'i').test(text)) {
-    const routeUsed = await clickFirstVisible(page, /^Debitoren$|^Customers$|^Kunden$/i);
+    const routeUsed = await clickFirstVisible(page, /^Debitoren\b|^Customers\b|^Kunden\b/i);
     if (routeUsed) {
       await waitForBusinessCentralShell(page);
       await dismissTours(page);
@@ -205,7 +206,7 @@ async function openCustomerList(page: Page, captures: Capture[]) {
 
   await captureReadOnlyCheckpoint(
     page,
-    'pws-md-004c-010-customer-list-route-context.png',
+    'customer-setup-payment-010-customer-list-route-context.png',
     {
       page: 'Debitoren / Customers',
       pageId: 22,
@@ -320,7 +321,7 @@ async function expandFastTab(page: Page, label: 'Fakturierung' | 'Zahlungen') {
   return '';
 }
 
-test('PWS-MD-004C inspects customer billing and payments FastTabs read-only', async ({ page }) => {
+test('CUSTOMER-SETUP-POSTING-PAYMENT-READFIRST inspects customer billing and payments FastTabs read-only', async ({ page }) => {
   await fs.mkdir(EVIDENCE_DIR, { recursive: true });
   const startedAt = new Date().toISOString();
   const captures: Capture[] = [];
@@ -328,7 +329,7 @@ test('PWS-MD-004C inspects customer billing and payments FastTabs read-only', as
   const actionsTaken: string[] = [];
 
   const listText = await openCustomerList(page, captures);
-  if (!/U-CUST-100|Universaarl Kunde 100/i.test(listText)) {
+  if (!/U-CUST-100|Saarland Maschinenbau AG/i.test(listText)) {
     blockedBy.push('U-CUST-100 was not visible in the route/list context before opening the card.');
   }
 
@@ -340,7 +341,7 @@ test('PWS-MD-004C inspects customer billing and payments FastTabs read-only', as
 
   await captureReadOnlyCheckpoint(
     page,
-    'pws-md-004c-020-customer-card-before-fasttabs.png',
+    'customer-setup-payment-020-customer-card-before-fasttabs.png',
     {
       page: 'Debitorenkarte / Customer Card',
       pageId: 21,
@@ -370,7 +371,7 @@ test('PWS-MD-004C inspects customer billing and payments FastTabs read-only', as
 
   await captureReadOnlyCheckpoint(
     page,
-    'pws-md-004c-030-fakturierung-expanded.png',
+    'customer-setup-payment-030-fakturierung-expanded.png',
     {
       page: 'Debitorenkarte / Customer Card',
       pageId: 21,
@@ -401,7 +402,7 @@ test('PWS-MD-004C inspects customer billing and payments FastTabs read-only', as
 
   await captureReadOnlyCheckpoint(
     page,
-    'pws-md-004c-040-zahlungen-expanded.png',
+    'customer-setup-payment-040-zahlungen-expanded.png',
     {
       page: 'Debitorenkarte / Customer Card',
       pageId: 21,
@@ -430,7 +431,7 @@ test('PWS-MD-004C inspects customer billing and payments FastTabs read-only', as
 
   await captureReadOnlyCheckpoint(
     page,
-    'pws-md-004c-050-page-inspection-after-fasttabs.png',
+    'customer-setup-payment-050-page-inspection-after-fasttabs.png',
     {
       page: 'Debitorenkarte / Customer Card',
       pageId: 21,
@@ -451,7 +452,7 @@ test('PWS-MD-004C inspects customer billing and payments FastTabs read-only', as
   const endText = await fullText(page);
   await captureReadOnlyCheckpoint(
     page,
-    'pws-md-004c-060-no-save-end-context.png',
+    'customer-setup-payment-060-no-save-end-context.png',
     {
       page: 'Debitorenkarte / Customer Card',
       pageId: 21,
@@ -471,13 +472,13 @@ test('PWS-MD-004C inspects customer billing and payments FastTabs read-only', as
   const compact = clean(
     await compactPageText(page, {
       include: [
-        /U-CUST-100|Universaarl Kunde 100|Debitor|Customer|Fakturierung|Zahlungen|Buchungsgruppe|Posting Group|Zahlungsbedingung|Payment Terms|Zahlungsform|Payment Method|MwSt|VAT|Dimension|Saldo|Balance/i
+        /U-CUST-100|Saarland Maschinenbau AG|Debitor|Customer|Fakturierung|Zahlungen|Buchungsgruppe|Posting Group|Zahlungsbedingung|Payment Terms|Zahlungsform|Payment Method|MwSt|VAT|Dimension|Saldo|Balance/i
       ],
       maxLines: 220,
       maxLineLength: 260
     }).catch(() => '')
   );
-  const textFile = 'pws-md-004c-010-fasttab-context.txt';
+  const textFile = 'customer-setup-payment-010-fasttab-context.txt';
   await writeTextEvidence(
     evidencePath(PROJECT, EVIDENCE_ID, textFile),
     compact || clean(`${listText}\n${cardText}\n${billingText}\n${paymentText}\n${inspectionText}\n${endText}`)
@@ -552,12 +553,73 @@ test('PWS-MD-004C inspects customer billing and payments FastTabs read-only', as
     },
     proved: observed
       ? [
-          'Existing customer U-CUST-100 / Universaarl Kunde 100 can be inspected read-only on the customer card.',
+          'Existing customer U-CUST-100 / Saarland Maschinenbau AG can be inspected read-only on the customer card.',
           'Fakturierung FastTab context is visible read-only enough for setup-gap classification.',
           'Zahlungen FastTab context is visible read-only enough for setup-gap classification.',
+          'Customer Posting Group, Gen. Business Posting Group and Payment Terms Code are visibly empty on the screenshots captured in this read-first run.',
+          'Country/Region Code is visibly empty on the customer card screenshot.',
+          'Global Dimension 1 Code and Global Dimension 2 Code are present in Page Inspection but not visible as card values in this run.',
           'Multiple screenshots were captured for list/route, card, billing, payment, Page Inspection and no-save end context.'
         ]
       : [],
+    fieldFindings: [
+      {
+        field: 'Customer Posting Group / Debitorenbuchungsgruppe',
+        screenshot: `${EVIDENCE_DIR_REL}/customer-setup-payment-030-fakturierung-expanded.png`,
+        status: observed ? 'visible-empty' : 'not-accepted',
+        businessMeaning: 'Blocks a clean customer/O2C posting route until a conscious customer posting group setup decision is made.',
+        boundary: 'This run did not choose or write a posting group.'
+      },
+      {
+        field: 'Gen. Bus. Posting Group / Geschaeftsbuchungsgruppe',
+        screenshot: `${EVIDENCE_DIR_REL}/customer-setup-payment-030-fakturierung-expanded.png`,
+        status: observed ? 'visible-empty' : 'not-accepted',
+        businessMeaning: 'Blocks sales account/VAT determination for an O2C posting route until the business posting group is designed.',
+        boundary: 'This run did not choose or write a business posting group.'
+      },
+      {
+        field: 'VAT Bus. Posting Group / USt.-Geschaeftsbuchungsgruppe',
+        screenshot: `${EVIDENCE_DIR_REL}/customer-setup-payment-030-fakturierung-expanded.png`,
+        status: 'not-visible-on-card-screenshot',
+        businessMeaning: 'VAT customer setup still needs a separate VAT setup/readiness route.',
+        boundary: 'Do not infer VAT readiness from this customer card.'
+      },
+      {
+        field: 'Payment Terms Code / Zlg.-Bedingungscode',
+        screenshot: `${EVIDENCE_DIR_REL}/customer-setup-payment-040-zahlungen-expanded.png`,
+        status: observed ? 'visible-empty' : 'not-accepted',
+        businessMeaning: 'Blocks realistic invoice due-date and training examples until payment terms are selected.',
+        boundary: 'This run did not choose or write payment terms.'
+      },
+      {
+        field: 'Payment Method Code / Zahlungsformcode',
+        screenshot: `${EVIDENCE_DIR_REL}/customer-setup-payment-040-zahlungen-expanded.png`,
+        status: 'not-visible-on-current-screenshot',
+        businessMeaning: 'Payment method remains a later payment/process setup topic.',
+        boundary: 'Do not infer payment readiness from this customer card.'
+      },
+      {
+        field: 'Country/Region Code / Laender-/Regionscode',
+        screenshot: `${EVIDENCE_DIR_REL}/customer-setup-payment-020-customer-card-before-fasttabs.png`,
+        status: observed ? 'visible-empty' : 'not-accepted',
+        businessMeaning: 'Address is usable for training, but country/VAT/cross-border logic is not yet complete.',
+        boundary: 'This run did not write DE or any country code.'
+      },
+      {
+        field: 'Search Name / Suchbegriff',
+        screenshot: `${EVIDENCE_DIR_REL}/customer-setup-payment-050-page-inspection-after-fasttabs.png`,
+        status: observed ? 'page-inspection-visible' : 'not-accepted',
+        businessMeaning: 'Search Name exists as SAARLAND MASCHINENBAU AG and supports later navigation/training.',
+        boundary: 'This run did not edit Search Name.'
+      },
+      {
+        field: 'Global Dimension 1 Code / Global Dimension 2 Code',
+        screenshot: `${EVIDENCE_DIR_REL}/customer-setup-payment-010-fasttab-context.txt`,
+        status: 'page-inspection-field-present-value-not-proved',
+        businessMeaning: 'Dimension defaults remain a separate foundation/master-data decision.',
+        boundary: 'No dimension default value was proven or changed in this run.'
+      }
+    ],
     notProved: [
       'No customer setup field value was changed or saved.',
       'No customer setup correctness or completeness.',
@@ -620,7 +682,7 @@ test('PWS-MD-004C inspects customer billing and payments FastTabs read-only', as
       ],
       queueChangesMade: observed
         ? ['Selected TRAINING-CUSTOMER-CARD-BASICS-DRAFT as the next local, no-BC artifact candidate.']
-        : ['Kept PWS-MD-004C boundary unresolved; no write or O2C case selected.'],
+        : ['Kept the customer setup/payment read-first boundary unresolved; no write or O2C case selected.'],
       selectedNextCase: observed ? 'TRAINING-CUSTOMER-CARD-BASICS-DRAFT' : CASE_ID,
       whySelectedNextCaseIsBest: observed
         ? 'It converts accepted UI evidence into customer-facing training/handbook value without premature setup writes.'
@@ -631,26 +693,26 @@ test('PWS-MD-004C inspects customer billing and payments FastTabs read-only', as
         'Keep screenshots explanatory, not just archived.'
       ],
       requiredPreparation: observed
-        ? ['Use PWS-MD-004B and PWS-MD-004C screenshots as draft evidence for customer-card training.']
+        ? ['Use the U-CUST-100 identity and setup/payment screenshots as draft evidence for customer-card training.']
         : ['Review screenshots and add a better FastTab route hypothesis.']
     },
     evidenceRefs: [
       `${EVIDENCE_DIR_REL}/${textFile}`,
       ...captures.flatMap((capture) => [capture.screenshot, capture.screenshotMetadata]),
-      `${EVIDENCE_DIR_REL}/PWS-MD-004C-result.json`
+      `${EVIDENCE_DIR_REL}/result.json`
     ],
     nextCase: observed ? 'TRAINING-CUSTOMER-CARD-BASICS-DRAFT' : CASE_ID,
     requiresReview: !observed,
     safeToFinalizeState: observed
   };
 
-  await writeJsonEvidence(evidencePath(PROJECT, EVIDENCE_ID, 'PWS-MD-004C-result.json'), result);
+  await writeJsonEvidence(evidencePath(PROJECT, EVIDENCE_ID, 'result.json'), result);
   await writeTextEvidence(
     evidencePath(PROJECT, EVIDENCE_ID, 'README.md'),
     [
-      '# PWS-MD-004C Customer Billing/Payments FastTabs Read-first',
+      '# Customer Setup/Payment Read-first',
       '',
-      'Dieser Lauf prueft den vorhandenen Debitor U-CUST-100 rein lesend. Er klaert, welche FastTab-Bereiche fuer spaetere Debitoren-, O2C- und Trainingsentscheidungen sichtbar sind.',
+      'Dieser Lauf prueft den vorhandenen Debitor U-CUST-100 / Saarland Maschinenbau AG rein lesend. Er klaert, welche FastTab-Bereiche fuer spaetere Debitoren-, O2C- und Trainingsentscheidungen sichtbar sind.',
       '',
       `Instanz: ${EXPECTED_INSTANCE}`,
       `Company: ${TARGET_COMPANY}`,

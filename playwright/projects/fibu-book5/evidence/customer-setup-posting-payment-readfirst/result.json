@@ -1,0 +1,238 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized-compatible",
+  "caseId": "CUSTOMER-SETUP-POSTING-PAYMENT-READFIRST",
+  "source": "playwright-readonly-master-data-fasttab-proof",
+  "resultStatus": "observed-read-first-fasttabs",
+  "startedAt": "2026-07-07T00:01:43.446Z",
+  "completedAt": "2026-07-07T00:02:09.372Z",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "Debitorenkarte / Customer Card",
+  "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=21&company=UNIVERSAARL-DE&dc=0",
+  "liveActionsExecuted": true,
+  "businessCentralOpened": true,
+  "playwrightLiveRunExecuted": true,
+  "actionsTaken": [
+    "Opened the guarded customer context route.",
+    "Opened or selected existing customer through row-double-click-scope-2.",
+    "Expanded Fakturierung through exact-heading-text-0-scope-2.",
+    "Expanded Zahlungen through exact-heading-text-4-scope-2.",
+    "Captured customer list/route, card, Fakturierung, Zahlungen, Page Inspection and no-save end screenshots.",
+    "Kept the run read-first and no-save."
+  ],
+  "actionsNotTaken": [
+    "No New/Neu action clicked.",
+    "No customer created.",
+    "No customer edited.",
+    "No customer saved.",
+    "No customer deleted.",
+    "No values typed.",
+    "No customer template changed.",
+    "No customer posting group changed.",
+    "No payment terms changed.",
+    "No payment method changed.",
+    "No VAT setup changed.",
+    "No dimensions changed.",
+    "No sales document or draft created.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No API shortcut."
+  ],
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "screenshots": [
+    "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-010-customer-list-route-context.png",
+    "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-020-customer-card-before-fasttabs.png",
+    "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-030-fakturierung-expanded.png",
+    "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-040-zahlungen-expanded.png",
+    "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-050-page-inspection-after-fasttabs.png",
+    "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-060-no-save-end-context.png"
+  ],
+  "screenshotQa": {
+    "requiredCheckpoints": [
+      "customer list or route context",
+      "customer card before FastTabs",
+      "Fakturierung expanded",
+      "Zahlungen expanded",
+      "Page Inspection after FastTabs",
+      "no-save end context"
+    ],
+    "capturedCheckpoints": [
+      "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-010-customer-list-route-context.png",
+      "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-020-customer-card-before-fasttabs.png",
+      "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-030-fakturierung-expanded.png",
+      "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-040-zahlungen-expanded.png",
+      "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-050-page-inspection-after-fasttabs.png",
+      "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-060-no-save-end-context.png"
+    ],
+    "acceptedForHandbookTrainingDraft": true,
+    "acceptedForCustomerWriteGate": false,
+    "acceptedForO2CReady": false,
+    "reason": "Multiple visual checkpoints show the existing customer card and billing/payment FastTab contexts without write."
+  },
+  "proved": [
+    "Existing customer U-CUST-100 / Saarland Maschinenbau AG can be inspected read-only on the customer card.",
+    "Fakturierung FastTab context is visible read-only enough for setup-gap classification.",
+    "Zahlungen FastTab context is visible read-only enough for setup-gap classification.",
+    "Customer Posting Group, Gen. Business Posting Group and Payment Terms Code are visibly empty on the screenshots captured in this read-first run.",
+    "Country/Region Code is visibly empty on the customer card screenshot.",
+    "Global Dimension 1 Code and Global Dimension 2 Code are present in Page Inspection but not visible as card values in this run.",
+    "Multiple screenshots were captured for list/route, card, billing, payment, Page Inspection and no-save end context."
+  ],
+  "fieldFindings": [
+    {
+      "field": "Customer Posting Group / Debitorenbuchungsgruppe",
+      "screenshot": "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-030-fakturierung-expanded.png",
+      "status": "visible-empty",
+      "businessMeaning": "Blocks a clean customer/O2C posting route until a conscious customer posting group setup decision is made.",
+      "boundary": "This run did not choose or write a posting group."
+    },
+    {
+      "field": "Gen. Bus. Posting Group / Geschaeftsbuchungsgruppe",
+      "screenshot": "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-030-fakturierung-expanded.png",
+      "status": "visible-empty",
+      "businessMeaning": "Blocks sales account/VAT determination for an O2C posting route until the business posting group is designed.",
+      "boundary": "This run did not choose or write a business posting group."
+    },
+    {
+      "field": "VAT Bus. Posting Group / USt.-Geschaeftsbuchungsgruppe",
+      "screenshot": "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-030-fakturierung-expanded.png",
+      "status": "not-visible-on-card-screenshot",
+      "businessMeaning": "VAT customer setup still needs a separate VAT setup/readiness route.",
+      "boundary": "Do not infer VAT readiness from this customer card."
+    },
+    {
+      "field": "Payment Terms Code / Zlg.-Bedingungscode",
+      "screenshot": "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-040-zahlungen-expanded.png",
+      "status": "visible-empty",
+      "businessMeaning": "Blocks realistic invoice due-date and training examples until payment terms are selected.",
+      "boundary": "This run did not choose or write payment terms."
+    },
+    {
+      "field": "Payment Method Code / Zahlungsformcode",
+      "screenshot": "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-040-zahlungen-expanded.png",
+      "status": "not-visible-on-current-screenshot",
+      "businessMeaning": "Payment method remains a later payment/process setup topic.",
+      "boundary": "Do not infer payment readiness from this customer card."
+    },
+    {
+      "field": "Country/Region Code / Laender-/Regionscode",
+      "screenshot": "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-020-customer-card-before-fasttabs.png",
+      "status": "visible-empty",
+      "businessMeaning": "Address is usable for training, but country/VAT/cross-border logic is not yet complete.",
+      "boundary": "This run did not write DE or any country code."
+    },
+    {
+      "field": "Search Name / Suchbegriff",
+      "screenshot": "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-050-page-inspection-after-fasttabs.png",
+      "status": "page-inspection-visible",
+      "businessMeaning": "Search Name exists as SAARLAND MASCHINENBAU AG and supports later navigation/training.",
+      "boundary": "This run did not edit Search Name."
+    },
+    {
+      "field": "Global Dimension 1 Code / Global Dimension 2 Code",
+      "screenshot": "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-010-fasttab-context.txt",
+      "status": "page-inspection-field-present-value-not-proved",
+      "businessMeaning": "Dimension defaults remain a separate foundation/master-data decision.",
+      "boundary": "No dimension default value was proven or changed in this run."
+    }
+  ],
+  "notProved": [
+    "No customer setup field value was changed or saved.",
+    "No customer setup correctness or completeness.",
+    "No customer write gate.",
+    "No O2C readiness.",
+    "No VAT correctness.",
+    "No posting group correctness.",
+    "No sales document, Preview Posting, Posting, payment or ledger trace."
+  ],
+  "blockedBy": [],
+  "warnings": [
+    "New/Neu may be visible but was not clicked.",
+    "Edit/List Edit may be visible but was not clicked.",
+    "Posting/Preview text may be visible but was not clicked."
+  ],
+  "flags": {
+    "noWrite": true,
+    "noPost": true,
+    "noPreview": true,
+    "noDraft": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noCompanySwitch": true,
+    "noApiShortcut": true
+  },
+  "nextStepDecision": {
+    "currentCase": "CUSTOMER-SETUP-POSTING-PAYMENT-READFIRST",
+    "plannedNextCaseBeforeReview": "CUSTOMER-SETUP-POSTING-PAYMENT-READFIRST",
+    "lastEvidenceSummary": "Customer billing and payment FastTab contexts were observed read-only with multiple screenshots.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The read-first proof is complete, and the previously suggested training route is already completed; the next useful step is a local setup value decision before any narrow write gate.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "CUSTOMER-SETUP-VALUE-DECISION",
+        "status": "ready-next",
+        "reason": "Screenshots show empty customer posting, business posting and payment term fields; values must be decided before any write."
+      },
+      {
+        "caseId": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
+        "status": "ready-after-current",
+        "reason": "Only possible after the value decision selects a narrow, evidence-backed field set."
+      },
+      {
+        "caseId": "O2C-MINIMAL-ROUTE-DECISION",
+        "status": "blocked",
+        "reason": "O2C remains blocked until customer, item/service, VAT and posting group setup are consciously handled."
+      },
+      {
+        "caseId": "PWS-MD-VENDOR-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Vendor write work remains behind payment/bank and posting setup boundaries."
+      },
+      {
+        "caseId": "PWS-MD-ITEM-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Item/service write work remains behind UOM, posting, VAT product, inventory and costing setup."
+      }
+    ],
+    "queueChangesMade": [
+      "Selected CUSTOMER-SETUP-VALUE-DECISION because TRAINING-CUSTOMER-CARD-BASICS-DRAFT is already completed and setup values must not be guessed."
+    ],
+    "selectedNextCase": "CUSTOMER-SETUP-VALUE-DECISION",
+    "whySelectedNextCaseIsBest": "It converts concrete read-first field evidence into a Business Central setup decision before any customer setup write gate.",
+    "risksBeforeNextCase": [
+      "Do not claim customer setup correctness from visible field context.",
+      "Do not proceed to O2C before posting/VAT/item/service dependencies are resolved.",
+      "Keep screenshots explanatory, not just archived."
+    ],
+    "requiredPreparation": [
+      "Use screenshots 030 and 040 plus the customer field map; research Microsoft Learn setup logic if the selected posting/payment values are not obvious."
+    ]
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-010-fasttab-context.txt",
+    "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-010-customer-list-route-context.png",
+    "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-010-customer-list-route-context.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-020-customer-card-before-fasttabs.png",
+    "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-020-customer-card-before-fasttabs.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-030-fakturierung-expanded.png",
+    "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-030-fakturierung-expanded.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-040-zahlungen-expanded.png",
+    "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-040-zahlungen-expanded.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-050-page-inspection-after-fasttabs.png",
+    "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-050-page-inspection-after-fasttabs.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-060-no-save-end-context.png",
+    "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/customer-setup-payment-060-no-save-end-context.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/result.json"
+  ],
+  "nextCase": "CUSTOMER-SETUP-VALUE-DECISION",
+  "requiresReview": false,
+  "safeToFinalizeState": true
+}
