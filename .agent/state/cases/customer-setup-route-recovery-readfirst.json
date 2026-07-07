@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
-  "status": "planned-read-first",
+  "status": "blocked-read-first-route-recovery",
   "mode": "universaarl-masterdata-setup-route-recovery",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -12,9 +12,11 @@
   "purpose": "Recover stable read-only routes to customer setup dependency pages that direct page-id navigation opened as Role Center.",
   "businessPurpose": "Customer setup values must not be guessed. Before assigning posting groups, VAT groups or payment terms to U-CUST-100, the actual setup pages must be visible and explained from the real Business Central UI.",
   "sourceEvidence": [
-    "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/result.json"
+    "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/result.json",
+    "playwright/projects/fibu-book5/evidence/customer-setup-route-recovery-readfirst/result.json"
   ],
   "blockedPages": [
+    "Debitorenbuchungsgruppen / Customer Posting Groups",
     "Geschaeftsbuchungsgruppen / Gen. Business Posting Groups",
     "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups",
     "Zahlungsbedingungen / Payment Terms"
@@ -52,6 +54,8 @@
   "acceptanceCriteria": [
     "Each recovered page is accepted only if screenshot text and Page Inspection show the requested setup page.",
     "Business Manager Role Center screenshots are rejected as setup proof.",
+    "Tell-Me/search overlays and generic search categories are rejected as setup proof.",
+    "Unrelated dialogs such as Power BI setup are rejected as setup proof and must be closed safely.",
     "No setup, master data, document, preview, posting, payment or API shortcut is changed.",
     "The result decides whether CUSTOMER-SETUP-VALUE-WRITE-GATE is ready or still blocked."
   ],
@@ -63,5 +67,12 @@
   ],
   "nextCaseIfReady": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
   "nextCaseIfBlocked": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
-  "updatedAt": "2026-07-07T02:29:00.000Z"
+  "updatedAt": "2026-07-07T00:43:31.204Z",
+  "lastResultPath": "playwright/projects/fibu-book5/evidence/customer-setup-route-recovery-readfirst/result.json",
+  "routeLearning": "Direct page-id navigation can fall back to Role Center and broad Tell-Me clicks can open categories or unrelated dialogs. Next route must be a materially different read-only navigation hypothesis with screenshot QA, hover/tooltip where useful, and Page Inspection confirmation.",
+  "nextRouteHypotheses": [
+    "Use a materially different read-only route: Alle Berichte / Explore pages and reports / menu navigation instead of broad Tell-Me category clicks.",
+    "If Tell-Me is used again, first inventory exact visible candidates, tooltips and roles; click only an exact page result, never generic Unternehmensdaten durchsuchen/Hilfe durchsuchen categories.",
+    "Use Page Inspection and screenshot QA as acceptance gates; Role Center, search overlay and unrelated dialogs are blocker evidence only."
+  ]
 }

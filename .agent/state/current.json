@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-07T02:30:00.000Z",
+  "updatedAt": "2026-07-07T00:43:31.204Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -61,7 +61,7 @@
     "use-confidential-real-customer-data"
   ],
   "nextCase": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
-  "nextStep": "Recover the read-first routes for Customer Posting Groups, General Business Posting Groups, VAT Business Posting Groups and Payment Terms. Do not open a customer setup write gate until screenshot QA proves the actual setup pages rather than Role Center fallbacks.",
+  "nextStep": "Run a materially different read-first customer setup route recovery: do not repeat broad Tell-Me category clicks; inspect real navigation surfaces such as Alle Berichte/menus/scoped setup lists with screenshot QA and Page Inspection before any customer setup write gate.",
   "preparedNextCaseFile": ".agent/state/cases/customer-setup-dependency-readfirst.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
@@ -199,9 +199,9 @@
     "source": "top-level-current-state-and-customer-first-record-data-quality-decision",
     "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
-    "activeCaseFile": ".agent/state/cases/customer-setup-dependency-readfirst.json",
+    "activeCaseFile": ".agent/state/cases/customer-setup-route-recovery-readfirst.json",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "Customer setup value decision is complete; the next safe step is read-first dependency proof with stronger screenshot QA before any setup-dependent customer field write."
+    "reason": "Customer setup write gate remains blocked because setup dependency pages were not actually reached; screenshot QA proved Role Center/Tell-Me/unrelated-dialog fallbacks."
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -11242,5 +11242,50 @@
     "screenshotQaAcceptedForWriteGate": false,
     "uiLearning": "Direct page-id navigation can silently fall back to Business Manager Role Center. A setup page is only accepted when screenshot text and Page Inspection confirm the requested page.",
     "nextBoundary": "Customer setup write gate remains blocked until the setup-page routes are recovered or explicitly parked with a safer alternative."
+  },
+  "latestCustomerSetupRouteRecoveryReadfirst": {
+    "caseId": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
+    "status": "blocked-route-recovery",
+    "resultPath": "playwright/projects/fibu-book5/evidence/customer-setup-route-recovery-readfirst/result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "businessCentralOpened": true,
+    "playwrightLiveRunExecuted": true,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "payment": false,
+    "apiShortcut": false,
+    "observedSetupPages": [],
+    "blockedSetupPages": [
+      {
+        "label": "Debitorenbuchungsgruppen / Customer Posting Groups",
+        "routeUsed": "bounded-tell-me",
+        "reason": "Required page signal missing: /Code/i; Required page signal missing: /Debitorensammelkonto|Receivables Account|Forderung/i; Visible state still looks like Tell-Me/search overlay."
+      },
+      {
+        "label": "Geschaeftsbuchungsgruppen / Gen. Business Posting Groups",
+        "routeUsed": "bounded-tell-me",
+        "reason": "Required page signal missing: /Code/i; Visible state still looks like Tell-Me/search overlay."
+      },
+      {
+        "label": "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups",
+        "routeUsed": "bounded-tell-me",
+        "reason": "Required page signal missing: /Code/i; Visible state still looks like Tell-Me/search overlay."
+      },
+      {
+        "label": "Zahlungsbedingungen / Payment Terms",
+        "routeUsed": "bounded-tell-me",
+        "reason": "Target page title is not visible in the page surface.; Required page signal missing: /Code/i; Required page signal missing: /Faelligkeitsformel|Due Date Calculation/i"
+      }
+    ],
+    "screenshotCount": 20,
+    "screenshotQaAcceptedForWriteGate": false,
+    "screenshotQa": "Accepted as blocker evidence, rejected as setup-page proof: screenshots show Role Center fallback, Tell-Me overlay or an unrelated Power BI setup dialog instead of the requested setup lists.",
+    "uiLearning": "Direct page-id navigation can fall back to Role Center and broad Tell-Me clicks can open categories or unrelated dialogs. Next route must be a materially different read-only navigation hypothesis with screenshot QA, hover/tooltip where useful, and Page Inspection confirmation.",
+    "nextCase": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
+    "updatedAt": "2026-07-07T00:43:31.204Z"
   }
 }

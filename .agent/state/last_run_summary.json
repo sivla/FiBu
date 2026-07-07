@@ -1,40 +1,35 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "CUSTOMER-SETUP-DEPENDENCY-READFIRST",
-  "caseId": "CUSTOMER-SETUP-DEPENDENCY-READFIRST",
-  "status": "partially-blocked-read-first-dependencies",
-  "completedAt": "2026-07-07T00:30:21.414Z",
-  "mode": "universaarl-masterdata-setup-readfirst",
+  "runId": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
+  "caseId": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
+  "status": "blocked-route-recovery",
+  "completedAt": "2026-07-07T00:39:59.278Z",
+  "mode": "universaarl-masterdata-setup-route-recovery",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Read-first Customer setup dependency proof ran in real Business Central UI. U-CUST-100 customer card/FastTab context was observed. All four direct setup-page routes fell back to Business Manager Role Center and are blocked by screenshot/Page-Inspection QA.",
-  "resultPath": "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/result.json",
+  "summary": "Read-first customer setup route recovery ran in real Business Central UI. No setup page was accepted: direct page-id routes fell back to Role Center, broad Tell-Me/search stayed in the search overlay or opened an unrelated Power BI setup dialog. The run is useful blocker evidence and keeps the customer setup write gate closed.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/customer-setup-route-recovery-readfirst/result.json",
   "changedArtifacts": [
     "package.json",
-    "scripts/agent/run-customer-setup-dependency-readfirst.mjs",
-    "playwright/projects/fibu-book5/tests/customer-setup-dependency-readfirst.spec.ts",
-    "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/result.json",
-    "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/README.md",
-    ".agent/state/cases/customer-setup-dependency-readfirst.json",
+    "scripts/agent/run-customer-setup-route-recovery-readfirst.mjs",
+    "playwright/projects/fibu-book5/tests/customer-setup-route-recovery-readfirst.spec.ts",
+    "playwright/projects/fibu-book5/evidence/customer-setup-route-recovery-readfirst/result.json",
+    "playwright/projects/fibu-book5/evidence/customer-setup-route-recovery-readfirst/README.md",
     ".agent/state/cases/customer-setup-route-recovery-readfirst.json",
     ".agent/state/current.json",
-    ".agent/state/last_run_summary.json",
-    "playwright/projects/fibu-book5/UNIVERSAARL-CUSTOMER-FIELD-MAP.md"
+    ".agent/state/last_run_summary.json"
   ],
   "actionsTaken": [
-    "Opened U-CUST-100 customer card read-only.",
-    "Captured billing and payment FastTab contexts.",
-    "Attempted field hover context without selecting values.",
-    "Opened Customer Posting Groups, General Business Posting Groups, VAT Business Posting Groups and Payment Terms read-only.",
-    "Captured setup page screenshots and Page Inspection diagnostics.",
-    "Returned to customer card no-save end context."
+    "Opened playthru / UNIVERSAARL-DE read-only.",
+    "Tried direct page-id route for Customer Posting Groups, General Business Posting Groups, VAT Business Posting Groups and Payment Terms.",
+    "Tried bounded Tell-Me/search route where direct route was not accepted.",
+    "Captured screenshots, compact text and Page Inspection diagnostics for each setup page route."
   ],
   "actionsNotTaken": [
     "No customer edited or saved.",
-    "No dropdown value selected.",
     "No setup row created, edited or saved.",
-    "No posting group, VAT setup, payment term, payment method or dimension changed.",
+    "No dropdown value selected.",
     "No document or draft created.",
     "No Preview Posting.",
     "No Posting.",
@@ -53,58 +48,70 @@
   "payment": false,
   "apiShortcut": false,
   "proved": [
-    "playthru / UNIVERSAARL-DE was used for a real Business Central read-first run.",
-    "U-CUST-100 / Saarland Maschinenbau AG customer setup context was inspected without editing.",
+    "playthru / UNIVERSAARL-DE was used for a real Business Central read-first route-recovery run.",
     "No setup, master data, document, Preview Posting, Posting, payment or API shortcut was changed."
   ],
   "notProved": [
     "No customer setup value was selected or written.",
-    "No VAT, posting group or payment term correctness.",
-    "No O2C readiness.",
-    "No sales document, Preview Posting, Posting, payment or ledger trace.",
-    "Debitorenbuchungsgruppen / Customer Posting Groups remains not strongly proven.",
-    "Geschaeftsbuchungsgruppen / Gen. Business Posting Groups remains not strongly proven.",
-    "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups remains not strongly proven.",
-    "Zahlungsbedingungen / Payment Terms remains not strongly proven."
+    "No setup correctness, VAT correctness or O2C readiness.",
+    "Debitorenbuchungsgruppen / Customer Posting Groups remains blocked: Required page signal missing: /Code/i; Required page signal missing: /Debitorensammelkonto|Receivables Account|Forderung/i; Visible state still looks like Tell-Me/search overlay.",
+    "Geschaeftsbuchungsgruppen / Gen. Business Posting Groups remains blocked: Required page signal missing: /Code/i; Visible state still looks like Tell-Me/search overlay.",
+    "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups remains blocked: Required page signal missing: /Code/i; Visible state still looks like Tell-Me/search overlay.",
+    "Zahlungsbedingungen / Payment Terms remains blocked: Target page title is not visible in the page surface.; Required page signal missing: /Code/i; Required page signal missing: /Faelligkeitsformel|Due Date Calculation/i"
   ],
   "blockedBy": [
-    "Debitorenbuchungsgruppen / Customer Posting Groups not observed strongly enough.",
-    "Geschaeftsbuchungsgruppen / Gen. Business Posting Groups not observed strongly enough.",
-    "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups not observed strongly enough.",
-    "Zahlungsbedingungen / Payment Terms not observed strongly enough."
+    "Debitorenbuchungsgruppen / Customer Posting Groups: Required page signal missing: /Code/i",
+    "Debitorenbuchungsgruppen / Customer Posting Groups: Required page signal missing: /Debitorensammelkonto|Receivables Account|Forderung/i",
+    "Debitorenbuchungsgruppen / Customer Posting Groups: Visible state still looks like Tell-Me/search overlay.",
+    "Geschaeftsbuchungsgruppen / Gen. Business Posting Groups: Required page signal missing: /Code/i",
+    "Geschaeftsbuchungsgruppen / Gen. Business Posting Groups: Visible state still looks like Tell-Me/search overlay.",
+    "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups: Required page signal missing: /Code/i",
+    "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups: Visible state still looks like Tell-Me/search overlay.",
+    "Zahlungsbedingungen / Payment Terms: Target page title is not visible in the page surface.",
+    "Zahlungsbedingungen / Payment Terms: Required page signal missing: /Code/i",
+    "Zahlungsbedingungen / Payment Terms: Required page signal missing: /Faelligkeitsformel|Due Date Calculation/i"
   ],
   "screenshotQa": {
-    "requiredCheckpoints": [
-      "customer-card-before-any-field-interaction",
-      "billing-fasttab-expanded",
-      "payment-fasttab-expanded",
-      "field-hover-context-before-selection",
-      "setup-list-context-for-each-relevant-page",
-      "page-inspection-for-source-page-and-target-setup-page",
-      "no-save-end-context"
-    ],
-    "capturedCheckpoints": [
-      "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/customer-setup-dep-010-customer-card-start.png",
-      "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/customer-setup-dep-020-billing-fasttab-expanded.png",
-      "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/customer-setup-dep-030-field-hover-context.png",
-      "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/customer-setup-dep-040-payment-fasttab-expanded.png",
-      "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/customer-setup-dep-050-customer-page-inspection.png",
-      "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/customer-setup-dep-customer-posting-groups-context.png",
-      "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/customer-setup-dep-customer-posting-groups-page-inspection.png",
-      "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/customer-setup-dep-general-business-posting-groups-context.png",
-      "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/customer-setup-dep-general-business-posting-groups-page-inspection.png",
-      "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/customer-setup-dep-vat-business-posting-groups-context.png",
-      "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/customer-setup-dep-vat-business-posting-groups-page-inspection.png",
-      "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/customer-setup-dep-payment-terms-context.png",
-      "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/customer-setup-dep-payment-terms-page-inspection.png",
-      "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/customer-setup-dep-900-no-save-end-context.png"
-    ],
+    "capturedCount": 20,
     "acceptedForWriteGate": false,
-    "acceptedForBookTrainingDraft": false,
-    "reason": "Some setup dependency pages were not observed strongly enough; do not write customer setup values yet."
+    "reason": "Accepted as blocker evidence, rejected as setup-page proof: screenshots show Role Center fallback, Tell-Me overlay or an unrelated Power BI setup dialog instead of the requested setup lists."
   },
-  "uiLearning": "Role Center screenshots are not setup proof. Page Inspection is now part of the acceptance rule for dependency pages.",
+  "uiLearning": "Direct page-id navigation can fall back to Role Center and broad Tell-Me clicks can open categories or unrelated dialogs. Next route must be a materially different read-only navigation hypothesis with screenshot QA, hover/tooltip where useful, and Page Inspection confirmation.",
+  "nextStepDecision": {
+    "currentCase": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
+    "plannedNextCaseBeforeReview": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
+    "lastEvidenceSummary": "Recovered 0/4 customer setup dependency pages.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "At least one required setup page remains blocked; write gate remains blocked.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
+        "status": "blocked",
+        "reason": "Route recovery remains incomplete."
+      },
+      {
+        "caseId": "O2C-MINIMAL-ROUTE-DECISION",
+        "status": "needs-setup-first",
+        "reason": "O2C needs setup values plus item/service readiness before a process route."
+      },
+      {
+        "caseId": "CUSTOMER-TRAINING-SETUP-FIELDS-DRAFT",
+        "status": "needs-book-context-first",
+        "reason": "Only accepted setup pages can feed training text; blocked routes remain an internal note."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
+    "whySelectedNextCaseIsBest": "Repeating the same write gate would be unsafe while route recovery is incomplete.",
+    "risksBeforeNextCase": [
+      "Visible setup list does not equal correctness.",
+      "Do not assign values until a separate Smart Decision names exact codes."
+    ],
+    "requiredPreparation": [
+      "Repair remaining blocked route(s) or consciously park them with a safer Foundation alternative."
+    ]
+  },
   "nextCase": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
-  "nextStep": "Run CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST with bounded Tell-Me or known Foundation route patterns before any customer setup value write gate.",
-  "updatedAt": "2026-07-07T02:30:00.000Z"
+  "nextStep": "Run a materially different read-first customer setup route recovery: do not repeat broad Tell-Me category clicks; inspect real navigation surfaces such as Alle Berichte/menus/scoped setup lists with screenshot QA and Page Inspection before any customer setup write gate.",
+  "updatedAt": "2026-07-07T00:43:31.204Z"
 }
