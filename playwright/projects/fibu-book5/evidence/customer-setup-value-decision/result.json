@@ -1,0 +1,229 @@
+{
+  "schemaVersion": 1,
+  "caseId": "CUSTOMER-SETUP-VALUE-DECISION",
+  "source": "local-consultant-decision-from-playthru-evidence-and-microsoft-learn",
+  "resultStatus": "completed-local-decision",
+  "completedAt": "2026-07-07T03:35:00.000+02:00",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "businessCentralOpened": false,
+  "playwrightLiveRunExecuted": false,
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "confidentialRealCustomerDataUsed": false,
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/customer-setup-value-decision/result.json",
+    "playwright/projects/fibu-book5/evidence/customer-setup-value-decision/README.md",
+    ".agent/state/cases/customer-setup-value-decision.json",
+    ".agent/state/cases/customer-setup-dependency-readfirst.json",
+    ".agent/state/current.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
+    "playwright/projects/fibu-book5/UNIVERSAARL-CUSTOMER-FIELD-MAP.md"
+  ],
+  "actionsTaken": [
+    "Reviewed CUSTOMER-SETUP-POSTING-PAYMENT-READFIRST evidence.",
+    "Reviewed the Universaarl customer field map and Foundation readiness boundaries.",
+    "Checked official Microsoft Learn product logic for posting groups, VAT/GST setup, payment terms and payment methods.",
+    "Classified each customer setup field as ready, blocked or parked.",
+    "Created the next read-first case with explicit screenshot QA requirements."
+  ],
+  "actionsNotTaken": [
+    "No Business Central live session opened.",
+    "No Playwright live test executed.",
+    "No customer edited or saved.",
+    "No posting group, VAT setup, payment term, payment method or dimension changed.",
+    "No document or draft created.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No payment.",
+    "No API shortcut.",
+    "No confidential real customer data used."
+  ],
+  "flags": {
+    "noBusinessCentralLive": true,
+    "noPlaywrightLive": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noDraft": true,
+    "noPreview": true,
+    "noPost": true,
+    "noPayment": true,
+    "noApiShortcut": true,
+    "noConfidentialRealCustomerData": true
+  },
+  "decisionSummary": "Do not write customer posting, general business posting, VAT business posting or payment term values yet. U-CUST-100 has realistic identity/address evidence, but the setup-dependent billing/payment fields need a setup-dependency read-first proof with stronger screenshot QA before a narrow write gate.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/result.json",
+    "playwright/projects/fibu-book5/UNIVERSAARL-CUSTOMER-FIELD-MAP.md",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md"
+  ],
+  "officialSourceReferences": [
+    {
+      "topic": "Posting groups map customers, vendors, items and documents to G/L accounts; general posting setup combines business and product groups.",
+      "url": "https://learn.microsoft.com/en-au/dynamics365/business-central/finance-posting-groups"
+    },
+    {
+      "topic": "VAT/GST business and product posting groups determine tax calculation and can be defaulted from general business/product groups or templates.",
+      "url": "https://learn.microsoft.com/en-au/dynamics365/business-central/finance-setup-vat"
+    },
+    {
+      "topic": "Payment methods can be assigned to customers/vendors, but remain a separate payment-process decision.",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/finance-payment-methods"
+    },
+    {
+      "topic": "Payment terms carry code, display name and due-date calculation logic.",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/api-reference/v2.0/resources/dynamics_paymentterm"
+    }
+  ],
+  "fieldDecisions": [
+    {
+      "field": "Country/Region Code / Laender-/Regionscode",
+      "currentEvidence": "Visible empty on the customer card screenshot.",
+      "candidateValue": "DE",
+      "decision": "ready-for-narrow-write-gate",
+      "reason": "The customer is a simulated German B2B customer with German address data already visible after reopen. This value is a data-quality field, not by itself a VAT/posting-readiness claim.",
+      "requiredBeforeWrite": [
+        "Screenshot before edit showing the empty country field.",
+        "Field-level write gate limited to country/search-name style data-quality fields.",
+        "Reopen proof after save."
+      ],
+      "stillNotProved": [
+        "No VAT correctness.",
+        "No O2C readiness.",
+        "No document or posting readiness."
+      ]
+    },
+    {
+      "field": "Customer Posting Group / Debitorenbuchungsgruppe",
+      "currentEvidence": "Visible empty on Fakturierung screenshot.",
+      "candidateValue": null,
+      "decision": "blocked-until-setup-dependency-readfirst",
+      "reason": "Customer posting groups link customer ledger behavior to receivables G/L accounts. The available evidence does not yet prove which Universaarl customer posting group exists and maps correctly.",
+      "requiredBeforeWrite": [
+        "Read Customer Posting Groups list with screenshot QA.",
+        "Prove the receivables account mapping for the selected group.",
+        "Document why the selected value fits a domestic B2B customer."
+      ]
+    },
+    {
+      "field": "Gen. Bus. Posting Group / Geschaeftsbuchungsgruppe",
+      "currentEvidence": "Visible empty on Fakturierung screenshot.",
+      "candidateValue": "domestic/customer business group candidate, exact BC code not selected",
+      "decision": "blocked-until-setup-dependency-readfirst",
+      "reason": "General business posting groups classify who we sell to or buy from, but posting correctness depends on General Posting Setup combinations. Foundation evidence is partial and not posting-ready.",
+      "requiredBeforeWrite": [
+        "Read General Business Posting Groups list.",
+        "Read the relevant General Posting Setup combination without writing.",
+        "Confirm the exact code and account mapping before choosing it on the customer."
+      ]
+    },
+    {
+      "field": "VAT Bus. Posting Group / USt.-Geschaeftsbuchungsgruppe",
+      "currentEvidence": "Not visible as a concrete customer-card value in the read-first screenshots.",
+      "candidateValue": "domestic VAT business group candidate, exact BC code not selected",
+      "decision": "blocked-until-vat-dependency-readfirst",
+      "reason": "VAT business posting groups represent markets such as domestic/EU/non-EU and combine with VAT product posting groups in VAT Posting Setup. Existing VAT evidence is not sufficient to write a customer VAT value.",
+      "requiredBeforeWrite": [
+        "Read VAT Business Posting Groups.",
+        "Read relevant VAT Posting Setup combinations.",
+        "Keep tax/compliance claims separate from UI evidence."
+      ]
+    },
+    {
+      "field": "Payment Terms Code / Zlg.-Bedingungscode",
+      "currentEvidence": "Visible empty on Zahlungen screenshot.",
+      "candidateValue": null,
+      "decision": "blocked-until-payment-terms-readfirst",
+      "reason": "A realistic B2B customer needs payment terms for due-date training, but the actual available Business Central codes and due-date calculations were not proven.",
+      "requiredBeforeWrite": [
+        "Read Payment Terms list.",
+        "Capture code, description and due-date calculation fields.",
+        "Choose a term that fits Universaarl's customer policy instead of inventing a code."
+      ]
+    },
+    {
+      "field": "Payment Method Code / Zahlungsformcode",
+      "currentEvidence": "Not visible on current customer-card screenshot.",
+      "candidateValue": null,
+      "decision": "parked",
+      "reason": "Payment method is useful later for payment process training, but it is not required to clean up the first customer identity/setup gap and should not be forced before bank/payment scope."
+    },
+    {
+      "field": "Global Dimension 1/2 Code",
+      "currentEvidence": "Fields are present in Page Inspection; customer values are not proven.",
+      "candidateValue": null,
+      "decision": "parked-until-dimension-defaults-decision",
+      "reason": "Dimensions are important for management reporting, but customer-level defaults need a separate dimension-default decision and should not be guessed from the dimension list alone."
+    }
+  ],
+  "proved": [
+    "A local setup value decision was made without opening Business Central.",
+    "Posting-group, VAT and payment-term customer fields should not be written from the current evidence.",
+    "Country/Region Code DE is the only field classified as ready for a narrow later write gate, with clear limits.",
+    "The next useful live step is a setup-dependency read-first proof with stronger screenshot QA, not a blind write gate."
+  ],
+  "notProved": [
+    "No BC setup value exists or is correct.",
+    "No customer setup value was written.",
+    "No VAT, posting group, payment term, dimension or O2C readiness.",
+    "No sales document, Preview Posting, Posting, payment or ledger trace."
+  ],
+  "warnings": [
+    "Do not infer available dropdown values from desired business semantics.",
+    "Do not claim a field is missing before FastTabs, layout, hover/tooltip, dropdowns and Page Inspection were checked.",
+    "Use realistic simulated customer data only; no confidential real customer data."
+  ],
+  "nextStepDecision": {
+    "currentCase": "CUSTOMER-SETUP-VALUE-DECISION",
+    "plannedNextCaseBeforeReview": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
+    "lastEvidenceSummary": "U-CUST-100 billing and payment FastTabs show empty setup-dependent fields; Page Inspection proves additional field context but not values.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "A write gate would be premature because the exact posting group, VAT group and payment terms codes are not yet proven in UNIVERSAARL-DE.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "CUSTOMER-SETUP-DEPENDENCY-READFIRST",
+        "status": "ready-next",
+        "reason": "Read setup lists and dropdown/tooltip contexts before selecting customer setup values."
+      },
+      {
+        "caseId": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
+        "status": "ready-after-current",
+        "reason": "Only after dependency screenshots prove exact values and mappings."
+      },
+      {
+        "caseId": "O2C-MINIMAL-ROUTE-DECISION",
+        "status": "needs-setup-first",
+        "reason": "O2C needs customer, VAT, posting group and item/service readiness."
+      },
+      {
+        "caseId": "PAYMENT-PROCESS-SETUP-ROUTE",
+        "status": "blocked",
+        "reason": "Payment method/bank scope is later and should not drive the first customer setup value."
+      }
+    ],
+    "queueChangesMade": [
+      "Replaced immediate CUSTOMER-SETUP-VALUE-WRITE-GATE with CUSTOMER-SETUP-DEPENDENCY-READFIRST."
+    ],
+    "selectedNextCase": "CUSTOMER-SETUP-DEPENDENCY-READFIRST",
+    "whySelectedNextCaseIsBest": "It converts the user's screenshot-QA concern into a concrete read-first proof of dropdowns, setup lists, tooltips and Page Inspection before any customer setup value is written.",
+    "risksBeforeNextCase": [
+      "Auth may expire before live execution.",
+      "Setup list names may differ from expected English/German terms.",
+      "Page contexts may require dropdown, FastTab, FactBox or Page Inspection handling."
+    ],
+    "requiredPreparation": [
+      "Use multi-screenshot QA: source customer card, dropdown/lookup/tooltip, setup list, selected row details, Page Inspection, no-save end context.",
+      "No write, no document, no preview, no post."
+    ]
+  },
+  "nextCase": "CUSTOMER-SETUP-DEPENDENCY-READFIRST"
+}

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-07T03:00:00.000+02:00",
+  "updatedAt": "2026-07-07T03:35:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -8,12 +8,12 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w2-core-masterdata-setup",
-  "activeCase": "CUSTOMER-SETUP-VALUE-DECISION",
-  "active_case_file": ".agent/state/cases/customer-setup-value-decision.json",
-  "activeCaseFile": ".agent/state/cases/customer-setup-value-decision.json",
+  "activeCase": "CUSTOMER-SETUP-DEPENDENCY-READFIRST",
+  "active_case_file": ".agent/state/cases/customer-setup-dependency-readfirst.json",
+  "activeCaseFile": ".agent/state/cases/customer-setup-dependency-readfirst.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-masterdata-setup-decision",
+  "mode": "universaarl-masterdata-setup-readfirst",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -34,10 +34,18 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "research-official-bc-setup-logic-if-needed",
-    "choose-or-park-customer-setup-values",
-    "write-local-decision",
-    "update-dashboard-state-field-map"
+    "open-business-central-readonly",
+    "confirm-playthru-instance",
+    "confirm-universaarl-de-company",
+    "open-u-cust-100-readonly",
+    "inspect-customer-field-dropdowns-or-lookups-readonly",
+    "inspect-customer-posting-groups-readonly",
+    "inspect-general-business-posting-groups-readonly",
+    "inspect-vat-business-posting-groups-readonly",
+    "inspect-payment-terms-readonly",
+    "capture-screenshot-qa",
+    "capture-page-inspection",
+    "write-result-json"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -45,9 +53,8 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "open-business-central-live",
-    "run-playwright-live",
     "edit-customer",
+    "save-customer",
     "change-posting-group",
     "change-payment-terms",
     "change-vat-setup",
@@ -58,9 +65,9 @@
     "api-shortcut",
     "use-confidential-real-customer-data"
   ],
-  "nextCase": "CUSTOMER-SETUP-VALUE-DECISION",
-  "nextStep": "Decide realistic customer setup values for U-CUST-100 from read-first evidence before any narrow write gate; no BC/Playwright live run in this decision case.",
-  "preparedNextCaseFile": ".agent/state/cases/customer-setup-value-decision.json",
+  "nextCase": "CUSTOMER-SETUP-DEPENDENCY-READFIRST",
+  "nextStep": "Run a read-first/no-write dependency proof for U-CUST-100 setup values: inspect customer posting groups, general business posting groups, VAT business posting groups and payment terms with stronger screenshot QA before any write gate.",
+  "preparedNextCaseFile": ".agent/state/cases/customer-setup-dependency-readfirst.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -197,9 +204,9 @@
     "source": "top-level-current-state-and-customer-first-record-data-quality-decision",
     "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
-    "activeCaseFile": ".agent/state/cases/customer-setup-value-decision.json",
+    "activeCaseFile": ".agent/state/cases/customer-setup-dependency-readfirst.json",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "Read-first customer setup/payment evidence is complete; next step is a local setup value decision before any narrow write gate."
+    "reason": "Customer setup value decision is complete; the next safe step is read-first dependency proof with stronger screenshot QA before any setup-dependent customer field write."
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -11183,7 +11190,26 @@
       "No dimension default values.",
       "No O2C readiness, Preview Posting, Posting or ledger trace."
     ],
-    "nextCase": "CUSTOMER-SETUP-VALUE-DECISION",
+    "nextCase": "CUSTOMER-SETUP-DEPENDENCY-READFIRST",
     "updatedAt": "2026-07-07T02:55:00.000+02:00"
+  },
+  "latestCustomerSetupValueDecision": {
+    "caseId": "CUSTOMER-SETUP-VALUE-DECISION",
+    "status": "completed-local-decision",
+    "resultPath": "playwright/projects/fibu-book5/evidence/customer-setup-value-decision/result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "businessCentralOpened": false,
+    "playwrightLiveRunExecuted": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "decision": "Do not guess Customer Posting Group, Gen. Bus. Posting Group, VAT Bus. Posting Group or Payment Terms Code. Country/Region Code DE is only a later narrow data-quality write candidate.",
+    "screenshotQa": "No new screenshots in the local decision; next read-first case requires customer card, FastTabs, dropdown/lookup/tooltip contexts, setup lists, Page Inspection and no-save end context.",
+    "nextCase": "CUSTOMER-SETUP-DEPENDENCY-READFIRST",
+    "updatedAt": "2026-07-07T03:35:00.000+02:00"
   }
 }

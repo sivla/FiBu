@@ -65,4 +65,6 @@ Diese Entscheidung nutzt realistische fiktive Kundendaten und echte Business-Cen
 
 ## Naechster sinnvoller Schritt
 
-`CUSTOMER-SETUP-POSTING-PAYMENT-READFIRST` ist read-first erledigt. Der naechste sinnvolle Fall ist `CUSTOMER-SETUP-VALUE-DECISION`: die sichtbaren leeren Felder fachlich bewerten und entscheiden, welche Werte fuer den ersten Debitor eng geschrieben werden duerfen und welche Setup-Themen weiter geparkt bleiben.
+`CUSTOMER-SETUP-VALUE-DECISION` ist lokal erledigt. Ergebnis: Laender-/Regionscode `DE` ist ein plausibler spaeterer enger Datenqualitaets-Write-Kandidat. Debitorenbuchungsgruppe, Geschaeftsbuchungsgruppe, USt.-Geschaeftsbuchungsgruppe und Zahlungsbedingung werden nicht geraten. Zahlungsart und Dimensionen bleiben geparkt.
+
+Der naechste sinnvolle Fall ist `CUSTOMER-SETUP-DEPENDENCY-READFIRST`: Vor jedem Write muessen die echten Business-Central-Listen, Dropdowns/Lookups, Tooltips und Page-Inspection-Kontexte fuer Debitorenbuchungsgruppen, Geschaeftsbuchungsgruppen, USt.-Geschaeftsbuchungsgruppen und Zahlungsbedingungen mit mehrstufiger Screenshot-QA gelesen werden.
