@@ -2,7 +2,7 @@
 
 Status: draft
 Purpose: Import-oriented Jira rows derived from the first five realistic fictional Universaarl data packages.
-Source: `SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md` (legacy filename; realistic fictional Universaarl case-study data) and `DATA-REQUEST-JIRA-CANDIDATES-DRAFT.md`
+Source: `UNIVERSAARL-CUSTOMER-PROJECT-DATA-PACKAGES-DRAFT.md` (customer-project-like Universaarl data) and `DATA-REQUEST-JIRA-CANDIDATES-DRAFT.md`
 Last reviewed: 2026-07-05
 
 ## Boundary

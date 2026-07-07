@@ -1,12 +1,12 @@
-# Realistic Universaarl Data Tables - Core and Master Data Draft
+# Universaarl Customer Project Data Packages - Core and Master Data Draft
 
 Status: draft
-Purpose: Concrete realistic fictional Universaarl data packages for Jira data requests, BC route decisions, UAT planning, training and book examples.
+Purpose: Concrete customer-project-like Universaarl data packages for Jira data requests, BC route decisions, UAT planning, training and book examples.
 Last reviewed: 2026-07-07
 
 ## Boundary
 
-All values in this file are realistic fictional case-study data for the Universaarl implementation. They are deliberately customer-like project records, not throwaway mockups, demo placeholders or confidential real customer data. They are not Business Central import files and do not authorize setup, master-data creation or tax/legal claims.
+All values in this file are customer-project-like Universaarl data for the implementation blueprint. They are deliberately realistic project records, not throwaway mockups, demo placeholders or confidential real customer data. Values may be fictional or anonymized, but every usable value must behave like customer input: owned, validated, dependency-aware and explainable in UAT/training. They are not Business Central import files and do not authorize setup, master-data creation or tax/legal claims.
 
 Treat these records like customer project input:
 

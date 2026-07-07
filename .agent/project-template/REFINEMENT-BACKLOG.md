@@ -197,7 +197,7 @@ Current status: first Jira-ready candidates for `DR-CORE-001`, `DR-CORE-002`, `D
 
 Realism review status: the first five candidates were reviewed in `REALISM-REVIEW-DATA-REQUESTS-2026-07-05.md`. They are planning-ready but intentionally not BC-setup-ready. Next work should create simulated data tables and validation columns before live setup or import planning.
 
-Simulation status: first simulated tables now exist in `SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md`. They expose blockers for numbering, posting groups, VAT groups, payment terms, UOM and inventory posting setup before any live master-data creation. Those blockers are now mirrored in the Jira candidate dependency queue.
+Data-package status: first customer-project-like data packages now exist in `UNIVERSAARL-CUSTOMER-PROJECT-DATA-PACKAGES-DRAFT.md`. They expose blockers for numbering, posting groups, VAT groups, payment terms, UOM and inventory posting setup before any live master-data creation. Those blockers are now mirrored in the Jira candidate dependency queue.
 
 Route decision status: first route decision cards now exist in `ROUTE-DECISION-CARDS-FOUNDATION-MASTER-DATA-DRAFT.md`. They recommend read-first proof and gated setup before number series, posting groups, payment terms, UOM or item/master-data work.
 
