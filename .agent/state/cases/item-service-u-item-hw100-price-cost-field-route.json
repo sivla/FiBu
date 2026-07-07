@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "caseId": "ITEM-SERVICE-U-ITEM-HW100-PRICE-COST-FIELD-ROUTE",
+  "status": "ready-next",
+  "mode": "universaarl-masterdata-item-price-cost-route",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "businessPurpose": "Prove the safe field route for realistic fictional Unit Cost and Unit Price values on U-ITEM-HW100 before any O2C/P2P document uses the item.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-card-editor-recovery/result.json"
+  ],
+  "targetRecord": {
+    "itemNo": "U-ITEM-HW100",
+    "description": "Steuerbox Standard U100",
+    "unitCostCandidate": "100.00",
+    "unitPriceCandidate": "149.00"
+  },
+  "allowedActions": [
+    "run-auth-and-live-gate-checks",
+    "open-business-central-live-in-playthru",
+    "confirm-company-universaarl-de",
+    "open-u-item-hw100-card",
+    "capture-screenshot-qa",
+    "inspect-price-and-cost-fields",
+    "use-safe-edit-mode-only-if-field-route-is-labelled",
+    "write-only-unit-cost-and-unit-price-if-smart-decision-gate-passes",
+    "reopen-u-item-hw100-card-proof",
+    "write-result-json",
+    "update-state-and-dashboard"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "create-sales-document",
+    "create-purchase-document",
+    "create-journal-line",
+    "preview-posting",
+    "post",
+    "payment",
+    "change-vat-setup",
+    "change-posting-setup",
+    "change-number-series",
+    "api-shortcut",
+    "company-switch",
+    "use-confidential-real-customer-data",
+    "force-click-as-normal-route",
+    "coordinate-click-without-diagnostic-status"
+  ],
+  "smartDecision": {
+    "whyNow": "The card recovery proved a real U-ITEM-HW100 item card route and showed cost/price fields at 0.00, which is unrealistic for O2C/P2P training.",
+    "risk": "Changing item cost and price can affect later sales, purchase and inventory examples; only the two labelled item fields may be touched.",
+    "fallback": "If the labelled route is unclear, stop read-only and park the item for O2C/P2P until a safer UI route is found."
+  },
+  "expectedEvidence": [
+    "before screenshot showing full U-ITEM-HW100 item card and current 0.00 price/cost state",
+    "Smart Decision for the two exact item fields",
+    "after/reopen screenshot proving the final field values or explicit blocked result",
+    "clear statement that no setup, document, journal, Preview Posting, Posting, payment, API or company switch occurred"
+  ],
+  "nextCaseIfObserved": "VAT-POSTING-SETUP-READFIRST",
+  "nextCaseIfBlocked": "ITEM-SERVICE-U-ITEM-HW100-ROUTE-OR-PARK-DECISION"
+}

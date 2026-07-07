@@ -1,21 +1,21 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "ITEM-SERVICE-U-ITEM-HW100-CORRECTION-OR-REBUILD-WRITE-GATE",
-  "caseId": "ITEM-SERVICE-U-ITEM-HW100-CORRECTION-OR-REBUILD-WRITE-GATE",
-  "status": "blocked",
-  "completedAt": "2026-07-07T07:04:00.000Z",
-  "updatedAt": "2026-07-07T07:04:00.000Z",
-  "mode": "universaarl-masterdata-item-controlled-write-gate",
+  "runId": "ITEM-SERVICE-U-ITEM-HW100-CARD-EDITOR-RECOVERY",
+  "caseId": "ITEM-SERVICE-U-ITEM-HW100-CARD-EDITOR-RECOVERY",
+  "status": "observed",
+  "completedAt": "2026-07-07T07:18:00.000Z",
+  "updatedAt": "2026-07-07T07:18:00.000Z",
+  "mode": "universaarl-masterdata-item-ui-route-recovery",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Playwright opened Business Central in playthru / UNIVERSAARL-DE and captured U-ITEM-HW100 evidence. The item card was visible before the write gate; description Steuerbox Standard U100 and existing WAREN/VAT19 values were visible in card context. No new write was needed in this final run. Reopen returned the item list/FactBox, so full item-card reopen proof and unit cost/unit price proof remain blocked.",
-  "resultPath": "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-correction-or-rebuild-write-gate/result.json",
+  "summary": "Playwright opened Business Central in playthru / UNIVERSAARL-DE and recovered the U-ITEM-HW100 item-card route from the filtered Items list. Screenshot QA now distinguishes Role Center/other, filtered list/FactBox and full item-card context. The full card shows U-ITEM-HW100, Steuerbox Standard U100, STK, WAREN and WARE. Cost/price fields are visible but the target values 100.00 and 149.00 are not proven; visible signals are 0.00. No setup, document, journal, Preview Posting, Posting, payment, API shortcut or company switch occurred.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-card-editor-recovery/result.json",
   "changedArtifacts": [
     "package.json",
-    "playwright/projects/fibu-book5/tests/item-service-u-item-hw100-correction-or-rebuild-write-gate.spec.ts",
-    "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-correction-or-rebuild-write-gate/",
-    ".agent/state/cases/item-service-u-item-hw100-card-editor-recovery.json",
+    "playwright/projects/fibu-book5/tests/item-service-u-item-hw100-card-editor-recovery.spec.ts",
+    "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-card-editor-recovery/",
+    ".agent/state/cases/item-service-u-item-hw100-price-cost-field-route.json",
     ".agent/state/current.json",
     ".agent/state/last_run_summary.json"
   ],
@@ -28,49 +28,53 @@
   "posted": false,
   "payment": false,
   "apiShortcut": false,
+  "companySwitch": false,
   "confidentialRealCustomerDataUsed": false,
   "actionsTaken": [
     "Validated stored Business Central auth for playthru / UNIVERSAARL-DE.",
-    "Ran a guarded Playwright item write-gate spec for U-ITEM-HW100.",
-    "Captured screenshot QA and metadata for card/list context.",
-    "Hardened the page-context gate so short codes like WARE no longer count as standalone proof."
+    "Ran a guarded Playwright read-first recovery spec for U-ITEM-HW100.",
+    "Captured five screenshots with per-screenshot context classification.",
+    "Opened the full item card from the filtered item list.",
+    "Inspected price/cost editor candidates without changing values."
   ],
   "actionsNotTaken": [
     "No setup was changed.",
+    "No master-data value was changed.",
     "No sales or purchase document was created.",
     "No journal line was created.",
     "No Preview Posting was run.",
     "No Posting was run.",
     "No payment was run.",
     "No API shortcut was used.",
+    "No company switch was performed.",
     "No confidential real customer data was used."
   ],
   "proved": [
     "playthru / UNIVERSAARL-DE is accessible with current stored auth.",
-    "U-ITEM-HW100 is a real Universaarl sandbox item with card-context evidence.",
-    "Description Steuerbox Standard U100 is visible.",
-    "WAREN and VAT19 are visible in the card write-gate attempt.",
-    "Reopen currently returns list/FactBox evidence rather than full card evidence."
+    "The direct Page 30 attempt can land outside a full card context.",
+    "The filtered Items list plus visible item click opens the full U-ITEM-HW100 item card.",
+    "The full card shows U-ITEM-HW100, Steuerbox Standard U100, STK, WAREN and WARE.",
+    "Screenshot QA separates list/FactBox evidence from true item-card evidence."
   ],
   "notProved": [
-    "No full item-card reopen proof.",
-    "No unit cost 100.00 or unit price 149.00 proof.",
+    "Unit Cost 100.00 and Unit Price 149.00 are not proven; visible signals are 0.00.",
+    "VAT19 was not refreshed in the visible full-card screenshot because the tax FastTab was not opened.",
     "No O2C/P2P readiness.",
     "No posting, ledger, VAT or UAT readiness."
   ],
   "warnings": [
     "Do not count list/FactBox evidence as full card proof.",
-    "Do not start O2C/P2P until item route and setup gates are clearer.",
+    "Do not start O2C/P2P until item price/cost and setup gates are clearer.",
     "Use realistic fictional Universaarl customer data; do not use confidential real customer data."
   ],
   "nextStepDecision": {
-    "currentCase": "ITEM-SERVICE-U-ITEM-HW100-CORRECTION-OR-REBUILD-WRITE-GATE",
-    "plannedNextCaseBeforeReview": "O2C-MINIMAL-ROUTE-DECISION",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "The item card route and price/cost proof are still incomplete, so a process document would be premature.",
-    "selectedNextCase": "ITEM-SERVICE-U-ITEM-HW100-CARD-EDITOR-RECOVERY",
-    "whySelectedNextCaseIsBest": "It directly addresses the observed UI route blocker without creating documents or changing setup."
+    "currentCase": "ITEM-SERVICE-U-ITEM-HW100-CARD-EDITOR-RECOVERY",
+    "plannedNextCaseBeforeReview": "ITEM-SERVICE-U-ITEM-HW100-CARD-EDITOR-RECOVERY",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The prior run's card-context blocker was real, and this run reduced it to a narrower price/cost field gap.",
+    "selectedNextCase": "ITEM-SERVICE-U-ITEM-HW100-PRICE-COST-FIELD-ROUTE",
+    "whySelectedNextCaseIsBest": "The next case can use the recovered card route and touch only the two labelled price/cost fields if the Smart Decision gate passes."
   },
-  "nextCase": "ITEM-SERVICE-U-ITEM-HW100-CARD-EDITOR-RECOVERY",
-  "nextStep": "Run a narrow card/editor route recovery for U-ITEM-HW100 with screenshot QA. No document, no setup, no Preview Posting, no Posting."
+  "nextCase": "ITEM-SERVICE-U-ITEM-HW100-PRICE-COST-FIELD-ROUTE",
+  "nextStep": "Use the recovered item-card route to prove or safely set only Unit Cost 100.00 and Unit Price 149.00 with Smart Decision, screenshot QA and reopen proof. No document, no setup, no Preview Posting, no Posting."
 }

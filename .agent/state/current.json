@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-07T07:04:00.000Z",
+  "updatedAt": "2026-07-07T07:18:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
-  "activeArea": "w2-core-masterdata-item-ui-route-recovery",
-  "activeCase": "ITEM-SERVICE-U-ITEM-HW100-CARD-EDITOR-RECOVERY",
-  "active_case_file": ".agent/state/cases/item-service-u-item-hw100-card-editor-recovery.json",
-  "activeCaseFile": ".agent/state/cases/item-service-u-item-hw100-card-editor-recovery.json",
+  "activeArea": "w2-core-masterdata-item-price-cost-route",
+  "activeCase": "ITEM-SERVICE-U-ITEM-HW100-PRICE-COST-FIELD-ROUTE",
+  "active_case_file": ".agent/state/cases/item-service-u-item-hw100-price-cost-field-route.json",
+  "activeCaseFile": ".agent/state/cases/item-service-u-item-hw100-price-cost-field-route.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-masterdata-item-ui-route-recovery",
+  "mode": "universaarl-masterdata-item-price-cost-route",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -37,11 +37,12 @@
     "run-auth-and-live-gate-checks",
     "open-business-central-live-in-playthru",
     "confirm-company-universaarl-de",
-    "open-items-page-read-first",
     "open-u-item-hw100-card",
-    "inspect-visible-card-actions",
     "capture-screenshot-qa",
-    "inspect-active-editors-for-unit-cost-and-unit-price",
+    "inspect-price-and-cost-fields",
+    "use-safe-edit-mode-only-if-field-route-is-labelled",
+    "write-only-unit-cost-and-unit-price-if-smart-decision-gate-passes",
+    "reopen-u-item-hw100-card-proof",
     "write-result-json",
     "update-state-and-dashboard"
   ],
@@ -66,8 +67,8 @@
     "force-click-as-normal-route",
     "coordinate-click-without-diagnostic-status"
   ],
-  "nextCase": "ITEM-SERVICE-U-ITEM-HW100-CARD-EDITOR-RECOVERY",
-  "nextStep": "Recover the U-ITEM-HW100 item-card/editor route with screenshot QA before O2C/P2P: prove full card reopen context or explicitly park the item route. No document, no setup, no Preview Posting, no Posting.",
+  "nextCase": "ITEM-SERVICE-U-ITEM-HW100-PRICE-COST-FIELD-ROUTE",
+  "nextStep": "Use the proven U-ITEM-HW100 card route to prove or safely set only Unit Cost 100.00 and Unit Price 149.00 with Smart Decision, screenshot QA and reopen proof. No document, no setup, no Preview Posting, no Posting.",
   "preparedNextCaseFile": ".agent/state/cases/customer-setup-dependency-readfirst.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
@@ -11722,5 +11723,37 @@
     "uiLearning": "Do not use short codes such as WARE as standalone page-context proof; German UI words such as Warteschlange can create false positives. Screenshot QA must distinguish card, list and FactBox contexts.",
     "nextCase": "ITEM-SERVICE-U-ITEM-HW100-CARD-EDITOR-RECOVERY",
     "updatedAt": "2026-07-07T07:04:00.000Z"
+  },
+  "latestItemServiceUItemHw100CardEditorRecovery": {
+    "caseId": "ITEM-SERVICE-U-ITEM-HW100-CARD-EDITOR-RECOVERY",
+    "resultStatus": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-card-editor-recovery/result.json",
+    "businessCentralOpened": true,
+    "playwrightLiveRunExecuted": true,
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "payment": false,
+    "apiShortcut": false,
+    "companySwitch": false,
+    "confidentialRealCustomerDataUsed": false,
+    "proved": [
+      "The U-ITEM-HW100 item-card route was recovered from the filtered item list.",
+      "Screenshot QA now separates Role Center/other, filtered list/FactBox, and full item-card context.",
+      "The full item card shows U-ITEM-HW100, Steuerbox Standard U100, STK, WAREN, WARE and visible cost/price areas.",
+      "No setup, document, journal, Preview Posting, Posting, payment, API shortcut or company switch occurred."
+    ],
+    "notProved": [
+      "Unit Cost 100.00 and Unit Price 149.00 are not proven; captured UI currently shows 0.00 signals.",
+      "VAT19 was not refreshed in the visible full-card screenshot because the tax FastTab was not opened.",
+      "No O2C/P2P, posting, ledger or UAT readiness."
+    ],
+    "uiLearning": "More screenshots help only when each capture has a claim boundary. The list/FactBox screenshot is useful diagnostics, but the full card screenshot is the real item-card proof.",
+    "nextCase": "ITEM-SERVICE-U-ITEM-HW100-PRICE-COST-FIELD-ROUTE",
+    "updatedAt": "2026-07-07T07:18:00.000Z"
   }
 }
