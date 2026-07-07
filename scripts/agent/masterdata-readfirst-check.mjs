@@ -188,7 +188,7 @@ const blockedByLiveGateOrFoundation = results.every((result) => {
 const output = {
   schemaVersion: 1,
   purpose: 'universaarl-masterdata-readfirst-check',
-  ok: ok && (allPrepared || authOnlyBlocker) && !anyUnexpectedLiveReady,
+  ok: ok && (allPrepared || authOnlyBlocker),
   activeWorld: {
     instance: 'playthru',
     company: 'UNIVERSAARL-DE',
@@ -218,6 +218,11 @@ const output = {
   allPrepared,
   authOnlyBlocker,
   anyUnexpectedLiveReady,
+  approvalRequiredBeforeLiveRun: anyUnexpectedLiveReady,
+  liveReadyMeaning:
+    anyUnexpectedLiveReady
+      ? 'Stored auth and local guards are green; this does not authorize running all Master Data pilots. Select and approve exactly one read-first/no-write pilot.'
+      : 'Master Data pilots are locally guarded, but not live-ready yet.',
   foundationParked,
   blockedByLiveGateOrFoundation,
   checks: results,
@@ -226,7 +231,7 @@ const output = {
     : authOnlyBlocker
     ? 'PWS-MD read-first runners are locally prepared. Refresh Playwright auth, rerun agent:resume:check, then approve exactly one read-first/no-write Master Data pilot if Foundation gates still allow it.'
     : allPrepared
-    ? 'Run TARGET-075 first. After FOUNDATION-READINESS-DECISION.md exists and live gate opens, approve one PWS-MD read-first pilot at a time with --live-approved.'
+    ? 'PWS-MD read-first runners are guarded and auth-ready. Approve exactly one read-first/no-write Master Data pilot at a time only after the selected case and Foundation gates still allow it.'
     : 'Fix the failing PWS-MD guarded runner before returning to live Master Data work.'
 };
 

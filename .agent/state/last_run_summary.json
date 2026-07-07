@@ -1,19 +1,20 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "PWS-MD-REAL-CUSTOMER-RUN-PLAN-GUARD",
+  "runId": "AUTH-AND-PWS-MD-READINESS-GUARD",
   "caseId": "FOUNDATION-READINESS-DECISION",
-  "status": "completed-local-pws-md-real-customer-run-plan-guard",
-  "completedAt": "2026-07-08T10:35:00.000+02:00",
-  "updatedAt": "2026-07-08T10:35:00.000+02:00",
+  "status": "completed-auth-refresh-and-pws-md-readiness-guard",
+  "completedAt": "2026-07-08T00:20:00.000+02:00",
+  "updatedAt": "2026-07-08T00:20:00.000+02:00",
   "mode": "universaarl-foundation-readfirst",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "agent:run-plan now surfaces agent:masterdata:readfirst:check before any later Master Data read-first or write-gated work. This keeps the real Business Central UI, screenshot QA and realistic fictional Universaarl customer-project boundary visible in the normal planning output.",
-  "resultPath": "scripts/agent/run-plan.mjs",
+  "summary": "Playwright auth was refreshed against playthru / UNIVERSAARL-DE, and the Master Data read-first guard now treats auth-ready pilots as approval-required rather than failed. This keeps real Business Central UI evidence, screenshot QA and realistic fictional Universaarl customer-project data as the boundary without blocking readiness checks merely because auth is green.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/auth-bc-refresh-active-resume/AUTH-BC-REFRESH-result.json",
   "changedArtifacts": [
     ".agent/state/last_run_summary.json",
-    "scripts/agent/run-plan.mjs"
+    "scripts/agent/masterdata-readfirst-check.mjs",
+    "playwright/projects/fibu-book5/evidence/auth-bc-refresh-active-resume/AUTH-BC-REFRESH-result.json"
   ],
   "businessCentralOpened": false,
   "playwrightLiveRunExecuted": false,
@@ -31,13 +32,14 @@
   "uiMockupUsed": false,
   "actionsTaken": [
     "Re-read the durable project objective and confirmed active truth remains playthru / UNIVERSAARL-DE.",
-    "Confirmed the Master Data read-first readiness check already enforces the five-checkpoint screenshot QA and real-customer-project boundary.",
-    "Added agent:masterdata:readfirst:check to agent:run-plan steps and validationCommands so this guard is visible before any later Master Data read-first or write-gated work.",
-    "Kept the change local to planning/readiness checking; no Playwright live run was executed."
+    "Ran npm run auth:bc:open-login against the playthru / UNIVERSAARL-DE auth target and saved a fresh Playwright storage state after the Business Central shell loaded.",
+    "Confirmed npm run auth:bc:check is green with fresh playthru / UNIVERSAARL-DE shell-validation metadata.",
+    "Adjusted agent:masterdata:readfirst:check so auth-ready Master Data pilots are reported as approval-required instead of failing as unexpected live readiness.",
+    "Kept this to auth/readiness only; no Business Central setup, master-data, document, preview or posting action was executed."
   ],
   "actionsNotTaken": [
-    "No Business Central live session was opened.",
-    "No Playwright live run was executed.",
+    "No Business Central workflow page was opened beyond the auth shell handoff.",
+    "No Playwright live case/test was executed.",
     "No setup was changed.",
     "No master data was changed.",
     "No document or journal was created.",
@@ -50,12 +52,12 @@
     "No UI mockup was used as evidence."
   ],
   "proved": [
-    "agent:run-plan now requires agent:masterdata:readfirst:check before Master Data read-first or write-gated work.",
-    "The standard plan now names the boundary: real Business Central UI evidence, realistic fictional Universaarl customer-project records, no UI mockups and no confidential real customer data.",
-    "The change is local and does not open Business Central."
+    "Stored Playwright auth is usable for playthru / UNIVERSAARL-DE.",
+    "agent:masterdata:readfirst:check can now stay green when Master Data read-first pilots are auth-ready, while still marking live execution as approval-required.",
+    "The Master Data boundary remains: real Business Central UI evidence, realistic fictional Universaarl customer-project records, no UI mockups and no confidential real customer data."
   ],
   "notProved": [
-    "No fresh Business Central login was captured.",
+    "No Master Data, Foundation, VAT, Posting Group or Dimension page was opened for a new evidence run.",
     "No new Business Central screenshot was captured; this run only improves the screenshot contract for the next live read-first proof.",
     "No customer, vendor or item UI was opened in this run.",
     "No new real customer-like Universaarl record was observed or changed.",
@@ -64,8 +66,7 @@
     "No posting readiness."
   ],
   "warnings": [
-    "Refresh Playwright auth in the Playwright-managed profile before any live BC/Playwright run.",
-    "Run exactly one read-first/no-write Master Data pilot at a time after auth is green and Foundation gates still allow it.",
+    "Run exactly one read-first/no-write Master Data pilot at a time after the selected case and Foundation gates still allow it.",
     "Do not accept a PWS-MD page claim unless the result has at least five accepted screenshot checkpoints and agent:masterdata:readfirst:check remains green.",
     "Use real Business Central UI evidence and customer-project-like Universaarl records; do not use UI mockups, throwaway dummy data or confidential real customer data."
   ],
@@ -73,10 +74,10 @@
     "currentCase": "FOUNDATION-READINESS-DECISION",
     "plannedNextCaseBeforeReview": "FOUNDATION-READINESS-DECISION",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Foundation Readiness remains the handoff, but Master Data read-first page claims now need stronger screenshot QA before they can become evidence.",
+    "reason": "Foundation Readiness remains the active handoff, and fresh auth removes the previous auth-only blocker. Master Data read-first pilots are guarded but still require a selected case and explicit one-at-a-time approval.",
     "selectedNextCase": "FOUNDATION-READINESS-DECISION",
-    "whySelectedNextCaseIsBest": "It keeps live work behind auth and screenshot gates while making the next real Master Data observation less ambiguous and more visually reviewable."
+    "whySelectedNextCaseIsBest": "It keeps the next BC work aligned with Foundation Readiness instead of jumping directly into Master Data simply because auth is now green."
   },
   "nextCase": "FOUNDATION-READINESS-DECISION",
-  "nextStep": "Refresh Playwright auth in the Playwright-managed profile. Then rerun auth:bc:check, agent:resume:check and only one read-first/no-write Foundation or Master Data pilot if the gates still allow it."
+  "nextStep": "Run the selected Foundation Readiness handoff or choose exactly one guarded read-first/no-write pilot from the current queue; do not run multiple Master Data pilots just because auth is green."
 }
