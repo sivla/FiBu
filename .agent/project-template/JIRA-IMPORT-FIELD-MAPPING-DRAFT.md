@@ -26,8 +26,8 @@ Specialist input is optional. A Jira/Confluence Blueprint Agent may review this 
 | Summary | Summary | Import directly. | yes | Must be short, human-readable and start with the business need. |
 | Workstream | Component, custom field or label | Prefer Component or custom Workstream field; fallback label. | yes | Must match the workstream catalogue. |
 | Epic | Epic Link, Parent, custom field or label | Use project convention; do not create new hierarchy ad hoc. | yes | Must map to an existing or planned epic. Multiple values stay in description if Jira field allows only one. |
-| Source package | Description and label | Preserve package provenance. | yes | Must reference one simulated package. |
-| Customer owner | Custom field or Description | Use People field only if fictional project users exist; otherwise description. | yes | Must remain simulated/fictitious. |
+| Source package | Description and label | Preserve package provenance. | yes | Must reference one Universaarl customer-project data package. |
+| Customer owner | Custom field or Description | Use People field only if case-study project users exist; otherwise description. | yes | Must remain fictional/anonymized project context, not confidential real customer data. |
 | Internal owner | Assignee, custom field or Description | Assign only if actual Jira users exist; otherwise description. | yes | Must not invent real user accounts. |
 | Priority | Priority | Map P1/P2/P3 to Jira priority scheme. | yes | Must use approved local priority mapping. |
 | Status | Initial workflow status | Usually import as To Do/Backlog and keep source status in description. | yes | Do not import blocked rows as Done. |
@@ -99,7 +99,7 @@ Playwright evidence need:
 Next action:
 
 Notes:
-- Values are simulated unless explicitly confirmed later.
+- Values are customer-project-like Universaarl data unless explicitly proven in Business Central later.
 - This issue does not authorize Business Central writes.
 ```
 

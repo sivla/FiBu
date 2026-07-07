@@ -195,7 +195,7 @@ Each data request should include owner, due date, format, validation rule and BC
 
 Current status: first Jira-ready candidates for `DR-CORE-001`, `DR-CORE-002`, `DR-MD-001`, `DR-MD-002` and `DR-MD-003` exist in `DATA-REQUEST-JIRA-CANDIDATES-DRAFT.md`. The file now also contains a package-derived Jira ticket map for `UNIVERSAARL_CORE_CompanyInformation`, `UNIVERSAARL_CORE_OrganizationModel`, `UNIVERSAARL_MD_Customers`, `UNIVERSAARL_MD_Vendors` and `UNIVERSAARL_MD_ItemsServices`, including dependency tickets. Next refinement should turn those rows into import-ready Jira rows or project tickets.
 
-Realism review status: the first five candidates were reviewed in `REALISM-REVIEW-DATA-REQUESTS-2026-07-05.md`. They are planning-ready but intentionally not BC-setup-ready. Next work should create simulated data tables and validation columns before live setup or import planning.
+Realism review status: the first five candidates were reviewed in `REALISM-REVIEW-DATA-REQUESTS-2026-07-05.md`. They are planning-ready but intentionally not BC-setup-ready. Next work should use the customer-project-like data packages, validation columns and dependency blockers before live setup or import planning.
 
 Data-package status: first customer-project-like data packages now exist in `UNIVERSAARL-CUSTOMER-PROJECT-DATA-PACKAGES-DRAFT.md`. They expose blockers for numbering, posting groups, VAT groups, payment terms, UOM and inventory posting setup before any live master-data creation. Those blockers are now mirrored in the Jira candidate dependency queue.
 
@@ -203,7 +203,7 @@ Route decision status: first route decision cards now exist in `ROUTE-DECISION-C
 
 Playwright catalog status: read-first scenario catalog now exists in `PLAYWRIGHT-SCENARIO-CATALOG-WS02-WS03-WS04-DRAFT.md`. It maps company context, navigation, setup dependency pages and master-data card/list checks to training, route decisions and stop rules.
 
-## P1: Build simulated customer data packets
+## P1: Maintain customer-project data packages
 
 Use `CUSTOMER-DATA-SIMULATION-DRAFT.md` to create the first realistic data packets:
 

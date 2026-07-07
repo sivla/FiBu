@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "CUSTOMER-PROJECT-DATA-PACKAGE-GUARD",
+  "runId": "WORKBREAKDOWN-CUSTOMER-PROJECT-DATA-PACKAGE-SYNC",
   "caseId": "FOUNDATION-READINESS-DECISION",
-  "status": "completed-local-customer-project-data-package-guard",
-  "completedAt": "2026-07-07T21:00:00.000+02:00",
-  "updatedAt": "2026-07-07T21:00:00.000+02:00",
+  "status": "completed-local-workbreakdown-customer-project-data-package-sync",
+  "completedAt": "2026-07-07T21:20:00.000+02:00",
+  "updatedAt": "2026-07-07T21:20:00.000+02:00",
   "mode": "universaarl-foundation-readfirst",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "The active customer-project data package is now covered by the Universaarl case-study check. Preflight fails if the old simulation-named active package returns or if the new package loses its customer-project, no-mockup and no-confidential-real-customer-data boundary.",
-  "resultPath": "scripts/agent/case-study-check.mjs",
+  "summary": "The workbreakdown check, active read-first planning language and Master Data route decision now use customer-project data package framing instead of simulation package framing. This keeps the next Master Data and UAT work aligned with realistic Universaarl customer-project data.",
+  "resultPath": "scripts/agent/workbreakdown-check.mjs",
   "changedArtifacts": [
     ".agent/state/last_run_summary.json",
     ".agent/ACTIVE-ARTIFACT-CLASSIFICATION.md",
@@ -19,7 +19,11 @@
     ".agent/project-template/JIRA-IMPORT-ROWS-DATA-PACKAGES-DRAFT.md",
     ".agent/project-template/REFINEMENT-BACKLOG.md",
     ".agent/state/cases/item-service-realistic-product-model-decision.json",
-    "scripts/agent/case-study-check.mjs"
+    "scripts/agent/case-study-check.mjs",
+    "scripts/agent/workbreakdown-check.mjs",
+    ".agent/project-template/PLAYWRIGHT-SCENARIO-CATALOG-WS02-WS03-WS04-DRAFT.md",
+    ".agent/project-template/JIRA-IMPORT-FIELD-MAPPING-DRAFT.md",
+    ".agent/state/cases/foundation-master-data-route-decision.json"
   ],
   "businessCentralOpened": false,
   "playwrightLiveRunExecuted": false,
@@ -37,9 +41,9 @@
   "uiMockupUsed": false,
   "actionsTaken": [
     "Re-read the durable project objective and confirmed active truth remains playthru / UNIVERSAARL-DE.",
-    "Added the customer-project data package to scripts/agent/case-study-check.mjs.",
-    "Made preflight fail if the old simulation-named active data package reappears.",
-    "Made preflight verify the new package still carries customer-project, no-mockup, no-confidential-real-customer-data and BC-write-gate boundary language."
+    "Updated scripts/agent/workbreakdown-check.mjs to require UNIVERSAARL-CUSTOMER-PROJECT-DATA-PACKAGES-DRAFT.md.",
+    "Replaced active read-first planning and route-decision phrases that still called the Universaarl data packages simulated packages.",
+    "Kept historical evidence paths untouched."
   ],
   "actionsNotTaken": [
     "No Business Central live session was opened.",
@@ -56,9 +60,9 @@
     "No UI mockup was used as evidence."
   ],
   "proved": [
-    "agent:case-study:check now covers the active customer-project data package.",
-    "The check guards against regression to the old simulation-named active package.",
-    "The package remains no-write until gated BC setup and real playthru evidence exist."
+    "agent:workbreakdown:check no longer depends on the removed simulation-named active data package.",
+    "PWS-MD read-first planning and the Foundation Master Data route decision now point to customer-project packages for Customers, Vendors and Items/Services.",
+    "Jira import mapping now treats source packages as Universaarl customer-project data packages."
   ],
   "notProved": [
     "No fresh Business Central login was captured.",

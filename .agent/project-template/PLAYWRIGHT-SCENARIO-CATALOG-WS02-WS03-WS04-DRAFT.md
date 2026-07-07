@@ -198,7 +198,7 @@ Pages in scope:
 Evidence output:
 
 - visible row list or filtered result
-- missing rows needed for simulated data
+- missing rows needed for customer-project data packages
 - linked G/L account fields if visible
 - screenshot truth notes
 - `notProved` list for rows not visible
@@ -320,7 +320,7 @@ Evidence output:
 
 - visible payment terms rows
 - due-date formula if visible
-- whether simulated customers/vendors can use the terms
+- whether customer-project customers/vendors can use the terms
 - screenshot truth notes
 
 Stop if:
@@ -348,12 +348,12 @@ Start state:
 
 - `PWS-CORE-001` has passed.
 - `FOUNDATION-READINESS-DECISION.md` exists from TARGET-075 and does not block customer read-first work.
-- `DR-MD-CUST-001` remains simulated/Jira-ready, not BC-setup-ready.
+- `DR-MD-CUST-001` remains customer-project/Jira-ready, not BC-setup-ready.
 - No customer creation allowed.
 
 Inputs:
 
-- simulated package `UNIVERSAARL_MD_Customers`
+- customer-project package `UNIVERSAARL_MD_Customers`
 - data request `DR-MD-CUST-001`
 - route cards `RD-FOUND-001`, `RD-FOUND-002`, `RD-FOUND-003`
 - training card `TR-03-01 Customer Master Data`
@@ -387,7 +387,7 @@ Stop if:
 
 Book/training use:
 
-Supports customer master-data training without pretending setup is complete. The handbook output should explain which customer-card fields control later documents and postings, but it must not claim that any simulated customer has been created in Business Central.
+Supports customer master-data training without pretending setup is complete. The handbook output should explain which customer-card fields control later documents and postings, but it must not claim that any customer-project customer has been created in Business Central.
 
 ## PWS-MD-002 Vendor card/list read-first proof
 
@@ -404,12 +404,12 @@ Start state:
 
 - `PWS-CORE-001` has passed.
 - `FOUNDATION-READINESS-DECISION.md` exists from TARGET-075 and does not block vendor read-first work.
-- `DR-MD-VEND-001` remains simulated/Jira-ready, not BC-setup-ready.
+- `DR-MD-VEND-001` remains customer-project/Jira-ready, not BC-setup-ready.
 - No vendor creation allowed.
 
 Inputs:
 
-- simulated package `UNIVERSAARL_MD_Vendors`
+- customer-project package `UNIVERSAARL_MD_Vendors`
 - data request `DR-MD-VEND-001`
 - route cards `RD-FOUND-001`, `RD-FOUND-002`, `RD-FOUND-003`
 - payment boundary decision placeholder `DEC-PAYMENT-001`
@@ -467,7 +467,7 @@ Start state:
 
 Inputs:
 
-- simulated package `UNIVERSAARL_MD_ItemsServices`
+- customer-project package `UNIVERSAARL_MD_ItemsServices`
 - data request `DR-MD-ITEM-001`
 - route card `RD-FOUND-004`
 - decisions `DEC-MD-UOM-001`, `DEC-MD-PRODUCT-001`
