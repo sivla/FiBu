@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 1,
+  "purpose": "customer-masterdata-boundary-decision",
+  "caseId": "CUSTOMER-VAT-DIMENSION-BOUNDARY-DECISION",
+  "source": "local-evidence-and-microsoft-learn-boundary-review",
+  "resultStatus": "completed-local-decision",
+  "completedAt": "2026-07-07T07:55:00.000+02:00",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "businessCentralOpened": false,
+  "playwrightLiveRunExecuted": false,
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "confidentialRealCustomerDataUsed": false,
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/result.json",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-setup-reopen-proof/result.json",
+    "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/result.json"
+  ],
+  "sourceReferences": [
+    {
+      "title": "Microsoft Learn: Posting group setup in Business Central",
+      "url": "https://learn.microsoft.com/en-au/dynamics365/business-central/finance-posting-groups",
+      "usedFor": "Posting groups map customers, vendors, items and documents to G/L accounts; customer setup fields alone do not prove posting readiness."
+    },
+    {
+      "title": "Microsoft Learn: Set up value-added tax in Business Central",
+      "url": "https://learn.microsoft.com/en-gb/dynamics365/business-central/finance-setup-vat",
+      "usedFor": "VAT business/product posting groups and VAT posting setup are separate VAT prerequisites before tax/posting claims."
+    },
+    {
+      "title": "Microsoft Learn: Work with dimensions to track and analyse data",
+      "url": "https://learn.microsoft.com/en-ca/dynamics365/business-central/finance-dimensions",
+      "usedFor": "Dimensions are analysis/reporting context and can be defaults on customers/items/locations, but missing dimensions do not by themselves prove or disprove basic customer-card setup."
+    },
+    {
+      "title": "Microsoft Learn: Set up payment terms in Business Central",
+      "url": "https://learn.microsoft.com/en-au/dynamics365/business-central/finance-payment-terms",
+      "usedFor": "Payment terms can be assigned to customers/vendors; NET30 customer assignment is useful for later invoice due-date proof but does not prove payment or posting behavior."
+    },
+    {
+      "title": "Microsoft Learn: Set up payment methods in Business Central",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/finance-payment-methods",
+      "usedFor": "Payment methods can default on documents, but payment method is not the same as payment terms and remains a separate payment/process boundary."
+    }
+  ],
+  "decision": {
+    "summary": "Do not proceed to any O2C write, document, Preview Posting or Posting from the customer setup proof alone. U-CUST-100 is ready for customer-card handbook/training draft and for the next read-first dependency work, but O2C remains setup-gated.",
+    "vatBusinessPostingGroup": {
+      "classification": "blocks-o2c-write-and-posting; can-remain-open-for-local-route-planning-only",
+      "reason": "The customer proof intentionally did not set or prove a VAT Business Posting Group. Microsoft Learn treats VAT posting groups and VAT posting setup as separate VAT prerequisites. No VAT correctness, VAT calculation or VAT entry claim is allowed.",
+      "nextAction": "Before any sales document write/preview/posting, run a focused VAT customer/item/setup boundary or source-backed setup decision."
+    },
+    "dimensionDefaults": {
+      "classification": "parked-for-minimal-read-first; required-before-realistic-reporting-uat",
+      "reason": "Dimensions are reporting and analysis context. They are not proven on U-CUST-100 and should not block a local read-first route decision, but a realistic Universaarl UAT/training flow needs a dimension decision before final process/management reporting claims.",
+      "nextAction": "Keep dimension defaults out of the next customer proof; schedule a focused Dimension Defaults read-first/setup decision before UAT-ready O2C."
+    },
+    "paymentMethod": {
+      "classification": "parked-for-o2c-route; blocks-payment-readiness-only",
+      "reason": "Payment Terms Code NET30 is proven on the customer card and NET30 setup exists. Payment Method is separate and was not changed or proven. It is not needed to explain customer payment terms, but it is needed before payment-process readiness claims.",
+      "nextAction": "Do not claim payment readiness; defer Payment Method until payment/bank or invoice collection scenarios."
+    },
+    "o2cReadiness": {
+      "classification": "not-ready-for-document-write-preview-or-posting",
+      "reason": "Customer card setup is only one dependency. O2C also needs item/service readiness, sales setup, posting/VAT setup boundaries, document route decision and explicit gates.",
+      "allowedNow": [
+        "local O2C dependency planning",
+        "customer-card handbook/training draft",
+        "next read-first item/service dependency proof"
+      ],
+      "blockedNow": [
+        "sales quote/order/invoice draft",
+        "Preview Posting",
+        "Posting",
+        "VAT correctness claim",
+        "ledger trace claim"
+      ]
+    }
+  },
+  "proved": [
+    "U-CUST-100 customer setup values INLAND / INLAND / NET30 are visually proven in playthru / UNIVERSAARL-DE evidence.",
+    "NET30 payment terms setup exists and is proven in playthru / UNIVERSAARL-DE evidence.",
+    "VAT Business Posting Group, dimension defaults and payment method are separate open boundaries, not hidden success criteria.",
+    "The next work should not create a sales document or posting attempt.",
+    "The next master-data route must use realistic fictional Universaarl business data, not shallow mockups or confidential real customer data."
+  ],
+  "notProved": [
+    "No VAT Business Posting Group on U-CUST-100.",
+    "No VAT Product Posting Group or VAT Posting Setup correctness.",
+    "No customer default dimensions.",
+    "No payment method.",
+    "No invoice due-date calculation from NET30.",
+    "No O2C document readiness.",
+    "No Preview Posting, Posting, payment or ledger trace.",
+    "No UAT acceptance.",
+    "No confidential real customer data suitability or consent was proven; repository evidence remains limited to fictional Universaarl case-study data."
+  ],
+  "actionsTaken": [
+    "Read existing U-CUST-100 setup value evidence.",
+    "Read existing U-CUST-100 read-only reopen proof evidence.",
+    "Read existing NET30 payment terms setup evidence.",
+    "Reviewed official Microsoft Learn boundaries for posting groups, VAT setup, dimensions, payment terms and payment methods.",
+    "Classified VAT, dimensions, payment method and O2C readiness boundaries without opening Business Central."
+  ],
+  "actionsNotTaken": [
+    "No Business Central live action.",
+    "No Playwright live execution.",
+    "No customer field changed.",
+    "No VAT setup changed.",
+    "No dimensions changed.",
+    "No payment method changed.",
+    "No document or draft created.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No payment.",
+    "No API shortcut."
+  ],
+  "flags": {
+    "noBusinessCentralLive": true,
+    "noPlaywrightLive": true,
+    "noWrite": true,
+    "noVatSetupChange": true,
+    "noDimensionChange": true,
+    "noPaymentMethodChange": true,
+    "noDraft": true,
+    "noPreview": true,
+    "noPost": true,
+    "noPayment": true,
+    "noApiShortcut": true,
+    "noConfidentialRealCustomerData": true
+  },
+  "warnings": [
+    "This decision permits only local/read-first dependency work, not O2C document creation.",
+    "Customer-card setup evidence is useful for handbook/training, but not for VAT/posting/payment readiness.",
+    "Do not turn this decision into a final German tax or posting claim."
+  ],
+  "nextStepDecision": {
+    "currentCase": "CUSTOMER-VAT-DIMENSION-BOUNDARY-DECISION",
+    "plannedNextCaseBeforeReview": "O2C-MINIMAL-ROUTE-DECISION",
+    "lastEvidenceSummary": "Customer setup values and NET30 are proven; VAT Business Posting Group, dimensions, payment method and O2C behavior are not proven.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "A direct O2C route decision would still skip item/service readiness and VAT/posting setup boundaries. The better next practical step is item/service master-data read-first, because O2C needs an item/service before a realistic sales route can be planned.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "ITEM-SERVICE-MASTERDATA-READFIRST",
+        "status": "ready-next",
+        "reason": "Customer setup is sufficiently proven for now; item/service is the next concrete O2C dependency and can be read-first/no-write."
+      },
+      {
+        "caseId": "CUSTOMER-VAT-BUSINESS-POSTING-GROUP-READFIRST",
+        "status": "ready-after-current",
+        "reason": "Needed before any sales document write or VAT/posting claim, but can be handled as a focused boundary after the next item/service context proof."
+      },
+      {
+        "caseId": "O2C-MINIMAL-ROUTE-DECISION",
+        "status": "needs-setup-first",
+        "reason": "Requires customer, item/service, VAT/posting boundaries and sales route decision before draft/write."
+      },
+      {
+        "caseId": "PAYMENT-METHOD-READFIRST",
+        "status": "ready-after-current",
+        "reason": "Useful for payment process readiness, not required for the next customer/item read-first step."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "ITEM-SERVICE-MASTERDATA-READFIRST",
+    "whySelectedNextCaseIsBest": "It moves toward real O2C without overclaiming VAT/posting readiness and produces concrete master-data/evidence value for book, training and UAT.",
+    "risksBeforeNextCase": [
+      "Do not create a sales document yet.",
+      "Do not treat missing VAT Business Posting Group as solved.",
+      "Do not claim customer dimensions or payment method readiness."
+    ],
+    "requiredPreparation": [
+      "Create a narrow ITEM-SERVICE-MASTERDATA-READFIRST case if missing.",
+      "Keep it read-only/no-write unless a later explicit write gate is opened."
+    ]
+  },
+  "nextCase": "ITEM-SERVICE-MASTERDATA-READFIRST",
+  "requiresReview": false,
+  "safeToFinalizeState": true,
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/result.json",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-setup-reopen-proof/result.json",
+    "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/result.json",
+    "playwright/projects/fibu-book5/evidence/customer-vat-dimension-boundary-decision/result.json"
+  ],
+  "realCustomerDataPolicy": {
+    "useRealisticFictionalBusinessPartners": true,
+    "useConfidentialRealCustomerData": false,
+    "noMockups": true,
+    "rule": "Use realistic fictional Universaarl business partners and products with business purpose, ownership, dependencies, UAT/training purpose and BC setup readiness. Do not use confidential real customer data in repository artifacts, screenshots, evidence or book text."
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "caseId": "ITEM-SERVICE-MASTERDATA-READFIRST",
+  "title": "Item and Service Master Data Read-First",
+  "status": "ready-readfirst",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-masterdata-item-service-readfirst",
+  "businessPurpose": "Inspect whether Universaarl has realistic item/service master-data context for the next O2C/P2P route decision before any document, draft, preview or posting work starts.",
+  "realCustomerDataPolicy": {
+    "useRealisticFictionalBusinessPartners": true,
+    "useConfidentialRealCustomerData": false,
+    "rule": "Use realistic Universaarl-style customers, vendors, items and services with business purpose, ownership, dependencies and UAT/training purpose. Do not use real confidential customer data in repo, screenshots or evidence."
+  },
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/customer-vat-dimension-boundary-decision/result.json",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-setup-reopen-proof/result.json"
+  ],
+  "allowedActions": [
+    "read-existing-evidence",
+    "read-current-state",
+    "read-dashboard",
+    "open-business-central-playthru-readonly",
+    "confirm-company-universaarl-de",
+    "open-items-or-services-readonly",
+    "capture-screenshot-qa",
+    "write-readfirst-result",
+    "update-state-and-dashboard"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "change-item-fields",
+    "change-service-fields",
+    "change-vat-setup",
+    "change-posting-groups",
+    "change-dimensions",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "use-confidential-real-customer-data"
+  ],
+  "decisionQuestions": [
+    "Which item/service records are already visible in UNIVERSAARL-DE?",
+    "Do visible records support realistic O2C/P2P training scenarios or are they only placeholders?",
+    "Which item/service fields must be proven before any sales or purchase document is created?",
+    "Which setup boundaries remain before item/service data can be used in posting-ready processes?"
+  ],
+  "expectedOutput": {
+    "resultPath": "playwright/projects/fibu-book5/evidence/item-service-masterdata-readfirst/result.json",
+    "mustClassify": [
+      "visibleItemsOrServices",
+      "realismFit",
+      "setupReadiness",
+      "o2cDependencyImpact",
+      "p2pDependencyImpact",
+      "nextCase"
+    ],
+    "mustNotClaim": [
+      "item setup completeness",
+      "VAT correctness",
+      "posting readiness",
+      "inventory valuation correctness",
+      "O2C document readiness",
+      "P2P document readiness",
+      "UAT acceptance"
+    ]
+  },
+  "screenshotQaRequired": true,
+  "nextStepDecision": {
+    "plannedNextCaseBeforeReview": "ITEM-SERVICE-MASTERDATA-READFIRST",
+    "selectedNextCase": "ITEM-SERVICE-MASTERDATA-READFIRST",
+    "whySelectedNextCaseIsBest": "The customer card setup is visible, but O2C must not start from customer data alone. Realistic item/service context is the next read-first dependency before any document or posting gate."
+  }
+}
