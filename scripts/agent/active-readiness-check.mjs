@@ -108,6 +108,30 @@ const checksByCase = new Map([
     }
   ],
   [
+    'CUSTOMER-PAYMENT-TERMS-WRITE-GATE',
+    {
+      id: 'customer-payment-terms-write-gate',
+      scriptPath: 'scripts/agent/run-customer-payment-terms-write-gate.mjs',
+      args: ['--check'],
+      reason: 'CUSTOMER-PAYMENT-TERMS-WRITE-GATE is the active narrow setup gate and must only create or verify NET30 on Payment Terms before any customer setup write.',
+      secondaryChecks: [
+        {
+          id: 'foundation-readiness-decision',
+          scriptPath: 'scripts/agent/foundation-readiness-decision.mjs',
+          reason: 'Payment Terms is a bounded setup prerequisite; broader Master Data and process readiness still depend on Foundation boundaries.'
+        }
+      ]
+    }
+  ],
+  [
+    'CUSTOMER-PAYMENT-TERMS-WRITE-GATE-RECOVERY',
+    {
+      id: 'customer-payment-terms-write-gate-recovery',
+      scriptPath: 'scripts/agent/foundation-readiness-decision.mjs',
+      reason: 'The Payment Terms write gate is blocked no-write; the selected recovery stays read-first until the Payment Terms page route is screenshot-proven.'
+    }
+  ],
+  [
     'TARGET-073B-VAT-PAGE472-SURFACE-AND-EDITOR-PROOF',
     {
       id: 'target-073b-page472-surface-editor-proof',

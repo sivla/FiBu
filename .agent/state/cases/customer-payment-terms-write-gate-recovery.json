@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "caseId": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE-RECOVERY",
+  "status": "ready-readfirst-recovery",
+  "mode": "universaarl-masterdata-payment-terms-route-recovery",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w2-core-masterdata-customer-payment-terms-route-recovery",
+  "workstream": "WS04 Master Data / Finance Setup",
+  "epic": "Customer master data setup values",
+  "issueType": "Task",
+  "purpose": "Recover the real Business Central route to the Payment Terms page before any further NET30 setup write attempt.",
+  "businessPurpose": "The first write-gate runner repeatedly landed on the Role Center and captured a delayed Power BI information dialog instead of the Payment Terms list. The next step must understand and prove the route before writing setup.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/result.json",
+    "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/customer-payment-terms-010-before.png",
+    "playwright/projects/fibu-book5/evidence/customer-setup-route-recovery-readfirst/result.json"
+  ],
+  "allowedActions": [
+    "open-business-central-playthru-only",
+    "confirm-company-universaarl-de",
+    "dismiss-safe-info-dialogs",
+    "open-payment-terms-page-readonly",
+    "capture-search-overlay-screenshots",
+    "capture-page-inspection",
+    "write-result-json"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "create-or-edit-payment-term",
+    "edit-customer",
+    "save-customer",
+    "change-posting-group",
+    "change-vat-setup",
+    "change-dimensions",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "use-confidential-real-customer-data"
+  ],
+  "acceptanceCriteria": [
+    "Business Central shell proves playthru / UNIVERSAARL-DE.",
+    "The recovery result explains whether direct Page 4, search, explorer, page inspection or safe dialog dismissal reaches the Payment Terms page.",
+    "Screenshots distinguish Role Center, search overlay, info dialog and true Payment Terms list.",
+    "No payment term, customer, document, Preview Posting, Posting, payment or API shortcut is changed."
+  ],
+  "stopIf": [
+    "Wrong instance or company.",
+    "A confirmation dialog would change setup or data.",
+    "The route would require customer card or document context.",
+    "The route still only shows Role Center after direct/search/explorer attempts."
+  ],
+  "nextCaseIfReady": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
+  "nextCaseIfBlocked": "CUSTOMER-PAYMENT-TERMS-ROUTE-SOURCE-DECISION",
+  "updatedAt": "2026-07-07T04:00:00.000Z"
+}

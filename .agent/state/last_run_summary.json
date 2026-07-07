@@ -1,42 +1,27 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
-  "caseId": "CUSTOMER-PAYMENT-TERMS-SETUP-DECISION",
-  "status": "completed-local-decision",
-  "completedAt": "2026-07-07T01:29:08.885Z",
-  "mode": "universaarl-masterdata-setup-route-recovery",
+  "runId": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
+  "caseId": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
+  "status": "blocked-no-write",
+  "completedAt": "2026-07-07T04:00:00.000Z",
+  "mode": "universaarl-masterdata-payment-terms-write-gate",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Selected realistic simulated Universaarl payment term NET30 / 30 Tage netto / <30D> using Microsoft Learn payment-term/date-formula sources and real playthru evidence that Payment Terms is empty. No BC or Playwright live action; no write.",
-  "resultPath": "playwright/projects/fibu-book5/evidence/customer-payment-terms-setup-decision/result.json",
+  "summary": "Built and ran a guarded Payment Terms write-gate runner for NET30. The runner confirmed playthru / UNIVERSAARL-DE and produced screenshots, but screenshot QA showed Role Center plus a delayed Power BI information dialog instead of the Payment Terms list. No setup, master data, draft, Preview Posting, Posting, payment or API shortcut was changed.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/result.json",
   "changedArtifacts": [
-    "playwright/projects/fibu-book5/tests/customer-setup-route-recovery-readfirst.spec.ts",
-    "playwright/projects/fibu-book5/evidence/customer-setup-route-recovery-readfirst/result.json",
-    "playwright/projects/fibu-book5/evidence/customer-setup-route-recovery-readfirst/README.md",
-    ".agent/state/cases/customer-setup-route-recovery-readfirst.json",
+    "scripts/agent/run-customer-payment-terms-write-gate.mjs",
+    "playwright/projects/fibu-book5/tests/customer-payment-terms-write-gate.spec.ts",
+    "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/",
+    ".agent/state/cases/customer-payment-terms-write-gate-recovery.json",
     ".agent/state/current.json",
-    ".agent/state/last_run_summary.json"
+    ".agent/state/last_run_summary.json",
+    "package.json",
+    "scripts/agent/active-readiness-check.mjs"
   ],
-  "actionsTaken": [
-    "Opened playthru / UNIVERSAARL-DE read-only.",
-    "Tried direct page-id route for Customer Posting Groups, General Business Posting Groups, VAT Business Posting Groups and Payment Terms.",
-    "Tried bounded Tell-Me/search route where direct route was not accepted.",
-    "Captured screenshots, compact text and Page Inspection diagnostics for each setup page route."
-  ],
-  "actionsNotTaken": [
-    "No customer edited or saved.",
-    "No setup row created, edited or saved.",
-    "No dropdown value selected.",
-    "No document or draft created.",
-    "No Preview Posting.",
-    "No Posting.",
-    "No payment.",
-    "No API shortcut.",
-    "No confidential real customer data used."
-  ],
-  "businessCentralOpened": false,
-  "playwrightLiveRunExecuted": false,
+  "businessCentralOpened": true,
+  "playwrightLiveRunExecuted": true,
   "setupChanged": false,
   "setupChangeAttempted": false,
   "masterDataChanged": false,
@@ -45,84 +30,75 @@
   "posted": false,
   "payment": false,
   "apiShortcut": false,
+  "confidentialRealCustomerDataUsed": false,
   "proved": [
-    "playthru / UNIVERSAARL-DE was used for a real Business Central read-first route-recovery run.",
-    "Debitorenbuchungsgruppen / Customer Posting Groups was recovered read-only.",
-    "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups was recovered read-only.",
-    "Zahlungsbedingungen / Payment Terms was recovered read-only.",
-    "Existing Universaarl TARGET-032B evidence proves INLAND on Page 312 after reopen.",
-    "No setup, master data, document, Preview Posting, Posting, payment or API shortcut was changed in this run."
+    "playthru / UNIVERSAARL-DE auth and live gate were usable.",
+    "The guarded runner and active-readiness hook exist for the Payment Terms write gate.",
+    "The current route must not be accepted as Payment Terms proof because screenshots show Role Center / information-dialog context.",
+    "No customer, setup row, document, Preview Posting, Posting, payment or API shortcut was changed."
   ],
   "notProved": [
-    "The current customer route-recovery runner still does not open General Business Posting Groups itself.",
-    "No customer setup value was selected or written.",
-    "No General Posting Setup row, VAT correctness, O2C readiness, Preview Posting or Posting is proven."
+    "NET30 was not created or verified.",
+    "Payment Terms page context was not accepted in the write-gate run.",
+    "Customer setup values remain blocked.",
+    "No invoice due-date calculation, O2C readiness, Preview Posting, Posting or UAT acceptance."
   ],
   "blockedBy": [
-    "Current route-recovery runner: General Business Posting Groups still lands in Tell-Me/search overlay or Role Center.",
-    "Value write remains blocked until exact setup values are selected from accepted evidence."
+    "Direct Page 4 route landed on Role Center in the write-gate runner.",
+    "A delayed Power BI information dialog appeared and must be handled before route proof.",
+    "The current text extraction only saw Neu/Neue/Beschreibung and is insufficient for Payment Terms proof."
   ],
   "screenshotQa": {
-    "capturedCount": 28,
-    "acceptedForWriteGate": false,
-    "acceptedPages": [
-      "Debitorenbuchungsgruppen / Customer Posting Groups",
-      "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups",
-      "Zahlungsbedingungen / Payment Terms"
+    "acceptedForPaymentTerms": false,
+    "screenshots": [
+      "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/customer-payment-terms-010-before.png",
+      "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/customer-payment-terms-020-after.png",
+      "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/customer-payment-terms-030-reopen-proof.png"
     ],
-    "blockedPages": [
-      {
-        "label": "Geschaeftsbuchungsgruppen / Gen. Business Posting Groups",
-        "routeUsed": "customer-route-recovery-runner",
-        "reason": "Still search-overlay/Role-Center blocker in current runner; parked via TARGET-032A/TARGET-032B Foundation reference."
-      }
-    ],
-    "reason": "Current screenshots prove the remaining route is not worth repeating as-is; existing TARGET-032A/TARGET-032B screenshots are the stronger accepted Page 312/INLAND proof."
+    "reason": "Screenshots are useful blocker evidence, but not Payment Terms page proof."
   },
-  "uiLearning": "More screenshots changed the decision: the failure is not lack of clicks, it is the wrong route. For Page 312, consume existing direct-page Foundation evidence rather than repeating Tell-Me/explorer search.",
+  "uiLearning": "Business Central route proof must use screenshot QA before write actions. Direct page-id navigation can silently stay on the Role Center, and delayed info dialogs can appear after the first wait.",
   "nextStepDecision": {
-    "currentCase": "CUSTOMER-PAYMENT-TERMS-SETUP-DECISION",
-    "plannedNextCaseBeforeReview": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "The value, source boundary and UI-first proof route are now explicit.",
-    "selectedNextCase": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
-    "whySelectedNextCaseIsBest": "It turns a real empty setup dependency into one controlled, screenshot-proven BC setup row before customer-card writes.",
+    "currentCase": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "NET30 is not proven; customer setup value write must stay blocked.",
+    "selectedNextCase": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE-RECOVERY",
+    "whySelectedNextCaseIsBest": "It isolates the real UI/navigation blocker before any setup write.",
     "lookaheadReviewed": [
       {
-        "caseId": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
+        "caseId": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE-RECOVERY",
         "status": "ready-next",
-        "reason": "Only one setup row, exact fields, before/after/reopen evidence required."
+        "reason": "Needs read-first route proof with more screenshots and no writes."
+      },
+      {
+        "caseId": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
+        "status": "ready-after-current",
+        "reason": "Only after the Payment Terms page route is screenshot-proven."
       },
       {
         "caseId": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
-        "status": "ready-after-current",
-        "reason": "Only after NET30 exists."
-      },
-      {
-        "caseId": "CUSTOMER-SETUP-VALUE-READFIRST-REOPEN",
-        "status": "ready-after-current",
-        "reason": "Use after NET30 exists to verify customer fields before writing."
+        "status": "blocked",
+        "reason": "Blocked until NET30 exists and is reopen-proven."
       },
       {
         "caseId": "O2C-MINIMAL-ROUTE-DECISION",
         "status": "needs-setup-first",
-        "reason": "Still needs customer, item/service, VAT and posting boundaries."
+        "reason": "Still needs customer setup, item/service and posting/VAT boundaries."
       }
     ],
     "queueChangesMade": [
-      "Selected CUSTOMER-PAYMENT-TERMS-WRITE-GATE."
+      "Active case changed to CUSTOMER-PAYMENT-TERMS-WRITE-GATE-RECOVERY."
     ],
     "risksBeforeNextCase": [
-      "Do not write customer card.",
-      "Do not create document or posting.",
-      "Do not claim due-date proof before a later document scenario."
+      "Do not treat Role Center screenshots as setup page evidence.",
+      "Do not write NET30 until Payment Terms page context is accepted."
     ],
     "requiredPreparation": [
-      "Preflight/auth/context gates.",
-      "Real playthru / UNIVERSAARL-DE screenshot proof."
+      "Run route recovery read-first with explicit screenshots for dialog, search overlay, explorer and true list context."
     ]
   },
-  "nextCase": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
-  "nextStep": "Recover the remaining General Business Posting Groups route with a materially different exact term/navigation route. Do not open CUSTOMER-SETUP-VALUE-WRITE-GATE until all setup dependencies are accepted by screenshot QA and Page Inspection.",
-  "updatedAt": "2026-07-07T03:05:00.000Z"
+  "nextCase": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE-RECOVERY",
+  "nextStep": "Run CUSTOMER-PAYMENT-TERMS-WRITE-GATE-RECOVERY read-first: capture screenshots for Role Center, delayed Power BI info dialog, search/explorer route and the true Payment Terms list before any NET30 setup write.",
+  "updatedAt": "2026-07-07T04:00:00.000Z"
 }

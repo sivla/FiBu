@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized-compatible",
+  "caseId": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
+  "source": "playwright-controlled-payment-terms-write-gate",
+  "resultStatus": "blocked",
+  "startedAt": "2026-07-07T01:58:19.872Z",
+  "completedAt": "2026-07-07T01:58:59.899Z",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "Zahlungsbedingungen / Payment Terms",
+  "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?company=UNIVERSAARL-DE&dc=0",
+  "liveActionsExecuted": true,
+  "businessCentralOpened": true,
+  "playwrightLiveRunExecuted": true,
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "confidentialRealCustomerDataUsed": false,
+  "selectedValue": {
+    "code": "NET30",
+    "description": "30 Tage netto",
+    "dueDateCalculation": "<30D>",
+    "localizedDueDateCandidates": [
+      "<30D>",
+      "30D",
+      "30T",
+      "<30T>"
+    ],
+    "discountDateCalculation": "",
+    "discountPercent": "0"
+  },
+  "route": "not-attempted",
+  "fillAttempts": [],
+  "actionsTaken": [
+    "Opened guarded Business Central context for playthru / UNIVERSAARL-DE.",
+    "Opened Payment Terms page 4.",
+    "Attempted bounded NET30 setup route: not-attempted.",
+    "Captured before, after and reopen proof screenshots."
+  ],
+  "actionsNotTaken": [
+    "No customer edited or saved.",
+    "No customer posting group changed.",
+    "No general business posting group changed.",
+    "No VAT setup changed.",
+    "No dimensions changed.",
+    "No document or draft created.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No payment.",
+    "No API shortcut.",
+    "No confidential real customer data used."
+  ],
+  "screenshots": [
+    "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/customer-payment-terms-010-before.png",
+    "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/customer-payment-terms-020-after.png",
+    "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/customer-payment-terms-030-reopen-proof.png"
+  ],
+  "screenshotQa": {
+    "requiredCheckpoints": [
+      "before Payment Terms page",
+      "after NET30 route",
+      "reopen proof"
+    ],
+    "capturedCheckpoints": [
+      "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/customer-payment-terms-010-before.png",
+      "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/customer-payment-terms-020-after.png",
+      "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/customer-payment-terms-030-reopen-proof.png"
+    ],
+    "acceptedForPaymentTerms": false,
+    "acceptedForCustomerSetupWrite": false,
+    "acceptedForO2CReady": false
+  },
+  "proved": [
+    "playthru / UNIVERSAARL-DE was used.",
+    "Payment Terms page 4 was opened or attempted through the guarded route.",
+    "No customer, document, Preview Posting, Posting, payment or API shortcut was executed."
+  ],
+  "notProved": [
+    "No customer Payment Terms Code was updated.",
+    "No invoice due-date calculation was proven.",
+    "No customer setup completeness.",
+    "No O2C readiness.",
+    "No Preview Posting, Posting, payment or ledger trace.",
+    "No UAT acceptance."
+  ],
+  "blockedBy": [
+    "Payment Terms page was not proven before write attempt."
+  ],
+  "warnings": [
+    "This is real Business Central UI evidence in playthru, not a UI mockup.",
+    "NET30 is realistic Universaarl setup data, not confidential real customer data.",
+    "A Payment Terms row does not prove customer setup or invoice due-date behavior until a later case assigns and uses it."
+  ],
+  "flags": {
+    "noCustomerWrite": true,
+    "noMasterDataChange": true,
+    "noDraft": true,
+    "noPreview": true,
+    "noPost": true,
+    "noPayment": true,
+    "noApiShortcut": true,
+    "noConfidentialRealCustomerData": true
+  },
+  "nextStepDecision": {
+    "currentCase": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
+    "lastEvidenceSummary": "Payment Terms write gate did not prove NET30.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Do not assign payment terms on the customer while NET30 setup remains unproven.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
+        "status": "blocked",
+        "reason": "NET30 is not proven."
+      },
+      {
+        "caseId": "CUSTOMER-U-CUST-100-SETUP-REOPEN-PROOF",
+        "status": "ready-after-current",
+        "reason": "Customer setup values need their own bounded write and reopen proof."
+      },
+      {
+        "caseId": "O2C-MINIMAL-ROUTE-DECISION",
+        "status": "needs-setup-first",
+        "reason": "Sales process remains blocked until customer, item/service, posting and VAT setup are consciously handled."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE-RECOVERY",
+    "whySelectedNextCaseIsBest": "Recover the Payment Terms write route before touching the customer card.",
+    "risksBeforeNextCase": [
+      "Do not use NET30 as proof of invoice behavior until a document case calculates due dates."
+    ],
+    "requiredPreparation": [
+      "Diagnose Payment Terms page edit route with more screenshots before any customer write."
+    ]
+  },
+  "evidenceRefs": [
+    "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/customer-payment-terms-context.txt",
+    "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/customer-payment-terms-010-before.png",
+    "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/customer-payment-terms-010-before.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/customer-payment-terms-020-after.png",
+    "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/customer-payment-terms-020-after.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/customer-payment-terms-030-reopen-proof.png",
+    "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/customer-payment-terms-030-reopen-proof.screenshot.json",
+    "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/result.json"
+  ],
+  "nextCase": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE-RECOVERY",
+  "requiresReview": true,
+  "safeToFinalizeState": false
+}
