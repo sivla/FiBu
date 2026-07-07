@@ -65,6 +65,21 @@ if (typeof current.activeNextStepAuthority !== 'object' || current.activeNextSte
   errors.push(
     `${files.current}.activeNextStepAuthority.ignoreHistoricalResultNextSteps must be true so historical result blocks cannot override active next steps`,
   );
+} else {
+  const selectedNextCase = current.activeNextStepAuthority.selectedNextCase;
+  const expectedNextCase = current.nextCase ?? current.activeCase;
+  if (selectedNextCase !== expectedNextCase) {
+    errors.push(
+      `${files.current}.activeNextStepAuthority.selectedNextCase must match current.nextCase/current.activeCase: ${selectedNextCase} vs ${expectedNextCase}`,
+    );
+  }
+  const authorityCaseFile = current.activeNextStepAuthority.activeCaseFile;
+  const expectedCaseFile = current.preparedNextCaseFile ?? current.active_case_file;
+  if (authorityCaseFile !== undefined && authorityCaseFile !== expectedCaseFile) {
+    errors.push(
+      `${files.current}.activeNextStepAuthority.activeCaseFile must match current.preparedNextCaseFile/current.active_case_file: ${authorityCaseFile} vs ${expectedCaseFile}`,
+    );
+  }
 }
 if (current.activeCaseFile !== undefined && current.activeCaseFile !== current.active_case_file) {
   errors.push(

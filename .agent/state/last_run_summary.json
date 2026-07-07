@@ -1,24 +1,20 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "SCREENSHOT-CHAIN-CONTRACT-CHECKER",
+  "runId": "ACTIVE-NEXT-STEP-AUTHORITY-SYNC",
   "caseId": "FOUNDATION-READINESS-DECISION",
-  "status": "completed-local-validator-addition",
-  "completedAt": "2026-07-07T15:45:00.000+02:00",
-  "updatedAt": "2026-07-07T15:45:00.000+02:00",
+  "status": "completed-local-state-validator-hardening",
+  "completedAt": "2026-07-07T15:55:00.000+02:00",
+  "updatedAt": "2026-07-07T15:55:00.000+02:00",
   "mode": "universaarl-foundation-masterdata-boundary",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Local no-live UI/Screenshot-QA contract refresh completed and made machine-checkable. A new agent:screenshot-chain:check script verifies that the active Foundation decision, case file, current state and read-only UI map keep the next live proof on a multi-step screenshot chain instead of a single end screenshot. O2C/P2P, Preview Posting and Posting remain blocked until General Posting Setup and VAT Posting Setup are proven.",
-  "resultPath": "scripts/agent/screenshot-chain-contract-check.mjs",
+  "summary": "Local no-live active-state cleanup completed. activeNextStepAuthority now points to the active Foundation Readiness boundary instead of the stale item-service write gate, and state validation now fails if activeNextStepAuthority.selectedNextCase or activeCaseFile drifts away from current.nextCase/preparedNextCaseFile. O2C/P2P, Preview Posting and Posting remain blocked until General Posting Setup and VAT Posting Setup are proven.",
+  "resultPath": "scripts/agent/state-validate.mjs",
   "changedArtifacts": [
     ".agent/state/current.json",
-    ".agent/state/cases/foundation-readiness-decision.json",
     ".agent/state/last_run_summary.json",
-    "package.json",
-    "scripts/agent/screenshot-chain-contract-check.mjs",
-    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
-    "playwright/projects/fibu-book5/UNIVERSAARL-READONLY-UI-LOOK-AND-FEEL-MAP.md"
+    "scripts/agent/state-validate.mjs"
   ],
   "businessCentralOpened": false,
   "playwrightLiveRunExecuted": false,
@@ -37,9 +33,9 @@
   "actionsTaken": [
     "Verified active state remains playthru / UNIVERSAARL-DE with live BC and Playwright blocked for this local UI/Screenshot-QA contract run.",
     "Re-read active goal, repository status, current state and last run summary.",
-    "Corrected the Universaarl read-only UI look-and-feel map so UNIVERSAARL-DE is no longer described as not yet created.",
-    "Added a concrete multi-step screenshot chain requirement for the next read-first Foundation/VAT/Posting proof.",
-    "Added npm script agent:screenshot-chain:check to make the screenshot-chain rule locally checkable.",
+    "Corrected activeNextStepAuthority so the active next-step source is Foundation Readiness rather than a stale item-service write gate.",
+    "Hardened state validation so activeNextStepAuthority.selectedNextCase must match current.nextCase/current.activeCase.",
+    "Hardened state validation so activeNextStepAuthority.activeCaseFile must match current.preparedNextCaseFile/current.active_case_file.",
     "Kept O2C/P2P, Preview Posting and Posting unproven and blocked."
   ],
   "actionsNotTaken": [
