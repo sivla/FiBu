@@ -6,6 +6,14 @@ const foundationDecisionPath = 'playwright/projects/fibu-book5/FOUNDATION-READIN
 const EXPECTED_INSTANCE = 'playthru';
 const TARGET_COMPANY = 'UNIVERSAARL-DE';
 const MIN_LIVE_AUTH_EXPIRES_IN_HOURS = 9;
+const REAL_CUSTOMER_PROJECT_BOUNDARY = {
+  realBusinessCentralUiRequired: true,
+  uiMockupsAllowedAsEvidence: false,
+  throwawayDummyDataAllowed: false,
+  confidentialRealCustomerDataAllowed: false,
+  acceptedDataMode:
+    'customer-project-like Universaarl customer records that are fictional or anonymized, have business purpose, owner, dependencies, UAT/training use and BC setup readiness, and are proven through real playthru UI evidence before they become book or process truth'
+};
 
 const rawArgs = process.argv.slice(2);
 const liveApproved = rawArgs.includes('--live-approved');
@@ -204,6 +212,7 @@ if (checkOnly) {
         liveActionsExecuted: false,
         businessCentralOpened: false,
         playwrightLiveRunExecuted: false,
+        realCustomerProjectBoundary: REAL_CUSTOMER_PROJECT_BOUNDARY,
         blockedBy,
         nextStep: foundationDecision.nextStep
       },
@@ -227,6 +236,7 @@ if (!liveApproved || blockedBy.length > 0) {
         liveActionsExecuted: false,
         businessCentralOpened: false,
         playwrightLiveRunExecuted: false,
+        realCustomerProjectBoundary: REAL_CUSTOMER_PROJECT_BOUNDARY,
         blockedBy: liveApproved ? blockedBy : ['missing-live-approved-flag', ...blockedBy],
         nextStep:
           'Do not run PWS-MD-001 live before TARGET-075 evidence, Foundation Readiness Decision, live gate and --live-approved.'
