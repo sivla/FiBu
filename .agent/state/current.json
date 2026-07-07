@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-07T05:15:00.000Z",
+  "updatedAt": "2026-07-07T07:42:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
-  "activeArea": "w2-core-masterdata-customer-setup-readiness",
-  "activeCase": "CUSTOMER-U-CUST-100-SETUP-REOPEN-PROOF",
-  "active_case_file": ".agent/state/cases/customer-u-cust-100-setup-reopen-proof.json",
-  "activeCaseFile": ".agent/state/cases/customer-u-cust-100-setup-reopen-proof.json",
+  "activeArea": "w2-core-masterdata-customer-boundary-decision",
+  "activeCase": "CUSTOMER-VAT-DIMENSION-BOUNDARY-DECISION",
+  "active_case_file": ".agent/state/cases/customer-vat-dimension-boundary-decision.json",
+  "activeCaseFile": ".agent/state/cases/customer-vat-dimension-boundary-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-masterdata-customer-setup-reopen-proof",
+  "mode": "universaarl-masterdata-boundary-decision",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -34,14 +34,11 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "open-business-central-playthru-only",
-    "confirm-company-universaarl-de",
-    "open-customer-list",
-    "open-u-cust-100-card",
-    "expand-fakturierung-fasttab",
-    "expand-zahlungen-fasttab",
-    "capture-visible-reopen-proof",
-    "write-result-json"
+    "read-existing-evidence",
+    "read-current-state",
+    "read-dashboard",
+    "write-boundary-decision-result",
+    "update-state-and-dashboard"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -49,6 +46,7 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
+    "open-business-central-live",
     "change-vat-setup",
     "change-dimensions",
     "change-payment-method",
@@ -60,8 +58,8 @@
     "api-shortcut",
     "use-confidential-real-customer-data"
   ],
-  "nextCase": "CUSTOMER-U-CUST-100-SETUP-REOPEN-PROOF",
-  "nextStep": "Run CUSTOMER-U-CUST-100-SETUP-REOPEN-PROOF read-only: reopen U-CUST-100 in playthru / UNIVERSAARL-DE, expand Fakturierung and Zahlungen, visually prove INLAND/INLAND/NET30, and keep O2C blocked until VAT/dimension/payment-method boundaries are decided.",
+  "nextCase": "CUSTOMER-VAT-DIMENSION-BOUNDARY-DECISION",
+  "nextStep": "Run CUSTOMER-VAT-DIMENSION-BOUNDARY-DECISION locally: decide whether VAT Business Posting Group, dimensions and payment method can remain parked before O2C route planning, using the accepted U-CUST-100 setup reopen proof. No BC live action.",
   "preparedNextCaseFile": ".agent/state/cases/customer-setup-dependency-readfirst.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
@@ -196,12 +194,13 @@
     "nextBoundary": "Master Data remains parked. Next work must update Foundation Readiness and either accept this as a Foundation gap or define a genuinely new Page 314 route hypothesis before another live attempt."
   },
   "activeNextStepAuthority": {
-    "source": "customer-setup-value-write-gate-result",
+    "source": "customer-u-cust-100-setup-reopen-proof-result",
+    "resultPath": "playwright/projects/fibu-book5/evidence/customer-u-cust-100-setup-reopen-proof/result.json",
     "roadMap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
-    "activeCaseFile": ".agent/state/cases/customer-u-cust-100-setup-reopen-proof.json",
+    "activeCaseFile": ".agent/state/cases/customer-vat-dimension-boundary-decision.json",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "U-CUST-100 now has visible INLAND/INLAND/NET30 customer setup value proof; next work is read-only boundary/readiness review before any O2C document."
+    "reason": "U-CUST-100 setup values are now visually proven read-only; next work is the local VAT/dimension/payment-method boundary decision before O2C."
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -11504,5 +11503,74 @@
     "nextCase": "CUSTOMER-U-CUST-100-SETUP-REOPEN-PROOF",
     "uiLearning": "Business Central customer cards may abbreviate Zahlungsbedingungscode as Zlg.-Bedingungscode and require scrolling the card content container, not the browser page. Screenshot QA must include visible FastTab-specific reopen proofs.",
     "updatedAt": "2026-07-07T05:15:00.000Z"
+  },
+  "latestCustomerUCust100SetupReopenProof": {
+    "caseId": "CUSTOMER-U-CUST-100-SETUP-REOPEN-PROOF",
+    "status": "observed-readonly-reopen-proof",
+    "resultPath": "playwright/projects/fibu-book5/evidence/customer-u-cust-100-setup-reopen-proof/result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "businessCentralOpened": true,
+    "playwrightLiveRunExecuted": true,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "payment": false,
+    "apiShortcut": false,
+    "confidentialRealCustomerDataUsed": false,
+    "checks": {
+      "cardAccepted": true,
+      "billingAccepted": true,
+      "paymentAccepted": true
+    },
+    "screenshots": [
+      "playwright/projects/fibu-book5/evidence/customer-u-cust-100-setup-reopen-proof/customer-u-cust-100-setup-reopen-010-list-context.png",
+      "playwright/projects/fibu-book5/evidence/customer-u-cust-100-setup-reopen-proof/customer-u-cust-100-setup-reopen-020-card-context.png",
+      "playwright/projects/fibu-book5/evidence/customer-u-cust-100-setup-reopen-proof/customer-u-cust-100-setup-reopen-030-billing-proof.png",
+      "playwright/projects/fibu-book5/evidence/customer-u-cust-100-setup-reopen-proof/customer-u-cust-100-setup-reopen-040-payment-proof.png",
+      "playwright/projects/fibu-book5/evidence/customer-u-cust-100-setup-reopen-proof/customer-u-cust-100-setup-reopen-050-no-write-end.png"
+    ],
+    "screenshotQa": {
+      "requiredCheckpoints": [
+        "customer list",
+        "customer card",
+        "Fakturierung with INLAND",
+        "Zahlungen with Zlg.-Bedingungscode NET30",
+        "no-write end context"
+      ],
+      "capturedCheckpoints": [
+        "playwright/projects/fibu-book5/evidence/customer-u-cust-100-setup-reopen-proof/customer-u-cust-100-setup-reopen-010-list-context.png",
+        "playwright/projects/fibu-book5/evidence/customer-u-cust-100-setup-reopen-proof/customer-u-cust-100-setup-reopen-020-card-context.png",
+        "playwright/projects/fibu-book5/evidence/customer-u-cust-100-setup-reopen-proof/customer-u-cust-100-setup-reopen-030-billing-proof.png",
+        "playwright/projects/fibu-book5/evidence/customer-u-cust-100-setup-reopen-proof/customer-u-cust-100-setup-reopen-040-payment-proof.png",
+        "playwright/projects/fibu-book5/evidence/customer-u-cust-100-setup-reopen-proof/customer-u-cust-100-setup-reopen-050-no-write-end.png"
+      ],
+      "acceptedForCustomerSetupValues": true,
+      "acceptedForO2CReady": false,
+      "acceptedForPostingReady": false,
+      "reason": "Separate visible screenshots prove the customer setup values after reopen."
+    },
+    "proved": [
+      "playthru / UNIVERSAARL-DE was used.",
+      "U-CUST-100 / Saarland Maschinenbau AG customer card was reopened read-only.",
+      "Fakturierung visibly shows INLAND customer/general business setup values.",
+      "Zahlungen visibly shows Zlg.-Bedingungscode NET30.",
+      "No customer field, document, Preview Posting, Posting, payment or API shortcut was executed."
+    ],
+    "notProved": [
+      "No VAT Business Posting Group value was intentionally set or proven.",
+      "No dimension defaults.",
+      "No payment method.",
+      "No invoice due-date calculation.",
+      "No O2C readiness.",
+      "No Preview Posting, Posting, payment or ledger trace.",
+      "No UAT acceptance."
+    ],
+    "blockedBy": [],
+    "uiLearning": "Business Central customer card proof requires FastTab-specific screenshots, a larger viewport and card-container scrolling; the German payment terms field is shown as Zlg.-Bedingungscode.",
+    "nextCase": "CUSTOMER-VAT-DIMENSION-BOUNDARY-DECISION",
+    "updatedAt": "2026-07-07T07:42:00.000+02:00"
   }
 }

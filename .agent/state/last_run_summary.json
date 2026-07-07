@@ -1,20 +1,20 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
-  "caseId": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
-  "status": "observed-already-set",
-  "completedAt": "2026-07-07T02:53:50.293Z",
-  "mode": "universaarl-masterdata-customer-setup-value-write-gate",
+  "runId": "CUSTOMER-U-CUST-100-SETUP-REOPEN-PROOF",
+  "caseId": "CUSTOMER-U-CUST-100-SETUP-REOPEN-PROOF",
+  "status": "observed-readonly-reopen-proof",
+  "completedAt": "2026-07-07T05:38:47.802Z",
+  "mode": "universaarl-masterdata-customer-setup-reopen-proof",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Verified U-CUST-100 / Saarland Maschinenbau AG customer setup values in real playthru / UNIVERSAARL-DE UI. Customer Posting Group INLAND and Gen. Business Posting Group INLAND were already present; Payment Terms Code NET30 was already present in the final proof run after the previous bounded write attempt. Reopen screenshots now separately prove Fakturierung and Zahlungen contexts. No document, Preview Posting, Posting, payment, API or confidential real customer data was used.",
-  "resultPath": "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/result.json",
+  "summary": "Read-only reopen proof for U-CUST-100 / Saarland Maschinenbau AG succeeded in real playthru / UNIVERSAARL-DE UI. Fakturierung proves INLAND customer/general business posting values; Zahlungen proves Zlg.-Bedingungscode NET30 with an expanded field screenshot. No customer field, setup, document, Preview Posting, Posting, payment, API or confidential real customer data was changed or used.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/customer-u-cust-100-setup-reopen-proof/result.json",
   "changedArtifacts": [
-    "playwright/projects/fibu-book5/tests/customer-setup-value-write-gate.spec.ts",
-    "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/",
-    "scripts/agent/run-customer-setup-value-write-gate.mjs",
-    ".agent/state/cases/customer-u-cust-100-setup-reopen-proof.json",
+    "scripts/agent/run-customer-u-cust-100-setup-reopen-proof.mjs",
+    "playwright/projects/fibu-book5/tests/customer-u-cust-100-setup-reopen-proof.spec.ts",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-setup-reopen-proof/",
+    ".agent/state/cases/customer-vat-dimension-boundary-decision.json",
     ".agent/state/current.json",
     ".agent/state/last_run_summary.json",
     ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
@@ -30,39 +30,12 @@
   "payment": false,
   "apiShortcut": false,
   "confidentialRealCustomerDataUsed": false,
-  "selectedValues": {
-    "customerPostingGroup": "INLAND",
-    "genBusinessPostingGroup": "INLAND",
-    "paymentTermsCode": "NET30"
-  },
-  "fieldAttempts": [
-    {
-      "field": "Customer Posting Group",
-      "value": "INLAND",
-      "status": "already-target",
-      "before": "INLAND",
-      "after": "INLAND"
-    },
-    {
-      "field": "Gen. Business Posting Group",
-      "value": "INLAND",
-      "status": "already-target",
-      "before": "INLAND",
-      "after": "INLAND"
-    },
-    {
-      "field": "Payment Terms Code",
-      "value": "NET30",
-      "status": "already-target",
-      "before": "NET30",
-      "after": "NET30"
-    }
-  ],
   "proved": [
     "playthru / UNIVERSAARL-DE was used.",
-    "U-CUST-100 / Saarland Maschinenbau AG customer card was used.",
-    "INLAND and NET30 setup values are visible after reopen proof.",
-    "No document, Preview Posting, Posting, payment or API shortcut was executed."
+    "U-CUST-100 / Saarland Maschinenbau AG customer card was reopened read-only.",
+    "Fakturierung visibly shows INLAND customer/general business setup values.",
+    "Zahlungen visibly shows Zlg.-Bedingungscode NET30.",
+    "No customer field, document, Preview Posting, Posting, payment or API shortcut was executed."
   ],
   "notProved": [
     "No VAT Business Posting Group value was intentionally set or proven.",
@@ -75,66 +48,67 @@
   ],
   "blockedBy": [],
   "screenshots": [
-    "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/customer-setup-value-010-before-card.png",
-    "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/customer-setup-value-012-billing-route-before-fields.png",
-    "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/customer-setup-value-014-payments-route-before-field.png",
-    "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/customer-setup-value-020-after-save.png",
-    "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/customer-setup-value-030-reopen-billing-proof.png",
-    "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/customer-setup-value-032-reopen-payment-proof.png"
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-setup-reopen-proof/customer-u-cust-100-setup-reopen-010-list-context.png",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-setup-reopen-proof/customer-u-cust-100-setup-reopen-020-card-context.png",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-setup-reopen-proof/customer-u-cust-100-setup-reopen-030-billing-proof.png",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-setup-reopen-proof/customer-u-cust-100-setup-reopen-040-payment-proof.png",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-setup-reopen-proof/customer-u-cust-100-setup-reopen-050-no-write-end.png"
   ],
   "screenshotQa": {
     "requiredCheckpoints": [
-      "before U-CUST-100 setup values",
-      "after setup value route",
-      "reopen proof"
+      "customer list",
+      "customer card",
+      "Fakturierung with INLAND",
+      "Zahlungen with Zlg.-Bedingungscode NET30",
+      "no-write end context"
     ],
     "capturedCheckpoints": [
-      "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/customer-setup-value-010-before-card.png",
-      "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/customer-setup-value-012-billing-route-before-fields.png",
-      "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/customer-setup-value-014-payments-route-before-field.png",
-      "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/customer-setup-value-020-after-save.png",
-      "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/customer-setup-value-030-reopen-billing-proof.png",
-      "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/customer-setup-value-032-reopen-payment-proof.png"
+      "playwright/projects/fibu-book5/evidence/customer-u-cust-100-setup-reopen-proof/customer-u-cust-100-setup-reopen-010-list-context.png",
+      "playwright/projects/fibu-book5/evidence/customer-u-cust-100-setup-reopen-proof/customer-u-cust-100-setup-reopen-020-card-context.png",
+      "playwright/projects/fibu-book5/evidence/customer-u-cust-100-setup-reopen-proof/customer-u-cust-100-setup-reopen-030-billing-proof.png",
+      "playwright/projects/fibu-book5/evidence/customer-u-cust-100-setup-reopen-proof/customer-u-cust-100-setup-reopen-040-payment-proof.png",
+      "playwright/projects/fibu-book5/evidence/customer-u-cust-100-setup-reopen-proof/customer-u-cust-100-setup-reopen-050-no-write-end.png"
     ],
     "acceptedForCustomerSetupValues": true,
     "acceptedForO2CReady": false,
-    "acceptedForPostingReady": false
+    "acceptedForPostingReady": false,
+    "reason": "Separate visible screenshots prove the customer setup values after reopen."
   },
-  "uiLearning": "BC customer cards require card-container scrolling for lower FastTabs; Payment Terms Code is labelled Zlg.-Bedingungscode in the German UI at this width. Future proof runs should capture FastTab-specific visible screenshots, not only DOM values.",
+  "uiLearning": "Business Central customer card proof requires FastTab-specific screenshots, a larger viewport and card-container scrolling; the German payment terms field is shown as Zlg.-Bedingungscode.",
   "nextStepDecision": {
-    "currentCase": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
-    "plannedNextCaseBeforeReview": "CUSTOMER-U-CUST-100-SETUP-REOPEN-PROOF",
-    "lastEvidenceSummary": "U-CUST-100 shows INLAND/INLAND/NET30 setup values after reopen proof.",
+    "currentCase": "CUSTOMER-U-CUST-100-SETUP-REOPEN-PROOF",
+    "plannedNextCaseBeforeReview": "CUSTOMER-VAT-DIMENSION-BOUNDARY-DECISION",
+    "lastEvidenceSummary": "U-CUST-100 has visible INLAND/INLAND/NET30 read-only reopen proof.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "A narrow customer setup proof exists; a separate review/readiness proof can decide whether O2C route planning is next.",
+    "reason": "Customer setup values are visually proven; the next boundary is whether VAT Business Posting Group, dimensions and payment method can remain parked before O2C route planning.",
     "lookaheadReviewed": [
       {
-        "caseId": "CUSTOMER-U-CUST-100-SETUP-REOPEN-PROOF",
+        "caseId": "CUSTOMER-VAT-DIMENSION-BOUNDARY-DECISION",
         "status": "ready-next",
-        "reason": "Customer setup values have reopen proof."
+        "reason": "Customer setup values have visible proof."
       },
       {
         "caseId": "O2C-MINIMAL-ROUTE-DECISION",
-        "status": "ready-after-current",
-        "reason": "O2C still needs VAT/item/posting boundaries even after customer setup values."
+        "status": "needs-setup-first",
+        "reason": "O2C still needs item/service, VAT and posting-boundary decisions."
       },
       {
-        "caseId": "CUSTOMER-VAT-DIMENSION-BOUNDARY-DECISION",
-        "status": "needs-source-check-first",
-        "reason": "VAT Business Posting Group, dimensions and payment method were intentionally out of scope."
+        "caseId": "ITEM-SERVICE-MASTERDATA-READFIRST",
+        "status": "ready-after-current",
+        "reason": "The customer side is now clearer; item/service readiness is the next master-data dependency."
       }
     ],
     "queueChangesMade": [],
-    "selectedNextCase": "CUSTOMER-U-CUST-100-SETUP-REOPEN-PROOF",
-    "whySelectedNextCaseIsBest": "A separate proof/readiness review prevents jumping directly from field writes into O2C without checking the evidence boundary.",
+    "selectedNextCase": "CUSTOMER-VAT-DIMENSION-BOUNDARY-DECISION",
+    "whySelectedNextCaseIsBest": "It prevents jumping into O2C while VAT, dimensions and payment method remain explicitly unproven.",
     "risksBeforeNextCase": [
-      "Do not treat these setup fields as posting readiness or VAT correctness."
+      "Do not treat customer setup values as posting readiness or VAT correctness."
     ],
     "requiredPreparation": [
-      "Review screenshots and decide whether VAT/dimension boundary is parked or must be resolved before O2C."
+      "Review Microsoft/BC setup logic only if VAT/dimension/payment-method parking needs a source-backed decision."
     ]
   },
-  "nextCase": "CUSTOMER-U-CUST-100-SETUP-REOPEN-PROOF",
-  "nextStep": "Run CUSTOMER-U-CUST-100-SETUP-REOPEN-PROOF read-only before O2C planning; explicitly keep VAT Business Posting Group, dimensions, payment method, invoice due date behavior and posting readiness unproven.",
-  "updatedAt": "2026-07-07T05:15:00.000Z"
+  "nextCase": "CUSTOMER-VAT-DIMENSION-BOUNDARY-DECISION",
+  "nextStep": "Run CUSTOMER-VAT-DIMENSION-BOUNDARY-DECISION locally: decide whether VAT Business Posting Group, dimensions and payment method can remain parked before O2C route planning, using the accepted U-CUST-100 setup reopen proof. No BC live action.",
+  "updatedAt": "2026-07-07T07:42:00.000+02:00"
 }

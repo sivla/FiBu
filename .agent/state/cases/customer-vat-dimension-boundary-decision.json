@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "caseId": "CUSTOMER-VAT-DIMENSION-BOUNDARY-DECISION",
+  "title": "Customer VAT, Dimension and Payment Method Boundary Decision",
+  "status": "ready-local-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-masterdata-boundary-decision",
+  "businessPurpose": "Decide whether U-CUST-100 can move toward O2C route planning with VAT Business Posting Group, dimensions and payment method still explicitly unproven, or whether another read-first/setup case is required first.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/result.json",
+    "playwright/projects/fibu-book5/evidence/customer-u-cust-100-setup-reopen-proof/result.json",
+    "playwright/projects/fibu-book5/evidence/customer-payment-terms-write-gate/result.json"
+  ],
+  "allowedActions": [
+    "read-existing-evidence",
+    "read-current-state",
+    "read-dashboard",
+    "write-boundary-decision-result",
+    "update-state-and-dashboard"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central-live",
+    "change-vat-setup",
+    "change-dimensions",
+    "change-payment-method",
+    "change-customer-fields",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "use-confidential-real-customer-data"
+  ],
+  "decisionQuestions": [
+    "Can VAT Business Posting Group remain parked before the next read-first O2C route decision?",
+    "Can dimension defaults remain parked before the next read-first O2C route decision?",
+    "Can payment method remain parked while Payment Terms Code NET30 is proven?",
+    "What exact next case gives the best book, training and evidence value without jumping into posting readiness?"
+  ],
+  "expectedOutput": {
+    "resultPath": "playwright/projects/fibu-book5/evidence/customer-vat-dimension-boundary-decision/result.json",
+    "mustClassify": [
+      "vatBusinessPostingGroup",
+      "dimensionDefaults",
+      "paymentMethod",
+      "o2cReadiness",
+      "nextCase"
+    ],
+    "mustNotClaim": [
+      "VAT correctness",
+      "dimension correctness",
+      "payment readiness",
+      "posting readiness",
+      "UAT acceptance"
+    ]
+  },
+  "nextStepDecision": {
+    "plannedNextCaseBeforeReview": "CUSTOMER-VAT-DIMENSION-BOUNDARY-DECISION",
+    "selectedNextCase": "CUSTOMER-VAT-DIMENSION-BOUNDARY-DECISION",
+    "whySelectedNextCaseIsBest": "U-CUST-100 customer setup values are now visually proven, but O2C would be premature until VAT, dimension and payment-method boundaries are consciously accepted or split into read-first cases."
+  }
+}
