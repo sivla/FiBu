@@ -1,19 +1,20 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "AUTH-ONLY-RESUME-BLOCKER-CLARITY",
+  "runId": "CONTEXT-AUTH-STATE-SYNC",
   "caseId": "FOUNDATION-READINESS-DECISION",
-  "status": "completed-local-auth-resume-clarity",
-  "completedAt": "2026-07-07T17:05:00.000+02:00",
-  "updatedAt": "2026-07-07T17:05:00.000+02:00",
+  "status": "completed-local-context-auth-sync",
+  "completedAt": "2026-07-07T17:25:00.000+02:00",
+  "updatedAt": "2026-07-07T17:25:00.000+02:00",
   "mode": "universaarl-foundation-readfirst",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Local no-live auth/resume clarity completed. agent:resume:check now distinguishes the current state as auth-refresh-required with authOnlyBlocker=true when Foundation Readiness is locally ready but Playwright auth is expired. It prints recommended auth refresh commands and still blocks live BC/Playwright until auth is green.",
-  "resultPath": "scripts/agent/resume-check.mjs",
+  "summary": "Local no-live context/auth sync completed. agent:context now reads the current Playwright auth-state JSON even when auth:bc:check exits nonzero, so expired stored auth is no longer reported as runnable. The context selftest now fails if unusable stored auth allows Business Central workflows.",
+  "resultPath": "scripts/agent/context-pack.mjs",
   "changedArtifacts": [
     ".agent/state/last_run_summary.json",
-    "scripts/agent/resume-check.mjs"
+    "scripts/agent/context-pack.mjs",
+    "scripts/agent/context-pack.selftest.mjs"
   ],
   "businessCentralOpened": false,
   "playwrightLiveRunExecuted": false,
@@ -30,10 +31,11 @@
   "confidentialRealCustomerDataUsed": false,
   "uiMockupUsed": false,
   "actionsTaken": [
-    "Verified active state remains playthru / UNIVERSAARL-DE with live BC and Playwright blocked for this local auth/resume clarity run.",
+    "Verified active state remains playthru / UNIVERSAARL-DE with live BC and Playwright blocked for this local context/auth sync run.",
     "Re-read active goal, repository status, current state and last run summary.",
-    "Ran agent:resume:check and confirmed the real blocker is expired Playwright auth while Foundation Readiness, target URL, freeze status and screenshot-chain checks are locally sufficient.",
-    "Updated scripts/agent/resume-check.mjs to emit blockingCategory, authOnlyBlocker, selectedCaseLocalReady, recommendedAuthRefreshCommands and authRefreshInstruction.",
+    "Confirmed agent:context previously could rely on stale latestAuthGateResolution and present stored auth as runnable.",
+    "Updated scripts/agent/context-pack.mjs to consume the current auth-state JSON even when auth:bc:check exits nonzero.",
+    "Updated scripts/agent/context-pack.selftest.mjs to fail if expired/unusable stored auth allows Business Central workflows.",
     "Kept live BC/Playwright, setup, master data, O2C/P2P, Preview Posting and Posting blocked until auth:bc:check and agent:resume:check are green."
   ],
   "actionsNotTaken": [
@@ -52,9 +54,9 @@
     "No confidential real customer data was introduced."
   ],
   "proved": [
-    "agent:resume:check now clearly reports auth-refresh-required instead of a generic local resume failure when auth is the only live blocker.",
-    "The current selected case FOUNDATION-READINESS-DECISION is locally ready for the next read-first handoff, but cannot run live until Playwright auth is refreshed.",
-    "No secrets are printed; target remains playthru / UNIVERSAARL-DE."
+    "agent:context now reports do-not-run-business-central-workflows-refresh-playwright-auth-first while stored Playwright auth is expired.",
+    "authGate.canRunBusinessCentralWorkflows is false when authState.canUseStoredAuth is false.",
+    "The auth target remains playthru / UNIVERSAARL-DE and legacy source URL is still only a redacted source rebuilt from current state."
   ],
   "notProved": [
     "No VAT setup correctness.",
@@ -65,7 +67,8 @@
     "No use of confidential real customer records.",
     "No BC setup readiness from wording changes alone.",
     "No screenshot chain was captured in this local-only run.",
-    "No live auth refresh was performed in this run."
+    "No live auth refresh was performed in this run.",
+    "No Business Central shell was opened to verify fresh auth."
   ],
   "warnings": [
     "Refresh Playwright auth in the Playwright-managed profile, not normal Chrome, before any live BC/Playwright run.",
@@ -76,10 +79,10 @@
     "currentCase": "FOUNDATION-READINESS-DECISION",
     "plannedNextCaseBeforeReview": "FOUNDATION-READINESS-DECISION",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Foundation Readiness remains the right next handoff, but the current practical blocker is expired Playwright auth. The resume check now says that explicitly and gives the refresh commands.",
+    "reason": "Foundation Readiness remains the right next handoff, but both agent:context and agent:resume:check must now agree that expired Playwright auth blocks live execution.",
     "selectedNextCase": "FOUNDATION-READINESS-DECISION",
     "whySelectedNextCaseIsBest": "It keeps the project on the real boundary: Foundation must be read-first proven before realistic Universaarl customer, vendor and product data can safely drive O2C/P2P setup."
   },
   "nextCase": "FOUNDATION-READINESS-DECISION",
-  "nextStep": "Run the recommended Playwright auth refresh commands shown by agent:resume:check, then rerun agent:resume:check. Only after it is green should the next read-first Foundation proof run with real Business Central screenshots. Do not start O2C/P2P, Preview Posting or Posting until the missing setup rows are proven."
+  "nextStep": "Refresh Playwright auth in the Playwright-managed profile, then rerun auth:bc:check, agent:context:test and agent:resume:check. Only after they are green should the next read-first Foundation proof run with real Business Central screenshots. Do not start O2C/P2P, Preview Posting or Posting until the missing setup rows are proven."
 }

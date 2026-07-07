@@ -34,6 +34,23 @@ function runJsonIfAvailable(scriptPath) {
   }
 }
 
+function runJsonEvenOnFailure(scriptPath) {
+  try {
+    const output = execFileSync(process.execPath, [scriptPath], {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    return JSON.parse(output);
+  } catch (error) {
+    const rawOutput = `${error.stdout ?? ''}`.trim();
+    try {
+      return rawOutput ? JSON.parse(rawOutput) : null;
+    } catch {
+      return null;
+    }
+  }
+}
+
 function buildAuthGate(current, activeCase, liveBlocked) {
   const activeAuthRefreshResultPath = 'playwright/projects/fibu-book5/evidence/auth-bc-refresh-active-resume/AUTH-BC-REFRESH-result.json';
   const joinedActions = [
@@ -63,15 +80,20 @@ function buildAuthGate(current, activeCase, liveBlocked) {
   const latestDoctor = current.latestAuthDoctor ?? activeCase.latestDoctor ?? {};
   const latestTarget = current.latestAuthTargetDiagnosis ?? activeCase.latestAuthTargetDiagnosis ?? {};
   const currentTargetDiagnosis = runJsonIfAvailable('scripts/agent/auth-target-diagnose.mjs');
+  const currentAuthState = runJsonEvenOnFailure('scripts/agent/auth-state-check.mjs');
   const effectiveTarget = currentTargetDiagnosis ?? latestTarget;
-  const operatorActionRequired = resolutionCanUseStoredAuth
+  const currentCanUseStoredAuth = currentAuthState?.canUseStoredAuth === true;
+  const currentAuthKnown = currentAuthState !== null;
+  const storedAuthCurrentlyUsable = currentAuthKnown ? currentCanUseStoredAuth : resolutionCanUseStoredAuth;
+  const operatorActionRequired = storedAuthCurrentlyUsable
     ? false
     : latestWriter.operatorActionRequired === true ||
       latestResult?.operatorActionRequired === true ||
       latestDoctor.decision === 'operator-must-complete-playwright-auth-window';
-  const blockedBy = resolutionCanUseStoredAuth
+  const blockedBy = storedAuthCurrentlyUsable
     ? []
     : [
+      ...(currentAuthState?.blockedBy ?? []),
       ...(latestResult?.blockedBy ?? []),
       ...(latestResult?.blockedByAuth ?? []),
       ...(latestWriter.blockedBy ?? []),
@@ -86,10 +108,10 @@ function buildAuthGate(current, activeCase, liveBlocked) {
     existsSync(resolve('playwright/.auth/bc-profile'));
   const detachedCaptureStep =
     'Complete Login/MFA in the detached Playwright profile browser if it is still open, wait for Business Central shell, close that browser, then run npm run auth:bc:capture-detached and, if clear, npm run auth:bc:capture-detached -- --confirm. Finish with npm run auth:bc:check.';
-  const nextSafeAction = (resolutionCanUseStoredAuth && liveBlocked
+  const nextSafeAction = (storedAuthCurrentlyUsable && liveBlocked
     ? latestDoctor.nextSafeAction ??
       'Stored auth is usable, but Business Central live work remains blocked by the active live gate. Use only local planning/checks until the freeze is lifted or an explicit case override is approved.'
-    : resolutionCanUseStoredAuth
+    : storedAuthCurrentlyUsable
     ? current.nextStep ?? activeCase.nextStep
     : detachedCaptureAvailable
     ? detachedCaptureStep
@@ -105,31 +127,44 @@ function buildAuthGate(current, activeCase, liveBlocked) {
   return {
     requiresAuth: authRelevant,
     canRunBusinessCentralWorkflows:
-      !liveBlocked && (resolutionCanUseStoredAuth || latestDoctor.canRunBusinessCentralWorkflows === true),
+      !liveBlocked && storedAuthCurrentlyUsable && (latestDoctor.canRunBusinessCentralWorkflows === true || currentAuthKnown),
     operatorActionRequired,
-    decision: resolutionCanUseStoredAuth && liveBlocked
+    decision: storedAuthCurrentlyUsable && liveBlocked
       ? 'stored-auth-usable-but-live-gate-blocked'
-      : resolutionCanUseStoredAuth
+      : storedAuthCurrentlyUsable
       ? 'stored-auth-usable-run-readonly-or-gated-target-tests'
+      : currentAuthKnown
+      ? 'do-not-run-business-central-workflows-refresh-playwright-auth-first'
       : latestDoctor.decision ??
       (operatorActionRequired ? 'operator-must-complete-playwright-auth-window' : undefined),
     nextSafeAction,
-    preferredAuthHandoff: resolutionCanUseStoredAuth
+    preferredAuthHandoff: storedAuthCurrentlyUsable
       ? 'stored-auth'
       : detachedCaptureAvailable ? 'detached-capture' : 'bounded-open-login',
     blockedBy: firstItems([...new Set(blockedBy)], 8),
     resultPath,
+    authState: currentAuthState
+      ? {
+        canUseStoredAuth: currentAuthState.canUseStoredAuth === true,
+        ageHours: currentAuthState.ageHours ?? null,
+        maxAgeHours: currentAuthState.maxAgeHours ?? null,
+        expiresInHours: currentAuthState.expiresInHours ?? null,
+        expectedInstance: currentAuthState.expectedInstance ?? current.instance,
+        expectedCompany: currentAuthState.expectedCompany ?? current.company,
+        blockedBy: firstItems(currentAuthState.blockedBy ?? [], 8),
+      }
+      : null,
     target: {
-      instance: latestResolution.shellValidationMeta?.environment ?? effectiveTarget.targetEnvironment ?? current.instance,
-      company: latestResolution.shellValidationMeta?.company ?? effectiveTarget.targetCompany ?? current.company,
+      instance: currentAuthState?.shellValidationMeta?.environment ?? latestResolution.shellValidationMeta?.environment ?? effectiveTarget.targetEnvironment ?? current.instance,
+      company: currentAuthState?.shellValidationMeta?.company ?? latestResolution.shellValidationMeta?.company ?? effectiveTarget.targetCompany ?? current.company,
       sourceEnvironmentCandidate: effectiveTarget.sourceEnvironmentCandidate,
       sourceCompany: effectiveTarget.sourceCompany,
       sourceDiffersFromTarget: effectiveTarget.sourceDiffersFromTarget,
       targetBuiltFromCurrentState: effectiveTarget.targetBuiltFromCurrentState,
-      targetMatchesState: resolutionCanUseStoredAuth ? true : effectiveTarget.targetMatchesState,
+      targetMatchesState: storedAuthCurrentlyUsable ? true : effectiveTarget.targetMatchesState,
       warnings: Array.isArray(effectiveTarget.warnings) ? effectiveTarget.warnings : [],
     },
-    normalBrowserLoginIsNotEnough: !resolutionCanUseStoredAuth && (
+    normalBrowserLoginIsNotEnough: !storedAuthCurrentlyUsable && (
       latestDoctor.operatorAction?.normalBrowserLoginIsNotEnough === true ||
       latestResult?.operatorAction?.normalBrowserLoginIsNotEnough === true ||
       latestWriter.operatorActionRequired === true),

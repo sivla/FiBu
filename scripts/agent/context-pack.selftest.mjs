@@ -44,6 +44,27 @@ if (liveBlocked && authGate.canRunBusinessCentralWorkflows === true) {
   });
 }
 
+if (authGate.authState?.canUseStoredAuth === false) {
+  if (authGate.canRunBusinessCentralWorkflows === true) {
+    fail('Expired or unusable stored auth must not allow Business Central workflows in context.', {
+      authGate,
+    });
+  }
+
+  if (authGate.decision === 'stored-auth-usable-run-readonly-or-gated-target-tests') {
+    fail('Context must not present expired stored auth as runnable.', {
+      authGate,
+    });
+  }
+
+  const nextSafeAction = authGate.nextSafeAction ?? '';
+  if (!/auth:bc|Login|MFA|auth/i.test(nextSafeAction)) {
+    fail('Expired stored auth must provide a concrete auth refresh next step.', {
+      authGate,
+    });
+  }
+}
+
 if (liveBlocked && authGate.decision === 'stored-auth-usable-run-readonly-or-gated-target-tests') {
   fail('Stored auth must not be presented as runnable while the live gate blocks Business Central.', {
     liveGate,
