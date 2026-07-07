@@ -281,6 +281,14 @@ Erlaubte Anschlussklassifikationen:
 - Screenshot: playwright/projects/fibu-book5/evidence/pws-ff-001-number-series-readfirst/pws-ff-001-030-checkbox-hover-context.png
 - Screenshot: playwright/projects/fibu-book5/evidence/pws-ff-001-number-series-readfirst/pws-ff-001-040-lines-action-context.png
 
+## Aktueller Stand nach Debitor- und Artikel-Evidence
+
+- Debitor `U-CUST-100 / Saarland Maschinenbau AG` ist als realistische fiktive Universaarl-Kundendatenbasis fuer Handbuch, Training und spaetere O2C-Vorbereitung verwendbar. Das ist kein Claim auf echte vertrauliche Kundendaten.
+- Artikel `U-ITEM-HW100 / Steuerbox Standard U100` ist in echter `playthru`-Oberflaeche beobachtet. `STK`, `WARE`, `VAT19`, FIFO-Kontext, Einstandspreis `100,00` und VK-Preis `149,00` sind als realistische fiktive Universaarl-Werte belegt.
+- Beide Stammdatensaetze reichen fuer Schulungs- und Handbuchsubstanz. Sie reichen noch nicht fuer Verkaufs-/Einkaufsbelege, Buchungsvorschau, Buchung oder USt-/Posting-Finalitaet.
+- Blockierend bleibt die Foundation-Grenze: VAT Business Posting Groups, VAT Posting Setup und Posting Setup muessen entweder mit belastbarer neuer Route bewiesen oder bewusst als Prozessgrenze geparkt werden.
+- Projektregel: echte Business-Central-Oberflaechen und echte Sandbox-Beobachtungen nutzen; keine UI-Mockups als Evidence, keine vertraulichen echten Kundendaten im Repo.
+
 ## Naechster Case
 
-- `CUSTOMER-CONFIG-PACKAGE-FIELD-MAP`: Debitorenfelder aus PWS-MD-004B/004C in eine knappe Feld-/Routenkarte ueberfuehren. Realistische fiktive Kundendaten vorbereiten, Setup-Abhaengigkeiten markieren, keine BC-Live-Ausfuehrung, kein Speichern, kein Import, kein O2C.
+- `FOUNDATION-READINESS-DECISION`: vorhandene Debitor-/Artikel-Evidence konsumieren, VAT-/Posting-Boundary aktualisieren und daraus entscheiden, ob der naechste konkrete Schritt ein no-write Foundation-Proof, eine Setup-Route-Entscheidung oder ein eng begrenzter O2C/P2P-Preflight sein darf. Keine BC-Live-Ausfuehrung, kein Speichern, kein Import, kein O2C/P2P.

@@ -26,10 +26,10 @@ The read-first return has happened. Further live work must now start from the co
 | Target environment | `playthru` only |
 | Target company | `UNIVERSAARL-DE` |
 | Reference company name | Universaarl GmbH |
-| Current live status | read-first resume and customer setup route recovery have produced Foundation/Master-Data dependency evidence; Payment Terms route recovery proved Page 4 through `profile=Business Manager`, and the NET30 write gate wrote `NET30 / 30 Tage netto / 30T` with reopen proof |
+| Current live status | read-first resume, customer setup proof and item price/cost proof have produced Foundation/Master-Data dependency evidence; Payment Terms route recovery proved Page 4 through `profile=Business Manager`, NET30 has reopen proof, and `U-ITEM-HW100` has realistic fictional price/cost values in `playthru` |
 | Parked case | `TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION` |
 | Completed resume pilot | `TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK` |
-| Next live type | gated UI-first master-data setup write: `CUSTOMER-SETUP-VALUE-WRITE-GATE`, only U-CUST-100 setup values already supported by Universaarl evidence |
+| Next live type | no immediate live run; first consume the Debitor/Artikel evidence in `FOUNDATION-READINESS-DECISION` and decide the VAT-/Posting-Boundary before O2C/P2P |
 | Artifact classification | `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` |
 | Next local control task | keep roadmap, dashboard, state and artifact classification aligned; demote historical next-step noise instead of adding new layers |
 

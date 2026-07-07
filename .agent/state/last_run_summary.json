@@ -1,20 +1,23 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "VAT-BUSINESS-POSTING-GROUPS-SOURCE-OR-ALTERNATIVE-ROUTE-DECISION",
-  "caseId": "VAT-BUSINESS-POSTING-GROUPS-SOURCE-OR-ALTERNATIVE-ROUTE-DECISION",
-  "status": "completed-local-decision",
-  "completedAt": "2026-07-07T10:20:00.000+02:00",
-  "updatedAt": "2026-07-07T10:20:00.000+02:00",
-  "mode": "universaarl-foundation-vat-source-route-decision",
+  "runId": "FOUNDATION-READINESS-DECISION-SYNC-AFTER-CUSTOMER-ITEM",
+  "caseId": "FOUNDATION-READINESS-DECISION",
+  "status": "completed-local-control-sync",
+  "completedAt": "2026-07-07T11:05:00.000+02:00",
+  "updatedAt": "2026-07-07T11:05:00.000+02:00",
+  "mode": "universaarl-foundation-masterdata-boundary",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Local no-live route decision completed. Page 470 / VAT Business Posting Groups stays parked as a visible UI blocker; Page 472/Table 325 remains useful only for VAT Posting Setup context. The next concrete case is PWS-FF-006 Chart of Accounts starter-account read-first. The project realism rule is sharpened: use real BC UI and realistic fictional Universaarl customer/project records, not UI mockups or confidential real customer data.",
-  "resultPath": "playwright/projects/fibu-book5/evidence/vat-business-posting-groups-source-or-alternative-route-decision/result.json",
+  "summary": "Local no-live control sync completed. The active state now consumes the completed Chart of Accounts, customer and item evidence instead of pointing back to stale PWS-FF-006 or item write-gate steps. U-CUST-100 and U-ITEM-HW100 are realistic fictional Universaarl training/master-data records based on real playthru UI evidence, not UI mockups or confidential real customer data. O2C/P2P remains parked until VAT and Posting Setup boundaries are decided.",
+  "resultPath": "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
   "changedArtifacts": [
-    "playwright/projects/fibu-book5/evidence/vat-business-posting-groups-source-or-alternative-route-decision/",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
+    ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     ".agent/state/current.json",
-    ".agent/state/last_run_summary.json"
+    ".agent/state/last_run_summary.json",
+    "scripts/agent/active-readiness-check.mjs"
   ],
   "businessCentralOpened": false,
   "playwrightLiveRunExecuted": false,
@@ -31,10 +34,10 @@
   "confidentialRealCustomerDataUsed": false,
   "uiMockupUsed": false,
   "actionsTaken": [
-    "Reviewed prior VAT read-first and Page 470 route-recovery evidence.",
-    "Classified Page 470 as parked-blocked for visible local UI proof.",
-    "Separated Microsoft Learn product logic from playthru UI evidence.",
-    "Selected PWS-FF-006 as the next read-only Foundation step.",
+    "Reviewed the completed Chart of Accounts, customer and item evidence chain.",
+    "Selected FOUNDATION-READINESS-DECISION as the active local boundary case.",
+    "Updated dashboard, roadmap and Foundation Readiness to consume U-CUST-100 and U-ITEM-HW100.",
+    "Kept O2C/P2P parked until VAT and Posting Setup boundaries are decided.",
     "Sharpened the real-customer-like Universaarl data boundary."
   ],
   "actionsNotTaken": [
@@ -49,31 +52,32 @@
     "No API shortcut was used.",
     "No company switch was performed.",
     "No confidential real customer data was used.",
-    "No UI mockup was used as evidence."
+    "No UI mockup was used as evidence.",
+    "No confidential real customer data was introduced."
   ],
   "proved": [
-    "The VAT Business Posting Groups route decision is complete locally.",
-    "Repeating direct Page 470/search/Page Inspection routes is not the best next step.",
-    "PWS-FF-006 is the next concrete no-write Foundation case."
+    "PWS-FF-006 is already consumed and should not remain the top-level active case.",
+    "U-CUST-100 and U-ITEM-HW100 provide useful training/master-data substance from real playthru evidence.",
+    "These master-data records do not unlock O2C/P2P without VAT and Posting Setup boundary decisions."
   ],
   "notProved": [
-    "No visible Page 470 VAT Business Posting Groups list.",
     "No VAT setup correctness.",
     "No posting readiness.",
-    "No master-data readiness."
+    "No O2C/P2P process readiness.",
+    "No use of confidential real customer records."
   ],
   "warnings": [
     "Do not use mockup screenshots or dummy values as project truth.",
     "Do not claim SKR04, VAT, posting or O2C/P2P readiness from this local decision."
   ],
   "nextStepDecision": {
-    "currentCase": "VAT-BUSINESS-POSTING-GROUPS-SOURCE-OR-ALTERNATIVE-ROUTE-DECISION",
-    "plannedNextCaseBeforeReview": "VAT-BUSINESS-POSTING-GROUPS-SOURCE-OR-ALTERNATIVE-ROUTE-DECISION",
+    "currentCase": "FOUNDATION-READINESS-DECISION",
+    "plannedNextCaseBeforeReview": "PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "The decision case is completed; continuing it would only create another Page 470 loop.",
-    "selectedNextCase": "PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST",
-    "whySelectedNextCaseIsBest": "It uses real playthru UI evidence, remains no-write and clarifies a Foundation gap needed before Master Data and process work."
+    "reason": "PWS-FF-006 and the later customer/item chain are already completed; repeating them would slow the project without adding book, UAT or evidence value.",
+    "selectedNextCase": "FOUNDATION-READINESS-DECISION",
+    "whySelectedNextCaseIsBest": "It keeps the project on the real boundary: Debitor and Artikel have useful realistic substance, but VAT/Posting Setup still decides whether O2C/P2P can safely start."
   },
-  "nextCase": "PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST",
-  "nextStep": "Run PWS-FF-006 read-only after current preflight/context/run-plan/auth gates. Capture real BC screenshots for page context, filters and visible/absent starter-account proof."
+  "nextCase": "FOUNDATION-READINESS-DECISION",
+  "nextStep": "Keep BC live work paused for this local boundary sync. Consume existing customer/item evidence, update VAT-/Posting-Boundary, then select either a materially new no-write Foundation proof or a narrowly gated O2C/P2P preflight."
 }

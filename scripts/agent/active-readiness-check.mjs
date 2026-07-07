@@ -82,11 +82,6 @@ const checksByCase = new Map([
           scriptPath: 'scripts/agent/run-pws-ff-002b-page314-navigation-capture-recovery.mjs',
           args: ['--check'],
           reason: 'PWS-FF-002B is already blocked; Foundation Readiness must consume it instead of rerunning the same Page 314 route.'
-        },
-        {
-          id: 'masterdata-readfirst-handoff',
-          scriptPath: 'scripts/agent/masterdata-readfirst-check.mjs',
-          reason: 'Master Data read-first pilots must remain blocked while the Foundation decision parks Master Data.'
         }
       ]
     }
