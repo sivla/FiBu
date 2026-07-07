@@ -40,7 +40,7 @@ Diese Wellen legen fest, in welcher Reihenfolge Universaarl-Daten spaeter entste
 
 Das Startpaket ist absichtlich klein, aber nicht leer. Es erzeugt spaeter genug Vergleichsdaten fuer Listen, Sortierung und einfache Filter, ohne sofort Massendaten in die Company zu kippen.
 
-TARGET-024 hat dieses Startpaket konkretisiert. Die Planung ist abgeschlossen, aber in Business Central wurde dadurch noch kein Debitor, Kreditor, Artikel oder Lagerort angelegt. Der naechste Schritt ist ein UI-Preflight der Karten, Templates, Pflichtfelder, Buchungsgruppen, USt-Gruppen und Nummernserien.
+TARGET-024 hat dieses Startpaket konkretisiert. Inzwischen wurden einzelne realistische fiktive Universaarl-Datensaetze in echter `playthru`-Oberflaeche beobachtet beziehungsweise fuer Training vorbereitet: `U-CUST-100 / Saarland Maschinenbau AG` und `U-ITEM-HW100 / Steuerbox Standard U100`. Die konsumierten Read-first-Probes `PWS-MD-001`, `PWS-MD-002` und `PWS-MD-003` liefern dafuer Listen-/Kartenkontext. Diese Datensaetze sind keine Mockups und keine vertraulichen echten Kundendaten. Sie reichen fuer Listen-, Karten-, Schulungs- und Handbuchsubstanz, aber noch nicht fuer O2C/P2P, Buchungsvorschau, Buchung oder steuerliche Finalitaet.
 
 | Paket | Datensaetze | Buchzweck | Erste Zielseite | Screenshotziel |
 | --- | --- | --- | --- | --- |
@@ -251,8 +251,9 @@ Spaeter muessen sichtbar sein:
 3. Company Information pflegen. Name erledigt; Adresse, Land/Region und USt-ID bleiben offen.
 4. Foundation Setup und Nummernserien pruefen. Teilweise erledigt; offene Nummernserien-Zuweisungen sind geparkt.
 5. Dimensionen und Buchungsgruppen vorbereiten. Dimension Values erledigt; globale Dimensionen geparkt; Buchungsgruppen/USt sind read-only klassifiziert.
-6. Erste Debitoren-, Kreditoren-, Artikel- und Lagerort-Kontexte erst nach `TARGET-075` und `FOUNDATION-READINESS-DECISION.md` wieder pruefen. Naechste Kandidaten sind `PWS-MD-001`, `PWS-MD-002` und `PWS-MD-003` als read-first/no-write-Probes.
-7. Datenfamilien klein starten und dann pro Prozess erweitern.
+6. Debitoren- und Artikelkontext aus echter `playthru`-Oberflaeche fuer Training/Handbuch nutzen: `U-CUST-100` und `U-ITEM-HW100` sind beobachtet, aber nicht prozessfreigegeben.
+7. Vor weiteren Stammdaten- oder Prozesswrites die `FOUNDATION-READINESS-DECISION.md` abschliessen: VAT-/Posting-Boundaries, Page-314-/Page-472-Grenzen und O2C/P2P-Stopps muessen eindeutig bleiben.
+8. Datenfamilien klein starten und dann pro Prozess erweitern. Weitere Kunden, Kreditoren und Artikel erst ueber Route Decision, Template/Konfigurationspaket oder kontrollierten UI-Write-Gate.
 
 ## PREP-013 Entscheidung
 

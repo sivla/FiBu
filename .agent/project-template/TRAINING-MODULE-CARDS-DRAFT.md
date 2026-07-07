@@ -595,7 +595,7 @@ Acceptance criteria:
 Workstream: `WS04-MASTER-DATA-PRODUCT`
 Epic: `MD-01 Customer Master Data`
 Issue type: Training Item
-Status: `blocked-by-foundation`
+Status: `training-draft-from-observed-customer-boundary`
 
 Business purpose:
 
@@ -613,9 +613,11 @@ Target roles:
 Customer/example data:
 
 - simulated package: `UNIVERSAARL_MD_Customers`
-- clean example: `SIM-CUST-10000` / `U-CUST-10000` / `Saarland Maschinenbau GmbH`
-- delivery-address example: `SIM-CUST-10010` / `U-CUST-10010` / `Mosel Retail Partner KG`
-- negative training idea: `SIM-CUST-ERR90`, parked and not used for normal setup
+- observed realistic fictional customer: `U-CUST-100` / `Saarland Maschinenbau AG`
+- observed setup values: Customer Posting Group `INLAND`, Gen. Business Posting Group `INLAND`, Payment Terms Code `NET30`
+- planned comparison customer: `U-CUST-110` / `Pfalz Technik GmbH`, parked until customer package route is decided
+- negative training idea: `U-CUST-900`, parked and not used for normal setup
+- no confidential real customer data, no bank data and no production contact data
 
 BC concept or process:
 
@@ -630,10 +632,12 @@ BC concept or process:
 
 Exercise:
 
-1. Review the simulated customer records and identify which fields are business identity, posting/VAT setup, payment behavior and training-only context.
-2. Mark every `TBD` posting, VAT, payment and numbering field as blocked rather than guessing a value.
-3. Decide whether the first customer should be created manually for learning or by template/configuration package after dependencies are resolved.
-4. Explain why an incomplete customer should be used only in a controlled negative-training case.
+1. Review `U-CUST-100 / Saarland Maschinenbau AG` as the first customer-like Universaarl training record.
+2. Identify which fields are business identity, posting setup, VAT setup, payment behavior and training-only context.
+3. Explain why `INLAND` and `NET30` are useful training signals but still do not prove sales-process or posting readiness.
+4. Mark missing VAT, dimensions, payment method and O2C process proof as blocked rather than guessing values.
+5. Decide whether the next customer package should be built manually for learning or by template/configuration package after dependencies are resolved.
+6. Explain why an incomplete or intentionally wrong customer belongs only in a controlled negative-training case.
 
 Typical mistakes:
 
@@ -645,8 +649,8 @@ Typical mistakes:
 
 Success check:
 
-- The participant can name the minimum customer fields that are still blocked.
-- The participant can explain why customer posting setup affects later ledger entries.
+- The participant can identify the observed fields on `U-CUST-100` and the still-open fields.
+- The participant can explain why customer posting setup affects later ledger entries but does not by itself prove a sales posting.
 - The participant can distinguish a clean training customer from a negative-test customer.
 - The participant can choose a safe setup route: manual first proof, then template/configuration package.
 
@@ -661,33 +665,36 @@ Handbook/book output:
 - handbook section: "Customer master data: more than an address"
 - checklist for customer data owners
 - beginner explanation of posting groups and payment terms on the customer card
-- warning that simulated data is not customer production data
+- warning that realistic fictional Universaarl data is customer-like training data, not confidential production customer data
 
 Source/evidence status:
 
 - Business Central customer master-data concept needs official source support before trainer-ready.
-- Universaarl customer list/card read-first proof is still needed.
-- Current simulated data is Jira-ready but not BC-setup-ready.
+- Universaarl customer list/card, identity conversion, setup value and reopen proof exist for `U-CUST-100`.
+- Current evidence is enough for customer-card handbook/training draft, not for O2C, VAT finality, Preview Posting or Posting.
 
 UAT status:
 
-- planned; blocked until numbering, posting groups, VAT groups, payment terms and read-first customer-card proof are available
+- draft only; blocked for O2C UAT until VAT, dimensions, payment method, document route, Preview Posting and ledger trace are proven
 
 Playwright/evidence output:
 
 - `PWS-MD-001` customer list/card read-first proof
-- later controlled create/reopen proof for one clean customer after dependencies
+- `CUSTOMER-U-CUST-100-IDENTITY-CONVERSION-WRITE-GATE`
+- `CUSTOMER-SETUP-VALUE-WRITE-GATE`
+- `CUSTOMER-U-CUST-100-SETUP-REOPEN-PROOF`
+- later controlled package/template route for additional fictional customers after dependencies
 - evidence card separating customer concept, simulated data and actual BC setup
 
 Realism note:
 
-Customer setup is often delayed because sales knows the customer names while finance owns posting, VAT and payment rules. The training should make this split visible instead of pretending one role can safely complete the card alone.
+Customer setup is often delayed because sales knows the customer relationship while finance owns posting, VAT and payment rules. `U-CUST-100` is therefore deliberately customer-like and realistic, but fictional. It should train the split between business relationship, finance setup and process readiness instead of pretending one role can safely complete the card alone.
 
 Acceptance criteria:
 
-- Module uses only simulated customer values.
-- Every setup-sensitive field has a dependency or decision.
-- No customer creation is implied before the finance foundation gates are resolved.
+- Module uses only realistic fictional Universaarl customer values and no confidential real customer data.
+- Every setup-sensitive field is either observed, dependency-linked or blocked.
+- No additional customer creation, O2C, Preview Posting or Posting is implied before the remaining finance foundation gates are resolved.
 
 ### TR-03-01A Debitorenkarte lesen: Fakturierung und Zahlungen
 
@@ -712,8 +719,8 @@ Target roles:
 Customer/example data:
 
 - active company: `UNIVERSAARL-DE`
-- observed record: `U-CUST-100` / `Universaarl Kunde 100`
-- realistic fictional training persona: a future domestic B2B customer for Universaarl, not a real customer and not a mockup
+- observed record: `U-CUST-100` / `Saarland Maschinenbau AG`
+- realistic fictional training persona: a domestic B2B customer for Universaarl, not a confidential real customer and not a UI mockup
 - no confidential real customer data, no bank data and no personal production contact data
 
 BC concept or process:
@@ -766,7 +773,7 @@ Handbook/book output:
 
 Source/evidence status:
 
-- Universaarl evidence available: `PWS-MD-004B` and `PWS-MD-004C`.
+- Universaarl evidence available: `PWS-MD-004B`, `PWS-MD-004C`, `CUSTOMER-U-CUST-100-IDENTITY-CONVERSION-WRITE-GATE`, `CUSTOMER-SETUP-VALUE-WRITE-GATE` and `CUSTOMER-U-CUST-100-SETUP-REOPEN-PROOF`.
 - `PWS-MD-004C` provides real Business Central screenshots from `playthru / UNIVERSAARL-DE`, not UI mockups.
 - Official Microsoft Learn source remains needed before promoting this module to trainer-ready product explanation.
 

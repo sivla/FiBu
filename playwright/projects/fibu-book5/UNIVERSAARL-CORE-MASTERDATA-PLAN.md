@@ -1,8 +1,8 @@
 # Universaarl Core Master Data Plan
 
-Status: `planned-after-foundation-decision`
+Status: `partial-observed-training-draft`
 
-Dieser Plan legt die ersten Stammdaten fuer `UNIVERSAARL-DE` fest. Er erzeugt keine Datensaetze in Business Central. Die Datensaetze werden erst angelegt, wenn die passenden Karten, Templates, Pflichtfelder, Buchungsgruppen, USt-Gruppen und Nummernserien in der UI geprueft sind.
+Dieser Plan legt die ersten Stammdaten fuer `UNIVERSAARL-DE` fest. Einige Datensaetze existieren inzwischen als realistische fiktive Universaarl-Trainingsdaten in echter Business-Central-Oberflaeche. Das erzeugt Buch- und Schulungssubstanz, aber keine Prozessfreigabe. Weitere Datensaetze werden erst angelegt, wenn die passenden Karten, Templates, Pflichtfelder, Buchungsgruppen, USt-Gruppen und Nummernserien in der UI geprueft sind.
 
 ## Grenzen vor Anlage
 
@@ -10,7 +10,9 @@ Dieser Plan legt die ersten Stammdaten fuer `UNIVERSAARL-DE` fest. Er erzeugt ke
 - Company: `UNIVERSAARL-DE`
 - Musterfirma: `Universaarl GmbH`
 - Keine CRONUS-, RM- oder Rhein-Main-Stammdaten als Zielbasis.
-- Keine Stammdatenanlage vor Template-/Pflichtfeld-Preflight.
+- Keine vertraulichen echten Kundendaten, Bankdaten oder Produktivkontakte im Repo.
+- Realistische fiktive Universaarl-Daten sind erlaubt und gewuenscht, wenn sie fachlichen Zweck, Owner, Setup-Abhaengigkeit, UAT-/Training-Nutzen und Evidence-Grenze haben.
+- Keine weitere Stammdatenanlage vor Template-/Pflichtfeld-Preflight oder eigenem Write-Gate.
 - Keine Behauptung, dass `PRODUCTLINE` oder `COSTCENTER` globale Dimensionen sind.
 - Dimensionen aus TARGET-023B duerfen als vorhandene Dimension Values genutzt werden, aber noch nicht als gebuchte Reportingwirkung.
 - Deutsche USt wird erst nach USt-Setup, Preview und VAT Entries behauptet.
@@ -64,29 +66,31 @@ TARGET-023B hat Dimension Values fuer `PRODUCTLINE`, `COSTCENTER` und `CHANNEL` 
 
 ## Naechster Read-first-Preflight
 
-Naechster Live-Schritt bleibt zuerst `TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK`.
-Erst danach entscheidet `FOUNDATION-READINESS-DECISION.md`, ob Master Data als lesender Preflight sinnvoll ist.
+`TARGET-075` und die ersten Master-Data-Read-first-Probes sind bereits gelaufen. `FOUNDATION-READINESS-DECISION.md` ist jetzt die fuehrende Grenze: `U-CUST-100 / Saarland Maschinenbau AG` und `U-ITEM-HW100 / Steuerbox Standard U100` duerfen fuer Handbuch und Training genutzt werden, aber nicht als O2C-/P2P- oder Posting-Freigabe.
 
-Die naechsten Master-Data-Kandidaten sind keine Schreibfaelle:
+Die konsumierten Master-Data-Kontexte sind keine Prozessfreigaben:
 
 - `PWS-MD-001` Debitoren (Customers) Kontext
 - `PWS-MD-002` Kreditoren (Vendors) Kontext
 - `PWS-MD-003` Artikel/Services/Nichtlagerartikel Kontext
+- `CUSTOMER-U-CUST-100-SETUP-REOPEN-PROOF`
+- `ITEM-SERVICE-U-ITEM-HW100-PRICE-COST-FIELD-ROUTE`
 
-Der Preflight oeffnet die relevanten Listen/Karten read-only oder mit klarer Abbruchlogik:
+Der naechste sinnvolle Master-Data-Ausbau ist kein weiterer blinder Listen-Preflight, sondern eine enge Route Decision:
 
-1. Debitorenliste und Debitorenkarte: Welche Vorlagen, Pflichtfelder, Buchungsgruppen und Nummernserien sind sichtbar?
-2. Kreditorenliste und Kreditorenkarte: Welche Vorlagen, Pflichtfelder, Buchungsgruppen und Nummernserien sind sichtbar?
-3. Artikelliste und Artikelkarte: Welche Typen, Basiseinheiten, Produktbuchungsgruppen, Lagerbuchungsgruppen und USt-Gruppen sind sichtbar?
-4. Lagerorte: Welche Felder machen einen einfachen Lagerort aus, und welche Warehouse-Felder wuerden spaeter neue Pflichtlogik erzeugen?
-5. Screenshot-QA: Jede Karte braucht sichtbaren Seitentitel, Company-Kontext, relevante FastTabs und klare Not-Proof-Grenzen.
+1. Was ist aus `U-CUST-100` und `U-ITEM-HW100` fuer Training/Handbuch bereits belastbar?
+2. Welche VAT-/Posting-/Dimension-/Payment-Grenzen blockieren O2C/P2P weiterhin?
+3. Werden weitere Kunden/Kreditoren/Artikel manuell, per Vorlage, Konfigurationspaket oder Excel-assisted vorbereitet?
+4. Welche Felder duerfen erst nach Foundation-Gate geschrieben werden?
+5. Welche Screenshot-QA braucht der naechste kontrollierte Write-Gate?
 
-Keine Stammdatenanlage, kein Template-Write und kein Import entstehen direkt aus diesem Plan.
+Keine weitere Stammdatenanlage, kein Template-Write und kein Import entstehen direkt aus diesem Plan.
 
 ## Stop-Regeln fuer den Preflight
 
 - Stop, wenn die Company nicht `UNIVERSAARL-DE` ist.
 - Stop, wenn ein Template-Dialog eine Datenanlage erzwingen wuerde.
+- Stop, wenn ein Datensatz wie echte Kundendaten, Bankdaten oder produktive Kontaktinformationen wirkt.
 - Stop, wenn Pflichtfelder nicht sichtbar sind und Layout/FastTabs/FactBox/Personalisieren noch nicht geprueft wurden.
 - Stop, wenn ein Dialog Speichern, Erstellen, Buchen, Preview oder Loeschen verlangt.
 - Stop, wenn Nummernserien oder Buchungsgruppen fuer die Karten nicht nachvollziehbar sind.
