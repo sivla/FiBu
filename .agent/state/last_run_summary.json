@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "CONTEXT-AUTH-STATE-SYNC",
+  "runId": "CONTEXT-NEXTSTEP-AUTH-SYNC",
   "caseId": "FOUNDATION-READINESS-DECISION",
-  "status": "completed-local-context-auth-sync",
-  "completedAt": "2026-07-07T17:25:00.000+02:00",
-  "updatedAt": "2026-07-07T17:25:00.000+02:00",
+  "status": "completed-local-context-nextstep-auth-sync",
+  "completedAt": "2026-07-07T17:40:00.000+02:00",
+  "updatedAt": "2026-07-07T17:40:00.000+02:00",
   "mode": "universaarl-foundation-readfirst",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Local no-live context/auth sync completed. agent:context now reads the current Playwright auth-state JSON even when auth:bc:check exits nonzero, so expired stored auth is no longer reported as runnable. The context selftest now fails if unusable stored auth allows Business Central workflows.",
+  "summary": "Local no-live context next-step sync completed. agent:context now uses the auth refresh action as the top-level nextStep whenever stored Playwright auth is expired, so the compact context no longer shows a competing Foundation next step before auth is green.",
   "resultPath": "scripts/agent/context-pack.mjs",
   "changedArtifacts": [
     ".agent/state/last_run_summary.json",
@@ -34,8 +34,8 @@
     "Verified active state remains playthru / UNIVERSAARL-DE with live BC and Playwright blocked for this local context/auth sync run.",
     "Re-read active goal, repository status, current state and last run summary.",
     "Confirmed agent:context previously could rely on stale latestAuthGateResolution and present stored auth as runnable.",
-    "Updated scripts/agent/context-pack.mjs to consume the current auth-state JSON even when auth:bc:check exits nonzero.",
-    "Updated scripts/agent/context-pack.selftest.mjs to fail if expired/unusable stored auth allows Business Central workflows.",
+    "Updated scripts/agent/context-pack.mjs so top-level nextStep follows authGate.nextSafeAction when auth blocks Business Central workflows.",
+    "Updated scripts/agent/context-pack.selftest.mjs to fail if expired/unusable stored auth does not drive the top-level context nextStep.",
     "Kept live BC/Playwright, setup, master data, O2C/P2P, Preview Posting and Posting blocked until auth:bc:check and agent:resume:check are green."
   ],
   "actionsNotTaken": [
@@ -54,7 +54,7 @@
     "No confidential real customer data was introduced."
   ],
   "proved": [
-    "agent:context now reports do-not-run-business-central-workflows-refresh-playwright-auth-first while stored Playwright auth is expired.",
+    "agent:context now reports the concrete auth refresh action as top-level nextStep while stored Playwright auth is expired.",
     "authGate.canRunBusinessCentralWorkflows is false when authState.canUseStoredAuth is false.",
     "The auth target remains playthru / UNIVERSAARL-DE and legacy source URL is still only a redacted source rebuilt from current state."
   ],

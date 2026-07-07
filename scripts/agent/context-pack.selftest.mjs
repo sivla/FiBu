@@ -63,6 +63,14 @@ if (authGate.authState?.canUseStoredAuth === false) {
       authGate,
     });
   }
+
+  const topLevelNextStep = context.nextStep ?? '';
+  if (!/auth:bc|Login|MFA|auth/i.test(topLevelNextStep)) {
+    fail('Expired stored auth must also drive the top-level context nextStep.', {
+      nextStep: topLevelNextStep,
+      authGate,
+    });
+  }
 }
 
 if (liveBlocked && authGate.decision === 'stored-auth-usable-run-readonly-or-gated-target-tests') {

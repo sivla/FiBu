@@ -270,6 +270,10 @@ const liveGate = {
   nextLiveType: current.implementationOperatingSystem?.currentLiveBoundary?.resumePilotMode,
 };
 const authGate = buildAuthGate(current, activeCase, liveBlocked);
+const nextStep =
+  authGate && authGate.canRunBusinessCentralWorkflows === false && typeof authGate.nextSafeAction === 'string'
+    ? authGate.nextSafeAction
+    : current.nextStep ?? lastRun.nextStep;
 
 const contextPack = {
   schemaVersion: 1,
@@ -313,7 +317,7 @@ const contextPack = {
   hardExclusions: coverage.hardExclusions ?? {},
   liveGate,
   ...(authGate ? { authGate } : {}),
-  nextStep: current.nextStep ?? lastRun.nextStep,
+  nextStep,
 };
 
 console.log(JSON.stringify(contextPack, null, 2));
