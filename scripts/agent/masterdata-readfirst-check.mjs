@@ -163,6 +163,14 @@ const output = {
   liveActionsExecuted: false,
   businessCentralOpened: false,
   playwrightLiveRunExecuted: false,
+  realCustomerProjectBoundary: {
+    realBusinessCentralUiRequired: true,
+    uiMockupsAllowedAsEvidence: false,
+    throwawayDummyDataAllowed: false,
+    confidentialRealCustomerDataAllowed: false,
+    acceptedDataMode:
+      'customer-project-like Universaarl records that are fictional or anonymized, have business purpose, owner, dependencies, UAT/training use and BC setup readiness, and are proven through real playthru UI evidence before they become book or process truth'
+  },
   localPrepared,
   allPrepared,
   authOnlyBlocker,

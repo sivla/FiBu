@@ -43,7 +43,7 @@ M0 ist als Arbeitsrahmen nutzbar. Der naechste sinnvolle Fortschritt ist keine w
 | Agent operating model | reference |
 | Data request Jira candidates | reference/active-work when master-data planning resumes |
 | Data request realism review | reference |
-| Simulated core/master data tables | active-work, Jira-ready but not BC-setup-ready |
+| Realistische Universaarl-Datenpakete | active-work, Jira-ready but not BC-setup-ready |
 | Foundation/master-data route decisions | active-work before setup or master-data writes |
 | Read-first WS02/WS03/WS04 scenario catalog | active-work for read-first Playwright planning |
 
@@ -58,7 +58,7 @@ M0 ist als Arbeitsrahmen nutzbar. Der naechste sinnvolle Fortschritt ist keine w
 | Master Data | customer-and-item-observed | Debitor `U-CUST-100 / Saarland Maschinenbau AG` ist fuer Debitorenkarten-Handbuch/Training nutzbar, aber nicht O2C-ready. Artikel `U-ITEM-HW100 / Steuerbox Standard U100` ist mit `STK`, `WARE`, `VAT19`, FIFO-Kontext, Einstandspreis `100,00` und VK-Preis `149,00` in echter `playthru`-Oberflaeche beobachtet. O2C/P2P bleibt bis VAT-/Posting-Boundary geparkt. |
 | Buch/Handbuch/Training | chapter-9-boundary-integrated | Debitorenkarten-Training `TR-03-01A`, Artikelkarten-Training `TR-03-03` und Kapitel 9 nutzen `U-CUST-100`/`U-ITEM-HW100` als realistische fiktive Universaarl-Beispiele. Das ist Schulungs-/Handbuchsubstanz, aber keine O2C/P2P-Freigabe. |
 | Playwright/Evidence | draft | Read-first Specs und Screenshot-QA stabilisieren; keine Legacy-Routen als aktive Tests nutzen. |
-| Datenrealismus | active-control | Reale Business-Central-Oberflaeche und realistische fiktive Universaarl-Projektdaten nutzen; keine UI-Mockups, keine vertraulichen echten Kundendaten als Evidence oder Buchwahrheit. |
+| Datenrealismus | active-control | Reale Business-Central-Oberflaeche und kundenprojektartige Universaarl-Daten mit Zweck, Owner, Abhaengigkeiten, UAT-/Trainingsnutzen und Setup-Readiness nutzen. Daten duerfen fiktiv oder anonymisiert sein, muessen sich aber wie echte Kundenprojektdaten verhalten. Keine UI-Mockups, keine Wegwerf-Dummydaten und keine vertraulichen echten Kundendaten als Evidence oder Buchwahrheit. |
 | Legacy-Decommission | active-work | Legacy nur inventarisieren, neutralisieren, portieren oder parken; Evidence nicht blind loeschen. |
 
 ## Top open decisions
@@ -93,7 +93,7 @@ M0 ist als Arbeitsrahmen nutzbar. Der naechste sinnvolle Fortschritt ist keine w
 5. Kein as-is Retry von TARGET-073 oder TARGET-073B; TARGET-073B ist konsumierte blockierte No-Write-Evidence.
 6. `U-CUST-100` und `U-ITEM-HW100` sind als realistische fiktive Universaarl-Masterdaten nutzbar, aber noch nicht als Prozessfreigabe fuer O2C/P2P.
 7. Naechster Schritt ist kein O2C/P2P-Beleg, sondern entweder ein narrow Foundation-Readiness-Refresh oder ein read-first VAT/Posting-Setup-Proof mit frischer Auth-/Screenshot-QA. Keine Belege, kein Preview, kein Posting.
-8. Masterdaten sollen reale Business-Central-Oberflaechen und realistische fiktive Universaarl-Geschaeftspartner/Produkte verwenden, keine UI-Mockups und keine vertraulichen echten Kundendaten.
+8. Masterdaten sollen reale Business-Central-Oberflaechen und kundenprojektartige Universaarl-Geschaeftspartner/Produkte verwenden: realistisch, fachlich begruendet, UAT-/Training-tauglich und setup-abhaengig. Keine UI-Mockups, keine Wegwerf-Dummydaten und keine vertraulichen echten Kundendaten.
 
 ## Update rule
 

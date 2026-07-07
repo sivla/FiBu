@@ -1,20 +1,22 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "MASTERDATA-READFIRST-AUTH-ONLY-DIAGNOSIS",
+  "runId": "REAL-CUSTOMER-PROJECT-BOUNDARY",
   "caseId": "FOUNDATION-READINESS-DECISION",
-  "status": "completed-local-masterdata-readfirst-diagnosis-fix",
-  "completedAt": "2026-07-07T19:05:00.000+02:00",
-  "updatedAt": "2026-07-07T19:05:00.000+02:00",
+  "status": "completed-local-realism-boundary-clarification",
+  "completedAt": "2026-07-07T20:20:00.000+02:00",
+  "updatedAt": "2026-07-07T20:20:00.000+02:00",
   "mode": "universaarl-foundation-readfirst",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Local no-live Master Data readiness diagnosis was corrected. PWS-MD-001, PWS-MD-002 and PWS-MD-003 guarded runners are now classified as locally prepared when their scripts, target URL and overnight auth checks are wired correctly; expired Playwright auth is reported as authOnlyBlocker instead of a runner failure.",
-  "resultPath": "scripts/agent/masterdata-readfirst-check.mjs",
+  "summary": "The active Universaarl realism boundary was sharpened: future Master Data and process work must use real Business Central UI evidence and customer-project-like Universaarl records, not UI mockups or throwaway dummy data. Confidential real customer data remains blocked.",
+  "resultPath": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
   "changedArtifacts": [
     ".agent/state/last_run_summary.json",
-    "scripts/agent/masterdata-readfirst-check.mjs",
-    "scripts/agent/resume-check.mjs"
+    ".agent/state/current.json",
+    ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
+    ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
+    "scripts/agent/masterdata-readfirst-check.mjs"
   ],
   "businessCentralOpened": false,
   "playwrightLiveRunExecuted": false,
@@ -32,10 +34,9 @@
   "uiMockupUsed": false,
   "actionsTaken": [
     "Re-read the durable project objective and confirmed active truth remains playthru / UNIVERSAARL-DE.",
-    "Ran agent:masterdata:readfirst:check and found the previous diagnostic message misleading: the guarded runners were wired, but auth freshness blocked live use.",
-    "Updated scripts/agent/masterdata-readfirst-check.mjs to expose localPrepared and authOnlyBlocker separately from allPrepared.",
-    "Updated scripts/agent/resume-check.mjs so the resume output surfaces localPrepared and authOnlyBlocker for Master Data read-first probes.",
-    "Verified agent:masterdata:readfirst:check is green locally while still blocking live execution until Playwright auth is refreshed."
+    "Clarified the Roadmap and Dashboard data-realism rule: Universaarl data must behave like real customer-project input and carry business purpose, owner, dependencies, UAT/training use and setup readiness.",
+    "Added a top-level current-state realCustomerProjectBoundary so future agents see the no-mockup/no-confidential-customer-data rule before choosing live work.",
+    "Extended agent:masterdata:readfirst:check output with a machine-readable realCustomerProjectBoundary."
   ],
   "actionsNotTaken": [
     "No Business Central live session was opened.",
@@ -52,14 +53,15 @@
     "No UI mockup was used as evidence."
   ],
   "proved": [
-    "PWS-MD-001, PWS-MD-002 and PWS-MD-003 guarded runners list their expected specs and target playthru / UNIVERSAARL-DE.",
-    "Master Data read-first local readiness is no longer reported as a runner failure when the only live blocker is expired Playwright auth.",
-    "agent:resume:check now shows masterDataReadFirstCheck.ok=true, localPrepared=true and authOnlyBlocker=true while overall resume remains blocked by auth."
+    "Active control files now require real Business Central UI evidence and customer-project-like Universaarl data rather than UI mockups or throwaway dummy records.",
+    "Confidential real customer data remains explicitly blocked in repo, screenshots, evidence, UAT, training and book examples.",
+    "agent:masterdata:readfirst:check now emits the data-realism boundary for PWS-MD readiness checks."
   ],
   "notProved": [
     "No fresh Business Central login was captured.",
     "No new Business Central screenshot was captured.",
     "No customer, vendor or item UI was opened in this run.",
+    "No new real customer-like Universaarl record was observed or changed.",
     "No master-data write readiness.",
     "No O2C/P2P process readiness.",
     "No posting readiness."
@@ -67,7 +69,7 @@
   "warnings": [
     "Refresh Playwright auth in the Playwright-managed profile before any live BC/Playwright run.",
     "Run exactly one read-first/no-write Master Data pilot at a time after auth is green and Foundation gates still allow it.",
-    "Keep realistic fictional Universaarl data and real Business Central UI evidence separate from confidential real customer data."
+    "Use real Business Central UI evidence and customer-project-like Universaarl records; do not use UI mockups, throwaway dummy data or confidential real customer data."
   ],
   "nextStepDecision": {
     "currentCase": "FOUNDATION-READINESS-DECISION",
