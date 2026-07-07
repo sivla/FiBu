@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "caseId": "ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION",
+  "title": "U-ITEM-HW100 Item/Service Boundary Decision",
+  "status": "ready-local-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-masterdata-item-boundary-decision",
+  "businessPurpose": "Decide whether the visible U-ITEM-HW100 item is usable as a realistic Universaarl product example, needs a controlled correction, or should be rebuilt before O2C/P2P route planning.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/item-service-masterdata-readfirst/result.json",
+    "playwright/projects/fibu-book5/evidence/pws-md-003-item-service-context-readonly/PWS-MD-003-result.json"
+  ],
+  "allowedActions": [
+    "read-item-service-evidence",
+    "read-universaarl-data-package",
+    "compare-visible-item-fields-to-realistic-product-model",
+    "write-boundary-decision-result",
+    "update-state-and-dashboard"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central-live",
+    "run-playwright-live",
+    "change-item-fields",
+    "create-item",
+    "create-service",
+    "change-unit-of-measure",
+    "change-posting-groups",
+    "change-vat-setup",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "use-confidential-real-customer-data"
+  ],
+  "decisionQuestions": [
+    "Is U-ITEM-HW100 realistic enough for handbook/training as a visible item example?",
+    "Does the visible concatenated description/search text need correction before book screenshots?",
+    "Which fields must be proven or corrected before O2C/P2P documents may use the item?",
+    "Should the next write gate correct U-ITEM-HW100, create a cleaner service/non-inventory example, or park item writes?"
+  ],
+  "expectedOutput": {
+    "resultPath": "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-boundary-decision/result.json",
+    "mustClassify": [
+      "recordUsability",
+      "bookTrainingUsability",
+      "setupReadiness",
+      "correctionOrRebuildRoute",
+      "nextCase"
+    ],
+    "mustNotClaim": [
+      "item setup completeness",
+      "product posting correctness",
+      "VAT correctness",
+      "inventory valuation correctness",
+      "O2C readiness",
+      "P2P readiness",
+      "UAT acceptance"
+    ]
+  },
+  "nextStepDecision": {
+    "plannedNextCaseBeforeReview": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
+    "selectedNextCase": "ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION",
+    "whySelectedNextCaseIsBest": "Recent screenshot evidence proves a concrete item exists, but it also exposes quality and setup boundaries. A focused decision prevents weak item data from becoming book or process truth."
+  }
+}

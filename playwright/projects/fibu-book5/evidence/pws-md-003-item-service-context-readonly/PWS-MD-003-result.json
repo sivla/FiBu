@@ -4,8 +4,8 @@
   "caseId": "PWS-MD-003-ITEM-SERVICE-CONTEXT-READFIRST",
   "source": "playwright-readonly-master-data-context",
   "resultStatus": "observed",
-  "startedAt": "2026-07-06T21:19:16.293Z",
-  "completedAt": "2026-07-06T21:19:27.586Z",
+  "startedAt": "2026-07-07T05:56:58.898Z",
+  "completedAt": "2026-07-07T05:57:10.137Z",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "page": "Artikel / Items",
@@ -64,7 +64,10 @@
     "reason": "Mehrere UI-Zustaende wurden dokumentiert; der Lauf stuetzt sich nicht auf einen einzelnen End-Screenshot."
   },
   "proved": [
-    "Item/service context page is visible read-only in playthru / UNIVERSAARL-DE."
+    "Item/service context page is visible read-only in playthru / UNIVERSAARL-DE.",
+    "U-ITEM-HW100 is visible in the Items / Artikel list in playthru / UNIVERSAARL-DE.",
+    "Page Inspection identifies Page 31 Item List and table Item (27).",
+    "Visible read-first signals include Type Bestand, Base Unit STK and Inventory Posting Group WARE."
   ],
   "notProved": [
     "No item or service setup readiness.",
@@ -74,7 +77,10 @@
     "No inventory posting setup correctness.",
     "No costing method correctness.",
     "No O2C/P2P/inventory process readiness.",
-    "No item/service creation or reopen proof."
+    "No item/service creation or reopen proof.",
+    "No claim that U-ITEM-HW100 is a realistic-enough final product for O2C/P2P training.",
+    "No claim that the concatenated description/search text is clean or book-ready.",
+    "No price, cost, product posting, VAT product, costing or inventory setup correctness."
   ],
   "blockedBy": [],
   "warnings": [
@@ -106,7 +112,81 @@
     "playwright/projects/fibu-book5/evidence/pws-md-003-item-service-context-readonly/pws-md-003-030-item-service-page-inspection-context.screenshot.json",
     "playwright/projects/fibu-book5/evidence/pws-md-003-item-service-context-readonly/PWS-MD-003-result.json"
   ],
-  "nextCase": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
+  "nextCase": "ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION",
   "requiresReview": false,
-  "safeToFinalizeState": false
+  "safeToFinalizeState": false,
+  "linkedActiveCase": "ITEM-SERVICE-MASTERDATA-READFIRST",
+  "realCustomerDataPolicy": {
+    "useRealisticFictionalBusinessPartnersAndProducts": true,
+    "useConfidentialRealCustomerData": false,
+    "noMockups": true,
+    "rule": "Use realistic fictional Universaarl products/services with business purpose, setup dependencies, UAT/training purpose and BC setup readiness. Do not use confidential real customer data."
+  },
+  "visualQaFindings": {
+    "visuallyInspectedByCodex": true,
+    "inspectedScreenshots": [
+      "playwright/projects/fibu-book5/evidence/pws-md-003-item-service-context-readonly/pws-md-003-015-item-service-link-route-context.png",
+      "playwright/projects/fibu-book5/evidence/pws-md-003-item-service-context-readonly/pws-md-003-030-item-service-page-inspection-context.png"
+    ],
+    "visibleBusinessCentralContext": {
+      "environment": "playthru",
+      "companyCaption": "Universaarl GmbH",
+      "page": "Artikel / Items",
+      "pageInspection": "Item List (31, List), table Item (27)"
+    },
+    "visibleRecordSignals": {
+      "itemNo": "U-ITEM-HW100",
+      "descriptionSignal": "Universaarl Hardware 100Inventory / Universaarl Hardware 100Inventory",
+      "type": "Bestand",
+      "baseUnitOfMeasure": "STK",
+      "inventoryPostingGroup": "WARE",
+      "unitCost": "0,00",
+      "salesPrice": "0,00"
+    },
+    "screenshotQualityAssessment": "accepted-for-readfirst-context-only",
+    "importantBoundary": "Screenshots prove visibility and page/table context, not correctness of item setup, pricing, product posting, VAT, costing, inventory valuation or O2C/P2P readiness."
+  },
+  "nextStepDecision": {
+    "currentCase": "ITEM-SERVICE-MASTERDATA-READFIRST",
+    "plannedNextCaseBeforeReview": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
+    "lastEvidenceSummary": "PWS-MD-003 observed the Items / Artikel page in playthru / UNIVERSAARL-DE with four screenshots. U-ITEM-HW100 is visible with STK, Bestand and WARE, but pricing/product posting/VAT/costing/process readiness are not proven.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The existing Foundation Master Data Route Decision is stale because later customer setup evidence already moved beyond its selected PWS-MD-004 path. The best next step is a narrow boundary decision for the visible U-ITEM-HW100 record before O2C/P2P planning uses it.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION",
+        "status": "ready-next",
+        "reason": "Uses today screenshot evidence to decide whether the existing item is usable, needs correction or should be rebuilt."
+      },
+      {
+        "caseId": "O2C-MINIMAL-ROUTE-DECISION",
+        "status": "needs-setup-first",
+        "reason": "Still needs product/item boundary, VAT/product posting and route decision before any document draft."
+      },
+      {
+        "caseId": "P2P-MINIMAL-ROUTE-DECISION",
+        "status": "needs-setup-first",
+        "reason": "Needs vendor plus item/product setup boundaries before purchase document planning."
+      },
+      {
+        "caseId": "ITEM-SERVICE-CORRECTION-OR-REBUILD-WRITE-GATE",
+        "status": "ready-after-current",
+        "reason": "Only valid if the boundary decision chooses a controlled correction or rebuild."
+      }
+    ],
+    "queueChangesMade": [
+      "Park stale FOUNDATION-MASTER-DATA-ROUTE-DECISION as historical; select item-specific boundary decision."
+    ],
+    "selectedNextCase": "ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION",
+    "whySelectedNextCaseIsBest": "It turns real UI evidence into a concrete, low-noise project decision and prevents weak item data from leaking into O2C/P2P/book/training.",
+    "risksBeforeNextCase": [
+      "Do not use U-ITEM-HW100 as process-ready item yet.",
+      "Do not correct item fields without a write gate.",
+      "Do not create sales or purchase documents from this evidence."
+    ],
+    "requiredPreparation": [
+      "Read the PWS-MD-003 result and screenshots.",
+      "Compare visible item fields with the Universaarl item/service data package and realistic product model."
+    ]
+  }
 }

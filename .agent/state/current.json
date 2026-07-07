@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-07T08:10:00.000+02:00",
+  "updatedAt": "2026-07-07T08:05:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
-  "activeArea": "w2-core-masterdata-item-service-readfirst",
-  "activeCase": "ITEM-SERVICE-MASTERDATA-READFIRST",
-  "active_case_file": ".agent/state/cases/item-service-masterdata-readfirst.json",
-  "activeCaseFile": ".agent/state/cases/item-service-masterdata-readfirst.json",
+  "activeArea": "w2-core-masterdata-item-boundary-decision",
+  "activeCase": "ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION",
+  "active_case_file": ".agent/state/cases/item-service-u-item-hw100-boundary-decision.json",
+  "activeCaseFile": ".agent/state/cases/item-service-u-item-hw100-boundary-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-masterdata-item-service-readfirst",
+  "mode": "universaarl-masterdata-item-boundary-decision",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -34,14 +34,10 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-existing-evidence",
-    "read-current-state",
-    "read-dashboard",
-    "open-business-central-playthru-readonly",
-    "confirm-company-universaarl-de",
-    "open-items-or-services-readonly",
-    "capture-screenshot-qa",
-    "write-readfirst-result",
+    "read-item-service-evidence",
+    "read-universaarl-data-package",
+    "compare-visible-item-fields-to-realistic-product-model",
+    "write-boundary-decision-result",
     "update-state-and-dashboard"
   ],
   "forbiddenActions": [
@@ -50,11 +46,14 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
+    "open-business-central-live",
+    "run-playwright-live",
     "change-item-fields",
-    "change-service-fields",
-    "change-vat-setup",
+    "create-item",
+    "create-service",
+    "change-unit-of-measure",
     "change-posting-groups",
-    "change-dimensions",
+    "change-vat-setup",
     "create-document-or-draft",
     "preview-posting",
     "post",
@@ -62,8 +61,8 @@
     "api-shortcut",
     "use-confidential-real-customer-data"
   ],
-  "nextCase": "ITEM-SERVICE-MASTERDATA-READFIRST",
-  "nextStep": "Run ITEM-SERVICE-MASTERDATA-READFIRST as a read-first/no-write proof: confirm playthru / UNIVERSAARL-DE, inspect item/service context with screenshot QA, and do not create documents, drafts, preview postings or postings.",
+  "nextCase": "ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION",
+  "nextStep": "Run ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION locally: decide whether the visible U-ITEM-HW100 item is usable, needs controlled correction, or should be rebuilt before O2C/P2P route planning. No BC live action.",
   "preparedNextCaseFile": ".agent/state/cases/customer-setup-dependency-readfirst.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
@@ -198,12 +197,12 @@
     "nextBoundary": "Master Data remains parked. Next work must update Foundation Readiness and either accept this as a Foundation gap or define a genuinely new Page 314 route hypothesis before another live attempt."
   },
   "activeNextStepAuthority": {
-    "source": "playwright/projects/fibu-book5/evidence/customer-vat-dimension-boundary-decision/result.json",
-    "selectedNextCase": "ITEM-SERVICE-MASTERDATA-READFIRST",
-    "reason": "Customer setup values are proven, but VAT Business Posting Group, dimensions and payment method remain boundaries. Item/service read-first is the next realistic dependency before any O2C/P2P document route.",
+    "source": "playwright/projects/fibu-book5/evidence/item-service-masterdata-readfirst/result.json",
+    "selectedNextCase": "ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION",
+    "activeCaseFile": ".agent/state/cases/item-service-u-item-hw100-boundary-decision.json",
+    "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
     "ignoreHistoricalResultNextSteps": true,
-    "activeCaseFile": ".agent/state/cases/item-service-masterdata-readfirst.json",
-    "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md"
+    "reason": "PWS-MD-003 produced current screenshot evidence for U-ITEM-HW100. The stale Foundation Master Data Route Decision must not override this newer item-specific boundary."
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -6341,7 +6340,7 @@
       "page118-global-dimension-direct-fields-not-unambiguously-matched"
     ],
     "keyLearning": [
-      "Page 118 edit mode must be activated frame-aware; the German button is labelled ?nderungen auf der Seite vornehmen.",
+      "Page 118 edit mode must be activated frame-aware; the German button is labelled Aenderungen auf der Seite vornehmen.",
       "The Page 118 Global Dimension Code fields are visible as A role=button controls with Details ?ffnen titles, not as direct textboxes/combobox inputs.",
       "A visible Buchen menu on Page 118 is a visible risk action but not a blocker when it is not clicked.",
       "Do not repeat direct textbox typing or Page 577 Starten route; next route is a scoped lookup/detail-button test or a park/Page-Inspection decision."
@@ -11600,5 +11599,43 @@
     "draftCreated": false,
     "previewPosting": false,
     "posted": false
+  },
+  "latestItemServiceReadfirst": {
+    "caseId": "ITEM-SERVICE-MASTERDATA-READFIRST",
+    "resultStatus": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/item-service-masterdata-readfirst/result.json",
+    "pwsResultPath": "playwright/projects/fibu-book5/evidence/pws-md-003-item-service-context-readonly/PWS-MD-003-result.json",
+    "businessCentralOpened": true,
+    "playwrightLiveRunExecuted": true,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "visualQa": {
+      "visuallyInspectedByCodex": true,
+      "inspectedScreenshots": [
+        "playwright/projects/fibu-book5/evidence/pws-md-003-item-service-context-readonly/pws-md-003-015-item-service-link-route-context.png",
+        "playwright/projects/fibu-book5/evidence/pws-md-003-item-service-context-readonly/pws-md-003-030-item-service-page-inspection-context.png"
+      ],
+      "visibleBusinessCentralContext": {
+        "environment": "playthru",
+        "companyCaption": "Universaarl GmbH",
+        "page": "Artikel / Items",
+        "pageInspection": "Item List (31, List), table Item (27)"
+      },
+      "visibleRecordSignals": {
+        "itemNo": "U-ITEM-HW100",
+        "descriptionSignal": "Universaarl Hardware 100Inventory / Universaarl Hardware 100Inventory",
+        "type": "Bestand",
+        "baseUnitOfMeasure": "STK",
+        "inventoryPostingGroup": "WARE",
+        "unitCost": "0,00",
+        "salesPrice": "0,00"
+      },
+      "screenshotQualityAssessment": "accepted-for-readfirst-context-only",
+      "importantBoundary": "Screenshots prove visibility and page/table context, not correctness of item setup, pricing, product posting, VAT, costing, inventory valuation or O2C/P2P readiness."
+    },
+    "nextCase": "ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION"
   }
 }
