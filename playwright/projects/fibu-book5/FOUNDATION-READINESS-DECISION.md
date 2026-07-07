@@ -24,7 +24,7 @@
 - Naechste sinnvolle Arbeit: vorhandene Evidence in Foundation-/Master-Data-Route-Entscheidungen, UAT-/Training und Handbuchentwuerfe umsetzen; keine weiteren blinden Read-first-Microcases und kein Live-Write ohne neuen Smart-Decision-Case.
 - Datenregel: realistische fiktive Universaarl-Daten verwenden, keine UI-Mockups und keine vertraulichen echten Kundendaten.
 - Buchmaster-Anker: Kapitel 9 enthaelt jetzt einen Universaarl-Abschnitt zu `U-CUST-100` und `U-ITEM-HW100`. Dieser Abschnitt ist fuer Schulung und Handbuch nutzbar, aber nicht als Prozessfreigabe zu lesen.
-- Screenshot-QA fuer naechsten Live-Proof: Der naechste read-first VAT-/Posting-Setup- oder Foundation-Refresh-Lauf muss eine Bildkette erfassen: Startkontext, Navigationsweg, Zielseite, relevanter Button/Tooltip oder Action-Kontext, Zielzeile/FastTab/FactBox-Kontext, optional Page Inspection sowie explizite Grenze. Ein einzelner End-Screenshot reicht fuer Page- oder Feldclaims nicht mehr aus.
+- Screenshot-QA fuer naechsten Live-Proof: Der naechste read-first VAT-/Posting-Setup- oder Foundation-Refresh-Lauf muss eine Bildkette mit mindestens fuenf akzeptierten Checkpoints erfassen: Startkontext, Navigationsweg, Zielseite, relevanter Button/Tooltip oder Action-Kontext, Zielzeile/FastTab/FactBox-Kontext, optional Page Inspection sowie explizite Grenze. Ein einzelner End-Screenshot reicht fuer Page- oder Feldclaims nicht mehr aus.
 
 ## Entscheidung
 

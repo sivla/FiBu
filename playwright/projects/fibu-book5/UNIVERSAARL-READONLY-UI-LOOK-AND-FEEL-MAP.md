@@ -139,7 +139,7 @@ Sofort stoppen und als Gate dokumentieren, wenn sichtbar wird:
 
 ## Naechster praktischer Nutzen
 
-Der naechste Foundation-/VAT-/Posting-Readfirst-Lauf darf nicht nur einen End-Screenshot erzeugen. Er braucht eine kleine Bildkette, damit die sichtbare Business-Central-Oberflaeche fachlich bewertet werden kann:
+Der naechste Foundation-/VAT-/Posting-Readfirst-Lauf darf nicht nur einen End-Screenshot erzeugen. Er braucht mindestens fuenf akzeptierte Checkpoints aus der folgenden Bildkette, damit die sichtbare Business-Central-Oberflaeche fachlich bewertet werden kann:
 
 1. Startkontext: Shell/Role Center oder Ausgangsseite mit `playthru` / `UNIVERSAARL-DE`.
 2. Navigation: Suchbegriff, sichtbarer Treffer oder sichtbarer Menue-/Linkpfad.

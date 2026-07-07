@@ -30,6 +30,12 @@ function requireAnyText(errors, id, text, phrases, reason) {
   if (!includesAny(text, phrases)) errors.push(`${id}: missing one of ${JSON.stringify(phrases)} (${reason})`);
 }
 
+function requireAllText(errors, id, text, phrases, reason) {
+  for (const phrase of phrases) {
+    requireText(errors, id, text, phrase, reason);
+  }
+}
+
 const errors = [];
 const warnings = [];
 const checkedFiles = [];
@@ -78,41 +84,56 @@ if (caseJson) {
     errors.push(`${files.caseFile}: mayOpenBusinessCentral must stay false for this local decision`);
   }
   const acceptanceText = (caseJson.acceptanceCriteria ?? []).join('\n');
-  for (const phrase of ['screenshot chain', 'start context', 'navigation', 'target page', 'action/tooltip context']) {
-    requireText(errors, files.caseFile, acceptanceText, phrase, 'acceptance criteria must describe the proof chain');
-  }
+  requireAllText(
+    errors,
+    files.caseFile,
+    acceptanceText,
+    ['screenshot chain', 'at least five accepted checkpoints', 'start context', 'navigation', 'target page', 'action/tooltip context'],
+    'acceptance criteria must describe the proof chain'
+  );
   const preparationText = (caseJson.nextStepDecision?.requiredPreparation ?? []).join('\n');
   requireText(errors, files.caseFile, preparationText, 'screenshot chain', 'requiredPreparation must carry the UI-learning rule');
+  requireText(errors, files.caseFile, preparationText, 'at least five accepted checkpoints', 'requiredPreparation must carry the minimum checkpoint rule');
 }
 
 if (decision) {
-  for (const phrase of [
-    'Screenshot-QA fuer naechsten Live-Proof',
-    'Startkontext',
-    'Navigationsweg',
-    'Zielseite',
-    'Zielzeile/FastTab/FactBox-Kontext',
-    'Ein einzelner End-Screenshot reicht'
-  ]) {
-    requireText(errors, files.decision, decision, phrase, 'Foundation decision must preserve screenshot-chain boundary');
-  }
+  requireAllText(
+    errors,
+    files.decision,
+    decision,
+    [
+      'Screenshot-QA fuer naechsten Live-Proof',
+      'mindestens fuenf akzeptierten Checkpoints',
+      'Startkontext',
+      'Navigationsweg',
+      'Zielseite',
+      'Zielzeile/FastTab/FactBox-Kontext',
+      'Ein einzelner End-Screenshot reicht'
+    ],
+    'Foundation decision must preserve screenshot-chain boundary'
+  );
 }
 
 if (uiMap) {
-  for (const phrase of [
-    'Status: `active-reference`, `readonly-ui-map`, `universaarl-company-exists`',
-    'Zielcompany: `UNIVERSAARL-DE` existiert',
-    'Der naechste Foundation-/VAT-/Posting-Readfirst-Lauf darf nicht nur einen End-Screenshot erzeugen.',
-    'Startkontext',
-    'Navigation',
-    'Zielseite',
-    'Bedienkontext',
-    'Inhaltskontext',
-    'Technischer Kontext',
-    'Grenze'
-  ]) {
-    requireText(errors, files.uiMap, uiMap, phrase, 'UI map must explain the reusable screenshot chain');
-  }
+  requireAllText(
+    errors,
+    files.uiMap,
+    uiMap,
+    [
+      'Status: `active-reference`, `readonly-ui-map`, `universaarl-company-exists`',
+      'Zielcompany: `UNIVERSAARL-DE` existiert',
+      'Der naechste Foundation-/VAT-/Posting-Readfirst-Lauf darf nicht nur einen End-Screenshot erzeugen.',
+      'mindestens fuenf akzeptierte Checkpoints',
+      'Startkontext',
+      'Navigation',
+      'Zielseite',
+      'Bedienkontext',
+      'Inhaltskontext',
+      'Technischer Kontext',
+      'Grenze'
+    ],
+    'UI map must explain the reusable screenshot chain'
+  );
 
   for (const stalePhrase of ['UNIVERSAARL-DE noch nicht angelegt', 'needs-universaarl-final-company']) {
     if (uiMap.includes(stalePhrase)) {

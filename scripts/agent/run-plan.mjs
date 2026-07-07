@@ -208,6 +208,14 @@ steps.push(step('run-command', {
   allowed: true,
 }));
 
+steps.push(step('run-command', {
+  command: 'npm run agent:screenshot-chain:check',
+  reason: 'Ensure the next read-first Business Central proof requires enough screenshots to evaluate shell, navigation, page, action, content and boundary instead of relying on one end screenshot.',
+  allowed: true,
+  requiredBefore: ['execute-playwright', 'execute-business-central'],
+  expectedFailureMeans: 'Do not run the next live proof until the screenshot QA contract requires at least five accepted checkpoints.',
+}));
+
 if (needsBusinessCentralAuth) {
   steps.push(step('run-command', {
     command: 'npm run auth:bc:check',
@@ -397,6 +405,7 @@ const runPlan = {
     'npm run agent:context',
     'npm run agent:dry-run',
     'npm run agent:run-plan',
+    'npm run agent:screenshot-chain:check',
     ...(needsBusinessCentralAuth ? ['npm run auth:bc:check'] : []),
     ...(authRecoveryNeeded ? ['npm run auth:bc:target'] : []),
     ...(authRecoveryNeeded ? ['npm run auth:bc:doctor'] : []),

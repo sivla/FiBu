@@ -1,19 +1,23 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "RUNPLAN-AUTH-GATE-SYNC",
+  "runId": "SCREENSHOT-CHAIN-MINIMUM-CHECKPOINTS",
   "caseId": "FOUNDATION-READINESS-DECISION",
-  "status": "completed-local-runplan-auth-gate-sync",
-  "completedAt": "2026-07-07T18:20:00.000+02:00",
-  "updatedAt": "2026-07-07T18:20:00.000+02:00",
+  "status": "completed-local-screenshot-chain-hardening",
+  "completedAt": "2026-07-07T18:45:00.000+02:00",
+  "updatedAt": "2026-07-07T18:45:00.000+02:00",
   "mode": "universaarl-foundation-readfirst",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Local no-live run-plan sync completed. agent:run-plan now consumes the compact context auth gate and blocks Business Central/Playwright workflows when stored Playwright auth is expired, even if the dry-run itself is locally safe.",
-  "resultPath": "scripts/agent/run-plan.mjs",
+  "summary": "Local no-live screenshot QA hardening completed. The next read-first Business Central proof now requires a screenshot chain with at least five accepted checkpoints, so page, field, FastTab, action or boundary claims cannot rest on one end screenshot.",
+  "resultPath": "scripts/agent/screenshot-chain-contract-check.mjs",
   "changedArtifacts": [
+    ".agent/state/cases/foundation-readiness-decision.json",
     ".agent/state/last_run_summary.json",
-    "scripts/agent/run-plan.mjs"
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    "playwright/projects/fibu-book5/UNIVERSAARL-READONLY-UI-LOOK-AND-FEEL-MAP.md",
+    "scripts/agent/run-plan.mjs",
+    "scripts/agent/screenshot-chain-contract-check.mjs"
   ],
   "businessCentralOpened": false,
   "playwrightLiveRunExecuted": false,
@@ -31,10 +35,11 @@
   "uiMockupUsed": false,
   "actionsTaken": [
     "Re-read the durable project objective and confirmed active truth remains playthru / UNIVERSAARL-DE.",
-    "Confirmed the repository already carries the data-realism boundary: real Business Central UI evidence, realistic fictional Universaarl customer-like data, no UI mockups, no confidential real customer data.",
-    "Updated scripts/agent/run-plan.mjs so it reads agent:context and treats authGate.requiresAuth as authoritative for Business Central workflow readiness.",
-    "Updated run-plan output to include contextAuthGate details, auth blockers, target instance and target company.",
-    "Verified agent:run-plan now sets needsBusinessCentralAuth=true, canProceed=false and nextSafeAction to detached Playwright auth refresh while stored auth is expired."
+    "Rechecked auth:bc:check and agent:context; stored Playwright auth is still expired and live BC/Playwright remains blocked until auth refresh.",
+    "Sharpened the Foundation Readiness case so the next live proof requires a screenshot chain with at least five accepted checkpoints.",
+    "Updated the Foundation Readiness decision and UI Look-and-Feel map with the same minimum checkpoint rule.",
+    "Updated screenshot-chain-contract-check.mjs so the minimum checkpoint wording is machine-checked.",
+    "Updated agent:run-plan so it includes npm run agent:screenshot-chain:check before any future live proof."
   ],
   "actionsNotTaken": [
     "No Business Central live session was opened.",
@@ -49,12 +54,12 @@
     "No company switch was performed.",
     "No confidential real customer data was used.",
     "No UI mockup was used as evidence.",
-    "No broad rename or documentation expansion was performed."
+    "No broad cleanup or new methodology layer was added."
   ],
   "proved": [
-    "agent:context reports expired stored Playwright auth for playthru / UNIVERSAARL-DE with blockers storage-state-too-old and shell-validation-meta-too-old.",
-    "agent:run-plan now mirrors that auth gate and does not present a runnable BC/Playwright path before auth refresh.",
-    "The current project boundary remains real Business Central screenshots and realistic fictional Universaarl data, not UI mockups or confidential real customer records."
+    "The screenshot-chain contract is present and now includes the minimum of at least five accepted checkpoints.",
+    "agent:run-plan now lists agent:screenshot-chain:check as a validation command and a required pre-live local step.",
+    "The project boundary remains real Business Central UI evidence and realistic fictional Universaarl data, not UI mockups or confidential real customer data."
   ],
   "notProved": [
     "No fresh Business Central login was captured.",
@@ -63,22 +68,21 @@
     "No VAT setup correctness.",
     "No posting readiness.",
     "No O2C/P2P process readiness.",
-    "No master-data readiness beyond existing documented boundaries."
+    "No master-data write readiness."
   ],
   "warnings": [
     "Refresh Playwright auth in the Playwright-managed profile before any live BC/Playwright run.",
-    "Do not use normal Chrome login as proof for Playwright storageState.",
-    "The next live proof must capture a multi-step screenshot chain and screenshot QA, not only an end screenshot.",
-    "Use real Business Central UI evidence and realistic fictional or anonymized customer-like data only; do not commit confidential real customer data."
+    "The next real UI run must capture enough screenshots to evaluate shell, navigation, target page, action/tooltip context, row/FastTab/FactBox context and explicit not-proved boundary.",
+    "Do not use normal Chrome login, UI mockups or confidential real customer data as evidence."
   ],
   "nextStepDecision": {
     "currentCase": "FOUNDATION-READINESS-DECISION",
     "plannedNextCaseBeforeReview": "FOUNDATION-READINESS-DECISION",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Foundation Readiness remains the right handoff, but any live proof must wait until Playwright auth is refreshed and verified.",
+    "reason": "Foundation Readiness remains the right handoff, but any live proof must first refresh Playwright auth and then capture a multi-checkpoint screenshot chain.",
     "selectedNextCase": "FOUNDATION-READINESS-DECISION",
-    "whySelectedNextCaseIsBest": "It keeps the project focused on real Foundation evidence before realistic Universaarl customer, vendor and product data are used for later O2C/P2P setup."
+    "whySelectedNextCaseIsBest": "It keeps BC work grounded in real screenshots and prevents weak page or field claims before Foundation gaps are understood."
   },
   "nextCase": "FOUNDATION-READINESS-DECISION",
-  "nextStep": "Complete Login/MFA in the detached Playwright profile browser if it is still open, wait for Business Central shell, close that browser, then run npm run auth:bc:capture-detached and, if clear, npm run auth:bc:capture-detached -- --confirm. Finish with npm run auth:bc:check, agent:context, agent:run-plan and agent:resume:check before any TARGET-075 or Foundation read-first Playwright run."
+  "nextStep": "Refresh Playwright auth in the Playwright-managed profile. Then rerun auth:bc:check, agent:screenshot-chain:check, agent:context, agent:run-plan and agent:resume:check before any read-first Foundation/VAT/Posting proof."
 }
