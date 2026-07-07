@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "caseId": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
+  "status": "planned-read-first",
+  "mode": "universaarl-masterdata-setup-route-recovery",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w2-core-masterdata-setup-route-recovery",
+  "workstream": "WS04 Master Data / Finance Setup",
+  "epic": "Customer master data setup route",
+  "issueType": "ReadFirstEvidence",
+  "purpose": "Recover stable read-only routes to customer setup dependency pages that direct page-id navigation opened as Role Center.",
+  "businessPurpose": "Customer setup values must not be guessed. Before assigning posting groups, VAT groups or payment terms to U-CUST-100, the actual setup pages must be visible and explained from the real Business Central UI.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/result.json"
+  ],
+  "blockedPages": [
+    "Geschaeftsbuchungsgruppen / Gen. Business Posting Groups",
+    "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups",
+    "Zahlungsbedingungen / Payment Terms"
+  ],
+  "mayRunPlaywright": true,
+  "mayOpenBusinessCentral": true,
+  "effectiveBcActionsAllowed": false,
+  "allowedActions": [
+    "open-business-central-readonly",
+    "confirm-playthru-instance",
+    "confirm-universaarl-de-company",
+    "use-bounded-tell-me-or-known-foundation-route-readonly",
+    "capture-screenshot-qa",
+    "capture-page-inspection",
+    "write-result-json"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "edit-customer",
+    "save-customer",
+    "change-posting-group",
+    "change-payment-terms",
+    "change-vat-setup",
+    "change-dimensions",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "use-confidential-real-customer-data"
+  ],
+  "acceptanceCriteria": [
+    "Each recovered page is accepted only if screenshot text and Page Inspection show the requested setup page.",
+    "Business Manager Role Center screenshots are rejected as setup proof.",
+    "No setup, master data, document, preview, posting, payment or API shortcut is changed.",
+    "The result decides whether CUSTOMER-SETUP-VALUE-WRITE-GATE is ready or still blocked."
+  ],
+  "stopIf": [
+    "The active instance or company is not clearly playthru / UNIVERSAARL-DE.",
+    "The route requires selecting or saving a setup value.",
+    "The UI opens an unexpected page and Page Inspection cannot clarify it.",
+    "Authentication is expired or ambiguous."
+  ],
+  "nextCaseIfReady": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
+  "nextCaseIfBlocked": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
+  "updatedAt": "2026-07-07T02:29:00.000Z"
+}

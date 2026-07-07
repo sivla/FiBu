@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-07T03:35:00.000+02:00",
+  "updatedAt": "2026-07-07T02:30:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
-  "activeArea": "w2-core-masterdata-setup",
-  "activeCase": "CUSTOMER-SETUP-DEPENDENCY-READFIRST",
-  "active_case_file": ".agent/state/cases/customer-setup-dependency-readfirst.json",
-  "activeCaseFile": ".agent/state/cases/customer-setup-dependency-readfirst.json",
+  "activeArea": "w2-core-masterdata-setup-route-recovery",
+  "activeCase": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
+  "active_case_file": ".agent/state/cases/customer-setup-route-recovery-readfirst.json",
+  "activeCaseFile": ".agent/state/cases/customer-setup-route-recovery-readfirst.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-masterdata-setup-readfirst",
+  "mode": "universaarl-masterdata-setup-route-recovery",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -37,12 +37,7 @@
     "open-business-central-readonly",
     "confirm-playthru-instance",
     "confirm-universaarl-de-company",
-    "open-u-cust-100-readonly",
-    "inspect-customer-field-dropdowns-or-lookups-readonly",
-    "inspect-customer-posting-groups-readonly",
-    "inspect-general-business-posting-groups-readonly",
-    "inspect-vat-business-posting-groups-readonly",
-    "inspect-payment-terms-readonly",
+    "use-bounded-tell-me-or-known-foundation-route-readonly",
     "capture-screenshot-qa",
     "capture-page-inspection",
     "write-result-json"
@@ -65,8 +60,8 @@
     "api-shortcut",
     "use-confidential-real-customer-data"
   ],
-  "nextCase": "CUSTOMER-SETUP-DEPENDENCY-READFIRST",
-  "nextStep": "Run a read-first/no-write dependency proof for U-CUST-100 setup values: inspect customer posting groups, general business posting groups, VAT business posting groups and payment terms with stronger screenshot QA before any write gate.",
+  "nextCase": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
+  "nextStep": "Recover the read-first routes for Customer Posting Groups, General Business Posting Groups, VAT Business Posting Groups and Payment Terms. Do not open a customer setup write gate until screenshot QA proves the actual setup pages rather than Role Center fallbacks.",
   "preparedNextCaseFile": ".agent/state/cases/customer-setup-dependency-readfirst.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
@@ -11211,5 +11206,41 @@
     "screenshotQa": "No new screenshots in the local decision; next read-first case requires customer card, FastTabs, dropdown/lookup/tooltip contexts, setup lists, Page Inspection and no-save end context.",
     "nextCase": "CUSTOMER-SETUP-DEPENDENCY-READFIRST",
     "updatedAt": "2026-07-07T03:35:00.000+02:00"
+  },
+  "latestCustomerSetupDependencyReadfirst": {
+    "caseId": "CUSTOMER-SETUP-DEPENDENCY-READFIRST",
+    "status": "partially-blocked-read-first-dependencies",
+    "resultPath": "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "payment": false,
+    "apiShortcut": false,
+    "observedSetupPages": [],
+    "blockedSetupPages": [
+      {
+        "label": "Debitorenbuchungsgruppen / Customer Posting Groups",
+        "reason": "Page Inspection shows Business Manager Role Center instead of the requested setup page"
+      },
+      {
+        "label": "Geschaeftsbuchungsgruppen / Gen. Business Posting Groups",
+        "reason": "Page Inspection shows Business Manager Role Center instead of the requested setup page"
+      },
+      {
+        "label": "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups",
+        "reason": "Page Inspection shows Business Manager Role Center instead of the requested setup page"
+      },
+      {
+        "label": "Zahlungsbedingungen / Payment Terms",
+        "reason": "Page Inspection shows Business Manager Role Center instead of the requested setup page"
+      }
+    ],
+    "screenshotQaAcceptedForWriteGate": false,
+    "uiLearning": "Direct page-id navigation can silently fall back to Business Manager Role Center. A setup page is only accepted when screenshot text and Page Inspection confirm the requested page.",
+    "nextBoundary": "Customer setup write gate remains blocked until the setup-page routes are recovered or explicitly parked with a safer alternative."
   }
 }

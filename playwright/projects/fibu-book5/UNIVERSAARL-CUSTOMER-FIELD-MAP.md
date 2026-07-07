@@ -67,4 +67,6 @@ Diese Entscheidung nutzt realistische fiktive Kundendaten und echte Business-Cen
 
 `CUSTOMER-SETUP-VALUE-DECISION` ist lokal erledigt. Ergebnis: Laender-/Regionscode `DE` ist ein plausibler spaeterer enger Datenqualitaets-Write-Kandidat. Debitorenbuchungsgruppe, Geschaeftsbuchungsgruppe, USt.-Geschaeftsbuchungsgruppe und Zahlungsbedingung werden nicht geraten. Zahlungsart und Dimensionen bleiben geparkt.
 
-Der naechste sinnvolle Fall ist `CUSTOMER-SETUP-DEPENDENCY-READFIRST`: Vor jedem Write muessen die echten Business-Central-Listen, Dropdowns/Lookups, Tooltips und Page-Inspection-Kontexte fuer Debitorenbuchungsgruppen, Geschaeftsbuchungsgruppen, USt.-Geschaeftsbuchungsgruppen und Zahlungsbedingungen mit mehrstufiger Screenshot-QA gelesen werden.
+`CUSTOMER-SETUP-DEPENDENCY-READFIRST` lief in der echten Business-Central-Oberflaeche. `U-CUST-100` wurde read-only mit Fakturierung-/Zahlungs-Kontext geoeffnet. Die direkten Routen zu Debitorenbuchungsgruppen, Geschaeftsbuchungsgruppen, USt.-Geschaeftsbuchungsgruppen und Zahlungsbedingungen fielen jedoch auf das Business Manager Role Center zurueck. Diese Screenshots zaehlen nicht als Setup-Seitenbeweis.
+
+Der naechste sinnvolle Fall ist deshalb kein Write-Gate, sondern eine enge Route-Recovery: Die vier blockierten Setup-Seiten muessen read-only ueber eine stabile, sichtbare Route geoeffnet werden. Erst wenn Screenshot und Page Inspection die echte Zielseite bestaetigen, duerfen konkrete Setupwerte fuer den Debitor fachlich entschieden werden.

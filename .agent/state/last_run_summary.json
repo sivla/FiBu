@@ -1,45 +1,49 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "CUSTOMER-SETUP-VALUE-DECISION",
-  "caseId": "CUSTOMER-SETUP-VALUE-DECISION",
-  "status": "completed-local-decision",
-  "completedAt": "2026-07-07T03:35:00.000+02:00",
-  "mode": "universaarl-masterdata-setup-decision",
+  "runId": "CUSTOMER-SETUP-DEPENDENCY-READFIRST",
+  "caseId": "CUSTOMER-SETUP-DEPENDENCY-READFIRST",
+  "status": "partially-blocked-read-first-dependencies",
+  "completedAt": "2026-07-07T00:30:21.414Z",
+  "mode": "universaarl-masterdata-setup-readfirst",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Local consultant decision consumed U-CUST-100 read-first evidence and Microsoft Learn product logic. Posting group, VAT business posting group and payment terms values must not be guessed. The next useful live step is a read-first dependency proof with stronger screenshot QA.",
-  "resultPath": "playwright/projects/fibu-book5/evidence/customer-setup-value-decision/result.json",
+  "summary": "Read-first Customer setup dependency proof ran in real Business Central UI. U-CUST-100 customer card/FastTab context was observed. All four direct setup-page routes fell back to Business Manager Role Center and are blocked by screenshot/Page-Inspection QA.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/result.json",
   "changedArtifacts": [
-    "playwright/projects/fibu-book5/evidence/customer-setup-value-decision/result.json",
-    "playwright/projects/fibu-book5/evidence/customer-setup-value-decision/README.md",
-    ".agent/state/cases/customer-setup-value-decision.json",
+    "package.json",
+    "scripts/agent/run-customer-setup-dependency-readfirst.mjs",
+    "playwright/projects/fibu-book5/tests/customer-setup-dependency-readfirst.spec.ts",
+    "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/result.json",
+    "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/README.md",
     ".agent/state/cases/customer-setup-dependency-readfirst.json",
+    ".agent/state/cases/customer-setup-route-recovery-readfirst.json",
     ".agent/state/current.json",
-    ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
+    ".agent/state/last_run_summary.json",
     "playwright/projects/fibu-book5/UNIVERSAARL-CUSTOMER-FIELD-MAP.md"
   ],
   "actionsTaken": [
-    "Reviewed existing read-first customer setup evidence.",
-    "Checked Microsoft Learn product logic for posting groups, VAT/GST posting groups, payment terms and payment methods.",
-    "Classified customer setup fields as ready, blocked or parked.",
-    "Prepared CUSTOMER-SETUP-DEPENDENCY-READFIRST with explicit multi-screenshot QA requirements."
+    "Opened U-CUST-100 customer card read-only.",
+    "Captured billing and payment FastTab contexts.",
+    "Attempted field hover context without selecting values.",
+    "Opened Customer Posting Groups, General Business Posting Groups, VAT Business Posting Groups and Payment Terms read-only.",
+    "Captured setup page screenshots and Page Inspection diagnostics.",
+    "Returned to customer card no-save end context."
   ],
   "actionsNotTaken": [
-    "No Business Central live session opened.",
-    "No Playwright live test executed.",
-    "No customer created, edited, saved or deleted.",
-    "No setup, posting group, VAT setup, payment term, payment method or dimension changed.",
+    "No customer edited or saved.",
+    "No dropdown value selected.",
+    "No setup row created, edited or saved.",
+    "No posting group, VAT setup, payment term, payment method or dimension changed.",
     "No document or draft created.",
     "No Preview Posting.",
     "No Posting.",
     "No payment.",
     "No API shortcut.",
-    "No confidential real customer data used.",
-    "No UI mockups used."
+    "No confidential real customer data used."
   ],
-  "businessCentralOpened": false,
-  "playwrightLiveRunExecuted": false,
+  "businessCentralOpened": true,
+  "playwrightLiveRunExecuted": true,
   "setupChanged": false,
   "setupChangeAttempted": false,
   "masterDataChanged": false,
@@ -49,19 +53,58 @@
   "payment": false,
   "apiShortcut": false,
   "proved": [
-    "Customer setup value decision completed locally.",
-    "Country/Region Code DE is the only later narrow write candidate.",
-    "Customer Posting Group, Gen. Bus. Posting Group, VAT Bus. Posting Group and Payment Terms Code are blocked until dependency read-first proof.",
-    "Payment Method and Dimension values remain parked.",
-    "Next live case must use stronger screenshot QA before any write gate."
+    "playthru / UNIVERSAARL-DE was used for a real Business Central read-first run.",
+    "U-CUST-100 / Saarland Maschinenbau AG customer setup context was inspected without editing.",
+    "No setup, master data, document, Preview Posting, Posting, payment or API shortcut was changed."
   ],
   "notProved": [
-    "No exact BC setup value for posting group, VAT business posting group or payment terms.",
-    "No customer setup write readiness except a later narrow country-code quality candidate.",
-    "No O2C readiness, Preview Posting, Posting, payment or ledger trace."
+    "No customer setup value was selected or written.",
+    "No VAT, posting group or payment term correctness.",
+    "No O2C readiness.",
+    "No sales document, Preview Posting, Posting, payment or ledger trace.",
+    "Debitorenbuchungsgruppen / Customer Posting Groups remains not strongly proven.",
+    "Geschaeftsbuchungsgruppen / Gen. Business Posting Groups remains not strongly proven.",
+    "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups remains not strongly proven.",
+    "Zahlungsbedingungen / Payment Terms remains not strongly proven."
   ],
-  "screenshotQa": "No new screenshots in this local decision. Next case requires customer card, FastTabs, dropdown/lookup/tooltip contexts, setup lists, Page Inspection and no-save end context.",
-  "nextCase": "CUSTOMER-SETUP-DEPENDENCY-READFIRST",
-  "nextStep": "Run read-first/no-write dependency proof for exact customer setup values with stronger screenshot QA.",
-  "updatedAt": "2026-07-07T03:35:00.000+02:00"
+  "blockedBy": [
+    "Debitorenbuchungsgruppen / Customer Posting Groups not observed strongly enough.",
+    "Geschaeftsbuchungsgruppen / Gen. Business Posting Groups not observed strongly enough.",
+    "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups not observed strongly enough.",
+    "Zahlungsbedingungen / Payment Terms not observed strongly enough."
+  ],
+  "screenshotQa": {
+    "requiredCheckpoints": [
+      "customer-card-before-any-field-interaction",
+      "billing-fasttab-expanded",
+      "payment-fasttab-expanded",
+      "field-hover-context-before-selection",
+      "setup-list-context-for-each-relevant-page",
+      "page-inspection-for-source-page-and-target-setup-page",
+      "no-save-end-context"
+    ],
+    "capturedCheckpoints": [
+      "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/customer-setup-dep-010-customer-card-start.png",
+      "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/customer-setup-dep-020-billing-fasttab-expanded.png",
+      "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/customer-setup-dep-030-field-hover-context.png",
+      "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/customer-setup-dep-040-payment-fasttab-expanded.png",
+      "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/customer-setup-dep-050-customer-page-inspection.png",
+      "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/customer-setup-dep-customer-posting-groups-context.png",
+      "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/customer-setup-dep-customer-posting-groups-page-inspection.png",
+      "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/customer-setup-dep-general-business-posting-groups-context.png",
+      "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/customer-setup-dep-general-business-posting-groups-page-inspection.png",
+      "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/customer-setup-dep-vat-business-posting-groups-context.png",
+      "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/customer-setup-dep-vat-business-posting-groups-page-inspection.png",
+      "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/customer-setup-dep-payment-terms-context.png",
+      "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/customer-setup-dep-payment-terms-page-inspection.png",
+      "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/customer-setup-dep-900-no-save-end-context.png"
+    ],
+    "acceptedForWriteGate": false,
+    "acceptedForBookTrainingDraft": false,
+    "reason": "Some setup dependency pages were not observed strongly enough; do not write customer setup values yet."
+  },
+  "uiLearning": "Role Center screenshots are not setup proof. Page Inspection is now part of the acceptance rule for dependency pages.",
+  "nextCase": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
+  "nextStep": "Run CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST with bounded Tell-Me or known Foundation route patterns before any customer setup value write gate.",
+  "updatedAt": "2026-07-07T02:30:00.000Z"
 }

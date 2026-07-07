@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "CUSTOMER-SETUP-DEPENDENCY-READFIRST",
-  "status": "planned-read-first",
+  "status": "partially-blocked-read-first",
   "mode": "universaarl-masterdata-setup-readfirst",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -14,7 +14,8 @@
   "sourceEvidence": [
     "playwright/projects/fibu-book5/evidence/customer-setup-value-decision/result.json",
     "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/result.json",
-    "playwright/projects/fibu-book5/UNIVERSAARL-CUSTOMER-FIELD-MAP.md"
+    "playwright/projects/fibu-book5/UNIVERSAARL-CUSTOMER-FIELD-MAP.md",
+    "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/result.json"
   ],
   "mayRunPlaywright": true,
   "mayOpenBusinessCentral": true,
@@ -66,7 +67,7 @@
     "No setup, master data, document, preview, posting, payment or API shortcut is changed.",
     "The result states exact visible candidate values or explicitly says they remain unproven.",
     "Screenshots explain what the UI shows, what the field/dropdown/list means, and what is not proven.",
-    "The result decides whether a later CUSTOMER-SETUP-VALUE-WRITE-GATE is ready, partially ready or blocked."
+    "The result decides whether a later CUSTOMER-SETUP-VALUE-WRITE-GATE is ready, partially ready or blocked; Role Center fallback screenshots must count as blocked."
   ],
   "stopIf": [
     "The active instance or company is not clearly playthru / UNIVERSAARL-DE.",
@@ -76,6 +77,31 @@
     "Authentication is expired or ambiguous."
   ],
   "nextCaseIfReady": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
-  "nextCaseIfBlocked": "FOUNDATION-SETUP-GAP-RESOLUTION",
-  "updatedAt": "2026-07-07T03:35:00.000+02:00"
+  "nextCaseIfBlocked": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
+  "updatedAt": "2026-07-07T02:29:00.000Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/result.json",
+  "outcome": {
+    "resultStatus": "partially-blocked-read-first-dependencies",
+    "observedSetupPages": [],
+    "blockedSetupPages": [
+      {
+        "label": "Debitorenbuchungsgruppen / Customer Posting Groups",
+        "reason": "Page Inspection shows Business Manager Role Center instead of the requested setup page"
+      },
+      {
+        "label": "Geschaeftsbuchungsgruppen / Gen. Business Posting Groups",
+        "reason": "Page Inspection shows Business Manager Role Center instead of the requested setup page"
+      },
+      {
+        "label": "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups",
+        "reason": "Page Inspection shows Business Manager Role Center instead of the requested setup page"
+      },
+      {
+        "label": "Zahlungsbedingungen / Payment Terms",
+        "reason": "Page Inspection shows Business Manager Role Center instead of the requested setup page"
+      }
+    ],
+    "screenshotQaAcceptedForWriteGate": false,
+    "nextCase": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST"
+  }
 }
