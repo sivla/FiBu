@@ -1337,7 +1337,7 @@ Das ist der Kern der Kontenfindung: Stammdaten liefern Gruppen. Buchungsmatrizen
 
 ### Welche Buchungsgruppen kommen woher?
 
-| Herkunft | Buchungsgruppe | Was steuert sie? | Rhein-Main-Beispiel |
+| Herkunft | Buchungsgruppe | Was steuert sie? | Universaarl-/Laborbeispiel |
 |---|---|---|---|
 | Debitor | Debitorenbuchungsgruppe (Customer Posting Group) | Forderungskonto | `D10000` → Forderungen Inland |
 | Kreditor | Kreditorenbuchungsgruppe (Vendor Posting Group) | Verbindlichkeitskonto | `K10000` → Verbindlichkeiten Inland |
@@ -1362,7 +1362,17 @@ Die Lagerbuchungsmatrix Einrichtung (Inventory Posting Setup) verbindet Lagerort
 | USt-Buchungsmatrix Einrichtung | steuerlicher Partner + steuerliches Produkt | USt-/Vorsteuerkonto, Steuersatz, Steuerart |
 | Lagerbuchungsmatrix Einrichtung | Lagerort + Lagerbuchungsgruppe | Bestandskonto |
 
-### Rhein-Main-Komplettfall: `D10000` kauft `RM-M100`
+### Universaarl-Trainingsbeispiel: Kunde und Artikel sind noch keine Prozessfreigabe
+
+Der Kunde `U-CUST-100` / `Saarland Maschinenbau AG` und der Artikel `U-ITEM-HW100` / `Steuerbox Standard U100` wirken wie echte Projektstammdaten und eignen sich gut fuer Schulung und Handbuch. Genau so soll eine realistische Einfuehrung aussehen: Anwender sehen keine kuenstlichen Masken, sondern plausible Geschaeftspartner, Produkte, Preise und Buchungsgruppen.
+
+Trotzdem entsteht daraus noch keine freigegebene Verkaufsrechnung und keine freigegebene Einkaufsrechnung. Business Central liest zwar die Kundenseite aus dem Debitor und die Produktseite aus dem Artikel. Danach braucht es aber die passenden Matrixzeilen. Fuer die allgemeine Buchungsmatrix ist `INLAND` + `WAREN` der relevante Startpunkt. Das Verkaufskonto `4400` ist als Trainingsanker nutzbar; das Einkaufskonto `5400` ist noch nicht verlaesslich als gespeicherte Matrixzeile bewiesen. Fuer die USt-Seite zeigt der Artikel `VAT19`, aber auch das ist nur die Produktseite. Die passende USt-Geschaeftsseite und die USt-Buchungsmatrix muessen vor einer Belegvorschau zusammenpassen.
+
+Fuer die Praxis heisst das: Vertrieb, Einkauf und Finance koennen mit diesen Stammdaten schon lernen, wie Karten, FastTabs, Preise und Gruppen zusammenhaengen. Sobald ein Beleg in Richtung **Buchungsvorschau** oder **Buchen** geht, muss Finance zuerst die Buchungsmatrix, die USt-Buchungsmatrix, die Lagerbuchung und die Dimensionslogik freigeben.
+
+### Historischer Laborfall: `D10000` kauft `RM-M100`
+
+Der folgende Rhein-Main-/CRONUS-nahe Fall bleibt ein historischer Laboranker fuer Klickpfad und Postenspur. Er ist nicht die aktive Universaarl-Zielwelt.
 
 RM-SALES verkauft eine Standardmaschine `RM-M100` an Debitor `D10000`.
 
