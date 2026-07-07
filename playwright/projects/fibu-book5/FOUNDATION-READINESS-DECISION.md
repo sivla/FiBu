@@ -23,6 +23,7 @@
 - Weiterhin blockierend fuer O2C/P2P, Preview und Posting: vollstaendige VAT-/USt-Buchungsmatrix, Buchungsmatrix Einrichtung / General Posting Setup, Page-314-/Page-472-Schreibroute, globale/default Dimensionen, VAT-/Posting-Finalitaet.
 - Naechste sinnvolle Arbeit: vorhandene Evidence in Foundation-/Master-Data-Route-Entscheidungen, UAT-/Training und Handbuchentwuerfe umsetzen; keine weiteren blinden Read-first-Microcases und kein Live-Write ohne neuen Smart-Decision-Case.
 - Datenregel: realistische fiktive Universaarl-Daten verwenden, keine UI-Mockups und keine vertraulichen echten Kundendaten.
+- Buchmaster-Anker: Kapitel 9 enthaelt jetzt einen Universaarl-Abschnitt zu `U-CUST-100` und `U-ITEM-HW100`. Dieser Abschnitt ist fuer Schulung und Handbuch nutzbar, aber nicht als Prozessfreigabe zu lesen.
 
 ## Entscheidung
 

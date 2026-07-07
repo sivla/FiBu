@@ -56,7 +56,7 @@ M0 ist als Arbeitsrahmen nutzbar. Der naechste sinnvolle Fortschritt ist keine w
 | Finance Foundation | blocked-by-specific-gaps | Foundation-Decision aktuell halten: Page 314 und Page 472 active editor sind die harten UI-/Setup-Grenzen; TARGET-073B ist als no-write Proof gelaufen und blockiert. |
 | VAT/USt, Dimensions, Posting Groups | partial/blocked | INLAND/VAT19 sichtbar, Page 472-Hauptoberflaeche und Page Inspection/Tabelle 325 bewiesen; VAT-Matrix-Schreibroute und Page 314 bleiben nicht posting-ready. |
 | Master Data | customer-and-item-observed | Debitor `U-CUST-100 / Saarland Maschinenbau AG` ist fuer Debitorenkarten-Handbuch/Training nutzbar, aber nicht O2C-ready. Artikel `U-ITEM-HW100 / Steuerbox Standard U100` ist mit `STK`, `WARE`, `VAT19`, FIFO-Kontext, Einstandspreis `100,00` und VK-Preis `149,00` in echter `playthru`-Oberflaeche beobachtet. O2C/P2P bleibt bis VAT-/Posting-Boundary geparkt. |
-| Buch/Handbuch/Training | draft-with-customer-and-item-card-modules | Debitorenkarten-Training `TR-03-01A` und Artikelkarten-Training `TR-03-03` sind als Draft vorhanden; die Grundlage stammt aus echter `playthru`-Oberflaeche, nicht aus Mockups. |
+| Buch/Handbuch/Training | chapter-9-boundary-integrated | Debitorenkarten-Training `TR-03-01A`, Artikelkarten-Training `TR-03-03` und Kapitel 9 nutzen `U-CUST-100`/`U-ITEM-HW100` als realistische fiktive Universaarl-Beispiele. Das ist Schulungs-/Handbuchsubstanz, aber keine O2C/P2P-Freigabe. |
 | Playwright/Evidence | draft | Read-first Specs und Screenshot-QA stabilisieren; keine Legacy-Routen als aktive Tests nutzen. |
 | Datenrealismus | active-control | Reale Business-Central-Oberflaeche und realistische fiktive Universaarl-Projektdaten nutzen; keine UI-Mockups, keine vertraulichen echten Kundendaten als Evidence oder Buchwahrheit. |
 | Legacy-Decommission | active-work | Legacy nur inventarisieren, neutralisieren, portieren oder parken; Evidence nicht blind loeschen. |
@@ -92,7 +92,7 @@ M0 ist als Arbeitsrahmen nutzbar. Der naechste sinnvolle Fortschritt ist keine w
 4. `TARGET-073` bleibt geparkt.
 5. Kein as-is Retry von TARGET-073 oder TARGET-073B; TARGET-073B ist konsumierte blockierte No-Write-Evidence.
 6. `U-CUST-100` und `U-ITEM-HW100` sind als realistische fiktive Universaarl-Masterdaten nutzbar, aber noch nicht als Prozessfreigabe fuer O2C/P2P.
-7. Naechster Schritt ist die `FOUNDATION-READINESS-DECISION`: vorhandene Debitor-/Artikel-Evidence konsumieren und VAT-/Posting-Boundaries klar entscheiden. Keine O2C/P2P-Belege, kein Preview, kein Posting.
+7. Naechster Schritt ist kein O2C/P2P-Beleg, sondern entweder ein narrow Foundation-Readiness-Refresh oder ein read-first VAT/Posting-Setup-Proof mit frischer Auth-/Screenshot-QA. Keine Belege, kein Preview, kein Posting.
 8. Masterdaten sollen reale Business-Central-Oberflaechen und realistische fiktive Universaarl-Geschaeftspartner/Produkte verwenden, keine UI-Mockups und keine vertraulichen echten Kundendaten.
 
 ## Update rule

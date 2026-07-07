@@ -1,20 +1,21 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "BOOKMASTER-SETUP-BOUNDARY-INTEGRATION",
+  "runId": "FOUNDATION-BOOKMASTER-ANCHOR-REFRESH",
   "caseId": "FOUNDATION-READINESS-DECISION",
   "status": "completed-local-control-sync",
-  "completedAt": "2026-07-07T14:15:00.000+02:00",
-  "updatedAt": "2026-07-07T14:15:00.000+02:00",
+  "completedAt": "2026-07-07T14:35:00.000+02:00",
+  "updatedAt": "2026-07-07T14:35:00.000+02:00",
   "mode": "universaarl-foundation-masterdata-boundary",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Local no-live bookmaster integration completed. Chapter 9 now contains a Universaarl reader-facing setup-boundary section explaining why U-CUST-100 and U-ITEM-HW100 are realistic fictional training data, but not O2C/P2P process readiness. The old Rhein-Main/CRONUS case is marked as historical laboratory context. General Posting Setup and VAT Posting Setup remain the active blockers before Preview Posting or Posting.",
-  "resultPath": "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md",
+  "summary": "Local no-live Foundation/bookmaster anchor refresh completed. FOUNDATION-READINESS-DECISION and the dashboard now point to the integrated Chapter 9 Universaarl setup-boundary text. Auth check says stored auth is usable for ordinary gated/read-only work, but not enough for a long unattended overnight window without refresh. O2C/P2P, Preview Posting and Posting remain blocked until General Posting Setup and VAT Posting Setup are proven.",
+  "resultPath": "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
   "changedArtifacts": [
     ".agent/state/current.json",
     ".agent/state/last_run_summary.json",
-    "FiBu_Buch_BC_Standardprozesse_DE_Master_Blueprint.md"
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md"
   ],
   "businessCentralOpened": false,
   "playwrightLiveRunExecuted": false,
@@ -32,9 +33,10 @@
   "uiMockupUsed": false,
   "actionsTaken": [
     "Verified active state remains playthru / UNIVERSAARL-DE with live BC and Playwright blocked for this local boundary run.",
-    "Integrated the Universaarl setup-boundary explanation into Chapter 9 of the bookmaster.",
-    "Clarified that U-CUST-100 and U-ITEM-HW100 are realistic fictional training data, not process release.",
-    "Marked the Rhein-Main/CRONUS near case as historical laboratory context, not active Universaarl target truth.",
+    "Re-read active goal, repository status, current state and last run summary.",
+    "Ran auth:bc:check locally; stored auth is usable, expires in about 8.9 hours, but is not suitable for a long unattended overnight window without refresh.",
+    "Added the Chapter 9 bookmaster anchor to FOUNDATION-READINESS-DECISION.",
+    "Updated the dashboard so the next step no longer says to consume evidence that has already been integrated into Chapter 9.",
     "Kept Wareneinkaufskonto 5400, full General Posting Setup, VAT Posting Setup, O2C/P2P, Preview Posting and Posting unproven and blocked."
   ],
   "actionsNotTaken": [
@@ -53,29 +55,31 @@
     "No confidential real customer data was introduced."
   ],
   "proved": [
-    "The bookmaster now separates realistic fictional customer/project data from process readiness in Chapter 9.",
-    "U-CUST-100 and U-ITEM-HW100 can be used to teach posting group and VAT setup dependency chains.",
-    "Chapter 9 explicitly states that O2C/P2P remain blocked until General Posting Setup and VAT Posting Setup are accepted or proven."
+    "FOUNDATION-READINESS-DECISION now references Chapter 9 as the bookmaster anchor for the Universaarl setup-boundary explanation.",
+    "The dashboard now treats Chapter 9, TR-03-01A and TR-03-03 as training/handbook substance, not O2C/P2P release.",
+    "Auth is currently usable for normal gated/read-only work, but must be refreshed or rechecked before a long unattended live run."
   ],
   "notProved": [
     "No VAT setup correctness.",
     "No posting readiness.",
     "No O2C/P2P process readiness.",
     "No new Business Central observation.",
+    "No long unattended auth window.",
     "No use of confidential real customer records."
   ],
   "warnings": [
     "Use realistic fictional customer/project data, not UI mockups or confidential real customer data.",
+    "Refresh or re-check auth before any long unattended live run.",
     "Do not claim SKR04, VAT, posting or O2C/P2P readiness from this local decision."
   ],
   "nextStepDecision": {
     "currentCase": "FOUNDATION-READINESS-DECISION",
-    "plannedNextCaseBeforeReview": "FOUNDATION-READINESS-DECISION narrow bookmaster integration",
+    "plannedNextCaseBeforeReview": "FOUNDATION-READINESS-DECISION narrow Foundation/bookmaster refresh",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The previous state asked for narrow bookmaster integration of the updated Universaarl posting-groups and VAT drafts; Chapter 9 is the relevant active book location.",
+    "reason": "After Chapter 9 integration, the lean next local step was to synchronize the Foundation decision and dashboard so the active state points to the right proof boundary.",
     "selectedNextCase": "FOUNDATION-READINESS-DECISION",
     "whySelectedNextCaseIsBest": "It keeps the project on the real boundary: Debitor and Artikel have useful realistic substance, but VAT/Posting Setup still decides whether O2C/P2P can safely start."
   },
   "nextCase": "FOUNDATION-READINESS-DECISION",
-  "nextStep": "Use the integrated Chapter 9 Universaarl setup-boundary text as the basis for the next read-first VAT/Posting Setup proof or a narrow Foundation Readiness refresh. Do not start O2C/P2P, Preview Posting or Posting until the missing setup rows are proven."
+  "nextStep": "Use the integrated Chapter 9 Universaarl setup-boundary text as the basis for the next read-first VAT/Posting Setup proof or a narrow Foundation Readiness refresh. Before any live run, refresh or re-check auth if a long unattended window is needed. Do not start O2C/P2P, Preview Posting or Posting until the missing setup rows are proven."
 }
