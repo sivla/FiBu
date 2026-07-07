@@ -1,20 +1,20 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "VAT-BOUNDARY-DECISION-SYNC",
+  "runId": "GENERAL-POSTING-BOUNDARY-SYNC",
   "caseId": "FOUNDATION-READINESS-DECISION",
   "status": "completed-local-control-sync",
-  "completedAt": "2026-07-07T12:45:00.000+02:00",
-  "updatedAt": "2026-07-07T12:45:00.000+02:00",
+  "completedAt": "2026-07-07T13:05:00.000+02:00",
+  "updatedAt": "2026-07-07T13:05:00.000+02:00",
   "mode": "universaarl-foundation-masterdata-boundary",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Local no-live VAT boundary sync completed. UNIVERSAARL-VAT-SETUP-FIT-DECISION no longer points to stale TARGET-026B as the active next case. It now consumes the current Universaarl state: U-CUST-100 and U-ITEM-HW100 are useful for training/handbook, but VAT Posting Setup and General Posting Setup remain the blocking Foundation boundary before O2C/P2P, Preview Posting or Posting.",
-  "resultPath": "playwright/projects/fibu-book5/UNIVERSAARL-VAT-SETUP-FIT-DECISION.md",
+  "summary": "Local no-live General Posting Setup boundary sync completed. FOUNDATION-READINESS-DECISION now consumes PWS-FF-002C, TARGET-057, TARGET-058 and TARGET-032P as the active Page-314 boundary: INLAND/WAREN/4400 is useful for training and setup explanation, but 5400 persistence and full General Posting Setup remain unproven. O2C/P2P, Preview Posting and Posting stay blocked.",
+  "resultPath": "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
   "changedArtifacts": [
     ".agent/state/current.json",
     ".agent/state/last_run_summary.json",
-    "playwright/projects/fibu-book5/UNIVERSAARL-VAT-SETUP-FIT-DECISION.md"
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md"
   ],
   "businessCentralOpened": false,
   "playwrightLiveRunExecuted": false,
@@ -32,10 +32,10 @@
   "uiMockupUsed": false,
   "actionsTaken": [
     "Verified active state remains playthru / UNIVERSAARL-DE with live BC and Playwright blocked for this local boundary run.",
-    "Updated UNIVERSAARL-VAT-SETUP-FIT-DECISION from stale TARGET-026B follow-up to the current Foundation/Master-Data boundary.",
-    "Connected U-CUST-100 and U-ITEM-HW100 to VAT training/handbook usefulness without treating them as O2C/P2P or posting readiness.",
-    "Updated current state nextStep so it no longer asks to consume already-consumed customer/item evidence as the main action.",
-    "Kept VAT setup writes, O2C/P2P, Preview Posting and Posting parked until VAT Posting Setup and General Posting Setup are decided or proven."
+    "Updated FOUNDATION-READINESS-DECISION with the current General Posting Setup boundary from PWS-FF-002C, TARGET-057, TARGET-058 and TARGET-032P.",
+    "Clarified that INLAND / WAREN / Warenverkaufskonto 4400 is usable for training and setup explanation only.",
+    "Kept Wareneinkaufskonto 5400, full General Posting Setup, O2C/P2P, Preview Posting and Posting unproven and blocked.",
+    "Updated current state nextStep to move from boundary sync toward a customer-facing training/handbook explanation."
   ],
   "actionsNotTaken": [
     "No Business Central live session was opened.",
@@ -53,10 +53,10 @@
     "No confidential real customer data was introduced."
   ],
   "proved": [
-    "UNIVERSAARL-VAT-SETUP-FIT-DECISION is now aligned with the current Foundation Readiness boundary.",
-    "The old TARGET-026B next-step pointer is no longer the active route.",
-    "U-CUST-100 and U-ITEM-HW100 can support VAT training/handbook explanations but do not unlock process execution.",
-    "VAT Posting Setup and General Posting Setup remain the active blocking boundary before O2C/P2P."
+    "FOUNDATION-READINESS-DECISION now states the active Page-314 / General Posting Setup boundary.",
+    "TARGET-057 proves Page 314 and Purch. Account field truth read-only, not setup completeness.",
+    "TARGET-058 and TARGET-032P prove the tested 5400 persistence routes are blocked or exhausted.",
+    "O2C/P2P remain blocked until General Posting Setup and VAT Posting Setup are accepted or proven."
   ],
   "notProved": [
     "No VAT setup correctness.",
@@ -77,5 +77,5 @@
     "whySelectedNextCaseIsBest": "It keeps the project on the real boundary: Debitor and Artikel have useful realistic substance, but VAT/Posting Setup still decides whether O2C/P2P can safely start."
   },
   "nextCase": "FOUNDATION-READINESS-DECISION",
-  "nextStep": "Keep BC live work paused for this local boundary sync. Next concrete progress should either update the General Posting Setup boundary with current evidence or write a customer-facing handbook/training section that explains why VAT/Posting Setup blocks O2C/P2P."
+  "nextStep": "Keep BC live work paused for this local boundary sync. Next concrete progress should write a customer-facing training/handbook explanation of why VAT Posting Setup and General Posting Setup block O2C/P2P, using U-CUST-100 and U-ITEM-HW100 only as examples."
 }

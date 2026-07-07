@@ -30,6 +30,8 @@ Master-Data-Schreibfaelle bleiben geparkt. Lesende Master-Data-Kontextprobes due
 
 PWS-FF-002C hat die Buchungsmatrix Einrichtung neu eingeordnet: Page 314 ist nicht als generischer Navigationsblocker zu behandeln. TARGET-057 ist der staerkere Page-314-/Table-252-/Feldwahrheitsnachweis; TARGET-058/TARGET-059 parken aber den persistierten Wert `Wareneinkaufskonto 5400`. Die Buchungsmatrix bleibt deshalb partiell und nicht posting-ready.
 
+Aktuelle General-Posting-Setup-Grenze: `INLAND` / `WAREN` / `Warenverkaufskonto 4400` darf fuer Training, Handbuch und Setup-Erklaerung genutzt werden. Es beweist nicht, dass Einkaufsaufwand, Wareneingang, O2C, P2P, Preview Posting oder Posting bereit sind. `Wareneinkaufskonto 5400` ist weiterhin nicht als persistierter Page-314-Wert bewiesen; die vorhandenen List-Edit-/Grid-/Geometrie-Routen duerfen nicht wiederholt werden, solange keine materiell neue UI-, Konfigurationspaket-, Import- oder source-backed Route dokumentiert ist.
+
 PWS-FF-005 hat die Dimensionsliste als read-only Kontext in `playthru / UNIVERSAARL-DE` nachgewiesen: `CHANNEL`, `COSTCENTER` und `PRODUCTLINE` sind im Screenshot sichtbar. PWS-FF-005B hat danach die echte UI-Route aus der Dimensionsliste ueber `Dimension > Dimensionswerte` fuer `PRODUCTLINE`, `COSTCENTER` und `CHANNEL` read-only nachgewiesen. Das reicht fuer Foundation-Verstaendnis, UAT-/Trainingserklaerung und spaetere Handbuchsubstanz, aber nicht fuer globale Dimensionen, Standarddimensionen, Reporting Readiness, Master Data Readiness, Preview Posting oder Posting.
 
 PWS-FF-001 hat die Nummernserien-Seite read-only beobachtet: sieben Universaarl-U-Nummernserien sind sichtbar, `Standardnr.`/`Default Nos.` und `Manuelle Anz.`/`Manual Nos.` wurden als Checkboxkontext erfasst, `Zeilen`/`Lines` und Page Inspection lieferten zusaetzliche UI-Wahrheit. Das reicht fuer Foundation-Verstaendnis und Schulungs-/Handbuchvorbereitung, aber nicht fuer vollstaendige Nummerierungs-, Setup-, Master-Data-, Audit-, Preview- oder Posting-Readiness.
@@ -95,9 +97,21 @@ PWS-FF-001 hat die Nummernserien-Seite read-only beobachtet: sieben Universaarl-
 - PWS-FF-002/PWS-FF-002B: direkte Page-314-URL und Tell-Me/Search-Routen sind als Zielseitennachweis verworfen.
 - TARGET-057: Page 314, Table 252 und `Purch. Account` Feldkontext sind als technische Feldwahrheit akzeptiert.
 - TARGET-058/TARGET-059: getestete List-Edit-/Grid-/Headerroute fuer `5400` ist geparkt; keine Persistenz nach Reopen.
+- TARGET-032P: Page-314-Geometrie-/List-Edit-Route ist erschoepft; General Posting Setup bleibt partiell und darf nur mit materiell neuer Route wieder aufgenommen werden.
 - Akzeptierter Teilstand: `INLAND` / `WAREN` / `Warenverkaufskonto 4400`.
 - Offene Grenze: `Wareneinkaufskonto 5400`, vollstaendige Buchungsmatrix, Posting Readiness, Preview Posting und Posten.
 - Praktische Folge: keine Wiederholung der verworfenen Page-314-Routen ohne materiell neue Hypothese; Master-Data-Schreibfaelle bleiben geparkt. Lesende Debitoren-/Kreditoren-/Artikel-Kontextprobes duerfen erst nach dieser Foundation-Entscheidung einzeln laufen.
+
+### Aktueller Entscheid fuer O2C/P2P
+
+O2C/P2P bleiben gesperrt, auch wenn Debitor `U-CUST-100` und Artikel `U-ITEM-HW100` fuer Training und Handbuch nutzbar sind. Fuer einen realistischen Verkaufs- oder Einkaufsprozess fehlen weiterhin:
+
+- vollstaendige Buchungsmatrix Einrichtung / General Posting Setup fuer die betroffenen Business-/Product-Kombinationen,
+- persistierter Nachweis fuer `Wareneinkaufskonto 5400` auf `INLAND` / `WAREN`,
+- belastbare VAT Posting Setup Boundary fuer `INLAND` / `VAT19`,
+- Preview- oder Posten-Nachweis, der zeigt, welche Sachkonten, USt-Posten und Wertposten tatsaechlich entstehen.
+
+Diese Grenze ist kein reiner Testblocker. Sie ist fachlich richtig: Ein echter Kunde darf Verkaufs- oder Einkaufsbelege erst trainieren oder abnehmen, wenn klar ist, welche Konten Business Central bei der Buchung trifft und welche Steuerlogik greift.
 
 ## PWS-FF-005 Dimensionen Read-first
 
@@ -269,7 +283,7 @@ Erlaubte Anschlussklassifikationen:
 
 ## Naechste Projektoutputs
 
-- PWS-FF-002C als aktuelle Buchungsmatrix-Grenze konsumieren: Page 314 ist partiell bekannt, aber nicht posting-ready.
+- PWS-FF-002C, TARGET-057, TARGET-058 und TARGET-032P als aktuelle Buchungsmatrix-Grenze konsumieren: Page 314 ist partiell bekannt, aber nicht posting-ready.
 - PWS-FF-006 als akzeptierten Kontenplan-Starterkonten-Nachweis konsumieren; keine weitere Starterkonten-Wiederholung ohne neuen Claim.
 - Master-Data-Schreibfaelle, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt. Naechster Schritt ist keine weitere Debitoren-Microprobe, sondern die aktuelle Foundation-/Master-Data-Grenze: Was ist fuer Training/Handbuch verwendbar, was bleibt fuer O2C/P2P blockiert?
 - PWS-FF-005B als beobachteten no-write Dimensionswerte-Proof konsumieren.
