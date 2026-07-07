@@ -1,20 +1,19 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "CONTEXT-NEXTSTEP-AUTH-SYNC",
+  "runId": "RUNPLAN-AUTH-GATE-SYNC",
   "caseId": "FOUNDATION-READINESS-DECISION",
-  "status": "completed-local-context-nextstep-auth-sync",
-  "completedAt": "2026-07-07T17:40:00.000+02:00",
-  "updatedAt": "2026-07-07T17:40:00.000+02:00",
+  "status": "completed-local-runplan-auth-gate-sync",
+  "completedAt": "2026-07-07T18:20:00.000+02:00",
+  "updatedAt": "2026-07-07T18:20:00.000+02:00",
   "mode": "universaarl-foundation-readfirst",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Local no-live context next-step sync completed. agent:context now uses the auth refresh action as the top-level nextStep whenever stored Playwright auth is expired, so the compact context no longer shows a competing Foundation next step before auth is green.",
-  "resultPath": "scripts/agent/context-pack.mjs",
+  "summary": "Local no-live run-plan sync completed. agent:run-plan now consumes the compact context auth gate and blocks Business Central/Playwright workflows when stored Playwright auth is expired, even if the dry-run itself is locally safe.",
+  "resultPath": "scripts/agent/run-plan.mjs",
   "changedArtifacts": [
     ".agent/state/last_run_summary.json",
-    "scripts/agent/context-pack.mjs",
-    "scripts/agent/context-pack.selftest.mjs"
+    "scripts/agent/run-plan.mjs"
   ],
   "businessCentralOpened": false,
   "playwrightLiveRunExecuted": false,
@@ -31,12 +30,11 @@
   "confidentialRealCustomerDataUsed": false,
   "uiMockupUsed": false,
   "actionsTaken": [
-    "Verified active state remains playthru / UNIVERSAARL-DE with live BC and Playwright blocked for this local context/auth sync run.",
-    "Re-read active goal, repository status, current state and last run summary.",
-    "Confirmed agent:context previously could rely on stale latestAuthGateResolution and present stored auth as runnable.",
-    "Updated scripts/agent/context-pack.mjs so top-level nextStep follows authGate.nextSafeAction when auth blocks Business Central workflows.",
-    "Updated scripts/agent/context-pack.selftest.mjs to fail if expired/unusable stored auth does not drive the top-level context nextStep.",
-    "Kept live BC/Playwright, setup, master data, O2C/P2P, Preview Posting and Posting blocked until auth:bc:check and agent:resume:check are green."
+    "Re-read the durable project objective and confirmed active truth remains playthru / UNIVERSAARL-DE.",
+    "Confirmed the repository already carries the data-realism boundary: real Business Central UI evidence, realistic fictional Universaarl customer-like data, no UI mockups, no confidential real customer data.",
+    "Updated scripts/agent/run-plan.mjs so it reads agent:context and treats authGate.requiresAuth as authoritative for Business Central workflow readiness.",
+    "Updated run-plan output to include contextAuthGate details, auth blockers, target instance and target company.",
+    "Verified agent:run-plan now sets needsBusinessCentralAuth=true, canProceed=false and nextSafeAction to detached Playwright auth refresh while stored auth is expired."
   ],
   "actionsNotTaken": [
     "No Business Central live session was opened.",
@@ -51,38 +49,36 @@
     "No company switch was performed.",
     "No confidential real customer data was used.",
     "No UI mockup was used as evidence.",
-    "No confidential real customer data was introduced."
+    "No broad rename or documentation expansion was performed."
   ],
   "proved": [
-    "agent:context now reports the concrete auth refresh action as top-level nextStep while stored Playwright auth is expired.",
-    "authGate.canRunBusinessCentralWorkflows is false when authState.canUseStoredAuth is false.",
-    "The auth target remains playthru / UNIVERSAARL-DE and legacy source URL is still only a redacted source rebuilt from current state."
+    "agent:context reports expired stored Playwright auth for playthru / UNIVERSAARL-DE with blockers storage-state-too-old and shell-validation-meta-too-old.",
+    "agent:run-plan now mirrors that auth gate and does not present a runnable BC/Playwright path before auth refresh.",
+    "The current project boundary remains real Business Central screenshots and realistic fictional Universaarl data, not UI mockups or confidential real customer records."
   ],
   "notProved": [
+    "No fresh Business Central login was captured.",
+    "No new Business Central screenshot was captured.",
+    "No Foundation setup correctness.",
     "No VAT setup correctness.",
     "No posting readiness.",
     "No O2C/P2P process readiness.",
-    "No new Business Central observation.",
-    "No long unattended auth window.",
-    "No use of confidential real customer records.",
-    "No BC setup readiness from wording changes alone.",
-    "No screenshot chain was captured in this local-only run.",
-    "No live auth refresh was performed in this run.",
-    "No Business Central shell was opened to verify fresh auth."
+    "No master-data readiness beyond existing documented boundaries."
   ],
   "warnings": [
-    "Refresh Playwright auth in the Playwright-managed profile, not normal Chrome, before any live BC/Playwright run.",
-    "Do not accept one end screenshot for Page/FastTab/field claims in the next live run.",
-    "Do not claim SKR04, VAT, posting or O2C/P2P readiness from this local decision."
+    "Refresh Playwright auth in the Playwright-managed profile before any live BC/Playwright run.",
+    "Do not use normal Chrome login as proof for Playwright storageState.",
+    "The next live proof must capture a multi-step screenshot chain and screenshot QA, not only an end screenshot.",
+    "Use real Business Central UI evidence and realistic fictional or anonymized customer-like data only; do not commit confidential real customer data."
   ],
   "nextStepDecision": {
     "currentCase": "FOUNDATION-READINESS-DECISION",
     "plannedNextCaseBeforeReview": "FOUNDATION-READINESS-DECISION",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Foundation Readiness remains the right next handoff, but both agent:context and agent:resume:check must now agree that expired Playwright auth blocks live execution.",
+    "reason": "Foundation Readiness remains the right handoff, but any live proof must wait until Playwright auth is refreshed and verified.",
     "selectedNextCase": "FOUNDATION-READINESS-DECISION",
-    "whySelectedNextCaseIsBest": "It keeps the project on the real boundary: Foundation must be read-first proven before realistic Universaarl customer, vendor and product data can safely drive O2C/P2P setup."
+    "whySelectedNextCaseIsBest": "It keeps the project focused on real Foundation evidence before realistic Universaarl customer, vendor and product data are used for later O2C/P2P setup."
   },
   "nextCase": "FOUNDATION-READINESS-DECISION",
-  "nextStep": "Refresh Playwright auth in the Playwright-managed profile, then rerun auth:bc:check, agent:context:test and agent:resume:check. Only after they are green should the next read-first Foundation proof run with real Business Central screenshots. Do not start O2C/P2P, Preview Posting or Posting until the missing setup rows are proven."
+  "nextStep": "Complete Login/MFA in the detached Playwright profile browser if it is still open, wait for Business Central shell, close that browser, then run npm run auth:bc:capture-detached and, if clear, npm run auth:bc:capture-detached -- --confirm. Finish with npm run auth:bc:check, agent:context, agent:run-plan and agent:resume:check before any TARGET-075 or Foundation read-first Playwright run."
 }

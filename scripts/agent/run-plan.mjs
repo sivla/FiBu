@@ -18,6 +18,32 @@ function runDryRun() {
   return JSON.parse(output);
 }
 
+function runContextPack() {
+  try {
+    const output = execSync('npm run --silent agent:context', {
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    return {
+      exitCode: 0,
+      output: JSON.parse(output),
+    };
+  } catch (error) {
+    const rawOutput = `${error.stdout ?? ''}`.trim();
+    let output = null;
+    try {
+      output = rawOutput ? JSON.parse(rawOutput) : null;
+    } catch {
+      output = null;
+    }
+
+    return {
+      exitCode: typeof error.status === 'number' ? error.status : 1,
+      output,
+    };
+  }
+}
+
 function runAuthCheck() {
   try {
     const output = execSync('npm run --silent auth:bc:check', {
@@ -111,17 +137,31 @@ const activeCase = current.active_case_file && existsSync(current.active_case_fi
   ? readJson(current.active_case_file)
   : {};
 const dryRun = runDryRun();
-const needsBusinessCentralAuth = caseMayNeedBusinessCentralAuth(activeCase, dryRun);
+const contextPack = runContextPack();
+const contextAuthGate = contextPack.output?.authGate ?? null;
+const contextAuthBlocked =
+  contextAuthGate?.requiresAuth === true &&
+  contextAuthGate?.canRunBusinessCentralWorkflows === false;
+const needsBusinessCentralAuth =
+  caseMayNeedBusinessCentralAuth(activeCase, dryRun) ||
+  contextAuthGate?.requiresAuth === true;
 const authCheck = needsBusinessCentralAuth ? runAuthCheck() : null;
 const authDoctor = needsBusinessCentralAuth ? runAuthDoctor() : null;
-const authBlockedBy = authCheck && !authCheck.canUseStoredAuth ? authCheck.blockedBy ?? [] : [];
+const authBlockedBy = unique([
+  ...(authCheck && !authCheck.canUseStoredAuth ? authCheck.blockedBy ?? [] : []),
+  ...(contextAuthBlocked ? contextAuthGate.blockedBy ?? [] : []),
+]);
 const operatorActionRequired = authDoctor?.output?.operatorActionRequired === true;
-const authRecoveryNeeded = needsBusinessCentralAuth && (authBlockedBy.length > 0 || operatorActionRequired);
+const authRecoveryNeeded =
+  needsBusinessCentralAuth &&
+  (authBlockedBy.length > 0 || operatorActionRequired || contextAuthBlocked);
 const operatorAction = authDoctor?.output?.lastAuthRefreshAttempt?.operatorAction ?? null;
 const operatorAuthUnblockStep =
-  operatorActionRequired && operatorAction
-    ? authDoctor.output.nextSafeAction
-    : authUnblockStep;
+  contextAuthBlocked && contextAuthGate.nextSafeAction
+    ? contextAuthGate.nextSafeAction
+    : operatorActionRequired && operatorAction
+      ? authDoctor.output.nextSafeAction
+      : authUnblockStep;
 const combinedForbiddenActions = unique([
   ...(current.forbiddenActions ?? []),
   ...(activeCase.forbiddenActions ?? []),
@@ -305,6 +345,18 @@ const runPlan = {
     requiresHumanApproval: dryRun.requiresHumanApproval,
   },
   needsBusinessCentralAuth,
+  contextAuthGate: contextAuthGate
+    ? {
+        decision: contextAuthGate.decision ?? '',
+        requiresAuth: contextAuthGate.requiresAuth === true,
+        canRunBusinessCentralWorkflows: contextAuthGate.canRunBusinessCentralWorkflows === true,
+        blockedBy: contextAuthGate.blockedBy ?? [],
+        nextSafeAction: contextAuthGate.nextSafeAction ?? '',
+        preferredAuthHandoff: contextAuthGate.preferredAuthHandoff ?? '',
+        targetInstance: contextAuthGate.target?.instance ?? contextAuthGate.authState?.expectedInstance ?? '',
+        targetCompany: contextAuthGate.target?.company ?? contextAuthGate.authState?.expectedCompany ?? '',
+      }
+    : null,
   authCheck: authCheck
     ? {
         canUseStoredAuth: authCheck.canUseStoredAuth,
@@ -342,6 +394,7 @@ const runPlan = {
   ]),
   validationCommands: [
     'npm run agent:preflight',
+    'npm run agent:context',
     'npm run agent:dry-run',
     'npm run agent:run-plan',
     ...(needsBusinessCentralAuth ? ['npm run auth:bc:check'] : []),
@@ -354,6 +407,8 @@ const runPlan = {
   nextSafeAction: canProceedWithAuth
     ? 'Execute only the allowed local-analysis steps. Do not run Playwright or Business Central.'
     : operatorActionRequired
+      ? operatorAuthUnblockStep
+    : contextAuthBlocked
       ? operatorAuthUnblockStep
     : authBlockedBy.length
       ? authUnblockStep
