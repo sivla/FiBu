@@ -1,21 +1,19 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "VAT-POSTING-SETUP-READFIRST",
-  "caseId": "VAT-POSTING-SETUP-READFIRST",
-  "status": "partially-observed",
-  "completedAt": "2026-07-07T07:37:54.782Z",
-  "updatedAt": "2026-07-07T07:38:30.000Z",
-  "mode": "universaarl-foundation-vat-readfirst",
+  "runId": "VAT-POSTING-SETUP-ROUTE-RECOVERY",
+  "caseId": "VAT-POSTING-SETUP-ROUTE-RECOVERY",
+  "status": "blocked",
+  "completedAt": "2026-07-07T09:48:56.2952375+02:00",
+  "updatedAt": "2026-07-07T09:48:56.2952375+02:00",
+  "mode": "universaarl-foundation-vat-route-recovery",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Playwright ran a read-only VAT/USt setup context proof in playthru / UNIVERSAARL-DE. VAT Product Posting Groups and VAT Posting Setup passed screenshot QA. VAT Business Posting Groups did not pass screenshot QA because the final screenshot showed Role Center/search-route remnants instead of the real Page 470 list. No setup, posting setup, master data, document, journal, Preview Posting, Posting, payment, API shortcut, company switch or confidential real customer data occurred.",
-  "resultPath": "playwright/projects/fibu-book5/evidence/vat-posting-setup-readfirst/result.json",
+  "summary": "Playwright ran a read-only Page 470 route-recovery diagnosis in playthru / UNIVERSAARL-DE. URL-shape variants and Page Inspection still did not produce a visible MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups list. Screenshots were visually checked and rejected as Role Center or search/Page-Inspection context. No setup, posting setup, master data, document, journal, Preview Posting, Posting, payment, API shortcut, company switch or confidential real customer data occurred.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/vat-posting-setup-route-recovery/result.json",
   "changedArtifacts": [
-    "package.json",
-    "playwright/projects/fibu-book5/tests/vat-posting-setup-readfirst.spec.ts",
-    "playwright/projects/fibu-book5/evidence/vat-posting-setup-readfirst/",
-    ".agent/state/cases/vat-posting-setup-route-recovery.json",
+    "playwright/projects/fibu-book5/evidence/vat-posting-setup-route-recovery/",
+    ".agent/state/cases/vat-business-posting-groups-source-or-alternative-route-decision.json",
     ".agent/state/current.json",
     ".agent/state/last_run_summary.json"
   ],
@@ -33,11 +31,11 @@
   "companySwitch": false,
   "confidentialRealCustomerDataUsed": false,
   "actionsTaken": [
-    "Validated stored Business Central auth for playthru / UNIVERSAARL-DE.",
-    "Opened VAT Business Posting Groups, VAT Product Posting Groups and VAT Posting Setup read-only.",
-    "Captured text, screenshots and screenshot-QA metadata for all three VAT/USt contexts.",
-    "Visually rejected the Page 470 screenshot because it showed Role Center instead of the VAT Business Posting Groups list.",
-    "Updated active state to VAT-POSTING-SETUP-ROUTE-RECOVERY."
+    "Validated stored Business Central auth for playthru / UNIVERSAARL-DE through agent preflight.",
+    "Ran the existing Page 470 URL-shape and Page Inspection diagnosis read-only.",
+    "Captured and visually inspected Role Center and Page Inspection screenshots.",
+    "Rejected the screenshots as Page 470 proof because neither shows the real VAT Business Posting Groups list.",
+    "Updated active state to VAT-BUSINESS-POSTING-GROUPS-SOURCE-OR-ALTERNATIVE-ROUTE-DECISION."
   ],
   "actionsNotTaken": [
     "No setup was changed.",
@@ -52,30 +50,32 @@
     "No confidential real customer data was used."
   ],
   "proved": [
-    "VAT Product Posting Groups / MwSt.-Produktbuchungsgruppen showed VAT19 / USt 19 Prozent read-only.",
-    "VAT Posting Setup / MwSt.-Buchungsmatrix opened read-only and showed setup columns.",
     "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Page 470 URL-shape variants still land on Role Center.",
+    "Page Inspection did not prove the Page 470 list.",
     "No setup, master data, document, Preview Posting, Posting, payment or API shortcut occurred."
   ],
   "notProved": [
     "VAT Business Posting Groups / MwSt.-Geschaeftsbuchungsgruppen did not pass screenshot QA.",
+    "No visible Page 470 list.",
     "No German VAT correctness.",
     "No INLAND/VAT19 setup completeness.",
     "No VAT account correctness.",
     "No Preview Posting, VAT Entry or G/L Entry."
   ],
   "warnings": [
-    "The rejected Page 470 screenshot is useful diagnostics, not proof.",
+    "The rejected Page 470 screenshots are useful diagnostics, not proof.",
+    "Do not repeat Page 470 direct URL or generic Tell-Me click loops without a materially new route.",
     "Do not start O2C/P2P until VAT Business Posting Groups, Posting Groups and Foundation readiness are resolved."
   ],
   "nextStepDecision": {
-    "currentCase": "VAT-POSTING-SETUP-READFIRST",
-    "plannedNextCaseBeforeReview": "VAT-POSTING-SETUP-READFIRST",
+    "currentCase": "VAT-POSTING-SETUP-ROUTE-RECOVERY",
+    "plannedNextCaseBeforeReview": "VAT-POSTING-SETUP-ROUTE-RECOVERY",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "VAT/USt setup context was the right next Foundation read-first step after item price/cost proof, but Page 470 remained unproven.",
-    "selectedNextCase": "VAT-POSTING-SETUP-ROUTE-RECOVERY",
-    "whySelectedNextCaseIsBest": "Page 470 must be recovered or explicitly parked before Foundation Readiness can use VAT Business Posting Groups."
+    "reason": "Route recovery was the right next step, but it is now blocked strongly enough to stop repeating the same UI route.",
+    "selectedNextCase": "VAT-BUSINESS-POSTING-GROUPS-SOURCE-OR-ALTERNATIVE-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "The next step should make a source/object/alternative-route decision instead of another Page 470 click attempt."
   },
-  "nextCase": "VAT-POSTING-SETUP-ROUTE-RECOVERY",
-  "nextStep": "Recover the read-only route to MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups. Do not accept Role Center/search-overlay screenshots as proof. No setup write, no document, no Preview Posting, no Posting."
+  "nextCase": "VAT-BUSINESS-POSTING-GROUPS-SOURCE-OR-ALTERNATIVE-ROUTE-DECISION",
+  "nextStep": "Decide a source-backed or alternative route for VAT Business Posting Groups. Do not repeat Page 470 click loops. No setup write, no document, no Preview Posting, no Posting."
 }

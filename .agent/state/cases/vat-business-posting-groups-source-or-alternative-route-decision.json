@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "caseId": "VAT-BUSINESS-POSTING-GROUPS-SOURCE-OR-ALTERNATIVE-ROUTE-DECISION",
+  "status": "ready-next",
+  "mode": "universaarl-foundation-vat-source-route-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mayRunPlaywright": false,
+  "effectiveBcActionsAllowed": false,
+  "businessPurpose": "Decide the next source-backed, non-repeating route for VAT Business Posting Groups after Page 470 direct URL, URL-shape and Page Inspection diagnostics failed visible screenshot QA.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/vat-posting-setup-readfirst/result.json",
+    "playwright/projects/fibu-book5/evidence/vat-posting-setup-route-recovery/result.json",
+    "playwright/projects/fibu-book5/evidence/target-070b-vat-page470-helper-fix-or-pageinspection-diagnosis/TARGET-070B-result.json",
+    "playwright/projects/fibu-book5/BC-SOURCE-REGISTRY.md"
+  ],
+  "allowedActions": [
+    "review-existing-evidence",
+    "review-official-microsoft-learn-source",
+    "classify-page470-route-status",
+    "decide-whether-page472-table325-or-configuration-package-route-is-safer",
+    "prepare-next-case-without-live-bc",
+    "update-state-and-dashboard"
+  ],
+  "forbiddenActions": [
+    "open-business-central-live",
+    "run-playwright-live",
+    "leave-instance",
+    "company-switch",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "write-vat-business-posting-group",
+    "write-vat-product-posting-group",
+    "write-vat-posting-setup",
+    "write-setup",
+    "click-new",
+    "click-edit-list",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "repeat-direct-page470-route",
+    "repeat-generic-tell-me-page470-route"
+  ],
+  "acceptanceCriteria": [
+    "Decision explains why Page 470 remains blocked or how it can be replaced by a safer source-backed route.",
+    "Decision separates Microsoft Learn product logic from Universaarl UI evidence.",
+    "Decision selects exactly one next case and does not unlock VAT writes by itself.",
+    "No Business Central, Playwright, setup, master data, draft, Preview Posting, Posting or API action is executed."
+  ],
+  "stopIf": [
+    "The proposed next step only repeats direct Page 470 or generic Tell-Me route attempts.",
+    "The decision would claim VAT setup correctness without persisted Universaarl evidence.",
+    "The decision would allow a write without a separate Smart Decision write gate."
+  ],
+  "nextIfSuccessful": "FOUNDATION-VAT-BLOCKER-CLASSIFICATION-OR-PAGE472-ROUTE-DECISION",
+  "nextIfBlocked": "FOUNDATION-READINESS-DECISION-WITH-VAT-PAGE470-PARKED",
+  "expectedOutput": {
+    "resultJson": "playwright/projects/fibu-book5/evidence/vat-business-posting-groups-source-or-alternative-route-decision/result.json",
+    "stateUpdate": "current case moves away from Page 470 click-loop",
+    "claimBoundary": "VAT Business Posting Groups remain product-supported but not locally page-proven until a visible route or alternative evidence is accepted."
+  }
+}
