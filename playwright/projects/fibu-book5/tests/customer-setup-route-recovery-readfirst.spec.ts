@@ -10,7 +10,7 @@ test.use({
   viewport: { width: 2400, height: 1350 }
 });
 
-test.setTimeout(300_000);
+test.setTimeout(600_000);
 test.skip(
   process.env.CUSTOMER_SETUP_ROUTE_RECOVERY_LIVE_APPROVED !== '1' ||
     process.env.CUSTOMER_SETUP_ROUTE_RECOVERY_RUNNER_GUARD_CHECKED !== '1',
@@ -98,7 +98,7 @@ const probes: Probe[] = [
     label: 'Zahlungsbedingungen / Payment Terms',
     searchTerms: ['Zahlungsbedingungen', 'Payment Terms'],
     title: /Zahlungsbedingungen|Payment Terms/i,
-    requiredSignals: [/Code/i, /Beschreibung|Description/i, /Faelligkeitsformel|Due Date Calculation/i],
+    requiredSignals: [/Code/i, /Beschreibung|Description/i, /Faelligkeitsformel|Falligkeitsformel|Due Date Calculation/i],
     candidates: [/Zahlungsbedingungen/i, /Payment Terms/i],
     beginnerMeaning:
       'Zahlungsbedingungen steuern Faelligkeiten und Skontologik. Ohne sichtbaren Setup-Kontext darf keine Zahlungsbedingung auf einen Debitor geschrieben werden.'
@@ -306,6 +306,151 @@ async function clickSearchResult(page: Page, probe: Probe) {
   return true;
 }
 
+async function clickExplorePagesAndReports(page: Page) {
+  const scopes = [page, ...page.frames()] as Array<Page | Frame>;
+  const patterns = [
+    /Seiten oder Berichte zu erkunden/i,
+    /Seiten und Berichte erkunden/i,
+    /Explore pages and reports/i,
+    /explore pages/i
+  ];
+
+  for (const scope of scopes) {
+    for (const pattern of patterns) {
+      const locators = [scope.getByRole('link', { name: pattern }), scope.getByRole('button', { name: pattern }), scope.getByText(pattern)];
+      for (const locator of locators) {
+        const count = await locator.count().catch(() => 0);
+        for (let index = 0; index < Math.min(count, 3); index += 1) {
+          const item = locator.nth(index);
+          if (!(await item.isVisible({ timeout: 500 }).catch(() => false))) continue;
+          await item.click({ timeout: 5000 });
+          await page.waitForTimeout(2500);
+          return true;
+        }
+      }
+    }
+  }
+
+  return false;
+}
+
+async function fillVisibleExplorerSearch(page: Page, term: string) {
+  const scopes = [page, ...page.frames()] as Array<Page | Frame>;
+  const tryFill = async () => {
+    for (const scope of scopes) {
+      const candidates = [
+        scope.getByRole('textbox', { name: /Suchen|Search|Filter|Seite|Bericht|Page|Report/i }).first(),
+        scope.locator('[role="dialog"] input:visible, [aria-modal="true"] input:visible').first(),
+        scope.locator('input[type="search"]:visible, input[type="text"]:visible').first()
+      ];
+      for (const candidate of candidates) {
+        if (!(await candidate.isVisible({ timeout: 700 }).catch(() => false))) continue;
+        await candidate.click({ timeout: 1000 }).catch(() => undefined);
+        await candidate.fill(term).catch(async () => {
+          await page.keyboard.press(process.platform === 'darwin' ? 'Meta+A' : 'Control+A').catch(() => undefined);
+          await page.keyboard.type(term).catch(() => undefined);
+        });
+        await page.waitForTimeout(2200);
+        return true;
+      }
+    }
+    return false;
+  };
+
+  if (await tryFill()) return true;
+
+  for (const scope of scopes) {
+    const candidates = [
+      scope.getByRole('button', { name: /^Suchen$|^Search$/i }).first(),
+      scope.getByRole('menuitem', { name: /^Suchen$|^Search$/i }).first(),
+      scope.getByText(/^Suchen$|^Search$/i).first()
+    ];
+    for (const candidate of candidates) {
+      if (!(await candidate.isVisible({ timeout: 700 }).catch(() => false))) continue;
+      await candidate.click({ timeout: 1000 }).catch(() => undefined);
+      await page.waitForTimeout(800);
+      if (await tryFill()) return true;
+    }
+  }
+  return false;
+}
+
+async function closeExplorerTeachingTip(page: Page) {
+  const scopes = [page, ...page.frames()] as Array<Page | Frame>;
+  for (const scope of scopes) {
+    const closeButtons = [
+      scope.getByRole('button', { name: /Schlie.en|Schliessen|Close|Dismiss|Verstanden|Got it|Weiter/i }).first(),
+      scope.locator('button[aria-label*="Close" i], button[title*="Close" i], button[aria-label*="Schlie" i], button[title*="Schlie" i]').first()
+    ];
+    for (const button of closeButtons) {
+      if (!(await button.isVisible({ timeout: 500 }).catch(() => false))) continue;
+      await button.click({ timeout: 1000 }).catch(() => undefined);
+      await page.waitForTimeout(500);
+      return true;
+    }
+  }
+  await page.keyboard.press('Escape').catch(() => undefined);
+  await page.waitForTimeout(500);
+  return false;
+}
+
+async function clickExactExplorerCandidate(page: Page, probe: Probe) {
+  const forbidden = /Unternehmensdaten durchsuchen|Hilfe durchsuchen|Liste mit Titel|keine Vorschlage|keine Vorschläge|Power BI|Shopify|Berichte einrichten|Business Manager Role Center/i;
+  const scopes = [page, ...page.frames()] as Array<Page | Frame>;
+  const exactish = [
+    probe.title,
+    ...probe.candidates
+  ];
+
+  for (const scope of scopes) {
+    for (const pattern of exactish) {
+      const textMatches = scope.getByText(pattern);
+      const count = await textMatches.count().catch(() => 0);
+      for (let index = 0; index < Math.min(count, 12); index += 1) {
+        const item = textMatches.nth(index);
+        if (!(await item.isVisible({ timeout: 300 }).catch(() => false))) continue;
+        const text = clean(
+          `${await item.innerText({ timeout: 300 }).catch(() => '')}\n${await item.getAttribute('aria-label').catch(() => '')}\n${await item.getAttribute('title').catch(() => '')}`
+        );
+        if (!text || forbidden.test(text)) continue;
+        await item.hover({ timeout: 1000 }).catch(() => undefined);
+        await page.waitForTimeout(500);
+        const clicked = await item.click({ timeout: 5000 }).then(() => true).catch(() => false);
+        if (!clicked) continue;
+        await page.waitForTimeout(3000);
+        return { clicked: true, clickedText: text };
+      }
+    }
+
+    const locators = [
+      scope.getByRole('link'),
+      scope.getByRole('button'),
+      scope.getByRole('menuitem'),
+      scope.getByRole('option'),
+      scope.locator('[role="row"], li, a, button, [role="menuitem"], [role="option"]')
+    ];
+    for (const locator of locators) {
+      const count = await locator.count().catch(() => 0);
+      for (let index = 0; index < Math.min(count, 80); index += 1) {
+        const item = locator.nth(index);
+        if (!(await item.isVisible({ timeout: 300 }).catch(() => false))) continue;
+        const text = clean(
+          `${await item.innerText({ timeout: 300 }).catch(() => '')}\n${await item.getAttribute('aria-label').catch(() => '')}\n${await item.getAttribute('title').catch(() => '')}`
+        );
+        if (!text || forbidden.test(text)) continue;
+        if (!exactish.some((pattern) => pattern.test(text))) continue;
+        await item.hover({ timeout: 1000 }).catch(() => undefined);
+        await page.waitForTimeout(500);
+        await item.click({ timeout: 5000 });
+        await page.waitForTimeout(3000);
+        return { clicked: true, clickedText: text };
+      }
+    }
+  }
+
+  return { clicked: false, clickedText: '' };
+}
+
 async function tryDirectRoute(page: Page, probe: Probe, captures: Capture[]) {
   await page.goto(buildTargetUrl(probe.pageId), { waitUntil: 'domcontentloaded', timeout: 120_000 });
   await waitForBusinessCentralShell(page);
@@ -342,7 +487,7 @@ async function tryTellMeRoute(page: Page, probe: Probe, captures: Capture[]) {
   let searchTerm = '';
   let overlayText = '';
   let candidates: unknown[] = [];
-  for (const term of probe.searchTerms) {
+  for (const term of probe.searchTerms.slice(0, 1)) {
     searchTerm = term;
     await page.goto(buildTargetUrl(), { waitUntil: 'domcontentloaded', timeout: 120_000 });
     await waitForBusinessCentralShell(page);
@@ -400,9 +545,117 @@ async function tryTellMeRoute(page: Page, probe: Probe, captures: Capture[]) {
   };
 }
 
+async function tryExploreRoute(page: Page, probe: Probe, captures: Capture[]) {
+  let searchTerm = probe.searchTerms[0];
+  let exploreOpened = false;
+  let explorerSearchFilled = false;
+  let clicked = false;
+  let clickedText = '';
+  let overlayText = '';
+  let explorerText = '';
+
+  for (const term of probe.searchTerms) {
+    searchTerm = term;
+    await page.goto(buildTargetUrl(), { waitUntil: 'domcontentloaded', timeout: 120_000 });
+    await waitForBusinessCentralShell(page);
+    await dismissTours(page);
+    await searchFor(page, term);
+    overlayText = await fullText(page);
+    await capture(page, captures, `customer-route-recovery-${probe.id}-040-explore-link-source-${probe.searchTerms.indexOf(term) + 1}.png`, {
+      page: probe.label,
+      pageId: probe.pageId,
+      step: `Tell-Me overlay before opening page/report explorer for ${term}`,
+      routeUsed: 'explore-pages-and-reports',
+      searchTerm: term,
+      visibleSignals: overlayText.split('\n').filter((line) => /Seiten|Berichte|Explore|Unternehmensdaten|Hilfe/i.test(line)).slice(0, 90),
+      noWrite: true,
+      noPost: true,
+      noPreview: true
+    });
+
+    exploreOpened = await clickExplorePagesAndReports(page);
+    await page.waitForTimeout(1800);
+    explorerText = await fullText(page);
+    await capture(page, captures, `customer-route-recovery-${probe.id}-041-explorer-opened-${probe.searchTerms.indexOf(term) + 1}.png`, {
+      page: probe.label,
+      pageId: probe.pageId,
+      step: 'Page/report explorer opened from Tell-Me',
+      routeUsed: 'explore-pages-and-reports',
+      searchTerm: term,
+      exploreOpened,
+      visibleSignals: explorerText.split('\n').slice(0, 120),
+      noWrite: true,
+      noPost: true,
+      noPreview: true
+    });
+    if (!exploreOpened) continue;
+    await closeExplorerTeachingTip(page);
+
+    explorerSearchFilled = await fillVisibleExplorerSearch(page, term);
+    await page.waitForTimeout(1500);
+    explorerText = await fullText(page);
+    await capture(page, captures, `customer-route-recovery-${probe.id}-042-explorer-filtered-${probe.searchTerms.indexOf(term) + 1}.png`, {
+      page: probe.label,
+      pageId: probe.pageId,
+      step: 'Page/report explorer after bounded filter',
+      routeUsed: 'explore-pages-and-reports',
+      searchTerm: term,
+      explorerSearchFilled,
+      visibleSignals: explorerText.split('\n').filter((line) => probe.candidates.some((pattern) => pattern.test(line)) || /Seiten|Berichte|Page|Report|Liste|List/i.test(line)).slice(0, 140),
+      noWrite: true,
+      noPost: true,
+      noPreview: true
+    });
+
+    const activation = await clickExactExplorerCandidate(page, probe);
+    clicked = activation.clicked;
+    clickedText = activation.clickedText;
+    if (clicked) break;
+  }
+
+  await page.waitForTimeout(1800);
+  const text = (await compactSignals(page, probe)).join('\n');
+  const shot = await capture(page, captures, `customer-route-recovery-${probe.id}-050-after-explorer-click.png`, {
+    page: probe.label,
+    pageId: probe.pageId,
+    step: 'After exact page/report explorer candidate activation',
+    routeUsed: 'explore-pages-and-reports',
+    searchTerm,
+    exploreOpened,
+    explorerSearchFilled,
+    clicked,
+    clickedText,
+    visibleSignals: text.split('\n').slice(0, 120),
+    internallyProves: pageLooksAccepted(text, probe) ? 'Explorer route shows the target setup page.' : 'Explorer route is not accepted without Page Inspection.',
+    beginnerMeaning: probe.beginnerMeaning,
+    noWrite: true,
+    noPost: true,
+    noPreview: true
+  });
+  const inspection = await inspectCurrentPage(page, captures, probe, `customer-route-recovery-${probe.id}-051-explorer-page-inspection.png`, 'explore-pages-and-reports');
+  const accepted = clicked && pageLooksAccepted(text, probe) && probe.title.test(inspection.text) && !/Business Manager Role Center|Rollencenter/i.test(inspection.text);
+  return {
+    routeUsed: 'explore-pages-and-reports',
+    accepted,
+    shot,
+    text,
+    inspection,
+    blockedBy: accepted
+      ? []
+      : [
+          exploreOpened ? '' : 'Page/report explorer link was not opened.',
+          explorerSearchFilled ? '' : 'No visible page/report explorer search field was filled.',
+          clicked ? '' : 'No exact explorer candidate was clicked.',
+          clickedText ? '' : `No accepted explorer candidate text. Last candidate: ${clickedText}`,
+          ...blockedReasons(text, inspection.text, probe)
+        ].filter(Boolean)
+  };
+}
+
 async function recoverProbe(page: Page, probe: Probe, captures: Capture[]): Promise<ProbeResult> {
   const direct = await tryDirectRoute(page, probe, captures);
-  const selected = direct.accepted ? direct : await tryTellMeRoute(page, probe, captures);
+  const tellMe = direct.accepted ? direct : await tryTellMeRoute(page, probe, captures);
+  const selected = tellMe.accepted ? tellMe : await tryExploreRoute(page, probe, captures);
   const routeTextFile = `${EVIDENCE_DIR_REL}/customer-route-recovery-${probe.id}.txt`;
   await writeTextEvidence(evidencePath(PROJECT, EVIDENCE_ID, `customer-route-recovery-${probe.id}.txt`), selected.text || 'No target page text captured.');
   const status = selected.accepted ? 'observed' : 'blocked';

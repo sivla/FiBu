@@ -1,7 +1,7 @@
 # CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST
 
-Status: blocked-route-recovery
-Setup-Seiten akzeptiert: 0/4
+Status: partially-observed-route-recovery
+Setup-Seiten akzeptiert: 3/4
 
 Dieser Lauf prueft echte Business-Central-Routen zu Setup-Seiten fuer Debitoren. Role-Center- oder Suchoverlay-Screenshots zaehlen nicht als Setup-Seitenbeweis.
 

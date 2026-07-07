@@ -3,16 +3,14 @@
   "purpose": "last-run-summary",
   "runId": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
   "caseId": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
-  "status": "blocked-route-recovery",
-  "completedAt": "2026-07-07T00:39:59.278Z",
+  "status": "partially-observed-route-recovery",
+  "completedAt": "2026-07-07T01:13:56.011Z",
   "mode": "universaarl-masterdata-setup-route-recovery",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Read-first customer setup route recovery ran in real Business Central UI. No setup page was accepted: direct page-id routes fell back to Role Center, broad Tell-Me/search stayed in the search overlay or opened an unrelated Power BI setup dialog. The run is useful blocker evidence and keeps the customer setup write gate closed.",
+  "summary": "Read-first customer setup route recovery ran in real Business Central UI. The page/report explorer route recovered 3/4 setup dependencies: Debitorenbuchungsgruppen, MwSt.-Geschaeftsbuchungsgruppen and Zahlungsbedingungen. Geschaeftsbuchungsgruppen remains blocked in Tell-Me/search overlay. No data was changed.",
   "resultPath": "playwright/projects/fibu-book5/evidence/customer-setup-route-recovery-readfirst/result.json",
   "changedArtifacts": [
-    "package.json",
-    "scripts/agent/run-customer-setup-route-recovery-readfirst.mjs",
     "playwright/projects/fibu-book5/tests/customer-setup-route-recovery-readfirst.spec.ts",
     "playwright/projects/fibu-book5/evidence/customer-setup-route-recovery-readfirst/result.json",
     "playwright/projects/fibu-book5/evidence/customer-setup-route-recovery-readfirst/README.md",
@@ -49,38 +47,42 @@
   "apiShortcut": false,
   "proved": [
     "playthru / UNIVERSAARL-DE was used for a real Business Central read-first route-recovery run.",
+    "Debitorenbuchungsgruppen / Customer Posting Groups was recovered read-only via explore-pages-and-reports.",
+    "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups was recovered read-only via explore-pages-and-reports.",
+    "Zahlungsbedingungen / Payment Terms was recovered read-only via explore-pages-and-reports.",
     "No setup, master data, document, Preview Posting, Posting, payment or API shortcut was changed."
   ],
   "notProved": [
     "No customer setup value was selected or written.",
     "No setup correctness, VAT correctness or O2C readiness.",
-    "Debitorenbuchungsgruppen / Customer Posting Groups remains blocked: Required page signal missing: /Code/i; Required page signal missing: /Debitorensammelkonto|Receivables Account|Forderung/i; Visible state still looks like Tell-Me/search overlay.",
-    "Geschaeftsbuchungsgruppen / Gen. Business Posting Groups remains blocked: Required page signal missing: /Code/i; Visible state still looks like Tell-Me/search overlay.",
-    "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups remains blocked: Required page signal missing: /Code/i; Visible state still looks like Tell-Me/search overlay.",
-    "Zahlungsbedingungen / Payment Terms remains blocked: Target page title is not visible in the page surface.; Required page signal missing: /Code/i; Required page signal missing: /Faelligkeitsformel|Due Date Calculation/i"
+    "Geschaeftsbuchungsgruppen / Gen. Business Posting Groups remains blocked: Required page signal missing: /Code/i; Visible state still looks like Tell-Me/search overlay."
   ],
   "blockedBy": [
-    "Debitorenbuchungsgruppen / Customer Posting Groups: Required page signal missing: /Code/i",
-    "Debitorenbuchungsgruppen / Customer Posting Groups: Required page signal missing: /Debitorensammelkonto|Receivables Account|Forderung/i",
-    "Debitorenbuchungsgruppen / Customer Posting Groups: Visible state still looks like Tell-Me/search overlay.",
     "Geschaeftsbuchungsgruppen / Gen. Business Posting Groups: Required page signal missing: /Code/i",
-    "Geschaeftsbuchungsgruppen / Gen. Business Posting Groups: Visible state still looks like Tell-Me/search overlay.",
-    "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups: Required page signal missing: /Code/i",
-    "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups: Visible state still looks like Tell-Me/search overlay.",
-    "Zahlungsbedingungen / Payment Terms: Target page title is not visible in the page surface.",
-    "Zahlungsbedingungen / Payment Terms: Required page signal missing: /Code/i",
-    "Zahlungsbedingungen / Payment Terms: Required page signal missing: /Faelligkeitsformel|Due Date Calculation/i"
+    "Geschaeftsbuchungsgruppen / Gen. Business Posting Groups: Visible state still looks like Tell-Me/search overlay."
   ],
   "screenshotQa": {
-    "capturedCount": 20,
+    "capturedCount": 40,
     "acceptedForWriteGate": false,
-    "reason": "Accepted as blocker evidence, rejected as setup-page proof: screenshots show Role Center fallback, Tell-Me overlay or an unrelated Power BI setup dialog instead of the requested setup lists."
+    "acceptedPages": [
+      "Debitorenbuchungsgruppen / Customer Posting Groups",
+      "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups",
+      "Zahlungsbedingungen / Payment Terms"
+    ],
+    "blockedPages": [
+      {
+        "label": "Geschaeftsbuchungsgruppen / Gen. Business Posting Groups",
+        "routeUsed": "explore-pages-and-reports",
+        "reason": "Required page signal missing: /Code/i; Visible state still looks like Tell-Me/search overlay."
+      }
+    ],
+    "reason": "Accepted as partial route proof: real Business Central screenshots and Page Inspection confirm 3/4 setup pages. Customer setup write gate remains closed because General Business Posting Groups is still a Tell-Me/search-overlay blocker."
   },
-  "uiLearning": "Direct page-id navigation can fall back to Role Center and broad Tell-Me clicks can open categories or unrelated dialogs. Next route must be a materially different read-only navigation hypothesis with screenshot QA, hover/tooltip where useful, and Page Inspection confirmation.",
+  "uiLearning": "The page/report explorer route can recover setup pages that direct page-id navigation and broad Tell-Me categories miss. It recovered Debitorenbuchungsgruppen, MwSt.-Geschaeftsbuchungsgruppen and Zahlungsbedingungen. Geschaeftsbuchungsgruppen still needs a better exact-search term or alternate navigation route.",
   "nextStepDecision": {
     "currentCase": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
     "plannedNextCaseBeforeReview": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
-    "lastEvidenceSummary": "Recovered 0/4 customer setup dependency pages.",
+    "lastEvidenceSummary": "Recovered 3/4 customer setup dependency pages.",
     "isPlannedNextCaseStillSensible": false,
     "reason": "At least one required setup page remains blocked; write gate remains blocked.",
     "lookaheadReviewed": [
@@ -96,7 +98,7 @@
       },
       {
         "caseId": "CUSTOMER-TRAINING-SETUP-FIELDS-DRAFT",
-        "status": "needs-book-context-first",
+        "status": "ready-after-current",
         "reason": "Only accepted setup pages can feed training text; blocked routes remain an internal note."
       }
     ],
@@ -112,6 +114,6 @@
     ]
   },
   "nextCase": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
-  "nextStep": "Run a materially different read-first customer setup route recovery: do not repeat broad Tell-Me category clicks; inspect real navigation surfaces such as Alle Berichte/menus/scoped setup lists with screenshot QA and Page Inspection before any customer setup write gate.",
-  "updatedAt": "2026-07-07T00:43:31.204Z"
+  "nextStep": "Recover the remaining General Business Posting Groups route with a materially different exact term/navigation route. Do not open CUSTOMER-SETUP-VALUE-WRITE-GATE until all setup dependencies are accepted by screenshot QA and Page Inspection.",
+  "updatedAt": "2026-07-07T01:15:00.215Z"
 }

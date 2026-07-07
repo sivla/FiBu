@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
-  "status": "blocked-read-first-route-recovery",
+  "status": "partially-observed-route-recovery",
   "mode": "universaarl-masterdata-setup-route-recovery",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -16,10 +16,7 @@
     "playwright/projects/fibu-book5/evidence/customer-setup-route-recovery-readfirst/result.json"
   ],
   "blockedPages": [
-    "Debitorenbuchungsgruppen / Customer Posting Groups",
-    "Geschaeftsbuchungsgruppen / Gen. Business Posting Groups",
-    "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups",
-    "Zahlungsbedingungen / Payment Terms"
+    "Geschaeftsbuchungsgruppen / Gen. Business Posting Groups"
   ],
   "mayRunPlaywright": true,
   "mayOpenBusinessCentral": true,
@@ -57,7 +54,7 @@
     "Tell-Me/search overlays and generic search categories are rejected as setup proof.",
     "Unrelated dialogs such as Power BI setup are rejected as setup proof and must be closed safely.",
     "No setup, master data, document, preview, posting, payment or API shortcut is changed.",
-    "The result decides whether CUSTOMER-SETUP-VALUE-WRITE-GATE is ready or still blocked."
+    "The customer setup value write gate remains blocked until General Business Posting Groups is recovered or explicitly parked with a safer Foundation alternative."
   ],
   "stopIf": [
     "The active instance or company is not clearly playthru / UNIVERSAARL-DE.",
@@ -67,12 +64,17 @@
   ],
   "nextCaseIfReady": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
   "nextCaseIfBlocked": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
-  "updatedAt": "2026-07-07T00:43:31.204Z",
+  "updatedAt": "2026-07-07T01:15:00.215Z",
   "lastResultPath": "playwright/projects/fibu-book5/evidence/customer-setup-route-recovery-readfirst/result.json",
-  "routeLearning": "Direct page-id navigation can fall back to Role Center and broad Tell-Me clicks can open categories or unrelated dialogs. Next route must be a materially different read-only navigation hypothesis with screenshot QA, hover/tooltip where useful, and Page Inspection confirmation.",
+  "routeLearning": "The page/report explorer route can recover setup pages that direct page-id navigation and broad Tell-Me categories miss. It recovered Debitorenbuchungsgruppen, MwSt.-Geschaeftsbuchungsgruppen and Zahlungsbedingungen. Geschaeftsbuchungsgruppen still needs a better exact-search term or alternate navigation route.",
   "nextRouteHypotheses": [
-    "Use a materially different read-only route: Alle Berichte / Explore pages and reports / menu navigation instead of broad Tell-Me category clicks.",
-    "If Tell-Me is used again, first inventory exact visible candidates, tooltips and roles; click only an exact page result, never generic Unternehmensdaten durchsuchen/Hilfe durchsuchen categories.",
-    "Use Page Inspection and screenshot QA as acceptance gates; Role Center, search overlay and unrelated dialogs are blocker evidence only."
+    "For Geschaeftsbuchungsgruppen, use a different exact term such as Allgemeine Geschaeftsbuchungsgruppen, Buchungsgruppen or Gen. Bus. Posting Groups instead of repeating broad category clicks.",
+    "Keep using page/report explorer screenshots because it produced real setup pages for 3/4 dependencies.",
+    "Accept a page only when screenshot text and Page Inspection prove the actual setup list; Tell-Me overlay remains blocker evidence only."
+  ],
+  "observedPages": [
+    "Debitorenbuchungsgruppen / Customer Posting Groups",
+    "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups",
+    "Zahlungsbedingungen / Payment Terms"
   ]
 }
