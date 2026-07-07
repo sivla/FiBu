@@ -9,12 +9,12 @@ Last reviewed: 2026-07-07
 | Feld | Aktueller Stand |
 | --- | --- |
 | Zielwelt | `playthru / UNIVERSAARL-DE / Universaarl GmbH` |
-| Projektphase | Foundation-Readiness-Konsolidierung nach read-first Resume |
+| Projektphase | W2 Core Master Data: realistische Produktmodell-Entscheidung vor Item-Write-Gate |
 | Aktive Steuerungsquelle | `.agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md` |
 | Artefakt-Klassifikation | `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` |
 | Geparkter Live-Case | `TARGET-073` |
 | Letzter Resume-Pilot | `TARGET-075`, read-first, no-write, abgeschlossen |
-| Aktiver Case | `ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION` |
+| Aktiver Case | `ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION` |
 | Legacy-Grenze | RM-DEMO, MCP_1_20260210, CRONUS, Rhein-Main und RM-* sind keine aktive Projektwahrheit. |
 
 ## Steuerungsregel
@@ -55,7 +55,7 @@ M0 ist als Arbeitsrahmen nutzbar. Der naechste sinnvolle Fortschritt ist keine w
 | Freeze/Resume | passed-for-read-first-history | TARGET-075 ist gelaufen; neue Live-Arbeit braucht trotzdem aktuellen Auth-/Case-Gate. |
 | Finance Foundation | blocked-by-specific-gaps | Foundation-Decision aktuell halten: Page 314 und Page 472 active editor sind die harten UI-/Setup-Grenzen; TARGET-073B ist als no-write Proof gelaufen und blockiert. |
 | VAT/USt, Dimensions, Posting Groups | partial/blocked | INLAND/VAT19 sichtbar, Page 472-Hauptoberflaeche und Page Inspection/Tabelle 325 bewiesen; VAT-Matrix-Schreibroute und Page 314 bleiben nicht posting-ready. |
-| Master Data | item-visible-boundary-next | Debitor `U-CUST-100 / Saarland Maschinenbau AG` ist fuer Debitorenkarten-Handbuch/Training nutzbar, aber nicht O2C-ready. `ITEM-SERVICE-MASTERDATA-READFIRST` hat die Seite `Artikel / Items` read-first mit Screenshot-QA beobachtet: `U-ITEM-HW100` ist sichtbar, Page Inspection zeigt `Item List (31, List)` und Tabelle `Item (27)`, mit Signalen `STK`, `Bestand` und `WARE`. Das beweist Sichtbarkeit, aber keine Preis-, Produktbuchungsgruppen-, VAT-, Kosten-, Lagerbewertungs- oder O2C/P2P-Readiness. |
+| Master Data | product-model-decision-next | Debitor `U-CUST-100 / Saarland Maschinenbau AG` ist fuer Debitorenkarten-Handbuch/Training nutzbar, aber nicht O2C-ready. `U-ITEM-HW100` ist in `playthru / UNIVERSAARL-DE` sichtbar, aber nur als Kontextsignal akzeptiert: Beschreibung/Suchtext wirkt unsauber, Preise/Kosten sind `0,00`, und Produktbuchungsgruppen-, VAT-, Kosten-, Lagerbewertungs- oder O2C/P2P-Readiness sind nicht bewiesen. Naechster Schritt ist ein realistisches Universaarl-Produktmodell vor Korrektur/Rebuild-Write-Gate. |
 | Buch/Handbuch/Training | draft-with-customer-card-module | Debitorenkarten-Training `TR-03-01A` ist als Draft vorhanden; Screenshots stammen aus echter `playthru`-Oberflaeche, nicht aus Mockups. |
 | Playwright/Evidence | draft | Read-first Specs und Screenshot-QA stabilisieren; keine Legacy-Routen als aktive Tests nutzen. |
 | Legacy-Decommission | active-work | Legacy nur inventarisieren, neutralisieren, portieren oder parken; Evidence nicht blind loeschen. |
@@ -90,8 +90,8 @@ M0 ist als Arbeitsrahmen nutzbar. Der naechste sinnvolle Fortschritt ist keine w
 3. Vor Live-Arbeit: `agent:preflight`, `check:encoding`, `agent:quality:audit`, `agent:resume:check || true`, `agent:freeze:status || true`.
 4. `TARGET-073` bleibt geparkt.
 5. Kein as-is Retry von TARGET-073 oder TARGET-073B; TARGET-073B ist konsumierte blockierte No-Write-Evidence.
-6. `ITEM-SERVICE-MASTERDATA-READFIRST` ist beobachtet: `U-ITEM-HW100` ist sichtbar, aber noch nicht als realistisch sauberer oder prozessbereiter Artikel akzeptiert.
-7. Naechster Schritt ist `ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION`: verwenden, kontrolliert korrigieren oder neu aufbauen. Keine Live-BC-Aktion in diesem lokalen Entscheidungsschritt.
+6. `ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION` ist abgeschlossen: `U-ITEM-HW100` ist nur `visible-context-only`, nicht prozessbereit und nicht final buch-/trainingstauglich.
+7. Naechster Schritt ist `ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION`: Produktname, Zweck, Mindestfelder und Korrektur-/Rebuild-Route realistisch klaeren. Keine Live-BC-Aktion in diesem lokalen Entscheidungsschritt.
 8. Masterdaten sollen realistische fiktive Universaarl-Geschaeftspartner und Produkte verwenden, keine flachen Mockups und keine vertraulichen echten Kundendaten.
 
 ## Update rule

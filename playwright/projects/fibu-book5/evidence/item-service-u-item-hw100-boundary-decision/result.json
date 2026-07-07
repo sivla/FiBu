@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "caseId": "ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION",
+  "source": "local-boundary-decision",
+  "resultStatus": "completed-local-decision",
+  "completedAt": "2026-07-07T08:25:00.000+02:00",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "businessCentralOpened": false,
+  "playwrightLiveRunExecuted": false,
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "confidentialRealCustomerDataUsed": false,
+  "decision": {
+    "recordUsability": "visible-context-only",
+    "bookTrainingUsability": "draft-candidate-with-boundary",
+    "setupReadiness": "not-setup-ready",
+    "correctionOrRebuildRoute": "controlled-correction-or-rebuild-write-gate-needed",
+    "selectedRoute": "First decide the realistic Universaarl product model, then use a controlled write gate to correct or rebuild the item.",
+    "doNotUseFor": [
+      "O2C document creation",
+      "P2P document creation",
+      "inventory valuation examples",
+      "posting readiness claims",
+      "final book screenshots"
+    ]
+  },
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/item-service-masterdata-readfirst/result.json",
+    "playwright/projects/fibu-book5/evidence/pws-md-003-item-service-context-readonly/PWS-MD-003-result.json",
+    ".agent/project-template/CUSTOMER-DATA-SIMULATION-DRAFT.md",
+    ".agent/project-template/SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md",
+    "playwright/projects/fibu-book5/UNIVERSAARL-DATASET-BLUEPRINT.md"
+  ],
+  "actionsTaken": [
+    "Compared the visible Business Central U-ITEM-HW100 signals with the simulated Universaarl item/service planning artifacts.",
+    "Classified the record as visible context only, not as a process-ready or book-final item.",
+    "Selected a narrow product-model decision before any item correction, rebuild, O2C or P2P route.",
+    "Kept all real-customer-data use blocked; only realistic fictional Universaarl master data remains allowed."
+  ],
+  "actionsNotTaken": [
+    "No Business Central live page was opened.",
+    "No Playwright live test was run.",
+    "No item field was changed.",
+    "No item or service was created.",
+    "No unit of measure was changed.",
+    "No posting group was changed.",
+    "No VAT setup was changed.",
+    "No sales or purchase document was created.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No payment.",
+    "No API shortcut.",
+    "No confidential real customer data was used."
+  ],
+  "proved": [
+    "Earlier read-first evidence shows U-ITEM-HW100 is visible in playthru / UNIVERSAARL-DE on the Items / Artikel page.",
+    "Earlier screenshot QA shows Page Inspection context for Item List (31, List) and table Item (27).",
+    "Visible U-ITEM-HW100 signals include Type Bestand, Base Unit STK and Inventory Posting Group WARE.",
+    "The project data model intends U-ITEM-HW100 as a realistic Universaarl product candidate for a Steuerbox / hardware scenario."
+  ],
+  "notProved": [
+    "The visible BC record does not prove a clean product description or search text.",
+    "The visible BC record does not prove unit price, unit cost, costing method, product posting group, VAT product posting group or inventory posting setup correctness.",
+    "The visible BC record does not prove O2C, P2P or inventory readiness.",
+    "The visible BC record does not prove UAT acceptance or final book readiness.",
+    "The visible BC record does not prove that U-ITEM-HW100 should be corrected instead of rebuilt."
+  ],
+  "warnings": [
+    "The visible description/search signal looked like 'Universaarl Hardware 100Inventory', which is too weak for a polished book/training product example.",
+    "A zero unit cost and zero sales price are acceptable as an observed boundary, but not enough for realistic O2C/P2P value examples.",
+    "The older dataset blueprint names U-ITEM-HW100 as 'Steuerbox Standard', while another data table uses 'Universaarl Hardware 100'. This must be reconciled before a write gate."
+  ],
+  "realismDecision": {
+    "noMockupPolicy": "Use realistic fictional Universaarl products with business purpose, setup dependencies, UAT/training purpose and BC readiness; do not use confidential real customer data.",
+    "recommendedProductModel": "U-ITEM-HW100 should become a realistic, consistently named Universaarl hardware product only after a local product-model decision confirms description, type, UOM, item category, posting dependencies, VAT dependency, costing, price/cost assumptions and training purpose.",
+    "bookBoundary": "The current screenshots can explain how to recognize an item list and why incomplete item setup blocks process work. They should not be used as final product screenshots."
+  },
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-boundary-decision/result.json",
+    "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-boundary-decision/README.md",
+    ".agent/state/cases/item-service-realistic-product-model-decision.json",
+    ".agent/state/current.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md"
+  ],
+  "nextStepDecision": {
+    "currentCase": "ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION",
+    "plannedNextCaseBeforeReview": "O2C-MINIMAL-ROUTE-DECISION",
+    "lastEvidenceSummary": "U-ITEM-HW100 is visible in the Items list, but the record quality and setup fields are not enough for realistic O2C/P2P, inventory valuation, training or book-final claims.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "O2C/P2P would turn a visible but weak item into process truth. A realistic product model must be decided before a controlled correction or rebuild write gate.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION",
+        "status": "ready-next",
+        "reason": "Needed to reconcile Steuerbox Standard vs Universaarl Hardware 100 and define realistic item fields before any BC write."
+      },
+      {
+        "caseId": "ITEM-SERVICE-U-ITEM-HW100-CORRECTION-OR-REBUILD-WRITE-GATE",
+        "status": "ready-after-current",
+        "reason": "Only valid after the product model decision selects the target values and correction/rebuild route."
+      },
+      {
+        "caseId": "O2C-MINIMAL-ROUTE-DECISION",
+        "status": "needs-setup-first",
+        "reason": "Requires a usable customer, usable item, VAT/product posting boundaries and no weak item data."
+      },
+      {
+        "caseId": "P2P-MINIMAL-ROUTE-DECISION",
+        "status": "needs-setup-first",
+        "reason": "Requires vendor plus inventory item/product setup boundaries before purchase document planning."
+      }
+    ],
+    "queueChangesMade": [
+      "Set ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION as next local case before any item write or process route."
+    ],
+    "selectedNextCase": "ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION",
+    "whySelectedNextCaseIsBest": "It turns the user's realism requirement into a concrete product-data decision and prevents mockup-like item data from entering book, UAT or process evidence.",
+    "risksBeforeNextCase": [
+      "Do not use U-ITEM-HW100 for sales, purchase or inventory posting examples yet.",
+      "Do not correct the item without a Smart Decision and write gate.",
+      "Do not treat the current screenshot as final book proof."
+    ],
+    "requiredPreparation": [
+      "Reconcile product name, description and process role across the dataset blueprint and simulated data tables.",
+      "Define minimum realistic fields for one hardware item and one service/non-inventory alternative if needed."
+    ]
+  },
+  "nextCase": "ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION"
+}

@@ -1,27 +1,26 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "ITEM-SERVICE-MASTERDATA-READFIRST",
-  "caseId": "ITEM-SERVICE-MASTERDATA-READFIRST",
-  "status": "observed",
-  "completedAt": "2026-07-07T08:05:00.000+02:00",
-  "updatedAt": "2026-07-07T08:05:00.000+02:00",
-  "mode": "universaarl-masterdata-item-service-readfirst",
+  "runId": "ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION",
+  "caseId": "ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION",
+  "status": "completed-local-decision",
+  "completedAt": "2026-07-07T08:25:00.000+02:00",
+  "updatedAt": "2026-07-07T08:25:00.000+02:00",
+  "mode": "universaarl-masterdata-item-boundary-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Read-first Playwright proof observed the Artikel / Items page in playthru / UNIVERSAARL-DE. U-ITEM-HW100 is visible with Page Inspection context, STK, Bestand and WARE signals, but no setup, pricing, posting, VAT, inventory valuation, O2C or P2P readiness is proven.",
-  "resultPath": "playwright/projects/fibu-book5/evidence/item-service-masterdata-readfirst/result.json",
+  "summary": "Local boundary decision classified U-ITEM-HW100 as visible-context-only: useful for read-first context, but not setup-ready, not O2C/P2P-ready and not final-book-ready. The next case is a local realistic product-model decision before any correction/rebuild write gate.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-boundary-decision/result.json",
   "changedArtifacts": [
-    "playwright/projects/fibu-book5/evidence/pws-md-003-item-service-context-readonly/PWS-MD-003-result.json",
-    "playwright/projects/fibu-book5/evidence/item-service-masterdata-readfirst/result.json",
-    "playwright/projects/fibu-book5/evidence/item-service-masterdata-readfirst/README.md",
-    ".agent/state/cases/item-service-u-item-hw100-boundary-decision.json",
+    "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-boundary-decision/result.json",
+    "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-boundary-decision/README.md",
+    ".agent/state/cases/item-service-realistic-product-model-decision.json",
     ".agent/state/current.json",
     ".agent/state/last_run_summary.json",
     ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md"
   ],
-  "businessCentralOpened": true,
-  "playwrightLiveRunExecuted": true,
+  "businessCentralOpened": false,
+  "playwrightLiveRunExecuted": false,
   "setupChanged": false,
   "masterDataChanged": false,
   "draftCreated": false,
@@ -31,138 +30,69 @@
   "apiShortcut": false,
   "confidentialRealCustomerDataUsed": false,
   "actionsTaken": [
-    "Refreshed Playwright Business Central auth for playthru / UNIVERSAARL-DE.",
-    "Ran PWS-MD-003 guarded read-only Playwright proof.",
-    "Captured and visually reviewed multiple screenshots of the Items / Artikel page and Page Inspection.",
-    "Classified U-ITEM-HW100 as visible but not process-ready."
+    "Read the active item boundary case and recent item read-first result summaries.",
+    "Compared visible U-ITEM-HW100 signals with Universaarl data-package planning.",
+    "Classified U-ITEM-HW100 as visible-context-only and blocked it from O2C/P2P use until product model and write gate are clear.",
+    "Prepared ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION as the next local case."
   ],
   "actionsNotTaken": [
-    "No New/Neu action clicked.",
-    "No values typed.",
-    "No item saved.",
-    "No service saved.",
-    "No item template changed.",
-    "No unit of measure changed.",
-    "No posting group changed.",
-    "No inventory setup changed.",
-    "No purchase or sales document created.",
+    "No Business Central live page opened.",
+    "No Playwright live test run.",
+    "No item/service/setup/master-data/document change.",
     "No Preview Posting.",
     "No Posting.",
-    "No API shortcut."
+    "No payment.",
+    "No API shortcut.",
+    "No confidential real customer data used."
   ],
   "proved": [
-    "Item/service context page is visible read-only in playthru / UNIVERSAARL-DE.",
-    "U-ITEM-HW100 is visible in the Items / Artikel list in playthru / UNIVERSAARL-DE.",
-    "Page Inspection identifies Page 31 Item List and table Item (27).",
-    "Visible read-first signals include Type Bestand, Base Unit STK and Inventory Posting Group WARE."
+    "Earlier evidence proves U-ITEM-HW100 visibility in playthru / UNIVERSAARL-DE.",
+    "Local comparison proves a boundary conflict: visible BC record quality is weaker than the intended realistic Universaarl product model."
   ],
   "notProved": [
-    "No item or service setup readiness.",
-    "No unit of measure correctness.",
-    "No product posting group correctness.",
-    "No VAT product group correctness.",
-    "No inventory posting setup correctness.",
-    "No costing method correctness.",
-    "No O2C/P2P/inventory process readiness.",
-    "No item/service creation or reopen proof.",
-    "No claim that U-ITEM-HW100 is a realistic-enough final product for O2C/P2P training.",
-    "No claim that the concatenated description/search text is clean or book-ready.",
-    "No price, cost, product posting, VAT product, costing or inventory setup correctness."
+    "No item setup completeness.",
+    "No product posting group, VAT product group, costing, price or inventory setup correctness.",
+    "No O2C/P2P/inventory/process readiness.",
+    "No UAT acceptance.",
+    "No BC write or reopen proof in this local decision."
   ],
   "warnings": [
-    "New/Neu may be visible but was not clicked.",
-    "Edit/List Edit may be visible but was not clicked.",
-    "Posting/Preview text may be visible but was not clicked."
+    "The visible description/search signal appears concatenated and not book-ready.",
+    "The dataset uses both Steuerbox Standard and Universaarl Hardware 100 naming; this must be reconciled before any write gate."
   ],
-  "screenshots": [
-    "playwright/projects/fibu-book5/evidence/pws-md-003-item-service-context-readonly/pws-md-003-010-item-service-list-context.png",
-    "playwright/projects/fibu-book5/evidence/pws-md-003-item-service-context-readonly/pws-md-003-015-item-service-link-route-context.png",
-    "playwright/projects/fibu-book5/evidence/pws-md-003-item-service-context-readonly/pws-md-003-020-item-service-action-or-hover-context.png",
-    "playwright/projects/fibu-book5/evidence/pws-md-003-item-service-context-readonly/pws-md-003-030-item-service-page-inspection-context.png"
-  ],
-  "screenshotQa": {
-    "requiredCheckpoints": [
-      "item/service list/page context",
-      "Role Center Artikel link route if direct page navigation resolves to Role Center",
-      "safe action or hover context",
-      "Page Inspection or technical context"
-    ],
-    "capturedCheckpoints": [
-      "playwright/projects/fibu-book5/evidence/pws-md-003-item-service-context-readonly/pws-md-003-010-item-service-list-context.png",
-      "playwright/projects/fibu-book5/evidence/pws-md-003-item-service-context-readonly/pws-md-003-015-item-service-link-route-context.png",
-      "playwright/projects/fibu-book5/evidence/pws-md-003-item-service-context-readonly/pws-md-003-020-item-service-action-or-hover-context.png",
-      "playwright/projects/fibu-book5/evidence/pws-md-003-item-service-context-readonly/pws-md-003-030-item-service-page-inspection-context.png"
-    ],
-    "accepted": true,
-    "reason": "Mehrere UI-Zustaende wurden dokumentiert; der Lauf stuetzt sich nicht auf einen einzelnen End-Screenshot."
-  },
-  "visualQaFindings": {
-    "visuallyInspectedByCodex": true,
-    "inspectedScreenshots": [
-      "playwright/projects/fibu-book5/evidence/pws-md-003-item-service-context-readonly/pws-md-003-015-item-service-link-route-context.png",
-      "playwright/projects/fibu-book5/evidence/pws-md-003-item-service-context-readonly/pws-md-003-030-item-service-page-inspection-context.png"
-    ],
-    "visibleBusinessCentralContext": {
-      "environment": "playthru",
-      "companyCaption": "Universaarl GmbH",
-      "page": "Artikel / Items",
-      "pageInspection": "Item List (31, List), table Item (27)"
-    },
-    "visibleRecordSignals": {
-      "itemNo": "U-ITEM-HW100",
-      "descriptionSignal": "Universaarl Hardware 100Inventory / Universaarl Hardware 100Inventory",
-      "type": "Bestand",
-      "baseUnitOfMeasure": "STK",
-      "inventoryPostingGroup": "WARE",
-      "unitCost": "0,00",
-      "salesPrice": "0,00"
-    },
-    "screenshotQualityAssessment": "accepted-for-readfirst-context-only",
-    "importantBoundary": "Screenshots prove visibility and page/table context, not correctness of item setup, pricing, product posting, VAT, costing, inventory valuation or O2C/P2P readiness."
-  },
   "nextStepDecision": {
-    "currentCase": "ITEM-SERVICE-MASTERDATA-READFIRST",
-    "plannedNextCaseBeforeReview": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
-    "lastEvidenceSummary": "PWS-MD-003 observed the Items / Artikel page in playthru / UNIVERSAARL-DE with four screenshots. U-ITEM-HW100 is visible with STK, Bestand and WARE, but pricing/product posting/VAT/costing/process readiness are not proven.",
+    "currentCase": "ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION",
+    "plannedNextCaseBeforeReview": "O2C-MINIMAL-ROUTE-DECISION",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "The existing Foundation Master Data Route Decision is stale because later customer setup evidence already moved beyond its selected PWS-MD-004 path. The best next step is a narrow boundary decision for the visible U-ITEM-HW100 record before O2C/P2P planning uses it.",
+    "reason": "O2C/P2P would rely on weak item master data. A realistic product-model decision is the safer next project step.",
     "lookaheadReviewed": [
       {
-        "caseId": "ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION",
+        "caseId": "ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION",
         "status": "ready-next",
-        "reason": "Uses today screenshot evidence to decide whether the existing item is usable, needs correction or should be rebuilt."
+        "reason": "Reconcile product name, purpose and minimum fields before write."
+      },
+      {
+        "caseId": "ITEM-SERVICE-U-ITEM-HW100-CORRECTION-OR-REBUILD-WRITE-GATE",
+        "status": "ready-after-current",
+        "reason": "Requires selected target values and route."
       },
       {
         "caseId": "O2C-MINIMAL-ROUTE-DECISION",
         "status": "needs-setup-first",
-        "reason": "Still needs product/item boundary, VAT/product posting and route decision before any document draft."
+        "reason": "Requires usable customer and usable item boundaries."
       },
       {
         "caseId": "P2P-MINIMAL-ROUTE-DECISION",
         "status": "needs-setup-first",
-        "reason": "Needs vendor plus item/product setup boundaries before purchase document planning."
-      },
-      {
-        "caseId": "ITEM-SERVICE-CORRECTION-OR-REBUILD-WRITE-GATE",
-        "status": "ready-after-current",
-        "reason": "Only valid if the boundary decision chooses a controlled correction or rebuild."
+        "reason": "Requires vendor plus item/product setup boundaries."
       }
     ],
     "queueChangesMade": [
-      "Park stale FOUNDATION-MASTER-DATA-ROUTE-DECISION as historical; select item-specific boundary decision."
+      "Selected ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION as next active local case."
     ],
-    "selectedNextCase": "ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION",
-    "whySelectedNextCaseIsBest": "It turns real UI evidence into a concrete, low-noise project decision and prevents weak item data from leaking into O2C/P2P/book/training.",
-    "risksBeforeNextCase": [
-      "Do not use U-ITEM-HW100 as process-ready item yet.",
-      "Do not correct item fields without a write gate.",
-      "Do not create sales or purchase documents from this evidence."
-    ],
-    "requiredPreparation": [
-      "Read the PWS-MD-003 result and screenshots.",
-      "Compare visible item fields with the Universaarl item/service data package and realistic product model."
-    ]
+    "selectedNextCase": "ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION",
+    "whySelectedNextCaseIsBest": "It directly addresses realism/no-mockup quality before any BC write or process evidence."
   },
-  "nextCase": "ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION",
-  "nextStep": "Run ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION locally: decide whether the visible U-ITEM-HW100 item is usable, needs controlled correction, or should be rebuilt before O2C/P2P route planning. No BC live action."
+  "nextCase": "ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION",
+  "nextStep": "Run ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION locally. No BC live action."
 }

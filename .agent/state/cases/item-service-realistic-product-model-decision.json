@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "caseId": "ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION",
+  "title": "Realistic Universaarl Item/Service Product Model Decision",
+  "status": "ready-local-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-masterdata-product-model-decision",
+  "businessPurpose": "Define a realistic Universaarl product/service model before correcting, rebuilding or using U-ITEM-HW100 in O2C, P2P, inventory, UAT, training or book examples.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-boundary-decision/result.json",
+    "playwright/projects/fibu-book5/evidence/item-service-masterdata-readfirst/result.json",
+    ".agent/project-template/CUSTOMER-DATA-SIMULATION-DRAFT.md",
+    ".agent/project-template/SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md",
+    "playwright/projects/fibu-book5/UNIVERSAARL-DATASET-BLUEPRINT.md"
+  ],
+  "allowedActions": [
+    "read-item-service-boundary-decision",
+    "read-universaarl-data-package",
+    "reconcile-product-names-and-purpose",
+    "define-minimum-realistic-item-fields",
+    "define-write-gate-target-values",
+    "write-product-model-decision-result",
+    "update-state-and-dashboard"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central-live",
+    "run-playwright-live",
+    "change-item-fields",
+    "create-item",
+    "create-service",
+    "change-unit-of-measure",
+    "change-posting-groups",
+    "change-vat-setup",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "use-confidential-real-customer-data"
+  ],
+  "decisionQuestions": [
+    "Should U-ITEM-HW100 represent Steuerbox Standard, Universaarl Hardware 100, or a clearer realistic product name?",
+    "Which minimum fields must be set before the item is usable for handbook, UAT and process evidence?",
+    "Should the next BC write correct the existing item or rebuild a cleaner item?",
+    "Which alternative service/non-inventory item is needed so the book can explain item type differences without forcing inventory too early?"
+  ],
+  "expectedOutput": {
+    "resultPath": "playwright/projects/fibu-book5/evidence/item-service-realistic-product-model-decision/result.json",
+    "mustClassify": [
+      "selectedProductModel",
+      "minimumRequiredFields",
+      "correctionOrRebuildRecommendation",
+      "bookTrainingBoundary",
+      "nextCase"
+    ],
+    "mustNotClaim": [
+      "Business Central field values changed",
+      "item setup completeness",
+      "VAT correctness",
+      "posting readiness",
+      "O2C readiness",
+      "P2P readiness",
+      "UAT acceptance"
+    ]
+  },
+  "nextStepDecision": {
+    "plannedNextCaseBeforeReview": "O2C-MINIMAL-ROUTE-DECISION",
+    "selectedNextCase": "ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION",
+    "whySelectedNextCaseIsBest": "The visible item is not realistic enough yet for process work. A compact model decision prevents mockup-like product data and prepares a safer write gate."
+  }
+}

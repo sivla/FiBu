@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-07T08:05:00.000+02:00",
+  "updatedAt": "2026-07-07T08:25:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
-  "activeArea": "w2-core-masterdata-item-boundary-decision",
-  "activeCase": "ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION",
-  "active_case_file": ".agent/state/cases/item-service-u-item-hw100-boundary-decision.json",
-  "activeCaseFile": ".agent/state/cases/item-service-u-item-hw100-boundary-decision.json",
+  "activeArea": "w2-core-masterdata-product-model-decision",
+  "activeCase": "ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION",
+  "active_case_file": ".agent/state/cases/item-service-realistic-product-model-decision.json",
+  "activeCaseFile": ".agent/state/cases/item-service-realistic-product-model-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-masterdata-item-boundary-decision",
+  "mode": "universaarl-masterdata-product-model-decision",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -34,10 +34,12 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-item-service-evidence",
+    "read-item-service-boundary-decision",
     "read-universaarl-data-package",
-    "compare-visible-item-fields-to-realistic-product-model",
-    "write-boundary-decision-result",
+    "reconcile-product-names-and-purpose",
+    "define-minimum-realistic-item-fields",
+    "define-write-gate-target-values",
+    "write-product-model-decision-result",
     "update-state-and-dashboard"
   ],
   "forbiddenActions": [
@@ -61,8 +63,8 @@
     "api-shortcut",
     "use-confidential-real-customer-data"
   ],
-  "nextCase": "ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION",
-  "nextStep": "Run ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION locally: decide whether the visible U-ITEM-HW100 item is usable, needs controlled correction, or should be rebuilt before O2C/P2P route planning. No BC live action.",
+  "nextCase": "ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION",
+  "nextStep": "Run ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION locally: reconcile the U-ITEM-HW100 product model and define realistic minimum item fields before any correction/rebuild write gate or O2C/P2P route. No BC live action.",
   "preparedNextCaseFile": ".agent/state/cases/customer-setup-dependency-readfirst.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
@@ -197,12 +199,12 @@
     "nextBoundary": "Master Data remains parked. Next work must update Foundation Readiness and either accept this as a Foundation gap or define a genuinely new Page 314 route hypothesis before another live attempt."
   },
   "activeNextStepAuthority": {
-    "source": "playwright/projects/fibu-book5/evidence/item-service-masterdata-readfirst/result.json",
-    "selectedNextCase": "ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION",
-    "activeCaseFile": ".agent/state/cases/item-service-u-item-hw100-boundary-decision.json",
+    "source": "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-boundary-decision/result.json",
+    "selectedNextCase": "ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION",
+    "activeCaseFile": ".agent/state/cases/item-service-realistic-product-model-decision.json",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "PWS-MD-003 produced current screenshot evidence for U-ITEM-HW100. The stale Foundation Master Data Route Decision must not override this newer item-specific boundary."
+    "reason": "U-ITEM-HW100 is visible but not realistic or setup-ready enough for O2C/P2P. Product model must be reconciled before any item write or process route."
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -11637,5 +11639,25 @@
       "importantBoundary": "Screenshots prove visibility and page/table context, not correctness of item setup, pricing, product posting, VAT, costing, inventory valuation or O2C/P2P readiness."
     },
     "nextCase": "ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION"
+  },
+  "latestItemServiceUItemHw100BoundaryDecision": {
+    "caseId": "ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION",
+    "resultStatus": "completed-local-decision",
+    "resultPath": "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-boundary-decision/result.json",
+    "decision": "U-ITEM-HW100 is visible-context-only. It is not setup-ready, not O2C/P2P-ready and not final-book-ready. A realistic product-model decision must precede any controlled correction or rebuild write gate.",
+    "recordUsability": "visible-context-only",
+    "bookTrainingUsability": "draft-candidate-with-boundary",
+    "setupReadiness": "not-setup-ready",
+    "businessCentralOpened": false,
+    "playwrightLiveRunExecuted": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "confidentialRealCustomerDataUsed": false,
+    "selectedNextCase": "ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION",
+    "completedAt": "2026-07-07T08:25:00.000+02:00"
   }
 }
