@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "caseId": "VAT-POSTING-SETUP-READFIRST",
+  "status": "ready-next",
+  "mode": "universaarl-foundation-vat-readfirst",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "businessPurpose": "Read Business Central VAT/USt posting setup context after the realistic U-ITEM-HW100 item price/cost basis was proven, before any O2C/P2P document work.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-price-cost-field-route/result.json",
+    "playwright/projects/fibu-book5/evidence/target-020-vat-setup-readiness/TARGET-020-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d19-vat-matrix-config-package-readonly-discovery/TARGET-027D19-result.json"
+  ],
+  "allowedActions": [
+    "run-auth-and-live-gate-checks",
+    "open-business-central-live-in-playthru",
+    "confirm-company-universaarl-de",
+    "open-vat-business-posting-groups-readonly",
+    "open-vat-product-posting-groups-readonly",
+    "open-vat-posting-setup-readonly",
+    "capture-screenshot-qa",
+    "write-result-json",
+    "update-state-and-dashboard"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "create-sales-document",
+    "create-purchase-document",
+    "create-journal-line",
+    "preview-posting",
+    "post",
+    "payment",
+    "change-vat-setup",
+    "change-posting-setup",
+    "change-number-series",
+    "api-shortcut",
+    "company-switch",
+    "use-confidential-real-customer-data",
+    "force-click-as-normal-route",
+    "coordinate-click-without-diagnostic-status"
+  ],
+  "smartDecision": {
+    "whyNow": "U-ITEM-HW100 now has realistic fictional price/cost values, so Foundation can return to VAT/USt read-first checks before any document route.",
+    "risk": "VAT/USt setup must not be changed from a read-first case; German tax correctness needs separate source and setup gates.",
+    "fallback": "If the VAT pages cannot be opened safely, stop with route evidence and create a narrower page-route recovery case."
+  },
+  "expectedEvidence": [
+    "page context and screenshot QA for VAT Business Posting Groups",
+    "page context and screenshot QA for VAT Product Posting Groups",
+    "page context and screenshot QA for VAT Posting Setup",
+    "clear no-write flags for setup, documents, Preview Posting, Posting, payment, API and company switch"
+  ],
+  "nextCaseIfObserved": "POSTING-GROUPS-SETUP-READFIRST",
+  "nextCaseIfBlocked": "VAT-POSTING-SETUP-ROUTE-RECOVERY"
+}

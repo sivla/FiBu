@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-07T07:18:00.000Z",
+  "updatedAt": "2026-07-07T07:34:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
-  "activeArea": "w2-core-masterdata-item-price-cost-route",
-  "activeCase": "ITEM-SERVICE-U-ITEM-HW100-PRICE-COST-FIELD-ROUTE",
-  "active_case_file": ".agent/state/cases/item-service-u-item-hw100-price-cost-field-route.json",
-  "activeCaseFile": ".agent/state/cases/item-service-u-item-hw100-price-cost-field-route.json",
+  "activeArea": "w1-foundation-vat-readfirst",
+  "activeCase": "VAT-POSTING-SETUP-READFIRST",
+  "active_case_file": ".agent/state/cases/vat-posting-setup-readfirst.json",
+  "activeCaseFile": ".agent/state/cases/vat-posting-setup-readfirst.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-masterdata-item-price-cost-route",
+  "mode": "universaarl-foundation-vat-readfirst",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -37,12 +37,10 @@
     "run-auth-and-live-gate-checks",
     "open-business-central-live-in-playthru",
     "confirm-company-universaarl-de",
-    "open-u-item-hw100-card",
+    "open-vat-business-posting-groups-readonly",
+    "open-vat-product-posting-groups-readonly",
+    "open-vat-posting-setup-readonly",
     "capture-screenshot-qa",
-    "inspect-price-and-cost-fields",
-    "use-safe-edit-mode-only-if-field-route-is-labelled",
-    "write-only-unit-cost-and-unit-price-if-smart-decision-gate-passes",
-    "reopen-u-item-hw100-card-proof",
     "write-result-json",
     "update-state-and-dashboard"
   ],
@@ -67,8 +65,8 @@
     "force-click-as-normal-route",
     "coordinate-click-without-diagnostic-status"
   ],
-  "nextCase": "ITEM-SERVICE-U-ITEM-HW100-PRICE-COST-FIELD-ROUTE",
-  "nextStep": "Use the proven U-ITEM-HW100 card route to prove or safely set only Unit Cost 100.00 and Unit Price 149.00 with Smart Decision, screenshot QA and reopen proof. No document, no setup, no Preview Posting, no Posting.",
+  "nextCase": "VAT-POSTING-SETUP-READFIRST",
+  "nextStep": "Run a read-first VAT/USt posting setup proof in playthru / UNIVERSAARL-DE. Open VAT Business Posting Groups, VAT Product Posting Groups and VAT Posting Setup read-only with screenshot QA. No setup write, no document, no Preview Posting, no Posting.",
   "preparedNextCaseFile": ".agent/state/cases/customer-setup-dependency-readfirst.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
@@ -11755,5 +11753,50 @@
     "uiLearning": "More screenshots help only when each capture has a claim boundary. The list/FactBox screenshot is useful diagnostics, but the full card screenshot is the real item-card proof.",
     "nextCase": "ITEM-SERVICE-U-ITEM-HW100-PRICE-COST-FIELD-ROUTE",
     "updatedAt": "2026-07-07T07:18:00.000Z"
+  },
+  "latestItemServiceUItemHw100PriceCostFieldRoute": {
+    "caseId": "ITEM-SERVICE-U-ITEM-HW100-PRICE-COST-FIELD-ROUTE",
+    "resultStatus": "observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-price-cost-field-route/result.json",
+    "businessCentralOpened": true,
+    "playwrightLiveRunExecuted": true,
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "setupChanged": false,
+    "masterDataChanged": true,
+    "currentRunMasterDataChanged": false,
+    "changedFields": [
+      {
+        "field": "Unit Price / VK-Preis",
+        "before": "0,00",
+        "after": "149,00"
+      },
+      {
+        "field": "Unit Cost / Einstandspreis",
+        "before": "0,00",
+        "after": "100,00"
+      }
+    ],
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "payment": false,
+    "apiShortcut": false,
+    "companySwitch": false,
+    "confidentialRealCustomerDataUsed": false,
+    "proved": [
+      "U-ITEM-HW100 has realistic fictional Unit Cost / Einstandspreis 100,00.",
+      "U-ITEM-HW100 has realistic fictional Unit Price / VK-Preis 149,00.",
+      "The values are visible after reload in playthru / UNIVERSAARL-DE.",
+      "No setup, document, journal, Preview Posting, Posting, payment, API shortcut or company switch occurred."
+    ],
+    "notProved": [
+      "No O2C/P2P document readiness.",
+      "No posting, ledger, VAT or UAT readiness.",
+      "No confidential real customer data; values are simulated Universaarl project data."
+    ],
+    "uiLearning": "FastTabs must be opened based on detail-field visibility, not toggled blindly. Idempotent final proof may show already-visible target values after earlier controlled attempts in the same case.",
+    "nextCase": "VAT-POSTING-SETUP-READFIRST",
+    "updatedAt": "2026-07-07T07:34:00.000Z"
   }
 }

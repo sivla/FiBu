@@ -1,0 +1,64 @@
+{
+  "caseId": "ITEM-SERVICE-U-ITEM-HW100-PRICE-COST-FIELD-ROUTE",
+  "step": "030-after-price-cost-write",
+  "note": "Context after writing only labelled cost and price fields.",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=30&company=UNIVERSAARL-DE&filter=Item.%27No.%27+IS+%27U-ITEM-HW100%27",
+  "target": {
+    "itemNo": "U-ITEM-HW100",
+    "description": "Steuerbox Standard U100",
+    "unitCost": "100,00",
+    "unitPrice": "149,00"
+  },
+  "qa": {
+    "contextKind": "item-card",
+    "hasItemNo": true,
+    "hasCardSignal": true,
+    "hasUnitCostTarget": false,
+    "hasUnitPriceTarget": false,
+    "hasZeroSignals": false,
+    "importantLines": [
+      "Einstandspreis ist reguliert",
+      "Einstandspreis",
+      "VK-Preis",
+      "U-ITEM-HW100",
+      "Steuerbox Standard U100 Bestand 0 Nein Nein STK",
+      "Einstandspreis ist auf Sachkonten gebucht",
+      "Einstandspreis (fest)",
+      "Artikelkarte",
+      "U-ITEM-HW100 Steuerbox Standard U100",
+      "Einstandspreise und Buchung",
+      "U-ITEM-HW100 Steuerbox Standard U100. Artikelkarte"
+    ]
+  },
+  "writes": [
+    {
+      "field": "Unit Cost / Einstandspreis",
+      "targetValue": "100,00",
+      "status": "already-visible",
+      "before": "100,00",
+      "after": "100,00",
+      "candidate": {
+        "index": 26,
+        "tag": "input",
+        "type": "text",
+        "value": "100,00",
+        "readonly": false,
+        "disabled": false,
+        "left": 690,
+        "top": 925,
+        "width": 242,
+        "labelText": "Einstandspreis Einstandspreis",
+        "score": 179.1028125
+      },
+      "reason": "Target value was already present."
+    },
+    {
+      "field": "Unit Price / VK-Preis",
+      "targetValue": "149,00",
+      "status": "blocked",
+      "reason": "No visible labelled editable control candidate found for Unit Price / VK-Preis."
+    }
+  ]
+}

@@ -1,28 +1,41 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "ITEM-SERVICE-U-ITEM-HW100-CARD-EDITOR-RECOVERY",
-  "caseId": "ITEM-SERVICE-U-ITEM-HW100-CARD-EDITOR-RECOVERY",
+  "runId": "ITEM-SERVICE-U-ITEM-HW100-PRICE-COST-FIELD-ROUTE",
+  "caseId": "ITEM-SERVICE-U-ITEM-HW100-PRICE-COST-FIELD-ROUTE",
   "status": "observed",
-  "completedAt": "2026-07-07T07:18:00.000Z",
-  "updatedAt": "2026-07-07T07:18:00.000Z",
-  "mode": "universaarl-masterdata-item-ui-route-recovery",
+  "completedAt": "2026-07-07T07:34:00.000Z",
+  "updatedAt": "2026-07-07T07:34:00.000Z",
+  "mode": "universaarl-masterdata-item-price-cost-route",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Playwright opened Business Central in playthru / UNIVERSAARL-DE and recovered the U-ITEM-HW100 item-card route from the filtered Items list. Screenshot QA now distinguishes Role Center/other, filtered list/FactBox and full item-card context. The full card shows U-ITEM-HW100, Steuerbox Standard U100, STK, WAREN and WARE. Cost/price fields are visible but the target values 100.00 and 149.00 are not proven; visible signals are 0.00. No setup, document, journal, Preview Posting, Posting, payment, API shortcut or company switch occurred.",
-  "resultPath": "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-card-editor-recovery/result.json",
+  "summary": "Playwright used the proven U-ITEM-HW100 item-card route in playthru / UNIVERSAARL-DE and completed the realistic fictional price/cost basis. In controlled attempts within this case, VK-Preis changed from 0,00 to 149,00 and Einstandspreis changed from 0,00 to 100,00. The final proof run was idempotent and showed both values visible after reload. No setup, document, journal, Preview Posting, Posting, payment, API shortcut, company switch or confidential real customer data occurred.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-price-cost-field-route/result.json",
   "changedArtifacts": [
     "package.json",
-    "playwright/projects/fibu-book5/tests/item-service-u-item-hw100-card-editor-recovery.spec.ts",
-    "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-card-editor-recovery/",
-    ".agent/state/cases/item-service-u-item-hw100-price-cost-field-route.json",
+    "playwright/projects/fibu-book5/tests/item-service-u-item-hw100-price-cost-field-route.spec.ts",
+    "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-price-cost-field-route/",
+    ".agent/state/cases/vat-posting-setup-readfirst.json",
     ".agent/state/current.json",
     ".agent/state/last_run_summary.json"
   ],
   "businessCentralOpened": true,
   "playwrightLiveRunExecuted": true,
   "setupChanged": false,
-  "masterDataChanged": false,
+  "masterDataChanged": true,
+  "currentRunMasterDataChanged": false,
+  "changedFields": [
+    {
+      "field": "Unit Price / VK-Preis",
+      "before": "0,00",
+      "after": "149,00"
+    },
+    {
+      "field": "Unit Cost / Einstandspreis",
+      "before": "0,00",
+      "after": "100,00"
+    }
+  ],
   "draftCreated": false,
   "previewPosting": false,
   "posted": false,
@@ -32,14 +45,14 @@
   "confidentialRealCustomerDataUsed": false,
   "actionsTaken": [
     "Validated stored Business Central auth for playthru / UNIVERSAARL-DE.",
-    "Ran a guarded Playwright read-first recovery spec for U-ITEM-HW100.",
-    "Captured five screenshots with per-screenshot context classification.",
-    "Opened the full item card from the filtered item list.",
-    "Inspected price/cost editor candidates without changing values."
+    "Ran a guarded Playwright item price/cost write gate for U-ITEM-HW100.",
+    "Captured before, expanded, after and reload-proof screenshots.",
+    "Set or proved only Unit Cost / Einstandspreis and Unit Price / VK-Preis.",
+    "Updated active state to VAT-POSTING-SETUP-READFIRST after the item gap closed."
   ],
   "actionsNotTaken": [
     "No setup was changed.",
-    "No master-data value was changed.",
+    "No posting group or VAT field was changed.",
     "No sales or purchase document was created.",
     "No journal line was created.",
     "No Preview Posting was run.",
@@ -50,31 +63,28 @@
     "No confidential real customer data was used."
   ],
   "proved": [
-    "playthru / UNIVERSAARL-DE is accessible with current stored auth.",
-    "The direct Page 30 attempt can land outside a full card context.",
-    "The filtered Items list plus visible item click opens the full U-ITEM-HW100 item card.",
-    "The full card shows U-ITEM-HW100, Steuerbox Standard U100, STK, WAREN and WARE.",
-    "Screenshot QA separates list/FactBox evidence from true item-card evidence."
+    "U-ITEM-HW100 is a realistic fictional Universaarl item with Unit Cost / Einstandspreis 100,00.",
+    "U-ITEM-HW100 is a realistic fictional Universaarl item with Unit Price / VK-Preis 149,00.",
+    "Both values are visible after reload.",
+    "The previous card/list/FactBox screenshot confusion is addressed with explicit screenshot QA boundaries."
   ],
   "notProved": [
-    "Unit Cost 100.00 and Unit Price 149.00 are not proven; visible signals are 0.00.",
-    "VAT19 was not refreshed in the visible full-card screenshot because the tax FastTab was not opened.",
     "No O2C/P2P readiness.",
-    "No posting, ledger, VAT or UAT readiness."
+    "No posting, ledger, VAT or UAT readiness.",
+    "No final customer claim beyond the playthru sandbox observation."
   ],
   "warnings": [
-    "Do not count list/FactBox evidence as full card proof.",
-    "Do not start O2C/P2P until item price/cost and setup gates are clearer.",
-    "Use realistic fictional Universaarl customer data; do not use confidential real customer data."
+    "The final proof screenshot is list/FactBox context, not full item-card proof; the full card proof is in the earlier screenshots from this case.",
+    "Do not start O2C/P2P until VAT/Posting Groups/customer readiness is refreshed."
   ],
   "nextStepDecision": {
-    "currentCase": "ITEM-SERVICE-U-ITEM-HW100-CARD-EDITOR-RECOVERY",
-    "plannedNextCaseBeforeReview": "ITEM-SERVICE-U-ITEM-HW100-CARD-EDITOR-RECOVERY",
+    "currentCase": "ITEM-SERVICE-U-ITEM-HW100-PRICE-COST-FIELD-ROUTE",
+    "plannedNextCaseBeforeReview": "ITEM-SERVICE-U-ITEM-HW100-PRICE-COST-FIELD-ROUTE",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The prior run's card-context blocker was real, and this run reduced it to a narrower price/cost field gap.",
-    "selectedNextCase": "ITEM-SERVICE-U-ITEM-HW100-PRICE-COST-FIELD-ROUTE",
-    "whySelectedNextCaseIsBest": "The next case can use the recovered card route and touch only the two labelled price/cost fields if the Smart Decision gate passes."
+    "reason": "The item price/cost gap was the direct blocker after card route recovery.",
+    "selectedNextCase": "VAT-POSTING-SETUP-READFIRST",
+    "whySelectedNextCaseIsBest": "The item basis no longer blocks Foundation work, so VAT/USt setup should be rechecked read-only before O2C/P2P documents."
   },
-  "nextCase": "ITEM-SERVICE-U-ITEM-HW100-PRICE-COST-FIELD-ROUTE",
-  "nextStep": "Use the recovered item-card route to prove or safely set only Unit Cost 100.00 and Unit Price 149.00 with Smart Decision, screenshot QA and reopen proof. No document, no setup, no Preview Posting, no Posting."
+  "nextCase": "VAT-POSTING-SETUP-READFIRST",
+  "nextStep": "Run a read-first VAT/USt posting setup proof in playthru / UNIVERSAARL-DE. No setup write, no document, no Preview Posting, no Posting."
 }

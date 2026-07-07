@@ -1,0 +1,240 @@
+{
+  "schemaVersion": 1,
+  "caseId": "ITEM-SERVICE-U-ITEM-HW100-PRICE-COST-FIELD-ROUTE",
+  "source": "playwright-write-gate-item-price-cost",
+  "resultStatus": "observed",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "url": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=31&company=UNIVERSAARL-DE&filter=Item.%27No.%27+IS+%27U-ITEM-HW100%27",
+  "page": "Artikelkarte / Item Card",
+  "target": {
+    "itemNo": "U-ITEM-HW100",
+    "description": "Steuerbox Standard U100",
+    "unitCost": "100,00",
+    "unitPrice": "149,00"
+  },
+  "businessCentralOpened": true,
+  "playwrightLiveRunExecuted": true,
+  "setupChanged": false,
+  "masterDataChanged": true,
+  "currentRunMasterDataChanged": false,
+  "changedFields": [
+    {
+      "field": "Unit Price / VK-Preis",
+      "before": "0,00",
+      "after": "149,00",
+      "source": "earlier controlled attempt in this case before the final idempotent proof run"
+    },
+    {
+      "field": "Unit Cost / Einstandspreis",
+      "before": "0,00",
+      "after": "100,00",
+      "source": "earlier controlled attempt in this case before the final idempotent proof run"
+    }
+  ],
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "companySwitch": false,
+  "confidentialRealCustomerDataUsed": false,
+  "actionsTaken": [
+    "Opened Business Central in playthru with company UNIVERSAARL-DE.",
+    "Opened U-ITEM-HW100 item card through the previously recovered route.",
+    "Captured before/after/reopen screenshots.",
+    "Applied Smart Decision gate for only Unit Cost and Unit Price.",
+    "Unit Cost / Einstandspreis: already-visible (100,00 -> 100,00)",
+    "Unit Price / VK-Preis: already-visible ( -> 149,00)"
+  ],
+  "actionsNotTaken": [
+      "No setup change.",
+    "No posting group or VAT field change.",
+    "No sales or purchase document.",
+    "No journal line.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No payment.",
+    "No API shortcut.",
+    "No company switch.",
+    "No confidential real customer data."
+  ],
+  "smartDecision": {
+    "whyNow": "U-ITEM-HW100 is a realistic fictional Universaarl item, but the recovered card evidence showed price/cost values at 0.00, which is not useful for later O2C/P2P training.",
+    "exactFieldsAllowed": [
+      "Einstandspreis / Unit Cost",
+      "VK-Preis / Verkaufspreis / Unit Price"
+    ],
+    "exactValuesAllowed": {
+      "unitCost": "100,00",
+      "unitPrice": "149,00"
+    },
+    "fieldsNotAllowed": [
+      "Posting Groups",
+      "VAT",
+      "Number Series",
+      "Documents",
+      "Journals",
+      "Setup"
+    ],
+    "fallback": "If a labelled editable field route is not clear, stop without writing and keep O2C/P2P parked."
+  },
+  "routeAttempts": [
+    "direct-page-30-filter",
+    "direct-page-31-filter",
+    "open-u-item-hw100-from-filtered-list"
+  ],
+  "writes": [
+    {
+      "field": "Unit Cost / Einstandspreis",
+      "targetValue": "100,00",
+      "status": "already-visible",
+      "before": "100,00",
+      "after": "100,00",
+      "candidate": {
+        "index": 26,
+        "tag": "input",
+        "type": "text",
+        "value": "100,00",
+        "readonly": false,
+        "disabled": false,
+        "left": 690,
+        "top": 925,
+        "width": 242,
+        "labelText": "Einstandspreis Einstandspreis",
+        "score": 179.1028125
+      },
+      "reason": "Target value was already present."
+    },
+    {
+      "field": "Unit Price / VK-Preis",
+      "targetValue": "149,00",
+      "status": "already-visible",
+      "reason": "Unit Price / VK-Preis target value was visible after reload; no additional field edit was needed.",
+      "after": "149,00"
+    }
+  ],
+  "screenshots": [
+    {
+      "step": "010-before-price-cost-write",
+      "screenshot": "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-price-cost-field-route/010-before-price-cost-write.png",
+      "contextKind": "item-card",
+      "provesItemCard": true,
+      "importantLines": [
+        "Einstandspreis ist reguliert",
+        "Einstandspreis",
+        "VK-Preis",
+        "U-ITEM-HW100",
+        "Steuerbox Standard U100 Bestand 0 Nein Nein STK",
+        "Einstandspreis ist auf Sachkonten gebucht",
+        "Einstandspreis (fest)",
+        "Artikelkarte",
+        "U-ITEM-HW100 Steuerbox Standard U100",
+        "Einstandspreise und Buchung",
+        "U-ITEM-HW100 Steuerbox Standard U100. Artikelkarte"
+      ]
+    },
+    {
+      "step": "020-expanded-price-cost-areas",
+      "screenshot": "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-price-cost-field-route/020-expanded-price-cost-areas.png",
+      "contextKind": "item-card",
+      "provesItemCard": true,
+      "importantLines": [
+        "Einstandspreis ist reguliert",
+        "Einstandspreis",
+        "VK-Preis",
+        "U-ITEM-HW100",
+        "Steuerbox Standard U100 Bestand 0 Nein Nein STK",
+        "Einstandspreis ist auf Sachkonten gebucht",
+        "Einstandspreis (fest)",
+        "Artikelkarte",
+        "U-ITEM-HW100 Steuerbox Standard U100",
+        "Einstandspreise und Buchung",
+        "U-ITEM-HW100 Steuerbox Standard U100. Artikelkarte"
+      ]
+    },
+    {
+      "step": "030-after-price-cost-write",
+      "screenshot": "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-price-cost-field-route/030-after-price-cost-write.png",
+      "contextKind": "item-card",
+      "provesItemCard": true,
+      "importantLines": [
+        "Einstandspreis ist reguliert",
+        "Einstandspreis",
+        "VK-Preis",
+        "U-ITEM-HW100",
+        "Steuerbox Standard U100 Bestand 0 Nein Nein STK",
+        "Einstandspreis ist auf Sachkonten gebucht",
+        "Einstandspreis (fest)",
+        "Artikelkarte",
+        "U-ITEM-HW100 Steuerbox Standard U100",
+        "Einstandspreise und Buchung",
+        "U-ITEM-HW100 Steuerbox Standard U100. Artikelkarte"
+      ]
+    },
+    {
+      "step": "040-reopen-proof",
+      "screenshot": "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-price-cost-field-route/040-reopen-proof.png",
+      "contextKind": "factbox-only",
+      "provesItemCard": false,
+      "importantLines": [
+        "Einstandspreis ist reguliert",
+        "Einstandspreis",
+        "VK-Preis",
+        "U-ITEM-HW100",
+        "Steuerbox Standard U100 Bestand 0 Nein Nein STK",
+        "Einstandspreis ist auf Sachkonten gebucht",
+        "Einstandspreis (fest)"
+      ]
+    }
+  ],
+  "proved": [
+    "Business Central target context stayed in playthru / UNIVERSAARL-DE.",
+    "U-ITEM-HW100 full item-card context was used for the price/cost route.",
+    "Unit Cost / Einstandspreis 100.00 is visible after reload.",
+    "Unit Price / VK-Preis 149.00 is visible after reload.",
+    "No setup, document, journal, Preview Posting, Posting, payment, API shortcut or company switch occurred."
+  ],
+  "notProved": [
+    "No O2C/P2P readiness, Preview Posting, Posting, ledger trace or UAT readiness was proven.",
+    "The values are realistic fictional Universaarl sandbox data, not confidential real customer data."
+  ],
+  "blockedBy": [],
+  "warnings": [],
+  "nextStepDecision": {
+    "currentCase": "ITEM-SERVICE-U-ITEM-HW100-PRICE-COST-FIELD-ROUTE",
+    "plannedNextCaseBeforeReview": "ITEM-SERVICE-U-ITEM-HW100-PRICE-COST-FIELD-ROUTE",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The card route was proven, and realistic price/cost values are needed before item-dependent customer training or process documents.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "VAT-POSTING-SETUP-READFIRST",
+        "status": "ready-next",
+        "reason": "Item price/cost no longer blocks Foundation read-first continuation."
+      },
+      {
+        "caseId": "O2C-MINIMAL-ROUTE-DECISION",
+        "status": "needs-setup-first",
+        "reason": "O2C still needs VAT/Posting Groups/customer readiness before documents."
+      },
+      {
+        "caseId": "P2P-MINIMAL-ROUTE-DECISION",
+        "status": "needs-setup-first",
+        "reason": "P2P still needs vendor/purchase setup and item readiness before documents."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "VAT-POSTING-SETUP-READFIRST",
+    "whySelectedNextCaseIsBest": "The item route is now sufficient to return to Foundation/VAT read-first checks.",
+    "risksBeforeNextCase": [],
+    "requiredPreparation": []
+  },
+  "safeToFinalizeState": true,
+  "requiresReview": false,
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-price-cost-field-route",
+    "playwright/projects/fibu-book5/tests/item-service-u-item-hw100-price-cost-field-route.spec.ts",
+    "package.json"
+  ],
+  "nextCase": "VAT-POSTING-SETUP-READFIRST"
+}
