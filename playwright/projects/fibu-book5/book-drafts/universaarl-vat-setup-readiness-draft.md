@@ -20,6 +20,12 @@ Auf der Artikelkarte gehoert die USt-Produktlogik in das Feld **MwSt.-Produktbuc
 
 Die Steuerberechnung entsteht erst, wenn auch die Geschaeftsseite vorhanden ist. Ein inlaendischer Kunde oder Lieferant braucht eine passende **MwSt.-Geschaeftsbuchungsgruppe**, zum Beispiel `INLAND`. Danach muss die **MwSt.-Buchungsmatrix Einrichtung** die Kombination `INLAND` + `VAT19` enthalten. In dieser Matrixzeile stehen der Prozentsatz, die Berechnungsart und die Steuerkonten.
 
+Das laesst sich an einem einfachen Universaarl-Beispiel erklaeren. Der Kunde `U-CUST-100` / `Saarland Maschinenbau AG` ist ein inlaendischer Geschaeftspartner fuer Trainingszwecke. Der Artikel `U-ITEM-HW100` / `Steuerbox Standard U100` ist ein Warenartikel mit der Produktseite `VAT19`. Damit sind zwei sichtbare Bausteine vorhanden: ein Kunde und ein Artikel. Fuer die Steuer reicht das aber noch nicht.
+
+Business Central braucht eine vollstaendige Steuerkombination. Auf der Kundenseite muss klar sein, welche MwSt.-Geschaeftsbuchungsgruppe gilt. Auf der Artikelseite steht die MwSt.-Produktbuchungsgruppe. Die **MwSt.-Buchungsmatrix Einrichtung** verbindet beide Seiten. Erst dort wird aus den beiden Gruppen eine konkrete Steuerlogik mit Prozentsatz, Berechnungsart, Umsatzsteuerkonto und Vorsteuerkonto.
+
+Wenn nur der Artikel `VAT19` traegt, kann ein Anwender zwar verstehen, welche Produktlogik gemeint ist. Er darf daraus aber noch keine fertige Verkaufsrechnung oder Einkaufsrechnung ableiten. Vor einer Belegvorschau muss die passende Matrixzeile sichtbar sein. Vor einer echten Buchung muessen ausserdem die Steuerwirkung, die Sachkonten und die spaeteren USt-Posten nachvollziehbar sein.
+
 Darum ist die Reihenfolge wichtig:
 
 1. USt-Produktgruppe am Artikel setzen.
@@ -29,3 +35,5 @@ Darum ist die Reihenfolge wichtig:
 5. Vor dem Buchen die Buchungsvorschau lesen.
 
 Wenn nur Schritt 1 erledigt ist, sieht der Artikel schon richtig vorbereitet aus. Trotzdem waere ein Verkaufs- oder Einkaufsbeleg noch zu frueh. Business Central braucht die ganze Kombination, sonst fehlt die Steuer- und Kontenfindung.
+
+Fuer Schulung und Handbuch ist das ein guter Moment, um die Rollen zu trennen. Vertrieb und Einkauf koennen lernen, wo sie Kunde, Lieferant, Artikel, Preis und Menge sehen. Finance erklaert, warum Belege erst dann weiterlaufen, wenn USt- und Buchungsgruppen eingerichtet sind. Der Steuerberater oder die steuerverantwortliche Rolle prueft, ob die gewaehlte Steuerlogik fuer den konkreten Geschaeftsfall passt.
