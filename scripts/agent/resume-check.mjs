@@ -250,6 +250,34 @@ if (authDoctor?.decision === 'stored-auth-usable-but-live-gate-blocked') {
   warnings.push('Stored auth is usable, but the active live gate still blocks Business Central/Playwright execution.');
 }
 
+const nonAuthFailed = failed.filter((step) => step.id !== 'auth-state-check' && step.id !== 'auth-doctor');
+const selectedCaseLocalReady =
+  readiness?.canProceedAfterFreezeLift === true &&
+  authDoctorTargetOk &&
+  (selectedNextCase === 'PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST'
+    ? pwsFf006SafeCheck?.localCaseReady === true && pwsFf006SafeCheck?.targetUrlReady === true
+    : selectedNextCase === foundationDecisionCase
+      ? foundationDecisionCheck?.canWrite === true && screenshotChainCheck?.ok === true
+      : target075SafeCheck?.requiresTargetFix !== true);
+const authRefreshRequired =
+  selectedCaseLocalReady &&
+  nonAuthFailed.length === 0 &&
+  (authCheck?.canUseStoredAuth !== true || !authDoctorStoredAuthOk);
+const authRefreshCommands =
+  authDoctor?.preferredAuthHandoff === 'detached-capture'
+    ? [
+        'npm run auth:bc:focus-detached',
+        'npm run auth:bc:capture-detached',
+        'npm run auth:bc:capture-detached -- --confirm',
+        'npm run auth:bc:check',
+        'npm run agent:resume:check'
+      ]
+    : [
+        'npm run auth:bc:open-login',
+        'npm run auth:bc:check',
+        'npm run agent:resume:check'
+      ];
+
 const output = {
   schemaVersion: 1,
   purpose: 'autopilot-resume-check',
@@ -279,6 +307,13 @@ const output = {
   playwrightLiveRunExecuted: false,
   authStateChecked: true,
   authSecretsPrinted: false,
+  blockingCategory: authRefreshRequired ? 'auth-refresh-required' : failed.length ? 'local-resume-check-failed' : 'none',
+  authOnlyBlocker: authRefreshRequired,
+  selectedCaseLocalReady,
+  recommendedAuthRefreshCommands: authRefreshRequired ? authRefreshCommands : [],
+  authRefreshInstruction: authRefreshRequired
+    ? 'Refresh Playwright auth in the Playwright-managed profile, not normal Chrome. After auth:bc:check is green, rerun agent:resume:check before any live BC/Playwright case.'
+    : null,
   steps: steps.map((step) => ({
     id: step.id,
     ok: step.ok,
@@ -456,7 +491,9 @@ const output = {
       ? ['auth-doctor did not confirm target URL can be built from current state for playthru / UNIVERSAARL-DE']
       : [])
   ],
-  nextStep: !localResumeReady
+  nextStep: authRefreshRequired
+    ? `Local ${selectedNextCase || 'Foundation'} readiness is sufficient for the next read-first handoff, but Playwright auth is expired. Run the recommended auth refresh commands, then rerun agent:resume:check before any live BC/Playwright work.`
+    : !localResumeReady
     ? 'Fix failed local resume checks before considering the selected read-first Foundation case.'
     : !liveGateAllowsNow
       ? `Local resume checks passed, including stored auth, but the active live gate still blocks Business Central/Playwright execution. Do not run ${selectedNextCase || 'the selected read-first case'} until explicit freeze/live-gate lift.`

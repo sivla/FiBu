@@ -1,22 +1,19 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "REALISTIC-CUSTOMER-DATA-BOUNDARY-SYNC",
+  "runId": "AUTH-ONLY-RESUME-BLOCKER-CLARITY",
   "caseId": "FOUNDATION-READINESS-DECISION",
-  "status": "completed-local-realism-boundary-sync",
-  "completedAt": "2026-07-07T16:35:00.000+02:00",
-  "updatedAt": "2026-07-07T16:35:00.000+02:00",
+  "status": "completed-local-auth-resume-clarity",
+  "completedAt": "2026-07-07T17:05:00.000+02:00",
+  "updatedAt": "2026-07-07T17:05:00.000+02:00",
   "mode": "universaarl-foundation-readfirst",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Local no-live realism-boundary sync completed. Active project data language now treats Universaarl records as realistic fictional customer-like project input, not UI mockups or throwaway demo data. Business Central live work remains gated; resume is still blocked by expired Playwright auth only.",
-  "resultPath": ".agent/project-template/SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md",
+  "summary": "Local no-live auth/resume clarity completed. agent:resume:check now distinguishes the current state as auth-refresh-required with authOnlyBlocker=true when Foundation Readiness is locally ready but Playwright auth is expired. It prints recommended auth refresh commands and still blocks live BC/Playwright until auth is green.",
+  "resultPath": "scripts/agent/resume-check.mjs",
   "changedArtifacts": [
-    ".agent/state/current.json",
     ".agent/state/last_run_summary.json",
-    ".agent/project-template/SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md",
-    ".agent/project-template/TRAINING-MODULE-CARDS-DRAFT.md",
-    ".agent/project-template/DATA-REQUEST-JIRA-CANDIDATES-DRAFT.md"
+    "scripts/agent/resume-check.mjs"
   ],
   "businessCentralOpened": false,
   "playwrightLiveRunExecuted": false,
@@ -33,11 +30,11 @@
   "confidentialRealCustomerDataUsed": false,
   "uiMockupUsed": false,
   "actionsTaken": [
-    "Verified active state remains playthru / UNIVERSAARL-DE with live BC and Playwright blocked for this local project-data wording run.",
+    "Verified active state remains playthru / UNIVERSAARL-DE with live BC and Playwright blocked for this local auth/resume clarity run.",
     "Re-read active goal, repository status, current state and last run summary.",
-    "Sharpened the data-package boundary away from mockup/demo wording toward realistic fictional customer-like Universaarl project data.",
-    "Updated training-card and Jira-candidate wording so customer, vendor and product examples are treated as realistic project input with owner, dependencies, validation, UAT and training purpose.",
-    "Kept confidential real customer data, UI mockups, O2C/P2P, Preview Posting and Posting unproven and blocked."
+    "Ran agent:resume:check and confirmed the real blocker is expired Playwright auth while Foundation Readiness, target URL, freeze status and screenshot-chain checks are locally sufficient.",
+    "Updated scripts/agent/resume-check.mjs to emit blockingCategory, authOnlyBlocker, selectedCaseLocalReady, recommendedAuthRefreshCommands and authRefreshInstruction.",
+    "Kept live BC/Playwright, setup, master data, O2C/P2P, Preview Posting and Posting blocked until auth:bc:check and agent:resume:check are green."
   ],
   "actionsNotTaken": [
     "No Business Central live session was opened.",
@@ -55,9 +52,9 @@
     "No confidential real customer data was introduced."
   ],
   "proved": [
-    "The active project boundary now explicitly prefers realistic fictional customer-like Universaarl data over mockups, demo placeholders or shallow filler values.",
-    "Confidential real customer data remains excluded from repo, screenshots, evidence and book examples.",
-    "This directly tightens future data, UAT, training and book work without opening Business Central in this run."
+    "agent:resume:check now clearly reports auth-refresh-required instead of a generic local resume failure when auth is the only live blocker.",
+    "The current selected case FOUNDATION-READINESS-DECISION is locally ready for the next read-first handoff, but cannot run live until Playwright auth is refreshed.",
+    "No secrets are printed; target remains playthru / UNIVERSAARL-DE."
   ],
   "notProved": [
     "No VAT setup correctness.",
@@ -67,11 +64,11 @@
     "No long unattended auth window.",
     "No use of confidential real customer records.",
     "No BC setup readiness from wording changes alone.",
-    "No screenshot chain was captured in this local-only run."
+    "No screenshot chain was captured in this local-only run.",
+    "No live auth refresh was performed in this run."
   ],
   "warnings": [
-    "Use realistic fictional customer-like Universaarl project data, not UI mockups, demo placeholders or confidential real customer data.",
-    "Refresh or re-check auth before any long unattended live run.",
+    "Refresh Playwright auth in the Playwright-managed profile, not normal Chrome, before any live BC/Playwright run.",
     "Do not accept one end screenshot for Page/FastTab/field claims in the next live run.",
     "Do not claim SKR04, VAT, posting or O2C/P2P readiness from this local decision."
   ],
@@ -79,10 +76,10 @@
     "currentCase": "FOUNDATION-READINESS-DECISION",
     "plannedNextCaseBeforeReview": "FOUNDATION-READINESS-DECISION",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The user clarified that project data must be as realistic as possible and must not drift into mockups. The next live case remains sensible only if it uses real BC UI evidence and customer-like Universaarl data boundaries.",
+    "reason": "Foundation Readiness remains the right next handoff, but the current practical blocker is expired Playwright auth. The resume check now says that explicitly and gives the refresh commands.",
     "selectedNextCase": "FOUNDATION-READINESS-DECISION",
     "whySelectedNextCaseIsBest": "It keeps the project on the real boundary: Foundation must be read-first proven before realistic Universaarl customer, vendor and product data can safely drive O2C/P2P setup."
   },
   "nextCase": "FOUNDATION-READINESS-DECISION",
-  "nextStep": "Refresh or re-check auth before any live run. Then continue with Foundation Readiness read-first proof using real Business Central screenshots and customer-like Universaarl project-data boundaries. Do not start O2C/P2P, Preview Posting or Posting until the missing setup rows are proven."
+  "nextStep": "Run the recommended Playwright auth refresh commands shown by agent:resume:check, then rerun agent:resume:check. Only after it is green should the next read-first Foundation proof run with real Business Central screenshots. Do not start O2C/P2P, Preview Posting or Posting until the missing setup rows are proven."
 }
