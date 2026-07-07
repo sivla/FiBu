@@ -52,7 +52,7 @@ Use the drafts here only through the active-control files. A draft may be useful
 | --- | --- |
 | Roadmap and dashboard | Current steering, freeze/resume path, next allowed work. |
 | Workstream drafts | Working material for specific BC areas such as Finance Foundation, Master Data, UAT and training. |
-| Data and route drafts | Concrete simulated customer data, route decisions and setup dependencies. |
+| Data and route drafts | Concrete realistic fictional customer/project data, route decisions and setup dependencies. |
 | Book/training drafts | Customer-facing outputs that must become readable handbook material, not test logs. |
 | Risk, decision and backlog files | Project management support when they clarify an actual decision or blocker. |
 | Historical and legacy material | Preserve for traceability, but do not let it steer Universaarl execution. |
