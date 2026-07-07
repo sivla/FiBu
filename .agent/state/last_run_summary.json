@@ -1,20 +1,21 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "GENERAL-POSTING-BOUNDARY-SYNC",
+  "runId": "TRAINING-SETUP-BOUNDARY-HANDBOOK-SYNC",
   "caseId": "FOUNDATION-READINESS-DECISION",
   "status": "completed-local-control-sync",
-  "completedAt": "2026-07-07T13:05:00.000+02:00",
-  "updatedAt": "2026-07-07T13:05:00.000+02:00",
+  "completedAt": "2026-07-07T13:35:00.000+02:00",
+  "updatedAt": "2026-07-07T13:35:00.000+02:00",
   "mode": "universaarl-foundation-masterdata-boundary",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Local no-live General Posting Setup boundary sync completed. FOUNDATION-READINESS-DECISION now consumes PWS-FF-002C, TARGET-057, TARGET-058 and TARGET-032P as the active Page-314 boundary: INLAND/WAREN/4400 is useful for training and setup explanation, but 5400 persistence and full General Posting Setup remain unproven. O2C/P2P, Preview Posting and Posting stay blocked.",
-  "resultPath": "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+  "summary": "Local no-live training/handbook sync completed. TR-02-02 and TR-02-03 now explain with real playthru observations why U-CUST-100 and U-ITEM-HW100 are realistic fictional training data, but not O2C/P2P process readiness. General Posting Setup and VAT Posting Setup remain the active blockers before Preview Posting or Posting.",
+  "resultPath": ".agent/project-template/TRAINING-MODULE-CARDS-DRAFT.md",
   "changedArtifacts": [
     ".agent/state/current.json",
     ".agent/state/last_run_summary.json",
-    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md"
+    ".agent/project-template/TRAINING-MODULE-CARDS-DRAFT.md",
+    ".agent/project-template/PLAYWRIGHT-TRAINING-EVIDENCE-MAP-DRAFT.md"
   ],
   "businessCentralOpened": false,
   "playwrightLiveRunExecuted": false,
@@ -32,10 +33,11 @@
   "uiMockupUsed": false,
   "actionsTaken": [
     "Verified active state remains playthru / UNIVERSAARL-DE with live BC and Playwright blocked for this local boundary run.",
-    "Updated FOUNDATION-READINESS-DECISION with the current General Posting Setup boundary from PWS-FF-002C, TARGET-057, TARGET-058 and TARGET-032P.",
+    "Updated TR-02-02 Posting Groups with real playthru training examples U-CUST-100 and U-ITEM-HW100.",
+    "Updated TR-02-03 VAT/USt Boundary to explain why VAT19 on the item is only one part of the VAT setup chain.",
     "Clarified that INLAND / WAREN / Warenverkaufskonto 4400 is usable for training and setup explanation only.",
-    "Kept Wareneinkaufskonto 5400, full General Posting Setup, O2C/P2P, Preview Posting and Posting unproven and blocked.",
-    "Updated current state nextStep to move from boundary sync toward a customer-facing training/handbook explanation."
+    "Kept Wareneinkaufskonto 5400, full General Posting Setup, VAT Posting Setup, O2C/P2P, Preview Posting and Posting unproven and blocked.",
+    "Updated the Playwright training evidence map so the modules are training drafts with Universaarl examples, not mockups or process release."
   ],
   "actionsNotTaken": [
     "No Business Central live session was opened.",
@@ -53,29 +55,29 @@
     "No confidential real customer data was introduced."
   ],
   "proved": [
-    "FOUNDATION-READINESS-DECISION now states the active Page-314 / General Posting Setup boundary.",
-    "TARGET-057 proves Page 314 and Purch. Account field truth read-only, not setup completeness.",
-    "TARGET-058 and TARGET-032P prove the tested 5400 persistence routes are blocked or exhausted.",
-    "O2C/P2P remain blocked until General Posting Setup and VAT Posting Setup are accepted or proven."
+    "The training cards now separate realistic fictional customer/project data from process readiness.",
+    "U-CUST-100 and U-ITEM-HW100 can be used to teach posting group and VAT setup dependency chains.",
+    "The training cards explicitly state that O2C/P2P remain blocked until General Posting Setup and VAT Posting Setup are accepted or proven."
   ],
   "notProved": [
     "No VAT setup correctness.",
     "No posting readiness.",
     "No O2C/P2P process readiness.",
+    "No new Business Central observation.",
     "No use of confidential real customer records."
   ],
   "warnings": [
-    "Do not use mockup screenshots or dummy values as project truth.",
+    "Use realistic fictional customer/project data, not UI mockups or confidential real customer data.",
     "Do not claim SKR04, VAT, posting or O2C/P2P readiness from this local decision."
   ],
   "nextStepDecision": {
     "currentCase": "FOUNDATION-READINESS-DECISION",
-    "plannedNextCaseBeforeReview": "PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "PWS-FF-006 and the later customer/item chain are already completed; repeating them would slow the project without adding book, UAT or evidence value.",
+    "plannedNextCaseBeforeReview": "FOUNDATION-READINESS-DECISION customer-facing training/handbook explanation",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The previous state asked for a customer-facing explanation of why VAT Posting Setup and General Posting Setup block O2C/P2P; the training cards are the leanest existing artifact for that explanation.",
     "selectedNextCase": "FOUNDATION-READINESS-DECISION",
     "whySelectedNextCaseIsBest": "It keeps the project on the real boundary: Debitor and Artikel have useful realistic substance, but VAT/Posting Setup still decides whether O2C/P2P can safely start."
   },
   "nextCase": "FOUNDATION-READINESS-DECISION",
-  "nextStep": "Keep BC live work paused for this local boundary sync. Next concrete progress should write a customer-facing training/handbook explanation of why VAT Posting Setup and General Posting Setup block O2C/P2P, using U-CUST-100 and U-ITEM-HW100 only as examples."
+  "nextStep": "Use the updated TR-02-02/TR-02-03 training cards as the customer-facing basis for the next handbook/book patch or for the next read-first VAT/Posting Setup proof. Do not start O2C/P2P, Preview Posting or Posting until the missing setup rows are proven."
 }

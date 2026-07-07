@@ -323,12 +323,14 @@ Target roles:
 
 Customer/example data:
 
-- customer group examples
-- vendor group examples
-- general business/product posting groups
-- VAT business/product posting groups
-- inventory posting group candidates
-- related G/L accounts from the starter scope
+- active company: `UNIVERSAARL-DE`
+- realistic fictional customer from real BC evidence: `U-CUST-100` / `Saarland Maschinenbau AG`
+- realistic fictional item from real BC evidence: `U-ITEM-HW100` / `Steuerbox Standard U100`
+- observed customer setup signals: Customer Posting Group `INLAND`, Gen. Business Posting Group `INLAND`, Payment Terms Code `NET30`
+- observed item setup signals: Gen. Product Posting Group `WAREN`, VAT Product Posting Group `VAT19`, Inventory Posting Group `WARE`
+- observed partial General Posting Setup signal: `INLAND` + `WAREN` has Sales Account `4400`; Purchase Account `5400` is not persisted/proven
+- related starter G/L accounts from the Universaarl foundation scope
+- no real customer, supplier or product data
 
 BC concept or process:
 
@@ -343,11 +345,13 @@ BC concept or process:
 
 Exercise:
 
-1. Start with a simple sales or purchase example.
-2. Identify which master data carries business-side posting groups.
-3. Identify which item/product data carries product-side posting groups.
-4. Trace which setup row would determine a receivable/payable, revenue, expense, VAT or inventory account.
-5. Mark missing rows as blocked, not guessed.
+1. Start with `U-CUST-100` and `U-ITEM-HW100` as a realistic but fictional sales training example.
+2. Identify which master data carries business-side posting groups: the customer currently carries `INLAND`.
+3. Identify which product data carries product-side posting groups: the item currently carries `WAREN`, `VAT19` and `WARE`.
+4. Trace the General Posting Setup row that combines `INLAND` and `WAREN`.
+5. Explain why Sales Account `4400` helps the sales-side explanation, but missing Purchase Account `5400` keeps P2P blocked.
+6. Explain why VAT Posting Setup is a separate matrix and why a visible `VAT19` on the item does not prove a valid VAT row.
+7. Mark missing rows as blocked, not guessed.
 
 Typical mistakes:
 
@@ -361,6 +365,7 @@ Success check:
 - The participant can explain account determination in plain language.
 - The participant can tell which setup is needed before first preview/posting.
 - The participant can identify why missing posting setup blocks realistic O2C/P2P evidence.
+- The participant can explain why a real-looking customer and item are not enough for document posting readiness.
 
 Escalation path:
 
@@ -373,11 +378,13 @@ Handbook/book output:
 - concept page: "How Business Central finds G/L accounts"
 - simple diagram or table for customer/vendor/item/posting setup relationship
 - warning box for missing posting setup before document posting
+- customer-facing explanation: A customer, an item and prices can be valid training data while O2C/P2P still waits for posting setup and VAT setup.
 
 Source/evidence status:
 
 - Official source needed for product explanation.
-- Universaarl setup-row evidence still needed before trainer-ready.
+- Universaarl customer and item evidence exists for `U-CUST-100` and `U-ITEM-HW100`.
+- Universaarl General Posting Setup evidence is partial: `INLAND` + `WAREN` + Sales Account `4400` is useful for training; Purchase Account `5400` and full posting readiness remain unproven.
 
 UAT status:
 
@@ -388,10 +395,11 @@ Playwright/evidence output:
 - read-only setup-row proof for relevant posting setup pages
 - later preview/posting trace that confirms account determination
 - evidence card that separates product concept from a specific Universaarl setup row
+- no document, no Preview Posting and no Posting from this module until General Posting Setup and VAT Posting Setup are accepted/proven
 
 Realism note:
 
-Posting groups are hard because they are invisible until a document posts or previews. Training should include this confusion explicitly instead of pretending the concept is obvious.
+Posting groups are hard because they are invisible until a document posts or previews. Training should include this confusion explicitly instead of pretending the concept is obvious. In real customer projects, users often ask why a customer and item can be created but the first invoice is still blocked; this module answers that question without inventing setup readiness.
 
 Acceptance criteria:
 
@@ -421,9 +429,12 @@ Target roles:
 
 Customer/example data:
 
-- Universaarl domestic German scenarios, simulated only until source and setup evidence exist
-- customer and vendor VAT group candidates from later master-data packages
-- product/service VAT group candidates from item/service packages
+- active company: `UNIVERSAARL-DE`
+- realistic fictional customer from real BC evidence: `U-CUST-100` / `Saarland Maschinenbau AG`
+- realistic fictional item from real BC evidence: `U-ITEM-HW100` / `Steuerbox Standard U100`
+- observed product VAT signal on the item: VAT Product Posting Group `VAT19`
+- VAT Business Posting Group for the customer/vendor side is still not trainer-ready/proven for a full process claim
+- VAT Posting Setup row for the needed business/product combination is still not accepted/proven
 - no final VAT registration, tax advisor approval or compliance claim in this draft
 
 BC concept or process:
@@ -436,11 +447,13 @@ BC concept or process:
 
 Exercise:
 
-1. Start with a simple domestic sales or purchase example.
-2. Identify which side of the scenario represents the business party and which side represents the product or service.
-3. Map the scenario to candidate VAT business and VAT product posting groups.
-4. Check whether a VAT Posting Setup row would be needed before preview or posting.
-5. Mark missing source, tax review or Universaarl setup proof as blocked instead of inventing a VAT setup.
+1. Start with `U-CUST-100` and `U-ITEM-HW100` as a realistic but fictional domestic sales example.
+2. Identify the business-party side: customer or vendor setup must provide the VAT business side.
+3. Identify the product side: `U-ITEM-HW100` currently shows VAT Product Posting Group `VAT19`.
+4. Check whether a VAT Posting Setup row connects the business side and `VAT19`.
+5. Explain why `VAT19` on the item is only one half of the VAT setup chain.
+6. Mark missing source, tax review or Universaarl setup proof as blocked instead of inventing a VAT setup.
+7. Stop before any O2C/P2P preview or posting if the VAT Posting Setup row is not proven.
 
 Typical mistakes:
 
@@ -455,6 +468,7 @@ Success check:
 - The participant can explain in plain language why BC VAT setup is not the same as tax advice.
 - The participant can identify the two VAT group dimensions and the setup row that connects them.
 - The participant can tell when to stop for source review, tax review or a setup decision.
+- The participant can explain why `U-ITEM-HW100` with `VAT19` still does not release O2C/P2P.
 
 Escalation path:
 
@@ -467,12 +481,14 @@ Handbook/book output:
 - customer-facing page: "VAT setup in Business Central and what it does not decide"
 - simple table for VAT business group, VAT product group and VAT Posting Setup
 - warning box that German tax correctness is not proven by a sandbox calculation alone
+- practical paragraph: `VAT19` on an item is not enough; Business Central also needs a VAT business side and a matching VAT Posting Setup row before a realistic process can be previewed or posted.
 
 Source/evidence status:
 
 - Official Microsoft source needed for the BC product explanation.
 - German tax/compliance claims need official/tax review and cannot be inferred from sandbox evidence.
-- Universaarl setup-row evidence still needed before trainer-ready.
+- Universaarl item evidence exists for `U-ITEM-HW100` with VAT Product Posting Group `VAT19`.
+- Universaarl VAT Posting Setup evidence is not complete enough for trainer-ready O2C/P2P.
 
 UAT status:
 
@@ -483,6 +499,7 @@ Playwright/evidence output:
 - read-first proof of VAT setup pages in `playthru` / `UNIVERSAARL-DE`
 - screenshot truth for relevant VAT group and VAT Posting Setup fields
 - later preview trace only after source, setup and Smart Decision gates
+- no document, no Preview Posting and no Posting from this module until VAT setup and General Posting Setup are accepted/proven
 
 Realism note:
 
