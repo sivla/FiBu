@@ -415,7 +415,9 @@ const output = {
   masterDataReadFirstCheck: masterDataReadFirstCheck
     ? {
         ok: masterDataReadFirstCheck.ok === true,
+        localPrepared: masterDataReadFirstCheck.localPrepared === true,
         allPrepared: masterDataReadFirstCheck.allPrepared === true,
+        authOnlyBlocker: masterDataReadFirstCheck.authOnlyBlocker === true,
         anyUnexpectedLiveReady: masterDataReadFirstCheck.anyUnexpectedLiveReady === true,
         blockedByLiveGateOrFoundation: masterDataReadFirstCheck.blockedByLiveGateOrFoundation === true,
         checks: (masterDataReadFirstCheck.checks ?? []).map((check) => ({

@@ -117,10 +117,31 @@ const allPrepared = results.every(
     result.authMinExpiresInHours === 9 &&
     result.authMeetsLiveWindow === true
 );
+const localPrepared = results.every(
+  (result) =>
+    result.runnerOk === true &&
+    result.listOk === true &&
+    result.targetUrlReady === true &&
+    result.authStateChecked === true &&
+    result.authStateCheckScript === 'auth:bc:check:overnight' &&
+    result.authMinExpiresInHours === 9
+);
 const anyUnexpectedLiveReady = results.some((result) => result.canRunNow === true);
 const foundationParked = results.some((result) =>
   (result.blockedBy ?? []).some((blocker) => String(blocker).includes('foundation-readiness-decision-parks-master-data'))
 );
+const authOnlyBlocker =
+  localPrepared &&
+  !allPrepared &&
+  results.every((result) => {
+    const blockers = result.blockedBy ?? [];
+    return (
+      result.canRunNow === false &&
+      result.authMeetsLiveWindow === false &&
+      blockers.includes('storage-state-expires-before-required-window') &&
+      blockers.includes('business-central-live-gate-blocked')
+    );
+  });
 const blockedByLiveGateOrFoundation = results.every((result) => {
   const blockers = result.blockedBy ?? [];
   return (
@@ -133,7 +154,7 @@ const blockedByLiveGateOrFoundation = results.every((result) => {
 const output = {
   schemaVersion: 1,
   purpose: 'universaarl-masterdata-readfirst-check',
-  ok: ok && allPrepared && !anyUnexpectedLiveReady,
+  ok: ok && (allPrepared || authOnlyBlocker) && !anyUnexpectedLiveReady,
   activeWorld: {
     instance: 'playthru',
     company: 'UNIVERSAARL-DE',
@@ -142,13 +163,17 @@ const output = {
   liveActionsExecuted: false,
   businessCentralOpened: false,
   playwrightLiveRunExecuted: false,
+  localPrepared,
   allPrepared,
+  authOnlyBlocker,
   anyUnexpectedLiveReady,
   foundationParked,
   blockedByLiveGateOrFoundation,
   checks: results,
   nextStep: foundationParked
     ? 'Resolve the Foundation gaps documented in FOUNDATION-READINESS-DECISION.md before any PWS-MD read-first pilot.'
+    : authOnlyBlocker
+    ? 'PWS-MD read-first runners are locally prepared. Refresh Playwright auth, rerun agent:resume:check, then approve exactly one read-first/no-write Master Data pilot if Foundation gates still allow it.'
     : allPrepared
     ? 'Run TARGET-075 first. After FOUNDATION-READINESS-DECISION.md exists and live gate opens, approve one PWS-MD read-first pilot at a time with --live-approved.'
     : 'Fix the failing PWS-MD guarded runner before returning to live Master Data work.'

@@ -1,23 +1,20 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "SCREENSHOT-CHAIN-MINIMUM-CHECKPOINTS",
+  "runId": "MASTERDATA-READFIRST-AUTH-ONLY-DIAGNOSIS",
   "caseId": "FOUNDATION-READINESS-DECISION",
-  "status": "completed-local-screenshot-chain-hardening",
-  "completedAt": "2026-07-07T18:45:00.000+02:00",
-  "updatedAt": "2026-07-07T18:45:00.000+02:00",
+  "status": "completed-local-masterdata-readfirst-diagnosis-fix",
+  "completedAt": "2026-07-07T19:05:00.000+02:00",
+  "updatedAt": "2026-07-07T19:05:00.000+02:00",
   "mode": "universaarl-foundation-readfirst",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Local no-live screenshot QA hardening completed. The next read-first Business Central proof now requires a screenshot chain with at least five accepted checkpoints, so page, field, FastTab, action or boundary claims cannot rest on one end screenshot.",
-  "resultPath": "scripts/agent/screenshot-chain-contract-check.mjs",
+  "summary": "Local no-live Master Data readiness diagnosis was corrected. PWS-MD-001, PWS-MD-002 and PWS-MD-003 guarded runners are now classified as locally prepared when their scripts, target URL and overnight auth checks are wired correctly; expired Playwright auth is reported as authOnlyBlocker instead of a runner failure.",
+  "resultPath": "scripts/agent/masterdata-readfirst-check.mjs",
   "changedArtifacts": [
-    ".agent/state/cases/foundation-readiness-decision.json",
     ".agent/state/last_run_summary.json",
-    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
-    "playwright/projects/fibu-book5/UNIVERSAARL-READONLY-UI-LOOK-AND-FEEL-MAP.md",
-    "scripts/agent/run-plan.mjs",
-    "scripts/agent/screenshot-chain-contract-check.mjs"
+    "scripts/agent/masterdata-readfirst-check.mjs",
+    "scripts/agent/resume-check.mjs"
   ],
   "businessCentralOpened": false,
   "playwrightLiveRunExecuted": false,
@@ -35,11 +32,10 @@
   "uiMockupUsed": false,
   "actionsTaken": [
     "Re-read the durable project objective and confirmed active truth remains playthru / UNIVERSAARL-DE.",
-    "Rechecked auth:bc:check and agent:context; stored Playwright auth is still expired and live BC/Playwright remains blocked until auth refresh.",
-    "Sharpened the Foundation Readiness case so the next live proof requires a screenshot chain with at least five accepted checkpoints.",
-    "Updated the Foundation Readiness decision and UI Look-and-Feel map with the same minimum checkpoint rule.",
-    "Updated screenshot-chain-contract-check.mjs so the minimum checkpoint wording is machine-checked.",
-    "Updated agent:run-plan so it includes npm run agent:screenshot-chain:check before any future live proof."
+    "Ran agent:masterdata:readfirst:check and found the previous diagnostic message misleading: the guarded runners were wired, but auth freshness blocked live use.",
+    "Updated scripts/agent/masterdata-readfirst-check.mjs to expose localPrepared and authOnlyBlocker separately from allPrepared.",
+    "Updated scripts/agent/resume-check.mjs so the resume output surfaces localPrepared and authOnlyBlocker for Master Data read-first probes.",
+    "Verified agent:masterdata:readfirst:check is green locally while still blocking live execution until Playwright auth is refreshed."
   ],
   "actionsNotTaken": [
     "No Business Central live session was opened.",
@@ -53,36 +49,34 @@
     "No API shortcut was used.",
     "No company switch was performed.",
     "No confidential real customer data was used.",
-    "No UI mockup was used as evidence.",
-    "No broad cleanup or new methodology layer was added."
+    "No UI mockup was used as evidence."
   ],
   "proved": [
-    "The screenshot-chain contract is present and now includes the minimum of at least five accepted checkpoints.",
-    "agent:run-plan now lists agent:screenshot-chain:check as a validation command and a required pre-live local step.",
-    "The project boundary remains real Business Central UI evidence and realistic fictional Universaarl data, not UI mockups or confidential real customer data."
+    "PWS-MD-001, PWS-MD-002 and PWS-MD-003 guarded runners list their expected specs and target playthru / UNIVERSAARL-DE.",
+    "Master Data read-first local readiness is no longer reported as a runner failure when the only live blocker is expired Playwright auth.",
+    "agent:resume:check now shows masterDataReadFirstCheck.ok=true, localPrepared=true and authOnlyBlocker=true while overall resume remains blocked by auth."
   ],
   "notProved": [
     "No fresh Business Central login was captured.",
     "No new Business Central screenshot was captured.",
-    "No Foundation setup correctness.",
-    "No VAT setup correctness.",
-    "No posting readiness.",
+    "No customer, vendor or item UI was opened in this run.",
+    "No master-data write readiness.",
     "No O2C/P2P process readiness.",
-    "No master-data write readiness."
+    "No posting readiness."
   ],
   "warnings": [
     "Refresh Playwright auth in the Playwright-managed profile before any live BC/Playwright run.",
-    "The next real UI run must capture enough screenshots to evaluate shell, navigation, target page, action/tooltip context, row/FastTab/FactBox context and explicit not-proved boundary.",
-    "Do not use normal Chrome login, UI mockups or confidential real customer data as evidence."
+    "Run exactly one read-first/no-write Master Data pilot at a time after auth is green and Foundation gates still allow it.",
+    "Keep realistic fictional Universaarl data and real Business Central UI evidence separate from confidential real customer data."
   ],
   "nextStepDecision": {
     "currentCase": "FOUNDATION-READINESS-DECISION",
     "plannedNextCaseBeforeReview": "FOUNDATION-READINESS-DECISION",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Foundation Readiness remains the right handoff, but any live proof must first refresh Playwright auth and then capture a multi-checkpoint screenshot chain.",
+    "reason": "Foundation Readiness remains the handoff, but the local Master Data runner diagnosis is now clean enough for a later auth-refreshed read-first/no-write pilot.",
     "selectedNextCase": "FOUNDATION-READINESS-DECISION",
-    "whySelectedNextCaseIsBest": "It keeps BC work grounded in real screenshots and prevents weak page or field claims before Foundation gaps are understood."
+    "whySelectedNextCaseIsBest": "It keeps live work behind auth and screenshot gates while making the next real Master Data observation less ambiguous."
   },
   "nextCase": "FOUNDATION-READINESS-DECISION",
-  "nextStep": "Refresh Playwright auth in the Playwright-managed profile. Then rerun auth:bc:check, agent:screenshot-chain:check, agent:context, agent:run-plan and agent:resume:check before any read-first Foundation/VAT/Posting proof."
+  "nextStep": "Refresh Playwright auth in the Playwright-managed profile. Then rerun auth:bc:check, agent:resume:check and only one read-first/no-write Foundation or Master Data pilot if the gates still allow it."
 }
