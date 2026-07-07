@@ -7,6 +7,7 @@ const files = {
   current: '.agent/state/current.json',
   projectDecision: '.agent/PROJECT-DECISION.md',
   architectureGate: '.agent/CASE-STUDY-ARCHITECTURE-GATE.md',
+  dataPackages: '.agent/project-template/UNIVERSAARL-CUSTOMER-PROJECT-DATA-PACKAGES-DRAFT.md',
   companyUsecase: 'playwright/projects/fibu-book5/BC-COMPANY-USECASE.md',
   datasetBlueprint: 'playwright/projects/fibu-book5/UNIVERSAARL-DATASET-BLUEPRINT.md',
   fullCatalog: 'playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md',
@@ -37,9 +38,13 @@ function forbidPhrase(fileKey, phrase, errors) {
 
 const errors = [];
 const warnings = [];
+const deprecatedActiveDataPackagePath = '.agent/project-template/SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md';
 
 for (const filePath of Object.values(files)) {
   if (!fs.existsSync(absolute(filePath))) errors.push(`missing required file: ${filePath}`);
+}
+if (fs.existsSync(absolute(deprecatedActiveDataPackagePath))) {
+  errors.push(`${deprecatedActiveDataPackagePath} must not exist as an active data package; use ${files.dataPackages}`);
 }
 
 let current = null;
@@ -89,6 +94,15 @@ if (!errors.length) {
   for (const [fileKey, phrases] of Object.entries({
     projectDecision: ['Universaarl GmbH', 'SKR04-orientierter Kontenplan', 'nicht queue-getrieben'],
     architectureGate: ['Universaarl GmbH', 'SKR04-oriented starter chart', 'departments, product lines, channels, regions and locations'],
+    dataPackages: [
+      'customer-project-like Universaarl data',
+      'not throwaway mockups',
+      'confidential real customer data',
+      'Business Central writes need a later gated setup case',
+      'UNIVERSAARL_MD_Customers',
+      'UNIVERSAARL_MD_Vendors',
+      'UNIVERSAARL_MD_ItemsServices'
+    ],
     companyUsecase: ['UNIVERSAARL-DE', 'Mehr-Company-Fallstudie', 'SKR04 ist der Zielkontenplan'],
     datasetBlueprint: [
       'DATA-FOUNDATION',

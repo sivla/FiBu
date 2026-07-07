@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "CUSTOMER-PROJECT-DATA-PACKAGE-RENAMING",
+  "runId": "CUSTOMER-PROJECT-DATA-PACKAGE-GUARD",
   "caseId": "FOUNDATION-READINESS-DECISION",
-  "status": "completed-local-customer-project-data-package-renaming",
-  "completedAt": "2026-07-07T20:45:00.000+02:00",
-  "updatedAt": "2026-07-07T20:45:00.000+02:00",
+  "status": "completed-local-customer-project-data-package-guard",
+  "completedAt": "2026-07-07T21:00:00.000+02:00",
+  "updatedAt": "2026-07-07T21:00:00.000+02:00",
   "mode": "universaarl-foundation-readfirst",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "The active data-package artifact was renamed away from simulation language to customer-project data package language. Universaarl data remains fictional or anonymized where needed, but it must behave like real customer input and stay tied to real Business Central UI evidence before becoming book, UAT, training or process truth.",
-  "resultPath": ".agent/project-template/UNIVERSAARL-CUSTOMER-PROJECT-DATA-PACKAGES-DRAFT.md",
+  "summary": "The active customer-project data package is now covered by the Universaarl case-study check. Preflight fails if the old simulation-named active package returns or if the new package loses its customer-project, no-mockup and no-confidential-real-customer-data boundary.",
+  "resultPath": "scripts/agent/case-study-check.mjs",
   "changedArtifacts": [
     ".agent/state/last_run_summary.json",
     ".agent/ACTIVE-ARTIFACT-CLASSIFICATION.md",
@@ -18,7 +18,8 @@
     ".agent/project-template/DATA-REQUEST-JIRA-CANDIDATES-DRAFT.md",
     ".agent/project-template/JIRA-IMPORT-ROWS-DATA-PACKAGES-DRAFT.md",
     ".agent/project-template/REFINEMENT-BACKLOG.md",
-    ".agent/state/cases/item-service-realistic-product-model-decision.json"
+    ".agent/state/cases/item-service-realistic-product-model-decision.json",
+    "scripts/agent/case-study-check.mjs"
   ],
   "businessCentralOpened": false,
   "playwrightLiveRunExecuted": false,
@@ -36,9 +37,9 @@
   "uiMockupUsed": false,
   "actionsTaken": [
     "Re-read the durable project objective and confirmed active truth remains playthru / UNIVERSAARL-DE.",
-    "Renamed the active data package file from simulation wording to customer-project data package wording.",
-    "Updated active artifact classification, data-request candidates, Jira import rows, refinement backlog and the item-service product-model case to use the new filename.",
-    "Kept historical evidence JSONs untouched so old result paths remain traceable."
+    "Added the customer-project data package to scripts/agent/case-study-check.mjs.",
+    "Made preflight fail if the old simulation-named active data package reappears.",
+    "Made preflight verify the new package still carries customer-project, no-mockup, no-confidential-real-customer-data and BC-write-gate boundary language."
   ],
   "actionsNotTaken": [
     "No Business Central live session was opened.",
@@ -55,9 +56,9 @@
     "No UI mockup was used as evidence."
   ],
   "proved": [
-    "The active Master Data package no longer presents itself as a simulation artifact.",
-    "The renamed package still blocks direct BC writes until setup dependencies and real playthru evidence exist.",
-    "Historical evidence paths were preserved instead of rewritten."
+    "agent:case-study:check now covers the active customer-project data package.",
+    "The check guards against regression to the old simulation-named active package.",
+    "The package remains no-write until gated BC setup and real playthru evidence exist."
   ],
   "notProved": [
     "No fresh Business Central login was captured.",
