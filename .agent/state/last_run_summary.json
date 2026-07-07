@@ -1,28 +1,26 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION",
-  "caseId": "ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION",
-  "status": "completed-local-decision",
-  "completedAt": "2026-07-07T09:05:00.000+02:00",
-  "updatedAt": "2026-07-07T09:05:00.000+02:00",
-  "mode": "universaarl-masterdata-product-model-decision",
+  "runId": "ITEM-SERVICE-U-ITEM-HW100-CORRECTION-OR-REBUILD-WRITE-GATE",
+  "caseId": "ITEM-SERVICE-U-ITEM-HW100-CORRECTION-OR-REBUILD-WRITE-GATE",
+  "status": "blocked",
+  "completedAt": "2026-07-07T07:04:00.000Z",
+  "updatedAt": "2026-07-07T07:04:00.000Z",
+  "mode": "universaarl-masterdata-item-controlled-write-gate",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Local product-model decision selected U-ITEM-HW100 as Steuerbox Standard U100 with STK, WARE inventory posting group, WAREN product posting group, VAT19, FIFO and explicit price/cost targets. The model remains blocked from O2C/P2P until a controlled Business Central write gate proves or corrects the real item card with screenshots and reopen proof.",
-  "resultPath": "playwright/projects/fibu-book5/evidence/item-service-realistic-product-model-decision/result.json",
+  "summary": "Playwright opened Business Central in playthru / UNIVERSAARL-DE and captured U-ITEM-HW100 evidence. The item card was visible before the write gate; description Steuerbox Standard U100 and existing WAREN/VAT19 values were visible in card context. No new write was needed in this final run. Reopen returned the item list/FactBox, so full item-card reopen proof and unit cost/unit price proof remain blocked.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-correction-or-rebuild-write-gate/result.json",
   "changedArtifacts": [
-    ".agent/project-template/CUSTOMER-DATA-SIMULATION-DRAFT.md",
-    ".agent/project-template/SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md",
-    "playwright/projects/fibu-book5/evidence/item-service-realistic-product-model-decision/result.json",
-    "playwright/projects/fibu-book5/evidence/item-service-realistic-product-model-decision/README.md",
-    ".agent/state/cases/item-service-u-item-hw100-correction-or-rebuild-write-gate.json",
+    "package.json",
+    "playwright/projects/fibu-book5/tests/item-service-u-item-hw100-correction-or-rebuild-write-gate.spec.ts",
+    "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-correction-or-rebuild-write-gate/",
+    ".agent/state/cases/item-service-u-item-hw100-card-editor-recovery.json",
     ".agent/state/current.json",
-    ".agent/state/last_run_summary.json",
-    ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md"
+    ".agent/state/last_run_summary.json"
   ],
-  "businessCentralOpened": false,
-  "playwrightLiveRunExecuted": false,
+  "businessCentralOpened": true,
+  "playwrightLiveRunExecuted": true,
   "setupChanged": false,
   "masterDataChanged": false,
   "draftCreated": false,
@@ -32,37 +30,47 @@
   "apiShortcut": false,
   "confidentialRealCustomerDataUsed": false,
   "actionsTaken": [
-    "Reconciled U-ITEM-HW100 product naming to Steuerbox Standard U100.",
-    "Aligned simulated item base unit to STK and retained WARE inventory posting group, WAREN product posting group, VAT19 and FIFO as target values for a later write gate.",
-    "Updated existing data-package artifacts instead of creating a new methodology layer.",
-    "Prepared a controlled correction-or-rebuild write gate case with explicit stop conditions."
+    "Validated stored Business Central auth for playthru / UNIVERSAARL-DE.",
+    "Ran a guarded Playwright item write-gate spec for U-ITEM-HW100.",
+    "Captured screenshot QA and metadata for card/list context.",
+    "Hardened the page-context gate so short codes like WARE no longer count as standalone proof."
   ],
   "actionsNotTaken": [
-    "No Business Central live page opened.",
-    "No Playwright live test run.",
-    "No item field changed in Business Central.",
-    "No setup, master-data, document, preview, posting, payment or API action."
+    "No setup was changed.",
+    "No sales or purchase document was created.",
+    "No journal line was created.",
+    "No Preview Posting was run.",
+    "No Posting was run.",
+    "No payment was run.",
+    "No API shortcut was used.",
+    "No confidential real customer data was used."
   ],
   "proved": [
-    "The repository now has one selected realistic fictional product model for U-ITEM-HW100.",
-    "The selected product model is not confidential real customer data and is blocked until BC evidence proves it."
+    "playthru / UNIVERSAARL-DE is accessible with current stored auth.",
+    "U-ITEM-HW100 is a real Universaarl sandbox item with card-context evidence.",
+    "Description Steuerbox Standard U100 is visible.",
+    "WAREN and VAT19 are visible in the card write-gate attempt.",
+    "Reopen currently returns list/FactBox evidence rather than full card evidence."
   ],
   "notProved": [
-    "No Business Central item card values were changed or proven.",
-    "No O2C/P2P/inventory/UAT/posting readiness is proven."
+    "No full item-card reopen proof.",
+    "No unit cost 100.00 or unit price 149.00 proof.",
+    "No O2C/P2P readiness.",
+    "No posting, ledger, VAT or UAT readiness."
   ],
   "warnings": [
-    "Next live case is a write gate and must run auth/live-gate checks plus Smart Decision before changing fields.",
-    "Do not create sales or purchase documents even if the item correction succeeds."
+    "Do not count list/FactBox evidence as full card proof.",
+    "Do not start O2C/P2P until item route and setup gates are clearer.",
+    "Use realistic fictional Universaarl customer data; do not use confidential real customer data."
   ],
   "nextStepDecision": {
-    "currentCase": "ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION",
-    "plannedNextCaseBeforeReview": "ITEM-SERVICE-U-ITEM-HW100-CORRECTION-OR-REBUILD-WRITE-GATE",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "The realistic product model is explicit; the next project value is to prove or correct the real BC item card.",
-    "selectedNextCase": "ITEM-SERVICE-U-ITEM-HW100-CORRECTION-OR-REBUILD-WRITE-GATE",
-    "whySelectedNextCaseIsBest": "It creates real playthru evidence before O2C/P2P uses the item."
+    "currentCase": "ITEM-SERVICE-U-ITEM-HW100-CORRECTION-OR-REBUILD-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "O2C-MINIMAL-ROUTE-DECISION",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The item card route and price/cost proof are still incomplete, so a process document would be premature.",
+    "selectedNextCase": "ITEM-SERVICE-U-ITEM-HW100-CARD-EDITOR-RECOVERY",
+    "whySelectedNextCaseIsBest": "It directly addresses the observed UI route blocker without creating documents or changing setup."
   },
-  "nextCase": "ITEM-SERVICE-U-ITEM-HW100-CORRECTION-OR-REBUILD-WRITE-GATE",
-  "nextStep": "Run the controlled item correction/rebuild write gate after preflight/auth/live-gate checks. No O2C/P2P document, no preview, no posting."
+  "nextCase": "ITEM-SERVICE-U-ITEM-HW100-CARD-EDITOR-RECOVERY",
+  "nextStep": "Run a narrow card/editor route recovery for U-ITEM-HW100 with screenshot QA. No document, no setup, no Preview Posting, no Posting."
 }

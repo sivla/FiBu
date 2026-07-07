@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "caseId": "ITEM-SERVICE-U-ITEM-HW100-CARD-EDITOR-RECOVERY",
+  "status": "ready-next",
+  "mode": "universaarl-masterdata-item-ui-route-recovery",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "businessPurpose": "Recover a reliable Business Central item-card route for the realistic fictional Universaarl item U-ITEM-HW100 before any O2C/P2P document uses it.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-correction-or-rebuild-write-gate/result.json"
+  ],
+  "allowedActions": [
+    "run-auth-and-live-gate-checks",
+    "open-business-central-live-in-playthru",
+    "confirm-company-universaarl-de",
+    "open-items-page-read-first",
+    "open-u-item-hw100-card",
+    "inspect-visible-card-actions",
+    "capture-screenshot-qa",
+    "inspect-active-editors-for-unit-cost-and-unit-price",
+    "write-result-json",
+    "update-state-and-dashboard"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "create-sales-document",
+    "create-purchase-document",
+    "create-journal-line",
+    "preview-posting",
+    "post",
+    "payment",
+    "change-vat-setup",
+    "change-posting-setup",
+    "change-number-series",
+    "api-shortcut",
+    "company-switch",
+    "use-confidential-real-customer-data",
+    "force-click-as-normal-route",
+    "coordinate-click-without-diagnostic-status"
+  ],
+  "smartDecision": {
+    "whyNow": "The previous write gate proved the item card can appear, but the reopen route returned the item list/FactBox and price/cost editors were not found.",
+    "risk": "Treating list or FactBox evidence as full card proof would make later O2C/P2P and book claims too strong.",
+    "fallback": "If the card/editor route remains unclear, stop with a blocked result and move to Foundation read-first or setup-route decisions instead of creating documents."
+  },
+  "expectedEvidence": [
+    "screenshot of real U-ITEM-HW100 item card or explicitly rejected route context",
+    "active editor/control diagnostics for unit cost and unit price",
+    "clear distinction between item-card proof and item-list/FactBox proof",
+    "result JSON with no setup/document/preview/post/API flags"
+  ],
+  "nextCaseIfObserved": "VAT-POSTING-SETUP-READFIRST",
+  "nextCaseIfBlocked": "ITEM-SERVICE-U-ITEM-HW100-ROUTE-OR-PARK-DECISION"
+}

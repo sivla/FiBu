@@ -1,0 +1,104 @@
+{
+  "fileName": "020-after-write-attempt.png",
+  "imagePath": "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-correction-or-rebuild-write-gate/020-after-write-attempt.png",
+  "caseId": "ITEM-SERVICE-U-ITEM-HW100-CORRECTION-OR-REBUILD-WRITE-GATE",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "Artikelkarte / Item Card",
+  "pageId": 30,
+  "context": {
+    "cardContext": true,
+    "listContext": false,
+    "url": "https://businesscentral.dynamics.com/b8fd10d1-3599-4721-8651-f95bd868aba7/playthru?page=30&company=UNIVERSAARL-DE"
+  },
+  "step": "after-write-attempt",
+  "importantUi": [
+    "Artikelkopf mit Nr. und Beschreibung",
+    "Einstandspreise und Buchung",
+    "Produktbuchungsgruppe WAREN",
+    "MwSt.-Produktbuchungsgruppe VAT19",
+    "Lagerbuchungsgruppe WARE",
+    "Preis-/Kostenfelder nur wenn sichtbar"
+  ],
+  "beginnerLearning": [
+    "Die Artikelkarte verbindet Produktdaten mit Buchungslogik.",
+    "Lagerbuchungsgruppe und Produktbuchungsgruppe sind unterschiedliche Felder.",
+    "Ein Artikel ist erst prozessbereit, wenn die zugehoerigen Buchungs- und MwSt.-Setups ebenfalls passen."
+  ],
+  "internallyProves": "The screenshot is in the U-ITEM-HW100 item-card context.",
+  "doesNotProve": [
+    "No sales or purchase document readiness.",
+    "No General Posting Setup readiness.",
+    "No VAT Posting Setup readiness.",
+    "No item ledger/value/G/L/VAT entry.",
+    "No UAT acceptance."
+  ],
+  "screenshotQaRule": "A value counts as card proof only when it is visible in the U-ITEM-HW100 item-card context. List or FactBox text is weaker and must be labelled as such.",
+  "finalScreenshotStatus": "universaarl-evidence-candidate",
+  "visible": {
+    "itemNo": true,
+    "description": true,
+    "oldDescription": false,
+    "baseUnit": true,
+    "inventoryPostingGroup": false,
+    "genProductPostingGroup": false,
+    "vatProductPostingGroup": false,
+    "costingMethod": true,
+    "unitCostTarget": false,
+    "unitPriceTarget": false,
+    "forbiddenSignals": false
+  },
+  "writeOutcome": {
+    "edit": {
+      "clicked": false,
+      "route": "not-needed-editable-fields-first"
+    },
+    "attempts": [
+      {
+        "field": "description",
+        "targetValue": "Steuerbox Standard U100",
+        "status": "already-visible",
+        "reason": "Steuerbox Standard U100 already visible in item-card context."
+      },
+      {
+        "field": "genProductPostingGroup",
+        "targetValue": "WAREN",
+        "status": "already-visible",
+        "reason": "WAREN was already in the editable labelled field.",
+        "before": "WAREN"
+      },
+      {
+        "field": "vatProductPostingGroup",
+        "targetValue": "VAT19",
+        "status": "already-visible",
+        "reason": "VAT19 was already in the editable labelled field.",
+        "before": "VAT19"
+      },
+      {
+        "field": "unitCost",
+        "targetValue": "100.00",
+        "status": "blocked",
+        "reason": "Editable labelled field was not found."
+      },
+      {
+        "field": "unitPrice",
+        "targetValue": "149.00",
+        "status": "blocked",
+        "reason": "Editable labelled field was not found."
+      }
+    ],
+    "beforeVisible": {
+      "itemNo": true,
+      "description": true,
+      "oldDescription": false,
+      "baseUnit": true,
+      "inventoryPostingGroup": true,
+      "genProductPostingGroup": true,
+      "vatProductPostingGroup": false,
+      "costingMethod": true,
+      "unitCostTarget": false,
+      "unitPriceTarget": false,
+      "forbiddenSignals": false
+    }
+  }
+}
