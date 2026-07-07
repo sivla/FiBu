@@ -892,16 +892,16 @@ Acceptance criteria:
 - Payment-sensitive fields are blocked or decision-linked.
 - No purchase document scenario is implied before vendor setup dependencies are resolved.
 
-## TR-03-03 Items, Services and Non-Inventory Items
+## TR-03-03 Artikel, Services und Nichtlagerartikel
 
 Workstream: `WS04-MASTER-DATA-PRODUCT`
 Epic: `MD-03 Product Model, Items, Services and Non-Inventory Items`
 Issue type: Training Item
-Status: `blocked-by-product-model`
+Status: `training-draft-from-playthru-evidence`
 
 Business purpose:
 
-Users need to understand the difference between inventory items, service items and non-inventory items before they create sales or purchase documents. The item type determines whether Business Central tracks stock, value, document behavior and later inventory entries.
+Benutzer muessen verstehen, dass ein Artikel in Business Central mehr ist als ein Verkaufsname. Art, Basiseinheit, Buchungsgruppen, USt-Produktbuchungsgruppe, Einstandspreis und Verkaufspreis bestimmen, ob Business Central spaeter Lager, Wert, Erloes, Aufwand und Steuer sauber nachvollziehen kann. Diese Karte trainiert zuerst das Lesen der Artikelkarte, bevor Einkaufs- oder Verkaufsbelege entstehen.
 
 Target roles:
 
@@ -915,31 +915,35 @@ Target roles:
 
 Customer/example data:
 
-- simulated package: `UNIVERSAARL_MD_ItemsServices`
-- inventory item: `SIM-ITEM-1000` / `U-ITEM-1000` / `Steel component set`
-- service item: `SIM-SERV-1000` / `U-SERV-1000` / `Installation service`
-- non-inventory item: `SIM-NONINV-1000` / `U-NONINV-1000` / `Printed manual package`
-- negative training idea: `SIM-ITEM-ERR900`, parked and not used for normal setup
+- active company: `UNIVERSAARL-DE`
+- observed inventory item: `U-ITEM-HW100` / `Steuerbox Standard U100`
+- observed values: Basiseinheit `STK`, Lagerbuchungsgruppe `WARE`, MwSt.-Produktbuchungsgruppe `VAT19`, Einstandspreis `100,00`, VK-Preis `149,00`
+- simulated package for later expansion: `UNIVERSAARL_MD_ItemsServices`
+- future service/non-inventory examples remain planned, not BC-proven in this module
+- negative training idea: `U-ITEM-ERR900`, parked and not used for normal setup
+- no confidential real customer or supplier product data
 
 BC concept or process:
 
-- item list and item card
-- item type: inventory, service, non-inventory
-- base unit of measure
-- item category
-- inventory posting group
-- general product posting group
-- VAT product posting group
-- costing method
-- product templates or configuration packages as scalable setup route
+- Artikelliste (Items)
+- Artikelkarte (Item Card)
+- Art: Bestand, Service oder Nichtlagerartikel
+- Basiseinheit
+- Lagerbuchungsgruppe
+- Produktbuchungsgruppe
+- MwSt.-Produktbuchungsgruppe
+- Einstandspreis und VK-Preis
+- Kalkulationsmethode
+- Produktvorlagen oder Konfigurationspakete als skalierbarer Setup-Weg
 
 Exercise:
 
-1. Classify each simulated product record as inventory, service, non-inventory or parked negative example.
-2. Identify which fields affect stock, valuation, posting and VAT.
-3. Mark all `TBD` setup values as blockers.
-4. Decide whether the first product should be created manually for learning or by template/configuration package after UOM, posting and costing decisions.
-5. Explain why a service line can be a valid product model but must not be taught as stock behavior.
+1. Oeffne die Artikelliste und finde `U-ITEM-HW100`.
+2. Oeffne die Artikelkarte und unterscheide sichtbare Stammdatenfelder von buchungsrelevanten Feldern.
+3. Erklaere, warum `STK` die Mengensicht steuert und nicht automatisch Lager- oder Wertposten beweist.
+4. Markiere `WARE`, `WAREN` und `VAT19` als wichtige Setup-Signale, aber nicht als Posting-Freigabe.
+5. Pruefe, warum Einstandspreis `100,00` und VK-Preis `149,00` fuer realistische Einkaufs-/Verkaufsuebungen nuetzlich sind.
+6. Erklaere, warum ein Service- oder Nichtlagerartikel spaeter separat trainiert werden muss: Er kann verkauft werden, aber er darf nicht als Lagerbestand erklaert werden.
 
 Typical mistakes:
 
@@ -952,7 +956,7 @@ Typical mistakes:
 Success check:
 
 - The participant can explain inventory vs service vs non-inventory in plain language.
-- The participant can identify which fields block first item creation.
+- The participant can identify why `U-ITEM-HW100` is a realistic training product, but not yet an O2C/P2P posting proof.
 - The participant can explain why item setup affects purchase, sales, inventory and ledger evidence.
 - The participant can park a negative-training item instead of using it in normal UAT.
 
@@ -972,19 +976,24 @@ Handbook/book output:
 
 Source/evidence status:
 
-- Official source support needed for item type and inventory behavior.
-- Universaarl item/service/non-inventory list/card read-first proof is still needed.
-- Current simulated data is Jira-ready but not BC-setup-ready.
+- Universaarl evidence available: `ITEM-SERVICE-MASTERDATA-READFIRST`, `ITEM-SERVICE-U-ITEM-HW100-CARD-EDITOR-RECOVERY` and `ITEM-SERVICE-U-ITEM-HW100-PRICE-COST-FIELD-ROUTE`.
+- Real Business Central screenshots and result JSONs exist for `playthru / UNIVERSAARL-DE`; these are not UI mockups.
+- Official source support remains needed before promoting item type, valuation and costing explanations to trainer-ready product explanation.
+- Service and non-inventory examples are still planned and not BC-proven.
 
 UAT status:
 
-- planned; blocked until UOM, product model, posting groups, VAT product groups, inventory posting and costing route are available
+- draft only; useful for product-data-owner and key-user orientation
+- not accepted as O2C, P2P, inventory valuation or posting UAT
+- blocked until VAT, General Posting Setup, inventory/posting setup and process evidence are ready
 
 Playwright/evidence output:
 
-- `PWS-MD-003` item/service/non-inventory list/card read-first proof
-- later controlled create/reopen proof for one product type after dependencies
-- evidence card separating product model concept, simulated records and actual setup
+- `ITEM-SERVICE-MASTERDATA-READFIRST`
+- `ITEM-SERVICE-U-ITEM-HW100-CARD-EDITOR-RECOVERY`
+- `ITEM-SERVICE-U-ITEM-HW100-PRICE-COST-FIELD-ROUTE`
+- later separate proofs for service and non-inventory items
+- no document, no Preview Posting, no Posting and no ledger trace in this training module
 
 Realism note:
 
@@ -993,5 +1002,7 @@ Product master data often exposes disagreements between sales, purchasing, wareh
 Acceptance criteria:
 
 - Module separates inventory, service and non-inventory behavior.
+- Module uses real Business Central evidence for `U-ITEM-HW100`.
+- Module marks service and non-inventory examples as planned until proven.
 - All setup-sensitive fields are blocked or decision-linked.
-- No inventory valuation, warehouse or posting claim is made before evidence exists.
+- No inventory valuation, warehouse, O2C/P2P or posting claim is made before evidence exists.
