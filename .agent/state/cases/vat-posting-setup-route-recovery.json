@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "caseId": "VAT-POSTING-SETUP-ROUTE-RECOVERY",
+  "status": "ready-next",
+  "mode": "universaarl-foundation-vat-route-recovery",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "businessPurpose": "Recover a reliable read-only route to MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups after VAT-POSTING-SETUP-READFIRST proved Page 471 and Page 472 but rejected Page 470 screenshot QA.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/vat-posting-setup-readfirst/result.json",
+    "playwright/projects/fibu-book5/evidence/vat-posting-setup-readfirst/vat-readfirst-001-vat-business-posting-groups.png",
+    "playwright/projects/fibu-book5/evidence/vat-posting-setup-readfirst/vat-readfirst-002-vat-product-posting-groups.png",
+    "playwright/projects/fibu-book5/evidence/vat-posting-setup-readfirst/vat-readfirst-003-vat-posting-setup.png"
+  ],
+  "allowedActions": [
+    "run-auth-and-live-gate-checks",
+    "open-business-central-live-in-playthru",
+    "confirm-company-universaarl-de",
+    "open-vat-business-posting-groups-readonly",
+    "inspect-page-470-route-readonly",
+    "use-direct-url-or-scoped-navigation-readonly",
+    "capture-screenshot-qa",
+    "write-result-json",
+    "update-state-and-dashboard"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "create-sales-document",
+    "create-purchase-document",
+    "create-journal-line",
+    "preview-posting",
+    "post",
+    "payment",
+    "change-vat-setup",
+    "change-posting-setup",
+    "change-number-series",
+    "api-shortcut",
+    "company-switch",
+    "use-confidential-real-customer-data",
+    "force-click-as-normal-route",
+    "coordinate-click-without-diagnostic-status"
+  ],
+  "smartDecision": {
+    "whyNow": "The VAT read-first run observed VAT Product Posting Groups and VAT Posting Setup, but Page 470 landed on Role Center/search fallback remnants. A Foundation readiness decision would be premature without VAT Business Posting Groups context.",
+    "newHypothesesOnly": [
+      "Use a more exact Business Central page/object route for Page 470.",
+      "Inspect why direct page=470 or search activation returns Role Center while Page 471/472 work.",
+      "Try scoped menu/navigation or Page Inspection only if it remains read-only and screenshot-gated."
+    ],
+    "doNotRepeat": [
+      "Do not repeat the same direct page=470 plus generic Tell-Me search fallback as success criteria.",
+      "Do not accept Role Center, hidden text or search overlay as page proof.",
+      "Do not click Neu, Bearbeiten, Liste bearbeiten or any setup write action."
+    ],
+    "fallback": "If Page 470 still cannot be visibly opened, keep VAT Business Posting Groups as a Foundation blocker and decide whether source-backed alternatives or configuration/package discovery are needed."
+  },
+  "expectedEvidence": [
+    "accepted screenshot if the real VAT Business Posting Groups list is visible",
+    "rejected screenshot if route still lands on Role Center/search overlay",
+    "route diagnosis explaining why Page 471/Page 472 direct routes work but Page 470 does not",
+    "no-write flags for setup, documents, Preview Posting, Posting, payment, API and company switch"
+  ],
+  "nextCaseIfObserved": "POSTING-GROUPS-SETUP-READFIRST",
+  "nextCaseIfBlocked": "VAT-BUSINESS-POSTING-GROUPS-SOURCE-OR-ALTERNATIVE-ROUTE-DECISION"
+}

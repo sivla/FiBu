@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-07T07:34:00.000Z",
+  "updatedAt": "2026-07-07T07:38:30.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
-  "activeArea": "w1-foundation-vat-readfirst",
-  "activeCase": "VAT-POSTING-SETUP-READFIRST",
-  "active_case_file": ".agent/state/cases/vat-posting-setup-readfirst.json",
-  "activeCaseFile": ".agent/state/cases/vat-posting-setup-readfirst.json",
+  "activeArea": "w1-foundation-vat-route-recovery",
+  "activeCase": "VAT-POSTING-SETUP-ROUTE-RECOVERY",
+  "active_case_file": ".agent/state/cases/vat-posting-setup-route-recovery.json",
+  "activeCaseFile": ".agent/state/cases/vat-posting-setup-route-recovery.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-foundation-vat-readfirst",
+  "mode": "universaarl-foundation-vat-route-recovery",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -38,8 +38,8 @@
     "open-business-central-live-in-playthru",
     "confirm-company-universaarl-de",
     "open-vat-business-posting-groups-readonly",
-    "open-vat-product-posting-groups-readonly",
-    "open-vat-posting-setup-readonly",
+    "inspect-page-470-route-readonly",
+    "use-direct-url-or-scoped-navigation-readonly",
     "capture-screenshot-qa",
     "write-result-json",
     "update-state-and-dashboard"
@@ -65,8 +65,8 @@
     "force-click-as-normal-route",
     "coordinate-click-without-diagnostic-status"
   ],
-  "nextCase": "VAT-POSTING-SETUP-READFIRST",
-  "nextStep": "Run a read-first VAT/USt posting setup proof in playthru / UNIVERSAARL-DE. Open VAT Business Posting Groups, VAT Product Posting Groups and VAT Posting Setup read-only with screenshot QA. No setup write, no document, no Preview Posting, no Posting.",
+  "nextCase": "VAT-POSTING-SETUP-ROUTE-RECOVERY",
+  "nextStep": "Recover the read-only route to MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups in playthru / UNIVERSAARL-DE. Do not accept Role Center/search-overlay screenshots as proof. No setup write, no document, no Preview Posting, no Posting.",
   "preparedNextCaseFile": ".agent/state/cases/customer-setup-dependency-readfirst.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
@@ -11590,6 +11590,52 @@
       "book",
       "evidence"
     ]
+  },
+  "latestVatPostingSetupReadfirst": {
+    "caseId": "VAT-POSTING-SETUP-READFIRST",
+    "resultStatus": "partially-observed",
+    "resultPath": "playwright/projects/fibu-book5/evidence/vat-posting-setup-readfirst/result.json",
+    "businessCentralOpened": true,
+    "playwrightLiveRunExecuted": true,
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "payment": false,
+    "apiShortcut": false,
+    "companySwitch": false,
+    "confidentialRealCustomerDataUsed": false,
+    "observedPages": [
+      "MwSt.-Produktbuchungsgruppen / VAT Product Posting Groups",
+      "MwSt.-Buchungsmatrix / VAT Posting Setup"
+    ],
+    "rejectedPages": [
+      "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups"
+    ],
+    "screenshots": [
+      "playwright/projects/fibu-book5/evidence/vat-posting-setup-readfirst/vat-readfirst-001-vat-business-posting-groups.png",
+      "playwright/projects/fibu-book5/evidence/vat-posting-setup-readfirst/vat-readfirst-002-vat-product-posting-groups.png",
+      "playwright/projects/fibu-book5/evidence/vat-posting-setup-readfirst/vat-readfirst-003-vat-posting-setup.png"
+    ],
+    "proved": [
+      "playthru / UNIVERSAARL-DE was used.",
+      "VAT Product Posting Groups showed VAT19 / USt 19 Prozent read-only.",
+      "VAT Posting Setup / MwSt.-Buchungsmatrix opened read-only and showed setup columns.",
+      "No VAT setup, posting setup, master data, document, Preview Posting, Posting, payment, API shortcut or company switch occurred."
+    ],
+    "notProved": [
+      "VAT Business Posting Groups / MwSt.-Geschaeftsbuchungsgruppen did not pass screenshot QA because the final screenshot showed Role Center.",
+      "No German VAT correctness.",
+      "No INLAND/VAT19 setup completeness.",
+      "No VAT account correctness.",
+      "No Preview Posting, VAT Entry or G/L Entry."
+    ],
+    "uiLearning": "More screenshots are valuable only with claim boundaries: Page 471 and Page 472 screenshots are accepted as page-context evidence; Page 470 screenshot is rejected because it shows Role Center despite route attempts.",
+    "nextCase": "VAT-POSTING-SETUP-ROUTE-RECOVERY",
+    "updatedAt": "2026-07-07T07:38:30.000Z"
   },
   "latestCustomerVatDimensionBoundaryDecision": {
     "caseId": "CUSTOMER-VAT-DIMENSION-BOUNDARY-DECISION",

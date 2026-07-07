@@ -1,41 +1,30 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "ITEM-SERVICE-U-ITEM-HW100-PRICE-COST-FIELD-ROUTE",
-  "caseId": "ITEM-SERVICE-U-ITEM-HW100-PRICE-COST-FIELD-ROUTE",
-  "status": "observed",
-  "completedAt": "2026-07-07T07:34:00.000Z",
-  "updatedAt": "2026-07-07T07:34:00.000Z",
-  "mode": "universaarl-masterdata-item-price-cost-route",
+  "runId": "VAT-POSTING-SETUP-READFIRST",
+  "caseId": "VAT-POSTING-SETUP-READFIRST",
+  "status": "partially-observed",
+  "completedAt": "2026-07-07T07:37:54.782Z",
+  "updatedAt": "2026-07-07T07:38:30.000Z",
+  "mode": "universaarl-foundation-vat-readfirst",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Playwright used the proven U-ITEM-HW100 item-card route in playthru / UNIVERSAARL-DE and completed the realistic fictional price/cost basis. In controlled attempts within this case, VK-Preis changed from 0,00 to 149,00 and Einstandspreis changed from 0,00 to 100,00. The final proof run was idempotent and showed both values visible after reload. No setup, document, journal, Preview Posting, Posting, payment, API shortcut, company switch or confidential real customer data occurred.",
-  "resultPath": "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-price-cost-field-route/result.json",
+  "summary": "Playwright ran a read-only VAT/USt setup context proof in playthru / UNIVERSAARL-DE. VAT Product Posting Groups and VAT Posting Setup passed screenshot QA. VAT Business Posting Groups did not pass screenshot QA because the final screenshot showed Role Center/search-route remnants instead of the real Page 470 list. No setup, posting setup, master data, document, journal, Preview Posting, Posting, payment, API shortcut, company switch or confidential real customer data occurred.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/vat-posting-setup-readfirst/result.json",
   "changedArtifacts": [
     "package.json",
-    "playwright/projects/fibu-book5/tests/item-service-u-item-hw100-price-cost-field-route.spec.ts",
-    "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-price-cost-field-route/",
-    ".agent/state/cases/vat-posting-setup-readfirst.json",
+    "playwright/projects/fibu-book5/tests/vat-posting-setup-readfirst.spec.ts",
+    "playwright/projects/fibu-book5/evidence/vat-posting-setup-readfirst/",
+    ".agent/state/cases/vat-posting-setup-route-recovery.json",
     ".agent/state/current.json",
     ".agent/state/last_run_summary.json"
   ],
   "businessCentralOpened": true,
   "playwrightLiveRunExecuted": true,
   "setupChanged": false,
-  "masterDataChanged": true,
+  "masterDataChanged": false,
   "currentRunMasterDataChanged": false,
-  "changedFields": [
-    {
-      "field": "Unit Price / VK-Preis",
-      "before": "0,00",
-      "after": "149,00"
-    },
-    {
-      "field": "Unit Cost / Einstandspreis",
-      "before": "0,00",
-      "after": "100,00"
-    }
-  ],
+  "changedFields": [],
   "draftCreated": false,
   "previewPosting": false,
   "posted": false,
@@ -45,10 +34,10 @@
   "confidentialRealCustomerDataUsed": false,
   "actionsTaken": [
     "Validated stored Business Central auth for playthru / UNIVERSAARL-DE.",
-    "Ran a guarded Playwright item price/cost write gate for U-ITEM-HW100.",
-    "Captured before, expanded, after and reload-proof screenshots.",
-    "Set or proved only Unit Cost / Einstandspreis and Unit Price / VK-Preis.",
-    "Updated active state to VAT-POSTING-SETUP-READFIRST after the item gap closed."
+    "Opened VAT Business Posting Groups, VAT Product Posting Groups and VAT Posting Setup read-only.",
+    "Captured text, screenshots and screenshot-QA metadata for all three VAT/USt contexts.",
+    "Visually rejected the Page 470 screenshot because it showed Role Center instead of the VAT Business Posting Groups list.",
+    "Updated active state to VAT-POSTING-SETUP-ROUTE-RECOVERY."
   ],
   "actionsNotTaken": [
     "No setup was changed.",
@@ -63,28 +52,30 @@
     "No confidential real customer data was used."
   ],
   "proved": [
-    "U-ITEM-HW100 is a realistic fictional Universaarl item with Unit Cost / Einstandspreis 100,00.",
-    "U-ITEM-HW100 is a realistic fictional Universaarl item with Unit Price / VK-Preis 149,00.",
-    "Both values are visible after reload.",
-    "The previous card/list/FactBox screenshot confusion is addressed with explicit screenshot QA boundaries."
+    "VAT Product Posting Groups / MwSt.-Produktbuchungsgruppen showed VAT19 / USt 19 Prozent read-only.",
+    "VAT Posting Setup / MwSt.-Buchungsmatrix opened read-only and showed setup columns.",
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "No setup, master data, document, Preview Posting, Posting, payment or API shortcut occurred."
   ],
   "notProved": [
-    "No O2C/P2P readiness.",
-    "No posting, ledger, VAT or UAT readiness.",
-    "No final customer claim beyond the playthru sandbox observation."
+    "VAT Business Posting Groups / MwSt.-Geschaeftsbuchungsgruppen did not pass screenshot QA.",
+    "No German VAT correctness.",
+    "No INLAND/VAT19 setup completeness.",
+    "No VAT account correctness.",
+    "No Preview Posting, VAT Entry or G/L Entry."
   ],
   "warnings": [
-    "The final proof screenshot is list/FactBox context, not full item-card proof; the full card proof is in the earlier screenshots from this case.",
-    "Do not start O2C/P2P until VAT/Posting Groups/customer readiness is refreshed."
+    "The rejected Page 470 screenshot is useful diagnostics, not proof.",
+    "Do not start O2C/P2P until VAT Business Posting Groups, Posting Groups and Foundation readiness are resolved."
   ],
   "nextStepDecision": {
-    "currentCase": "ITEM-SERVICE-U-ITEM-HW100-PRICE-COST-FIELD-ROUTE",
-    "plannedNextCaseBeforeReview": "ITEM-SERVICE-U-ITEM-HW100-PRICE-COST-FIELD-ROUTE",
+    "currentCase": "VAT-POSTING-SETUP-READFIRST",
+    "plannedNextCaseBeforeReview": "VAT-POSTING-SETUP-READFIRST",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The item price/cost gap was the direct blocker after card route recovery.",
-    "selectedNextCase": "VAT-POSTING-SETUP-READFIRST",
-    "whySelectedNextCaseIsBest": "The item basis no longer blocks Foundation work, so VAT/USt setup should be rechecked read-only before O2C/P2P documents."
+    "reason": "VAT/USt setup context was the right next Foundation read-first step after item price/cost proof, but Page 470 remained unproven.",
+    "selectedNextCase": "VAT-POSTING-SETUP-ROUTE-RECOVERY",
+    "whySelectedNextCaseIsBest": "Page 470 must be recovered or explicitly parked before Foundation Readiness can use VAT Business Posting Groups."
   },
-  "nextCase": "VAT-POSTING-SETUP-READFIRST",
-  "nextStep": "Run a read-first VAT/USt posting setup proof in playthru / UNIVERSAARL-DE. No setup write, no document, no Preview Posting, no Posting."
+  "nextCase": "VAT-POSTING-SETUP-ROUTE-RECOVERY",
+  "nextStep": "Recover the read-only route to MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups. Do not accept Role Center/search-overlay screenshots as proof. No setup write, no document, no Preview Posting, no Posting."
 }
