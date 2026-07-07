@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "caseId": "CUSTOMER-SETUP-VALUE-SELECTION-DECISION",
+  "status": "ready-local-decision",
+  "mode": "universaarl-masterdata-setup-value-selection",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w2-core-masterdata-customer-setup-value-selection",
+  "workstream": "WS04 Master Data / Finance Setup",
+  "epic": "Customer master data setup values",
+  "issueType": "Decision",
+  "purpose": "Choose exact setup field values for U-CUST-100 from accepted Universaarl evidence before any customer setup write gate.",
+  "businessPurpose": "The first realistic Universaarl customer must use real Business Central setup values, not guessed values or mockups. The decision must name the exact fields, values, evidence source and boundaries before a later write gate can update the customer card.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/customer-setup-route-recovery-readfirst/result.json",
+    "playwright/projects/fibu-book5/evidence/target-032b-general-posting-groups-controlled-write-gate/TARGET-032B-result.json",
+    "playwright/projects/fibu-book5/evidence/target-031b-customer-posting-group-inland-write-gate/TARGET-031B-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/README.md",
+    "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/result.json"
+  ],
+  "allowedActions": [
+    "read-existing-evidence",
+    "select-candidate-setup-values-local-only",
+    "write-decision-json",
+    "prepare-narrow-write-gate-case"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "edit-customer",
+    "save-customer",
+    "change-posting-group",
+    "change-payment-terms",
+    "change-vat-setup",
+    "change-dimensions",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "use-confidential-real-customer-data"
+  ],
+  "mustDecide": [
+    "Customer Posting Group candidate and evidence boundary.",
+    "Gen. Business Posting Group candidate and evidence boundary.",
+    "VAT Business Posting Group candidate and evidence boundary.",
+    "Payment Terms candidate and evidence boundary.",
+    "Which customer card fields remain parked.",
+    "Whether the next write gate is narrow enough to be reversible and reopen-proven."
+  ],
+  "acceptanceCriteria": [
+    "Every proposed value has a concrete Universaarl evidence reference.",
+    "The decision states what each value proves and does not prove.",
+    "No General Posting Setup, VAT correctness, O2C readiness, Preview Posting or Posting claim is made.",
+    "The next write gate, if prepared, names exact fields and stop conditions.",
+    "No real or confidential customer data is used."
+  ],
+  "stopIf": [
+    "A proposed value is only guessed from terminology.",
+    "A required setup value lacks accepted Universaarl evidence.",
+    "The decision would imply posting readiness.",
+    "The next step would require Business Central write access without a separate Smart Decision write gate."
+  ],
+  "nextCaseIfReady": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
+  "nextCaseIfBlocked": "CUSTOMER-SETUP-VALUE-SELECTION-DECISION-FOLLOWUP",
+  "updatedAt": "2026-07-07T01:30:52.541Z"
+}

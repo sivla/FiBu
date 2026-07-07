@@ -3,12 +3,12 @@
   "purpose": "last-run-summary",
   "runId": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
   "caseId": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
-  "status": "partially-observed-route-recovery",
-  "completedAt": "2026-07-07T01:13:56.011Z",
+  "status": "partially-observed-route-recovery-parked-with-foundation-reference",
+  "completedAt": "2026-07-07T01:29:08.885Z",
   "mode": "universaarl-masterdata-setup-route-recovery",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Read-first customer setup route recovery ran in real Business Central UI. The page/report explorer route recovered 3/4 setup dependencies: Debitorenbuchungsgruppen, MwSt.-Geschaeftsbuchungsgruppen and Zahlungsbedingungen. Geschaeftsbuchungsgruppen remains blocked in Tell-Me/search overlay. No data was changed.",
+  "summary": "Read-first customer setup route recovery reran in real playthru / UNIVERSAARL-DE UI with additional screenshot QA. The current runner still recovers 3/4 dependency pages and still blocks General Business Posting Groups. Visual review and existing TARGET-032A/TARGET-032B evidence show a better path: consume the already accepted Page 312/INLAND Foundation proof instead of repeating this route.",
   "resultPath": "playwright/projects/fibu-book5/evidence/customer-setup-route-recovery-readfirst/result.json",
   "changedArtifacts": [
     "playwright/projects/fibu-book5/tests/customer-setup-route-recovery-readfirst.spec.ts",
@@ -47,22 +47,23 @@
   "apiShortcut": false,
   "proved": [
     "playthru / UNIVERSAARL-DE was used for a real Business Central read-first route-recovery run.",
-    "Debitorenbuchungsgruppen / Customer Posting Groups was recovered read-only via explore-pages-and-reports.",
-    "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups was recovered read-only via explore-pages-and-reports.",
-    "Zahlungsbedingungen / Payment Terms was recovered read-only via explore-pages-and-reports.",
-    "No setup, master data, document, Preview Posting, Posting, payment or API shortcut was changed."
+    "Debitorenbuchungsgruppen / Customer Posting Groups was recovered read-only.",
+    "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups was recovered read-only.",
+    "Zahlungsbedingungen / Payment Terms was recovered read-only.",
+    "Existing Universaarl TARGET-032B evidence proves INLAND on Page 312 after reopen.",
+    "No setup, master data, document, Preview Posting, Posting, payment or API shortcut was changed in this run."
   ],
   "notProved": [
+    "The current customer route-recovery runner still does not open General Business Posting Groups itself.",
     "No customer setup value was selected or written.",
-    "No setup correctness, VAT correctness or O2C readiness.",
-    "Geschaeftsbuchungsgruppen / Gen. Business Posting Groups remains blocked: Required page signal missing: /Code/i; Visible state still looks like Tell-Me/search overlay."
+    "No General Posting Setup row, VAT correctness, O2C readiness, Preview Posting or Posting is proven."
   ],
   "blockedBy": [
-    "Geschaeftsbuchungsgruppen / Gen. Business Posting Groups: Required page signal missing: /Code/i",
-    "Geschaeftsbuchungsgruppen / Gen. Business Posting Groups: Visible state still looks like Tell-Me/search overlay."
+    "Current route-recovery runner: General Business Posting Groups still lands in Tell-Me/search overlay or Role Center.",
+    "Value write remains blocked until exact setup values are selected from accepted evidence."
   ],
   "screenshotQa": {
-    "capturedCount": 40,
+    "capturedCount": 28,
     "acceptedForWriteGate": false,
     "acceptedPages": [
       "Debitorenbuchungsgruppen / Customer Posting Groups",
@@ -72,48 +73,50 @@
     "blockedPages": [
       {
         "label": "Geschaeftsbuchungsgruppen / Gen. Business Posting Groups",
-        "routeUsed": "explore-pages-and-reports",
-        "reason": "Required page signal missing: /Code/i; Visible state still looks like Tell-Me/search overlay."
+        "routeUsed": "customer-route-recovery-runner",
+        "reason": "Still search-overlay/Role-Center blocker in current runner; parked via TARGET-032A/TARGET-032B Foundation reference."
       }
     ],
-    "reason": "Accepted as partial route proof: real Business Central screenshots and Page Inspection confirm 3/4 setup pages. Customer setup write gate remains closed because General Business Posting Groups is still a Tell-Me/search-overlay blocker."
+    "reason": "Current screenshots prove the remaining route is not worth repeating as-is; existing TARGET-032A/TARGET-032B screenshots are the stronger accepted Page 312/INLAND proof."
   },
-  "uiLearning": "The page/report explorer route can recover setup pages that direct page-id navigation and broad Tell-Me categories miss. It recovered Debitorenbuchungsgruppen, MwSt.-Geschaeftsbuchungsgruppen and Zahlungsbedingungen. Geschaeftsbuchungsgruppen still needs a better exact-search term or alternate navigation route.",
+  "uiLearning": "More screenshots changed the decision: the failure is not lack of clicks, it is the wrong route. For Page 312, consume existing direct-page Foundation evidence rather than repeating Tell-Me/explorer search.",
   "nextStepDecision": {
     "currentCase": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
     "plannedNextCaseBeforeReview": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
-    "lastEvidenceSummary": "Recovered 3/4 customer setup dependency pages.",
+    "lastEvidenceSummary": "3/4 dependency pages recovered by current runner; Page 312/INLAND covered by TARGET-032A/TARGET-032B Foundation evidence.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "At least one required setup page remains blocked; write gate remains blocked.",
+    "reason": "A write gate still needs exact value selection first. The next step is a local value-selection decision, not another route retry and not a blind write.",
     "lookaheadReviewed": [
       {
+        "caseId": "CUSTOMER-SETUP-VALUE-SELECTION-DECISION",
+        "status": "ready-next",
+        "reason": "Accepted evidence now exists for selecting candidate values without more BC writes."
+      },
+      {
         "caseId": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
-        "status": "blocked",
-        "reason": "Route recovery remains incomplete."
+        "status": "ready-after-current",
+        "reason": "Only after exact values and field scope are selected."
       },
       {
         "caseId": "O2C-MINIMAL-ROUTE-DECISION",
         "status": "needs-setup-first",
-        "reason": "O2C needs setup values plus item/service readiness before a process route."
-      },
-      {
-        "caseId": "CUSTOMER-TRAINING-SETUP-FIELDS-DRAFT",
-        "status": "ready-after-current",
-        "reason": "Only accepted setup pages can feed training text; blocked routes remain an internal note."
+        "reason": "Customer setup and posting setup boundaries still gate O2C."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
-    "whySelectedNextCaseIsBest": "Repeating the same write gate would be unsafe while route recovery is incomplete.",
+    "queueChangesMade": [
+      "Parked further as-is Page 312 route retries; inserted value-selection decision before write gate."
+    ],
+    "selectedNextCase": "CUSTOMER-SETUP-VALUE-SELECTION-DECISION",
+    "whySelectedNextCaseIsBest": "It turns real evidence into a controlled customer setup decision without guessing or adding mock data.",
     "risksBeforeNextCase": [
-      "Visible setup list does not equal correctness.",
-      "Do not assign values until a separate Smart Decision names exact codes."
+      "Do not treat General Posting Setup as proven.",
+      "Do not assign values until exact codes are selected from evidence."
     ],
     "requiredPreparation": [
-      "Repair remaining blocked route(s) or consciously park them with a safer Foundation alternative."
+      "Read Customer Posting Group, General Business Posting Group, VAT Business Posting Group and Payment Terms evidence; name exact field/value pairs and boundaries."
     ]
   },
-  "nextCase": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
+  "nextCase": "CUSTOMER-SETUP-VALUE-SELECTION-DECISION",
   "nextStep": "Recover the remaining General Business Posting Groups route with a materially different exact term/navigation route. Do not open CUSTOMER-SETUP-VALUE-WRITE-GATE until all setup dependencies are accepted by screenshot QA and Page Inspection.",
   "updatedAt": "2026-07-07T01:15:00.215Z"
 }

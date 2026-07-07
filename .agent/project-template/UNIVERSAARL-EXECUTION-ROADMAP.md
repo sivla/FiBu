@@ -26,10 +26,10 @@ The read-first return has happened. Further live work must now start from the co
 | Target environment | `playthru` only |
 | Target company | `UNIVERSAARL-DE` |
 | Reference company name | Universaarl GmbH |
-| Current live status | read-first resume has produced Foundation evidence; default next live posture is read-first, no writes unless a later case explicitly opens a write gate |
+| Current live status | read-first resume and customer setup route recovery have produced Foundation/Master-Data dependency evidence; default next posture is local value selection, no writes unless a later case explicitly opens a write gate |
 | Parked case | `TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION` |
 | Completed resume pilot | `TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK` |
-| Next live type | none selected; TARGET-073B ran as no-write Surface-/Editor-Diagnose and is blocked |
+| Next live type | none selected; next step is local `CUSTOMER-SETUP-VALUE-SELECTION-DECISION`, not another blind search retry |
 | Artifact classification | `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` |
 | Next local control task | keep roadmap, dashboard, state and artifact classification aligned; demote historical next-step noise instead of adding new layers |
 
@@ -332,8 +332,8 @@ Use this exact order:
 2. Do not start another broad cleanup pass.
 3. Keep `FOUNDATION-READINESS-DECISION.md` as the active boundary.
 4. Do not repeat `TARGET-073` as-is.
-5. Prepare the next materially different Foundation gap case: `PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST`.
-6. Keep Master Data, VAT writes, Posting Group writes, Preview Posting and Posting parked until that evidence is consumed by Foundation Readiness.
+5. Consume the latest customer setup route recovery: 3/4 setup pages were recovered in the current runner; Page 312/Geschaeftsbuchungsgruppen remains a runner-specific search blocker but has stronger accepted Universaarl Foundation evidence in `TARGET-032A/TARGET-032B`.
+6. Run `CUSTOMER-SETUP-VALUE-SELECTION-DECISION` locally before any customer setup write gate. Keep VAT writes, Posting Group writes, Preview Posting and Posting parked until exact values and boundaries are named from accepted evidence.
 
 ## Acceptance criteria
 

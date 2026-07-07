@@ -14,7 +14,7 @@ Last reviewed: 2026-07-07
 | Artefakt-Klassifikation | `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` |
 | Geparkter Live-Case | `TARGET-073` |
 | Letzter Resume-Pilot | `TARGET-075`, read-first, no-write, abgeschlossen |
-| Aktiver Case | `CUSTOMER-SETUP-DEPENDENCY-READFIRST` |
+| Aktiver Case | `CUSTOMER-SETUP-VALUE-SELECTION-DECISION` |
 | Legacy-Grenze | RM-DEMO, MCP_1_20260210, CRONUS, Rhein-Main und RM-* sind keine aktive Projektwahrheit. |
 
 ## Steuerungsregel
@@ -55,7 +55,7 @@ M0 ist als Arbeitsrahmen nutzbar. Der naechste sinnvolle Fortschritt ist keine w
 | Freeze/Resume | passed-for-read-first-history | TARGET-075 ist gelaufen; neue Live-Arbeit braucht trotzdem aktuellen Auth-/Case-Gate. |
 | Finance Foundation | blocked-by-specific-gaps | Foundation-Decision aktuell halten: Page 314 und Page 472 active editor sind die harten UI-/Setup-Grenzen; TARGET-073B ist als no-write Proof gelaufen und blockiert. |
 | VAT/USt, Dimensions, Posting Groups | partial/blocked | INLAND/VAT19 sichtbar, Page 472-Hauptoberflaeche und Page Inspection/Tabelle 325 bewiesen; VAT-Matrix-Schreibroute und Page 314 bleiben nicht posting-ready. |
-| Master Data | customer-setup-dependency-readfirst-next | Debitor `U-CUST-100 / Saarland Maschinenbau AG` ist auf echter `playthru`-Debitorenkarte sichtbar. Die lokale Value Decision blockiert Buchungsgruppen-, USt.- und Zahlungsbedingungs-Writes, bis die exakten Setup-Listen, Dropdowns/Lookups, Tooltips und Page-Inspection-Kontexte read-first bewiesen sind. |
+| Master Data | customer-setup-value-selection-next | Debitor `U-CUST-100 / Saarland Maschinenbau AG` ist auf echter `playthru`-Debitorenkarte sichtbar. Customer Posting Groups, VAT Business Posting Groups und Zahlungsbedingungen wurden im aktuellen Route-Recovery-Lauf read-only belegt; General Business Posting Group wird nicht weiter ueber den fehlerhaften Suchpfad wiederholt, sondern ueber bestehende Universaarl-Foundation-Evidence `TARGET-032A/TARGET-032B` konsumiert. Naechster Schritt ist eine lokale Wertauswahl-Entscheidung, noch kein Write. |
 | Buch/Handbuch/Training | draft-with-customer-card-module | Debitorenkarten-Training `TR-03-01A` ist als Draft vorhanden; Screenshots stammen aus echter `playthru`-Oberflaeche, nicht aus Mockups. |
 | Playwright/Evidence | draft | Read-first Specs und Screenshot-QA stabilisieren; keine Legacy-Routen als aktive Tests nutzen. |
 | Legacy-Decommission | active-work | Legacy nur inventarisieren, neutralisieren, portieren oder parken; Evidence nicht blind loeschen. |
@@ -90,7 +90,7 @@ M0 ist als Arbeitsrahmen nutzbar. Der naechste sinnvolle Fortschritt ist keine w
 3. Vor Live-Arbeit: `agent:preflight`, `check:encoding`, `agent:quality:audit`, `agent:resume:check || true`, `agent:freeze:status || true`.
 4. `TARGET-073` bleibt geparkt.
 5. Kein as-is Retry von TARGET-073 oder TARGET-073B; TARGET-073B ist konsumierte blockierte No-Write-Evidence.
-6. `CUSTOMER-SETUP-VALUE-DECISION` ist lokal erledigt: Keine setup-abhaengigen Debitorenwerte werden geraten. Naechster Schritt ist `CUSTOMER-SETUP-DEPENDENCY-READFIRST`: exakte Setupwerte fuer Debitorenbuchungsgruppe, Geschaeftsbuchungsgruppe, USt.-Geschaeftsbuchungsgruppe und Zahlungsbedingungen mit mehrstufiger Screenshot-QA lesen. Kein Write, kein Beleg, kein Preview, kein Posting.
+6. `CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST` ist als aktueller UI-Lernlauf konsumiert: 3/4 Setup-Seiten wurden direkt im Lauf belegt; Page 312/Geschaeftsbuchungsgruppen bleibt in diesem Runner ein Suchoverlay-Blocker und wird ueber die staerkere bestehende Universaarl-Foundation-Evidence `TARGET-032A/TARGET-032B` referenziert. Naechster Schritt ist `CUSTOMER-SETUP-VALUE-SELECTION-DECISION`: exakte Debitoren-Setupwerte aus akzeptierter Evidence waehlen. Kein Write, kein Beleg, kein Preview, kein Posting.
 
 ## Update rule
 

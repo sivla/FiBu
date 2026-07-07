@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
-  "status": "partially-observed-route-recovery",
+  "status": "partially-observed-route-recovery-parked-with-foundation-reference",
   "mode": "universaarl-masterdata-setup-route-recovery",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -62,19 +62,27 @@
     "The UI opens an unexpected page and Page Inspection cannot clarify it.",
     "Authentication is expired or ambiguous."
   ],
-  "nextCaseIfReady": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
+  "nextCaseIfReady": "CUSTOMER-SETUP-VALUE-SELECTION-DECISION",
   "nextCaseIfBlocked": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
-  "updatedAt": "2026-07-07T01:15:00.215Z",
+  "updatedAt": "2026-07-07T01:29:08.885Z",
   "lastResultPath": "playwright/projects/fibu-book5/evidence/customer-setup-route-recovery-readfirst/result.json",
-  "routeLearning": "The page/report explorer route can recover setup pages that direct page-id navigation and broad Tell-Me categories miss. It recovered Debitorenbuchungsgruppen, MwSt.-Geschaeftsbuchungsgruppen and Zahlungsbedingungen. Geschaeftsbuchungsgruppen still needs a better exact-search term or alternate navigation route.",
+  "routeLearning": "The page/report explorer route recovered 3/4 pages. For Page 312, use existing stronger TARGET-032A/TARGET-032B Foundation evidence instead of repeating Tell-Me/search overlay attempts.",
   "nextRouteHypotheses": [
-    "For Geschaeftsbuchungsgruppen, use a different exact term such as Allgemeine Geschaeftsbuchungsgruppen, Buchungsgruppen or Gen. Bus. Posting Groups instead of repeating broad category clicks.",
-    "Keep using page/report explorer screenshots because it produced real setup pages for 3/4 dependencies.",
-    "Accept a page only when screenshot text and Page Inspection prove the actual setup list; Tell-Me overlay remains blocker evidence only."
+    "Do not repeat the same Tell-Me/explorer route for Page 312 unless a materially different UI helper is built.",
+    "Use TARGET-032A/TARGET-032B as Foundation reference for value selection.",
+    "Next work should choose exact setup values locally before any write gate."
   ],
   "observedPages": [
     "Debitorenbuchungsgruppen / Customer Posting Groups",
     "MwSt.-Geschaeftsbuchungsgruppen / VAT Business Posting Groups",
     "Zahlungsbedingungen / Payment Terms"
-  ]
+  ],
+  "parkedWithFoundationReference": {
+    "reason": "The current customer route-recovery runner still cannot open Page 312 reliably, but TARGET-032A/TARGET-032B already provide stronger Universaarl Foundation evidence for Page 312 and INLAND. Further blind route retries are lower value.",
+    "acceptedReferences": [
+      "playwright/projects/fibu-book5/evidence/target-032a-general-posting-groups-source-and-ui-discovery/TARGET-032A-result.json",
+      "playwright/projects/fibu-book5/evidence/target-032b-general-posting-groups-controlled-write-gate/TARGET-032B-result.json"
+    ],
+    "boundary": "This parks only the navigation blocker. It does not prove General Posting Setup, O2C readiness, Preview Posting or Posting."
+  }
 }

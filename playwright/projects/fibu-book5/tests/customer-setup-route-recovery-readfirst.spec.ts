@@ -74,10 +74,25 @@ const probes: Probe[] = [
     id: 'general-business-posting-groups',
     pageId: 312,
     label: 'Geschaeftsbuchungsgruppen / Gen. Business Posting Groups',
-    searchTerms: ['Geschaeftsbuchungsgruppen', 'Geschäftsbuchungsgruppen', 'Gen. Business Posting Groups'],
-    title: /Geschaeftsbuchungsgruppen|Gesch[a-z]*ftsbuchungsgruppen|Gen\.? Business Posting Groups/i,
+    searchTerms: [
+      'Allgemeine Geschaeftsbuchungsgruppen',
+      'Allgemeine Geschäftsbuchungsgruppen',
+      'Geschäftsbuchungsgruppen',
+      'Geschaeftsbuchungsgruppen',
+      'Buchungsgruppen',
+      'Gen. Bus. Posting Groups',
+      'Gen. Business Posting Groups'
+    ],
+    title: /Allgemeine\s+Geschaeftsbuchungsgruppen|Allgemeine\s+Gesch[a-z]*ftsbuchungsgruppen|Geschaeftsbuchungsgruppen|Gesch[a-z]*ftsbuchungsgruppen|Gen\.?\s*Bus\.?\s*Posting Groups|Gen\.?\s*Business Posting Groups/i,
     requiredSignals: [/Code/i, /Beschreibung|Description/i],
-    candidates: [/Geschaeftsbuchungsgruppen/i, /Gesch[a-z]*ftsbuchungsgruppen/i, /Gen\.? Business Posting Groups/i],
+    candidates: [
+      /Allgemeine\s+Geschaeftsbuchungsgruppen/i,
+      /Allgemeine\s+Gesch[a-z]*ftsbuchungsgruppen/i,
+      /Geschaeftsbuchungsgruppen/i,
+      /Gesch[a-z]*ftsbuchungsgruppen/i,
+      /Gen\.?\s*Bus\.?\s*Posting Groups/i,
+      /Gen\.?\s*Business Posting Groups/i
+    ],
     beginnerMeaning:
       'Geschaeftsbuchungsgruppen beschreiben, mit welcher Art Geschaeftspartner die Firma handelt. Zusammen mit Produktbuchungsgruppen steuern sie die Buchungsmatrix.'
   },
@@ -136,6 +151,14 @@ function buildTargetUrl(pageId?: number) {
   url.searchParams.set('company', TARGET_COMPANY);
   url.searchParams.set('dc', '0');
   if (pageId) url.searchParams.set('page', String(pageId));
+  return url.toString();
+}
+
+function buildTargetUrlWithoutDisplayContext(pageId: number) {
+  const url = targetInstanceUrl();
+  url.searchParams.set('company', TARGET_COMPANY);
+  url.searchParams.delete('dc');
+  url.searchParams.set('page', String(pageId));
   return url.toString();
 }
 
@@ -452,34 +475,63 @@ async function clickExactExplorerCandidate(page: Page, probe: Probe) {
 }
 
 async function tryDirectRoute(page: Page, probe: Probe, captures: Capture[]) {
-  await page.goto(buildTargetUrl(probe.pageId), { waitUntil: 'domcontentloaded', timeout: 120_000 });
-  await waitForBusinessCentralShell(page);
-  await dismissTours(page);
-  await page.keyboard.press('Escape').catch(() => undefined);
-  await page.waitForTimeout(1200);
-  const text = (await compactSignals(page, probe)).join('\n');
-  const shot = await capture(page, captures, `customer-route-recovery-${probe.id}-010-direct.png`, {
-    page: probe.label,
-    pageId: probe.pageId,
-    step: 'Direct page-id route after dependency blocker',
-    routeUsed: 'direct-page-id',
-    visibleSignals: text.split('\n').slice(0, 90),
-    internallyProves: pageLooksAccepted(text, probe) ? 'Direct page route shows the target setup page.' : 'Direct route is not accepted without Page Inspection.',
-    beginnerMeaning: probe.beginnerMeaning,
-    noWrite: true,
-    noPost: true,
-    noPreview: true
-  });
-  const inspection = await inspectCurrentPage(page, captures, probe, `customer-route-recovery-${probe.id}-011-direct-page-inspection.png`, 'direct-page-id');
-  const accepted = pageLooksAccepted(text, probe) && probe.title.test(inspection.text) && !/Business Manager Role Center|Rollencenter/i.test(inspection.text);
-  return {
-    routeUsed: 'direct-page-id',
-    accepted,
-    shot,
-    text,
-    inspection,
-    blockedBy: accepted ? [] : blockedReasons(text, inspection.text, probe)
-  };
+  const directAttempts = [
+    { routeUsed: 'direct-page-id', url: buildTargetUrl(probe.pageId), suffix: '010-direct' },
+    {
+      routeUsed: 'direct-page-id-no-dc',
+      url: buildTargetUrlWithoutDisplayContext(probe.pageId),
+      suffix: '012-direct-no-dc'
+    }
+  ];
+
+  let lastAttempt: {
+    routeUsed: string;
+    accepted: boolean;
+    shot: Capture;
+    text: string;
+    inspection: Awaited<ReturnType<typeof inspectCurrentPage>>;
+    blockedBy: string[];
+  } | null = null;
+
+  for (const attempt of directAttempts) {
+    await page.goto(attempt.url, { waitUntil: 'domcontentloaded', timeout: 120_000 });
+    await waitForBusinessCentralShell(page);
+    await dismissTours(page);
+    await page.keyboard.press('Escape').catch(() => undefined);
+    await page.waitForTimeout(1200);
+    const text = (await compactSignals(page, probe)).join('\n');
+    const shot = await capture(page, captures, `customer-route-recovery-${probe.id}-${attempt.suffix}.png`, {
+      page: probe.label,
+      pageId: probe.pageId,
+      step: `Direct page-id route after dependency blocker (${attempt.routeUsed})`,
+      routeUsed: attempt.routeUsed,
+      visibleSignals: text.split('\n').slice(0, 90),
+      internallyProves: pageLooksAccepted(text, probe) ? 'Direct page route shows the target setup page.' : 'Direct route is not accepted without Page Inspection.',
+      beginnerMeaning: probe.beginnerMeaning,
+      noWrite: true,
+      noPost: true,
+      noPreview: true
+    });
+    const inspection = await inspectCurrentPage(
+      page,
+      captures,
+      probe,
+      `customer-route-recovery-${probe.id}-${attempt.suffix}-page-inspection.png`,
+      attempt.routeUsed
+    );
+    const accepted = pageLooksAccepted(text, probe) && probe.title.test(inspection.text) && !/Business Manager Role Center|Rollencenter/i.test(inspection.text);
+    lastAttempt = {
+      routeUsed: attempt.routeUsed,
+      accepted,
+      shot,
+      text,
+      inspection,
+      blockedBy: accepted ? [] : blockedReasons(text, inspection.text, probe)
+    };
+    if (accepted) return lastAttempt;
+  }
+
+  return lastAttempt!;
 }
 
 async function tryTellMeRoute(page: Page, probe: Probe, captures: Capture[]) {
