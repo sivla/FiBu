@@ -1,23 +1,30 @@
 import { spawnSync } from 'node:child_process';
+import fs from 'node:fs';
 
 const checks = [
   {
     id: 'PWS-MD-001',
     area: 'Debitoren / Customers',
     script: 'fibu:pws:md001:customer-context',
-    expectedListSignal: 'pws-md-001-customer-context-readonly.spec.ts'
+    expectedListSignal: 'pws-md-001-customer-context-readonly.spec.ts',
+    specPath: 'playwright/projects/fibu-book5/tests/pws-md-001-customer-context-readonly.spec.ts',
+    expectedMinimumScreenshotCheckpoints: 5
   },
   {
     id: 'PWS-MD-002',
     area: 'Kreditoren / Vendors',
     script: 'fibu:pws:md002:vendor-context',
-    expectedListSignal: 'pws-md-002-vendor-context-readonly.spec.ts'
+    expectedListSignal: 'pws-md-002-vendor-context-readonly.spec.ts',
+    specPath: 'playwright/projects/fibu-book5/tests/pws-md-002-vendor-context-readonly.spec.ts',
+    expectedMinimumScreenshotCheckpoints: 5
   },
   {
     id: 'PWS-MD-003',
     area: 'Artikel und Services / Items and Services',
     script: 'fibu:pws:md003:item-service-context',
-    expectedListSignal: 'pws-md-003-item-service-context-readonly.spec.ts'
+    expectedListSignal: 'pws-md-003-item-service-context-readonly.spec.ts',
+    specPath: 'playwright/projects/fibu-book5/tests/pws-md-003-item-service-context-readonly.spec.ts',
+    expectedMinimumScreenshotCheckpoints: 5
   }
 ];
 
@@ -49,6 +56,26 @@ function parseJson(stdout) {
   return JSON.parse(stdout.slice(start));
 }
 
+function readSpecScreenshotContract(check) {
+  const text = fs.readFileSync(check.specPath, 'utf8');
+  const minimumConstant = `MIN_ACCEPTED_SCREENSHOT_CHECKPOINTS = ${check.expectedMinimumScreenshotCheckpoints}`;
+  const usesMinimumInAcceptance = /captures\.length\s*>=\s*MIN_ACCEPTED_SCREENSHOT_CHECKPOINTS/.test(text);
+  const hasRouteDecision = /route decision context/i.test(text);
+  const hasNoWriteEndContext = /no-write end context/i.test(text);
+  const hasMinimumOutput = /minimumAcceptedCheckpoints:\s*MIN_ACCEPTED_SCREENSHOT_CHECKPOINTS/.test(text);
+  const ok = text.includes(minimumConstant) && usesMinimumInAcceptance && hasRouteDecision && hasNoWriteEndContext && hasMinimumOutput;
+  return {
+    specPath: check.specPath,
+    expectedMinimumScreenshotCheckpoints: check.expectedMinimumScreenshotCheckpoints,
+    ok,
+    hasMinimumConstant: text.includes(minimumConstant),
+    usesMinimumInAcceptance,
+    hasRouteDecision,
+    hasNoWriteEndContext,
+    hasMinimumOutput
+  };
+}
+
 const results = [];
 let ok = true;
 
@@ -56,14 +83,17 @@ for (const check of checks) {
   const child = runCheck(check.script);
   const listed = runList(check.script);
   const listOk = listed.status === 0 && listed.stdout.includes(check.expectedListSignal);
+  const screenshotContract = readSpecScreenshotContract(check);
+  if (!screenshotContract.ok) ok = false;
   if (child.status !== 0) {
     ok = false;
     results.push({
       ...check,
       runnerOk: false,
       listOk,
+      screenshotContract,
       canRunNow: false,
-      blockedBy: ['runner-check-failed'],
+      blockedBy: ['runner-check-failed', ...(screenshotContract.ok ? [] : ['screenshot-contract-too-weak'])],
       stderr: child.stderr?.trim() ?? '',
       stdout: child.stdout?.trim() ?? '',
       listStdoutTail: listed.stdout?.slice(-500) ?? '',
@@ -79,6 +109,7 @@ for (const check of checks) {
       ...check,
       runnerOk: true,
       listOk,
+      screenshotContract,
       caseId: parsed.caseId,
       expectedInstance: parsed.expectedInstance,
       expectedCompany: parsed.expectedCompany,
@@ -100,8 +131,9 @@ for (const check of checks) {
       ...check,
       runnerOk: false,
       listOk,
+      screenshotContract,
       canRunNow: false,
-      blockedBy: ['runner-json-parse-failed'],
+      blockedBy: ['runner-json-parse-failed', ...(screenshotContract.ok ? [] : ['screenshot-contract-too-weak'])],
       error: error instanceof Error ? error.message : String(error)
     });
   }
@@ -111,6 +143,7 @@ const allPrepared = results.every(
   (result) =>
     result.runnerOk === true &&
     result.listOk === true &&
+    result.screenshotContract?.ok === true &&
     result.targetUrlReady === true &&
     result.authStateChecked === true &&
     result.authStateCheckScript === 'auth:bc:check:overnight' &&
@@ -121,6 +154,7 @@ const localPrepared = results.every(
   (result) =>
     result.runnerOk === true &&
     result.listOk === true &&
+    result.screenshotContract?.ok === true &&
     result.targetUrlReady === true &&
     result.authStateChecked === true &&
     result.authStateCheckScript === 'auth:bc:check:overnight' &&
@@ -170,6 +204,15 @@ const output = {
     confidentialRealCustomerDataAllowed: false,
     acceptedDataMode:
       'customer-project-like Universaarl records that are fictional or anonymized, have business purpose, owner, dependencies, UAT/training use and BC setup readiness, and are proven through real playthru UI evidence before they become book or process truth'
+  },
+  screenshotQaBoundary: {
+    minimumAcceptedCheckpoints: 5,
+    requiredSpecSignals: [
+      'minimumAcceptedCheckpoints',
+      'captures.length >= MIN_ACCEPTED_SCREENSHOT_CHECKPOINTS',
+      'route decision context',
+      'no-write end context'
+    ]
   },
   localPrepared,
   allPrepared,

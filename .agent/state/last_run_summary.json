@@ -1,18 +1,19 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "PWS-MD-SCREENSHOT-QA-MINIMUM-CHECKPOINTS",
+  "runId": "PWS-MD-SCREENSHOT-QA-CHECK-GUARD",
   "caseId": "FOUNDATION-READINESS-DECISION",
-  "status": "completed-local-pws-md-screenshot-qa-minimum-checkpoints",
-  "completedAt": "2026-07-08T09:25:00.000+02:00",
-  "updatedAt": "2026-07-08T09:25:00.000+02:00",
+  "status": "completed-local-pws-md-screenshot-qa-check-guard",
+  "completedAt": "2026-07-08T09:45:00.000+02:00",
+  "updatedAt": "2026-07-08T09:45:00.000+02:00",
   "mode": "universaarl-foundation-readfirst",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "The PWS-MD customer, vendor and item/service read-first specs now require at least five screenshot checkpoints before their screenshot QA is accepted. This makes the next real playthru UI observation less likely to misread Business Central from a single end screenshot.",
-  "resultPath": "playwright/projects/fibu-book5/tests/pws-md-001-customer-context-readonly.spec.ts",
+  "summary": "The aggregate Master Data read-first readiness check now validates that the customer, vendor and item/service specs keep the five-checkpoint screenshot QA contract. This prevents the next real playthru UI observation from silently weakening back to too few screenshots.",
+  "resultPath": "scripts/agent/masterdata-readfirst-check.mjs",
   "changedArtifacts": [
     ".agent/state/last_run_summary.json",
+    "scripts/agent/masterdata-readfirst-check.mjs",
     "playwright/projects/fibu-book5/tests/pws-md-001-customer-context-readonly.spec.ts",
     "playwright/projects/fibu-book5/tests/pws-md-002-vendor-context-readonly.spec.ts",
     "playwright/projects/fibu-book5/tests/pws-md-003-item-service-context-readonly.spec.ts"
@@ -33,10 +34,9 @@
   "uiMockupUsed": false,
   "actionsTaken": [
     "Re-read the durable project objective and confirmed active truth remains playthru / UNIVERSAARL-DE.",
-    "Raised PWS-MD-001, PWS-MD-002 and PWS-MD-003 screenshot QA from three accepted screenshots to at least five accepted checkpoints.",
-    "Added explicit route-decision screenshots so direct-page success and fallback navigation are both documented instead of inferred.",
-    "Added no-write end-context screenshots after Page Inspection to prove the read-first run finishes without an intended edit/write state.",
-    "Kept the change local to Playwright spec logic; no Playwright live run was executed."
+    "Extended agent:masterdata:readfirst:check so it verifies the PWS-MD specs contain the five-checkpoint screenshot QA contract.",
+    "The check now inspects each spec for the minimum checkpoint constant, minimum-based acceptance, route-decision context and no-write end context.",
+    "Kept the change local to readiness checking and Playwright spec contracts; no Playwright live run was executed."
   ],
   "actionsNotTaken": [
     "No Business Central live session was opened.",
@@ -53,10 +53,9 @@
     "No UI mockup was used as evidence."
   ],
   "proved": [
-    "PWS-MD-001 customer context screenshot QA now requires at least five checkpoints.",
-    "PWS-MD-002 vendor context screenshot QA now requires at least five checkpoints.",
-    "PWS-MD-003 item/service context screenshot QA now requires at least five checkpoints.",
-    "The guarded --list and --check modes still pass locally and do not open Business Central."
+    "agent:masterdata:readfirst:check now reports a screenshotContract object for PWS-MD-001, PWS-MD-002 and PWS-MD-003.",
+    "The aggregate check fails if the five-checkpoint screenshot QA contract is weakened.",
+    "The aggregate check still passes locally and does not open Business Central."
   ],
   "notProved": [
     "No fresh Business Central login was captured.",
@@ -70,7 +69,7 @@
   "warnings": [
     "Refresh Playwright auth in the Playwright-managed profile before any live BC/Playwright run.",
     "Run exactly one read-first/no-write Master Data pilot at a time after auth is green and Foundation gates still allow it.",
-    "Do not accept a PWS-MD page claim unless the result has at least five accepted screenshot checkpoints.",
+    "Do not accept a PWS-MD page claim unless the result has at least five accepted screenshot checkpoints and agent:masterdata:readfirst:check remains green.",
     "Use real Business Central UI evidence and customer-project-like Universaarl records; do not use UI mockups, throwaway dummy data or confidential real customer data."
   ],
   "nextStepDecision": {
