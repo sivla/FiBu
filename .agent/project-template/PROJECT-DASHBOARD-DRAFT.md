@@ -58,6 +58,7 @@ M0 ist als Arbeitsrahmen nutzbar. Der naechste sinnvolle Fortschritt ist keine w
 | Master Data | item-write-gate-next | Debitor `U-CUST-100 / Saarland Maschinenbau AG` ist fuer Debitorenkarten-Handbuch/Training nutzbar, aber nicht O2C-ready. Fuer `U-ITEM-HW100` ist das Zielmodell jetzt eindeutig: `Steuerbox Standard U100`, `STK`, `WARE`, `VAT19`, `FIFO`, Zielkosten `100.00`, Zielpreis `149.00`. Der Datensatz darf trotzdem erst nach kontrolliertem BC-Write-Gate und Reopen-Proof fuer O2C/P2P genutzt werden. |
 | Buch/Handbuch/Training | draft-with-customer-card-module | Debitorenkarten-Training `TR-03-01A` ist als Draft vorhanden; Screenshots stammen aus echter `playthru`-Oberflaeche, nicht aus Mockups. |
 | Playwright/Evidence | draft | Read-first Specs und Screenshot-QA stabilisieren; keine Legacy-Routen als aktive Tests nutzen. |
+| Datenrealismus | active-control | Reale Business-Central-Oberflaeche und realistische fiktive Universaarl-Projektdaten nutzen; keine UI-Mockups, keine vertraulichen echten Kundendaten als Evidence oder Buchwahrheit. |
 | Legacy-Decommission | active-work | Legacy nur inventarisieren, neutralisieren, portieren oder parken; Evidence nicht blind loeschen. |
 
 ## Top open decisions

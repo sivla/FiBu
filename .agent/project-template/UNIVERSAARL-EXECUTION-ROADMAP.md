@@ -43,6 +43,7 @@ Active truth:
 - Target company: `UNIVERSAARL-DE`
 - Reference legal entity: Universaarl GmbH
 - Currency and market context: EUR, German customer/training logic
+- Data realism: real Business Central UI plus realistic fictional Universaarl customer/project records; no UI mockups and no confidential real customer data as evidence or book truth.
 - Execution boundary: all practical Business Central and Playwright proof work happens only in `playthru`
 - Current local decision: `FOUNDATION-READINESS-DECISION`
 - Parked live case: `TARGET-073`
