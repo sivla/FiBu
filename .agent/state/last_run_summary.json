@@ -1,22 +1,19 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "PWS-MD-SCREENSHOT-QA-CHECK-GUARD",
+  "runId": "PWS-MD-REAL-CUSTOMER-RUN-PLAN-GUARD",
   "caseId": "FOUNDATION-READINESS-DECISION",
-  "status": "completed-local-pws-md-screenshot-qa-check-guard",
-  "completedAt": "2026-07-08T09:45:00.000+02:00",
-  "updatedAt": "2026-07-08T09:45:00.000+02:00",
+  "status": "completed-local-pws-md-real-customer-run-plan-guard",
+  "completedAt": "2026-07-08T10:35:00.000+02:00",
+  "updatedAt": "2026-07-08T10:35:00.000+02:00",
   "mode": "universaarl-foundation-readfirst",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "The aggregate Master Data read-first readiness check now validates that the customer, vendor and item/service specs keep the five-checkpoint screenshot QA contract. This prevents the next real playthru UI observation from silently weakening back to too few screenshots.",
-  "resultPath": "scripts/agent/masterdata-readfirst-check.mjs",
+  "summary": "agent:run-plan now surfaces agent:masterdata:readfirst:check before any later Master Data read-first or write-gated work. This keeps the real Business Central UI, screenshot QA and realistic fictional Universaarl customer-project boundary visible in the normal planning output.",
+  "resultPath": "scripts/agent/run-plan.mjs",
   "changedArtifacts": [
     ".agent/state/last_run_summary.json",
-    "scripts/agent/masterdata-readfirst-check.mjs",
-    "playwright/projects/fibu-book5/tests/pws-md-001-customer-context-readonly.spec.ts",
-    "playwright/projects/fibu-book5/tests/pws-md-002-vendor-context-readonly.spec.ts",
-    "playwright/projects/fibu-book5/tests/pws-md-003-item-service-context-readonly.spec.ts"
+    "scripts/agent/run-plan.mjs"
   ],
   "businessCentralOpened": false,
   "playwrightLiveRunExecuted": false,
@@ -34,9 +31,9 @@
   "uiMockupUsed": false,
   "actionsTaken": [
     "Re-read the durable project objective and confirmed active truth remains playthru / UNIVERSAARL-DE.",
-    "Extended agent:masterdata:readfirst:check so it verifies the PWS-MD specs contain the five-checkpoint screenshot QA contract.",
-    "The check now inspects each spec for the minimum checkpoint constant, minimum-based acceptance, route-decision context and no-write end context.",
-    "Kept the change local to readiness checking and Playwright spec contracts; no Playwright live run was executed."
+    "Confirmed the Master Data read-first readiness check already enforces the five-checkpoint screenshot QA and real-customer-project boundary.",
+    "Added agent:masterdata:readfirst:check to agent:run-plan steps and validationCommands so this guard is visible before any later Master Data read-first or write-gated work.",
+    "Kept the change local to planning/readiness checking; no Playwright live run was executed."
   ],
   "actionsNotTaken": [
     "No Business Central live session was opened.",
@@ -53,9 +50,9 @@
     "No UI mockup was used as evidence."
   ],
   "proved": [
-    "agent:masterdata:readfirst:check now reports a screenshotContract object for PWS-MD-001, PWS-MD-002 and PWS-MD-003.",
-    "The aggregate check fails if the five-checkpoint screenshot QA contract is weakened.",
-    "The aggregate check still passes locally and does not open Business Central."
+    "agent:run-plan now requires agent:masterdata:readfirst:check before Master Data read-first or write-gated work.",
+    "The standard plan now names the boundary: real Business Central UI evidence, realistic fictional Universaarl customer-project records, no UI mockups and no confidential real customer data.",
+    "The change is local and does not open Business Central."
   ],
   "notProved": [
     "No fresh Business Central login was captured.",

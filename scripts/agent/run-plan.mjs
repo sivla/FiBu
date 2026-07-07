@@ -216,6 +216,14 @@ steps.push(step('run-command', {
   expectedFailureMeans: 'Do not run the next live proof until the screenshot QA contract requires at least five accepted checkpoints.',
 }));
 
+steps.push(step('run-command', {
+  command: 'npm run agent:masterdata:readfirst:check',
+  reason: 'Confirm the Master Data read-first pilots use real Business Central UI evidence, customer-project-like Universaarl records, and no UI mockups or confidential real customer data before any later customer/vendor/item work.',
+  allowed: true,
+  requiredBefore: ['execute-playwright', 'execute-business-central', 'master-data-write-gate'],
+  expectedFailureMeans: 'Do not run Master Data read-first or write-gated work until the real-customer-project and screenshot QA contract is restored.',
+}));
+
 if (needsBusinessCentralAuth) {
   steps.push(step('run-command', {
     command: 'npm run auth:bc:check',
@@ -406,6 +414,7 @@ const runPlan = {
     'npm run agent:dry-run',
     'npm run agent:run-plan',
     'npm run agent:screenshot-chain:check',
+    'npm run agent:masterdata:readfirst:check',
     ...(needsBusinessCentralAuth ? ['npm run auth:bc:check'] : []),
     ...(authRecoveryNeeded ? ['npm run auth:bc:target'] : []),
     ...(authRecoveryNeeded ? ['npm run auth:bc:doctor'] : []),
