@@ -629,7 +629,7 @@ Target roles:
 
 Customer/example data:
 
-- simulated package: `UNIVERSAARL_MD_Customers`
+- realistic fictional data package: `UNIVERSAARL_MD_Customers`
 - observed realistic fictional customer: `U-CUST-100` / `Saarland Maschinenbau AG`
 - observed setup values: Customer Posting Group `INLAND`, Gen. Business Posting Group `INLAND`, Payment Terms Code `NET30`
 - planned comparison customer: `U-CUST-110` / `Pfalz Technik GmbH`, parked until customer package route is decided
@@ -674,7 +674,7 @@ Success check:
 Escalation path:
 
 - If posting/VAT/payment values are missing, escalate to finance foundation decisions.
-- If real customer data appears, stop and replace it with fictional/simulated data.
+- If confidential real customer data appears, stop and replace it with realistic fictional Universaarl project data.
 - If a sales process needs this customer before dependencies are resolved, park the process and create a dependency ticket.
 
 Handbook/book output:
@@ -701,7 +701,7 @@ Playwright/evidence output:
 - `CUSTOMER-SETUP-VALUE-WRITE-GATE`
 - `CUSTOMER-U-CUST-100-SETUP-REOPEN-PROOF`
 - later controlled package/template route for additional fictional customers after dependencies
-- evidence card separating customer concept, simulated data and actual BC setup
+- evidence card separating customer concept, realistic fictional project data and actual BC setup
 
 Realism note:
 
@@ -839,7 +839,7 @@ Target roles:
 
 Customer/example data:
 
-- simulated package: `UNIVERSAARL_MD_Vendors`
+- realistic fictional data package: `UNIVERSAARL_MD_Vendors`
 - material vendor: `SIM-VEND-20000` / `U-VEND-20000` / `Saarstahl Komponenten GmbH`
 - service vendor: `SIM-VEND-20010` / `U-VEND-20010` / `IT Services Saar GmbH`
 - fixed-asset supplier candidate: `SIM-VEND-FA10`, parked until the Fixed Assets workstream
@@ -859,7 +859,7 @@ Exercise:
 
 1. Review the vendor examples and classify them as material, service or later fixed-asset supplier.
 2. Identify which fields affect P2P posting, VAT and payment behavior.
-3. Mark bank/payment-sensitive values as simulated, blocked or intentionally excluded.
+3. Mark bank/payment-sensitive values as realistic fictional, blocked or intentionally excluded.
 4. Decide which vendor is suitable for first P2P UAT only after posting/VAT/payment dependencies are resolved.
 
 Typical mistakes:
@@ -894,7 +894,7 @@ Source/evidence status:
 
 - Official source support needed for vendor setup explanation.
 - Universaarl vendor list/card read-first proof is still needed.
-- Current simulated data is Jira-ready but not BC-setup-ready.
+- Current realistic fictional data is Jira-ready but not BC-setup-ready.
 
 UAT status:
 
@@ -942,7 +942,7 @@ Customer/example data:
 - active company: `UNIVERSAARL-DE`
 - observed inventory item: `U-ITEM-HW100` / `Steuerbox Standard U100`
 - observed values: Basiseinheit `STK`, Lagerbuchungsgruppe `WARE`, MwSt.-Produktbuchungsgruppe `VAT19`, Einstandspreis `100,00`, VK-Preis `149,00`
-- simulated package for later expansion: `UNIVERSAARL_MD_ItemsServices`
+- realistic fictional data package for later expansion: `UNIVERSAARL_MD_ItemsServices`
 - future service/non-inventory examples remain planned, not BC-proven in this module
 - negative training idea: `U-ITEM-ERR900`, parked and not used for normal setup
 - no confidential real customer or supplier product data

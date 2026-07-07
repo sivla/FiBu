@@ -21,10 +21,10 @@ They do not contain real customer data. They do not authorize Business Central w
 
 ## Package-derived Jira ticket map
 
-Source: `SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md` (legacy filename; realistic fictional Universaarl case-study data, not UI mockups or confidential real customer data)
+Source: `SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md` (legacy filename; realistic fictional Universaarl case-study data, not UI mockups, demo placeholders or confidential real customer data)
 Import rows: `JIRA-IMPORT-ROWS-DATA-PACKAGES-DRAFT.md`
 
-These tickets are the first operational bridge from realistic fictional Universaarl data packages to Jira-style project work. They are not import jobs and do not authorize Business Central writes.
+These tickets are the first operational bridge from realistic fictional Universaarl data packages to Jira-style project work. They should be treated like customer project input: business purpose, owner, dependencies, validation and UAT/training impact must be explicit. They are not import jobs and do not authorize Business Central writes.
 
 | Jira key candidate | Issue type | Source package | Workstream | Epic | Business purpose | Customer owner | Internal owner | Status | Blocks BC setup? | Dependency / child tickets | Acceptance criteria | Next action |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
