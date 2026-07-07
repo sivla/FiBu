@@ -23,6 +23,7 @@ const PROJECT = 'fibu-book5';
 const EVIDENCE_ID = 'pws-md-003-item-service-context-readonly';
 const EVIDENCE_DIR_REL = `playwright/projects/${PROJECT}/evidence/${EVIDENCE_ID}`;
 const EVIDENCE_DIR = path.resolve(EVIDENCE_DIR_REL);
+const MIN_ACCEPTED_SCREENSHOT_CHECKPOINTS = 5;
 
 function clean(value: string | null | undefined) {
   return (value ?? '')
@@ -230,6 +231,29 @@ test('PWS-MD-003 captures item and service list context read-only', async ({ pag
       );
     }
   }
+  if (!itemRouteUsed) {
+    await captureReadOnlyCheckpoint(
+      page,
+      'pws-md-003-015-item-service-route-decision-context.png',
+      {
+        page: 'Artikel / Items',
+        pageId: 31,
+        step: 'Route decision context',
+        routeUsed: 'direct page route accepted; no fallback link clicked',
+        routeLearning:
+          'The run still records the navigation decision so screenshot QA can distinguish a successful direct route from an untested route.',
+        importantUi: ['current page context', 'company context', 'route decision boundary'],
+        visibleSignals: rawTextAfterItemRoute.split('\n').slice(0, 50),
+        internallyProves: 'The item/service context route decision was documented without clicking New, Edit, templates or inventory actions.',
+        doesNotProve: ['No item or service created', 'No unit/posting/costing setup', 'No sales, purchase, inventory or posting readiness'],
+        finalScreenshotStatus: 'draft-candidate',
+        noWrite: true,
+        noPost: true,
+        noPreview: true
+      },
+      captures
+    );
+  }
 
   const hoveredAction = await tryHoverFirst(page, [/Search|Suchen/i, /Filter|Filtern/i, /Open in Excel|In Excel oeffnen/i, /Share|Teilen/i]);
   const rawTextAfterActionHover = await fullText(page);
@@ -275,6 +299,24 @@ test('PWS-MD-003 captures item and service list context read-only', async ({ pag
     captures
   );
   await page.keyboard.press('Escape').catch(() => undefined);
+  await captureReadOnlyCheckpoint(
+    page,
+    'pws-md-003-040-item-service-no-write-end-context.png',
+    {
+      page: 'Artikel / Items',
+      pageId: 31,
+      step: 'No-write end context after Page Inspection',
+      importantUi: ['final page context', 'no dialog left open', 'no edit/write state intentionally entered'],
+      visibleSignals: (await fullText(page)).split('\n').slice(0, 50),
+      internallyProves: 'The run ended in a read-only item/service context after the technical inspection step.',
+      doesNotProve: ['No item/service creation proof', 'No write or reopen proof', 'No inventory or posting readiness'],
+      finalScreenshotStatus: 'draft-candidate',
+      noWrite: true,
+      noPost: true,
+      noPreview: true
+    },
+    captures
+  );
 
   const rawText = clean(`${rawTextAfterOpen}\n${rawTextAfterItemRoute}\n${rawTextAfterActionHover}\n${rawTextAfterInspection}`);
   const compact = clean(
@@ -340,15 +382,17 @@ test('PWS-MD-003 captures item and service list context read-only', async ({ pag
     screenshotQa: {
       requiredCheckpoints: [
         'item/service list/page context',
-        'Role Center Artikel link route if direct page navigation resolves to Role Center',
+        'route decision context, including Role Center Artikel link route if direct page navigation resolves to Role Center',
         'safe action or hover context',
-        'Page Inspection or technical context'
+        'Page Inspection or technical context',
+        'no-write end context'
       ],
       capturedCheckpoints: captures.map((capture) => capture.screenshot),
-      accepted: status === 'observed' && captures.length >= 3,
+      minimumAcceptedCheckpoints: MIN_ACCEPTED_SCREENSHOT_CHECKPOINTS,
+      accepted: status === 'observed' && captures.length >= MIN_ACCEPTED_SCREENSHOT_CHECKPOINTS,
       reason:
-        status === 'observed' && captures.length >= 3
-          ? 'Mehrere UI-Zustaende wurden dokumentiert; der Lauf stuetzt sich nicht auf einen einzelnen End-Screenshot.'
+        status === 'observed' && captures.length >= MIN_ACCEPTED_SCREENSHOT_CHECKPOINTS
+          ? 'Mindestens fuenf UI-Zustaende wurden dokumentiert; der Lauf stuetzt sich nicht auf einen einzelnen End-Screenshot.'
           : 'Item/service context or screenshot checkpoint coverage was not sufficient.'
     },
     proved: status === 'observed' ? ['Item/service context page is visible read-only in playthru / UNIVERSAARL-DE.'] : [],

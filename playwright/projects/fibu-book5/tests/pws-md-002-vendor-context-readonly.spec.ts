@@ -23,6 +23,7 @@ const PROJECT = 'fibu-book5';
 const EVIDENCE_ID = 'pws-md-002-vendor-context-readonly';
 const EVIDENCE_DIR_REL = `playwright/projects/${PROJECT}/evidence/${EVIDENCE_ID}`;
 const EVIDENCE_DIR = path.resolve(EVIDENCE_DIR_REL);
+const MIN_ACCEPTED_SCREENSHOT_CHECKPOINTS = 5;
 
 function clean(value: string | null | undefined) {
   return (value ?? '')
@@ -230,6 +231,29 @@ test('PWS-MD-002 captures vendor list context read-only', async ({ page }) => {
       );
     }
   }
+  if (!vendorRouteUsed) {
+    await captureReadOnlyCheckpoint(
+      page,
+      'pws-md-002-015-vendor-route-decision-context.png',
+      {
+        page: 'Kreditoren / Vendors',
+        pageId: 27,
+        step: 'Route decision context',
+        routeUsed: 'direct page route accepted; no fallback link clicked',
+        routeLearning:
+          'The run still records the navigation decision so screenshot QA can distinguish a successful direct route from an untested route.',
+        importantUi: ['current page context', 'company context', 'route decision boundary'],
+        visibleSignals: rawTextAfterVendorRoute.split('\n').slice(0, 45),
+        internallyProves: 'The vendor context route decision was documented without clicking New, Edit or bank-data actions.',
+        doesNotProve: ['No vendor created', 'No vendor template changed', 'No purchase, payment or posting readiness'],
+        finalScreenshotStatus: 'draft-candidate',
+        noWrite: true,
+        noPost: true,
+        noPreview: true
+      },
+      captures
+    );
+  }
 
   const hoveredAction = await tryHoverFirst(page, [/Search|Suchen/i, /Filter|Filtern/i, /Open in Excel|In Excel oeffnen/i, /Share|Teilen/i]);
   const rawTextAfterActionHover = await fullText(page);
@@ -275,6 +299,24 @@ test('PWS-MD-002 captures vendor list context read-only', async ({ page }) => {
     captures
   );
   await page.keyboard.press('Escape').catch(() => undefined);
+  await captureReadOnlyCheckpoint(
+    page,
+    'pws-md-002-040-vendor-no-write-end-context.png',
+    {
+      page: 'Kreditoren / Vendors',
+      pageId: 27,
+      step: 'No-write end context after Page Inspection',
+      importantUi: ['final page context', 'no dialog left open', 'no edit/write state intentionally entered'],
+      visibleSignals: (await fullText(page)).split('\n').slice(0, 45),
+      internallyProves: 'The run ended in a read-only vendor context after the technical inspection step.',
+      doesNotProve: ['No vendor creation proof', 'No write or reopen proof', 'No payment or posting readiness'],
+      finalScreenshotStatus: 'draft-candidate',
+      noWrite: true,
+      noPost: true,
+      noPreview: true
+    },
+    captures
+  );
 
   const rawText = clean(`${rawTextAfterOpen}\n${rawTextAfterVendorRoute}\n${rawTextAfterActionHover}\n${rawTextAfterInspection}`);
   const compact = clean(
@@ -338,15 +380,17 @@ test('PWS-MD-002 captures vendor list context read-only', async ({ page }) => {
     screenshotQa: {
       requiredCheckpoints: [
         'vendor list/page context',
-        'Role Center Kreditoren link route if direct page navigation resolves to Role Center',
+        'route decision context, including Role Center Kreditoren link route if direct page navigation resolves to Role Center',
         'safe action or hover context',
-        'Page Inspection or technical context'
+        'Page Inspection or technical context',
+        'no-write end context'
       ],
       capturedCheckpoints: captures.map((capture) => capture.screenshot),
-      accepted: status === 'observed' && captures.length >= 3,
+      minimumAcceptedCheckpoints: MIN_ACCEPTED_SCREENSHOT_CHECKPOINTS,
+      accepted: status === 'observed' && captures.length >= MIN_ACCEPTED_SCREENSHOT_CHECKPOINTS,
       reason:
-        status === 'observed' && captures.length >= 3
-          ? 'Mehrere UI-Zustaende wurden dokumentiert; der Lauf stuetzt sich nicht auf einen einzelnen End-Screenshot.'
+        status === 'observed' && captures.length >= MIN_ACCEPTED_SCREENSHOT_CHECKPOINTS
+          ? 'Mindestens fuenf UI-Zustaende wurden dokumentiert; der Lauf stuetzt sich nicht auf einen einzelnen End-Screenshot.'
           : 'Vendor context or screenshot checkpoint coverage was not sufficient.'
     },
     proved: status === 'observed' ? ['Vendor context page is visible read-only in playthru / UNIVERSAARL-DE.'] : [],

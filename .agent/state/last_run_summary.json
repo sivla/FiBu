@@ -1,21 +1,21 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "PWS-MD-RUNNER-CUSTOMER-PROJECT-BOUNDARY",
+  "runId": "PWS-MD-SCREENSHOT-QA-MINIMUM-CHECKPOINTS",
   "caseId": "FOUNDATION-READINESS-DECISION",
-  "status": "completed-local-pws-md-runner-customer-project-boundary",
-  "completedAt": "2026-07-08T08:35:00.000+02:00",
-  "updatedAt": "2026-07-08T08:35:00.000+02:00",
+  "status": "completed-local-pws-md-screenshot-qa-minimum-checkpoints",
+  "completedAt": "2026-07-08T09:25:00.000+02:00",
+  "updatedAt": "2026-07-08T09:25:00.000+02:00",
   "mode": "universaarl-foundation-readfirst",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "The individual PWS-MD read-first guarded runners now emit the customer-project realism boundary in their check and guard JSON. A future customer, vendor or item/service read-first pilot therefore carries the no-mockup, no-throwaway-data and no-confidential-real-customer-data rule at the execution edge.",
-  "resultPath": "scripts/agent/masterdata-readfirst-check.mjs",
+  "summary": "The PWS-MD customer, vendor and item/service read-first specs now require at least five screenshot checkpoints before their screenshot QA is accepted. This makes the next real playthru UI observation less likely to misread Business Central from a single end screenshot.",
+  "resultPath": "playwright/projects/fibu-book5/tests/pws-md-001-customer-context-readonly.spec.ts",
   "changedArtifacts": [
     ".agent/state/last_run_summary.json",
-    "scripts/agent/run-pws-md-001-customer-context-readonly.mjs",
-    "scripts/agent/run-pws-md-002-vendor-context-readonly.mjs",
-    "scripts/agent/run-pws-md-003-item-service-context-readonly.mjs"
+    "playwright/projects/fibu-book5/tests/pws-md-001-customer-context-readonly.spec.ts",
+    "playwright/projects/fibu-book5/tests/pws-md-002-vendor-context-readonly.spec.ts",
+    "playwright/projects/fibu-book5/tests/pws-md-003-item-service-context-readonly.spec.ts"
   ],
   "businessCentralOpened": false,
   "playwrightLiveRunExecuted": false,
@@ -33,9 +33,10 @@
   "uiMockupUsed": false,
   "actionsTaken": [
     "Re-read the durable project objective and confirmed active truth remains playthru / UNIVERSAARL-DE.",
-    "Added a realCustomerProjectBoundary object to the PWS-MD-001, PWS-MD-002 and PWS-MD-003 guarded runner check outputs.",
-    "Added the same boundary to each runner's guard-failure JSON so blocked live attempts still carry the realism rule.",
-    "Kept the change local to runner metadata; no Playwright live run was executed."
+    "Raised PWS-MD-001, PWS-MD-002 and PWS-MD-003 screenshot QA from three accepted screenshots to at least five accepted checkpoints.",
+    "Added explicit route-decision screenshots so direct-page success and fallback navigation are both documented instead of inferred.",
+    "Added no-write end-context screenshots after Page Inspection to prove the read-first run finishes without an intended edit/write state.",
+    "Kept the change local to Playwright spec logic; no Playwright live run was executed."
   ],
   "actionsNotTaken": [
     "No Business Central live session was opened.",
@@ -52,13 +53,14 @@
     "No UI mockup was used as evidence."
   ],
   "proved": [
-    "Each PWS-MD guarded runner now exposes the no-mockup/no-confidential-real-customer-data boundary directly.",
-    "Vendor read-first explicitly keeps real bank data outside the accepted data mode.",
-    "The masterdata read-first aggregate check still passes and can surface the boundary through individual runner results."
+    "PWS-MD-001 customer context screenshot QA now requires at least five checkpoints.",
+    "PWS-MD-002 vendor context screenshot QA now requires at least five checkpoints.",
+    "PWS-MD-003 item/service context screenshot QA now requires at least five checkpoints.",
+    "The guarded --list and --check modes still pass locally and do not open Business Central."
   ],
   "notProved": [
     "No fresh Business Central login was captured.",
-    "No new Business Central screenshot was captured.",
+    "No new Business Central screenshot was captured; this run only improves the screenshot contract for the next live read-first proof.",
     "No customer, vendor or item UI was opened in this run.",
     "No new real customer-like Universaarl record was observed or changed.",
     "No master-data write readiness.",
@@ -68,15 +70,16 @@
   "warnings": [
     "Refresh Playwright auth in the Playwright-managed profile before any live BC/Playwright run.",
     "Run exactly one read-first/no-write Master Data pilot at a time after auth is green and Foundation gates still allow it.",
+    "Do not accept a PWS-MD page claim unless the result has at least five accepted screenshot checkpoints.",
     "Use real Business Central UI evidence and customer-project-like Universaarl records; do not use UI mockups, throwaway dummy data or confidential real customer data."
   ],
   "nextStepDecision": {
     "currentCase": "FOUNDATION-READINESS-DECISION",
     "plannedNextCaseBeforeReview": "FOUNDATION-READINESS-DECISION",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Foundation Readiness remains the handoff, but the local Master Data runner diagnosis is now clean enough for a later auth-refreshed read-first/no-write pilot.",
+    "reason": "Foundation Readiness remains the handoff, but Master Data read-first page claims now need stronger screenshot QA before they can become evidence.",
     "selectedNextCase": "FOUNDATION-READINESS-DECISION",
-    "whySelectedNextCaseIsBest": "It keeps live work behind auth and screenshot gates while making the next real Master Data observation less ambiguous."
+    "whySelectedNextCaseIsBest": "It keeps live work behind auth and screenshot gates while making the next real Master Data observation less ambiguous and more visually reviewable."
   },
   "nextCase": "FOUNDATION-READINESS-DECISION",
   "nextStep": "Refresh Playwright auth in the Playwright-managed profile. Then rerun auth:bc:check, agent:resume:check and only one read-first/no-write Foundation or Master Data pilot if the gates still allow it."
