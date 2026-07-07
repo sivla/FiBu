@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "caseId": "CUSTOMER-U-CUST-100-SETUP-REOPEN-PROOF",
+  "status": "prepared-readfirst-after-customer-setup-values",
+  "mode": "universaarl-masterdata-customer-setup-reopen-proof",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w2-core-masterdata-customer-setup-readiness",
+  "workstream": "WS04 Master Data / Finance Setup",
+  "epic": "Customer master data setup values",
+  "issueType": "Task",
+  "purpose": "Reopen U-CUST-100 and visually verify the bounded customer setup values before any O2C planning.",
+  "businessPurpose": "U-CUST-100 now has the first bounded Universaarl customer setup values. The next step is read-only proof and boundary review, not a sales document.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/result.json"
+  ],
+  "targetCustomer": {
+    "no": "U-CUST-100",
+    "name": "Saarland Maschinenbau AG",
+    "dataType": "realistic-fictional-universaarl-training-data"
+  },
+  "expectedVisibleValues": {
+    "customerPostingGroup": "INLAND",
+    "genBusinessPostingGroup": "INLAND",
+    "paymentTermsCode": "NET30"
+  },
+  "allowedActions": [
+    "open-business-central-playthru-only",
+    "confirm-company-universaarl-de",
+    "open-customer-list",
+    "open-u-cust-100-card",
+    "expand-fakturierung-fasttab",
+    "expand-zahlungen-fasttab",
+    "capture-visible-reopen-proof",
+    "write-result-json"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "change-vat-setup",
+    "change-dimensions",
+    "change-payment-method",
+    "change-customer-fields",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "use-confidential-real-customer-data"
+  ],
+  "acceptanceCriteria": [
+    "Business Central shell proves playthru / UNIVERSAARL-DE.",
+    "U-CUST-100 / Saarland Maschinenbau AG is visible on the customer card.",
+    "Fakturierung screenshot visibly shows Customer Posting Group INLAND and Gen. Business Posting Group INLAND.",
+    "Zahlungen screenshot visibly shows Payment Terms Code NET30.",
+    "No field is changed and no document, Preview Posting, Posting, payment or API shortcut occurs.",
+    "Result states that VAT Business Posting Group, dimensions, payment method, O2C readiness and posting readiness are still not proven."
+  ],
+  "stopIf": [
+    "Wrong instance or company.",
+    "U-CUST-100 customer card cannot be screenshot-proven.",
+    "Expected setup values are not visible after FastTab and scroll diagnostics.",
+    "Any write, document, Preview Posting, Posting, payment or API route would be needed."
+  ],
+  "nextCaseIfReady": "CUSTOMER-VAT-DIMENSION-BOUNDARY-DECISION",
+  "nextCaseIfBlocked": "CUSTOMER-SETUP-VALUE-WRITE-GATE-RECOVERY",
+  "updatedAt": "2026-07-07T05:15:00.000Z"
+}

@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-07T04:50:00.000Z",
+  "updatedAt": "2026-07-07T05:15:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
-  "activeArea": "w2-core-masterdata-customer-setup-values",
-  "activeCase": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
-  "active_case_file": ".agent/state/cases/customer-setup-value-write-gate.json",
-  "activeCaseFile": ".agent/state/cases/customer-setup-value-write-gate.json",
+  "activeArea": "w2-core-masterdata-customer-setup-readiness",
+  "activeCase": "CUSTOMER-U-CUST-100-SETUP-REOPEN-PROOF",
+  "active_case_file": ".agent/state/cases/customer-u-cust-100-setup-reopen-proof.json",
+  "activeCaseFile": ".agent/state/cases/customer-u-cust-100-setup-reopen-proof.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-masterdata-customer-setup-value-write-gate",
+  "mode": "universaarl-masterdata-customer-setup-reopen-proof",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -38,14 +38,9 @@
     "confirm-company-universaarl-de",
     "open-customer-list",
     "open-u-cust-100-card",
-    "capture-before-screenshot",
-    "set-customer-posting-group-inland-if-field-visible-and-currently-empty",
-    "set-gen-business-posting-group-inland-if-field-visible-and-currently-empty",
-    "set-payment-terms-code-net30-if-field-visible-and-currently-empty",
-    "save-or-allow-autosave",
-    "capture-after-screenshot",
-    "reopen-customer-card",
-    "capture-reopen-proof",
+    "expand-fakturierung-fasttab",
+    "expand-zahlungen-fasttab",
+    "capture-visible-reopen-proof",
     "write-result-json"
   ],
   "forbiddenActions": [
@@ -57,6 +52,7 @@
     "change-vat-setup",
     "change-dimensions",
     "change-payment-method",
+    "change-customer-fields",
     "create-document-or-draft",
     "preview-posting",
     "post",
@@ -64,8 +60,8 @@
     "api-shortcut",
     "use-confidential-real-customer-data"
   ],
-  "nextCase": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
-  "nextStep": "Run CUSTOMER-SETUP-VALUE-WRITE-GATE only after guard checks: open U-CUST-100, set or verify only Customer Posting Group INLAND, Gen. Business Posting Group INLAND and Payment Terms Code NET30, then capture after and reopen proof. Do not touch VAT, dimensions, payment method, documents, Preview Posting, Posting, payment or API.",
+  "nextCase": "CUSTOMER-U-CUST-100-SETUP-REOPEN-PROOF",
+  "nextStep": "Run CUSTOMER-U-CUST-100-SETUP-REOPEN-PROOF read-only: reopen U-CUST-100 in playthru / UNIVERSAARL-DE, expand Fakturierung and Zahlungen, visually prove INLAND/INLAND/NET30, and keep O2C blocked until VAT/dimension/payment-method boundaries are decided.",
   "preparedNextCaseFile": ".agent/state/cases/customer-setup-dependency-readfirst.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
@@ -200,12 +196,12 @@
     "nextBoundary": "Master Data remains parked. Next work must update Foundation Readiness and either accept this as a Foundation gap or define a genuinely new Page 314 route hypothesis before another live attempt."
   },
   "activeNextStepAuthority": {
-    "source": "customer-payment-terms-write-gate-result",
+    "source": "customer-setup-value-write-gate-result",
     "roadMap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
-    "activeCaseFile": ".agent/state/cases/customer-setup-value-write-gate.json",
+    "activeCaseFile": ".agent/state/cases/customer-u-cust-100-setup-reopen-proof.json",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "NET30 is now real playthru evidence with screenshot and reopen proof, so the next useful project step is the narrow customer setup value write gate."
+    "reason": "U-CUST-100 now has visible INLAND/INLAND/NET30 customer setup value proof; next work is read-only boundary/readiness review before any O2C document."
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -11419,5 +11415,94 @@
     ],
     "nextCase": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
     "updatedAt": "2026-07-07T04:20:00.000Z"
+  },
+  "latestCustomerSetupValueWriteGate": {
+    "caseId": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
+    "status": "observed-already-set",
+    "resultPath": "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "businessCentralOpened": true,
+    "playwrightLiveRunExecuted": true,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "payment": false,
+    "apiShortcut": false,
+    "confidentialRealCustomerDataUsed": false,
+    "selectedValues": {
+      "customerPostingGroup": "INLAND",
+      "genBusinessPostingGroup": "INLAND",
+      "paymentTermsCode": "NET30"
+    },
+    "fieldAttempts": [
+      {
+        "field": "Customer Posting Group",
+        "value": "INLAND",
+        "status": "already-target",
+        "before": "INLAND",
+        "after": "INLAND"
+      },
+      {
+        "field": "Gen. Business Posting Group",
+        "value": "INLAND",
+        "status": "already-target",
+        "before": "INLAND",
+        "after": "INLAND"
+      },
+      {
+        "field": "Payment Terms Code",
+        "value": "NET30",
+        "status": "already-target",
+        "before": "NET30",
+        "after": "NET30"
+      }
+    ],
+    "screenshots": [
+      "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/customer-setup-value-010-before-card.png",
+      "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/customer-setup-value-012-billing-route-before-fields.png",
+      "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/customer-setup-value-014-payments-route-before-field.png",
+      "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/customer-setup-value-020-after-save.png",
+      "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/customer-setup-value-030-reopen-billing-proof.png",
+      "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/customer-setup-value-032-reopen-payment-proof.png"
+    ],
+    "screenshotQa": {
+      "requiredCheckpoints": [
+        "before U-CUST-100 setup values",
+        "after setup value route",
+        "reopen proof"
+      ],
+      "capturedCheckpoints": [
+        "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/customer-setup-value-010-before-card.png",
+        "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/customer-setup-value-012-billing-route-before-fields.png",
+        "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/customer-setup-value-014-payments-route-before-field.png",
+        "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/customer-setup-value-020-after-save.png",
+        "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/customer-setup-value-030-reopen-billing-proof.png",
+        "playwright/projects/fibu-book5/evidence/customer-setup-value-write-gate/customer-setup-value-032-reopen-payment-proof.png"
+      ],
+      "acceptedForCustomerSetupValues": true,
+      "acceptedForO2CReady": false,
+      "acceptedForPostingReady": false
+    },
+    "proved": [
+      "playthru / UNIVERSAARL-DE was used.",
+      "U-CUST-100 / Saarland Maschinenbau AG customer card was used.",
+      "INLAND and NET30 setup values are visible after reopen proof.",
+      "No document, Preview Posting, Posting, payment or API shortcut was executed."
+    ],
+    "notProved": [
+      "No VAT Business Posting Group value was intentionally set or proven.",
+      "No dimension defaults.",
+      "No payment method.",
+      "No invoice due-date calculation.",
+      "No O2C readiness.",
+      "No Preview Posting, Posting, payment or ledger trace.",
+      "No UAT acceptance."
+    ],
+    "nextCase": "CUSTOMER-U-CUST-100-SETUP-REOPEN-PROOF",
+    "uiLearning": "Business Central customer cards may abbreviate Zahlungsbedingungscode as Zlg.-Bedingungscode and require scrolling the card content container, not the browser page. Screenshot QA must include visible FastTab-specific reopen proofs.",
+    "updatedAt": "2026-07-07T05:15:00.000Z"
   }
 }
