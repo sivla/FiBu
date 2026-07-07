@@ -1,0 +1,218 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized-compatible",
+  "caseId": "CUSTOMER-SETUP-VALUE-SELECTION-DECISION",
+  "source": "local-evidence-decision",
+  "resultStatus": "partially-completed-blocked-for-write-gate",
+  "completedAt": "2026-07-07T02:12:00.000Z",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "Customer setup value selection",
+  "businessCentralOpened": false,
+  "playwrightLiveRunExecuted": false,
+  "liveActionsExecuted": false,
+  "actionsTaken": [
+    "Read existing Universaarl evidence for customer setup field gaps.",
+    "Selected setup values only where concrete Universaarl evidence exists.",
+    "Kept the payment terms field blocked because the real Payment Terms page was observed empty.",
+    "Prepared the next narrow project step as a payment terms setup decision instead of a customer write gate."
+  ],
+  "actionsNotTaken": [
+    "No Business Central page opened.",
+    "No customer edited or saved.",
+    "No setup row created, edited or saved.",
+    "No customer posting group changed.",
+    "No general business posting group changed.",
+    "No VAT business posting group changed.",
+    "No payment terms created or changed.",
+    "No dimension changed.",
+    "No document or draft created.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No payment.",
+    "No API shortcut.",
+    "No confidential real customer data used."
+  ],
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "confidentialRealCustomerDataUsed": false,
+  "realismBoundary": "Values are selected from real Business Central evidence in playthru / UNIVERSAARL-DE. Customer data remains realistic simulated Universaarl data and must not contain confidential real customer data.",
+  "selectedValues": [
+    {
+      "field": "Customer Posting Group / Debitorenbuchungsgruppe",
+      "selectedValue": "INLAND",
+      "decisionStatus": "selected-for-later-write-gate",
+      "evidence": [
+        "playwright/projects/fibu-book5/evidence/target-031b-customer-posting-group-inland-write-gate/TARGET-031B-result.json",
+        "playwright/projects/fibu-book5/evidence/customer-setup-route-recovery-readfirst/result.json"
+      ],
+      "proved": [
+        "Page 110 Debitorenbuchungsgruppen is a real setup page in playthru / UNIVERSAARL-DE.",
+        "INLAND is visible after reopen with Debitorensammelkonto 1200."
+      ],
+      "notProved": [
+        "No customer card write was executed in this decision.",
+        "This value alone does not prove O2C readiness or posting readiness."
+      ]
+    },
+    {
+      "field": "Gen. Business Posting Group / Geschaeftsbuchungsgruppe",
+      "selectedValue": "INLAND",
+      "decisionStatus": "selected-for-later-write-gate-with-foundation-boundary",
+      "evidence": [
+        "playwright/projects/fibu-book5/evidence/target-032b-general-posting-groups-controlled-write-gate/TARGET-032B-result.json",
+        "playwright/projects/fibu-book5/evidence/customer-setup-route-recovery-readfirst/README.md"
+      ],
+      "proved": [
+        "General Business Posting Group INLAND is visible after reopen with description Inlaendische Geschaeftspartner in accepted Foundation evidence."
+      ],
+      "notProved": [
+        "The current customer route-recovery runner did not recover Page 312 reliably.",
+        "No complete General Posting Setup row INLAND/WAREN with all required accounts is proven.",
+        "This value does not prove posting readiness."
+      ]
+    },
+    {
+      "field": "VAT Business Posting Group / MwSt.-Geschaeftsbuchungsgruppe",
+      "selectedValue": "INLAND",
+      "decisionStatus": "candidate-only-vat-setup-still-blocked",
+      "evidence": [
+        "playwright/projects/fibu-book5/evidence/target-027c-vat-groups-controlled-write-retry/README.md",
+        "playwright/projects/fibu-book5/evidence/customer-setup-route-recovery-readfirst/result.json"
+      ],
+      "proved": [
+        "VAT Business Posting Group INLAND is visible in Universaarl evidence.",
+        "VAT Product Posting Group VAT19 is visible in Universaarl evidence."
+      ],
+      "notProved": [
+        "No complete INLAND/VAT19 VAT Posting Setup row is proven.",
+        "No German VAT correctness, VAT Entries, Preview Posting or Posting readiness is proven."
+      ]
+    },
+    {
+      "field": "Payment Terms Code / Zlg.-Bedingungscode",
+      "selectedValue": null,
+      "decisionStatus": "blocked-needs-payment-terms-setup-first",
+      "evidence": [
+        "playwright/projects/fibu-book5/evidence/customer-setup-route-recovery-readfirst/result.json",
+        "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/result.json"
+      ],
+      "proved": [
+        "Payment Terms page is reachable read-only in playthru / UNIVERSAARL-DE.",
+        "The observed Payment Terms list is empty in the accepted read-first evidence.",
+        "The U-CUST-100 payment terms field is visible empty in customer-card evidence."
+      ],
+      "notProved": [
+        "No payment term value exists for selection.",
+        "No due-date logic or payment training scenario can be claimed from existing setup."
+      ]
+    }
+  ],
+  "parkedFields": [
+    {
+      "field": "Country/Region Code / Laender-/Regionscode",
+      "reason": "Customer-card evidence shows it as visible empty, but this case is limited to posting/payment setup values."
+    },
+    {
+      "field": "Payment Method Code / Zahlungsformcode",
+      "reason": "Not visible on the current accepted customer-card screenshot and belongs to a later payment/bank setup route."
+    },
+    {
+      "field": "Default Dimensions / Standarddimensionen",
+      "reason": "Dimension defaults remain a separate Foundation/Master Data decision."
+    }
+  ],
+  "proved": [
+    "The next customer setup write gate must not be executed as-is because Payment Terms Code has no selected setup value.",
+    "INLAND is a valid evidence-backed candidate for Customer Posting Group.",
+    "INLAND is a valid evidence-backed candidate for Gen. Business Posting Group, with General Posting Setup boundary.",
+    "INLAND is a candidate for VAT Business Posting Group, with VAT Posting Setup boundary.",
+    "Payment Terms must be handled as its own setup decision before a realistic customer setup write gate.",
+    "No mockup values and no confidential real customer data were used."
+  ],
+  "notProved": [
+    "No customer setup field was written.",
+    "No payment term was created.",
+    "No complete customer setup correctness.",
+    "No complete General Posting Setup row.",
+    "No complete VAT Posting Setup row.",
+    "No O2C readiness.",
+    "No Preview Posting, Posting, payment or ledger trace.",
+    "No UAT acceptance."
+  ],
+  "blockedBy": [
+    "Payment Terms Code cannot be selected because the observed Payment Terms list is empty.",
+    "VAT Business Posting Group can only be a candidate until a complete VAT Posting Setup row is proven.",
+    "Gen. Business Posting Group can only be written with a clear no-posting-readiness boundary until General Posting Setup is complete."
+  ],
+  "warnings": [
+    "Do not infer posting readiness from posting groups alone.",
+    "Do not create demo-perfect or mock payment terms; the next step needs a realistic Universaarl payment terms decision.",
+    "Use realistic simulated customer data only; do not store confidential real customer data."
+  ],
+  "flags": {
+    "noBusinessCentralOpen": true,
+    "noWrite": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noDraft": true,
+    "noPreview": true,
+    "noPost": true,
+    "noPayment": true,
+    "noApiShortcut": true,
+    "noConfidentialRealCustomerData": true
+  },
+  "nextStepDecision": {
+    "currentCase": "CUSTOMER-SETUP-VALUE-SELECTION-DECISION",
+    "plannedNextCaseBeforeReview": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
+    "lastEvidenceSummary": "Customer Posting Group INLAND, Gen. Business Posting Group INLAND and VAT Business Posting Group INLAND have Universaarl evidence, but Payment Terms is empty and VAT/General Posting Setup remain bounded.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "A realistic customer write gate needs a Payment Terms Code or a conscious decision to park that field. Existing evidence shows the Payment Terms page empty, so a write gate would either guess or leave an important customer term unresolved.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Payment Terms Code is blocked and VAT/General Posting boundaries must be carried into the gate."
+      },
+      {
+        "caseId": "CUSTOMER-PAYMENT-TERMS-SETUP-DECISION",
+        "status": "ready-next",
+        "reason": "The next smallest useful step is deciding a realistic Universaarl payment term and route before any customer card write."
+      },
+      {
+        "caseId": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
+        "status": "ready-after-current",
+        "reason": "Only possible after a source/evidence-backed payment-term decision names exact code, due-date formula and training purpose."
+      },
+      {
+        "caseId": "O2C-MINIMAL-ROUTE-DECISION",
+        "status": "blocked",
+        "reason": "O2C remains blocked until customer setup and item/service setup values are sufficiently decided."
+      }
+    ],
+    "queueChangesMade": [
+      "Parked CUSTOMER-SETUP-VALUE-WRITE-GATE until payment terms setup is decided.",
+      "Selected CUSTOMER-PAYMENT-TERMS-SETUP-DECISION as the next local case."
+    ],
+    "selectedNextCase": "CUSTOMER-PAYMENT-TERMS-SETUP-DECISION",
+    "whySelectedNextCaseIsBest": "It keeps the project realistic: a customer invoice needs meaningful payment terms, and the real setup page is currently empty.",
+    "risksBeforeNextCase": [
+      "Do not invent payment terms without business purpose.",
+      "Do not claim VAT or posting readiness.",
+      "Do not write customer setup values until all selected fields and boundaries are explicit."
+    ],
+    "requiredPreparation": [
+      "Define one realistic Universaarl customer payment term such as net days and optional discount only if useful for training.",
+      "Decide whether the route should be UI, template or configuration package for the later write."
+    ]
+  },
+  "nextCase": "CUSTOMER-PAYMENT-TERMS-SETUP-DECISION",
+  "requiresReview": false,
+  "safeToFinalizeState": true
+}

@@ -2,14 +2,14 @@
   "schemaVersion": 1,
   "purpose": "last-run-summary",
   "runId": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
-  "caseId": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
-  "status": "partially-observed-route-recovery-parked-with-foundation-reference",
+  "caseId": "CUSTOMER-SETUP-VALUE-SELECTION-DECISION",
+  "status": "partially-completed-blocked-for-write-gate",
   "completedAt": "2026-07-07T01:29:08.885Z",
   "mode": "universaarl-masterdata-setup-route-recovery",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Read-first customer setup route recovery reran in real playthru / UNIVERSAARL-DE UI with additional screenshot QA. The current runner still recovers 3/4 dependency pages and still blocks General Business Posting Groups. Visual review and existing TARGET-032A/TARGET-032B evidence show a better path: consume the already accepted Page 312/INLAND Foundation proof instead of repeating this route.",
-  "resultPath": "playwright/projects/fibu-book5/evidence/customer-setup-route-recovery-readfirst/result.json",
+  "summary": "Local evidence decision selected INLAND for Customer Posting Group and Gen. Business Posting Group, kept VAT Business Posting Group INLAND as candidate-only, and blocked Payment Terms because the real playthru Payment Terms page is empty. No Business Central run and no write occurred.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/customer-setup-value-selection-decision/result.json",
   "changedArtifacts": [
     "playwright/projects/fibu-book5/tests/customer-setup-route-recovery-readfirst.spec.ts",
     "playwright/projects/fibu-book5/evidence/customer-setup-route-recovery-readfirst/result.json",
@@ -35,8 +35,8 @@
     "No API shortcut.",
     "No confidential real customer data used."
   ],
-  "businessCentralOpened": true,
-  "playwrightLiveRunExecuted": true,
+  "businessCentralOpened": false,
+  "playwrightLiveRunExecuted": false,
   "setupChanged": false,
   "setupChangeAttempted": false,
   "masterDataChanged": false,
@@ -81,42 +81,47 @@
   },
   "uiLearning": "More screenshots changed the decision: the failure is not lack of clicks, it is the wrong route. For Page 312, consume existing direct-page Foundation evidence rather than repeating Tell-Me/explorer search.",
   "nextStepDecision": {
-    "currentCase": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
+    "currentCase": "CUSTOMER-SETUP-VALUE-SELECTION-DECISION",
     "plannedNextCaseBeforeReview": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
-    "lastEvidenceSummary": "3/4 dependency pages recovered by current runner; Page 312/INLAND covered by TARGET-032A/TARGET-032B Foundation evidence.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "A write gate still needs exact value selection first. The next step is a local value-selection decision, not another route retry and not a blind write.",
+    "reason": "Payment Terms is a real setup blocker; the observed list is empty, so a write gate would either guess or leave a core customer invoice term unresolved.",
+    "selectedNextCase": "CUSTOMER-PAYMENT-TERMS-SETUP-DECISION",
+    "whySelectedNextCaseIsBest": "It converts the blocker into a realistic customer-project decision before any write.",
     "lookaheadReviewed": [
       {
-        "caseId": "CUSTOMER-SETUP-VALUE-SELECTION-DECISION",
+        "caseId": "CUSTOMER-PAYMENT-TERMS-SETUP-DECISION",
         "status": "ready-next",
-        "reason": "Accepted evidence now exists for selecting candidate values without more BC writes."
+        "reason": "No live action; decides code/formula/route/training purpose."
+      },
+      {
+        "caseId": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
+        "status": "ready-after-current",
+        "reason": "Only after exact value and route are decided."
       },
       {
         "caseId": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
-        "status": "ready-after-current",
-        "reason": "Only after exact values and field scope are selected."
+        "status": "needs-setup-first",
+        "reason": "Needs a payment term or conscious field park."
       },
       {
         "caseId": "O2C-MINIMAL-ROUTE-DECISION",
-        "status": "needs-setup-first",
-        "reason": "Customer setup and posting setup boundaries still gate O2C."
+        "status": "blocked",
+        "reason": "Needs customer/item/setup dependencies first."
       }
     ],
     "queueChangesMade": [
-      "Parked further as-is Page 312 route retries; inserted value-selection decision before write gate."
+      "Parked CUSTOMER-SETUP-VALUE-WRITE-GATE.",
+      "Selected CUSTOMER-PAYMENT-TERMS-SETUP-DECISION."
     ],
-    "selectedNextCase": "CUSTOMER-SETUP-VALUE-SELECTION-DECISION",
-    "whySelectedNextCaseIsBest": "It turns real evidence into a controlled customer setup decision without guessing or adding mock data.",
     "risksBeforeNextCase": [
-      "Do not treat General Posting Setup as proven.",
-      "Do not assign values until exact codes are selected from evidence."
+      "Do not invent payment terms from mockups.",
+      "Do not use legacy/RM/CRONUS values as active truth."
     ],
     "requiredPreparation": [
-      "Read Customer Posting Group, General Business Posting Group, VAT Business Posting Group and Payment Terms evidence; name exact field/value pairs and boundaries."
+      "Use only realistic simulated Universaarl data."
     ]
   },
-  "nextCase": "CUSTOMER-SETUP-VALUE-SELECTION-DECISION",
+  "nextCase": "CUSTOMER-PAYMENT-TERMS-SETUP-DECISION",
   "nextStep": "Recover the remaining General Business Posting Groups route with a materially different exact term/navigation route. Do not open CUSTOMER-SETUP-VALUE-WRITE-GATE until all setup dependencies are accepted by screenshot QA and Page Inspection.",
-  "updatedAt": "2026-07-07T01:15:00.215Z"
+  "updatedAt": "2026-07-07T02:14:00.000Z"
 }

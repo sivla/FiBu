@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "caseId": "CUSTOMER-PAYMENT-TERMS-SETUP-DECISION",
+  "status": "ready-local-decision",
+  "mode": "universaarl-masterdata-payment-terms-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w2-core-masterdata-customer-payment-terms",
+  "workstream": "WS04 Master Data / Finance Setup",
+  "epic": "Customer master data setup values",
+  "issueType": "Decision",
+  "purpose": "Choose one realistic Universaarl payment term for customer master data and training before any payment-terms write gate.",
+  "businessPurpose": "The first realistic Universaarl customer needs meaningful invoice due-date logic. Existing Business Central evidence shows the Payment Terms page is reachable but empty, so the project must decide the customer payment term before writing customer setup values.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/customer-setup-value-selection-decision/result.json",
+    "playwright/projects/fibu-book5/evidence/customer-setup-route-recovery-readfirst/result.json",
+    "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/result.json"
+  ],
+  "allowedActions": [
+    "read-existing-evidence",
+    "choose-realistic-simulated-payment-term-local-only",
+    "compare-ui-template-configuration-package-route",
+    "write-decision-json",
+    "prepare-narrow-payment-terms-write-gate-case"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "edit-customer",
+    "save-customer",
+    "create-payment-terms",
+    "change-payment-terms",
+    "change-posting-group",
+    "change-vat-setup",
+    "change-dimensions",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "api-shortcut",
+    "use-confidential-real-customer-data"
+  ],
+  "mustDecide": [
+    "Payment term code.",
+    "Due-date formula.",
+    "Whether discount terms are in scope for the first customer.",
+    "Business reason for a large-company realistic customer setup.",
+    "Preferred later route: UI, template, configuration package or parked.",
+    "Training and UAT impact."
+  ],
+  "acceptanceCriteria": [
+    "The selected value is clearly simulated Universaarl data, not real customer data.",
+    "The decision explains why the term is realistic for the first customer scenario.",
+    "The decision names the later write gate and stop conditions.",
+    "No customer, payment term, setup, document, Preview Posting or Posting is changed by this local decision."
+  ],
+  "stopIf": [
+    "The proposed payment term is copied from legacy/RM/CRONUS evidence.",
+    "The term would imply legal, tax or payment compliance that is not proven.",
+    "The decision requires Business Central writes without a separate Smart Decision write gate.",
+    "The selected route cannot be explained for customer training."
+  ],
+  "nextCaseIfReady": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
+  "nextCaseIfBlocked": "CUSTOMER-PAYMENT-TERMS-SETUP-DECISION-FOLLOWUP",
+  "updatedAt": "2026-07-07T02:14:00.000Z"
+}

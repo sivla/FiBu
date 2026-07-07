@@ -26,10 +26,10 @@ The read-first return has happened. Further live work must now start from the co
 | Target environment | `playthru` only |
 | Target company | `UNIVERSAARL-DE` |
 | Reference company name | Universaarl GmbH |
-| Current live status | read-first resume and customer setup route recovery have produced Foundation/Master-Data dependency evidence; default next posture is local value selection, no writes unless a later case explicitly opens a write gate |
+| Current live status | read-first resume and customer setup route recovery have produced Foundation/Master-Data dependency evidence; customer setup value selection is partially complete, but Payment Terms is a real setup blocker |
 | Parked case | `TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION` |
 | Completed resume pilot | `TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK` |
-| Next live type | none selected; next step is local `CUSTOMER-SETUP-VALUE-SELECTION-DECISION`, not another blind search retry |
+| Next live type | none selected; next step is local `CUSTOMER-PAYMENT-TERMS-SETUP-DECISION`, not a customer write gate |
 | Artifact classification | `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` |
 | Next local control task | keep roadmap, dashboard, state and artifact classification aligned; demote historical next-step noise instead of adding new layers |
 
@@ -333,7 +333,7 @@ Use this exact order:
 3. Keep `FOUNDATION-READINESS-DECISION.md` as the active boundary.
 4. Do not repeat `TARGET-073` as-is.
 5. Consume the latest customer setup route recovery: 3/4 setup pages were recovered in the current runner; Page 312/Geschaeftsbuchungsgruppen remains a runner-specific search blocker but has stronger accepted Universaarl Foundation evidence in `TARGET-032A/TARGET-032B`.
-6. Run `CUSTOMER-SETUP-VALUE-SELECTION-DECISION` locally before any customer setup write gate. Keep VAT writes, Posting Group writes, Preview Posting and Posting parked until exact values and boundaries are named from accepted evidence.
+6. Run `CUSTOMER-PAYMENT-TERMS-SETUP-DECISION` locally before any customer setup write gate. `CUSTOMER-SETUP-VALUE-SELECTION-DECISION` selected evidence-backed `INLAND` candidates, but Payment Terms is empty in real `playthru` evidence; do not invent a mock value and do not write the customer card yet.
 
 ## Acceptance criteria
 

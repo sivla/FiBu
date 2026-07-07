@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-07T01:29:08.885Z",
+  "updatedAt": "2026-07-07T02:14:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
-  "activeArea": "w2-core-masterdata-customer-setup-value-selection",
-  "activeCase": "CUSTOMER-SETUP-VALUE-SELECTION-DECISION",
-  "active_case_file": ".agent/state/cases/customer-setup-value-selection-decision.json",
-  "activeCaseFile": ".agent/state/cases/customer-setup-value-selection-decision.json",
+  "activeArea": "w2-core-masterdata-customer-payment-terms",
+  "activeCase": "CUSTOMER-PAYMENT-TERMS-SETUP-DECISION",
+  "active_case_file": ".agent/state/cases/customer-payment-terms-setup-decision.json",
+  "activeCaseFile": ".agent/state/cases/customer-payment-terms-setup-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-masterdata-setup-value-selection",
+  "mode": "universaarl-masterdata-payment-terms-decision",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -35,9 +35,10 @@
   ],
   "allowedActions": [
     "read-existing-evidence",
-    "select-candidate-setup-values-local-only",
+    "choose-realistic-simulated-payment-term-local-only",
+    "compare-ui-template-configuration-package-route",
     "write-decision-json",
-    "prepare-narrow-write-gate-case"
+    "prepare-narrow-payment-terms-write-gate-case"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -45,10 +46,12 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
+    "open-business-central",
     "edit-customer",
     "save-customer",
-    "change-posting-group",
+    "create-payment-terms",
     "change-payment-terms",
+    "change-posting-group",
     "change-vat-setup",
     "change-dimensions",
     "create-document-or-draft",
@@ -57,8 +60,8 @@
     "api-shortcut",
     "use-confidential-real-customer-data"
   ],
-  "nextCase": "CUSTOMER-SETUP-VALUE-SELECTION-DECISION",
-  "nextStep": "Choose exact customer setup values from accepted Universaarl evidence before any customer setup write. Do not repeat General Business Posting Groups search routes; use TARGET-032A/TARGET-032B as the safer Foundation evidence for Page 312/INLAND.",
+  "nextCase": "CUSTOMER-PAYMENT-TERMS-SETUP-DECISION",
+  "nextStep": "Decide one realistic simulated Universaarl payment term before any customer setup write gate. Do not invent values from legacy or mockups; use the empty Payment Terms evidence as the blocker that this case resolves locally.",
   "preparedNextCaseFile": ".agent/state/cases/customer-setup-dependency-readfirst.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
@@ -193,12 +196,12 @@
     "nextBoundary": "Master Data remains parked. Next work must update Foundation Readiness and either accept this as a Foundation gap or define a genuinely new Page 314 route hypothesis before another live attempt."
   },
   "activeNextStepAuthority": {
-    "source": "top-level-current-state-after-customer-route-recovery-screenshot-qa",
-    "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
+    "source": "customer-setup-value-selection-decision",
+    "roadMap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
-    "activeCaseFile": ".agent/state/cases/customer-setup-value-selection-decision.json",
+    "activeCaseFile": ".agent/state/cases/customer-payment-terms-setup-decision.json",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "The customer route-recovery runner still blocks General Business Posting Groups, but older Universaarl Foundation evidence proves Page 312 and INLAND. Repeating the same search route is lower value than choosing exact setup values from accepted evidence."
+    "reason": "Customer setup values are only partly ready. Payment Terms is empty in real playthru evidence, so a realistic local payment-term decision must precede any customer setup write gate."
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -11282,5 +11285,33 @@
         "boundary": "TARGET-032B proves INLAND on Page 312 after reopen, but does not prove General Posting Setup row or posting readiness."
       }
     ]
+  },
+  "latestCustomerSetupValueSelectionDecision": {
+    "caseId": "CUSTOMER-SETUP-VALUE-SELECTION-DECISION",
+    "status": "partially-completed-blocked-for-write-gate",
+    "resultPath": "playwright/projects/fibu-book5/evidence/customer-setup-value-selection-decision/result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "businessCentralOpened": false,
+    "playwrightLiveRunExecuted": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "selectedForLaterWriteGate": {
+      "customerPostingGroup": "INLAND",
+      "genBusinessPostingGroup": "INLAND"
+    },
+    "candidateOnly": {
+      "vatBusinessPostingGroup": "INLAND"
+    },
+    "blockedValues": {
+      "paymentTermsCode": "blocked-empty-payment-terms-page"
+    },
+    "realismBoundary": "No mockup values and no confidential real customer data. Values are selected only from real Universaarl evidence or explicitly blocked.",
+    "nextCase": "CUSTOMER-PAYMENT-TERMS-SETUP-DECISION",
+    "updatedAt": "2026-07-07T02:14:00.000Z"
   }
 }
