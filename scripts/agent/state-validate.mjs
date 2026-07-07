@@ -81,6 +81,16 @@ if (typeof current.activeNextStepAuthority !== 'object' || current.activeNextSte
     );
   }
 }
+const liveBoundaryResumePilot = current.implementationOperatingSystem?.currentLiveBoundary?.resumePilot;
+if (
+  current.freezeStatus?.status === 'lifted-readfirst' &&
+  liveBoundaryResumePilot !== undefined &&
+  liveBoundaryResumePilot !== (current.nextCase ?? current.activeCase)
+) {
+  errors.push(
+    `${files.current}.implementationOperatingSystem.currentLiveBoundary.resumePilot must match current.nextCase/current.activeCase after read-first lift: ${liveBoundaryResumePilot} vs ${current.nextCase ?? current.activeCase}`,
+  );
+}
 if (current.activeCaseFile !== undefined && current.activeCaseFile !== current.active_case_file) {
   errors.push(
     `current.activeCaseFile must mirror current.active_case_file when present: ${current.activeCaseFile} vs ${current.active_case_file}`,
@@ -97,6 +107,12 @@ if (!existsSync(current.active_case_file)) {
   const activeCase = readJson(current.active_case_file);
   if (activeCase.caseId !== current.activeCase) {
     errors.push(`active case mismatch: current=${current.activeCase}, case file=${activeCase.caseId}`);
+  }
+  if (typeof activeCase.mode === 'string' && activeCase.mode !== current.mode) {
+    errors.push(`current.mode must mirror active case mode: ${current.mode} vs ${activeCase.mode}`);
+  }
+  if (typeof activeCase.activeArea === 'string' && activeCase.activeArea !== current.activeArea) {
+    errors.push(`current.activeArea must mirror active case activeArea: ${current.activeArea} vs ${activeCase.activeArea}`);
   }
   if (Array.isArray(activeCase.allowedActions) && !arraysEqual(current.allowedActions, activeCase.allowedActions)) {
     errors.push(`current.allowedActions must mirror active case allowedActions: ${current.active_case_file}`);

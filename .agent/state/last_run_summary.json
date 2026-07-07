@@ -1,20 +1,21 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "ACTIVE-NEXT-STEP-AUTHORITY-SYNC",
+  "runId": "LIVE-BOUNDARY-RESUME-PILOT-SYNC",
   "caseId": "FOUNDATION-READINESS-DECISION",
-  "status": "completed-local-state-validator-hardening",
-  "completedAt": "2026-07-07T15:55:00.000+02:00",
-  "updatedAt": "2026-07-07T15:55:00.000+02:00",
-  "mode": "universaarl-foundation-masterdata-boundary",
+  "status": "completed-local-resume-gate-hardening",
+  "completedAt": "2026-07-07T16:05:00.000+02:00",
+  "updatedAt": "2026-07-07T16:05:00.000+02:00",
+  "mode": "universaarl-foundation-readfirst",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Local no-live active-state cleanup completed. activeNextStepAuthority now points to the active Foundation Readiness boundary instead of the stale item-service write gate, and state validation now fails if activeNextStepAuthority.selectedNextCase or activeCaseFile drifts away from current.nextCase/preparedNextCaseFile. O2C/P2P, Preview Posting and Posting remain blocked until General Posting Setup and VAT Posting Setup are proven.",
-  "resultPath": "scripts/agent/state-validate.mjs",
+  "summary": "Local no-live active-state and resume-gate cleanup completed. activeArea/mode, activeNextStepAuthority and implementationOperatingSystem.currentLiveBoundary.resumePilot now point to the same active Foundation Readiness boundary. State validation now fails on drift, and agent:resume:check treats Foundation Readiness as the TARGET-075 handoff case while explicitly checking the screenshot-chain contract. Resume is still blocked by expired Playwright auth only.",
+  "resultPath": "scripts/agent/resume-check.mjs",
   "changedArtifacts": [
     ".agent/state/current.json",
     ".agent/state/last_run_summary.json",
-    "scripts/agent/state-validate.mjs"
+    "scripts/agent/state-validate.mjs",
+    "scripts/agent/resume-check.mjs"
   ],
   "businessCentralOpened": false,
   "playwrightLiveRunExecuted": false,
@@ -36,6 +37,11 @@
     "Corrected activeNextStepAuthority so the active next-step source is Foundation Readiness rather than a stale item-service write gate.",
     "Hardened state validation so activeNextStepAuthority.selectedNextCase must match current.nextCase/current.activeCase.",
     "Hardened state validation so activeNextStepAuthority.activeCaseFile must match current.preparedNextCaseFile/current.active_case_file.",
+    "Corrected implementationOperatingSystem.currentLiveBoundary.resumePilot so it no longer points to a stale Number Series candidate.",
+    "Hardened state validation so currentLiveBoundary.resumePilot must match current.nextCase/current.activeCase after read-first lift.",
+    "Aligned current activeArea/mode with the active Foundation Readiness case so freeze-status can evaluate the read-first lift correctly.",
+    "Updated agent:resume:check so Foundation Readiness is handled as the TARGET-075 handoff case instead of rerunning stale TARGET-075/Master-Data blockers.",
+    "Added screenshot-chain contract verification to agent:resume:check.",
     "Kept O2C/P2P, Preview Posting and Posting unproven and blocked."
   ],
   "actionsNotTaken": [

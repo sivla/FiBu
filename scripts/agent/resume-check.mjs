@@ -5,6 +5,8 @@ const npmCmd = process.platform === 'win32' ? 'npm.cmd' : 'npm';
 const nodeCmd = process.execPath;
 const currentState = JSON.parse(readFileSync('.agent/state/current.json', 'utf8'));
 const selectedNextCase = currentState.nextCase ?? '';
+const foundationDecisionCase = 'FOUNDATION-READINESS-DECISION';
+const pwsFf006Case = 'PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST';
 const minAuthExpiresArg = process.argv.find((arg) => arg.startsWith('--min-auth-expires-hours='));
 const minAuthExpiresInHours = minAuthExpiresArg ? Number(minAuthExpiresArg.split('=').at(1)) : null;
 const authCheckArgs = Number.isFinite(minAuthExpiresInHours)
@@ -141,6 +143,9 @@ const steps = [
   runStep('foundation-decision-check', npmCmd, ['run', '--silent', 'agent:foundation:decision', '--', '--check'], {
     parseJson: true
   }),
+  runStep('screenshot-chain-check', npmCmd, ['run', '--silent', 'agent:screenshot-chain:check'], {
+    parseJson: true
+  }),
   runStep('masterdata-readfirst-check', npmCmd, ['run', '--silent', 'agent:masterdata:readfirst:check'], {
     parseJson: true
   }),
@@ -154,8 +159,10 @@ const steps = [
 ];
 
 const ignoredFailureIds = new Set(
-  selectedNextCase === 'PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST'
+  selectedNextCase === pwsFf006Case
     ? ['target-075-safe-check', 'masterdata-readfirst-check']
+    : selectedNextCase === foundationDecisionCase
+      ? ['target-075-safe-check', 'pws-ff-006-safe-check', 'masterdata-readfirst-check']
     : []
 );
 const failed = steps.filter((step) => !step.ok && !ignoredFailureIds.has(step.id));
@@ -168,6 +175,7 @@ const authDoctor = steps.find((step) => step.id === 'auth-doctor')?.parsedJson;
 const target075SafeCheck = steps.find((step) => step.id === 'target-075-safe-check')?.parsedJson;
 const pwsFf006SafeCheck = steps.find((step) => step.id === 'pws-ff-006-safe-check')?.parsedJson;
 const foundationDecisionCheck = steps.find((step) => step.id === 'foundation-decision-check')?.parsedJson;
+const screenshotChainCheck = steps.find((step) => step.id === 'screenshot-chain-check')?.parsedJson;
 const masterDataReadFirstCheck = steps.find((step) => step.id === 'masterdata-readfirst-check')?.parsedJson;
 const qualityRiskIds = (qualityAudit?.risks ?? []).map((risk) => risk.id);
 const authDoctorStoredAuthOk = authDoctor?.authCheck?.canUseStoredAuth === true;
@@ -185,6 +193,8 @@ const localResumeReady =
   authDoctorTargetOk &&
   (selectedNextCase === 'PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST'
     ? pwsFf006SafeCheck?.canRunNow === true
+    : selectedNextCase === foundationDecisionCase
+      ? foundationDecisionCheck?.canWrite === true && screenshotChainCheck?.ok === true
     : target075SafeCheck?.canResumeAfterFreezeLift === true);
 const freezeActive = freezeStatus?.freezeActive === true;
 const liveGateAllowsNow = authDoctor?.canRunBusinessCentralWorkflows === true;
@@ -358,6 +368,15 @@ const output = {
         nextStep: foundationDecisionCheck.nextStep
       }
     : null,
+  screenshotChainCheck: screenshotChainCheck
+    ? {
+        ok: screenshotChainCheck.ok === true,
+        errors: screenshotChainCheck.errors ?? [],
+        warnings: screenshotChainCheck.warnings ?? [],
+        checkedFiles: screenshotChainCheck.checkedFiles ?? [],
+        nextStep: screenshotChainCheck.nextStep
+      }
+    : null,
   masterDataReadFirstCheck: masterDataReadFirstCheck
     ? {
         ok: masterDataReadFirstCheck.ok === true,
@@ -456,6 +475,8 @@ if (
   !authDoctorTargetOk ||
   (selectedNextCase === 'PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST'
     ? pwsFf006SafeCheck?.canRunNow !== true
+    : selectedNextCase === foundationDecisionCase
+      ? foundationDecisionCheck?.canWrite !== true || screenshotChainCheck?.ok !== true
     : target075SafeCheck?.canResumeAfterFreezeLift !== true)
 ) {
   process.exitCode = 1;
