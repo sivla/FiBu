@@ -15,6 +15,15 @@
 - Guard-Ziel-URL an TARGET-075 uebergeben: ja
 - Guard-Ziel-URL im Result ausgegeben: nein
 
+## Aktuelles Verdict
+
+`UNIVERSAARL-DE` hat genug echte Oberflaechen- und Stammdaten-Evidence fuer Schulung, Handbuch und weitere lokale Routenentscheidungen. Das ist noch keine Prozessfreigabe.
+
+- Als Schulungs-/Handbuchsubstanz nutzbar: Kontenplan-Starterkonten, Nummernserien, Dimensionsliste/-werte, Debitor `U-CUST-100 / Saarland Maschinenbau AG`, Artikel `U-ITEM-HW100 / Steuerbox Standard U100`.
+- Weiterhin blockierend fuer O2C/P2P, Preview und Posting: vollstaendige VAT-/USt-Buchungsmatrix, Buchungsmatrix Einrichtung / General Posting Setup, Page-314-/Page-472-Schreibroute, globale/default Dimensionen, VAT-/Posting-Finalitaet.
+- Naechste sinnvolle Arbeit: vorhandene Evidence in Foundation-/Master-Data-Route-Entscheidungen, UAT-/Training und Handbuchentwuerfe umsetzen; keine weiteren blinden Read-first-Microcases und kein Live-Write ohne neuen Smart-Decision-Case.
+- Datenregel: realistische fiktive Universaarl-Daten verwenden, keine UI-Mockups und keine vertraulichen echten Kundendaten.
+
 ## Entscheidung
 
 Master-Data-Schreibfaelle bleiben geparkt. Lesende Master-Data-Kontextprobes duerfen jetzt einzeln starten, weil Company, Kontenplan, Nummernserien und Dimensionen ausreichend sichtbar sind, um Debitoren-/Kreditoren-/Artikel-Oberflaechen ohne Datenanlage zu verstehen. Diese Entscheidung gibt keine Freigabe fuer Stammdatenanlage, Templates, Belege, Buchungsvorschau oder Buchung.
@@ -218,7 +227,7 @@ Erlaubte Anschlussklassifikationen:
 - Quelle: playwright/projects/fibu-book5/evidence/pws-md-004-customer-card-template-required-fields-preflight/PWS-MD-004-result.json
 - Status: observed-prewrite-boundary
 - Akzeptiert: Debitorenliste, `Neu`-/Hover-Kontext und no-click Menuegrenze wurden mit mehreren Screenshots dokumentiert.
-- Sichtbar: `U-CUST-100` / `Universaarl Kunde 100` existiert bereits in `playthru / UNIVERSAARL-DE`.
+- Sichtbar: `U-CUST-100` existierte bereits in `playthru / UNIVERSAARL-DE`; die spaetere realistische Identitaet ist `Saarland Maschinenbau AG`.
 - UI-Learning: Mehr Screenshots haben einen falschen Folgeschritt verhindert. Page Inspection landete auf dem Role Center Shell und ist deshalb kein Debitoren-Tabellenbeweis.
 - Schreibgrenze: kein `Neu`-Create geklickt, keine Vorlage gewaehlt, kein Debitor gespeichert, keine Werte getippt, kein Verkaufsbeleg, keine Buchungsvorschau, keine Buchung.
 - Folgeentscheidung: `PWS-MD-005-CUSTOMER-U-CUST-100-CONTROLLED-CREATE-GATE` ist fuer `U-CUST-100` obsolete. Naechster sinnvoller Case ist `PWS-MD-004B-CUSTOMER-REOPEN-AND-FIELD-PROOF`.
@@ -228,7 +237,7 @@ Erlaubte Anschlussklassifikationen:
 
 - Quelle: playwright/projects/fibu-book5/evidence/pws-md-004b-customer-reopen-and-field-proof/PWS-MD-004B-result.json
 - Status: observed-existing-customer-boundary
-- Akzeptiert: vorhandener Debitor `U-CUST-100` / `Universaarl Kunde 100` wurde ohne Anlage, Bearbeitung oder Speichern geoeffnet/selektiert.
+- Akzeptiert: vorhandener Debitor `U-CUST-100` wurde ohne Anlage, Bearbeitung oder Speichern geoeffnet/selektiert; die aktuelle Schulungsidentitaet ist `Saarland Maschinenbau AG`.
 - Sichtbar: Debitorenkarte, `Nr.`, `Name`, leere Adress-/Kontaktfelder, FactBox, Pflicht-/Hinweismarker bei `Fakturierung` und `Zahlungen`, Page Inspection mit `Customer Card (21, Card)` und `Customer (18)`.
 - UI-Learning: Mehr Screenshots sind noetig, weil Listenansicht, Kartenansicht und Page Inspection unterschiedliche Wahrheiten liefern. In diesem Lauf ist Page Inspection als Debitoren-/Customer-Kontext akzeptiert.
 - Schreibgrenze: kein `Neu`, kein Debitor erstellt, kein Debitor bearbeitet, keine Werte getippt, keine Vorlage, keine Buchungsgruppe, keine Zahlungsbedingung, kein Verkaufsbeleg, keine Buchungsvorschau, keine Buchung.
@@ -250,24 +259,24 @@ Erlaubte Anschlussklassifikationen:
 
 - Quelle: playwright/projects/fibu-book5/evidence/pws-md-004c-customer-billing-payments-fasttabs-readfirst/PWS-MD-004C-result.json
 - Status: observed-read-first-fasttabs
-- Akzeptiert fuer Training: vorhandener Debitor `U-CUST-100` / `Universaarl Kunde 100` wurde read-only auf der Debitorenkarte geoeffnet. `Fakturierung` und `Zahlungen` wurden aufgeklappt und mit mehreren Screenshots sowie Page Inspection dokumentiert.
+- Akzeptiert fuer Training: vorhandener Debitor `U-CUST-100` wurde read-only auf der Debitorenkarte geoeffnet; die aktuelle realistische fiktive Identitaet ist `Saarland Maschinenbau AG`. `Fakturierung` und `Zahlungen` wurden aufgeklappt und mit mehreren Screenshots sowie Page Inspection dokumentiert.
 - Sichtbar: `Fakturierung` zeigt abrechnungs- und buchungsnahe Felder wie USt-/E-Rechnungs-/Geschaeftsbuchungsgruppen-Kontext. `Zahlungen` zeigt Zahlungsfeld-Kontext wie `Zlg.-Bedingungscode`.
 - UI-Learning: Screenshot-QA muss vor der Bewertung kommen. Der direkte Karten-URL-Kontext kann auf das Role Center zurueckfallen, `Escape` kann eine Karte schliessen, und FastTab-Ueberschriften koennen mehrfach vorkommen oder durch aktive Eingabefelder abgefangen werden.
 - Schreibgrenze: kein Debitor angelegt, bearbeitet oder gespeichert; keine Vorlage, keine Buchungsgruppe, keine Zahlungsbedingung, keine USt-/VAT-Einstellung, keine Dimension, kein Verkaufsbeleg, keine Buchungsvorschau, keine Buchung.
 - Folgeentscheidung: Die Screenshots reichen fuer eine kundentaugliche Debitorenkarten-Schulung. Sie reichen nicht fuer Debitoren-Write-Gate, O2C-Readiness, USt-Korrektheit, Buchungsgruppen-Korrektheit oder Posting.
-- Folgeoutput: Trainingskarte `TR-03-01A Debitorenkarte lesen: Fakturierung und Zahlungen` wurde in `.agent/project-template/TRAINING-MODULE-CARDS-DRAFT.md` erstellt. Die lokale Route Decision `CUSTOMER-SETUP-ROUTE-DECISION` waehlt danach einen read-first UI-/Template-Preflight vor jedem Debitoren-Write.
-- Aktueller Folgepunkt: `CUSTOMER-SETUP-UI-TEMPLATE-PREFLIGHT` und `PWS-MD-004B` sind inzwischen konsumiert. Der naechste sinnvolle Schritt ist `CUSTOMER-CONFIG-PACKAGE-FIELD-MAP`, damit realistische fiktive Universaarl-Kundendaten feldweise gegen echte BC-Felder und Setup-Abhaengigkeiten vorbereitet werden.
+- Folgeoutput: Trainingskarte `TR-03-01A Debitorenkarte lesen: Fakturierung und Zahlungen` wurde in `.agent/project-template/TRAINING-MODULE-CARDS-DRAFT.md` erstellt und spaeter auf `U-CUST-100 / Saarland Maschinenbau AG` synchronisiert.
+- Aktueller Folgepunkt: Diese Debitoren-Evidence ist konsumiert. Sie fuehrt nicht direkt in O2C oder weitere Kundenschreibfaelle, sondern in die uebergeordnete `FOUNDATION-READINESS-DECISION`: VAT-/Posting-Boundaries zuerst entscheiden, dann erst weitere Kundenpaket- oder Prozessrouten.
 
 ## Naechste Projektoutputs
 
 - PWS-FF-002C als aktuelle Buchungsmatrix-Grenze konsumieren: Page 314 ist partiell bekannt, aber nicht posting-ready.
 - PWS-FF-006 als akzeptierten Kontenplan-Starterkonten-Nachweis konsumieren; keine weitere Starterkonten-Wiederholung ohne neuen Claim.
-- Master-Data-Schreibfaelle, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt. Naechster Schritt ist eine lokale Debitoren-Feldkarte auf Basis echter `playthru`-Oberflaeche: keine Live-Ausfuehrung, kein Speichern, kein Import, keine Vorlage anwenden und kein O2C.
+- Master-Data-Schreibfaelle, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt. Naechster Schritt ist keine weitere Debitoren-Microprobe, sondern die aktuelle Foundation-/Master-Data-Grenze: Was ist fuer Training/Handbuch verwendbar, was bleibt fuer O2C/P2P blockiert?
 - PWS-FF-005B als beobachteten no-write Dimensionswerte-Proof konsumieren.
 - PWS-FF-001 als beobachteten no-write Nummernserien-Proof konsumieren.
-- `PWS-MD-001`, `PWS-MD-002` und `PWS-MD-003` sind als read-only Kontext beobachtet. Die Route Decision waehlt Debitoren als ersten Kandidaten, aber zuerst nur als Preflight.
-- Classify master-data readiness only after chart/setup context is accepted.
-- Use accepted screenshots as draft handbook/training evidence, not final compliance proof.
+- `PWS-MD-001`, `PWS-MD-002` und `PWS-MD-003` sind als read-only Kontext beobachtet und konsumiert. Debitor und Artikel haben Schulungswert; Kreditoren bleiben fuer P2P und Zahlung spaeter separat vorzubereiten.
+- Master Data bleibt nur training-/handbook-ready, nicht process-ready, bis VAT-/Posting-Boundaries akzeptiert oder geloest sind.
+- Akzeptierte Screenshots duerfen als Handbuch-/Trainingsentwurf genutzt werden, aber nicht als finaler Compliance-Nachweis.
 
 ## Evidence
 
