@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized-compatible",
+  "caseId": "CUSTOMER-PAYMENT-TERMS-SETUP-DECISION",
+  "source": "local-source-and-evidence-decision",
+  "resultStatus": "completed-local-decision",
+  "completedAt": "2026-07-07T03:05:00.000Z",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "Payment Terms / Zahlungsbedingungen",
+  "businessCentralOpened": false,
+  "playwrightLiveRunExecuted": false,
+  "liveActionsExecuted": false,
+  "actionsTaken": [
+    "Read existing Universaarl evidence showing the Payment Terms page is reachable but empty.",
+    "Checked Microsoft Learn product documentation for Business Central payment terms and DateFormula behavior.",
+    "Selected one realistic simulated Universaarl payment term for the first customer scenario.",
+    "Selected a later UI-first write gate because a single setup row is easier to screenshot, explain and reopen-prove than a batch import.",
+    "Kept Configuration Package as the later scalable route for multiple payment terms, not the first proof route."
+  ],
+  "actionsNotTaken": [
+    "No Business Central page opened.",
+    "No payment term created or changed.",
+    "No customer edited or saved.",
+    "No setup row changed.",
+    "No document or draft created.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No payment.",
+    "No API shortcut.",
+    "No confidential real customer data used."
+  ],
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "confidentialRealCustomerDataUsed": false,
+  "sourceBasis": [
+    {
+      "type": "microsoft-learn-product-source",
+      "title": "Set up payment terms - Business Central",
+      "url": "https://learn.microsoft.com/en-au/dynamics365/business-central/finance-payment-terms",
+      "usedFor": [
+        "Payment terms manage due dates and payment discounts.",
+        "Payment terms can be assigned to customers and vendors and flow to sales and purchase documents.",
+        "Document dates are used to calculate due dates; document-level terms can be changed without changing the customer default."
+      ]
+    },
+    {
+      "type": "microsoft-learn-object-source",
+      "title": "Table Payment Terms",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/application/base-application/table/microsoft.foundation.paymentterms.payment-terms",
+      "usedFor": [
+        "Payment Terms table is table 3.",
+        "Relevant fields include Code, Due Date Calculation, Discount Date Calculation, Discount %, Description and Calc. Pmt. Disc. on Cr. Memos."
+      ]
+    },
+    {
+      "type": "microsoft-learn-dateformula-source",
+      "title": "DateFormula data type",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/developer/methods-auto/dateformula/dateformula-data-type",
+      "usedFor": [
+        "Date formulas are stored in a generic format and displayed for the current language.",
+        "30D is the product-source example for 30 days; the later German UI proof must verify the displayed localized value."
+      ]
+    },
+    {
+      "type": "universaarl-evidence",
+      "title": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
+      "url": "playwright/projects/fibu-book5/evidence/customer-setup-route-recovery-readfirst/result.json",
+      "usedFor": [
+        "Payment Terms page is reachable read-only in playthru / UNIVERSAARL-DE.",
+        "Observed list is empty, so no existing value can be selected."
+      ]
+    },
+    {
+      "type": "universaarl-evidence",
+      "title": "CUSTOMER-SETUP-POSTING-PAYMENT-READFIRST",
+      "url": "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/result.json",
+      "usedFor": [
+        "U-CUST-100 Payment Terms Code is visible empty on the customer card."
+      ]
+    }
+  ],
+  "selectedPaymentTerm": {
+    "code": "NET30",
+    "description": "30 Tage netto",
+    "dueDateCalculation": "<30D>",
+    "expectedLocalizedDisplay": "30T or equivalent German localized display after save/reopen",
+    "discountDateCalculation": "",
+    "discountPercent": 0,
+    "calcPmtDiscOnCreditMemos": false,
+    "dataStatus": "simulated-universaarl",
+    "decisionStatus": "selected-for-later-payment-terms-write-gate",
+    "businessReason": "A simple 30-day net term is realistic for a first B2B customer scenario, easy to explain in training, and sufficient to prove due-date logic before adding discounts, installments or special collection rules.",
+    "trainingReason": "Finance and sales users can understand invoice date, due date and overdue monitoring before learning discounts or reminders.",
+    "uatReason": "A later UAT scenario can create or preview a sales invoice and verify that the due date is calculated 30 days after the document date, once O2C setup is otherwise ready."
+  },
+  "routeDecision": {
+    "selectedRoute": "UI-first single setup row, then reopen proof",
+    "why": "The Payment Terms page is empty and the first proof needs only one row. UI-first gives the clearest screenshot and training path for a key-user handbook.",
+    "alternatives": [
+      {
+        "route": "Configuration Package",
+        "status": "later-batch-route",
+        "reason": "Useful when several payment terms are loaded for a real customer project, but too broad for the first single-row evidence proof."
+      },
+      {
+        "route": "Excel-assisted",
+        "status": "later-batch-route",
+        "reason": "Useful for customer data collection and review, not needed for one controlled setup row."
+      },
+      {
+        "route": "API or AL",
+        "status": "parked",
+        "reason": "Unnecessary for first standard setup proof and harder to explain to key users."
+      },
+      {
+        "route": "Template",
+        "status": "not-applicable-first-proof",
+        "reason": "Customer templates can later assign the payment term, but the payment term itself must exist first."
+      }
+    ]
+  },
+  "writeGatePlan": {
+    "nextCase": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
+    "allowedLaterFields": [
+      "Code = NET30",
+      "Description = 30 Tage netto",
+      "Due Date Calculation = <30D> or localized equivalent accepted by the German UI",
+      "Discount Date Calculation blank",
+      "Discount % = 0",
+      "Calc. Pmt. Disc. on Cr. Memos = false"
+    ],
+    "requiredScreenshots": [
+      "Payment Terms page before write showing empty or existing rows.",
+      "New/payment-term row or card before values.",
+      "After-save context showing NET30.",
+      "Reopen proof showing NET30 and due-date formula.",
+      "No-save/no-extra-action end context."
+    ],
+    "stopIf": [
+      "Payment Terms page does not show a trusted row/card editor.",
+      "NET30 already exists with conflicting values.",
+      "The UI rejects <30D> and no localized safe equivalent is clear.",
+      "A dialog asks for broad setup, import, delete or unrelated confirmation.",
+      "The run cannot capture before/after/reopen screenshots."
+    ]
+  },
+  "proved": [
+    "A realistic simulated Universaarl payment term can be selected without using mockups or legacy values.",
+    "NET30 / 30 Tage netto / <30D> is the selected first payment-term candidate.",
+    "The first proof route should be UI-first with reopen proof.",
+    "Configuration Package is better reserved for later batch setup after the single-row UI proof.",
+    "No Business Central or Playwright live action occurred."
+  ],
+  "notProved": [
+    "NET30 is not yet created in Business Central.",
+    "No customer card value was changed.",
+    "No due date was calculated on a sales document.",
+    "No O2C readiness, Preview Posting, Posting, payment or ledger trace.",
+    "No UAT acceptance."
+  ],
+  "blockedBy": [],
+  "warnings": [
+    "NET30 is a realistic simulated Universaarl decision, not an observed existing setup row.",
+    "The later write gate must verify how the German UI displays the stored date formula.",
+    "Do not claim payment or dunning readiness from this payment-term decision."
+  ],
+  "flags": {
+    "noBusinessCentralOpen": true,
+    "noWrite": true,
+    "noSetupChange": true,
+    "noMasterDataChange": true,
+    "noDraft": true,
+    "noPreview": true,
+    "noPost": true,
+    "noPayment": true,
+    "noApiShortcut": true,
+    "noConfidentialRealCustomerData": true
+  },
+  "nextStepDecision": {
+    "currentCase": "CUSTOMER-PAYMENT-TERMS-SETUP-DECISION",
+    "plannedNextCaseBeforeReview": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
+    "lastEvidenceSummary": "Payment Terms page is reachable but empty; U-CUST-100 Payment Terms Code is empty; Microsoft Learn confirms payment terms control due dates and discounts.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The exact value, business purpose, source boundary and UI-first proof route are now named.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
+        "status": "ready-next",
+        "reason": "Single-row UI setup proof can create NET30 with before/after/reopen screenshots."
+      },
+      {
+        "caseId": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
+        "status": "ready-after-current",
+        "reason": "Can only follow once NET30 exists and customer-card field write boundaries are repeated."
+      },
+      {
+        "caseId": "CUSTOMER-SETUP-VALUE-READFIRST-REOPEN",
+        "status": "ready-after-current",
+        "reason": "After NET30 exists, reopen customer card to confirm fields remain empty before writing selected values."
+      },
+      {
+        "caseId": "O2C-MINIMAL-ROUTE-DECISION",
+        "status": "needs-setup-first",
+        "reason": "Still waits for customer setup, item/service setup and VAT/general posting boundaries."
+      }
+    ],
+    "queueChangesMade": [
+      "Selected CUSTOMER-PAYMENT-TERMS-WRITE-GATE as the next narrow gated live setup case."
+    ],
+    "selectedNextCase": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It turns an observed empty setup dependency into one real, explainable BC setup row before customer setup writes.",
+    "risksBeforeNextCase": [
+      "Do not create multiple payment terms.",
+      "Do not write the customer card in the payment-term setup case.",
+      "Do not claim invoice due-date proof until a document or preview scenario exists."
+    ],
+    "requiredPreparation": [
+      "Run normal preflight/auth/context gates.",
+      "Open only playthru / UNIVERSAARL-DE.",
+      "Capture enough screenshots to prove page, row/card, values and reopen state."
+    ]
+  },
+  "nextCase": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
+  "requiresReview": false,
+  "safeToFinalizeState": true
+}

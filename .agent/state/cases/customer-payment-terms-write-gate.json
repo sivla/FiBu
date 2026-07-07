@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "caseId": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
+  "status": "ready-gated-live-setup-case",
+  "mode": "universaarl-masterdata-payment-terms-write-gate",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w2-core-masterdata-customer-payment-terms-write",
+  "workstream": "WS04 Master Data / Finance Setup",
+  "epic": "Customer master data setup values",
+  "issueType": "Task",
+  "purpose": "Create or verify exactly one realistic Universaarl payment term NET30 on the Business Central Payment Terms page with before/after/reopen evidence.",
+  "businessPurpose": "Universaarl needs one simple B2B customer payment term before the first customer setup write gate. This case creates the setup prerequisite only; it does not write the customer card or prove invoice due dates.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/customer-payment-terms-setup-decision/result.json",
+    "playwright/projects/fibu-book5/evidence/customer-setup-route-recovery-readfirst/result.json",
+    "playwright/projects/fibu-book5/evidence/customer-setup-posting-payment-readfirst/result.json"
+  ],
+  "selectedValue": {
+    "code": "NET30",
+    "description": "30 Tage netto",
+    "dueDateCalculation": "<30D>",
+    "discountDateCalculation": "",
+    "discountPercent": 0,
+    "calcPmtDiscOnCreditMemos": false
+  },
+  "allowedActions": [
+    "open-business-central-playthru-only",
+    "confirm-company-universaarl-de",
+    "open-payment-terms-page",
+    "capture-before-screenshot",
+    "create-or-verify-single-payment-term-net30",
+    "capture-after-screenshot",
+    "reopen-payment-terms-page",
+    "capture-reopen-proof",
+    "write-result-json"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "edit-customer",
+    "save-customer",
+    "change-posting-group",
+    "change-vat-setup",
+    "change-dimensions",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "use-confidential-real-customer-data"
+  ],
+  "smartDecision": {
+    "whyNow": "The customer setup value decision is blocked by an empty Payment Terms page. One payment term is the smallest useful setup prerequisite before writing U-CUST-100 payment terms.",
+    "sourceBasis": [
+      "Microsoft Learn confirms payment terms manage due dates and discounts.",
+      "Universaarl evidence shows the Payment Terms page is reachable but empty.",
+      "U-CUST-100 currently has an empty Payment Terms Code."
+    ],
+    "fieldsChangedOnlyIfSafe": [
+      "Payment Terms Code NET30",
+      "Description 30 Tage netto",
+      "Due Date Calculation <30D> or accepted German localized equivalent",
+      "Discount Date Calculation blank",
+      "Discount % 0",
+      "Calc. Pmt. Disc. on Cr. Memos false"
+    ],
+    "fieldsNotTouched": [
+      "Customer Card",
+      "Customer Posting Group",
+      "Gen. Business Posting Group",
+      "VAT Business Posting Group",
+      "Payment Method",
+      "Dimensions",
+      "Documents",
+      "Preview Posting",
+      "Posting"
+    ],
+    "fallback": "If the UI cannot safely create or verify the single NET30 row, stop with screenshots and keep CUSTOMER-SETUP-VALUE-WRITE-GATE parked."
+  },
+  "acceptanceCriteria": [
+    "Business Central shell proves playthru / UNIVERSAARL-DE.",
+    "Before screenshot proves Payment Terms page context.",
+    "NET30 is visible after save or already existed with matching values.",
+    "Reopen proof shows NET30 and the due-date formula or localized equivalent.",
+    "No customer, document, Preview Posting, Posting, payment or API shortcut occurs.",
+    "Result JSON states what is proven and not proven."
+  ],
+  "stopIf": [
+    "Wrong instance or company.",
+    "Payment Terms page cannot be proven by screenshot/text/Page Inspection.",
+    "NET30 exists with conflicting values.",
+    "The UI demands a broad import, wizard, delete or unrelated confirmation.",
+    "The due-date formula route is unclear after screenshot/tooltip/context inspection.",
+    "Any customer card or document would need to be opened to complete this case."
+  ],
+  "nextCaseIfReady": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
+  "nextCaseIfBlocked": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE-RECOVERY",
+  "updatedAt": "2026-07-07T03:05:00.000Z"
+}

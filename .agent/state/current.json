@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-07T02:14:00.000Z",
+  "updatedAt": "2026-07-07T03:05:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
-  "activeArea": "w2-core-masterdata-customer-payment-terms",
-  "activeCase": "CUSTOMER-PAYMENT-TERMS-SETUP-DECISION",
-  "active_case_file": ".agent/state/cases/customer-payment-terms-setup-decision.json",
-  "activeCaseFile": ".agent/state/cases/customer-payment-terms-setup-decision.json",
+  "activeArea": "w2-core-masterdata-customer-payment-terms-write",
+  "activeCase": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
+  "active_case_file": ".agent/state/cases/customer-payment-terms-write-gate.json",
+  "activeCaseFile": ".agent/state/cases/customer-payment-terms-write-gate.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-masterdata-payment-terms-decision",
+  "mode": "universaarl-masterdata-payment-terms-write-gate",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -34,11 +34,15 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-existing-evidence",
-    "choose-realistic-simulated-payment-term-local-only",
-    "compare-ui-template-configuration-package-route",
-    "write-decision-json",
-    "prepare-narrow-payment-terms-write-gate-case"
+    "open-business-central-playthru-only",
+    "confirm-company-universaarl-de",
+    "open-payment-terms-page",
+    "capture-before-screenshot",
+    "create-or-verify-single-payment-term-net30",
+    "capture-after-screenshot",
+    "reopen-payment-terms-page",
+    "capture-reopen-proof",
+    "write-result-json"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -46,22 +50,20 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "open-business-central",
     "edit-customer",
     "save-customer",
-    "create-payment-terms",
-    "change-payment-terms",
     "change-posting-group",
     "change-vat-setup",
     "change-dimensions",
     "create-document-or-draft",
     "preview-posting",
     "post",
+    "payment",
     "api-shortcut",
     "use-confidential-real-customer-data"
   ],
-  "nextCase": "CUSTOMER-PAYMENT-TERMS-SETUP-DECISION",
-  "nextStep": "Decide one realistic simulated Universaarl payment term before any customer setup write gate. Do not invent values from legacy or mockups; use the empty Payment Terms evidence as the blocker that this case resolves locally.",
+  "nextCase": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
+  "nextStep": "Run CUSTOMER-PAYMENT-TERMS-WRITE-GATE only after normal gates: create or verify exactly NET30 on Payment Terms with before/after/reopen screenshots. Do not edit customer, documents, posting groups, VAT, dimensions, preview, post or API.",
   "preparedNextCaseFile": ".agent/state/cases/customer-setup-dependency-readfirst.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
@@ -196,12 +198,12 @@
     "nextBoundary": "Master Data remains parked. Next work must update Foundation Readiness and either accept this as a Foundation gap or define a genuinely new Page 314 route hypothesis before another live attempt."
   },
   "activeNextStepAuthority": {
-    "source": "customer-setup-value-selection-decision",
+    "source": "customer-payment-terms-setup-decision",
     "roadMap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
-    "activeCaseFile": ".agent/state/cases/customer-payment-terms-setup-decision.json",
+    "activeCaseFile": ".agent/state/cases/customer-payment-terms-write-gate.json",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "Customer setup values are only partly ready. Payment Terms is empty in real playthru evidence, so a realistic local payment-term decision must precede any customer setup write gate."
+    "reason": "Payment Terms was the blocker for customer setup values. The local decision selected NET30 from Microsoft Learn product basis plus real empty-page evidence; the next step is a narrow UI-first write gate."
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -11313,5 +11315,29 @@
     "realismBoundary": "No mockup values and no confidential real customer data. Values are selected only from real Universaarl evidence or explicitly blocked.",
     "nextCase": "CUSTOMER-PAYMENT-TERMS-SETUP-DECISION",
     "updatedAt": "2026-07-07T02:14:00.000Z"
+  },
+  "latestCustomerPaymentTermsSetupDecision": {
+    "caseId": "CUSTOMER-PAYMENT-TERMS-SETUP-DECISION",
+    "status": "completed-local-decision",
+    "resultPath": "playwright/projects/fibu-book5/evidence/customer-payment-terms-setup-decision/result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "businessCentralOpened": false,
+    "playwrightLiveRunExecuted": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "selectedPaymentTerm": {
+      "code": "NET30",
+      "description": "30 Tage netto",
+      "dueDateCalculation": "<30D>",
+      "discountPercent": 0
+    },
+    "selectedRoute": "UI-first single setup row, then reopen proof",
+    "nextCase": "CUSTOMER-PAYMENT-TERMS-WRITE-GATE",
+    "updatedAt": "2026-07-07T03:05:00.000Z"
   }
 }
