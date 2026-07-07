@@ -322,9 +322,9 @@ Required columns:
 | Field | Example | Required | Notes |
 | --- | --- | --- | --- |
 | ItemNo | U-ITEM-HW100 | yes | Or blank if number series assigns. |
-| Description | Universaarl Hardware 100 | yes | Fictional example. |
+| Description | Steuerbox Standard U100 | yes | Simulated Universaarl product; German handbook/training name. |
 | Type | Inventory | yes | Inventory, Service, Non-Inventory. |
-| BaseUnitOfMeasure | PCS | yes | Unit dependency. |
+| BaseUnitOfMeasure | STK | yes | Unit dependency; aligns with the visible German playthru item signal. |
 | InventoryPostingGroup | WARE | conditional | Inventory items only. |
 | GenProdPostingGroup | WARE | yes | General posting setup. |
 | VATProdPostingGroup | VAT19 | yes | VAT setup. |

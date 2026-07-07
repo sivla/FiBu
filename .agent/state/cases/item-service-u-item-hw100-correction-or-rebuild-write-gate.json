@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "caseId": "ITEM-SERVICE-U-ITEM-HW100-CORRECTION-OR-REBUILD-WRITE-GATE",
+  "title": "U-ITEM-HW100 Correction Or Rebuild Write Gate",
+  "status": "ready-live-write-gate-after-preflight",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "universaarl-masterdata-item-controlled-write-gate",
+  "businessPurpose": "Prove or correct the real Business Central item card for U-ITEM-HW100 so the Universaarl Steuerbox Standard U100 can later support O2C/P2P/inventory training without mockup-like data.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/item-service-realistic-product-model-decision/result.json",
+    "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-boundary-decision/result.json",
+    "playwright/projects/fibu-book5/evidence/item-service-masterdata-readfirst/result.json"
+  ],
+  "targetValues": {
+    "itemNo": "U-ITEM-HW100",
+    "description": "Steuerbox Standard U100",
+    "type": "Bestand",
+    "baseUnitOfMeasure": "STK",
+    "inventoryPostingGroup": "WARE",
+    "genProductPostingGroup": "WARE",
+    "vatProductPostingGroup": "VAT19",
+    "costingMethod": "FIFO",
+    "unitCost": "100.00",
+    "unitPrice": "149.00"
+  },
+  "allowedActions": [
+    "run-auth-and-live-gate-checks",
+    "open-business-central-live-in-playthru",
+    "confirm-company-universaarl-de",
+    "open-items-page-read-first",
+    "open-u-item-hw100-card",
+    "capture-before-screenshots",
+    "inspect-item-card-fields",
+    "write-only-target-item-fields-if-active-editor-is-clear",
+    "save-or-auto-save-item-card",
+    "reopen-item-card-proof",
+    "write-result-json",
+    "update-state-and-dashboard"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "create-sales-document",
+    "create-purchase-document",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "change-vat-setup",
+    "change-posting-setup",
+    "change-number-series",
+    "delete-existing-item-without-destructive-protocol",
+    "use-confidential-real-customer-data",
+    "force-click-as-normal-route",
+    "coordinate-click-without-diagnostic-status"
+  ],
+  "smartDecisionRequiredBeforeWrite": true,
+  "stopIf": [
+    "Business Central is not playthru",
+    "Company is not UNIVERSAARL-DE / Universaarl GmbH",
+    "Item card route opens the wrong record",
+    "Page or field labels are ambiguous",
+    "Active editor cannot be proven before typing",
+    "Field requires setup that is not visible or not approved",
+    "A dialog appears whose effect is unclear",
+    "Any write would create a document, ledger entry, preview, posting or payment"
+  ],
+  "expectedOutput": {
+    "resultPath": "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-correction-or-rebuild-write-gate/result.json",
+    "screenshotsRequired": [
+      "before item list/card context",
+      "field route / FastTab context",
+      "after save context",
+      "reopen proof"
+    ],
+    "mustClassify": [
+      "correctedExistingItem",
+      "rebuiltOrParked",
+      "fieldsProven",
+      "fieldsNotProven",
+      "processReadiness",
+      "nextCase"
+    ],
+    "mustNotClaim": [
+      "O2C readiness",
+      "P2P readiness",
+      "inventory valuation correctness",
+      "posting readiness",
+      "UAT acceptance"
+    ]
+  },
+  "nextStepDecision": {
+    "plannedNextCaseBeforeReview": "O2C-MINIMAL-ROUTE-DECISION",
+    "selectedNextCase": "ITEM-SERVICE-U-ITEM-HW100-CORRECTION-OR-REBUILD-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "The project needs the real item card to match the realistic product model before any process route can use it."
+  }
+}

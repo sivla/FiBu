@@ -1,0 +1,181 @@
+{
+  "schemaVersion": 1,
+  "caseId": "ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION",
+  "source": "local-product-model-decision",
+  "resultStatus": "completed-local-decision",
+  "completedAt": "2026-07-07T09:05:00.000+02:00",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "businessCentralOpened": false,
+  "playwrightLiveRunExecuted": false,
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "confidentialRealCustomerDataUsed": false,
+  "selectedProductModel": {
+    "itemNo": "U-ITEM-HW100",
+    "description": "Steuerbox Standard U100",
+    "type": "Inventory",
+    "typeGerman": "Bestand",
+    "baseUnitOfMeasure": "STK",
+    "inventoryPostingGroup": "WARE",
+    "genProductPostingGroup": "WARE",
+    "vatProductPostingGroup": "VAT19",
+    "costingMethod": "FIFO",
+    "targetUnitCost": "100.00",
+    "targetUnitPrice": "149.00",
+    "businessPurpose": "Realistic simulated Universaarl trading item for first O2C, later purchase/inventory and value-entry learning."
+  },
+  "minimumRequiredFieldsBeforeProcessUse": [
+    "No. = U-ITEM-HW100",
+    "Description = Steuerbox Standard U100",
+    "Type = Bestand / Inventory",
+    "Base Unit of Measure = STK",
+    "Inventory Posting Group = WARE",
+    "Gen. Product Posting Group = WARE",
+    "VAT Product Posting Group = VAT19",
+    "Costing Method = FIFO",
+    "Unit Cost = 100.00 or consciously parked with reason",
+    "Unit Price = 149.00 or consciously parked with reason",
+    "Item Category Code decided or consciously parked",
+    "Reopen proof screenshots for card, Invoicing/Costs, Replenishment or relevant FastTabs"
+  ],
+  "correctionOrRebuildRecommendation": {
+    "decision": "controlled-correction-preferred-if-existing-record-is-openable-and-fields-are-editable",
+    "fallback": "clean-rebuild-or-new-item-only-if-correction-route is unsafe, ambiguous or would leave dirty visible data",
+    "reason": "The existing item number is already visible in playthru. Correcting it is less noisy than creating a parallel product, but only if the card route and fields are clear."
+  },
+  "sourceBasis": [
+    {
+      "type": "local-evidence",
+      "path": "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-boundary-decision/result.json",
+      "use": "Shows current U-ITEM-HW100 is visible-context-only and not process-ready."
+    },
+    {
+      "type": "project-data",
+      "path": ".agent/project-template/CUSTOMER-DATA-SIMULATION-DRAFT.md",
+      "use": "Defines simulated item fields for the realistic Universaarl master-data package."
+    },
+    {
+      "type": "project-data",
+      "path": ".agent/project-template/SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md",
+      "use": "Tracks item/service package readiness, route candidate and training/UAT impact."
+    },
+    {
+      "type": "project-data",
+      "path": "playwright/projects/fibu-book5/UNIVERSAARL-DATASET-BLUEPRINT.md",
+      "use": "Maps U-ITEM-HW100 to O2C/P2P/inventory learning as a Steuerbox trading item."
+    },
+    {
+      "type": "official-source",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/inventory-how-setup-units-of-measure",
+      "use": "Business Central base unit of measure and alternate item unit logic."
+    },
+    {
+      "type": "official-source",
+      "url": "https://learn.microsoft.com/en-au/dynamics365/business-central/inventory-about-item-types",
+      "use": "Business Central item type affects inventory handling."
+    },
+    {
+      "type": "official-source",
+      "url": "https://learn.microsoft.com/en-au/dynamics365/business-central/finance-posting-groups",
+      "use": "Posting groups map business entities and transaction values to G/L accounts."
+    }
+  ],
+  "actionsTaken": [
+    "Reconciled U-ITEM-HW100 naming to the German customer/training product name Steuerbox Standard U100.",
+    "Aligned the local simulated data package with the visible German unit signal STK instead of generic PCS.",
+    "Defined minimum item fields needed before O2C, P2P, inventory, UAT or final book use.",
+    "Selected a controlled correction-first route, with rebuild only as fallback.",
+    "Updated existing data-package artifacts instead of creating a new methodology layer."
+  ],
+  "actionsNotTaken": [
+    "No Business Central live page was opened.",
+    "No Playwright live test was run.",
+    "No item field was changed in Business Central.",
+    "No item or service was created in Business Central.",
+    "No setup was changed.",
+    "No sales or purchase document was created.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No payment.",
+    "No API shortcut.",
+    "No confidential real customer data was used."
+  ],
+  "proved": [
+    "The project now has one selected target product model for U-ITEM-HW100.",
+    "The selected model is realistic fictional Universaarl data, not confidential real customer data.",
+    "The model is still blocked from process use until Business Central card fields are corrected or proven with reopen screenshots."
+  ],
+  "notProved": [
+    "No Business Central field was changed.",
+    "No item card reopen proof for the target values exists yet.",
+    "No product posting group, VAT product group, costing or price/cost correctness is proven in playthru.",
+    "No O2C, P2P, inventory, UAT or final book readiness is proven."
+  ],
+  "bookTrainingBoundary": {
+    "usableNow": "The product model can be used to explain why item master data must be realistic and setup-dependent.",
+    "notUsableYet": "Do not write final handbook steps that tell users to create sales or purchase documents with U-ITEM-HW100 until the write gate proves the BC item card."
+  },
+  "changedFiles": [
+    ".agent/project-template/CUSTOMER-DATA-SIMULATION-DRAFT.md",
+    ".agent/project-template/SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md",
+    "playwright/projects/fibu-book5/evidence/item-service-realistic-product-model-decision/result.json",
+    "playwright/projects/fibu-book5/evidence/item-service-realistic-product-model-decision/README.md",
+    ".agent/state/cases/item-service-u-item-hw100-correction-or-rebuild-write-gate.json",
+    ".agent/state/current.json",
+    ".agent/state/last_run_summary.json",
+    ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md"
+  ],
+  "nextStepDecision": {
+    "currentCase": "ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION",
+    "plannedNextCaseBeforeReview": "ITEM-SERVICE-U-ITEM-HW100-CORRECTION-OR-REBUILD-WRITE-GATE",
+    "lastEvidenceSummary": "U-ITEM-HW100 is visible but not clean enough; local data packages are now reconciled to Steuerbox Standard U100 with STK, WARE, VAT19, FIFO and explicit price/cost targets.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The next useful step is to prove or correct the real BC item card. O2C/P2P remain blocked until that write gate succeeds.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "ITEM-SERVICE-U-ITEM-HW100-CORRECTION-OR-REBUILD-WRITE-GATE",
+        "status": "ready-next",
+        "reason": "Target values and correction/rebuild boundary are now explicit."
+      },
+      {
+        "caseId": "ITEM-SERVICE-CARD-REOPEN-PROOF",
+        "status": "ready-after-current",
+        "reason": "Required after any write or if the item is already correct."
+      },
+      {
+        "caseId": "O2C-MINIMAL-ROUTE-DECISION",
+        "status": "needs-setup-first",
+        "reason": "Requires usable customer and proven usable item fields."
+      },
+      {
+        "caseId": "P2P-MINIMAL-ROUTE-DECISION",
+        "status": "needs-setup-first",
+        "reason": "Requires vendor plus item/inventory setup proof."
+      }
+    ],
+    "queueChangesMade": [
+      "Set ITEM-SERVICE-U-ITEM-HW100-CORRECTION-OR-REBUILD-WRITE-GATE as next active case."
+    ],
+    "selectedNextCase": "ITEM-SERVICE-U-ITEM-HW100-CORRECTION-OR-REBUILD-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It converts the local realistic product model into a controlled, screenshot-backed Business Central proof before process work.",
+    "risksBeforeNextCase": [
+      "Do not use force clicks or blind typing on the item card.",
+      "Stop if card route, active editor or field labels are ambiguous.",
+      "Do not create O2C/P2P documents even if item correction succeeds."
+    ],
+    "requiredPreparation": [
+      "Run auth and live gate checks before opening BC.",
+      "Capture before, field-route and reopen proof screenshots.",
+      "Use Smart Decision before any write."
+    ]
+  },
+  "nextCase": "ITEM-SERVICE-U-ITEM-HW100-CORRECTION-OR-REBUILD-WRITE-GATE",
+  "safeToFinalizeState": false,
+  "requiresReview": false
+}

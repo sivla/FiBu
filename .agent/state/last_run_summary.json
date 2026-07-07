@@ -1,20 +1,22 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION",
-  "caseId": "ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION",
+  "runId": "ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION",
+  "caseId": "ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION",
   "status": "completed-local-decision",
-  "completedAt": "2026-07-07T08:25:00.000+02:00",
-  "updatedAt": "2026-07-07T08:25:00.000+02:00",
-  "mode": "universaarl-masterdata-item-boundary-decision",
+  "completedAt": "2026-07-07T09:05:00.000+02:00",
+  "updatedAt": "2026-07-07T09:05:00.000+02:00",
+  "mode": "universaarl-masterdata-product-model-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Local boundary decision classified U-ITEM-HW100 as visible-context-only: useful for read-first context, but not setup-ready, not O2C/P2P-ready and not final-book-ready. The next case is a local realistic product-model decision before any correction/rebuild write gate.",
-  "resultPath": "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-boundary-decision/result.json",
+  "summary": "Local product-model decision selected U-ITEM-HW100 as Steuerbox Standard U100 with STK, WARE, VAT19, FIFO and explicit price/cost targets. The model remains blocked from O2C/P2P until a controlled Business Central write gate proves or corrects the real item card with screenshots and reopen proof.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/item-service-realistic-product-model-decision/result.json",
   "changedArtifacts": [
-    "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-boundary-decision/result.json",
-    "playwright/projects/fibu-book5/evidence/item-service-u-item-hw100-boundary-decision/README.md",
-    ".agent/state/cases/item-service-realistic-product-model-decision.json",
+    ".agent/project-template/CUSTOMER-DATA-SIMULATION-DRAFT.md",
+    ".agent/project-template/SIMULATED-DATA-TABLES-CORE-MD-DRAFT.md",
+    "playwright/projects/fibu-book5/evidence/item-service-realistic-product-model-decision/result.json",
+    "playwright/projects/fibu-book5/evidence/item-service-realistic-product-model-decision/README.md",
+    ".agent/state/cases/item-service-u-item-hw100-correction-or-rebuild-write-gate.json",
     ".agent/state/current.json",
     ".agent/state/last_run_summary.json",
     ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md"
@@ -30,69 +32,37 @@
   "apiShortcut": false,
   "confidentialRealCustomerDataUsed": false,
   "actionsTaken": [
-    "Read the active item boundary case and recent item read-first result summaries.",
-    "Compared visible U-ITEM-HW100 signals with Universaarl data-package planning.",
-    "Classified U-ITEM-HW100 as visible-context-only and blocked it from O2C/P2P use until product model and write gate are clear.",
-    "Prepared ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION as the next local case."
+    "Reconciled U-ITEM-HW100 product naming to Steuerbox Standard U100.",
+    "Aligned simulated item base unit to STK and retained WARE/VAT19/FIFO as target values for a later write gate.",
+    "Updated existing data-package artifacts instead of creating a new methodology layer.",
+    "Prepared a controlled correction-or-rebuild write gate case with explicit stop conditions."
   ],
   "actionsNotTaken": [
     "No Business Central live page opened.",
     "No Playwright live test run.",
-    "No item/service/setup/master-data/document change.",
-    "No Preview Posting.",
-    "No Posting.",
-    "No payment.",
-    "No API shortcut.",
-    "No confidential real customer data used."
+    "No item field changed in Business Central.",
+    "No setup, master-data, document, preview, posting, payment or API action."
   ],
   "proved": [
-    "Earlier evidence proves U-ITEM-HW100 visibility in playthru / UNIVERSAARL-DE.",
-    "Local comparison proves a boundary conflict: visible BC record quality is weaker than the intended realistic Universaarl product model."
+    "The repository now has one selected realistic fictional product model for U-ITEM-HW100.",
+    "The selected product model is not confidential real customer data and is blocked until BC evidence proves it."
   ],
   "notProved": [
-    "No item setup completeness.",
-    "No product posting group, VAT product group, costing, price or inventory setup correctness.",
-    "No O2C/P2P/inventory/process readiness.",
-    "No UAT acceptance.",
-    "No BC write or reopen proof in this local decision."
+    "No Business Central item card values were changed or proven.",
+    "No O2C/P2P/inventory/UAT/posting readiness is proven."
   ],
   "warnings": [
-    "The visible description/search signal appears concatenated and not book-ready.",
-    "The dataset uses both Steuerbox Standard and Universaarl Hardware 100 naming; this must be reconciled before any write gate."
+    "Next live case is a write gate and must run auth/live-gate checks plus Smart Decision before changing fields.",
+    "Do not create sales or purchase documents even if the item correction succeeds."
   ],
   "nextStepDecision": {
-    "currentCase": "ITEM-SERVICE-U-ITEM-HW100-BOUNDARY-DECISION",
-    "plannedNextCaseBeforeReview": "O2C-MINIMAL-ROUTE-DECISION",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "O2C/P2P would rely on weak item master data. A realistic product-model decision is the safer next project step.",
-    "lookaheadReviewed": [
-      {
-        "caseId": "ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION",
-        "status": "ready-next",
-        "reason": "Reconcile product name, purpose and minimum fields before write."
-      },
-      {
-        "caseId": "ITEM-SERVICE-U-ITEM-HW100-CORRECTION-OR-REBUILD-WRITE-GATE",
-        "status": "ready-after-current",
-        "reason": "Requires selected target values and route."
-      },
-      {
-        "caseId": "O2C-MINIMAL-ROUTE-DECISION",
-        "status": "needs-setup-first",
-        "reason": "Requires usable customer and usable item boundaries."
-      },
-      {
-        "caseId": "P2P-MINIMAL-ROUTE-DECISION",
-        "status": "needs-setup-first",
-        "reason": "Requires vendor plus item/product setup boundaries."
-      }
-    ],
-    "queueChangesMade": [
-      "Selected ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION as next active local case."
-    ],
-    "selectedNextCase": "ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION",
-    "whySelectedNextCaseIsBest": "It directly addresses realism/no-mockup quality before any BC write or process evidence."
+    "currentCase": "ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION",
+    "plannedNextCaseBeforeReview": "ITEM-SERVICE-U-ITEM-HW100-CORRECTION-OR-REBUILD-WRITE-GATE",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The realistic product model is explicit; the next project value is to prove or correct the real BC item card.",
+    "selectedNextCase": "ITEM-SERVICE-U-ITEM-HW100-CORRECTION-OR-REBUILD-WRITE-GATE",
+    "whySelectedNextCaseIsBest": "It creates real playthru evidence before O2C/P2P uses the item."
   },
-  "nextCase": "ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION",
-  "nextStep": "Run ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION locally. No BC live action."
+  "nextCase": "ITEM-SERVICE-U-ITEM-HW100-CORRECTION-OR-REBUILD-WRITE-GATE",
+  "nextStep": "Run the controlled item correction/rebuild write gate after preflight/auth/live-gate checks. No O2C/P2P document, no preview, no posting."
 }
