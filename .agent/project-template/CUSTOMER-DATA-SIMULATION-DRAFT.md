@@ -326,7 +326,7 @@ Required columns:
 | Type | Inventory | yes | Inventory, Service, Non-Inventory. |
 | BaseUnitOfMeasure | STK | yes | Unit dependency; aligns with the visible German playthru item signal. |
 | InventoryPostingGroup | WARE | conditional | Inventory items only. |
-| GenProdPostingGroup | WARE | yes | General posting setup. |
+| GenProdPostingGroup | WAREN | yes | General posting setup; separate from InventoryPostingGroup `WARE`. |
 | VATProdPostingGroup | VAT19 | yes | VAT setup. |
 | CostingMethod | FIFO | conditional | Inventory items. |
 | UnitCost | 100.00 | conditional | Inventory/value examples. |

@@ -23,7 +23,7 @@
     "typeGerman": "Bestand",
     "baseUnitOfMeasure": "STK",
     "inventoryPostingGroup": "WARE",
-    "genProductPostingGroup": "WARE",
+    "genProductPostingGroup": "WAREN",
     "vatProductPostingGroup": "VAT19",
     "costingMethod": "FIFO",
     "targetUnitCost": "100.00",
@@ -36,7 +36,7 @@
     "Type = Bestand / Inventory",
     "Base Unit of Measure = STK",
     "Inventory Posting Group = WARE",
-    "Gen. Product Posting Group = WARE",
+    "Gen. Product Posting Group = WAREN",
     "VAT Product Posting Group = VAT19",
     "Costing Method = FIFO",
     "Unit Cost = 100.00 or consciously parked with reason",
@@ -134,7 +134,7 @@
   "nextStepDecision": {
     "currentCase": "ITEM-SERVICE-REALISTIC-PRODUCT-MODEL-DECISION",
     "plannedNextCaseBeforeReview": "ITEM-SERVICE-U-ITEM-HW100-CORRECTION-OR-REBUILD-WRITE-GATE",
-    "lastEvidenceSummary": "U-ITEM-HW100 is visible but not clean enough; local data packages are now reconciled to Steuerbox Standard U100 with STK, WARE, VAT19, FIFO and explicit price/cost targets.",
+    "lastEvidenceSummary": "U-ITEM-HW100 is visible but not clean enough; local data packages are now reconciled to Steuerbox Standard U100 with STK, WARE inventory posting group, WAREN product posting group, VAT19, FIFO and explicit price/cost targets.",
     "isPlannedNextCaseStillSensible": true,
     "reason": "The next useful step is to prove or correct the real BC item card. O2C/P2P remain blocked until that write gate succeeds.",
     "lookaheadReviewed": [
@@ -177,5 +177,9 @@
   },
   "nextCase": "ITEM-SERVICE-U-ITEM-HW100-CORRECTION-OR-REBUILD-WRITE-GATE",
   "safeToFinalizeState": false,
-  "requiresReview": false
+  "requiresReview": false,
+  "correctionNote": "Corrected local target semantics before live write gate: Inventory Posting Group remains WARE; Gen. Product Posting Group target is WAREN based on TARGET-053/TARGET-054 evidence.",
+  "warnings": [
+    "WARE is Inventory Posting Group; WAREN is Gen. Product Posting Group. Do not type WARE into the product posting group field."
+  ]
 }
