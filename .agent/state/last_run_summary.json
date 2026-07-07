@@ -1,19 +1,20 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "UAT-MASTERDATA-REALISM-SYNC",
+  "runId": "VAT-BOUNDARY-DECISION-SYNC",
   "caseId": "FOUNDATION-READINESS-DECISION",
   "status": "completed-local-control-sync",
-  "completedAt": "2026-07-07T12:25:00.000+02:00",
-  "updatedAt": "2026-07-07T12:25:00.000+02:00",
+  "completedAt": "2026-07-07T12:45:00.000+02:00",
+  "updatedAt": "2026-07-07T12:45:00.000+02:00",
   "mode": "universaarl-foundation-masterdata-boundary",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Local no-live UAT realism sync completed. UNIVERSAARL-UAT-MATRIX now uses observed playthru records U-CUST-100 / Saarland Maschinenbau AG and U-ITEM-HW100 / Steuerbox Standard U100 for customer and item training draft rows instead of generic simulated placeholders. The matrix explicitly keeps O2C/P2P, Preview Posting, Posting, VAT finality and inventory valuation blocked until Foundation boundaries are resolved.",
-  "resultPath": "playwright/projects/fibu-book5/UNIVERSAARL-UAT-MATRIX.md",
+  "summary": "Local no-live VAT boundary sync completed. UNIVERSAARL-VAT-SETUP-FIT-DECISION no longer points to stale TARGET-026B as the active next case. It now consumes the current Universaarl state: U-CUST-100 and U-ITEM-HW100 are useful for training/handbook, but VAT Posting Setup and General Posting Setup remain the blocking Foundation boundary before O2C/P2P, Preview Posting or Posting.",
+  "resultPath": "playwright/projects/fibu-book5/UNIVERSAARL-VAT-SETUP-FIT-DECISION.md",
   "changedArtifacts": [
+    ".agent/state/current.json",
     ".agent/state/last_run_summary.json",
-    "playwright/projects/fibu-book5/UNIVERSAARL-UAT-MATRIX.md"
+    "playwright/projects/fibu-book5/UNIVERSAARL-VAT-SETUP-FIT-DECISION.md"
   ],
   "businessCentralOpened": false,
   "playwrightLiveRunExecuted": false,
@@ -31,9 +32,10 @@
   "uiMockupUsed": false,
   "actionsTaken": [
     "Verified active state remains playthru / UNIVERSAARL-DE with live BC and Playwright blocked for this local boundary run.",
-    "Updated UAT-MD-001 and UAT-MD-003 so UAT/training planning now references observed real Business Central records in playthru rather than generic simulated placeholders.",
-    "Added the `universaarl-training-draft` status to separate handbook/training readiness from UAT/process/posting readiness.",
-    "Kept O2C/P2P parked until VAT and Posting Setup boundaries are decided."
+    "Updated UNIVERSAARL-VAT-SETUP-FIT-DECISION from stale TARGET-026B follow-up to the current Foundation/Master-Data boundary.",
+    "Connected U-CUST-100 and U-ITEM-HW100 to VAT training/handbook usefulness without treating them as O2C/P2P or posting readiness.",
+    "Updated current state nextStep so it no longer asks to consume already-consumed customer/item evidence as the main action.",
+    "Kept VAT setup writes, O2C/P2P, Preview Posting and Posting parked until VAT Posting Setup and General Posting Setup are decided or proven."
   ],
   "actionsNotTaken": [
     "No Business Central live session was opened.",
@@ -51,10 +53,10 @@
     "No confidential real customer data was introduced."
   ],
   "proved": [
-    "UAT-MD-001 now uses U-CUST-100 / Saarland Maschinenbau AG as real playthru-observed, realistic fictional customer-like training substance.",
-    "UAT-MD-003 now uses U-ITEM-HW100 / Steuerbox Standard U100 as real playthru-observed, realistic fictional product training substance.",
-    "The new `universaarl-training-draft` status separates customer-handbook and key-user training value from formal UAT/process/posting readiness.",
-    "These master-data records still do not unlock O2C/P2P without VAT and Posting Setup boundary decisions."
+    "UNIVERSAARL-VAT-SETUP-FIT-DECISION is now aligned with the current Foundation Readiness boundary.",
+    "The old TARGET-026B next-step pointer is no longer the active route.",
+    "U-CUST-100 and U-ITEM-HW100 can support VAT training/handbook explanations but do not unlock process execution.",
+    "VAT Posting Setup and General Posting Setup remain the active blocking boundary before O2C/P2P."
   ],
   "notProved": [
     "No VAT setup correctness.",
@@ -75,5 +77,5 @@
     "whySelectedNextCaseIsBest": "It keeps the project on the real boundary: Debitor and Artikel have useful realistic substance, but VAT/Posting Setup still decides whether O2C/P2P can safely start."
   },
   "nextCase": "FOUNDATION-READINESS-DECISION",
-  "nextStep": "Keep BC live work paused for this local boundary sync. Consume existing customer/item evidence, update VAT-/Posting-Boundary, then select either a materially new no-write Foundation proof or a narrowly gated O2C/P2P preflight."
+  "nextStep": "Keep BC live work paused for this local boundary sync. Next concrete progress should either update the General Posting Setup boundary with current evidence or write a customer-facing handbook/training section that explains why VAT/Posting Setup blocks O2C/P2P."
 }

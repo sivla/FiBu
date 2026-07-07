@@ -1,8 +1,14 @@
 # Universaarl VAT Setup Fit Decision
 
-Status: `source-backed-decision`
+Status: `active-boundary-decision`
 
 Dieser Entscheid bereitet das USt-Setup fuer `UNIVERSAARL-DE` vor. Er aendert kein Business-Central-Setup und erzeugt keine Belege.
+
+## Aktueller Stand
+
+Die alte Folge `TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT` ist nicht mehr der aktive naechste Schritt. Seitdem wurden in `playthru / UNIVERSAARL-DE` Kontenplan-Starterkonten, Nummernserien, Dimensionen, der Debitor `U-CUST-100 / Saarland Maschinenbau AG` und der Artikel `U-ITEM-HW100 / Steuerbox Standard U100` beobachtet.
+
+Fuer Training und Handbuch ist damit genug reale Business-Central-Oberflaeche vorhanden, um zu erklaeren, warum USt-/VAT-Setup fuer Debitoren, Artikel, O2C und P2P wichtig ist. Fuer Prozessfreigabe reicht das nicht: die USt-Buchungsmatrix / VAT Posting Setup und die Buchungsmatrix Einrichtung / General Posting Setup sind weiterhin nicht als vollstaendig, korrekt oder posting-ready bewiesen.
 
 ## Quellenbasis
 
@@ -16,7 +22,13 @@ Dieser Entscheid bereitet das USt-Setup fuer `UNIVERSAARL-DE` vor. Er aendert ke
 
 ## Universaarl-Entscheidung
 
-VAT Setup wird nicht sofort geschrieben. Der naechste saubere Schritt ist zuerst ein Kontenplan-/USt-Konto-Preflight, weil VAT Posting Setup G/L-Konten fuer Sales VAT und Purchase VAT braucht.
+VAT Setup wird nicht sofort geschrieben. Der naechste saubere Schritt ist nicht mehr ein weiterer generischer Kontenplan-Preflight, sondern eine enge Boundary-Entscheidung fuer `INLAND` + `VAT19`:
+
+1. Welche sichtbaren Universaarl-Werte duerfen nur fuer Schulung/Handbuch genutzt werden?
+2. Welche Page-472-/VAT-Posting-Setup-Evidence ist als read-only Kontext akzeptiert?
+3. Welche Felder bleiben fuer einen spaeteren Schreibfall zwingend offen: VAT %, Sales VAT Account, Purchase VAT Account, VAT Calculation Type?
+4. Welche Quelle oder amtliche Pruefung ist fuer deutsche 19-Prozent-Aussagen noetig?
+5. Welche Stop-Bedingungen verhindern O2C/P2P, Preview Posting und Posting?
 
 Geplante Zielcodes fuer spaetere Einrichtung:
 
@@ -29,19 +41,25 @@ Geplante Zielcodes fuer spaetere Einrichtung:
 
 ## Warum nicht sofort einrichten?
 
-Das erste Buch soll zeigen, wie Kontenfindung, USt-Gruppen, Belege und Posten zusammenhaengen. Wenn VAT Posting Setup ohne sichtbare Kontenplanbasis gefuellt wird, fehlt genau diese Erklaerung. Deshalb wird zuerst geprueft:
+Das erste Buch soll zeigen, wie Kontenfindung, USt-Gruppen, Belege und Posten zusammenhaengen. Wenn VAT Posting Setup geschrieben wird, bevor die sichtbare Page-472-Zeile, die betroffenen Konten und die Quelle fuer den Steuersatz sauber erklaert sind, entsteht ein scheinbar funktionierender, aber fachlich schwacher Prozess. Deshalb wird vor jedem Write-Gate geprueft:
 
-1. Welche Sachkonten existieren in `UNIVERSAARL-DE`?
-2. Gibt es deutsche oder generische USt-Konto-Kandidaten?
-3. Welche Konten waeren fuer Umsatzsteuer und Vorsteuer fachlich geeignet?
-4. Welche General Posting Setup-/Posting-Group-Kombinationen brauchen dieselben Konten?
-5. Kann ein spaeterer Setup-Fit mit Vorher/Nachher-Screenshot und Preview-Gate erklaert werden?
+1. Welche Sachkonten existieren sichtbar in `UNIVERSAARL-DE`?
+2. Welche USt-/VAT-Konten sind nur Kandidaten und noch keine steuerliche Freigabe?
+3. Welche Page-472-Felder sind sichtbar, welche wurden noch nicht sicher geschrieben oder nach Reopen bewiesen?
+4. Welche General-Posting-Setup-/Posting-Group-Kombinationen blockieren dieselben O2C-/P2P-Prozesse?
+5. Kann ein spaeterer Setup-Fit mit Vorher/Nachher-Screenshot, Reopen-Proof und Preview-Gate erklaert werden?
 
 ## Naechster Case
 
-`TARGET-026B-CHART-OF-ACCOUNTS-VAT-ACCOUNT-PREFLIGHT`
+`FOUNDATION-READINESS-DECISION`
 
-Dieser Case soll den Kontenplan und moegliche USt-Konto-Kandidaten read-only pruefen. Erst danach ist ein VAT Setup Write-Gate sinnvoll.
+Diese Entscheidung konsumiert die vorhandene Foundation-, Debitoren- und Artikel-Evidence. Der naechste konkrete Live-Schritt darf erst daraus entstehen:
+
+- entweder ein materiell neuer no-write USt-/Buchungsmatrix-Proof,
+- oder eine eng begrenzte Setup-Route-Entscheidung,
+- oder ein Handbuch-/Training-Abschnitt, der die aktuelle Grenze erklaert.
+
+Kein O2C/P2P-Preflight darf aus dieser Datei direkt starten, solange VAT Posting Setup und General Posting Setup nicht als ausreichend entschieden sind.
 
 ## Stop-Regeln
 
