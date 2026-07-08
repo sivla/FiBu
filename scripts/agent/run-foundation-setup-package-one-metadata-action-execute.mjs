@@ -4,6 +4,7 @@ import { existsSync, readFileSync } from 'node:fs';
 const CASE_ID = 'FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE';
 const EXPECTED_INSTANCE = 'playthru';
 const TARGET_COMPANY = 'UNIVERSAARL-DE';
+const specPath = 'playwright/projects/fibu-book5/tests/foundation-setup-package-one-metadata-action-execute.spec.ts';
 const casePath = '.agent/state/cases/foundation-setup-package-one-metadata-action-execute.json';
 const currentPath = '.agent/state/current.json';
 const gateResultPath =
@@ -14,6 +15,7 @@ const MIN_LIVE_AUTH_EXPIRES_IN_HOURS = 1;
 
 const rawArgs = process.argv.slice(2);
 const checkOnly = rawArgs.includes('--check');
+const listOnly = rawArgs.includes('--list');
 const liveApproved = rawArgs.includes('--live-approved');
 const help = rawArgs.includes('--help') || rawArgs.includes('-h');
 
@@ -21,12 +23,14 @@ function commandName(base) {
   return process.platform === 'win32' ? `${base}.cmd` : base;
 }
 
-function run(base, args) {
+function run(base, args, options = {}) {
+  const inheritedStdio = options.stdio === 'inherit';
   return spawnSync(commandName(base), args, {
     cwd: process.cwd(),
-    stdio: 'pipe',
+    stdio: options.stdio ?? 'pipe',
     shell: process.platform === 'win32',
-    encoding: 'utf8'
+    env: { ...process.env, ...(options.env ?? {}) },
+    ...(inheritedStdio ? {} : { encoding: 'utf8' })
   });
 }
 
@@ -75,6 +79,8 @@ function evaluate() {
   const gateResult = readJsonIfExists(gateResultPath, errors, 'write-gate-result');
   const detailResult = readJsonIfExists(detailResultPath, errors, 'card-detail-result');
   const rejectedRouteCheck = runJsonCheck('npm', ['run', '--silent', 'agent:rejected-routes:check'], errors, 'rejected-routes-check');
+  const liveImplementationPresent = existsSync(specPath);
+  if (!liveImplementationPresent) errors.push('live-spec-missing');
 
   let contextStatus = null;
   let authStatus = null;
@@ -147,7 +153,7 @@ function evaluate() {
     preparedCaseMatches ? '' : 'case-not-prepared',
     liveGateAllowsNow ? '' : 'business-central-live-gate-not-checked-or-blocked',
     authMeetsLiveWindow ? '' : 'auth-not-checked-or-insufficient-live-window',
-    'runner-live-implementation-not-yet-built'
+    liveImplementationPresent ? '' : 'runner-live-implementation-not-yet-built'
   ].filter(Boolean);
 
   return {
@@ -157,13 +163,15 @@ function evaluate() {
     expectedInstance: EXPECTED_INSTANCE,
     expectedCompany: TARGET_COMPANY,
     casePath,
+    specPath,
     gateResultPath,
     detailResultPath,
     preparedCaseMatches,
     activeCaseMatches,
+    liveImplementationPresent,
     rejectedRoutesRespected: rejectedRouteCheck?.ok === true,
     canPrepareFutureLiveRun: errors.length === 0,
-    canRunNow: false,
+    canRunNow: errors.length === 0 && activeCaseMatches && liveGateAllowsNow && authMeetsLiveWindow,
     liveActionsExecuted: false,
     businessCentralOpened: false,
     playwrightLiveRunExecuted: false,
@@ -175,7 +183,9 @@ function evaluate() {
     warnings,
     nextStep:
       errors.length === 0
-        ? 'Prepared case is coherent. Build the real guarded Playwright implementation only when this case becomes active.'
+        ? activeCaseMatches
+          ? 'Case is active and coherent. Run only with --live-approved if the one-action write gate is intentionally accepted.'
+          : 'Prepared case is coherent. Select it as activeCase only when ready to run the one-action write gate.'
         : 'Fix case/evidence/readiness errors before any live implementation or execution.'
   };
 }
@@ -185,14 +195,21 @@ if (help) {
 
 Usage:
   node scripts/agent/run-foundation-setup-package-one-metadata-action-execute.mjs --check
+  node scripts/agent/run-foundation-setup-package-one-metadata-action-execute.mjs --list
   node scripts/agent/run-foundation-setup-package-one-metadata-action-execute.mjs --live-approved
 
-This runner currently performs preflight only. It does not execute Business Central.
-The future live case may only attempt one configuration-package metadata line:
+This runner guards one Business Central live spec. The live spec is skipped unless this runner
+passes the gate and sets its environment variables.
+The live case may only attempt one configuration-package metadata line:
   U-VAT325-DISC / Table 325 / VAT Posting Setup
 
 Forbidden in this route: Get Tables, Import, Export, Validate, Apply, Edit in Excel, setup values, master data, documents, Preview Posting, Posting and API shortcuts.`);
   process.exit(0);
+}
+
+if (listOnly) {
+  const result = run('npx', ['playwright', 'test', '--list', specPath], { stdio: 'inherit' });
+  process.exit(typeof result.status === 'number' ? result.status : 1);
 }
 
 const status = evaluate();
@@ -202,20 +219,31 @@ if (checkOnly) {
   process.exit(status.errors.length === 0 ? 0 : 2);
 }
 
-console.error(
-  JSON.stringify(
-    {
-      ...status,
-      canRun: false,
-      liveApproved,
-      liveBlockedBy: liveApproved
-        ? status.liveBlockedBy
-        : ['missing-live-approved-flag', ...status.liveBlockedBy],
-      nextStep:
-        'No live implementation is present yet. Do not execute Business Central from this runner until the actual one-action Playwright implementation is intentionally added.'
-    },
-    null,
-    2
-  )
-);
-process.exit(2);
+if (!liveApproved || status.liveBlockedBy.length > 0 || status.errors.length > 0) {
+  console.error(
+    JSON.stringify(
+      {
+        ...status,
+        canRun: false,
+        liveApproved,
+        liveBlockedBy: liveApproved
+          ? status.liveBlockedBy
+          : ['missing-live-approved-flag', ...status.liveBlockedBy],
+        nextStep:
+          'Do not execute Business Central before active case, context/auth gate, rejected-route check and --live-approved are all true.'
+      },
+      null,
+      2
+    )
+  );
+  process.exit(2);
+}
+
+const liveRun = run('npx', ['playwright', 'test', specPath], {
+  stdio: 'inherit',
+  env: {
+    FOUNDATION_PACKAGE_ONE_METADATA_ACTION_RUNNER_GUARD_CHECKED: '1',
+    FOUNDATION_PACKAGE_ONE_METADATA_ACTION_LIVE_APPROVED: '1'
+  }
+});
+process.exit(typeof liveRun.status === 'number' ? liveRun.status : 1);

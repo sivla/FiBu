@@ -82,7 +82,7 @@
     "company-switch"
   ],
   "nextCase": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-WRITE-GATE",
-  "nextStep": "The future live case FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE is prepared and has a preflight runner, but no live writer implementation yet. Next concrete step: either build the real one-action Playwright implementation for Table 325 metadata or consciously park the package route. Do not run BC from the preflight-only runner.",
+  "nextStep": "The future live case FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE is prepared and has a guarded Playwright implementation. It is not active and must not run until selected as activeCase, context/auth gates are green, and --live-approved is intentionally used.",
   "preparedNextCaseFile": ".agent/state/cases/foundation-setup-package-one-metadata-action-execute.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
@@ -12173,14 +12173,15 @@
   },
   "latestFoundationSetupPackageOneMetadataActionExecutePreflight": {
     "caseId": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE",
-    "status": "prepared-preflight-only",
+    "status": "prepared-guarded-live-implementation",
     "runner": "scripts/agent/run-foundation-setup-package-one-metadata-action-execute.mjs",
+    "spec": "playwright/projects/fibu-book5/tests/foundation-setup-package-one-metadata-action-execute.spec.ts",
     "packageScript": "fibu:foundation:package-one-metadata-action-execute",
     "canPrepareFutureLiveRun": true,
     "canRunNow": false,
     "businessCentralOpened": false,
     "playwrightLiveRunExecuted": false,
-    "liveImplementationPresent": false,
-    "boundary": "Preflight only. It must not execute Business Central until a real guarded one-action Playwright implementation is intentionally added."
+    "liveImplementationPresent": true,
+    "boundary": "Guarded implementation exists, but it must not execute Business Central until the execute case becomes active and the runner is called with --live-approved after green gates."
   }
 }
