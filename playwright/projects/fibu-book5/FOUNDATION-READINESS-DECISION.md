@@ -342,3 +342,12 @@ Erlaubte Anschlussklassifikationen:
 - Rolle von Quellen und Page Inspection: Quellen erklaeren Produktlogik; Page Inspection kann Tabellen-/Feldwahrheit liefern. Beides ersetzt keinen spaeteren `playthru`-Nachweis gespeicherter Werte.
 - Schreibgrenze: kein Konfigurationspaket erstellt, importiert, validiert oder angewendet; keine Setup-Aenderung, keine Stammdatenanlage, kein Beleg, keine Buchungsvorschau, keine Buchung.
 - Naechster Case: `FOUNDATION-SETUP-PACKAGE-FIELD-MAP`.
+
+## FOUNDATION-SETUP-PACKAGE-FIELD-MAP
+
+- Quelle: playwright/projects/fibu-book5/evidence/foundation-setup-package-field-map/result.json
+- Feldkarte: playwright/projects/fibu-book5/UNIVERSAARL-FOUNDATION-SETUP-FIELD-MAP.md
+- Status: completed-local-field-map
+- Entscheidung: Die minimalen Foundation-Gaps sind jetzt als geplante Setup-Objekte gemappt: allgemeine Buchungsmatrix `INLAND/WAREN`, MwSt.-Buchungsmatrix `INLAND/VAT19`, MwSt.-Geschaeftsbuchungsgruppe `INLAND` und die abhaengigen allgemeinen Buchungsgruppen.
+- Grenze: Die Feldkarte beweist keine gespeicherten Werte in Business Central. Sie ist Vorbereitung fuer einen spaeteren no-write Discovery- oder Write-/Import-Gate.
+- Naechster Case: `FOUNDATION-SETUP-PACKAGE-READFIRST-DISCOVERY`, nur lesend, mit Bildkette und Stop vor Paket erstellen, Import, Validate, Apply oder Setup-Write.

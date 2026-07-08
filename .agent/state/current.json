@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-08T16:55:00.000+02:00",
+  "updatedAt": "2026-07-08T17:25:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -15,12 +15,12 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w1-foundation",
-  "activeCase": "FOUNDATION-SETUP-PACKAGE-FIELD-MAP",
-  "active_case_file": ".agent/state/cases/foundation-setup-package-field-map.json",
-  "activeCaseFile": ".agent/state/cases/foundation-setup-package-field-map.json",
+  "activeCase": "FOUNDATION-SETUP-PACKAGE-READFIRST-DISCOVERY",
+  "active_case_file": ".agent/state/cases/foundation-setup-package-readfirst-discovery.json",
+  "activeCaseFile": ".agent/state/cases/foundation-setup-package-readfirst-discovery.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-foundation-local-readiness",
+  "mode": "universaarl-foundation-readfirst",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -41,10 +41,12 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-foundation-route-decision-result",
-    "read-existing-foundation-evidence",
-    "read-official-source-notes",
-    "write-local-field-map",
+    "validate-playthru-context",
+    "validate-company-context",
+    "open-configuration-package-or-related-readonly-page",
+    "capture-multi-step-screenshot-chain",
+    "capture-action-tooltip-context",
+    "write-readonly-result-json",
     "update-state-summary"
   ],
   "forbiddenActions": [
@@ -53,11 +55,10 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "open-business-central",
-    "run-playwright-live",
     "create-configuration-package",
     "import-configuration-package",
     "apply-configuration-package",
+    "validate-configuration-package",
     "type-business-central-values",
     "write-setup",
     "create-master-data",
@@ -71,9 +72,9 @@
     "claim-posting-readiness",
     "claim-master-data-readiness"
   ],
-  "nextCase": "FOUNDATION-SETUP-PACKAGE-FIELD-MAP",
-  "nextStep": "Create a compact local Foundation setup field map for the unresolved VAT/Posting setup gaps before any configuration-package, import, setup write, master data write or process proof. Keep BC closed; separate planned values from proven BC values; any later live proof must use a multi-step screenshot chain/Bildkette with context, navigation, action/tooltip and target row or FastTab proof; do not unlock O2C/P2P, Preview Posting or Posting.",
-  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-package-field-map.json",
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-READFIRST-DISCOVERY",
+  "nextStep": "Run only a read-first/no-write discovery of the Configuration Package or related package/table UI for the Foundation setup field map. Confirm playthru / UNIVERSAARL-DE, capture a multi-step screenshot chain/Bildkette, stop before create/import/validate/apply or any setup value write, and do not unlock O2C/P2P, Preview Posting or Posting.",
+  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-package-readfirst-discovery.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -208,12 +209,12 @@
   },
   "activeNextStepAuthority": {
     "source": "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
-    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-FIELD-MAP",
-    "activeCaseFile": ".agent/state/cases/foundation-setup-package-field-map.json",
+    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-READFIRST-DISCOVERY",
+    "activeCaseFile": ".agent/state/cases/foundation-setup-package-readfirst-discovery.json",
     "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "FOUNDATION-SETUP-ROUTE-DECISION selected a configuration-package/Excel-assisted field-map route before any setup write or import. The active boundary is now the local field map; no live BC, write, import, O2C/P2P, Preview Posting or Posting is unlocked."
+    "reason": "FOUNDATION-SETUP-PACKAGE-FIELD-MAP created the compact setup field map. The active boundary is now read-first discovery of the package/table route; no create/import/validate/apply, setup write, O2C/P2P, Preview Posting or Posting is unlocked."
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -327,8 +328,8 @@
     "currentLiveBoundary": {
       "freezeActive": false,
       "parkedCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-      "resumePilot": "FOUNDATION-SETUP-PACKAGE-FIELD-MAP",
-      "resumePilotMode": "local-route-decision-no-live"
+      "resumePilot": "FOUNDATION-SETUP-PACKAGE-READFIRST-DISCOVERY",
+      "resumePilotMode": "readfirst-no-write"
     },
     "legacyScriptGuard": {
       "script": "agent:legacy:active-check",

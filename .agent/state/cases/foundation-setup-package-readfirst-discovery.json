@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-SETUP-PACKAGE-READFIRST-DISCOVERY",
+  "status": "prepared-readfirst-no-write",
+  "mode": "universaarl-foundation-readfirst",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w1-foundation",
+  "purpose": "Read-only discover whether Configuration Packages or related package/table UI can expose the Foundation setup objects and fields mapped in UNIVERSAARL-FOUNDATION-SETUP-FIELD-MAP.md.",
+  "mayOpenBusinessCentral": true,
+  "mayRunPlaywright": true,
+  "effectiveBcActionsAllowed": false,
+  "allowedActions": [
+    "validate-playthru-context",
+    "validate-company-context",
+    "open-configuration-package-or-related-readonly-page",
+    "capture-multi-step-screenshot-chain",
+    "capture-action-tooltip-context",
+    "write-readonly-result-json",
+    "update-state-summary"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "create-configuration-package",
+    "import-configuration-package",
+    "apply-configuration-package",
+    "validate-configuration-package",
+    "type-business-central-values",
+    "write-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "cleanup-delete",
+    "api-shortcut",
+    "company-switch",
+    "claim-posting-readiness",
+    "claim-master-data-readiness"
+  ],
+  "acceptanceCriteria": [
+    "Confirm playthru / UNIVERSAARL-DE before any UI navigation.",
+    "Capture a multi-step screenshot chain/Bildkette: shell context, navigation, target page, action/tooltip context, relevant field/table context and no-write end state.",
+    "Prove only what is visibly read-only: package/table/field availability or blocker.",
+    "Do not create, import, validate or apply any package.",
+    "Do not write setup, master data, documents, Preview Posting or Posting."
+  ],
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/UNIVERSAARL-FOUNDATION-SETUP-FIELD-MAP.md",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-field-map/result.json"
+  ],
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-READFIRST-DISCOVERY",
+  "preparedAt": "2026-07-08T17:25:00.000+02:00"
+}
