@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "FOUNDATION-DECISION-CURATED-EVIDENCE-GUARD",
+  "runId": "AUTH-REFRESH-AFTER-CURATED-FOUNDATION-GUARD",
   "caseId": "FOUNDATION-READINESS-DECISION",
-  "status": "completed-local-generator-guard-auth-blocker-recorded",
-  "completedAt": "2026-07-08T15:06:07.0335605+02:00",
-  "updatedAt": "2026-07-08T15:06:07.0335605+02:00",
+  "status": "completed-auth-refresh-after-local-generator-guard",
+  "completedAt": "2026-07-08T15:10:14.1840000+02:00",
+  "updatedAt": "2026-07-08T15:10:14.1840000+02:00",
   "mode": "universaarl-foundation-local-readiness",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "A local generator run would have overwritten curated Foundation Readiness content with a narrower TARGET-075-only decision. The change was rejected, the curated file was restored, and the generator now blocks silent overwrites of post-TARGET-075 evidence sections unless an explicit override is used after manual review. Auth was checked and is currently expired/not overnight-ready.",
+  "summary": "A local generator run would have overwritten curated Foundation Readiness content with a narrower TARGET-075-only decision. The change was rejected, the curated file was restored, and the generator now blocks silent overwrites of post-TARGET-075 evidence sections unless an explicit override is used after manual review. Playwright auth was refreshed against playthru / UNIVERSAARL-DE and is currently usable for the next gated read-first work.",
   "businessCentralOpened": false,
   "playwrightLiveRunExecuted": false,
   "setupChanged": false,
@@ -29,7 +29,9 @@
     "Ran Foundation Readiness generation and detected that it would remove curated newer evidence from FOUNDATION-READINESS-DECISION.md.",
     "Restored the curated Foundation Readiness decision and added a generator guard for curated post-TARGET-075 sections.",
     "Extended the Foundation Readiness selftest to prove curated evidence is not overwritten without --allow-curated-overwrite.",
-    "Checked Business Central auth readiness; stored auth is too old and does not meet normal or overnight readiness."
+    "Checked Business Central auth readiness; stored auth was too old and did not meet normal or overnight readiness.",
+    "Ran npm run auth:bc:open-login against playthru / UNIVERSAARL-DE and refreshed Playwright storage state.",
+    "Confirmed npm run auth:bc:check and auth:bc:check:overnight are green."
   ],
   "actionsNotTaken": [
     "No Business Central live page was opened.",
@@ -49,39 +51,38 @@
     "FOUNDATION-READINESS-DECISION.md still contains curated evidence for real Business Central UI, no UI mockups, no confidential real customer data, screenshot QA and Master Data route decisions.",
     "agent:foundation:decision:write now refuses to remove curated post-TARGET-075 sections unless --allow-curated-overwrite is passed after manual review.",
     "agent:foundation:decision:test covers the curated-overwrite guard.",
-    "agent:masterdata:readfirst:check enforces real Business Central UI evidence, realistic fictional/anonymized Universaarl records and at least five screenshot checkpoints for read-first Master Data pilots."
+    "agent:masterdata:readfirst:check enforces real Business Central UI evidence, realistic fictional/anonymized Universaarl records and at least five screenshot checkpoints for read-first Master Data pilots.",
+    "Playwright auth is currently usable for playthru / UNIVERSAARL-DE read-first work, subject to the active case/live gates."
   ],
   "notProved": [
-    "Auth is not currently usable for unattended Business Central work.",
     "No new Business Central screenshot was captured.",
-    "No Foundation page, Master Data page, VAT page or Posting Group page was newly observed.",
+    "No Foundation page, Master Data page, VAT page or Posting Group page was newly observed beyond the auth shell.",
     "No customer, vendor or item was changed.",
     "No master-data write readiness.",
     "No O2C/P2P process readiness.",
     "No posting readiness."
   ],
   "warnings": [
-    "auth:bc:check is currently blocked by storage-state-too-old and shell-validation-meta-too-old.",
-    "auth:bc:check:overnight is additionally blocked by storage-state-expires-before-required-window.",
-    "Refresh Playwright auth before unattended Business Central or Playwright live work.",
+    "Fresh auth does not by itself authorize setup, master data, drafts, Preview Posting or Posting.",
     "Do not run agent:foundation:decision:write over curated Foundation decisions unless the loss of later evidence sections is manually reviewed and intentionally approved.",
     "Use real Business Central UI evidence and customer-project-like Universaarl records; do not use UI mockups, throwaway dummy data or confidential real customer data."
   ],
   "changedArtifacts": [
     ".agent/state/last_run_summary.json",
     "scripts/agent/foundation-readiness-decision.mjs",
-    "scripts/agent/foundation-readiness-decision.selftest.mjs"
+    "scripts/agent/foundation-readiness-decision.selftest.mjs",
+    "playwright/projects/fibu-book5/evidence/auth-bc-refresh-active-resume/AUTH-BC-REFRESH-result.json"
   ],
   "nextStepDecision": {
     "currentCase": "FOUNDATION-READINESS-DECISION",
     "plannedNextCaseBeforeReview": "FOUNDATION-READINESS-DECISION",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The active case remains the right local handoff because live auth is expired and the project first needs to preserve curated Foundation truth.",
+    "reason": "The active case remains the right handoff because Foundation truth must be preserved and live auth is now refreshed for the next gated read-first step.",
     "lookaheadReviewed": [
       {
         "caseId": "AUTH-BC-REFRESH",
-        "status": "ready-next",
-        "reason": "Required before any unattended live BC/Playwright work."
+        "status": "ready-after-current",
+        "reason": "Completed in this run; rerun only when auth:bc:check turns red or the live window is too short."
       },
       {
         "caseId": "PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION",
@@ -104,19 +105,17 @@
         "reason": "Same constraints as PWS-MD-001; avoid broad parallel Master Data probing."
       }
     ],
-    "selectedNextCase": "AUTH-BC-REFRESH",
-    "whySelectedNextCaseIsBest": "Auth is the only external blocker for the next live read-first proof; until refreshed, local Foundation route decisions are the safe workstream.",
+    "selectedNextCase": "PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "Auth is now green, but the current Foundation boundary still says the next materially useful step is a local General Posting Setup route decision before any broader Master Data or process work.",
     "risksBeforeNextCase": [
-      "Stored auth is stale.",
-      "Live work must not start from an expired shell validation.",
       "Foundation decision generation must not overwrite curated post-TARGET-075 evidence."
     ],
     "requiredPreparation": [
-      "Refresh Playwright auth against playthru / UNIVERSAARL-DE.",
-      "Rerun auth:bc:check and auth:bc:check:overnight.",
-      "Then select exactly one read-first/no-write live pilot or continue local Foundation route decision work."
+      "Keep auth:bc:check green before any live read-first proof.",
+      "Do not run setup/master-data/process writes without a fresh Smart Decision Gate.",
+      "Continue with the narrow Foundation route decision or select exactly one read-first/no-write live pilot."
     ]
   },
-  "nextCase": "AUTH-BC-REFRESH",
-  "nextStep": "Refresh Playwright auth before live work; if auth cannot be refreshed, continue locally with PWS-FF-002C route decision and Foundation handoff curation."
+  "nextCase": "PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION",
+  "nextStep": "Use the refreshed auth only for a gated read-first proof, or continue locally with the General Posting Setup route decision; no setup/master-data/process write is authorized by auth alone."
 }
