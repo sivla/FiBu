@@ -244,7 +244,9 @@ const output = {
   nextStep:
     errors.length === 0
       ? liftedReadFirst
-        ? `Freeze is lifted only for ${current.activeCase} read-first/no-write. Do not resume TARGET-073 or any write case.`
+        ? localNoLiveCases.has(current.activeCase)
+          ? `Freeze is lifted only for ${current.activeCase} local/no-live decision work. Do not open Business Central, run Playwright live, resume TARGET-073 or execute any write case.`
+          : `Freeze is lifted only for ${current.activeCase} read-first/no-write. Do not resume TARGET-073 or any write case.`
         : target075CompletedHandoff
         ? 'Freeze invariants are consistent after TARGET-075 handoff. Keep live work blocked until the next read-first Foundation gap case is explicitly selected and gated.'
         : 'Freeze invariants are consistent. Continue local improvement work or explicitly lift the freeze before TARGET-075 live execution.'

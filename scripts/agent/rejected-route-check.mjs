@@ -71,30 +71,45 @@ if (!activeCaseFile) {
 
 if (activeCase) {
   const review = activeCase.rejectedRouteReview;
-  if (!review) {
+  const respectedRouteIds = activeCase.rejectedRoutesToRespect || [];
+  if (!Array.isArray(respectedRouteIds)) {
+    errors.push(`${activeCaseFile}: rejectedRoutesToRespect must be an array when present.`);
+  }
+  for (const routeId of respectedRouteIds || []) {
+    if (!routeIds.has(routeId)) errors.push(`${activeCaseFile}: unknown rejected route in rejectedRoutesToRespect: ${routeId}.`);
+  }
+  const duplicateRespectedIds = unique(respectedRouteIds || []);
+  if (duplicateRespectedIds.length !== (respectedRouteIds || []).length) {
+    errors.push(`${activeCaseFile}: rejectedRoutesToRespect contains duplicates.`);
+  }
+  if (!review && !(respectedRouteIds || []).length) {
     warnings.push(`${activeCaseFile}: no rejectedRouteReview block. Add one when a planned route touches known rejected BC surfaces.`);
   } else {
-    if (review.checkedRegister !== registerPath) {
+    if (!review) {
+      // The active case only needs to avoid known failed routes; it does not plan to retry them.
+    } else if (review.checkedRegister !== registerPath) {
       errors.push(`${activeCaseFile}: rejectedRouteReview.checkedRegister must be ${registerPath}.`);
     }
-    const blockedRouteIds = review.blockedRouteIds || review.routeIds || [];
-    if (!Array.isArray(blockedRouteIds)) {
-      errors.push(`${activeCaseFile}: rejectedRouteReview.blockedRouteIds must be an array when present.`);
-    }
-    for (const routeId of blockedRouteIds || []) {
-      if (!routeIds.has(routeId)) errors.push(`${activeCaseFile}: unknown rejected route ${routeId}.`);
-    }
-    if ((blockedRouteIds || []).length > 0) {
-      if (!Array.isArray(review.materiallyDifferentBecause) || review.materiallyDifferentBecause.length === 0) {
-        errors.push(`${activeCaseFile}: planned route references rejected routes but does not document materiallyDifferentBecause.`);
+    if (review) {
+      const blockedRouteIds = review.blockedRouteIds || review.routeIds || [];
+      if (!Array.isArray(blockedRouteIds)) {
+        errors.push(`${activeCaseFile}: rejectedRouteReview.blockedRouteIds must be an array when present.`);
       }
-      if (!Array.isArray(review.repeatAllowedBecause) || review.repeatAllowedBecause.length === 0) {
-        errors.push(`${activeCaseFile}: planned route references rejected routes but does not document repeatAllowedBecause.`);
+      for (const routeId of blockedRouteIds || []) {
+        if (!routeIds.has(routeId)) errors.push(`${activeCaseFile}: unknown rejected route ${routeId}.`);
       }
-    }
-    const duplicateIds = unique(blockedRouteIds || []);
-    if (duplicateIds.length !== (blockedRouteIds || []).length) {
-      errors.push(`${activeCaseFile}: rejectedRouteReview.blockedRouteIds contains duplicates.`);
+      if ((blockedRouteIds || []).length > 0) {
+        if (!Array.isArray(review.materiallyDifferentBecause) || review.materiallyDifferentBecause.length === 0) {
+          errors.push(`${activeCaseFile}: planned route references rejected routes but does not document materiallyDifferentBecause.`);
+        }
+        if (!Array.isArray(review.repeatAllowedBecause) || review.repeatAllowedBecause.length === 0) {
+          errors.push(`${activeCaseFile}: planned route references rejected routes but does not document repeatAllowedBecause.`);
+        }
+      }
+      const duplicateIds = unique(blockedRouteIds || []);
+      if (duplicateIds.length !== (blockedRouteIds || []).length) {
+        errors.push(`${activeCaseFile}: rejectedRouteReview.blockedRouteIds contains duplicates.`);
+      }
     }
   }
 }
@@ -105,6 +120,7 @@ const payload = {
   activeCase: current.activeCase,
   activeCaseFile: activeCaseFile || null,
   routeCount: register.routes?.length || 0,
+  respectedRouteCount: activeCase?.rejectedRoutesToRespect?.length || 0,
   warnings,
   errors
 };

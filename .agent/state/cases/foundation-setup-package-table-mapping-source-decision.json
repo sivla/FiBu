@@ -2,61 +2,29 @@
   "schemaVersion": 1,
   "caseId": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
   "title": "Decide source-backed table and field mapping for Foundation setup package route",
-  "status": "planned-local-decision",
+  "status": "prepared-local-no-live",
+  "caseType": "local-no-live-decision",
   "mode": "universaarl-foundation-local-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "goal": "Decide the source-backed configuration-package route for Universaarl Foundation setup without opening Business Central or changing data.",
-  "businessPurpose": "Decide whether configuration packages are the right implementation route for the next Foundation setup gaps, and if so which exact tables, fields, source values, validations and cleanup or keep strategy apply.",
-  "caseType": "local-no-live-decision",
-  "requiredInputs": [
-    "Microsoft Learn or official Business Central documentation for configuration packages and setup data import",
-    "playwright/projects/fibu-book5/UNIVERSAARL-FOUNDATION-SETUP-FIELD-MAP.md",
-    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
-    "playwright/projects/fibu-book5/evidence/foundation-setup-package-existing-metadata-readfirst/result.json"
-  ],
+  "goal": "Decide the source-backed configuration-package table and field mapping for Universaarl Foundation setup without opening Business Central or changing data.",
+  "whyNow": "Configuration Packages are the realistic implementation route for repeatable Foundation setup, but the next live case must not open, edit, import, validate or apply packages before table IDs, fields, planned values, evidence gaps and cleanup or keep strategy are locally decided.",
+  "businessPurpose": "Prevent another blind UI route loop and convert existing Foundation evidence into a narrow, auditable route decision for configuration-package setup work.",
+  "budgetProfile": "small",
+  "taskClass": "judge_work",
   "mustRead": [
     ".agent/OPERATING-KERNEL.md",
     ".agent/state/current.json",
+    ".agent/state/rejected_route_register.json",
     "playwright/projects/fibu-book5/UNIVERSAARL-FOUNDATION-SETUP-FIELD-MAP.md",
-    "playwright/projects/fibu-book5/evidence/foundation-setup-package-existing-metadata-readfirst/result.json",
-    "playwright/projects/fibu-book5/evidence/foundation-setup-package-keep-cleanup-decision/result.json"
-  ],
-  "skills": [
-    "bc-source-research",
-    "state-sync-check"
-  ],
-  "requiredChecks": [
-    "agent:preflight",
-    "agent:resume:check",
-    "agent:freeze:status",
-    "agent:active-readiness",
-    "check:encoding",
-    "git diff --check"
-  ],
-  "expectedOutput": [
-    "A local result JSON or route-decision update classifying configuration packages as the Foundation setup route or parking them with reasons.",
-    "State/dashboard updates only if active next-step truth changes.",
-    "No Business Central or Playwright live evidence."
-  ],
-  "stopConditions": [
-    "Stop if the decision would require opening Business Central.",
-    "Stop if exact table or field mapping cannot be source-backed.",
-    "Stop if the next step would imply import/export/apply/validate/delete without a separate write gate.",
-    "Stop if legacy RM-DEMO/MCP/CRONUS evidence is about to become active Universaarl proof."
-  ],
-  "mustDecide": [
-    "Whether package route is better than manual UI for the current Foundation gap.",
-    "Whether U-VAT325-DISC can be reused, should stay parked, or should later be cleaned up.",
-    "Which table IDs and fields are in scope.",
-    "Which values are planned and which are already proven in Business Central.",
-    "Which validation errors and rollback or keep strategy are acceptable."
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-existing-metadata-readfirst/result.json"
   ],
   "allowedActions": [
     "local-source-review",
     "local-field-map-review",
-    "write-route-decision",
-    "prepare-next-readfirst-or-write-gate"
+    "local-rejected-route-review",
+    "write-route-decision-result-json",
+    "prepare-next-readfirst-or-write-gate-case"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -68,11 +36,14 @@
     "run-playwright-live",
     "create-configuration-package",
     "open-configuration-package-card-for-edit",
+    "rename-configuration-package",
     "get-tables",
+    "add-table",
+    "remove-table",
     "import-configuration-package",
     "export-configuration-package",
-    "apply-configuration-package",
     "validate-configuration-package",
+    "apply-configuration-package",
     "delete-configuration-package",
     "edit-in-excel",
     "write-setup",
@@ -83,5 +54,67 @@
     "payment",
     "api-shortcut",
     "company-switch"
+  ],
+  "requiredSkills": [
+    "bc-source-research",
+    "bc-setup-route-decision",
+    "state-sync-check"
+  ],
+  "recommendedSkills": [
+    "bc-source-research",
+    "bc-setup-route-decision"
+  ],
+  "skills": [
+    "bc-source-research",
+    "bc-setup-route-decision",
+    "state-sync-check"
+  ],
+  "requiredHelpers": [
+    "scripts/agent/local-no-live-case-readiness-check.mjs",
+    "scripts/agent/rejected-route-check.mjs",
+    "scripts/agent/dry-run.mjs"
+  ],
+  "requiredChecks": [
+    "agent:preflight",
+    "agent:active-readiness",
+    "agent:dry-run",
+    "agent:rejected-routes:check",
+    "check:encoding",
+    "git diff --check"
+  ],
+  "expectedOutput": [
+    "A compact local route-decision result JSON or field-map update that classifies the configuration-package route as ready-for-readfirst, ready-for-write-gate, parked or rejected.",
+    "A nextCase selection from nextCaseOptions with a one-sentence reason and no live execution.",
+    "No Business Central, Playwright live evidence, setup write, package mutation, master data, draft, preview or posting."
+  ],
+  "stopConditions": [
+    "Stop if the decision would require opening Business Central.",
+    "Stop if exact table or field mapping cannot be source-backed from existing evidence or official documentation.",
+    "Stop if the next step would imply import, export, apply, validate, delete, table-get or setup write without a separate gated case.",
+    "Stop if a rejected route would be retried without a materially new helper, UI insight, official source, different surface, different goal or manual approval.",
+    "Stop if legacy RM-DEMO/MCP/CRONUS evidence is about to become active Universaarl proof."
+  ],
+  "rejectedRoutesToRespect": [
+    "RR-FOUNDATION-PAGE314-GRID-LIST-EDIT-RETRY",
+    "RR-FOUNDATION-PAGE470-VAT-BUSINESS-GROUPS-SEARCH-RETRY",
+    "RR-FOUNDATION-PAGE472-ACTIVE-EDITOR-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGES-ESCAPE-TELLME-RETRY"
+  ],
+  "nextCaseOptions": [
+    {
+      "caseId": "FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST",
+      "when": "Use when the local decision needs fresh read-first visual proof of Configuration Worksheet or package table-field handling.",
+      "liveType": "read-first-no-write"
+    },
+    {
+      "caseId": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
+      "when": "Use only if table IDs, fields, values, keep/cleanup strategy and rejected-route boundary are locally source-backed.",
+      "liveType": "local-decision-before-write"
+    },
+    {
+      "caseId": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE",
+      "when": "Use if configuration packages remain too unclear or risky and another standard BC route must be selected.",
+      "liveType": "local-no-live-decision"
+    }
   ]
 }

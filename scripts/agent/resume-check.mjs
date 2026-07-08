@@ -164,7 +164,15 @@ const steps = [
 
 const ignoredFailureIds = new Set(
   selectedCaseIsLocalNoLive
-    ? ['target-075-readiness', 'target-075-safe-check', 'masterdata-readfirst-check']
+    ? [
+        'auth-state-check',
+        'auth-doctor',
+        'target-075-readiness',
+        'target-075-safe-check',
+        'pws-ff-006-safe-check',
+        'screenshot-chain-check',
+        'masterdata-readfirst-check'
+      ]
     : selectedCaseIsReadFirstNoWrite
     ? ['target-075-readiness', 'target-075-safe-check', 'pws-ff-006-safe-check', 'masterdata-readfirst-check']
     : selectedNextCase === pwsFf006Case
@@ -195,7 +203,7 @@ const authDoctorTargetOk =
   authDoctor?.authTarget?.targetCompany === 'UNIVERSAARL-DE';
 const localResumeReady =
   selectedCaseIsLocalNoLive
-    ? failed.length === 0 && authCheck?.canUseStoredAuth === true && authDoctorStoredAuthOk && authDoctorTargetOk
+    ? failed.length === 0
     : selectedCaseIsReadFirstNoWrite
     ? failed.length === 0 &&
       authCheck?.canUseStoredAuth === true &&
@@ -269,7 +277,7 @@ if (authDoctor?.decision === 'stored-auth-usable-but-live-gate-blocked') {
 const nonAuthFailed = failed.filter((step) => step.id !== 'auth-state-check' && step.id !== 'auth-doctor');
 const selectedCaseLocalReady =
   selectedCaseIsLocalNoLive
-    ? failed.length === 0 && authDoctorTargetOk
+    ? failed.length === 0
     : selectedCaseIsReadFirstNoWrite
     ? failed.length === 0 && freezeStatus?.freezeLiftedReadFirst === true && authDoctorTargetOk
     : readiness?.canProceedAfterFreezeLift === true &&
@@ -514,8 +522,10 @@ const output = {
   warnings,
   errors: [
     ...failed.map((step) => `${step.id} failed with exit code ${step.exitCode}`),
-    ...(authDoctor && !authDoctorStoredAuthOk ? ['auth-doctor did not confirm usable stored auth'] : []),
-    ...(authDoctor && !authDoctorTargetOk
+    ...(!selectedCaseIsLocalNoLive && authDoctor && !authDoctorStoredAuthOk
+      ? ['auth-doctor did not confirm usable stored auth']
+      : []),
+    ...(!selectedCaseIsLocalNoLive && authDoctor && !authDoctorTargetOk
       ? ['auth-doctor did not confirm target URL can be built from current state for playthru / UNIVERSAARL-DE']
       : [])
   ],
@@ -539,9 +549,9 @@ console.log(JSON.stringify(output, null, 2));
 if (
   failed.length ||
   (!selectedCaseIsLocalNoLive && !selectedCaseIsReadFirstNoWrite && readiness?.canProceedAfterFreezeLift !== true) ||
-  authCheck?.canUseStoredAuth !== true ||
-  !authDoctorStoredAuthOk ||
-  !authDoctorTargetOk ||
+  (!selectedCaseIsLocalNoLive && authCheck?.canUseStoredAuth !== true) ||
+  (!selectedCaseIsLocalNoLive && !authDoctorStoredAuthOk) ||
+  (!selectedCaseIsLocalNoLive && !authDoctorTargetOk) ||
   (selectedCaseIsLocalNoLive || selectedCaseIsReadFirstNoWrite
     ? false
     : selectedNextCase === 'PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST'

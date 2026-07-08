@@ -147,6 +147,10 @@ const nextCaseAllowedAfterTarget075Handoff =
 const activeCaseAllowedAfterTarget075Handoff =
   target075CompletedHandoff && allowedNextCasesAfterTarget075Handoff.has(currentState?.activeCase ?? '');
 const postTarget075Handoff = target075CompletedHandoff && nextCaseAllowedAfterTarget075Handoff && activeCaseAllowedAfterTarget075Handoff;
+const localNoLivePostTarget075Handoff =
+  postTarget075Handoff &&
+  currentState?.activeCase === 'FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION' &&
+  currentState?.nextCase === 'FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION';
 
 if (currentState) {
   if (currentState.instance !== 'playthru') errors.push(`${currentPath}: instance must be playthru`);
@@ -204,11 +208,31 @@ if (currentState) {
       `${currentPath}: implementationOperatingSystem.currentLiveBoundary.resumePilot must be TARGET-075 before handoff, or an allowed Foundation follow-up after handoff`
     );
   }
-  if (liveBoundary?.resumePilotMode !== 'read-first-no-writes') {
-    errors.push(`${currentPath}: implementationOperatingSystem.currentLiveBoundary.resumePilotMode must be read-first-no-writes`);
+  if (
+    localNoLivePostTarget075Handoff
+      ? liveBoundary?.resumePilotMode !== 'local-no-live-decision'
+      : liveBoundary?.resumePilotMode !== 'read-first-no-writes'
+  ) {
+    errors.push(
+      `${currentPath}: implementationOperatingSystem.currentLiveBoundary.resumePilotMode must be ${
+        localNoLivePostTarget075Handoff ? 'local-no-live-decision' : 'read-first-no-writes'
+      }`
+    );
   }
   const forbiddenActions = new Set(currentState.forbiddenActions ?? []);
-  const requiredForbiddenActions = postTarget075Handoff
+  const requiredForbiddenActions = localNoLivePostTarget075Handoff
+    ? [
+        'open-business-central',
+        'run-playwright-live',
+        'write-setup',
+        'create-master-data',
+        'preview-posting',
+        'post',
+        'payment',
+        'api-shortcut',
+        'company-switch'
+      ]
+    : postTarget075Handoff
     ? ['continue-target-073', 'type-business-central-values', 'write-setup', 'create-master-data', 'cleanup-delete']
     : ['open-business-central-live', 'continue-target-073', 'setup-change', 'master-data-change'];
   for (const action of requiredForbiddenActions) {
@@ -966,7 +990,9 @@ const result = {
   nextStep:
     errors.length === 0
       ? target075CompletedHandoff
-        ? 'TARGET-075 has already handed off to FOUNDATION-READINESS-DECISION. Select the next read-first Foundation gap case before any live work.'
+        ? localNoLivePostTarget075Handoff
+          ? 'TARGET-075 has already handed off. The selected Foundation follow-up is local/no-live; execute only the case-declared decision work before any BC or Playwright live work.'
+          : 'TARGET-075 has already handed off to FOUNDATION-READINESS-DECISION. Select the next read-first Foundation gap case before any live work.'
         : 'TARGET-075 is locally prepared as a read-only pilot. Freeze lift and auth/context validation are still required before live execution.'
       : 'Fix readiness errors before considering TARGET-075 for live execution.'
 };
