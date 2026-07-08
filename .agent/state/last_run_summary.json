@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "FOUNDATION-NEXT-STEP-REALIGNMENT-AFTER-VAT-READFIRST",
-  "caseId": "FOUNDATION-READINESS-DECISION",
-  "status": "completed-local-state-realignment",
-  "completedAt": "2026-07-08T16:05:00.000+02:00",
-  "updatedAt": "2026-07-08T16:05:00.000+02:00",
+  "runId": "FOUNDATION-REALISM-ROUTE-DECISION-PREP",
+  "caseId": "FOUNDATION-SETUP-ROUTE-DECISION",
+  "status": "completed-local-foundation-boundary-refresh",
+  "completedAt": "2026-07-08T16:25:00.000+02:00",
+  "updatedAt": "2026-07-08T16:25:00.000+02:00",
   "mode": "universaarl-foundation-local-readiness",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Active steering was corrected so completed VAT-POSTING-SETUP-READFIRST, VAT route recovery and CUSTOMER-SETUP-VALUE-WRITE-GATE evidence are not presented as the next work. The active next step is now the local FOUNDATION-READINESS-DECISION boundary refresh, which must consume VAT, Kontenplan, Debitor and Artikel evidence before selecting one non-repeating live Foundation gap.",
+  "summary": "Foundation Readiness now consumes the completed VAT read-first, VAT route recovery, VAT source/alternative route decision, Kontenplan, Dimensionen, Nummernserien, Debitor and Artikel evidence. The active next step is a local FOUNDATION-SETUP-ROUTE-DECISION: choose the realistic implementation route for unresolved VAT/Posting setup gaps before any live write, master data write, O2C/P2P, Preview Posting or Posting.",
   "businessCentralOpened": false,
   "playwrightLiveRunExecuted": false,
   "setupChanged": false,
@@ -25,10 +25,10 @@
   "confidentialRealCustomerDataUsed": false,
   "uiMockupUsed": false,
   "actionsTaken": [
-    "Reviewed current state, dashboard, roadmap and latest VAT/Foundation evidence.",
-    "Confirmed VAT-POSTING-SETUP-READFIRST already ran and Page 470 remains parked after route recovery.",
-    "Confirmed CUSTOMER-SETUP-VALUE-WRITE-GATE is historical evidence and must not be advertised as the next active step.",
-    "Realigned top-level state, dashboard and roadmap to the local Foundation boundary refresh."
+    "Reviewed current state, latest Foundation decision and latest VAT/Foundation evidence.",
+    "Updated FOUNDATION-READINESS-DECISION with the latest VAT read-first, route-recovery and source/alternative-route boundary.",
+    "Prepared a minimal FOUNDATION-SETUP-ROUTE-DECISION case so the next step is a realistic implementation-route decision, not another completed read-first replay.",
+    "Realigned top-level state to the local Foundation setup route decision."
   ],
   "actionsNotTaken": [
     "No Business Central live page was opened.",
@@ -45,9 +45,9 @@
     "No UI mockup was used as evidence."
   ],
   "proved": [
-    "Top-level nextCase now points to FOUNDATION-READINESS-DECISION.",
-    "agent:active-readiness selects the foundation-readiness-decision check, not the completed VAT read-first check.",
-    "Roadmap and dashboard now state that the next step is a local Foundation boundary refresh before any new live pilot."
+    "Foundation Readiness now states that Page 471/Page 472 have read-first value but Page 470 remains a visible UI blocker.",
+    "Training-/handbook-ready master data remains separate from setup- and process-readiness.",
+    "Top-level nextCase now points to FOUNDATION-SETUP-ROUTE-DECISION."
   ],
   "notProved": [
     "No new Business Central screenshot was captured.",
@@ -55,56 +55,56 @@
     "No new write readiness, O2C/P2P readiness, Preview Posting readiness or posting readiness was proven."
   ],
   "warnings": [
-    "Do not repeat completed VAT-POSTING-SETUP-READFIRST or CUSTOMER-SETUP-VALUE-WRITE-GATE as next active work.",
-    "Foundation Readiness must explicitly choose the next non-repeating live gap before BC/Playwright live work resumes."
+    "Do not repeat completed VAT-POSTING-SETUP-READFIRST, Page 470 route recovery, PWS-FF-006, customer or item read-first work.",
+    "A real customer project needs a route decision before writing Foundation setup values."
   ],
   "changedArtifacts": [
     ".agent/state/current.json",
     ".agent/state/last_run_summary.json",
-    ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
-    ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md"
+    ".agent/state/cases/foundation-setup-route-decision.json",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md"
   ],
   "nextStepDecision": {
     "currentCase": "FOUNDATION-READINESS-DECISION",
-    "plannedNextCaseBeforeReview": "VAT-POSTING-SETUP-READFIRST",
+    "plannedNextCaseBeforeReview": "FOUNDATION-READINESS-DECISION",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "VAT-POSTING-SETUP-READFIRST has already run and produced partial evidence; Page 470 remains parked after route recovery. Repeating it would be project noise.",
+    "reason": "The Foundation Readiness refresh is now done. The next useful step is a short local route decision for unresolved setup gaps.",
     "lookaheadReviewed": [
       {
-        "caseId": "FOUNDATION-READINESS-DECISION",
+        "caseId": "FOUNDATION-SETUP-ROUTE-DECISION",
         "status": "ready-next",
-        "reason": "It must consume the completed VAT, Kontenplan, Debitor and Artikel evidence before selecting a new live gap."
+        "reason": "It decides manual UI, configuration package/import, source-backed Page Inspection or explicit parking before any write."
       },
       {
-        "caseId": "VAT-POSTING-SETUP-READFIRST",
+        "caseId": "TARGET-073",
         "status": "obsolete",
-        "reason": "Already executed; use result and route-recovery evidence instead of rerunning."
-      },
-      {
-        "caseId": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
-        "status": "obsolete",
-        "reason": "Already represented as evidence; do not repeat as the next active step."
+        "reason": "As-is VAT editor retry is parked and must not be repeated without a materially new route."
       },
       {
         "caseId": "O2C/P2P process cases",
         "status": "blocked",
-        "reason": "Process work remains blocked until Foundation/VAT/Posting boundaries are consciously accepted or proven."
+        "reason": "Process cases remain too early while VAT and General Posting Setup are not bounded."
+      },
+      {
+        "caseId": "Master Data write gates",
+        "status": "needs-setup-first",
+        "reason": "Customer and item evidence is training-ready, but not setup- or process-ready."
       }
     ],
     "queueChangesMade": [
-      "Top-level nextCase changed from VAT-POSTING-SETUP-READFIRST to FOUNDATION-READINESS-DECISION.",
-      "Roadmap and dashboard no longer advertise completed VAT/customer gates as next work."
+      "Top-level nextCase changed from FOUNDATION-READINESS-DECISION to FOUNDATION-SETUP-ROUTE-DECISION.",
+      "Foundation Readiness no longer advertises another Debitoren/VAT/Kontenplan microcase as next work."
     ],
-    "selectedNextCase": "FOUNDATION-READINESS-DECISION",
-    "whySelectedNextCaseIsBest": "A realistic Business Central implementation should consolidate Foundation evidence and decide the next non-repeating gap before opening live UI again.",
+    "selectedNextCase": "FOUNDATION-SETUP-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "A realistic Business Central implementation should decide the setup route before writing, importing or starting process evidence.",
     "risksBeforeNextCase": [
-      "If the boundary is not refreshed, future agents may rerun completed read-first cases or jump into O2C/P2P too early."
+      "Without a route decision, future agents may either repeat blocked UI paths or jump into O2C/P2P too early."
     ],
     "requiredPreparation": [
-      "Keep Business Central closed until the local Foundation boundary selects one specific next live case.",
-      "Preserve screenshot QA requirements for any later live proof."
+      "Keep Business Central closed for the route decision.",
+      "Compare manual UI proof, configuration package/import, source-backed Page Inspection and explicit parking."
     ]
   },
-  "nextCase": "FOUNDATION-READINESS-DECISION",
-  "nextStep": "Refresh FOUNDATION-READINESS-DECISION locally with the completed VAT, Kontenplan, Debitor and Artikel evidence; then choose exactly one non-repeating Foundation gap as the next live candidate."
+  "nextCase": "FOUNDATION-SETUP-ROUTE-DECISION",
+  "nextStep": "Complete the local Foundation setup route decision; do not open Business Central or run Playwright until it selects a concrete read-first/no-write or gated write path."
 }

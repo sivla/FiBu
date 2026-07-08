@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-SETUP-ROUTE-DECISION",
+  "status": "prepared-local-decision",
+  "mode": "universaarl-foundation-local-readiness",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w1-foundation",
+  "purpose": "Decide the realistic implementation route for unresolved Universaarl Foundation setup gaps before any further setup write, master data write, document, Preview Posting or Posting.",
+  "whyNow": "The latest Foundation decision consumed VAT read-first, VAT route recovery, chart, dimensions, number series, customer and item evidence. The remaining blocker is not another blind UI search, but a consultant-level route decision: manual UI, configuration package/import, source-backed Page Inspection or explicit parking.",
+  "mayOpenBusinessCentral": false,
+  "mayRunPlaywright": false,
+  "effectiveBcActionsAllowed": false,
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/vat-posting-setup-readfirst/result.json",
+    "playwright/projects/fibu-book5/evidence/vat-posting-setup-route-recovery/result.json",
+    "playwright/projects/fibu-book5/evidence/vat-business-posting-groups-source-or-alternative-route-decision/result.json",
+    "playwright/projects/fibu-book5/evidence/pws-ff-006-chart-of-accounts-starter-accounts-readfirst/PWS-FF-006-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-md-004c-customer-billing-payments-fasttabs-readfirst/PWS-MD-004C-result.json"
+  ],
+  "allowedActions": [
+    "read-foundation-readiness-decision",
+    "read-existing-foundation-evidence",
+    "compare-manual-ui-configuration-package-import-and-parking-routes",
+    "write-local-route-decision",
+    "update-state-summary"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright-live",
+    "type-business-central-values",
+    "write-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "cleanup-delete",
+    "api-shortcut",
+    "company-switch",
+    "claim-posting-readiness",
+    "claim-master-data-readiness"
+  ],
+  "acceptanceCriteria": [
+    "Choose one realistic next Foundation setup route or explicitly park the blocker.",
+    "Do not repeat completed VAT-POSTING-SETUP-READFIRST, Page 470 route recovery, PWS-FF-006, customer or item read-first work.",
+    "Separate training/handbook value from BC setup readiness and process readiness.",
+    "State what a real customer project would likely do manually, through configuration package/import, through source-backed analysis or through later gated write proof.",
+    "Select one concrete next case that is either local or read-first/no-write."
+  ],
+  "stopIf": [
+    "The decision would require opening Business Central.",
+    "The decision would unlock setup writes without source, data, screenshot and reopen-proof plan.",
+    "The decision would move into O2C/P2P, Preview Posting or Posting before Foundation gaps are bounded."
+  ],
+  "nextStepDecision": {
+    "currentCase": "FOUNDATION-READINESS-DECISION",
+    "plannedNextCaseBeforeReview": "FOUNDATION-READINESS-DECISION",
+    "lastEvidenceSummary": "VAT Product Posting Groups and VAT Posting Setup are observed read-first; VAT Business Posting Groups Page 470 remains blocked; chart, dimensions, number series, customer and item contexts have training value but no process readiness.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The Foundation decision is now updated. The next useful step is a route decision for unresolved setup gaps, not another read-first replay.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "FOUNDATION-SETUP-ROUTE-DECISION",
+        "status": "ready-next",
+        "reason": "It decides a realistic implementation route for VAT/Posting setup gaps without opening BC or writing setup."
+      },
+      {
+        "caseId": "TARGET-073",
+        "status": "obsolete",
+        "reason": "As-is VAT editor retry is parked and must not be repeated without a materially new route."
+      },
+      {
+        "caseId": "O2C/P2P process cases",
+        "status": "blocked",
+        "reason": "Process cases remain too early while VAT and General Posting Setup are not bounded."
+      },
+      {
+        "caseId": "Master Data write gates",
+        "status": "needs-setup-first",
+        "reason": "Customer and item evidence is training-ready, but not setup- or process-ready."
+      }
+    ],
+    "queueChangesMade": [
+      "Prepared FOUNDATION-SETUP-ROUTE-DECISION as the next local Foundation case."
+    ],
+    "selectedNextCase": "FOUNDATION-SETUP-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "A realistic BC implementation should decide the setup route before writing or starting process evidence.",
+    "risksBeforeNextCase": [
+      "Over-reading read-only screenshots as setup readiness.",
+      "Repeating blocked Page 470 or Page 472 routes.",
+      "Letting training-ready master data look process-ready."
+    ],
+    "requiredPreparation": [
+      "Use existing Foundation evidence only.",
+      "Keep Business Central closed.",
+      "Keep the route decision concrete and short."
+    ]
+  },
+  "nextCase": "FOUNDATION-SETUP-ROUTE-DECISION",
+  "preparedAt": "2026-07-08T16:25:00.000+02:00"
+}

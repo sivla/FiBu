@@ -20,8 +20,8 @@
 `UNIVERSAARL-DE` hat genug echte Oberflaechen- und Stammdaten-Evidence fuer Schulung, Handbuch und weitere lokale Routenentscheidungen. Das ist noch keine Prozessfreigabe.
 
 - Als Schulungs-/Handbuchsubstanz nutzbar: Kontenplan-Starterkonten, Nummernserien, Dimensionsliste/-werte, Debitor `U-CUST-100 / Saarland Maschinenbau AG`, Artikel `U-ITEM-HW100 / Steuerbox Standard U100`.
-- Weiterhin blockierend fuer O2C/P2P, Preview und Posting: vollstaendige VAT-/USt-Buchungsmatrix, Buchungsmatrix Einrichtung / General Posting Setup, Page-314-/Page-472-Schreibroute, globale/default Dimensionen, VAT-/Posting-Finalitaet.
-- Naechste sinnvolle Arbeit: vorhandene Evidence in Foundation-/Master-Data-Route-Entscheidungen, UAT-/Training und Handbuchentwuerfe umsetzen; keine weiteren blinden Read-first-Microcases und kein Live-Write ohne neuen Smart-Decision-Case.
+- Weiterhin blockierend fuer O2C/P2P, Preview und Posting: VAT Business Posting Groups Page 470, vollstaendige VAT-/USt-Buchungsmatrix, Buchungsmatrix Einrichtung / General Posting Setup, Page-314-/Page-472-Schreibroute, globale/default Dimensionen, VAT-/Posting-Finalitaet.
+- Naechste sinnvolle Arbeit: keine weitere Wiederholung abgeschlossener VAT-, Kontenplan-, Debitoren- oder Artikel-Read-first-Cases. Als naechster konkreter Projektbaustein braucht Foundation eine Route-Entscheidung: Was wird fuer eine realistische Universaarl-Implementierung manuell per UI nachgewiesen, was besser ueber Konfigurationspaket/Import vorbereitet wird, und welche offenen Gaps bleiben bewusst als Prozessgrenze geparkt?
 - Datenregel: realistische fiktive Universaarl-Daten verwenden, keine UI-Mockups und keine vertraulichen echten Kundendaten.
 - Buchmaster-Anker: Kapitel 9 enthaelt jetzt einen Universaarl-Abschnitt zu `U-CUST-100` und `U-ITEM-HW100`. Dieser Abschnitt ist fuer Schulung und Handbuch nutzbar, aber nicht als Prozessfreigabe zu lesen.
 - Screenshot-QA fuer naechsten Live-Proof: Der naechste read-first VAT-/Posting-Setup- oder Foundation-Refresh-Lauf muss eine Bildkette mit mindestens fuenf akzeptierten Checkpoints erfassen: Startkontext, Navigationsweg, Zielseite, relevanter Button/Tooltip oder Action-Kontext, Zielzeile/FastTab/FactBox-Kontext, optional Page Inspection sowie explizite Grenze. Ein einzelner End-Screenshot reicht fuer Page- oder Feldclaims nicht mehr aus.
@@ -37,6 +37,19 @@ Aktuelle General-Posting-Setup-Grenze: `INLAND` / `WAREN` / `Warenverkaufskonto 
 PWS-FF-005 hat die Dimensionsliste als read-only Kontext in `playthru / UNIVERSAARL-DE` nachgewiesen: `CHANNEL`, `COSTCENTER` und `PRODUCTLINE` sind im Screenshot sichtbar. PWS-FF-005B hat danach die echte UI-Route aus der Dimensionsliste ueber `Dimension > Dimensionswerte` fuer `PRODUCTLINE`, `COSTCENTER` und `CHANNEL` read-only nachgewiesen. Das reicht fuer Foundation-Verstaendnis, UAT-/Trainingserklaerung und spaetere Handbuchsubstanz, aber nicht fuer globale Dimensionen, Standarddimensionen, Reporting Readiness, Master Data Readiness, Preview Posting oder Posting.
 
 PWS-FF-001 hat die Nummernserien-Seite read-only beobachtet: sieben Universaarl-U-Nummernserien sind sichtbar, `Standardnr.`/`Default Nos.` und `Manuelle Anz.`/`Manual Nos.` wurden als Checkboxkontext erfasst, `Zeilen`/`Lines` und Page Inspection lieferten zusaetzliche UI-Wahrheit. Das reicht fuer Foundation-Verstaendnis und Schulungs-/Handbuchvorbereitung, aber nicht fuer vollstaendige Nummerierungs-, Setup-, Master-Data-, Audit-, Preview- oder Posting-Readiness.
+
+## VAT-/USt-Boundary nach Read-first und Route Recovery
+
+- Quellen:
+  - playwright/projects/fibu-book5/evidence/vat-posting-setup-readfirst/result.json
+  - playwright/projects/fibu-book5/evidence/vat-posting-setup-route-recovery/result.json
+  - playwright/projects/fibu-book5/evidence/vat-business-posting-groups-source-or-alternative-route-decision/result.json
+- Status: `partially-observed` fuer VAT Product Posting Groups und VAT Posting Setup; `blocked` fuer die sichtbare Page-470-Route der VAT Business Posting Groups.
+- Akzeptiert: Page 471 zeigt `VAT19 / USt 19 Prozent`; Page 472 zeigt die VAT Posting Setup / MwSt.-Buchungsmatrix read-only als echten Business-Central-Kontext.
+- Geparkt: Page 470 / MwSt.-Geschaeftsbuchungsgruppen ist lokal nicht als sichtbare Zielseite bewiesen. Direkte Page-470-URL, generische Tell-Me-/Suchroute und Page-Inspection aus Such-/Role-Center-Kontext duerfen nicht als Erfolg wiederholt werden.
+- Schreibgrenze: keine VAT Business Posting Group, keine VAT Product Posting Group, keine VAT Posting Setup-Zeile, keine Sachkonto-/USt-Konto-Zuordnung, kein Beleg, keine Buchungsvorschau, keine Buchung.
+- Fachgrenze: Page 471 und Page 472 erklaeren das BC-Konzept und liefern Schulungs-/Handbuchkontext. Sie beweisen keine deutsche USt-Korrektheit, keine vollstaendige `INLAND/VAT19`-Einrichtung, keine Kontoableitung und keine VAT Entries oder G/L Entries.
+- Realistischer Implementierungsweg: Fuer eine grosse Firma waere eine kontrollierte Setup-Route ueber vorbereitete Tabellenwerte, Konfigurationspaket/Import oder einen eindeutig nachgewiesenen Standard-UI-Weg plausibler als wiederholtes manuelles Raten in fragilen Listen. Vor jedem Write braucht es eine separate Routenentscheidung mit Datenherkunft, Fallback, Reopen-Proof und Screenshot-QA.
 
 ## No-Write-Grenze aus TARGET-075
 
@@ -287,7 +300,8 @@ Erlaubte Anschlussklassifikationen:
 
 - PWS-FF-002C, TARGET-057, TARGET-058 und TARGET-032P als aktuelle Buchungsmatrix-Grenze konsumieren: Page 314 ist partiell bekannt, aber nicht posting-ready.
 - PWS-FF-006 als akzeptierten Kontenplan-Starterkonten-Nachweis konsumieren; keine weitere Starterkonten-Wiederholung ohne neuen Claim.
-- Master-Data-Schreibfaelle, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt. Naechster Schritt ist keine weitere Debitoren-Microprobe, sondern die aktuelle Foundation-/Master-Data-Grenze: Was ist fuer Training/Handbuch verwendbar, was bleibt fuer O2C/P2P blockiert?
+- VAT-POSTING-SETUP-READFIRST, VAT-POSTING-SETUP-ROUTE-RECOVERY und VAT-BUSINESS-POSTING-GROUPS-SOURCE-OR-ALTERNATIVE-ROUTE-DECISION als aktuelle VAT-Grenze konsumieren: Page 471/Page 472 sind echter Kontext, Page 470 bleibt sichtbarer UI-Blocker.
+- Master-Data-Schreibfaelle, USt-Schreiblaeufe, Buchungsgruppen-Schreiblaeufe, Buchungsvorschau und Buchung bleiben geparkt. Naechster Schritt ist keine weitere Debitoren-Microprobe und keine Wiederholung von TARGET-075, sondern eine enge Foundation-Route-Entscheidung: manueller UI-Weg, Konfigurationspaket/Import, source-backed Page Inspection oder bewusstes Parken.
 - PWS-FF-005B als beobachteten no-write Dimensionswerte-Proof konsumieren.
 - PWS-FF-001 als beobachteten no-write Nummernserien-Proof konsumieren.
 - `PWS-MD-001`, `PWS-MD-002` und `PWS-MD-003` sind als read-only Kontext beobachtet und konsumiert. Debitor und Artikel haben Schulungswert; Kreditoren bleiben fuer P2P und Zahlung spaeter separat vorzubereiten.
@@ -311,9 +325,9 @@ Erlaubte Anschlussklassifikationen:
 - Debitor `U-CUST-100 / Saarland Maschinenbau AG` ist als realistische fiktive Universaarl-Kundendatenbasis fuer Handbuch, Training und spaetere O2C-Vorbereitung verwendbar. Das ist kein Claim auf echte vertrauliche Kundendaten.
 - Artikel `U-ITEM-HW100 / Steuerbox Standard U100` ist in echter `playthru`-Oberflaeche beobachtet. `STK`, `WARE`, `VAT19`, FIFO-Kontext, Einstandspreis `100,00` und VK-Preis `149,00` sind als realistische fiktive Universaarl-Werte belegt.
 - Beide Stammdatensaetze reichen fuer Schulungs- und Handbuchsubstanz. Sie reichen noch nicht fuer Verkaufs-/Einkaufsbelege, Buchungsvorschau, Buchung oder USt-/Posting-Finalitaet.
-- Blockierend bleibt die Foundation-Grenze: VAT Business Posting Groups, VAT Posting Setup und Posting Setup muessen entweder mit belastbarer neuer Route bewiesen oder bewusst als Prozessgrenze geparkt werden.
+- Blockierend bleibt die Foundation-Grenze: VAT Business Posting Groups, VAT Posting Setup und Posting Setup muessen entweder mit belastbarer neuer Route bewiesen oder bewusst als Prozessgrenze geparkt werden. Fuer realistische Kundenarbeit ist eine Route-Entscheidung wichtiger als der naechste isolierte UI-Klick.
 - Projektregel: echte Business-Central-Oberflaechen und echte Sandbox-Beobachtungen nutzen; keine UI-Mockups als Evidence, keine vertraulichen echten Kundendaten im Repo.
 
 ## Naechster Case
 
-- `FOUNDATION-READINESS-DECISION`: vorhandene Debitor-/Artikel-Evidence konsumieren, VAT-/Posting-Boundary aktualisieren und daraus entscheiden, ob der naechste konkrete Schritt ein no-write Foundation-Proof, eine Setup-Route-Entscheidung oder ein eng begrenzter O2C/P2P-Preflight sein darf. Keine BC-Live-Ausfuehrung, kein Speichern, kein Import, kein O2C/P2P.
+- `FOUNDATION-SETUP-ROUTE-DECISION` als naechster lokaler Projektbaustein vorbereiten: VAT-/Posting-Boundaries in eine realistische Implementierungsroute ueberfuehren. Kandidaten sind manueller Standard-UI-Weg, Konfigurationspaket/Import, source-backed Page Inspection oder bewusstes Parken als Prozessgrenze. Keine BC-Live-Ausfuehrung, kein Speichern, kein Import, kein O2C/P2P in diesem Entscheidungsschritt.
