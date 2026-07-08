@@ -2,7 +2,7 @@
 
 Read-first route recovery for Konfigurationspakete / Configuration Packages.
 
-Result: blocked-readfirst-route
+Result: observed-readfirst-page-route
 Route: scoped-tell-me-click-after-direct-page8615-weak
 
 No package was created, opened for edit, imported, exported, validated, applied or edited in Excel.

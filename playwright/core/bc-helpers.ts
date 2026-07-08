@@ -1,4 +1,4 @@
-import { expect, type Page } from '@playwright/test';
+import { expect, type Locator, type Page } from '@playwright/test';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
@@ -222,6 +222,9 @@ export async function searchFor(page: Page, term: string) {
 type OpenSearchResultOptions = {
   occurrence?: number;
   requireUnique?: boolean;
+  expectedPageText?: RegExp;
+  timeout?: number;
+  rejectIfTellMeStaysOpen?: boolean;
 };
 
 function relaxedAnchoredLabel(label: RegExp) {
@@ -233,6 +236,63 @@ function relaxedAnchoredLabel(label: RegExp) {
   return new RegExp(source.slice(1, -1), label.flags.replace('g', ''));
 }
 
+async function tellMeOverlayVisible(page: Page) {
+  const tellMeText = /Was m.chten Sie tun|Wie m.chten Sie weiter verfahren|Tell me|Seiten und Aufgaben|Pages and Tasks|Zu .Seiten und Aufgaben. wechseln/i;
+
+  for (const scope of [page, ...page.frames()]) {
+    const overlay = scope
+      .locator('[role="dialog"], [aria-modal="true"], .ms-Dialog-main, .modal-dialog')
+      .filter({ hasText: tellMeText })
+      .first();
+    if (await overlay.isVisible({ timeout: 300 }).catch(() => false)) {
+      return true;
+    }
+
+    const textbox = scope.getByRole('textbox', { name: tellMeText }).first();
+    if (await textbox.isVisible({ timeout: 300 }).catch(() => false)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+async function clickSearchResultCandidate(page: Page, matches: Locator, startIndex: number, count: number, options: OpenSearchResultOptions) {
+  for (let index = startIndex; index < count; index += 1) {
+    const candidate = matches.nth(index);
+    if (!(await candidate.isVisible({ timeout: 500 }).catch(() => false))) {
+      continue;
+    }
+
+    await candidate.scrollIntoViewIfNeeded({ timeout: 1000 }).catch(() => undefined);
+    const clicked = await candidate
+      .click({ timeout: 3000 })
+      .then(() => true)
+      .catch(() => false);
+
+    if (!clicked) {
+      continue;
+    }
+
+    await page.waitForLoadState('domcontentloaded', { timeout: options.timeout ?? 30_000 }).catch(() => undefined);
+    const expectedAfterClick = options.expectedPageText ?? /Business Central|Filter|Liste|List|Card|Karte/i;
+    await waitForPageText(page, expectedAfterClick, { timeout: options.timeout ?? 30_000 });
+
+    if (options.rejectIfTellMeStaysOpen ?? false) {
+      const stillOpen = await tellMeOverlayVisible(page);
+      if (stillOpen) {
+        throw new Error(
+          `Tell-Me Treffer wurde geklickt, aber das Tell-Me-Fenster ist noch offen. Zielseite ${expectedAfterClick} wurde nicht sauber bewiesen.`
+        );
+      }
+    }
+
+    return true;
+  }
+
+  return false;
+}
+
 export async function openSearchResult(page: Page, label: RegExp, options: OpenSearchResultOptions = {}) {
   const occurrence = options.occurrence ?? 0;
   const scopes = [page, ...page.frames()];
@@ -240,10 +300,11 @@ export async function openSearchResult(page: Page, label: RegExp, options: OpenS
 
   for (const scope of scopes) {
     const locators = [
-      scope.getByText(label),
       scope.getByRole('row', { name: relaxedLabel }),
+      scope.getByRole('link', { name: relaxedLabel }),
       scope.getByRole('button', { name: relaxedLabel }),
-      scope.getByRole('menuitem', { name: relaxedLabel })
+      scope.getByRole('menuitem', { name: relaxedLabel }),
+      scope.getByText(label)
     ];
 
     for (const matches of locators) {
@@ -261,17 +322,9 @@ export async function openSearchResult(page: Page, label: RegExp, options: OpenS
         throw new Error(`Tell-Me Treffer ${label} hat nur ${count} Treffer. Gewuenscht war Trefferindex ${occurrence}.`);
       }
 
-      for (let index = occurrence; index < count; index += 1) {
-        const clicked = await matches
-          .nth(index)
-          .click({ timeout: 3000 })
-          .then(() => true)
-          .catch(() => false);
-
-        if (clicked) {
-          await waitForPageText(page, /Business Central|Search|Suchen|Filter|Liste|List|Card|Karte/i, { timeout: 30_000 });
-          return;
-        }
+      const clicked = await clickSearchResultCandidate(page, matches, occurrence, count, options);
+      if (clicked) {
+        return;
       }
     }
   }

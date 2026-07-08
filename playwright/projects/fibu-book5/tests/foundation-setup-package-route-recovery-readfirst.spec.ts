@@ -5,6 +5,7 @@ import path from 'node:path';
 import {
   compactPageText,
   dismissTours,
+  openSearchResult,
   pageText,
   requireBcUrl,
   searchFor,
@@ -108,6 +109,22 @@ function configPackageSignalCount(text: string) {
 
 function roleCenterSignal(text: string) {
   return /Guten Tag|Aktivitaten|Shopify|Laufender Verkauf|Laufende Einkaufe|Rollencenter|Role Center/i.test(text);
+}
+
+function tellMeOverlaySignal(text: string) {
+  return /Was m.chten Sie tun|Wie m.chten Sie weiter verfahren|Tell me|Zu .Seiten und Aufgaben. wechseln|Pages and Tasks/i.test(text);
+}
+
+function acceptedConfigPackagePageProof(fullPageText: string, compactText: string) {
+  const proofText = compactText || fullPageText;
+  const signals = configPackageSignalCount(proofText);
+  const listSurface =
+    /Konfigurationspakete/i.test(proofText) &&
+    /(Paketname|Package Name|Paket importieren|Import Package|Paket exportieren|Export Package|Liste mit Titel Konfigurationspakete|U-VAT325-DISC)/i.test(
+      proofText
+    );
+
+  return signals >= 2 && listSurface && !tellMeOverlaySignal(proofText);
 }
 
 async function fullText(page: Page) {
@@ -256,22 +273,25 @@ async function hoverFirstVisible(page: Page, labels: RegExp[]) {
 async function clickScopedTellMeResult(page: Page, label: RegExp) {
   await searchFor(page, 'Konfigurationspakete');
   const beforeClickText = await fullText(page);
-  const candidates = [
-    page.getByRole('link', { name: label }).first(),
-    page.getByRole('button', { name: label }).first(),
-    page.getByText(label).first()
-  ];
-  for (const candidate of candidates) {
-    if (!(await candidate.isVisible({ timeout: 700 }).catch(() => false))) continue;
-    await candidate.scrollIntoViewIfNeeded({ timeout: 1000 }).catch(() => undefined);
-    await candidate.click({ timeout: 3000 }).catch(() => undefined);
+  try {
+    await openSearchResult(page, label, {
+      expectedPageText:
+        /(^Konfigurationspakete:?$|Configuration Packages|Paketcode|Paketname|Package Code|Package Name|Tabellen abrufen|Get Tables)/im,
+      rejectIfTellMeStaysOpen: true,
+      timeout: 45_000
+    });
     await page.waitForLoadState('domcontentloaded', { timeout: 20_000 }).catch(() => undefined);
     await waitForBusinessCentralShell(page);
     await dismissTours(page);
     await page.keyboard.press('Escape').catch(() => undefined);
-    return { clicked: true, beforeClickText };
+    return { clicked: true, beforeClickText, error: '' };
+  } catch (error) {
+    return {
+      clicked: false,
+      beforeClickText,
+      error: error instanceof Error ? error.message : String(error)
+    };
   }
-  return { clicked: false, beforeClickText };
 }
 
 test(`${CASE_ID} recovers configuration-package route read-first`, async ({ page }) => {
@@ -321,8 +341,10 @@ test(`${CASE_ID} recovers configuration-package route read-first`, async ({ page
         pageId: 8615,
         step: 'Scoped Tell-Me result click after direct route stayed weak',
         clickedSearchCandidate: search.clicked,
+        searchClickError: search.error,
         visibleSignals: searchOverlayText.split('\n').slice(0, 80),
-        internallyProves: 'The fallback used a scoped search-result candidate instead of trusting a generic shell wait.',
+        internallyProves:
+          'The fallback used the central Tell-Me helper with target-page proof and overlay rejection instead of trusting a generic shell wait.',
         doesNotProve: ['No package page until post-click screenshot passes QA', 'No package action clicked'],
         noWrite: true
       },
@@ -335,7 +357,7 @@ test(`${CASE_ID} recovers configuration-package route read-first`, async ({ page
 
   const compactText = (await compactConfigText(page)) || pageContextText;
   await writeTextEvidence(evidencePath(PROJECT, EVIDENCE_ID, 'foundation-package-route-recovery-page-text.txt'), compactText);
-  const acceptedPageProof = signalCount >= 2 && !roleCenterSignal(pageContextText);
+  const acceptedPageProof = acceptedConfigPackagePageProof(pageContextText, compactText);
   if (!acceptedPageProof) {
     blockedBy.push('Konfigurationspakete page/list proof rejected: screenshot/text still looks like Role Center or lacks page/list signals.');
   }
@@ -565,7 +587,9 @@ test(`${CASE_ID} recovers configuration-package route read-first`, async ({ page
         }
       ],
       queueChangesMade: [],
-      selectedNextCase: acceptedPageProof ? 'FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION-2' : 'FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION',
+      selectedNextCase: acceptedPageProof
+        ? 'FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION'
+        : 'FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION',
       whySelectedNextCaseIsBest: acceptedPageProof
         ? 'The route proof is now strong enough for a separate metadata gate decision, still not for import/apply.'
         : 'The route must be parked or replaced by another standard approach because the page proof remains blocked.',
@@ -580,7 +604,9 @@ test(`${CASE_ID} recovers configuration-package route read-first`, async ({ page
     },
     safeToFinalizeState: false,
     requiresReview: false,
-    nextCase: acceptedPageProof ? 'FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION-2' : 'FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION'
+    nextCase: acceptedPageProof
+      ? 'FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION'
+      : 'FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION'
   };
 
   await writeJsonEvidence(evidencePath(PROJECT, EVIDENCE_ID, 'result.json'), result);

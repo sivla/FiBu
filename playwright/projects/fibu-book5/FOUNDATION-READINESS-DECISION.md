@@ -127,12 +127,20 @@ PWS-FF-001 hat die Nummernserien-Seite read-only beobachtet: sieben Universaarl-
 ## FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST
 
 - Quelle: playwright/projects/fibu-book5/evidence/foundation-setup-package-route-recovery-readfirst/result.json
-- Status: blocked-readfirst-route
+- Status: observed-readfirst-page-route
 - Route: direkte Page-8615-URL, danach scoped Tell-Me-Suche nach `Konfigurationspakete`
-- Akzeptiert: `playthru / UNIVERSAARL-DE` wurde bestaetigt, die Bildkette wurde erfasst, und es wurde nichts angelegt, importiert, validiert, angewendet oder geschrieben.
-- Verworfen: Der Zielseitenbeweis ist weiterhin nicht akzeptiert. Der zentrale Screenshot zeigt Rollencenter mit Tell-Me-/Suchoverlay, nicht die echte Seite `Konfigurationspakete`.
-- Fachliche Folge: Konfigurationspakete bleiben fuer ein echtes BC-Projekt als Implementierungsweg plausibel, sind in diesem Projekt aber noch kein bewiesener Foundation-Weg. Ein weiterer identischer Page-8615-/Tell-Me-Retry waere Projektrauschen.
-- Naechster Case: `FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION`, lokal/no-live. Dort wird entschieden, ob die Paketroute geparkt, mit einer wirklich neuen Hypothese recherchiert oder durch eine andere Foundation-Readiness-Spur ersetzt wird.
+- Akzeptiert: `playthru / UNIVERSAARL-DE` wurde bestaetigt, die Seite `Konfigurationspakete` ist als Listenoberflaeche sichtbar, die Bildkette umfasst direkten Versuch, Tell-Me-Fallback, Zielseitenproof, Action Inventory, Hover-Kontext und No-Write-Endzustand.
+- Verworfen: Kein Setup-, Paketmetadaten-, Import-, Validate-, Apply- oder Tabellenabruf-Beweis. Sichtbare Paketaktionen bleiben Inventory-only.
+- Korrigierte Diagnose: Der zentrale Tell-Me-Helper und die Screenshot-QA unterscheiden jetzt zwischen offener Suche und echter Zielseite. Versteckte Rollencenter-Reste im Seitentext duerfen einen sichtbaren Listenproof nicht mehr falsch blockieren.
+- Fachliche Folge: Konfigurationspakete sind wieder ein realistischer BC-Implementierungsweg fuer die Foundation-Route. Der naechste Schritt ist trotzdem nur ein lokaler Metadata-Write-Gate-Entscheid, weil ein Paketkopf bereits ein Admin-Artefakt waere.
+- Naechster Case: `FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION`, lokal/no-live. Dort wird entschieden, ob ein enger Paket-Metadaten-Write fachlich sinnvoll ist und welche Stop-/Cleanup-/Keep-Regeln gelten.
+
+## FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION
+
+- Status: withdrawn-before-commit
+- Entscheidung: Der lokale Park-Entschluss wurde zurueckgenommen, weil die bessere Diagnose ein Tell-Me-Helper-/Screenshot-QA-Problem ist.
+- Grenze: Die Route ist nach Helper-Korrektur read-first bewiesen, aber nicht als Setup- oder Importweg freigegeben.
+- Naechster Case: `FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION`.
 
 ## PWS-FF-002C Route Decision: Buchungsmatrix Einrichtung
 

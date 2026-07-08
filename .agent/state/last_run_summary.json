@@ -3,19 +3,16 @@
   "purpose": "last-run-summary",
   "runId": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
   "caseId": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
-  "status": "blocked-readfirst-route",
-  "completedAt": "2026-07-08T19:05:00.000+02:00",
-  "updatedAt": "2026-07-08T19:05:00.000+02:00",
-  "mode": "universaarl-foundation-readfirst",
+  "status": "observed-readfirst-page-route",
+  "updatedAt": "2026-07-08T20:45:00.000+02:00",
+  "mode": "universaarl-foundation-readfirst-helper-recovery",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Read-first route recovery for Konfigurationspakete was blocked: screenshots show Role Center/Tell-Me overlay, not the Configuration Packages page/list. Route is parked for local alternative decision.",
+  "summary": "The Tell-Me helper and package route recovery were corrected. The guarded read-first Playwright run proved the Konfigurationspakete page/list surface in playthru / UNIVERSAARL-DE and kept all package/setup writes locked.",
   "businessCentralOpened": true,
   "playwrightLiveRunExecuted": true,
   "setupChanged": false,
   "masterDataChanged": false,
-  "currentRunMasterDataChanged": false,
-  "changedFields": [],
   "draftCreated": false,
   "previewPosting": false,
   "posted": false,
@@ -25,72 +22,82 @@
   "confidentialRealCustomerDataUsed": false,
   "uiMockupUsed": false,
   "actionsTaken": [
-    "Validated guarded read-first runner prerequisites.",
-    "Opened Business Central in playthru / UNIVERSAARL-DE through Playwright.",
-    "Tried direct Page 8615 route and a scoped Tell-Me search/click route for Konfigurationspakete.",
-    "Captured screenshot chain, action inventory, hover context and no-write end context.",
-    "Rejected the result because the visible context remained Role Center/search overlay instead of a real page/list."
+    "Hardened the central Tell-Me helper to prefer scoped result roles, require target-page proof and reject an open Tell-Me overlay.",
+    "Changed the Konfigurationspakete read-first test to use the central helper instead of a hand-rolled broad click.",
+    "Ran the guarded read-first package route recovery in Business Central.",
+    "Captured a six-screenshot QA chain and visible package action inventory."
   ],
   "actionsNotTaken": [
-    "No package was created or opened for edit.",
-    "No Get Tables, Import, Export, Validate, Apply or Edit in Excel action was executed.",
-    "No setup, master data, document, Preview Posting, Posting, payment, API shortcut or company switch occurred."
+    "No package creation",
+    "No package card open/edit",
+    "No Get Tables/Tabellen abrufen click",
+    "No package import/export/validate/apply",
+    "No Edit in Excel",
+    "No setup value typing",
+    "No master data",
+    "No document draft",
+    "No Preview Posting",
+    "No Posting",
+    "No payment",
+    "No API shortcut",
+    "No company switch"
   ],
   "proved": [
-    "playthru / UNIVERSAARL-DE context was visible.",
-    "The tested route is not sufficient page proof.",
-    "Screenshot QA prevented a false success claim.",
-    "No BC write action occurred."
+    "Business Central opened in playthru / UNIVERSAARL-DE.",
+    "Konfigurationspakete / Configuration Packages page/list surface is visible read-first.",
+    "Visible package actions were inventoried without execution.",
+    "The prior Tell-Me overlay confusion is now guarded by helper and screenshot-QA logic."
   ],
   "notProved": [
-    "No Konfigurationspakete page/list surface.",
-    "No package-based Foundation table mapping.",
-    "No setup or posting readiness."
+    "No package metadata write is approved.",
+    "No mapped Foundation setup table is proven usable for import/apply.",
+    "No setup, master-data, O2C, P2P, Preview Posting or Posting readiness.",
+    "No UAT acceptance."
   ],
   "evidencePath": "playwright/projects/fibu-book5/evidence/foundation-setup-package-route-recovery-readfirst/result.json",
   "nextStepDecision": {
     "currentCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
     "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
-    "lastEvidenceSummary": "The route recovery stayed in Role Center/Tell-Me overlay and was rejected by screenshot QA.",
+    "lastEvidenceSummary": "The package page/list route is now observed read-first with accepted screenshot QA.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "Repeating this route would add screenshots but not realistic Foundation progress.",
+    "reason": "The recovery case is complete. The next useful step is a local metadata write-gate decision, not another live retry.",
     "lookaheadReviewed": [
       {
-        "caseId": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION",
+        "caseId": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
         "status": "ready-next",
-        "reason": "Consumes the blocker and decides whether package route is parked or replaced."
+        "reason": "The page route is proven, but a package header or table selection would be an admin artifact and needs an explicit decision."
       },
       {
-        "caseId": "Foundation Readiness Local Route Decision",
-        "status": "ready-after-current",
-        "reason": "Needed to choose the next project-useful Foundation lane."
+        "caseId": "Foundation Setup Write/Import Gate",
+        "status": "needs-source-check-first",
+        "reason": "Requires mapped tables, source values, validation plan and rollback/keep decision."
       },
       {
-        "caseId": "Configuration Package Metadata Write Gate",
+        "caseId": "Master Data write gates",
+        "status": "needs-setup-first",
+        "reason": "Foundation setup and posting boundaries remain unresolved."
+      },
+      {
+        "caseId": "O2C/P2P process cases",
         "status": "blocked",
-        "reason": "Not justified without accepted page/list route or explicit admin artifact strategy."
-      },
-      {
-        "caseId": "Master Data Writes",
-        "status": "blocked",
-        "reason": "Foundation setup boundaries remain unresolved."
+        "reason": "No posting/VAT setup readiness or Preview Posting boundary exists."
       }
     ],
     "queueChangesMade": [
-      "Set active local case to FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION.",
-      "Kept setup, master data, documents, Preview Posting and Posting locked."
+      "Selected FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION as active local no-live case."
     ],
-    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION",
-    "whySelectedNextCaseIsBest": "It prevents another blind UI retry and forces a realistic route choice for Foundation setup.",
+    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
+    "whySelectedNextCaseIsBest": "It converts the new page proof into a controlled BC implementation decision without jumping into writes.",
     "risksBeforeNextCase": [
-      "Overfocusing on Konfigurationspakete could delay more useful Foundation proof.",
-      "Creating package metadata too early would be an admin write without proven route value."
+      "Configuration package metadata is an admin artifact.",
+      "Get Tables, Import, Validate, Apply and Edit in Excel can become effective.",
+      "Planned setup values must not be treated as saved values."
     ],
     "requiredPreparation": [
-      "Review visual screenshot QA and Foundation Readiness boundaries.",
-      "Choose between parking package route, researching a better route, or moving to another Foundation readiness lane."
+      "Review the accepted screenshot QA.",
+      "Decide exact package purpose and stop/cleanup/keep rules before any future write."
     ]
   },
-  "nextCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION",
-  "nextStep": "Local no-live park-or-alternative decision for the Configuration Packages route."
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
+  "nextStep": "Run the local no-live metadata write-gate decision."
 }

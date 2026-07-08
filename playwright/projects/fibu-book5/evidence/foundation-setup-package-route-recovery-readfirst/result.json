@@ -2,9 +2,9 @@
   "schemaVersion": 1,
   "caseId": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
   "source": "playwright-readonly-configuration-package-route-recovery",
-  "resultStatus": "blocked-readfirst-route",
-  "startedAt": "2026-07-08T18:48:32.150Z",
-  "completedAt": "2026-07-08T18:48:49.086Z",
+  "resultStatus": "observed-readfirst-page-route",
+  "startedAt": "2026-07-08T20:42:18.041Z",
+  "completedAt": "2026-07-08T20:42:36.025Z",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "page": "Page 8615 Konfigurationspakete / Configuration Packages",
@@ -64,7 +64,7 @@
       "playwright/projects/fibu-book5/evidence/foundation-setup-package-route-recovery-readfirst/foundation-package-route-recovery-040-hover-context.png",
       "playwright/projects/fibu-book5/evidence/foundation-setup-package-route-recovery-readfirst/foundation-package-route-recovery-050-no-write-end-context.png"
     ],
-    "acceptedForPageProof": false,
+    "acceptedForPageProof": true,
     "acceptedForSetupProof": false,
     "requiredCheckpoints": [
       "direct route context",
@@ -74,18 +74,19 @@
       "hover/action context",
       "no-write end context"
     ],
-    "reason": "Screenshot/text QA rejects Role Center or weak route surface as page proof."
+    "reason": "Screenshot/text QA accepts only the visible Konfigurationspakete page/list surface."
   },
   "tableSignals": {
     "generalPostingSetup252": false,
-    "vatPostingSetup325": false,
+    "vatPostingSetup325": true,
     "vatBusinessPostingGroup470": false
   },
   "visibleActionsPath": "playwright/projects/fibu-book5/evidence/foundation-setup-package-route-recovery-readfirst/visible-actions.json",
   "proved": [
     "Business Central was opened in playthru / UNIVERSAARL-DE.",
-    "A materially different read-first route was tried.",
-    "The run stopped without executing package actions or setup writes."
+    "Konfigurationspakete / Configuration Packages page/list surface was visible as read-only page proof.",
+    "Package action surface was inventoried without executing write-capable controls.",
+    "No setup, master data, draft, Preview Posting, Posting, payment, API shortcut or company switch occurred."
   ],
   "notProved": [
     "No mapped Foundation setup table is proven usable for import/apply.",
@@ -96,12 +97,9 @@
     "No UAT acceptance."
   ],
   "warnings": [
-    "Write-capable package controls are visible and remain inventory-only.",
-    "No mapped Foundation setup table is visible without clicking Get Tables or creating/opening package metadata."
+    "Write-capable package controls are visible and remain inventory-only."
   ],
-  "blockedBy": [
-    "Konfigurationspakete page/list proof rejected: screenshot/text still looks like Role Center or lacks page/list signals."
-  ],
+  "blockedBy": [],
   "nextStepDecision": {
     "currentCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
     "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
@@ -111,8 +109,8 @@
     "lookaheadReviewed": [
       {
         "caseId": "Configuration Package Metadata Write Gate",
-        "status": "blocked",
-        "reason": "No page/list proof exists, so metadata creation remains blocked."
+        "status": "ready-after-current",
+        "reason": "A later local decision can decide whether metadata creation is justified."
       },
       {
         "caseId": "Foundation Setup Write/Import Gate",
@@ -131,19 +129,19 @@
       }
     ],
     "queueChangesMade": [],
-    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION",
-    "whySelectedNextCaseIsBest": "The route must be parked or replaced by another standard approach because the page proof remains blocked.",
+    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
+    "whySelectedNextCaseIsBest": "The route proof is now strong enough for a separate metadata gate decision, still not for import/apply.",
     "risksBeforeNextCase": [
       "Configuration package metadata is an admin artifact.",
       "Get Tables, Import, Validate, Apply and Edit in Excel can become effective.",
       "Planned setup values must not be treated as saved values."
     ],
     "requiredPreparation": [
-      "Do not repeat the same route.",
-      "Decide whether to park package route or use another source-backed standard route."
+      "Review screenshot QA.",
+      "Define exact metadata purpose, cleanup/keep and stop conditions before any write."
     ]
   },
   "safeToFinalizeState": false,
   "requiresReview": false,
-  "nextCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION"
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION"
 }

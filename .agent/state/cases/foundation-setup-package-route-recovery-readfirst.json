@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "caseId": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
-  "status": "prepared-readfirst-no-write",
-  "mode": "universaarl-foundation-readfirst",
+  "status": "prepared-readfirst-no-write-helper-recovery",
+  "mode": "universaarl-foundation-readfirst-helper-recovery",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "activeArea": "w1-foundation",
-  "purpose": "Recover a reliable read-only route to Konfigurationspakete / Configuration Packages before any package metadata, import, validation, apply or setup write is considered.",
+  "purpose": "Recover a reliable read-only route to Konfigurationspakete / Configuration Packages and harden Tell-Me result handling before any package metadata, import, validation, apply or setup write is considered.",
   "mayOpenBusinessCentral": true,
   "mayRunPlaywright": true,
   "effectiveBcActionsAllowed": false,
@@ -15,6 +15,8 @@
     "validate-company-context",
     "open-configuration-packages-readonly",
     "compare-direct-page-and-user-navigation-routes",
+    "use-central-tell-me-helper-with-target-page-proof",
+    "reject-open-tell-me-overlay-as-page-proof",
     "capture-multi-step-screenshot-chain",
     "capture-page-title-list-action-and-no-write-boundary",
     "write-readonly-result-json",
@@ -49,7 +51,8 @@
   ],
   "acceptanceCriteria": [
     "Confirm playthru / UNIVERSAARL-DE before navigation.",
-    "Use a materially different route from the failed read-first path, for example a stricter Page 8615 target check, a visible Business Central menu/action route or a scoped Tell-Me result click with post-click page-title proof.",
+    "Use the central Tell-Me helper for the fallback route; do not hand-roll a broad getByText click or blind Enter fallback.",
+    "A Tell-Me result click is accepted only when the overlay closes and screenshot/text QA proves the Konfigurationspakete page/list surface.",
     "Accept the result only if screenshot QA shows the Konfigurationspakete page/list surface, not Role Center or search overlay.",
     "Capture a Bildkette with shell, route, target page, action inventory or hover context and no-write end state.",
     "Stop before Neu/New, Tabellen abrufen/Get Tables, Import, Export, Validate, Apply, Edit in Excel, package card edit or any setup value."
@@ -60,5 +63,5 @@
     "playwright/projects/fibu-book5/UNIVERSAARL-FOUNDATION-SETUP-FIELD-MAP.md"
   ],
   "nextCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
-  "preparedAt": "2026-07-08T18:35:00.000+02:00"
+  "preparedAt": "2026-07-08T20:05:00.000+02:00"
 }
