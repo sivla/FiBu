@@ -32,7 +32,8 @@ const allowedNextCasesAfterTarget075Handoff = new Set([
   'PWS-FF-002B-PAGE314-NAVIGATION-CAPTURE-RECOVERY',
   'PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST',
   'FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION',
-  'FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST'
+  'FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST',
+  'FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION'
 ]);
 
 function readText(relativePath) {
@@ -147,10 +148,14 @@ const nextCaseAllowedAfterTarget075Handoff =
 const activeCaseAllowedAfterTarget075Handoff =
   target075CompletedHandoff && allowedNextCasesAfterTarget075Handoff.has(currentState?.activeCase ?? '');
 const postTarget075Handoff = target075CompletedHandoff && nextCaseAllowedAfterTarget075Handoff && activeCaseAllowedAfterTarget075Handoff;
+const localNoLivePostTarget075HandoffCases = new Set([
+  'FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION',
+  'FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION'
+]);
 const localNoLivePostTarget075Handoff =
   postTarget075Handoff &&
-  currentState?.activeCase === 'FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION' &&
-  currentState?.nextCase === 'FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION';
+  localNoLivePostTarget075HandoffCases.has(currentState?.activeCase ?? '') &&
+  currentState?.nextCase === currentState?.activeCase;
 
 if (currentState) {
   if (currentState.instance !== 'playthru') errors.push(`${currentPath}: instance must be playthru`);

@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST",
+  "source": "playwright-readfirst-configuration-worksheet-and-packages",
+  "resultStatus": "observed-readfirst",
+  "routeDecision": "ready-for-write-gate",
+  "startedAt": "2026-07-08T22:42:30.087Z",
+  "completedAt": "2026-07-08T22:42:46.632Z",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "pages": [
+    "Konfigurationsarbeitsblatt / Configuration Worksheet",
+    "Page 8615 Konfigurationspakete / Configuration Packages"
+  ],
+  "sanitizedUrl": "https://businesscentral.dynamics.com/{tenant}/playthru?page=8615&company=UNIVERSAARL-DE&dc=0",
+  "businessCentralOpened": true,
+  "playwrightLiveRunExecuted": true,
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "companySwitch": false,
+  "configurationPackageCreated": false,
+  "configurationPackageOpenedForEdit": false,
+  "configurationPackageImported": false,
+  "configurationPackageExported": false,
+  "configurationPackageValidated": false,
+  "configurationPackageApplied": false,
+  "editInExcel": false,
+  "tableSignals": {
+    "table252GeneralPostingSetup": false,
+    "table325VatPostingSetup": true,
+    "vatBusinessPostingGroups": false,
+    "configurationWorksheetVisible": true,
+    "configurationPackagesVisible": true
+  },
+  "actionsTaken": [
+    "Opened Business Central read-only in playthru / UNIVERSAARL-DE.",
+    "Opened Configuration Worksheet read-only via Tell-Me and captured target context.",
+    "Inventoried visible Configuration Worksheet actions without clicking write-capable actions.",
+    "Opened Configuration Packages read-only by direct page URL 8615.",
+    "Inventoried visible Configuration Package actions without creating, importing, exporting, validating or applying data."
+  ],
+  "actionsNotTaken": [
+    "No package creation",
+    "No package card open/edit",
+    "No Get Tables/Tabellen abrufen click",
+    "No table add/remove",
+    "No package import",
+    "No package export",
+    "No package validation",
+    "No package apply",
+    "No Edit in Excel",
+    "No setup value typing",
+    "No master data",
+    "No document draft",
+    "No Preview Posting",
+    "No Posting",
+    "No API shortcut",
+    "No company switch"
+  ],
+  "screenshots": [
+    "playwright/projects/fibu-book5/evidence/foundation-configuration-worksheet-readfirst/foundation-configuration-worksheet-010-target.png",
+    "playwright/projects/fibu-book5/evidence/foundation-configuration-worksheet-readfirst/foundation-configuration-worksheet-020-actions.png",
+    "playwright/projects/fibu-book5/evidence/foundation-configuration-worksheet-readfirst/foundation-configuration-worksheet-030-packages.png",
+    "playwright/projects/fibu-book5/evidence/foundation-configuration-worksheet-readfirst/foundation-configuration-worksheet-040-package-actions.png"
+  ],
+  "stepTimeline": "playwright/projects/fibu-book5/evidence/foundation-configuration-worksheet-readfirst/step-timeline.json",
+  "worksheetActionInventoryPath": "playwright/projects/fibu-book5/evidence/foundation-configuration-worksheet-readfirst/worksheet-visible-actions.json",
+  "packageActionInventoryPath": "playwright/projects/fibu-book5/evidence/foundation-configuration-worksheet-readfirst/package-visible-actions.json",
+  "screenshotQaReferences": [
+    "Step timeline before/after screenshots and visual-state JSON classify target page, side pane, search overlay, dialog and Role Center background.",
+    "playwright/projects/fibu-book5/evidence/foundation-configuration-worksheet-readfirst/step-timeline.json"
+  ],
+  "proved": [
+    "Business Central opened in playthru / UNIVERSAARL-DE.",
+    "Configuration Worksheet is reachable read-first.",
+    "Configuration Packages page 8615 is reachable read-first.",
+    "The old Escape-after-Tell-Me retry route was not repeated.",
+    "No package/setup/master-data/posting action occurred."
+  ],
+  "notProved": [
+    "No package write gate.",
+    "No package table line creation.",
+    "No field selection.",
+    "No Table 252 or Table 325 package mapping write.",
+    "No import/export/validate/apply route.",
+    "No setup value.",
+    "No posting/VAT/master-data readiness.",
+    "No UAT acceptance."
+  ],
+  "warnings": [
+    "Configuration Packages and Worksheet are standard setup/data surfaces; write-capable package actions remain locked until a separate write gate.",
+    "Table signals in this run are only visible text signals, not write or mapping proof."
+  ],
+  "blockedBy": [],
+  "nextStepDecision": {
+    "currentCase": "FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST",
+    "plannedNextCaseBeforeReview": "FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST",
+    "lastEvidenceSummary": "Source decision selected Configuration Worksheet and Configuration Packages as read-first proof before any package or setup write.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Both relevant standard BC setup-data surfaces are reachable and screenshot-classified read-first.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION",
+        "status": "ready-next",
+        "reason": "Read-first surfaces are proven."
+      },
+      {
+        "caseId": "FOUNDATION-READINESS-DECISION",
+        "status": "ready-after-current",
+        "reason": "Should consume the read-first result and keep Master Data blocked until Foundation is decided."
+      },
+      {
+        "caseId": "Master Data route decisions",
+        "status": "needs-setup-first",
+        "reason": "Master Data remains blocked until Foundation readiness clarifies setup route and posting prerequisites."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION",
+    "whySelectedNextCaseIsBest": "The next decision can now evaluate whether a tightly scoped package write gate is justified.",
+    "risksBeforeNextCase": [
+      "Any package create/get-tables/import/export/validate/apply action changes setup metadata or data route state and needs its own gate."
+    ],
+    "requiredPreparation": [
+      "Review screenshot QA and step timeline before allowing any write-capable package action."
+    ]
+  },
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION"
+}

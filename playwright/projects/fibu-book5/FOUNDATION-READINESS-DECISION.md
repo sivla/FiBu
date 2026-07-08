@@ -167,6 +167,16 @@ PWS-FF-001 hat die Nummernserien-Seite read-only beobachtet: sieben Universaarl-
 - Naechster Case: `FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION`, lokal/no-live. Dort wird entschieden, ob Konfigurationspakete fuer die naechsten Foundation-Gaps besser sind als manuelle UI, Assisted Setup oder andere Standardwege.
 - Weiterhin gesperrt: Business Central oeffnen, Playwright live ausfuehren, Paketaktionen, Setupwerte, Stammdaten, Belege, Preview Posting und Posting.
 
+## FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST
+
+- Quelle: playwright/projects/fibu-book5/evidence/foundation-configuration-worksheet-readfirst/result.json
+- Status: observed-readfirst
+- Akzeptiert: `playthru / UNIVERSAARL-DE` wurde bestaetigt. Das Konfigurationsarbeitsblatt und Page 8615 `Konfigurationspakete` sind read-first sichtbar; beide wurden mit Screenshot-Kette, Step Timeline und Visual-State-JSON dokumentiert.
+- UI-Learning: Ein zu strenger Tell-Me-Overlay-Check kann eine echte Zielseite falsch blockieren. In diesem Lauf zeigt die Visual-State-Evidence `side-pane-open` und `target-page-open`; Screenshot-/Visual-State-Wahrheit gewinnt vor alten Suchoverlay-Annahmen.
+- Route-Entscheidung: `ready-for-write-gate`, aber nur als lokaler Folgeentscheid. Das ist keine Freigabe fuer Paketkopf, Tabellenabruf, Import, Export, Validate, Apply, Edit in Excel oder Setupwerte.
+- Schreibgrenze: kein Paket erstellt, keine Paketkarte bearbeitet, keine Tabelle abgerufen, kein Import, Export, Validate, Apply, Edit in Excel, Setupwert, Stammdatensatz, Beleg, Preview Posting oder Posting.
+- Naechster Case: `FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION`, lokal/no-live. Dort wird entschieden, ob ein enges Paket-Metadaten-Gate fachlich verantwortbar ist oder die Route geparkt wird.
+
 ## PWS-FF-002C Route Decision: Buchungsmatrix Einrichtung
 
 - Quelle: playwright/projects/fibu-book5/evidence/pws-ff-002c-general-posting-setup-route-decision/PWS-FF-002C-result.json

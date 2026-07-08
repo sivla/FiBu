@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION",
+  "status": "prepared",
+  "caseType": "local-no-live-decision-before-write",
+  "goal": "Decide whether a tightly scoped Configuration Package write gate is justified after read-first proof of Configuration Worksheet and Configuration Packages.",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "whyNow": "FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST proved the relevant setup-data surfaces read-only, but package create, get-tables, import, export, validate, apply and setup writes remain locked until their business purpose, fields, evidence plan and keep/cleanup strategy are explicitly decided.",
+  "mustRead": [
+    ".agent/OPERATING-KERNEL.md",
+    ".agent/state/current.json",
+    ".agent/state/rejected_route_register.json",
+    "playwright/projects/fibu-book5/UNIVERSAARL-FOUNDATION-SETUP-FIELD-MAP.md",
+    "playwright/projects/fibu-book5/evidence/foundation-configuration-worksheet-readfirst/result.json"
+  ],
+  "allowedActions": [
+    "local-source-review",
+    "local-field-map-review",
+    "local-risk-review",
+    "local-keep-cleanup-strategy",
+    "write-local-decision-result-json",
+    "prepare-next-case"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "continue-target-073",
+    "open-business-central",
+    "run-playwright-live",
+    "create-configuration-package",
+    "open-configuration-package-card-for-edit",
+    "get-tables",
+    "add-table",
+    "remove-table",
+    "import-configuration-package",
+    "export-configuration-package",
+    "validate-configuration-package",
+    "apply-configuration-package",
+    "edit-in-excel",
+    "write-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "cleanup-delete",
+    "api-shortcut",
+    "company-switch"
+  ],
+  "requiredSkills": [
+    "bc-source-research",
+    "bc-setup-route-decision",
+    "state-sync-check"
+  ],
+  "requiredHelpers": [
+    "scripts/agent/rejected-route-check.mjs",
+    "scripts/agent/dry-run.mjs"
+  ],
+  "rejectedRoutesToRespect": [
+    "RR-FOUNDATION-PAGE314-GRID-LIST-EDIT-RETRY",
+    "RR-FOUNDATION-PAGE470-VAT-BUSINESS-GROUPS-SEARCH-RETRY",
+    "RR-FOUNDATION-PAGE472-ACTIVE-EDITOR-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGES-ESCAPE-TELLME-RETRY"
+  ],
+  "requiredChecks": [
+    "agent:preflight",
+    "agent:active-readiness",
+    "agent:dry-run",
+    "agent:rejected-routes:check",
+    "check:encoding",
+    "git diff --check"
+  ],
+  "expectedOutput": [
+    "A local decision result JSON that chooses ready-for-narrow-write-gate, parked or rejected.",
+    "If ready, a next case that permits only one explicitly named package metadata action with screenshots, stop rules and keep/cleanup proof.",
+    "If not ready, a parked/alternative route with no live execution."
+  ],
+  "stopConditions": [
+    "Stop if the decision needs fresh Business Central evidence.",
+    "Stop if field mapping is not source-backed.",
+    "Stop if the proposed write would create broad package metadata instead of one narrow auditable artifact.",
+    "Stop if cleanup/keep/reopen proof cannot be stated before the write.",
+    "Stop if the step would jump to master data, documents, preview, posting or API."
+  ],
+  "nextCaseOptions": [
+    {
+      "caseId": "FOUNDATION-SETUP-PACKAGE-METADATA-NARROW-WRITE-GATE",
+      "when": "Use only if one narrow package metadata action is justified, reversible or keep-worthy, and screenshot/reopen proof is defined.",
+      "liveType": "write-gated"
+    },
+    {
+      "caseId": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE",
+      "when": "Use if package write risk is not justified yet.",
+      "liveType": "local-no-live-decision"
+    }
+  ]
+}

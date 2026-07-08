@@ -7,7 +7,10 @@ const currentState = JSON.parse(readFileSync('.agent/state/current.json', 'utf8'
 const selectedNextCase = currentState.nextCase ?? '';
 const foundationDecisionCase = 'FOUNDATION-READINESS-DECISION';
 const pwsFf006Case = 'PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST';
-const localNoLiveCases = new Set(['FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION']);
+const localNoLiveCases = new Set([
+  'FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION',
+  'FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION'
+]);
 const readFirstNoWriteCases = new Set(['FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST']);
 const selectedCaseIsLocalNoLive = localNoLiveCases.has(selectedNextCase);
 const selectedCaseIsReadFirstNoWrite = readFirstNoWriteCases.has(selectedNextCase);

@@ -14,7 +14,7 @@ Last reviewed: 2026-07-08
 | Artefakt-Klassifikation | `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` |
 | Geparkter Live-Case | `TARGET-073` |
 | Letzter Resume-Pilot | `TARGET-075`, read-first, no-write, abgeschlossen |
-| Aktiver Case | `FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST` |
+| Aktiver Case | `FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION` |
 | TARGET-075 Handoff | `FOUNDATION-READINESS-DECISION.md` ist verbindlich; TARGET-075 wird nicht als Normalzustand wiederholt. |
 | Legacy-Grenze | RM-DEMO, MCP_1_20260210, CRONUS, Rhein-Main und RM-* sind keine aktive Projektwahrheit. |
 
@@ -45,7 +45,7 @@ M0 ist als Arbeitsrahmen nutzbar. Der naechste sinnvolle Fortschritt ist keine w
 | Data request Jira candidates | reference/active-work when master-data planning resumes |
 | Data request realism review | reference |
 | Realistische Universaarl-Datenpakete | active-work, Jira-ready but not BC-setup-ready |
-| Foundation setup route decisions | active-work: Feldkarte erstellt; Konfigurationspakete sind als realistische Foundation-Setup-Route gewaehlt, aber nicht als Schreibfreigabe. `U-VAT325-DISC` hat 0 Tabellen/0 Datensaetze und bleibt geparkter Route-Kandidat; naechster Schritt ist ein read-first/no-write Configuration-Worksheet- und Paketfeld-Beweis mit Visual-State-JSON. |
+| Foundation setup route decisions | active-work: Feldkarte erstellt; Konfigurationspakete sind als realistische Foundation-Setup-Route gewaehlt, aber nicht als Schreibfreigabe. `FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST` hat Konfigurationsarbeitsblatt und Konfigurationspakete read-first mit Visual-State-JSON bewiesen; naechster Schritt ist ein lokaler Write-Gate-Entscheid, kein automatischer Paket-/Setup-Write. |
 | Read-first WS02/WS03/WS04 scenario catalog | active-work for read-first Playwright planning |
 
 ## Workstream readiness
@@ -54,7 +54,7 @@ M0 ist als Arbeitsrahmen nutzbar. Der naechste sinnvolle Fortschritt ist keine w
 | --- | --- | --- |
 | Projektsteuerung | usable-draft | Roadmap, Dashboard, State und Klassifikation schlank synchron halten. |
 | Freeze/Resume | passed-for-read-first-history | TARGET-075 ist gelaufen; neue Live-Arbeit braucht trotzdem aktuellen Auth-/Case-Gate. |
-| Finance Foundation | blocked-by-specific-gaps | Feldkarte fuer General Posting Setup und VAT Posting Setup ist erstellt; Konfigurationspakete sind source-backed als Implementierungsroute gewaehlt. Naechster Schritt ist `FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST`: nur lesen, Bildkette plus Visual-State-JSON, kein Paket-/Setup-Write. |
+| Finance Foundation | blocked-by-specific-gaps | Feldkarte fuer General Posting Setup und VAT Posting Setup ist erstellt; Konfigurationspakete sind source-backed und read-first sichtbar. Naechster Schritt ist `FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION`: lokal entscheiden, ob ein enges Paket-Metadaten-Gate fachlich verantwortbar ist. |
 | VAT/USt, Dimensions, Posting Groups | partial/blocked | INLAND/VAT19-Kontext und Page 472/Page-Inspection sind nutzbar, aber keine gespeicherte vollstaendige Setup-Matrix. Page 314 bleibt partiell und nicht posting-ready. |
 | Master Data | customer-and-item-observed | Debitor `U-CUST-100 / Saarland Maschinenbau AG` ist fuer Debitorenkarten-Handbuch/Training nutzbar, aber nicht O2C-ready. Artikel `U-ITEM-HW100 / Steuerbox Standard U100` ist mit `STK`, `WARE`, `VAT19`, FIFO-Kontext, Einstandspreis `100,00` und VK-Preis `149,00` in echter `playthru`-Oberflaeche beobachtet. O2C/P2P bleibt bis VAT-/Posting-Boundary geparkt. |
 | Buch/Handbuch/Training | chapter-9-boundary-integrated | Debitorenkarten-Training `TR-03-01A`, Artikelkarten-Training `TR-03-03` und Kapitel 9 nutzen `U-CUST-100`/`U-ITEM-HW100` als realistische fiktive Universaarl-Beispiele. Das ist Schulungs-/Handbuchsubstanz, aber keine O2C/P2P-Freigabe. |
@@ -93,7 +93,7 @@ M0 ist als Arbeitsrahmen nutzbar. Der naechste sinnvolle Fortschritt ist keine w
 4. `TARGET-073` bleibt geparkt.
 5. Kein as-is Retry von TARGET-073 oder TARGET-073B; TARGET-073B ist konsumierte blockierte No-Write-Evidence.
 6. `U-CUST-100` und `U-ITEM-HW100` sind als realistische fiktive Universaarl-Masterdaten nutzbar, aber noch nicht als Prozessfreigabe fuer O2C/P2P.
-7. Naechster Schritt ist kein O2C/P2P-Beleg, kein Repeat von `VAT-POSTING-SETUP-READFIRST` und kein Setup-Write. Jetzt `FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST` ausfuehren: Configuration Worksheet / Konfigurationspakete nur lesen, Seitenpaneel vs. Role Center per Visual-State-JSON klassifizieren und vor Create/Get Tables/Import/Export/Validate/Apply stoppen.
+7. Naechster Schritt ist kein O2C/P2P-Beleg, kein Repeat von `VAT-POSTING-SETUP-READFIRST` und kein Setup-Write. Jetzt `FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION` lokal ausfuehren: aus der read-first Evidence entscheiden, ob ein enges Paket-Metadaten-Gate verantwortbar ist oder die Route geparkt wird.
 8. Masterdaten sollen reale Business-Central-Oberflaechen und kundenprojektartige Universaarl-Geschaeftspartner/Produkte verwenden: realistisch, fachlich begruendet, UAT-/Training-tauglich und setup-abhaengig. Keine UI-Mockups, keine Wegwerf-Dummydaten und keine vertraulichen echten Kundendaten.
 
 ## Update rule
