@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE",
+  "status": "prepared-not-active",
+  "caseType": "write-gated-live-case",
+  "goal": "Execute at most one controlled configuration-package metadata action on the existing U-VAT325-DISC package: create or prove exactly one package table metadata line for Table 325 / VAT Posting Setup, then reopen and stop.",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "whyNow": "The previous read-first proof showed the U-VAT325-DISC package card and table subform surface. The local write-gate decision allowed only a single future metadata action, not import, validate, apply, setup values, master data or posting.",
+  "mustRead": [
+    ".agent/OPERATING-KERNEL.md",
+    ".agent/state/current.json",
+    ".agent/state/rejected_route_register.json",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-one-metadata-action-write-gate/result.json",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-card-detail-readfirst/result.json"
+  ],
+  "allowedActions": [
+    "open-business-central-through-guarded-runner",
+    "confirm-playthru-universaarl-context",
+    "open-existing-configuration-package-card",
+    "capture-before-screenshot-and-visual-state",
+    "prove-table-subform-active-editor",
+    "create-or-confirm-one-package-table-metadata-line-for-table-325-only",
+    "capture-after-screenshot-and-visual-state",
+    "reopen-proof",
+    "write-result-json",
+    "park-or-cleanup-if-wrong-line-created"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "continue-target-073",
+    "create-configuration-package",
+    "delete-configuration-package",
+    "get-tables",
+    "add-more-than-one-table",
+    "remove-table",
+    "select-fields",
+    "import-configuration-package",
+    "export-configuration-package",
+    "validate-configuration-package",
+    "apply-configuration-package",
+    "edit-in-excel",
+    "write-setup",
+    "type-vat-setup-values",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "company-switch"
+  ],
+  "requiredSkills": [
+    "playthru-context-check",
+    "bc-write-gate",
+    "read-first-page-proof",
+    "screenshot-qa",
+    "state-sync-check"
+  ],
+  "requiredHelpers": [
+    "scripts/agent/rejected-route-check.mjs",
+    "scripts/agent/auth-target-diagnose.mjs",
+    "playwright/core/bc/step-timeline.ts",
+    "playwright/core/bc/visual-state-capture.ts"
+  ],
+  "rejectedRoutesToRespect": [
+    "RR-FOUNDATION-PAGE314-GRID-LIST-EDIT-RETRY",
+    "RR-FOUNDATION-PAGE470-VAT-BUSINESS-GROUPS-SEARCH-RETRY",
+    "RR-FOUNDATION-PAGE472-ACTIVE-EDITOR-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGES-ESCAPE-TELLME-RETRY"
+  ],
+  "writeGate": {
+    "scope": "one-package-table-metadata-line",
+    "targetPackage": "U-VAT325-DISC",
+    "targetTable": {
+      "tableId": 325,
+      "tableName": "VAT Posting Setup",
+      "germanMeaning": "MwSt.-Buchungsmatrix Einrichtung"
+    },
+    "allowedBusinessCentralEffect": "Only configuration package metadata may change by adding/proving one table line.",
+    "notAllowedBusinessCentralEffect": [
+      "No setup value in Table 325",
+      "No package apply",
+      "No package validation",
+      "No import/export",
+      "No field-selection change",
+      "No master data",
+      "No posting"
+    ],
+    "cleanupOrKeepRule": "Keep a correct Table 325 metadata line as package-route evidence. If the wrong line, duplicate ambiguity or unintended metadata appears, stop and create a cleanup/park decision before any retry."
+  },
+  "requiredChecks": [
+    "agent:preflight",
+    "agent:active-readiness",
+    "agent:rejected-routes:check",
+    "check:encoding",
+    "git diff --check"
+  ],
+  "expectedOutput": [
+    "Result JSON with setupChanged false unless only package metadata changed is explicitly recorded as packageMetadataChanged true.",
+    "Before/action/after/reopen screenshot chain.",
+    "Step timeline JSON and visual-state JSON.",
+    "Clear proved/notProved boundary.",
+    "Next case: Foundation Readiness consumption if proven; park/cleanup decision if blocked or wrong metadata."
+  ],
+  "stopConditions": [
+    "Stop if active case is not this case.",
+    "Stop if target context is not playthru / UNIVERSAARL-DE.",
+    "Stop if U-VAT325-DISC package card is not visible.",
+    "Stop if table subform is not visible before the action.",
+    "Stop if active editor for Tabellen-ID is not proven before typing.",
+    "Stop if Table 325 cannot be entered without using Tabellen abrufen, Import, Export, Validate, Apply or Edit in Excel.",
+    "Stop after one metadata action attempt, whether proven or blocked.",
+    "Stop if any BC dialog suggests setup values, migration, validation, apply, overwrite or deletion.",
+    "Stop if screenshot QA cannot prove before/action/after/reopen chain."
+  ],
+  "nextCaseOptions": [
+    {
+      "caseId": "FOUNDATION-READINESS-DECISION",
+      "when": "Use if exactly one Table 325 metadata line is proven or if the package route verdict can be consumed without more package work.",
+      "liveType": "local-no-live-decision"
+    },
+    {
+      "caseId": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE",
+      "when": "Use if active editor is unclear, the table line cannot be safely created, or the package route is too risky.",
+      "liveType": "local-no-live-decision"
+    },
+    {
+      "caseId": "FOUNDATION-SETUP-PACKAGE-METADATA-CLEANUP-DECISION",
+      "when": "Use if a wrong or ambiguous package metadata line was created and needs keep/cleanup/park decision.",
+      "liveType": "local-no-live-decision"
+    }
+  ]
+}
