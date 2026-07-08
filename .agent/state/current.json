@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-08T23:08:23.893Z",
+  "updatedAt": "2026-07-08T23:17:32.098Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -15,12 +15,12 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w1-foundation",
-  "activeCase": "FOUNDATION-SETUP-PACKAGE-METADATA-NARROW-WRITE-GATE",
-  "active_case_file": ".agent/state/cases/foundation-setup-package-metadata-narrow-write-gate.json",
-  "activeCaseFile": ".agent/state/cases/foundation-setup-package-metadata-narrow-write-gate.json",
+  "activeCase": "FOUNDATION-SETUP-PACKAGE-CARD-DETAIL-READFIRST",
+  "active_case_file": ".agent/state/cases/foundation-setup-package-card-detail-readfirst.json",
+  "activeCaseFile": ".agent/state/cases/foundation-setup-package-card-detail-readfirst.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-foundation-local-decision",
+  "mode": "universaarl-foundation-readfirst",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -43,12 +43,14 @@
     "agent:visual-proof-skills:check"
   ],
   "allowedActions": [
-    "local-evidence-review",
-    "local-field-map-review",
-    "local-risk-review",
-    "local-keep-cleanup-strategy",
-    "write-local-decision-result-json",
-    "prepare-next-case"
+    "validate-playthru-context-readonly",
+    "validate-universaarl-company-context-readonly",
+    "open-configuration-packages-readonly",
+    "open-existing-package-detail-readonly",
+    "inspect-visible-package-detail-surfaces-readonly",
+    "capture-screenshot-chain",
+    "capture-visual-state-json",
+    "write-readfirst-result-json"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -57,14 +59,13 @@
     "fake-evidence",
     "book-claim-without-evidence",
     "continue-target-073",
-    "open-business-central",
-    "run-playwright-live",
     "type-business-central-values",
     "create-configuration-package",
     "edit-configuration-package",
     "get-tables",
     "add-table",
     "remove-table",
+    "select-fields",
     "import-configuration-package",
     "export-configuration-package",
     "validate-configuration-package",
@@ -80,9 +81,9 @@
     "api-shortcut",
     "company-switch"
   ],
-  "nextCase": "FOUNDATION-SETUP-PACKAGE-METADATA-NARROW-WRITE-GATE",
-  "nextStep": "Run only the FOUNDATION-SETUP-PACKAGE-METADATA-NARROW-WRITE-GATE local decision: decide whether the visible U-VAT325-DISC package candidate justifies exactly one future metadata action. No BC, no Playwright live, no package/setup write in this decision case. The next live proof after this decision must keep a multi-step screenshot chain, Screenshot QA and visual-state JSON.",
-  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-package-metadata-narrow-write-gate.json",
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-CARD-DETAIL-READFIRST",
+  "nextStep": "Run only the FOUNDATION-SETUP-PACKAGE-CARD-DETAIL-READFIRST case: inspect the visible U-VAT325-DISC package detail/card surface read-only in playthru / UNIVERSAARL-DE with multi-step screenshot chain, Screenshot QA, visual-state JSON and no package/setup writes.",
+  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-package-card-detail-readfirst.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -216,13 +217,13 @@
     "nextBoundary": "Master Data remains parked. Next work must update Foundation Readiness and either accept this as a Foundation gap or define a genuinely new Page 314 route hypothesis before another live attempt."
   },
   "activeNextStepAuthority": {
-    "source": "playwright/projects/fibu-book5/evidence/foundation-setup-package-card-tables-readfirst/result.json",
-    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-METADATA-NARROW-WRITE-GATE",
-    "activeCaseFile": ".agent/state/cases/foundation-setup-package-metadata-narrow-write-gate.json",
+    "source": "playwright/projects/fibu-book5/evidence/foundation-setup-package-metadata-narrow-write-gate/result.json",
+    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-CARD-DETAIL-READFIRST",
+    "activeCaseFile": ".agent/state/cases/foundation-setup-package-card-detail-readfirst.json",
     "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "FOUNDATION-SETUP-PACKAGE-CARD-TABLES-READFIRST proved the package candidate read-first but no setup/package write. The next safe step is a local narrow write-gate decision."
+    "reason": "FOUNDATION-SETUP-PACKAGE-METADATA-NARROW-WRITE-GATE classified the package route as ready-for-readfirst, not ready-for-write-gate."
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -336,8 +337,8 @@
     "currentLiveBoundary": {
       "freezeActive": false,
       "parkedCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-      "resumePilot": "FOUNDATION-SETUP-PACKAGE-METADATA-NARROW-WRITE-GATE",
-      "resumePilotMode": "local-no-live-decision"
+      "resumePilot": "FOUNDATION-SETUP-PACKAGE-CARD-DETAIL-READFIRST",
+      "resumePilotMode": "read-first-no-write"
     },
     "legacyScriptGuard": {
       "script": "agent:legacy:active-check",
@@ -417,9 +418,9 @@
   },
   "freezeStatus": {
     "status": "lifted-readfirst",
-    "caseId": "FOUNDATION-SETUP-PACKAGE-METADATA-NARROW-WRITE-GATE",
+    "caseId": "FOUNDATION-SETUP-PACKAGE-CARD-DETAIL-READFIRST",
     "frozenLiveCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-    "resumeCandidateAfterFreeze": "FOUNDATION-SETUP-PACKAGE-METADATA-NARROW-WRITE-GATE",
+    "resumeCandidateAfterFreeze": "FOUNDATION-SETUP-PACKAGE-CARD-DETAIL-READFIRST",
     "completedLocalCheckpoint": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
     "planFile": ".agent/PROJECT-IMPROVEMENT-PLAN.md"
   },
@@ -1727,7 +1728,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "universaarl-skr04-balance-sheet-accounts-fit",
-  "lastCompletedCase": "FOUNDATION-SETUP-PACKAGE-CARD-TABLES-READFIRST",
+  "lastCompletedCase": "FOUNDATION-SETUP-PACKAGE-METADATA-NARROW-WRITE-GATE",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -4112,37 +4113,44 @@
     ]
   },
   "nextStepDecisionCard": {
-    "currentCase": "FOUNDATION-SETUP-PACKAGE-CARD-TABLES-READFIRST",
-    "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-PACKAGE-CARD-TABLES-READFIRST",
-    "lastEvidenceSummary": "Configuration Packages and U-VAT325-DISC package candidate are visible read-first.",
+    "currentCase": "FOUNDATION-SETUP-PACKAGE-METADATA-NARROW-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-PACKAGE-METADATA-NARROW-WRITE-GATE",
+    "lastEvidenceSummary": "Configuration Packages and U-VAT325-DISC are visible read-first, but package detail/table/field and write safety are not proven.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "Read-first package-table surface proof can feed a narrow metadata write-gate decision.",
+    "reason": "The local gate could make a decision from existing evidence without new live work.",
     "lookaheadReviewed": [
       {
-        "caseId": "FOUNDATION-SETUP-PACKAGE-METADATA-NARROW-WRITE-GATE",
-        "status": "ready-after-current",
-        "reason": "Can decide one narrow metadata action."
+        "caseId": "FOUNDATION-SETUP-PACKAGE-CARD-DETAIL-READFIRST",
+        "status": "ready-next",
+        "reason": "Smallest materially new read-first proof before any write gate."
+      },
+      {
+        "caseId": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-WRITE-GATE",
+        "status": "needs-ui-discovery-first",
+        "reason": "Needs package detail/table/field proof and keep/cleanup/reopen proof first."
       },
       {
         "caseId": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE",
         "status": "ready-after-current",
-        "reason": "Fallback if write gate is rejected."
+        "reason": "Fallback if package detail remains ambiguous."
       },
       {
         "caseId": "FOUNDATION-READINESS-DECISION",
         "status": "ready-after-current",
-        "reason": "Should consume the package-route verdict."
+        "reason": "Consumes the final package-route verdict."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-METADATA-NARROW-WRITE-GATE",
-    "whySelectedNextCaseIsBest": "It can decide whether exactly one package metadata action is justified.",
+    "queueChangesMade": [
+      "Selected FOUNDATION-SETUP-PACKAGE-CARD-DETAIL-READFIRST before any package metadata write gate."
+    ],
+    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-CARD-DETAIL-READFIRST",
+    "whySelectedNextCaseIsBest": "A read-only package-card detail proof is the smallest materially new hypothesis before any package metadata write. It must prove whether the existing package can expose card details, table lines, field-selection surfaces and harmless actions without changing package or setup data.",
     "risksBeforeNextCase": [
-      "Any package metadata write needs explicit keep/cleanup and reopen proof.",
-      "Any package apply/import/validate action remains forbidden until its own gate."
+      "U-VAT325-DISC remains a parked candidate and must not be treated as active setup.",
+      "Any package write/import/validate/apply remains forbidden."
     ],
     "requiredPreparation": [
-      "Review screenshot QA and step timeline before selecting a write gate."
+      "Use visual-state capture, screenshot QA and rejected-route register before accepting package detail claims."
     ]
   },
   "permissionBlocker": {
@@ -4181,8 +4189,8 @@
     "noPlaywrightExecution": true,
     "nextCase": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP"
   },
-  "lastCompletedCaseFile": ".agent/state/cases/foundation-setup-package-card-tables-readfirst.json",
-  "lastResultPath": "playwright/projects/fibu-book5/evidence/foundation-setup-package-card-tables-readfirst/result.json",
+  "lastCompletedCaseFile": ".agent/state/cases/foundation-setup-package-metadata-narrow-write-gate.json",
+  "lastResultPath": "playwright/projects/fibu-book5/evidence/foundation-setup-package-metadata-narrow-write-gate/result.json",
   "latestReadonlyUiLookAndFeelMap": {
     "caseId": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
     "status": "prep-done",
@@ -4917,7 +4925,7 @@
   },
   "permissionStatus": "user-confirmed-super-permissions-available-target-company-created",
   "companyCreationPermissionStatus": "satisfied-live-ui-proven",
-  "lastUpdated": "2026-07-08T23:08:23.893Z",
+  "lastUpdated": "2026-07-08T23:17:32.098Z",
   "latestTarget009CompanyCreation": {
     "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
     "status": "universaarl-proven",
@@ -6646,7 +6654,7 @@
     "nextCase": "TARGET-026K-SKR04-REMAINING-STARTER-ACCOUNTS-FIT",
     "updatedAt": "2026-06-30T19:52:53.805Z"
   },
-  "lastEvidenceResult": "playwright/projects/fibu-book5/evidence/foundation-setup-package-card-tables-readfirst/result.json",
+  "lastEvidenceResult": "playwright/projects/fibu-book5/evidence/foundation-setup-package-metadata-narrow-write-gate/result.json",
   "latestSkr04AccountFit": {
     "caseId": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
     "status": [
@@ -8763,7 +8771,7 @@
       "apiShortcut": false
     }
   ],
-  "lastCompletedResultPath": "playwright/projects/fibu-book5/evidence/foundation-setup-package-card-tables-readfirst/result.json",
+  "lastCompletedResultPath": "playwright/projects/fibu-book5/evidence/foundation-setup-package-metadata-narrow-write-gate/result.json",
   "latestTarget045B": {
     "caseId": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
     "resultPath": "playwright/projects/fibu-book5/evidence/target-045b-customer-item-posting-fields-readonly-route-retry/TARGET-045B-result.json",
@@ -12137,5 +12145,14 @@
     "packageVisible": true,
     "setupChanged": false,
     "nextCase": "FOUNDATION-SETUP-PACKAGE-METADATA-NARROW-WRITE-GATE"
+  },
+  "latestFoundationSetupPackageMetadataNarrowWriteGate": {
+    "caseId": "FOUNDATION-SETUP-PACKAGE-METADATA-NARROW-WRITE-GATE",
+    "status": "ready-for-readfirst-not-write-gate",
+    "decision": "ready-for-readfirst",
+    "resultPath": "playwright/projects/fibu-book5/evidence/foundation-setup-package-metadata-narrow-write-gate/result.json",
+    "completedAt": "2026-07-08T23:17:32.098Z",
+    "nextCase": "FOUNDATION-SETUP-PACKAGE-CARD-DETAIL-READFIRST",
+    "writeGateReady": false
   }
 }

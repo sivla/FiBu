@@ -8,6 +8,15 @@ const nodeCmd = process.execPath;
 
 const checksByCase = new Map([
   [
+    'FOUNDATION-SETUP-PACKAGE-CARD-DETAIL-READFIRST',
+    {
+      id: 'foundation-setup-package-card-detail-readfirst',
+      scriptPath: 'scripts/agent/read-first-no-write-case-readiness-check.mjs',
+      reason:
+        'The next Foundation case may inspect the existing package detail/card surface read-only, but must not create, edit, import, export, validate, apply or write package/setup data.'
+    }
+  ],
+  [
     'FOUNDATION-SETUP-PACKAGE-METADATA-NARROW-WRITE-GATE',
     {
       id: 'foundation-setup-package-metadata-narrow-write-gate-local-no-live',

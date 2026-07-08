@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-SETUP-PACKAGE-CARD-DETAIL-READFIRST",
+  "status": "prepared",
+  "caseType": "read-first-no-write",
+  "goal": "Prove read-first whether the visible U-VAT325-DISC package candidate exposes a package detail/card surface, table lines, field-selection surfaces or harmless action inventory without creating, editing, importing, validating, applying or deleting package/setup data.",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "whyNow": "FOUNDATION-SETUP-PACKAGE-METADATA-NARROW-WRITE-GATE decided that package metadata write is not ready. The materially new hypothesis is a read-only package-detail proof, not another write attempt.",
+  "mustRead": [
+    ".agent/OPERATING-KERNEL.md",
+    ".agent/state/current.json",
+    ".agent/state/rejected_route_register.json",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-metadata-narrow-write-gate/result.json",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-card-tables-readfirst/result.json"
+  ],
+  "allowedActions": [
+    "validate-playthru-context-readonly",
+    "validate-universaarl-company-context-readonly",
+    "open-configuration-packages-readonly",
+    "open-existing-package-detail-readonly",
+    "inspect-visible-package-detail-surfaces-readonly",
+    "capture-screenshot-chain",
+    "capture-visual-state-json",
+    "write-readfirst-result-json"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "continue-target-073",
+    "type-business-central-values",
+    "create-configuration-package",
+    "edit-configuration-package",
+    "get-tables",
+    "add-table",
+    "remove-table",
+    "select-fields",
+    "import-configuration-package",
+    "export-configuration-package",
+    "validate-configuration-package",
+    "apply-configuration-package",
+    "edit-in-excel",
+    "write-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "cleanup-delete",
+    "api-shortcut",
+    "company-switch"
+  ],
+  "skills": [
+    "read-first-page-proof",
+    "screenshot-qa",
+    "bc-navigation",
+    "state-sync-check"
+  ],
+  "requiredSkills": [
+    "read-first-page-proof",
+    "screenshot-qa",
+    "bc-navigation",
+    "state-sync-check"
+  ],
+  "requiredHelpers": [
+    "bc-visual-state-capture",
+    "scripts/agent/rejected-route-check.mjs",
+    "scripts/agent/read-first-no-write-case-readiness-check.mjs"
+  ],
+  "rejectedRoutesToRespect": [
+    "RR-FOUNDATION-PAGE314-GRID-LIST-EDIT-RETRY",
+    "RR-FOUNDATION-PAGE470-VAT-BUSINESS-GROUPS-SEARCH-RETRY",
+    "RR-FOUNDATION-PAGE472-ACTIVE-EDITOR-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGES-ESCAPE-TELLME-RETRY"
+  ],
+  "requiredChecks": [
+    "agent:preflight",
+    "agent:active-readiness",
+    "agent:dry-run",
+    "agent:rejected-routes:check",
+    "check:encoding",
+    "git diff --check"
+  ],
+  "expectedOutput": [
+    "Read-first Result JSON with screenshots, visual-state JSON, action inventory and notProved boundaries.",
+    "Clear verdict whether package detail/table/field surfaces are visible enough for a later one-action write gate.",
+    "No package/setup/masterdata/document/posting changes."
+  ],
+  "stopConditions": [
+    "Stop if Business Central is not playthru or Company is not UNIVERSAARL-DE.",
+    "Stop if U-VAT325-DISC cannot be focused without creating or editing anything.",
+    "Stop before any dialog confirmation or action that can change package/setup data.",
+    "Stop if the surface is only Tell-Me/search overlay, Role Center background or ambiguous pane without target proof.",
+    "Stop if the route would repeat Escape-after-Tell-Me without a new visual-state hypothesis."
+  ],
+  "nextCaseOptions": [
+    {
+      "caseId": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-WRITE-GATE",
+      "when": "Use only if package detail read-first proves an exact harmless metadata action and keep/cleanup/reopen proof can be stated.",
+      "liveType": "write-gated"
+    },
+    {
+      "caseId": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE",
+      "when": "Use if package detail remains ambiguous or not useful enough for Foundation setup.",
+      "liveType": "local-no-live-decision"
+    },
+    {
+      "caseId": "FOUNDATION-READINESS-DECISION",
+      "when": "Use after package-route verdict is ready to consume into Foundation readiness.",
+      "liveType": "local-no-live-decision"
+    }
+  ]
+}

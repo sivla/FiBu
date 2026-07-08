@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-SETUP-PACKAGE-METADATA-NARROW-WRITE-GATE",
+  "resultStatus": "ready-for-readfirst-not-write-gate",
+  "completedAt": "2026-07-08T23:17:32.098Z",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "decision": "ready-for-readfirst",
+  "selectedRoute": "FOUNDATION-SETUP-PACKAGE-CARD-DETAIL-READFIRST",
+  "rejectedDecision": "ready-for-write-gate",
+  "reason": "The previous read-first proof shows Configuration Packages and U-VAT325-DISC as visible package surface, but it does not prove package card contents, table lines, field selection, validation behavior, cleanup/keep rule, or reopen proof. A metadata write would still be premature.",
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-card-tables-readfirst/result.json",
+    "playwright/projects/fibu-book5/UNIVERSAARL-FOUNDATION-SETUP-FIELD-MAP.md",
+    ".agent/state/rejected_route_register.json"
+  ],
+  "sourceBackedFindings": [
+    "Configuration Packages / Page 8615 is visible in playthru / UNIVERSAARL-DE.",
+    "U-VAT325-DISC is visible as a parked package candidate.",
+    "No package metadata write, table line, field selection, import, validate, apply, setup value, master data, preview or posting was proved.",
+    "Rejected route register blocks repeating Escape-after-Tell-Me and fragile setup grid/editor routes without a materially new hypothesis."
+  ],
+  "routeClassification": {
+    "configurationPackageRoute": "ready-for-readfirst",
+    "uVat325DiscCandidate": "parked-route-candidate",
+    "writeGate": "not-ready",
+    "importValidateApply": "rejected-for-now",
+    "alternativeRouteNeeded": false
+  },
+  "nextCaseDecision": {
+    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-CARD-DETAIL-READFIRST",
+    "whySelected": "A read-only package-card detail proof is the smallest materially new hypothesis before any package metadata write. It must prove whether the existing package can expose card details, table lines, field-selection surfaces and harmless actions without changing package or setup data.",
+    "requiredEvidence": [
+      "multi-step screenshot chain",
+      "visual-state JSON before and after opening the package detail surface",
+      "screenshot QA that distinguishes list, card, side pane, dialog and Role Center background",
+      "explicit action inventory with no execution of Get Tables, Import, Export, Validate, Apply or Edit in Excel",
+      "notProved section for every setup/write claim that remains unproven"
+    ]
+  },
+  "allowedNextLiveBoundary": {
+    "liveType": "read-first-no-write",
+    "allowed": [
+      "open Configuration Packages read-only",
+      "open/focus U-VAT325-DISC package detail surface read-only",
+      "capture screenshots and visual-state JSON",
+      "inventory visible package card/table/field surfaces and actions without execution"
+    ],
+    "forbidden": [
+      "create configuration package",
+      "edit configuration package metadata",
+      "get tables",
+      "add/remove table",
+      "select fields",
+      "import/export/validate/apply package",
+      "edit in Excel",
+      "type setup values",
+      "create master data",
+      "preview posting",
+      "posting",
+      "API shortcut",
+      "company switch"
+    ]
+  },
+  "keepCleanupStrategy": {
+    "uVat325Disc": "keep-parked-no-write",
+    "cleanupNow": false,
+    "cleanupReason": "No new data was created by this decision case. Existing U-VAT325-DISC remains a parked candidate and must not be treated as active setup until a later write gate explicitly defines keep/cleanup/reopen proof."
+  },
+  "notProved": [
+    "No package card detail proof.",
+    "No package table line for Table 252, Table 325 or VAT Business Posting Group source.",
+    "No field selection route.",
+    "No package metadata write safety.",
+    "No setup write, import, validation or apply readiness.",
+    "No Master Data, UAT, training or book final readiness."
+  ],
+  "actionsTaken": [
+    "Reviewed only the active case must-read files.",
+    "Classified package route as ready-for-readfirst but not ready-for-write-gate.",
+    "Selected a narrower read-first package-detail case before any metadata write."
+  ],
+  "actionsNotTaken": [
+    "No Business Central opened.",
+    "No Playwright live run.",
+    "No package action.",
+    "No setup write.",
+    "No master data.",
+    "No book edit."
+  ],
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-CARD-DETAIL-READFIRST"
+}
