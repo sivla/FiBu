@@ -9,7 +9,8 @@ const foundationDecisionCase = 'FOUNDATION-READINESS-DECISION';
 const pwsFf006Case = 'PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST';
 const localNoLiveCases = new Set([
   'FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION',
-  'FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION'
+  'FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION',
+  'FOUNDATION-SETUP-PACKAGE-METADATA-NARROW-WRITE-GATE'
 ]);
 const readFirstNoWriteCases = new Set([
   'FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST',
@@ -237,6 +238,8 @@ const safeLivePilotCommand =
     ? 'npm run fibu:pws:ff002:general-posting-setup -- --live-approved'
     : selectedNextCase === 'PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST'
       ? 'npm run fibu:pws:ff006:chart-of-accounts-starter-accounts -- --live-approved'
+    : selectedNextCase === 'FOUNDATION-SETUP-PACKAGE-CARD-TABLES-READFIRST'
+      ? 'npm run fibu:foundation:package-card-tables-readfirst -- --live-approved'
     : selectedNextCase === 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK'
       ? 'npm run fibu:target:foundation-consistency-pilot -- --live-approved'
       : null;
@@ -542,7 +545,9 @@ const output = {
     : selectedCaseIsLocalNoLive
       ? `${selectedNextCase} is locally ready as a no-live decision case. Do not run Business Central or Playwright for this case.`
     : selectedCaseIsReadFirstNoWrite
-      ? `${selectedNextCase} is locally ready as a read-first/no-write case, but still needs its own guarded runner/spec before live execution. Do not run TARGET-075 as a substitute.`
+      ? safeLivePilotCommand
+        ? `${selectedNextCase} is locally ready as a read-first/no-write case. Run only its guarded command with --live-approved; do not run TARGET-075 as a substitute.`
+        : `${selectedNextCase} is locally ready as a read-first/no-write case, but still needs its own guarded runner/spec before live execution. Do not run TARGET-075 as a substitute.`
     : !liveGateAllowsNow
       ? `Local resume checks passed, including stored auth, but the active live gate still blocks Business Central/Playwright execution. Do not run ${selectedNextCase || 'the selected read-first case'} until explicit freeze/live-gate lift.`
       : safeLivePilotCommand
