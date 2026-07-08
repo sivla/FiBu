@@ -10,6 +10,29 @@ Diese Feldkarte ist kein Setup-Beweis. Sie trennt geplante Universaarl-Zielwerte
 
 Fuer die offenen Foundation-Gaps wird zuerst eine Konfigurationspaket-/Excel-unterstuetzte Feldkarte vorbereitet. Das ist fuer ein echtes Kundenprojekt realistischer als weitere blinde Zellklicks in der Buchungsmatrix. Die manuelle Oberflaeche bleibt wichtig fuer Schulung und Einzelvalidierung, aber nicht als primaerer Masseneinrichtungsweg.
 
+## Source-backed Route Decision
+
+Status: `completed-local-decision`
+
+Case: `FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION`
+
+Konfigurationspakete sind fuer die Universaarl-Foundation der bevorzugte Implementierungsweg fuer wiederholbare Setupdaten. Microsoft beschreibt Konfigurationspakete als Werkzeug fuer groessere Einrichtungs- und Datenuebernahmen, besonders in leeren Companies und fuer wiederverwendbare Setupdaten. Fuer unser Buch bleibt die UI trotzdem sichtbar: Key User muessen verstehen, welche Seiten, Felder und Folgen hinter den Paketdaten stehen.
+
+Die Entscheidung ist keine Schreibfreigabe. `U-VAT325-DISC` bleibt ein geparkter leerer Paketkopf mit 0 Tabellen und 0 Datensaetzen. Er wird nicht geloescht, nicht angewendet und nicht als aktive Foundation-Konfiguration wiederverwendet, bevor ein separater Write-Gate-Fall seine Tabellen, Felder, Werte, Validierungen, Cleanup-/Keep-Regel und Reopen-Proof festlegt.
+
+Empfohlene naechste Route:
+
+1. `FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST`: Configuration Worksheet, Konfigurationspakete, relevante Tabellen-/Feldsicht und sichtbare Aktionen nur lesend pruefen.
+2. Danach separater Write-Gate fuer einen bewusst benannten Foundation-Paketentwurf, falls der Read-first-Beweis die Tabellen/Felder eindeutig macht.
+3. Erst spaeter Import/Validate/Apply, jeweils mit eigenem Gate, Screenshot-QA, Fehlerpfad und Reopen-Proof.
+
+Nicht gewaehlt:
+
+- weitere blinde UI-Zellversuche in Page 314 oder Page 472
+- Sofort-Import oder Apply ohne Tabellen-/Feld-Read-first
+- API-/AL-Shortcut fuer Foundation-Setup
+- Wiederverwendung von `U-VAT325-DISC` ohne vorherige Paketkarten- und Feldpruefung
+
 ## Minimaler Setup-Umfang
 
 | ID | Setup-Objekt | BC-Seite / Tabelle | Geplanter Schluessel | Geplante Felder | Bereits bewiesen | Nicht bewiesen | Abhaengigkeit | Route Candidate | UAT-/Training-Wirkung | Screenshot-/Evidence-Bedarf | Stop-Regel | Naechste Aktion |
@@ -30,6 +53,6 @@ Fuer die offenen Foundation-Gaps wird zuerst eine Konfigurationspaket-/Excel-unt
 
 ## Naechster no-write Case
 
-`FOUNDATION-SETUP-PACKAGE-READFIRST-DISCOVERY`
+`FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST`
 
-Ziel: In `playthru / UNIVERSAARL-DE` nur lesend pruefen, ob die Konfigurationspaket-/Tabellenroute die benoetigten Setup-Objekte und Felder fuer FS-001 bis FS-004 sichtbar und verstaendlich macht. Der Lauf darf kein Paket anwenden, keinen Import starten und keine Setupwerte speichern.
+Ziel: In `playthru / UNIVERSAARL-DE` nur lesend pruefen, ob Configuration Worksheet, Konfigurationspakete und die Tabellen-/Feldsicht die benoetigten Setup-Objekte und Felder fuer FS-001 bis FS-004 sichtbar und verstaendlich machen. Der Lauf darf kein Paket erstellen, anwenden, importieren, validieren, exportieren oder Setupwerte speichern.

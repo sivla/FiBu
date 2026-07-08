@@ -1,6 +1,7 @@
 import { expect, type Locator, type Page } from '@playwright/test';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { captureBcVisualState, writeBcVisualState } from './bc/visual-state-capture';
 
 const rootImgDir = path.resolve('img');
 
@@ -68,16 +69,26 @@ export async function screenshot(page: Page, fileName: string, options: Screensh
     path: imagePath,
     fullPage: false
   });
+  const visualState = await captureBcVisualState(page, {
+    screenshotPath: imagePath,
+    expectedPageText: options.expectedPageText,
+    purpose: options.purpose
+  });
 
   if (projectName && options.testId) {
     const evidenceDir = path.resolve('playwright/projects', projectName, 'evidence', options.testId);
     await fs.mkdir(evidenceDir, { recursive: true });
+    const visualStateFileName = fileName.replace(/\.png$/i, '.visual-state.json');
+    await writeBcVisualState(path.join(evidenceDir, visualStateFileName), visualState);
     await fs.writeFile(
       path.join(evidenceDir, fileName.replace(/\.png$/i, '.screenshot.json')),
       JSON.stringify(
         {
           fileName,
           imagePath,
+          visualStatePath: path.join(evidenceDir, visualStateFileName),
+          visualStateClassification: visualState.classification,
+          visualStateSignals: visualState.signals,
           status: options.status ?? 'labor',
           bookUse: options.bookUse ?? 'evidence',
           purpose: options.purpose ?? '',

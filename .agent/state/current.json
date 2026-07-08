@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-08T21:15:00.000+02:00",
+  "updatedAt": "2026-07-08T22:10:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -15,12 +15,12 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w1-foundation",
-  "activeCase": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
-  "active_case_file": ".agent/state/cases/foundation-setup-package-table-mapping-source-decision.json",
-  "activeCaseFile": ".agent/state/cases/foundation-setup-package-table-mapping-source-decision.json",
+  "activeCase": "FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST",
+  "active_case_file": ".agent/state/cases/foundation-configuration-worksheet-readfirst.json",
+  "activeCaseFile": ".agent/state/cases/foundation-configuration-worksheet-readfirst.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-foundation-local-decision",
+  "mode": "universaarl-foundation-readfirst",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -41,10 +41,17 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "local-source-review",
-    "local-field-map-review",
-    "write-route-decision",
-    "prepare-next-readfirst-or-write-gate"
+    "validate-playthru-context-readonly",
+    "validate-universaarl-company-context-readonly",
+    "open-business-central-readonly",
+    "open-configuration-worksheet-readonly",
+    "open-configuration-packages-readonly",
+    "inspect-visible-actions-readonly",
+    "hover-tooltips-readonly",
+    "capture-screenshot-chain",
+    "capture-visual-state-json",
+    "write-readonly-result-json",
+    "update-foundation-readiness-boundary"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -52,16 +59,20 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "open-business-central",
-    "run-playwright-live",
+    "continue-target-073",
+    "type-business-central-values",
     "create-configuration-package",
     "open-configuration-package-card-for-edit",
+    "rename-configuration-package",
+    "delete-configuration-package",
+    "assign-configuration-package",
     "get-tables",
+    "add-table",
+    "remove-table",
     "import-configuration-package",
     "export-configuration-package",
-    "apply-configuration-package",
     "validate-configuration-package",
-    "delete-configuration-package",
+    "apply-configuration-package",
     "edit-in-excel",
     "write-setup",
     "create-master-data",
@@ -69,12 +80,13 @@
     "preview-posting",
     "post",
     "payment",
+    "cleanup-delete",
     "api-shortcut",
     "company-switch"
   ],
-  "nextCase": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
-  "nextStep": "Decide locally whether configuration packages are the right Foundation setup route, using official sources, the existing field map and the U-VAT325-DISC read-first evidence. Do not open BC or run package actions in this decision. Any later live proof must keep the multi-step screenshot chain / Bildkette instead of relying on one end screenshot.",
-  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-package-table-mapping-source-decision.json",
+  "nextCase": "FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST",
+  "nextStep": "Run the next Foundation proof read-first/no-write: validate playthru / UNIVERSAARL-DE, open Configuration Worksheet or Configuration Packages read-only, capture a multi-step screenshot chain plus visual-state JSON, and stop before any package create/get-tables/import/export/validate/apply or setup write.",
+  "preparedNextCaseFile": ".agent/state/cases/foundation-configuration-worksheet-readfirst.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -208,13 +220,13 @@
     "nextBoundary": "Master Data remains parked. Next work must update Foundation Readiness and either accept this as a Foundation gap or define a genuinely new Page 314 route hypothesis before another live attempt."
   },
   "activeNextStepAuthority": {
-    "source": "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
-    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
-    "activeCaseFile": ".agent/state/cases/foundation-setup-package-table-mapping-source-decision.json",
+    "source": "playwright/projects/fibu-book5/evidence/foundation-setup-package-table-mapping-source-decision/result.json",
+    "selectedNextCase": "FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST",
+    "activeCaseFile": ".agent/state/cases/foundation-configuration-worksheet-readfirst.json",
     "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "FOUNDATION-SETUP-PACKAGE-EXISTING-METADATA-READFIRST proved U-VAT325-DISC is visible with 0 tables/0 records. FOUNDATION-SETUP-PACKAGE-KEEP-CLEANUP-DECISION classified it as parked-route-candidate. The next useful step is local, source-backed table and field mapping before any package/setup write."
+    "reason": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION selected Configuration Packages as the realistic setup route, but only after a read-first visual proof of Configuration Worksheet / package table-field handling. The next case is read-only and must stop before any package or setup write."
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -328,8 +340,8 @@
     "currentLiveBoundary": {
       "freezeActive": false,
       "parkedCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-      "resumePilot": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
-      "resumePilotMode": "local-source-backed-mapping-decision-no-live"
+      "resumePilot": "FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST",
+      "resumePilotMode": "read-first-no-writes"
     },
     "legacyScriptGuard": {
       "script": "agent:legacy:active-check",

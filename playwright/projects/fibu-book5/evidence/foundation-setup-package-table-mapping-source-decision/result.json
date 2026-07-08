@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
+  "status": "completed-local-decision",
+  "caseType": "local-no-live-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "businessCentralOpened": false,
+  "playwrightLiveRunExecuted": false,
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "packageCreated": false,
+  "packageImported": false,
+  "packageExported": false,
+  "packageValidated": false,
+  "packageApplied": false,
+  "decision": {
+    "selectedRoute": "configuration-package-and-excel-assisted-foundation-setup-route",
+    "classification": "source-backed-route-candidate",
+    "summary": "Configuration Packages are selected as the realistic implementation route for repeated Universaarl Foundation setup data, but only after a read-first Configuration Worksheet and package-field proof. No package write, import, export, validate or apply is allowed by this decision."
+  },
+  "sourceBasis": [
+    {
+      "source": "Microsoft Learn - Import business data from other finance systems",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/across-import-data-configuration-packages",
+      "usedFor": "Configuration Packages are appropriate for larger implementation work, empty companies, setup data and imported master data templates."
+    },
+    {
+      "source": "Microsoft Learn - Set up company configuration packages",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/set-up-standard-company-configuration-packages",
+      "usedFor": "Reusable setup packages, Configuration Worksheet and setup tables such as General Posting Setup and VAT Posting Setup."
+    },
+    {
+      "source": "Microsoft Learn - Apply Company Configuration Packages",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/apply-company-configuration-packages",
+      "usedFor": "Apply packages only as controlled first-time company setup with validation, error review and setup-page verification."
+    }
+  ],
+  "localEvidenceBasis": [
+    "playwright/projects/fibu-book5/UNIVERSAARL-FOUNDATION-SETUP-FIELD-MAP.md",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-existing-metadata-readfirst/result.json",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-keep-cleanup-decision/result.json",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md"
+  ],
+  "proposedFoundationScope": [
+    {
+      "id": "FS-001",
+      "setupObject": "General Posting Setup",
+      "table": "General Posting Setup (252)",
+      "plannedKey": "INLAND + WAREN",
+      "plannedFields": [
+        "Sales Account = 4400",
+        "Purch. Account = 5400"
+      ],
+      "gateBeforeWrite": "Read-first package/worksheet field proof plus dependency check for INLAND, WAREN, 4400 and 5400."
+    },
+    {
+      "id": "FS-002",
+      "setupObject": "VAT Posting Setup",
+      "table": "VAT Posting Setup (325)",
+      "plannedKey": "INLAND + VAT19",
+      "plannedFields": [
+        "VAT % = 19",
+        "VAT Calculation Type = normal VAT",
+        "Sales VAT Account = 3806",
+        "Purchase VAT Account = 1406"
+      ],
+      "gateBeforeWrite": "Read-first package/worksheet field proof plus dependency check for VAT business/product posting groups and accounts."
+    },
+    {
+      "id": "FS-003",
+      "setupObject": "VAT Business Posting Group",
+      "plannedKey": "INLAND",
+      "plannedFields": [
+        "Code",
+        "Description"
+      ],
+      "gateBeforeWrite": "Table/page identity must be proven before write because Page 470 remains a current UI boundary."
+    },
+    {
+      "id": "FS-004",
+      "setupObject": "General Business/Product Posting Groups",
+      "plannedKey": "INLAND / WAREN",
+      "plannedFields": [
+        "Code",
+        "Description"
+      ],
+      "gateBeforeWrite": "Validate existing groups before creating or changing anything."
+    }
+  ],
+  "actionsTaken": [
+    "Reviewed active local no-live case.",
+    "Reviewed Universaarl Foundation field map.",
+    "Reviewed existing U-VAT325-DISC read-first and keep/cleanup evidence.",
+    "Reviewed official Microsoft Learn pages for configuration packages and first-time company setup.",
+    "Selected Configuration Packages as the realistic implementation route for repeated Foundation setup data.",
+    "Prepared next read-first case FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST."
+  ],
+  "actionsNotTaken": [
+    "Did not open Business Central.",
+    "Did not run Playwright live.",
+    "Did not create, change, delete, import, export, validate or apply a configuration package.",
+    "Did not write setup values.",
+    "Did not create master data, documents, journals, Preview Posting, Posting or payments.",
+    "Did not use API, AL, direct database or other shortcut."
+  ],
+  "proved": [
+    "Configuration Packages are a source-supported route candidate for first-time Universaarl Foundation setup work.",
+    "The route must be split into read-first proof, separate write gate, later import/validate/apply gates and Reopen-Proof.",
+    "U-VAT325-DISC remains parked and must not become active setup truth without a dedicated write/cleanup decision.",
+    "Master Data, O2C, P2P, Preview Posting and Posting remain blocked until Foundation setup boundaries are resolved or consciously accepted."
+  ],
+  "notProved": [
+    "No Business Central page or package card was opened in this case.",
+    "No package table or field list was proven in the UI in this case.",
+    "No setup value was saved.",
+    "No package import/export/validate/apply route was executed.",
+    "No posting readiness, VAT correctness, UAT acceptance or final book claim was proven."
+  ],
+  "warnings": [
+    "Do not treat this decision as a package write approval.",
+    "Do not reuse U-VAT325-DISC as active Foundation package without package-card/table/field review.",
+    "Do not repeat blind Page 314/Page 472 cell-edit attempts as the primary route."
+  ],
+  "nextStepDecision": {
+    "currentCase": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
+    "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
+    "lastEvidenceSummary": "Configuration Packages page and U-VAT325-DISC metadata were previously observed read-first; the package has 0 tables and 0 records and is parked.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The local route decision is now complete. The next useful work is a read-first UI proof of Configuration Worksheet / package table-field route before any write gate.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST",
+        "status": "ready-next",
+        "reason": "Needed to prove the standard BC surface, actions and field/table route without changing data."
+      },
+      {
+        "caseId": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION",
+        "status": "ready-after-current",
+        "reason": "Only sensible after the read-first proof shows clear package/worksheet table and field handling."
+      },
+      {
+        "caseId": "FOUNDATION-SETUP-PACKAGE-IMPORT-VALIDATE-APPLY-GATE",
+        "status": "needs-setup-first",
+        "reason": "Import/validate/apply must wait for package design, data source and write gate."
+      },
+      {
+        "caseId": "MASTER-DATA-CUSTOMER-READFIRST",
+        "status": "blocked",
+        "reason": "Master Data remains parked until Foundation posting/VAT route decisions are settled."
+      }
+    ],
+    "queueChangesMade": [
+      "Prepared FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST as next read-first/no-write case."
+    ],
+    "selectedNextCase": "FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST",
+    "whySelectedNextCaseIsBest": "It proves whether the selected real-project setup route is actually visible and controllable in the Universaarl UI before any package or setup write.",
+    "risksBeforeNextCase": [
+      "Auth or permissions may block Configuration Worksheet visibility.",
+      "The target page may open as a side pane or Role Center fallback; screenshot QA must reject weak context."
+    ],
+    "requiredPreparation": [
+      "Use multi-step screenshot chain.",
+      "Stop before create/get tables/import/export/validate/apply.",
+      "Keep U-VAT325-DISC parked unless a later write gate explicitly changes its status."
+    ]
+  },
+  "nextCase": "FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST"
+}

@@ -8,6 +8,15 @@ const nodeCmd = process.execPath;
 
 const checksByCase = new Map([
   [
+    'FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST',
+    {
+      id: 'foundation-configuration-worksheet-readfirst',
+      scriptPath: 'scripts/agent/read-first-no-write-case-readiness-check.mjs',
+      reason:
+        'The next Foundation case may open playthru / UNIVERSAARL-DE read-only, but must not create, import, export, validate or apply configuration packages.'
+    }
+  ],
+  [
     'FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION',
     {
       id: 'foundation-setup-package-table-mapping-source-decision-local-no-live',

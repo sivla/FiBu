@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST",
+  "status": "prepared",
+  "caseType": "read-first-no-write",
+  "goal": "Prove read-only whether Configuration Worksheet and Configuration Packages expose a safe standard Business Central route for Universaarl Foundation setup table and field mapping before any package or setup write.",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mustRead": [
+    ".agent/OPERATING-KERNEL.md",
+    ".agent/state/current.json",
+    "playwright/projects/fibu-book5/UNIVERSAARL-FOUNDATION-SETUP-FIELD-MAP.md",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-table-mapping-source-decision/result.json",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-existing-metadata-readfirst/result.json"
+  ],
+  "allowedActions": [
+    "validate-playthru-context-readonly",
+    "validate-universaarl-company-context-readonly",
+    "open-business-central-readonly",
+    "open-configuration-worksheet-readonly",
+    "open-configuration-packages-readonly",
+    "inspect-visible-actions-readonly",
+    "hover-tooltips-readonly",
+    "capture-screenshot-chain",
+    "capture-visual-state-json",
+    "write-readonly-result-json",
+    "update-foundation-readiness-boundary"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "continue-target-073",
+    "type-business-central-values",
+    "create-configuration-package",
+    "open-configuration-package-card-for-edit",
+    "rename-configuration-package",
+    "delete-configuration-package",
+    "assign-configuration-package",
+    "get-tables",
+    "add-table",
+    "remove-table",
+    "import-configuration-package",
+    "export-configuration-package",
+    "validate-configuration-package",
+    "apply-configuration-package",
+    "edit-in-excel",
+    "write-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "cleanup-delete",
+    "api-shortcut",
+    "company-switch"
+  ],
+  "skills": [
+    "bc-active-editor",
+    "state-sync-check"
+  ],
+  "requiredChecks": [
+    "agent:preflight",
+    "agent:resume:check",
+    "agent:freeze:status",
+    "agent:active-readiness",
+    "check:encoding",
+    "git diff --check"
+  ],
+  "expectedOutput": [
+    "Read-only Result JSON with page, company, actions, screenshots, proved, notProved and nextStepDecision.",
+    "Screenshot QA chain showing navigation route, target page context, relevant action/dropdown/tooltip context, visual-state JSON and explicit no-write boundary.",
+    "Foundation Readiness update that either promotes a package write-gate candidate or parks the route with a clear blocker."
+  ],
+  "stopConditions": [
+    "Stop if Business Central opens outside playthru.",
+    "Stop if the visible company is not UNIVERSAARL-DE.",
+    "Stop before any package create, table add, import, export, validate, apply, delete or setup write action.",
+    "Stop if the screenshot chain shows only Role Center or search context instead of the target page.",
+    "Stop if a route would require API, AL, direct database or non-UI shortcut.",
+    "Stop if auth or permissions fail; document blocker instead of retrying destructive or blind actions."
+  ],
+  "nextCaseIfObserved": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION",
+  "nextCaseIfBlocked": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-OR-ALTERNATIVE"
+}
