@@ -12,6 +12,7 @@ const rawArgs = process.argv.slice(2);
 const args = new Set(rawArgs);
 const write = args.has('--write');
 const check = args.has('--check') || !write;
+const allowCuratedOverwrite = args.has('--allow-curated-overwrite');
 
 function valueArg(name, fallback) {
   const prefix = `${name}=`;
@@ -579,6 +580,30 @@ function renderDecision(result, chartStarterResult) {
   ].join('\n');
 }
 
+const curatedSectionMarkers = [
+  '## Aktuelles Verdict',
+  '## PWS-FF-002C Route Decision: Buchungsmatrix Einrichtung',
+  '## PWS-FF-005B Dimensionswerte Related-Action-Route',
+  '## PWS-FF-001 Nummernserien Read-first',
+  '## PWS-MD-001 Debitoren-Kontext Read-first',
+  '## PWS-MD-002 Kreditoren-Kontext Read-first',
+  '## PWS-MD-003 Artikel-/Service-Kontext Read-first',
+  '## FOUNDATION-MASTER-DATA-ROUTE-DECISION',
+  '## PWS-MD-004 Customer Prewrite Boundary',
+  '## PWS-MD-004B Customer Reopen and Field Proof',
+  '## PWS-MD-CUSTOMER-SETUP-GAP-DECISION',
+  '## PWS-MD-004C Customer Billing and Payments FastTabs',
+  'Projektregel: echte Business-Central-Oberflaechen',
+  'keine UI-Mockups',
+  'keine vertraulichen echten Kundendaten',
+  'Screenshot-QA fuer naechsten Live-Proof'
+];
+
+function lostCuratedMarkers(existingText, renderedText) {
+  if (!existingText) return [];
+  return curatedSectionMarkers.filter((marker) => existingText.includes(marker) && !renderedText.includes(marker));
+}
+
 if (!exists(resultPath)) {
   const output = {
     schemaVersion: 1,
@@ -611,11 +636,24 @@ const combinedWarnings = [
   ...chartValidation.warnings,
   ...(chartStarterResult ? [] : [`Optional PWS-FF-006 chart starter account result not found: ${chartStarterAccountsPath}`])
 ];
+const renderedDecision = combinedErrors.length === 0 ? renderDecision(result, chartStarterResult) : '';
+const existingDecision = exists(decisionPath) ? fs.readFileSync(resolve(decisionPath), 'utf8') : '';
+const lostMarkers = lostCuratedMarkers(existingDecision, renderedDecision);
+if (lostMarkers.length) {
+  const message = `Existing ${decisionPath} contains curated post-TARGET-075 evidence sections that generated output would remove: ${lostMarkers.join(
+    ', '
+  )}. Re-run with --allow-curated-overwrite only after manual review.`;
+  if (write && !allowCuratedOverwrite) {
+    combinedErrors.push(message);
+  } else {
+    combinedWarnings.push(message);
+  }
+}
 const canWrite = combinedErrors.length === 0;
 
 if (write && canWrite) {
   fs.mkdirSync(path.dirname(resolve(decisionPath)), { recursive: true });
-  fs.writeFileSync(resolve(decisionPath), renderDecision(result, chartStarterResult), 'utf8');
+  fs.writeFileSync(resolve(decisionPath), renderedDecision, 'utf8');
 }
 
 const output = {
@@ -632,6 +670,8 @@ const output = {
   chartStarterAccountsConsumed: Boolean(chartStarterAccountSummary(chartStarterResult)),
   decisionPath,
   templatePath,
+  curatedOverwriteAllowed: allowCuratedOverwrite,
+  curatedMarkersThatWouldBeLost: lostMarkers,
   resultStatus: result.resultStatus,
   instance: result.instance,
   company: result.company,

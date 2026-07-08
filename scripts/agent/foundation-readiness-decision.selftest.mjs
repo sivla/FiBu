@@ -25,6 +25,7 @@ const missingLiveEvidenceOutputPath = path.join(tempDir, 'FOUNDATION-READINESS-M
 const missingChartStarterAccountsPath = path.join(tempDir, 'missing-pws-ff-006-result.json');
 const chartStarterAccountsInputPath = path.join(tempDir, 'PWS-FF-006-result.json');
 const chartStarterAccountsOutputPath = path.join(tempDir, 'FOUNDATION-READINESS-WITH-PWS-FF-006.md');
+const curatedExistingOutputPath = path.join(tempDir, 'FOUNDATION-READINESS-CURATED-EXISTING.md');
 
 const fixture = {
   schemaVersion: 1,
@@ -438,6 +439,55 @@ const write = run([`--input=${inputPath}`, `--output=${outputPath}`, '--write'])
 if (write.status !== 0) errors.push(`write mode exited ${write.status}: ${write.stderr || write.stdout}`);
 if (write.parsed?.wroteFile !== true) errors.push('write mode should report wroteFile=true.');
 if (!fs.existsSync(outputPath)) errors.push('write mode did not create FOUNDATION-READINESS-DECISION.md.');
+
+fs.writeFileSync(
+  curatedExistingOutputPath,
+  [
+    '# FOUNDATION-READINESS-DECISION',
+    '',
+    '## Aktuelles Verdict',
+    '',
+    '- Projektregel: echte Business-Central-Oberflaechen nutzen; keine UI-Mockups und keine vertraulichen echten Kundendaten.',
+    '',
+    '## FOUNDATION-MASTER-DATA-ROUTE-DECISION',
+    '',
+    '- Curated post-TARGET-075 evidence must not be removed by a narrower generator output.',
+    ''
+  ].join('\n'),
+  'utf8'
+);
+
+const curatedOverwriteBlocked = run([`--input=${inputPath}`, `--output=${curatedExistingOutputPath}`, '--write']);
+
+if (curatedOverwriteBlocked.status === 0) errors.push('curated existing decision overwrite must fail without explicit override.');
+if (curatedOverwriteBlocked.parsed?.canWrite !== false) {
+  errors.push('curated existing decision overwrite must report canWrite=false without explicit override.');
+}
+if (
+  !curatedOverwriteBlocked.parsed?.errors?.some((entry) =>
+    String(entry).includes('contains curated post-TARGET-075 evidence sections')
+  )
+) {
+  errors.push('curated existing decision overwrite must report lost curated evidence sections.');
+}
+const curatedBlockedOutput = fs.readFileSync(curatedExistingOutputPath, 'utf8');
+if (!curatedBlockedOutput.includes('## FOUNDATION-MASTER-DATA-ROUTE-DECISION')) {
+  errors.push('blocked curated overwrite must leave the existing curated file untouched.');
+}
+
+const curatedOverwriteAllowed = run([
+  `--input=${inputPath}`,
+  `--output=${curatedExistingOutputPath}`,
+  '--write',
+  '--allow-curated-overwrite'
+]);
+
+if (curatedOverwriteAllowed.status !== 0) {
+  errors.push(`curated overwrite with explicit override exited ${curatedOverwriteAllowed.status}.`);
+}
+if (curatedOverwriteAllowed.parsed?.wroteFile !== true) {
+  errors.push('curated overwrite with explicit override should write the generated output.');
+}
 
 const chartStarterWrite = run([
   `--input=${inputPath}`,
