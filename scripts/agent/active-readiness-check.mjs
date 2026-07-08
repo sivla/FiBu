@@ -103,6 +103,35 @@ const checksByCase = new Map([
     }
   ],
   [
+    'VAT-POSTING-SETUP-READFIRST',
+    {
+      id: 'vat-posting-setup-readfirst',
+      scriptPath: 'scripts/agent/vat-posting-setup-readfirst-check.mjs',
+      reason:
+        'VAT-POSTING-SETUP-READFIRST is the selected read-first/no-write Foundation pilot before any master-data write, O2C, P2P, Preview Posting or Posting.',
+      secondaryChecks: [
+        {
+          id: 'screenshot-chain-contract',
+          scriptPath: 'scripts/agent/screenshot-chain-contract-check.mjs',
+          reason:
+            'The VAT pilot must keep the multi-checkpoint screenshot QA rule before accepting page, row, FastTab or field truth.'
+        },
+        {
+          id: 'foundation-readiness-decision',
+          scriptPath: 'scripts/agent/foundation-readiness-decision.mjs',
+          reason:
+            'The VAT pilot must remain grounded in the curated Foundation boundary and must not regenerate or weaken later evidence.'
+        },
+        {
+          id: 'auth-target-boundary-selftest',
+          scriptPath: 'scripts/agent/auth-target-diagnose.selftest.mjs',
+          reason:
+            'The next live proof must rebuild its Business Central target from playthru / UNIVERSAARL-DE and not from any legacy source URL.'
+        }
+      ]
+    }
+  ],
+  [
     'CUSTOMER-PAYMENT-TERMS-WRITE-GATE',
     {
       id: 'customer-payment-terms-write-gate',
