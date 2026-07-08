@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-08T15:40:00.000+02:00",
+  "updatedAt": "2026-07-08T16:05:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -71,9 +71,9 @@
     "claim-posting-readiness",
     "claim-master-data-readiness"
   ],
-  "nextCase": "VAT-POSTING-SETUP-READFIRST",
-  "nextStep": "Use the prepared VAT-POSTING-SETUP-READFIRST case as the next practical read-first/no-write pilot once the active Foundation gate allows live execution. Before any live run, re-check auth and capture a multi-step screenshot chain, not only an end screenshot. Do not change setup, master data, documents, Preview Posting or Posting.",
-  "preparedNextCaseFile": ".agent/state/cases/vat-posting-setup-readfirst.json",
+  "nextCase": "FOUNDATION-READINESS-DECISION",
+  "nextStep": "Update the active Foundation Readiness boundary locally before any further live run. Consume the completed VAT-POSTING-SETUP-READFIRST, VAT route recovery, PWS-FF-006, customer and item evidence; do not repeat completed VAT or customer write gates as next work. Select the next live case only after the boundary states which Foundation gap is still worth proving.",
+  "preparedNextCaseFile": ".agent/state/cases/foundation-readiness-decision.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -208,12 +208,12 @@
   },
   "activeNextStepAuthority": {
     "source": "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
-    "selectedNextCase": "VAT-POSTING-SETUP-READFIRST",
-    "activeCaseFile": ".agent/state/cases/vat-posting-setup-readfirst.json",
+    "selectedNextCase": "FOUNDATION-READINESS-DECISION",
+    "activeCaseFile": ".agent/state/cases/foundation-readiness-decision.json",
     "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "Foundation Readiness is the active boundary and has consumed later item-service, customer, dimensions and posting setup evidence. Historical write-gate summaries remain reference evidence, but they must not override the next read-first/no-write VAT/Posting setup pilot."
+    "reason": "Foundation Readiness is the active boundary and must consume the already completed VAT read-first, VAT route recovery, PWS-FF-006, customer and item evidence before selecting any new live pilot. Historical write-gate summaries remain reference evidence, but they must not override the local boundary decision."
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -327,8 +327,8 @@
     "currentLiveBoundary": {
       "freezeActive": false,
       "parkedCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-      "resumePilot": "VAT-POSTING-SETUP-READFIRST",
-      "resumePilotMode": "read-first-no-writes"
+      "resumePilot": "FOUNDATION-READINESS-DECISION",
+      "resumePilotMode": "local-boundary-refresh-no-live"
     },
     "legacyScriptGuard": {
       "script": "agent:legacy:active-check",
@@ -596,7 +596,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "Foundation Readiness has consumed PWS-FF-002C, PWS-FF-005/005B, PWS-FF-001, PWS-MD-001/002/003 and PWS-MD-004/004B/004C. Master Data is training-/handbook-ready only, not process-ready. The next practical pilot is VAT-POSTING-SETUP-READFIRST in playthru / UNIVERSAARL-DE, but only after the active no-live Foundation gate allows a read-first run with multi-screenshot QA.",
+  "currentCoverageFocus": "Foundation Readiness has consumed PWS-FF-002C, PWS-FF-005/005B, PWS-FF-001, PWS-MD-001/002/003, PWS-MD-004/004B/004C, PWS-FF-006, VAT-POSTING-SETUP-READFIRST and VAT route recovery. Master Data is training-/handbook-ready only, not process-ready. The next practical step is a local Foundation Readiness boundary refresh that chooses a non-repeating Foundation gap before any new live pilot.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",

@@ -29,7 +29,7 @@ The read-first return has happened. Further live work must now start from the co
 | Current live status | read-first resume, customer setup proof and item price/cost proof have produced Foundation/Master-Data dependency evidence; Payment Terms route recovery proved Page 4 through `profile=Business Manager`, NET30 has reopen proof, and `U-ITEM-HW100` has realistic fictional price/cost values in `playthru` |
 | Parked case | `TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION` |
 | Completed resume pilot | `TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK` |
-| Next live type | no immediate live run; first consume the Debitor/Artikel evidence in `FOUNDATION-READINESS-DECISION` and decide the VAT-/Posting-Boundary before O2C/P2P |
+| Next live type | no immediate live run; first refresh `FOUNDATION-READINESS-DECISION` with the completed VAT, Kontenplan, Debitor and Artikel evidence and choose one non-repeating Foundation gap |
 | Artifact classification | `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` |
 | Next local control task | keep roadmap, dashboard, state and artifact classification aligned; demote historical next-step noise instead of adding new layers |
 
@@ -333,8 +333,9 @@ Use this exact order:
 2. Do not start another broad cleanup pass.
 3. Keep `FOUNDATION-READINESS-DECISION.md` as the active boundary.
 4. Do not repeat `TARGET-073` as-is.
-5. Consume the latest customer setup route recovery: 3/4 setup pages were recovered in the current runner; Page 312/Geschaeftsbuchungsgruppen remains a runner-specific search blocker but has stronger accepted Universaarl Foundation evidence in `TARGET-032A/TARGET-032B`.
-6. Run `CUSTOMER-SETUP-VALUE-WRITE-GATE` next: open `U-CUST-100`, set or verify only Customer Posting Group `INLAND`, Gen. Business Posting Group `INLAND` and Payment Terms Code `NET30`, then capture after and reopen proof. Do not touch VAT, dimensions, payment method, documents, Preview Posting, Posting or API.
+5. Do not repeat `VAT-POSTING-SETUP-READFIRST` as the active next step; it already produced partial VAT/USt evidence and parked Page 470 through route recovery.
+6. Consume the completed VAT read-first, VAT route recovery, PWS-FF-006 Kontenplan, Debitor and Artikel evidence into `FOUNDATION-READINESS-DECISION`.
+7. Select exactly one next live case only after that local boundary states which Foundation gap is still worth proving. No O2C/P2P document, Preview Posting or Posting until the Foundation boundary explicitly permits it.
 
 ## Acceptance criteria
 

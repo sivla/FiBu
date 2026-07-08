@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "AUTH-REFRESH-AFTER-CURATED-FOUNDATION-GUARD",
+  "runId": "FOUNDATION-NEXT-STEP-REALIGNMENT-AFTER-VAT-READFIRST",
   "caseId": "FOUNDATION-READINESS-DECISION",
-  "status": "completed-auth-refresh-after-local-generator-guard",
-  "completedAt": "2026-07-08T15:10:14.1840000+02:00",
-  "updatedAt": "2026-07-08T15:10:14.1840000+02:00",
+  "status": "completed-local-state-realignment",
+  "completedAt": "2026-07-08T16:05:00.000+02:00",
+  "updatedAt": "2026-07-08T16:05:00.000+02:00",
   "mode": "universaarl-foundation-local-readiness",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "A local generator run would have overwritten curated Foundation Readiness content with a narrower TARGET-075-only decision. The change was rejected, the curated file was restored, and the generator now blocks silent overwrites of post-TARGET-075 evidence sections unless an explicit override is used after manual review. Playwright auth was refreshed against playthru / UNIVERSAARL-DE and is currently usable for the next gated read-first work. The active handoff was then rechecked: PWS-FF-002C, Dimensions and Master Data read-first evidence are already consumed, so the next practical pilot is VAT-POSTING-SETUP-READFIRST rather than another completed Foundation microcase.",
+  "summary": "Active steering was corrected so completed VAT-POSTING-SETUP-READFIRST, VAT route recovery and CUSTOMER-SETUP-VALUE-WRITE-GATE evidence are not presented as the next work. The active next step is now the local FOUNDATION-READINESS-DECISION boundary refresh, which must consume VAT, Kontenplan, Debitor and Artikel evidence before selecting one non-repeating live Foundation gap.",
   "businessCentralOpened": false,
   "playwrightLiveRunExecuted": false,
   "setupChanged": false,
@@ -25,13 +25,10 @@
   "confidentialRealCustomerDataUsed": false,
   "uiMockupUsed": false,
   "actionsTaken": [
-    "Confirmed the active Foundation case is local/no-live and did not open Business Central.",
-    "Ran Foundation Readiness generation and detected that it would remove curated newer evidence from FOUNDATION-READINESS-DECISION.md.",
-    "Restored the curated Foundation Readiness decision and added a generator guard for curated post-TARGET-075 sections.",
-    "Extended the Foundation Readiness selftest to prove curated evidence is not overwritten without --allow-curated-overwrite.",
-    "Checked Business Central auth readiness; stored auth was too old and did not meet normal or overnight readiness.",
-    "Ran npm run auth:bc:open-login against playthru / UNIVERSAARL-DE and refreshed Playwright storage state.",
-    "Confirmed npm run auth:bc:check and auth:bc:check:overnight are green."
+    "Reviewed current state, dashboard, roadmap and latest VAT/Foundation evidence.",
+    "Confirmed VAT-POSTING-SETUP-READFIRST already ran and Page 470 remains parked after route recovery.",
+    "Confirmed CUSTOMER-SETUP-VALUE-WRITE-GATE is historical evidence and must not be advertised as the next active step.",
+    "Realigned top-level state, dashboard and roadmap to the local Foundation boundary refresh."
   ],
   "actionsNotTaken": [
     "No Business Central live page was opened.",
@@ -48,76 +45,66 @@
     "No UI mockup was used as evidence."
   ],
   "proved": [
-    "FOUNDATION-READINESS-DECISION.md still contains curated evidence for real Business Central UI, no UI mockups, no confidential real customer data, screenshot QA and Master Data route decisions.",
-    "agent:foundation:decision:write now refuses to remove curated post-TARGET-075 sections unless --allow-curated-overwrite is passed after manual review.",
-    "agent:foundation:decision:test covers the curated-overwrite guard.",
-    "agent:masterdata:readfirst:check enforces real Business Central UI evidence, realistic fictional/anonymized Universaarl records and at least five screenshot checkpoints for read-first Master Data pilots.",
-    "Playwright auth is currently usable for playthru / UNIVERSAARL-DE read-first work, subject to the active case/live gates."
+    "Top-level nextCase now points to FOUNDATION-READINESS-DECISION.",
+    "agent:active-readiness selects the foundation-readiness-decision check, not the completed VAT read-first check.",
+    "Roadmap and dashboard now state that the next step is a local Foundation boundary refresh before any new live pilot."
   ],
   "notProved": [
     "No new Business Central screenshot was captured.",
-    "No Foundation page, Master Data page, VAT page or Posting Group page was newly observed beyond the auth shell.",
-    "No customer, vendor or item was changed.",
-    "No master-data write readiness.",
-    "No O2C/P2P process readiness.",
-    "No posting readiness."
+    "No new Foundation, VAT, Posting Group, customer, vendor or item page was observed.",
+    "No new write readiness, O2C/P2P readiness, Preview Posting readiness or posting readiness was proven."
   ],
   "warnings": [
-    "Fresh auth does not by itself authorize setup, master data, drafts, Preview Posting or Posting.",
-    "Do not run agent:foundation:decision:write over curated Foundation decisions unless the loss of later evidence sections is manually reviewed and intentionally approved.",
-    "Use real Business Central UI evidence and customer-project-like Universaarl records; do not use UI mockups, throwaway dummy data or confidential real customer data."
+    "Do not repeat completed VAT-POSTING-SETUP-READFIRST or CUSTOMER-SETUP-VALUE-WRITE-GATE as next active work.",
+    "Foundation Readiness must explicitly choose the next non-repeating live gap before BC/Playwright live work resumes."
   ],
   "changedArtifacts": [
+    ".agent/state/current.json",
     ".agent/state/last_run_summary.json",
-    "scripts/agent/foundation-readiness-decision.mjs",
-    "scripts/agent/foundation-readiness-decision.selftest.mjs",
-    "playwright/projects/fibu-book5/evidence/auth-bc-refresh-active-resume/AUTH-BC-REFRESH-result.json"
+    ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
+    ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md"
   ],
   "nextStepDecision": {
     "currentCase": "FOUNDATION-READINESS-DECISION",
-    "plannedNextCaseBeforeReview": "FOUNDATION-READINESS-DECISION",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "The active case remains the right handoff because Foundation truth must be preserved and live auth is now refreshed for the next gated read-first step.",
+    "plannedNextCaseBeforeReview": "VAT-POSTING-SETUP-READFIRST",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "VAT-POSTING-SETUP-READFIRST has already run and produced partial evidence; Page 470 remains parked after route recovery. Repeating it would be project noise.",
     "lookaheadReviewed": [
       {
-        "caseId": "AUTH-BC-REFRESH",
-        "status": "ready-after-current",
-        "reason": "Completed in this run; rerun only when auth:bc:check turns red or the live window is too short."
-      },
-      {
-        "caseId": "PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION",
-        "status": "obsolete",
-        "reason": "Already completed and consumed; General Posting Setup remains partial-not-posting-ready."
-      },
-      {
-        "caseId": "PWS-MD-001-CUSTOMER-CONTEXT-READFIRST",
-        "status": "obsolete",
-        "reason": "Already observed and consumed together with PWS-MD-002/003 and PWS-MD-004/004B/004C."
+        "caseId": "FOUNDATION-READINESS-DECISION",
+        "status": "ready-next",
+        "reason": "It must consume the completed VAT, Kontenplan, Debitor and Artikel evidence before selecting a new live gap."
       },
       {
         "caseId": "VAT-POSTING-SETUP-READFIRST",
-        "status": "ready-next",
-        "reason": "Existing read-first/no-write case checks VAT Business Posting Groups, VAT Product Posting Groups and VAT Posting Setup before any process or write gate."
+        "status": "obsolete",
+        "reason": "Already executed; use result and route-recovery evidence instead of rerunning."
+      },
+      {
+        "caseId": "CUSTOMER-SETUP-VALUE-WRITE-GATE",
+        "status": "obsolete",
+        "reason": "Already represented as evidence; do not repeat as the next active step."
       },
       {
         "caseId": "O2C/P2P process cases",
         "status": "blocked",
-        "reason": "Process work remains blocked until VAT and General Posting Setup boundaries are proven or consciously limited."
+        "reason": "Process work remains blocked until Foundation/VAT/Posting boundaries are consciously accepted or proven."
       }
     ],
-    "selectedNextCase": "VAT-POSTING-SETUP-READFIRST",
-    "whySelectedNextCaseIsBest": "A realistic Business Central implementation must return to VAT/USt and posting setup boundaries before master-data writes or O2C/P2P process work. The case is explicitly read-first/no-write and requires real playthru / UNIVERSAARL-DE screenshots.",
+    "queueChangesMade": [
+      "Top-level nextCase changed from VAT-POSTING-SETUP-READFIRST to FOUNDATION-READINESS-DECISION.",
+      "Roadmap and dashboard no longer advertise completed VAT/customer gates as next work."
+    ],
+    "selectedNextCase": "FOUNDATION-READINESS-DECISION",
+    "whySelectedNextCaseIsBest": "A realistic Business Central implementation should consolidate Foundation evidence and decide the next non-repeating gap before opening live UI again.",
     "risksBeforeNextCase": [
-      "Foundation decision generation must not overwrite curated post-TARGET-075 evidence.",
-      "Auth does not by itself authorize setup, master data, documents, Preview Posting or Posting."
+      "If the boundary is not refreshed, future agents may rerun completed read-first cases or jump into O2C/P2P too early."
     ],
     "requiredPreparation": [
-      "Keep auth:bc:check green before any live read-first proof.",
-      "Do not run setup/master-data/process writes without a fresh Smart Decision Gate.",
-      "Use .agent/state/cases/vat-posting-setup-readfirst.json as the next case boundary if a live read-first run is started.",
-      "Keep multi-screenshot QA mandatory: context, navigation, target page, relevant row/action/FastTab and explicit not-proved boundary."
+      "Keep Business Central closed until the local Foundation boundary selects one specific next live case.",
+      "Preserve screenshot QA requirements for any later live proof."
     ]
   },
-  "nextCase": "VAT-POSTING-SETUP-READFIRST",
-  "nextStep": "Use the refreshed auth only for the gated VAT-POSTING-SETUP-READFIRST proof if the active case/live gate allows it. No setup, master data, documents, Preview Posting or Posting are authorized by auth alone."
+  "nextCase": "FOUNDATION-READINESS-DECISION",
+  "nextStep": "Refresh FOUNDATION-READINESS-DECISION locally with the completed VAT, Kontenplan, Debitor and Artikel evidence; then choose exactly one non-repeating Foundation gap as the next live candidate."
 }

@@ -9,7 +9,7 @@ Last reviewed: 2026-07-07
 | Feld | Aktueller Stand |
 | --- | --- |
 | Zielwelt | `playthru / UNIVERSAARL-DE / Universaarl GmbH` |
-| Projektphase | W2 Core Master Data: Debitor/Artikel bewiesen, VAT-/Posting-Boundary offen |
+| Projektphase | W1/W2 Boundary: Foundation konsolidieren, Debitor/Artikel als Training/Handbuch-Evidence nutzen, O2C/P2P weiter gesperrt |
 | Aktive Steuerungsquelle | `.agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md` |
 | Artefakt-Klassifikation | `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` |
 | Geparkter Live-Case | `TARGET-073` |
@@ -92,7 +92,7 @@ M0 ist als Arbeitsrahmen nutzbar. Der naechste sinnvolle Fortschritt ist keine w
 4. `TARGET-073` bleibt geparkt.
 5. Kein as-is Retry von TARGET-073 oder TARGET-073B; TARGET-073B ist konsumierte blockierte No-Write-Evidence.
 6. `U-CUST-100` und `U-ITEM-HW100` sind als realistische fiktive Universaarl-Masterdaten nutzbar, aber noch nicht als Prozessfreigabe fuer O2C/P2P.
-7. Naechster Schritt ist kein O2C/P2P-Beleg, sondern entweder ein narrow Foundation-Readiness-Refresh oder ein read-first VAT/Posting-Setup-Proof mit frischer Auth-/Screenshot-QA. Keine Belege, kein Preview, kein Posting.
+7. Naechster Schritt ist kein O2C/P2P-Beleg und kein Repeat von `VAT-POSTING-SETUP-READFIRST`; der Lauf ist bereits teilweise beobachtet und Page 470 bleibt geparkt. Jetzt zuerst `FOUNDATION-READINESS-DECISION` lokal mit VAT-, Kontenplan-, Debitor- und Artikel-Evidence aktualisieren, dann genau einen nicht wiederholten Foundation-Gap als Live-Kandidat waehlen.
 8. Masterdaten sollen reale Business-Central-Oberflaechen und kundenprojektartige Universaarl-Geschaeftspartner/Produkte verwenden: realistisch, fachlich begruendet, UAT-/Training-tauglich und setup-abhaengig. Keine UI-Mockups, keine Wegwerf-Dummydaten und keine vertraulichen echten Kundendaten.
 
 ## Update rule
