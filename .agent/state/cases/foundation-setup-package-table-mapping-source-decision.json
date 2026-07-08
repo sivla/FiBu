@@ -6,12 +6,44 @@
   "mode": "universaarl-foundation-local-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
+  "goal": "Decide the source-backed configuration-package route for Universaarl Foundation setup without opening Business Central or changing data.",
   "businessPurpose": "Decide whether configuration packages are the right implementation route for the next Foundation setup gaps, and if so which exact tables, fields, source values, validations and cleanup or keep strategy apply.",
+  "caseType": "local-no-live-decision",
   "requiredInputs": [
     "Microsoft Learn or official Business Central documentation for configuration packages and setup data import",
     "playwright/projects/fibu-book5/UNIVERSAARL-FOUNDATION-SETUP-FIELD-MAP.md",
     "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
     "playwright/projects/fibu-book5/evidence/foundation-setup-package-existing-metadata-readfirst/result.json"
+  ],
+  "mustRead": [
+    ".agent/OPERATING-KERNEL.md",
+    ".agent/state/current.json",
+    "playwright/projects/fibu-book5/UNIVERSAARL-FOUNDATION-SETUP-FIELD-MAP.md",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-existing-metadata-readfirst/result.json",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-keep-cleanup-decision/result.json"
+  ],
+  "skills": [
+    "bc-source-research",
+    "state-sync-check"
+  ],
+  "requiredChecks": [
+    "agent:preflight",
+    "agent:resume:check",
+    "agent:freeze:status",
+    "agent:active-readiness",
+    "check:encoding",
+    "git diff --check"
+  ],
+  "expectedOutput": [
+    "A local result JSON or route-decision update classifying configuration packages as the Foundation setup route or parking them with reasons.",
+    "State/dashboard updates only if active next-step truth changes.",
+    "No Business Central or Playwright live evidence."
+  ],
+  "stopConditions": [
+    "Stop if the decision would require opening Business Central.",
+    "Stop if exact table or field mapping cannot be source-backed.",
+    "Stop if the next step would imply import/export/apply/validate/delete without a separate write gate.",
+    "Stop if legacy RM-DEMO/MCP/CRONUS evidence is about to become active Universaarl proof."
   ],
   "mustDecide": [
     "Whether package route is better than manual UI for the current Foundation gap.",

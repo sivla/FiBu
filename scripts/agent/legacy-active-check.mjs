@@ -3,6 +3,7 @@ import path from 'node:path';
 
 const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
 const scripts = packageJson.scripts ?? {};
+const currentState = JSON.parse(fs.readFileSync('.agent/state/current.json', 'utf8'));
 
 const legacyPattern = /RM-DEMO|MCP_1_20260210|CRONUS|Rhein-Main|Rhein Main|RheinMain|rm-de-lab|rm-demo/i;
 const blockedScript = /legacy-script-blocked\.mjs/;
@@ -14,18 +15,12 @@ const allowedScriptNames = new Set([
   'agent:legacy:active-check'
 ]);
 const activeSteeringFiles = [
-  'README.md',
-  'HANDOVER.md',
-  '.agent/PROJECT-DECISION.md',
+  '.agent/OPERATING-KERNEL.md',
+  '.agent/state/current.json',
+  currentState.active_case_file,
   '.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md',
-  '.agent/project-template/PROJECT-DASHBOARD-DRAFT.md',
-  '.agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md',
-  '.agent/project-template/REFINEMENT-BACKLOG.md',
-  '.agent/state/last_run_summary.json',
-  '.agent/state/marathon_queue.json',
-  'playwright/projects/fibu-book5/BC-COMPANY-USECASE.md',
-  'playwright/projects/fibu-book5/BC-FULL-PLAYTHROUGH-CATALOG.md'
-];
+  '.agent/project-template/PROJECT-DASHBOARD-DRAFT.md'
+].filter(Boolean);
 const staleActiveSteeringPatterns = [
   {
     pattern: /Naechster sinnvoller Schritt ist TARGET-073|Nächster sinnvoller Schritt ist TARGET-073/i,

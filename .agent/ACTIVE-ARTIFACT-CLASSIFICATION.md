@@ -9,10 +9,10 @@ Last reviewed: 2026-07-06
 - Environment: `playthru`
 - Company: `UNIVERSAARL-DE`
 - Reference entity: Universaarl GmbH
-- Live status: Improvement Freeze remains active until resume gates are checked.
+- Live status: Post-TARGET-075 read-first handoff is valid; local no-live Foundation decisions may run without reopening TARGET-075 as active normal state.
 - Parked live case: `TARGET-073`
-- First allowed resume pilot: `TARGET-075`, read-first and no-write.
-- Foundation handoff: `FOUNDATION-READINESS-DECISION.md` follows TARGET-075 before setup, master data or process work.
+- Active local case: `FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION`
+- Foundation rule: Konfigurationspakete are the realistic target route for initial company/Foundation setup, but package writes/import/apply still require their own gated case.
 
 ## Classification rules
 
@@ -27,18 +27,15 @@ Last reviewed: 2026-07-06
 
 ## Active-control set
 
+Only these files may steer the next action. Everything else is active-work, reference, parked or legacy-purge-source.
+
 | Artifact | Class | Why it controls |
 | --- | --- | --- |
-| `README.md` | `active-control` | Root entrypoint for new humans and agents; must not steer to legacy worlds. |
-| `HANDOVER.md` | `active-control` | Short handover entrypoint for new Codex accounts; must mirror roadmap, state and freeze/TARGET-075 boundary. |
-| `.agent/project-template/README.md` | `active-control` | Short index for the project-template folder; points to classification instead of listing every draft as active. |
-| `.agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md` | `active-control` | Single current roadmap, freeze/resume order and TARGET-075 boundary. |
-| `.agent/TARGET-075-PILOT-READINESS.md` | `active-control` | Concrete TARGET-075 runbook with auth, freeze, runner and no-write gates for the first resume pilot. |
-| `.agent/project-template/PROJECT-DASHBOARD-DRAFT.md` | `active-control` | Compact project manager view. |
-| `.agent/state/current.json` top-level active truth and `implementationOperatingSystem` block | `active-control` | Machine-readable active instance, company, freeze and next case. |
-| `.agent/project-template/REFINEMENT-BACKLOG.md` first sections | `active-control` | Work ordering only when it follows the roadmap. |
-| `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` | `active-control` | Explains which files may steer and which are parked/reference/legacy. |
-| `.agent/SKILL-SYSTEM.md` | `active-control` | Governs when skills should exist, without expanding a skill library on Vorrat. |
+| `.agent/OPERATING-KERNEL.md` | `active-control` | Minimal per-block entrypoint; defines what to load and what to ignore. |
+| `.agent/state/current.json` top-level active truth | `active-control` | Machine-readable active instance, company, active case, gates and next step. |
+| active case file named by `current.json` | `active-control` | Only this case selects must-read files, actions, skills, checks, output and stop conditions. |
+| `.agent/project-template/PROJECT-DASHBOARD-DRAFT.md` | `active-control` | Compact management view; not a queue. |
+| `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` | `active-control` | Separates active control from reference, parked and legacy material. |
 
 ## Active-work set
 

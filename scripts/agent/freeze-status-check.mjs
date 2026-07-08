@@ -19,14 +19,17 @@ const allowedNextCasesAfterTarget075Handoff = new Set([
   'FOUNDATION-READINESS-DECISION',
   'PWS-FF-002-GENERAL-POSTING-SETUP-READFIRST-RECOVERY',
   'PWS-FF-002B-PAGE314-NAVIGATION-CAPTURE-RECOVERY',
-  'PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST'
+  'PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST',
+  'FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION'
 ]);
 const allowedReadFirstLiftCases = new Set([
   'FOUNDATION-READINESS-DECISION',
   'PWS-FF-002-GENERAL-POSTING-SETUP-READFIRST-RECOVERY',
   'PWS-FF-002B-PAGE314-NAVIGATION-CAPTURE-RECOVERY',
-  'PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST'
+  'PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST',
+  'FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION'
 ]);
+const localNoLiveCases = new Set(['FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION']);
 
 function readText(relativePath) {
   return fs.readFileSync(path.resolve(root, relativePath), 'utf8');
@@ -79,7 +82,8 @@ const liftedReadFirst =
   current?.freezeStatus?.status === 'lifted-readfirst' &&
   allowedReadFirstLiftCases.has(current?.activeCase ?? '') &&
   current?.activeArea === 'w1-foundation' &&
-  current?.mode === 'universaarl-foundation-readfirst' &&
+  (current?.mode === 'universaarl-foundation-readfirst' ||
+    (localNoLiveCases.has(current?.activeCase ?? '') && current?.mode === 'universaarl-foundation-local-decision')) &&
   current?.implementationOperatingSystem?.currentLiveBoundary?.freezeActive === false;
 
 if (current) {
@@ -106,18 +110,31 @@ if (current) {
   }
   const forbidden = new Set(current.forbiddenActions ?? []);
   const requiredForbiddenActions = liftedReadFirst
-    ? [
-        'continue-target-073',
-        'type-business-central-values',
-        'write-setup',
-        'create-master-data',
-        'create-document-or-draft',
-        'preview-posting',
-        'post',
-        'payment',
-        'cleanup-delete',
-        'company-switch'
-      ]
+    ? localNoLiveCases.has(current.activeCase)
+      ? [
+          'open-business-central',
+          'run-playwright-live',
+          'write-setup',
+          'create-master-data',
+          'create-document-or-draft',
+          'preview-posting',
+          'post',
+          'payment',
+          'api-shortcut',
+          'company-switch'
+        ]
+      : [
+          'continue-target-073',
+          'type-business-central-values',
+          'write-setup',
+          'create-master-data',
+          'create-document-or-draft',
+          'preview-posting',
+          'post',
+          'payment',
+          'cleanup-delete',
+          'company-switch'
+        ]
     : [
     'continue-target-073',
     'type-business-central-values',
@@ -136,7 +153,7 @@ if (current) {
   if (!liftedReadFirst && !forbidden.has('open-business-central-live')) {
     errors.push(`${currentPath}: forbiddenActions must include open-business-central-live while freeze is active`);
   }
-  if (liftedReadFirst && forbidden.has('open-business-central-live')) {
+  if (liftedReadFirst && !localNoLiveCases.has(current.activeCase) && forbidden.has('open-business-central-live')) {
     errors.push(`${currentPath}: open-business-central-live must be lifted for PWS-FF-002 read-first resume`);
   }
   if (current.instance !== 'playthru') warnings.push(`${currentPath}: target instance is not playthru`);

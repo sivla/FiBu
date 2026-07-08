@@ -8,6 +8,15 @@ const nodeCmd = process.execPath;
 
 const checksByCase = new Map([
   [
+    'FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION',
+    {
+      id: 'foundation-setup-package-table-mapping-source-decision-local-no-live',
+      scriptPath: 'scripts/agent/local-no-live-case-readiness-check.mjs',
+      reason:
+        'This is the active local no-live Foundation decision. It must be registered as a bounded case and must not inherit TARGET-075 live-pilot checks.'
+    }
+  ],
+  [
     'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK',
     {
       id: 'target-075-readiness',

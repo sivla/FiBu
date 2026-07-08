@@ -7,6 +7,8 @@ const currentState = JSON.parse(readFileSync('.agent/state/current.json', 'utf8'
 const selectedNextCase = currentState.nextCase ?? '';
 const foundationDecisionCase = 'FOUNDATION-READINESS-DECISION';
 const pwsFf006Case = 'PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST';
+const localNoLiveCases = new Set(['FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION']);
+const selectedCaseIsLocalNoLive = localNoLiveCases.has(selectedNextCase);
 const minAuthExpiresArg = process.argv.find((arg) => arg.startsWith('--min-auth-expires-hours='));
 const minAuthExpiresInHours = minAuthExpiresArg ? Number(minAuthExpiresArg.split('=').at(1)) : null;
 const authCheckArgs = Number.isFinite(minAuthExpiresInHours)
@@ -159,7 +161,9 @@ const steps = [
 ];
 
 const ignoredFailureIds = new Set(
-  selectedNextCase === pwsFf006Case
+  selectedCaseIsLocalNoLive
+    ? ['target-075-readiness', 'target-075-safe-check', 'masterdata-readfirst-check']
+    : selectedNextCase === pwsFf006Case
     ? ['target-075-safe-check', 'masterdata-readfirst-check']
     : selectedNextCase === foundationDecisionCase
       ? ['target-075-safe-check', 'pws-ff-006-safe-check', 'masterdata-readfirst-check']
@@ -186,7 +190,9 @@ const authDoctorTargetOk =
   authDoctor?.authTarget?.targetEnvironment === 'playthru' &&
   authDoctor?.authTarget?.targetCompany === 'UNIVERSAARL-DE';
 const localResumeReady =
-  failed.length === 0 &&
+  selectedCaseIsLocalNoLive
+    ? failed.length === 0 && authCheck?.canUseStoredAuth === true && authDoctorStoredAuthOk && authDoctorTargetOk
+    : failed.length === 0 &&
   readiness?.canProceedAfterFreezeLift === true &&
   authCheck?.canUseStoredAuth === true &&
   authDoctorStoredAuthOk &&
@@ -252,7 +258,9 @@ if (authDoctor?.decision === 'stored-auth-usable-but-live-gate-blocked') {
 
 const nonAuthFailed = failed.filter((step) => step.id !== 'auth-state-check' && step.id !== 'auth-doctor');
 const selectedCaseLocalReady =
-  readiness?.canProceedAfterFreezeLift === true &&
+  selectedCaseIsLocalNoLive
+    ? failed.length === 0 && authDoctorTargetOk
+    : readiness?.canProceedAfterFreezeLift === true &&
   authDoctorTargetOk &&
   (selectedNextCase === 'PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST'
     ? pwsFf006SafeCheck?.localCaseReady === true && pwsFf006SafeCheck?.targetUrlReady === true
@@ -281,14 +289,16 @@ const authRefreshCommands =
 const output = {
   schemaVersion: 1,
   purpose: 'autopilot-resume-check',
-  caseId: 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK',
+  caseId: selectedNextCase || 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK',
   selectedNextCase,
+  selectedCaseType: selectedCaseIsLocalNoLive ? 'local-no-live-decision' : 'live-or-readfirst-resume',
   authMinExpiresInHours: minAuthExpiresInHours,
   canResumeAfterFreezeLift: localResumeReady,
   canResumeAfterFreezeLiftMeaning:
     target075SafeCheck?.canResumeAfterFreezeLiftMeaning ??
     'local-readiness-auth-target-and-runtime-target-url-only; Business Central/Playwright execution still requires the active live gate to clear',
-  canRunNow: localResumeReady && liveGateAllowsNow,
+  canRunNow: selectedCaseIsLocalNoLive ? false : localResumeReady && liveGateAllowsNow,
+  canExecuteLocalNow: selectedCaseIsLocalNoLive && localResumeReady,
   freezeActive,
   requiresFreezeLift: freezeActive,
   requiresLiveGateLift,
@@ -494,9 +504,11 @@ const output = {
       : [])
   ],
   nextStep: authRefreshRequired
-    ? `Local ${selectedNextCase || 'Foundation'} readiness is sufficient for the next read-first handoff, but Playwright auth is expired. Run the recommended auth refresh commands, then rerun agent:resume:check before any live BC/Playwright work.`
+    ? `Local ${selectedNextCase || 'Foundation'} readiness is sufficient, but Playwright auth is expired. Run the recommended auth refresh commands, then rerun agent:resume:check before any live BC/Playwright work.`
     : !localResumeReady
     ? 'Fix failed local resume checks before considering the selected read-first Foundation case.'
+    : selectedCaseIsLocalNoLive
+      ? `${selectedNextCase} is locally ready as a no-live decision case. Do not run Business Central or Playwright for this case.`
     : !liveGateAllowsNow
       ? `Local resume checks passed, including stored auth, but the active live gate still blocks Business Central/Playwright execution. Do not run ${selectedNextCase || 'the selected read-first case'} until explicit freeze/live-gate lift.`
       : safeLivePilotCommand
@@ -508,15 +520,17 @@ console.log(JSON.stringify(output, null, 2));
 
 if (
   failed.length ||
-  readiness?.canProceedAfterFreezeLift !== true ||
+  (!selectedCaseIsLocalNoLive && readiness?.canProceedAfterFreezeLift !== true) ||
   authCheck?.canUseStoredAuth !== true ||
   !authDoctorStoredAuthOk ||
   !authDoctorTargetOk ||
-  (selectedNextCase === 'PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST'
-    ? pwsFf006SafeCheck?.canRunNow !== true
-    : selectedNextCase === foundationDecisionCase
-      ? foundationDecisionCheck?.canWrite !== true || screenshotChainCheck?.ok !== true
-    : target075SafeCheck?.canResumeAfterFreezeLift !== true)
+  (selectedCaseIsLocalNoLive
+    ? false
+    : selectedNextCase === 'PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST'
+      ? pwsFf006SafeCheck?.canRunNow !== true
+      : selectedNextCase === foundationDecisionCase
+        ? foundationDecisionCheck?.canWrite !== true || screenshotChainCheck?.ok !== true
+        : target075SafeCheck?.canResumeAfterFreezeLift !== true)
 ) {
   process.exitCode = 1;
 }
