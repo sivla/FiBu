@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-08T23:39:13.185Z",
+  "updatedAt": "2026-07-08T23:43:38.348Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -82,7 +82,7 @@
     "company-switch"
   ],
   "nextCase": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-WRITE-GATE",
-  "nextStep": "The local write-gate decision is complete. A future live case is prepared but not active: FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE may only attempt one Table 325 configuration-package metadata line on U-VAT325-DISC, with screenshot chain, active-editor proof, reopen proof and hard stops before Import/Export/Validate/Apply/setup/master-data/posting.",
+  "nextStep": "The future live case FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE is prepared and has a preflight runner, but no live writer implementation yet. Next concrete step: either build the real one-action Playwright implementation for Table 325 metadata or consciously park the package route. Do not run BC from the preflight-only runner.",
   "preparedNextCaseFile": ".agent/state/cases/foundation-setup-package-one-metadata-action-execute.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
@@ -220,6 +220,7 @@
     "source": "playwright/projects/fibu-book5/evidence/foundation-setup-package-one-metadata-action-write-gate/result.json",
     "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-WRITE-GATE",
     "activeCaseFile": ".agent/state/cases/foundation-setup-package-one-metadata-action-execute.json",
+    "preparedNextCaseFile": ".agent/state/cases/foundation-setup-package-one-metadata-action-execute.json",
     "ignoreHistoricalResultNextSteps": true,
     "reason": "The active case remains the completed local no-live gate. The prepared live follow-up is intentionally not active until a new run selects it and clears its write gate.",
     "recommendedNextCaseAfterLocalDecision": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE",
@@ -12169,5 +12170,17 @@
     "setupChanged": false,
     "nextCase": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE",
     "boundary": "Ready-for-write-gate means only one future configuration-package metadata action may be prepared; no import/export/validate/apply/setup/master-data/posting action is allowed without its own gate."
+  },
+  "latestFoundationSetupPackageOneMetadataActionExecutePreflight": {
+    "caseId": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE",
+    "status": "prepared-preflight-only",
+    "runner": "scripts/agent/run-foundation-setup-package-one-metadata-action-execute.mjs",
+    "packageScript": "fibu:foundation:package-one-metadata-action-execute",
+    "canPrepareFutureLiveRun": true,
+    "canRunNow": false,
+    "businessCentralOpened": false,
+    "playwrightLiveRunExecuted": false,
+    "liveImplementationPresent": false,
+    "boundary": "Preflight only. It must not execute Business Central until a real guarded one-action Playwright implementation is intentionally added."
   }
 }

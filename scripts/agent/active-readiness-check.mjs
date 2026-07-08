@@ -8,6 +8,16 @@ const nodeCmd = process.execPath;
 
 const checksByCase = new Map([
   [
+    'FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE',
+    {
+      id: 'foundation-setup-package-one-metadata-action-execute-preflight',
+      scriptPath: 'scripts/agent/run-foundation-setup-package-one-metadata-action-execute.mjs',
+      args: ['--check'],
+      reason:
+        'This write-gated live case may only attempt one configuration-package metadata line for Table 325 on U-VAT325-DISC. The runner is preflight-only until the real implementation is intentionally added.'
+    }
+  ],
+  [
     'FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-WRITE-GATE',
     {
       id: 'foundation-setup-package-one-metadata-action-write-gate-local-no-live',
