@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
-  "caseId": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
-  "status": "completed-local-decision",
-  "completedAt": "2026-07-08T18:35:00.000+02:00",
-  "updatedAt": "2026-07-08T18:35:00.000+02:00",
-  "mode": "universaarl-foundation-local-decision",
+  "runId": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
+  "caseId": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
+  "status": "blocked-readfirst-route",
+  "completedAt": "2026-07-08T19:05:00.000+02:00",
+  "updatedAt": "2026-07-08T19:05:00.000+02:00",
+  "mode": "universaarl-foundation-readfirst",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Local gate decision completed: no package metadata write yet. The next practical step is a materially different read-first route recovery for Konfigurationspakete / Configuration Packages.",
-  "businessCentralOpened": false,
-  "playwrightLiveRunExecuted": false,
+  "summary": "Read-first route recovery for Konfigurationspakete was blocked: screenshots show Role Center/Tell-Me overlay, not the Configuration Packages page/list. Route is parked for local alternative decision.",
+  "businessCentralOpened": true,
+  "playwrightLiveRunExecuted": true,
   "setupChanged": false,
   "masterDataChanged": false,
   "currentRunMasterDataChanged": false,
@@ -24,79 +24,73 @@
   "companySwitch": false,
   "confidentialRealCustomerDataUsed": false,
   "uiMockupUsed": false,
-  "decision": "No package metadata write gate yet. Configuration Packages remain a plausible Business Central implementation route for structured setup data, but the current playthru UI evidence did not prove the Konfigurationspakete page/list surface. The next practical step is a materially different read-only route recovery, not creating a package.",
   "actionsTaken": [
-    "Reviewed blocked read-first result.",
-    "Reviewed Foundation setup field map.",
-    "Compared realistic customer-project value of configuration packages with current UI evidence quality.",
-    "Selected read-first route recovery before any metadata write."
+    "Validated guarded read-first runner prerequisites.",
+    "Opened Business Central in playthru / UNIVERSAARL-DE through Playwright.",
+    "Tried direct Page 8615 route and a scoped Tell-Me search/click route for Konfigurationspakete.",
+    "Captured screenshot chain, action inventory, hover context and no-write end context.",
+    "Rejected the result because the visible context remained Role Center/search overlay instead of a real page/list."
   ],
   "actionsNotTaken": [
-    "No Business Central page was opened.",
-    "No Playwright live test was run.",
-    "No package was created.",
-    "No package was imported, exported, validated or applied.",
-    "No setup, master data, document, Preview Posting, Posting or payment action occurred."
+    "No package was created or opened for edit.",
+    "No Get Tables, Import, Export, Validate, Apply or Edit in Excel action was executed.",
+    "No setup, master data, document, Preview Posting, Posting, payment, API shortcut or company switch occurred."
   ],
   "proved": [
-    "FOUNDATION-SETUP-PACKAGE-READFIRST-DISCOVERY stayed in playthru / UNIVERSAARL-DE.",
-    "That run did not execute package actions or setup writes.",
-    "Screenshot QA rejected the route because the captured target context still showed Role Center instead of an accepted Konfigurationspakete page/list proof.",
-    "A local decision can now prevent another blind retry or premature metadata write."
+    "playthru / UNIVERSAARL-DE context was visible.",
+    "The tested route is not sufficient page proof.",
+    "Screenshot QA prevented a false success claim.",
+    "No BC write action occurred."
   ],
   "notProved": [
-    "No Konfigurationspakete page/list surface is currently proven by the latest read-first run.",
-    "No configuration package exists from this work.",
-    "No Table 252, Table 325 or Page 470 field mapping is proven through package metadata.",
-    "No setup value was written.",
-    "No Master Data, O2C, P2P, Preview Posting or Posting readiness."
+    "No Konfigurationspakete page/list surface.",
+    "No package-based Foundation table mapping.",
+    "No setup or posting readiness."
   ],
-  "evidencePath": "playwright/projects/fibu-book5/evidence/foundation-setup-package-metadata-write-gate-decision/result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/foundation-setup-package-route-recovery-readfirst/result.json",
   "nextStepDecision": {
-    "currentCase": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
-    "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
-    "lastEvidenceSummary": "Read-first Configuration Packages route remained in Role Center and did not prove the page/list surface.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "A local gate decision is the correct response before any write/admin metadata action.",
+    "currentCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
+    "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
+    "lastEvidenceSummary": "The route recovery stayed in Role Center/Tell-Me overlay and was rejected by screenshot QA.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Repeating this route would add screenshots but not realistic Foundation progress.",
     "lookaheadReviewed": [
       {
-        "caseId": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
+        "caseId": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION",
         "status": "ready-next",
-        "reason": "It is read-only and tests a materially different route before metadata write."
+        "reason": "Consumes the blocker and decides whether package route is parked or replaced."
+      },
+      {
+        "caseId": "Foundation Readiness Local Route Decision",
+        "status": "ready-after-current",
+        "reason": "Needed to choose the next project-useful Foundation lane."
       },
       {
         "caseId": "Configuration Package Metadata Write Gate",
-        "status": "needs-ui-discovery-first",
-        "reason": "Only justified after accepted page/list proof and explicit cleanup/keep strategy."
-      },
-      {
-        "caseId": "Foundation Setup Write/Import Gate",
-        "status": "needs-source-check-first",
-        "reason": "Requires field selection, source values, validation, fallback and screenshot chain."
-      },
-      {
-        "caseId": "Master Data and O2C/P2P",
         "status": "blocked",
-        "reason": "Foundation setup values and posting boundaries remain unresolved."
+        "reason": "Not justified without accepted page/list route or explicit admin artifact strategy."
+      },
+      {
+        "caseId": "Master Data Writes",
+        "status": "blocked",
+        "reason": "Foundation setup boundaries remain unresolved."
       }
     ],
     "queueChangesMade": [
-      "Prepared FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST as the next case.",
-      "Kept package metadata, import, validate, apply, setup writes, master data and processes locked."
+      "Set active local case to FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION.",
+      "Kept setup, master data, documents, Preview Posting and Posting locked."
     ],
-    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
-    "whySelectedNextCaseIsBest": "It moves the project toward a realistic setup route while staying read-only and evidence-driven.",
+    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION",
+    "whySelectedNextCaseIsBest": "It prevents another blind UI retry and forces a realistic route choice for Foundation setup.",
     "risksBeforeNextCase": [
-      "BC may still route to Role Center; screenshot QA must reject that.",
-      "Visible action labels may include write-capable package controls; they must be inventoried but not clicked.",
-      "Old package evidence must not be treated as current proof unless the new run reproduces it."
+      "Overfocusing on Konfigurationspakete could delay more useful Foundation proof.",
+      "Creating package metadata too early would be an admin write without proven route value."
     ],
     "requiredPreparation": [
-      "Use a materially different route hypothesis.",
-      "Require page/list title proof before accepting the result.",
-      "Capture enough screenshots to evaluate the surface."
+      "Review visual screenshot QA and Foundation Readiness boundaries.",
+      "Choose between parking package route, researching a better route, or moving to another Foundation readiness lane."
     ]
   },
-  "nextCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
-  "nextStep": "Run FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST only as read-first/no-write route recovery with screenshot QA."
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION",
+  "nextStep": "Local no-live park-or-alternative decision for the Configuration Packages route."
 }

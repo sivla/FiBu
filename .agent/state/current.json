@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-08T18:35:00.000+02:00",
+  "updatedAt": "2026-07-08T19:05:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -15,12 +15,12 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w1-foundation",
-  "activeCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
-  "active_case_file": ".agent/state/cases/foundation-setup-package-route-recovery-readfirst.json",
-  "activeCaseFile": ".agent/state/cases/foundation-setup-package-route-recovery-readfirst.json",
+  "activeCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION",
+  "active_case_file": ".agent/state/cases/foundation-setup-package-route-park-or-alternative-decision.json",
+  "activeCaseFile": ".agent/state/cases/foundation-setup-package-route-park-or-alternative-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-foundation-readfirst",
+  "mode": "universaarl-foundation-local-decision",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -41,14 +41,11 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "validate-playthru-context",
-    "validate-company-context",
-    "open-configuration-packages-readonly",
-    "compare-direct-page-and-user-navigation-routes",
-    "capture-multi-step-screenshot-chain",
-    "capture-page-title-list-action-and-no-write-boundary",
-    "write-readonly-result-json",
-    "update-state-summary"
+    "review-route-recovery-result",
+    "review-screenshot-qa-boundary",
+    "decide-park-or-alternative-route",
+    "update-foundation-readiness-boundary",
+    "prepare-next-readfirst-or-local-route-decision"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -56,6 +53,8 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright-live",
     "create-configuration-package",
     "open-configuration-package-card-for-edit",
     "import-configuration-package",
@@ -64,7 +63,6 @@
     "validate-configuration-package",
     "get-tables",
     "edit-in-excel",
-    "type-business-central-values",
     "write-setup",
     "create-master-data",
     "create-document-or-draft",
@@ -77,9 +75,9 @@
     "claim-posting-readiness",
     "claim-master-data-readiness"
   ],
-  "nextCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
-  "nextStep": "Run only a materially different read-first/no-write route recovery for Konfigurationspakete / Configuration Packages. Confirm playthru / UNIVERSAARL-DE, capture a multi-step screenshot chain / Bildkette, accept only real page/list proof, and stop before New, Get Tables, Import, Export, Validate, Apply, Edit in Excel, setup writes, master data, drafts, Preview Posting or Posting.",
-  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-package-route-recovery-readfirst.json",
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION",
+  "nextStep": "Do not repeat the blocked Konfigurationspakete route. Consume the screenshot QA result locally, park or replace the package route, and choose the next Foundation step by realistic project value before any setup, master-data, document, Preview Posting or Posting action.",
+  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-package-route-park-or-alternative-decision.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -214,12 +212,12 @@
   },
   "activeNextStepAuthority": {
     "source": "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
-    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
-    "activeCaseFile": ".agent/state/cases/foundation-setup-package-route-recovery-readfirst.json",
+    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION",
+    "activeCaseFile": ".agent/state/cases/foundation-setup-package-route-park-or-alternative-decision.json",
     "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION rejected immediate package metadata writes. The next step is a materially different read-first route recovery with screenshot truth."
+    "reason": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST stayed in Role Center/Tell-Me overlay and screenshot QA rejected page proof. The next step is a local park-or-alternative route decision, not another blind retry or package metadata write."
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -333,8 +331,8 @@
     "currentLiveBoundary": {
       "freezeActive": false,
       "parkedCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-      "resumePilot": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
-      "resumePilotMode": "readfirst-no-write-route-recovery"
+      "resumePilot": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION",
+      "resumePilotMode": "local-no-live-park-or-alternative-decision"
     },
     "legacyScriptGuard": {
       "script": "agent:legacy:active-check",
@@ -12052,5 +12050,46 @@
     ],
     "nextCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
     "updatedAt": "2026-07-08T18:35:00.000+02:00"
+  },
+  "latestFoundationSetupPackageRouteRecoveryReadfirst": {
+    "caseId": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
+    "status": "blocked-readfirst-route",
+    "resultPath": "playwright/projects/fibu-book5/evidence/foundation-setup-package-route-recovery-readfirst/result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "routeUsed": "scoped-tell-me-click-after-direct-page8615-weak",
+    "businessCentralOpened": true,
+    "playwrightLiveRunExecuted": true,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "payment": false,
+    "apiShortcut": false,
+    "companySwitch": false,
+    "confidentialRealCustomerDataUsed": false,
+    "uiMockupUsed": false,
+    "proved": [
+      "Business Central opened in playthru / UNIVERSAARL-DE.",
+      "The run captured a multi-step screenshot chain for the Configuration Packages route attempt.",
+      "The final screenshot shows Role Center with Tell-Me/search overlay, not accepted Konfigurationspakete page/list proof.",
+      "No package action, setup, master data, document, Preview Posting, Posting, payment, API shortcut or company switch occurred."
+    ],
+    "notProved": [
+      "No Konfigurationspakete page/list surface.",
+      "No mapped Foundation setup table through configuration packages.",
+      "No package metadata, import, validate, apply or setup route.",
+      "No Master Data, O2C, P2P, Preview Posting or Posting readiness."
+    ],
+    "blockedBy": [
+      "Konfigurationspakete page/list proof rejected: screenshot/text still looks like Role Center or lacks page/list signals."
+    ],
+    "warnings": [
+      "Write-capable package controls are visible and remain inventory-only.",
+      "No mapped Foundation setup table is visible without clicking Get Tables or creating/opening package metadata."
+    ],
+    "nextCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION",
+    "updatedAt": "2026-07-08T19:05:00.000+02:00"
   }
 }

@@ -124,6 +124,16 @@ PWS-FF-001 hat die Nummernserien-Seite read-only beobachtet: sieben Universaarl-
 - Begruendung: Konfigurationspakete sind fuer ein echtes Kundenprojekt als Setup-/Importweg plausibel. Ein Paketkopf oder eine Paket-Tabellenzeile ist aber bereits ein Admin-Artefakt und darf nicht aus einem Rollencenter-/Suchblocker heraus erzeugt werden.
 - Naechster Case: `FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST`, nur lesend, mit materiell anderer Route und Bildkette.
 
+## FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST
+
+- Quelle: playwright/projects/fibu-book5/evidence/foundation-setup-package-route-recovery-readfirst/result.json
+- Status: blocked-readfirst-route
+- Route: direkte Page-8615-URL, danach scoped Tell-Me-Suche nach `Konfigurationspakete`
+- Akzeptiert: `playthru / UNIVERSAARL-DE` wurde bestaetigt, die Bildkette wurde erfasst, und es wurde nichts angelegt, importiert, validiert, angewendet oder geschrieben.
+- Verworfen: Der Zielseitenbeweis ist weiterhin nicht akzeptiert. Der zentrale Screenshot zeigt Rollencenter mit Tell-Me-/Suchoverlay, nicht die echte Seite `Konfigurationspakete`.
+- Fachliche Folge: Konfigurationspakete bleiben fuer ein echtes BC-Projekt als Implementierungsweg plausibel, sind in diesem Projekt aber noch kein bewiesener Foundation-Weg. Ein weiterer identischer Page-8615-/Tell-Me-Retry waere Projektrauschen.
+- Naechster Case: `FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION`, lokal/no-live. Dort wird entschieden, ob die Paketroute geparkt, mit einer wirklich neuen Hypothese recherchiert oder durch eine andere Foundation-Readiness-Spur ersetzt wird.
+
 ## PWS-FF-002C Route Decision: Buchungsmatrix Einrichtung
 
 - Quelle: playwright/projects/fibu-book5/evidence/pws-ff-002c-general-posting-setup-route-decision/PWS-FF-002C-result.json
