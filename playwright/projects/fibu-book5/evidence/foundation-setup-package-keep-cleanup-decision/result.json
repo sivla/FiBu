@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-SETUP-PACKAGE-KEEP-CLEANUP-DECISION",
+  "source": "local-decision-after-playwright-readfirst",
+  "resultStatus": "completed-local-decision",
+  "completedAt": "2026-07-08T21:08:00.000+02:00",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "inputEvidence": [
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-existing-metadata-readfirst/result.json",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-existing-metadata-readfirst/page-text.txt",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-existing-metadata-readfirst/visible-package-actions.json"
+  ],
+  "businessCentralOpened": false,
+  "playwrightLiveRunExecuted": false,
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "companySwitch": false,
+  "confidentialRealCustomerDataUsed": false,
+  "uiMockupUsed": false,
+  "classification": {
+    "packageCode": "U-VAT325-DISC",
+    "status": "parked-route-candidate",
+    "cleanupNow": false,
+    "reuseNow": false,
+    "reason": "Read-first evidence shows the package metadata exists and has 0 tables / 0 records. That makes it harmless enough to keep temporarily, but not sufficient to reuse for setup. Cleanup would be a write without current business value."
+  },
+  "proved": [
+    "U-VAT325-DISC exists as visible configuration-package metadata in playthru / UNIVERSAARL-DE.",
+    "The visible row has 0 tables and 0 records in the captured list context.",
+    "No package action, setup, master data, document, Preview Posting, Posting, payment, API shortcut or company switch occurred."
+  ],
+  "notProved": [
+    "No package card content.",
+    "No table or field mapping for Foundation setup.",
+    "No import, export, validate, apply or cleanup route.",
+    "No setup value or posting readiness.",
+    "No UAT acceptance."
+  ],
+  "decision": "Keep U-VAT325-DISC parked as a route candidate. Do not delete it now and do not reuse it before source-backed table and field mapping.",
+  "actionsTaken": [
+    "Reviewed the existing-metadata read-first result.",
+    "Classified U-VAT325-DISC as parked-route-candidate.",
+    "Selected a local source-backed table-mapping decision as next step."
+  ],
+  "actionsNotTaken": [
+    "No Business Central page opened.",
+    "No Playwright live run.",
+    "No package creation.",
+    "No package card open/edit.",
+    "No Get Tables, import, export, validate, apply, delete or Edit in Excel.",
+    "No setup, master data, draft, Preview Posting, Posting, payment, API shortcut or company switch."
+  ],
+  "nextStepDecision": {
+    "currentCase": "FOUNDATION-SETUP-PACKAGE-KEEP-CLEANUP-DECISION",
+    "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-PACKAGE-KEEP-CLEANUP-DECISION",
+    "lastEvidenceSummary": "U-VAT325-DISC is visible read-first with 0 tables and 0 records.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A local classification prevents both unnecessary cleanup writes and blind reuse.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
+        "status": "ready-next",
+        "reason": "Exact table and field mapping is required before package route use."
+      },
+      {
+        "caseId": "Foundation setup package write/import gate",
+        "status": "needs-source-check-first",
+        "reason": "Cannot be considered until source-backed mapping and validation risks are known."
+      },
+      {
+        "caseId": "Foundation Readiness decision",
+        "status": "ready-after-current",
+        "reason": "Can consume the package-route classification."
+      },
+      {
+        "caseId": "Master Data write gates",
+        "status": "needs-setup-first",
+        "reason": "Foundation VAT/posting boundaries remain unresolved."
+      }
+    ],
+    "queueChangesMade": [
+      "Parked U-VAT325-DISC as route candidate instead of cleanup or reuse.",
+      "Selected FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION as next local case."
+    ],
+    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
+    "whySelectedNextCaseIsBest": "It is the smallest useful step before any setup/import/write gate.",
+    "risksBeforeNextCase": [
+      "Configuration-package actions can become effective writes.",
+      "Table IDs alone do not prove correct field mapping or validation behavior."
+    ],
+    "requiredPreparation": [
+      "Use official documentation and existing field map.",
+      "Do not open BC or run a package action in this local decision."
+    ]
+  },
+  "safeToFinalizeState": true,
+  "requiresReview": false,
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION"
+}

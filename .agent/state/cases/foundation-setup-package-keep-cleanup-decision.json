@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-SETUP-PACKAGE-KEEP-CLEANUP-DECISION",
+  "title": "Classify existing U-VAT325-DISC configuration-package metadata after read-first proof",
+  "status": "completed-local-decision",
+  "mode": "universaarl-foundation-local-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "businessPurpose": "Decide whether the existing configuration-package metadata should be kept, cleaned up or reused before any further setup route work.",
+  "inputs": [
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-existing-metadata-readfirst/result.json",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-existing-metadata-readfirst/page-text.txt",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-existing-metadata-readfirst/visible-package-actions.json"
+  ],
+  "decision": {
+    "classification": "parked-route-candidate",
+    "cleanupNow": false,
+    "reuseNow": false,
+    "reason": "U-VAT325-DISC is visible with 0 tables and 0 records. It is harmless as metadata, but it is not yet a proven setup route. Deleting would be an unnecessary cleanup write, and reusing it would require source-backed table and field mapping first."
+  },
+  "allowedActions": [
+    "review-existing-readfirst-evidence",
+    "classify-package-metadata",
+    "write-local-decision-json",
+    "update-state-dashboard-and-foundation-decision"
+  ],
+  "forbiddenActions": [
+    "open-business-central",
+    "run-playwright-live",
+    "create-configuration-package",
+    "open-configuration-package-card-for-edit",
+    "get-tables",
+    "import-configuration-package",
+    "export-configuration-package",
+    "apply-configuration-package",
+    "validate-configuration-package",
+    "delete-configuration-package",
+    "edit-in-excel",
+    "write-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "company-switch"
+  ],
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
+  "nextCaseRationale": "Before any configuration-package write/import route, identify exact setup tables, fields, source values, validation behavior and rollback/keep strategy."
+}

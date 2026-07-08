@@ -1,14 +1,15 @@
 {
   "schemaVersion": 1,
   "caseId": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
-  "source": "local-foundation-route-decision",
+  "source": "local-consultant-route-decision",
   "resultStatus": "completed-local-decision",
-  "completedAt": "2026-07-08T18:35:00.000+02:00",
+  "completedAt": "2026-07-08T21:10:00.000+02:00",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "businessCentralOpened": false,
   "playwrightLiveRunExecuted": false,
   "setupChanged": false,
+  "setupChangeAttempted": false,
   "masterDataChanged": false,
   "draftCreated": false,
   "previewPosting": false,
@@ -18,121 +19,121 @@
   "companySwitch": false,
   "confidentialRealCustomerDataUsed": false,
   "uiMockupUsed": false,
-  "decision": "No package metadata write gate yet. Configuration Packages remain a plausible Business Central implementation route for structured setup data, but the current playthru UI evidence did not prove the Konfigurationspakete page/list surface. The next practical step is a materially different read-only route recovery, not creating a package.",
-  "businessCentralConsultantAssessment": [
-    "For a realistic customer project, configuration packages can be appropriate for structured setup or migration data, especially when repeated manual grid edits are fragile.",
-    "However, package metadata is an admin setup artifact. Creating it before a reliable page/list proof would turn a navigation blocker into a write action without enough UI truth.",
-    "The existing Foundation field map remains useful as planning input, but planned fields are not saved setup values."
-  ],
-  "proved": [
-    "FOUNDATION-SETUP-PACKAGE-READFIRST-DISCOVERY stayed in playthru / UNIVERSAARL-DE.",
-    "That run did not execute package actions or setup writes.",
-    "Screenshot QA rejected the route because the captured target context still showed Role Center instead of an accepted Konfigurationspakete page/list proof.",
-    "A local decision can now prevent another blind retry or premature metadata write."
-  ],
-  "notProved": [
-    "No Konfigurationspakete page/list surface is currently proven by the latest read-first run.",
-    "No configuration package exists from this work.",
-    "No Table 252, Table 325 or Page 470 field mapping is proven through package metadata.",
-    "No setup value was written.",
-    "No Master Data, O2C, P2P, Preview Posting or Posting readiness."
-  ],
-  "selectedRoute": {
-    "routeId": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
-    "type": "read-first-no-write",
-    "reason": "The smallest useful next step is to recover or reject the actual page/list route with stronger screenshot truth before deciding on metadata creation.",
-    "mustUseMateriallyDifferentHypothesis": true
+  "decision": {
+    "selectedRoute": "FOUNDATION-SETUP-PACKAGE-EXISTING-METADATA-READFIRST",
+    "summary": "Do not create another configuration package metadata record. Existing metadata U-VAT325-DISC must first be inspected read-only and classified as keep, cleanup-needed or reusable route candidate.",
+    "reason": "The page/list route is now proven, but creating a package header is an admin write. Existing evidence shows U-VAT325-DISC already exists and a previous cleanup attempt did not prove removal. A new package would duplicate metadata and increase cleanup ambiguity."
   },
-  "rejectedRoutes": [
-    {
-      "route": "Repeat direct Page 8615 plus same Tell-Me click",
-      "reason": "Already produced Role Center context and weak page signals."
-    },
-    {
-      "route": "Create temporary configuration package metadata now",
-      "reason": "Would be a write/admin artifact before reliable target page proof."
-    },
-    {
-      "route": "Import, validate, apply or Edit in Excel",
-      "reason": "Effective setup/data routes; require later explicit write/import gate and rollback or keep strategy."
-    },
-    {
-      "route": "Jump to Master Data, O2C or P2P",
-      "reason": "Foundation setup boundaries are still open."
-    }
-  ],
-  "futureWriteGateRequirements": [
-    "Exact package purpose and naming convention.",
-    "Tables and fields selected before any write.",
-    "Source values and owner for each setup value.",
-    "Cleanup or keep decision before creating metadata.",
-    "Before/after/reopen screenshot chain.",
-    "Stop before Import, Validate, Apply, Edit in Excel publish or any real setup value write unless separately unlocked."
-  ],
+  "setupRouteAssessment": {
+    "manualUi": "investigate",
+    "assistedSetup": "not-applicable",
+    "configurationPackageOrRapidStart": "investigate",
+    "excelImport": "reject",
+    "template": "not-applicable",
+    "api": "reject",
+    "alExtension": "reject",
+    "parkOrNoChange": "investigate",
+    "reason": "Configuration packages remain a realistic Business Central route for structured setup or data migration work, but this project must first understand the existing U-VAT325-DISC metadata and avoid duplicate package artifacts."
+  },
   "actionsTaken": [
-    "Reviewed blocked read-first result.",
-    "Reviewed Foundation setup field map.",
-    "Compared realistic customer-project value of configuration packages with current UI evidence quality.",
-    "Selected read-first route recovery before any metadata write."
+    "Reviewed accepted read-first Configuration Packages page proof.",
+    "Reviewed older controlled package metadata discovery and cleanup blocker evidence.",
+    "Rejected immediate creation of a new configuration package metadata record.",
+    "Prepared a read-first existing-metadata inspection as the next case."
   ],
   "actionsNotTaken": [
-    "No Business Central page was opened.",
-    "No Playwright live test was run.",
-    "No package was created.",
-    "No package was imported, exported, validated or applied.",
-    "No setup, master data, document, Preview Posting, Posting or payment action occurred."
+    "No Business Central page opened",
+    "No Playwright live run",
+    "No configuration package creation",
+    "No Get Tables / Tabellen abrufen",
+    "No package import",
+    "No package export",
+    "No package validation",
+    "No package apply",
+    "No Edit in Excel",
+    "No setup value typing",
+    "No master data",
+    "No document draft",
+    "No Preview Posting",
+    "No Posting",
+    "No API shortcut",
+    "No company switch"
   ],
-  "changedFiles": [
-    ".agent/state/cases/foundation-setup-package-route-recovery-readfirst.json",
-    "playwright/projects/fibu-book5/evidence/foundation-setup-package-metadata-write-gate-decision/README.md",
-    "playwright/projects/fibu-book5/evidence/foundation-setup-package-metadata-write-gate-decision/result.json"
+  "proved": [
+    "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST proved the Konfigurationspakete page/list surface read-first.",
+    "Existing evidence shows U-VAT325-DISC as configuration-package metadata in playthru / UNIVERSAARL-DE.",
+    "A previous cleanup attempt did not prove removal.",
+    "A new package metadata write is not justified before existing metadata is inspected and classified."
   ],
-  "safeToFinalizeState": true,
-  "requiresReview": false,
+  "notProved": [
+    "No package card content.",
+    "No Table 252, Table 325 or Page/Table 470 package table line.",
+    "No import/export/validate/apply route.",
+    "No setup value exists because of this decision.",
+    "No posting, VAT, master-data, O2C or P2P readiness.",
+    "No UAT acceptance."
+  ],
+  "warnings": [
+    "Configuration package actions are write-capable and remain locked.",
+    "Existing U-VAT325-DISC metadata may be useful as a route candidate or may require cleanup, but this decision does not classify it yet."
+  ],
+  "blockedBy": [],
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-route-recovery-readfirst/result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d21-vat-matrix-controlled-package-table-discovery/TARGET-027D21-result.json",
+    "playwright/projects/fibu-book5/evidence/target-027d23-vat-package-metadata-cleanup-execution/TARGET-027D23-result.json",
+    ".agent/SETUP-ROUTE-DECISION.md"
+  ],
   "nextStepDecision": {
     "currentCase": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
     "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
-    "lastEvidenceSummary": "Read-first Configuration Packages route remained in Role Center and did not prove the page/list surface.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "A local gate decision is the correct response before any write/admin metadata action.",
+    "lastEvidenceSummary": "The Konfigurationspakete page/list route is proven read-first, but U-VAT325-DISC already exists and cleanup was not proven.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The gate decision is complete. The next useful work is read-first inspection of existing metadata, not another local decision or a new package write.",
     "lookaheadReviewed": [
       {
-        "caseId": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
+        "caseId": "FOUNDATION-SETUP-PACKAGE-EXISTING-METADATA-READFIRST",
         "status": "ready-next",
-        "reason": "It is read-only and tests a materially different route before metadata write."
+        "reason": "It gathers the missing keep/cleanup/reuse evidence without writing."
       },
       {
-        "caseId": "Configuration Package Metadata Write Gate",
-        "status": "needs-ui-discovery-first",
-        "reason": "Only justified after accepted page/list proof and explicit cleanup/keep strategy."
+        "caseId": "Controlled package metadata cleanup",
+        "status": "ready-after-current",
+        "reason": "Only sensible if read-first inspection shows the package is stale and cleanup route is safe."
       },
       {
-        "caseId": "Foundation Setup Write/Import Gate",
+        "caseId": "Foundation setup package-table route",
         "status": "needs-source-check-first",
-        "reason": "Requires field selection, source values, validation, fallback and screenshot chain."
+        "reason": "Requires exact table purpose, field mapping and stop conditions."
       },
       {
-        "caseId": "Master Data and O2C/P2P",
-        "status": "blocked",
-        "reason": "Foundation setup values and posting boundaries remain unresolved."
+        "caseId": "Foundation Readiness decision",
+        "status": "ready-after-current",
+        "reason": "Should consume whether the package route is keep, cleanup or parked."
       }
     ],
     "queueChangesMade": [
-      "Prepared FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST as the next case.",
-      "Kept package metadata, import, validate, apply, setup writes, master data and processes locked."
+      "Prepared FOUNDATION-SETUP-PACKAGE-EXISTING-METADATA-READFIRST as next active case."
     ],
-    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
-    "whySelectedNextCaseIsBest": "It moves the project toward a realistic setup route while staying read-only and evidence-driven.",
+    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-EXISTING-METADATA-READFIRST",
+    "whySelectedNextCaseIsBest": "It converts the page proof into safe project progress while avoiding duplicate package metadata and preserving cleanup discipline.",
     "risksBeforeNextCase": [
-      "BC may still route to Role Center; screenshot QA must reject that.",
-      "Visible action labels may include write-capable package controls; they must be inventoried but not clicked.",
-      "Old package evidence must not be treated as current proof unless the new run reproduces it."
+      "Opening package metadata for edit could become a write path.",
+      "Deleting without a trusted confirmation and reopen proof could damage evidence and still not prove cleanup.",
+      "Get Tables, Import, Export, Validate, Apply and Edit in Excel remain effective actions."
     ],
     "requiredPreparation": [
-      "Use a materially different route hypothesis.",
-      "Require page/list title proof before accepting the result.",
-      "Capture enough screenshots to evaluate the surface."
+      "Use proven page route.",
+      "Capture a multi-step screenshot chain.",
+      "Do not click write-capable package actions.",
+      "End with keep/cleanup/reuse classification."
     ]
   },
-  "nextCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST"
+  "safeToFinalizeState": true,
+  "requiresReview": false,
+  "changedFiles": [
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-metadata-write-gate-decision/result.json",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-metadata-write-gate-decision/README.md"
+  ],
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-EXISTING-METADATA-READFIRST"
 }

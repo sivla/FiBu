@@ -142,6 +142,31 @@ PWS-FF-001 hat die Nummernserien-Seite read-only beobachtet: sieben Universaarl-
 - Grenze: Die Route ist nach Helper-Korrektur read-first bewiesen, aber nicht als Setup- oder Importweg freigegeben.
 - Naechster Case: `FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION`.
 
+## FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION
+
+- Quelle: playwright/projects/fibu-book5/evidence/foundation-setup-package-metadata-write-gate-decision/result.json
+- Status: completed-local-decision
+- Entscheidung: Kein neuer Paketkopf. In `playthru / UNIVERSAARL-DE` existiert bereits `U-VAT325-DISC`, und ein frischer Paketkopf wuerde die Metadatenlage verschlechtern.
+- Naechster Case: `FOUNDATION-SETUP-PACKAGE-EXISTING-METADATA-READFIRST`, read-first/no-write. Dort wird das bestehende Paket als `keep`, `cleanup-needed` oder `route-candidate` klassifiziert.
+- Weiterhin gesperrt: `Tabellen abrufen`, Import, Export, Validate, Apply, Edit in Excel, Delete, Setupwerte, Stammdaten, Preview Posting und Posting.
+
+## FOUNDATION-SETUP-PACKAGE-EXISTING-METADATA-READFIRST
+
+- Quelle: playwright/projects/fibu-book5/evidence/foundation-setup-package-existing-metadata-readfirst/result.json
+- Status: observed-existing-metadata-readfirst
+- Akzeptiert: `playthru / UNIVERSAARL-DE` wurde bestaetigt. Die Seite `Konfigurationspakete` oeffnet als rechtes Seitenpaneel ueber dem Rollencenter. `U-VAT325-DISC` ist sichtbar; die Zeile zeigt `0` Tabellen und `0` Datensaetze.
+- UI-Learning: Nach Tell-Me-Navigation nicht sofort `Escape` druecken, weil dadurch das echte Seitenpaneel geschlossen wird. Screenshot-QA muss das Vordergrund-Paneel bewerten und den abgedunkelten Rollencenter-Hintergrund ignorieren.
+- Verworfen: Kein Paketkarteninhalt, keine Tabellenzeile fuer Table 252, Table 325 oder Page/Table 470, kein Import, Export, Validate, Apply, Delete, Edit in Excel oder Setupwert.
+
+## FOUNDATION-SETUP-PACKAGE-KEEP-CLEANUP-DECISION
+
+- Quelle: playwright/projects/fibu-book5/evidence/foundation-setup-package-keep-cleanup-decision/result.json
+- Status: completed-local-decision
+- Entscheidung: `U-VAT325-DISC` bleibt als `parked-route-candidate` erhalten. Es wird jetzt nicht geloescht und nicht fuer Setup wiederverwendet.
+- Begruendung: Die Metadatenzeile mit 0 Tabellen/0 Datensaetzen ist als bestehendes Admin-Artefakt harmlos genug, um sie vorerst stehen zu lassen. Loeschen waere ein unnoetiger Cleanup-Write; Wiederverwendung waere ohne genaue Tabellen-/Feld-Mapping-Entscheidung fachlich zu frueh.
+- Naechster Case: `FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION`, lokal/no-live. Dort wird entschieden, ob Konfigurationspakete fuer die naechsten Foundation-Gaps besser sind als manuelle UI, Assisted Setup oder andere Standardwege.
+- Weiterhin gesperrt: Business Central oeffnen, Playwright live ausfuehren, Paketaktionen, Setupwerte, Stammdaten, Belege, Preview Posting und Posting.
+
 ## PWS-FF-002C Route Decision: Buchungsmatrix Einrichtung
 
 - Quelle: playwright/projects/fibu-book5/evidence/pws-ff-002c-general-posting-setup-route-decision/PWS-FF-002C-result.json

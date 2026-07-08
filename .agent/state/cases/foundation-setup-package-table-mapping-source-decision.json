@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
+  "title": "Decide source-backed table and field mapping for Foundation setup package route",
+  "status": "planned-local-decision",
+  "mode": "universaarl-foundation-local-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "businessPurpose": "Decide whether configuration packages are the right implementation route for the next Foundation setup gaps, and if so which exact tables, fields, source values, validations and cleanup or keep strategy apply.",
+  "requiredInputs": [
+    "Microsoft Learn or official Business Central documentation for configuration packages and setup data import",
+    "playwright/projects/fibu-book5/UNIVERSAARL-FOUNDATION-SETUP-FIELD-MAP.md",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-existing-metadata-readfirst/result.json"
+  ],
+  "mustDecide": [
+    "Whether package route is better than manual UI for the current Foundation gap.",
+    "Whether U-VAT325-DISC can be reused, should stay parked, or should later be cleaned up.",
+    "Which table IDs and fields are in scope.",
+    "Which values are planned and which are already proven in Business Central.",
+    "Which validation errors and rollback or keep strategy are acceptable."
+  ],
+  "allowedActions": [
+    "local-source-review",
+    "local-field-map-review",
+    "write-route-decision",
+    "prepare-next-readfirst-or-write-gate"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright-live",
+    "create-configuration-package",
+    "open-configuration-package-card-for-edit",
+    "get-tables",
+    "import-configuration-package",
+    "export-configuration-package",
+    "apply-configuration-package",
+    "validate-configuration-package",
+    "delete-configuration-package",
+    "edit-in-excel",
+    "write-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "company-switch"
+  ]
+}

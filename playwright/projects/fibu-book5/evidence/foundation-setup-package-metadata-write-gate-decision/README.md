@@ -1,8 +1,7 @@
 # FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION
 
-Lokale Entscheidung nach der blockierten read-only Konfigurationspaket-Discovery.
+Lokaler No-Live-Entscheid nach dem erfolgreichen lesenden Nachweis der Seite `Konfigurationspakete`.
 
-Die Entscheidung erzeugt keine Business-Central-Aktion. Sie bewertet, ob eine Paket-Metadatenanlage als naechster Schritt fachlich gerechtfertigt ist.
+Entscheidung: keinen neuen Paketkopf anlegen. Das vorhandene Paket `U-VAT325-DISC` wird zuerst read-first inspiziert und danach als `keep`, `cleanup-needed` oder `route-candidate` klassifiziert.
 
-Ergebnis: Noch kein Paket-Metadaten-Write-Gate. Zuerst muss eine materiell andere read-only Route die Seite `Konfigurationspakete` sichtbar beweisen.
-
+Nicht ausgefuehrt: Business Central, Playwright, Paket anlegen, Tabellen abrufen, Import, Export, Validate, Apply, Edit in Excel, Setupwerte, Stammdaten, Draft, Preview Posting, Posting, API oder Company Switch.

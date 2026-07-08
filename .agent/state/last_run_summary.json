@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
-  "caseId": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
-  "status": "observed-readfirst-page-route",
-  "updatedAt": "2026-07-08T20:45:00.000+02:00",
-  "mode": "universaarl-foundation-readfirst-helper-recovery",
+  "runId": "FOUNDATION-SETUP-PACKAGE-EXISTING-METADATA-READFIRST-AND-KEEP-DECISION",
+  "caseId": "FOUNDATION-SETUP-PACKAGE-KEEP-CLEANUP-DECISION",
+  "status": "completed-readfirst-plus-local-decision",
+  "updatedAt": "2026-07-08T21:15:00.000+02:00",
+  "mode": "universaarl-foundation-readfirst-to-local-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "The Tell-Me helper and package route recovery were corrected. The guarded read-first Playwright run proved the Konfigurationspakete page/list surface in playthru / UNIVERSAARL-DE and kept all package/setup writes locked.",
+  "summary": "The existing configuration-package metadata U-VAT325-DISC was observed read-first in playthru / UNIVERSAARL-DE. It is visible with 0 tables and 0 records. It is now parked as a route candidate, not deleted and not reused until source-backed table and field mapping is complete.",
   "businessCentralOpened": true,
   "playwrightLiveRunExecuted": true,
   "setupChanged": false,
@@ -22,82 +22,73 @@
   "confidentialRealCustomerDataUsed": false,
   "uiMockupUsed": false,
   "actionsTaken": [
-    "Hardened the central Tell-Me helper to prefer scoped result roles, require target-page proof and reject an open Tell-Me overlay.",
-    "Changed the Konfigurationspakete read-first test to use the central helper instead of a hand-rolled broad click.",
-    "Ran the guarded read-first package route recovery in Business Central.",
-    "Captured a six-screenshot QA chain and visible package action inventory."
+    "Ran guarded read-first Playwright proof for Konfigurationspakete / U-VAT325-DISC.",
+    "Captured list context, row focus, visible package actions and no-write end screenshots.",
+    "Fixed the test route to preserve the foreground page pane instead of closing it with Escape.",
+    "Classified U-VAT325-DISC locally as parked-route-candidate."
   ],
   "actionsNotTaken": [
-    "No package creation",
-    "No package card open/edit",
-    "No Get Tables/Tabellen abrufen click",
-    "No package import/export/validate/apply",
-    "No Edit in Excel",
-    "No setup value typing",
-    "No master data",
-    "No document draft",
-    "No Preview Posting",
-    "No Posting",
-    "No payment",
-    "No API shortcut",
-    "No company switch"
+    "No package was created.",
+    "No package card was opened for edit.",
+    "No Get Tables, import, export, validate, apply, delete or Edit in Excel.",
+    "No setup, master data, draft, Preview Posting, Posting, payment, API shortcut or company switch occurred."
   ],
   "proved": [
     "Business Central opened in playthru / UNIVERSAARL-DE.",
-    "Konfigurationspakete / Configuration Packages page/list surface is visible read-first.",
-    "Visible package actions were inventoried without execution.",
-    "The prior Tell-Me overlay confusion is now guarded by helper and screenshot-QA logic."
+    "U-VAT325-DISC exists as configuration-package metadata.",
+    "The visible package row has 0 tables and 0 records.",
+    "Configuration-package actions can be inventoried without executing them."
   ],
   "notProved": [
-    "No package metadata write is approved.",
-    "No mapped Foundation setup table is proven usable for import/apply.",
-    "No setup, master-data, O2C, P2P, Preview Posting or Posting readiness.",
-    "No UAT acceptance."
+    "No package card content.",
+    "No table or field mapping for Foundation setup.",
+    "No package import/export/validate/apply route.",
+    "No setup value, posting readiness, master-data readiness or UAT acceptance."
   ],
-  "evidencePath": "playwright/projects/fibu-book5/evidence/foundation-setup-package-route-recovery-readfirst/result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/foundation-setup-package-existing-metadata-readfirst/result.json",
+  "decisionEvidencePath": "playwright/projects/fibu-book5/evidence/foundation-setup-package-keep-cleanup-decision/result.json",
   "nextStepDecision": {
-    "currentCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
-    "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
-    "lastEvidenceSummary": "The package page/list route is now observed read-first with accepted screenshot QA.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "The recovery case is complete. The next useful step is a local metadata write-gate decision, not another live retry.",
+    "currentCase": "FOUNDATION-SETUP-PACKAGE-KEEP-CLEANUP-DECISION",
+    "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-PACKAGE-KEEP-CLEANUP-DECISION",
+    "lastEvidenceSummary": "U-VAT325-DISC is visible read-first with 0 tables and 0 records.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A local classification prevents unnecessary cleanup writes and blind package reuse.",
     "lookaheadReviewed": [
       {
-        "caseId": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
+        "caseId": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
         "status": "ready-next",
-        "reason": "The page route is proven, but a package header or table selection would be an admin artifact and needs an explicit decision."
+        "reason": "Exact source-backed table and field mapping is required before package route use."
       },
       {
-        "caseId": "Foundation Setup Write/Import Gate",
+        "caseId": "Foundation setup package write/import gate",
         "status": "needs-source-check-first",
-        "reason": "Requires mapped tables, source values, validation plan and rollback/keep decision."
+        "reason": "Cannot be considered until mapping, validation risks and cleanup/keep plan are known."
+      },
+      {
+        "caseId": "Foundation Readiness decision",
+        "status": "ready-after-current",
+        "reason": "Should consume this package-route classification."
       },
       {
         "caseId": "Master Data write gates",
         "status": "needs-setup-first",
-        "reason": "Foundation setup and posting boundaries remain unresolved."
-      },
-      {
-        "caseId": "O2C/P2P process cases",
-        "status": "blocked",
-        "reason": "No posting/VAT setup readiness or Preview Posting boundary exists."
+        "reason": "Foundation VAT/posting boundaries remain unresolved."
       }
     ],
     "queueChangesMade": [
-      "Selected FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION as active local no-live case."
+      "Selected FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION as active next case."
     ],
-    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
-    "whySelectedNextCaseIsBest": "It converts the new page proof into a controlled BC implementation decision without jumping into writes.",
+    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
+    "whySelectedNextCaseIsBest": "It is the smallest useful step before any package/setup/import write gate.",
     "risksBeforeNextCase": [
-      "Configuration package metadata is an admin artifact.",
-      "Get Tables, Import, Validate, Apply and Edit in Excel can become effective.",
-      "Planned setup values must not be treated as saved values."
+      "Configuration-package controls are effective actions.",
+      "A package with 0 tables is not setup evidence."
     ],
     "requiredPreparation": [
-      "Review the accepted screenshot QA.",
-      "Decide exact package purpose and stop/cleanup/keep rules before any future write."
+      "Use official sources and the existing Foundation field map.",
+      "Do not open BC or run package actions for the local mapping decision."
     ]
   },
-  "nextCase": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
-  "nextStep": "Run the local no-live metadata write-gate decision."
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
+  "nextStep": "Decide locally whether configuration packages are the right Foundation setup route and map exact tables, fields, values, validations and cleanup or keep strategy before any write/import gate."
 }
