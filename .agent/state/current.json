@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-07T16:15:00.000+02:00",
+  "updatedAt": "2026-07-08T15:40:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -71,9 +71,9 @@
     "claim-posting-readiness",
     "claim-master-data-readiness"
   ],
-  "nextCase": "FOUNDATION-READINESS-DECISION",
-  "nextStep": "Use the integrated Chapter 9 Universaarl setup-boundary text as the basis for the next read-first VAT/Posting Setup proof or a narrow Foundation Readiness refresh. Before any live run, refresh or re-check auth if a long unattended window is needed. The next live proof must capture a multi-step screenshot chain, not only an end screenshot. Do not start O2C/P2P, Preview Posting or Posting until the missing setup rows are proven.",
-  "preparedNextCaseFile": ".agent/state/cases/foundation-readiness-decision.json",
+  "nextCase": "VAT-POSTING-SETUP-READFIRST",
+  "nextStep": "Use the prepared VAT-POSTING-SETUP-READFIRST case as the next practical read-first/no-write pilot once the active Foundation gate allows live execution. Before any live run, re-check auth and capture a multi-step screenshot chain, not only an end screenshot. Do not change setup, master data, documents, Preview Posting or Posting.",
+  "preparedNextCaseFile": ".agent/state/cases/vat-posting-setup-readfirst.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -208,12 +208,12 @@
   },
   "activeNextStepAuthority": {
     "source": "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
-    "selectedNextCase": "FOUNDATION-READINESS-DECISION",
-    "activeCaseFile": ".agent/state/cases/foundation-readiness-decision.json",
+    "selectedNextCase": "VAT-POSTING-SETUP-READFIRST",
+    "activeCaseFile": ".agent/state/cases/vat-posting-setup-readfirst.json",
     "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "Foundation Readiness is the active boundary. Historical item-service and customer write-gate summaries remain reference evidence, but they must not override the current no-write Foundation/VAT/Posting setup decision."
+    "reason": "Foundation Readiness is the active boundary and has consumed later item-service, customer, dimensions and posting setup evidence. Historical write-gate summaries remain reference evidence, but they must not override the next read-first/no-write VAT/Posting setup pilot."
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -327,7 +327,7 @@
     "currentLiveBoundary": {
       "freezeActive": false,
       "parkedCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-      "resumePilot": "FOUNDATION-READINESS-DECISION",
+      "resumePilot": "VAT-POSTING-SETUP-READFIRST",
       "resumePilotMode": "read-first-no-writes"
     },
     "legacyScriptGuard": {
@@ -596,7 +596,7 @@
   "coverageSystemActive": true,
   "gateIsNotStop": true,
   "nextCaseMustAdvanceCoverage": true,
-  "currentCoverageFocus": "PWS-FF-002C consumed the current Foundation route evidence: Chart starter accounts are visible, General Posting Setup remains partial-not-posting-ready, and Master Data remains parked. The next recommended pilot is PWS-FF-005 Dimensions read-first in playthru / UNIVERSAARL-DE.",
+  "currentCoverageFocus": "Foundation Readiness has consumed PWS-FF-002C, PWS-FF-005/005B, PWS-FF-001, PWS-MD-001/002/003 and PWS-MD-004/004B/004C. Master Data is training-/handbook-ready only, not process-ready. The next practical pilot is VAT-POSTING-SETUP-READFIRST in playthru / UNIVERSAARL-DE, but only after the active no-live Foundation gate allows a read-first run with multi-screenshot QA.",
   "nextProcessRoute": [
     "P2P-012 compared Purchase Journal, Item Journal, Purchase Invoices and Requisition Worksheet by direct page URL without search or field entry.",
     "Item Journal is the most stable observed route for material quantity/location/value effect, but it is Inventory evidence rather than full creditor P2P.",
@@ -8298,43 +8298,53 @@
     "uiLearning": "BC Page 456 URL filters require quoted table/field syntax for table names with punctuation; the filtered U-VEND list shows checkbox columns, but the write locator still must be source-backed or assisted before toggling Manual Nos."
   },
   "nextStepDecision": {
-    "currentCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-    "plannedNextCaseBeforeReview": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-    "lastEvidenceSummary": "TARGET-071 reached Page 472 but did not detect a true active editor for target fields.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "TARGET-073 is the narrowest non-writing diagnosis before another VAT setup write gate.",
+    "currentCase": "FOUNDATION-READINESS-DECISION",
+    "plannedNextCaseBeforeReview": "PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION",
+    "lastEvidenceSummary": "PWS-FF-002C, PWS-FF-005/005B, PWS-FF-001, PWS-MD-001/002/003 and PWS-MD-004/004B/004C are already consumed in FOUNDATION-READINESS-DECISION.md. Debitor, Kreditor, Artikel, Nummernserien and Dimensionen have read-first/training value, but VAT and General Posting Setup remain blocking for O2C/P2P, Preview Posting and Posting.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "PWS-FF-002C is already completed and must not be selected again. A realistic customer-project sequence returns to VAT/Posting setup as a read-first boundary before any master-data write or process case.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
-        "status": "blocked",
-        "reason": "Still no active editor route; repeating TARGET-071 would be blind."
+        "caseId": "PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION",
+        "status": "obsolete",
+        "reason": "Completed local decision; General Posting Setup remains partial-not-posting-ready."
       },
       {
-        "caseId": "TARGET-071B-VAT-POSTING-SETUP-REOPEN-AND-SOURCE-REVIEW",
-        "status": "blocked",
-        "reason": "No saved INLAND/VAT19 row exists."
+        "caseId": "PWS-FF-005-DIMENSIONS-READFIRST / PWS-FF-005B",
+        "status": "obsolete",
+        "reason": "Dimensions and Dimension Values are already observed read-first and usable for training/handbook boundaries."
       },
       {
-        "caseId": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
+        "caseId": "PWS-MD-001/002/003 and PWS-MD-004/004B/004C",
+        "status": "ready-after-current",
+        "reason": "Master Data context is useful for training, but write/process readiness is still blocked by VAT/Posting setup gaps."
+      },
+      {
+        "caseId": "VAT-POSTING-SETUP-READFIRST",
         "status": "ready-next",
-        "reason": "Fresh checkpoint after TARGET-073 should classify the current VAT editor limitation and choose a non-repeating next setup route."
+        "reason": "Existing case is read-first/no-write and checks VAT Business Posting Groups, VAT Product Posting Groups and VAT Posting Setup with screenshot QA."
       },
       {
-        "caseId": "TARGET-038-O2C-PREFLIGHT",
+        "caseId": "O2C/P2P process cases",
         "status": "blocked",
-        "reason": "O2C remains blocked until VAT and General Posting Setup are proven or consciously limited."
+        "reason": "No Preview Posting, Posting or process route until VAT and account-determination boundaries are proven or consciously limited."
       }
     ],
-    "queueChangesMade": [],
-    "selectedNextCase": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
-    "whySelectedNextCaseIsBest": "The Page 472 editor route remains blocked after materially new probes, so a fresh Foundation checkpoint is more honest than another write attempt or reusing an older completed checkpoint.",
+    "queueChangesMade": [
+      "Active handoff no longer points to completed PWS-FF-002C or parked TARGET-073.",
+      "VAT-POSTING-SETUP-READFIRST is selected as the next practical pilot, subject to the active Foundation no-live gate and auth checks."
+    ],
+    "selectedNextCase": "VAT-POSTING-SETUP-READFIRST",
+    "whySelectedNextCaseIsBest": "A real Business Central implementation must understand VAT/USt and posting setup boundaries before customer/vendor/item writes become process-ready. The case is read-first, reversible and evidence-focused.",
     "risksBeforeNextCase": [
-      "Do not type VAT target values without a row-scoped editor.",
-      "Do not claim final German VAT correctness before Preview Posting, VAT Entries and G/L Entries.",
-      "Do not create master data or documents before Foundation readiness."
+      "Do not treat existing customer or item records as O2C/P2P readiness.",
+      "Do not write VAT setup, posting groups, master data, documents, Preview Posting or Posting in a read-first case.",
+      "Do not accept a single end screenshot as page or field proof; use multi-checkpoint screenshot QA."
     ],
     "requiredPreparation": [
-      "Update the Foundation checkpoint with VAT matrix route limitation and choose a non-repeating next setup route."
+      "Run auth/live-gate checks before any Playwright live run.",
+      "Use .agent/state/cases/vat-posting-setup-readfirst.json as the case boundary.",
+      "Capture VAT Business Posting Groups, VAT Product Posting Groups and VAT Posting Setup read-only with real playthru / UNIVERSAARL-DE UI."
     ]
   },
   "latestTarget037MasterdataFoundationCheckpoint": {

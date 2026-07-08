@@ -9,7 +9,7 @@
   "mode": "universaarl-foundation-local-readiness",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "A local generator run would have overwritten curated Foundation Readiness content with a narrower TARGET-075-only decision. The change was rejected, the curated file was restored, and the generator now blocks silent overwrites of post-TARGET-075 evidence sections unless an explicit override is used after manual review. Playwright auth was refreshed against playthru / UNIVERSAARL-DE and is currently usable for the next gated read-first work.",
+  "summary": "A local generator run would have overwritten curated Foundation Readiness content with a narrower TARGET-075-only decision. The change was rejected, the curated file was restored, and the generator now blocks silent overwrites of post-TARGET-075 evidence sections unless an explicit override is used after manual review. Playwright auth was refreshed against playthru / UNIVERSAARL-DE and is currently usable for the next gated read-first work. The active handoff was then rechecked: PWS-FF-002C, Dimensions and Master Data read-first evidence are already consumed, so the next practical pilot is VAT-POSTING-SETUP-READFIRST rather than another completed Foundation microcase.",
   "businessCentralOpened": false,
   "playwrightLiveRunExecuted": false,
   "setupChanged": false,
@@ -86,36 +86,38 @@
       },
       {
         "caseId": "PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION",
-        "status": "ready-after-current",
-        "reason": "Next local Foundation gap decision; no live write required."
+        "status": "obsolete",
+        "reason": "Already completed and consumed; General Posting Setup remains partial-not-posting-ready."
       },
       {
         "caseId": "PWS-MD-001-CUSTOMER-CONTEXT-READFIRST",
-        "status": "needs-setup-first",
-        "reason": "Read-first spec is locally prepared, but live gate and auth must be valid and Foundation boundaries must still allow it."
+        "status": "obsolete",
+        "reason": "Already observed and consumed together with PWS-MD-002/003 and PWS-MD-004/004B/004C."
       },
       {
-        "caseId": "PWS-MD-002-VENDOR-CONTEXT-READFIRST",
-        "status": "needs-setup-first",
-        "reason": "Same constraints as PWS-MD-001; run only one read-first pilot at a time."
+        "caseId": "VAT-POSTING-SETUP-READFIRST",
+        "status": "ready-next",
+        "reason": "Existing read-first/no-write case checks VAT Business Posting Groups, VAT Product Posting Groups and VAT Posting Setup before any process or write gate."
       },
       {
-        "caseId": "PWS-MD-003-ITEM-SERVICE-CONTEXT-READFIRST",
-        "status": "needs-setup-first",
-        "reason": "Same constraints as PWS-MD-001; avoid broad parallel Master Data probing."
+        "caseId": "O2C/P2P process cases",
+        "status": "blocked",
+        "reason": "Process work remains blocked until VAT and General Posting Setup boundaries are proven or consciously limited."
       }
     ],
-    "selectedNextCase": "PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION",
-    "whySelectedNextCaseIsBest": "Auth is now green, but the current Foundation boundary still says the next materially useful step is a local General Posting Setup route decision before any broader Master Data or process work.",
+    "selectedNextCase": "VAT-POSTING-SETUP-READFIRST",
+    "whySelectedNextCaseIsBest": "A realistic Business Central implementation must return to VAT/USt and posting setup boundaries before master-data writes or O2C/P2P process work. The case is explicitly read-first/no-write and requires real playthru / UNIVERSAARL-DE screenshots.",
     "risksBeforeNextCase": [
-      "Foundation decision generation must not overwrite curated post-TARGET-075 evidence."
+      "Foundation decision generation must not overwrite curated post-TARGET-075 evidence.",
+      "Auth does not by itself authorize setup, master data, documents, Preview Posting or Posting."
     ],
     "requiredPreparation": [
       "Keep auth:bc:check green before any live read-first proof.",
       "Do not run setup/master-data/process writes without a fresh Smart Decision Gate.",
-      "Continue with the narrow Foundation route decision or select exactly one read-first/no-write live pilot."
+      "Use .agent/state/cases/vat-posting-setup-readfirst.json as the next case boundary if a live read-first run is started.",
+      "Keep multi-screenshot QA mandatory: context, navigation, target page, relevant row/action/FastTab and explicit not-proved boundary."
     ]
   },
-  "nextCase": "PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION",
-  "nextStep": "Use the refreshed auth only for a gated read-first proof, or continue locally with the General Posting Setup route decision; no setup/master-data/process write is authorized by auth alone."
+  "nextCase": "VAT-POSTING-SETUP-READFIRST",
+  "nextStep": "Use the refreshed auth only for the gated VAT-POSTING-SETUP-READFIRST proof if the active case/live gate allows it. No setup, master data, documents, Preview Posting or Posting are authorized by auth alone."
 }
