@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-WRITE-GATE",
+  "status": "completed-local-decision",
+  "caseType": "local-no-live-decision",
+  "goal": "Decide whether the proven U-VAT325-DISC package card justifies exactly one future metadata/setup-package action, or whether the package route should be parked before any package write.",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "whyNow": "FOUNDATION-SETUP-PACKAGE-CARD-DETAIL-READFIRST proved Page 8614 package card surface for U-VAT325-DISC, including empty table area and visible risky actions, but no package metadata write, table selection, import, validate, apply or setup value is proven.",
+  "mustRead": [
+    ".agent/OPERATING-KERNEL.md",
+    ".agent/state/current.json",
+    ".agent/state/rejected_route_register.json",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-card-detail-readfirst/result.json",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-card-detail-readfirst/visible-package-detail-signals.json"
+  ],
+  "allowedActions": [
+    "local-evidence-review",
+    "local-screenshot-qa-review",
+    "local-risk-review",
+    "local-keep-cleanup-strategy",
+    "write-local-decision-result-json",
+    "prepare-next-case"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "continue-target-073",
+    "open-business-central",
+    "run-playwright-live",
+    "type-business-central-values",
+    "create-configuration-package",
+    "edit-configuration-package",
+    "get-tables",
+    "add-table",
+    "remove-table",
+    "select-fields",
+    "import-configuration-package",
+    "export-configuration-package",
+    "validate-configuration-package",
+    "apply-configuration-package",
+    "edit-in-excel",
+    "write-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "cleanup-delete",
+    "api-shortcut",
+    "company-switch"
+  ],
+  "skills": [
+    "bc-write-gate",
+    "bc-setup-route-decision",
+    "screenshot-qa",
+    "state-sync-check"
+  ],
+  "requiredSkills": [
+    "bc-write-gate",
+    "bc-setup-route-decision",
+    "screenshot-qa",
+    "state-sync-check"
+  ],
+  "requiredHelpers": [
+    "scripts/agent/rejected-route-check.mjs",
+    "scripts/agent/local-no-live-case-readiness-check.mjs"
+  ],
+  "rejectedRoutesToRespect": [
+    "RR-FOUNDATION-PAGE314-GRID-LIST-EDIT-RETRY",
+    "RR-FOUNDATION-PAGE470-VAT-BUSINESS-GROUPS-SEARCH-RETRY",
+    "RR-FOUNDATION-PAGE472-ACTIVE-EDITOR-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGES-ESCAPE-TELLME-RETRY"
+  ],
+  "requiredChecks": [
+    "agent:preflight",
+    "agent:active-readiness",
+    "agent:dry-run",
+    "agent:rejected-routes:check",
+    "check:encoding",
+    "git diff --check"
+  ],
+  "expectedOutput": [
+    "Local decision Result JSON choosing exactly-one-write-gate, park-package-route, or consume-into-foundation-readiness.",
+    "If any write is proposed, define one exact action, purpose, expected BC effect, keep/cleanup rule, reopen proof, screenshot chain and hard stop rules.",
+    "No BC or Playwright execution in this decision case."
+  ],
+  "stopConditions": [
+    "Stop if fresh BC evidence is needed to decide.",
+    "Stop if the proposed action is broader than one exact package metadata/table action.",
+    "Stop if the proposed action would include Import, Export, Validate, Apply, Edit in Excel, setup values, master data, documents, preview or posting.",
+    "Stop if keep/cleanup/reopen proof cannot be stated before the write.",
+    "Stop if U-VAT325-DISC should be parked instead of kept as a package candidate."
+  ],
+  "nextCaseOptions": [
+    {
+      "caseId": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE",
+      "when": "Use only after this decision defines one exact action and gates it as write-gated.",
+      "liveType": "write-gated"
+    },
+    {
+      "caseId": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE",
+      "when": "Use if the package route is too risky, too empty or not useful enough for Foundation setup.",
+      "liveType": "local-no-live-decision"
+    },
+    {
+      "caseId": "FOUNDATION-READINESS-DECISION",
+      "when": "Use if package-route verdict should be consumed into Foundation readiness without more package work.",
+      "liveType": "local-no-live-decision"
+    }
+  ],
+  "completedAt": "2026-07-08T23:36:00.000Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/foundation-setup-package-one-metadata-action-write-gate/result.json",
+  "decision": "ready-for-write-gate",
+  "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE",
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE"
+}

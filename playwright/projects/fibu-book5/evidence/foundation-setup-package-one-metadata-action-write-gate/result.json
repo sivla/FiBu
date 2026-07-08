@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-WRITE-GATE",
+  "resultStatus": "completed-local-decision",
+  "decision": "ready-for-write-gate",
+  "decisionScope": "exactly-one-package-metadata-action-candidate",
+  "completedAt": "2026-07-08T23:36:00.000Z",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "businessCentralOpened": false,
+  "playwrightLiveRunExecuted": false,
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "companySwitch": false,
+  "sourceEvidenceReviewed": [
+    ".agent/state/rejected_route_register.json",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-card-detail-readfirst/result.json",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-card-detail-readfirst/visible-package-detail-signals.json"
+  ],
+  "reasoning": [
+    "The latest read-first evidence proves the existing U-VAT325-DISC package card surface and the package table subform columns.",
+    "The evidence also proves that no package table line, field selection, import, export, validate, apply or setup value exists yet.",
+    "U-VAT325-DISC is still only a parked route candidate, but the card surface is now concrete enough to define a single future metadata-action write gate.",
+    "The rejected Escape-after-Tell-Me pattern must not be repeated; any future live run must use the proven card/detail surface and visual-state screenshot chain."
+  ],
+  "selectedFutureAction": {
+    "status": "candidate-only-not-executed",
+    "caseId": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE",
+    "action": "Add or prove one configuration-package table metadata line only, preferably Table 325 / VAT Posting Setup, if the next case can confirm the editable table-subform route before typing.",
+    "allowedEffect": "configuration-package metadata only",
+    "notAllowedEffect": [
+      "no Import",
+      "no Export",
+      "no Validate Package",
+      "no Apply Package",
+      "no Edit in Excel",
+      "no setup value",
+      "no VAT value",
+      "no master data",
+      "no document",
+      "no Preview Posting",
+      "no Posting"
+    ]
+  },
+  "hardStopBeforeFutureWrite": [
+    "Stop if the active surface is not Page 8614 package card for U-VAT325-DISC.",
+    "Stop if the table subform is not visible before the action.",
+    "Stop if the editable target cell/row is not clearly active.",
+    "Stop if the action would execute Tabellen abrufen, Import, Export, Validate, Apply or Edit in Excel.",
+    "Stop if the action scope expands beyond one package table metadata line.",
+    "Stop if screenshot QA cannot capture before, active editor, after, and reopen proof.",
+    "Stop if keep/cleanup strategy is not accepted before the future live case."
+  ],
+  "keepCleanupStrategy": {
+    "keepPackage": true,
+    "cleanupNow": false,
+    "cleanupRequiredIfFutureWriteFails": true,
+    "cleanupRule": "If a future one-action package metadata run creates the wrong table line or ambiguous metadata, stop and create a cleanup/park decision before any new attempt. Do not delete historical evidence."
+  },
+  "reopenProofRequiredForFutureWrite": [
+    "Reopen Configuration Packages in playthru / UNIVERSAARL-DE.",
+    "Open U-VAT325-DISC card/detail surface.",
+    "Show package table subform after the action.",
+    "Capture screenshot and visual-state JSON proving the exact metadata line or proving the blocker.",
+    "Confirm no import/export/validate/apply/setup/master-data/posting action occurred."
+  ],
+  "rejectedRoutesRespected": [
+    "RR-FOUNDATION-PAGE314-GRID-LIST-EDIT-RETRY",
+    "RR-FOUNDATION-PAGE470-VAT-BUSINESS-GROUPS-SEARCH-RETRY",
+    "RR-FOUNDATION-PAGE472-ACTIVE-EDITOR-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGES-ESCAPE-TELLME-RETRY"
+  ],
+  "proved": [
+    "A future write gate can be scoped to one configuration-package metadata action.",
+    "No live BC or Playwright action was executed in this decision case.",
+    "Import, Export, Validate, Apply, setup values, master data, documents, preview and posting remain locked."
+  ],
+  "notProved": [
+    "No package metadata write has been executed.",
+    "No Table 325 or Table 252 line exists because of this case.",
+    "No field-selection route is proven.",
+    "No VAT/setup/posting/master-data readiness is proven.",
+    "No official Microsoft Learn source was newly researched in this no-live case because the active case limited must-read files to local evidence and rejected routes."
+  ],
+  "warnings": [
+    "ready-for-write-gate does not mean ready-to-write-now. It only means the next case may define and execute one narrowly gated metadata action.",
+    "U-VAT325-DISC must not be reused for broad package setup, import, validate or apply without separate gates."
+  ],
+  "nextStepDecision": {
+    "currentCase": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-WRITE-GATE",
+    "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-WRITE-GATE",
+    "lastEvidenceSummary": "U-VAT325-DISC package card and table subform surface are visible read-first, but no table line or setup write exists.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The source/evidence is sufficient to permit a narrowly scoped future write-gate candidate, not a broad setup-package route.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE",
+        "status": "ready-next",
+        "reason": "Best next step only if it remains one package metadata action with screenshot chain and hard stops."
+      },
+      {
+        "caseId": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE",
+        "status": "ready-after-current",
+        "reason": "Use if the future write gate cannot prove active editor or keep/cleanup strategy."
+      },
+      {
+        "caseId": "FOUNDATION-READINESS-DECISION",
+        "status": "ready-after-current",
+        "reason": "Use after package route is either proven by one metadata action or consciously parked."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE",
+    "whySelectedNextCaseIsBest": "It is the smallest materially useful next live step: one metadata line candidate, no setup data, no migration, no posting.",
+    "risksBeforeNextCase": [
+      "The table subform editor may still be ambiguous.",
+      "A broader package action would create hidden setup/data risk.",
+      "A failed write must be parked or cleaned before retry."
+    ],
+    "requiredPreparation": [
+      "Future case must define exact table target, active-editor proof, screenshot chain, reopen proof, and cleanup/park branch before BC opens."
+    ]
+  },
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE"
+}

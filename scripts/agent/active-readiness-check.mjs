@@ -8,10 +8,20 @@ const nodeCmd = process.execPath;
 
 const checksByCase = new Map([
   [
+    'FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-WRITE-GATE',
+    {
+      id: 'foundation-setup-package-one-metadata-action-write-gate-local-no-live',
+      scriptPath: 'scripts/agent/local-no-live-case-readiness-check.mjs',
+      reason:
+        'This local no-live decision must define or reject exactly one future package metadata/table action before any package/setup write exists.'
+    }
+  ],
+  [
     'FOUNDATION-SETUP-PACKAGE-CARD-DETAIL-READFIRST',
     {
       id: 'foundation-setup-package-card-detail-readfirst',
-      scriptPath: 'scripts/agent/read-first-no-write-case-readiness-check.mjs',
+      scriptPath: 'scripts/agent/run-foundation-setup-package-card-detail-readfirst.mjs',
+      args: ['--check'],
       reason:
         'The next Foundation case may inspect the existing package detail/card surface read-only, but must not create, edit, import, export, validate, apply or write package/setup data.'
     }

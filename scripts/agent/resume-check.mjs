@@ -10,7 +10,8 @@ const pwsFf006Case = 'PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST';
 const localNoLiveCases = new Set([
   'FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION',
   'FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION',
-  'FOUNDATION-SETUP-PACKAGE-METADATA-NARROW-WRITE-GATE'
+  'FOUNDATION-SETUP-PACKAGE-METADATA-NARROW-WRITE-GATE',
+  'FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-WRITE-GATE'
 ]);
 const readFirstNoWriteCases = new Set([
   'FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST',
@@ -241,6 +242,8 @@ const safeLivePilotCommand =
       ? 'npm run fibu:pws:ff006:chart-of-accounts-starter-accounts -- --live-approved'
     : selectedNextCase === 'FOUNDATION-SETUP-PACKAGE-CARD-TABLES-READFIRST'
       ? 'npm run fibu:foundation:package-card-tables-readfirst -- --live-approved'
+    : selectedNextCase === 'FOUNDATION-SETUP-PACKAGE-CARD-DETAIL-READFIRST'
+      ? 'npm run fibu:foundation:package-card-detail-readfirst -- --live-approved'
     : selectedNextCase === 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK'
       ? 'npm run fibu:target:foundation-consistency-pilot -- --live-approved'
       : null;
