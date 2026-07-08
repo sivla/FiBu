@@ -9,6 +9,7 @@
   "mustRead": [
     ".agent/OPERATING-KERNEL.md",
     ".agent/state/current.json",
+    ".agent/state/rejected_route_register.json",
     "playwright/projects/fibu-book5/UNIVERSAARL-FOUNDATION-SETUP-FIELD-MAP.md",
     "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
     "playwright/projects/fibu-book5/evidence/foundation-setup-package-table-mapping-source-decision/result.json",
@@ -62,11 +63,29 @@
     "bc-active-editor",
     "state-sync-check"
   ],
+  "rejectedRouteReview": {
+    "checkedRegister": ".agent/state/rejected_route_register.json",
+    "blockedRouteIds": [
+      "RR-FOUNDATION-CONFIG-PACKAGES-ESCAPE-TELLME-RETRY"
+    ],
+    "repeatAllowedBecause": [
+      "new-helper",
+      "new-ui-insight",
+      "different-goal"
+    ],
+    "materiallyDifferentBecause": [
+      "Uses bc-visual-state-capture and screenshot QA to distinguish side-pane-open from Role Center background.",
+      "Targets read-only Configuration Worksheet or package table-field evidence, not the old Escape-after-Tell-Me retry loop.",
+      "Stops before package create, get-tables, import, export, validate, apply, delete or setup write."
+    ],
+    "manualApprovalRequired": false
+  },
   "requiredChecks": [
     "agent:preflight",
     "agent:resume:check",
     "agent:freeze:status",
     "agent:active-readiness",
+    "agent:rejected-routes:check",
     "check:encoding",
     "git diff --check"
   ],

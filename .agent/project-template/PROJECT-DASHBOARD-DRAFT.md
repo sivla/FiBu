@@ -15,6 +15,7 @@ Last reviewed: 2026-07-08
 | Geparkter Live-Case | `TARGET-073` |
 | Letzter Resume-Pilot | `TARGET-075`, read-first, no-write, abgeschlossen |
 | Aktiver Case | `FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST` |
+| TARGET-075 Handoff | `FOUNDATION-READINESS-DECISION.md` ist verbindlich; TARGET-075 wird nicht als Normalzustand wiederholt. |
 | Legacy-Grenze | RM-DEMO, MCP_1_20260210, CRONUS, Rhein-Main und RM-* sind keine aktive Projektwahrheit. |
 
 ## Steuerungsregel

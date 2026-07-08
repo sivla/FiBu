@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-07-08T22:45:00.000+02:00",
+  "purpose": "Prevent repeated Business Central route attempts unless a materially new hypothesis is documented.",
+  "scope": "playthru / UNIVERSAARL-DE active Foundation workstreams",
+  "repeatRequiresOneOf": [
+    "new-helper",
+    "new-ui-insight",
+    "new-official-source",
+    "different-bc-surface",
+    "different-goal",
+    "manual-approval"
+  ],
+  "routes": [
+    {
+      "routeId": "RR-FOUNDATION-PAGE314-GRID-LIST-EDIT-RETRY",
+      "workstream": "w1-foundation",
+      "pageOrObject": "Page 314 / General Posting Setup / Table 252",
+      "purpose": "Persist or prove General Posting Setup values for INLAND/WAREN through fragile grid, list-edit or direct cell routes.",
+      "attemptOrRun": [
+        "PWS-FF-002",
+        "PWS-FF-002B",
+        "TARGET-058",
+        "TARGET-059"
+      ],
+      "result": "Page 314/Table 252 is partially understood, but repeated grid/list-edit routes did not prove Purch. Account 5400 persistence after reopen.",
+      "evidenceLinks": [
+        "playwright/projects/fibu-book5/evidence/pws-ff-002-general-posting-setup-readfirst-recovery/PWS-FF-002-result.json",
+        "playwright/projects/fibu-book5/evidence/pws-ff-002b-page314-navigation-capture-recovery/PWS-FF-002B-result.json",
+        "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md"
+      ],
+      "whyRejectedOrParked": "Blind repetitions of the same direct Page 314, search, grid, list-edit or active cell route create weak page proof and no durable setup proof.",
+      "riskIfRepeated": "Wastes live-run time, may type into the wrong BC surface, and can create false posting-readiness claims.",
+      "repeatAllowedOnlyIf": [
+        "new-helper",
+        "new-ui-insight",
+        "new-official-source",
+        "different-bc-surface",
+        "different-goal",
+        "manual-approval"
+      ],
+      "status": "parked-until-materially-new-hypothesis"
+    },
+    {
+      "routeId": "RR-FOUNDATION-PAGE470-VAT-BUSINESS-GROUPS-SEARCH-RETRY",
+      "workstream": "w1-foundation",
+      "pageOrObject": "Page 470 / VAT Business Posting Groups",
+      "purpose": "Prove or create the INLAND VAT Business Posting Group through direct URL, Tell-Me/search result activation or Page Inspection from search context.",
+      "attemptOrRun": [
+        "TARGET-027D31C",
+        "TARGET-070",
+        "TARGET-070B"
+      ],
+      "result": "Page 470 did not pass screenshot QA as a visible target page; Role Center, search overlay and Page Inspection context were rejected.",
+      "evidenceLinks": [
+        "playwright/projects/fibu-book5/evidence/target-027d31c-vat-setup-route-blocker-review/TARGET-027D31C-result.json",
+        "playwright/projects/fibu-book5/evidence/target-070-vat-page470-direct-route-parity-readonly-gate/TARGET-070-result.json",
+        "playwright/projects/fibu-book5/evidence/target-070b-vat-page470-helper-fix-or-pageinspection-diagnosis/TARGET-070B-result.json",
+        "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md"
+      ],
+      "whyRejectedOrParked": "The visible UI did not prove Page 470 as an open target surface, so the same search and direct URL routes must not be retried.",
+      "riskIfRepeated": "Repeats a known navigation loop and may treat Role Center or Tell-Me text as VAT setup evidence.",
+      "repeatAllowedOnlyIf": [
+        "new-helper",
+        "new-ui-insight",
+        "new-official-source",
+        "different-bc-surface",
+        "different-goal",
+        "manual-approval"
+      ],
+      "status": "rejected-current-ui-route"
+    },
+    {
+      "routeId": "RR-FOUNDATION-PAGE472-ACTIVE-EDITOR-RETRY",
+      "workstream": "w1-foundation",
+      "pageOrObject": "Page 472 / VAT Posting Setup / Table 325",
+      "purpose": "Use active editor, grid, list-edit, New or cell focus routes to enter or persist INLAND/VAT19 VAT Posting Setup values.",
+      "attemptOrRun": [
+        "TARGET-071",
+        "TARGET-073",
+        "TARGET-073B"
+      ],
+      "result": "Page 472 is reachable and Table 325 field truth exists, but no safe row-scoped active editor route is proven for target values.",
+      "evidenceLinks": [
+        "playwright/projects/fibu-book5/evidence/target-071-vat-posting-setup-page472-controlled-write-gate/TARGET-071-result.json",
+        "playwright/projects/fibu-book5/evidence/target-073-vat-page472-active-editor-route-decision/TARGET-073-result.json",
+        "playwright/projects/fibu-book5/evidence/target-073b-vat-page472-surface-and-editor-proof/TARGET-073B-result.json",
+        "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md"
+      ],
+      "whyRejectedOrParked": "The active editor and row/cell focus routes did not prove a safe editable target before values would be typed.",
+      "riskIfRepeated": "Could type VAT setup into an unintended field or imply VAT readiness without reopen proof.",
+      "repeatAllowedOnlyIf": [
+        "new-helper",
+        "new-ui-insight",
+        "new-official-source",
+        "different-bc-surface",
+        "different-goal",
+        "manual-approval"
+      ],
+      "status": "parked-editor-route"
+    },
+    {
+      "routeId": "RR-FOUNDATION-CONFIG-PACKAGES-ESCAPE-TELLME-RETRY",
+      "workstream": "w1-foundation",
+      "pageOrObject": "Configuration Packages / Konfigurationspakete",
+      "purpose": "Open and evaluate Configuration Packages by repeating direct Page 8615 plus Tell-Me navigation followed by Escape.",
+      "attemptOrRun": [
+        "FOUNDATION-SETUP-PACKAGE-READFIRST-DISCOVERY",
+        "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
+        "FOUNDATION-SETUP-PACKAGE-EXISTING-METADATA-READFIRST"
+      ],
+      "result": "The older route could close or misclassify the foreground pane; later evidence shows Configuration Packages can open as a right side pane over Role Center.",
+      "evidenceLinks": [
+        "playwright/projects/fibu-book5/evidence/foundation-setup-package-readfirst-discovery/result.json",
+        "playwright/projects/fibu-book5/evidence/foundation-setup-package-route-recovery-readfirst/result.json",
+        "playwright/projects/fibu-book5/evidence/foundation-setup-package-existing-metadata-readfirst/result.json",
+        "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md"
+      ],
+      "whyRejectedOrParked": "Pressing Escape after Tell-Me can close the real foreground pane and then falsely classify the remaining Role Center as target failure.",
+      "riskIfRepeated": "Loses valid foreground-page evidence and may send the agent back into unnecessary route recovery loops.",
+      "repeatAllowedOnlyIf": [
+        "new-helper",
+        "new-ui-insight",
+        "different-bc-surface",
+        "different-goal",
+        "manual-approval"
+      ],
+      "status": "rejected-as-repeat-pattern"
+    }
+  ]
+}
