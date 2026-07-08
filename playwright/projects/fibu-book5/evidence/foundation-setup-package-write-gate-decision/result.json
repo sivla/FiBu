@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "resultStatus": "completed-local-decision",
+  "decision": "ready-for-readfirst",
+  "businessCentralOpened": false,
+  "playwrightLiveRunExecuted": false,
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "packageCreated": false,
+  "packageEdited": false,
+  "packageApplied": false,
+  "actionsTaken": [
+    "Read the active Operating Kernel, current state, active case, rejected route register, Foundation setup field map and prior Configuration Worksheet read-first result.",
+    "Reviewed official Microsoft Learn sources for Business Central configuration packages and configuration-package application boundaries.",
+    "Classified the Configuration Package route as not ready for a write gate because package card, package table lines, field selection, validation and apply behavior are not yet locally proven for Universaarl.",
+    "Selected a narrower read-first follow-up that may inspect the existing parked package candidate and package-card/table surfaces without creating, importing, validating, applying or writing setup data."
+  ],
+  "actionsNotTaken": [
+    "No Business Central session was opened.",
+    "No Playwright live run was executed.",
+    "No package was created, edited, imported, exported, validated or applied.",
+    "No setup, master data, document, draft, preview posting, posting, payment, cleanup or API action was executed.",
+    "TARGET-073 was not resumed.",
+    "Rejected Page 314, Page 470, Page 472 and Escape-after-Tell-Me retry routes were not repeated."
+  ],
+  "sourceBasis": [
+    {
+      "type": "official-microsoft-learn",
+      "title": "Set Up Company Configuration Packages - Business Central",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/set-up-standard-company-configuration-packages",
+      "usedFor": "Configuration packages/templates are a legitimate setup and migration aid, especially for repeatable setup/master data preparation."
+    },
+    {
+      "type": "official-microsoft-learn",
+      "title": "Apply Company Configuration Packages - Business Central",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/apply-company-configuration-packages",
+      "usedFor": "Applying packages is an implementation/migration action and therefore remains gated until package contents, validation, effect and rollback/keep strategy are explicit."
+    },
+    {
+      "type": "local-universaarl-evidence",
+      "path": "playwright/projects/fibu-book5/evidence/foundation-configuration-worksheet-readfirst/result.json",
+      "usedFor": "Proves read-first visibility of Configuration Worksheet and Configuration Packages in playthru / UNIVERSAARL-DE, but not package-card fields or setup writes."
+    },
+    {
+      "type": "local-field-map",
+      "path": "playwright/projects/fibu-book5/UNIVERSAARL-FOUNDATION-SETUP-FIELD-MAP.md",
+      "usedFor": "Defines FS-001 to FS-004 as planned Foundation setup objects and explicitly states that U-VAT325-DISC remains parked until a separate gate."
+    },
+    {
+      "type": "local-route-control",
+      "path": ".agent/state/rejected_route_register.json",
+      "usedFor": "Blocks repeated fragile grid, VAT page and Escape-after-Tell-Me routes unless a materially new hypothesis exists."
+    }
+  ],
+  "routeAssessment": {
+    "manualUi": "reject-for-bulk-foundation-write-now",
+    "assistedSetup": "not-selected",
+    "configurationPackageOrRapidStart": "investigate-readfirst-before-write",
+    "excelImport": "later-after-package-surface-proof",
+    "template": "later-for-master-data-not-foundation-write-now",
+    "api": "reject-without-explicit-case-permission",
+    "alExtension": "reject-without-explicit-case-permission",
+    "parkOrNoChange": "fallback-if-readfirst-cannot-prove-safe-package-surface"
+  },
+  "proved": [
+    "The Configuration Package route is source-backed enough to continue as a candidate implementation path.",
+    "The prior Universaarl read-first evidence is insufficient for any package metadata write, table add, field selection, import, validate or apply action.",
+    "A materially different next route exists: inspect package card/table surfaces with visual-state evidence instead of repeating Tell-Me Escape or grid-edit attempts."
+  ],
+  "notProved": [
+    "No package-card route has been proven for U-VAT325-DISC or any new package.",
+    "No package table line for Table 252 or Table 325 has been proven.",
+    "No field-selection route has been proven.",
+    "No package import/export/validate/apply behavior has been proven.",
+    "No setup value has been changed or persisted.",
+    "No Foundation readiness, posting readiness or UAT acceptance has been proven."
+  ],
+  "blockedBy": [
+    "Fresh read-first visual evidence is required before any package write gate.",
+    "U-VAT325-DISC is only a parked route candidate and must not be blindly reused."
+  ],
+  "warnings": [
+    "Do not treat Configuration Packages as a shortcut around Business Central understanding; the book still needs UI explanation and validation logic.",
+    "A later write gate must name one exact action, its fields, risk, keep/cleanup strategy and reopen proof before any package metadata or setup write occurs."
+  ],
+  "rejectedRoutesRespected": [
+    "RR-FOUNDATION-PAGE314-GRID-LIST-EDIT-RETRY",
+    "RR-FOUNDATION-PAGE470-VAT-BUSINESS-GROUPS-SEARCH-RETRY",
+    "RR-FOUNDATION-PAGE472-ACTIVE-EDITOR-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGES-ESCAPE-TELLME-RETRY"
+  ],
+  "nextStepDecision": {
+    "currentCase": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION",
+    "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION",
+    "lastEvidenceSummary": "Configuration Worksheet and Configuration Packages are visible read-first in playthru / UNIVERSAARL-DE; no package card, table line, field selection, validation, apply or setup write is proven.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The write gate would be premature. The next useful evidence gap is the package card/table surface, not a package write.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "FOUNDATION-SETUP-PACKAGE-CARD-TABLES-READFIRST",
+        "status": "ready-next",
+        "reason": "Materially different from rejected routes and limited to visual read-first evidence."
+      },
+      {
+        "caseId": "FOUNDATION-SETUP-PACKAGE-METADATA-NARROW-WRITE-GATE",
+        "status": "needs-ui-discovery-first",
+        "reason": "Needs package-card/table/field-surface evidence before any write can be justified."
+      },
+      {
+        "caseId": "FOUNDATION-READINESS-DECISION",
+        "status": "ready-after-current",
+        "reason": "Should consume the package route decision after read-first evidence closes or parks the package surface gap."
+      },
+      {
+        "caseId": "MASTER-DATA-ROUTE-DECISION",
+        "status": "needs-setup-first",
+        "reason": "Master Data remains downstream of Foundation setup and route clarity."
+      }
+    ],
+    "queueChangesMade": [
+      "Selected FOUNDATION-SETUP-PACKAGE-CARD-TABLES-READFIRST before any package write gate."
+    ],
+    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-CARD-TABLES-READFIRST",
+    "whySelectedNextCaseIsBest": "It targets the exact missing proof with screenshots and visual-state classification while keeping all package writes locked.",
+    "risksBeforeNextCase": [
+      "Existing U-VAT325-DISC may be only a parked empty header and must not be treated as active setup.",
+      "Configuration Packages may open as a side pane; Screenshot QA must classify the foreground correctly."
+    ],
+    "requiredPreparation": [
+      "Use visual-state capture and screenshot QA.",
+      "Respect rejected_route_register before any navigation strategy.",
+      "Stop before Create, Get Tables, Import, Export, Validate, Apply, field edit or setup write."
+    ]
+  },
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-CARD-TABLES-READFIRST"
+}

@@ -11,7 +11,10 @@ const localNoLiveCases = new Set([
   'FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION',
   'FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION'
 ]);
-const readFirstNoWriteCases = new Set(['FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST']);
+const readFirstNoWriteCases = new Set([
+  'FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST',
+  'FOUNDATION-SETUP-PACKAGE-CARD-TABLES-READFIRST'
+]);
 const selectedCaseIsLocalNoLive = localNoLiveCases.has(selectedNextCase);
 const selectedCaseIsReadFirstNoWrite = readFirstNoWriteCases.has(selectedNextCase);
 const minAuthExpiresArg = process.argv.find((arg) => arg.startsWith('--min-auth-expires-hours='));

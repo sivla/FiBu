@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-08T22:49:59.529Z",
+  "updatedAt": "2026-07-08T22:57:23.999Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -15,12 +15,12 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w1-foundation",
-  "activeCase": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION",
-  "active_case_file": ".agent/state/cases/foundation-setup-package-write-gate-decision.json",
-  "activeCaseFile": ".agent/state/cases/foundation-setup-package-write-gate-decision.json",
+  "activeCase": "FOUNDATION-SETUP-PACKAGE-CARD-TABLES-READFIRST",
+  "active_case_file": ".agent/state/cases/foundation-setup-package-card-tables-readfirst.json",
+  "activeCaseFile": ".agent/state/cases/foundation-setup-package-card-tables-readfirst.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-foundation-local-decision",
+  "mode": "universaarl-foundation-readfirst",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -43,12 +43,13 @@
     "agent:visual-proof-skills:check"
   ],
   "allowedActions": [
-    "local-source-review",
-    "local-field-map-review",
-    "local-risk-review",
-    "local-keep-cleanup-strategy",
-    "write-local-decision-result-json",
-    "prepare-next-case"
+    "validate-playthru-context-readonly",
+    "validate-universaarl-company-context-readonly",
+    "open-configuration-packages-readonly",
+    "inspect-existing-package-card-readonly",
+    "capture-screenshot-chain",
+    "capture-visual-state-json",
+    "write-readfirst-result-json"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -57,10 +58,9 @@
     "fake-evidence",
     "book-claim-without-evidence",
     "continue-target-073",
-    "open-business-central",
-    "run-playwright-live",
+    "type-business-central-values",
     "create-configuration-package",
-    "open-configuration-package-card-for-edit",
+    "edit-configuration-package",
     "get-tables",
     "add-table",
     "remove-table",
@@ -79,9 +79,9 @@
     "api-shortcut",
     "company-switch"
   ],
-  "nextCase": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION",
-  "nextStep": "Locally decide whether the read-first proof justifies a tightly scoped Configuration Package write gate. No Business Central, no Playwright live and no package/setup write in this decision case.",
-  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-package-write-gate-decision.json",
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-CARD-TABLES-READFIRST",
+  "nextStep": "Run only the FOUNDATION-SETUP-PACKAGE-CARD-TABLES-READFIRST case: inspect Configuration Package card/table surfaces read-first in playthru / UNIVERSAARL-DE with multi-step screenshot chain, Screenshot QA, visual-state JSON and no package/setup writes.",
+  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-package-card-tables-readfirst.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -215,13 +215,13 @@
     "nextBoundary": "Master Data remains parked. Next work must update Foundation Readiness and either accept this as a Foundation gap or define a genuinely new Page 314 route hypothesis before another live attempt."
   },
   "activeNextStepAuthority": {
-    "source": "playwright/projects/fibu-book5/evidence/foundation-configuration-worksheet-readfirst/result.json",
-    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION",
-    "activeCaseFile": ".agent/state/cases/foundation-setup-package-write-gate-decision.json",
+    "source": "playwright/projects/fibu-book5/evidence/foundation-setup-package-write-gate-decision/result.json",
+    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-CARD-TABLES-READFIRST",
+    "activeCaseFile": ".agent/state/cases/foundation-setup-package-card-tables-readfirst.json",
     "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST proved Configuration Worksheet and Configuration Packages read-only. The next safe step is a local write-gate decision, not an automatic package/setup write."
+    "reason": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION selected a read-first package card/table surface proof before any package metadata or setup write gate."
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -335,8 +335,8 @@
     "currentLiveBoundary": {
       "freezeActive": false,
       "parkedCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-      "resumePilot": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION",
-      "resumePilotMode": "local-no-live-decision"
+      "resumePilot": "FOUNDATION-SETUP-PACKAGE-CARD-TABLES-READFIRST",
+      "resumePilotMode": "read-first-no-write"
     },
     "legacyScriptGuard": {
       "script": "agent:legacy:active-check",
@@ -416,9 +416,9 @@
   },
   "freezeStatus": {
     "status": "lifted-readfirst",
-    "caseId": "FOUNDATION-READINESS-DECISION",
+    "caseId": "FOUNDATION-SETUP-PACKAGE-CARD-TABLES-READFIRST",
     "frozenLiveCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-    "resumeCandidateAfterFreeze": "FOUNDATION-READINESS-DECISION",
+    "resumeCandidateAfterFreeze": "FOUNDATION-SETUP-PACKAGE-CARD-TABLES-READFIRST",
     "completedLocalCheckpoint": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
     "planFile": ".agent/PROJECT-IMPROVEMENT-PLAN.md"
   },
@@ -1726,7 +1726,7 @@
     "nextStep": "BANK-018: controlled no-post Payment Journal preflight for 108205; do not post."
   },
   "workType": "universaarl-skr04-balance-sheet-accounts-fit",
-  "lastCompletedCase": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
+  "lastCompletedCase": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION",
   "latestBank018": {
     "caseId": "BANK-018-VENDOR-PAYMENT-108205-PREFLIGHT-NO-POST",
     "status": [
@@ -4111,45 +4111,47 @@
     ]
   },
   "nextStepDecisionCard": {
-    "currentCase": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-    "plannedNextCaseBeforeReview": "TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY",
-    "lastEvidenceSummary": "Auth is fresh for playthru / UNIVERSAARL-DE; D31 can inspect VAT Assisted/Manual Setup routes read-only.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "No safe Assisted/Manual VAT setup context was accepted; setup writes stay locked.",
+    "currentCase": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION",
+    "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION",
+    "lastEvidenceSummary": "Configuration Worksheet and Configuration Packages are visible read-first, but package card/table/field-selection and setup effects are not proven.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "A package write gate is premature; inspect the package card/table surface read-first before any write.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-027D32-VAT-ASSISTED-SETUP-WRITE-GATE-DECISION",
-        "status": "blocked",
-        "reason": "Needs a safe VAT setup route context first."
+        "caseId": "FOUNDATION-SETUP-PACKAGE-CARD-TABLES-READFIRST",
+        "status": "ready-next",
+        "reason": "Targets the exact missing visual proof without writes."
       },
       {
-        "caseId": "TARGET-033-DIMENSIONS-RECOVERY-DEFAULTS",
+        "caseId": "FOUNDATION-SETUP-PACKAGE-METADATA-NARROW-WRITE-GATE",
+        "status": "needs-ui-discovery-first",
+        "reason": "Needs package-card/table/field evidence first."
+      },
+      {
+        "caseId": "FOUNDATION-READINESS-DECISION",
         "status": "ready-after-current",
-        "reason": "Can resume after VAT route is observed or intentionally parked."
+        "reason": "Consumes the package route once proven or parked."
       },
       {
-        "caseId": "TARGET-034-FOUNDATION-READY-CHECKPOINT",
+        "caseId": "MASTER-DATA-ROUTE-DECISION",
         "status": "needs-setup-first",
-        "reason": "Requires VAT and dimensions status."
-      },
-      {
-        "caseId": "TARGET-038-O2C-PREFLIGHT",
-        "status": "needs-setup-first",
-        "reason": "Master/process work remains locked until W1 Foundation is clearer."
+        "reason": "Master Data depends on Foundation route clarity."
       }
     ],
     "queueChangesMade": [
-      "Select TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP after TARGET-027D31-VAT-ASSISTED-SETUP-READONLY-DISCOVERY."
+      "Inserted FOUNDATION-SETUP-PACKAGE-CARD-TABLES-READFIRST before any package write gate."
     ],
-    "selectedNextCase": "TARGET-027D31B-VAT-SETUP-ROUTE-UI-SOURCE-FOLLOWUP",
-    "whySelectedNextCaseIsBest": "It keeps setup writes locked and narrows the remaining blocker to route/source/UI discovery.",
+    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-CARD-TABLES-READFIRST",
+    "whySelectedNextCaseIsBest": "It is materially different from rejected routes and produces the missing visual evidence before any package/setup write.",
     "risksBeforeNextCase": [
-      "Do not click Next, Finish, Apply, OK or any setup-saving action without a separate Smart Decision Gate.",
-      "Do not claim VAT correctness without setup row, preview/posting and ledger evidence.",
-      "Abort if runtime shell is not playthru / UNIVERSAARL-DE."
+      "U-VAT325-DISC is parked and must not be reused blindly.",
+      "Configuration Packages can appear as a foreground side pane and must be classified with Screenshot QA."
     ],
     "requiredPreparation": [
-      "Use source/UI follow-up to locate the exact VAT Assisted/Manual setup route."
+      "Use visual-state capture.",
+      "Use a multi-step screenshot chain and Screenshot QA before accepting page, pane, table or field claims.",
+      "Respect rejected_route_register.",
+      "Stop before package create/edit/get-tables/import/export/validate/apply/setup write."
     ]
   },
   "permissionBlocker": {
@@ -4188,8 +4190,8 @@
     "noPlaywrightExecution": true,
     "nextCase": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP"
   },
-  "lastCompletedCaseFile": ".agent/state/cases/target-032j-general-posting-setup-source-or-configuration-route-decision.json",
-  "lastResultPath": "playwright/projects/fibu-book5/evidence/target-071-vat-posting-setup-page472-controlled-write-gate/TARGET-071-result.json",
+  "lastCompletedCaseFile": ".agent/state/cases/foundation-setup-package-write-gate-decision.json",
+  "lastResultPath": "playwright/projects/fibu-book5/evidence/foundation-setup-package-write-gate-decision/result.json",
   "latestReadonlyUiLookAndFeelMap": {
     "caseId": "PREP-003-PLAYTHRU-READONLY-UI-LOOK-AND-FEEL-MAP",
     "status": "prep-done",
@@ -4924,7 +4926,7 @@
   },
   "permissionStatus": "user-confirmed-super-permissions-available-target-company-created",
   "companyCreationPermissionStatus": "satisfied-live-ui-proven",
-  "lastUpdated": "2026-07-01T05:54:10.322Z",
+  "lastUpdated": "2026-07-08T22:57:23.999Z",
   "latestTarget009CompanyCreation": {
     "caseId": "TARGET-009-MAIN-NEU-LIST-COMPANY-CREATE-GATE",
     "status": "universaarl-proven",
@@ -6653,7 +6655,7 @@
     "nextCase": "TARGET-026K-SKR04-REMAINING-STARTER-ACCOUNTS-FIT",
     "updatedAt": "2026-06-30T19:52:53.805Z"
   },
-  "lastEvidenceResult": "playwright/projects/fibu-book5/evidence/target-027c4-vat-business-result-click-recovery/TARGET-027C4-result.json",
+  "lastEvidenceResult": "playwright/projects/fibu-book5/evidence/foundation-setup-package-write-gate-decision/result.json",
   "latestSkr04AccountFit": {
     "caseId": "TARGET-026L-SKR04-REMAINING-BALANCE-SHEET-ACCOUNTS-FIT",
     "status": [
@@ -8770,7 +8772,7 @@
       "apiShortcut": false
     }
   ],
-  "lastCompletedResultPath": "playwright/projects/fibu-book5/evidence/target-032h-general-posting-setup-alternative-route-discovery/TARGET-032H-result.json",
+  "lastCompletedResultPath": "playwright/projects/fibu-book5/evidence/foundation-setup-package-write-gate-decision/result.json",
   "latestTarget045B": {
     "caseId": "TARGET-045B-CUSTOMER-ITEM-POSTING-FIELDS-READONLY-ROUTE-RETRY",
     "resultPath": "playwright/projects/fibu-book5/evidence/target-045b-customer-item-posting-fields-readonly-route-retry/TARGET-045B-result.json",
@@ -11997,63 +11999,12 @@
     "updatedAt": "2026-07-08T18:05:00.000+02:00"
   },
   "latestFoundationSetupPackageMetadataWriteGateDecision": {
-    "caseId": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
+    "caseId": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION",
     "status": "completed-local-decision",
-    "resultPath": "playwright/projects/fibu-book5/evidence/foundation-setup-package-metadata-write-gate-decision/result.json",
-    "instance": "playthru",
-    "company": "UNIVERSAARL-DE",
-    "businessCentralOpened": false,
-    "playwrightLiveRunExecuted": false,
-    "setupChanged": false,
-    "masterDataChanged": false,
-    "draftCreated": false,
-    "previewPosting": false,
-    "posted": false,
-    "payment": false,
-    "apiShortcut": false,
-    "companySwitch": false,
-    "confidentialRealCustomerDataUsed": false,
-    "uiMockupUsed": false,
-    "decision": "No package metadata write gate yet. Configuration Packages remain a plausible Business Central implementation route for structured setup data, but the current playthru UI evidence did not prove the Konfigurationspakete page/list surface. The next practical step is a materially different read-only route recovery, not creating a package.",
-    "selectedRoute": {
-      "routeId": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
-      "type": "read-first-no-write",
-      "reason": "The smallest useful next step is to recover or reject the actual page/list route with stronger screenshot truth before deciding on metadata creation.",
-      "mustUseMateriallyDifferentHypothesis": true
-    },
-    "rejectedRoutes": [
-      {
-        "route": "Repeat direct Page 8615 plus same Tell-Me click",
-        "reason": "Already produced Role Center context and weak page signals."
-      },
-      {
-        "route": "Create temporary configuration package metadata now",
-        "reason": "Would be a write/admin artifact before reliable target page proof."
-      },
-      {
-        "route": "Import, validate, apply or Edit in Excel",
-        "reason": "Effective setup/data routes; require later explicit write/import gate and rollback or keep strategy."
-      },
-      {
-        "route": "Jump to Master Data, O2C or P2P",
-        "reason": "Foundation setup boundaries are still open."
-      }
-    ],
-    "proved": [
-      "FOUNDATION-SETUP-PACKAGE-READFIRST-DISCOVERY stayed in playthru / UNIVERSAARL-DE.",
-      "That run did not execute package actions or setup writes.",
-      "Screenshot QA rejected the route because the captured target context still showed Role Center instead of an accepted Konfigurationspakete page/list proof.",
-      "A local decision can now prevent another blind retry or premature metadata write."
-    ],
-    "notProved": [
-      "No Konfigurationspakete page/list surface is currently proven by the latest read-first run.",
-      "No configuration package exists from this work.",
-      "No Table 252, Table 325 or Page 470 field mapping is proven through package metadata.",
-      "No setup value was written.",
-      "No Master Data, O2C, P2P, Preview Posting or Posting readiness."
-    ],
-    "nextCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
-    "updatedAt": "2026-07-08T18:35:00.000+02:00"
+    "decision": "ready-for-readfirst",
+    "resultPath": "playwright/projects/fibu-book5/evidence/foundation-setup-package-write-gate-decision/result.json",
+    "completedAt": "2026-07-08T22:57:23.999Z",
+    "note": "Configuration Package route remains source-backed, but write gate is not ready until package card/table/field surfaces are proven read-first."
   },
   "latestFoundationSetupPackageRouteRecoveryReadfirst": {
     "caseId": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
