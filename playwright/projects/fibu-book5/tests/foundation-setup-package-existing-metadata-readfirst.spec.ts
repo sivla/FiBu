@@ -11,6 +11,7 @@ import {
   searchFor,
   waitForBusinessCentralShell
 } from '../../../core/bc-helpers';
+import { createBcStepTimeline } from '../../../core/bc/step-timeline';
 import { evidencePath, writeJsonEvidence, writeTextEvidence } from '../../../core/evidence';
 
 test.use({
@@ -187,8 +188,32 @@ test(`${CASE_ID} inspects existing configuration-package metadata read-first`, a
   await fs.mkdir(EVIDENCE_DIR, { recursive: true });
   const startedAt = new Date().toISOString();
   const screenshots: string[] = [];
+  const stepTimeline = createBcStepTimeline({
+    project: PROJECT,
+    evidenceId: EVIDENCE_ID,
+    caseId: CASE_ID,
+    evidenceDir: EVIDENCE_DIR,
+    evidenceDirRelative: EVIDENCE_DIR_REL
+  });
 
-  const initialText = await openConfigurationPackages(page);
+  let initialText = '';
+  await stepTimeline.step(page, {
+    stepId: '010-open-configuration-packages',
+    action: 'Open Configuration Packages read-first',
+    claim: 'Business Central shows Configuration Packages in the foreground, including side-pane-over-Role-Center cases.',
+    expectedPageText: [CONFIG_PACKAGE_PAGE_OR_LIST_RE],
+    run: async () => {
+      initialText = await openConfigurationPackages(page);
+    },
+    verdict: (_before, after) =>
+      ['side-pane-open', 'list-page-open', 'target-page-open'].includes(after.classification) ? 'proven' : 'not-proven',
+    stopReason: (_before, after) =>
+      after.classification === 'search-overlay-open'
+        ? 'Search/Tell-Me overlay remained open after navigation.'
+        : after.classification === 'role-center-background'
+          ? 'Only Role Center background was visible after navigation.'
+          : null
+  });
   screenshots.push(
     await capture(page, 'foundation-package-existing-metadata-010-list-context.png', {
       page: 'Konfigurationspakete / Configuration Packages',
@@ -205,13 +230,23 @@ test(`${CASE_ID} inspects existing configuration-package metadata read-first`, a
   const rowTextVisible = await rowByText.isVisible({ timeout: 3000 }).catch(() => false);
   const textSignalVisible = /U-VAT325(?:-DISC)?|VAT 325 Discovery/i.test(initialText);
   const packageVisible = rowRoleVisible || rowTextVisible || textSignalVisible;
-  if (rowRoleVisible) {
-    await row.scrollIntoViewIfNeeded({ timeout: 1000 }).catch(() => undefined);
-    await row.click({ timeout: 2000 }).catch(() => undefined);
-  } else if (rowTextVisible) {
-    await rowByText.scrollIntoViewIfNeeded({ timeout: 1000 }).catch(() => undefined);
-    await rowByText.click({ timeout: 2000 }).catch(() => undefined);
-  }
+  await stepTimeline.step(page, {
+    stepId: '020-focus-existing-package-row',
+    action: `Focus existing package row ${PACKAGE_CODE} if visible`,
+    claim: `${PACKAGE_CODE} row focus is attempted only when the row or text signal is visible.`,
+    expectedPageText: [CONFIG_PACKAGE_PAGE_OR_LIST_RE, /U-VAT325|VAT 325 Discovery/i],
+    run: async () => {
+      if (rowRoleVisible) {
+        await row.scrollIntoViewIfNeeded({ timeout: 1000 }).catch(() => undefined);
+        await row.click({ timeout: 2000 }).catch(() => undefined);
+      } else if (rowTextVisible) {
+        await rowByText.scrollIntoViewIfNeeded({ timeout: 1000 }).catch(() => undefined);
+        await rowByText.click({ timeout: 2000 }).catch(() => undefined);
+      }
+    },
+    verdict: packageVisible ? 'proven' : 'not-proven',
+    stopReason: packageVisible ? null : `${PACKAGE_CODE} was not visible enough for row focus proof.`
+  });
 
   const afterRowText = await compactPackageText(page);
   screenshots.push(
@@ -261,6 +296,10 @@ test(`${CASE_ID} inspects existing configuration-package metadata read-first`, a
 
   const full = await fullText(page);
   await writeTextEvidence(evidencePath(PROJECT, EVIDENCE_ID, 'page-text.txt'), endText || full);
+  stepTimeline.timeline.businessCentralOpened = true;
+  stepTimeline.timeline.playwrightLiveRunExecuted = true;
+  stepTimeline.timeline.liveActionsExecuted = false;
+  const stepTimelinePath = await stepTimeline.write();
 
   const tableCountZero = /U-VAT325-DISC[\s\S]*VAT 325 Discovery[\s\S]*(^|\D)0(\D|$)/i.test(endText || full);
   const resultStatus = packageVisible ? 'observed-existing-metadata-readfirst' : 'blocked-existing-metadata-not-visible';
@@ -315,7 +354,12 @@ test(`${CASE_ID} inspects existing configuration-package metadata read-first`, a
       'No company switch'
     ],
     screenshots,
+    stepTimeline: stepTimelinePath,
     actionInventoryPath: `${EVIDENCE_DIR_REL}/visible-package-actions.json`,
+    screenshotQaReferences: [
+      'Step timeline before/after screenshots and visual-state JSON classify page, pane, dialog, overlay and Role Center background.',
+      stepTimelinePath
+    ],
     proved: packageVisible
       ? [
           'Business Central opened in playthru / UNIVERSAARL-DE.',
