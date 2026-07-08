@@ -331,3 +331,14 @@ Erlaubte Anschlussklassifikationen:
 ## Naechster Case
 
 - `FOUNDATION-SETUP-ROUTE-DECISION` als naechster lokaler Projektbaustein vorbereiten: VAT-/Posting-Boundaries in eine realistische Implementierungsroute ueberfuehren. Kandidaten sind manueller Standard-UI-Weg, Konfigurationspaket/Import, source-backed Page Inspection oder bewusstes Parken als Prozessgrenze. Keine BC-Live-Ausfuehrung, kein Speichern, kein Import, kein O2C/P2P in diesem Entscheidungsschritt.
+
+## FOUNDATION-SETUP-ROUTE-DECISION
+
+- Quelle: playwright/projects/fibu-book5/evidence/foundation-setup-route-decision/result.json
+- Status: completed-local-decision
+- Entscheidung: Fuer die offenen Foundation-Gaps ist der naechste realistische Projektweg eine kompakte Konfigurationspaket-/Excel-unterstuetzte Feldkarte, bevor Business Central wieder geoeffnet oder Setup geschrieben wird.
+- Warum: Posting Groups und VAT Setup sind Kontenfindungs- und Steuerlogik, keine reine Klickstrecke. Wiederholte manuelle Zellversuche auf Page 314 oder Page 472 sind fragiler als eine vorbereitete Feldkarte mit Owner, Quelle, Validierung, Screenshot-Bedarf und Reopen-Proof-Plan.
+- Rolle der manuellen UI: weiter wichtig fuer Schulung, Handbuch und Einzelvalidierung. Sie ist aber nicht der primaere Wiederholweg fuer mehrere Foundation-Setup-Zeilen, solange kein stabiler Editorpfad bewiesen ist.
+- Rolle von Quellen und Page Inspection: Quellen erklaeren Produktlogik; Page Inspection kann Tabellen-/Feldwahrheit liefern. Beides ersetzt keinen spaeteren `playthru`-Nachweis gespeicherter Werte.
+- Schreibgrenze: kein Konfigurationspaket erstellt, importiert, validiert oder angewendet; keine Setup-Aenderung, keine Stammdatenanlage, kein Beleg, keine Buchungsvorschau, keine Buchung.
+- Naechster Case: `FOUNDATION-SETUP-PACKAGE-FIELD-MAP`.

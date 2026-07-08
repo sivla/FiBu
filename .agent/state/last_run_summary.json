@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "FOUNDATION-REALISM-ROUTE-DECISION-PREP",
+  "runId": "FOUNDATION-SETUP-ROUTE-DECISION",
   "caseId": "FOUNDATION-SETUP-ROUTE-DECISION",
-  "status": "completed-local-foundation-boundary-refresh",
-  "completedAt": "2026-07-08T16:25:00.000+02:00",
-  "updatedAt": "2026-07-08T16:25:00.000+02:00",
+  "status": "completed-local-decision",
+  "completedAt": "2026-07-08T16:55:00.000+02:00",
+  "updatedAt": "2026-07-08T16:55:00.000+02:00",
   "mode": "universaarl-foundation-local-readiness",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Foundation Readiness now consumes the completed VAT read-first, VAT route recovery, VAT source/alternative route decision, Kontenplan, Dimensionen, Nummernserien, Debitor and Artikel evidence. The active next step is a local FOUNDATION-SETUP-ROUTE-DECISION: choose the realistic implementation route for unresolved VAT/Posting setup gaps before any live write, master data write, O2C/P2P, Preview Posting or Posting.",
+  "summary": "FOUNDATION-SETUP-ROUTE-DECISION is completed locally. The selected realistic route is to prepare a compact configuration-package/Excel-assisted Foundation setup field map before any setup write, import, master data write, O2C/P2P, Preview Posting or Posting.",
   "businessCentralOpened": false,
   "playwrightLiveRunExecuted": false,
   "setupChanged": false,
@@ -25,10 +25,11 @@
   "confidentialRealCustomerDataUsed": false,
   "uiMockupUsed": false,
   "actionsTaken": [
-    "Reviewed current state, latest Foundation decision and latest VAT/Foundation evidence.",
-    "Updated FOUNDATION-READINESS-DECISION with the latest VAT read-first, route-recovery and source/alternative-route boundary.",
-    "Prepared a minimal FOUNDATION-SETUP-ROUTE-DECISION case so the next step is a realistic implementation-route decision, not another completed read-first replay.",
-    "Realigned top-level state to the local Foundation setup route decision."
+    "Reviewed current state, the active Foundation setup route decision case and relevant Foundation evidence.",
+    "Checked official Microsoft Learn guidance for posting groups and VAT setup.",
+    "Selected configuration-package-field-map-before-any-write as the realistic next route.",
+    "Prepared FOUNDATION-SETUP-PACKAGE-FIELD-MAP as the next local no-live case.",
+    "Updated state, dashboard and Foundation Readiness with the route decision."
   ],
   "actionsNotTaken": [
     "No Business Central live page was opened.",
@@ -45,9 +46,9 @@
     "No UI mockup was used as evidence."
   ],
   "proved": [
-    "Foundation Readiness now states that Page 471/Page 472 have read-first value but Page 470 remains a visible UI blocker.",
-    "Training-/handbook-ready master data remains separate from setup- and process-readiness.",
-    "Top-level nextCase now points to FOUNDATION-SETUP-ROUTE-DECISION."
+    "Manual UI, configuration package/import, source-backed inspection and parking were compared.",
+    "The selected Foundation setup route is a local field map before any write/import.",
+    "Top-level nextCase now points to FOUNDATION-SETUP-PACKAGE-FIELD-MAP."
   ],
   "notProved": [
     "No new Business Central screenshot was captured.",
@@ -55,25 +56,28 @@
     "No new write readiness, O2C/P2P readiness, Preview Posting readiness or posting readiness was proven."
   ],
   "warnings": [
-    "Do not repeat completed VAT-POSTING-SETUP-READFIRST, Page 470 route recovery, PWS-FF-006, customer or item read-first work.",
-    "A real customer project needs a route decision before writing Foundation setup values."
+    "A field map is preparation, not proof that setup values exist in Business Central.",
+    "Applying or importing any package is a future write action and remains gated."
   ],
   "changedArtifacts": [
     ".agent/state/current.json",
     ".agent/state/last_run_summary.json",
     ".agent/state/cases/foundation-setup-route-decision.json",
+    ".agent/state/cases/foundation-setup-package-field-map.json",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-route-decision/result.json",
+    ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
     "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md"
   ],
   "nextStepDecision": {
-    "currentCase": "FOUNDATION-READINESS-DECISION",
-    "plannedNextCaseBeforeReview": "FOUNDATION-READINESS-DECISION",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "The Foundation Readiness refresh is now done. The next useful step is a short local route decision for unresolved setup gaps.",
+    "currentCase": "FOUNDATION-SETUP-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-ROUTE-DECISION",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The local route decision was the right next step and is now complete.",
     "lookaheadReviewed": [
       {
-        "caseId": "FOUNDATION-SETUP-ROUTE-DECISION",
+        "caseId": "FOUNDATION-SETUP-PACKAGE-FIELD-MAP",
         "status": "ready-next",
-        "reason": "It decides manual UI, configuration package/import, source-backed Page Inspection or explicit parking before any write."
+        "reason": "It turns the route decision into concrete setup rows, fields, validation and screenshot needs without opening BC."
       },
       {
         "caseId": "TARGET-073",
@@ -92,11 +96,11 @@
       }
     ],
     "queueChangesMade": [
-      "Top-level nextCase changed from FOUNDATION-READINESS-DECISION to FOUNDATION-SETUP-ROUTE-DECISION.",
-      "Foundation Readiness no longer advertises another Debitoren/VAT/Kontenplan microcase as next work."
+      "Top-level nextCase changed from FOUNDATION-SETUP-ROUTE-DECISION to FOUNDATION-SETUP-PACKAGE-FIELD-MAP.",
+      "No live BC or write route was unlocked."
     ],
-    "selectedNextCase": "FOUNDATION-SETUP-ROUTE-DECISION",
-    "whySelectedNextCaseIsBest": "A realistic Business Central implementation should decide the setup route before writing, importing or starting process evidence.",
+    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-FIELD-MAP",
+    "whySelectedNextCaseIsBest": "A realistic Business Central implementation should define setup values and validation before writing, importing or starting process evidence.",
     "risksBeforeNextCase": [
       "Without a route decision, future agents may either repeat blocked UI paths or jump into O2C/P2P too early."
     ],
@@ -105,6 +109,6 @@
       "Compare manual UI proof, configuration package/import, source-backed Page Inspection and explicit parking."
     ]
   },
-  "nextCase": "FOUNDATION-SETUP-ROUTE-DECISION",
-  "nextStep": "Complete the local Foundation setup route decision; do not open Business Central or run Playwright until it selects a concrete read-first/no-write or gated write path."
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-FIELD-MAP",
+  "nextStep": "Create the compact local Foundation setup field map; do not open Business Central, create/import/apply packages or write setup until a later Smart Decision unlocks it."
 }

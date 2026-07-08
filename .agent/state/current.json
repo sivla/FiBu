@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-08T16:05:00.000+02:00",
+  "updatedAt": "2026-07-08T16:55:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -15,9 +15,9 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w1-foundation",
-  "activeCase": "FOUNDATION-SETUP-ROUTE-DECISION",
-  "active_case_file": ".agent/state/cases/foundation-setup-route-decision.json",
-  "activeCaseFile": ".agent/state/cases/foundation-setup-route-decision.json",
+  "activeCase": "FOUNDATION-SETUP-PACKAGE-FIELD-MAP",
+  "active_case_file": ".agent/state/cases/foundation-setup-package-field-map.json",
+  "activeCaseFile": ".agent/state/cases/foundation-setup-package-field-map.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-foundation-local-readiness",
@@ -41,10 +41,10 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "read-foundation-readiness-decision",
+    "read-foundation-route-decision-result",
     "read-existing-foundation-evidence",
-    "compare-manual-ui-configuration-package-import-and-parking-routes",
-    "write-local-route-decision",
+    "read-official-source-notes",
+    "write-local-field-map",
     "update-state-summary"
   ],
   "forbiddenActions": [
@@ -55,6 +55,9 @@
     "book-claim-without-evidence",
     "open-business-central",
     "run-playwright-live",
+    "create-configuration-package",
+    "import-configuration-package",
+    "apply-configuration-package",
     "type-business-central-values",
     "write-setup",
     "create-master-data",
@@ -68,9 +71,9 @@
     "claim-posting-readiness",
     "claim-master-data-readiness"
   ],
-  "nextCase": "FOUNDATION-SETUP-ROUTE-DECISION",
-  "nextStep": "Decide the realistic Universaarl Foundation setup route locally before any further live run: manual UI proof, configuration package/import, source-backed Page Inspection or explicit parking. Any later live proof must use a multi-step screenshot chain/Bildkette with context, navigation, action/tooltip and target row or FastTab proof. Do not repeat completed VAT, Kontenplan, Debitor or Artikel read-first work; do not unlock O2C/P2P, Preview Posting or Posting.",
-  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-route-decision.json",
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-FIELD-MAP",
+  "nextStep": "Create a compact local Foundation setup field map for the unresolved VAT/Posting setup gaps before any configuration-package, import, setup write, master data write or process proof. Keep BC closed; separate planned values from proven BC values; any later live proof must use a multi-step screenshot chain/Bildkette with context, navigation, action/tooltip and target row or FastTab proof; do not unlock O2C/P2P, Preview Posting or Posting.",
+  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-package-field-map.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -205,12 +208,12 @@
   },
   "activeNextStepAuthority": {
     "source": "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
-    "selectedNextCase": "FOUNDATION-SETUP-ROUTE-DECISION",
-    "activeCaseFile": ".agent/state/cases/foundation-setup-route-decision.json",
+    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-FIELD-MAP",
+    "activeCaseFile": ".agent/state/cases/foundation-setup-package-field-map.json",
     "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "Foundation Readiness has consumed the completed VAT read-first, VAT route recovery, PWS-FF-006, customer and item evidence. The active boundary is now a local Foundation setup route decision before any new live pilot, write, import, O2C/P2P, Preview Posting or Posting."
+    "reason": "FOUNDATION-SETUP-ROUTE-DECISION selected a configuration-package/Excel-assisted field-map route before any setup write or import. The active boundary is now the local field map; no live BC, write, import, O2C/P2P, Preview Posting or Posting is unlocked."
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -324,7 +327,7 @@
     "currentLiveBoundary": {
       "freezeActive": false,
       "parkedCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-      "resumePilot": "FOUNDATION-SETUP-ROUTE-DECISION",
+      "resumePilot": "FOUNDATION-SETUP-PACKAGE-FIELD-MAP",
       "resumePilotMode": "local-route-decision-no-live"
     },
     "legacyScriptGuard": {

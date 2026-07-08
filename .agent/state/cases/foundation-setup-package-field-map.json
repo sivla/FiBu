@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-SETUP-PACKAGE-FIELD-MAP",
+  "status": "prepared-local-no-live",
+  "mode": "universaarl-foundation-local-readiness",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w1-foundation",
+  "purpose": "Create a minimal, source-backed setup field map for unresolved Universaarl Foundation gaps before any configuration package, import, setup write, master data write or process proof.",
+  "whyNow": "FOUNDATION-SETUP-ROUTE-DECISION selected a realistic configuration-package/Excel-assisted field-map route. The next concrete step is to define the values, tables/pages, owner, validation and evidence needs without opening Business Central.",
+  "mayOpenBusinessCentral": false,
+  "mayRunPlaywright": false,
+  "effectiveBcActionsAllowed": false,
+  "allowedActions": [
+    "read-foundation-route-decision-result",
+    "read-existing-foundation-evidence",
+    "read-official-source-notes",
+    "write-local-field-map",
+    "update-state-summary"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright-live",
+    "create-configuration-package",
+    "import-configuration-package",
+    "apply-configuration-package",
+    "type-business-central-values",
+    "write-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "cleanup-delete",
+    "api-shortcut",
+    "company-switch",
+    "claim-posting-readiness",
+    "claim-master-data-readiness"
+  ],
+  "acceptanceCriteria": [
+    "Create one compact field map for the minimal unresolved Foundation setup combinations.",
+    "Separate planned values from proven Business Central values.",
+    "Include owner, dependency, route candidate, validation, screenshot need, UAT/training impact and stop condition.",
+    "Do not write setup, create master data, create packages or open Business Central.",
+    "Select the next case as either read-first package/table discovery or a gated write decision, not O2C/P2P."
+  ],
+  "stopIf": [
+    "The field map would invent a final tax, accounting or compliance claim.",
+    "The next step would apply/import/write values without a separate Smart Decision.",
+    "The work drifts into another broad methodology document."
+  ],
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/foundation-setup-route-decision/result.json",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md"
+  ],
+  "nextStepDecision": {
+    "currentCase": "FOUNDATION-SETUP-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-ROUTE-DECISION",
+    "lastEvidenceSummary": "Foundation setup route was decided locally: prepare a configuration-package/Excel-assisted field map before any write.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The next case turns the route decision into the smallest concrete project artifact needed before live setup work.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "FOUNDATION-SETUP-PACKAGE-FIELD-MAP",
+        "status": "ready-next",
+        "reason": "No-live local preparation, directly useful for later write gate."
+      },
+      {
+        "caseId": "VAT/Posting setup write gate",
+        "status": "ready-after-current",
+        "reason": "Only after field map, source references, screenshot chain and Smart Decision are complete."
+      },
+      {
+        "caseId": "Master Data write gates",
+        "status": "needs-setup-first",
+        "reason": "Foundation setup remains unresolved."
+      },
+      {
+        "caseId": "O2C/P2P process cases",
+        "status": "blocked",
+        "reason": "No posting/VAT readiness yet."
+      }
+    ],
+    "queueChangesMade": [
+      "Prepared FOUNDATION-SETUP-PACKAGE-FIELD-MAP as the next local no-live case."
+    ],
+    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-FIELD-MAP",
+    "whySelectedNextCaseIsBest": "It is concrete, realistic and prevents blind BC writes.",
+    "risksBeforeNextCase": [
+      "Mistaking planned setup rows for observed setup evidence."
+    ],
+    "requiredPreparation": [
+      "Keep Business Central closed.",
+      "Use no confidential customer data.",
+      "Keep the artifact compact."
+    ]
+  },
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-FIELD-MAP",
+  "preparedAt": "2026-07-08T16:55:00.000+02:00"
+}

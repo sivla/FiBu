@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-SETUP-ROUTE-DECISION",
+  "resultStatus": "completed-local-decision",
+  "completedAt": "2026-07-08T16:55:00.000+02:00",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "businessCentralOpened": false,
+  "playwrightLiveRunExecuted": false,
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "companySwitch": false,
+  "confidentialRealCustomerDataUsed": false,
+  "uiMockupUsed": false,
+  "source": "local-foundation-route-decision",
+  "sourceRefs": [
+    {
+      "title": "Microsoft Learn: Set up posting groups",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/finance-posting-groups",
+      "usedFor": "Posting groups map customers, vendors, items and documents to G/L accounts; incorrect setups create posting errors and should be controlled by accountants."
+    },
+    {
+      "title": "Microsoft Learn: Set up calculations and posting methods for VAT",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/finance-setup-vat",
+      "usedFor": "VAT setup depends on who the company trades with and what it buys/sells; VAT setup can be complex and must be checked against local requirements."
+    }
+  ],
+  "inputsReviewed": [
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/vat-posting-setup-readfirst/result.json",
+    "playwright/projects/fibu-book5/evidence/vat-posting-setup-route-recovery/result.json",
+    "playwright/projects/fibu-book5/evidence/vat-business-posting-groups-source-or-alternative-route-decision/result.json",
+    "playwright/projects/fibu-book5/evidence/pws-ff-006-chart-of-accounts-starter-accounts-readfirst/PWS-FF-006-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-md-004c-customer-billing-payments-fasttabs-readfirst/PWS-MD-004C-result.json"
+  ],
+  "routeDecision": {
+    "selectedRoute": "configuration-package-field-map-before-any-write",
+    "selectedRouteLabel": "Konfigurationspaket-/Excel-unterstuetzte Feldkarte vor jedem Setup-Write",
+    "reason": "Die verbleibenden Foundation-Gaps sind keine einzelnen Klickprobleme mehr, sondern Kontenfindungs- und USt-Einrichtungslogik. Fuer ein realistisches Kundenprojekt ist eine vorbereitete, pruefbare Setup-Feldkarte robuster als weitere blinde UI-Zellversuche auf Page 314 oder Page 472.",
+    "manualUiRole": "Manual UI remains valuable for training, handbook explanation and single-record validation, but not as the primary route for repeated setup matrix entry until a stable editor path is proven.",
+    "configurationPackageRole": "Use a local field map for General Posting Setup and VAT Posting Setup, then a later gated read-first/package-discovery or write-proof case can validate/import/apply only after Smart Decision, screenshots and reopen proof.",
+    "sourceBackedInspectionRole": "Page Inspection and Microsoft Learn are allowed to confirm page/table/field meaning and product logic. They do not prove that Universaarl setup values are saved.",
+    "parkedRoutes": [
+      "Repeat direct Page 470 route",
+      "Repeat generic Tell-Me/Page-Inspection route for Page 470",
+      "Repeat Page 314 grid/header coordinate routes",
+      "Repeat Page 472 active-editor probes without a materially new route"
+    ]
+  },
+  "realismAssessment": {
+    "realCustomerLike": true,
+    "why": "A BC consultant would define required setup combinations, ownership, source and validation first, then choose UI, assisted setup, configuration package, Excel-assisted import or API/AL route consciously.",
+    "noMockupBoundary": "The decision creates no fake UI evidence. Later proof must come from real playthru UI screenshots and reopen checks."
+  },
+  "proved": [
+    "The active next step is a route decision, not another completed read-first replay.",
+    "Manual UI, configuration package/import, source-backed inspection and explicit parking were compared.",
+    "For unresolved Foundation setup gaps, the selected route is to prepare a source-backed configuration-package field map before any write.",
+    "O2C, P2P, Preview Posting and Posting remain blocked until Foundation setup is bounded or proven."
+  ],
+  "notProved": [
+    "No new Business Central page was observed.",
+    "No Page 314 or Page 472 value was written or reopened.",
+    "No VAT, posting group, master data, O2C/P2P, Preview Posting or Posting readiness was proven.",
+    "No configuration package was created, imported, validated or applied."
+  ],
+  "actionsTaken": [
+    "Reviewed existing Foundation Readiness and relevant VAT/Posting/Chart/Customer evidence.",
+    "Checked official Microsoft Learn guidance for posting groups and VAT setup.",
+    "Selected a concrete no-live next case for a Foundation setup field map."
+  ],
+  "actionsNotTaken": [
+    "No Business Central live page was opened.",
+    "No Playwright live test was executed.",
+    "No setup value was changed.",
+    "No master data was changed.",
+    "No document or draft was created.",
+    "No configuration package was created or applied.",
+    "No Preview Posting or Posting was run.",
+    "No API shortcut was used.",
+    "No username, password or auth secret was written to the repo."
+  ],
+  "warnings": [
+    "A field map is not setup evidence. It is preparation for a later gated proof.",
+    "Configuration packages can be realistic for setup preparation, but applying them is a write action and needs a separate Smart Decision, screenshot chain and reopen proof.",
+    "Microsoft Learn explains product logic; Universaarl playthru evidence must still prove actual local values."
+  ],
+  "nextStepDecision": {
+    "currentCase": "FOUNDATION-SETUP-ROUTE-DECISION",
+    "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-ROUTE-DECISION",
+    "lastEvidenceSummary": "VAT Product Posting Groups, VAT Posting Setup, chart starter accounts, number series, dimensions, customer and item contexts are useful read-first evidence. VAT Business Posting Groups Page 470 and full posting/VAT setup remain unresolved; General Posting Setup is partial and not posting-ready.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The local route decision was the correct next step because repeating blocked UI routes or jumping to O2C/P2P would be less realistic and less auditable.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "FOUNDATION-SETUP-PACKAGE-FIELD-MAP",
+        "status": "ready-next",
+        "reason": "It creates the concrete setup field map needed before any configuration-package, import or write gate."
+      },
+      {
+        "caseId": "TARGET-073",
+        "status": "obsolete",
+        "reason": "The as-is Page-472 editor route remains parked; no materially new editor proof exists."
+      },
+      {
+        "caseId": "Master Data write gates",
+        "status": "needs-setup-first",
+        "reason": "Existing customer and item examples are training-ready, not process-ready."
+      },
+      {
+        "caseId": "O2C/P2P process cases",
+        "status": "blocked",
+        "reason": "Posting groups and VAT setup are not sufficiently bounded for document or posting evidence."
+      }
+    ],
+    "queueChangesMade": [
+      "Selected FOUNDATION-SETUP-PACKAGE-FIELD-MAP as the next local no-live case."
+    ],
+    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-FIELD-MAP",
+    "whySelectedNextCaseIsBest": "It turns the consultant route decision into a concrete, auditable setup map without opening BC or writing data.",
+    "risksBeforeNextCase": [
+      "Treating planned setup values as proven BC values.",
+      "Overusing configuration packages without explaining manual UI and validation to learners.",
+      "Forgetting that applying/importing any package is a write action."
+    ],
+    "requiredPreparation": [
+      "Keep Business Central closed.",
+      "Use official source references and existing playthru evidence only.",
+      "Map only the minimal Foundation combinations needed before Master Data/process gates."
+    ]
+  },
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-FIELD-MAP"
+}
