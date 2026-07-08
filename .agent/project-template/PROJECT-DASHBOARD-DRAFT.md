@@ -14,7 +14,7 @@ Last reviewed: 2026-07-07
 | Artefakt-Klassifikation | `.agent/ACTIVE-ARTIFACT-CLASSIFICATION.md` |
 | Geparkter Live-Case | `TARGET-073` |
 | Letzter Resume-Pilot | `TARGET-075`, read-first, no-write, abgeschlossen |
-| Aktiver Case | `FOUNDATION-SETUP-PACKAGE-READFIRST-DISCOVERY` |
+| Aktiver Case | `FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION` |
 | Legacy-Grenze | RM-DEMO, MCP_1_20260210, CRONUS, Rhein-Main und RM-* sind keine aktive Projektwahrheit. |
 
 ## Steuerungsregel
@@ -44,7 +44,7 @@ M0 ist als Arbeitsrahmen nutzbar. Der naechste sinnvolle Fortschritt ist keine w
 | Data request Jira candidates | reference/active-work when master-data planning resumes |
 | Data request realism review | reference |
 | Realistische Universaarl-Datenpakete | active-work, Jira-ready but not BC-setup-ready |
-| Foundation setup route decisions | active-work: Feldkarte erstellt; naechster Schritt ist read-first Paket-/Tabellen-Discovery ohne Apply/Import |
+| Foundation setup route decisions | active-work: Feldkarte erstellt; Paket-/Tabellen-Discovery lief read-first, blieb aber im Rollencenter. Naechster Schritt ist eine lokale Gate-Entscheidung, kein Blind-Retry. |
 | Read-first WS02/WS03/WS04 scenario catalog | active-work for read-first Playwright planning |
 
 ## Workstream readiness
@@ -92,7 +92,7 @@ M0 ist als Arbeitsrahmen nutzbar. Der naechste sinnvolle Fortschritt ist keine w
 4. `TARGET-073` bleibt geparkt.
 5. Kein as-is Retry von TARGET-073 oder TARGET-073B; TARGET-073B ist konsumierte blockierte No-Write-Evidence.
 6. `U-CUST-100` und `U-ITEM-HW100` sind als realistische fiktive Universaarl-Masterdaten nutzbar, aber noch nicht als Prozessfreigabe fuer O2C/P2P.
-7. Naechster Schritt ist kein O2C/P2P-Beleg, kein Repeat von `VAT-POSTING-SETUP-READFIRST` und kein Setup-Write. Jetzt `FOUNDATION-SETUP-PACKAGE-READFIRST-DISCOVERY` nur lesend ausfuehren: Paket-/Tabellenroute sichtbar machen, Bildkette erfassen, vor Create/Import/Validate/Apply stoppen.
+7. Naechster Schritt ist kein O2C/P2P-Beleg, kein Repeat von `VAT-POSTING-SETUP-READFIRST` und kein Setup-Write. `FOUNDATION-SETUP-PACKAGE-READFIRST-DISCOVERY` ist gelaufen und blockiert: direkte Page-8615-Route und Tell-Me-Suche blieben im Rollencenter. Jetzt lokal entscheiden, ob ein enges Paket-Metadaten-Gate fachlich vertretbar ist, ob eine materiell andere read-only Route existiert oder ob die Paketroute geparkt wird.
 8. Masterdaten sollen reale Business-Central-Oberflaechen und kundenprojektartige Universaarl-Geschaeftspartner/Produkte verwenden: realistisch, fachlich begruendet, UAT-/Training-tauglich und setup-abhaengig. Keine UI-Mockups, keine Wegwerf-Dummydaten und keine vertraulichen echten Kundendaten.
 
 ## Update rule

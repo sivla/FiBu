@@ -106,6 +106,16 @@ PWS-FF-001 hat die Nummernserien-Seite read-only beobachtet: sieben Universaarl-
 - USt-Buchungsmatrix Einrichtung: observed
 - Grenze: Use as setup-page visibility and dependency map only; do not claim setup correctness from read-only visibility.
 
+## FOUNDATION-SETUP-PACKAGE-READFIRST-DISCOVERY
+
+- Quelle: playwright/projects/fibu-book5/evidence/foundation-setup-package-readfirst-discovery/result.json
+- Status: blocked-readfirst-context
+- Route: direkte Page-8615-URL, danach Tell-Me-Suche nach `Konfigurationspakete`
+- Akzeptiert: `playthru / UNIVERSAARL-DE` wurde bestaetigt; es wurde nichts angelegt, importiert, validiert, angewendet oder geschrieben.
+- Verworfen: Der Zielseitenbeweis fuer `Konfigurationspakete` ist nicht akzeptiert, weil die Screenshot-QA weiterhin Rollencenter-Kontext zeigt.
+- Fachgrenze: Keine Table-252-/Table-325-/Page-470-Paketmetadaten, keine Setupwerte, keine Master-Data-, VAT-, Preview- oder Posting-Readiness.
+- Praktische Folge: Nicht denselben Such-/Page-8615-Weg wiederholen. Naechster Schritt ist eine lokale Gate-Entscheidung: Paketroute parken, materiell andere read-only Route definieren oder ein enges Paket-Metadaten-Write-Gate mit Zweck, Cleanup/Keep-Regel und Reopen-Proof vorbereiten.
+
 ## PWS-FF-002C Route Decision: Buchungsmatrix Einrichtung
 
 - Quelle: playwright/projects/fibu-book5/evidence/pws-ff-002c-general-posting-setup-route-decision/PWS-FF-002C-result.json

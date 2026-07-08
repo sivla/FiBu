@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-08T17:25:00.000+02:00",
+  "updatedAt": "2026-07-08T18:05:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -15,12 +15,12 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w1-foundation",
-  "activeCase": "FOUNDATION-SETUP-PACKAGE-READFIRST-DISCOVERY",
-  "active_case_file": ".agent/state/cases/foundation-setup-package-readfirst-discovery.json",
-  "activeCaseFile": ".agent/state/cases/foundation-setup-package-readfirst-discovery.json",
+  "activeCase": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
+  "active_case_file": ".agent/state/cases/foundation-setup-package-metadata-write-gate-decision.json",
+  "activeCaseFile": ".agent/state/cases/foundation-setup-package-metadata-write-gate-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-foundation-readfirst",
+  "mode": "universaarl-foundation-local-decision",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -41,12 +41,11 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "validate-playthru-context",
-    "validate-company-context",
-    "open-configuration-package-or-related-readonly-page",
-    "capture-multi-step-screenshot-chain",
-    "capture-action-tooltip-context",
-    "write-readonly-result-json",
+    "review-readfirst-result",
+    "review-screenshot-qa",
+    "compare-configuration-package-route-with-manual-ui-route",
+    "decide-park-or-write-gate",
+    "write-local-decision-result",
     "update-state-summary"
   ],
   "forbiddenActions": [
@@ -55,6 +54,8 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
+    "open-business-central",
+    "run-live-playwright",
     "create-configuration-package",
     "import-configuration-package",
     "apply-configuration-package",
@@ -72,9 +73,9 @@
     "claim-posting-readiness",
     "claim-master-data-readiness"
   ],
-  "nextCase": "FOUNDATION-SETUP-PACKAGE-READFIRST-DISCOVERY",
-  "nextStep": "Run only a read-first/no-write discovery of the Configuration Package or related package/table UI for the Foundation setup field map. Confirm playthru / UNIVERSAARL-DE, capture a multi-step screenshot chain/Bildkette, stop before create/import/validate/apply or any setup value write, and do not unlock O2C/P2P, Preview Posting or Posting.",
-  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-package-readfirst-discovery.json",
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
+  "nextStep": "Local no-live decision: consume blocked read-first Configuration Packages evidence and decide whether package metadata discovery is justified, whether another read-only UI route is better, or whether the package path should be parked. Do not open BC, create packages, import/validate/apply, write setup, create master data, draft, preview or post. Any later live proof must capture a multi-step screenshot chain / Bildkette with shell, navigation, target surface, action/context and no-write boundary.",
+  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-package-metadata-write-gate-decision.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -209,12 +210,12 @@
   },
   "activeNextStepAuthority": {
     "source": "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
-    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-READFIRST-DISCOVERY",
-    "activeCaseFile": ".agent/state/cases/foundation-setup-package-readfirst-discovery.json",
+    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
+    "activeCaseFile": ".agent/state/cases/foundation-setup-package-metadata-write-gate-decision.json",
     "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "FOUNDATION-SETUP-PACKAGE-FIELD-MAP created the compact setup field map. The active boundary is now read-first discovery of the package/table route; no create/import/validate/apply, setup write, O2C/P2P, Preview Posting or Posting is unlocked."
+    "reason": "FOUNDATION-SETUP-PACKAGE-READFIRST-DISCOVERY produced useful no-write evidence but did not prove the Configuration Packages page/table surface. The next step is a local gate decision, not another blind live retry."
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -328,8 +329,8 @@
     "currentLiveBoundary": {
       "freezeActive": false,
       "parkedCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-      "resumePilot": "FOUNDATION-SETUP-PACKAGE-READFIRST-DISCOVERY",
-      "resumePilotMode": "readfirst-no-write"
+      "resumePilot": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
+      "resumePilotMode": "local-no-live-gate-decision"
     },
     "legacyScriptGuard": {
       "script": "agent:legacy:active-check",
@@ -11921,5 +11922,72 @@
     "uiLearning": "FastTabs must be opened based on detail-field visibility, not toggled blindly. Idempotent final proof may show already-visible target values after earlier controlled attempts in the same case.",
     "nextCase": "VAT-POSTING-SETUP-READFIRST",
     "updatedAt": "2026-07-07T07:34:00.000Z"
+  },
+  "latestFoundationSetupPackageReadfirstDiscovery": {
+    "caseId": "FOUNDATION-SETUP-PACKAGE-READFIRST-DISCOVERY",
+    "status": "blocked-readfirst-context",
+    "resultPath": "playwright/projects/fibu-book5/evidence/foundation-setup-package-readfirst-discovery/result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "routeUsed": "tell-me-search-konfigurationspakete-after-direct-page-8615-role-center",
+    "businessCentralOpened": true,
+    "playwrightLiveRunExecuted": true,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "payment": false,
+    "apiShortcut": false,
+    "companySwitch": false,
+    "confidentialRealCustomerDataUsed": false,
+    "uiMockupUsed": false,
+    "proved": [
+      "The run stayed inside playthru / UNIVERSAARL-DE before stopping.",
+      "No package action or setup write was executed."
+    ],
+    "notProved": [
+      "No mapped Foundation setup table is proven usable for import/apply.",
+      "No configuration package was created or opened.",
+      "No Table 252, Table 325 or Page 470 package field mapping was proven through package metadata.",
+      "No setup value exists because of this run.",
+      "No posting/VAT/master-data readiness.",
+      "No UAT acceptance."
+    ],
+    "blockedBy": [
+      "Configuration Packages page signals were too weak for accepted page proof."
+    ],
+    "warnings": [
+      "No mapped Foundation setup table was visible from the list context without clicking Get Tables or creating/opening package metadata.",
+      "Write-capable package actions are visible; they remain inventory-only and locked."
+    ],
+    "tableSignals": {
+      "generalPostingSetup252": false,
+      "vatPostingSetup325": false,
+      "vatBusinessPostingGroup470": false
+    },
+    "screenshotQa": {
+      "minimumAcceptedCheckpoints": 5,
+      "capturedCheckpoints": [
+        "playwright/projects/fibu-book5/evidence/foundation-setup-package-readfirst-discovery/foundation-package-readfirst-010-shell-context.png",
+        "playwright/projects/fibu-book5/evidence/foundation-setup-package-readfirst-discovery/foundation-package-readfirst-015-search-route-context.png",
+        "playwright/projects/fibu-book5/evidence/foundation-setup-package-readfirst-discovery/foundation-package-readfirst-020-package-page-context.png",
+        "playwright/projects/fibu-book5/evidence/foundation-setup-package-readfirst-discovery/foundation-package-readfirst-030-action-inventory.png",
+        "playwright/projects/fibu-book5/evidence/foundation-setup-package-readfirst-discovery/foundation-package-readfirst-040-hover-tooltip-context.png",
+        "playwright/projects/fibu-book5/evidence/foundation-setup-package-readfirst-discovery/foundation-package-readfirst-050-no-write-end-context.png"
+      ],
+      "accepted": false,
+      "requiredCheckpoints": [
+        "shell and target context",
+        "route recovery/search context when direct page route is weak",
+        "Configuration Packages page/list context",
+        "visible action inventory",
+        "hover/tooltip context",
+        "no-write end context"
+      ],
+      "reason": "The run uses a screenshot chain instead of one end screenshot."
+    },
+    "nextCase": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
+    "updatedAt": "2026-07-08T18:05:00.000+02:00"
   }
 }
