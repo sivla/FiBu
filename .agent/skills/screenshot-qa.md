@@ -68,5 +68,10 @@ gpt-4-mini-high
 ## Tool preferred
 yes: screenshot metadata and optional visual inspection when needed.
 
+## Executable helper/check
+- Helper: `playwright/core/bc/visual-proof-skills.ts`
+- Selftest: `npm run core:visual-proof-skills:selftest`
+- Preflight binding: `npm run agent:visual-proof-skills:check`
+
 ## Updates state
 yes: screenshot QA, coverage or evidence README when status changes.

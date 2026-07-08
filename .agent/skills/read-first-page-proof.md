@@ -69,5 +69,10 @@ gpt-4-medium
 ## Tool preferred
 yes: Playwright read-only navigation, screenshot QA and result JSON.
 
+## Executable helper/check
+- Helper: `playwright/core/bc/visual-proof-skills.ts`
+- Selftest: `npm run core:visual-proof-skills:selftest`
+- Preflight binding: `npm run agent:visual-proof-skills:check`
+
 ## Updates state
 yes: result JSON, dashboard or readiness decision when proof affects next case.
