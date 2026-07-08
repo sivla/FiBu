@@ -1,21 +1,15 @@
 {
   "schemaVersion": 1,
-  "purpose": "last-run-summary",
-  "runId": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
   "caseId": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
-  "status": "completed-local-decision",
+  "source": "local-foundation-route-decision",
+  "resultStatus": "completed-local-decision",
   "completedAt": "2026-07-08T18:35:00.000+02:00",
-  "updatedAt": "2026-07-08T18:35:00.000+02:00",
-  "mode": "universaarl-foundation-local-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Local gate decision completed: no package metadata write yet. The next practical step is a materially different read-first route recovery for Konfigurationspakete / Configuration Packages.",
   "businessCentralOpened": false,
   "playwrightLiveRunExecuted": false,
   "setupChanged": false,
   "masterDataChanged": false,
-  "currentRunMasterDataChanged": false,
-  "changedFields": [],
   "draftCreated": false,
   "previewPosting": false,
   "posted": false,
@@ -25,18 +19,10 @@
   "confidentialRealCustomerDataUsed": false,
   "uiMockupUsed": false,
   "decision": "No package metadata write gate yet. Configuration Packages remain a plausible Business Central implementation route for structured setup data, but the current playthru UI evidence did not prove the Konfigurationspakete page/list surface. The next practical step is a materially different read-only route recovery, not creating a package.",
-  "actionsTaken": [
-    "Reviewed blocked read-first result.",
-    "Reviewed Foundation setup field map.",
-    "Compared realistic customer-project value of configuration packages with current UI evidence quality.",
-    "Selected read-first route recovery before any metadata write."
-  ],
-  "actionsNotTaken": [
-    "No Business Central page was opened.",
-    "No Playwright live test was run.",
-    "No package was created.",
-    "No package was imported, exported, validated or applied.",
-    "No setup, master data, document, Preview Posting, Posting or payment action occurred."
+  "businessCentralConsultantAssessment": [
+    "For a realistic customer project, configuration packages can be appropriate for structured setup or migration data, especially when repeated manual grid edits are fragile.",
+    "However, package metadata is an admin setup artifact. Creating it before a reliable page/list proof would turn a navigation blocker into a write action without enough UI truth.",
+    "The existing Foundation field map remains useful as planning input, but planned fields are not saved setup values."
   ],
   "proved": [
     "FOUNDATION-SETUP-PACKAGE-READFIRST-DISCOVERY stayed in playthru / UNIVERSAARL-DE.",
@@ -51,7 +37,58 @@
     "No setup value was written.",
     "No Master Data, O2C, P2P, Preview Posting or Posting readiness."
   ],
-  "evidencePath": "playwright/projects/fibu-book5/evidence/foundation-setup-package-metadata-write-gate-decision/result.json",
+  "selectedRoute": {
+    "routeId": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
+    "type": "read-first-no-write",
+    "reason": "The smallest useful next step is to recover or reject the actual page/list route with stronger screenshot truth before deciding on metadata creation.",
+    "mustUseMateriallyDifferentHypothesis": true
+  },
+  "rejectedRoutes": [
+    {
+      "route": "Repeat direct Page 8615 plus same Tell-Me click",
+      "reason": "Already produced Role Center context and weak page signals."
+    },
+    {
+      "route": "Create temporary configuration package metadata now",
+      "reason": "Would be a write/admin artifact before reliable target page proof."
+    },
+    {
+      "route": "Import, validate, apply or Edit in Excel",
+      "reason": "Effective setup/data routes; require later explicit write/import gate and rollback or keep strategy."
+    },
+    {
+      "route": "Jump to Master Data, O2C or P2P",
+      "reason": "Foundation setup boundaries are still open."
+    }
+  ],
+  "futureWriteGateRequirements": [
+    "Exact package purpose and naming convention.",
+    "Tables and fields selected before any write.",
+    "Source values and owner for each setup value.",
+    "Cleanup or keep decision before creating metadata.",
+    "Before/after/reopen screenshot chain.",
+    "Stop before Import, Validate, Apply, Edit in Excel publish or any real setup value write unless separately unlocked."
+  ],
+  "actionsTaken": [
+    "Reviewed blocked read-first result.",
+    "Reviewed Foundation setup field map.",
+    "Compared realistic customer-project value of configuration packages with current UI evidence quality.",
+    "Selected read-first route recovery before any metadata write."
+  ],
+  "actionsNotTaken": [
+    "No Business Central page was opened.",
+    "No Playwright live test was run.",
+    "No package was created.",
+    "No package was imported, exported, validated or applied.",
+    "No setup, master data, document, Preview Posting, Posting or payment action occurred."
+  ],
+  "changedFiles": [
+    ".agent/state/cases/foundation-setup-package-route-recovery-readfirst.json",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-metadata-write-gate-decision/README.md",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-metadata-write-gate-decision/result.json"
+  ],
+  "safeToFinalizeState": true,
+  "requiresReview": false,
   "nextStepDecision": {
     "currentCase": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
     "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
@@ -97,6 +134,5 @@
       "Capture enough screenshots to evaluate the surface."
     ]
   },
-  "nextCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
-  "nextStep": "Run FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST only as read-first/no-write route recovery with screenshot QA."
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST"
 }

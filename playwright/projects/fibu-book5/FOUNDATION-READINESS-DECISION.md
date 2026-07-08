@@ -116,6 +116,14 @@ PWS-FF-001 hat die Nummernserien-Seite read-only beobachtet: sieben Universaarl-
 - Fachgrenze: Keine Table-252-/Table-325-/Page-470-Paketmetadaten, keine Setupwerte, keine Master-Data-, VAT-, Preview- oder Posting-Readiness.
 - Praktische Folge: Nicht denselben Such-/Page-8615-Weg wiederholen. Naechster Schritt ist eine lokale Gate-Entscheidung: Paketroute parken, materiell andere read-only Route definieren oder ein enges Paket-Metadaten-Write-Gate mit Zweck, Cleanup/Keep-Regel und Reopen-Proof vorbereiten.
 
+## FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION
+
+- Quelle: playwright/projects/fibu-book5/evidence/foundation-setup-package-metadata-write-gate-decision/result.json
+- Status: completed-local-decision
+- Entscheidung: kein Paket-Metadaten-Write-Gate, solange die Seite `Konfigurationspakete` nicht read-only belastbar sichtbar ist.
+- Begruendung: Konfigurationspakete sind fuer ein echtes Kundenprojekt als Setup-/Importweg plausibel. Ein Paketkopf oder eine Paket-Tabellenzeile ist aber bereits ein Admin-Artefakt und darf nicht aus einem Rollencenter-/Suchblocker heraus erzeugt werden.
+- Naechster Case: `FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST`, nur lesend, mit materiell anderer Route und Bildkette.
+
 ## PWS-FF-002C Route Decision: Buchungsmatrix Einrichtung
 
 - Quelle: playwright/projects/fibu-book5/evidence/pws-ff-002c-general-posting-setup-route-decision/PWS-FF-002C-result.json

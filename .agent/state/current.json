@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-08T18:05:00.000+02:00",
+  "updatedAt": "2026-07-08T18:35:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -15,12 +15,12 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w1-foundation",
-  "activeCase": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
-  "active_case_file": ".agent/state/cases/foundation-setup-package-metadata-write-gate-decision.json",
-  "activeCaseFile": ".agent/state/cases/foundation-setup-package-metadata-write-gate-decision.json",
+  "activeCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
+  "active_case_file": ".agent/state/cases/foundation-setup-package-route-recovery-readfirst.json",
+  "activeCaseFile": ".agent/state/cases/foundation-setup-package-route-recovery-readfirst.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-foundation-local-decision",
+  "mode": "universaarl-foundation-readfirst",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -41,11 +41,13 @@
     "agent:safety:check"
   ],
   "allowedActions": [
-    "review-readfirst-result",
-    "review-screenshot-qa",
-    "compare-configuration-package-route-with-manual-ui-route",
-    "decide-park-or-write-gate",
-    "write-local-decision-result",
+    "validate-playthru-context",
+    "validate-company-context",
+    "open-configuration-packages-readonly",
+    "compare-direct-page-and-user-navigation-routes",
+    "capture-multi-step-screenshot-chain",
+    "capture-page-title-list-action-and-no-write-boundary",
+    "write-readonly-result-json",
     "update-state-summary"
   ],
   "forbiddenActions": [
@@ -54,12 +56,14 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "open-business-central",
-    "run-live-playwright",
     "create-configuration-package",
+    "open-configuration-package-card-for-edit",
     "import-configuration-package",
+    "export-configuration-package",
     "apply-configuration-package",
     "validate-configuration-package",
+    "get-tables",
+    "edit-in-excel",
     "type-business-central-values",
     "write-setup",
     "create-master-data",
@@ -73,9 +77,9 @@
     "claim-posting-readiness",
     "claim-master-data-readiness"
   ],
-  "nextCase": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
-  "nextStep": "Local no-live decision: consume blocked read-first Configuration Packages evidence and decide whether package metadata discovery is justified, whether another read-only UI route is better, or whether the package path should be parked. Do not open BC, create packages, import/validate/apply, write setup, create master data, draft, preview or post. Any later live proof must capture a multi-step screenshot chain / Bildkette with shell, navigation, target surface, action/context and no-write boundary.",
-  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-package-metadata-write-gate-decision.json",
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
+  "nextStep": "Run only a materially different read-first/no-write route recovery for Konfigurationspakete / Configuration Packages. Confirm playthru / UNIVERSAARL-DE, capture a multi-step screenshot chain / Bildkette, accept only real page/list proof, and stop before New, Get Tables, Import, Export, Validate, Apply, Edit in Excel, setup writes, master data, drafts, Preview Posting or Posting.",
+  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-package-route-recovery-readfirst.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -210,12 +214,12 @@
   },
   "activeNextStepAuthority": {
     "source": "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
-    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
-    "activeCaseFile": ".agent/state/cases/foundation-setup-package-metadata-write-gate-decision.json",
+    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
+    "activeCaseFile": ".agent/state/cases/foundation-setup-package-route-recovery-readfirst.json",
     "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "FOUNDATION-SETUP-PACKAGE-READFIRST-DISCOVERY produced useful no-write evidence but did not prove the Configuration Packages page/table surface. The next step is a local gate decision, not another blind live retry."
+    "reason": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION rejected immediate package metadata writes. The next step is a materially different read-first route recovery with screenshot truth."
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -329,8 +333,8 @@
     "currentLiveBoundary": {
       "freezeActive": false,
       "parkedCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-      "resumePilot": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
-      "resumePilotMode": "local-no-live-gate-decision"
+      "resumePilot": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
+      "resumePilotMode": "readfirst-no-write-route-recovery"
     },
     "legacyScriptGuard": {
       "script": "agent:legacy:active-check",
@@ -11989,5 +11993,64 @@
     },
     "nextCase": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
     "updatedAt": "2026-07-08T18:05:00.000+02:00"
+  },
+  "latestFoundationSetupPackageMetadataWriteGateDecision": {
+    "caseId": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
+    "status": "completed-local-decision",
+    "resultPath": "playwright/projects/fibu-book5/evidence/foundation-setup-package-metadata-write-gate-decision/result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "businessCentralOpened": false,
+    "playwrightLiveRunExecuted": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "payment": false,
+    "apiShortcut": false,
+    "companySwitch": false,
+    "confidentialRealCustomerDataUsed": false,
+    "uiMockupUsed": false,
+    "decision": "No package metadata write gate yet. Configuration Packages remain a plausible Business Central implementation route for structured setup data, but the current playthru UI evidence did not prove the Konfigurationspakete page/list surface. The next practical step is a materially different read-only route recovery, not creating a package.",
+    "selectedRoute": {
+      "routeId": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
+      "type": "read-first-no-write",
+      "reason": "The smallest useful next step is to recover or reject the actual page/list route with stronger screenshot truth before deciding on metadata creation.",
+      "mustUseMateriallyDifferentHypothesis": true
+    },
+    "rejectedRoutes": [
+      {
+        "route": "Repeat direct Page 8615 plus same Tell-Me click",
+        "reason": "Already produced Role Center context and weak page signals."
+      },
+      {
+        "route": "Create temporary configuration package metadata now",
+        "reason": "Would be a write/admin artifact before reliable target page proof."
+      },
+      {
+        "route": "Import, validate, apply or Edit in Excel",
+        "reason": "Effective setup/data routes; require later explicit write/import gate and rollback or keep strategy."
+      },
+      {
+        "route": "Jump to Master Data, O2C or P2P",
+        "reason": "Foundation setup boundaries are still open."
+      }
+    ],
+    "proved": [
+      "FOUNDATION-SETUP-PACKAGE-READFIRST-DISCOVERY stayed in playthru / UNIVERSAARL-DE.",
+      "That run did not execute package actions or setup writes.",
+      "Screenshot QA rejected the route because the captured target context still showed Role Center instead of an accepted Konfigurationspakete page/list proof.",
+      "A local decision can now prevent another blind retry or premature metadata write."
+    ],
+    "notProved": [
+      "No Konfigurationspakete page/list surface is currently proven by the latest read-first run.",
+      "No configuration package exists from this work.",
+      "No Table 252, Table 325 or Page 470 field mapping is proven through package metadata.",
+      "No setup value was written.",
+      "No Master Data, O2C, P2P, Preview Posting or Posting readiness."
+    ],
+    "nextCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
+    "updatedAt": "2026-07-08T18:35:00.000+02:00"
   }
 }
