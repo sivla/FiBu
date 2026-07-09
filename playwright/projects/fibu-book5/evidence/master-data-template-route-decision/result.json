@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "MASTER-DATA-TEMPLATE-ROUTE-DECISION",
-  "status": "completed-local-decision",
+  "status": "completed-local-decision-operating-kernel-revalidated",
   "decision": "ready-for-template-readfirst-preflight-not-write",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -88,7 +88,9 @@
     "Reviewed only local mustRead files from the prepared case.",
     "Consumed Master Data field-map read-first evidence and the package field-map decision.",
     "Classified Customer, Vendor and Item/Service template/write-gate readiness.",
-    "Prepared MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT as the next read-first/no-write case."
+    "Prepared MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT as the next read-first/no-write case.",
+    "Revalidated through Operating Kernel and current state after field-map/read-first evidence consumption.",
+    "Confirmed MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT remains the next read-first/no-write case."
   ],
   "actionsNotTaken": [
     "Did not open Business Central.",
@@ -139,5 +141,11 @@
     ]
   },
   "nextCase": "MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT",
-  "updatedAt": "2026-07-09T13:05:00.000Z"
+  "updatedAt": "2026-07-09T19:05:00.000Z",
+  "revalidation": {
+    "updatedAt": "2026-07-09T19:05:00.000Z",
+    "verdict": "template-readfirst-preflight-next-no-write",
+    "noLiveActions": true,
+    "reason": "Template/dropdown/mandatory-field and cancel-boundary behavior is still not proven; direct customer/vendor/item writes remain blocked."
+  }
 }
