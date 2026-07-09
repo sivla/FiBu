@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "caseId": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
-  "status": "completed-local-decision-operating-kernel-revalidated-after-pause",
-  "refreshedAt": "2026-07-09T21:10:00.000+02:00",
+  "status": "completed-local-decision-post-pause-kernel-revalidated",
+  "refreshedAt": "2026-07-09T22:12:00.000+02:00",
   "caseType": "local-no-live-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -24,7 +24,7 @@
     "classification": "parked",
     "routeDecision": "parked",
     "summary": "Configuration Packages remain a realistic implementation route for repeated Universaarl Foundation setup data, but the concrete package/worksheet route is currently parked. The later field-map read-first proof showed Configuration Worksheet and Configuration Packages surfaces, but did not prove reliable field/table mapping for Table 323, Table 252 or Table 325. No package write, Get Tables action, field selection, import, export, validate or apply is allowed by this refreshed decision.",
-    "currentRunConclusion": "Operating-Kernel revalidation: the configuration-package route remains source-backed but parked. U-VAT325-DISC is only a parked route candidate. No previous package, worksheet, Page 314, Page 470 or Page 472 route may be retried without a materially new hypothesis. This checkpoint did not open Business Central or run Playwright live.",
+    "currentRunConclusion": "Post-pause Operating-Kernel revalidation: the configuration-package route remains source-backed but parked. U-VAT325-DISC is only a parked route candidate. No package, worksheet, Page 314, Page 470 or Page 472 route may be retried without a materially new hypothesis. This checkpoint did not open Business Central or run Playwright live.",
     "nextCaseSelection": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION"
   },
   "sourceBasis": [
@@ -99,14 +99,11 @@
     }
   ],
   "actionsTaken": [
-    "Re-read Operating Kernel, current state, rejected route register, field map and existing package metadata evidence.",
-    "Revalidated the already source-backed configuration-package route decision against rejected routes and later field-map evidence.",
+    "Re-read only the Operating Kernel, current state, active case mustRead files, rejected route register, field map and existing package metadata evidence.",
+    "Revalidated the configuration-package route decision against rejected routes and later field-map evidence.",
     "Kept configuration-package route parked because accepted local evidence still does not prove reliable Table 323, Table 252 or Table 325 field/table mapping.",
     "Kept U-VAT325-DISC parked as a candidate only, not active Foundation setup truth.",
-    "Selected FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION as the next local no-live case.",
-    "Revalidated the case strictly through Operating Kernel, active case mustRead files, rejected route register and required skills.",
-    "Confirmed that no new live evidence is required to classify the current route as parked.",
-    "Corrected current.json from stale Master Data route state to the Foundation no-live handoff."
+    "Selected FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION as the next local no-live case."
   ],
   "actionsNotTaken": [
     "Did not open Business Central.",
@@ -139,7 +136,7 @@
     "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
     "lastEvidenceSummary": "Configuration Packages and Configuration Worksheet were observed read-first after this source decision, but the later field-map proof did not establish reliable Table 323, Table 252 or Table 325 mapping. U-VAT325-DISC remains only a parked route candidate.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "The source-backed decision can be closed locally: configuration packages remain plausible, but the concrete route is parked and must not be retried without new material evidence or a different route hypothesis.",
+    "reason": "The post-pause source-backed decision is locally complete: configuration packages remain plausible, but the concrete route is parked and must not be retried without new material evidence or a different route hypothesis.",
     "lookaheadReviewed": [
       {
         "caseId": "FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST",
@@ -163,9 +160,10 @@
       }
     ],
     "queueChangesMade": [
-      "Reclassified the package table-mapping route from ready-for-readfirst to parked after later field-map and write-gate evidence.",
-      "Selected FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION as next local no-live case.",
-      "Kept U-VAT325-DISC as parked route candidate only."
+      "No new queue expansion in this run.",
+      "Kept the package table-mapping route parked.",
+      "Kept U-VAT325-DISC as parked route candidate only.",
+      "Kept FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION as the next local no-live case."
     ],
     "selectedNextCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
     "whySelectedNextCaseIsBest": "It forces a materially different local source decision instead of repeating parked package/worksheet/Page 314/Page 470/Page 472/U-VAT325-DISC routes.",
@@ -181,9 +179,11 @@
   },
   "nextCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
   "stateHandoff": {
-    "activeCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
-    "activeCaseFile": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
-    "nextCase": "FOUNDATION-MASTER-DATA-ROUTE-REFRESH-AFTER-SETUP-PARKED",
-    "reason": "After revalidating the package table-mapping decision, current.json was corrected away from stale Master Data route state and back to the Foundation no-live handoff."
-  }
+    "activeCase": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
+    "activeCaseFile": ".agent/state/cases/foundation-setup-package-table-mapping-source-decision.json",
+    "nextCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
+    "nextCaseFile": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
+    "reason": "The active case was revalidated after the pause under the Operating Kernel. The next executable work is the already prepared local/no-live alternative route source decision, not another package/worksheet retry."
+  },
+  "updatedAt": "2026-07-09T22:12:00.000+02:00"
 }
