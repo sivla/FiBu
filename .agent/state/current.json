@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-09T17:40:00.000Z",
+  "updatedAt": "2026-07-09T17:55:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -14,13 +14,13 @@
   },
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
-  "activeArea": "w2-core-masterdata",
-  "activeCase": "MASTER-DATA-ROUTE-PACKAGE-VS-UI-DECISION",
-  "active_case_file": ".agent/state/cases/master-data-route-package-vs-ui-decision.json",
-  "activeCaseFile": ".agent/state/cases/master-data-route-package-vs-ui-decision.json",
+  "activeArea": "w3-finance-foundation",
+  "activeCase": "FOUNDATION-SETUP-DEPENDENCY-RETURN-DECISION",
+  "active_case_file": ".agent/state/cases/foundation-setup-dependency-return-decision.json",
+  "activeCaseFile": ".agent/state/cases/foundation-setup-dependency-return-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-masterdata-route-decision",
+  "mode": "universaarl-foundation-dependency-decision",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -44,9 +44,10 @@
     "git diff --check"
   ],
   "allowedActions": [
-    "local-master-data-route-review",
-    "local-data-dependency-review",
-    "write-route-decision-result-json",
+    "local-foundation-dependency-review",
+    "local-route-parking-decision",
+    "local-source-gap-decision",
+    "write-foundation-dependency-result-json",
     "prepare-one-next-local-or-readfirst-case"
   ],
   "forbiddenActions": [
@@ -72,9 +73,9 @@
     "claim-master-data-ready",
     "claim-process-ready"
   ],
-  "nextCase": "FOUNDATION-SETUP-DEPENDENCY-RETURN-DECISION",
-  "nextStep": "Run FOUNDATION-SETUP-DEPENDENCY-RETURN-DECISION locally/no-live: decide how to handle the remaining Foundation setup dependency before any Master Data write gate.",
-  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-dependency-return-decision.json",
+  "nextCase": "GEN-BUS-POSTING-GROUPS-SOURCE-DECISION",
+  "nextStep": "Run GEN-BUS-POSTING-GROUPS-SOURCE-DECISION locally/no-live: classify Gen. Business Posting Group candidates as context/source-needed/blocked before any Master Data write gate.",
+  "preparedNextCaseFile": ".agent/state/cases/gen-bus-posting-groups-source-decision.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -208,20 +209,20 @@
     "nextBoundary": "Master Data remains parked. Next work must update Foundation Readiness and either accept this as a Foundation gap or define a genuinely new Page 314 route hypothesis before another live attempt."
   },
   "activeNextStepAuthority": {
-    "source": "playwright/projects/fibu-book5/evidence/master-data-route-package-vs-ui-decision/result.json",
-    "selectedNextCase": "FOUNDATION-SETUP-DEPENDENCY-RETURN-DECISION",
-    "activeCaseFile": ".agent/state/cases/foundation-setup-dependency-return-decision.json",
-    "preparedNextCaseFile": ".agent/state/cases/foundation-setup-dependency-return-decision.json",
+    "source": "playwright/projects/fibu-book5/evidence/foundation-setup-dependency-return-decision/result.json",
+    "selectedNextCase": "GEN-BUS-POSTING-GROUPS-SOURCE-DECISION",
+    "activeCaseFile": ".agent/state/cases/gen-bus-posting-groups-source-decision.json",
+    "preparedNextCaseFile": ".agent/state/cases/gen-bus-posting-groups-source-decision.json",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "MASTER-DATA-ROUTE-PACKAGE-VS-UI-DECISION revalidated that UI-only, templates, configuration packages and Excel-assisted routes are not write-ready while Foundation setup dependencies remain unresolved.",
-    "whySelectedNextCaseIsBest": "It addresses the actual Foundation dependency blocker before Master Data write gates and avoids repeating exhausted customer setup or package routes without a new hypothesis.",
+    "reason": "FOUNDATION-SETUP-DEPENDENCY-RETURN-DECISION revalidated that Gen. Business Posting Groups remain a Foundation dependency and must not be retried through exhausted UI routes.",
+    "whySelectedNextCaseIsBest": "It classifies source/value boundaries locally before Master Data write gates, without opening Business Central or repeating blocked route recovery.",
     "requiredPreparation": [
       "Use only the active case mustRead files.",
       "Do not open Business Central or run Playwright live in this local no-live decision.",
       "Do not create or edit setup, master data, templates, documents, Preview Posting or Posting.",
-      "Respect rejected routes and do not repeat customer setup recovery without a materially new hypothesis."
+      "Respect rejected routes and keep Gen. Business Posting Group candidates below setup-ready until separately proven."
     ],
-    "updatedAt": "2026-07-09T17:40:00.000Z"
+    "updatedAt": "2026-07-09T17:55:00.000Z"
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -335,7 +336,7 @@
     "currentLiveBoundary": {
       "freezeActive": false,
       "parkedCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-      "resumePilot": "FOUNDATION-SETUP-DEPENDENCY-RETURN-DECISION",
+      "resumePilot": "GEN-BUS-POSTING-GROUPS-SOURCE-DECISION",
       "resumePilotMode": "local-no-live-decision"
     },
     "legacyScriptGuard": {
@@ -416,14 +417,14 @@
   },
   "freezeStatus": {
     "status": "lifted-readfirst",
-    "caseId": "MASTER-DATA-ROUTE-PACKAGE-VS-UI-DECISION",
+    "caseId": "FOUNDATION-SETUP-DEPENDENCY-RETURN-DECISION",
     "frozenLiveCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-    "resumeCandidateAfterFreeze": "FOUNDATION-SETUP-DEPENDENCY-RETURN-DECISION",
+    "resumeCandidateAfterFreeze": "GEN-BUS-POSTING-GROUPS-SOURCE-DECISION",
     "completedLocalCheckpoint": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
     "planFile": ".agent/PROJECT-IMPROVEMENT-PLAN.md",
     "latestPostFreezeCase": "FOUNDATION-MASTER-DATA-ROUTE-REFRESH-AFTER-SETUP-PARKED",
     "latestPostFreezeResult": "playwright/projects/fibu-book5/evidence/foundation-master-data-route-refresh-after-setup-parked/result.json",
-    "updatedAt": "2026-07-09T17:40:00.000Z"
+    "updatedAt": "2026-07-09T17:55:00.000Z"
   },
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
@@ -12365,7 +12366,7 @@
     "nextCase": "FOUNDATION-SETUP-DEPENDENCY-RETURN-DECISION",
     "updatedAt": "2026-07-09T17:40:00.000Z"
   },
-  "next_case": "FOUNDATION-SETUP-DEPENDENCY-RETURN-DECISION",
+  "next_case": "GEN-BUS-POSTING-GROUPS-SOURCE-DECISION",
   "latestFoundationSetupSourceGapDecision": {
     "caseId": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
     "status": "completed-local-decision",
@@ -12423,7 +12424,7 @@
   },
   "latestFoundationSetupDependencyReturnDecision": {
     "caseId": "FOUNDATION-SETUP-DEPENDENCY-RETURN-DECISION",
-    "status": "completed-local-decision",
+    "status": "completed-local-decision-operating-kernel-revalidated",
     "decision": "source-decision-needed-no-repeat-readfirst",
     "resultPath": "playwright/projects/fibu-book5/evidence/foundation-setup-dependency-return-decision/result.json",
     "instance": "playthru",
@@ -12437,7 +12438,7 @@
     "posted": false,
     "apiShortcut": false,
     "nextCase": "GEN-BUS-POSTING-GROUPS-SOURCE-DECISION",
-    "updatedAt": "2026-07-09T10:25:00.000Z"
+    "updatedAt": "2026-07-09T17:55:00.000Z"
   },
   "latestGenBusPostingGroupsSourceDecision": {
     "caseId": "GEN-BUS-POSTING-GROUPS-SOURCE-DECISION",
