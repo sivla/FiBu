@@ -22,7 +22,8 @@ const readFirstNoWriteCases = new Set([
   'FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST',
   'FOUNDATION-SETUP-PACKAGE-CARD-TABLES-READFIRST',
   'FOUNDATION-SETUP-PACKAGE-CARD-DETAIL-READFIRST',
-  'FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST'
+  'FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST',
+  'MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT'
 ]);
 const selectedCaseIsLocalNoLive = localNoLiveCases.has(selectedNextCase);
 const selectedCaseIsReadFirstNoWrite = readFirstNoWriteCases.has(selectedNextCase);
@@ -30,6 +31,10 @@ const readFirstSafeCheckByCase = new Map([
   [
     'FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST',
     ['fibu:foundation:configuration-worksheet-field-map-readfirst', '--', '--check']
+  ],
+  [
+    'MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT',
+    ['agent:readfirst:case:check']
   ]
 ]);
 const minAuthExpiresArg = process.argv.find((arg) => arg.startsWith('--min-auth-expires-hours='));

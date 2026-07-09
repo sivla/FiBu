@@ -30,7 +30,8 @@ const allowedNextCasesAfterTarget075Handoff = new Set([
   'FOUNDATION-SETUP-PACKAGE-METADATA-NARROW-WRITE-GATE',
   'FOUNDATION-SETUP-PACKAGE-CARD-DETAIL-READFIRST',
   'FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-WRITE-GATE',
-  'FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST'
+  'FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST',
+  'MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT'
 ]);
 const allowedReadFirstLiftCases = new Set([
   'FOUNDATION-READINESS-DECISION',
@@ -47,7 +48,8 @@ const allowedReadFirstLiftCases = new Set([
   'FOUNDATION-SETUP-PACKAGE-METADATA-NARROW-WRITE-GATE',
   'FOUNDATION-SETUP-PACKAGE-CARD-DETAIL-READFIRST',
   'FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-WRITE-GATE',
-  'FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST'
+  'FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST',
+  'MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT'
 ]);
 const localNoLiveCases = new Set([
   'FOUNDATION-READINESS-DECISION',
@@ -110,9 +112,12 @@ const nextCaseAllowedAfterTarget075Handoff =
 const liftedReadFirst =
   current?.freezeStatus?.status === 'lifted-readfirst' &&
   allowedReadFirstLiftCases.has(current?.activeCase ?? '') &&
-  current?.activeArea === 'w1-foundation' &&
-  (current?.mode === 'universaarl-foundation-readfirst' ||
-    (localNoLiveCases.has(current?.activeCase ?? '') && current?.mode === 'universaarl-foundation-local-decision')) &&
+  ((current?.activeArea === 'w1-foundation' &&
+    (current?.mode === 'universaarl-foundation-readfirst' ||
+      (localNoLiveCases.has(current?.activeCase ?? '') && current?.mode === 'universaarl-foundation-local-decision'))) ||
+    (current?.activeArea === 'w4-master-data-product-model' &&
+      current?.mode === 'universaarl-masterdata-readfirst' &&
+      current?.caseType === 'read-first-no-write')) &&
   current?.implementationOperatingSystem?.currentLiveBoundary?.freezeActive === false;
 
 if (current) {

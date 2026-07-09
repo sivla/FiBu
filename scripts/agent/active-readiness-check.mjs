@@ -139,6 +139,15 @@ const checksByCase = new Map([
     }
   ],
   [
+    'MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT',
+    {
+      id: 'master-data-template-readfirst-preflight',
+      scriptPath: 'scripts/agent/read-first-no-write-case-readiness-check.mjs',
+      reason:
+        'This read-first/no-write Master Data preflight may inspect customer, vendor and item/service template surfaces, but must stop before Save, Create, OK, Finish or any record/template change.'
+    }
+  ],
+  [
     'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK',
     {
       id: 'target-075-readiness',

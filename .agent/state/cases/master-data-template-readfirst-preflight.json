@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "caseId": "MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT",
+  "status": "prepared-readfirst-no-write",
+  "caseType": "read-first-no-write",
+  "mode": "universaarl-masterdata-readfirst",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w4-master-data-product-model",
+  "goal": "Inspect customer, vendor and item/service template, dropdown, mandatory-field and cancel-boundary behavior read-first before any Master Data write gate.",
+  "whyNow": "MASTER-DATA-TEMPLATE-ROUTE-DECISION concluded that observed Master Data list surfaces are useful but do not prove template safety or mandatory-field behavior.",
+  "businessPurpose": "Give the agent better eyes on real Business Central master-data creation routes while preserving the no-write boundary for realistic customer-project setup.",
+  "mustRead": [
+    ".agent/OPERATING-KERNEL.md",
+    ".agent/state/current.json",
+    "playwright/projects/fibu-book5/evidence/master-data-template-route-decision/result.json",
+    "playwright/projects/fibu-book5/evidence/master-data-field-map-readfirst-validation/result.json",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md"
+  ],
+  "allowedActions": [
+    "validate-playthru-context-readonly",
+    "validate-universaarl-company-context-readonly",
+    "open-customers-list-readonly",
+    "open-vendors-list-readonly",
+    "open-items-services-list-readonly",
+    "inspect-new-action-tooltip-or-dropdown-readonly",
+    "inspect-template-or-mandatory-field-surface-only-if-cancel-safe",
+    "capture-screenshot-chain",
+    "capture-visual-state-json",
+    "write-result-json"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "write-setup",
+    "create-master-data",
+    "edit-master-data",
+    "save-record",
+    "change-template",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "company-switch",
+    "import-configuration-package",
+    "export-configuration-package",
+    "validate-configuration-package",
+    "apply-configuration-package",
+    "edit-book",
+    "claim-foundation-setup-ready",
+    "claim-master-data-ready",
+    "claim-process-ready",
+    "continue-target-073",
+    "type-business-central-values",
+    "cleanup-delete"
+  ],
+  "skills": [
+    "read-first-page-proof",
+    "screenshot-qa",
+    "state-sync-check"
+  ],
+  "requiredSkills": [
+    "read-first-page-proof",
+    "screenshot-qa",
+    "state-sync-check"
+  ],
+  "requiredHelpers": [
+    "scripts/agent/read-first-no-write-case-readiness-check.mjs",
+    "playwright/core/bc/step-timeline.ts",
+    "playwright/core/bc/visual-state-capture.ts",
+    "playwright/core/bc/visual-proof-skills.ts"
+  ],
+  "requiredChecks": [
+    "agent:preflight",
+    "agent:active-readiness",
+    "agent:dry-run",
+    "agent:run-plan",
+    "agent:rejected-routes:check",
+    "agent:visual-proof-skills:check",
+    "check:encoding",
+    "git diff --check"
+  ],
+  "expectedOutput": [
+    "Read-first result JSON with customer, vendor and item/service template or mandatory-field surface classification.",
+    "Screenshot QA and visual-state JSON for list context, action/dropdown or tooltip context, any cancel-safe template surface and no-write end state.",
+    "Clear decision whether the next step is customer descriptive write-gate prep, more source review, or parking Master Data writes."
+  ],
+  "stopConditions": [
+    "Stop if Business Central is not in playthru / UNIVERSAARL-DE.",
+    "Stop if a template, New, OK, Create, Save or Finish action would create or change data.",
+    "Stop if screenshot QA cannot distinguish list, dialog, side pane, search overlay or Role Center background.",
+    "Stop if a field or template cannot be inspected without force click, coordinate click or blind typing.",
+    "Stop if the route would weaken Foundation setup boundaries or imply O2C/P2P/Inventory readiness."
+  ],
+  "rejectedRoutesToRespect": [
+    "RR-FOUNDATION-PAGE314-GRID-LIST-EDIT-RETRY",
+    "RR-FOUNDATION-PAGE470-VAT-BUSINESS-GROUPS-SEARCH-RETRY",
+    "RR-FOUNDATION-PAGE472-ACTIVE-EDITOR-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGES-ESCAPE-TELLME-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGE-U-VAT325-FIELD-SELECTION-RETRY"
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/master-data-template-readfirst-preflight/result.json",
+  "nextCaseOptions": [
+    {
+      "caseId": "CUSTOMER-U-CUST-100-FIELD-COMPLETION-WRITE-GATE",
+      "when": "Use only if customer descriptive fields and cancel-safe template/mandatory-field boundaries are proven and posting/VAT/payment dependencies stay untouched.",
+      "liveType": "write-gated"
+    },
+    {
+      "caseId": "MASTER-DATA-TEMPLATE-ROUTE-DECISION",
+      "when": "Use if read-first evidence contradicts the planned template route and requires a local re-decision.",
+      "liveType": "local-no-live-decision"
+    },
+    {
+      "caseId": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
+      "when": "Use if Foundation setup dependencies block even a narrow descriptive customer write gate.",
+      "liveType": "local-no-live-decision"
+    }
+  ],
+  "decision": "prepared-readfirst",
+  "selectedNextCase": null,
+  "nextCase": null,
+  "preparedAt": "2026-07-09T13:05:00.000Z"
+}

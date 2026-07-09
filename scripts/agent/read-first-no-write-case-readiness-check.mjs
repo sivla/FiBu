@@ -22,6 +22,9 @@ const activeCase = casePath && existsSync(resolve(root, casePath)) ? readJson(ca
 if (activeCase) {
   if (activeCase.caseId !== current.activeCase) errors.push(`${casePath}: caseId must match current.activeCase`);
   if (activeCase.caseType !== 'read-first-no-write') errors.push(`${casePath}: caseType must be read-first-no-write`);
+  if (activeCase.mode && activeCase.mode !== current.mode) {
+    errors.push(`${currentPath}: mode must match ${casePath} mode ${activeCase.mode}`);
+  }
 
   for (const key of ['goal', 'mustRead', 'allowedActions', 'forbiddenActions', 'skills', 'requiredChecks', 'expectedOutput', 'stopConditions']) {
     const value = activeCase[key];
@@ -72,14 +75,18 @@ if (activeCase) {
 
 if (current.instance !== 'playthru') errors.push(`${currentPath}: instance must be playthru`);
 if (current.company !== 'UNIVERSAARL-DE') errors.push(`${currentPath}: company must be UNIVERSAARL-DE`);
-if (current.mode !== 'universaarl-foundation-readfirst') {
-  errors.push(`${currentPath}: mode must be universaarl-foundation-readfirst for this read-first/no-write case`);
+const allowedReadFirstModes = new Set(['universaarl-foundation-readfirst', 'universaarl-masterdata-readfirst']);
+if (!allowedReadFirstModes.has(current.mode)) {
+  errors.push(
+    `${currentPath}: mode must be one of ${Array.from(allowedReadFirstModes).join(', ')} for this read-first/no-write case`
+  );
 }
 
 const result = {
   schemaVersion: 1,
   purpose: 'read-first-no-write-case-readiness-check',
   ok: errors.length === 0,
+  localCaseReady: errors.length === 0,
   activeCase: current.activeCase,
   casePath,
   caseType: activeCase?.caseType ?? null,
