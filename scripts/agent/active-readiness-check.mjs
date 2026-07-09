@@ -121,6 +121,15 @@ const checksByCase = new Map([
     }
   ],
   [
+    'FOUNDATION-MASTER-DATA-ROUTE-REFRESH-AFTER-SETUP-PARKED',
+    {
+      id: 'foundation-master-data-route-refresh-after-setup-parked-local-no-live',
+      scriptPath: 'scripts/agent/local-no-live-case-readiness-check.mjs',
+      reason:
+        'This local no-live follow-up may convert existing customer/vendor/item read-first evidence into training, handbook and data-route decisions, but must not weaken the parked Foundation setup boundary or start writes.'
+    }
+  ],
+  [
     'MASTER-DATA-FIELD-MAP-READFIRST-VALIDATION',
     {
       id: 'master-data-field-map-readfirst-validation',

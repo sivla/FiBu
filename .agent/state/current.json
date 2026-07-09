@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-09T13:05:00.000Z",
+  "updatedAt": "2026-07-09T14:35:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -14,13 +14,13 @@
   },
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
-  "activeArea": "w1-foundation",
-  "activeCase": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
-  "active_case_file": ".agent/state/cases/foundation-setup-package-table-mapping-source-decision.json",
-  "activeCaseFile": ".agent/state/cases/foundation-setup-package-table-mapping-source-decision.json",
+  "activeArea": "w2-core-masterdata",
+  "activeCase": "FOUNDATION-MASTER-DATA-ROUTE-REFRESH-AFTER-SETUP-PARKED",
+  "active_case_file": ".agent/state/cases/foundation-master-data-route-refresh-after-setup-parked.json",
+  "activeCaseFile": ".agent/state/cases/foundation-master-data-route-refresh-after-setup-parked.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-foundation-local-decision",
+  "mode": "universaarl-master-data-local-decision",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -45,11 +45,11 @@
     "git diff --check"
   ],
   "allowedActions": [
-    "local-source-review",
-    "local-field-map-review",
-    "local-rejected-route-review",
+    "local-master-data-route-review",
+    "local-training-handbook-gap-review",
+    "local-data-dependency-review",
     "write-route-decision-result-json",
-    "prepare-next-readfirst-or-write-gate-case"
+    "prepare-one-next-local-or-readfirst-case"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -59,30 +59,23 @@
     "book-claim-without-evidence",
     "open-business-central",
     "run-playwright-live",
-    "create-configuration-package",
-    "open-configuration-package-card-for-edit",
-    "rename-configuration-package",
-    "get-tables",
-    "add-table",
-    "remove-table",
-    "import-configuration-package",
-    "export-configuration-package",
-    "validate-configuration-package",
-    "apply-configuration-package",
-    "delete-configuration-package",
-    "edit-in-excel",
     "write-setup",
     "create-master-data",
+    "edit-master-data",
+    "change-template",
     "create-document-or-draft",
     "preview-posting",
     "post",
     "payment",
     "api-shortcut",
-    "company-switch"
+    "company-switch",
+    "claim-foundation-setup-ready",
+    "claim-master-data-ready",
+    "claim-process-ready"
   ],
-  "nextCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
-  "nextStep": "Finalize FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION locally/no-live, keep the configuration-package route parked, and hand off to FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION without opening Business Central or repeating U-VAT325-DISC, Page 314, Page 470, Page 472 or package worksheet routes. The next future read-first/live proof must use a multi-step screenshot chain / Bildkette, not one final screenshot.",
-  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
+  "nextCase": "MASTER-DATA-TRAINING-HANDBOOK-GAP-DECISION",
+  "nextStep": "Run FOUNDATION-MASTER-DATA-ROUTE-REFRESH-AFTER-SETUP-PARKED locally/no-live: consume existing customer/vendor/item read-first evidence as training, handbook and data-route input while Foundation setup, Master Data writes, O2C/P2P, Preview Posting and Posting remain blocked. The next future read-first/live proof must use a multi-step screenshot chain / Bildkette, not one final screenshot.",
+  "preparedNextCaseFile": ".agent/state/cases/master-data-training-handbook-gap-decision.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -216,23 +209,23 @@
     "nextBoundary": "Master Data remains parked. Next work must update Foundation Readiness and either accept this as a Foundation gap or define a genuinely new Page 314 route hypothesis before another live attempt."
   },
   "activeNextStepAuthority": {
-    "source": "playwright/projects/fibu-book5/evidence/foundation-setup-package-table-mapping-source-decision/result.json",
-    "selectedNextCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
-    "activeCaseFile": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
-    "preparedNextCaseFile": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
+    "source": "playwright/projects/fibu-book5/evidence/foundation-setup-alternative-route-source-decision/result.json",
+    "selectedNextCase": "MASTER-DATA-TRAINING-HANDBOOK-GAP-DECISION",
+    "activeCaseFile": ".agent/state/cases/master-data-training-handbook-gap-decision.json",
+    "preparedNextCaseFile": ".agent/state/cases/master-data-training-handbook-gap-decision.json",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION keeps the configuration-package route parked after weak table/field mapping proof and must hand off to a materially different local source decision.",
+    "reason": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION parks weak Foundation setup routes and selects a local Master Data route refresh that preserves no-live/no-write boundaries.",
     "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
-    "whySelectedNextCaseIsBest": "It prevents another package-card, worksheet, Page 314, Page 470, Page 472 or U-VAT325-DISC retry without a materially new source-backed hypothesis.",
+    "whySelectedNextCaseIsBest": "It turns existing Universaarl customer/vendor/item read-first evidence into useful training, handbook and data-route decisions without claiming setup or process readiness.",
     "requiredPreparation": [
       "Use only the active case mustRead files.",
       "Do not open Business Central or run Playwright live in this local no-live decision.",
-      "Respect the rejected-route register, including U-VAT325-DISC.",
-      "Keep configuration packages as a realistic route candidate, but do not treat package metadata as setup truth.",
-      "Select only a local/no-live or future read-first follow-up; no package write gate follows from this case."
+      "Do not create or edit setup, master data, templates, documents, Preview Posting or Posting.",
+      "Respect Foundation parked boundaries and rejected_route_register.json.",
+      "Keep Master Data evidence training-/handbook-ready only until a later write gate explicitly unlocks more."
     ],
-    "updatedAt": "2026-07-09T13:35:00.000Z"
+    "updatedAt": "2026-07-09T14:35:00.000Z"
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -346,7 +339,7 @@
     "currentLiveBoundary": {
       "freezeActive": false,
       "parkedCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-      "resumePilot": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
+      "resumePilot": "MASTER-DATA-TRAINING-HANDBOOK-GAP-DECISION",
       "resumePilotMode": "local-no-live-decision"
     },
     "legacyScriptGuard": {
@@ -429,7 +422,7 @@
     "status": "lifted-readfirst",
     "caseId": "MASTER-DATA-FIELD-MAP-READFIRST-VALIDATION",
     "frozenLiveCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-    "resumeCandidateAfterFreeze": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
+    "resumeCandidateAfterFreeze": "MASTER-DATA-TRAINING-HANDBOOK-GAP-DECISION",
     "completedLocalCheckpoint": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
     "planFile": ".agent/PROJECT-IMPROVEMENT-PLAN.md",
     "latestPostFreezeCase": "MASTER-DATA-FIELD-MAP-READFIRST-VALIDATION",
@@ -12300,7 +12293,7 @@
     "nextCase": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
     "updatedAt": "2026-07-09T03:10:00.000Z"
   },
-  "caseType": "read-first-no-write",
+  "caseType": "local-no-live-decision",
   "latestFoundationSetupValueMapDecision": {
     "caseId": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
     "status": "completed-local-decision",
@@ -12371,7 +12364,7 @@
     "nextCase": "FOUNDATION-SETUP-DEPENDENCY-RETURN-DECISION",
     "updatedAt": "2026-07-09T09:20:00.000Z"
   },
-  "next_case": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
+  "next_case": "MASTER-DATA-TRAINING-HANDBOOK-GAP-DECISION",
   "latestFoundationSetupSourceGapDecision": {
     "caseId": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
     "status": "completed-local-decision",
