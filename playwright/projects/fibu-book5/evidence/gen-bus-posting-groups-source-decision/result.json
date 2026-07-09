@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 1,
+  "caseId": "GEN-BUS-POSTING-GROUPS-SOURCE-DECISION",
+  "status": "completed-local-decision",
+  "decision": "accepted-context-not-setup-ready",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "caseType": "local-no-live-decision",
+  "businessCentralOpened": false,
+  "playwrightLiveRunExecuted": false,
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "sourceResearch": {
+    "question": "Which Gen. Business Posting Group candidates may be used for Universaarl planning without claiming setup readiness?",
+    "claimLevel": "book-candidate-boundary-and-local-gate-decision",
+    "localEvidenceUsed": [
+      "playwright/projects/fibu-book5/evidence/foundation-setup-dependency-return-decision/result.json",
+      "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+      ".agent/state/rejected_route_register.json"
+    ],
+    "sourcesUsed": [
+      {
+        "name": "Microsoft Learn - Set up posting groups",
+        "url": "https://learn.microsoft.com/en-au/dynamics365/business-central/finance-posting-groups",
+        "usedFor": "General Business Posting Groups define who the company sells to or buys from; General Posting Setups combine business and product posting groups to choose G/L accounts."
+      },
+      {
+        "name": "Microsoft Learn training - Set up posting groups in Dynamics 365 Business Central",
+        "url": "https://learn.microsoft.com/en-us/training/modules/posting-groups-dynamics-365-business-central/",
+        "usedFor": "MB-800-adjacent learning context: posting groups link application areas to general ledger accounts and general posting setup maps sales and purchase G/L accounts."
+      }
+    ],
+    "mcpOrToolUsed": "web fallback to official Microsoft Learn pages",
+    "allowedClaim": "General Business Posting Groups are a source-backed Foundation concept and may be used as training/handbook context when clearly marked not setup-ready.",
+    "notAllowedClaim": "Do not claim INLAND or any other Gen. Business Posting Group is setup-ready, posting-ready or saved correctly from this local decision.",
+    "bookBoundary": "A future book/handbook section may explain the concept, but final Universaarl setup text needs playthru evidence or a separate write/reopen proof.",
+    "needsMoreEvidence": true,
+    "nextStep": "Prepare a Master Data write-gate boundary that keeps posting-group fields blocked or source-needed instead of treating them as write permission."
+  },
+  "candidateClassifications": [
+    {
+      "code": "INLAND",
+      "meaning": "Domestic German business context for customers/vendors",
+      "classification": "accepted-context",
+      "evidenceBoundary": "Foundation Readiness and setup maps use INLAND as context, and Microsoft Learn supports grouping customers/vendors by geography or type. Page 312 route recovery did not prove a setup-ready Gen. Business Posting Group page/value.",
+      "allowedUse": [
+        "training-context",
+        "handbook-draft-context",
+        "future-data-route-placeholder",
+        "future-write-gate-input"
+      ],
+      "notAllowedUse": [
+        "setup-ready claim",
+        "posting-ready claim",
+        "Master Data write permission",
+        "O2C/P2P process readiness"
+      ]
+    },
+    {
+      "code": "WAREN",
+      "meaning": "Goods/product context",
+      "classification": "not-gen-business-group",
+      "evidenceBoundary": "WAREN belongs to product posting group / General Posting Setup combination context, not to the Gen. Business Posting Group candidate list.",
+      "allowedUse": [
+        "Gen. Product Posting Group or General Posting Setup context only"
+      ],
+      "notAllowedUse": [
+        "do not create or classify WAREN as a Gen. Business Posting Group"
+      ]
+    },
+    {
+      "code": "EU/AUSLAND/EXPORT",
+      "meaning": "International business contexts",
+      "classification": "parked",
+      "evidenceBoundary": "Useful in a realistic larger company later, but no current Universaarl source/evidence basis requires these groups before the first Master Data gate.",
+      "allowedUse": [
+        "future discovery",
+        "future scope decision"
+      ],
+      "notAllowedUse": [
+        "current setup value",
+        "current Master Data dependency"
+      ]
+    }
+  ],
+  "actionsTaken": [
+    "Reviewed active local case and its mustRead files.",
+    "Reviewed rejected route register.",
+    "Used official Microsoft Learn pages for product semantics of posting groups.",
+    "Classified Gen. Business Posting Group candidates without opening Business Central.",
+    "Prepared MASTER-DATA-WRITE-GATE-PREP as a local no-live follow-up."
+  ],
+  "actionsNotTaken": [
+    "Did not open Business Central.",
+    "Did not run Playwright live.",
+    "Did not write setup.",
+    "Did not create or edit master data.",
+    "Did not create a document or draft.",
+    "Did not run Preview Posting or Posting.",
+    "Did not edit the book."
+  ],
+  "proved": [
+    "INLAND is acceptable as a source-backed planning and training context only.",
+    "INLAND is not setup-ready, posting-ready or master-data-write-ready from this decision.",
+    "WAREN must not be treated as a Gen. Business Posting Group candidate.",
+    "Repeated Customer Setup route recovery remains blocked without a materially new hypothesis."
+  ],
+  "notProved": [
+    "No Gen. Business Posting Group value was proven saved in Business Central.",
+    "No Page 312 target page proof was added.",
+    "No General Posting Setup correctness, VAT correctness, Master Data readiness, Preview Posting, Posting, ledger trace or UAT acceptance was proven."
+  ],
+  "warnings": [
+    "Visible setup context is not setup correctness.",
+    "Do not hide posting-group gaps inside Customer/Vendor/Item write gates.",
+    "Do not repeat Tell-Me/search overlay routes for Page 312 without a new hypothesis."
+  ],
+  "nextStepDecision": {
+    "currentCase": "GEN-BUS-POSTING-GROUPS-SOURCE-DECISION",
+    "plannedNextCaseBeforeReview": "GEN-BUS-POSTING-GROUPS-SOURCE-DECISION",
+    "lastEvidenceSummary": "Foundation dependency return decision parked Master Data writes and required a local Gen. Business Posting Groups source/value decision. Local Foundation Readiness allows training context but not setup/process readiness.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The case can classify the dependency locally and prevent a duplicate UI retry.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "GEN-BUS-POSTING-GROUPS-READFIRST-NEW-HYPOTHESIS",
+        "status": "blocked",
+        "reason": "No materially new UI route is defined yet."
+      },
+      {
+        "caseId": "MASTER-DATA-WRITE-GATE-PREP",
+        "status": "ready-next",
+        "reason": "The dependency is classified as accepted-context/not setup-ready, so the next safe step is a local write-gate boundary for Master Data fields."
+      },
+      {
+        "caseId": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
+        "status": "ready-after-current",
+        "reason": "Use only if Master Data prep shows Foundation gaps must be reopened before any narrow write gate."
+      }
+    ],
+    "queueChangesMade": [
+      "Prepared MASTER-DATA-WRITE-GATE-PREP as next local no-live case."
+    ],
+    "selectedNextCase": "MASTER-DATA-WRITE-GATE-PREP",
+    "whySelectedNextCaseIsBest": "It turns the classified posting-group boundary into a controlled Master Data gate without granting write permission.",
+    "risksBeforeNextCase": [
+      "A future agent could treat INLAND context as setup-ready.",
+      "A future write gate could silently write blocked posting-group fields."
+    ],
+    "requiredPreparation": [
+      "Keep Gen. Business Posting Group fields classified as context/source-needed unless separately proven.",
+      "Do not create or edit customer/vendor/item records in the prep case.",
+      "Name any blocked setup dependencies explicitly in the next result."
+    ]
+  },
+  "nextCase": "MASTER-DATA-WRITE-GATE-PREP",
+  "updatedAt": "2026-07-09T10:55:00.000Z"
+}

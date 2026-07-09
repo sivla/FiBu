@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "caseId": "MASTER-DATA-WRITE-GATE-PREP",
+  "status": "prepared-local-no-live",
+  "caseType": "local-no-live-decision",
+  "mode": "universaarl-master-data-write-gate-prep",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w4-master-data-product-model",
+  "goal": "Prepare the next Master Data write-gate boundary without opening Business Central or creating data.",
+  "whyNow": "Gen. Business Posting Groups are classified as accepted-context but not setup-ready. Master Data work can only continue if the next gate explicitly names which fields are training-only, blocked, source-needed or ready for a future separate write case.",
+  "businessPurpose": "Keep realistic customer-project Master Data moving while preventing setup gaps from becoming hidden write permission.",
+  "mustRead": [
+    ".agent/OPERATING-KERNEL.md",
+    ".agent/state/current.json",
+    "playwright/projects/fibu-book5/evidence/gen-bus-posting-groups-source-decision/result.json",
+    "playwright/projects/fibu-book5/evidence/master-data-route-package-vs-ui-decision/result.json",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md"
+  ],
+  "allowedActions": [
+    "local-master-data-write-gate-prep",
+    "classify-master-data-fields",
+    "write-local-gate-result-json",
+    "prepare-one-next-local-or-readfirst-case"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright-live",
+    "write-setup",
+    "create-master-data",
+    "edit-master-data",
+    "change-template",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "company-switch",
+    "edit-book",
+    "claim-foundation-setup-ready",
+    "claim-master-data-ready",
+    "claim-process-ready"
+  ],
+  "requiredSkills": [
+    "bc-setup-route-decision",
+    "state-sync-check"
+  ],
+  "requiredHelpers": [
+    "scripts/agent/local-no-live-case-readiness-check.mjs",
+    "scripts/agent/dry-run.mjs"
+  ],
+  "requiredChecks": [
+    "agent:preflight",
+    "agent:active-readiness",
+    "agent:dry-run",
+    "agent:run-plan",
+    "agent:rejected-routes:check",
+    "check:encoding",
+    "git diff --check"
+  ],
+  "expectedOutput": [
+    "A compact local result JSON classifying Customer, Vendor and Item/Service write-gate fields as blocked, training-only, source-needed or ready-for-future-gate.",
+    "A nextCase selection that does not create or edit Business Central data.",
+    "Explicit boundary that no setup, master data, document, Preview Posting or Posting change was made."
+  ],
+  "stopConditions": [
+    "Stop if the decision would claim Master Data readiness.",
+    "Stop if any proposed next case would create or edit data directly.",
+    "Stop if Foundation dependencies are hidden instead of shown as gate conditions.",
+    "Stop if the case requires Business Central or Playwright live execution."
+  ],
+  "rejectedRoutesToRespect": [
+    "RR-FOUNDATION-PAGE314-GRID-LIST-EDIT-RETRY",
+    "RR-FOUNDATION-PAGE470-VAT-BUSINESS-GROUPS-SEARCH-RETRY",
+    "RR-FOUNDATION-PAGE472-ACTIVE-EDITOR-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGES-ESCAPE-TELLME-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGE-U-VAT325-FIELD-SELECTION-RETRY"
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/master-data-write-gate-prep/result.json",
+  "nextCaseOptions": [
+    {
+      "caseId": "CUSTOMER-U-CUST-100-FIELD-COMPLETION-WRITE-GATE",
+      "when": "Use only if the prep result proves a narrow customer-field write gate is safer than broad Master Data load and all blocked setup fields remain unchanged.",
+      "liveType": "write-gated"
+    },
+    {
+      "caseId": "MASTER-DATA-PACKAGE-FIELD-MAP-DECISION",
+      "when": "Use if customer/vendor/item fields should first become an Excel-assisted or configuration-package data map.",
+      "liveType": "local-no-live-decision"
+    },
+    {
+      "caseId": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
+      "when": "Use if Master Data remains blocked by unresolved posting/VAT setup source gaps.",
+      "liveType": "local-no-live-decision"
+    }
+  ],
+  "decision": "prepared",
+  "selectedNextCase": null,
+  "nextCase": null,
+  "preparedAt": "2026-07-09T10:55:00.000Z"
+}
