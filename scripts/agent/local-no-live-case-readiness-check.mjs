@@ -59,8 +59,14 @@ if (activeCase) {
 
 if (current.instance !== 'playthru') errors.push(`${currentPath}: instance must be playthru`);
 if (current.company !== 'UNIVERSAARL-DE') errors.push(`${currentPath}: company must be UNIVERSAARL-DE`);
-if (current.mode !== 'universaarl-foundation-local-decision') {
-  errors.push(`${currentPath}: mode must be universaarl-foundation-local-decision for this local no-live case`);
+const acceptedLocalDecisionModes = new Set([
+  'universaarl-foundation-local-decision',
+  'universaarl-master-data-local-decision'
+]);
+if (!acceptedLocalDecisionModes.has(current.mode)) {
+  errors.push(
+    `${currentPath}: mode must be one of ${[...acceptedLocalDecisionModes].join(', ')} for this local no-live case`
+  );
 }
 
 const output = {

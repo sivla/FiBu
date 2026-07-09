@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 1,
+  "purpose": "autopilot-result-normalized-compatible",
+  "caseId": "MASTER-DATA-FIELD-MAP-READFIRST-VALIDATION",
+  "source": "playwright-readfirst-master-data-field-map-validation",
+  "resultStatus": "observed-readfirst",
+  "decision": "ready-for-local-write-gate-decision-not-write",
+  "startedAt": "2026-07-09T03:21:30.593Z",
+  "completedAt": "2026-07-09T03:21:57.785Z",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "businessCentralOpened": true,
+  "playwrightLiveRunExecuted": true,
+  "liveActionsExecuted": false,
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "companySwitch": false,
+  "recordsCreated": false,
+  "recordsEdited": false,
+  "templatesChanged": false,
+  "surfaceResults": [
+    {
+      "id": "customers",
+      "page": "Debitoren / Customers",
+      "pageId": 22,
+      "sanitizedUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=22&company=UNIVERSAARL-DE&dc=0",
+      "visibleEnough": true,
+      "expectedMatches": [
+        "Debitor|Customer|Kunde",
+        "Nr\\.|No\\.|Name"
+      ],
+      "fieldSignalMatches": [
+        "USt|VAT|MwSt"
+      ],
+      "actionHintsCount": 50,
+      "textPath": "playwright/projects/fibu-book5/evidence/master-data-field-map-readfirst-validation/customers-visible-text.txt",
+      "decision": "surface-valid-for-training-and-route-planning",
+      "notWritePermission": true
+    },
+    {
+      "id": "vendors",
+      "page": "Kreditoren / Vendors",
+      "pageId": 27,
+      "sanitizedUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=27&company=UNIVERSAARL-DE&dc=0",
+      "visibleEnough": true,
+      "expectedMatches": [
+        "Kreditor|Vendor|Lieferant",
+        "Nr\\.|No\\.|Name"
+      ],
+      "fieldSignalMatches": [
+        "USt|VAT|MwSt"
+      ],
+      "actionHintsCount": 77,
+      "textPath": "playwright/projects/fibu-book5/evidence/master-data-field-map-readfirst-validation/vendors-visible-text.txt",
+      "decision": "surface-valid-for-training-and-route-planning",
+      "notWritePermission": true
+    },
+    {
+      "id": "items-services",
+      "page": "Artikel und Services / Items and Services",
+      "pageId": 31,
+      "sanitizedUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=31&company=UNIVERSAARL-DE&dc=0",
+      "visibleEnough": true,
+      "expectedMatches": [
+        "Artikel|Item|Service|Dienstleistung",
+        "Nr\\.|No\\.|Beschreibung|Description|Typ|Type"
+      ],
+      "fieldSignalMatches": [
+        "Basiseinheit|Base Unit|Einheit|Unit of Measure",
+        "USt|VAT|MwSt",
+        "Lagerbuchungsgruppe|Inventory Posting Group|Inventory|Lager",
+        "Kalkulationsmethode|Costing Method|Kosten|Cost",
+        "Vorlage|Template"
+      ],
+      "actionHintsCount": 41,
+      "textPath": "playwright/projects/fibu-book5/evidence/master-data-field-map-readfirst-validation/items-services-visible-text.txt",
+      "decision": "surface-valid-for-training-and-route-planning",
+      "notWritePermission": true
+    }
+  ],
+  "screenshots": [
+    "playwright/projects/fibu-book5/evidence/master-data-field-map-readfirst-validation/010-open-customers-after.png",
+    "playwright/projects/fibu-book5/evidence/master-data-field-map-readfirst-validation/010-open-vendors-after.png",
+    "playwright/projects/fibu-book5/evidence/master-data-field-map-readfirst-validation/010-open-items-services-after.png"
+  ],
+  "visualStatePaths": [
+    "playwright/projects/fibu-book5/evidence/master-data-field-map-readfirst-validation/010-open-customers-after.visual-state.json",
+    "playwright/projects/fibu-book5/evidence/master-data-field-map-readfirst-validation/010-open-vendors-after.visual-state.json",
+    "playwright/projects/fibu-book5/evidence/master-data-field-map-readfirst-validation/010-open-items-services-after.visual-state.json"
+  ],
+  "stepTimeline": "playwright/projects/fibu-book5/evidence/master-data-field-map-readfirst-validation/step-timeline.json",
+  "visibleActionHintsPath": "playwright/projects/fibu-book5/evidence/master-data-field-map-readfirst-validation/visible-action-hints.json",
+  "actionsTaken": [
+    "Opened Customers read-first in playthru / UNIVERSAARL-DE.",
+    "Opened Vendors read-first in playthru / UNIVERSAARL-DE.",
+    "Opened Items/Services read-first in playthru / UNIVERSAARL-DE.",
+    "Captured before/after screenshots and visual-state JSON through the step timeline.",
+    "Captured visible action hints without clicking New, Edit, templates, Save, OK, Create, Preview or Post."
+  ],
+  "actionsNotTaken": [
+    "No customer, vendor, item or service was created.",
+    "No existing master data was edited.",
+    "No values were typed.",
+    "No template dialog was opened or changed.",
+    "No setup field was changed.",
+    "No document or draft was created.",
+    "No Preview Posting.",
+    "No Posting.",
+    "No payment.",
+    "No API shortcut.",
+    "No company switch.",
+    "No book edit."
+  ],
+  "proved": [
+    "Customers, Vendors and Items/Services were opened as real Business Central read-first surfaces in playthru / UNIVERSAARL-DE.",
+    "Step Timeline captured before/after screenshots and visual-state JSON for each surface.",
+    "The run did not click write-capable actions and did not change setup or master data."
+  ],
+  "notProved": [
+    "No master-data write gate is approved by this run.",
+    "No customer/vendor/item template route is proven safe.",
+    "No posting group, VAT, payment, UOM, inventory, O2C, P2P, Preview Posting or Posting readiness is proven.",
+    "No UAT acceptance is proven."
+  ],
+  "blockedBy": [],
+  "warnings": [
+    "Visible New/Edit/template/action text is action inventory only and was not clicked.",
+    "Visible fields are not proof of setup correctness or safe persistence.",
+    "A later write gate must still isolate descriptive fields from posting, VAT, payment and inventory dependencies."
+  ],
+  "nextStepDecision": {
+    "currentCase": "MASTER-DATA-FIELD-MAP-READFIRST-VALIDATION",
+    "plannedNextCaseBeforeReview": "MASTER-DATA-FIELD-MAP-READFIRST-VALIDATION",
+    "lastEvidenceSummary": "The local Master Data field map needed validation against real Business Central surfaces before any write gate.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "All three master-data surfaces were visible read-first; the output can now feed a local template/write-gate decision.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "MASTER-DATA-TEMPLATE-ROUTE-DECISION",
+        "status": "ready-next",
+        "reason": "Templates and mandatory markers should be decided locally before any record write."
+      },
+      {
+        "caseId": "CUSTOMER-U-CUST-100-FIELD-COMPLETION-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Customer descriptive writes may only follow a local template/write-gate decision and still cannot imply O2C readiness."
+      },
+      {
+        "caseId": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
+        "status": "ready-after-current",
+        "reason": "Use if master-data field validation shows foundation dependencies still block safe write gates."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "MASTER-DATA-TEMPLATE-ROUTE-DECISION",
+    "whySelectedNextCaseIsBest": "A local template route decision is the right bridge before any narrow write-gate.",
+    "risksBeforeNextCase": [
+      "Treating visible fields as setup correctness would create false readiness.",
+      "Opening template/create dialogs without a cancel-safe plan could create records or change templates."
+    ],
+    "requiredPreparation": [
+      "Review visual-state JSON and action hints.",
+      "Keep posting, VAT, payment, UOM and inventory fields outside any first narrow write gate.",
+      "Require a separate Smart Decision before any write."
+    ]
+  },
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "nextCase": "MASTER-DATA-TEMPLATE-ROUTE-DECISION"
+}

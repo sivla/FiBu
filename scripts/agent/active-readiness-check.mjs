@@ -121,6 +121,15 @@ const checksByCase = new Map([
     }
   ],
   [
+    'MASTER-DATA-TEMPLATE-ROUTE-DECISION',
+    {
+      id: 'master-data-template-route-decision-local-no-live',
+      scriptPath: 'scripts/agent/local-no-live-case-readiness-check.mjs',
+      reason:
+        'This local no-live decision must consume the Master Data field-map read-first evidence before any template dialog or record write gate.'
+    }
+  ],
+  [
     'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK',
     {
       id: 'target-075-readiness',

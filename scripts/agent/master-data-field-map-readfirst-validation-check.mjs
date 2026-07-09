@@ -11,7 +11,10 @@ const files = {
   foundationDecision: 'playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md',
   rejectedRoutes: '.agent/state/rejected_route_register.json',
   visualStateHelper: 'playwright/core/bc/visual-state-capture.ts',
-  stepTimelineHelper: 'playwright/core/bc/step-timeline.ts'
+  stepTimelineHelper: 'playwright/core/bc/step-timeline.ts',
+  runner: 'scripts/agent/run-master-data-field-map-readfirst-validation.mjs',
+  spec: 'playwright/projects/fibu-book5/tests/master-data-field-map-readfirst-validation.spec.ts',
+  packageJson: 'package.json'
 };
 
 function readJson(relativePath) {
@@ -63,6 +66,7 @@ let activeCase = null;
 let fieldMapDecision = null;
 let foundationDecision = '';
 let rejectedRoutes = null;
+let packageJson = null;
 
 if (!errors.length) {
   current = readJson(files.current);
@@ -70,6 +74,7 @@ if (!errors.length) {
   fieldMapDecision = readJson(files.fieldMapDecision);
   foundationDecision = readText(files.foundationDecision);
   rejectedRoutes = readJson(files.rejectedRoutes);
+  packageJson = readJson(files.packageJson);
 }
 
 if (current) {
@@ -182,6 +187,13 @@ if (rejectedRoutes) {
   const routeIds = new Set((rejectedRoutes.routes ?? []).map((route) => route.routeId));
   for (const routeId of activeCase?.rejectedRoutesToRespect ?? []) {
     if (!routeIds.has(routeId)) errors.push(`${files.rejectedRoutes}: missing route ${routeId}`);
+  }
+}
+
+if (packageJson) {
+  const script = packageJson.scripts?.['fibu:masterdata:field-map-readfirst-validation'];
+  if (script !== 'node scripts/agent/run-master-data-field-map-readfirst-validation.mjs') {
+    errors.push(`${files.packageJson}: fibu:masterdata:field-map-readfirst-validation must point to the guarded runner`);
   }
 }
 
