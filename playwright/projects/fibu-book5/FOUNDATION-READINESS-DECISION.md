@@ -20,10 +20,10 @@
 `UNIVERSAARL-DE` hat genug echte Oberflaechen- und Stammdaten-Evidence fuer Schulung, Handbuch und weitere lokale Routenentscheidungen. Das ist noch keine Prozessfreigabe.
 
 - Nach `FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST` ist der fruehere Table-325-Metadatenstand fachlich enger zu lesen: Die Paketkarte `U-VAT325-DISC` ist sichtbar, aber der korrigierte Screenshot-/Text-Gate beweist keine belastbar sichtbare Table-325-Zeile und keinen sicheren Feldauswahlkontext. `325` im Paketcode oder Paketnamen ist kein Tabellenzeilenbeweis.
-- Aktueller naechster Case: `FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST`, read-first/no-write. Der Source-Gap-Entscheid hat `VAT Business Posting Group` offiziell als Table 323 mit `Code` und `Description` geklaert, aber `INLAND` ist lokal in `playthru / UNIVERSAARL-DE` noch nicht bewiesen. Deshalb folgt keine Schreibfreigabe, sondern ein gezielter Tabellen-/Feldnachweis ueber Konfigurationsarbeitsblatt oder eine vergleichbare read-only Oberflaeche.
+- Aktueller naechster Case: `FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION`, lokal/no-live. `FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST` hat Konfigurationsarbeitsblatt und Konfigurationspakete sichtbar gemacht, aber kein belastbares Feldmapping fuer Table 323, Table 252 oder Table 325 bewiesen. `FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION` parkt deshalb die Paket-Write-Route.
 - Als Schulungs-/Handbuchsubstanz nutzbar: Kontenplan-Starterkonten, Nummernserien, Dimensionsliste/-werte, Debitor `U-CUST-100 / Saarland Maschinenbau AG`, Artikel `U-ITEM-HW100 / Steuerbox Standard U100`.
 - Weiterhin blockierend fuer O2C/P2P, Preview und Posting: VAT Business Posting Groups Page 470, vollstaendige VAT-/USt-Buchungsmatrix, Buchungsmatrix Einrichtung / General Posting Setup, Page-314-/Page-472-Schreibroute, globale/default Dimensionen, VAT-/Posting-Finalitaet.
-- Naechste sinnvolle Arbeit: keine weitere Wiederholung abgeschlossener VAT-, Kontenplan-, Debitoren-, Artikel- oder Paketkarten-Read-first-Cases. Der engste naechste Foundation-Baustein ist der read-first Tabellen-/Feldnachweis fuer Table 323, Table 325 und Table 252. Erst danach ist ein Paket-/Setup-Gate oder bewusstes Parken sinnvoll.
+- Naechste sinnvolle Arbeit: keine weitere Wiederholung abgeschlossener VAT-, Kontenplan-, Debitoren-, Artikel-, Paketkarten- oder Konfigurationsarbeitsblatt-Read-first-Cases. Der engste naechste Foundation-Baustein ist eine lokale Alternativrouten-Entscheidung: andere Quelle, andere BC-Oberflaeche, bewusste Parkentscheidung oder spaeterer neuer Read-first-Case mit materiell neuer Hypothese.
 - Datenregel: realistische fiktive Universaarl-Daten verwenden, keine UI-Mockups und keine vertraulichen echten Kundendaten.
 - Buchmaster-Anker: Kapitel 9 enthaelt jetzt einen Universaarl-Abschnitt zu `U-CUST-100` und `U-ITEM-HW100`. Dieser Abschnitt ist fuer Schulung und Handbuch nutzbar, aber nicht als Prozessfreigabe zu lesen.
 - Screenshot-QA fuer naechsten Live-Proof: Der naechste read-first VAT-/Posting-Setup- oder Foundation-Refresh-Lauf muss eine Bildkette mit mindestens fuenf akzeptierten Checkpoints erfassen: Startkontext, Navigationsweg, Zielseite, relevanter Button/Tooltip oder Action-Kontext, Zielzeile/FastTab/FactBox-Kontext, optional Page Inspection sowie explizite Grenze. Ein einzelner End-Screenshot reicht fuer Page- oder Feldclaims nicht mehr aus.
@@ -189,6 +189,22 @@ PWS-FF-001 hat die Nummernserien-Seite read-only beobachtet: sieben Universaarl-
 - Route-Entscheidung: `ready-for-write-gate`, aber nur als lokaler Folgeentscheid. Das ist keine Freigabe fuer Paketkopf, Tabellenabruf, Import, Export, Validate, Apply, Edit in Excel oder Setupwerte.
 - Schreibgrenze: kein Paket erstellt, keine Paketkarte bearbeitet, keine Tabelle abgerufen, kein Import, Export, Validate, Apply, Edit in Excel, Setupwert, Stammdatensatz, Beleg, Preview Posting oder Posting.
 - Naechster Case: `FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION`, lokal/no-live. Dort wird entschieden, ob ein enges Paket-Metadaten-Gate fachlich verantwortbar ist oder die Route geparkt wird.
+
+## FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST
+
+- Quelle: playwright/projects/fibu-book5/evidence/foundation-configuration-worksheet-field-map-readfirst/result.json
+- Status: observed-readfirst
+- Akzeptiert: `playthru / UNIVERSAARL-DE` wurde bestaetigt. Das Konfigurationsarbeitsblatt ist als Vordergrund-Seitenpaneel sichtbar, und Page 8615 `Konfigurationspakete` ist als Listenpage sichtbar. Die Evidence enthaelt Screenshots, Visual-State-JSON, Action-Inventare und Step Timeline.
+- Verworfen als Setup-Beweis: Table 323, Table 252 und Table 325 sind nicht belastbar als Feldmapping bewiesen. Das sichtbare `325` kann aus `U-VAT325-DISC` stammen und ist deshalb kein Table-325-Zeilen- oder Feldlistenbeweis.
+- Schreibgrenze: kein Paket erstellt, keine Paketkarte bearbeitet, keine Tabelle abgerufen, keine Feldauswahl, kein Import, Export, Validate, Apply, Edit in Excel, Setupwert, Stammdatensatz, Beleg, Preview Posting oder Posting.
+
+## FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION
+
+- Quelle: playwright/projects/fibu-book5/evidence/foundation-setup-package-write-gate-decision/result.json
+- Status: completed-local-decision-after-field-map-readfirst
+- Entscheidung: `parked`. Konfigurationspakete bleiben fuer ein echtes Kundenprojekt ein plausibler Implementierungsweg, aber die aktuelle Route ist nicht write-ready.
+- Begruendung: Die Oberflaechen sind sichtbar, aber das Tabellen-/Feldmapping fuer Table 323, Table 252 und Table 325 ist nicht stark genug. Ohne Feldmapping, Validierung, Keep-/Cleanup-Regel und Reopen-Proof darf kein Paket-Metadaten-Write, kein `Get Tables`, keine Feldauswahl, kein Import, kein Validate und kein Apply folgen.
+- Praktische Folge: Foundation bleibt training-/handbook-nutzbar, aber nicht setup- oder process-ready. Der naechste Schritt ist eine lokale alternative Routenentscheidung, nicht ein weiterer Paket- oder UI-Retry.
 
 ## PWS-FF-002C Route Decision: Buchungsmatrix Einrichtung
 
@@ -414,7 +430,7 @@ Erlaubte Anschlussklassifikationen:
 
 ## Naechster Case
 
-- `FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST` read-first/no-write: Konfigurationsarbeitsblatt oder vergleichbare Tabellen-/Feldoberflaeche nur lesend pruefen. Keine Page-470-Retrys ohne neue Hypothese, keine weitere Paketkartenroute, keine Feldselektion, kein Import, kein Validate/Apply, kein Speichern, kein O2C/P2P in diesem Schritt.
+- `FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION` lokal/no-live: Die geparkte Konfigurationspaket-Write-Route in eine alternative Foundation-Route uebersetzen oder bewusst parken. Keine Page-470-Retrys ohne neue Hypothese, keine weitere Paketkartenroute, keine Feldselektion, kein Import, kein Validate/Apply, kein Speichern, kein O2C/P2P in diesem Schritt.
 
 ## FOUNDATION-SETUP-ROUTE-DECISION
 

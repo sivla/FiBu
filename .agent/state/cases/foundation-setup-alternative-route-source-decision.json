@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
   "caseId": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
-  "status": "completed-local-decision",
+  "status": "prepared-local-refresh-after-package-write-gate-parked",
   "caseType": "local-no-live-decision",
   "mode": "universaarl-foundation-local-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "activeArea": "w1-foundation",
   "goal": "Choose the next materially different Foundation setup route after the U-VAT325-DISC field-selection route was parked.",
-  "whyNow": "Foundation Readiness has consumed the package-route blocker. The next step must not repeat the same package-card field-selection route and must decide whether a source-backed, worksheet, different package surface, read-first or parked route is best.",
+  "whyNow": "Foundation Readiness has consumed the latest Field-Map read-first and parked Configuration Package write-gate decision. The next step must not repeat the same package-card, worksheet or field-selection route and must decide whether a source-backed, different BC surface, future read-first or parked route is best.",
   "businessPurpose": "Keep Foundation setup realistic for a customer project while preventing blind UI retries and premature setup writes.",
   "mustRead": [
     ".agent/OPERATING-KERNEL.md",
@@ -57,6 +57,11 @@
     "bc-setup-route-decision",
     "state-sync-check"
   ],
+  "skills": [
+    "bc-source-research",
+    "bc-setup-route-decision",
+    "state-sync-check"
+  ],
   "requiredHelpers": [
     "scripts/agent/local-no-live-case-readiness-check.mjs",
     "scripts/agent/rejected-route-check.mjs",
@@ -76,7 +81,7 @@
     "A nextCase selection that is materially different from the parked U-VAT325-DISC field-selection route.",
     "Explicit no-live/no-write boundary and no VAT, posting, master-data or process-readiness claim."
   ],
-  "decision": "ready-for-source-table-field-review",
+  "decision": "needs-local-refresh-after-package-write-gate-parked",
   "resultPath": "playwright/projects/fibu-book5/evidence/foundation-setup-alternative-route-source-decision/result.json",
   "stopConditions": [
     "Stop if the decision would require opening Business Central or running Playwright.",
@@ -108,8 +113,8 @@
       "liveType": "local-no-live-decision"
     }
   ],
-  "selectedNextCase": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",
-  "nextCase": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",
-  "completedAt": "2026-07-09T02:05:00.000Z",
-  "preparedAt": "2026-07-09T01:30:00.000Z"
+  "selectedNextCase": null,
+  "nextCase": null,
+  "completedAt": null,
+  "preparedAt": "2026-07-09T06:50:00.000Z"
 }

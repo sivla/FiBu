@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-09T06:05:00.000Z",
+  "updatedAt": "2026-07-09T06:50:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -15,9 +15,9 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w1-foundation",
-  "activeCase": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION",
-  "active_case_file": ".agent/state/cases/foundation-setup-package-write-gate-decision.json",
-  "activeCaseFile": ".agent/state/cases/foundation-setup-package-write-gate-decision.json",
+  "activeCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
+  "active_case_file": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
+  "activeCaseFile": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-foundation-local-decision",
@@ -38,17 +38,17 @@
     "agent:preflight",
     "agent:active-readiness",
     "agent:dry-run",
+    "agent:run-plan",
     "agent:rejected-routes:check",
     "check:encoding",
     "git diff --check"
   ],
   "allowedActions": [
     "local-source-review",
-    "local-field-map-review",
-    "local-risk-review",
-    "local-keep-cleanup-strategy",
-    "write-local-decision-result-json",
-    "prepare-next-case"
+    "local-route-comparison",
+    "local-rejected-route-review",
+    "write-route-decision-result-json",
+    "prepare-one-next-readfirst-or-local-gate-case"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -56,14 +56,12 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "continue-target-073",
     "open-business-central",
     "run-playwright-live",
     "create-configuration-package",
     "open-configuration-package-card-for-edit",
     "get-tables",
-    "add-table",
-    "remove-table",
+    "select-or-toggle-package-fields",
     "import-configuration-package",
     "export-configuration-package",
     "validate-configuration-package",
@@ -75,13 +73,14 @@
     "preview-posting",
     "post",
     "payment",
-    "cleanup-delete",
     "api-shortcut",
-    "company-switch"
+    "company-switch",
+    "claim-posting-readiness",
+    "claim-master-data-readiness"
   ],
-  "nextCase": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION",
-  "nextStep": "Run FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION locally/no-live. Consume the new Field-Map Read-first evidence conservatively: Worksheet and Packages are visible, but Table 323/252 and reliable Table 325 field-map proof are still not write-ready.",
-  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-package-write-gate-decision.json",
+  "nextCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
+  "nextStep": "Run FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION locally/no-live. Choose a materially different Foundation setup route after Configuration Package write gate was parked; do not repeat package-card, worksheet, Page 314/470/472 or U-VAT325-DISC routes without a new hypothesis.",
+  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -215,22 +214,22 @@
     "nextBoundary": "Master Data remains parked. Next work must update Foundation Readiness and either accept this as a Foundation gap or define a genuinely new Page 314 route hypothesis before another live attempt."
   },
   "activeNextStepAuthority": {
-    "source": "playwright/projects/fibu-book5/evidence/foundation-configuration-worksheet-field-map-readfirst/result.json",
-    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION",
-    "activeCaseFile": ".agent/state/cases/foundation-setup-package-write-gate-decision.json",
-    "preparedNextCaseFile": ".agent/state/cases/foundation-setup-package-write-gate-decision.json",
+    "source": "playwright/projects/fibu-book5/evidence/foundation-readiness-decision/result.json",
+    "selectedNextCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
+    "activeCaseFile": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
+    "preparedNextCaseFile": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "The field-map read-first run proved Configuration Worksheet and Packages surfaces, but Table 323/252 and reliable Table 325 field-map proof remain not write-ready; the next step is a local no-live write-gate decision.",
+    "reason": "Foundation Readiness consumed the parked Configuration Package write-gate decision; the next step is a local alternative route decision, not another package or setup write.",
     "rejectedRoute": "RR-FOUNDATION-CONFIG-PACKAGE-U-VAT325-FIELD-SELECTION-RETRY",
     "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
-    "whySelectedNextCaseIsBest": "It prevents a premature package/setup write and forces a conservative local decision from the new screenshot and timeline evidence.",
+    "whySelectedNextCaseIsBest": "It forces the next Foundation move to be materially different, source-backed and no-live before any setup, package, master-data or process route is proposed.",
     "requiredPreparation": [
-      "Review the field-map read-first result, screenshots and step timeline.",
-      "Treat the Table 325 signal as weak because U-VAT325-DISC contains 325.",
-      "Stop before package creation, Get Tables, field selection, import/export/validate/apply or setup writes."
+      "Review Foundation Readiness, the package write-gate decision and rejected route register.",
+      "Keep U-VAT325-DISC, worksheet field-map, Page 314/470/472 and Escape-after-Tell-Me repeats parked unless a materially new hypothesis exists.",
+      "Stop before Business Central, Playwright live, package actions, setup writes, master data or process work."
     ],
-    "updatedAt": "2026-07-09T06:05:00.000Z"
+    "updatedAt": "2026-07-09T06:50:00.000Z"
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -344,7 +343,7 @@
     "currentLiveBoundary": {
       "freezeActive": false,
       "parkedCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-      "resumePilot": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION",
+      "resumePilot": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
       "resumePilotMode": "local-no-live-decision"
     },
     "legacyScriptGuard": {
@@ -11997,11 +11996,11 @@
   },
   "latestFoundationSetupPackageMetadataWriteGateDecision": {
     "caseId": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION",
-    "status": "completed-local-decision",
-    "decision": "ready-for-readfirst",
+    "status": "completed-local-decision-after-field-map-readfirst",
+    "decision": "parked",
     "resultPath": "playwright/projects/fibu-book5/evidence/foundation-setup-package-write-gate-decision/result.json",
-    "completedAt": "2026-07-08T22:57:23.999Z",
-    "note": "Configuration Package route remains source-backed, but write gate is not ready until package card/table/field surfaces are proven read-first."
+    "completedAt": "2026-07-09T06:45:00.000Z",
+    "note": "Configuration Package route remains plausible for later repeatable setup, but the current write gate is parked: Configuration Worksheet and Packages are visible, yet reliable Table 323/252/325 field mapping is not proven."
   },
   "latestFoundationSetupPackageRouteRecoveryReadfirst": {
     "caseId": "FOUNDATION-SETUP-PACKAGE-ROUTE-RECOVERY-READFIRST",
@@ -12247,7 +12246,7 @@
   },
   "latestFoundationReadinessDecision": {
     "caseId": "FOUNDATION-READINESS-DECISION",
-    "status": "completed-local-decision-after-package-route-park",
+    "status": "completed-local-decision-after-package-write-gate-parked",
     "resultPath": "playwright/projects/fibu-book5/evidence/foundation-readiness-decision/result.json",
     "instance": "playthru",
     "company": "UNIVERSAARL-DE",
@@ -12259,17 +12258,17 @@
     "apiShortcut": false,
     "decision": {
       "foundationStatus": "partial-training-and-handbook-ready-not-process-ready",
-      "packageRouteStatus": "parked-specific-u-vat325-disc-field-selection-route",
+      "packageRouteStatus": "parked-configuration-package-write-gate-after-field-map-readfirst",
       "masterDataStatus": "training-ready-examples-write-gates-still-parked",
       "processStatus": "o2c-p2p-preview-posting-posting-blocked"
     },
     "nextCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
-    "updatedAt": "2026-07-09T01:30:00.000Z"
+    "updatedAt": "2026-07-09T06:50:00.000Z"
   },
   "latestFoundationSetupAlternativeRouteSourceDecision": {
     "caseId": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
-    "status": "completed-local-decision",
-    "decision": "ready-for-source-table-field-review",
+    "status": "prepared-local-refresh-after-package-write-gate-parked",
+    "decision": "needs-local-refresh-after-package-write-gate-parked",
     "resultPath": "playwright/projects/fibu-book5/evidence/foundation-setup-alternative-route-source-decision/result.json",
     "instance": "playthru",
     "company": "UNIVERSAARL-DE",
@@ -12279,8 +12278,8 @@
     "masterDataChanged": false,
     "previewPosting": false,
     "posted": false,
-    "nextCase": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",
-    "updatedAt": "2026-07-09T02:05:00.000Z"
+    "nextCase": null,
+    "updatedAt": "2026-07-09T06:50:00.000Z"
   },
   "latestFoundationSetupSourceTableFieldReview": {
     "caseId": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",

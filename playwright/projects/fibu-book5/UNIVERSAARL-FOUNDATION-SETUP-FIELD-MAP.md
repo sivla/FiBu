@@ -36,6 +36,8 @@ Nach `FOUNDATION-SETUP-SOURCE-GAP-DECISION` ist die Produktquelle enger: Microso
 
 Nach `FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST` sind die Oberflaechen besser bewiesen: Das Konfigurationsarbeitsblatt ist als Vordergrund-Seitenpaneel sichtbar, die Seite Konfigurationspakete ist als Listenpage sichtbar, und die Bildkette unterscheidet Role Center, Seitenpaneel und Zielseite. Das ist ein guter Read-first-Nachweis fuer den Standardweg, aber noch keine Schreibfreigabe. Das sichtbare `325` stammt mindestens teilweise aus dem Paketcode `U-VAT325-DISC`; deshalb ist es kein belastbarer Beweis fuer eine echte Table-325-Zeile oder Feldliste. Table 323 und Table 252 sind in diesem Lauf ebenfalls nicht belastbar sichtbar. Der naechste Schritt ist deshalb nur eine lokale `FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION`: pruefen, ob ein enger weiterer Read-first- oder Metadata-Gate sinnvoll ist. Kein Setup-Write, kein Get Tables, keine Feldauswahl und kein Apply.
 
+Nach `FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION` bleibt die Konfigurationspaket-Route fachlich plausibel, ist aber fuer Foundation-Setup aktuell geparkt. Die neue Bildkette beweist Oberflaechen, nicht Feldmapping. Ohne belastbaren Nachweis fuer Table 323, Table 252 und Table 325 gibt es keinen Paket-Write-Gate, kein `Get Tables`, keine Feldauswahl, keinen Import, kein Validate, kein Apply und keine Setup-Aenderung. Foundation Readiness muss diese Grenze als naechstes lokal/no-live konsumieren und danach eine materiell andere Route waehlen oder die Luecke bewusst parken.
+
 ## Read-first Ergebnis vom 2026-07-09
 
 Status: `parked`
@@ -71,6 +73,6 @@ Nicht gewaehlt:
 
 ## Naechster lokaler Case
 
-`FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST`
+`FOUNDATION-READINESS-DECISION`
 
-Ziel: In `playthru / UNIVERSAARL-DE` nur lesend pruefen, ob Konfigurationsarbeitsblatt oder vergleichbare Tabellen-/Feldoberflaechen die Foundation-Setup-Objekte fuer Table 323, Table 325 und Table 252 belastbar sichtbar machen. Der Case darf kein Paket erstellen, keine Tabellen abrufen, keine Felder toggeln oder auswaehlen, nichts anwenden, importieren, validieren, exportieren oder Setupwerte speichern.
+Ziel: Die geparkte Konfigurationspaket-Route in die Foundation-Readiness-Grenze uebernehmen. Master Data, O2C/P2P, Import/Apply, Setup-Write, Preview Posting und Posting bleiben gesperrt, bis eine materiell andere, belegbare Foundation-Route entschieden ist.
