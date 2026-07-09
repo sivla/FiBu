@@ -112,6 +112,15 @@ const checksByCase = new Map([
     }
   ],
   [
+    'FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION',
+    {
+      id: 'foundation-setup-alternative-route-source-decision-local-no-live',
+      scriptPath: 'scripts/agent/local-no-live-case-readiness-check.mjs',
+      reason:
+        'This local no-live follow-up must choose a materially different Foundation setup route and must not repeat parked package, worksheet, Page 314, Page 470, Page 472 or U-VAT325-DISC routes.'
+    }
+  ],
+  [
     'MASTER-DATA-FIELD-MAP-READFIRST-VALIDATION',
     {
       id: 'master-data-field-map-readfirst-validation',
