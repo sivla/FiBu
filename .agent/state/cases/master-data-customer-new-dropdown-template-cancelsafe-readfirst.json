@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "caseId": "MASTER-DATA-CUSTOMER-NEW-DROPDOWN-TEMPLATE-CANCELSAFE-READFIRST",
+  "status": "prepared-readfirst-no-write",
+  "caseType": "read-first-no-write",
+  "mode": "universaarl-masterdata-readfirst",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w4-master-data-product-model",
+  "goal": "Inspect the Debitoren (Customers) New/Neu dropdown, template or mandatory-field entry boundary read-first, and prove the cancel/no-write route before any customer write gate.",
+  "whyNow": "MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT proved Customers, Vendors and Items/Services list/action surfaces, but did not click the New dropdown, did not observe a template dialog, and did not prove mandatory fields or cancel safety.",
+  "businessPurpose": "A realistic customer project needs the consultant to understand how Business Central starts a customer record before deciding whether a narrow customer write gate is safe.",
+  "mustRead": [
+    ".agent/OPERATING-KERNEL.md",
+    ".agent/state/current.json",
+    "playwright/projects/fibu-book5/evidence/master-data-template-route-decision/result.json",
+    "playwright/projects/fibu-book5/evidence/master-data-template-readfirst-preflight/result.json",
+    "playwright/projects/fibu-book5/evidence/master-data-template-readfirst-preflight/customers-action-candidates.json"
+  ],
+  "allowedActions": [
+    "validate-playthru-context-readonly",
+    "validate-universaarl-company-context-readonly",
+    "open-customers-list-readonly",
+    "inspect-new-dropdown-or-tooltip-readonly",
+    "inspect-template-dialog-only-if-cancel-safe",
+    "capture-screenshot-chain",
+    "capture-visual-state-json",
+    "write-result-json"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "write-setup",
+    "create-master-data",
+    "edit-master-data",
+    "save-record",
+    "change-template",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "company-switch",
+    "import-configuration-package",
+    "export-configuration-package",
+    "validate-configuration-package",
+    "apply-configuration-package",
+    "edit-book",
+    "claim-foundation-setup-ready",
+    "claim-master-data-ready",
+    "claim-process-ready",
+    "continue-target-073",
+    "type-business-central-values",
+    "cleanup-delete"
+  ],
+  "skills": [
+    "read-first-page-proof",
+    "screenshot-qa",
+    "state-sync-check"
+  ],
+  "requiredSkills": [
+    "read-first-page-proof",
+    "screenshot-qa",
+    "state-sync-check"
+  ],
+  "requiredHelpers": [
+    "playwright/core/bc/step-timeline.ts",
+    "playwright/core/bc/visual-state-capture.ts",
+    "playwright/core/bc/visual-proof-skills.ts"
+  ],
+  "requiredChecks": [
+    "agent:preflight",
+    "agent:active-readiness",
+    "agent:dry-run",
+    "agent:run-plan",
+    "agent:rejected-routes:check",
+    "agent:visual-proof-skills:check",
+    "check:encoding",
+    "git diff --check"
+  ],
+  "expectedOutput": [
+    "Read-first result JSON for the Debitoren New/Neu dropdown, template or cancel-safe entry boundary.",
+    "Screenshot QA and visual-state JSON for list context, New/dropdown or tooltip context, optional cancel-safe template surface and no-write end state.",
+    "Decision whether the next step can be a narrow customer write-gate prep or must remain parked."
+  ],
+  "stopConditions": [
+    "Stop if Business Central is not in playthru / UNIVERSAARL-DE.",
+    "Stop if clicking New/Neu would immediately create, save or change a record without a visible cancel boundary.",
+    "Stop before Save, Create, OK, Finish, typed values or template-changing actions.",
+    "Stop if screenshot QA cannot distinguish list, dialog, side pane, search overlay or Role Center background.",
+    "Stop if Foundation setup gaps are treated as solved by customer UI visibility."
+  ],
+  "rejectedRoutesToRespect": [
+    "RR-FOUNDATION-PAGE314-GRID-LIST-EDIT-RETRY",
+    "RR-FOUNDATION-PAGE470-VAT-BUSINESS-GROUPS-SEARCH-RETRY",
+    "RR-FOUNDATION-PAGE472-ACTIVE-EDITOR-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGES-ESCAPE-TELLME-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGE-U-VAT325-FIELD-SELECTION-RETRY"
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/master-data-customer-new-dropdown-template-cancelsafe-readfirst/result.json",
+  "nextCaseOptions": [
+    {
+      "caseId": "CUSTOMER-U-CUST-100-FIELD-COMPLETION-WRITE-GATE",
+      "when": "Use only if the dropdown/template/cancel evidence isolates a safe customer route and all field/value dependencies stay bounded.",
+      "liveType": "write-gated"
+    },
+    {
+      "caseId": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
+      "when": "Use if Foundation setup dependencies still block even a descriptive customer write gate.",
+      "liveType": "local-no-live-decision"
+    },
+    {
+      "caseId": "MASTER-DATA-TEMPLATE-ROUTE-DECISION",
+      "when": "Use if the read-first proof contradicts the route or shows that template behavior cannot be inspected safely.",
+      "liveType": "local-no-live-decision"
+    }
+  ],
+  "decision": "prepared-readfirst",
+  "selectedNextCase": null,
+  "nextCase": null,
+  "preparedAt": "2026-07-09T23:30:00.000+02:00"
+}

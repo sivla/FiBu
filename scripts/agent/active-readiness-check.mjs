@@ -139,6 +139,15 @@ const checksByCase = new Map([
     }
   ],
   [
+    'MASTER-DATA-CUSTOMER-NEW-DROPDOWN-TEMPLATE-CANCELSAFE-READFIRST',
+    {
+      id: 'master-data-customer-new-dropdown-template-cancelsafe-readfirst',
+      scriptPath: 'scripts/agent/read-first-no-write-case-readiness-check.mjs',
+      reason:
+        'This read-first/no-write customer preflight may inspect the Debitoren New/Neu dropdown, optional template surface and cancel/no-write boundary, but must stop before Save, Create, OK, Finish, typed values or template changes.'
+    }
+  ],
+  [
     'MASTER-DATA-TEMPLATE-ROUTE-DECISION',
     {
       id: 'master-data-template-route-decision-local-no-live',

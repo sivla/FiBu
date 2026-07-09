@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "caseId": "MASTER-DATA-TEMPLATE-ROUTE-DECISION",
-  "status": "completed-local-decision-operating-kernel-revalidated",
-  "decision": "ready-for-template-readfirst-preflight-not-write",
+  "status": "completed-local-decision-after-template-preflight",
+  "decision": "needs-narrow-customer-dropdown-template-cancelsafe-readfirst-before-write-gate",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "mode": "local-no-live-decision",
@@ -19,37 +19,40 @@
   "sourcesReviewed": [
     ".agent/OPERATING-KERNEL.md",
     ".agent/state/current.json",
-    "playwright/projects/fibu-book5/evidence/master-data-field-map-readfirst-validation/result.json",
-    "playwright/projects/fibu-book5/evidence/master-data-package-field-map-decision/result.json",
+    "playwright/projects/fibu-book5/evidence/master-data-template-readfirst-preflight/result.json",
+    "playwright/projects/fibu-book5/evidence/master-data-template-readfirst-preflight/step-timeline.json",
     "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
     ".agent/state/cases/master-data-template-route-decision.json"
   ],
   "routeClassification": [
     {
       "area": "Debitoren (Customers)",
-      "templateStatus": "needs-readfirst-preflight",
+      "surfaceStatus": "readfirst-list-and-new-action-observed",
+      "templateStatus": "needs-narrow-cancelsafe-readfirst",
       "writeGateStatus": "not-ready",
-      "reason": "Die Debitorenliste ist als echte Oberflaeche beobachtet, aber Template-Dialog, Pflichtfelder, Abbruchweg und gespeicherte Abhaengigkeiten sind nicht als sicher bewiesen.",
-      "allowedNextProof": "Debitorenliste, Neu-/Dropdown-/Template-Kontext, Pflichtfeld-/FastTab-Kontext und Abbruchgrenze read-first dokumentieren."
+      "reason": "The Customers list and New/Neu action are visible, but the evidence did not open the New dropdown, did not observe a template dialog, did not prove cancel safety and did not test mandatory fields.",
+      "allowedNextProof": "Inspect only the customer New/Neu dropdown, tooltip, optional template surface and cancel/no-write end state with screenshot QA and Step Timeline."
     },
     {
       "area": "Kreditoren (Vendors)",
-      "templateStatus": "needs-readfirst-preflight",
-      "writeGateStatus": "parked-after-customer-pattern",
-      "reason": "Kreditoren haben Zahlungs-, Buchungsgruppen- und Bankdatenrisiken. Sie folgen erst, wenn das Debitoren-Template-/Pflichtfeldmuster sicher verstanden ist.",
-      "allowedNextProof": "Noch kein Kreditoren-Write-Gate; spaeter read-first Template-/Zahlungsgrenzen pruefen."
+      "surfaceStatus": "readfirst-list-and-new-action-observed",
+      "templateStatus": "parked-after-customer-pattern",
+      "writeGateStatus": "parked",
+      "reason": "Vendors add payment, bank, purchase and creditor-specific dependencies. They should follow only after the customer route pattern is understood.",
+      "allowedNextProof": "No vendor write gate; later read-first route proof may reuse the customer pattern if it works."
     },
     {
-      "area": "Artikel und Services (Items/Services)",
-      "templateStatus": "needs-readfirst-preflight",
-      "writeGateStatus": "parked-after-product-model",
-      "reason": "Artikel/Services haengen an Art, Einheit, Buchungsgruppen, USt, Lager und Bewertung. Das ist fuer den ersten Stammdaten-Write zu riskant.",
-      "allowedNextProof": "Noch kein Artikel-/Service-Write-Gate; spaeter Product-Model- und Template-Kontext read-first pruefen."
+      "area": "Artikel/Services (Items/Services)",
+      "surfaceStatus": "readfirst-list-and-new-action-observed",
+      "templateStatus": "parked-after-product-model",
+      "writeGateStatus": "parked",
+      "reason": "Items and services depend on type, unit of measure, VAT/product posting groups, inventory and costing. Visible New/Neu is not enough for a product write gate.",
+      "allowedNextProof": "No item/service write gate; later product-model and template route decision required."
     }
   ],
   "decisionSummary": {
-    "selectedRoute": "MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT",
-    "classification": "ready-for-readfirst",
+    "classification": "ready-for-more-specific-readfirst-not-write",
+    "selectedRoute": "MASTER-DATA-CUSTOMER-NEW-DROPDOWN-TEMPLATE-CANCELSAFE-READFIRST",
     "notSelected": [
       "CUSTOMER-U-CUST-100-FIELD-COMPLETION-WRITE-GATE",
       "direct-customer-create",
@@ -57,40 +60,41 @@
       "item-service-create",
       "configuration-package-import",
       "excel-assisted-load",
-      "api-or-al-shortcut"
+      "api-or-al-shortcut",
+      "repeat-generic-master-data-template-readfirst-preflight"
     ],
-    "why": "Die vorhandene Field-Map-Evidence beweist reale Kunden-/Kreditoren-/Artikeloberflaechen, aber keine Template-Sicherheit und keine Pflichtfeld-/Abbruchlogik. Ein realistisches Kundenprojekt braucht diese Preflight-Wahrheit vor jedem Write-Gate."
+    "why": "The new visual evidence improved UI truth but still proves only list/action visibility. A realistic BC consultant would next prove the customer-specific dropdown/template/cancel boundary before preparing any customer record write gate."
   },
   "proved": [
-    "Customers, Vendors and Items/Services are valid read-first surfaces for route planning and training input.",
-    "The Master Data field map is useful for Data Requests and route decisions.",
-    "Template behavior is not proven and must be observed read-first before any record write gate.",
-    "The next safe step is a read-first/no-write template preflight, not a write gate."
+    "Customers, Vendors and Items/Services are valid read-first Business Central surfaces in playthru / UNIVERSAARL-DE.",
+    "New/Neu or related action candidates are visible in all three contexts.",
+    "The previous run wrote screenshots, visual-state JSON and a six-step timeline.",
+    "No setup, master data, template, document, Preview Posting, Posting or API action occurred."
   ],
   "notProved": [
     "No customer, vendor, item or service write readiness.",
     "No template dialog safety.",
-    "No mandatory field completeness.",
+    "No cancel boundary after opening New/Neu.",
+    "No mandatory-field completeness or save validation.",
     "No setup correctness for posting groups, VAT, payment terms, units of measure, inventory or product model.",
     "No O2C, P2P, Inventory, Preview Posting, Posting, ledger trace, UAT acceptance or final handbook/book claim."
   ],
   "blockedBy": [
-    "Template dialogs and mandatory markers are not observed in current Universaarl evidence.",
+    "Template and mandatory-field behavior are still not observed.",
     "Foundation setup boundaries remain parked for VAT and posting setup.",
-    "Bulk routes such as configuration packages or Excel-assisted loads need field/value validation before write gates."
+    "A customer write gate needs exact field/value dependencies and a reopen-proof plan."
   ],
   "warnings": [
-    "Visible New/Edit/template action text is action inventory only and must not be clicked without a read-first/cancel-safe plan.",
-    "A future Template Preflight may open UI only after live gates are valid and must stop before Save, Create, OK, Finish or template-changing actions.",
-    "Do not treat U-CUST-100 or U-ITEM-HW100 visibility as permission to create or edit records."
+    "Visible New/Neu action text is action inventory only and must not be treated as create permission.",
+    "Do not rerun the broad MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT without a materially different hypothesis.",
+    "The next read-first case may inspect customer New/Neu only until a safe cancel/no-write boundary is proven."
   ],
   "actionsTaken": [
-    "Reviewed only local mustRead files from the prepared case.",
-    "Consumed Master Data field-map read-first evidence and the package field-map decision.",
-    "Classified Customer, Vendor and Item/Service template/write-gate readiness.",
-    "Prepared MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT as the next read-first/no-write case.",
-    "Revalidated through Operating Kernel and current state after field-map/read-first evidence consumption.",
-    "Confirmed MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT remains the next read-first/no-write case."
+    "Read only the Operating Kernel and the active case mustRead files.",
+    "Consumed MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT result and Step Timeline.",
+    "Classified Customers, Vendors and Items/Services after the new visual evidence.",
+    "Rejected a direct write gate because template, cancel and mandatory-field behavior remain unproven.",
+    "Prepared a narrower customer-only New/dropdown/template cancel-safe read-first case."
   ],
   "actionsNotTaken": [
     "Did not open Business Central.",
@@ -103,49 +107,48 @@
   "nextStepDecision": {
     "currentCase": "MASTER-DATA-TEMPLATE-ROUTE-DECISION",
     "plannedNextCaseBeforeReview": "MASTER-DATA-TEMPLATE-ROUTE-DECISION",
-    "lastEvidenceSummary": "Master Data read-first validation proved Customers, Vendors and Items/Services as real surfaces but explicitly did not prove templates, records, setup or process readiness.",
+    "lastEvidenceSummary": "MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT proved real list/action surfaces for Customers, Vendors and Items/Services but did not prove template, cancel, mandatory-field or write-gate safety.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "This local decision is the needed bridge between observed surfaces and a future safe template/cancel-boundary proof.",
+    "reason": "The local decision is the correct bridge between read-first visual truth and any future write-gate.",
     "lookaheadReviewed": [
       {
         "caseId": "CUSTOMER-U-CUST-100-FIELD-COMPLETION-WRITE-GATE",
         "status": "needs-ui-discovery-first",
-        "reason": "Descriptive customer fields are plausible future candidates, but template and mandatory-field behavior must be seen first."
+        "reason": "A customer write gate still needs customer New/dropdown/template/cancel boundary evidence and exact field/value dependencies."
       },
       {
-        "caseId": "MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT",
+        "caseId": "MASTER-DATA-CUSTOMER-NEW-DROPDOWN-TEMPLATE-CANCELSAFE-READFIRST",
         "status": "ready-next",
-        "reason": "It can inspect template/dropdown/mandatory-field behavior read-first without saving records."
+        "reason": "It is materially narrower than the completed generic preflight and directly targets the missing customer cancel/template boundary."
       },
       {
         "caseId": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
         "status": "ready-after-current",
-        "reason": "Use only if the template preflight shows Foundation setup gaps block even a narrow descriptive write gate."
+        "reason": "Use only if customer route evidence shows Foundation setup gaps block even descriptive customer data."
+      },
+      {
+        "caseId": "MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT",
+        "status": "obsolete",
+        "reason": "The broad list/action preflight has already run and should not be repeated without a new hypothesis."
       }
     ],
     "queueChangesMade": [
-      "Prepared MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT as the next read-first/no-write case.",
-      "Kept customer/vendor/item/service write gates blocked."
+      "Prepared MASTER-DATA-CUSTOMER-NEW-DROPDOWN-TEMPLATE-CANCELSAFE-READFIRST as the next read-first/no-write case.",
+      "Kept customer, vendor and item/service write gates blocked."
     ],
-    "selectedNextCase": "MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT",
-    "whySelectedNextCaseIsBest": "It gives the agent better eyes on BC template and mandatory-field behavior before any Master Data write, which supports realistic implementation, training and handbook work.",
+    "selectedNextCase": "MASTER-DATA-CUSTOMER-NEW-DROPDOWN-TEMPLATE-CANCELSAFE-READFIRST",
+    "whySelectedNextCaseIsBest": "It gives the agent better eyes exactly where the previous proof stopped: the customer New/Neu dropdown, template/cancel boundary and no-write end state.",
     "risksBeforeNextCase": [
-      "A template dialog could create or change data if the runner clicks OK/Save/Create.",
-      "The agent could overread visible fields as setup correctness.",
-      "A stale direct URL or search overlay could be mistaken for a real card or template page without screenshot QA."
+      "Clicking New/Neu may immediately open a record or template dialog with unsafe defaults.",
+      "The UI may show a side pane or dialog over the Role Center and require screenshot QA before interpretation.",
+      "The agent could confuse action visibility with permission to create a customer."
     ],
     "requiredPreparation": [
-      "Use screenshot QA and visual-state capture.",
-      "Capture before/after timeline for list, New/dropdown or tooltip context, template/mandatory-field surface and no-write end state.",
-      "Stop before Save, Create, OK, Finish or any template-changing action."
+      "Use screenshot QA, visual-state capture and Step Timeline.",
+      "Stop before Save, Create, OK, Finish, typed values or template-changing actions.",
+      "Capture a no-write end state."
     ]
   },
-  "nextCase": "MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT",
-  "updatedAt": "2026-07-09T19:05:00.000Z",
-  "revalidation": {
-    "updatedAt": "2026-07-09T19:05:00.000Z",
-    "verdict": "template-readfirst-preflight-next-no-write",
-    "noLiveActions": true,
-    "reason": "Template/dropdown/mandatory-field and cancel-boundary behavior is still not proven; direct customer/vendor/item writes remain blocked."
-  }
+  "nextCase": "MASTER-DATA-CUSTOMER-NEW-DROPDOWN-TEMPLATE-CANCELSAFE-READFIRST",
+  "updatedAt": "2026-07-09T23:35:00.000+02:00"
 }

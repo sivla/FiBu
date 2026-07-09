@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "MASTER-DATA-TEMPLATE-ROUTE-DECISION",
-  "status": "prepared-local-redecision-after-template-preflight",
+  "status": "completed-local-decision-after-template-preflight",
   "caseType": "local-no-live-decision",
   "mode": "universaarl-master-data-local-decision",
   "instance": "playthru",
@@ -79,8 +79,13 @@
   "resultPath": "playwright/projects/fibu-book5/evidence/master-data-template-route-decision/result.json",
   "nextCaseOptions": [
     {
+      "caseId": "MASTER-DATA-CUSTOMER-NEW-DROPDOWN-TEMPLATE-CANCELSAFE-READFIRST",
+      "when": "Use because the broad preflight saw New/Neu action surfaces but did not prove customer-specific dropdown, template, mandatory-field or cancel boundaries.",
+      "liveType": "read-first-no-write"
+    },
+    {
       "caseId": "CUSTOMER-U-CUST-100-FIELD-COMPLETION-WRITE-GATE",
-      "when": "Use only if the preflight evidence is enough to isolate descriptive customer fields and parks posting/VAT/payment/template dependencies.",
+      "when": "Use only after the narrower customer dropdown/template/cancel proof isolates descriptive customer fields and parks posting/VAT/payment/template dependencies.",
       "liveType": "write-gated"
     },
     {
@@ -94,8 +99,9 @@
       "liveType": "local-no-live-decision"
     }
   ],
-  "decision": "pending-after-template-readfirst-preflight",
-  "selectedNextCase": null,
-  "nextCase": null,
-  "preparedAt": "2026-07-09T23:05:00.000+02:00"
+  "decision": "needs-narrow-customer-dropdown-template-cancelsafe-readfirst-before-write-gate",
+  "selectedNextCase": "MASTER-DATA-CUSTOMER-NEW-DROPDOWN-TEMPLATE-CANCELSAFE-READFIRST",
+  "nextCase": "MASTER-DATA-CUSTOMER-NEW-DROPDOWN-TEMPLATE-CANCELSAFE-READFIRST",
+  "preparedAt": "2026-07-09T23:05:00.000+02:00",
+  "completedAt": "2026-07-09T23:35:00.000+02:00"
 }

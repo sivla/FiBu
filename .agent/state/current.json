@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-09T23:05:00.000+02:00",
+  "updatedAt": "2026-07-09T23:35:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -15,12 +15,12 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w4-master-data-product-model",
-  "activeCase": "MASTER-DATA-TEMPLATE-ROUTE-DECISION",
-  "active_case_file": ".agent/state/cases/master-data-template-route-decision.json",
-  "activeCaseFile": ".agent/state/cases/master-data-template-route-decision.json",
+  "activeCase": "MASTER-DATA-CUSTOMER-NEW-DROPDOWN-TEMPLATE-CANCELSAFE-READFIRST",
+  "active_case_file": ".agent/state/cases/master-data-customer-new-dropdown-template-cancelsafe-readfirst.json",
+  "activeCaseFile": ".agent/state/cases/master-data-customer-new-dropdown-template-cancelsafe-readfirst.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-master-data-local-decision",
+  "mode": "universaarl-masterdata-readfirst",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -35,19 +35,24 @@
   },
   "requiresStrongModel": true,
   "requiredPreflightChecks": [
+    "agent:preflight",
     "agent:active-readiness",
     "agent:dry-run",
     "agent:run-plan",
     "agent:rejected-routes:check",
+    "agent:visual-proof-skills:check",
     "check:encoding",
     "git diff --check"
   ],
   "allowedActions": [
-    "read-local-evidence",
-    "classify-template-route",
-    "prepare-one-next-case",
-    "write-local-decision-result-json",
-    "update-state-summary"
+    "validate-playthru-context-readonly",
+    "validate-universaarl-company-context-readonly",
+    "open-customers-list-readonly",
+    "inspect-new-dropdown-or-tooltip-readonly",
+    "inspect-template-dialog-only-if-cancel-safe",
+    "capture-screenshot-chain",
+    "capture-visual-state-json",
+    "write-result-json"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -55,8 +60,6 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "open-business-central",
-    "run-playwright-live",
     "write-setup",
     "create-master-data",
     "edit-master-data",
@@ -68,14 +71,21 @@
     "payment",
     "api-shortcut",
     "company-switch",
+    "import-configuration-package",
+    "export-configuration-package",
+    "validate-configuration-package",
+    "apply-configuration-package",
     "edit-book",
     "claim-foundation-setup-ready",
     "claim-master-data-ready",
-    "claim-process-ready"
+    "claim-process-ready",
+    "continue-target-073",
+    "type-business-central-values",
+    "cleanup-delete"
   ],
-  "nextCase": "MASTER-DATA-TEMPLATE-ROUTE-DECISION",
-  "nextStep": "Run the local/no-live MASTER-DATA-TEMPLATE-ROUTE-DECISION to consume the new MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT result and Step Timeline; choose exactly one next case: narrow customer write-gate prep, another cancel-safe template read-first, or Foundation gap decision. Do not open Business Central or Playwright live in this decision case. Any later live proof still requires a multi-step screenshot chain / Bildkette.",
-  "preparedNextCaseFile": ".agent/state/cases/master-data-template-route-decision.json",
+  "nextCase": "MASTER-DATA-CUSTOMER-NEW-DROPDOWN-TEMPLATE-CANCELSAFE-READFIRST",
+  "nextStep": "Run MASTER-DATA-CUSTOMER-NEW-DROPDOWN-TEMPLATE-CANCELSAFE-READFIRST only through a guarded read-first/no-write route: inspect Debitoren New/Neu dropdown, optional template surface and cancel/no-write end state with a multi-step screenshot chain / Bildkette, visual-state JSON and Step Timeline; stop before Save/Create/OK/Finish, typed values or template changes.",
+  "preparedNextCaseFile": ".agent/state/cases/master-data-customer-new-dropdown-template-cancelsafe-readfirst.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -209,20 +219,20 @@
     "nextBoundary": "Master Data remains parked. Next work must update Foundation Readiness and either accept this as a Foundation gap or define a genuinely new Page 314 route hypothesis before another live attempt."
   },
   "activeNextStepAuthority": {
-    "source": "playwright/projects/fibu-book5/evidence/master-data-template-readfirst-preflight/result.json",
-    "selectedNextCase": "MASTER-DATA-TEMPLATE-ROUTE-DECISION",
-    "activeCaseFile": ".agent/state/cases/master-data-template-route-decision.json",
-    "preparedNextCaseFile": ".agent/state/cases/master-data-template-route-decision.json",
+    "source": "playwright/projects/fibu-book5/evidence/master-data-template-route-decision/result.json",
+    "selectedNextCase": "MASTER-DATA-CUSTOMER-NEW-DROPDOWN-TEMPLATE-CANCELSAFE-READFIRST",
+    "activeCaseFile": ".agent/state/cases/master-data-customer-new-dropdown-template-cancelsafe-readfirst.json",
+    "preparedNextCaseFile": ".agent/state/cases/master-data-customer-new-dropdown-template-cancelsafe-readfirst.json",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT is now observed read-first/no-write and must be consumed by a local route decision before any write-gate.",
-    "whySelectedNextCaseIsBest": "It prevents repeating the same visual preflight and forces the next step to choose one concrete route from the new screenshot, visual-state and timeline evidence.",
+    "reason": "MASTER-DATA-TEMPLATE-ROUTE-DECISION consumed the broad preflight and selected a narrower customer New/dropdown/template cancel-safe read-first proof before any write gate.",
+    "whySelectedNextCaseIsBest": "It targets the exact missing evidence: customer-specific New/Neu dropdown, template/cancel boundary and no-write end state, without repeating the broad master-data preflight.",
     "requiredPreparation": [
-      "Read only the mustRead files in .agent/state/cases/master-data-template-route-decision.json.",
-      "Do not open Business Central or run Playwright live in this local decision case.",
-      "Choose exactly one next case: narrow customer write-gate prep, another cancel-safe template read-first, or Foundation gap decision.",
+      "Run only after green active-readiness, dry-run, run-plan and visual-proof checks.",
+      "Use screenshot QA, visual-state capture and Step Timeline.",
+      "Stop before Save, Create, OK, Finish, typed values or template-changing actions.",
       "Do not claim Foundation setup, Master Data, O2C, P2P, Inventory, Preview Posting or Posting readiness."
     ],
-    "updatedAt": "2026-07-09T23:05:00.000+02:00"
+    "updatedAt": "2026-07-09T23:35:00.000+02:00"
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -336,8 +346,8 @@
     "currentLiveBoundary": {
       "freezeActive": false,
       "parkedCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-      "resumePilot": "MASTER-DATA-TEMPLATE-ROUTE-DECISION",
-      "resumePilotMode": "local-no-live-decision"
+      "resumePilot": "MASTER-DATA-CUSTOMER-NEW-DROPDOWN-TEMPLATE-CANCELSAFE-READFIRST",
+      "resumePilotMode": "read-first-no-write"
     },
     "legacyScriptGuard": {
       "script": "agent:legacy:active-check",
@@ -419,7 +429,7 @@
     "status": "lifted-readfirst",
     "caseId": "MASTER-DATA-TEMPLATE-ROUTE-DECISION",
     "frozenLiveCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-    "resumeCandidateAfterFreeze": "MASTER-DATA-TEMPLATE-ROUTE-DECISION",
+    "resumeCandidateAfterFreeze": "MASTER-DATA-CUSTOMER-NEW-DROPDOWN-TEMPLATE-CANCELSAFE-READFIRST",
     "completedLocalCheckpoint": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
     "planFile": ".agent/PROJECT-IMPROVEMENT-PLAN.md",
     "latestPostFreezeCase": "FOUNDATION-MASTER-DATA-ROUTE-REFRESH-AFTER-SETUP-PARKED",
@@ -12298,7 +12308,7 @@
     "nextCase": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
     "updatedAt": "2026-07-09T03:10:00.000Z"
   },
-  "caseType": "local-no-live-decision",
+  "caseType": "read-first-no-write",
   "latestFoundationSetupValueMapDecision": {
     "caseId": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
     "status": "completed-local-decision",
@@ -12369,7 +12379,7 @@
     "nextCase": "FOUNDATION-SETUP-DEPENDENCY-RETURN-DECISION",
     "updatedAt": "2026-07-09T17:40:00.000Z"
   },
-  "next_case": "MASTER-DATA-TEMPLATE-ROUTE-DECISION",
+  "next_case": "MASTER-DATA-CUSTOMER-NEW-DROPDOWN-TEMPLATE-CANCELSAFE-READFIRST",
   "latestFoundationSetupSourceGapDecision": {
     "caseId": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
     "status": "completed-local-decision",
@@ -12526,8 +12536,8 @@
   },
   "latestMasterDataTemplateRouteDecision": {
     "caseId": "MASTER-DATA-TEMPLATE-ROUTE-DECISION",
-    "status": "completed-local-decision-operating-kernel-revalidated",
-    "decision": "ready-for-template-readfirst-preflight-not-write",
+    "status": "completed-local-decision-after-template-preflight",
+    "decision": "needs-narrow-customer-dropdown-template-cancelsafe-readfirst-before-write-gate",
     "resultPath": "playwright/projects/fibu-book5/evidence/master-data-template-route-decision/result.json",
     "instance": "playthru",
     "company": "UNIVERSAARL-DE",
@@ -12540,8 +12550,8 @@
     "previewPosting": false,
     "posted": false,
     "apiShortcut": false,
-    "nextCase": "MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT",
-    "updatedAt": "2026-07-09T19:05:00.000Z"
+    "nextCase": "MASTER-DATA-CUSTOMER-NEW-DROPDOWN-TEMPLATE-CANCELSAFE-READFIRST",
+    "updatedAt": "2026-07-09T23:35:00.000+02:00"
   },
   "latestMasterDataTemplateReadfirstPreflight": {
     "caseId": "MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT",
