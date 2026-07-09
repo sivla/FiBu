@@ -1,0 +1,203 @@
+{
+  "schemaVersion": 1,
+  "caseId": "MASTER-DATA-WRITE-GATE-PREP",
+  "status": "completed-local-decision",
+  "decision": "package-field-map-needed-before-write-gate",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "caseType": "local-no-live-decision",
+  "businessCentralOpened": false,
+  "playwrightLiveRunExecuted": false,
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "sourceOrEvidenceBasis": [
+    "playwright/projects/fibu-book5/evidence/gen-bus-posting-groups-source-decision/result.json",
+    "playwright/projects/fibu-book5/evidence/master-data-route-package-vs-ui-decision/result.json",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md"
+  ],
+  "writeGateVerdict": {
+    "customer": "not-ready-for-direct-write",
+    "vendor": "not-ready-for-direct-write",
+    "itemService": "not-ready-for-direct-write",
+    "recommendedNextRoute": "local-field-map-before-any-write-gate",
+    "reason": "Observed Master Data context is useful for training and handbook work, but Foundation dependencies such as posting groups, VAT setup, payment terms, templates and item posting/inventory fields are not ready enough for direct writes."
+  },
+  "fieldClassifications": {
+    "customer": [
+      {
+        "fieldGroup": "Nr. / Name",
+        "classification": "ready-for-future-gate",
+        "reason": "Existing U-CUST-100 and customer card/list context are observed. A future narrow gate may edit or create only after number series/template and no-save boundaries are explicit."
+      },
+      {
+        "fieldGroup": "Adresse / Kontakt",
+        "classification": "ready-for-future-gate",
+        "reason": "Low posting impact and useful for realistic training, but still requires a separate write gate and reopen proof."
+      },
+      {
+        "fieldGroup": "Geschaeftsbuchungsgruppe / Gen. Business Posting Group",
+        "classification": "source-needed",
+        "reason": "INLAND is accepted context only. It is not setup-ready or posting-ready from current evidence."
+      },
+      {
+        "fieldGroup": "USt.-Geschaeftsbuchungsgruppe / VAT Business Posting Group",
+        "classification": "blocked",
+        "reason": "VAT Business Posting Groups Page 470 remains a parked/blocked route; no current write permission."
+      },
+      {
+        "fieldGroup": "Debitorenbuchungsgruppe / Customer Posting Group",
+        "classification": "source-needed",
+        "reason": "Needed for customer posting, but no current setup correctness or write-gate proof."
+      },
+      {
+        "fieldGroup": "Zahlungsbedingungen / Payment Terms",
+        "classification": "source-needed",
+        "reason": "Training context exists on customer payments FastTab, but field/value readiness is not proven."
+      }
+    ],
+    "vendor": [
+      {
+        "fieldGroup": "Nr. / Name / Adresse",
+        "classification": "ready-for-future-gate",
+        "reason": "Safe only as a future narrow vendor-card gate with no bank/payment write unless separately allowed."
+      },
+      {
+        "fieldGroup": "Geschaeftsbuchungsgruppe / Gen. Business Posting Group",
+        "classification": "source-needed",
+        "reason": "INLAND context may apply, but it is not setup-ready."
+      },
+      {
+        "fieldGroup": "USt.-Geschaeftsbuchungsgruppe / VAT Business Posting Group",
+        "classification": "blocked",
+        "reason": "Same VAT Business Posting Group blocker as customers."
+      },
+      {
+        "fieldGroup": "Kreditorenbuchungsgruppe / Vendor Posting Group",
+        "classification": "source-needed",
+        "reason": "Needed for P2P/payables, but not proven setup-ready."
+      },
+      {
+        "fieldGroup": "Bank-/Zahlungsdaten",
+        "classification": "blocked",
+        "reason": "Higher-risk payment data; not needed for first Master Data gate and not proven."
+      }
+    ],
+    "itemService": [
+      {
+        "fieldGroup": "Nr. / Beschreibung",
+        "classification": "ready-for-future-gate",
+        "reason": "Existing item/service context is observed, but a future item gate must avoid duplicates and prove no-save or reopen behavior."
+      },
+      {
+        "fieldGroup": "Basiseinheit / Unit of Measure",
+        "classification": "source-needed",
+        "reason": "Observed context is not enough to prove UOM setup/write readiness."
+      },
+      {
+        "fieldGroup": "Produktbuchungsgruppe / Gen. Product Posting Group",
+        "classification": "source-needed",
+        "reason": "WAREN belongs here, not in Gen. Business Posting Groups; setup correctness still needs a separate decision."
+      },
+      {
+        "fieldGroup": "USt.-Produktbuchungsgruppe / VAT Product Posting Group",
+        "classification": "source-needed",
+        "reason": "VAT19 has context, but VAT setup correctness is not proven."
+      },
+      {
+        "fieldGroup": "Lagerbuchungsgruppe / Inventory Posting Group",
+        "classification": "blocked",
+        "reason": "Inventory posting and valuation dependencies are not part of the current Foundation proof."
+      },
+      {
+        "fieldGroup": "Kalkulationsmethode / Preise / Kosten",
+        "classification": "training-only",
+        "reason": "Useful for handbook explanation from observed item context, but not safe as a write gate before product model and posting dependencies are mapped."
+      }
+    ]
+  },
+  "routeAssessment": {
+    "manualUi": "investigate",
+    "configurationPackageOrRapidStart": "prefer-for-bulk-after-field-map",
+    "excelAssisted": "prefer-for-data-preparation",
+    "template": "investigate",
+    "api": "not-next-route",
+    "alExtension": "not-next-route",
+    "parkOrNoChange": "prefer-for-blocked-foundation-fields",
+    "reason": "A realistic customer project should not create scattered records by UI until posting, VAT, template and validation fields are mapped. UI remains important for training and one controlled example; Excel/configuration-package preparation is better for repeatable initial loads."
+  },
+  "actionsTaken": [
+    "Read only the active case mustRead files.",
+    "Classified Customer, Vendor and Item/Service fields by write-gate readiness.",
+    "Selected a local field-map decision before any future Master Data write gate."
+  ],
+  "actionsNotTaken": [
+    "Did not open Business Central.",
+    "Did not run Playwright live.",
+    "Did not write setup.",
+    "Did not create or edit master data.",
+    "Did not create or edit templates.",
+    "Did not create documents or drafts.",
+    "Did not run Preview Posting or Posting.",
+    "Did not edit the book."
+  ],
+  "proved": [
+    "Direct Master Data writes remain inappropriate from current evidence.",
+    "Customer, Vendor and Item/Service work can move forward locally as a field-map and route decision.",
+    "Foundation-dependent fields must remain blocked or source-needed instead of becoming hidden write permission."
+  ],
+  "notProved": [
+    "No Master Data record is setup-ready.",
+    "No Customer, Vendor or Item template is ready.",
+    "No Customer/Vendor/Item write gate is approved.",
+    "No O2C, P2P, Inventory, Preview Posting, Posting, ledger trace or UAT acceptance is proven."
+  ],
+  "warnings": [
+    "Do not treat existing U-CUST-100 or U-ITEM-HW100 as permission to create more records.",
+    "Do not put INLAND or WAREN into the wrong posting-group type.",
+    "Do not use configuration packages as a shortcut around field/value validation."
+  ],
+  "nextStepDecision": {
+    "currentCase": "MASTER-DATA-WRITE-GATE-PREP",
+    "plannedNextCaseBeforeReview": "MASTER-DATA-WRITE-GATE-PREP",
+    "lastEvidenceSummary": "Gen. Business Posting Groups are source-backed context only; Master Data route comparison already parked direct writes until Foundation dependencies are handled.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "It can classify Master Data write boundaries locally without repeating UI or claiming setup readiness.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "CUSTOMER-U-CUST-100-FIELD-COMPLETION-WRITE-GATE",
+        "status": "needs-setup-first",
+        "reason": "Too early until blocked posting/VAT/payment fields are isolated from safe descriptive fields."
+      },
+      {
+        "caseId": "MASTER-DATA-PACKAGE-FIELD-MAP-DECISION",
+        "status": "ready-next",
+        "reason": "A field map is the smallest useful next step and supports UI, Excel-assisted and configuration-package routes without writing data."
+      },
+      {
+        "caseId": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
+        "status": "ready-after-current",
+        "reason": "Use if the field map shows Foundation gaps prevent even a narrow descriptive Master Data gate."
+      }
+    ],
+    "queueChangesMade": [
+      "Prepared MASTER-DATA-PACKAGE-FIELD-MAP-DECISION as the next local no-live case."
+    ],
+    "selectedNextCase": "MASTER-DATA-PACKAGE-FIELD-MAP-DECISION",
+    "whySelectedNextCaseIsBest": "It converts Master Data observations into a reusable customer-project data map and prevents premature writes.",
+    "risksBeforeNextCase": [
+      "Field-map language could be mistaken for import permission.",
+      "Foundation-dependent fields could be hidden inside templates or packages."
+    ],
+    "requiredPreparation": [
+      "Keep all blocked/source-needed Foundation fields explicitly marked.",
+      "Separate safe descriptive fields from posting, VAT, payment and inventory fields.",
+      "Do not open Business Central or run Playwright live in the field-map decision."
+    ]
+  },
+  "nextCase": "MASTER-DATA-PACKAGE-FIELD-MAP-DECISION",
+  "updatedAt": "2026-07-09T11:25:00.000Z"
+}

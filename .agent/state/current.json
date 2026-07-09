@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-09T10:55:00.000Z",
+  "updatedAt": "2026-07-09T11:25:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -15,12 +15,12 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w4-master-data-product-model",
-  "activeCase": "MASTER-DATA-WRITE-GATE-PREP",
-  "active_case_file": ".agent/state/cases/master-data-write-gate-prep.json",
-  "activeCaseFile": ".agent/state/cases/master-data-write-gate-prep.json",
+  "activeCase": "MASTER-DATA-PACKAGE-FIELD-MAP-DECISION",
+  "active_case_file": ".agent/state/cases/master-data-package-field-map-decision.json",
+  "activeCaseFile": ".agent/state/cases/master-data-package-field-map-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-master-data-write-gate-prep",
+  "mode": "universaarl-master-data-package-field-map-decision",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -44,9 +44,9 @@
     "git diff --check"
   ],
   "allowedActions": [
-    "local-master-data-write-gate-prep",
-    "classify-master-data-fields",
-    "write-local-gate-result-json",
+    "local-master-data-field-map-decision",
+    "classify-field-routes",
+    "write-local-field-map-result-json",
     "prepare-one-next-local-or-readfirst-case"
   ],
   "forbiddenActions": [
@@ -72,9 +72,9 @@
     "claim-master-data-ready",
     "claim-process-ready"
   ],
-  "nextCase": "MASTER-DATA-WRITE-GATE-PREP",
-  "nextStep": "Run MASTER-DATA-WRITE-GATE-PREP locally/no-live. Classify Customer, Vendor and Item/Service fields as blocked, training-only, source-needed or ready-for-future-gate before any write case.",
-  "preparedNextCaseFile": ".agent/state/cases/master-data-write-gate-prep.json",
+  "nextCase": "MASTER-DATA-PACKAGE-FIELD-MAP-DECISION",
+  "nextStep": "Run MASTER-DATA-PACKAGE-FIELD-MAP-DECISION locally/no-live. Build a field map for Customer, Vendor and Item/Service route candidates, keeping Foundation-dependent fields blocked or source-needed before any write gate.",
+  "preparedNextCaseFile": ".agent/state/cases/master-data-package-field-map-decision.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -208,22 +208,22 @@
     "nextBoundary": "Master Data remains parked. Next work must update Foundation Readiness and either accept this as a Foundation gap or define a genuinely new Page 314 route hypothesis before another live attempt."
   },
   "activeNextStepAuthority": {
-    "source": "playwright/projects/fibu-book5/evidence/gen-bus-posting-groups-source-decision/result.json",
-    "selectedNextCase": "MASTER-DATA-WRITE-GATE-PREP",
-    "activeCaseFile": ".agent/state/cases/master-data-write-gate-prep.json",
-    "preparedNextCaseFile": ".agent/state/cases/master-data-write-gate-prep.json",
+    "source": "playwright/projects/fibu-book5/evidence/master-data-write-gate-prep/result.json",
+    "selectedNextCase": "MASTER-DATA-PACKAGE-FIELD-MAP-DECISION",
+    "activeCaseFile": ".agent/state/cases/master-data-package-field-map-decision.json",
+    "preparedNextCaseFile": ".agent/state/cases/master-data-package-field-map-decision.json",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "The Gen. Business Posting Groups source decision completed and selected a local Master Data write-gate prep before any future write case.",
-    "rejectedRoute": "RR-FOUNDATION-PAGE470-VAT-BUSINESS-GROUPS-SEARCH-RETRY",
+    "reason": "The Master Data write-gate prep completed and selected a local field-map decision before any customer, vendor or item write gate.",
+    "rejectedRoute": "RR-FOUNDATION-CONFIG-PACKAGE-U-VAT325-FIELD-SELECTION-RETRY",
     "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
-    "whySelectedNextCaseIsBest": "It preserves INLAND as source-backed context while preventing setup gaps from becoming hidden Master Data write permission.",
+    "whySelectedNextCaseIsBest": "It turns observed Master Data context into a reusable customer-project data map while keeping Foundation setup gaps visible.",
     "requiredPreparation": [
       "Read only the next case mustRead files.",
-      "Classify Customer, Vendor and Item/Service fields as blocked, training-only, source-needed or ready-for-future-gate.",
+      "Classify fields as ready-for-future-gate, source-needed, blocked, training-only or parked.",
       "Stop before Business Central, Playwright live, book edits, setup writes, master data writes or process work."
     ],
-    "updatedAt": "2026-07-09T10:55:00.000Z"
+    "updatedAt": "2026-07-09T11:25:00.000Z"
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -337,7 +337,7 @@
     "currentLiveBoundary": {
       "freezeActive": false,
       "parkedCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-      "resumePilot": "MASTER-DATA-WRITE-GATE-PREP",
+      "resumePilot": "MASTER-DATA-PACKAGE-FIELD-MAP-DECISION",
       "resumePilotMode": "local-no-live-decision"
     },
     "legacyScriptGuard": {
@@ -12362,7 +12362,7 @@
     "nextCase": "FOUNDATION-SETUP-DEPENDENCY-RETURN-DECISION",
     "updatedAt": "2026-07-09T09:20:00.000Z"
   },
-  "next_case": "MASTER-DATA-WRITE-GATE-PREP",
+  "next_case": "MASTER-DATA-PACKAGE-FIELD-MAP-DECISION",
   "latestFoundationSetupSourceGapDecision": {
     "caseId": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
     "status": "completed-local-decision",
@@ -12453,5 +12453,23 @@
     "apiShortcut": false,
     "nextCase": "MASTER-DATA-WRITE-GATE-PREP",
     "updatedAt": "2026-07-09T10:55:00.000Z"
+  },
+  "latestMasterDataWriteGatePrep": {
+    "caseId": "MASTER-DATA-WRITE-GATE-PREP",
+    "status": "completed-local-decision",
+    "decision": "package-field-map-needed-before-write-gate",
+    "resultPath": "playwright/projects/fibu-book5/evidence/master-data-write-gate-prep/result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "businessCentralOpened": false,
+    "playwrightLiveRunExecuted": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "nextCase": "MASTER-DATA-PACKAGE-FIELD-MAP-DECISION",
+    "updatedAt": "2026-07-09T11:25:00.000Z"
   }
 }

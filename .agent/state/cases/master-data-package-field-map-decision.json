@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "caseId": "MASTER-DATA-PACKAGE-FIELD-MAP-DECISION",
+  "status": "prepared-local-no-live",
+  "caseType": "local-no-live-decision",
+  "mode": "universaarl-master-data-package-field-map-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w4-master-data-product-model",
+  "goal": "Create a local field-map decision for Customer, Vendor and Item/Service data so future UI, Excel-assisted or configuration-package routes cannot hide Foundation setup gaps.",
+  "whyNow": "MASTER-DATA-WRITE-GATE-PREP classified Master Data writes as not ready for direct creation. A realistic customer project needs a field map before any future write-gate or load route.",
+  "businessPurpose": "Turn observed Universaarl Master Data context into a reusable customer-project data map with explicit blocked fields, validation needs and route candidates.",
+  "mustRead": [
+    ".agent/OPERATING-KERNEL.md",
+    ".agent/state/current.json",
+    "playwright/projects/fibu-book5/evidence/master-data-write-gate-prep/result.json",
+    "playwright/projects/fibu-book5/evidence/master-data-route-package-vs-ui-decision/result.json",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md"
+  ],
+  "allowedActions": [
+    "local-master-data-field-map-decision",
+    "classify-field-routes",
+    "write-local-field-map-result-json",
+    "prepare-one-next-local-or-readfirst-case"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright-live",
+    "write-setup",
+    "create-master-data",
+    "edit-master-data",
+    "change-template",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "company-switch",
+    "edit-book",
+    "claim-foundation-setup-ready",
+    "claim-master-data-ready",
+    "claim-process-ready"
+  ],
+  "requiredSkills": [
+    "bc-setup-route-decision",
+    "state-sync-check"
+  ],
+  "requiredHelpers": [
+    "scripts/agent/local-no-live-case-readiness-check.mjs",
+    "scripts/agent/dry-run.mjs"
+  ],
+  "requiredChecks": [
+    "agent:preflight",
+    "agent:active-readiness",
+    "agent:dry-run",
+    "agent:run-plan",
+    "agent:rejected-routes:check",
+    "check:encoding",
+    "git diff --check"
+  ],
+  "expectedOutput": [
+    "A compact local result JSON or Markdown field map for Customer, Vendor and Item/Service route candidates.",
+    "Explicit classification of fields as ready-for-future-gate, source-needed, blocked, training-only or parked.",
+    "A nextCase selection that still does not create or edit Business Central data."
+  ],
+  "stopConditions": [
+    "Stop if the field map would be treated as import or write permission.",
+    "Stop if a Foundation setup gap is hidden instead of explicitly blocking a field.",
+    "Stop if the case requires Business Central or Playwright live execution.",
+    "Stop if the result claims Master Data, O2C, P2P, Inventory, Preview Posting or Posting readiness."
+  ],
+  "rejectedRoutesToRespect": [
+    "RR-FOUNDATION-PAGE314-GRID-LIST-EDIT-RETRY",
+    "RR-FOUNDATION-PAGE470-VAT-BUSINESS-GROUPS-SEARCH-RETRY",
+    "RR-FOUNDATION-PAGE472-ACTIVE-EDITOR-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGES-ESCAPE-TELLME-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGE-U-VAT325-FIELD-SELECTION-RETRY"
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/master-data-package-field-map-decision/result.json",
+  "nextCaseOptions": [
+    {
+      "caseId": "CUSTOMER-U-CUST-100-FIELD-COMPLETION-WRITE-GATE",
+      "when": "Use only if the field map narrows the scope to safe non-posting customer fields and keeps posting/VAT/payment dependencies blocked.",
+      "liveType": "write-gated"
+    },
+    {
+      "caseId": "MASTER-DATA-FIELD-MAP-READFIRST-VALIDATION",
+      "when": "Use if the field map needs another read-first UI validation of templates, mandatory markers or list/card fields before a write gate.",
+      "liveType": "read-first-no-write"
+    },
+    {
+      "caseId": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
+      "when": "Use if field mapping shows too many Master Data fields are blocked by Foundation setup gaps.",
+      "liveType": "local-no-live-decision"
+    }
+  ],
+  "decision": "prepared",
+  "selectedNextCase": null,
+  "nextCase": null,
+  "preparedAt": "2026-07-09T11:25:00.000Z"
+}
