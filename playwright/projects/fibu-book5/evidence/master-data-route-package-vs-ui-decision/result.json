@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "caseId": "MASTER-DATA-ROUTE-PACKAGE-VS-UI-DECISION",
+  "status": "completed-local-decision",
+  "decision": "park-master-data-writes-return-to-foundation-dependency",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "local-no-live-decision",
+  "businessCentralOpened": false,
+  "playwrightLiveRunExecuted": false,
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "sourcesReviewed": [
+    ".agent/OPERATING-KERNEL.md",
+    ".agent/state/current.json",
+    "playwright/projects/fibu-book5/evidence/master-data-training-handbook-gap-decision/result.json",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    ".agent/state/cases/master-data-training-handbook-gap-decision.json",
+    "playwright/projects/fibu-book5/evidence/customer-setup-dependency-readfirst/result.json",
+    "playwright/projects/fibu-book5/evidence/customer-setup-route-recovery-readfirst/result.json"
+  ],
+  "routeComparison": [
+    {
+      "route": "UI-Beispieldatensatz",
+      "classification": "training-example-only",
+      "fit": "Good for one guided training/UAT example after setup dependencies are clear.",
+      "whyNotNow": "Customer setup dependencies are not fully recovered; writing a customer now would overread read-first evidence.",
+      "risk": "A manual single record can look like setup readiness even when posting/VAT/payment dependencies are unresolved."
+    },
+    {
+      "route": "Vorlage/Template",
+      "classification": "needs-readfirst-or-source-first",
+      "fit": "Useful for repeatable customer/vendor/item creation once template fields and mandatory values are understood.",
+      "whyNotNow": "Template readiness is not proven and no template write is allowed in this case.",
+      "risk": "A template can silently carry wrong posting, VAT, payment or item setup values."
+    },
+    {
+      "route": "Konfigurationspaket (Configuration Package)",
+      "classification": "realistic-customer-project-candidate-but-parked",
+      "fit": "More realistic than UI-only for initial customer/vendor/item data loads in a larger implementation.",
+      "whyNotNow": "Foundation package/setup routes are parked and exact table/field/value validation is not decided for Master Data.",
+      "risk": "Bulk load can multiply wrong setup dependencies and produce hard-to-debug data quality issues."
+    },
+    {
+      "route": "Excel-assisted",
+      "classification": "realistic-data-preparation-candidate-but-parked-for-write",
+      "fit": "Good for data collection, customer review and validation before any controlled import/load route.",
+      "whyNotNow": "Data validation rules and target route are not yet stable enough for a write gate.",
+      "risk": "Spreadsheet-ready can be mistaken for BC-ready if setup dependencies and mandatory fields are not validated."
+    },
+    {
+      "route": "API/AL/Integration",
+      "classification": "not-next-route",
+      "fit": "Potential later route for integrations or high-volume automation.",
+      "whyNotNow": "Too much operational and authorization surface for the next Master Data step; standard project route should be understood first.",
+      "risk": "Skips user-facing BC understanding and weakens training/handbook value."
+    }
+  ],
+  "decisionSummary": {
+    "customer": "No customer write gate yet. Existing evidence can feed training/handbook, but customer setup dependency recovery is incomplete.",
+    "vendor": "No vendor write gate yet. Vendor route should follow customer dependency pattern only after Foundation return decision.",
+    "itemService": "No item/service write gate yet. Product model, posting, VAT/product and inventory dependencies are higher risk than customer UI training.",
+    "preferredFutureRoute": "Hybrid: one UI training example after dependency proof, plus configuration-package or Excel-assisted data route for realistic initial loads after field/value validation.",
+    "nextCase": "FOUNDATION-SETUP-DEPENDENCY-RETURN-DECISION"
+  },
+  "proved": [
+    "UI-only is not the right default route for realistic initial Master Data setup in a larger customer project.",
+    "Configuration packages and Excel-assisted preparation remain plausible future routes but are not write-ready from current evidence.",
+    "Existing customer setup dependency evidence blocks Master Data write gates because General Business Posting Groups remain not strongly recovered.",
+    "A local Foundation dependency return decision is more useful than another Master Data write-gate preparation."
+  ],
+  "notProved": [
+    "No master-data write readiness.",
+    "No customer/vendor/item template readiness.",
+    "No configuration-package table/field/value readiness for Master Data.",
+    "No Excel import or assisted-load readiness.",
+    "No setup correctness, O2C/P2P/Inventory readiness, Preview Posting, Posting, ledger trace or UAT acceptance.",
+    "No final customer-handbook or book text."
+  ],
+  "blockedBy": [
+    "Customer setup dependency recovery remains incomplete for Geschaeftsbuchungsgruppen / Gen. Business Posting Groups.",
+    "Foundation package/setup route remains parked.",
+    "Master Data dependencies are useful for training but not ready for controlled writes."
+  ],
+  "warnings": [
+    "Do not repeat CUSTOMER-SETUP-DEPENDENCY-READFIRST as if it had not already run.",
+    "Do not repeat CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST without a materially new hypothesis for the blocked Gen. Business Posting Groups route.",
+    "Do not treat spreadsheet or package planning as BC write permission."
+  ],
+  "actionsTaken": [
+    "Compared UI, template, configuration package, Excel-assisted and API/AL routes using existing local evidence.",
+    "Detected that customer setup dependency and route recovery evidence already exists and is partially blocked.",
+    "Selected a local Foundation dependency return decision rather than a duplicate read-first or write-gate case."
+  ],
+  "actionsNotTaken": [
+    "Did not open Business Central.",
+    "Did not run Playwright live.",
+    "Did not edit setup, templates, master data, documents, Preview Posting, Posting or payments.",
+    "Did not edit book or customer handbook text."
+  ],
+  "nextStepDecision": {
+    "currentCase": "MASTER-DATA-ROUTE-PACKAGE-VS-UI-DECISION",
+    "plannedNextCaseBeforeReview": "MASTER-DATA-ROUTE-PACKAGE-VS-UI-DECISION",
+    "lastEvidenceSummary": "Master Data UI is read-first observed; customer setup dependency recovery already ran and remains incomplete for Gen. Business Posting Groups.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The active case was needed to prevent treating UI examples or package planning as immediate write permission.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "CUSTOMER-SETUP-DEPENDENCY-READFIRST",
+        "status": "obsolete",
+        "reason": "Already ran and selected route recovery."
+      },
+      {
+        "caseId": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
+        "status": "blocked",
+        "reason": "Already ran and remains blocked for Gen. Business Posting Groups without a new hypothesis."
+      },
+      {
+        "caseId": "MASTER-DATA-WRITE-GATE-PREP",
+        "status": "blocked",
+        "reason": "Master Data write gates need dependency proof or conscious parking first."
+      },
+      {
+        "caseId": "FOUNDATION-SETUP-DEPENDENCY-RETURN-DECISION",
+        "status": "ready-next",
+        "reason": "Local no-live decision can park, reroute or define a materially new hypothesis for the remaining Foundation dependency."
+      }
+    ],
+    "queueChangesMade": [
+      "Prepared FOUNDATION-SETUP-DEPENDENCY-RETURN-DECISION as the next local no-live case."
+    ],
+    "selectedNextCase": "FOUNDATION-SETUP-DEPENDENCY-RETURN-DECISION",
+    "whySelectedNextCaseIsBest": "It addresses the actual blocker before any Master Data write gate and avoids repeating exhausted read-first routes.",
+    "risksBeforeNextCase": [
+      "Overclaiming Master Data readiness from read-first list visibility.",
+      "Repeating blocked customer route recovery without a new hypothesis.",
+      "Treating configuration packages as a shortcut around missing setup dependency proof."
+    ],
+    "requiredPreparation": [
+      "Read the existing customer setup dependency and route recovery result summaries.",
+      "Decide whether Gen. Business Posting Groups dependency is parked, replaced by source-backed decision, or needs a materially new read-first route.",
+      "Keep the decision local/no-live."
+    ]
+  },
+  "nextCase": "FOUNDATION-SETUP-DEPENDENCY-RETURN-DECISION",
+  "updatedAt": "2026-07-09T09:20:00.000Z"
+}

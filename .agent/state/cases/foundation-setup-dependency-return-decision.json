@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-SETUP-DEPENDENCY-RETURN-DECISION",
+  "status": "prepared-local-no-live",
+  "caseType": "local-no-live-decision",
+  "mode": "universaarl-foundation-dependency-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w3-finance-foundation",
+  "goal": "Decide how to handle the remaining Foundation setup dependency that blocks Master Data write gates, especially Gen. Business Posting Groups after customer setup route recovery.",
+  "whyNow": "Master Data route comparison shows UI, template, configuration package and Excel-assisted writes are all premature while a key setup dependency remains blocked.",
+  "businessPurpose": "Prevent Master Data writes from outrunning Foundation setup evidence while still allowing a realistic customer-project data route later.",
+  "mustRead": [
+    ".agent/OPERATING-KERNEL.md",
+    ".agent/state/current.json",
+    "playwright/projects/fibu-book5/evidence/master-data-route-package-vs-ui-decision/result.json",
+    "playwright/projects/fibu-book5/evidence/customer-setup-route-recovery-readfirst/result.json",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md"
+  ],
+  "allowedActions": [
+    "local-foundation-dependency-review",
+    "local-route-parking-decision",
+    "local-source-gap-decision",
+    "write-foundation-dependency-result-json",
+    "prepare-one-next-local-or-readfirst-case"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright-live",
+    "write-setup",
+    "create-master-data",
+    "edit-master-data",
+    "change-template",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "company-switch",
+    "edit-book",
+    "claim-foundation-setup-ready",
+    "claim-master-data-ready",
+    "claim-process-ready"
+  ],
+  "requiredSkills": [
+    "bc-setup-route-decision",
+    "state-sync-check"
+  ],
+  "requiredHelpers": [
+    "scripts/agent/local-no-live-case-readiness-check.mjs",
+    "scripts/agent/dry-run.mjs"
+  ],
+  "requiredChecks": [
+    "agent:preflight",
+    "agent:active-readiness",
+    "agent:dry-run",
+    "agent:run-plan",
+    "agent:rejected-routes:check",
+    "check:encoding",
+    "git diff --check"
+  ],
+  "expectedOutput": [
+    "A compact local result JSON deciding whether the Gen. Business Posting Groups dependency is parked, source-resolved or needs a materially new read-first route.",
+    "A nextCase selection that does not repeat exhausted customer setup routes.",
+    "Explicit boundary that no setup, master data, document, Preview Posting or Posting change was made."
+  ],
+  "stopConditions": [
+    "Stop if the decision requires opening Business Central or running Playwright live.",
+    "Stop if the output would create or edit Business Central data.",
+    "Stop if the output would claim setup, Master Data or process readiness.",
+    "Stop if a proposed read-first route is not materially different from the already blocked route recovery."
+  ],
+  "rejectedRoutesToRespect": [
+    "RR-FOUNDATION-PAGE314-GRID-LIST-EDIT-RETRY",
+    "RR-FOUNDATION-PAGE470-VAT-BUSINESS-GROUPS-SEARCH-RETRY",
+    "RR-FOUNDATION-PAGE472-ACTIVE-EDITOR-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGES-ESCAPE-TELLME-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGE-U-VAT325-FIELD-SELECTION-RETRY"
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/foundation-setup-dependency-return-decision/result.json",
+  "nextCaseOptions": [
+    {
+      "caseId": "GEN-BUS-POSTING-GROUPS-SOURCE-DECISION",
+      "when": "Use if local source-based decision is enough to classify the dependency without another live route.",
+      "liveType": "local-no-live-decision"
+    },
+    {
+      "caseId": "GEN-BUS-POSTING-GROUPS-READFIRST-NEW-HYPOTHESIS",
+      "when": "Use only if a materially new UI hypothesis exists for the blocked page.",
+      "liveType": "read-first-no-write"
+    },
+    {
+      "caseId": "MASTER-DATA-WRITE-GATE-PREP",
+      "when": "Use only if the dependency is consciously parked or resolved without weakening setup boundaries.",
+      "liveType": "local-no-live-decision"
+    }
+  ],
+  "decision": "prepared",
+  "selectedNextCase": null,
+  "nextCase": null,
+  "preparedAt": "2026-07-09T09:20:00.000Z"
+}
