@@ -372,9 +372,11 @@ test(`${CASE_ID} creates or confirms one package table metadata line for Table 3
     actionsTaken: [
       `Opened existing ${PACKAGE_CODE} package card in playthru / UNIVERSAARL-DE.`,
       'Captured before/action/after/reopen timeline with visual-state JSON.',
-      ...(packageMetadataChanged
-        ? ['Attempted exactly one package-table metadata line action.']
-        : ['No package metadata write was needed or allowed because the route blocked before typing.'])
+      ...(resultStatus === 'completed-existing-table325-line'
+        ? ['No package metadata write was needed because Table 325 package metadata was already visible.']
+        : packageMetadataChanged
+          ? ['Attempted exactly one package-table metadata line action.']
+          : ['No package metadata write was allowed because the route stopped before typing.'])
     ],
     actionsNotTaken: [
       'No package creation',

@@ -14,7 +14,8 @@
     "playwright/projects/fibu-book5/evidence/target-073b-vat-page472-surface-and-editor-proof/TARGET-073B-result.json",
     "playwright/projects/fibu-book5/evidence/target-027d24-vat-matrix-alternative-standard-route-decision/TARGET-027D24-result.json",
     "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
-    "playwright/projects/fibu-book5/BC-ACTION-ATLAS.md"
+    "playwright/projects/fibu-book5/BC-ACTION-ATLAS.md",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-one-metadata-action-execute/result.json"
   ],
   "mayRunPlaywright": false,
   "mayOpenBusinessCentral": false,
@@ -61,50 +62,44 @@
   ],
   "nextStepDecision": {
     "currentCase": "FOUNDATION-READINESS-DECISION",
-    "plannedNextCaseBeforeReview": "PWS-FF-004-VAT-SETUP-BOUNDARY",
-    "lastEvidenceSummary": "PWS-FF-002B found the Buchungsmatrix Einrichtung search label but screenshot/text QA still showed Role Center, so Page 314 remains unproven. Existing VAT evidence is further along: INLAND/VAT19 are visible by screenshot QA, and TARGET-073B proved the main Page 472 surface plus Page Inspection/Table 325 context, but still did not prove a safe row-scoped active editor for the matrix.",
-    "isPlannedNextCaseStillSensible": false,
-    "reason": "The project needs a consolidated Foundation decision before moving to VAT writes, Dimensions, Posting Groups or Master Data; otherwise Page 314 and Page 472 UI gaps keep leaking into downstream claims.",
+    "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE",
+    "lastEvidenceSummary": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE proved U-VAT325-DISC package card and existing Table 325 package metadata line in playthru / UNIVERSAARL-DE. No package metadata write, setup value, import/export/validate/apply, master data, preview or posting occurred.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The package-route verdict should now be consumed into Foundation Readiness instead of expanding package work.",
     "lookaheadReviewed": [
       {
-        "caseId": "TARGET-073B-VAT-PAGE472-SURFACE-AND-EDITOR-PROOF",
-        "status": "obsolete",
-        "reason": "As-is retry is parked; the no-write surface proof succeeded, but the active editor proof stayed blocked."
+        "caseId": "FOUNDATION-READINESS-DECISION",
+        "status": "ready-next",
+        "reason": "Consumes Table 325 package-metadata evidence and keeps VAT/setup/posting claims bounded."
       },
       {
-        "caseId": "TARGET-071-VAT-POSTING-SETUP-PAGE472-CONTROLLED-WRITE-GATE",
-        "status": "replace-with-better-case",
-        "reason": "Repeating the write gate without a materially new Page-472 editor hypothesis would be blind."
-      },
-      {
-        "caseId": "PWS-MD-001-CUSTOMER-CONTEXT-READFIRST",
-        "status": "needs-setup-first",
-        "reason": "Master Data remains parked until Foundation gaps are resolved or accepted with explicit limits."
-      },
-      {
-        "caseId": "PWS-FF-005-DIMENSIONS-READFIRST",
+        "caseId": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE",
         "status": "ready-after-current",
-        "reason": "Dimensions are a separate read-first Foundation lane, but they do not unlock posting readiness while VAT and Page 314 remain open."
+        "reason": "Use only if Foundation Readiness decides the package route is too risky or too narrow for setup preparation."
+      },
+      {
+        "caseId": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
+        "status": "needs-setup-first",
+        "reason": "Master Data routes still depend on Foundation gaps and the package-route boundary."
       }
     ],
     "queueChangesMade": [
-      "Promoted FOUNDATION-READINESS-DECISION to active local case after blocked PWS-FF-002B.",
-      "Demoted PWS-FF-004 as a phantom next step; existing TARGET-027/TARGET-071/TARGET-073/TARGET-073B evidence is the authoritative VAT branch."
+      "Completed the one-action execute case without package metadata change because Table 325 was already visible.",
+      "Handed off to Foundation Readiness instead of another package action."
     ],
     "selectedNextCase": "FOUNDATION-READINESS-DECISION",
-    "whySelectedNextCaseIsBest": "TARGET-073B is consumed as blocked no-write evidence, and TARGET-027D19 through TARGET-027D24 already consume and park the configuration-package route. The freeze is lifted only for Foundation Readiness read-first/no-write. The next practical step is to keep VAT writes and Master Data parked, consume the later posting-group read-only/decision evidence instead of repeating old package-discovery routes, and select a materially different Foundation gap case before any live work.",
+    "whySelectedNextCaseIsBest": "It converts fresh package evidence into project steering without broadening live actions.",
     "risksBeforeNextCase": [
-      "Moving to VAT writes or Master Data could imply Foundation readiness that Page 314 and Page 472 editor evidence does not prove."
+      "Package metadata is not VAT setup and must not be treated as posting readiness.",
+      "Further package actions need separate setup/import/write gates."
     ],
     "requiredPreparation": [
-      "Keep Foundation readiness as the boundary because TARGET-073B did not unlock a VAT write route.",
-      "Do not repeat TARGET-073 or TARGET-073B without a materially new route hypothesis.",
-      "Use the BC UI Look and Feel Guide before the next live UI run: visible main surface, tooltip/accessible-name only as preproof, screenshot chain with at least five accepted checkpoints, screenshot QA and learning note are mandatory.",
-      "Before any VAT or Posting Setup write, consume TARGET-027D19 through TARGET-027D24 and document a materially new route hypothesis; do not repeat configuration-package discovery or cleanup clicks as-is.",
-      "Use PWS-FF-002B only as blocked/read-first evidence."
+      "Use the new result and step timeline as evidence input.",
+      "Keep Master Data, Preview Posting and Posting parked until Foundation readiness explicitly unlocks them.",
+      "Next live proof must use a screenshot chain with at least five accepted checkpoints: start context, navigation, target page, action/tooltip context and relevant row/FastTab/FactBox context."
     ]
   },
   "nextCase": "FOUNDATION-READINESS-DECISION",
   "preparedNextCaseFile": ".agent/state/cases/foundation-readiness-decision.json",
-  "updatedAt": "2026-07-06T00:00:00.000Z"
+  "updatedAt": "2026-07-09T00:03:17.140Z"
 }

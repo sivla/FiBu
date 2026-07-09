@@ -149,6 +149,7 @@ const activeCaseAllowedAfterTarget075Handoff =
   target075CompletedHandoff && allowedNextCasesAfterTarget075Handoff.has(currentState?.activeCase ?? '');
 const postTarget075Handoff = target075CompletedHandoff && nextCaseAllowedAfterTarget075Handoff && activeCaseAllowedAfterTarget075Handoff;
 const localNoLivePostTarget075HandoffCases = new Set([
+  'FOUNDATION-READINESS-DECISION',
   'FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION',
   'FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION'
 ]);

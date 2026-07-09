@@ -1,17 +1,20 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "FOUNDATION-SETUP-PACKAGE-EXISTING-METADATA-READFIRST-AND-KEEP-DECISION",
-  "caseId": "FOUNDATION-SETUP-PACKAGE-KEEP-CLEANUP-DECISION",
-  "status": "completed-readfirst-plus-local-decision",
-  "updatedAt": "2026-07-08T21:15:00.000+02:00",
-  "mode": "universaarl-foundation-readfirst-to-local-decision",
+  "runId": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE",
+  "caseId": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE",
+  "status": "completed-existing-table325-line",
+  "updatedAt": "2026-07-09T01:10:00.000+02:00",
+  "mode": "universaarl-foundation-write-gated-live-case",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "The existing configuration-package metadata U-VAT325-DISC was observed read-first in playthru / UNIVERSAARL-DE. It is visible with 0 tables and 0 records. It is now parked as a route candidate, not deleted and not reused until source-backed table and field mapping is complete.",
+  "summary": "The guarded one-action package metadata runner opened U-VAT325-DISC in playthru / UNIVERSAARL-DE and found the Table 325 / VAT Posting Setup package metadata line already visible. No package metadata write, setup value, import/export/validate/apply, master data, document, Preview Posting, Posting, payment, API shortcut or company switch occurred.",
   "businessCentralOpened": true,
   "playwrightLiveRunExecuted": true,
+  "liveActionsExecuted": false,
+  "packageMetadataChanged": false,
   "setupChanged": false,
+  "setupChangeAttempted": false,
   "masterDataChanged": false,
   "draftCreated": false,
   "previewPosting": false,
@@ -22,73 +25,70 @@
   "confidentialRealCustomerDataUsed": false,
   "uiMockupUsed": false,
   "actionsTaken": [
-    "Ran guarded read-first Playwright proof for Konfigurationspakete / U-VAT325-DISC.",
-    "Captured list context, row focus, visible package actions and no-write end screenshots.",
-    "Fixed the test route to preserve the foreground page pane instead of closing it with Escape.",
-    "Classified U-VAT325-DISC locally as parked-route-candidate."
+    "Activated and ran the guarded FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE runner with --live-approved.",
+    "Opened existing U-VAT325-DISC package card in playthru / UNIVERSAARL-DE.",
+    "Captured before/reopen screenshots, visual-state JSON and a step timeline.",
+    "Handed the result to FOUNDATION-READINESS-DECISION."
   ],
   "actionsNotTaken": [
-    "No package was created.",
-    "No package card was opened for edit.",
-    "No Get Tables, import, export, validate, apply, delete or Edit in Excel.",
-    "No setup, master data, draft, Preview Posting, Posting, payment, API shortcut or company switch occurred."
+    "No package creation.",
+    "No package metadata write because Table 325 was already visible.",
+    "No Get Tables, field selection, import, export, validate, apply or Edit in Excel.",
+    "No setup value, VAT value, master data, document draft, Preview Posting, Posting, payment, API shortcut or company switch."
   ],
   "proved": [
-    "Business Central opened in playthru / UNIVERSAARL-DE.",
-    "U-VAT325-DISC exists as configuration-package metadata.",
-    "The visible package row has 0 tables and 0 records.",
-    "Configuration-package actions can be inventoried without executing them."
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "U-VAT325-DISC package card was reopened after the run.",
+    "Table 325 / VAT Posting Setup package metadata line is visible in the package.",
+    "Package metadata visibility is not the same as VAT setup readiness."
   ],
   "notProved": [
-    "No package card content.",
-    "No table or field mapping for Foundation setup.",
+    "No field-selection route.",
     "No package import/export/validate/apply route.",
-    "No setup value, posting readiness, master-data readiness or UAT acceptance."
+    "No VAT setup values.",
+    "No posting, master-data or UAT readiness."
   ],
-  "evidencePath": "playwright/projects/fibu-book5/evidence/foundation-setup-package-existing-metadata-readfirst/result.json",
-  "decisionEvidencePath": "playwright/projects/fibu-book5/evidence/foundation-setup-package-keep-cleanup-decision/result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/foundation-setup-package-one-metadata-action-execute/result.json",
+  "timelinePath": "playwright/projects/fibu-book5/evidence/foundation-setup-package-one-metadata-action-execute/step-timeline.json",
+  "decisionPath": "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
   "nextStepDecision": {
-    "currentCase": "FOUNDATION-SETUP-PACKAGE-KEEP-CLEANUP-DECISION",
-    "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-PACKAGE-KEEP-CLEANUP-DECISION",
-    "lastEvidenceSummary": "U-VAT325-DISC is visible read-first with 0 tables and 0 records.",
+    "currentCase": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE",
+    "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE",
+    "lastEvidenceSummary": "U-VAT325-DISC package card shows existing Table 325 package metadata. No setup/package write was needed or performed.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "A local classification prevents unnecessary cleanup writes and blind package reuse.",
+    "reason": "The package-route verdict can now be consumed into Foundation Readiness instead of expanding package work.",
     "lookaheadReviewed": [
       {
-        "caseId": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
+        "caseId": "FOUNDATION-READINESS-DECISION",
         "status": "ready-next",
-        "reason": "Exact source-backed table and field mapping is required before package route use."
+        "reason": "Consumes the package metadata verdict and keeps Foundation boundaries explicit."
       },
       {
-        "caseId": "Foundation setup package write/import gate",
-        "status": "needs-source-check-first",
-        "reason": "Cannot be considered until mapping, validation risks and cleanup/keep plan are known."
-      },
-      {
-        "caseId": "Foundation Readiness decision",
+        "caseId": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE",
         "status": "ready-after-current",
-        "reason": "Should consume this package-route classification."
+        "reason": "Use only if Foundation Readiness decides the package route is too narrow or risky."
       },
       {
-        "caseId": "Master Data write gates",
+        "caseId": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
         "status": "needs-setup-first",
-        "reason": "Foundation VAT/posting boundaries remain unresolved."
+        "reason": "Master Data remains parked until Foundation readiness is explicit."
       }
     ],
     "queueChangesMade": [
-      "Selected FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION as active next case."
+      "Activated FOUNDATION-READINESS-DECISION as local no-live next case.",
+      "Recorded that no further package live action is allowed before a new setup/import/write gate."
     ],
-    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
-    "whySelectedNextCaseIsBest": "It is the smallest useful step before any package/setup/import write gate.",
+    "selectedNextCase": "FOUNDATION-READINESS-DECISION",
+    "whySelectedNextCaseIsBest": "It turns the package evidence into project steering without another BC action.",
     "risksBeforeNextCase": [
-      "Configuration-package controls are effective actions.",
-      "A package with 0 tables is not setup evidence."
+      "Table 325 package metadata is not VAT setup evidence.",
+      "Further package actions need their own Smart Decision and gate."
     ],
     "requiredPreparation": [
-      "Use official sources and the existing Foundation field map.",
-      "Do not open BC or run package actions for the local mapping decision."
+      "Review the result JSON and step timeline.",
+      "Keep Master Data, Preview Posting and Posting parked until Foundation readiness explicitly unlocks them."
     ]
   },
-  "nextCase": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
-  "nextStep": "Decide locally whether configuration packages are the right Foundation setup route and map exact tables, fields, values, validations and cleanup or keep strategy before any write/import gate."
+  "nextCase": "FOUNDATION-READINESS-DECISION",
+  "nextStep": "Consume the package metadata evidence into Foundation Readiness; do not run another package live action before a new setup/import/write gate exists."
 }

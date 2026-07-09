@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-08T23:43:38.348Z",
+  "updatedAt": "2026-07-09T00:03:17.135Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -15,12 +15,12 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w1-foundation",
-  "activeCase": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-WRITE-GATE",
-  "active_case_file": ".agent/state/cases/foundation-setup-package-one-metadata-action-write-gate.json",
-  "activeCaseFile": ".agent/state/cases/foundation-setup-package-one-metadata-action-write-gate.json",
+  "activeCase": "FOUNDATION-READINESS-DECISION",
+  "active_case_file": ".agent/state/cases/foundation-readiness-decision.json",
+  "activeCaseFile": ".agent/state/cases/foundation-readiness-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-foundation-local-decision",
+  "mode": "universaarl-foundation-readfirst",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -36,19 +36,18 @@
   "requiresStrongModel": true,
   "requiredPreflightChecks": [
     "agent:preflight",
-    "agent:state:validate",
-    "agent:budgets:check",
-    "agent:safety:check",
+    "agent:active-readiness",
     "agent:rejected-routes:check",
-    "agent:visual-proof-skills:check"
+    "check:encoding",
+    "git diff --check"
   ],
   "allowedActions": [
-    "local-evidence-review",
-    "local-screenshot-qa-review",
-    "local-risk-review",
-    "local-keep-cleanup-strategy",
-    "write-local-decision-result-json",
-    "prepare-next-case"
+    "read-foundation-evidence",
+    "update-foundation-readiness-decision",
+    "classify-page314-as-foundation-gap-or-new-route-needed",
+    "keep-master-data-parked",
+    "update-state-summary",
+    "write-local-project-artifacts"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -56,21 +55,11 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "continue-target-073",
     "open-business-central",
     "run-playwright-live",
+    "continue-target-073",
+    "repeat-pws-ff-002b-without-new-route-hypothesis",
     "type-business-central-values",
-    "create-configuration-package",
-    "edit-configuration-package",
-    "get-tables",
-    "add-table",
-    "remove-table",
-    "select-fields",
-    "import-configuration-package",
-    "export-configuration-package",
-    "validate-configuration-package",
-    "apply-configuration-package",
-    "edit-in-excel",
     "write-setup",
     "create-master-data",
     "create-document-or-draft",
@@ -79,11 +68,13 @@
     "payment",
     "cleanup-delete",
     "api-shortcut",
-    "company-switch"
+    "company-switch",
+    "claim-posting-readiness",
+    "claim-master-data-readiness"
   ],
-  "nextCase": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-WRITE-GATE",
-  "nextStep": "The future live case FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE is prepared and has a guarded Playwright implementation. It is not active and must not run until selected as activeCase, context/auth gates are green, and --live-approved is intentionally used.",
-  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-package-one-metadata-action-execute.json",
+  "nextCase": "FOUNDATION-READINESS-DECISION",
+  "nextStep": "Consume FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE into Foundation Readiness. No further package live action before the Foundation decision names a new setup/import/write gate. Next live proof must use a multi-step screenshot chain with at least five accepted checkpoints before any page, FastTab, field or setup-readiness claim.",
+  "preparedNextCaseFile": ".agent/state/cases/foundation-readiness-decision.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -217,14 +208,16 @@
     "nextBoundary": "Master Data remains parked. Next work must update Foundation Readiness and either accept this as a Foundation gap or define a genuinely new Page 314 route hypothesis before another live attempt."
   },
   "activeNextStepAuthority": {
-    "source": "playwright/projects/fibu-book5/evidence/foundation-setup-package-one-metadata-action-write-gate/result.json",
-    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-WRITE-GATE",
-    "activeCaseFile": ".agent/state/cases/foundation-setup-package-one-metadata-action-execute.json",
-    "preparedNextCaseFile": ".agent/state/cases/foundation-setup-package-one-metadata-action-execute.json",
+    "source": "playwright/projects/fibu-book5/evidence/foundation-setup-package-one-metadata-action-execute/result.json",
+    "selectedNextCase": "FOUNDATION-READINESS-DECISION",
+    "activeCaseFile": ".agent/state/cases/foundation-readiness-decision.json",
+    "preparedNextCaseFile": ".agent/state/cases/foundation-readiness-decision.json",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "The active case remains the completed local no-live gate. The prepared live follow-up is intentionally not active until a new run selects it and clears its write gate.",
-    "recommendedNextCaseAfterLocalDecision": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE",
-    "recommendedNextCaseFile": ".agent/state/cases/foundation-setup-package-one-metadata-action-execute.json"
+    "reason": "The one-action package metadata execute case completed and selected Foundation Readiness as the next local no-live decision.",
+    "recommendedNextCaseAfterLocalDecision": "FOUNDATION-READINESS-DECISION",
+    "recommendedNextCaseFile": ".agent/state/cases/foundation-readiness-decision.json",
+    "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
+    "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md"
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -338,7 +331,7 @@
     "currentLiveBoundary": {
       "freezeActive": false,
       "parkedCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-      "resumePilot": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-WRITE-GATE",
+      "resumePilot": "FOUNDATION-READINESS-DECISION",
       "resumePilotMode": "local-no-live-decision"
     },
     "legacyScriptGuard": {
@@ -419,11 +412,13 @@
   },
   "freezeStatus": {
     "status": "lifted-readfirst",
-    "caseId": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-WRITE-GATE",
+    "caseId": "FOUNDATION-READINESS-DECISION",
     "frozenLiveCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-    "resumeCandidateAfterFreeze": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-WRITE-GATE",
+    "resumeCandidateAfterFreeze": "FOUNDATION-READINESS-DECISION",
     "completedLocalCheckpoint": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
-    "planFile": ".agent/PROJECT-IMPROVEMENT-PLAN.md"
+    "planFile": ".agent/PROJECT-IMPROVEMENT-PLAN.md",
+    "latestPostFreezeCase": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE",
+    "latestPostFreezeResult": "playwright/projects/fibu-book5/evidence/foundation-setup-package-one-metadata-action-execute/result.json"
   },
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
@@ -12173,7 +12168,7 @@
   },
   "latestFoundationSetupPackageOneMetadataActionExecutePreflight": {
     "caseId": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE",
-    "status": "prepared-guarded-live-implementation",
+    "status": "active-guarded-live-implementation",
     "runner": "scripts/agent/run-foundation-setup-package-one-metadata-action-execute.mjs",
     "spec": "playwright/projects/fibu-book5/tests/foundation-setup-package-one-metadata-action-execute.spec.ts",
     "packageScript": "fibu:foundation:package-one-metadata-action-execute",
@@ -12182,6 +12177,45 @@
     "businessCentralOpened": false,
     "playwrightLiveRunExecuted": false,
     "liveImplementationPresent": true,
-    "boundary": "Guarded implementation exists, but it must not execute Business Central until the execute case becomes active and the runner is called with --live-approved after green gates."
+    "boundary": "Active write-gated live case. It may execute only through the guarded runner with --live-approved after green gates; all forbidden package/setup/posting actions remain locked."
+  },
+  "latestFoundationSetupPackageOneMetadataActionExecute": {
+    "caseId": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE",
+    "status": "completed-existing-table325-line",
+    "resultPath": "playwright/projects/fibu-book5/evidence/foundation-setup-package-one-metadata-action-execute/result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "packageCode": "U-VAT325-DISC",
+    "targetTable": {
+      "tableId": 325,
+      "tableName": "VAT Posting Setup",
+      "germanMeaning": "MwSt.-Buchungsmatrix Einrichtung"
+    },
+    "businessCentralOpened": true,
+    "playwrightLiveRunExecuted": true,
+    "liveActionsExecuted": false,
+    "packageMetadataChanged": false,
+    "setupChanged": false,
+    "setupChangeAttempted": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "proved": [
+      "Business Central stayed in playthru / UNIVERSAARL-DE.",
+      "U-VAT325-DISC package card was reopened after the attempt.",
+      "Table 325 / VAT Posting Setup package metadata line was already visible; no metadata write was needed.",
+      "No import/export/validate/apply/Edit-in-Excel/setup/master-data/document/preview/posting/API action occurred."
+    ],
+    "notProved": [
+      "No field-selection route.",
+      "No package import/export/validate/apply route.",
+      "No VAT setup values.",
+      "No posting/VAT/master-data readiness.",
+      "No UAT acceptance."
+    ],
+    "nextCase": "FOUNDATION-READINESS-DECISION",
+    "boundary": "Table 325 package metadata is visible, but this is not VAT setup, posting readiness, master-data readiness or UAT acceptance."
   }
 }

@@ -158,6 +158,15 @@ PWS-FF-001 hat die Nummernserien-Seite read-only beobachtet: sieben Universaarl-
 - UI-Learning: Nach Tell-Me-Navigation nicht sofort `Escape` druecken, weil dadurch das echte Seitenpaneel geschlossen wird. Screenshot-QA muss das Vordergrund-Paneel bewerten und den abgedunkelten Rollencenter-Hintergrund ignorieren.
 - Verworfen: Kein Paketkarteninhalt, keine Tabellenzeile fuer Table 252, Table 325 oder Page/Table 470, kein Import, Export, Validate, Apply, Delete, Edit in Excel oder Setupwert.
 
+## FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE
+
+- Quelle: playwright/projects/fibu-book5/evidence/foundation-setup-package-one-metadata-action-execute/result.json
+- Status: completed-existing-table325-line
+- Akzeptiert: `playthru / UNIVERSAARL-DE` wurde bestaetigt. Die Paketkarte `U-VAT325-DISC` wurde direkt geoeffnet und nach dem Reopen erneut sichtbar nachgewiesen. Die Tabellenzeile fuer Table 325 / VAT Posting Setup war bereits vorhanden; deshalb wurde keine neue Paket-Metadatenzeile geschrieben.
+- Schreibgrenze: keine Paket-Neuanlage, kein `Tabellen abrufen`, kein Import, kein Export, kein Validate, kein Apply, kein Edit in Excel, kein Setupwert, kein Stammdatensatz, kein Beleg, keine Buchungsvorschau und keine Buchung.
+- Fachgrenze: Paket-Metadaten sind noch keine USt-/VAT-Einrichtung. Der Nachweis zeigt nur, dass Table 325 als Konfigurationspaket-Ziel vorhanden ist. Er beweist keine `INLAND/VAT19`-Zeile, keine Steuerkonten, keine Posting Readiness, keine UAT-Akzeptanz und keine deutsche Steuer- oder Compliance-Korrektheit.
+- Praktische Folge: Die Paketroute ist als realistischer Foundation-Implementierungsweg weiter nutzbar, aber nur fuer bewusst gegatete Setup-/Import-Arbeit. Der naechste Schritt ist keine weitere Paketaktion, sondern eine Foundation-Readiness-Einordnung: Welche Foundation-Gaps koennen ueber Konfigurationspakete vorbereitet werden, welche bleiben UI-/Source-/UAT-abhaengig und welche bleiben geparkt.
+
 ## FOUNDATION-SETUP-PACKAGE-KEEP-CLEANUP-DECISION
 
 - Quelle: playwright/projects/fibu-book5/evidence/foundation-setup-package-keep-cleanup-decision/result.json
