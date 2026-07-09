@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-09T01:35:00.000Z",
+  "updatedAt": "2026-07-09T02:05:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -15,9 +15,9 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w1-foundation",
-  "activeCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
-  "active_case_file": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
-  "activeCaseFile": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
+  "activeCase": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",
+  "active_case_file": ".agent/state/cases/foundation-setup-source-table-field-review.json",
+  "activeCaseFile": ".agent/state/cases/foundation-setup-source-table-field-review.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-foundation-local-decision",
@@ -45,8 +45,8 @@
   ],
   "allowedActions": [
     "local-source-review",
-    "local-route-comparison",
-    "local-rejected-route-review",
+    "local-table-field-map-review",
+    "local-dependency-review",
     "write-route-decision-result-json",
     "prepare-one-next-readfirst-or-local-gate-case"
   ],
@@ -78,9 +78,9 @@
     "claim-posting-readiness",
     "claim-master-data-readiness"
   ],
-  "nextCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
-  "nextStep": "Run the local no-live alternative Foundation setup route decision. Do not repeat the parked U-VAT325-DISC field-selection route; choose a materially different source-backed, worksheet, read-first or parked route before any BC or Playwright live work.",
-  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
+  "nextCase": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",
+  "nextStep": "Run the local no-live Foundation setup source table and field review. Clarify tables, fields, planned values, dependencies and validation boundaries before any Configuration Package UI, import/apply, setup write or Master Data write.",
+  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-source-table-field-review.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -214,12 +214,12 @@
     "nextBoundary": "Master Data remains parked. Next work must update Foundation Readiness and either accept this as a Foundation gap or define a genuinely new Page 314 route hypothesis before another live attempt."
   },
   "activeNextStepAuthority": {
-    "source": "playwright/projects/fibu-book5/evidence/foundation-readiness-decision/result.json",
-    "selectedNextCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
-    "activeCaseFile": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
-    "preparedNextCaseFile": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
+    "source": "playwright/projects/fibu-book5/evidence/foundation-setup-alternative-route-source-decision/result.json",
+    "selectedNextCase": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",
+    "activeCaseFile": ".agent/state/cases/foundation-setup-source-table-field-review.json",
+    "preparedNextCaseFile": ".agent/state/cases/foundation-setup-source-table-field-review.json",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "Foundation Readiness consumed the U-VAT325-DISC package-route blocker; the next step is a materially different no-live Foundation setup route decision.",
+    "reason": "Alternative route decision completed: Configuration Packages remain realistic, but next step is local source/table/field review before any UI or write gate.",
     "rejectedRoute": "RR-FOUNDATION-CONFIG-PACKAGE-U-VAT325-FIELD-SELECTION-RETRY",
     "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md"
@@ -336,7 +336,7 @@
     "currentLiveBoundary": {
       "freezeActive": false,
       "parkedCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-      "resumePilot": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
+      "resumePilot": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",
       "resumePilotMode": "local-no-live-decision"
     },
     "legacyScriptGuard": {
@@ -12246,8 +12246,9 @@
   },
   "latestFoundationSetupAlternativeRouteSourceDecision": {
     "caseId": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
-    "status": "prepared-local-decision-no-live",
-    "caseFile": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
+    "status": "completed-local-decision",
+    "decision": "ready-for-source-table-field-review",
+    "resultPath": "playwright/projects/fibu-book5/evidence/foundation-setup-alternative-route-source-decision/result.json",
     "instance": "playthru",
     "company": "UNIVERSAARL-DE",
     "businessCentralOpened": false,
@@ -12256,7 +12257,22 @@
     "masterDataChanged": false,
     "previewPosting": false,
     "posted": false,
-    "nextBoundary": "Decide a materially different Foundation setup route; do not repeat U-VAT325-DISC field selection without a new hypothesis.",
-    "updatedAt": "2026-07-09T01:35:00.000Z"
+    "nextCase": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",
+    "updatedAt": "2026-07-09T02:05:00.000Z"
+  },
+  "latestFoundationSetupSourceTableFieldReview": {
+    "caseId": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",
+    "status": "prepared-local-decision-no-live",
+    "caseFile": ".agent/state/cases/foundation-setup-source-table-field-review.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "businessCentralOpened": false,
+    "playwrightLiveRunExecuted": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "previewPosting": false,
+    "posted": false,
+    "nextBoundary": "Clarify source-backed tables, fields, values, dependencies and validation before any package/UI/write route.",
+    "updatedAt": "2026-07-09T02:05:00.000Z"
   }
 }

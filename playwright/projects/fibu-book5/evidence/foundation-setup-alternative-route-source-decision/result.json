@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
+  "resultStatus": "completed-local-decision",
+  "decision": "ready-for-source-table-field-review",
+  "decisionClass": "ready-for-readfirst-preparation",
+  "completedAt": "2026-07-09T02:05:00.000Z",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "businessCentralOpened": false,
+  "playwrightLiveRunExecuted": false,
+  "liveActionsExecuted": false,
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "companySwitch": false,
+  "confidentialRealCustomerDataUsed": false,
+  "uiMockupUsed": false,
+  "officialSources": [
+    {
+      "title": "Apply Company Configuration Packages - Business Central",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/dev-itpro/administration/apply-company-configuration-packages",
+      "usedFor": [
+        "configuration packages are appropriate for onboarding and empty-company setup",
+        "Configuration Worksheet and Configuration Package pages can import Excel or rapidstart files",
+        "table and field mapping must be explicit before import/apply",
+        "RapidStart packages are for first-time company setup, not production companies"
+      ]
+    },
+    {
+      "title": "Manage configuration and migration data for Dynamics 365 projects",
+      "url": "https://learn.microsoft.com/en-us/dynamics365/guidance/implementation-guide/data-management-configuration-data-migration",
+      "usedFor": [
+        "configuration data must be planned, sequenced, tested and validated",
+        "configuration plan should show scope, dependencies and import sequence"
+      ]
+    }
+  ],
+  "sourceEvidence": [
+    ".agent/state/rejected_route_register.json",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    "playwright/projects/fibu-book5/UNIVERSAARL-FOUNDATION-SETUP-FIELD-MAP.md",
+    "playwright/projects/fibu-book5/evidence/foundation-readiness-decision/result.json"
+  ],
+  "actionsTaken": [
+    "Reviewed the active rejected-route register and Foundation boundary.",
+    "Reviewed the Universaarl Foundation Setup Field Map.",
+    "Checked official Microsoft Learn guidance for Business Central configuration packages and Dynamics 365 configuration data planning.",
+    "Rejected a direct retry of U-VAT325-DISC field selection.",
+    "Selected a local source table and field review before any further Business Central or Playwright live route."
+  ],
+  "actionsNotTaken": [
+    "Did not open Business Central.",
+    "Did not run Playwright live.",
+    "Did not create, edit, rename, delete, import, export, validate or apply a configuration package.",
+    "Did not click Get Tables / Tabellen abrufen.",
+    "Did not select or toggle package fields.",
+    "Did not write setup values.",
+    "Did not create master data, documents, journals, Preview Posting, Posting or payments.",
+    "Did not use API, AL, direct database or other shortcut."
+  ],
+  "routeComparison": [
+    {
+      "route": "repeat-u-vat325-field-selection",
+      "status": "rejected",
+      "reason": "Explicitly parked in RR-FOUNDATION-CONFIG-PACKAGE-U-VAT325-FIELD-SELECTION-RETRY; no reliable Table 325 line or safe field-selection surface was proven."
+    },
+    {
+      "route": "configuration-package-import-validate-apply",
+      "status": "blocked",
+      "reason": "Microsoft guidance requires correct package structure, mapping, validation and first-time setup discipline; local table/field/value mapping is not complete enough."
+    },
+    {
+      "route": "manual-ui-grid-edit-page314-or-page472",
+      "status": "parked",
+      "reason": "Rejected route register already parks fragile grid/list/active-editor attempts for Page 314 and Page 472."
+    },
+    {
+      "route": "configuration-worksheet-or-source-table-field-review",
+      "status": "selected",
+      "reason": "Materially different from the parked package-card route and aligned with Microsoft guidance to plan configuration data, mappings, sequence and validation before import/apply."
+    }
+  ],
+  "proved": [
+    "Configuration packages remain a realistic Business Central implementation pattern for first-time setup and repeatable configuration data.",
+    "The concrete U-VAT325-DISC field-selection route must not be retried without a materially new hypothesis.",
+    "The next step can be done locally: table, field, value, dependency and validation mapping before any UI read-first or write gate."
+  ],
+  "notProved": [
+    "No safe field-selection surface.",
+    "No package import/export/validate/apply route.",
+    "No complete source-backed field list for Table 252, Table 325 or Page/Table 470.",
+    "No VAT setup values.",
+    "No Foundation setup write-readiness.",
+    "No Master Data, O2C, P2P, Preview Posting, Posting, ledger trace or UAT acceptance."
+  ],
+  "blockedBy": [
+    "Table and field mapping is not complete enough for a write gate.",
+    "U-VAT325-DISC field-selection route is parked.",
+    "General Posting Setup and VAT Posting Setup still have rejected fragile UI edit routes."
+  ],
+  "warnings": [
+    "Configuration Package metadata is not VAT setup evidence.",
+    "Configuration Packages are not a shortcut around field ownership, validation, dependency order and reopen proof.",
+    "Any future read-first route must use multi-step screenshot and visual-state evidence."
+  ],
+  "nextStepDecision": {
+    "currentCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
+    "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
+    "lastEvidenceSummary": "Foundation Readiness consumed the parked U-VAT325-DISC package field-selection route; current Foundation setup gaps are mapped but not write-ready.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "This route decision is now complete enough to hand off to a narrower local source table and field review.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",
+        "status": "ready-next",
+        "reason": "Needed before another UI route, package field selection or write gate."
+      },
+      {
+        "caseId": "FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST",
+        "status": "ready-after-current",
+        "reason": "Useful only after the source/table/field review defines what the read-first UI proof must look for."
+      },
+      {
+        "caseId": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-WRITE-GATE-DECISION",
+        "status": "blocked",
+        "reason": "No safe field-selection surface or complete field map."
+      },
+      {
+        "caseId": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
+        "status": "ready-after-current",
+        "reason": "Can continue only as training/handbook route work while setup writes remain locked."
+      }
+    ],
+    "queueChangesMade": [
+      "Selected FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW as the next local no-live case.",
+      "Kept U-VAT325-DISC field selection, import, validate, apply and setup writes blocked.",
+      "Kept Master Data writes, O2C/P2P, Preview Posting and Posting blocked."
+    ],
+    "selectedNextCase": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",
+    "whySelectedNextCaseIsBest": "It converts the configuration-package idea into a consultant-grade field, dependency and validation decision before any live UI or write action.",
+    "risksBeforeNextCase": [
+      "Using package tooling as a shortcut instead of a controlled configuration-data plan.",
+      "Confusing package metadata with setup correctness.",
+      "Repeating parked UI edit routes."
+    ],
+    "requiredPreparation": [
+      "Read only the active case mustRead files.",
+      "Respect rejected route register.",
+      "Use official source guidance as product logic and local evidence as UI truth.",
+      "Do not open Business Central or run Playwright live."
+    ]
+  },
+  "safeToFinalizeState": true,
+  "requiresReview": false,
+  "nextCase": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW"
+}

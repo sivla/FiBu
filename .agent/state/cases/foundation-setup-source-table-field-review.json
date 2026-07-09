@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",
+  "status": "prepared-local-decision-no-live",
+  "caseType": "local-no-live-decision",
+  "mode": "universaarl-foundation-local-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w1-foundation",
+  "goal": "Review the source-backed tables, fields, values, dependencies and validation boundaries for the next Foundation setup route.",
+  "whyNow": "The configuration-package route is realistic for first-time setup, but the concrete U-VAT325-DISC field-selection route is parked and the field map is not complete enough for a read-first or write gate.",
+  "businessPurpose": "Turn the Foundation setup field map into a consultant-grade configuration-data plan before any Business Central UI route, import, validate, apply or setup write.",
+  "mustRead": [
+    ".agent/OPERATING-KERNEL.md",
+    ".agent/state/current.json",
+    ".agent/state/rejected_route_register.json",
+    "playwright/projects/fibu-book5/UNIVERSAARL-FOUNDATION-SETUP-FIELD-MAP.md",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-alternative-route-source-decision/result.json"
+  ],
+  "allowedActions": [
+    "local-source-review",
+    "local-table-field-map-review",
+    "local-dependency-review",
+    "write-route-decision-result-json",
+    "prepare-one-next-readfirst-or-local-gate-case"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright-live",
+    "create-configuration-package",
+    "open-configuration-package-card-for-edit",
+    "get-tables",
+    "select-or-toggle-package-fields",
+    "import-configuration-package",
+    "export-configuration-package",
+    "validate-configuration-package",
+    "apply-configuration-package",
+    "edit-in-excel",
+    "write-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "company-switch",
+    "claim-posting-readiness",
+    "claim-master-data-readiness"
+  ],
+  "requiredSkills": [
+    "bc-source-research",
+    "bc-setup-route-decision",
+    "state-sync-check"
+  ],
+  "requiredHelpers": [
+    "scripts/agent/local-no-live-case-readiness-check.mjs",
+    "scripts/agent/rejected-route-check.mjs",
+    "scripts/agent/dry-run.mjs"
+  ],
+  "requiredChecks": [
+    "agent:preflight",
+    "agent:active-readiness",
+    "agent:dry-run",
+    "agent:run-plan",
+    "agent:rejected-routes:check",
+    "check:encoding",
+    "git diff --check"
+  ],
+  "expectedOutput": [
+    "A compact source table and field review result JSON or field-map update.",
+    "A nextCase selection: Configuration Worksheet read-first, package-field read-first with new hypothesis, local value-map decision, or parked.",
+    "Explicit no-live/no-write boundary and no VAT, posting, master-data or process-readiness claim."
+  ],
+  "stopConditions": [
+    "Stop if the review requires opening Business Central or running Playwright.",
+    "Stop if a table, field or dependency cannot be source-backed enough for the next route.",
+    "Stop if the route repeats any rejected route without a materially new hypothesis.",
+    "Stop if the output would unlock import, validate, apply, setup writes or master data writes without a separate gate."
+  ],
+  "rejectedRoutesToRespect": [
+    "RR-FOUNDATION-PAGE314-GRID-LIST-EDIT-RETRY",
+    "RR-FOUNDATION-PAGE470-VAT-BUSINESS-GROUPS-SEARCH-RETRY",
+    "RR-FOUNDATION-PAGE472-ACTIVE-EDITOR-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGES-ESCAPE-TELLME-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGE-U-VAT325-FIELD-SELECTION-RETRY"
+  ],
+  "nextCaseOptions": [
+    {
+      "caseId": "FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST",
+      "when": "Use if the table/field review defines a different read-first UI surface and exact evidence target.",
+      "liveType": "read-first-no-write"
+    },
+    {
+      "caseId": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
+      "when": "Use if tables and fields are known but planned values, owners, validation and dependencies need a local decision before UI.",
+      "liveType": "local-no-live-decision"
+    },
+    {
+      "caseId": "FOUNDATION-SETUP-ROUTE-PARKING-DECISION",
+      "when": "Use if Foundation setup should remain parked and project work should continue with training/handbook or Master Data boundaries.",
+      "liveType": "local-no-live-decision"
+    }
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/foundation-setup-source-table-field-review/result.json",
+  "preparedAt": "2026-07-09T02:05:00.000Z"
+}

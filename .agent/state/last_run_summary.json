@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
   "purpose": "last-run-summary",
-  "runId": "FOUNDATION-READINESS-DECISION-AFTER-PACKAGE-ROUTE-PARK",
-  "caseId": "FOUNDATION-READINESS-DECISION",
-  "status": "completed-local-decision-after-package-route-park",
-  "updatedAt": "2026-07-09T01:30:00.000Z",
+  "runId": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
+  "caseId": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
+  "status": "completed-local-decision",
+  "updatedAt": "2026-07-09T02:05:00.000Z",
   "mode": "universaarl-foundation-local-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Foundation Readiness is now consumed: the concrete U-VAT325-DISC field-selection route is parked and registered as a rejected/parked repeat route. The active next case is a local no-live alternative Foundation setup route decision; no BC or Playwright live action is allowed.",
+  "summary": "The alternative Foundation setup route decision is complete. Configuration Packages remain realistic for first-time setup, but the concrete U-VAT325-DISC field-selection route stays parked. The next active case is a local source/table/field review before any UI, import/apply, setup write or Master Data write.",
   "businessCentralOpened": false,
   "playwrightLiveRunExecuted": false,
   "liveActionsExecuted": false,
@@ -24,79 +24,82 @@
   "confidentialRealCustomerDataUsed": false,
   "uiMockupUsed": false,
   "actionsTaken": [
-    "Removed stale next-step language that still pointed to FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST.",
-    "Registered RR-FOUNDATION-CONFIG-PACKAGE-U-VAT325-FIELD-SELECTION-RETRY in the rejected route register.",
-    "Prepared FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION as the next local no-live case.",
-    "Kept setup writes, package import/validate/apply, Master Data writes, Preview Posting and Posting locked."
+    "Reviewed Foundation Readiness, Field Map and rejected routes.",
+    "Checked official Microsoft Learn guidance for Business Central configuration packages and configuration data planning.",
+    "Selected FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW as the next local no-live case.",
+    "Kept Configuration Package field selection, import, validate, apply, setup writes, Master Data writes, Preview Posting and Posting locked."
   ],
   "actionsNotTaken": [
-    "Did not open Business Central in this local decision.",
-    "Did not run Playwright live in this local decision.",
-    "Did not create, rename, delete, import, export, validate or apply a configuration package.",
+    "Did not open Business Central.",
+    "Did not run Playwright live.",
+    "Did not create, edit, rename, import, export, validate or apply a configuration package.",
     "Did not click Get Tables / Tabellen abrufen.",
-    "Did not toggle or select fields.",
+    "Did not select or toggle package fields.",
     "Did not write setup values.",
     "Did not create master data, documents, journals, Preview Posting, Posting or payments.",
     "Did not use API, AL, direct database or other shortcut."
   ],
   "proved": [
-    "The active state no longer self-loops on FOUNDATION-READINESS-DECISION.",
-    "The parked U-VAT325-DISC field-selection route is now machine-readable in the rejected route register.",
-    "The next case is local/no-live and requires a materially different route decision."
+    "Configuration Packages remain a plausible implementation pattern for first-time setup and structured configuration data.",
+    "The current U-VAT325-DISC field-selection route remains parked.",
+    "The next useful action is local source/table/field review, not another UI attempt."
   ],
   "notProved": [
     "No safe field-selection surface.",
     "No package import/export/validate/apply route.",
+    "No complete source-backed field list for Table 252, Table 325 or Page/Table 470.",
     "No VAT setup values.",
     "No Foundation setup write-readiness.",
     "No Master Data, O2C, P2P, Preview Posting, Posting, ledger trace or UAT acceptance."
   ],
   "blockedBy": [
-    "The visible U-VAT325-DISC package context did not prove a safe Table 325 field-selection route."
+    "Table and field mapping is not complete enough for a write gate.",
+    "U-VAT325-DISC field-selection route is parked."
   ],
   "warnings": [
-    "Do not repeat the same package-card field-selection route without a materially new hypothesis.",
-    "Configuration Packages remain a realistic implementation pattern, but the specific U-VAT325-DISC field-selection route is parked."
+    "Configuration Package metadata is not VAT setup evidence.",
+    "Configuration Packages are not a shortcut around field ownership, validation, dependency order and reopen proof."
   ],
-  "evidencePath": "playwright/projects/fibu-book5/evidence/foundation-readiness-decision/result.json",
+  "evidencePath": "playwright/projects/fibu-book5/evidence/foundation-setup-alternative-route-source-decision/result.json",
   "nextStepDecision": {
-    "currentCase": "FOUNDATION-READINESS-DECISION",
-    "plannedNextCaseBeforeReview": "FOUNDATION-READINESS-DECISION",
-    "lastEvidenceSummary": "Foundation Readiness consumed the package-route blocker and registered the parked U-VAT325-DISC field-selection repeat route.",
+    "currentCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
+    "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
+    "lastEvidenceSummary": "The parked U-VAT325-DISC field-selection route and official Microsoft guidance were consumed into a local alternative-route decision.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "The consumed Foundation decision should not remain as a self-loop.",
+    "reason": "The route decision is complete and hands off to a narrower local source/table/field review.",
     "lookaheadReviewed": [
       {
-        "caseId": "FOUNDATION-READINESS-DECISION",
-        "status": "obsolete",
-        "reason": "Current package-route blocker has been consumed."
+        "caseId": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",
+        "status": "ready-next",
+        "reason": "Needed before any UI route or write gate."
       },
       {
-        "caseId": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
-        "status": "ready-next",
-        "reason": "Local no-live decision for a materially different Foundation setup route."
+        "caseId": "FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST",
+        "status": "ready-after-current",
+        "reason": "Useful after the exact read-first target is defined."
       },
       {
         "caseId": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-WRITE-GATE-DECISION",
         "status": "blocked",
-        "reason": "No safe field-selection context was proven."
+        "reason": "No safe field-selection surface or complete field map."
       },
       {
-        "caseId": "FOUNDATION-SETUP-PACKAGE-IMPORT-VALIDATE-APPLY-GATE-DECISION",
-        "status": "blocked",
-        "reason": "Needs fields, values, validation and error strategy first."
+        "caseId": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
+        "status": "ready-after-current",
+        "reason": "Only for training/handbook route work while setup writes stay locked."
       }
     ],
     "queueChangesMade": [
-      "Closed Foundation Readiness self-loop.",
-      "Selected FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION as active local no-live case.",
-      "Added rejected route RR-FOUNDATION-CONFIG-PACKAGE-U-VAT325-FIELD-SELECTION-RETRY."
+      "Selected FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW as active local no-live case.",
+      "Kept U-VAT325-DISC field selection and package import/apply blocked.",
+      "Kept Master Data writes and process execution blocked."
     ],
-    "selectedNextCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
-    "whySelectedNextCaseIsBest": "It forces the next Foundation setup step to be materially different and source-backed before any live or write action.",
+    "selectedNextCase": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",
+    "whySelectedNextCaseIsBest": "It turns the package strategy into a controlled field/dependency/validation plan before any live UI or write action.",
     "risksBeforeNextCase": [
-      "Treating package metadata or field-count columns as VAT setup readiness.",
-      "Repeating the same field-selection route without new evidence."
+      "Treating package metadata as setup readiness.",
+      "Skipping validation and dependency order.",
+      "Repeating parked UI edit routes."
     ],
     "requiredPreparation": [
       "Read only the active case mustRead files.",
@@ -104,6 +107,6 @@
       "Do not open Business Central or run Playwright live."
     ]
   },
-  "nextCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
-  "nextStep": "Run the local no-live alternative Foundation setup route decision. Do not repeat the parked U-VAT325-DISC field-selection route; choose a materially different source-backed, worksheet, read-first or parked route before any BC or Playwright live work."
+  "nextCase": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",
+  "nextStep": "Run the local no-live Foundation setup source table and field review. Clarify tables, fields, planned values, dependencies and validation boundaries before any Configuration Package UI, import/apply, setup write or Master Data write."
 }

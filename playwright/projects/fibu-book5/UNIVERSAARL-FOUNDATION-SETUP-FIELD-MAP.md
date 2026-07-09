@@ -26,6 +26,8 @@ Aktuelle Folgeentscheidung nach dem Parken:
 2. Konfigurationspakete bleiben als Implementierungsweg plausibel, aber nur ueber eine materiell andere Hypothese: andere Business-Central-Oberflaeche, bessere Feld-/Tabellenquelle, neuer Helper, andere Zielsetzung oder explizite Freigabe.
 3. Der naechste Schritt ist lokal/no-live: eine alternative Foundation-Setup-Route aus Quelle, Feldkarte, Rejected-Route-Register und Foundation-Grenzen entscheiden. Erst danach darf ein neuer read-first- oder Write-Gate-Case vorbereitet werden.
 
+Nach `FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION` ist die naechste Route nicht write-ready. Microsoft Learn stuetzt Konfigurationspakete fuer Erstsetup und strukturierte Datenuebernahme, verlangt aber passende Struktur, Feld-/Tabellenmapping, Validierung und Fehlerpruefung. Deshalb folgt zuerst `FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW`, lokal/no-live.
+
 ## Read-first Ergebnis vom 2026-07-09
 
 Status: `parked`
@@ -61,6 +63,6 @@ Nicht gewaehlt:
 
 ## Naechster lokaler Case
 
-`FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION`
+`FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW`
 
-Ziel: Ohne Business Central und ohne Playwright entscheiden, ob die naechste Foundation-Setup-Route ueber eine andere Konfigurationspaket-/Worksheet-Oberflaeche, eine source-backed Tabellen-/Feldanalyse, einen stabileren UI-Read-first-Lauf oder bewusstes Parken weitergeht. Der Case darf kein Paket erstellen, keine Felder toggeln oder auswaehlen, nichts anwenden, importieren, validieren, exportieren oder Setupwerte speichern.
+Ziel: Ohne Business Central und ohne Playwright die Tabellen, Felder, Zielwerte, Abhaengigkeiten und Validierungsgrenzen so weit klaeren, dass danach ein anderer read-first-Lauf oder ein lokaler Value-Map-Entscheid sinnvoll ist. Der Case darf kein Paket erstellen, keine Felder toggeln oder auswaehlen, nichts anwenden, importieren, validieren, exportieren oder Setupwerte speichern.
