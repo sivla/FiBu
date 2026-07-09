@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "caseId": "MASTER-DATA-FIELD-MAP-READFIRST-VALIDATION",
+  "status": "prepared-readfirst-no-write",
+  "caseType": "read-first-no-write",
+  "mode": "universaarl-master-data-field-map-readfirst-validation",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w4-master-data-product-model",
+  "goal": "Validate the local Master Data field map against real Business Central list/card/template surfaces without saving data.",
+  "whyNow": "The local field map is useful, but it is not write permission. Before a narrow customer, vendor or item write gate, Business Central must show which fields, templates, dialogs and mandatory markers are actually present.",
+  "businessPurpose": "Keep the data-load route realistic: one UI validation for training and screenshot truth, then a later decision for UI, Excel-assisted or configuration-package writes.",
+  "mustRead": [
+    ".agent/OPERATING-KERNEL.md",
+    ".agent/state/current.json",
+    "playwright/projects/fibu-book5/evidence/master-data-package-field-map-decision/result.json",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    ".agent/state/rejected_route_register.json"
+  ],
+  "allowedActions": [
+    "open-business-central-readonly",
+    "run-playwright-readfirst",
+    "capture-screenshots",
+    "capture-visual-state-json",
+    "capture-step-timeline",
+    "write-readfirst-result-json",
+    "prepare-one-next-local-or-write-gate-case"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "write-setup",
+    "create-master-data",
+    "edit-master-data",
+    "save-record",
+    "change-template",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "company-switch",
+    "edit-book",
+    "claim-foundation-setup-ready",
+    "claim-master-data-ready",
+    "claim-process-ready"
+  ],
+  "requiredSkills": [
+    "read-first-page-proof",
+    "screenshot-qa",
+    "state-sync-check"
+  ],
+  "requiredHelpers": [
+    "playwright/core/bc/visual-state-capture.ts",
+    "playwright/core/bc/step-timeline.ts",
+    "scripts/agent/dry-run.mjs"
+  ],
+  "requiredChecks": [
+    "agent:preflight",
+    "agent:active-readiness",
+    "agent:dry-run",
+    "agent:run-plan",
+    "agent:rejected-routes:check",
+    "check:encoding",
+    "git diff --check"
+  ],
+  "expectedOutput": [
+    "A read-first result JSON with screenshots, visual-state JSON and step timeline.",
+    "Field-map validation for Customer, Vendor and Item/Service surfaces.",
+    "Explicit decision whether the next case may be a narrow write gate or must remain local/source-needed."
+  ],
+  "stopConditions": [
+    "Stop if playthru / UNIVERSAARL-DE is not confirmed.",
+    "Stop before clicking Save, OK, Finish, Create, Post, Preview, Validate, Apply or any template-changing action.",
+    "Stop if a dialog cannot be safely closed without saving.",
+    "Stop if screenshot QA cannot prove the target page/card/template surface."
+  ],
+  "rejectedRoutesToRespect": [
+    "RR-FOUNDATION-PAGE314-GRID-LIST-EDIT-RETRY",
+    "RR-FOUNDATION-PAGE470-VAT-BUSINESS-GROUPS-SEARCH-RETRY",
+    "RR-FOUNDATION-PAGE472-ACTIVE-EDITOR-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGES-ESCAPE-TELLME-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGE-U-VAT325-FIELD-SELECTION-RETRY"
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/master-data-field-map-readfirst-validation/result.json",
+  "nextCaseOptions": [
+    {
+      "caseId": "CUSTOMER-U-CUST-100-FIELD-COMPLETION-WRITE-GATE",
+      "when": "Use only if read-first validation proves safe non-posting customer fields and all posting/VAT/payment/template dependencies remain isolated.",
+      "liveType": "write-gated"
+    },
+    {
+      "caseId": "MASTER-DATA-TEMPLATE-ROUTE-DECISION",
+      "when": "Use if templates or mandatory dialogs are present but not understood enough for write.",
+      "liveType": "local-no-live-decision"
+    },
+    {
+      "caseId": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
+      "when": "Use if validation shows Master Data write gates are still blocked by Foundation setup gaps.",
+      "liveType": "local-no-live-decision"
+    }
+  ],
+  "decision": "prepared",
+  "selectedNextCase": null,
+  "nextCase": null,
+  "preparedAt": "2026-07-09T11:55:00.000Z"
+}

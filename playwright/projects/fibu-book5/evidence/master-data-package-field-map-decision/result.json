@@ -1,0 +1,309 @@
+{
+  "schemaVersion": 1,
+  "caseId": "MASTER-DATA-PACKAGE-FIELD-MAP-DECISION",
+  "status": "completed-local-decision",
+  "decision": "field-map-ready-for-readfirst-validation-not-write",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "caseType": "local-no-live-decision",
+  "businessCentralOpened": false,
+  "playwrightLiveRunExecuted": false,
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "fieldMapStatus": "usable-for-data-request-and-route-planning-not-import-or-write-permission",
+  "sourceOrEvidenceBasis": [
+    "playwright/projects/fibu-book5/evidence/master-data-write-gate-prep/result.json",
+    "playwright/projects/fibu-book5/evidence/master-data-route-package-vs-ui-decision/result.json",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md"
+  ],
+  "routeDecision": {
+    "manualUi": "use-for-one-training-validation-and-future-narrow-write-gate-only",
+    "configurationPackageOrRapidStart": "candidate-for-bulk-load-after-field-validation",
+    "excelAssisted": "preferred-for-customer-data-collection-and-review",
+    "template": "needs-readfirst-validation",
+    "api": "parked-not-next",
+    "alExtension": "parked-not-next",
+    "reason": "A real customer project should prepare master data in a field map before loading or editing records. UI remains necessary to teach cards, mandatory fields and validation. Configuration packages or Excel-assisted preparation are better for repeatable initial loads after field and setup dependencies are explicit."
+  },
+  "fieldMap": [
+    {
+      "object": "Debitoren / Customers",
+      "candidateRecord": "U-CUST-100 / Saarland Maschinenbau AG",
+      "businessPurpose": "O2C training, open-item flow later, customer card handbook and future sales process seed.",
+      "routeCandidate": "UI validation first; Excel-assisted or configuration package later for bulk customers.",
+      "fields": [
+        {
+          "field": "Nr. / No.",
+          "classification": "ready-for-future-gate",
+          "routeCandidate": "UI or template",
+          "validationNeed": "Number series and duplicate rule must be visible before create/edit.",
+          "blockedBy": []
+        },
+        {
+          "field": "Name",
+          "classification": "ready-for-future-gate",
+          "routeCandidate": "UI, Excel-assisted, configuration package",
+          "validationNeed": "Reopen-proof after change/create.",
+          "blockedBy": []
+        },
+        {
+          "field": "Adresse, PLZ, Ort, Land/Region",
+          "classification": "ready-for-future-gate",
+          "routeCandidate": "UI or Excel-assisted",
+          "validationNeed": "German address format and no personal/confidential customer data.",
+          "blockedBy": []
+        },
+        {
+          "field": "Debitorenbuchungsgruppe / Customer Posting Group",
+          "classification": "source-needed",
+          "routeCandidate": "local source decision before write",
+          "validationNeed": "Receivables posting account and customer posting group setup must be understood.",
+          "blockedBy": [
+            "No current setup correctness proof"
+          ]
+        },
+        {
+          "field": "Geschaeftsbuchungsgruppe / Gen. Business Posting Group",
+          "classification": "source-needed",
+          "routeCandidate": "source-backed setup decision before write",
+          "validationNeed": "INLAND is accepted context only, not setup-ready.",
+          "blockedBy": [
+            "GEN-BUS-POSTING-GROUPS-SOURCE-DECISION boundary"
+          ]
+        },
+        {
+          "field": "USt.-Geschaeftsbuchungsgruppe / VAT Business Posting Group",
+          "classification": "blocked",
+          "routeCandidate": "Foundation setup route decision",
+          "validationNeed": "Page 470 or alternative source-backed route must be solved.",
+          "blockedBy": [
+            "VAT Business Posting Groups route parked/blocked"
+          ]
+        },
+        {
+          "field": "Zahlungsbedingungen / Payment Terms",
+          "classification": "source-needed",
+          "routeCandidate": "read-first validation",
+          "validationNeed": "Customer payments FastTab context exists, but value readiness is not proven.",
+          "blockedBy": [
+            "Payment terms field/value proof missing"
+          ]
+        }
+      ],
+      "uatImpact": "Customer card can support training and later O2C UAT only after posting/VAT/payment fields are isolated.",
+      "trainingImpact": "Good candidate for customer-card training before sales documents.",
+      "nextAction": "Read-first validate customer card/template fields; do not save."
+    },
+    {
+      "object": "Kreditoren / Vendors",
+      "candidateRecord": "U-VEND-100 / Saarstahl Komponenten GmbH",
+      "businessPurpose": "P2P training, vendor card handbook and later purchase flow seed.",
+      "routeCandidate": "Excel-assisted data collection first; UI validation before any write.",
+      "fields": [
+        {
+          "field": "Nr. / No.",
+          "classification": "source-needed",
+          "routeCandidate": "read-first validation",
+          "validationNeed": "Vendor number series/template boundary must be visible.",
+          "blockedBy": [
+            "Vendor create/template route not yet validated"
+          ]
+        },
+        {
+          "field": "Name, Adresse, Land/Region",
+          "classification": "ready-for-future-gate",
+          "routeCandidate": "UI, Excel-assisted, configuration package",
+          "validationNeed": "No confidential real supplier data; reopen-proof required after any future write.",
+          "blockedBy": []
+        },
+        {
+          "field": "Kreditorenbuchungsgruppe / Vendor Posting Group",
+          "classification": "source-needed",
+          "routeCandidate": "local source decision before write",
+          "validationNeed": "Payables posting account and vendor posting group setup must be understood.",
+          "blockedBy": [
+            "Vendor posting group setup proof missing"
+          ]
+        },
+        {
+          "field": "Geschaeftsbuchungsgruppe / Gen. Business Posting Group",
+          "classification": "source-needed",
+          "routeCandidate": "source-backed setup decision before write",
+          "validationNeed": "INLAND may be context, but not setup-ready.",
+          "blockedBy": [
+            "GEN-BUS-POSTING-GROUPS-SOURCE-DECISION boundary"
+          ]
+        },
+        {
+          "field": "USt.-Geschaeftsbuchungsgruppe / VAT Business Posting Group",
+          "classification": "blocked",
+          "routeCandidate": "Foundation setup route decision",
+          "validationNeed": "VAT business group route remains blocked.",
+          "blockedBy": [
+            "VAT Business Posting Groups route parked/blocked"
+          ]
+        },
+        {
+          "field": "Bank-/Zahlungsdaten",
+          "classification": "blocked",
+          "routeCandidate": "parked until payment/bank workstream",
+          "validationNeed": "Payment data is higher risk and not needed for first vendor context.",
+          "blockedBy": [
+            "Bank/payment boundary not active"
+          ]
+        }
+      ],
+      "uatImpact": "Vendor setup remains a P2P later-stage candidate; no purchase UAT until posting/payment fields are proven.",
+      "trainingImpact": "Useful after customer-card pattern, but should include payment-risk explanation.",
+      "nextAction": "Keep vendor writes parked; validate vendor card/template read-first only after customer field validation."
+    },
+    {
+      "object": "Artikel und Services / Items and Services",
+      "candidateRecord": "U-ITEM-HW100 / Steuerbox Standard U100",
+      "businessPurpose": "Sales, purchase and inventory training seed; product model for later O2C/P2P/Inventory scenarios.",
+      "routeCandidate": "UI validation first for existing item; configuration package or Excel-assisted later for bulk item loads.",
+      "fields": [
+        {
+          "field": "Nr. / No. und Beschreibung",
+          "classification": "ready-for-future-gate",
+          "routeCandidate": "UI, Excel-assisted, configuration package",
+          "validationNeed": "Duplicate prevention and no-save/reopen proof before future write.",
+          "blockedBy": []
+        },
+        {
+          "field": "Art / Type",
+          "classification": "source-needed",
+          "routeCandidate": "read-first validation",
+          "validationNeed": "Inventory vs service/non-inventory implications must be explicit.",
+          "blockedBy": [
+            "Product model route not finalized"
+          ]
+        },
+        {
+          "field": "Basiseinheit / Base Unit of Measure",
+          "classification": "source-needed",
+          "routeCandidate": "Foundation/UOM decision before write",
+          "validationNeed": "UOM setup and value readiness must be proven or parked.",
+          "blockedBy": [
+            "UOM setup proof missing"
+          ]
+        },
+        {
+          "field": "Produktbuchungsgruppe / Gen. Product Posting Group",
+          "classification": "source-needed",
+          "routeCandidate": "Foundation setup decision",
+          "validationNeed": "WAREN is product context; setup correctness is not proven.",
+          "blockedBy": [
+            "General Posting Setup not posting-ready"
+          ]
+        },
+        {
+          "field": "USt.-Produktbuchungsgruppe / VAT Product Posting Group",
+          "classification": "source-needed",
+          "routeCandidate": "Foundation setup decision",
+          "validationNeed": "VAT19 context exists, but VAT correctness is not proven.",
+          "blockedBy": [
+            "VAT setup not final"
+          ]
+        },
+        {
+          "field": "Lagerbuchungsgruppe / Inventory Posting Group",
+          "classification": "blocked",
+          "routeCandidate": "inventory foundation later",
+          "validationNeed": "Inventory posting and valuation setup are outside current gate.",
+          "blockedBy": [
+            "Inventory posting setup not active"
+          ]
+        },
+        {
+          "field": "Einstandspreis, VK-Preis, Kalkulationsmethode",
+          "classification": "training-only",
+          "routeCandidate": "handbook/training only until product model validation",
+          "validationNeed": "Costing and pricing implications must be explained before writes.",
+          "blockedBy": [
+            "No process or ledger proof"
+          ]
+        }
+      ],
+      "uatImpact": "Item/service data cannot yet drive O2C/P2P/Inventory UAT.",
+      "trainingImpact": "Useful for product-card orientation and explaining why item setup is riskier than customer descriptive fields.",
+      "nextAction": "Do not create item/service records; validate item card/template fields read-first after customer path or product model decision."
+    }
+  ],
+  "actionsTaken": [
+    "Read only the active case mustRead files.",
+    "Converted Master Data write-gate prep into a reusable field map.",
+    "Separated descriptive fields from posting, VAT, payment, template and inventory dependencies.",
+    "Selected a read-first validation case before any write gate."
+  ],
+  "actionsNotTaken": [
+    "Did not open Business Central.",
+    "Did not run Playwright live.",
+    "Did not create, edit, import or validate master data.",
+    "Did not create or edit templates.",
+    "Did not write setup.",
+    "Did not create documents, Preview Posting or Posting.",
+    "Did not edit the book."
+  ],
+  "proved": [
+    "A compact local Master Data field map exists for Customers, Vendors and Items/Services.",
+    "The field map is usable for data requests, training planning and route decisions.",
+    "The field map is not import permission, write permission, Master Data readiness or process readiness."
+  ],
+  "notProved": [
+    "No field was proven writable.",
+    "No Business Central table/field mapping was newly proven in this case.",
+    "No template route is proven.",
+    "No Customer, Vendor or Item/Service write gate is approved.",
+    "No O2C, P2P, Inventory, Preview Posting, Posting, ledger trace or UAT acceptance is proven."
+  ],
+  "warnings": [
+    "Field maps can create false confidence if blocked fields are not respected.",
+    "Configuration packages require later field/table validation and do not bypass Foundation setup gaps.",
+    "Vendor payment data and item inventory posting data remain higher-risk and should not be first write targets."
+  ],
+  "nextStepDecision": {
+    "currentCase": "MASTER-DATA-PACKAGE-FIELD-MAP-DECISION",
+    "plannedNextCaseBeforeReview": "MASTER-DATA-PACKAGE-FIELD-MAP-DECISION",
+    "lastEvidenceSummary": "Master Data write-gate prep blocked direct writes and required a field map before UI, Excel-assisted or configuration-package routes.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "A local field map is the smallest useful bridge from read-first evidence to future realistic data load and training work.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "CUSTOMER-U-CUST-100-FIELD-COMPLETION-WRITE-GATE",
+        "status": "needs-ui-discovery-first",
+        "reason": "Safe descriptive fields exist, but templates/mandatory markers/no-save boundaries must be validated read-first."
+      },
+      {
+        "caseId": "MASTER-DATA-FIELD-MAP-READFIRST-VALIDATION",
+        "status": "ready-next",
+        "reason": "It validates the field map against real BC surfaces without saving data."
+      },
+      {
+        "caseId": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
+        "status": "ready-after-current",
+        "reason": "Use if read-first validation shows Foundation gaps block even narrow descriptive writes."
+      }
+    ],
+    "queueChangesMade": [
+      "Prepared MASTER-DATA-FIELD-MAP-READFIRST-VALIDATION as the next read-first/no-write case."
+    ],
+    "selectedNextCase": "MASTER-DATA-FIELD-MAP-READFIRST-VALIDATION",
+    "whySelectedNextCaseIsBest": "It gives the agent better eyes on templates, dialogs and mandatory markers before any write gate.",
+    "risksBeforeNextCase": [
+      "A read-first validation could accidentally click a create/save/template-changing action.",
+      "A visible field could be mistaken for setup correctness."
+    ],
+    "requiredPreparation": [
+      "Use screenshot QA and visual-state capture.",
+      "Stop before Save/Create/Finish/OK when a dialog would create or change data.",
+      "Keep blocked posting, VAT, payment and inventory fields out of any future narrow write gate."
+    ]
+  },
+  "nextCase": "MASTER-DATA-FIELD-MAP-READFIRST-VALIDATION",
+  "updatedAt": "2026-07-09T11:55:00.000Z"
+}
