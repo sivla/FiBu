@@ -1,0 +1,205 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",
+  "resultStatus": "completed-local-decision",
+  "decision": "ready-for-value-map-decision",
+  "decisionClass": "local-no-live-preparation",
+  "completedAt": "2026-07-09T03:10:00.000Z",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "businessCentralOpened": false,
+  "playwrightLiveRunExecuted": false,
+  "liveActionsExecuted": false,
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "companySwitch": false,
+  "sourceEvidence": [
+    ".agent/state/rejected_route_register.json",
+    "playwright/projects/fibu-book5/UNIVERSAARL-FOUNDATION-SETUP-FIELD-MAP.md",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-alternative-route-source-decision/result.json"
+  ],
+  "sourceBasis": [
+    {
+      "source": "Microsoft Learn / Apply Company Configuration Packages",
+      "inheritedFrom": "playwright/projects/fibu-book5/evidence/foundation-setup-alternative-route-source-decision/result.json",
+      "usedFor": "Configuration packages remain plausible for first-time setup and repeatable setup-data transfer, but only with explicit table, field, validation and apply boundaries."
+    },
+    {
+      "source": "Microsoft Dynamics 365 implementation guidance / configuration and migration data",
+      "inheritedFrom": "playwright/projects/fibu-book5/evidence/foundation-setup-alternative-route-source-decision/result.json",
+      "usedFor": "Configuration data must be scoped, sequenced, validated and tested before import/apply or setup writes."
+    }
+  ],
+  "actionsTaken": [
+    "Reviewed the active Foundation field map.",
+    "Reviewed the rejected-route register.",
+    "Reviewed the prior source-backed alternative route decision.",
+    "Classified source/table/field readiness for the Foundation setup route.",
+    "Selected a local value-map decision before any UI read-first, package action, import, validate, apply or setup write."
+  ],
+  "actionsNotTaken": [
+    "Did not open Business Central.",
+    "Did not run Playwright live.",
+    "Did not create, edit, import, export, validate or apply a configuration package.",
+    "Did not use U-VAT325-DISC for field selection.",
+    "Did not retry Page 314, Page 470 or Page 472 UI edit routes.",
+    "Did not write setup, master data, documents, journals, Preview Posting, Posting or payments.",
+    "Did not update the book text."
+  ],
+  "tableFieldReview": [
+    {
+      "setupObject": "General Posting Setup",
+      "candidatePage": "Buchungsmatrix Einrichtung / Page 314",
+      "candidateTable": "General Posting Setup (252)",
+      "sourceStatus": "candidate-source-backed",
+      "fieldMapStatus": "partial",
+      "knownTargetKeys": [
+        "Gen. Bus. Posting Group = INLAND",
+        "Gen. Prod. Posting Group = WAREN"
+      ],
+      "candidateFields": [
+        "Sales Account = 4400",
+        "Purch. Account = 5400"
+      ],
+      "remainingGap": "Value ownership, dependency validation, import/apply sequence and reopen-proof expectations are not yet decision-ready.",
+      "routeBoundary": "Do not repeat fragile Page 314 grid/list-edit routes without a materially new hypothesis."
+    },
+    {
+      "setupObject": "VAT Posting Setup",
+      "candidatePage": "MwSt.-Buchungsmatrix / Page 472",
+      "candidateTable": "VAT Posting Setup (325)",
+      "sourceStatus": "candidate-source-backed",
+      "fieldMapStatus": "partial",
+      "knownTargetKeys": [
+        "VAT Bus. Posting Group = INLAND",
+        "VAT Prod. Posting Group = VAT19"
+      ],
+      "candidateFields": [
+        "VAT % = 19",
+        "VAT Calculation Type = normal VAT",
+        "Sales VAT Account = 3806",
+        "Purchase VAT Account = 1406"
+      ],
+      "remainingGap": "The field map does not yet define exact value ownership, validation dependencies, no-tax-finality wording or write-gate proof requirements.",
+      "routeBoundary": "Do not repeat Page 472 active-editor or U-VAT325-DISC field-selection routes without a materially new hypothesis."
+    },
+    {
+      "setupObject": "VAT Business Posting Group",
+      "candidatePage": "VAT Business Posting Groups / Page 470",
+      "candidateTable": "not locally proven in this case",
+      "sourceStatus": "gap",
+      "fieldMapStatus": "insufficient",
+      "knownTargetKeys": [
+        "Code = INLAND"
+      ],
+      "candidateFields": [
+        "Description for domestic business"
+      ],
+      "remainingGap": "The visible Page 470 target page and table/field basis are not locally proven enough for read-first or write-gate claims.",
+      "routeBoundary": "Do not repeat direct search/Tell-Me/Page-Inspection routes rejected for Page 470 without a materially new UI or source hypothesis."
+    },
+    {
+      "setupObject": "General Business/Product Posting Groups",
+      "candidatePage": "Business/Product Posting Groups",
+      "candidateTable": "not narrowed in this case",
+      "sourceStatus": "dependency-context",
+      "fieldMapStatus": "dependency-only",
+      "knownTargetKeys": [
+        "INLAND",
+        "WAREN"
+      ],
+      "candidateFields": [
+        "Code",
+        "Description"
+      ],
+      "remainingGap": "These remain dependencies to validate or keep, not setup-write targets from this case.",
+      "routeBoundary": "Do not create or change groups until a separate gate proves missing or wrong dependency data."
+    }
+  ],
+  "routeAssessment": {
+    "manualUi": "reject-for-current-step",
+    "configurationPackageOrRapidStart": "investigate-after-value-map",
+    "excelAssisted": "investigate-after-value-map",
+    "api": "not-applicable",
+    "alExtension": "not-applicable",
+    "parkOrNoChange": "not-selected",
+    "reason": "Tables and candidate fields are partially known, but the planned values, ownership, validation sequence, dependency handling and proof rules must be decided before another UI route or write gate."
+  },
+  "proved": [
+    "Table 252 and Table 325 are usable as candidate source objects for the next local planning step.",
+    "The current field map is not complete enough for import, validate, apply, setup write or process readiness.",
+    "Page/Table 470 remains a source and UI gap, not a ready setup-write object.",
+    "U-VAT325-DISC remains a parked route candidate and must not be blindly reused."
+  ],
+  "notProved": [
+    "No Configuration Worksheet or package field-list target page was opened.",
+    "No package field selection is proven.",
+    "No setup value is saved or ready to save.",
+    "No VAT, General Posting Setup, Master Data, O2C, P2P, Preview Posting, Posting or UAT readiness is proven.",
+    "No final German tax, accounting, HGB, GoBD or AO claim is proven."
+  ],
+  "blockedBy": [
+    "Value ownership and validation rules are not yet mapped.",
+    "Page/Table 470 remains unresolved.",
+    "Rejected routes block blind retries of Page 314, Page 470, Page 472 and U-VAT325-DISC."
+  ],
+  "warnings": [
+    "A configuration package table candidate is not setup evidence.",
+    "A partial table/field map is not a write gate.",
+    "The next case must not unlock import/apply/write by implication."
+  ],
+  "nextStepDecision": {
+    "currentCase": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",
+    "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",
+    "lastEvidenceSummary": "The prior source decision kept Configuration Packages as a realistic route but parked U-VAT325-DISC field selection; the field map contains candidate setup objects but still has source, value and validation gaps.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The source/table/field review is now complete enough to hand off to a narrower local value-map decision.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
+        "status": "ready-next",
+        "reason": "Needed to define planned values, owners, validation rules, dependencies and proof requirements before any read-first or write gate."
+      },
+      {
+        "caseId": "FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST",
+        "status": "ready-after-current",
+        "reason": "Useful only after the value map defines exact target objects and evidence questions."
+      },
+      {
+        "caseId": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-WRITE-GATE-DECISION",
+        "status": "blocked",
+        "reason": "No safe field-selection surface, value map or validation sequence exists."
+      },
+      {
+        "caseId": "FOUNDATION-SETUP-ROUTE-PARKING-DECISION",
+        "status": "ready-after-current",
+        "reason": "Fallback if value-map decision cannot produce a safe next read-first route."
+      }
+    ],
+    "queueChangesMade": [
+      "Selected FOUNDATION-SETUP-VALUE-MAP-DECISION as the next local no-live case.",
+      "Kept U-VAT325-DISC, package field selection, import, validate, apply and setup writes blocked."
+    ],
+    "selectedNextCase": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
+    "whySelectedNextCaseIsBest": "It prevents the project from turning candidate tables into premature setup action and forces a consultant-grade value, owner, validation and proof decision first.",
+    "risksBeforeNextCase": [
+      "Treating candidate table/field knowledge as write readiness.",
+      "Ignoring Page/Table 470 as a gap.",
+      "Repeating parked UI or package routes without a materially new hypothesis."
+    ],
+    "requiredPreparation": [
+      "Read only the next case mustRead files.",
+      "Respect the rejected-route register.",
+      "Keep the case local/no-live and no-write."
+    ]
+  },
+  "safeToFinalizeState": true,
+  "requiresReview": false,
+  "nextCase": "FOUNDATION-SETUP-VALUE-MAP-DECISION"
+}

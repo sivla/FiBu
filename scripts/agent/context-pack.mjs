@@ -51,7 +51,7 @@ function runJsonEvenOnFailure(scriptPath) {
   }
 }
 
-function buildAuthGate(current, activeCase, liveBlocked) {
+function buildAuthGate(current, activeCase, liveBlocked, isLocalNoLiveCase = false) {
   const activeAuthRefreshResultPath = 'playwright/projects/fibu-book5/evidence/auth-bc-refresh-active-resume/AUTH-BC-REFRESH-result.json';
   const joinedActions = [
     ...(activeCase.allowedActions ?? []),
@@ -59,10 +59,16 @@ function buildAuthGate(current, activeCase, liveBlocked) {
     ...(activeCase.forbiddenActions ?? []),
     ...(current.forbiddenActions ?? []),
   ].join(' ').toLowerCase();
-  const authRelevant =
+  const joinedAllowedActions = [
+    ...(activeCase.allowedActions ?? []),
+    ...(current.allowedActions ?? []),
+  ].join(' ').toLowerCase();
+  const explicitAuthRelevant =
     current.activeCase?.toLowerCase().includes('auth') ||
     activeCase.caseId?.toLowerCase().includes('auth') ||
-    joinedActions.includes('auth') ||
+    joinedAllowedActions.includes('auth');
+  const authRelevant =
+    explicitAuthRelevant ||
     joinedActions.includes('business-central');
 
   const latestResolution = current.latestAuthGateResolution ?? activeCase.latestAuthGateResolution ?? {};
@@ -98,6 +104,10 @@ function buildAuthGate(current, activeCase, liveBlocked) {
       ...(latestResult?.blockedByAuth ?? []),
       ...(latestWriter.blockedBy ?? []),
     ];
+
+  if (isLocalNoLiveCase && !explicitAuthRelevant) {
+    return null;
+  }
 
   if (!authRelevant && !operatorActionRequired && blockedBy.length === 0) {
     return null;
@@ -269,7 +279,12 @@ const liveGate = {
   resumeCandidate: current.freezeStatus?.resumeCandidateAfterFreeze ?? current.nextCase,
   nextLiveType: current.implementationOperatingSystem?.currentLiveBoundary?.resumePilotMode,
 };
-const authGate = buildAuthGate(current, activeCase, liveBlocked);
+const isLocalNoLiveCase =
+  activeCase.caseType === 'local-no-live-decision' ||
+  current.caseType === 'local-no-live-decision' ||
+  activeCase.mode === 'universaarl-foundation-local-decision' ||
+  current.mode === 'universaarl-foundation-local-decision';
+const authGate = buildAuthGate(current, activeCase, liveBlocked, isLocalNoLiveCase);
 const nextStep =
   authGate && authGate.canRunBusinessCentralWorkflows === false && typeof authGate.nextSafeAction === 'string'
     ? authGate.nextSafeAction

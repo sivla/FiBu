@@ -15,9 +15,9 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w1-foundation",
-  "activeCase": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",
-  "active_case_file": ".agent/state/cases/foundation-setup-source-table-field-review.json",
-  "activeCaseFile": ".agent/state/cases/foundation-setup-source-table-field-review.json",
+  "activeCase": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
+  "active_case_file": ".agent/state/cases/foundation-setup-value-map-decision.json",
+  "activeCaseFile": ".agent/state/cases/foundation-setup-value-map-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-foundation-local-decision",
@@ -44,11 +44,11 @@
     "git diff --check"
   ],
   "allowedActions": [
-    "local-source-review",
-    "local-table-field-map-review",
+    "local-value-map-review",
+    "local-owner-and-risk-review",
     "local-dependency-review",
-    "write-route-decision-result-json",
-    "prepare-one-next-readfirst-or-local-gate-case"
+    "write-value-map-decision-result-json",
+    "prepare-one-next-readfirst-or-parking-case"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -78,9 +78,9 @@
     "claim-posting-readiness",
     "claim-master-data-readiness"
   ],
-  "nextCase": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",
-  "nextStep": "Run the local no-live Foundation setup source table and field review. Clarify tables, fields, planned values, dependencies and validation boundaries before any Configuration Package UI, import/apply, setup write or Master Data write.",
-  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-source-table-field-review.json",
+  "nextCase": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
+  "nextStep": "Run FOUNDATION-SETUP-VALUE-MAP-DECISION locally/no-live to decide planned Foundation setup values, owners, dependencies, validation rules and proof boundaries before any Configuration Worksheet, package action, import/apply, setup write or Master Data write.",
+  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-value-map-decision.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -214,15 +214,22 @@
     "nextBoundary": "Master Data remains parked. Next work must update Foundation Readiness and either accept this as a Foundation gap or define a genuinely new Page 314 route hypothesis before another live attempt."
   },
   "activeNextStepAuthority": {
-    "source": "playwright/projects/fibu-book5/evidence/foundation-setup-alternative-route-source-decision/result.json",
-    "selectedNextCase": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",
-    "activeCaseFile": ".agent/state/cases/foundation-setup-source-table-field-review.json",
-    "preparedNextCaseFile": ".agent/state/cases/foundation-setup-source-table-field-review.json",
+    "source": "playwright/projects/fibu-book5/evidence/foundation-setup-source-table-field-review/result.json",
+    "selectedNextCase": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
+    "activeCaseFile": ".agent/state/cases/foundation-setup-value-map-decision.json",
+    "preparedNextCaseFile": ".agent/state/cases/foundation-setup-value-map-decision.json",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "Alternative route decision completed: Configuration Packages remain realistic, but next step is local source/table/field review before any UI or write gate.",
+    "reason": "Source/table/field review completed: Table 252 and Table 325 are candidate setup objects, Page/Table 470 remains a gap, and next step is local value-map decision before any UI or write route.",
     "rejectedRoute": "RR-FOUNDATION-CONFIG-PACKAGE-U-VAT325-FIELD-SELECTION-RETRY",
     "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
-    "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md"
+    "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
+    "whySelectedNextCaseIsBest": "The source/table/field review is complete; a local value-map decision is now the narrowest safe step before any read-first or write route.",
+    "requiredPreparation": [
+      "Read only the active case mustRead files.",
+      "Keep the case local/no-live and no-write.",
+      "Respect rejected_route_register.json."
+    ],
+    "updatedAt": "2026-07-09T03:10:00.000Z"
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -336,7 +343,7 @@
     "currentLiveBoundary": {
       "freezeActive": false,
       "parkedCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-      "resumePilot": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",
+      "resumePilot": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
       "resumePilotMode": "local-no-live-decision"
     },
     "legacyScriptGuard": {
@@ -8301,53 +8308,49 @@
     "uiLearning": "BC Page 456 URL filters require quoted table/field syntax for table names with punctuation; the filtered U-VEND list shows checkbox columns, but the write locator still must be source-backed or assisted before toggling Manual Nos."
   },
   "nextStepDecision": {
-    "currentCase": "FOUNDATION-READINESS-DECISION",
-    "plannedNextCaseBeforeReview": "PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION",
-    "lastEvidenceSummary": "PWS-FF-002C, PWS-FF-005/005B, PWS-FF-001, PWS-MD-001/002/003 and PWS-MD-004/004B/004C are already consumed in FOUNDATION-READINESS-DECISION.md. Debitor, Kreditor, Artikel, Nummernserien and Dimensionen have read-first/training value, but VAT and General Posting Setup remain blocking for O2C/P2P, Preview Posting and Posting.",
+    "currentCase": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",
+    "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",
+    "lastEvidenceSummary": "Source/table/field review completed locally. Table 252 and Table 325 are candidate setup objects, Page/Table 470 remains a source/UI gap, and U-VAT325-DISC remains parked.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "PWS-FF-002C is already completed and must not be selected again. A realistic customer-project sequence returns to VAT/Posting setup as a read-first boundary before any master-data write or process case.",
+    "reason": "The source/table/field review is complete and should hand off to a local value-map decision before any UI read-first, package action, import/apply or setup write.",
     "lookaheadReviewed": [
       {
-        "caseId": "PWS-FF-002C-GENERAL-POSTING-SETUP-ROUTE-DECISION",
-        "status": "obsolete",
-        "reason": "Completed local decision; General Posting Setup remains partial-not-posting-ready."
-      },
-      {
-        "caseId": "PWS-FF-005-DIMENSIONS-READFIRST / PWS-FF-005B",
-        "status": "obsolete",
-        "reason": "Dimensions and Dimension Values are already observed read-first and usable for training/handbook boundaries."
-      },
-      {
-        "caseId": "PWS-MD-001/002/003 and PWS-MD-004/004B/004C",
-        "status": "ready-after-current",
-        "reason": "Master Data context is useful for training, but write/process readiness is still blocked by VAT/Posting setup gaps."
-      },
-      {
-        "caseId": "VAT-POSTING-SETUP-READFIRST",
+        "caseId": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
         "status": "ready-next",
-        "reason": "Existing case is read-first/no-write and checks VAT Business Posting Groups, VAT Product Posting Groups and VAT Posting Setup with screenshot QA."
+        "reason": "Defines target values, owners, dependencies, validation rules and proof boundaries before any read-first or write gate."
       },
       {
-        "caseId": "O2C/P2P process cases",
+        "caseId": "FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST",
+        "status": "ready-after-current",
+        "reason": "Useful only after the value-map decision defines exact evidence questions and no-write boundaries."
+      },
+      {
+        "caseId": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-WRITE-GATE-DECISION",
         "status": "blocked",
-        "reason": "No Preview Posting, Posting or process route until VAT and account-determination boundaries are proven or consciously limited."
+        "reason": "No safe field-selection surface, value map, validation sequence or write gate exists."
+      },
+      {
+        "caseId": "FOUNDATION-SETUP-ROUTE-PARKING-DECISION",
+        "status": "ready-after-current",
+        "reason": "Fallback if the value map cannot produce a safe read-first route."
       }
     ],
     "queueChangesMade": [
-      "Active handoff no longer points to completed PWS-FF-002C or parked TARGET-073.",
-      "VAT-POSTING-SETUP-READFIRST is selected as the next practical pilot, subject to the active Foundation no-live gate and auth checks."
+      "Completed FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW.",
+      "Activated FOUNDATION-SETUP-VALUE-MAP-DECISION as the next local no-live case.",
+      "Kept U-VAT325-DISC, package field selection, import, validate, apply and setup writes blocked."
     ],
-    "selectedNextCase": "VAT-POSTING-SETUP-READFIRST",
-    "whySelectedNextCaseIsBest": "A real Business Central implementation must understand VAT/USt and posting setup boundaries before customer/vendor/item writes become process-ready. The case is read-first, reversible and evidence-focused.",
+    "selectedNextCase": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
+    "whySelectedNextCaseIsBest": "It prevents candidate setup tables from becoming premature write action and creates a consultant-grade value/validation map first.",
     "risksBeforeNextCase": [
-      "Do not treat existing customer or item records as O2C/P2P readiness.",
-      "Do not write VAT setup, posting groups, master data, documents, Preview Posting or Posting in a read-first case.",
-      "Do not accept a single end screenshot as page or field proof; use multi-checkpoint screenshot QA."
+      "Treating candidate table/field knowledge as write readiness.",
+      "Ignoring Page/Table 470 as unresolved.",
+      "Repeating parked UI or package routes without a materially new hypothesis."
     ],
     "requiredPreparation": [
-      "Run auth/live-gate checks before any Playwright live run.",
-      "Use .agent/state/cases/vat-posting-setup-readfirst.json as the case boundary.",
-      "Capture VAT Business Posting Groups, VAT Product Posting Groups and VAT Posting Setup read-only with real playthru / UNIVERSAARL-DE UI."
+      "Read only the next case mustRead files.",
+      "Keep the next case local/no-live and no-write.",
+      "Respect rejected_route_register.json."
     ]
   },
   "latestTarget037MasterdataFoundationCheckpoint": {
@@ -9291,7 +9294,7 @@
     "nextCase": "TARGET-032N-GENERAL-POSTING-SETUP-PURCHASE-FIELD-ROUTE-DECISION",
     "updatedAt": "2026-07-03T06:10:42.011Z"
   },
-  "active_case": "TARGET-027D31-AUTH-REFRESH-THEN-READONLY-DISCOVERY",
+  "active_case": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
   "latestTarget027D28VatMatrixControlledWriteGate": {
     "caseId": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
     "status": "blocked-vat-matrix-write-gate",
@@ -12262,8 +12265,9 @@
   },
   "latestFoundationSetupSourceTableFieldReview": {
     "caseId": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",
-    "status": "prepared-local-decision-no-live",
-    "caseFile": ".agent/state/cases/foundation-setup-source-table-field-review.json",
+    "status": "completed-local-decision",
+    "decision": "ready-for-value-map-decision",
+    "resultPath": "playwright/projects/fibu-book5/evidence/foundation-setup-source-table-field-review/result.json",
     "instance": "playthru",
     "company": "UNIVERSAARL-DE",
     "businessCentralOpened": false,
@@ -12272,7 +12276,24 @@
     "masterDataChanged": false,
     "previewPosting": false,
     "posted": false,
-    "nextBoundary": "Clarify source-backed tables, fields, values, dependencies and validation before any package/UI/write route.",
-    "updatedAt": "2026-07-09T02:05:00.000Z"
-  }
+    "nextCase": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
+    "updatedAt": "2026-07-09T03:10:00.000Z"
+  },
+  "caseType": "local-no-live-decision",
+  "latestFoundationSetupValueMapDecision": {
+    "caseId": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
+    "status": "prepared-local-decision-no-live",
+    "caseFile": ".agent/state/cases/foundation-setup-value-map-decision.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "businessCentralOpened": false,
+    "playwrightLiveRunExecuted": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "previewPosting": false,
+    "posted": false,
+    "nextBoundary": "Define planned setup values, owners, dependencies, validation rules and proof boundaries before any read-first or write route.",
+    "updatedAt": "2026-07-09T03:10:00.000Z"
+  },
+  "next_case": "FOUNDATION-SETUP-VALUE-MAP-DECISION"
 }

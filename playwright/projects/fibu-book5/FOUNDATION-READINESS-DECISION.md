@@ -20,10 +20,10 @@
 `UNIVERSAARL-DE` hat genug echte Oberflaechen- und Stammdaten-Evidence fuer Schulung, Handbuch und weitere lokale Routenentscheidungen. Das ist noch keine Prozessfreigabe.
 
 - Nach `FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST` ist der fruehere Table-325-Metadatenstand fachlich enger zu lesen: Die Paketkarte `U-VAT325-DISC` ist sichtbar, aber der korrigierte Screenshot-/Text-Gate beweist keine belastbar sichtbare Table-325-Zeile und keinen sicheren Feldauswahlkontext. `325` im Paketcode oder Paketnamen ist kein Tabellenzeilenbeweis.
-- Aktueller naechster Case: `FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW`, lokal/no-live. Die alternative Routenentscheidung hat bestaetigt: Konfigurationspakete bleiben realistisch, aber vor einem neuen read-first- oder Write-Gate-Case muessen Tabellen, Felder, Zielwerte, Abhaengigkeiten und Validierungsgrenzen source-backed geklaert werden.
+- Aktueller naechster Case: `FOUNDATION-SETUP-VALUE-MAP-DECISION`, lokal/no-live. Der Source-/Table-/Field-Review hat Table 252 und Table 325 nur als Kandidatenbasis bestaetigt; Page/Table 470 bleibt eine Quelle-/UI-Luecke. Vor einem neuen read-first- oder Write-Gate-Case muessen Zielwerte, Owner, Abhaengigkeiten, Validierungsregeln und Proof-Anforderungen lokal entschieden werden.
 - Als Schulungs-/Handbuchsubstanz nutzbar: Kontenplan-Starterkonten, Nummernserien, Dimensionsliste/-werte, Debitor `U-CUST-100 / Saarland Maschinenbau AG`, Artikel `U-ITEM-HW100 / Steuerbox Standard U100`.
 - Weiterhin blockierend fuer O2C/P2P, Preview und Posting: VAT Business Posting Groups Page 470, vollstaendige VAT-/USt-Buchungsmatrix, Buchungsmatrix Einrichtung / General Posting Setup, Page-314-/Page-472-Schreibroute, globale/default Dimensionen, VAT-/Posting-Finalitaet.
-- Naechste sinnvolle Arbeit: keine weitere Wiederholung abgeschlossener VAT-, Kontenplan-, Debitoren-, Artikel- oder Paketkarten-Read-first-Cases. Der engste naechste Foundation-Baustein ist ein lokaler source-backed Tabellen-/Feldreview, der danach entweder einen anderen read-first-Lauf, einen lokalen Value-Map-Entscheid oder bewusstes Parken ausloest.
+- Naechste sinnvolle Arbeit: keine weitere Wiederholung abgeschlossener VAT-, Kontenplan-, Debitoren-, Artikel- oder Paketkarten-Read-first-Cases. Der engste naechste Foundation-Baustein ist die lokale Value-Map-Entscheidung fuer geplante Setupwerte, fachliche Owner, Abhaengigkeiten, Validierungsregeln und Beweisgrenzen. Erst danach ist ein neuer read-first-Lauf oder bewusstes Parken sinnvoll.
 - Datenregel: realistische fiktive Universaarl-Daten verwenden, keine UI-Mockups und keine vertraulichen echten Kundendaten.
 - Buchmaster-Anker: Kapitel 9 enthaelt jetzt einen Universaarl-Abschnitt zu `U-CUST-100` und `U-ITEM-HW100`. Dieser Abschnitt ist fuer Schulung und Handbuch nutzbar, aber nicht als Prozessfreigabe zu lesen.
 - Screenshot-QA fuer naechsten Live-Proof: Der naechste read-first VAT-/Posting-Setup- oder Foundation-Refresh-Lauf muss eine Bildkette mit mindestens fuenf akzeptierten Checkpoints erfassen: Startkontext, Navigationsweg, Zielseite, relevanter Button/Tooltip oder Action-Kontext, Zielzeile/FastTab/FactBox-Kontext, optional Page Inspection sowie explizite Grenze. Ein einzelner End-Screenshot reicht fuer Page- oder Feldclaims nicht mehr aus.
@@ -414,7 +414,7 @@ Erlaubte Anschlussklassifikationen:
 
 ## Naechster Case
 
-- `FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW` lokal/no-live: Tabellen, Felder, Zielwerte, Abhaengigkeiten und Validierungsgrenzen fuer die Foundation-Setup-Route klaeren. Keine weitere Paketkartenroute, keine Feldselektion, kein Import, kein Validate/Apply, kein Speichern, kein O2C/P2P in diesem Schritt.
+- `FOUNDATION-SETUP-VALUE-MAP-DECISION` lokal/no-live: geplante Setupwerte, fachliche Owner, Abhaengigkeiten, Validierungsregeln und Proof-Anforderungen fuer die Foundation-Setup-Route klaeren. Keine weitere Paketkartenroute, keine Feldselektion, kein Import, kein Validate/Apply, kein Speichern, kein O2C/P2P in diesem Schritt.
 
 ## FOUNDATION-SETUP-ROUTE-DECISION
 

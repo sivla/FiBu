@@ -139,12 +139,19 @@ const activeCase = current.active_case_file && existsSync(current.active_case_fi
 const dryRun = runDryRun();
 const contextPack = runContextPack();
 const contextAuthGate = contextPack.output?.authGate ?? null;
+const isLocalNoLiveCase =
+  activeCase.caseType === 'local-no-live-decision' ||
+  current.caseType === 'local-no-live-decision' ||
+  activeCase.mode === 'universaarl-foundation-local-decision' ||
+  current.mode === 'universaarl-foundation-local-decision';
 const contextAuthBlocked =
+  !isLocalNoLiveCase &&
   contextAuthGate?.requiresAuth === true &&
   contextAuthGate?.canRunBusinessCentralWorkflows === false;
 const needsBusinessCentralAuth =
-  caseMayNeedBusinessCentralAuth(activeCase, dryRun) ||
-  contextAuthGate?.requiresAuth === true;
+  !isLocalNoLiveCase &&
+  (caseMayNeedBusinessCentralAuth(activeCase, dryRun) ||
+    contextAuthGate?.requiresAuth === true);
 const authCheck = needsBusinessCentralAuth ? runAuthCheck() : null;
 const authDoctor = needsBusinessCentralAuth ? runAuthDoctor() : null;
 const authBlockedBy = unique([
@@ -308,7 +315,7 @@ for (const capability of dryRun.selectedCapabilities ?? []) {
 steps.push(step('local-analysis', {
   caseId: activeCase.caseId ?? current.activeCase ?? '',
   reason: activeCase.goal ?? current.nextStep ?? 'Perform the selected local analysis only.',
-  allowed: dryRun.canProceed === true && authBlockedBy.length === 0,
+  allowed: dryRun.canProceed === true && (!needsBusinessCentralAuth || authBlockedBy.length === 0),
 }));
 
 steps.push(step('propose-playwright-change', {
@@ -347,7 +354,7 @@ if (dryRun.requiresHumanApproval) {
 approvalRequiredBefore.push('playwright', 'business-central', 'posting', 'book-edit');
 
 const canProceed = dryRun.canProceed === true;
-const canProceedWithAuth = canProceed && authBlockedBy.length === 0;
+const canProceedWithAuth = canProceed && (!needsBusinessCentralAuth || authBlockedBy.length === 0);
 const runPlan = {
   schemaVersion: 1,
   purpose: 'autopilot-run-plan',
