@@ -25,6 +25,12 @@ const readFirstNoWriteCases = new Set([
 ]);
 const selectedCaseIsLocalNoLive = localNoLiveCases.has(selectedNextCase);
 const selectedCaseIsReadFirstNoWrite = readFirstNoWriteCases.has(selectedNextCase);
+const readFirstSafeCheckByCase = new Map([
+  [
+    'FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST',
+    ['fibu:foundation:configuration-worksheet-field-map-readfirst', '--', '--check']
+  ]
+]);
 const minAuthExpiresArg = process.argv.find((arg) => arg.startsWith('--min-auth-expires-hours='));
 const minAuthExpiresInHours = minAuthExpiresArg ? Number(minAuthExpiresArg.split('=').at(1)) : null;
 const authCheckArgs = Number.isFinite(minAuthExpiresInHours)
@@ -147,17 +153,47 @@ const steps = [
   runStep('context-live-gate', npmCmd, ['run', '--silent', 'agent:context:test'], { parseJson: true }),
   runStep('freeze-status', nodeCmd, ['scripts/agent/freeze-status-check.mjs'], { parseJson: true }),
   runStep('quality-audit', nodeCmd, ['scripts/agent/quality-audit.mjs'], { parseJson: true }),
-  runStep('target-075-readiness', nodeCmd, ['scripts/agent/target-075-readiness-check.mjs'], { parseJson: true }),
+  ...(!selectedCaseIsLocalNoLive && !selectedCaseIsReadFirstNoWrite
+    ? [runStep('target-075-readiness', nodeCmd, ['scripts/agent/target-075-readiness-check.mjs'], { parseJson: true })]
+    : []),
   runStep('auth-state-check', authCheckArgs ? nodeCmd : npmCmd, authCheckArgs ?? ['run', '--silent', 'auth:bc:check'], {
     parseJson: true
   }),
   runStep('auth-doctor', npmCmd, ['run', '--silent', 'auth:bc:doctor'], { parseJson: true }),
-  runStep('target-075-safe-check', npmCmd, ['run', '--silent', 'fibu:target:foundation-consistency-pilot', '--', '--check'], {
-    parseJson: true
-  }),
-  runStep('pws-ff-006-safe-check', npmCmd, ['run', '--silent', 'fibu:pws:ff006:chart-of-accounts-starter-accounts', '--', '--check'], {
-    parseJson: true
-  }),
+  ...(selectedNextCase === 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK'
+    ? [
+        runStep(
+          'target-075-safe-check',
+          npmCmd,
+          ['run', '--silent', 'fibu:target:foundation-consistency-pilot', '--', '--check'],
+          {
+            parseJson: true
+          }
+        )
+      ]
+    : []),
+  ...(readFirstSafeCheckByCase.has(selectedNextCase)
+    ? [
+        runStep(
+          'selected-readfirst-safe-check',
+          npmCmd,
+          ['run', '--silent', ...readFirstSafeCheckByCase.get(selectedNextCase)],
+          { parseJson: true }
+        )
+      ]
+    : []),
+  ...(selectedNextCase === pwsFf006Case
+    ? [
+        runStep(
+          'pws-ff-006-safe-check',
+          npmCmd,
+          ['run', '--silent', 'fibu:pws:ff006:chart-of-accounts-starter-accounts', '--', '--check'],
+          {
+            parseJson: true
+          }
+        )
+      ]
+    : []),
   runStep('foundation-decision-check', npmCmd, ['run', '--silent', 'agent:foundation:decision', '--', '--check'], {
     parseJson: true
   }),
@@ -168,12 +204,30 @@ const steps = [
     parseJson: true
   }),
   runStep('encoding', npmCmd, ['run', '--silent', 'check:encoding'], { keepStdout: true }),
-  runStep('target-075-guarded-list', npmCmd, ['run', '--silent', 'fibu:target:foundation-consistency-pilot', '--', '--list'], {
-    keepStdout: true
-  }),
-  runStep('pws-ff-006-guarded-list', npmCmd, ['run', '--silent', 'fibu:pws:ff006:chart-of-accounts-starter-accounts', '--', '--list'], {
-    keepStdout: true
-  })
+  ...(selectedNextCase === 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK'
+    ? [
+        runStep(
+          'target-075-guarded-list',
+          npmCmd,
+          ['run', '--silent', 'fibu:target:foundation-consistency-pilot', '--', '--list'],
+          {
+            keepStdout: true
+          }
+        )
+      ]
+    : []),
+  ...(selectedNextCase === pwsFf006Case
+    ? [
+        runStep(
+          'pws-ff-006-guarded-list',
+          npmCmd,
+          ['run', '--silent', 'fibu:pws:ff006:chart-of-accounts-starter-accounts', '--', '--list'],
+          {
+            keepStdout: true
+          }
+        )
+      ]
+    : [])
 ];
 
 const ignoredFailureIds = new Set(
@@ -188,7 +242,7 @@ const ignoredFailureIds = new Set(
         'masterdata-readfirst-check'
       ]
     : selectedCaseIsReadFirstNoWrite
-    ? ['target-075-readiness', 'target-075-safe-check', 'pws-ff-006-safe-check', 'masterdata-readfirst-check']
+    ? ['auth-state-check', 'target-075-readiness', 'target-075-safe-check', 'pws-ff-006-safe-check', 'masterdata-readfirst-check']
     : selectedNextCase === pwsFf006Case
     ? ['target-075-safe-check', 'masterdata-readfirst-check']
     : selectedNextCase === foundationDecisionCase
@@ -203,6 +257,7 @@ const readiness = steps.find((step) => step.id === 'target-075-readiness')?.pars
 const authCheck = steps.find((step) => step.id === 'auth-state-check')?.parsedJson;
 const authDoctor = steps.find((step) => step.id === 'auth-doctor')?.parsedJson;
 const target075SafeCheck = steps.find((step) => step.id === 'target-075-safe-check')?.parsedJson;
+const selectedReadFirstSafeCheck = steps.find((step) => step.id === 'selected-readfirst-safe-check')?.parsedJson;
 const pwsFf006SafeCheck = steps.find((step) => step.id === 'pws-ff-006-safe-check')?.parsedJson;
 const foundationDecisionCheck = steps.find((step) => step.id === 'foundation-decision-check')?.parsedJson;
 const screenshotChainCheck = steps.find((step) => step.id === 'screenshot-chain-check')?.parsedJson;
@@ -220,10 +275,9 @@ const localResumeReady =
     ? failed.length === 0
     : selectedCaseIsReadFirstNoWrite
     ? failed.length === 0 &&
-      authCheck?.canUseStoredAuth === true &&
-      authDoctorStoredAuthOk &&
+      selectedReadFirstSafeCheck?.localCaseReady === true &&
       authDoctorTargetOk &&
-      freezeStatus?.freezeLiftedReadFirst === true
+      freezeStatus?.freezeActive !== true
     : failed.length === 0 &&
   readiness?.canProceedAfterFreezeLift === true &&
   authCheck?.canUseStoredAuth === true &&
@@ -249,6 +303,8 @@ const safeLivePilotCommand =
       ? 'npm run fibu:foundation:package-card-tables-readfirst -- --live-approved'
     : selectedNextCase === 'FOUNDATION-SETUP-PACKAGE-CARD-DETAIL-READFIRST'
       ? 'npm run fibu:foundation:package-card-detail-readfirst -- --live-approved'
+    : selectedNextCase === 'FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST'
+      ? 'npm run fibu:foundation:configuration-worksheet-field-map-readfirst -- --live-approved'
     : selectedNextCase === 'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK'
       ? 'npm run fibu:target:foundation-consistency-pilot -- --live-approved'
       : null;
@@ -297,7 +353,10 @@ const selectedCaseLocalReady =
   selectedCaseIsLocalNoLive
     ? failed.length === 0
     : selectedCaseIsReadFirstNoWrite
-    ? failed.length === 0 && freezeStatus?.freezeLiftedReadFirst === true && authDoctorTargetOk
+    ? failed.length === 0 &&
+      selectedReadFirstSafeCheck?.localCaseReady === true &&
+      authDoctorTargetOk &&
+      freezeStatus?.freezeActive !== true
     : readiness?.canProceedAfterFreezeLift === true &&
   authDoctorTargetOk &&
   (selectedNextCase === 'PWS-FF-006-CHART-OF-ACCOUNTS-STARTER-ACCOUNTS-READFIRST'
@@ -428,6 +487,19 @@ const output = {
         blockedBy: target075SafeCheck.blockedBy
       }
     : null,
+  selectedReadFirstSafeCheck: selectedReadFirstSafeCheck
+    ? {
+        canRunNow: selectedReadFirstSafeCheck.canRunNow,
+        localCaseReady: selectedReadFirstSafeCheck.localCaseReady,
+        authStateChecked: selectedReadFirstSafeCheck.authStateChecked,
+        authUsableForReadFirst: selectedReadFirstSafeCheck.authUsableForReadFirst,
+        authExpiresInHours: selectedReadFirstSafeCheck.authExpiresInHours,
+        expectedInstance: selectedReadFirstSafeCheck.expectedInstance,
+        expectedCompany: selectedReadFirstSafeCheck.expectedCompany,
+        blockedBy: selectedReadFirstSafeCheck.blockedBy ?? [],
+        nextStep: selectedReadFirstSafeCheck.nextStep
+      }
+    : null,
   pwsFf006SafeCheck: pwsFf006SafeCheck
     ? {
         canRunNow: pwsFf006SafeCheck.canRunNow,
@@ -540,7 +612,7 @@ const output = {
   warnings,
   errors: [
     ...failed.map((step) => `${step.id} failed with exit code ${step.exitCode}`),
-    ...(!selectedCaseIsLocalNoLive && authDoctor && !authDoctorStoredAuthOk
+    ...(!selectedCaseIsLocalNoLive && !selectedCaseIsReadFirstNoWrite && authDoctor && !authDoctorStoredAuthOk
       ? ['auth-doctor did not confirm usable stored auth']
       : []),
     ...(!selectedCaseIsLocalNoLive && authDoctor && !authDoctorTargetOk
@@ -569,8 +641,8 @@ console.log(JSON.stringify(output, null, 2));
 if (
   failed.length ||
   (!selectedCaseIsLocalNoLive && !selectedCaseIsReadFirstNoWrite && readiness?.canProceedAfterFreezeLift !== true) ||
-  (!selectedCaseIsLocalNoLive && authCheck?.canUseStoredAuth !== true) ||
-  (!selectedCaseIsLocalNoLive && !authDoctorStoredAuthOk) ||
+  (!selectedCaseIsLocalNoLive && !selectedCaseIsReadFirstNoWrite && authCheck?.canUseStoredAuth !== true) ||
+  (!selectedCaseIsLocalNoLive && !selectedCaseIsReadFirstNoWrite && !authDoctorStoredAuthOk) ||
   (!selectedCaseIsLocalNoLive && !authDoctorTargetOk) ||
   (selectedCaseIsLocalNoLive || selectedCaseIsReadFirstNoWrite
     ? false

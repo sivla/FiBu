@@ -78,7 +78,8 @@ const checksByCase = new Map([
     'FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST',
     {
       id: 'foundation-configuration-worksheet-field-map-readfirst',
-      scriptPath: 'scripts/agent/read-first-no-write-case-readiness-check.mjs',
+      scriptPath: 'scripts/agent/run-foundation-configuration-worksheet-field-map-readfirst.mjs',
+      args: ['--check'],
       reason:
         'The next Foundation case may inspect Configuration Worksheet/table-field context read-only, but must not create packages, get tables, select fields, import, export, validate, apply or write setup.'
     }
