@@ -33,7 +33,8 @@ const PACKAGE_CODE = 'U-VAT325-DISC';
 const TABLE_ID = '325';
 
 const PACKAGE_CARD_RE = /Paketkarte konfigurieren|Configuration Package Card|Paketcode|Package Code|U-VAT325-DISC/i;
-const TABLE_325_RE = /(^|\D)325(\D|$)|VAT Posting Setup|MwSt|Buchungsmatrix/i;
+const TABLE_325_LINE_RE =
+  /(^|\n)\s*325\s+(VAT Posting Setup|MwSt|Buchungsmatrix)|Tabellen-ID[^\n]*\n[^\n]*\b325\b/i;
 const TABLE_SUBFORM_RE = /Tabellen-ID|Table ID|Tabellenname|Table Name|Tabellentrigger|Package Table|Tabellen/i;
 const FIELD_CONTEXT_RE =
   /Anz\. der verfugbaren Felder|Anz\. der eingeschlossenen Felder|Anzahl der zu prufenden Felder|No\. of Available Fields|No\. of Included Fields|No\. of Fields to Validate|Felder|Fields/i;
@@ -87,7 +88,7 @@ function isTargetContext(rawUrl: string) {
 async function compactPackageText(page: Page) {
   return clean(
     await compactPageText(page, {
-      include: [PACKAGE_CARD_RE, TABLE_SUBFORM_RE, TABLE_325_RE, FIELD_CONTEXT_RE, FORBIDDEN_ACTION_RE],
+      include: [PACKAGE_CARD_RE, TABLE_SUBFORM_RE, TABLE_325_LINE_RE, FIELD_CONTEXT_RE, FORBIDDEN_ACTION_RE],
       maxLines: 260,
       maxLineLength: 260
     }).catch(() => '')
@@ -130,7 +131,8 @@ async function visibleFieldSignals(page: Page) {
   const signals = {
     packageCardVisible: PACKAGE_CARD_RE.test(text) && text.includes(PACKAGE_CODE),
     tableSubformVisible: TABLE_SUBFORM_RE.test(text),
-    table325Visible: TABLE_325_RE.test(text) || text.includes(TABLE_ID),
+    table325LineVisible: TABLE_325_LINE_RE.test(text),
+    emptyTableViewVisible: /In dieser Ansicht kann nichts angezeigt werden|Nothing to show|There is nothing to show/i.test(text),
     availableFieldsColumnVisible: /Anz\. der verfugbaren Felder|No\. of Available Fields/i.test(text),
     includedFieldsColumnVisible: /Anz\. der eingeschlossenen Felder|No\. of Included Fields/i.test(text),
     fieldsToValidateColumnVisible: /Anzahl der zu prufenden Felder|No\. of Fields to Validate/i.test(text),
@@ -206,7 +208,7 @@ test(`${CASE_ID} inventories package field-selection context read-first`, async 
     stepId: '020-inventory-field-context',
     action: 'Inventory visible Table 325 field-count and field-selection signals without activating them',
     claim: 'The existing package table line exposes field-count or field-selection context read-only.',
-    expectedPageText: [TABLE_SUBFORM_RE, TABLE_325_RE, FIELD_CONTEXT_RE],
+    expectedPageText: [TABLE_SUBFORM_RE, FIELD_CONTEXT_RE],
     run: async () => {
       fieldContext = await visibleFieldSignals(page);
       await assertSafeContext(page);
@@ -214,7 +216,8 @@ test(`${CASE_ID} inventories package field-selection context read-first`, async 
     verdict: () =>
       fieldContext.signals.packageCardVisible &&
       fieldContext.signals.tableSubformVisible &&
-      fieldContext.signals.table325Visible &&
+      fieldContext.signals.table325LineVisible &&
+      !fieldContext.signals.emptyTableViewVisible &&
       (fieldContext.signals.availableFieldsColumnVisible ||
         fieldContext.signals.includedFieldsColumnVisible ||
         fieldContext.signals.fieldsToValidateColumnVisible ||
@@ -241,7 +244,8 @@ test(`${CASE_ID} inventories package field-selection context read-first`, async 
   const provedFieldContext =
     fieldContext.signals.packageCardVisible &&
     fieldContext.signals.tableSubformVisible &&
-    fieldContext.signals.table325Visible &&
+    fieldContext.signals.table325LineVisible &&
+    !fieldContext.signals.emptyTableViewVisible &&
     (fieldContext.signals.availableFieldsColumnVisible ||
       fieldContext.signals.includedFieldsColumnVisible ||
       fieldContext.signals.fieldsToValidateColumnVisible ||
@@ -278,7 +282,7 @@ test(`${CASE_ID} inventories package field-selection context read-first`, async 
   const resultStatus = provedFieldContext ? 'observed-field-context-readfirst' : 'blocked-field-context-not-proven';
   const nextCase = provedFieldContext
     ? 'FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-WRITE-GATE-DECISION'
-    : 'FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE';
+    : 'FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION';
 
   const result = {
     schemaVersion: 1,

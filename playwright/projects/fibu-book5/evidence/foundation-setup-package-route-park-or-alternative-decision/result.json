@@ -1,14 +1,12 @@
 {
   "schemaVersion": 1,
-  "purpose": "last-run-summary",
-  "runId": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION",
   "caseId": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION",
-  "status": "completed-local-decision-package-route-parked",
-  "updatedAt": "2026-07-09T00:35:00.000Z",
-  "mode": "universaarl-foundation-local-decision",
+  "resultStatus": "completed-local-decision-package-route-parked",
+  "decision": "parked",
+  "startedAt": "2026-07-09T00:29:12.208Z",
+  "completedAt": "2026-07-09T00:35:00.000Z",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "The corrected package field-selection read-first proof was consumed locally. The concrete U-VAT325-DISC field-selection route is parked because no visible Table 325 line or safe field-selection context was proven. Foundation Readiness is the next no-live case and must absorb this boundary before another setup route is chosen.",
   "businessCentralOpened": false,
   "playwrightLiveRunExecuted": false,
   "liveActionsExecuted": false,
@@ -23,15 +21,21 @@
   "companySwitch": false,
   "confidentialRealCustomerDataUsed": false,
   "uiMockupUsed": false,
+  "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-field-selection-readfirst/result.json",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-field-selection-readfirst/field-context-signals.json",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-field-selection-readfirst/step-timeline.json",
+    "playwright/projects/fibu-book5/UNIVERSAARL-FOUNDATION-SETUP-FIELD-MAP.md"
+  ],
   "actionsTaken": [
-    "Reviewed the corrected FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST evidence.",
-    "Classified the current U-VAT325-DISC field-selection route as parked.",
-    "Updated the Foundation setup field map with the blocked package-route boundary.",
-    "Selected FOUNDATION-READINESS-DECISION as the next local no-live case."
+    "Reviewed the corrected package field-selection read-first result.",
+    "Classified the current U-VAT325-DISC field-selection route as parked because no visible Table 325 package table line was proven.",
+    "Kept Configuration Package import/export/validate/apply/setup-write routes locked.",
+    "Selected FOUNDATION-READINESS-DECISION as the next local no-live consumer of this blocker."
   ],
   "actionsNotTaken": [
-    "Did not open Business Central in this local decision.",
-    "Did not run Playwright live in this local decision.",
+    "Did not open Business Central.",
+    "Did not run Playwright live.",
     "Did not create, rename, delete, import, export, validate or apply a configuration package.",
     "Did not click Get Tables / Tabellen abrufen.",
     "Did not toggle or select fields.",
@@ -40,9 +44,10 @@
     "Did not use API, AL, direct database or other shortcut."
   ],
   "proved": [
-    "The package card read-first evidence is useful only as UI context.",
-    "The current U-VAT325-DISC route is not safe for field-selection write, import, validate or apply.",
-    "Field-count columns and package text are not VAT setup or Table 325 line proof."
+    "The package card can be opened read-first, but that alone is not sufficient for a setup route.",
+    "The corrected screenshot/field-context gate does not prove a visible Table 325 line.",
+    "Field-count columns alone are not VAT setup, package field-selection or write-readiness evidence.",
+    "The current package route must not advance to field-selection write, import, validate or apply without a materially new hypothesis."
   ],
   "notProved": [
     "No safe field-selection surface.",
@@ -52,13 +57,28 @@
     "No Master Data, O2C, P2P, Preview Posting, Posting, ledger trace or UAT acceptance."
   ],
   "blockedBy": [
-    "The visible package card did not expose a real Table 325 package table line or safe field-selection context."
+    "The visible package card did not expose a real Table 325 package table line or safe field-selection context.",
+    "Repeating the same package-card read-first route would violate rejected-route discipline unless a materially new UI insight, helper, official source, different BC surface, different goal or manual approval exists."
   ],
   "warnings": [
-    "Do not repeat the same package-card route without a materially new hypothesis.",
-    "Configuration Packages remain a realistic implementation pattern, but this specific route is parked."
+    "Package names or codes containing 325 must not be treated as Table 325 line proof.",
+    "Field-count columns are useful UI context but not setup correctness.",
+    "Configuration Packages remain a realistic implementation pattern, but this specific package route is currently parked."
   ],
-  "evidencePath": "playwright/projects/fibu-book5/evidence/foundation-setup-package-route-park-or-alternative-decision/result.json",
+  "routeClassification": {
+    "configurationPackageRoute": "parked",
+    "fieldSelectionWriteGate": "blocked",
+    "importValidateApplyGate": "blocked",
+    "alternativeRouteNeeded": true,
+    "acceptableFutureReopenOnlyIf": [
+      "new-helper",
+      "new-ui-insight",
+      "new-official-source",
+      "different-bc-surface",
+      "different-goal",
+      "manual-approval"
+    ]
+  },
   "nextStepDecision": {
     "currentCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION",
     "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION",
@@ -94,10 +114,11 @@
       "Repeating the same package route without a new hypothesis."
     ],
     "requiredPreparation": [
-      "Consume the route decision into FOUNDATION-READINESS-DECISION.",
+      "Consume this result into FOUNDATION-READINESS-DECISION.",
       "Do not run Business Central or Playwright in the next local decision unless the case changes."
     ]
   },
-  "nextCase": "FOUNDATION-READINESS-DECISION",
-  "nextStep": "Run the local no-live Foundation Readiness update. Consume the blocked package field-selection route and keep setup/import/apply, Master Data, Preview Posting and Posting locked until a better route decision exists."
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "nextCase": "FOUNDATION-READINESS-DECISION"
 }

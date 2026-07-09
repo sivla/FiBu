@@ -26,6 +26,14 @@ Empfohlene naechste Route:
 2. Danach separater Write-Gate fuer Feldselektion oder Paketwerte, falls der Read-first-Beweis die Felder eindeutig macht.
 3. Erst spaeter Import/Validate/Apply, jeweils mit eigenem Gate, Screenshot-QA, Fehlerpfad und Reopen-Proof.
 
+## Read-first Ergebnis vom 2026-07-09
+
+Status: `parked`
+
+Der Case `FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST` hat die Paketkarte `U-VAT325-DISC` in `playthru / UNIVERSAARL-DE` lesend geoeffnet. Die Paketkarte und Feldzaehlspalten sind sichtbar. Die visuelle Pruefung zeigt aber keine belastbar sichtbare Table-325-Zeile und keinen sicheren Feldauswahlkontext. Ein frueherer Treffer auf `325` darf nicht als Tabellenzeilenbeweis gelten, weil `325` auch im Paketcode und Paketnamen vorkommt.
+
+Entscheidung: Die konkrete `U-VAT325-DISC`-Feldselektionsroute wird geparkt. Kein Field-Selection-Write-Gate, kein Import, kein Validate, kein Apply und kein Setup-Write darf daraus folgen, bis eine materiell neue Hypothese existiert. Foundation Readiness muss diesen Blocker konsumieren und danach entscheiden, ob Konfigurationspakete ueber eine andere Oberflaeche, ein anderes Paket, eine Quellen-/Tabellenanalyse oder eine manuelle UI-Route weiterverfolgt werden.
+
 Nicht gewaehlt:
 
 - weitere blinde UI-Zellversuche in Page 314 oder Page 472

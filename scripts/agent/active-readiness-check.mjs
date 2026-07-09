@@ -8,6 +8,15 @@ const nodeCmd = process.execPath;
 
 const checksByCase = new Map([
   [
+    'FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION',
+    {
+      id: 'foundation-setup-package-route-park-or-alternative-decision-local-no-live',
+      scriptPath: 'scripts/agent/local-no-live-case-readiness-check.mjs',
+      reason:
+        'This local no-live decision must consume the blocked package field-selection proof and decide whether to park the package route or select a materially different Foundation route.'
+    }
+  ],
+  [
     'FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST',
     {
       id: 'foundation-setup-package-field-selection-readfirst',

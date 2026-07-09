@@ -2,11 +2,20 @@
   "schemaVersion": 1,
   "caseId": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION",
   "status": "prepared-local-decision-no-live",
+  "caseType": "local-no-live-decision",
   "mode": "universaarl-foundation-local-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "activeArea": "w1-foundation",
+  "goal": "Consume the blocked U-VAT325-DISC field-selection read-first proof and decide whether the Configuration Package route should be parked or replaced by a materially different Foundation setup route.",
   "purpose": "Park the blocked Konfigurationspakete route or select a better Foundation setup route after screenshot QA rejected the read-first page proof.",
+  "mustRead": [
+    ".agent/OPERATING-KERNEL.md",
+    ".agent/state/current.json",
+    ".agent/state/rejected_route_register.json",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-field-selection-readfirst/result.json",
+    "playwright/projects/fibu-book5/UNIVERSAARL-FOUNDATION-SETUP-FIELD-MAP.md"
+  ],
   "mayOpenBusinessCentral": false,
   "mayRunPlaywright": false,
   "effectiveBcActionsAllowed": false,
@@ -46,9 +55,35 @@
     "claim-master-data-readiness"
   ],
   "sourceEvidence": [
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-field-selection-readfirst/result.json",
     "playwright/projects/fibu-book5/evidence/foundation-setup-package-route-recovery-readfirst/result.json",
     "playwright/projects/fibu-book5/evidence/foundation-setup-package-route-recovery-readfirst/foundation-package-route-recovery-020-page-proof-or-blocker.png",
     "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md"
+  ],
+  "skills": [
+    "read-first-page-proof",
+    "screenshot-qa",
+    "state-sync-check"
+  ],
+  "requiredChecks": [
+    "agent:preflight",
+    "agent:active-readiness",
+    "agent:dry-run",
+    "agent:run-plan",
+    "agent:rejected-routes:check",
+    "check:encoding",
+    "git diff --check"
+  ],
+  "expectedOutput": [
+    "Local decision result or field-map update that classifies the package route as parked, rejected or ready only for a materially different read-first route.",
+    "Updated nextCase that does not repeat the blocked field-selection route without a new hypothesis.",
+    "Explicit boundary that no package import/export/validate/apply/setup write or VAT correctness is proven."
+  ],
+  "stopConditions": [
+    "Stop if a decision would require opening Business Central or running Playwright.",
+    "Stop if the next route repeats the blocked package field-selection proof without a new helper, new UI insight, new source or manual approval.",
+    "Stop if the decision would unlock import, export, validate, apply or setup writes without a separate gate.",
+    "Stop if Table 325 field-count columns are treated as VAT setup evidence."
   ],
   "acceptanceCriteria": [
     "Do not repeat direct Page 8615 or the same Tell-Me search path as a success route.",

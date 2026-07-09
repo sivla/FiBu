@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST",
+  "resultStatus": "blocked-field-context-not-proven",
+  "startedAt": "2026-07-09T00:29:05.589Z",
+  "completedAt": "2026-07-09T00:29:12.208Z",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "page": "Page 8614 Paketkarte konfigurieren / Configuration Package Card",
+  "sanitizedUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=8614&company=UNIVERSAARL-DE&dc=0",
+  "packageCode": "U-VAT325-DISC",
+  "targetTable": {
+    "tableId": 325,
+    "tableName": "VAT Posting Setup",
+    "germanMeaning": "MwSt.-Buchungsmatrix Einrichtung"
+  },
+  "fieldContextSignals": {
+    "packageCardVisible": true,
+    "tableSubformVisible": true,
+    "table325LineVisible": false,
+    "emptyTableViewVisible": false,
+    "availableFieldsColumnVisible": true,
+    "includedFieldsColumnVisible": true,
+    "fieldsToValidateColumnVisible": true,
+    "selectFieldsActionVisible": false,
+    "forbiddenActionSignals": [
+      "Aus Excel importieren",
+      "In Excel exportieren",
+      "Tabellen abrufen...",
+      "Neue Zeile",
+      "Datum/Uhrzeit Import",
+      "Importiert von Benutzer-ID",
+      "originAuthorityValidator: O365SuiteServiceProxy.ServiceHandlers.validateOrigin,"
+    ]
+  },
+  "businessCentralOpened": true,
+  "playwrightLiveRunExecuted": true,
+  "liveActionsExecuted": false,
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "companySwitch": false,
+  "confidentialRealCustomerDataUsed": false,
+  "uiMockupUsed": false,
+  "screenshots": [
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-field-selection-readfirst/foundation-package-field-selection-010-card-context.png",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-field-selection-readfirst/foundation-package-field-selection-020-field-context.png",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-field-selection-readfirst/foundation-package-field-selection-030-stop-boundary.png"
+  ],
+  "stepTimeline": "playwright/projects/fibu-book5/evidence/foundation-setup-package-field-selection-readfirst/step-timeline.json",
+  "actionsTaken": [
+    "Opened existing U-VAT325-DISC package card in playthru / UNIVERSAARL-DE.",
+    "Inventoried visible Table 325 field-count and field-selection context.",
+    "Captured screenshot chain, visual-state JSON, page text and field-context signals.",
+    "Stopped before any checkbox, field selection, import/export/validate/apply/Edit-in-Excel/setup action."
+  ],
+  "actionsNotTaken": [
+    "No package creation",
+    "No package header edit",
+    "No Get Tables / Tabellen abrufen",
+    "No add/remove table",
+    "No field toggle",
+    "No Select Fields / Felder auswaehlen activation",
+    "No package import",
+    "No package export",
+    "No package validation",
+    "No package apply",
+    "No Edit in Excel",
+    "No setup value",
+    "No master data",
+    "No document draft",
+    "No Preview Posting",
+    "No Posting",
+    "No API shortcut",
+    "No company switch"
+  ],
+  "proved": [
+    "Business Central stayed in playthru / UNIVERSAARL-DE.",
+    "Existing U-VAT325-DISC package card was visible read-first.",
+    "No package/setup/master-data/posting action occurred."
+  ],
+  "notProved": [
+    "No sufficient field-selection or field-count context was proven.",
+    "No field selection was opened or changed.",
+    "No package import/export/validate/apply route.",
+    "No VAT setup values.",
+    "No posting/VAT/master-data readiness.",
+    "No UAT acceptance."
+  ],
+  "blockedBy": [
+    "Existing package card did not expose enough field-count or field-selection context without unsafe activation."
+  ],
+  "warnings": [
+    "Field-count columns or Select Fields visibility are not setup evidence.",
+    "Any later field-selection action may write package metadata and needs its own gate."
+  ],
+  "nextStepDecision": {
+    "currentCase": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST",
+    "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST",
+    "lastEvidenceSummary": "U-VAT325-DISC / Table 325 does not yet show enough read-first field context.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Do not repeat the route without materially new UI evidence or a different route.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-WRITE-GATE-DECISION",
+        "status": "needs-ui-discovery-first",
+        "reason": "Needs stronger field-context proof first."
+      },
+      {
+        "caseId": "FOUNDATION-SETUP-PACKAGE-IMPORT-VALIDATE-APPLY-GATE-DECISION",
+        "status": "needs-setup-first",
+        "reason": "Import/validate/apply needs field selection, values and error strategy first."
+      },
+      {
+        "caseId": "FOUNDATION-READINESS-DECISION",
+        "status": "ready-after-current",
+        "reason": "Consumes the package field-context verdict into Foundation boundaries."
+      }
+    ],
+    "queueChangesMade": [],
+      "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION",
+    "whySelectedNextCaseIsBest": "It prevents repeating a weak package route without new evidence.",
+    "risksBeforeNextCase": [
+      "Field selection may write package metadata.",
+      "Visible field-count columns are not VAT setup correctness."
+    ],
+    "requiredPreparation": [
+      "Review screenshot QA, visual-state JSON and field-context-signals.json.",
+      "Keep import/export/validate/apply/setup values blocked until separate gates."
+    ]
+  },
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION"
+}
