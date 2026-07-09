@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-MASTER-DATA-ROUTE-REFRESH-AFTER-SETUP-PARKED",
+  "status": "completed-local-decision",
+  "decision": "ready-for-training-handbook-gap-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "mode": "local-no-live-decision",
+  "businessCentralOpened": false,
+  "playwrightLiveRunExecuted": false,
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "sourceBackedDecision": {
+    "summary": "Foundation setup routes remain parked, but existing Debitoren-, Kreditoren- and Artikel-read-first evidence can safely feed a local training, handbook and data-route gap decision.",
+    "allowedRoute": "Use existing PWS-MD-001, PWS-MD-002 and PWS-MD-003 observations as training and handbook input only.",
+    "notAllowedRoute": "Do not start customer, vendor, item, setup, template, document, Preview Posting or Posting writes from this decision.",
+    "whyNow": "Another weak Foundation setup retry would repeat parked routes. A local training/handbook gap decision preserves the no-write boundary and still turns observed Universaarl UI into project value."
+  },
+  "sourcesReviewed": [
+    ".agent/OPERATING-KERNEL.md",
+    ".agent/state/current.json",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-alternative-route-source-decision/result.json",
+    ".agent/state/cases/foundation-master-data-route-decision.json"
+  ],
+  "evidenceReferences": [
+    "playwright/projects/fibu-book5/evidence/pws-md-001-customer-context-readonly/PWS-MD-001-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-md-002-vendor-context-readonly/PWS-MD-002-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-md-003-item-service-context-readonly/PWS-MD-003-result.json",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-alternative-route-source-decision/result.json"
+  ],
+  "proved": [
+    "Existing customer, vendor and item/service read-first evidence is suitable for local training, handbook and data-route gap analysis.",
+    "Foundation setup writes remain parked and are not required for this local next step.",
+    "The next useful project step is local/no-live and does not require Business Central, Playwright live, setup changes, master data writes, document drafts, Preview Posting or Posting."
+  ],
+  "notProved": [
+    "No Foundation setup readiness.",
+    "No Master Data write readiness.",
+    "No customer, vendor or item creation readiness.",
+    "No template, posting group, VAT, payment term, O2C, P2P, Preview Posting, Posting, ledger, UAT or book-final proof."
+  ],
+  "blockedBy": [
+    "Foundation setup package/manual UI routes are parked.",
+    "U-VAT325-DISC remains only a parked route candidate.",
+    "Master Data fields are observed read-first but dependencies and training/handbook gaps are not yet curated into a decision artifact."
+  ],
+  "warnings": [
+    "Do not reuse this decision as setup-ready or process-ready proof.",
+    "Do not retry rejected Foundation routes without a materially new hypothesis.",
+    "Do not write book text from this case; the next case is still a local decision artifact."
+  ],
+  "actionsTaken": [
+    "Reviewed the active local no-live case kernel.",
+    "Compared parked Foundation setup route evidence with existing Master Data read-first handoff.",
+    "Selected a no-live training and handbook gap decision as the safest next useful step.",
+    "Prepared the next local case file."
+  ],
+  "actionsNotTaken": [
+    "Did not open Business Central.",
+    "Did not run Playwright live.",
+    "Did not create, edit or validate setup packages.",
+    "Did not change setup, master data, templates, documents, Preview Posting, Posting or payments.",
+    "Did not edit the book."
+  ],
+  "nextStepDecision": {
+    "currentCase": "FOUNDATION-MASTER-DATA-ROUTE-REFRESH-AFTER-SETUP-PARKED",
+    "plannedNextCaseBeforeReview": "FOUNDATION-MASTER-DATA-ROUTE-REFRESH-AFTER-SETUP-PARKED",
+    "lastEvidenceSummary": "Foundation setup route is parked; customer/vendor/item contexts are read-first observed and bounded as training/handbook input only.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The active case was the correct local bridge after the parked Foundation setup route and can now hand off to training/handbook gap curation.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "MASTER-DATA-TRAINING-HANDBOOK-GAP-DECISION",
+        "status": "ready-next",
+        "reason": "Uses existing read-first evidence and stays local/no-live with no write claims."
+      },
+      {
+        "caseId": "CUSTOMER-SETUP-DEPENDENCY-READFIRST",
+        "status": "ready-after-current",
+        "reason": "Potential future read-first live case only if the local gap decision proves a specific UI dependency gap."
+      },
+      {
+        "caseId": "FOUNDATION-SETUP-ROUTE-PARKING-DECISION",
+        "status": "blocked",
+        "reason": "Not needed now because safe Master Data training/handbook progress is possible without reopening setup routes."
+      }
+    ],
+    "queueChangesMade": [
+      "Prepared MASTER-DATA-TRAINING-HANDBOOK-GAP-DECISION as the next local no-live case."
+    ],
+    "selectedNextCase": "MASTER-DATA-TRAINING-HANDBOOK-GAP-DECISION",
+    "whySelectedNextCaseIsBest": "It converts real Universaarl read-first evidence into training, handbook and data-route clarity without weakening the parked Foundation setup boundary.",
+    "risksBeforeNextCase": [
+      "Existing observations may be overread as setup or process readiness unless the next case keeps explicit boundaries."
+    ],
+    "requiredPreparation": [
+      "Read only the next case mustRead files.",
+      "Treat PWS-MD evidence as UI/training input, not as write readiness."
+    ]
+  },
+  "nextCase": "MASTER-DATA-TRAINING-HANDBOOK-GAP-DECISION",
+  "updatedAt": "2026-07-09T08:05:00.000Z"
+}

@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "caseId": "MASTER-DATA-TRAINING-HANDBOOK-GAP-DECISION",
+  "status": "prepared-local-no-live",
+  "caseType": "local-no-live-decision",
+  "mode": "universaarl-training-handbook-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w2-core-masterdata",
+  "goal": "Use existing customer, vendor and item/service read-first evidence to decide the next training, handbook and data-route gaps without opening Business Central or editing the book.",
+  "whyNow": "Foundation setup routes are parked, but PWS-MD-001, PWS-MD-002 and PWS-MD-003 already contain real Universaarl UI observations that can be curated into training and handbook preparation.",
+  "businessPurpose": "Turn observed Master Data UI into practical customer-training and implementation handoff value while setup and process writes remain blocked.",
+  "mustRead": [
+    ".agent/OPERATING-KERNEL.md",
+    ".agent/state/current.json",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/foundation-master-data-route-refresh-after-setup-parked/result.json",
+    ".agent/state/cases/foundation-master-data-route-decision.json"
+  ],
+  "allowedActions": [
+    "local-training-handbook-gap-review",
+    "local-data-dependency-review",
+    "write-training-gap-result-json",
+    "prepare-one-next-local-or-readfirst-case"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright-live",
+    "write-setup",
+    "create-master-data",
+    "edit-master-data",
+    "change-template",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "company-switch",
+    "edit-book",
+    "claim-foundation-setup-ready",
+    "claim-master-data-ready",
+    "claim-process-ready"
+  ],
+  "requiredSkills": [
+    "state-sync-check"
+  ],
+  "requiredHelpers": [
+    "scripts/agent/local-no-live-case-readiness-check.mjs",
+    "scripts/agent/dry-run.mjs"
+  ],
+  "requiredChecks": [
+    "agent:preflight",
+    "agent:active-readiness",
+    "agent:dry-run",
+    "agent:run-plan",
+    "agent:rejected-routes:check",
+    "check:encoding",
+    "git diff --check"
+  ],
+  "expectedOutput": [
+    "A compact local result JSON that classifies customer, vendor and item/service evidence as training-ready, handbook-gap, data-route-gap or blocked.",
+    "A nextCase selection that either prepares one read-first dependency probe or one local route/data decision.",
+    "Explicit boundary that no book text, setup, master data, document, Preview Posting or Posting change was made."
+  ],
+  "stopConditions": [
+    "Stop if the decision would require opening Business Central or running Playwright live.",
+    "Stop if the output would create a final book claim or edit book text.",
+    "Stop if the output would claim setup, Master Data, O2C, P2P, Preview Posting or Posting readiness.",
+    "Stop if a required dependency cannot be classified from existing evidence."
+  ],
+  "rejectedRoutesToRespect": [
+    "RR-FOUNDATION-PAGE314-GRID-LIST-EDIT-RETRY",
+    "RR-FOUNDATION-PAGE470-VAT-BUSINESS-GROUPS-SEARCH-RETRY",
+    "RR-FOUNDATION-PAGE472-ACTIVE-EDITOR-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGES-ESCAPE-TELLME-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGE-U-VAT325-FIELD-SELECTION-RETRY"
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/master-data-training-handbook-gap-decision/result.json",
+  "nextCaseOptions": [
+    {
+      "caseId": "CUSTOMER-SETUP-DEPENDENCY-READFIRST",
+      "when": "Use only if the local gap decision identifies a specific customer UI dependency that needs read-first evidence.",
+      "liveType": "read-first-no-write"
+    },
+    {
+      "caseId": "MASTER-DATA-ROUTE-PACKAGE-VS-UI-DECISION",
+      "when": "Use if the local gap decision shows the next useful step is deciding between UI, templates, configuration packages or Excel-assisted routes.",
+      "liveType": "local-no-live-decision"
+    },
+    {
+      "caseId": "FOUNDATION-SETUP-DEPENDENCY-RETURN-DECISION",
+      "when": "Use if customer/vendor/item training cannot progress because setup dependencies are too unclear.",
+      "liveType": "local-no-live-decision"
+    }
+  ],
+  "decision": "prepared",
+  "selectedNextCase": null,
+  "nextCase": null,
+  "preparedAt": "2026-07-09T08:05:00.000Z"
+}
