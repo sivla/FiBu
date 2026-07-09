@@ -112,6 +112,15 @@ const checksByCase = new Map([
     }
   ],
   [
+    'MASTER-DATA-FIELD-MAP-READFIRST-VALIDATION',
+    {
+      id: 'master-data-field-map-readfirst-validation',
+      scriptPath: 'scripts/agent/master-data-field-map-readfirst-validation-check.mjs',
+      reason:
+        'This read-first/no-write Master Data case must validate field-map surfaces with screenshots, visual-state JSON and step timeline before any write gate.'
+    }
+  ],
+  [
     'TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK',
     {
       id: 'target-075-readiness',
