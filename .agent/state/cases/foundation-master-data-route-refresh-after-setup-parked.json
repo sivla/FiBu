@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-MASTER-DATA-ROUTE-REFRESH-AFTER-SETUP-PARKED",
+  "status": "prepared-local-no-live",
+  "caseType": "local-no-live-decision",
+  "mode": "universaarl-masterdata-route-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w2-core-masterdata",
+  "goal": "Refresh the Master Data route after Foundation setup routes were parked, without opening Business Central or changing data.",
+  "whyNow": "The Foundation setup package/manual UI routes are parked. The project should avoid another weak Foundation retry and instead convert existing customer/vendor/item evidence into training, handbook, data-route and setup-gap decisions without claiming setup or process readiness.",
+  "businessPurpose": "Keep concrete project progress moving while preserving the Foundation no-write boundary.",
+  "mustRead": [
+    ".agent/OPERATING-KERNEL.md",
+    ".agent/state/current.json",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-alternative-route-source-decision/result.json",
+    ".agent/state/cases/foundation-master-data-route-decision.json"
+  ],
+  "allowedActions": [
+    "local-master-data-route-review",
+    "local-training-handbook-gap-review",
+    "local-data-dependency-review",
+    "write-route-decision-result-json",
+    "prepare-one-next-local-or-readfirst-case"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright-live",
+    "write-setup",
+    "create-master-data",
+    "edit-master-data",
+    "change-template",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "company-switch",
+    "claim-foundation-setup-ready",
+    "claim-master-data-ready",
+    "claim-process-ready"
+  ],
+  "requiredSkills": [
+    "bc-setup-route-decision",
+    "state-sync-check"
+  ],
+  "requiredHelpers": [
+    "scripts/agent/local-no-live-case-readiness-check.mjs",
+    "scripts/agent/dry-run.mjs"
+  ],
+  "requiredChecks": [
+    "agent:preflight",
+    "agent:active-readiness",
+    "agent:dry-run",
+    "agent:run-plan",
+    "agent:rejected-routes:check",
+    "check:encoding",
+    "git diff --check"
+  ],
+  "expectedOutput": [
+    "A compact local decision that states which customer/vendor/item training, handbook or data-route work can continue while Foundation setup stays parked.",
+    "A nextCase selection that does not write setup, master data, documents, Preview Posting or Posting.",
+    "Explicit boundary that existing read-first Master Data evidence is training/handbook input, not setup-ready or process-ready proof."
+  ],
+  "stopConditions": [
+    "Stop if the decision would require opening Business Central or running Playwright.",
+    "Stop if the next step would create, edit or claim readiness for customer, vendor or item data.",
+    "Stop if the output weakens the parked Foundation setup boundary.",
+    "Stop if a book claim would be written without a separate book case."
+  ],
+  "rejectedRoutesToRespect": [
+    "RR-FOUNDATION-PAGE314-GRID-LIST-EDIT-RETRY",
+    "RR-FOUNDATION-PAGE470-VAT-BUSINESS-GROUPS-SEARCH-RETRY",
+    "RR-FOUNDATION-PAGE472-ACTIVE-EDITOR-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGES-ESCAPE-TELLME-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGE-U-VAT325-FIELD-SELECTION-RETRY"
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/foundation-master-data-route-refresh-after-setup-parked/result.json",
+  "nextCaseOptions": [
+    {
+      "caseId": "MASTER-DATA-TRAINING-HANDBOOK-GAP-DECISION",
+      "when": "Use if existing customer/vendor/item evidence can be turned into training or handbook structure without book text edits.",
+      "liveType": "local-no-live-decision"
+    },
+    {
+      "caseId": "CUSTOMER-SETUP-DEPENDENCY-READFIRST",
+      "when": "Use only if a future read-first UI proof is needed and live gates explicitly allow it.",
+      "liveType": "read-first-no-write"
+    },
+    {
+      "caseId": "FOUNDATION-SETUP-ROUTE-PARKING-DECISION",
+      "when": "Use if no safe Master Data training/handbook progress is possible without resolving setup first.",
+      "liveType": "local-no-live-decision"
+    }
+  ],
+  "decision": "prepared",
+  "selectedNextCase": null,
+  "nextCase": null,
+  "preparedAt": "2026-07-09T07:35:00.000Z"
+}

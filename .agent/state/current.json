@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-09T06:50:00.000Z",
+  "updatedAt": "2026-07-09T07:35:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -14,13 +14,13 @@
   },
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
-  "activeArea": "w1-foundation",
-  "activeCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
-  "active_case_file": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
-  "activeCaseFile": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
+  "activeArea": "w2-core-masterdata",
+  "activeCase": "FOUNDATION-MASTER-DATA-ROUTE-REFRESH-AFTER-SETUP-PARKED",
+  "active_case_file": ".agent/state/cases/foundation-master-data-route-refresh-after-setup-parked.json",
+  "activeCaseFile": ".agent/state/cases/foundation-master-data-route-refresh-after-setup-parked.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-foundation-local-decision",
+  "mode": "universaarl-masterdata-route-decision",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -44,11 +44,11 @@
     "git diff --check"
   ],
   "allowedActions": [
-    "local-source-review",
-    "local-route-comparison",
-    "local-rejected-route-review",
+    "local-master-data-route-review",
+    "local-training-handbook-gap-review",
+    "local-data-dependency-review",
     "write-route-decision-result-json",
-    "prepare-one-next-readfirst-or-local-gate-case"
+    "prepare-one-next-local-or-readfirst-case"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -58,29 +58,23 @@
     "book-claim-without-evidence",
     "open-business-central",
     "run-playwright-live",
-    "create-configuration-package",
-    "open-configuration-package-card-for-edit",
-    "get-tables",
-    "select-or-toggle-package-fields",
-    "import-configuration-package",
-    "export-configuration-package",
-    "validate-configuration-package",
-    "apply-configuration-package",
-    "edit-in-excel",
     "write-setup",
     "create-master-data",
+    "edit-master-data",
+    "change-template",
     "create-document-or-draft",
     "preview-posting",
     "post",
     "payment",
     "api-shortcut",
     "company-switch",
-    "claim-posting-readiness",
-    "claim-master-data-readiness"
+    "claim-foundation-setup-ready",
+    "claim-master-data-ready",
+    "claim-process-ready"
   ],
-  "nextCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
-  "nextStep": "Run FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION locally/no-live. Choose a materially different Foundation setup route after Configuration Package write gate was parked; do not repeat package-card, worksheet, Page 314/470/472 or U-VAT325-DISC routes without a new hypothesis.",
-  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
+  "nextCase": "FOUNDATION-MASTER-DATA-ROUTE-REFRESH-AFTER-SETUP-PARKED",
+  "nextStep": "Run FOUNDATION-MASTER-DATA-ROUTE-REFRESH-AFTER-SETUP-PARKED locally/no-live. Continue only training, handbook and data-route decisions from existing Universaarl master-data evidence while Foundation setup writes and process readiness stay parked.",
+  "preparedNextCaseFile": ".agent/state/cases/foundation-master-data-route-refresh-after-setup-parked.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -214,22 +208,22 @@
     "nextBoundary": "Master Data remains parked. Next work must update Foundation Readiness and either accept this as a Foundation gap or define a genuinely new Page 314 route hypothesis before another live attempt."
   },
   "activeNextStepAuthority": {
-    "source": "playwright/projects/fibu-book5/evidence/foundation-readiness-decision/result.json",
-    "selectedNextCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
-    "activeCaseFile": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
-    "preparedNextCaseFile": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
+    "source": "playwright/projects/fibu-book5/evidence/foundation-setup-alternative-route-source-decision/result.json",
+    "selectedNextCase": "FOUNDATION-MASTER-DATA-ROUTE-REFRESH-AFTER-SETUP-PARKED",
+    "activeCaseFile": ".agent/state/cases/foundation-master-data-route-refresh-after-setup-parked.json",
+    "preparedNextCaseFile": ".agent/state/cases/foundation-master-data-route-refresh-after-setup-parked.json",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "Foundation Readiness consumed the parked Configuration Package write-gate decision; the next step is a local alternative route decision, not another package or setup write.",
+    "reason": "The alternative Foundation setup route decision parked the current package/manual UI route. The next step is a local Master Data route refresh for training, handbook and data-route decisions only, not setup or process writes.",
     "rejectedRoute": "RR-FOUNDATION-CONFIG-PACKAGE-U-VAT325-FIELD-SELECTION-RETRY",
     "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
-    "whySelectedNextCaseIsBest": "It forces the next Foundation move to be materially different, source-backed and no-live before any setup, package, master-data or process route is proposed.",
+    "whySelectedNextCaseIsBest": "It prevents another weak Foundation setup retry and still moves the project with concrete no-live customer-data, training and handbook decisions.",
     "requiredPreparation": [
-      "Review Foundation Readiness, the package write-gate decision and rejected route register.",
-      "Keep U-VAT325-DISC, worksheet field-map, Page 314/470/472 and Escape-after-Tell-Me repeats parked unless a materially new hypothesis exists.",
-      "Stop before Business Central, Playwright live, package actions, setup writes, master data or process work."
+      "Review Foundation Readiness and the parked Foundation setup route decision.",
+      "Treat existing customer/vendor/item evidence as training and handbook input only, not setup-ready or process-ready proof.",
+      "Stop before Business Central, Playwright live, book edits, setup writes, master data writes or process work."
     ],
-    "updatedAt": "2026-07-09T06:50:00.000Z"
+    "updatedAt": "2026-07-09T07:35:00.000Z"
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -343,7 +337,7 @@
     "currentLiveBoundary": {
       "freezeActive": false,
       "parkedCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-      "resumePilot": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
+      "resumePilot": "FOUNDATION-MASTER-DATA-ROUTE-REFRESH-AFTER-SETUP-PARKED",
       "resumePilotMode": "local-no-live-decision"
     },
     "legacyScriptGuard": {
@@ -12297,7 +12291,7 @@
     "nextCase": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
     "updatedAt": "2026-07-09T03:10:00.000Z"
   },
-  "caseType": "read-first-no-write",
+  "caseType": "local-no-live-decision",
   "latestFoundationSetupValueMapDecision": {
     "caseId": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
     "status": "completed-local-decision",
@@ -12314,7 +12308,7 @@
     "nextCase": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
     "updatedAt": "2026-07-09T04:05:00.000Z"
   },
-  "next_case": "FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST",
+  "next_case": "FOUNDATION-MASTER-DATA-ROUTE-REFRESH-AFTER-SETUP-PARKED",
   "latestFoundationSetupSourceGapDecision": {
     "caseId": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
     "status": "completed-local-decision",
