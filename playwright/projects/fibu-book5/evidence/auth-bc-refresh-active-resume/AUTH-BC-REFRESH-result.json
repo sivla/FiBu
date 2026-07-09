@@ -9,7 +9,7 @@
   "page": "Business Central shell reached",
   "url": "redacted-businesscentral-url",
   "actionsTaken": [
-    "Ran npm run auth:bc:open-login for the active Business Central auth refresh gate.",
+    "Ran npm run auth:bc:capture-detached -- --confirm for the active Business Central auth refresh gate.",
     "The Playwright auth browser targeted playthru / UNIVERSAARL-DE.",
     "Business Central shell validation succeeded and Playwright storage state was saved."
   ],
@@ -21,9 +21,9 @@
     "No bookmaster change was made."
   ],
   "authDiagnosis": {
-    "command": "npm run auth:bc:open-login",
+    "command": "npm run auth:bc:capture-detached -- --confirm",
     "underlyingCommand": "npm run auth:bc",
-    "timeoutMs": 300000,
+    "timeoutMs": 600000,
     "targetSource": "FIBU_BOOK5_BC_URL with current.json override",
     "expectedInstance": "playthru",
     "expectedCompany": "UNIVERSAARL-DE",
@@ -58,13 +58,13 @@
   "warnings": [
     "Run npm run auth:bc:check before any Business Central workflow."
   ],
-  "nextCase": "FOUNDATION-READINESS-DECISION",
+  "nextCase": "FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST",
   "nextStepDecision": {
     "currentCase": "AUTH-BC-REFRESH-FOR-ACTIVE-RESUME",
     "plannedNextCaseBeforeReview": "AUTH-BC-REFRESH-FOR-ACTIVE-RESUME",
-    "lastEvidenceSummary": "npm run auth:bc:open-login reached the Business Central shell and saved Playwright storage state; auth:bc:check must confirm freshness next.",
+    "lastEvidenceSummary": "npm run auth:bc:capture-detached -- --confirm reached the Business Central shell and saved Playwright storage state; auth:bc:check must confirm freshness next.",
     "isPlannedNextCaseStillSensible": true,
-    "reason": "The auth gate can move to auth:bc:check and then the active resume candidate FOUNDATION-READINESS-DECISION.",
+    "reason": "The auth gate can move to auth:bc:check and then the active resume candidate FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST.",
     "lookaheadReviewed": [
       {
         "caseId": "AUTH-BC-REFRESH-FOR-ACTIVE-RESUME",
@@ -72,7 +72,7 @@
         "reason": "Requires auth:bc:check canUseStoredAuth=true."
       },
       {
-        "caseId": "FOUNDATION-READINESS-DECISION",
+        "caseId": "FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST",
         "status": "ready-after-current",
         "reason": "Requires auth:bc:check canUseStoredAuth=true first."
       },
@@ -93,8 +93,8 @@
       }
     ],
     "queueChangesMade": [],
-    "selectedNextCase": "FOUNDATION-READINESS-DECISION",
-    "whySelectedNextCaseIsBest": "Fresh auth is the prerequisite for the active read-first resume candidate FOUNDATION-READINESS-DECISION.",
+    "selectedNextCase": "FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST",
+    "whySelectedNextCaseIsBest": "Fresh auth is the prerequisite for the active read-first resume candidate FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST.",
     "risksBeforeNextCase": [
       "Do not run the active resume candidate until auth:bc:check confirms canUseStoredAuth=true."
     ],
@@ -110,5 +110,5 @@
   "safeToFinalizeState": false,
   "statePatch": {},
   "reason": "Auth refresh reached shell; state finalization still requires explicit downstream validation.",
-  "completedAt": "2026-07-08T13:10:14.184Z"
+  "completedAt": "2026-07-09T01:55:25.576Z"
 }

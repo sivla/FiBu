@@ -65,6 +65,15 @@ const checksByCase = new Map([
     }
   ],
   [
+    'FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION',
+    {
+      id: 'foundation-setup-package-write-gate-decision-local-no-live',
+      scriptPath: 'scripts/agent/local-no-live-case-readiness-check.mjs',
+      reason:
+        'This local no-live decision must consume the Configuration Worksheet field-map read-first result before any package/setup write gate is prepared.'
+    }
+  ],
+  [
     'FOUNDATION-SETUP-PACKAGE-CARD-TABLES-READFIRST',
     {
       id: 'foundation-setup-package-card-tables-readfirst',

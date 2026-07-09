@@ -34,6 +34,8 @@ Nach `FOUNDATION-SETUP-VALUE-MAP-DECISION` sind die Zielwerte enger klassifizier
 
 Nach `FOUNDATION-SETUP-SOURCE-GAP-DECISION` ist die Produktquelle enger: Microsoft dokumentiert `VAT Business Posting Group` als Table 323 mit `Code` und `Description` sowie der Lookup-/Drilldown-Seite `VAT Business Posting Groups`. Das klaert die Objekt- und Feldquelle, beweist aber nicht, dass `INLAND` in `playthru / UNIVERSAARL-DE` lokal existiert. Der naechste Schritt ist deshalb `FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST`: read-first/no-write ueber Konfigurationsarbeitsblatt oder vergleichbare Tabellen-/Feldoberflaeche. Direkte Page-470-/Suchwiederholungen und die `U-VAT325-DISC`-Feldselektionsroute bleiben geparkt.
 
+Nach `FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST` sind die Oberflaechen besser bewiesen: Das Konfigurationsarbeitsblatt ist als Vordergrund-Seitenpaneel sichtbar, die Seite Konfigurationspakete ist als Listenpage sichtbar, und die Bildkette unterscheidet Role Center, Seitenpaneel und Zielseite. Das ist ein guter Read-first-Nachweis fuer den Standardweg, aber noch keine Schreibfreigabe. Das sichtbare `325` stammt mindestens teilweise aus dem Paketcode `U-VAT325-DISC`; deshalb ist es kein belastbarer Beweis fuer eine echte Table-325-Zeile oder Feldliste. Table 323 und Table 252 sind in diesem Lauf ebenfalls nicht belastbar sichtbar. Der naechste Schritt ist deshalb nur eine lokale `FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION`: pruefen, ob ein enger weiterer Read-first- oder Metadata-Gate sinnvoll ist. Kein Setup-Write, kein Get Tables, keine Feldauswahl und kein Apply.
+
 ## Read-first Ergebnis vom 2026-07-09
 
 Status: `parked`

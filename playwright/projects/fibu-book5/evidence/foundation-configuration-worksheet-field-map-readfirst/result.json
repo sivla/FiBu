@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST",
+  "source": "playwright-readfirst-configuration-worksheet-field-map-and-packages",
+  "resultStatus": "observed-readfirst",
+  "routeDecision": "ready-for-local-write-gate-decision-not-write-ready",
+  "startedAt": "2026-07-09T01:57:09.286Z",
+  "completedAt": "2026-07-09T01:57:25.964Z",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "pages": [
+    "Konfigurationsarbeitsblatt / Configuration Worksheet",
+    "Page 8615 Konfigurationspakete / Configuration Packages"
+  ],
+  "sanitizedUrl": "https://businesscentral.dynamics.com/%7Btenant%7D/playthru?page=8615&company=UNIVERSAARL-DE&dc=0",
+  "businessCentralOpened": true,
+  "playwrightLiveRunExecuted": true,
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "companySwitch": false,
+  "configurationPackageCreated": false,
+  "configurationPackageOpenedForEdit": false,
+  "configurationPackageImported": false,
+  "configurationPackageExported": false,
+  "configurationPackageValidated": false,
+  "configurationPackageApplied": false,
+  "editInExcel": false,
+  "tableSignals": {
+    "table252GeneralPostingSetup": false,
+    "table323VatBusinessPostingGroup": false,
+    "table325VatPostingSetup": true,
+    "table325SignalWeakBecausePackageCodeContains325": true,
+    "vatBusinessPostingGroups": false,
+    "configurationWorksheetVisible": true,
+    "configurationPackagesVisible": true
+  },
+  "actionsTaken": [
+    "Opened Business Central read-only in playthru / UNIVERSAARL-DE.",
+    "Opened Configuration Worksheet read-only via Tell-Me and captured target context for Foundation table-field mapping.",
+    "Inventoried visible Configuration Worksheet actions without clicking write-capable actions.",
+    "Opened Configuration Packages read-only by direct page URL 8615.",
+    "Inventoried visible Configuration Package actions without creating, importing, exporting, validating or applying data."
+  ],
+  "actionsNotTaken": [
+    "No package creation",
+    "No package card open/edit",
+    "No Get Tables/Tabellen abrufen click",
+    "No table-field selection",
+    "No table add/remove",
+    "No package import",
+    "No package export",
+    "No package validation",
+    "No package apply",
+    "No Edit in Excel",
+    "No setup value typing",
+    "No master data",
+    "No document draft",
+    "No Preview Posting",
+    "No Posting",
+    "No API shortcut",
+    "No company switch"
+  ],
+  "screenshots": [
+    "playwright/projects/fibu-book5/evidence/foundation-configuration-worksheet-field-map-readfirst/foundation-configuration-worksheet-010-target.png",
+    "playwright/projects/fibu-book5/evidence/foundation-configuration-worksheet-field-map-readfirst/foundation-configuration-worksheet-020-actions.png",
+    "playwright/projects/fibu-book5/evidence/foundation-configuration-worksheet-field-map-readfirst/foundation-configuration-worksheet-030-packages.png",
+    "playwright/projects/fibu-book5/evidence/foundation-configuration-worksheet-field-map-readfirst/foundation-configuration-worksheet-040-package-actions.png"
+  ],
+  "stepTimeline": "playwright/projects/fibu-book5/evidence/foundation-configuration-worksheet-field-map-readfirst/step-timeline.json",
+  "worksheetActionInventoryPath": "playwright/projects/fibu-book5/evidence/foundation-configuration-worksheet-field-map-readfirst/worksheet-visible-actions.json",
+  "packageActionInventoryPath": "playwright/projects/fibu-book5/evidence/foundation-configuration-worksheet-field-map-readfirst/package-visible-actions.json",
+  "screenshotQaReferences": [
+    "Step timeline before/after screenshots and visual-state JSON classify target page, side pane, search overlay, dialog and Role Center background.",
+    "playwright/projects/fibu-book5/evidence/foundation-configuration-worksheet-field-map-readfirst/step-timeline.json"
+  ],
+  "proved": [
+    "Business Central opened in playthru / UNIVERSAARL-DE.",
+    "Configuration Worksheet is reachable read-first.",
+    "Configuration Packages page 8615 is reachable read-first.",
+    "A weak Table 325 text signal is present, but visual QA shows it can be explained by the package code U-VAT325-DISC and is not accepted as a reliable table-line or field-list proof.",
+    "The old Escape-after-Tell-Me retry route was not repeated.",
+    "No package/setup/master-data/posting action occurred."
+  ],
+  "notProved": [
+    "No package write gate.",
+    "No package table line creation.",
+    "No field selection.",
+    "No Table 323 VAT Business Posting Group local row proof unless visible tableSignals explicitly show it.",
+    "No reliable Table 325 package table-line or field-list proof; the visible 325 signal is weak because it appears in the package code.",
+    "No reliable Table 252 package table-line or field-list proof.",
+    "No Table 252 or Table 325 package mapping write.",
+    "No import/export/validate/apply route.",
+    "No setup value.",
+    "No posting/VAT/master-data readiness.",
+    "No UAT acceptance."
+  ],
+  "warnings": [
+    "Configuration Packages and Worksheet are standard setup/data surfaces; write-capable package actions remain locked until a separate write gate.",
+    "Table signals in this run are only visible text signals, not write or mapping proof.",
+    "The Table 325 signal must not be used as proof of a package table line or field list because U-VAT325-DISC itself contains 325."
+  ],
+  "blockedBy": [],
+  "nextStepDecision": {
+    "currentCase": "FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST",
+    "plannedNextCaseBeforeReview": "FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST",
+    "lastEvidenceSummary": "Source decision selected Configuration Worksheet and Configuration Packages as read-first proof before any package or setup write, with special attention to Table 323 VAT Business Posting Group source truth.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "Standard BC setup-data surfaces are reachable, but no reliable Table 323/252/325 field-map proof is present; the visible 325 signal is weak because it can come from U-VAT325-DISC.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION",
+        "status": "ready-next",
+        "reason": "Read-first surfaces are proven; reliable table-field proof is still missing, so only a conservative local write-gate review is ready."
+      },
+      {
+        "caseId": "FOUNDATION-READINESS-DECISION",
+        "status": "ready-after-current",
+        "reason": "Should consume the read-first result and keep Master Data blocked until Foundation is decided."
+      },
+      {
+        "caseId": "Master Data route decisions",
+        "status": "needs-setup-first",
+        "reason": "Master Data remains blocked until Foundation readiness clarifies setup route and posting prerequisites."
+      }
+    ],
+    "queueChangesMade": [],
+    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION",
+    "whySelectedNextCaseIsBest": "The next decision can now evaluate whether a tightly scoped next read-first or metadata gate is justified; setup writes remain locked.",
+    "risksBeforeNextCase": [
+      "Any package create/get-tables/import/export/validate/apply action changes setup metadata or data route state and needs its own gate."
+    ],
+    "requiredPreparation": [
+      "Review screenshot QA and step timeline before allowing any write-capable package action."
+    ]
+  },
+  "safeToFinalizeState": false,
+  "requiresReview": false,
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION"
+}
