@@ -1,17 +1,15 @@
 {
   "schemaVersion": 1,
-  "purpose": "last-run-summary",
-  "runId": "FOUNDATION-READINESS-DECISION-AFTER-PACKAGE-METADATA-PROOF",
   "caseId": "FOUNDATION-READINESS-DECISION",
-  "status": "completed-local-decision-after-package-metadata-proof",
-  "updatedAt": "2026-07-09T00:09:27.058Z",
-  "mode": "universaarl-foundation-local-decision",
+  "resultStatus": "completed-local-decision-after-package-metadata-proof",
+  "completedAt": "2026-07-09T00:09:27.058Z",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
-  "summary": "Foundation Readiness consumed the latest U-VAT325-DISC/Table 325 package metadata proof. Foundation remains useful for training and handbook, but not process-ready. Next is a narrow package field-selection read-first proof; all setup, import/apply, master data, Preview Posting and Posting actions remain locked.",
   "businessCentralOpened": false,
   "playwrightLiveRunExecuted": false,
+  "liveActionsExecuted": false,
   "setupChanged": false,
+  "setupChangeAttempted": false,
   "masterDataChanged": false,
   "draftCreated": false,
   "previewPosting": false,
@@ -19,21 +17,18 @@
   "payment": false,
   "apiShortcut": false,
   "companySwitch": false,
-  "confidentialRealCustomerDataUsed": false,
-  "uiMockupUsed": false,
-  "actionsTaken": [
-    "Consumed the latest package metadata proof into Foundation Readiness.",
-    "Classified Foundation as training/handbook useful but not process-ready.",
-    "Selected FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST as the next narrow read-first case.",
-    "Kept TARGET-073 parked and kept all package/setup/import/posting writes locked."
-  ],
-  "actionsNotTaken": [
-    "Did not open Business Central.",
-    "Did not run Playwright live.",
-    "Did not create, change, delete, import, export, validate or apply a configuration package.",
-    "Did not write setup values.",
-    "Did not create master data, documents, journals, Preview Posting, Posting or payments.",
-    "Did not use API, AL, direct database or other shortcut."
+  "decision": {
+    "foundationStatus": "partial-training-and-handbook-ready-not-process-ready",
+    "packageRouteStatus": "ready-for-field-selection-readfirst",
+    "masterDataStatus": "training-ready-examples-write-gates-still-parked",
+    "processStatus": "o2c-p2p-preview-posting-posting-blocked"
+  },
+  "evidenceConsumed": [
+    "playwright/projects/fibu-book5/evidence/target-075-chart-of-accounts-reopen-and-setup-consistency-check/TARGET-075-result.json",
+    "playwright/projects/fibu-book5/evidence/pws-ff-002b-page314-navigation-capture-recovery/PWS-FF-002B-result.json",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-one-metadata-action-execute/result.json",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    "playwright/projects/fibu-book5/UNIVERSAARL-FOUNDATION-SETUP-FIELD-MAP.md"
   ],
   "proved": [
     "TARGET-075 and follow-up evidence are sufficient for Foundation orientation, training boundaries and local route decisions.",
@@ -49,7 +44,25 @@
     "No setup-ready Master Data state.",
     "No O2C/P2P, Preview Posting, Posting, ledger, VAT Entries or UAT acceptance."
   ],
-  "evidencePath": "playwright/projects/fibu-book5/evidence/foundation-readiness-decision/result.json",
+  "actionsTaken": [
+    "Consumed the latest package metadata proof into Foundation Readiness.",
+    "Classified Foundation as training/handbook useful but not process-ready.",
+    "Selected FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST as the next narrow read-first case.",
+    "Kept TARGET-073 parked and kept all package/setup/import/posting writes locked."
+  ],
+  "actionsNotTaken": [
+    "Did not open Business Central.",
+    "Did not run Playwright live.",
+    "Did not create, change, delete, import, export, validate or apply a configuration package.",
+    "Did not write setup values.",
+    "Did not create master data, documents, journals, Preview Posting, Posting or payments.",
+    "Did not use API, AL, direct database or other shortcut."
+  ],
+  "warnings": [
+    "Table 325 package metadata is not VAT setup evidence.",
+    "Field selection may itself become a metadata write if checkboxes or selections are changed; the next case must stop before toggles.",
+    "Master Data examples remain useful for training and handbook, but not for O2C/P2P process execution."
+  ],
   "nextStepDecision": {
     "currentCase": "FOUNDATION-READINESS-DECISION",
     "plannedNextCaseBeforeReview": "FOUNDATION-READINESS-DECISION",
@@ -94,6 +107,5 @@
       "Respect rejected_route_register.json."
     ]
   },
-  "nextCase": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST",
-  "nextStep": "Run only the guarded read-first/no-write package field-selection proof after checks. Stop before any checkbox, select-fields, import, export, validate, apply or setup value. Use a multi-step screenshot chain with at least five accepted checkpoints."
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST"
 }

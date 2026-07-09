@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST",
+  "status": "planned-readfirst",
+  "caseType": "read-first-no-write",
+  "mode": "universaarl-foundation-readfirst",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w1-foundation",
+  "goal": "Prove read-first whether the existing U-VAT325-DISC package and its Table 325 line expose field-selection or field-list context that is clear enough for a later setup/import/write gate.",
+  "whyNow": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE proved that Table 325 package metadata is already visible. The next material question is field visibility and selection boundary, not another package metadata action.",
+  "businessPurpose": "Confirm whether Configuration Packages remain a realistic, auditable Foundation setup route for Universaarl before any VAT or posting setup write is prepared.",
+  "mustRead": [
+    ".agent/OPERATING-KERNEL.md",
+    ".agent/state/current.json",
+    ".agent/state/rejected_route_register.json",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-one-metadata-action-execute/result.json",
+    "playwright/projects/fibu-book5/UNIVERSAARL-FOUNDATION-SETUP-FIELD-MAP.md"
+  ],
+  "allowedActions": [
+    "validate-playthru-context-readonly",
+    "validate-universaarl-company-context-readonly",
+    "open-existing-configuration-package-readonly",
+    "inspect-existing-table-325-line-readonly",
+    "inspect-field-selection-surface-readonly",
+    "capture-screenshot-chain",
+    "capture-visual-state-json",
+    "write-readfirst-result-json"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "continue-target-073",
+    "type-business-central-values",
+    "create-configuration-package",
+    "rename-configuration-package",
+    "edit-configuration-package-header",
+    "get-tables",
+    "add-table",
+    "remove-table",
+    "toggle-field-selection",
+    "select-fields",
+    "import-configuration-package",
+    "export-configuration-package",
+    "validate-configuration-package",
+    "apply-configuration-package",
+    "edit-in-excel",
+    "write-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "cleanup-delete",
+    "api-shortcut",
+    "company-switch"
+  ],
+  "requiredSkills": [
+    "read-first-page-proof",
+    "screenshot-qa",
+    "bc-navigation",
+    "state-sync-check"
+  ],
+  "skills": [
+    "read-first-page-proof",
+    "screenshot-qa",
+    "bc-navigation",
+    "state-sync-check"
+  ],
+  "requiredHelpers": [
+    "bc-visual-state-capture",
+    "scripts/agent/rejected-route-check.mjs",
+    "scripts/agent/read-first-no-write-case-readiness-check.mjs"
+  ],
+  "requiredChecks": [
+    "agent:preflight",
+    "agent:active-readiness",
+    "agent:dry-run",
+    "agent:run-plan",
+    "agent:rejected-routes:check",
+    "check:encoding",
+    "git diff --check"
+  ],
+  "expectedOutput": [
+    "Read-first Result JSON with screenshots, visual-state JSON and step timeline.",
+    "Clear verdict: ready-for-write-gate, ready-for-more-readfirst, parked or rejected.",
+    "Explicit notProved boundaries for setup values, VAT correctness, posting readiness, import/apply and UAT."
+  ],
+  "stopConditions": [
+    "Stop if Business Central is not playthru or Company is not UNIVERSAARL-DE.",
+    "Stop if U-VAT325-DISC or the Table 325 line is not clearly visible after navigation.",
+    "Stop before any checkbox, field-selection toggle, import, export, validate, apply, edit-in-excel, setup value or save action.",
+    "Stop if the surface is only Tell-Me/search overlay, Role Center background or an ambiguous pane without target proof.",
+    "Stop if the route repeats an entry in rejected_route_register.json without a materially new hypothesis."
+  ],
+  "rejectedRoutesToRespect": [
+    "RR-FOUNDATION-PAGE314-GRID-LIST-EDIT-RETRY",
+    "RR-FOUNDATION-PAGE470-VAT-BUSINESS-GROUPS-SEARCH-RETRY",
+    "RR-FOUNDATION-PAGE472-ACTIVE-EDITOR-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGES-ESCAPE-TELLME-RETRY"
+  ],
+  "nextCaseOptions": [
+    {
+      "caseId": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-WRITE-GATE-DECISION",
+      "when": "Use only if field-selection context is visible and a later gate can name exactly which field-selection action is safe, reversible or keep-worthy.",
+      "liveType": "local-decision-before-write"
+    },
+    {
+      "caseId": "FOUNDATION-SETUP-PACKAGE-IMPORT-VALIDATE-APPLY-GATE-DECISION",
+      "when": "Use only after fields, values, validation, error handling and keep/cleanup strategy are explicitly mapped.",
+      "liveType": "local-decision-before-write"
+    },
+    {
+      "caseId": "FOUNDATION-READINESS-DECISION",
+      "when": "Use if the package route should be consumed back into the Foundation boundary before more live work.",
+      "liveType": "local-no-live-decision"
+    },
+    {
+      "caseId": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE",
+      "when": "Use if field-selection or package route remains too risky or unclear.",
+      "liveType": "local-no-live-decision"
+    }
+  ],
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST"
+}

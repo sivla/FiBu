@@ -19,9 +19,11 @@
 
 `UNIVERSAARL-DE` hat genug echte Oberflaechen- und Stammdaten-Evidence fuer Schulung, Handbuch und weitere lokale Routenentscheidungen. Das ist noch keine Prozessfreigabe.
 
+- Nach `FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE` ist der fruehere Stand "`U-VAT325-DISC` mit 0 Tabellen" ueberholt: Die Paketkarte zeigt jetzt eine vorhandene Tabellenzeile fuer Table 325 / VAT Posting Setup. Das beweist nur Paketmetadaten, nicht USt-Setup, keine Setupwerte und keine Posting Readiness.
+- Aktueller naechster Case: `FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST`. Dieser Lauf darf nur lesend pruefen, ob die vorhandene Table-325-Zeile Feld-/Auswahlkontext sichtbar macht. Er stoppt vor Checkboxen, Feldselektion, Import, Export, Validate, Apply, Edit in Excel und jedem Setupwert.
 - Als Schulungs-/Handbuchsubstanz nutzbar: Kontenplan-Starterkonten, Nummernserien, Dimensionsliste/-werte, Debitor `U-CUST-100 / Saarland Maschinenbau AG`, Artikel `U-ITEM-HW100 / Steuerbox Standard U100`.
 - Weiterhin blockierend fuer O2C/P2P, Preview und Posting: VAT Business Posting Groups Page 470, vollstaendige VAT-/USt-Buchungsmatrix, Buchungsmatrix Einrichtung / General Posting Setup, Page-314-/Page-472-Schreibroute, globale/default Dimensionen, VAT-/Posting-Finalitaet.
-- Naechste sinnvolle Arbeit: keine weitere Wiederholung abgeschlossener VAT-, Kontenplan-, Debitoren- oder Artikel-Read-first-Cases. Als naechster konkreter Projektbaustein braucht Foundation eine Route-Entscheidung: Was wird fuer eine realistische Universaarl-Implementierung manuell per UI nachgewiesen, was besser ueber Konfigurationspaket/Import vorbereitet wird, und welche offenen Gaps bleiben bewusst als Prozessgrenze geparkt?
+- Naechste sinnvolle Arbeit: keine weitere Wiederholung abgeschlossener VAT-, Kontenplan-, Debitoren- oder Artikel-Read-first-Cases. Der engste naechste Foundation-Baustein ist der Field-Selection-Readfirst auf dem vorhandenen Paketmetadatenstand.
 - Datenregel: realistische fiktive Universaarl-Daten verwenden, keine UI-Mockups und keine vertraulichen echten Kundendaten.
 - Buchmaster-Anker: Kapitel 9 enthaelt jetzt einen Universaarl-Abschnitt zu `U-CUST-100` und `U-ITEM-HW100`. Dieser Abschnitt ist fuer Schulung und Handbuch nutzbar, aber nicht als Prozessfreigabe zu lesen.
 - Screenshot-QA fuer naechsten Live-Proof: Der naechste read-first VAT-/Posting-Setup- oder Foundation-Refresh-Lauf muss eine Bildkette mit mindestens fuenf akzeptierten Checkpoints erfassen: Startkontext, Navigationsweg, Zielseite, relevanter Button/Tooltip oder Action-Kontext, Zielzeile/FastTab/FactBox-Kontext, optional Page Inspection sowie explizite Grenze. Ein einzelner End-Screenshot reicht fuer Page- oder Feldclaims nicht mehr aus.
@@ -172,7 +174,7 @@ PWS-FF-001 hat die Nummernserien-Seite read-only beobachtet: sieben Universaarl-
 - Quelle: playwright/projects/fibu-book5/evidence/foundation-setup-package-keep-cleanup-decision/result.json
 - Status: completed-local-decision
 - Entscheidung: `U-VAT325-DISC` bleibt als `parked-route-candidate` erhalten. Es wird jetzt nicht geloescht und nicht fuer Setup wiederverwendet.
-- Begruendung: Die Metadatenzeile mit 0 Tabellen/0 Datensaetzen ist als bestehendes Admin-Artefakt harmlos genug, um sie vorerst stehen zu lassen. Loeschen waere ein unnoetiger Cleanup-Write; Wiederverwendung waere ohne genaue Tabellen-/Feld-Mapping-Entscheidung fachlich zu frueh.
+- Aktualisierung nach spaeterem Paketkartenproof: Die alte 0-Tabellen-Sicht ist historisch. `U-VAT325-DISC` zeigt inzwischen eine vorhandene Table-325-Paketmetadatenzeile. Loeschen waere weiterhin ein unnoetiger Cleanup-Write; Wiederverwendung fuer Setup bleibt ohne genaue Feld-/Werte-/Validierungsentscheidung fachlich zu frueh.
 - Naechster Case: `FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION`, lokal/no-live. Dort wird entschieden, ob Konfigurationspakete fuer die naechsten Foundation-Gaps besser sind als manuelle UI, Assisted Setup oder andere Standardwege.
 - Weiterhin gesperrt: Business Central oeffnen, Playwright live ausfuehren, Paketaktionen, Setupwerte, Stammdaten, Belege, Preview Posting und Posting.
 
@@ -410,7 +412,7 @@ Erlaubte Anschlussklassifikationen:
 
 ## Naechster Case
 
-- `FOUNDATION-SETUP-ROUTE-DECISION` als naechster lokaler Projektbaustein vorbereiten: VAT-/Posting-Boundaries in eine realistische Implementierungsroute ueberfuehren. Kandidaten sind manueller Standard-UI-Weg, Konfigurationspaket/Import, source-backed Page Inspection oder bewusstes Parken als Prozessgrenze. Keine BC-Live-Ausfuehrung, kein Speichern, kein Import, kein O2C/P2P in diesem Entscheidungsschritt.
+- `FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST` als naechster enger Foundation-Baustein vorbereiten: vorhandene Table-325-Paketmetadaten nur lesend bis zum Feld-/Auswahlkontext verfolgen. Keine Feldselektion, kein Import, kein Validate/Apply, kein Speichern, kein O2C/P2P in diesem Schritt.
 
 ## FOUNDATION-SETUP-ROUTE-DECISION
 

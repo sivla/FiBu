@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FOUNDATION-READINESS-DECISION",
-  "status": "active-local-decision",
+  "status": "completed-local-decision",
   "mode": "universaarl-foundation-readfirst",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -62,44 +62,50 @@
   ],
   "nextStepDecision": {
     "currentCase": "FOUNDATION-READINESS-DECISION",
-    "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE",
-    "lastEvidenceSummary": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE proved U-VAT325-DISC package card and existing Table 325 package metadata line in playthru / UNIVERSAARL-DE. No package metadata write, setup value, import/export/validate/apply, master data, preview or posting occurred.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "The package-route verdict should now be consumed into Foundation Readiness instead of expanding package work.",
+    "plannedNextCaseBeforeReview": "FOUNDATION-READINESS-DECISION",
+    "lastEvidenceSummary": "U-VAT325-DISC shows existing Table 325 package metadata; no setup or package write occurred.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Foundation Readiness is now consumed enough to choose the next concrete route proof instead of staying in review.",
     "lookaheadReviewed": [
       {
-        "caseId": "FOUNDATION-READINESS-DECISION",
+        "caseId": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST",
         "status": "ready-next",
-        "reason": "Consumes Table 325 package-metadata evidence and keeps VAT/setup/posting claims bounded."
+        "reason": "It is the smallest materially new proof for whether package-field handling can support Foundation setup without writing values."
       },
       {
-        "caseId": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE",
+        "caseId": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-WRITE-GATE-DECISION",
         "status": "ready-after-current",
-        "reason": "Use only if Foundation Readiness decides the package route is too risky or too narrow for setup preparation."
+        "reason": "Only after read-first field-selection proof names a safe later action."
       },
       {
-        "caseId": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
+        "caseId": "FOUNDATION-SETUP-PACKAGE-IMPORT-VALIDATE-APPLY-GATE-DECISION",
         "status": "needs-setup-first",
-        "reason": "Master Data routes still depend on Foundation gaps and the package-route boundary."
+        "reason": "Import/validate/apply requires field selection, values, validation and error strategy first."
+      },
+      {
+        "caseId": "O2C/P2P process cases",
+        "status": "blocked",
+        "reason": "Posting/VAT readiness is not proven."
       }
     ],
     "queueChangesMade": [
-      "Completed the one-action execute case without package metadata change because Table 325 was already visible.",
-      "Handed off to Foundation Readiness instead of another package action."
+      "Selected FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST as next concrete Foundation route proof.",
+      "Kept Master Data writes, O2C/P2P, Preview Posting and Posting blocked."
     ],
-    "selectedNextCase": "FOUNDATION-READINESS-DECISION",
-    "whySelectedNextCaseIsBest": "It converts fresh package evidence into project steering without broadening live actions.",
+    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST",
+    "whySelectedNextCaseIsBest": "It tests the next unknown in the configuration-package route while preserving no-write boundaries.",
     "risksBeforeNextCase": [
-      "Package metadata is not VAT setup and must not be treated as posting readiness.",
-      "Further package actions need separate setup/import/write gates."
+      "Field checkboxes or selection actions may write package metadata.",
+      "A visible package table line can be mistaken for setup correctness."
     ],
     "requiredPreparation": [
-      "Use the new result and step timeline as evidence input.",
-      "Keep Master Data, Preview Posting and Posting parked until Foundation readiness explicitly unlocks them.",
-      "Next live proof must use a screenshot chain with at least five accepted checkpoints: start context, navigation, target page, action/tooltip context and relevant row/FastTab/FactBox context."
+      "Use multi-step screenshot chain and visual-state JSON with at least five accepted checkpoints.",
+      "Stop before any checkbox/toggle, select-fields, import, export, validate, apply or setup value.",
+      "Respect rejected_route_register.json."
     ]
   },
-  "nextCase": "FOUNDATION-READINESS-DECISION",
-  "preparedNextCaseFile": ".agent/state/cases/foundation-readiness-decision.json",
-  "updatedAt": "2026-07-09T00:03:17.140Z"
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST",
+  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-package-field-selection-readfirst.json",
+  "updatedAt": "2026-07-09T00:09:27.058Z",
+  "resultPath": "playwright/projects/fibu-book5/evidence/foundation-readiness-decision/result.json"
 }

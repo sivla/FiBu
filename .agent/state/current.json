@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-09T00:03:17.135Z",
+  "updatedAt": "2026-07-09T00:09:27.058Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -15,9 +15,9 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w1-foundation",
-  "activeCase": "FOUNDATION-READINESS-DECISION",
-  "active_case_file": ".agent/state/cases/foundation-readiness-decision.json",
-  "activeCaseFile": ".agent/state/cases/foundation-readiness-decision.json",
+  "activeCase": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST",
+  "active_case_file": ".agent/state/cases/foundation-setup-package-field-selection-readfirst.json",
+  "activeCaseFile": ".agent/state/cases/foundation-setup-package-field-selection-readfirst.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-foundation-readfirst",
@@ -42,12 +42,14 @@
     "git diff --check"
   ],
   "allowedActions": [
-    "read-foundation-evidence",
-    "update-foundation-readiness-decision",
-    "classify-page314-as-foundation-gap-or-new-route-needed",
-    "keep-master-data-parked",
-    "update-state-summary",
-    "write-local-project-artifacts"
+    "validate-playthru-context-readonly",
+    "validate-universaarl-company-context-readonly",
+    "open-existing-configuration-package-readonly",
+    "inspect-existing-table-325-line-readonly",
+    "inspect-field-selection-surface-readonly",
+    "capture-screenshot-chain",
+    "capture-visual-state-json",
+    "write-readfirst-result-json"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -55,11 +57,21 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "open-business-central",
-    "run-playwright-live",
     "continue-target-073",
-    "repeat-pws-ff-002b-without-new-route-hypothesis",
     "type-business-central-values",
+    "create-configuration-package",
+    "rename-configuration-package",
+    "edit-configuration-package-header",
+    "get-tables",
+    "add-table",
+    "remove-table",
+    "toggle-field-selection",
+    "select-fields",
+    "import-configuration-package",
+    "export-configuration-package",
+    "validate-configuration-package",
+    "apply-configuration-package",
+    "edit-in-excel",
     "write-setup",
     "create-master-data",
     "create-document-or-draft",
@@ -68,13 +80,11 @@
     "payment",
     "cleanup-delete",
     "api-shortcut",
-    "company-switch",
-    "claim-posting-readiness",
-    "claim-master-data-readiness"
+    "company-switch"
   ],
-  "nextCase": "FOUNDATION-READINESS-DECISION",
-  "nextStep": "Consume FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE into Foundation Readiness. No further package live action before the Foundation decision names a new setup/import/write gate. Next live proof must use a multi-step screenshot chain with at least five accepted checkpoints before any page, FastTab, field or setup-readiness claim.",
-  "preparedNextCaseFile": ".agent/state/cases/foundation-readiness-decision.json",
+  "nextCase": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST",
+  "nextStep": "Run only the guarded read-first/no-write package field-selection proof after checks. Stop before any checkbox, select-fields, import, export, validate, apply or setup value. Use a multi-step screenshot chain with at least five accepted checkpoints.",
+  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-package-field-selection-readfirst.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -208,14 +218,12 @@
     "nextBoundary": "Master Data remains parked. Next work must update Foundation Readiness and either accept this as a Foundation gap or define a genuinely new Page 314 route hypothesis before another live attempt."
   },
   "activeNextStepAuthority": {
-    "source": "playwright/projects/fibu-book5/evidence/foundation-setup-package-one-metadata-action-execute/result.json",
-    "selectedNextCase": "FOUNDATION-READINESS-DECISION",
-    "activeCaseFile": ".agent/state/cases/foundation-readiness-decision.json",
-    "preparedNextCaseFile": ".agent/state/cases/foundation-readiness-decision.json",
+    "source": "playwright/projects/fibu-book5/evidence/foundation-readiness-decision/result.json",
+    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST",
+    "activeCaseFile": ".agent/state/cases/foundation-setup-package-field-selection-readfirst.json",
+    "preparedNextCaseFile": ".agent/state/cases/foundation-setup-package-field-selection-readfirst.json",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "The one-action package metadata execute case completed and selected Foundation Readiness as the next local no-live decision.",
-    "recommendedNextCaseAfterLocalDecision": "FOUNDATION-READINESS-DECISION",
-    "recommendedNextCaseFile": ".agent/state/cases/foundation-readiness-decision.json",
+    "reason": "Foundation Readiness consumed the latest package metadata proof and selected the next materially new package-field read-first proof.",
     "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md"
   },
@@ -331,8 +339,8 @@
     "currentLiveBoundary": {
       "freezeActive": false,
       "parkedCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-      "resumePilot": "FOUNDATION-READINESS-DECISION",
-      "resumePilotMode": "local-no-live-decision"
+      "resumePilot": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST",
+      "resumePilotMode": "read-first-no-writes"
     },
     "legacyScriptGuard": {
       "script": "agent:legacy:active-check",
@@ -412,9 +420,9 @@
   },
   "freezeStatus": {
     "status": "lifted-readfirst",
-    "caseId": "FOUNDATION-READINESS-DECISION",
+    "caseId": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST",
     "frozenLiveCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-    "resumeCandidateAfterFreeze": "FOUNDATION-READINESS-DECISION",
+    "resumeCandidateAfterFreeze": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST",
     "completedLocalCheckpoint": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
     "planFile": ".agent/PROJECT-IMPROVEMENT-PLAN.md",
     "latestPostFreezeCase": "FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE",
@@ -12217,5 +12225,26 @@
     ],
     "nextCase": "FOUNDATION-READINESS-DECISION",
     "boundary": "Table 325 package metadata is visible, but this is not VAT setup, posting readiness, master-data readiness or UAT acceptance."
+  },
+  "latestFoundationReadinessDecision": {
+    "caseId": "FOUNDATION-READINESS-DECISION",
+    "status": "completed-local-decision-after-package-metadata-proof",
+    "resultPath": "playwright/projects/fibu-book5/evidence/foundation-readiness-decision/result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "decision": {
+      "foundationStatus": "partial-training-and-handbook-ready-not-process-ready",
+      "packageRouteStatus": "ready-for-field-selection-readfirst",
+      "masterDataStatus": "training-ready-examples-write-gates-still-parked",
+      "processStatus": "o2c-p2p-preview-posting-posting-blocked"
+    },
+    "nextCase": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST",
+    "updatedAt": "2026-07-09T00:09:27.058Z"
   }
 }

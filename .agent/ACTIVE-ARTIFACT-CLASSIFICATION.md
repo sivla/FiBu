@@ -12,8 +12,8 @@ Last reviewed: 2026-07-06
 - Live status: Post-TARGET-075 read-first handoff is valid; local no-live Foundation decisions may run without reopening TARGET-075 as active normal state.
 - Concrete TARGET-075 runbook: `.agent/TARGET-075-PILOT-READINESS.md`; after TARGET-075, `FOUNDATION-READINESS-DECISION.md` is the handoff authority.
 - Parked live case: `TARGET-073`
-- Active local/live-readfirst case: `FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION`
-- Foundation rule: Konfigurationspakete are the realistic target route for initial company/Foundation setup, but package writes/import/apply still require their own gated case.
+- Active local/live-readfirst case: `FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST`
+- Foundation rule: Konfigurationspakete are the realistic target route for initial company/Foundation setup. `U-VAT325-DISC` now shows a Table 325 package metadata line, but field selection, package writes, import, validate and apply still require their own gated case.
 
 ## Classification rules
 

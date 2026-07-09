@@ -16,7 +16,8 @@ const localNoLiveCases = new Set([
 const readFirstNoWriteCases = new Set([
   'FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST',
   'FOUNDATION-SETUP-PACKAGE-CARD-TABLES-READFIRST',
-  'FOUNDATION-SETUP-PACKAGE-CARD-DETAIL-READFIRST'
+  'FOUNDATION-SETUP-PACKAGE-CARD-DETAIL-READFIRST',
+  'FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST'
 ]);
 const selectedCaseIsLocalNoLive = localNoLiveCases.has(selectedNextCase);
 const selectedCaseIsReadFirstNoWrite = readFirstNoWriteCases.has(selectedNextCase);
