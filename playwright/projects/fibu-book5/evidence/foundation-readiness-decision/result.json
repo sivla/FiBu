@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "caseId": "FOUNDATION-READINESS-DECISION",
-  "resultStatus": "completed-local-decision-after-package-metadata-proof",
-  "completedAt": "2026-07-09T00:09:27.058Z",
+  "resultStatus": "completed-local-decision-after-package-route-park",
+  "completedAt": "2026-07-09T01:05:00.000Z",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "businessCentralOpened": false,
@@ -19,7 +19,7 @@
   "companySwitch": false,
   "decision": {
     "foundationStatus": "partial-training-and-handbook-ready-not-process-ready",
-    "packageRouteStatus": "ready-for-field-selection-readfirst",
+    "packageRouteStatus": "parked-specific-u-vat325-disc-field-selection-route",
     "masterDataStatus": "training-ready-examples-write-gates-still-parked",
     "processStatus": "o2c-p2p-preview-posting-posting-blocked"
   },
@@ -27,27 +27,30 @@
     "playwright/projects/fibu-book5/evidence/target-075-chart-of-accounts-reopen-and-setup-consistency-check/TARGET-075-result.json",
     "playwright/projects/fibu-book5/evidence/pws-ff-002b-page314-navigation-capture-recovery/PWS-FF-002B-result.json",
     "playwright/projects/fibu-book5/evidence/foundation-setup-package-one-metadata-action-execute/result.json",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-field-selection-readfirst/result.json",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-route-park-or-alternative-decision/result.json",
     "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
     "playwright/projects/fibu-book5/UNIVERSAARL-FOUNDATION-SETUP-FIELD-MAP.md"
   ],
   "proved": [
     "TARGET-075 and follow-up evidence are sufficient for Foundation orientation, training boundaries and local route decisions.",
-    "U-VAT325-DISC package card shows an existing Table 325 / VAT Posting Setup metadata line.",
+    "The corrected package field-selection proof is useful only as package-card UI context.",
     "No package metadata write, setup value, import/export/validate/apply, master data, document, Preview Posting or Posting occurred in the latest package proof.",
-    "The Configuration Package route remains realistic for Foundation setup preparation, but only as a gated route with field-selection read-first proof before any write/import/apply action."
+    "The concrete U-VAT325-DISC field-selection route is parked because no reliable Table 325 line or safe field-selection context was proven."
   ],
   "notProved": [
     "No complete General Posting Setup correctness.",
     "No complete VAT Posting Setup correctness.",
-    "No field-selection route for package fields.",
+    "No safe field-selection route for package fields.",
     "No package import/export/validate/apply route.",
     "No setup-ready Master Data state.",
     "No O2C/P2P, Preview Posting, Posting, ledger, VAT Entries or UAT acceptance."
   ],
   "actionsTaken": [
-    "Consumed the latest package metadata proof into Foundation Readiness.",
+    "Consumed the latest package field-selection blocker into Foundation Readiness.",
     "Classified Foundation as training/handbook useful but not process-ready.",
-    "Selected FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST as the next narrow read-first case.",
+    "Parked the concrete U-VAT325-DISC field-selection route.",
+    "Selected FOUNDATION-READINESS-DECISION as the next local no-live consumer.",
     "Kept TARGET-073 parked and kept all package/setup/import/posting writes locked."
   ],
   "actionsNotTaken": [
@@ -59,8 +62,9 @@
     "Did not use API, AL, direct database or other shortcut."
   ],
   "warnings": [
-    "Table 325 package metadata is not VAT setup evidence.",
-    "Field selection may itself become a metadata write if checkboxes or selections are changed; the next case must stop before toggles.",
+    "Package names or codes containing 325 must not be treated as Table 325 line proof.",
+    "Field-count columns are not VAT setup evidence.",
+    "Field selection may itself become a metadata write if checkboxes or selections are changed.",
     "Master Data examples remain useful for training and handbook, but not for O2C/P2P process execution."
   ],
   "nextStepDecision": {
@@ -71,19 +75,19 @@
     "reason": "Foundation Readiness is now consumed enough to choose the next concrete route proof instead of staying in review.",
     "lookaheadReviewed": [
       {
-        "caseId": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST",
+        "caseId": "FOUNDATION-READINESS-DECISION",
         "status": "ready-next",
-        "reason": "It is the smallest materially new proof for whether package-field handling can support Foundation setup without writing values."
+        "reason": "Consumes the package-route blocker into the overall Foundation boundary."
       },
       {
         "caseId": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-WRITE-GATE-DECISION",
-        "status": "ready-after-current",
-        "reason": "Only after read-first field-selection proof names a safe later action."
+        "status": "blocked",
+        "reason": "No safe field-selection context was proven."
       },
       {
         "caseId": "FOUNDATION-SETUP-PACKAGE-IMPORT-VALIDATE-APPLY-GATE-DECISION",
-        "status": "needs-setup-first",
-        "reason": "Import/validate/apply requires field selection, values, validation and error strategy first."
+        "status": "blocked",
+        "reason": "Import/validate/apply needs field selection, values, validation and error strategy first."
       },
       {
         "caseId": "O2C/P2P process cases",
@@ -92,20 +96,20 @@
       }
     ],
     "queueChangesMade": [
-      "Selected FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST as next concrete Foundation route proof.",
+      "Parked the current U-VAT325-DISC field-selection route.",
+      "Selected FOUNDATION-READINESS-DECISION as the next local no-live consumer.",
       "Kept Master Data writes, O2C/P2P, Preview Posting and Posting blocked."
     ],
-    "selectedNextCase": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST",
-    "whySelectedNextCaseIsBest": "It tests the next unknown in the configuration-package route while preserving no-write boundaries.",
+    "selectedNextCase": "FOUNDATION-READINESS-DECISION",
+    "whySelectedNextCaseIsBest": "Foundation Readiness must record the package-route limit before another setup route is selected.",
     "risksBeforeNextCase": [
-      "Field checkboxes or selection actions may write package metadata.",
-      "A visible package table line can be mistaken for setup correctness."
+      "Treating package UI context as setup readiness.",
+      "Repeating the same package route without a new hypothesis."
     ],
     "requiredPreparation": [
-      "Use multi-step screenshot chain and visual-state JSON.",
-      "Stop before any checkbox/toggle, select-fields, import, export, validate, apply or setup value.",
-      "Respect rejected_route_register.json."
+      "Consume this result into FOUNDATION-READINESS-DECISION.",
+      "Do not run Business Central or Playwright in the next local decision unless the case changes."
     ]
   },
-  "nextCase": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST"
+  "nextCase": "FOUNDATION-READINESS-DECISION"
 }

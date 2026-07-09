@@ -19,11 +19,11 @@
 
 `UNIVERSAARL-DE` hat genug echte Oberflaechen- und Stammdaten-Evidence fuer Schulung, Handbuch und weitere lokale Routenentscheidungen. Das ist noch keine Prozessfreigabe.
 
-- Nach `FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE` ist der fruehere Stand "`U-VAT325-DISC` mit 0 Tabellen" ueberholt: Die Paketkarte zeigt jetzt eine vorhandene Tabellenzeile fuer Table 325 / VAT Posting Setup. Das beweist nur Paketmetadaten, nicht USt-Setup, keine Setupwerte und keine Posting Readiness.
-- Aktueller naechster Case: `FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST`. Dieser Lauf darf nur lesend pruefen, ob die vorhandene Table-325-Zeile Feld-/Auswahlkontext sichtbar macht. Er stoppt vor Checkboxen, Feldselektion, Import, Export, Validate, Apply, Edit in Excel und jedem Setupwert.
+- Nach `FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST` ist der fruehere Table-325-Metadatenstand fachlich enger zu lesen: Die Paketkarte `U-VAT325-DISC` ist sichtbar, aber der korrigierte Screenshot-/Text-Gate beweist keine belastbar sichtbare Table-325-Zeile und keinen sicheren Feldauswahlkontext. `325` im Paketcode oder Paketnamen ist kein Tabellenzeilenbeweis.
+- Aktueller naechster Case: `FOUNDATION-READINESS-DECISION` bleibt lokal/no-live. Diese Entscheidung konsumiert den Paketroute-Blocker und haelt Field-Selection-Write, Import, Validate, Apply, Setup-Writes, Master Data, Preview Posting und Posting gesperrt, bis eine materiell neue Route existiert.
 - Als Schulungs-/Handbuchsubstanz nutzbar: Kontenplan-Starterkonten, Nummernserien, Dimensionsliste/-werte, Debitor `U-CUST-100 / Saarland Maschinenbau AG`, Artikel `U-ITEM-HW100 / Steuerbox Standard U100`.
 - Weiterhin blockierend fuer O2C/P2P, Preview und Posting: VAT Business Posting Groups Page 470, vollstaendige VAT-/USt-Buchungsmatrix, Buchungsmatrix Einrichtung / General Posting Setup, Page-314-/Page-472-Schreibroute, globale/default Dimensionen, VAT-/Posting-Finalitaet.
-- Naechste sinnvolle Arbeit: keine weitere Wiederholung abgeschlossener VAT-, Kontenplan-, Debitoren- oder Artikel-Read-first-Cases. Der engste naechste Foundation-Baustein ist der Field-Selection-Readfirst auf dem vorhandenen Paketmetadatenstand.
+- Naechste sinnvolle Arbeit: keine weitere Wiederholung abgeschlossener VAT-, Kontenplan-, Debitoren-, Artikel- oder Paketkarten-Read-first-Cases. Der engste naechste Foundation-Baustein ist eine lokale Foundation-Readiness-Einordnung: Welche Setup-Grenzen sind bewusst akzeptierte Trainingsgrenzen, welche brauchen eine neue Quelle/Route, und was bleibt fuer Master Data und Prozesse gesperrt?
 - Datenregel: realistische fiktive Universaarl-Daten verwenden, keine UI-Mockups und keine vertraulichen echten Kundendaten.
 - Buchmaster-Anker: Kapitel 9 enthaelt jetzt einen Universaarl-Abschnitt zu `U-CUST-100` und `U-ITEM-HW100`. Dieser Abschnitt ist fuer Schulung und Handbuch nutzbar, aber nicht als Prozessfreigabe zu lesen.
 - Screenshot-QA fuer naechsten Live-Proof: Der naechste read-first VAT-/Posting-Setup- oder Foundation-Refresh-Lauf muss eine Bildkette mit mindestens fuenf akzeptierten Checkpoints erfassen: Startkontext, Navigationsweg, Zielseite, relevanter Button/Tooltip oder Action-Kontext, Zielzeile/FastTab/FactBox-Kontext, optional Page Inspection sowie explizite Grenze. Ein einzelner End-Screenshot reicht fuer Page- oder Feldclaims nicht mehr aus.
@@ -139,10 +139,12 @@ PWS-FF-001 hat die Nummernserien-Seite read-only beobachtet: sieben Universaarl-
 
 ## FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION
 
-- Status: withdrawn-before-commit
-- Entscheidung: Der lokale Park-Entschluss wurde zurueckgenommen, weil die bessere Diagnose ein Tell-Me-Helper-/Screenshot-QA-Problem ist.
-- Grenze: Die Route ist nach Helper-Korrektur read-first bewiesen, aber nicht als Setup- oder Importweg freigegeben.
-- Naechster Case: `FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION`.
+- Quelle: playwright/projects/fibu-book5/evidence/foundation-setup-package-route-park-or-alternative-decision/result.json
+- Status: completed-local-decision-package-route-parked
+- Entscheidung: Die konkrete `U-VAT325-DISC`-Feldselektionsroute ist geparkt. Der korrigierte Read-first-Proof zeigt Paketkarte und Feldzaehlspalten, aber keine belastbare Table-325-Zeile und keinen sicheren Feldauswahlkontext.
+- Grenze: Konfigurationspakete bleiben als realistischer Implementierungsweg fuer ein echtes Kundenprojekt plausibel. Diese konkrete Paketkartenroute darf aber nicht in Field-Selection-Write, Import, Validate, Apply oder Setup-Writes uebergehen, solange keine materiell neue Hypothese existiert.
+- Wiederaufnahme nur mit neuer Grundlage: neuer Helper, neue UI-Erkenntnis, offizielle Quelle, andere BC-Oberflaeche, anderer Zweck oder manuelle Freigabe.
+- Naechster Case: `FOUNDATION-READINESS-DECISION`, lokal/no-live.
 
 ## FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION
 
@@ -412,7 +414,7 @@ Erlaubte Anschlussklassifikationen:
 
 ## Naechster Case
 
-- `FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST` als naechster enger Foundation-Baustein vorbereiten: vorhandene Table-325-Paketmetadaten nur lesend bis zum Feld-/Auswahlkontext verfolgen. Keine Feldselektion, kein Import, kein Validate/Apply, kein Speichern, kein O2C/P2P in diesem Schritt.
+- `FOUNDATION-READINESS-DECISION` lokal abschliessen: den geparkten Paketroute-Blocker in die Foundation-Grenzen aufnehmen. Keine weitere Paketkartenroute, keine Feldselektion, kein Import, kein Validate/Apply, kein Speichern, kein O2C/P2P in diesem Schritt.
 
 ## FOUNDATION-SETUP-ROUTE-DECISION
 
