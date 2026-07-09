@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "caseId": "MASTER-DATA-ROUTE-PACKAGE-VS-UI-DECISION",
+  "status": "prepared-local-no-live",
+  "caseType": "local-no-live-decision",
+  "mode": "universaarl-masterdata-route-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w2-core-masterdata",
+  "goal": "Decide the next realistic Master Data implementation route for customers, vendors and items/services: UI example, template, configuration package, Excel-assisted load or parked.",
+  "whyNow": "Existing read-first evidence is useful for training and handbook preparation, but no Master Data write should happen until the implementation route is selected and bounded.",
+  "businessPurpose": "Make the next Master Data step realistic for a customer project instead of treating UI clicks as the default setup method.",
+  "mustRead": [
+    ".agent/OPERATING-KERNEL.md",
+    ".agent/state/current.json",
+    "playwright/projects/fibu-book5/evidence/master-data-training-handbook-gap-decision/result.json",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    ".agent/state/cases/master-data-training-handbook-gap-decision.json"
+  ],
+  "allowedActions": [
+    "local-master-data-route-review",
+    "local-data-dependency-review",
+    "write-route-decision-result-json",
+    "prepare-one-next-local-or-readfirst-case"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright-live",
+    "write-setup",
+    "create-master-data",
+    "edit-master-data",
+    "change-template",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "company-switch",
+    "edit-book",
+    "claim-foundation-setup-ready",
+    "claim-master-data-ready",
+    "claim-process-ready"
+  ],
+  "requiredSkills": [
+    "bc-setup-route-decision",
+    "state-sync-check"
+  ],
+  "requiredHelpers": [
+    "scripts/agent/local-no-live-case-readiness-check.mjs",
+    "scripts/agent/dry-run.mjs"
+  ],
+  "requiredChecks": [
+    "agent:preflight",
+    "agent:active-readiness",
+    "agent:dry-run",
+    "agent:run-plan",
+    "agent:rejected-routes:check",
+    "check:encoding",
+    "git diff --check"
+  ],
+  "expectedOutput": [
+    "A compact local result JSON comparing UI, Template, Configuration Package and Excel-assisted routes for customer, vendor and item/service setup.",
+    "A nextCase selection that is either a narrow read-first dependency proof or a local write-gate preparation.",
+    "Explicit boundaries for setup readiness, Master Data readiness, training and handbook use."
+  ],
+  "stopConditions": [
+    "Stop if the decision requires opening Business Central or running Playwright live.",
+    "Stop if the output would create or edit Business Central data.",
+    "Stop if the output would make a final book or customer-handbook claim.",
+    "Stop if the route cannot be decided without new source or live evidence; select a read-first dependency case instead."
+  ],
+  "rejectedRoutesToRespect": [
+    "RR-FOUNDATION-PAGE314-GRID-LIST-EDIT-RETRY",
+    "RR-FOUNDATION-PAGE470-VAT-BUSINESS-GROUPS-SEARCH-RETRY",
+    "RR-FOUNDATION-PAGE472-ACTIVE-EDITOR-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGES-ESCAPE-TELLME-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGE-U-VAT325-FIELD-SELECTION-RETRY"
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/master-data-route-package-vs-ui-decision/result.json",
+  "nextCaseOptions": [
+    {
+      "caseId": "CUSTOMER-SETUP-DEPENDENCY-READFIRST",
+      "when": "Use if the route decision needs one fresh customer-page dependency proof before a write gate.",
+      "liveType": "read-first-no-write"
+    },
+    {
+      "caseId": "MASTER-DATA-WRITE-GATE-PREP",
+      "when": "Use only if the route can be prepared without unresolved setup or source dependencies.",
+      "liveType": "local-no-live-decision"
+    },
+    {
+      "caseId": "FOUNDATION-SETUP-DEPENDENCY-RETURN-DECISION",
+      "when": "Use if Master Data routes remain blocked by Foundation setup dependencies.",
+      "liveType": "local-no-live-decision"
+    }
+  ],
+  "decision": "prepared",
+  "selectedNextCase": null,
+  "nextCase": null,
+  "preparedAt": "2026-07-09T08:45:00.000Z"
+}

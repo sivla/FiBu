@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-09T08:05:00.000Z",
+  "updatedAt": "2026-07-09T08:45:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -15,12 +15,12 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w2-core-masterdata",
-  "activeCase": "MASTER-DATA-TRAINING-HANDBOOK-GAP-DECISION",
-  "active_case_file": ".agent/state/cases/master-data-training-handbook-gap-decision.json",
-  "activeCaseFile": ".agent/state/cases/master-data-training-handbook-gap-decision.json",
+  "activeCase": "MASTER-DATA-ROUTE-PACKAGE-VS-UI-DECISION",
+  "active_case_file": ".agent/state/cases/master-data-route-package-vs-ui-decision.json",
+  "activeCaseFile": ".agent/state/cases/master-data-route-package-vs-ui-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-training-handbook-decision",
+  "mode": "universaarl-masterdata-route-decision",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -44,9 +44,9 @@
     "git diff --check"
   ],
   "allowedActions": [
-    "local-training-handbook-gap-review",
+    "local-master-data-route-review",
     "local-data-dependency-review",
-    "write-training-gap-result-json",
+    "write-route-decision-result-json",
     "prepare-one-next-local-or-readfirst-case"
   ],
   "forbiddenActions": [
@@ -72,9 +72,9 @@
     "claim-master-data-ready",
     "claim-process-ready"
   ],
-  "nextCase": "MASTER-DATA-TRAINING-HANDBOOK-GAP-DECISION",
-  "nextStep": "Run MASTER-DATA-TRAINING-HANDBOOK-GAP-DECISION locally/no-live. Classify existing Debitoren-, Kreditoren- and Artikel-read-first evidence into training, handbook and data-route gaps without BC, Playwright live, book edits or writes.",
-  "preparedNextCaseFile": ".agent/state/cases/master-data-training-handbook-gap-decision.json",
+  "nextCase": "MASTER-DATA-ROUTE-PACKAGE-VS-UI-DECISION",
+  "nextStep": "Run MASTER-DATA-ROUTE-PACKAGE-VS-UI-DECISION locally/no-live. Decide whether customers, vendors and items/services should proceed via UI example, template, configuration package, Excel-assisted route or stay parked before any write gate.",
+  "preparedNextCaseFile": ".agent/state/cases/master-data-route-package-vs-ui-decision.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -208,22 +208,22 @@
     "nextBoundary": "Master Data remains parked. Next work must update Foundation Readiness and either accept this as a Foundation gap or define a genuinely new Page 314 route hypothesis before another live attempt."
   },
   "activeNextStepAuthority": {
-    "source": "playwright/projects/fibu-book5/evidence/foundation-master-data-route-refresh-after-setup-parked/result.json",
-    "selectedNextCase": "MASTER-DATA-TRAINING-HANDBOOK-GAP-DECISION",
-    "activeCaseFile": ".agent/state/cases/master-data-training-handbook-gap-decision.json",
-    "preparedNextCaseFile": ".agent/state/cases/master-data-training-handbook-gap-decision.json",
+    "source": "playwright/projects/fibu-book5/evidence/master-data-training-handbook-gap-decision/result.json",
+    "selectedNextCase": "MASTER-DATA-ROUTE-PACKAGE-VS-UI-DECISION",
+    "activeCaseFile": ".agent/state/cases/master-data-route-package-vs-ui-decision.json",
+    "preparedNextCaseFile": ".agent/state/cases/master-data-route-package-vs-ui-decision.json",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "The local Master Data route refresh completed and selected a training/handbook gap decision as the next safe no-live step.",
+    "reason": "The training/handbook gap decision completed and selected a Master Data route decision before any future write gate.",
     "rejectedRoute": "RR-FOUNDATION-CONFIG-PACKAGE-U-VAT325-FIELD-SELECTION-RETRY",
     "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
-    "whySelectedNextCaseIsBest": "It turns existing Universaarl Debitoren-, Kreditoren- and Artikel-read-first observations into practical training, handbook and data-route clarity without weakening the parked Foundation setup boundary.",
+    "whySelectedNextCaseIsBest": "It decides whether UI, templates, configuration packages or Excel-assisted routes are realistic for customers, vendors and items/services before any BC write.",
     "requiredPreparation": [
       "Read only the next case mustRead files.",
-      "Treat PWS-MD evidence as training and handbook input only, not setup-ready or process-ready proof.",
+      "Compare implementation routes locally without opening Business Central.",
       "Stop before Business Central, Playwright live, book edits, setup writes, master data writes or process work."
     ],
-    "updatedAt": "2026-07-09T08:05:00.000Z"
+    "updatedAt": "2026-07-09T08:45:00.000Z"
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -337,7 +337,7 @@
     "currentLiveBoundary": {
       "freezeActive": false,
       "parkedCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-      "resumePilot": "MASTER-DATA-TRAINING-HANDBOOK-GAP-DECISION",
+      "resumePilot": "MASTER-DATA-ROUTE-PACKAGE-VS-UI-DECISION",
       "resumePilotMode": "local-no-live-decision"
     },
     "legacyScriptGuard": {
@@ -12326,7 +12326,25 @@
     "nextCase": "MASTER-DATA-TRAINING-HANDBOOK-GAP-DECISION",
     "updatedAt": "2026-07-09T08:05:00.000Z"
   },
-  "next_case": "MASTER-DATA-TRAINING-HANDBOOK-GAP-DECISION",
+  "latestMasterDataTrainingHandbookGapDecision": {
+    "caseId": "MASTER-DATA-TRAINING-HANDBOOK-GAP-DECISION",
+    "status": "completed-local-decision",
+    "decision": "ready-for-master-data-route-package-vs-ui-decision",
+    "resultPath": "playwright/projects/fibu-book5/evidence/master-data-training-handbook-gap-decision/result.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "businessCentralOpened": false,
+    "playwrightLiveRunExecuted": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "nextCase": "MASTER-DATA-ROUTE-PACKAGE-VS-UI-DECISION",
+    "updatedAt": "2026-07-09T08:45:00.000Z"
+  },
+  "next_case": "MASTER-DATA-ROUTE-PACKAGE-VS-UI-DECISION",
   "latestFoundationSetupSourceGapDecision": {
     "caseId": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
     "status": "completed-local-decision",
