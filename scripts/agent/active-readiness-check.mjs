@@ -405,7 +405,7 @@ function runCheck(check) {
 }
 
 const current = readJson(currentPath);
-const selectedCase = current.nextCase ?? current.activeCase;
+const selectedCase = current.activeCase ?? current.nextCase;
 const check = checksByCase.get(selectedCase);
 
 if (check) {
