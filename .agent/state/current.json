@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-09T18:10:00.000Z",
+  "updatedAt": "2026-07-09T18:35:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -14,13 +14,13 @@
   },
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
-  "activeArea": "w3-finance-foundation",
-  "activeCase": "GEN-BUS-POSTING-GROUPS-SOURCE-DECISION",
-  "active_case_file": ".agent/state/cases/gen-bus-posting-groups-source-decision.json",
-  "activeCaseFile": ".agent/state/cases/gen-bus-posting-groups-source-decision.json",
+  "activeArea": "w4-master-data-product-model",
+  "activeCase": "MASTER-DATA-WRITE-GATE-PREP",
+  "active_case_file": ".agent/state/cases/master-data-write-gate-prep.json",
+  "activeCaseFile": ".agent/state/cases/master-data-write-gate-prep.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-foundation-source-decision",
+  "mode": "universaarl-master-data-write-gate-prep",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -44,9 +44,9 @@
     "git diff --check"
   ],
   "allowedActions": [
-    "local-source-gap-decision",
-    "local-foundation-dependency-review",
-    "write-source-decision-result-json",
+    "local-master-data-write-gate-prep",
+    "classify-master-data-fields",
+    "write-local-gate-result-json",
     "prepare-one-next-local-or-readfirst-case"
   ],
   "forbiddenActions": [
@@ -72,9 +72,9 @@
     "claim-master-data-ready",
     "claim-process-ready"
   ],
-  "nextCase": "MASTER-DATA-WRITE-GATE-PREP",
-  "nextStep": "Run MASTER-DATA-WRITE-GATE-PREP locally/no-live: classify Customer, Vendor and Item/Service fields as blocked, source-needed, training-only or future-gate before any write.",
-  "preparedNextCaseFile": ".agent/state/cases/master-data-write-gate-prep.json",
+  "nextCase": "MASTER-DATA-PACKAGE-FIELD-MAP-DECISION",
+  "nextStep": "Run MASTER-DATA-PACKAGE-FIELD-MAP-DECISION locally/no-live: create a Customer, Vendor and Item/Service field map for future UI, Excel-assisted or configuration-package routes without granting write permission.",
+  "preparedNextCaseFile": ".agent/state/cases/master-data-package-field-map-decision.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -208,20 +208,20 @@
     "nextBoundary": "Master Data remains parked. Next work must update Foundation Readiness and either accept this as a Foundation gap or define a genuinely new Page 314 route hypothesis before another live attempt."
   },
   "activeNextStepAuthority": {
-    "source": "playwright/projects/fibu-book5/evidence/gen-bus-posting-groups-source-decision/result.json",
-    "selectedNextCase": "MASTER-DATA-WRITE-GATE-PREP",
-    "activeCaseFile": ".agent/state/cases/master-data-write-gate-prep.json",
-    "preparedNextCaseFile": ".agent/state/cases/master-data-write-gate-prep.json",
+    "source": "playwright/projects/fibu-book5/evidence/master-data-write-gate-prep/result.json",
+    "selectedNextCase": "MASTER-DATA-PACKAGE-FIELD-MAP-DECISION",
+    "activeCaseFile": ".agent/state/cases/master-data-package-field-map-decision.json",
+    "preparedNextCaseFile": ".agent/state/cases/master-data-package-field-map-decision.json",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "GEN-BUS-POSTING-GROUPS-SOURCE-DECISION revalidated that INLAND is source-backed context only, WAREN is not a Gen. Business Posting Group, and no posting-group value is setup-ready.",
-    "whySelectedNextCaseIsBest": "It turns posting-group boundaries into explicit Master Data field gates without opening Business Central or granting write permission.",
+    "reason": "MASTER-DATA-WRITE-GATE-PREP revalidated that Customer, Vendor and Item/Service direct writes are not ready because posting, VAT, payment, template and inventory dependencies remain blocked or source-needed.",
+    "whySelectedNextCaseIsBest": "It turns Master Data write boundaries into a reusable field map before any UI, Excel-assisted or configuration-package write route is allowed.",
     "requiredPreparation": [
       "Use only the active case mustRead files.",
       "Do not open Business Central or run Playwright live in this local no-live decision.",
-      "Do not create or edit setup, master data, templates, documents, Preview Posting or Posting.",
-      "Keep INLAND as context/source-needed only and WAREN out of Gen. Business Posting Group fields."
+      "Do not create or edit setup, templates, master data, documents, Preview Posting or Posting.",
+      "Keep field-map language distinct from import permission or setup readiness."
     ],
-    "updatedAt": "2026-07-09T18:10:00.000Z"
+    "updatedAt": "2026-07-09T18:35:00.000Z"
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -335,7 +335,7 @@
     "currentLiveBoundary": {
       "freezeActive": false,
       "parkedCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-      "resumePilot": "MASTER-DATA-WRITE-GATE-PREP",
+      "resumePilot": "MASTER-DATA-PACKAGE-FIELD-MAP-DECISION",
       "resumePilotMode": "local-no-live-decision"
     },
     "legacyScriptGuard": {
@@ -416,14 +416,14 @@
   },
   "freezeStatus": {
     "status": "lifted-readfirst",
-    "caseId": "GEN-BUS-POSTING-GROUPS-SOURCE-DECISION",
+    "caseId": "MASTER-DATA-WRITE-GATE-PREP",
     "frozenLiveCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-    "resumeCandidateAfterFreeze": "MASTER-DATA-WRITE-GATE-PREP",
+    "resumeCandidateAfterFreeze": "MASTER-DATA-PACKAGE-FIELD-MAP-DECISION",
     "completedLocalCheckpoint": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
     "planFile": ".agent/PROJECT-IMPROVEMENT-PLAN.md",
     "latestPostFreezeCase": "FOUNDATION-MASTER-DATA-ROUTE-REFRESH-AFTER-SETUP-PARKED",
     "latestPostFreezeResult": "playwright/projects/fibu-book5/evidence/foundation-master-data-route-refresh-after-setup-parked/result.json",
-    "updatedAt": "2026-07-09T18:10:00.000Z"
+    "updatedAt": "2026-07-09T18:35:00.000Z"
   },
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
@@ -12365,7 +12365,7 @@
     "nextCase": "FOUNDATION-SETUP-DEPENDENCY-RETURN-DECISION",
     "updatedAt": "2026-07-09T17:40:00.000Z"
   },
-  "next_case": "MASTER-DATA-WRITE-GATE-PREP",
+  "next_case": "MASTER-DATA-PACKAGE-FIELD-MAP-DECISION",
   "latestFoundationSetupSourceGapDecision": {
     "caseId": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
     "status": "completed-local-decision",
@@ -12459,13 +12459,11 @@
   },
   "latestMasterDataWriteGatePrep": {
     "caseId": "MASTER-DATA-WRITE-GATE-PREP",
-    "status": "completed-local-decision",
+    "status": "completed-local-decision-operating-kernel-revalidated",
     "decision": "package-field-map-needed-before-write-gate",
     "resultPath": "playwright/projects/fibu-book5/evidence/master-data-write-gate-prep/result.json",
     "instance": "playthru",
     "company": "UNIVERSAARL-DE",
-    "businessCentralOpened": false,
-    "playwrightLiveRunExecuted": false,
     "setupChanged": false,
     "masterDataChanged": false,
     "draftCreated": false,
@@ -12473,7 +12471,7 @@
     "posted": false,
     "apiShortcut": false,
     "nextCase": "MASTER-DATA-PACKAGE-FIELD-MAP-DECISION",
-    "updatedAt": "2026-07-09T11:25:00.000Z"
+    "updatedAt": "2026-07-09T18:35:00.000Z"
   },
   "latestMasterDataPackageFieldMapDecision": {
     "caseId": "MASTER-DATA-PACKAGE-FIELD-MAP-DECISION",

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "MASTER-DATA-WRITE-GATE-PREP",
-  "status": "completed-local-decision",
+  "status": "completed-local-decision-operating-kernel-revalidated",
   "decision": "package-field-map-needed-before-write-gate",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -17,7 +17,9 @@
   "sourceOrEvidenceBasis": [
     "playwright/projects/fibu-book5/evidence/gen-bus-posting-groups-source-decision/result.json",
     "playwright/projects/fibu-book5/evidence/master-data-route-package-vs-ui-decision/result.json",
-    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md"
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    ".agent/OPERATING-KERNEL.md",
+    ".agent/state/current.json"
   ],
   "writeGateVerdict": {
     "customer": "not-ready-for-direct-write",
@@ -132,7 +134,9 @@
   "actionsTaken": [
     "Read only the active case mustRead files.",
     "Classified Customer, Vendor and Item/Service fields by write-gate readiness.",
-    "Selected a local field-map decision before any future Master Data write gate."
+    "Selected a local field-map decision before any future Master Data write gate.",
+    "Revalidated through Operating Kernel and the active case mustRead files.",
+    "Confirmed next case remains local/no-live MASTER-DATA-PACKAGE-FIELD-MAP-DECISION."
   ],
   "actionsNotTaken": [
     "Did not open Business Central.",
@@ -199,5 +203,11 @@
     ]
   },
   "nextCase": "MASTER-DATA-PACKAGE-FIELD-MAP-DECISION",
-  "updatedAt": "2026-07-09T11:25:00.000Z"
+  "updatedAt": "2026-07-09T18:35:00.000Z",
+  "revalidation": {
+    "updatedAt": "2026-07-09T18:35:00.000Z",
+    "verdict": "direct-master-data-writes-remain-blocked-field-map-next",
+    "noLiveActions": true,
+    "reason": "Customer, Vendor and Item/Service records need a field map before UI, Excel-assisted or configuration-package write routes because Foundation-dependent fields remain source-needed or blocked."
+  }
 }
