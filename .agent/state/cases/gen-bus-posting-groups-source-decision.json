@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "caseId": "GEN-BUS-POSTING-GROUPS-SOURCE-DECISION",
+  "status": "prepared-local-no-live",
+  "caseType": "local-no-live-decision",
+  "mode": "universaarl-foundation-source-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w3-finance-foundation",
+  "goal": "Decide source/value boundaries for Universaarl Gen. Business Posting Groups before any Master Data or setup write gate.",
+  "whyNow": "Gen. Business Posting Groups are observed as context in older Foundation evidence but remain not write-ready; the blocked customer setup route recovery must not be repeated without a materially new hypothesis.",
+  "businessPurpose": "Separate training context from setup correctness and prepare a realistic customer-project path for posting-group dependent master data.",
+  "mustRead": [
+    ".agent/OPERATING-KERNEL.md",
+    ".agent/state/current.json",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-dependency-return-decision/result.json",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    ".agent/state/rejected_route_register.json"
+  ],
+  "allowedActions": [
+    "local-source-gap-decision",
+    "local-foundation-dependency-review",
+    "write-source-decision-result-json",
+    "prepare-one-next-local-or-readfirst-case"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright-live",
+    "write-setup",
+    "create-master-data",
+    "edit-master-data",
+    "change-template",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "company-switch",
+    "edit-book",
+    "claim-foundation-setup-ready",
+    "claim-master-data-ready",
+    "claim-process-ready"
+  ],
+  "requiredSkills": [
+    "bc-source-research",
+    "state-sync-check"
+  ],
+  "requiredHelpers": [
+    "scripts/agent/local-no-live-case-readiness-check.mjs",
+    "scripts/agent/dry-run.mjs",
+    "scripts/agent/rejected-route-check.mjs"
+  ],
+  "requiredChecks": [
+    "agent:preflight",
+    "agent:active-readiness",
+    "agent:dry-run",
+    "agent:run-plan",
+    "agent:rejected-routes:check",
+    "check:encoding",
+    "git diff --check"
+  ],
+  "expectedOutput": [
+    "A compact local result JSON classifying Gen. Business Posting Group candidates as accepted-context, source-needed, blocked or parked.",
+    "A nextCase selection that does not repeat CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST without a materially new hypothesis.",
+    "Explicit boundary that no setup, master data, document, Preview Posting or Posting change was made."
+  ],
+  "stopConditions": [
+    "Stop if the decision requires opening Business Central or running Playwright live.",
+    "Stop if the output would create or edit Business Central data.",
+    "Stop if the output would claim setup, Master Data or process readiness.",
+    "Stop if no source/evidence basis exists for naming candidate values; park and select a source-check case instead."
+  ],
+  "rejectedRoutesToRespect": [
+    "RR-FOUNDATION-PAGE314-GRID-LIST-EDIT-RETRY",
+    "RR-FOUNDATION-PAGE470-VAT-BUSINESS-GROUPS-SEARCH-RETRY",
+    "RR-FOUNDATION-PAGE472-ACTIVE-EDITOR-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGES-ESCAPE-TELLME-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGE-U-VAT325-FIELD-SELECTION-RETRY"
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/gen-bus-posting-groups-source-decision/result.json",
+  "nextCaseOptions": [
+    {
+      "caseId": "GEN-BUS-POSTING-GROUPS-READFIRST-NEW-HYPOTHESIS",
+      "when": "Use only if the source decision names a precise missing UI proof and a materially new route.",
+      "liveType": "read-first-no-write"
+    },
+    {
+      "caseId": "MASTER-DATA-WRITE-GATE-PREP",
+      "when": "Use only if the source decision can safely park or classify the dependency without setup correctness claims.",
+      "liveType": "local-no-live-decision"
+    },
+    {
+      "caseId": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
+      "when": "Use if broader posting-group/VAT source gaps must be re-opened locally.",
+      "liveType": "local-no-live-decision"
+    }
+  ],
+  "decision": "prepared",
+  "selectedNextCase": null,
+  "nextCase": null,
+  "preparedAt": "2026-07-09T10:25:00.000Z"
+}

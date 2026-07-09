@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-SETUP-DEPENDENCY-RETURN-DECISION",
+  "status": "completed-local-decision",
+  "decision": "source-decision-needed-no-repeat-readfirst",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "caseType": "local-no-live-decision",
+  "businessCentralOpened": false,
+  "playwrightLiveRunExecuted": false,
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "apiShortcut": false,
+  "sourceBasis": [
+    "playwright/projects/fibu-book5/evidence/master-data-route-package-vs-ui-decision/result.json",
+    "playwright/projects/fibu-book5/evidence/customer-setup-route-recovery-readfirst/result.json",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md"
+  ],
+  "decisionSummary": {
+    "foundationDependency": "Geschaeftsbuchungsgruppen / Gen. Business Posting Groups",
+    "classification": "source-needed-before-write-gate",
+    "reason": "The dependency is visible enough as a Foundation topic, but the latest customer setup recovery did not accept the target page as proven because the visible state still looked like a Tell-Me/search overlay and lacked required page signals.",
+    "doNotRepeat": "Do not rerun CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST or equivalent Page 312 recovery without a materially new route, helper, UI insight, official source, different surface, different goal or manual approval.",
+    "selectedNextCase": "GEN-BUS-POSTING-GROUPS-SOURCE-DECISION"
+  },
+  "proved": [
+    "Master Data write gates remain blocked by Foundation setup dependencies.",
+    "The blocked Gen. Business Posting Groups route must not be repeated as a blind read-first retry.",
+    "A local source/value decision is the narrowest useful next step before another Business Central read-first route or any setup/master-data write gate."
+  ],
+  "notProved": [
+    "No Gen. Business Posting Group value is accepted as setup-ready.",
+    "No General Business Posting Groups page proof was added in this case.",
+    "No setup correctness, Master Data readiness, O2C/P2P readiness, Preview Posting, Posting, ledger trace or UAT acceptance was proven."
+  ],
+  "actionsTaken": [
+    "Reviewed Master Data route decision.",
+    "Reviewed customer setup route recovery evidence.",
+    "Reviewed Foundation Readiness boundaries.",
+    "Selected a local Gen. Business Posting Groups source/value decision instead of another read-first route retry."
+  ],
+  "actionsNotTaken": [
+    "Did not open Business Central.",
+    "Did not run Playwright live.",
+    "Did not write setup.",
+    "Did not create or edit master data.",
+    "Did not create a document or draft.",
+    "Did not run Preview Posting or Posting.",
+    "Did not edit the book."
+  ],
+  "nextStepDecision": {
+    "currentCase": "FOUNDATION-SETUP-DEPENDENCY-RETURN-DECISION",
+    "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-DEPENDENCY-RETURN-DECISION",
+    "lastEvidenceSummary": "Master Data route comparison parked writes; customer setup route recovery accepted Customer Posting Groups, VAT Business Posting Groups and Payment Terms, but Gen. Business Posting Groups remained blocked.",
+    "isPlannedNextCaseStillSensible": true,
+    "reason": "The active local decision resolves the handoff by preventing duplicate route retries and choosing a source/value boundary decision.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "CUSTOMER-SETUP-ROUTE-RECOVERY-READFIRST",
+        "status": "obsolete",
+        "reason": "Already ran and remains blocked for Gen. Business Posting Groups without a new hypothesis."
+      },
+      {
+        "caseId": "MASTER-DATA-WRITE-GATE-PREP",
+        "status": "blocked",
+        "reason": "Master Data write gates still need Foundation dependency proof or conscious parking."
+      },
+      {
+        "caseId": "GEN-BUS-POSTING-GROUPS-SOURCE-DECISION",
+        "status": "ready-next",
+        "reason": "Local/no-live source decision can classify candidate values and evidence boundaries without repeating UI recovery."
+      }
+    ],
+    "queueChangesMade": [
+      "Prepared GEN-BUS-POSTING-GROUPS-SOURCE-DECISION as next local/no-live case."
+    ],
+    "selectedNextCase": "GEN-BUS-POSTING-GROUPS-SOURCE-DECISION",
+    "whySelectedNextCaseIsBest": "It keeps the project moving while respecting rejected routes and does not weaken setup, Master Data or process gates.",
+    "risksBeforeNextCase": [
+      "Overclaiming setup readiness from a partially blocked route-recovery run.",
+      "Repeating Tell-Me/search overlay routes without a materially new hypothesis."
+    ],
+    "requiredPreparation": [
+      "Read the local result JSON, Foundation Readiness decision and rejected route register.",
+      "Classify candidate values as accepted-context, source-needed, blocked or parked.",
+      "Keep the next decision local/no-live unless a materially new read-first hypothesis is explicitly selected."
+    ]
+  },
+  "nextCase": "GEN-BUS-POSTING-GROUPS-SOURCE-DECISION",
+  "updatedAt": "2026-07-09T10:25:00.000Z"
+}
