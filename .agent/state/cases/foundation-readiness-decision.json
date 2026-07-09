@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FOUNDATION-READINESS-DECISION",
-  "status": "prepared-local-decision-after-package-route-park",
+  "status": "completed-local-decision-after-package-route-park",
   "mode": "universaarl-foundation-local-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -73,13 +73,18 @@
     "currentCase": "FOUNDATION-READINESS-DECISION",
     "plannedNextCaseBeforeReview": "FOUNDATION-READINESS-DECISION",
     "lastEvidenceSummary": "The corrected package field-selection proof parked the concrete U-VAT325-DISC route: package card and field-count columns were visible, but no reliable Table 325 line or safe field-selection context was proven.",
-    "isPlannedNextCaseStillSensible": true,
-    "reason": "Foundation Readiness must consume the package-route blocker before another setup route or Master Data step is selected.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "Foundation Readiness has consumed the package-route blocker. The next useful step is a materially different local setup-route decision, not another Foundation self-loop.",
     "lookaheadReviewed": [
       {
         "caseId": "FOUNDATION-READINESS-DECISION",
+        "status": "obsolete",
+        "reason": "The local no-live consumer is now completed for the current package-route blocker."
+      },
+      {
+        "caseId": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
         "status": "ready-next",
-        "reason": "Local no-live consumer of the package-route blocker and the current Foundation boundaries."
+        "reason": "Selects a materially different Foundation setup route while respecting rejected package and grid routes."
       },
       {
         "caseId": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-WRITE-GATE-DECISION",
@@ -99,24 +104,25 @@
     ],
     "queueChangesMade": [
       "Parked the current U-VAT325-DISC field-selection route.",
-      "Kept Foundation Readiness as the next local no-live consumer.",
+      "Closed the Foundation Readiness self-loop.",
+      "Prepared FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION as the next local no-live route decision.",
       "Kept Master Data writes, O2C/P2P, Preview Posting and Posting blocked."
     ],
-    "selectedNextCase": "FOUNDATION-READINESS-DECISION",
-    "whySelectedNextCaseIsBest": "It prevents another setup or Master Data route from building on weak package evidence.",
+    "selectedNextCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
+    "whySelectedNextCaseIsBest": "It prevents repeating the weak package field-selection route and forces the next Foundation step to be source-backed, materially different and no-live.",
     "risksBeforeNextCase": [
       "Treating package UI context as setup readiness.",
       "Repeating the same package-card route without a materially new hypothesis."
     ],
     "requiredPreparation": [
-      "Use the route-park result as the active package boundary.",
+      "Use the route-park result and rejected-route register as active package boundaries.",
       "Carry the next-live-proof rule: every later read-first VAT/Posting/Foundation UI proof needs a multi-step screenshot chain with at least five accepted checkpoints.",
       "Do not open Business Central or run Playwright live in this local case.",
       "Do not unlock field selection, import, export, validate, apply, setup writes, Master Data or posting."
     ]
   },
-  "nextCase": "FOUNDATION-READINESS-DECISION",
-  "preparedNextCaseFile": ".agent/state/cases/foundation-readiness-decision.json",
-  "updatedAt": "2026-07-09T00:35:00.000Z",
+  "nextCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
+  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
+  "updatedAt": "2026-07-09T01:30:00.000Z",
   "resultPath": "playwright/projects/fibu-book5/evidence/foundation-readiness-decision/result.json"
 }

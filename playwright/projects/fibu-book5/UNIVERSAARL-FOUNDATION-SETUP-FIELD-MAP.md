@@ -20,11 +20,11 @@ Konfigurationspakete sind fuer die Universaarl-Foundation der bevorzugte Impleme
 
 Die Entscheidung ist keine Schreibfreigabe. `U-VAT325-DISC` ist nicht mehr als leerer Paketkopf zu behandeln: Die Paketkarte zeigt inzwischen eine vorhandene Tabellenzeile fuer Table 325 / VAT Posting Setup. Das beweist nur Paketmetadaten, nicht USt-Setup. Das Paket wird nicht geloescht, nicht angewendet und nicht als aktive Foundation-Konfiguration wiederverwendet, bevor ein separater Read-first-/Write-Gate-Fall seine Felder, Werte, Validierungen, Cleanup-/Keep-Regel und Reopen-Proof festlegt.
 
-Empfohlene naechste Route:
+Aktuelle Folgeentscheidung nach dem Parken:
 
-1. `FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST`: Am bestehenden Paket `U-VAT325-DISC` nur lesend pruefen, ob die Table-325-Zeile eine klare Feld-/Auswahloberflaeche zeigt.
-2. Danach separater Write-Gate fuer Feldselektion oder Paketwerte, falls der Read-first-Beweis die Felder eindeutig macht.
-3. Erst spaeter Import/Validate/Apply, jeweils mit eigenem Gate, Screenshot-QA, Fehlerpfad und Reopen-Proof.
+1. Die konkrete `U-VAT325-DISC`-Feldselektionsroute wird nicht erneut versucht. Der korrigierte Read-first-Beweis reicht nicht fuer eine sichere Feldselektion.
+2. Konfigurationspakete bleiben als Implementierungsweg plausibel, aber nur ueber eine materiell andere Hypothese: andere Business-Central-Oberflaeche, bessere Feld-/Tabellenquelle, neuer Helper, andere Zielsetzung oder explizite Freigabe.
+3. Der naechste Schritt ist lokal/no-live: eine alternative Foundation-Setup-Route aus Quelle, Feldkarte, Rejected-Route-Register und Foundation-Grenzen entscheiden. Erst danach darf ein neuer read-first- oder Write-Gate-Case vorbereitet werden.
 
 ## Read-first Ergebnis vom 2026-07-09
 
@@ -59,8 +59,8 @@ Nicht gewaehlt:
 - kein finaler SKR04-, USt-, HGB-, GoBD- oder AO-Claim
 - keine vertraulichen echten Kundendaten
 
-## Naechster no-write Case
+## Naechster lokaler Case
 
-`FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST`
+`FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION`
 
-Ziel: In `playthru / UNIVERSAARL-DE` nur lesend pruefen, ob die vorhandene Table-325-Zeile in `U-VAT325-DISC` eine Feld-/Auswahloberflaeche sichtbar und verstaendlich macht. Der Lauf darf kein Paket erstellen, keine Felder toggeln oder auswaehlen, nichts anwenden, importieren, validieren, exportieren oder Setupwerte speichern.
+Ziel: Ohne Business Central und ohne Playwright entscheiden, ob die naechste Foundation-Setup-Route ueber eine andere Konfigurationspaket-/Worksheet-Oberflaeche, eine source-backed Tabellen-/Feldanalyse, einen stabileren UI-Read-first-Lauf oder bewusstes Parken weitergeht. Der Case darf kein Paket erstellen, keine Felder toggeln oder auswaehlen, nichts anwenden, importieren, validieren, exportieren oder Setupwerte speichern.

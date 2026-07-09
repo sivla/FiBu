@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
+  "status": "prepared-local-decision-no-live",
+  "caseType": "local-no-live-decision",
+  "mode": "universaarl-foundation-local-decision",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w1-foundation",
+  "goal": "Choose the next materially different Foundation setup route after the U-VAT325-DISC field-selection route was parked.",
+  "whyNow": "Foundation Readiness has consumed the package-route blocker. The next step must not repeat the same package-card field-selection route and must decide whether a source-backed, worksheet, different package surface, read-first or parked route is best.",
+  "businessPurpose": "Keep Foundation setup realistic for a customer project while preventing blind UI retries and premature setup writes.",
+  "mustRead": [
+    ".agent/OPERATING-KERNEL.md",
+    ".agent/state/current.json",
+    ".agent/state/rejected_route_register.json",
+    "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md",
+    "playwright/projects/fibu-book5/UNIVERSAARL-FOUNDATION-SETUP-FIELD-MAP.md"
+  ],
+  "allowedActions": [
+    "local-source-review",
+    "local-route-comparison",
+    "local-rejected-route-review",
+    "write-route-decision-result-json",
+    "prepare-one-next-readfirst-or-local-gate-case"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "open-business-central",
+    "run-playwright-live",
+    "create-configuration-package",
+    "open-configuration-package-card-for-edit",
+    "get-tables",
+    "select-or-toggle-package-fields",
+    "import-configuration-package",
+    "export-configuration-package",
+    "validate-configuration-package",
+    "apply-configuration-package",
+    "edit-in-excel",
+    "write-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "company-switch",
+    "claim-posting-readiness",
+    "claim-master-data-readiness"
+  ],
+  "requiredSkills": [
+    "bc-source-research",
+    "bc-setup-route-decision",
+    "state-sync-check"
+  ],
+  "requiredHelpers": [
+    "scripts/agent/local-no-live-case-readiness-check.mjs",
+    "scripts/agent/rejected-route-check.mjs",
+    "scripts/agent/dry-run.mjs"
+  ],
+  "requiredChecks": [
+    "agent:preflight",
+    "agent:active-readiness",
+    "agent:dry-run",
+    "agent:run-plan",
+    "agent:rejected-routes:check",
+    "check:encoding",
+    "git diff --check"
+  ],
+  "expectedOutput": [
+    "A compact local route-decision result JSON that selects one next route status: ready-for-readfirst, ready-for-write-gate, parked or rejected.",
+    "A nextCase selection that is materially different from the parked U-VAT325-DISC field-selection route.",
+    "Explicit no-live/no-write boundary and no VAT, posting, master-data or process-readiness claim."
+  ],
+  "stopConditions": [
+    "Stop if the decision would require opening Business Central or running Playwright.",
+    "Stop if the proposed route repeats U-VAT325-DISC field selection without a materially new helper, UI insight, official source, different BC surface, different goal or manual approval.",
+    "Stop if the proposed route unlocks import, export, validate, apply, Edit in Excel, setup writes or master data writes without a separate gate.",
+    "Stop if Configuration Package metadata is treated as VAT setup correctness."
+  ],
+  "rejectedRoutesToRespect": [
+    "RR-FOUNDATION-PAGE314-GRID-LIST-EDIT-RETRY",
+    "RR-FOUNDATION-PAGE470-VAT-BUSINESS-GROUPS-SEARCH-RETRY",
+    "RR-FOUNDATION-PAGE472-ACTIVE-EDITOR-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGES-ESCAPE-TELLME-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGE-U-VAT325-FIELD-SELECTION-RETRY"
+  ],
+  "nextCaseOptions": [
+    {
+      "caseId": "FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST",
+      "when": "Use only if the route decision needs a different read-first surface with visual-state timeline and no package mutation.",
+      "liveType": "read-first-no-write"
+    },
+    {
+      "caseId": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",
+      "when": "Use if official source or local table/field mapping must be clarified before any UI route.",
+      "liveType": "local-no-live-decision"
+    },
+    {
+      "caseId": "FOUNDATION-MASTER-DATA-ROUTE-DECISION",
+      "when": "Use only if Foundation setup remains parked but training/handbook master-data route work can continue without process-readiness claims.",
+      "liveType": "local-no-live-decision"
+    }
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/foundation-setup-alternative-route-source-decision/result.json",
+  "preparedAt": "2026-07-09T01:30:00.000Z"
+}

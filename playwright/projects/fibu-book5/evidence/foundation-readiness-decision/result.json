@@ -70,14 +70,19 @@
   "nextStepDecision": {
     "currentCase": "FOUNDATION-READINESS-DECISION",
     "plannedNextCaseBeforeReview": "FOUNDATION-READINESS-DECISION",
-    "lastEvidenceSummary": "U-VAT325-DISC shows existing Table 325 package metadata; no setup or package write occurred.",
+    "lastEvidenceSummary": "U-VAT325-DISC package-card and field-count context exists, but the concrete field-selection route is parked and must not be repeated without a materially new hypothesis.",
     "isPlannedNextCaseStillSensible": false,
     "reason": "Foundation Readiness is now consumed enough to choose the next concrete route proof instead of staying in review.",
     "lookaheadReviewed": [
       {
         "caseId": "FOUNDATION-READINESS-DECISION",
+        "status": "obsolete",
+        "reason": "The package-route blocker has now been consumed into Foundation Readiness."
+      },
+      {
+        "caseId": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
         "status": "ready-next",
-        "reason": "Consumes the package-route blocker into the overall Foundation boundary."
+        "reason": "Chooses a materially different no-live Foundation setup route after the package-card field-selection route was parked."
       },
       {
         "caseId": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-WRITE-GATE-DECISION",
@@ -97,19 +102,19 @@
     ],
     "queueChangesMade": [
       "Parked the current U-VAT325-DISC field-selection route.",
-      "Selected FOUNDATION-READINESS-DECISION as the next local no-live consumer.",
+      "Prepared FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION as the next local no-live route decision.",
       "Kept Master Data writes, O2C/P2P, Preview Posting and Posting blocked."
     ],
-    "selectedNextCase": "FOUNDATION-READINESS-DECISION",
-    "whySelectedNextCaseIsBest": "Foundation Readiness must record the package-route limit before another setup route is selected.",
+    "selectedNextCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
+    "whySelectedNextCaseIsBest": "The Foundation decision is consumed; the next useful work is to choose a source-backed alternative route without reopening BC or repeating the parked package field-selection path.",
     "risksBeforeNextCase": [
       "Treating package UI context as setup readiness.",
       "Repeating the same package route without a new hypothesis."
     ],
     "requiredPreparation": [
-      "Consume this result into FOUNDATION-READINESS-DECISION.",
-      "Do not run Business Central or Playwright in the next local decision unless the case changes."
+      "Respect RR-FOUNDATION-CONFIG-PACKAGE-U-VAT325-FIELD-SELECTION-RETRY.",
+      "Do not run Business Central or Playwright in the next local decision."
     ]
   },
-  "nextCase": "FOUNDATION-READINESS-DECISION"
+  "nextCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION"
 }

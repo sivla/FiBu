@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-08T22:45:00.000+02:00",
+  "updatedAt": "2026-07-09T01:30:00.000Z",
   "purpose": "Prevent repeated Business Central route attempts unless a materially new hypothesis is documented.",
   "scope": "playthru / UNIVERSAARL-DE active Foundation workstreams",
   "repeatRequiresOneOf": [
@@ -126,6 +126,35 @@
         "manual-approval"
       ],
       "status": "rejected-as-repeat-pattern"
+    },
+    {
+      "routeId": "RR-FOUNDATION-CONFIG-PACKAGE-U-VAT325-FIELD-SELECTION-RETRY",
+      "workstream": "w1-foundation",
+      "pageOrObject": "Configuration Package U-VAT325-DISC / Table 325 field-selection context",
+      "purpose": "Advance the existing U-VAT325-DISC package card into field selection, import, validate, apply or setup writes based on the current package-card proof.",
+      "attemptOrRun": [
+        "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST",
+        "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION",
+        "FOUNDATION-READINESS-DECISION"
+      ],
+      "result": "The package card and field-count columns are useful UI context, but the corrected proof did not establish a reliable visible Table 325 line or safe field-selection surface.",
+      "evidenceLinks": [
+        "playwright/projects/fibu-book5/evidence/foundation-setup-package-field-selection-readfirst/result.json",
+        "playwright/projects/fibu-book5/evidence/foundation-setup-package-route-park-or-alternative-decision/result.json",
+        "playwright/projects/fibu-book5/evidence/foundation-readiness-decision/result.json",
+        "playwright/projects/fibu-book5/UNIVERSAARL-FOUNDATION-SETUP-FIELD-MAP.md"
+      ],
+      "whyRejectedOrParked": "The current U-VAT325-DISC route would treat weak package-card context as field-selection or setup readiness.",
+      "riskIfRepeated": "Could toggle fields, import, validate, apply or claim VAT setup readiness from insufficient evidence.",
+      "repeatAllowedOnlyIf": [
+        "new-helper",
+        "new-ui-insight",
+        "new-official-source",
+        "different-bc-surface",
+        "different-goal",
+        "manual-approval"
+      ],
+      "status": "parked-specific-route"
     }
   ]
 }
