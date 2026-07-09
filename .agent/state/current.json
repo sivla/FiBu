@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-09T02:05:00.000Z",
+  "updatedAt": "2026-07-09T04:40:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -15,12 +15,12 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w1-foundation",
-  "activeCase": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
-  "active_case_file": ".agent/state/cases/foundation-setup-source-gap-decision.json",
-  "activeCaseFile": ".agent/state/cases/foundation-setup-source-gap-decision.json",
+  "activeCase": "FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST",
+  "active_case_file": ".agent/state/cases/foundation-configuration-worksheet-field-map-readfirst.json",
+  "activeCaseFile": ".agent/state/cases/foundation-configuration-worksheet-field-map-readfirst.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-foundation-local-decision",
+  "mode": "universaarl-foundation-readfirst",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -44,11 +44,16 @@
     "git diff --check"
   ],
   "allowedActions": [
-    "local-source-gap-review",
-    "local-official-source-check",
-    "local-dependency-review",
-    "write-source-gap-decision-result-json",
-    "prepare-one-next-readfirst-or-parking-case"
+    "validate-playthru-context-readonly",
+    "validate-universaarl-company-context-readonly",
+    "open-business-central-readonly",
+    "open-configuration-worksheet-readonly",
+    "inspect-visible-table-field-context-readonly",
+    "hover-tooltip-readonly",
+    "capture-screenshot-chain",
+    "capture-visual-state-json",
+    "write-readfirst-result-json",
+    "update-foundation-readiness-boundary"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -56,8 +61,8 @@
     "show-env-or-auth",
     "fake-evidence",
     "book-claim-without-evidence",
-    "open-business-central",
-    "run-playwright-live",
+    "continue-target-073",
+    "type-business-central-values",
     "create-configuration-package",
     "open-configuration-package-card-for-edit",
     "get-tables",
@@ -75,12 +80,13 @@
     "payment",
     "api-shortcut",
     "company-switch",
+    "cleanup-delete",
     "claim-posting-readiness",
     "claim-master-data-readiness"
   ],
-  "nextCase": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
-  "nextStep": "Run FOUNDATION-SETUP-SOURCE-GAP-DECISION locally/no-live to resolve or park the narrow source gap for VAT Business Posting Group INLAND / Page 470 before any read-first or write route.",
-  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-source-gap-decision.json",
+  "nextCase": "FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST",
+  "nextStep": "Run FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST read-first/no-write after auth/live gates: prove Configuration Worksheet/table-field context for Table 323, 325 and 252 with a multi-step screenshot chain / Bildkette, and without package actions or setup writes.",
+  "preparedNextCaseFile": ".agent/state/cases/foundation-configuration-worksheet-field-map-readfirst.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -214,22 +220,22 @@
     "nextBoundary": "Master Data remains parked. Next work must update Foundation Readiness and either accept this as a Foundation gap or define a genuinely new Page 314 route hypothesis before another live attempt."
   },
   "activeNextStepAuthority": {
-    "source": "playwright/projects/fibu-book5/evidence/foundation-setup-value-map-decision/result.json",
-    "selectedNextCase": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
-    "activeCaseFile": ".agent/state/cases/foundation-setup-source-gap-decision.json",
-    "preparedNextCaseFile": ".agent/state/cases/foundation-setup-source-gap-decision.json",
+    "source": "playwright/projects/fibu-book5/evidence/foundation-setup-source-gap-decision/result.json",
+    "selectedNextCase": "FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST",
+    "activeCaseFile": ".agent/state/cases/foundation-configuration-worksheet-field-map-readfirst.json",
+    "preparedNextCaseFile": ".agent/state/cases/foundation-configuration-worksheet-field-map-readfirst.json",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "Value-map decision completed: General Posting Setup values are read-first targets only; VAT Posting Setup values remain blocked by the unresolved VAT Business Posting Group INLAND / Page 470 source gap.",
+    "reason": "The VAT Business Posting Group source gap is resolved at official Table 323 level, but INLAND is not locally proven; the next step is a materially different read-first field-map route, not a Page 470 retry.",
     "rejectedRoute": "RR-FOUNDATION-PAGE470-VAT-BUSINESS-GROUPS-SEARCH-RETRY",
     "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
-    "whySelectedNextCaseIsBest": "It resolves the narrow dependency gap that prevents the VAT value map from becoming a safe read-first target.",
+    "whySelectedNextCaseIsBest": "It converts official Table 323 source truth into concrete local read-first evidence questions while preserving no-write boundaries.",
     "requiredPreparation": [
-      "Read only the active case mustRead files.",
-      "Keep the case local/no-live and no-write.",
-      "Respect rejected_route_register.json."
+      "Refresh/verify auth before any live read-first run if the live gate requires it.",
+      "Use a multi-step screenshot chain / Bildkette, visual-state capture and step timeline.",
+      "Stop before package creation, Get Tables, field selection, import/export/validate/apply or setup writes."
     ],
-    "updatedAt": "2026-07-09T04:05:00.000Z"
+    "updatedAt": "2026-07-09T04:40:00.000Z"
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -343,8 +349,8 @@
     "currentLiveBoundary": {
       "freezeActive": false,
       "parkedCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-      "resumePilot": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
-      "resumePilotMode": "local-no-live-decision"
+      "resumePilot": "FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST",
+      "resumePilotMode": "read-first-no-write"
     },
     "legacyScriptGuard": {
       "script": "agent:legacy:active-check",
@@ -426,7 +432,7 @@
     "status": "lifted-readfirst",
     "caseId": "FOUNDATION-READINESS-DECISION",
     "frozenLiveCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-    "resumeCandidateAfterFreeze": "FOUNDATION-READINESS-DECISION",
+    "resumeCandidateAfterFreeze": "FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST",
     "completedLocalCheckpoint": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
     "planFile": ".agent/PROJECT-IMPROVEMENT-PLAN.md",
     "latestPostFreezeCase": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE-DECISION",
@@ -12279,7 +12285,7 @@
     "nextCase": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
     "updatedAt": "2026-07-09T03:10:00.000Z"
   },
-  "caseType": "local-no-live-decision",
+  "caseType": "read-first-no-write",
   "latestFoundationSetupValueMapDecision": {
     "caseId": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
     "status": "completed-local-decision",
@@ -12296,11 +12302,12 @@
     "nextCase": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
     "updatedAt": "2026-07-09T04:05:00.000Z"
   },
-  "next_case": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
+  "next_case": "FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST",
   "latestFoundationSetupSourceGapDecision": {
     "caseId": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
-    "status": "prepared-local-decision-no-live",
-    "caseFile": ".agent/state/cases/foundation-setup-source-gap-decision.json",
+    "status": "completed-local-decision",
+    "decision": "ready-for-configuration-worksheet-field-map-readfirst",
+    "resultPath": "playwright/projects/fibu-book5/evidence/foundation-setup-source-gap-decision/result.json",
     "instance": "playthru",
     "company": "UNIVERSAARL-DE",
     "businessCentralOpened": false,
@@ -12309,7 +12316,20 @@
     "masterDataChanged": false,
     "previewPosting": false,
     "posted": false,
-    "nextBoundary": "Resolve or park VAT Business Posting Group INLAND / Page 470 source truth before read-first or write route.",
-    "updatedAt": "2026-07-09T04:05:00.000Z"
+    "nextCase": "FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST",
+    "updatedAt": "2026-07-09T04:40:00.000Z"
+  },
+  "latestFoundationConfigurationWorksheetFieldMapReadfirst": {
+    "caseId": "FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST",
+    "status": "prepared-readfirst-no-write",
+    "caseFile": ".agent/state/cases/foundation-configuration-worksheet-field-map-readfirst.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "previewPosting": false,
+    "posted": false,
+    "nextBoundary": "Future run may only inspect Configuration Worksheet/table-field context read-only; no package actions or setup writes.",
+    "updatedAt": "2026-07-09T04:40:00.000Z"
   }
 }

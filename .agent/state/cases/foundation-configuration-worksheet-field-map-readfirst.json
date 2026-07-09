@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST",
+  "status": "prepared-readfirst-no-write",
+  "caseType": "read-first-no-write",
+  "mode": "universaarl-foundation-readfirst",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "activeArea": "w1-foundation",
+  "goal": "Prove read-only whether Configuration Worksheet or equivalent table-field surfaces can show Foundation setup source objects and fields for Table 323, Table 325 and Table 252 without package actions or setup writes.",
+  "whyNow": "The local source-gap decision resolved VAT Business Posting Group at official Table 323 level, but INLAND remains locally unproven in playthru / UNIVERSAARL-DE.",
+  "businessPurpose": "Prepare a realistic configuration-package/worksheet implementation route for Foundation setup while preventing rejected Page 470 and package field-selection retries.",
+  "mustRead": [
+    ".agent/OPERATING-KERNEL.md",
+    ".agent/state/current.json",
+    ".agent/state/rejected_route_register.json",
+    "playwright/projects/fibu-book5/UNIVERSAARL-FOUNDATION-SETUP-FIELD-MAP.md",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-source-gap-decision/result.json"
+  ],
+  "allowedActions": [
+    "validate-playthru-context-readonly",
+    "validate-universaarl-company-context-readonly",
+    "open-business-central-readonly",
+    "open-configuration-worksheet-readonly",
+    "inspect-visible-table-field-context-readonly",
+    "hover-tooltip-readonly",
+    "capture-screenshot-chain",
+    "capture-visual-state-json",
+    "write-readfirst-result-json",
+    "update-foundation-readiness-boundary"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "continue-target-073",
+    "type-business-central-values",
+    "create-configuration-package",
+    "open-configuration-package-card-for-edit",
+    "get-tables",
+    "select-or-toggle-package-fields",
+    "import-configuration-package",
+    "export-configuration-package",
+    "validate-configuration-package",
+    "apply-configuration-package",
+    "edit-in-excel",
+    "write-setup",
+    "create-master-data",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "company-switch",
+    "cleanup-delete",
+    "claim-posting-readiness",
+    "claim-master-data-readiness"
+  ],
+  "skills": [
+    "read-first-page-proof",
+    "screenshot-qa",
+    "bc-source-research",
+    "state-sync-check"
+  ],
+  "requiredSkills": [
+    "read-first-page-proof",
+    "screenshot-qa",
+    "bc-source-research",
+    "state-sync-check"
+  ],
+  "requiredHelpers": [
+    "scripts/agent/read-first-no-write-case-readiness-check.mjs",
+    "scripts/agent/rejected-route-check.mjs",
+    "scripts/agent/dry-run.mjs",
+    "scripts/agent/bc-visual-state-capture.mjs",
+    "scripts/agent/step-timeline.mjs"
+  ],
+  "requiredChecks": [
+    "agent:preflight",
+    "agent:active-readiness",
+    "agent:dry-run",
+    "agent:run-plan",
+    "agent:rejected-routes:check",
+    "check:encoding",
+    "git diff --check"
+  ],
+  "expectedOutput": [
+    "Result JSON with read-first verdict for Configuration Worksheet/table-field mapping.",
+    "Multi-step screenshot chain / Bildkette with visual-state JSON before and after each relevant navigation step.",
+    "Accepted or rejected local evidence for Table 323 VAT Business Posting Group Code/Description context.",
+    "Accepted or rejected local evidence for Table 325 VAT Posting Setup and Table 252 General Posting Setup field-map context.",
+    "Explicit no-write boundary: no package creation, no Get Tables, no field selection, no import/export/validate/apply and no setup values."
+  ],
+  "stopConditions": [
+    "Stop if active context is not playthru / UNIVERSAARL-DE.",
+    "Stop if the visible surface is only Role Center, Tell-Me/search overlay or stale background without target-page or side-pane proof.",
+    "Stop if proving the target would require creating a package, clicking Get Tables, selecting fields, import, export, validate, apply or any setup write.",
+    "Stop if the run would repeat Page 470 direct/search routes or U-VAT325-DISC field-selection routes without a materially new hypothesis.",
+    "Stop if screenshot QA cannot distinguish foreground pane from background Role Center."
+  ],
+  "rejectedRoutesToRespect": [
+    "RR-FOUNDATION-PAGE470-VAT-BUSINESS-GROUPS-SEARCH-RETRY",
+    "RR-FOUNDATION-PAGE472-ACTIVE-EDITOR-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGES-ESCAPE-TELLME-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGE-U-VAT325-FIELD-SELECTION-RETRY"
+  ],
+  "materialNewHypothesis": "Use official Table 323 source truth to inspect Configuration Worksheet or equivalent table-field context read-only. Do not use direct Page 470 retry or U-VAT325-DISC field-selection retry.",
+  "resultPath": "playwright/projects/fibu-book5/evidence/foundation-configuration-worksheet-field-map-readfirst/result.json",
+  "nextCaseOptions": [
+    {
+      "caseId": "FOUNDATION-SETUP-ROUTE-PARKING-DECISION",
+      "when": "Use if Configuration Worksheet cannot prove local Table 323/325/252 field-map context without writes.",
+      "liveType": "local-no-live-decision"
+    },
+    {
+      "caseId": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION",
+      "when": "Use only if read-first field-map evidence proves enough local table/field context for a separate package/setup gate.",
+      "liveType": "local-no-live-decision"
+    },
+    {
+      "caseId": "FOUNDATION-VAT-BUSINESS-POSTING-GROUP-READFIRST",
+      "when": "Use only if a genuinely new UI hypothesis for VAT Business Posting Groups exists.",
+      "liveType": "read-first-no-write"
+    }
+  ],
+  "preparedAt": "2026-07-09T04:40:00.000Z"
+}

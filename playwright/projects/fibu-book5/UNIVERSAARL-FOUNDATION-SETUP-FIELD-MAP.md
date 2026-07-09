@@ -32,6 +32,8 @@ Nach `FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW` sind Table 252 und Table 325 n
 
 Nach `FOUNDATION-SETUP-VALUE-MAP-DECISION` sind die Zielwerte enger klassifiziert: `4400`/`5400` fuer Table 252 sind nur read-first-Ziele, keine Schreibfreigabe. Die USt-Zielwerte fuer Table 325 bleiben `needs-source-check-first`, weil `INLAND` als MwSt.-Geschaeftsbuchungsgruppe / Page/Table 470 nicht sauber source- und UI-bewiesen ist. Der naechste Schritt ist deshalb `FOUNDATION-SETUP-SOURCE-GAP-DECISION`, lokal/no-live.
 
+Nach `FOUNDATION-SETUP-SOURCE-GAP-DECISION` ist die Produktquelle enger: Microsoft dokumentiert `VAT Business Posting Group` als Table 323 mit `Code` und `Description` sowie der Lookup-/Drilldown-Seite `VAT Business Posting Groups`. Das klaert die Objekt- und Feldquelle, beweist aber nicht, dass `INLAND` in `playthru / UNIVERSAARL-DE` lokal existiert. Der naechste Schritt ist deshalb `FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST`: read-first/no-write ueber Konfigurationsarbeitsblatt oder vergleichbare Tabellen-/Feldoberflaeche. Direkte Page-470-/Suchwiederholungen und die `U-VAT325-DISC`-Feldselektionsroute bleiben geparkt.
+
 ## Read-first Ergebnis vom 2026-07-09
 
 Status: `parked`
@@ -67,6 +69,6 @@ Nicht gewaehlt:
 
 ## Naechster lokaler Case
 
-`FOUNDATION-SETUP-SOURCE-GAP-DECISION`
+`FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST`
 
-Ziel: Ohne Business Central und ohne Playwright die enge Quelle-/UI-Luecke fuer `INLAND` als MwSt.-Geschaeftsbuchungsgruppe / Page/Table 470 klaeren oder bewusst parken. Der Case darf kein Paket erstellen, keine Felder toggeln oder auswaehlen, nichts anwenden, importieren, validieren, exportieren oder Setupwerte speichern.
+Ziel: In `playthru / UNIVERSAARL-DE` nur lesend pruefen, ob Konfigurationsarbeitsblatt oder vergleichbare Tabellen-/Feldoberflaechen die Foundation-Setup-Objekte fuer Table 323, Table 325 und Table 252 belastbar sichtbar machen. Der Case darf kein Paket erstellen, keine Tabellen abrufen, keine Felder toggeln oder auswaehlen, nichts anwenden, importieren, validieren, exportieren oder Setupwerte speichern.

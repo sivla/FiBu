@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
+  "runId": "foundation-setup-source-gap-decision-20260709T044000Z",
+  "status": "completed-local-decision",
+  "decision": "ready-for-configuration-worksheet-field-map-readfirst",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "businessCentralOpened": false,
+  "playwrightLiveRunExecuted": false,
+  "setupChanged": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "companySwitch": false,
+  "confidentialRealCustomerDataUsed": false,
+  "uiMockupUsed": false,
+  "officialSources": [
+    {
+      "url": "https://learn.microsoft.com/en-gb/dynamics365/business-central/finance-setup-vat",
+      "usedFor": "VAT business posting groups represent markets such as domestic or EU and are linked to VAT posting setup logic."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/dynamics365/business-central/application/base-application/table/microsoft.finance.vat.setup.vat-business-posting-group",
+      "usedFor": "VAT Business Posting Group is Table 323 with Code and Description fields and lookup/drilldown page VAT Business Posting Groups."
+    },
+    {
+      "url": "https://learn.microsoft.com/en-au/dynamics365/business-central/finance-posting-groups",
+      "usedFor": "Posting groups map business entities to G/L accounts and incorrect setup can affect later posting."
+    }
+  ],
+  "sourceGapDecision": {
+    "gap": "VAT Business Posting Group INLAND / Page 470 source truth",
+    "sourceResolved": true,
+    "localEvidenceResolved": false,
+    "sourceBackedObject": {
+      "tableId": 323,
+      "tableName": "VAT Business Posting Group",
+      "namespace": "Microsoft.Finance.VAT.Setup",
+      "fields": [
+        "Code",
+        "Description"
+      ],
+      "lookupOrDrilldownPage": "VAT Business Posting Groups"
+    },
+    "localUnprovenBoundary": [
+      "No local playthru / UNIVERSAARL-DE proof that INLAND exists in Table 323.",
+      "No accepted Page 470 target-page screenshot chain.",
+      "No VAT Posting Setup row or setup value is unlocked by this local decision."
+    ],
+    "selectedRoute": "Use a materially different read-first field-map route through Configuration Worksheet/table-field evidence instead of repeating direct Page 470 or Tell-Me search attempts."
+  },
+  "routeAssessment": [
+    {
+      "routeId": "RR-FOUNDATION-PAGE470-VAT-BUSINESS-GROUPS-SEARCH-RETRY",
+      "status": "respect-rejected-route",
+      "reason": "Direct Page 470/search-style retries remain rejected unless a materially new UI hypothesis exists."
+    },
+    {
+      "routeId": "FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST",
+      "status": "selected-next-readfirst",
+      "reason": "The official table/field source gives exact read-only evidence questions for Table 323 and Table 325 without creating packages, selecting fields or writing setup."
+    },
+    {
+      "routeId": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE",
+      "status": "blocked",
+      "reason": "Source truth alone does not prove local rows, field visibility, validation behavior or saved setup values."
+    }
+  ],
+  "proved": [
+    "VAT Business Posting Group is source-backed as Table 323.",
+    "Table 323 has source-backed Code and Description fields.",
+    "VAT Business Posting Groups is the official lookup/drilldown page for Table 323.",
+    "VAT Business Posting Groups are product concepts used to represent markets for VAT setup, not final local evidence.",
+    "No BC, Playwright, package, setup, master-data, preview or posting action occurred."
+  ],
+  "notProved": [
+    "INLAND exists locally in playthru / UNIVERSAARL-DE.",
+    "Page 470 is locally reachable with accepted screenshot QA.",
+    "Table 325 has a valid INLAND/VAT19 row.",
+    "USt/VAT setup correctness.",
+    "General Posting Setup correctness.",
+    "Master Data, O2C, P2P, Preview Posting or Posting readiness."
+  ],
+  "blockedBy": [
+    "Local read-first evidence for Table 323 / INLAND is still missing.",
+    "Rejected Page 470 routes must not be retried without a materially new hypothesis."
+  ],
+  "warnings": [
+    "Do not reuse U-VAT325-DISC as a setup route from this decision.",
+    "Do not infer German tax correctness from Microsoft product-object documentation.",
+    "A future read-first case may open Business Central only through its own gated runner and no-write boundary."
+  ],
+  "nextStepDecision": {
+    "currentCase": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
+    "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
+    "lastEvidenceSummary": "The value-map decision blocked Table 325 target values because VAT Business Posting Group INLAND / Page 470 source truth was unresolved.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The source gap is now resolved at official object/table level but remains unproven locally, so the next step must be read-first evidence rather than another local source decision.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST",
+        "status": "ready-next",
+        "reason": "Materially different from rejected Page 470 and package field-selection routes; it can prove table/field context read-only."
+      },
+      {
+        "caseId": "FOUNDATION-VAT-BUSINESS-POSTING-GROUP-READFIRST",
+        "status": "replace-with-better-case",
+        "reason": "Direct Page 470-style evidence is still too close to rejected routes unless a new UI hypothesis is documented."
+      },
+      {
+        "caseId": "FOUNDATION-SETUP-ROUTE-PARKING-DECISION",
+        "status": "ready-after-current",
+        "reason": "Use only if the read-first field-map route is blocked or cannot prove local Table 323/325 context."
+      }
+    ],
+    "queueChangesMade": [
+      "Prepared FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST as the selected next case."
+    ],
+    "selectedNextCase": "FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST",
+    "whySelectedNextCaseIsBest": "It turns the official Table 323 source truth into concrete no-write evidence questions while respecting rejected routes.",
+    "risksBeforeNextCase": [
+      "Stored auth or live gate may block the future read-first run.",
+      "Configuration Worksheet may not expose Table 323/325 field context strongly enough."
+    ],
+    "requiredPreparation": [
+      "Respect rejected_route_register.json.",
+      "Use screenshot QA, visual-state capture and a step timeline.",
+      "Stop before any package creation, field selection, import, validate, apply or setup write."
+    ]
+  },
+  "nextCase": "FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST",
+  "completedAt": "2026-07-09T04:40:00.000Z"
+}
