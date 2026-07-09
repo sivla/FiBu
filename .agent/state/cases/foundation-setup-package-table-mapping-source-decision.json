@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "caseId": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
   "title": "Decide source-backed table and field mapping for Foundation setup package route",
-  "status": "completed-local-decision",
+  "status": "completed-local-decision-post-readfirst-refresh",
   "caseType": "local-no-live-decision",
   "mode": "universaarl-foundation-local-decision",
   "instance": "playthru",
@@ -88,8 +88,8 @@
     "No Business Central, Playwright live evidence, setup write, package mutation, master data, draft, preview or posting."
   ],
   "resultPath": "playwright/projects/fibu-book5/evidence/foundation-setup-package-table-mapping-source-decision/result.json",
-  "routeDecision": "ready-for-readfirst",
-  "selectedNextCase": "FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST",
+  "routeDecision": "parked",
+  "selectedNextCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
   "stopConditions": [
     "Stop if the decision would require opening Business Central.",
     "Stop if exact table or field mapping cannot be source-backed from existing evidence or official documentation.",
@@ -101,22 +101,23 @@
     "RR-FOUNDATION-PAGE314-GRID-LIST-EDIT-RETRY",
     "RR-FOUNDATION-PAGE470-VAT-BUSINESS-GROUPS-SEARCH-RETRY",
     "RR-FOUNDATION-PAGE472-ACTIVE-EDITOR-RETRY",
-    "RR-FOUNDATION-CONFIG-PACKAGES-ESCAPE-TELLME-RETRY"
+    "RR-FOUNDATION-CONFIG-PACKAGES-ESCAPE-TELLME-RETRY",
+    "RR-FOUNDATION-CONFIG-PACKAGE-U-VAT325-FIELD-SELECTION-RETRY"
   ],
   "nextCaseOptions": [
     {
       "caseId": "FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST",
-      "when": "Use when the local decision needs fresh read-first visual proof of Configuration Worksheet or equivalent table-field handling for Table 323, Table 325 and Table 252.",
+      "when": "Already consumed. Do not repeat unless a materially new helper, UI insight, official source, different surface, different goal or manual approval exists.",
       "liveType": "read-first-no-write"
     },
     {
       "caseId": "FOUNDATION-SETUP-PACKAGE-METADATA-WRITE-GATE-DECISION",
-      "when": "Use only if table IDs, fields, values, keep/cleanup strategy and rejected-route boundary are locally source-backed.",
+      "when": "Blocked after the later field-map read-first and write-gate decision; use only after a new accepted table/field proof.",
       "liveType": "local-decision-before-write"
     },
     {
-      "caseId": "FOUNDATION-SETUP-PACKAGE-ROUTE-PARK-OR-ALTERNATIVE",
-      "when": "Use if configuration packages remain too unclear or risky and another standard BC route must be selected.",
+      "caseId": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
+      "when": "Use now because configuration packages remain plausible but current package/worksheet route evidence is too weak for a write gate.",
       "liveType": "local-no-live-decision"
     }
   ]

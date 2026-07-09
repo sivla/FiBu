@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "caseId": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
-  "status": "completed-local-decision",
+  "status": "completed-local-decision-post-readfirst-refresh",
   "caseType": "local-no-live-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
@@ -20,9 +20,9 @@
   "packageApplied": false,
   "decision": {
     "selectedRoute": "configuration-package-and-excel-assisted-foundation-setup-route",
-    "classification": "source-backed-route-candidate",
-    "routeDecision": "ready-for-readfirst",
-    "summary": "Configuration Packages and Configuration Worksheet remain the realistic implementation route candidates for repeated Universaarl Foundation setup data, but only after a read-first table-field proof for Table 323, Table 325 and Table 252. No package write, Get Tables action, field selection, import, export, validate or apply is allowed by this decision."
+    "classification": "parked-route-candidate",
+    "routeDecision": "parked",
+    "summary": "Configuration Packages remain a realistic implementation route for repeated Universaarl Foundation setup data, but the concrete package/worksheet route is currently parked. The later field-map read-first proof showed Configuration Worksheet and Configuration Packages surfaces, but did not prove reliable field/table mapping for Table 323, Table 252 or Table 325. No package write, Get Tables action, field selection, import, export, validate or apply is allowed by this refreshed decision."
   },
   "sourceBasis": [
     {
@@ -44,6 +44,8 @@
   "localEvidenceBasis": [
     "playwright/projects/fibu-book5/UNIVERSAARL-FOUNDATION-SETUP-FIELD-MAP.md",
     "playwright/projects/fibu-book5/evidence/foundation-setup-package-existing-metadata-readfirst/result.json",
+    "playwright/projects/fibu-book5/evidence/foundation-configuration-worksheet-field-map-readfirst/result.json",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-package-write-gate-decision/result.json",
     "playwright/projects/fibu-book5/evidence/foundation-setup-package-keep-cleanup-decision/result.json",
     "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md"
   ],
@@ -57,7 +59,7 @@
         "Sales Account = 4400",
         "Purch. Account = 5400"
       ],
-      "gateBeforeWrite": "Read-first package/worksheet field proof plus dependency check for INLAND, WAREN, 4400 and 5400."
+      "gateBeforeWrite": "Currently parked. A future route needs a materially new field/table proof for INLAND, WAREN, 4400 and 5400 before any write gate."
     },
     {
       "id": "FS-002",
@@ -70,7 +72,7 @@
         "Sales VAT Account = 3806",
         "Purchase VAT Account = 1406"
       ],
-      "gateBeforeWrite": "Read-first package/worksheet field proof plus dependency check for VAT business/product posting groups and accounts."
+      "gateBeforeWrite": "Currently parked. A future route needs a materially new field/table proof plus dependency check for VAT business/product posting groups and accounts before any write gate."
     },
     {
       "id": "FS-003",
@@ -80,7 +82,7 @@
         "Code",
         "Description"
       ],
-      "gateBeforeWrite": "Table/page identity must be proven before write because Page 470 remains a current UI boundary."
+      "gateBeforeWrite": "Currently parked. Table/page identity must be proven before write because Page 470 remains a current UI boundary and U-VAT325-DISC is not a VAT Business Posting Group proof."
     },
     {
       "id": "FS-004",
@@ -97,10 +99,11 @@
     "Reviewed active local no-live case.",
     "Reviewed Universaarl Foundation field map.",
     "Reviewed existing U-VAT325-DISC read-first and keep/cleanup evidence.",
+    "Consumed later Configuration Worksheet field-map read-first evidence and package write-gate parking decision.",
     "Reviewed official Microsoft Learn pages for configuration packages and first-time company setup.",
-    "Selected Configuration Packages / Configuration Worksheet as the realistic route candidate for repeated Foundation setup data.",
+    "Parked Configuration Packages / Configuration Worksheet as the current executable route after the later field-map read-first did not prove Table 323, Table 252 or Table 325 mapping.",
     "Kept U-VAT325-DISC parked as a route candidate rather than active setup truth.",
-    "Prepared next read-first case FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST."
+    "Selected FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION as the next local no-live follow-up to choose a materially different route."
   ],
   "actionsNotTaken": [
     "Did not open Business Central.",
@@ -112,17 +115,18 @@
   ],
   "proved": [
     "Configuration Packages are a source-supported route candidate for first-time Universaarl Foundation setup work.",
-    "This case is ready-for-readfirst only, not ready-for-write-gate.",
-    "The route must be split into read-first proof, separate write gate, later import/validate/apply gates and Reopen-Proof.",
+    "This refreshed case is parked, not ready-for-readfirst and not ready-for-write-gate.",
+    "A future package route must be split into a materially new read-first proof, separate write gate, later import/validate/apply gates and Reopen-Proof.",
     "U-VAT325-DISC remains parked and must not become active setup truth without a dedicated write/cleanup decision.",
     "Master Data, O2C, P2P, Preview Posting and Posting remain blocked until Foundation setup boundaries are resolved or consciously accepted."
   ],
   "notProved": [
     "No Business Central page or package card was opened in this case.",
-    "No package table or field list was proven in the UI in this case.",
+    "No reliable package table or field list for Table 323, Table 252 or Table 325 is currently accepted as proven.",
     "No setup value was saved.",
     "No package import/export/validate/apply route was executed.",
-    "No posting readiness, VAT correctness, UAT acceptance or final book claim was proven."
+    "No posting readiness, VAT correctness, UAT acceptance or final book claim was proven.",
+    "No active use of U-VAT325-DISC for setup values was approved."
   ],
   "warnings": [
     "Do not treat this decision as a package write approval.",
@@ -132,45 +136,47 @@
   "nextStepDecision": {
     "currentCase": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
     "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
-    "lastEvidenceSummary": "Configuration Packages page and U-VAT325-DISC metadata were previously observed read-first; the package has 0 tables and 0 records and is parked.",
+    "lastEvidenceSummary": "Configuration Packages and Configuration Worksheet were observed read-first after this source decision, but the later field-map proof did not establish reliable Table 323, Table 252 or Table 325 mapping. U-VAT325-DISC remains only a parked route candidate.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "The local route decision is now complete. The next useful work is a read-first UI proof of Configuration Worksheet / package table-field route before any write gate.",
+    "reason": "The earlier read-first follow-up already ran and did not prove reliable package/worksheet table-field mapping. The package route is now parked and the next useful work is a materially different local route decision.",
     "lookaheadReviewed": [
       {
         "caseId": "FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST",
-        "status": "ready-next",
-        "reason": "Needed to prove the standard BC surface, actions and field/table route for Table 323, Table 325 and Table 252 without changing data."
+        "status": "obsolete",
+        "reason": "Already executed; it proved surfaces but did not prove reliable field/table mapping for Table 323, Table 252 or Table 325."
       },
       {
         "caseId": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION",
-        "status": "ready-after-current",
-        "reason": "Only sensible after the read-first proof shows clear package/worksheet table and field handling."
+        "status": "blocked",
+        "reason": "Already consumed the weak field-map result and parked the write gate."
       },
       {
         "caseId": "FOUNDATION-SETUP-PACKAGE-IMPORT-VALIDATE-APPLY-GATE",
-        "status": "needs-setup-first",
-        "reason": "Import/validate/apply must wait for package design, data source and write gate."
+        "status": "blocked",
+        "reason": "Import/validate/apply must wait for a new accepted package design, data source, field proof and write gate."
       },
       {
-        "caseId": "MASTER-DATA-CUSTOMER-READFIRST",
-        "status": "blocked",
-        "reason": "Master Data remains parked until Foundation posting/VAT route decisions are settled."
+        "caseId": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
+        "status": "ready-next",
+        "reason": "Needed to choose a materially different local Foundation setup route without repeating package-card, worksheet, Page 314, Page 470, Page 472 or U-VAT325-DISC attempts."
       }
     ],
     "queueChangesMade": [
-      "Prepared FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST as next read-first/no-write case."
+      "Reclassified the package table-mapping route from ready-for-readfirst to parked after later field-map and write-gate evidence.",
+      "Selected FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION as next local no-live case.",
+      "Kept U-VAT325-DISC as parked route candidate only."
     ],
-    "selectedNextCase": "FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST",
-    "whySelectedNextCaseIsBest": "It proves whether the selected real-project setup route can expose the required table/field context in the Universaarl UI before any package or setup write.",
+    "selectedNextCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
+    "whySelectedNextCaseIsBest": "It prevents another package/worksheet retry and forces a materially different, source-backed local route decision before any future BC read-first or write gate.",
     "risksBeforeNextCase": [
-      "Auth or permissions may block Configuration Worksheet visibility.",
-      "The target page may open as a side pane or Role Center fallback; screenshot QA must reject weak context."
+      "A future agent could confuse package metadata with setup correctness.",
+      "A future agent could repeat U-VAT325-DISC or worksheet field-map routes without a new hypothesis."
     ],
     "requiredPreparation": [
-      "Use multi-step screenshot chain.",
-      "Stop before create/get tables/import/export/validate/apply.",
-      "Keep U-VAT325-DISC parked unless a later gate documents a materially new hypothesis and explicitly changes its status."
+      "Read only the active local case and its mustRead files.",
+      "Respect the rejected-route register, including U-VAT325-DISC.",
+      "Do not open Business Central or run Playwright live in the local follow-up."
     ]
   },
-  "nextCase": "FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST"
+  "nextCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION"
 }

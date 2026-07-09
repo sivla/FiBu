@@ -38,6 +38,8 @@ Nach `FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST` sind die Oberflaec
 
 Nach `FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION` bleibt die Konfigurationspaket-Route fachlich plausibel, ist aber fuer Foundation-Setup aktuell geparkt. Die neue Bildkette beweist Oberflaechen, nicht Feldmapping. Ohne belastbaren Nachweis fuer Table 323, Table 252 und Table 325 gibt es keinen Paket-Write-Gate, kein `Get Tables`, keine Feldauswahl, keinen Import, kein Validate, kein Apply und keine Setup-Aenderung. Foundation Readiness muss diese Grenze als naechstes lokal/no-live konsumieren und danach eine materiell andere Route waehlen oder die Luecke bewusst parken.
 
+Aktualisierung zu `FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION`: Die fruehere Einstufung `ready-for-readfirst` ist durch den spaeteren Field-Map-Read-first und die geparkte Write-Gate-Entscheidung verbraucht. Die Route ist jetzt `parked`: Konfigurationspakete bleiben ein realistischer Implementierungsweg, aber `U-VAT325-DISC`, Paketkarten-, Worksheet-, Page-314-, Page-470- und Page-472-Routen duerfen ohne neue Hypothese nicht erneut versucht werden. Der aktive Folgecase ist lokal/no-live `FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION`.
+
 ## Read-first Ergebnis vom 2026-07-09
 
 Status: `parked`
