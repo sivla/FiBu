@@ -8,6 +8,16 @@ const nodeCmd = process.execPath;
 
 const checksByCase = new Map([
   [
+    'FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-READFIRST',
+    {
+      id: 'foundation-setup-package-field-selection-readfirst',
+      scriptPath: 'scripts/agent/run-foundation-setup-package-field-selection-readfirst.mjs',
+      args: ['--check'],
+      reason:
+        'The next Foundation case may inspect existing U-VAT325-DISC / Table 325 field context read-only, but must not toggle/select fields, import, export, validate, apply or write setup data.'
+    }
+  ],
+  [
     'FOUNDATION-SETUP-PACKAGE-ONE-METADATA-ACTION-EXECUTE',
     {
       id: 'foundation-setup-package-one-metadata-action-execute-preflight',
