@@ -15,9 +15,9 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w4-master-data-product-model",
-  "activeCase": "MASTER-DATA-CUSTOMER-NEW-DROPDOWN-TEMPLATE-CANCELSAFE-READFIRST",
-  "active_case_file": ".agent/state/cases/master-data-customer-new-dropdown-template-cancelsafe-readfirst.json",
-  "activeCaseFile": ".agent/state/cases/master-data-customer-new-dropdown-template-cancelsafe-readfirst.json",
+  "activeCase": "MASTER-DATA-CUSTOMER-NAVIGATION-DIALOG-RECOVERY-READFIRST",
+  "active_case_file": ".agent/state/cases/master-data-customer-navigation-dialog-recovery-readfirst.json",
+  "activeCaseFile": ".agent/state/cases/master-data-customer-navigation-dialog-recovery-readfirst.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-masterdata-readfirst",
@@ -47,11 +47,11 @@
   "allowedActions": [
     "validate-playthru-context-readonly",
     "validate-universaarl-company-context-readonly",
-    "open-customers-list-readonly",
-    "inspect-new-dropdown-or-tooltip-readonly",
-    "inspect-template-dialog-only-if-cancel-safe",
     "capture-screenshot-chain",
     "capture-visual-state-json",
+    "inspect-foreground-dialog-readonly",
+    "dismiss-informational-dialog-only-if-clearly-non-writing",
+    "open-customers-list-readonly",
     "write-result-json"
   ],
   "forbiddenActions": [
@@ -76,16 +76,14 @@
     "validate-configuration-package",
     "apply-configuration-package",
     "edit-book",
-    "claim-foundation-setup-ready",
     "claim-master-data-ready",
-    "claim-process-ready",
-    "continue-target-073",
     "type-business-central-values",
-    "cleanup-delete"
+    "cleanup-delete",
+    "repeat-rolecenter-tellme-dialog-route-without-new-hypothesis"
   ],
-  "nextCase": "MASTER-DATA-CUSTOMER-NEW-DROPDOWN-TEMPLATE-CANCELSAFE-READFIRST",
-  "nextStep": "Run MASTER-DATA-CUSTOMER-NEW-DROPDOWN-TEMPLATE-CANCELSAFE-READFIRST only through a guarded read-first/no-write route: inspect Debitoren New/Neu dropdown, optional template surface and cancel/no-write end state with a multi-step screenshot chain / Bildkette, visual-state JSON and Step Timeline; stop before Save/Create/OK/Finish, typed values or template changes.",
-  "preparedNextCaseFile": ".agent/state/cases/master-data-customer-new-dropdown-template-cancelsafe-readfirst.json",
+  "nextCase": "MASTER-DATA-CUSTOMER-NAVIGATION-DIALOG-RECOVERY-READFIRST",
+  "nextStep": "Run MASTER-DATA-CUSTOMER-NAVIGATION-DIALOG-RECOVERY-READFIRST only through a guarded read-first/no-write route: first classify the foreground Power BI information dialog, dismiss only if clearly non-writing, then prove the Debitoren list surface with screenshot chain, visual-state JSON and Step Timeline. Do not click New/Neu, do not type values, do not create or edit customer data.",
+  "preparedNextCaseFile": ".agent/state/cases/master-data-customer-navigation-dialog-recovery-readfirst.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -219,20 +217,20 @@
     "nextBoundary": "Master Data remains parked. Next work must update Foundation Readiness and either accept this as a Foundation gap or define a genuinely new Page 314 route hypothesis before another live attempt."
   },
   "activeNextStepAuthority": {
-    "source": "playwright/projects/fibu-book5/evidence/master-data-template-route-decision/result.json",
-    "selectedNextCase": "MASTER-DATA-CUSTOMER-NEW-DROPDOWN-TEMPLATE-CANCELSAFE-READFIRST",
-    "activeCaseFile": ".agent/state/cases/master-data-customer-new-dropdown-template-cancelsafe-readfirst.json",
-    "preparedNextCaseFile": ".agent/state/cases/master-data-customer-new-dropdown-template-cancelsafe-readfirst.json",
+    "source": "playwright/projects/fibu-book5/evidence/master-data-customer-new-dropdown-template-cancelsafe-readfirst/result.json",
+    "selectedNextCase": "MASTER-DATA-CUSTOMER-NAVIGATION-DIALOG-RECOVERY-READFIRST",
+    "activeCaseFile": ".agent/state/cases/master-data-customer-navigation-dialog-recovery-readfirst.json",
+    "preparedNextCaseFile": ".agent/state/cases/master-data-customer-navigation-dialog-recovery-readfirst.json",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "MASTER-DATA-TEMPLATE-ROUTE-DECISION consumed the broad preflight and selected a narrower customer New/dropdown/template cancel-safe read-first proof before any write gate.",
-    "whySelectedNextCaseIsBest": "It targets the exact missing evidence: customer-specific New/Neu dropdown, template/cancel boundary and no-write end state, without repeating the broad master-data preflight.",
+    "reason": "MASTER-DATA-CUSTOMER-NEW-DROPDOWN-TEMPLATE-CANCELSAFE-READFIRST stayed blocked by Role Center plus a foreground Power BI information dialog; the next step must recover the target-page proof before any New/Neu or write-gate route is repeated.",
+    "whySelectedNextCaseIsBest": "It addresses the concrete observed blocker: classify and safely dismiss only a clearly informational dialog, then prove the Debitoren list surface without creating or editing customer data.",
     "requiredPreparation": [
       "Run only after green active-readiness, dry-run, run-plan and visual-proof checks.",
       "Use screenshot QA, visual-state capture and Step Timeline.",
-      "Stop before Save, Create, OK, Finish, typed values or template-changing actions.",
-      "Do not claim Foundation setup, Master Data, O2C, P2P, Inventory, Preview Posting or Posting readiness."
+      "Stop if the foreground dialog is not clearly informational and non-writing.",
+      "Do not click New/Neu, do not type values, and do not claim customer or master-data readiness."
     ],
-    "updatedAt": "2026-07-09T23:35:00.000+02:00"
+    "updatedAt": "2026-07-09T06:10:00.000Z"
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -346,7 +344,7 @@
     "currentLiveBoundary": {
       "freezeActive": false,
       "parkedCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-      "resumePilot": "MASTER-DATA-CUSTOMER-NEW-DROPDOWN-TEMPLATE-CANCELSAFE-READFIRST",
+      "resumePilot": "MASTER-DATA-CUSTOMER-NAVIGATION-DIALOG-RECOVERY-READFIRST",
       "resumePilotMode": "read-first-no-write"
     },
     "legacyScriptGuard": {
@@ -12379,7 +12377,7 @@
     "nextCase": "FOUNDATION-SETUP-DEPENDENCY-RETURN-DECISION",
     "updatedAt": "2026-07-09T17:40:00.000Z"
   },
-  "next_case": "MASTER-DATA-CUSTOMER-NEW-DROPDOWN-TEMPLATE-CANCELSAFE-READFIRST",
+  "next_case": "MASTER-DATA-CUSTOMER-NAVIGATION-DIALOG-RECOVERY-READFIRST",
   "latestFoundationSetupSourceGapDecision": {
     "caseId": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
     "status": "completed-local-decision",

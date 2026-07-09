@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "caseId": "MASTER-DATA-CUSTOMER-NAVIGATION-DIALOG-RECOVERY-READFIRST",
+  "status": "prepared-readfirst-no-write",
+  "caseType": "read-first-no-write",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "goal": "Recover the Debitoren/Customers navigation proof after MASTER-DATA-CUSTOMER-NEW-DROPDOWN-TEMPLATE-CANCELSAFE-READFIRST found Role Center plus a foreground Power BI information dialog instead of a customer list. Prove only whether a safe dialog dismissal and customer-list navigation route exists.",
+  "whyNow": "The customer New/Neu boundary cannot be evaluated until the target Debitoren list is actually visible. The blocked route must not be repeated without handling the foreground dialog first.",
+  "mustRead": [
+    ".agent/OPERATING-KERNEL.md",
+    ".agent/state/current.json",
+    ".agent/state/rejected_route_register.json",
+    "playwright/projects/fibu-book5/evidence/master-data-customer-new-dropdown-template-cancelsafe-readfirst/result.json",
+    "playwright/projects/fibu-book5/evidence/master-data-customer-new-dropdown-template-cancelsafe-readfirst/step-timeline.json"
+  ],
+  "allowedActions": [
+    "validate-playthru-context-readonly",
+    "validate-universaarl-company-context-readonly",
+    "capture-screenshot-chain",
+    "capture-visual-state-json",
+    "inspect-foreground-dialog-readonly",
+    "dismiss-informational-dialog-only-if-clearly-non-writing",
+    "open-customers-list-readonly",
+    "write-result-json"
+  ],
+  "forbiddenActions": [
+    "leave-instance",
+    "commit-secrets",
+    "show-env-or-auth",
+    "fake-evidence",
+    "book-claim-without-evidence",
+    "write-setup",
+    "create-master-data",
+    "edit-master-data",
+    "save-record",
+    "change-template",
+    "create-document-or-draft",
+    "preview-posting",
+    "post",
+    "payment",
+    "api-shortcut",
+    "company-switch",
+    "import-configuration-package",
+    "export-configuration-package",
+    "validate-configuration-package",
+    "apply-configuration-package",
+    "edit-book",
+    "claim-master-data-ready",
+    "type-business-central-values",
+    "cleanup-delete",
+    "repeat-rolecenter-tellme-dialog-route-without-new-hypothesis"
+  ],
+  "requiredSkills": [
+    "read-first-page-proof",
+    "screenshot-qa",
+    "state-sync-check"
+  ],
+  "skills": [
+    "read-first-page-proof",
+    "screenshot-qa",
+    "state-sync-check"
+  ],
+  "requiredHelpers": [
+    "playwright/core/bc/step-timeline.ts",
+    "playwright/core/bc/visual-state-capture.ts",
+    "playwright/core/bc/visual-proof-skills.ts"
+  ],
+  "requiredChecks": [
+    "agent:preflight",
+    "agent:active-readiness",
+    "agent:dry-run",
+    "agent:run-plan",
+    "agent:rejected-routes:check",
+    "agent:visual-proof-skills:check",
+    "check:encoding",
+    "git diff --check"
+  ],
+  "expectedOutput": [
+    "resultJson: playwright/projects/fibu-book5/evidence/master-data-customer-navigation-dialog-recovery-readfirst/result.json",
+    "dialog classification before any dismissal",
+    "whether OK/close was clearly informational and non-writing",
+    "Debitoren target-page proof or explicit navigation blocker",
+    "screenshot QA / visual evidence",
+    "no setup/master-data/document/posting/API changes",
+    "nextStepDecision"
+  ],
+  "stopConditions": [
+    "target is not playthru / UNIVERSAARL-DE",
+    "dialog is not clearly informational or non-writing",
+    "dismissal would start setup, wizard, login, publish, sync or any write",
+    "search overlay remains foreground after navigation",
+    "Role Center text is the only Debitoren signal",
+    "any customer card opens unexpectedly",
+    "any Save/Create/OK/Finish action would create or change data"
+  ],
+  "rejectedRoutesToRespect": [
+    "RR-MASTERDATA-CUSTOMER-ROLECENTER-TELLME-DIALOG-RETRY"
+  ],
+  "rejectedRouteReview": {
+    "checkedRegister": ".agent/state/rejected_route_register.json",
+    "blockedRouteIds": [
+      "RR-MASTERDATA-CUSTOMER-ROLECENTER-TELLME-DIALOG-RETRY"
+    ],
+    "materiallyDifferentBecause": [
+      "The next route must first classify the foreground dialog and only dismiss it if it is clearly informational and non-writing.",
+      "Role Center Debitoren text alone must not count as page proof."
+    ],
+    "repeatAllowedBecause": [
+      "new-ui-insight"
+    ]
+  },
+  "nextCaseOptions": [
+    {
+      "caseId": "MASTER-DATA-CUSTOMER-NEW-DROPDOWN-TEMPLATE-CANCELSAFE-READFIRST",
+      "when": "Only if Debitoren list page proof is established and the New/Neu boundary still needs inspection."
+    },
+    {
+      "caseId": "MASTER-DATA-TEMPLATE-ROUTE-DECISION",
+      "when": "Only after customer-list proof is good enough to consume locally."
+    },
+    {
+      "caseId": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
+      "when": "If customer navigation remains blocked and Foundation setup-package route remains the more valuable local decision."
+    }
+  ],
+  "resultPath": "playwright/projects/fibu-book5/evidence/master-data-customer-navigation-dialog-recovery-readfirst/result.json",
+  "updatedAt": "2026-07-09T06:05:00.000Z"
+}

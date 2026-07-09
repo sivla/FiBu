@@ -155,6 +155,30 @@
         "manual-approval"
       ],
       "status": "parked-specific-route"
+    },
+    {
+      "routeId": "RR-MASTERDATA-CUSTOMER-ROLECENTER-TELLME-DIALOG-RETRY",
+      "workstream": "w4-master-data-product-model",
+      "pageOrObject": "Page 22 / Debitoren / Customers via Role Center link or Tell-Me while an informational Power BI dialog can block the surface",
+      "purpose": "Open Debitoren/Customers and inspect the New/Neu boundary by repeating direct Page 22 URL, visible Role Center Debitoren link, or bounded Tell-Me while the dialog state is unresolved.",
+      "attemptOrRun": [
+        "MASTER-DATA-CUSTOMER-NEW-DROPDOWN-TEMPLATE-CANCELSAFE-READFIRST"
+      ],
+      "result": "Direct Page 22 stayed on Role Center, the visible Debitoren link did not prove the list, and Tell-Me stayed blocked by a foreground Power BI setup information dialog. No customer data was created or changed.",
+      "evidenceLinks": [
+        "playwright/projects/fibu-book5/evidence/master-data-customer-new-dropdown-template-cancelsafe-readfirst/result.json",
+        "playwright/projects/fibu-book5/evidence/master-data-customer-new-dropdown-template-cancelsafe-readfirst/step-timeline.json"
+      ],
+      "whyRejectedOrParked": "Repeating the same navigation route would again treat Role Center text or an unresolved foreground dialog as customer-list evidence.",
+      "riskIfRepeated": "Could falsely classify Role Center/New menu text as Debitoren-list proof and then advance to customer write gates without the target page being open.",
+      "repeatAllowedOnlyIf": [
+        "new-helper",
+        "new-ui-insight",
+        "different-bc-surface",
+        "different-goal",
+        "manual-approval"
+      ],
+      "status": "parked-until-dialog-recovery-readfirst"
     }
   ]
 }

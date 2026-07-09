@@ -142,9 +142,19 @@ const checksByCase = new Map([
     'MASTER-DATA-CUSTOMER-NEW-DROPDOWN-TEMPLATE-CANCELSAFE-READFIRST',
     {
       id: 'master-data-customer-new-dropdown-template-cancelsafe-readfirst',
-      scriptPath: 'scripts/agent/read-first-no-write-case-readiness-check.mjs',
+      scriptPath: 'scripts/agent/run-master-data-customer-new-dropdown-template-cancelsafe-readfirst.mjs',
+      args: ['--check'],
       reason:
         'This read-first/no-write customer preflight may inspect the Debitoren New/Neu dropdown, optional template surface and cancel/no-write boundary, but must stop before Save, Create, OK, Finish, typed values or template changes.'
+    }
+  ],
+  [
+    'MASTER-DATA-CUSTOMER-NAVIGATION-DIALOG-RECOVERY-READFIRST',
+    {
+      id: 'master-data-customer-navigation-dialog-recovery-readfirst',
+      scriptPath: 'scripts/agent/read-first-no-write-case-readiness-check.mjs',
+      reason:
+        'This read-first/no-write recovery case may classify and safely dismiss a clearly informational foreground dialog, then prove the Debitoren target page. It must not click New/Neu, type values, create or edit customer data.'
     }
   ],
   [
