@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-09T16:40:00.000Z",
+  "updatedAt": "2026-07-09T16:55:00.000Z",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -15,9 +15,9 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w1-foundation",
-  "activeCase": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
-  "active_case_file": ".agent/state/cases/foundation-setup-package-table-mapping-source-decision.json",
-  "activeCaseFile": ".agent/state/cases/foundation-setup-package-table-mapping-source-decision.json",
+  "activeCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
+  "active_case_file": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
+  "activeCaseFile": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-foundation-local-decision",
@@ -45,10 +45,10 @@
   ],
   "allowedActions": [
     "local-source-review",
-    "local-field-map-review",
+    "local-route-comparison",
     "local-rejected-route-review",
     "write-route-decision-result-json",
-    "prepare-next-readfirst-or-write-gate-case"
+    "prepare-one-next-readfirst-or-local-gate-case"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -60,15 +60,12 @@
     "run-playwright-live",
     "create-configuration-package",
     "open-configuration-package-card-for-edit",
-    "rename-configuration-package",
     "get-tables",
-    "add-table",
-    "remove-table",
+    "select-or-toggle-package-fields",
     "import-configuration-package",
     "export-configuration-package",
     "validate-configuration-package",
     "apply-configuration-package",
-    "delete-configuration-package",
     "edit-in-excel",
     "write-setup",
     "create-master-data",
@@ -77,11 +74,13 @@
     "post",
     "payment",
     "api-shortcut",
-    "company-switch"
+    "company-switch",
+    "claim-posting-readiness",
+    "claim-master-data-readiness"
   ],
-  "nextCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
-  "nextStep": "Run FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION locally/no-live because the configuration-package table-mapping route is source-backed but parked; do not repeat U-VAT325-DISC, worksheet, Page 314, Page 470 or Page 472 routes without a materially new hypothesis.",
-  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
+  "nextCase": "FOUNDATION-MASTER-DATA-ROUTE-REFRESH-AFTER-SETUP-PARKED",
+  "nextStep": "Run FOUNDATION-MASTER-DATA-ROUTE-REFRESH-AFTER-SETUP-PARKED locally/no-live: consume existing customer/vendor/item read-first evidence as training, handbook and data-route input while Foundation setup, Master Data writes, O2C/P2P, Preview Posting and Posting remain blocked.",
+  "preparedNextCaseFile": ".agent/state/cases/foundation-master-data-route-refresh-after-setup-parked.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -215,20 +214,21 @@
     "nextBoundary": "Master Data remains parked. Next work must update Foundation Readiness and either accept this as a Foundation gap or define a genuinely new Page 314 route hypothesis before another live attempt."
   },
   "activeNextStepAuthority": {
-    "source": "playwright/projects/fibu-book5/evidence/foundation-setup-package-table-mapping-source-decision/result.json",
-    "selectedNextCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
-    "activeCaseFile": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
-    "preparedNextCaseFile": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
+    "source": "playwright/projects/fibu-book5/evidence/foundation-setup-alternative-route-source-decision/result.json",
+    "selectedNextCase": "FOUNDATION-MASTER-DATA-ROUTE-REFRESH-AFTER-SETUP-PARKED",
+    "activeCaseFile": ".agent/state/cases/foundation-master-data-route-refresh-after-setup-parked.json",
+    "preparedNextCaseFile": ".agent/state/cases/foundation-master-data-route-refresh-after-setup-parked.json",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION revalidated the package route as parked and selected a local alternative route source decision. U-VAT325-DISC remains only a parked route candidate.",
-    "whySelectedNextCaseIsBest": "It forces a materially different source decision before any further Foundation setup package, worksheet, Page 314, Page 470 or Page 472 attempt.",
+    "reason": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION parks weak Foundation setup routes and selects a local Master Data route refresh that preserves no-live/no-write boundaries.",
+    "whySelectedNextCaseIsBest": "It turns existing Universaarl customer/vendor/item read-first evidence into useful training, handbook and data-route decisions without claiming setup or process readiness.",
     "requiredPreparation": [
       "Use only the active case mustRead files.",
       "Do not open Business Central or run Playwright live in this local no-live decision.",
-      "Do not create or edit setup, packages, master data, templates, documents, Preview Posting or Posting.",
-      "Respect rejected_route_register.json including U-VAT325-DISC."
+      "Do not create or edit setup, master data, templates, documents, Preview Posting or Posting.",
+      "Respect Foundation parked boundaries and rejected_route_register.json.",
+      "Keep Master Data evidence training-/handbook-ready only until a later write gate explicitly unlocks more."
     ],
-    "updatedAt": "2026-07-09T16:40:00.000Z"
+    "updatedAt": "2026-07-09T16:55:00.000Z"
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -342,7 +342,7 @@
     "currentLiveBoundary": {
       "freezeActive": false,
       "parkedCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-      "resumePilot": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
+      "resumePilot": "FOUNDATION-MASTER-DATA-ROUTE-REFRESH-AFTER-SETUP-PARKED",
       "resumePilotMode": "local-no-live-decision"
     },
     "legacyScriptGuard": {
@@ -423,14 +423,14 @@
   },
   "freezeStatus": {
     "status": "lifted-readfirst",
-    "caseId": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
+    "caseId": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
     "frozenLiveCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-    "resumeCandidateAfterFreeze": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
+    "resumeCandidateAfterFreeze": "FOUNDATION-MASTER-DATA-ROUTE-REFRESH-AFTER-SETUP-PARKED",
     "completedLocalCheckpoint": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
     "planFile": ".agent/PROJECT-IMPROVEMENT-PLAN.md",
     "latestPostFreezeCase": "FOUNDATION-MASTER-DATA-ROUTE-REFRESH-AFTER-SETUP-PARKED",
     "latestPostFreezeResult": "playwright/projects/fibu-book5/evidence/foundation-master-data-route-refresh-after-setup-parked/result.json",
-    "updatedAt": "2026-07-09T16:40:00.000Z"
+    "updatedAt": "2026-07-09T16:55:00.000Z"
   },
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
@@ -12269,7 +12269,7 @@
   },
   "latestFoundationSetupAlternativeRouteSourceDecision": {
     "caseId": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
-    "status": "completed-local-decision-post-package-route-revalidation",
+    "status": "completed-local-decision-operating-kernel-revalidated",
     "decision": "park-foundation-setup-route-use-master-data-local-refresh",
     "resultPath": "playwright/projects/fibu-book5/evidence/foundation-setup-alternative-route-source-decision/result.json",
     "instance": "playthru",
@@ -12278,10 +12278,12 @@
     "playwrightLiveRunExecuted": false,
     "setupChanged": false,
     "masterDataChanged": false,
+    "draftCreated": false,
     "previewPosting": false,
     "posted": false,
+    "apiShortcut": false,
     "nextCase": "FOUNDATION-MASTER-DATA-ROUTE-REFRESH-AFTER-SETUP-PARKED",
-    "updatedAt": "2026-07-09T16:25:00.000Z"
+    "updatedAt": "2026-07-09T16:55:00.000Z"
   },
   "latestFoundationSetupSourceTableFieldReview": {
     "caseId": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",
@@ -12370,7 +12372,7 @@
     "nextCase": "FOUNDATION-SETUP-DEPENDENCY-RETURN-DECISION",
     "updatedAt": "2026-07-09T09:20:00.000Z"
   },
-  "next_case": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
+  "next_case": "FOUNDATION-MASTER-DATA-ROUTE-REFRESH-AFTER-SETUP-PARKED",
   "latestFoundationSetupSourceGapDecision": {
     "caseId": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
     "status": "completed-local-decision",
