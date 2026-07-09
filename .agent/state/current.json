@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-07-09T22:12:00.000+02:00",
+  "updatedAt": "2026-07-09T23:05:00.000+02:00",
   "branchExpected": "codex/token-efficient-autopilot-state",
   "sourceBranch": "codex/playwright-bc-screenshot-foundation",
   "instance": "playthru",
@@ -14,13 +14,13 @@
   },
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
-  "activeArea": "w1-foundation",
-  "activeCase": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION",
-  "active_case_file": ".agent/state/cases/foundation-setup-package-table-mapping-source-decision.json",
-  "activeCaseFile": ".agent/state/cases/foundation-setup-package-table-mapping-source-decision.json",
+  "activeArea": "w4-master-data-product-model",
+  "activeCase": "MASTER-DATA-TEMPLATE-ROUTE-DECISION",
+  "active_case_file": ".agent/state/cases/master-data-template-route-decision.json",
+  "activeCaseFile": ".agent/state/cases/master-data-template-route-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
-  "mode": "universaarl-foundation-local-decision",
+  "mode": "universaarl-master-data-local-decision",
   "authorityCharter": {
     "path": ".agent/PLAYTHRU-AUTHORITY-CHARTER.md",
     "scope": "playthru-only",
@@ -35,19 +35,19 @@
   },
   "requiresStrongModel": true,
   "requiredPreflightChecks": [
-    "agent:preflight",
     "agent:active-readiness",
     "agent:dry-run",
+    "agent:run-plan",
     "agent:rejected-routes:check",
     "check:encoding",
     "git diff --check"
   ],
   "allowedActions": [
-    "local-source-review",
-    "local-field-map-review",
-    "local-rejected-route-review",
-    "write-route-decision-result-json",
-    "prepare-next-readfirst-or-write-gate-case"
+    "read-local-evidence",
+    "classify-template-route",
+    "prepare-one-next-case",
+    "write-local-decision-result-json",
+    "update-state-summary"
   ],
   "forbiddenActions": [
     "leave-instance",
@@ -57,30 +57,25 @@
     "book-claim-without-evidence",
     "open-business-central",
     "run-playwright-live",
-    "create-configuration-package",
-    "open-configuration-package-card-for-edit",
-    "rename-configuration-package",
-    "get-tables",
-    "add-table",
-    "remove-table",
-    "import-configuration-package",
-    "export-configuration-package",
-    "validate-configuration-package",
-    "apply-configuration-package",
-    "delete-configuration-package",
-    "edit-in-excel",
     "write-setup",
     "create-master-data",
+    "edit-master-data",
+    "save-record",
+    "change-template",
     "create-document-or-draft",
     "preview-posting",
     "post",
     "payment",
     "api-shortcut",
-    "company-switch"
+    "company-switch",
+    "edit-book",
+    "claim-foundation-setup-ready",
+    "claim-master-data-ready",
+    "claim-process-ready"
   ],
-  "nextCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
-  "nextStep": "FOUNDATION-SETUP-PACKAGE-TABLE-MAPPING-SOURCE-DECISION is locally revalidated and remains parked. Next executable work is FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION, local/no-live only, without repeating package/worksheet/Page 314/Page 470/Page 472/U-VAT325-DISC routes.",
-  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
+  "nextCase": "MASTER-DATA-TEMPLATE-ROUTE-DECISION",
+  "nextStep": "Run the local/no-live MASTER-DATA-TEMPLATE-ROUTE-DECISION to consume the new MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT result and Step Timeline; choose exactly one next case: narrow customer write-gate prep, another cancel-safe template read-first, or Foundation gap decision. Do not open Business Central or Playwright live in this decision case. Any later live proof still requires a multi-step screenshot chain / Bildkette.",
+  "preparedNextCaseFile": ".agent/state/cases/master-data-template-route-decision.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -214,20 +209,20 @@
     "nextBoundary": "Master Data remains parked. Next work must update Foundation Readiness and either accept this as a Foundation gap or define a genuinely new Page 314 route hypothesis before another live attempt."
   },
   "activeNextStepAuthority": {
-    "source": "playwright/projects/fibu-book5/evidence/foundation-setup-package-table-mapping-source-decision/result.json",
-    "selectedNextCase": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
-    "activeCaseFile": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
-    "preparedNextCaseFile": ".agent/state/cases/foundation-setup-alternative-route-source-decision.json",
+    "source": "playwright/projects/fibu-book5/evidence/master-data-template-readfirst-preflight/result.json",
+    "selectedNextCase": "MASTER-DATA-TEMPLATE-ROUTE-DECISION",
+    "activeCaseFile": ".agent/state/cases/master-data-template-route-decision.json",
+    "preparedNextCaseFile": ".agent/state/cases/master-data-template-route-decision.json",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "The active source-backed table-mapping decision was revalidated after the pause: configuration packages remain plausible but the concrete route is parked.",
-    "whySelectedNextCaseIsBest": "It forces a materially different local source decision instead of repeating parked package/worksheet/Page 314/Page 470/Page 472/U-VAT325-DISC attempts.",
+    "reason": "MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT is now observed read-first/no-write and must be consumed by a local route decision before any write-gate.",
+    "whySelectedNextCaseIsBest": "It prevents repeating the same visual preflight and forces the next step to choose one concrete route from the new screenshot, visual-state and timeline evidence.",
     "requiredPreparation": [
-      "Read only the next local case mustRead files.",
-      "Respect rejected_route_register.json, especially U-VAT325-DISC as parked route candidate only.",
-      "Do not open Business Central or run Playwright live in the local follow-up.",
-      "Do not unlock import, export, validate, apply, setup write, master data, preview or posting without a separate gate."
+      "Read only the mustRead files in .agent/state/cases/master-data-template-route-decision.json.",
+      "Do not open Business Central or run Playwright live in this local decision case.",
+      "Choose exactly one next case: narrow customer write-gate prep, another cancel-safe template read-first, or Foundation gap decision.",
+      "Do not claim Foundation setup, Master Data, O2C, P2P, Inventory, Preview Posting or Posting readiness."
     ],
-    "updatedAt": "2026-07-09T22:12:00.000+02:00"
+    "updatedAt": "2026-07-09T23:05:00.000+02:00"
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -341,7 +336,7 @@
     "currentLiveBoundary": {
       "freezeActive": false,
       "parkedCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-      "resumePilot": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
+      "resumePilot": "MASTER-DATA-TEMPLATE-ROUTE-DECISION",
       "resumePilotMode": "local-no-live-decision"
     },
     "legacyScriptGuard": {
@@ -424,12 +419,12 @@
     "status": "lifted-readfirst",
     "caseId": "MASTER-DATA-TEMPLATE-ROUTE-DECISION",
     "frozenLiveCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-    "resumeCandidateAfterFreeze": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
+    "resumeCandidateAfterFreeze": "MASTER-DATA-TEMPLATE-ROUTE-DECISION",
     "completedLocalCheckpoint": "TARGET-074-W1-FOUNDATION-CHECKPOINT-AFTER-VAT-EDITOR-PARK",
     "planFile": ".agent/PROJECT-IMPROVEMENT-PLAN.md",
     "latestPostFreezeCase": "FOUNDATION-MASTER-DATA-ROUTE-REFRESH-AFTER-SETUP-PARKED",
     "latestPostFreezeResult": "playwright/projects/fibu-book5/evidence/foundation-master-data-route-refresh-after-setup-parked/result.json",
-    "updatedAt": "2026-07-09T22:12:00.000+02:00"
+    "updatedAt": "2026-07-09T22:35:00.000+02:00"
   },
   "smartDecisionGate": {
     "path": ".agent/SMART-DECISION-GATE.md",
@@ -12374,7 +12369,7 @@
     "nextCase": "FOUNDATION-SETUP-DEPENDENCY-RETURN-DECISION",
     "updatedAt": "2026-07-09T17:40:00.000Z"
   },
-  "next_case": "FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION",
+  "next_case": "MASTER-DATA-TEMPLATE-ROUTE-DECISION",
   "latestFoundationSetupSourceGapDecision": {
     "caseId": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
     "status": "completed-local-decision",
@@ -12547,5 +12542,34 @@
     "apiShortcut": false,
     "nextCase": "MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT",
     "updatedAt": "2026-07-09T19:05:00.000Z"
+  },
+  "latestMasterDataTemplateReadfirstPreflight": {
+    "caseId": "MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT",
+    "status": "observed-readfirst-no-write",
+    "resultPath": "playwright/projects/fibu-book5/evidence/master-data-template-readfirst-preflight/result.json",
+    "timelinePath": "playwright/projects/fibu-book5/evidence/master-data-template-readfirst-preflight/step-timeline.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "businessCentralOpened": true,
+    "playwrightLiveRunExecuted": true,
+    "liveActionsExecuted": true,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "draftCreated": false,
+    "previewPosting": false,
+    "posted": false,
+    "apiShortcut": false,
+    "proved": [
+      "Customers, Vendors and Items/Services list contexts were opened read-first.",
+      "New/Neu or related action candidates were detected on all three contexts without clicking create/save/template actions.",
+      "Step Timeline captured before/after screenshots and visual-state JSON for six steps."
+    ],
+    "notProved": [
+      "No master-data record was created or changed.",
+      "No template was selected or changed.",
+      "No mandatory-field save validation, Foundation setup, O2C, P2P, Inventory, Preview Posting or Posting readiness was proven."
+    ],
+    "nextCase": "MASTER-DATA-TEMPLATE-ROUTE-DECISION",
+    "updatedAt": "2026-07-09T23:05:00.000+02:00"
   }
 }

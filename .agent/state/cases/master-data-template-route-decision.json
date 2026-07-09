@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
   "caseId": "MASTER-DATA-TEMPLATE-ROUTE-DECISION",
-  "status": "completed-local-decision",
+  "status": "prepared-local-redecision-after-template-preflight",
   "caseType": "local-no-live-decision",
   "mode": "universaarl-master-data-local-decision",
   "instance": "playthru",
   "company": "UNIVERSAARL-DE",
   "activeArea": "w4-master-data-product-model",
-  "goal": "Decide locally whether the observed Customer, Vendor and Item/Service surfaces are sufficient to prepare a narrow write-gate, or whether template/foundation gaps must be handled first.",
-  "whyNow": "MASTER-DATA-FIELD-MAP-READFIRST-VALIDATION proved the real Business Central surfaces read-first, but explicitly did not approve records, templates, setup or process work.",
+  "goal": "Consume the MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT visual evidence and decide locally whether a narrow customer write-gate may be prepared, whether another cancel-safe template proof is needed, or whether Master Data remains parked behind Foundation gaps.",
+  "whyNow": "MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT proved the real Customers, Vendors and Items/Services list/action surfaces with screenshot QA and a Step Timeline, but still did not create records, select templates, test mandatory-field saves or approve setup/process readiness.",
   "mustRead": [
     ".agent/OPERATING-KERNEL.md",
     ".agent/state/current.json",
-    "playwright/projects/fibu-book5/evidence/master-data-field-map-readfirst-validation/result.json",
-    "playwright/projects/fibu-book5/evidence/master-data-package-field-map-decision/result.json",
+    "playwright/projects/fibu-book5/evidence/master-data-template-readfirst-preflight/result.json",
+    "playwright/projects/fibu-book5/evidence/master-data-template-readfirst-preflight/step-timeline.json",
     "playwright/projects/fibu-book5/FOUNDATION-READINESS-DECISION.md"
   ],
   "allowedActions": [
@@ -80,12 +80,12 @@
   "nextCaseOptions": [
     {
       "caseId": "CUSTOMER-U-CUST-100-FIELD-COMPLETION-WRITE-GATE",
-      "when": "Use only if the local decision isolates descriptive customer fields and parks posting/VAT/payment/template dependencies.",
+      "when": "Use only if the preflight evidence is enough to isolate descriptive customer fields and parks posting/VAT/payment/template dependencies.",
       "liveType": "write-gated"
     },
     {
       "caseId": "MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT",
-      "when": "Use if template dialogs or mandatory markers must be inspected before any write-gate.",
+      "when": "Use only if the preflight showed New/Neu action surfaces but not enough cancel-safe template or mandatory-field detail.",
       "liveType": "read-first-no-write"
     },
     {
@@ -94,9 +94,8 @@
       "liveType": "local-no-live-decision"
     }
   ],
-  "decision": "ready-for-template-readfirst-preflight-not-write",
-  "selectedNextCase": "MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT",
-  "nextCase": "MASTER-DATA-TEMPLATE-READFIRST-PREFLIGHT",
-  "preparedAt": "2026-07-09T03:25:00.000Z",
-  "completedAt": "2026-07-09T13:05:00.000Z"
+  "decision": "pending-after-template-readfirst-preflight",
+  "selectedNextCase": null,
+  "nextCase": null,
+  "preparedAt": "2026-07-09T23:05:00.000+02:00"
 }

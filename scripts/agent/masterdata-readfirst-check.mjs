@@ -173,7 +173,9 @@ const authOnlyBlocker =
       result.canRunNow === false &&
       result.authMeetsLiveWindow === false &&
       blockers.includes('storage-state-expires-before-required-window') &&
-      blockers.includes('business-central-live-gate-blocked')
+      blockers.every((blocker) =>
+        ['storage-state-expires-before-required-window', 'business-central-live-gate-blocked'].includes(String(blocker))
+      )
     );
   });
 const blockedByLiveGateOrFoundation = results.every((result) => {
