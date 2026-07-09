@@ -1,0 +1,300 @@
+{
+  "schemaVersion": 1,
+  "caseId": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
+  "resultStatus": "completed-local-decision",
+  "decision": "ready-for-source-gap-decision",
+  "decisionClass": "local-no-live-preparation",
+  "completedAt": "2026-07-09T04:05:00.000Z",
+  "instance": "playthru",
+  "company": "UNIVERSAARL-DE",
+  "businessCentralOpened": false,
+  "playwrightLiveRunExecuted": false,
+  "liveActionsExecuted": false,
+  "setupChanged": false,
+  "setupChangeAttempted": false,
+  "masterDataChanged": false,
+  "draftCreated": false,
+  "previewPosting": false,
+  "posted": false,
+  "payment": false,
+  "apiShortcut": false,
+  "companySwitch": false,
+  "sourceEvidence": [
+    ".agent/state/current.json",
+    ".agent/state/rejected_route_register.json",
+    "playwright/projects/fibu-book5/UNIVERSAARL-FOUNDATION-SETUP-FIELD-MAP.md",
+    "playwright/projects/fibu-book5/evidence/foundation-setup-source-table-field-review/result.json"
+  ],
+  "actionsTaken": [
+    "Classified planned Foundation setup values by setup object.",
+    "Assigned business owner, dependency status, validation boundary and evidence need for each value cluster.",
+    "Kept U-VAT325-DISC, package field selection, import, validate, apply and setup writes blocked.",
+    "Selected a local source-gap decision before any read-first or write gate because Page/Table 470 remains unresolved."
+  ],
+  "actionsNotTaken": [
+    "Did not open Business Central.",
+    "Did not run Playwright live.",
+    "Did not create, edit, import, export, validate or apply a configuration package.",
+    "Did not click Get Tables / Tabellen abrufen.",
+    "Did not select or toggle package fields.",
+    "Did not write setup values.",
+    "Did not create master data, documents, journals, Preview Posting, Posting or payments.",
+    "Did not update the book text."
+  ],
+  "valueMap": [
+    {
+      "id": "VM-001",
+      "setupObject": "General Posting Setup",
+      "candidateTable": "General Posting Setup (252)",
+      "plannedKey": {
+        "genBusPostingGroup": "INLAND",
+        "genProdPostingGroup": "WAREN"
+      },
+      "plannedValues": [
+        {
+          "field": "Sales Account",
+          "value": "4400",
+          "purpose": "Domestic sales revenue account for goods/service revenue routing in the starter setup.",
+          "classification": "ready-for-readfirst"
+        },
+        {
+          "field": "Purch. Account",
+          "value": "5400",
+          "purpose": "Domestic purchase/material expense account for purchasing-side account determination in the starter setup.",
+          "classification": "ready-for-readfirst"
+        }
+      ],
+      "customerOwner": "Finance Key User",
+      "internalOwner": "BC Finance Consultant",
+      "dependencyStatus": "needs-readfirst-validation",
+      "dependencies": [
+        "G/L accounts 4400 and 5400 exist as posting accounts.",
+        "General Business Posting Group INLAND exists or is explicitly created in a later gate.",
+        "General Product Posting Group WAREN exists or is explicitly created in a later gate."
+      ],
+      "validationRules": [
+        "Before any write, prove the target key INLAND/WAREN on a read-only page, worksheet or package-field surface.",
+        "Before any write, prove Sales Account and Purch. Account field visibility or source field mapping.",
+        "After any later write, reopen the setup and prove both account values on the same key."
+      ],
+      "evidenceNeed": [
+        "Read-first screenshot/visual-state for the target table or worksheet row.",
+        "Field-list or page proof for Sales Account and Purch. Account.",
+        "Later write-gate result with reopen proof, if approved."
+      ],
+      "riskIfWrong": "Sales and purchase documents can post to wrong revenue or expense accounts; no O2C/P2P posting readiness may be claimed until this is proven."
+    },
+    {
+      "id": "VM-002",
+      "setupObject": "VAT Posting Setup",
+      "candidateTable": "VAT Posting Setup (325)",
+      "plannedKey": {
+        "vatBusPostingGroup": "INLAND",
+        "vatProdPostingGroup": "VAT19"
+      },
+      "plannedValues": [
+        {
+          "field": "VAT %",
+          "value": "19",
+          "purpose": "Domestic 19 percent VAT starter scenario for Universaarl training and setup flow.",
+          "classification": "needs-source-check-first"
+        },
+        {
+          "field": "VAT Calculation Type",
+          "value": "normal VAT",
+          "purpose": "Use the standard VAT calculation pattern before any document or posting proof.",
+          "classification": "needs-source-check-first"
+        },
+        {
+          "field": "Sales VAT Account",
+          "value": "3806",
+          "purpose": "Output VAT account candidate for the 19 percent domestic VAT setup.",
+          "classification": "needs-source-check-first"
+        },
+        {
+          "field": "Purchase VAT Account",
+          "value": "1406",
+          "purpose": "Input VAT account candidate for the 19 percent domestic VAT setup.",
+          "classification": "needs-source-check-first"
+        }
+      ],
+      "customerOwner": "Finance Key User with tax-advisor review",
+      "internalOwner": "BC Finance Consultant",
+      "dependencyStatus": "blocked-by-vat-business-posting-group-source-gap",
+      "dependencies": [
+        "VAT Business Posting Group INLAND must be source-backed and visible before the INLAND/VAT19 setup can be treated as a read-first target.",
+        "VAT Product Posting Group VAT19 must remain visible and semantically correct.",
+        "G/L accounts 3806 and 1406 must remain visible as posting accounts.",
+        "No German tax finality may be claimed from this starter value map."
+      ],
+      "validationRules": [
+        "Resolve Page/Table 470 or equivalent source truth for VAT Business Posting Group before write-gate planning.",
+        "Before any write, prove the table/field/value surface for Table 325 or a Configuration Worksheet/package route.",
+        "After any later write, reopen VAT Posting Setup and prove key, percentage, calculation type and VAT accounts."
+      ],
+      "evidenceNeed": [
+        "Local source-gap decision for VAT Business Posting Group INLAND.",
+        "Read-first proof of Table 325 field/value surface after the source gap is resolved.",
+        "Later write-gate result with reopen proof, if approved."
+      ],
+      "riskIfWrong": "VAT documents can calculate or post wrong VAT; O2C/P2P, Preview Posting, Posting and German VAT claims remain blocked."
+    },
+    {
+      "id": "VM-003",
+      "setupObject": "VAT Business Posting Group",
+      "candidateTable": "unresolved",
+      "plannedKey": {
+        "vatBusPostingGroup": "INLAND"
+      },
+      "plannedValues": [
+        {
+          "field": "Code",
+          "value": "INLAND",
+          "purpose": "Domestic business VAT group for German customer/vendor transactions.",
+          "classification": "needs-source-check-first"
+        },
+        {
+          "field": "Description",
+          "value": "Inland / domestic business",
+          "purpose": "Human-readable starter description for training and setup trace.",
+          "classification": "needs-source-check-first"
+        }
+      ],
+      "customerOwner": "Finance Key User with tax-advisor review",
+      "internalOwner": "BC Finance Consultant",
+      "dependencyStatus": "source-gap",
+      "dependencies": [
+        "Page 470 visible target proof is rejected for current routes.",
+        "Exact table/field source is not locally proven by this case.",
+        "VAT Posting Setup INLAND/VAT19 depends on this group."
+      ],
+      "validationRules": [
+        "Do not create or claim INLAND until source/table/page truth is resolved.",
+        "Do not reuse rejected Page 470 search/direct routes without a materially new hypothesis.",
+        "Do not turn Page Inspection or Role Center/search text into setup evidence."
+      ],
+      "evidenceNeed": [
+        "Local source-gap decision or a new read-first route with materially different evidence target.",
+        "Screenshot/visual-state proof before any later write."
+      ],
+      "riskIfWrong": "VAT setup may be keyed to a missing or wrong business group; downstream VAT and posting claims become unreliable."
+    },
+    {
+      "id": "VM-004",
+      "setupObject": "General Business/Product Posting Groups",
+      "candidateTable": "dependency only",
+      "plannedKey": {
+        "generalBusinessPostingGroup": "INLAND",
+        "generalProductPostingGroup": "WAREN"
+      },
+      "plannedValues": [
+        {
+          "field": "Code",
+          "value": "INLAND",
+          "purpose": "Domestic general business group used by account determination.",
+          "classification": "ready-for-readfirst"
+        },
+        {
+          "field": "Code",
+          "value": "WAREN",
+          "purpose": "Goods/product group used by account determination.",
+          "classification": "ready-for-readfirst"
+        }
+      ],
+      "customerOwner": "Finance Key User",
+      "internalOwner": "BC Finance Consultant",
+      "dependencyStatus": "needs-readfirst-validation",
+      "dependencies": [
+        "FS-001 depends on INLAND and WAREN.",
+        "Existing Master Data observations must not be treated as full dependency proof."
+      ],
+      "validationRules": [
+        "Validate group existence and meaning before any setup write.",
+        "Create or change only through a separate setup gate if missing or wrong."
+      ],
+      "evidenceNeed": [
+        "Read-first proof of groups or Configuration Worksheet dependency context."
+      ],
+      "riskIfWrong": "Account determination can route documents to missing or wrong setup rows."
+    }
+  ],
+  "overallDecision": {
+    "configurationPackageOrWorksheet": "investigate-readfirst-after-source-gap",
+    "manualUi": "reject-for-write-currently",
+    "apiOrAl": "not-applicable",
+    "writeGate": "blocked",
+    "reason": "The value map is specific enough to ask better read-first questions, but VAT Business Posting Group INLAND/Page 470 remains a source gap and prevents a clean read-first/write-gate sequence for VAT setup."
+  },
+  "proved": [
+    "Foundation setup values are now classified by readiness instead of being treated as a single package/write candidate.",
+    "General Posting Setup values 4400/5400 are ready as read-first targets only.",
+    "VAT Posting Setup values remain blocked by the unresolved VAT Business Posting Group source gap.",
+    "No setup value is write-ready."
+  ],
+  "notProved": [
+    "No setup value is stored.",
+    "No Configuration Worksheet field/value route is proven for the value map.",
+    "No Table 470 or VAT Business Posting Group source truth is proven.",
+    "No VAT, General Posting Setup, Master Data, O2C, P2P, Preview Posting, Posting or UAT readiness is proven.",
+    "No German tax, HGB, GoBD or AO finality is proven."
+  ],
+  "blockedBy": [
+    "VAT Business Posting Group INLAND source/table/page truth is unresolved.",
+    "U-VAT325-DISC remains parked and cannot be reused as a field-selection route.",
+    "Rejected routes block blind Page 314, Page 470, Page 472 and package-card retries."
+  ],
+  "warnings": [
+    "Do not convert the value map into import/apply/write permission.",
+    "Do not claim VAT readiness while VM-003 is unresolved.",
+    "Do not use real customer data or UI mockups for later proof."
+  ],
+  "nextStepDecision": {
+    "currentCase": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
+    "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
+    "lastEvidenceSummary": "Source/table/field review identified Table 252 and Table 325 as candidate setup objects, but Page/Table 470 remained unresolved and U-VAT325-DISC stayed parked.",
+    "isPlannedNextCaseStillSensible": false,
+    "reason": "The value-map decision is now complete enough to hand off to the narrower unresolved source gap.",
+    "lookaheadReviewed": [
+      {
+        "caseId": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
+        "status": "ready-next",
+        "reason": "Needed to resolve VAT Business Posting Group INLAND / Page 470 source truth before another read-first or write-gate route."
+      },
+      {
+        "caseId": "FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST",
+        "status": "ready-after-current",
+        "reason": "Useful after the source gap decision defines exact field/table evidence questions."
+      },
+      {
+        "caseId": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION",
+        "status": "blocked",
+        "reason": "No write gate until source gap, read-first field proof, validation sequence and reopen proof are defined."
+      },
+      {
+        "caseId": "FOUNDATION-SETUP-ROUTE-PARKING-DECISION",
+        "status": "ready-after-current",
+        "reason": "Fallback if source truth cannot be established cleanly."
+      }
+    ],
+    "queueChangesMade": [
+      "Selected FOUNDATION-SETUP-SOURCE-GAP-DECISION as the next local no-live case.",
+      "Kept Configuration Worksheet/package read-first as a later option, not an immediate write or package action.",
+      "Kept all setup writes, import, validate, apply, master data and posting blocked."
+    ],
+    "selectedNextCase": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
+    "whySelectedNextCaseIsBest": "It addresses the narrow blocker that prevents the VAT value map from becoming a safe read-first target: VAT Business Posting Group INLAND / Page 470 source truth.",
+    "risksBeforeNextCase": [
+      "Treating INLAND/VAT19 as ready while the INLAND VAT Business Posting Group source is unresolved.",
+      "Repeating rejected Page 470 routes without a materially new hypothesis.",
+      "Promoting a value map into write permission."
+    ],
+    "requiredPreparation": [
+      "Read only the source-gap case mustRead files.",
+      "Keep the next case local/no-live unless it explicitly selects a later read-first case.",
+      "Respect rejected_route_register.json."
+    ]
+  },
+  "safeToFinalizeState": true,
+  "requiresReview": false,
+  "nextCase": "FOUNDATION-SETUP-SOURCE-GAP-DECISION"
+}

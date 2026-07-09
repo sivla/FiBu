@@ -15,9 +15,9 @@
   "pausedTargetInstance": "playthru",
   "pausedTargetCompany": "UNIVERSAARL-DE",
   "activeArea": "w1-foundation",
-  "activeCase": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
-  "active_case_file": ".agent/state/cases/foundation-setup-value-map-decision.json",
-  "activeCaseFile": ".agent/state/cases/foundation-setup-value-map-decision.json",
+  "activeCase": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
+  "active_case_file": ".agent/state/cases/foundation-setup-source-gap-decision.json",
+  "activeCaseFile": ".agent/state/cases/foundation-setup-source-gap-decision.json",
   "lastReferenceCase": "TARGET-027D23-VAT-PACKAGE-METADATA-CLEANUP-EXECUTION",
   "lastReferenceCaseFile": ".agent/state/cases/target-027d23-vat-package-metadata-cleanup-execution.json",
   "mode": "universaarl-foundation-local-decision",
@@ -44,10 +44,10 @@
     "git diff --check"
   ],
   "allowedActions": [
-    "local-value-map-review",
-    "local-owner-and-risk-review",
+    "local-source-gap-review",
+    "local-official-source-check",
     "local-dependency-review",
-    "write-value-map-decision-result-json",
+    "write-source-gap-decision-result-json",
     "prepare-one-next-readfirst-or-parking-case"
   ],
   "forbiddenActions": [
@@ -78,9 +78,9 @@
     "claim-posting-readiness",
     "claim-master-data-readiness"
   ],
-  "nextCase": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
-  "nextStep": "Run FOUNDATION-SETUP-VALUE-MAP-DECISION locally/no-live to decide planned Foundation setup values, owners, dependencies, validation rules and proof boundaries before any Configuration Worksheet, package action, import/apply, setup write or Master Data write.",
-  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-value-map-decision.json",
+  "nextCase": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
+  "nextStep": "Run FOUNDATION-SETUP-SOURCE-GAP-DECISION locally/no-live to resolve or park the narrow source gap for VAT Business Posting Group INLAND / Page 470 before any read-first or write route.",
+  "preparedNextCaseFile": ".agent/state/cases/foundation-setup-source-gap-decision.json",
   "latestTarget075FoundationPilot": {
     "caseId": "TARGET-075-CHART-OF-ACCOUNTS-REOPEN-AND-SETUP-CONSISTENCY-CHECK",
     "status": "partially-completed-read-first",
@@ -214,22 +214,22 @@
     "nextBoundary": "Master Data remains parked. Next work must update Foundation Readiness and either accept this as a Foundation gap or define a genuinely new Page 314 route hypothesis before another live attempt."
   },
   "activeNextStepAuthority": {
-    "source": "playwright/projects/fibu-book5/evidence/foundation-setup-source-table-field-review/result.json",
-    "selectedNextCase": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
-    "activeCaseFile": ".agent/state/cases/foundation-setup-value-map-decision.json",
-    "preparedNextCaseFile": ".agent/state/cases/foundation-setup-value-map-decision.json",
+    "source": "playwright/projects/fibu-book5/evidence/foundation-setup-value-map-decision/result.json",
+    "selectedNextCase": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
+    "activeCaseFile": ".agent/state/cases/foundation-setup-source-gap-decision.json",
+    "preparedNextCaseFile": ".agent/state/cases/foundation-setup-source-gap-decision.json",
     "ignoreHistoricalResultNextSteps": true,
-    "reason": "Source/table/field review completed: Table 252 and Table 325 are candidate setup objects, Page/Table 470 remains a gap, and next step is local value-map decision before any UI or write route.",
-    "rejectedRoute": "RR-FOUNDATION-CONFIG-PACKAGE-U-VAT325-FIELD-SELECTION-RETRY",
+    "reason": "Value-map decision completed: General Posting Setup values are read-first targets only; VAT Posting Setup values remain blocked by the unresolved VAT Business Posting Group INLAND / Page 470 source gap.",
+    "rejectedRoute": "RR-FOUNDATION-PAGE470-VAT-BUSINESS-GROUPS-SEARCH-RETRY",
     "roadmap": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
     "dashboard": ".agent/project-template/PROJECT-DASHBOARD-DRAFT.md",
-    "whySelectedNextCaseIsBest": "The source/table/field review is complete; a local value-map decision is now the narrowest safe step before any read-first or write route.",
+    "whySelectedNextCaseIsBest": "It resolves the narrow dependency gap that prevents the VAT value map from becoming a safe read-first target.",
     "requiredPreparation": [
       "Read only the active case mustRead files.",
       "Keep the case local/no-live and no-write.",
       "Respect rejected_route_register.json."
     ],
-    "updatedAt": "2026-07-09T03:10:00.000Z"
+    "updatedAt": "2026-07-09T04:05:00.000Z"
   },
   "latestProjectArtifact": {
     "path": ".agent/project-template/UNIVERSAARL-EXECUTION-ROADMAP.md",
@@ -343,7 +343,7 @@
     "currentLiveBoundary": {
       "freezeActive": false,
       "parkedCase": "TARGET-073-VAT-PAGE472-ACTIVE-EDITOR-ROUTE-DECISION",
-      "resumePilot": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
+      "resumePilot": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
       "resumePilotMode": "local-no-live-decision"
     },
     "legacyScriptGuard": {
@@ -8308,44 +8308,44 @@
     "uiLearning": "BC Page 456 URL filters require quoted table/field syntax for table names with punctuation; the filtered U-VEND list shows checkbox columns, but the write locator still must be source-backed or assisted before toggling Manual Nos."
   },
   "nextStepDecision": {
-    "currentCase": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",
-    "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW",
-    "lastEvidenceSummary": "Source/table/field review completed locally. Table 252 and Table 325 are candidate setup objects, Page/Table 470 remains a source/UI gap, and U-VAT325-DISC remains parked.",
+    "currentCase": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
+    "plannedNextCaseBeforeReview": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
+    "lastEvidenceSummary": "Value-map decision completed locally. General Posting Setup 4400/5400 are read-first targets only; VAT Posting Setup values remain blocked by VAT Business Posting Group INLAND / Page 470 source truth.",
     "isPlannedNextCaseStillSensible": false,
-    "reason": "The source/table/field review is complete and should hand off to a local value-map decision before any UI read-first, package action, import/apply or setup write.",
+    "reason": "The value-map case is complete and hands off to the narrow unresolved source gap before any read-first or write gate.",
     "lookaheadReviewed": [
       {
-        "caseId": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
+        "caseId": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
         "status": "ready-next",
-        "reason": "Defines target values, owners, dependencies, validation rules and proof boundaries before any read-first or write gate."
+        "reason": "Needed to resolve or park VAT Business Posting Group INLAND / Page 470 source truth."
       },
       {
-        "caseId": "FOUNDATION-CONFIGURATION-WORKSHEET-READFIRST",
+        "caseId": "FOUNDATION-CONFIGURATION-WORKSHEET-FIELD-MAP-READFIRST",
         "status": "ready-after-current",
-        "reason": "Useful only after the value-map decision defines exact evidence questions and no-write boundaries."
+        "reason": "Useful after the source gap decision defines exact table/field evidence questions."
       },
       {
-        "caseId": "FOUNDATION-SETUP-PACKAGE-FIELD-SELECTION-WRITE-GATE-DECISION",
+        "caseId": "FOUNDATION-SETUP-PACKAGE-WRITE-GATE-DECISION",
         "status": "blocked",
-        "reason": "No safe field-selection surface, value map, validation sequence or write gate exists."
+        "reason": "No write gate until source gap, read-first field proof, validation sequence and reopen proof exist."
       },
       {
         "caseId": "FOUNDATION-SETUP-ROUTE-PARKING-DECISION",
         "status": "ready-after-current",
-        "reason": "Fallback if the value map cannot produce a safe read-first route."
+        "reason": "Fallback if source truth cannot be established cleanly."
       }
     ],
     "queueChangesMade": [
-      "Completed FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW.",
-      "Activated FOUNDATION-SETUP-VALUE-MAP-DECISION as the next local no-live case.",
-      "Kept U-VAT325-DISC, package field selection, import, validate, apply and setup writes blocked."
+      "Completed FOUNDATION-SETUP-VALUE-MAP-DECISION.",
+      "Activated FOUNDATION-SETUP-SOURCE-GAP-DECISION as the next local no-live case.",
+      "Kept Configuration Worksheet/package read-first as later option; setup writes/import/apply remain blocked."
     ],
-    "selectedNextCase": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
-    "whySelectedNextCaseIsBest": "It prevents candidate setup tables from becoming premature write action and creates a consultant-grade value/validation map first.",
+    "selectedNextCase": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
+    "whySelectedNextCaseIsBest": "It resolves the exact dependency that blocks VAT setup from becoming a safe read-first target.",
     "risksBeforeNextCase": [
-      "Treating candidate table/field knowledge as write readiness.",
-      "Ignoring Page/Table 470 as unresolved.",
-      "Repeating parked UI or package routes without a materially new hypothesis."
+      "Treating INLAND/VAT19 as ready while the INLAND VAT Business Posting Group source is unresolved.",
+      "Repeating rejected Page 470 routes without a materially new hypothesis.",
+      "Promoting a value map into write permission."
     ],
     "requiredPreparation": [
       "Read only the next case mustRead files.",
@@ -9294,7 +9294,7 @@
     "nextCase": "TARGET-032N-GENERAL-POSTING-SETUP-PURCHASE-FIELD-ROUTE-DECISION",
     "updatedAt": "2026-07-03T06:10:42.011Z"
   },
-  "active_case": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
+  "active_case": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
   "latestTarget027D28VatMatrixControlledWriteGate": {
     "caseId": "TARGET-027D28-VAT-MATRIX-CONTROLLED-WRITE-GATE",
     "status": "blocked-vat-matrix-write-gate",
@@ -12282,8 +12282,9 @@
   "caseType": "local-no-live-decision",
   "latestFoundationSetupValueMapDecision": {
     "caseId": "FOUNDATION-SETUP-VALUE-MAP-DECISION",
-    "status": "prepared-local-decision-no-live",
-    "caseFile": ".agent/state/cases/foundation-setup-value-map-decision.json",
+    "status": "completed-local-decision",
+    "decision": "ready-for-source-gap-decision",
+    "resultPath": "playwright/projects/fibu-book5/evidence/foundation-setup-value-map-decision/result.json",
     "instance": "playthru",
     "company": "UNIVERSAARL-DE",
     "businessCentralOpened": false,
@@ -12292,8 +12293,23 @@
     "masterDataChanged": false,
     "previewPosting": false,
     "posted": false,
-    "nextBoundary": "Define planned setup values, owners, dependencies, validation rules and proof boundaries before any read-first or write route.",
-    "updatedAt": "2026-07-09T03:10:00.000Z"
+    "nextCase": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
+    "updatedAt": "2026-07-09T04:05:00.000Z"
   },
-  "next_case": "FOUNDATION-SETUP-VALUE-MAP-DECISION"
+  "next_case": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
+  "latestFoundationSetupSourceGapDecision": {
+    "caseId": "FOUNDATION-SETUP-SOURCE-GAP-DECISION",
+    "status": "prepared-local-decision-no-live",
+    "caseFile": ".agent/state/cases/foundation-setup-source-gap-decision.json",
+    "instance": "playthru",
+    "company": "UNIVERSAARL-DE",
+    "businessCentralOpened": false,
+    "playwrightLiveRunExecuted": false,
+    "setupChanged": false,
+    "masterDataChanged": false,
+    "previewPosting": false,
+    "posted": false,
+    "nextBoundary": "Resolve or park VAT Business Posting Group INLAND / Page 470 source truth before read-first or write route.",
+    "updatedAt": "2026-07-09T04:05:00.000Z"
+  }
 }

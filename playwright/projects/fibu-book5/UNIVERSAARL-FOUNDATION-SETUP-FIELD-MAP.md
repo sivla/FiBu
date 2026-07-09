@@ -30,6 +30,8 @@ Nach `FOUNDATION-SETUP-ALTERNATIVE-ROUTE-SOURCE-DECISION` ist die naechste Route
 
 Nach `FOUNDATION-SETUP-SOURCE-TABLE-FIELD-REVIEW` sind Table 252 und Table 325 nur Kandidaten fuer die weitere Planung. Page/Table 470 bleibt eine Quelle-/UI-Luecke. Die Route ist deshalb nicht read-first- oder write-ready. Der naechste Schritt ist `FOUNDATION-SETUP-VALUE-MAP-DECISION`, lokal/no-live: Zielwerte, Owner, Abhaengigkeiten, Validierungsregeln und Proof-Anforderungen werden entschieden, bevor ein Configuration-Worksheet-, Paket-, Import-/Apply- oder UI-Gate vorbereitet wird.
 
+Nach `FOUNDATION-SETUP-VALUE-MAP-DECISION` sind die Zielwerte enger klassifiziert: `4400`/`5400` fuer Table 252 sind nur read-first-Ziele, keine Schreibfreigabe. Die USt-Zielwerte fuer Table 325 bleiben `needs-source-check-first`, weil `INLAND` als MwSt.-Geschaeftsbuchungsgruppe / Page/Table 470 nicht sauber source- und UI-bewiesen ist. Der naechste Schritt ist deshalb `FOUNDATION-SETUP-SOURCE-GAP-DECISION`, lokal/no-live.
+
 ## Read-first Ergebnis vom 2026-07-09
 
 Status: `parked`
@@ -65,6 +67,6 @@ Nicht gewaehlt:
 
 ## Naechster lokaler Case
 
-`FOUNDATION-SETUP-VALUE-MAP-DECISION`
+`FOUNDATION-SETUP-SOURCE-GAP-DECISION`
 
-Ziel: Ohne Business Central und ohne Playwright die geplanten Foundation-Zielwerte, fachlichen Owner, Abhaengigkeiten, Validierungsregeln und Beweisgrenzen so weit klaeren, dass danach ein anderer read-first-Lauf oder bewusstes Parken sinnvoll ist. Der Case darf kein Paket erstellen, keine Felder toggeln oder auswaehlen, nichts anwenden, importieren, validieren, exportieren oder Setupwerte speichern.
+Ziel: Ohne Business Central und ohne Playwright die enge Quelle-/UI-Luecke fuer `INLAND` als MwSt.-Geschaeftsbuchungsgruppe / Page/Table 470 klaeren oder bewusst parken. Der Case darf kein Paket erstellen, keine Felder toggeln oder auswaehlen, nichts anwenden, importieren, validieren, exportieren oder Setupwerte speichern.
