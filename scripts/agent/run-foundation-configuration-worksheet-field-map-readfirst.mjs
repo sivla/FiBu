@@ -35,6 +35,22 @@ function parseJsonOutput(label, stdout) {
   return JSON.parse(stdout.slice(start));
 }
 
+function tryParseJsonOutput(label, result) {
+  try {
+    return {
+      ok: (result.status ?? 0) === 0,
+      exitCode: result.status ?? 0,
+      parsed: parseJsonOutput(label, result.stdout ?? '')
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      exitCode: result.status ?? 1,
+      parseError: String(error instanceof Error ? error.message : error)
+    };
+  }
+}
+
 function printChildFailure(label, result) {
   if (result.stdout) process.stderr.write(result.stdout);
   if (result.stderr) process.stderr.write(result.stderr);
@@ -137,6 +153,12 @@ try {
 const localCase = localCaseStatus();
 const liveGateAllowsNow = contextStatus.details?.canRunBusinessCentralWorkflows === true;
 const authUsableForReadFirst = authStatus.canUseStoredAuth === true;
+const detachedCaptureProbe = authUsableForReadFirst
+  ? null
+  : tryParseJsonOutput(
+      'auth:bc:capture-detached',
+      run('npm', ['run', '--silent', 'auth:bc:capture-detached'])
+    );
 const blockedBy = [
   localCase.ready ? '' : localCase.blocker,
   authUsableForReadFirst ? '' : 'stored-auth-not-usable',
@@ -162,7 +184,32 @@ if (checkOnly) {
         businessCentralOpened: false,
         playwrightLiveRunExecuted: false,
         blockedBy,
-        nextStep: localCase.nextStep
+        authRefresh: detachedCaptureProbe?.parsed
+          ? {
+              detachedCaptureChecked: true,
+              canCaptureDetachedProfile: detachedCaptureProbe.parsed.canCapture === true,
+              activeProfileProcesses: detachedCaptureProbe.parsed.activeProfileProcesses ?? [],
+              recommendedCommands:
+                detachedCaptureProbe.parsed.canCapture === true
+                  ? [
+                      'npm run auth:bc:capture-detached -- --confirm',
+                      'npm run auth:bc:check',
+                      'npm run agent:resume:check'
+                    ]
+                  : [
+                      'npm run auth:bc:open-login-detached',
+                      'npm run auth:bc:capture-detached',
+                      'npm run auth:bc:capture-detached -- --confirm',
+                      'npm run auth:bc:check',
+                      'npm run agent:resume:check'
+                    ],
+              nextStep: detachedCaptureProbe.parsed.nextStep
+            }
+          : null,
+        nextStep:
+          authUsableForReadFirst || !detachedCaptureProbe?.parsed
+            ? localCase.nextStep
+            : detachedCaptureProbe.parsed.nextStep
       },
       null,
       2

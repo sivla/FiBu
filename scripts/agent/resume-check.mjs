@@ -368,20 +368,31 @@ const authRefreshRequired =
   selectedCaseLocalReady &&
   nonAuthFailed.length === 0 &&
   (authCheck?.canUseStoredAuth !== true || !authDoctorStoredAuthOk);
+const selectedReadFirstAuthRefreshCommands = selectedReadFirstSafeCheck?.authRefresh?.recommendedCommands;
+/*
+ * Keep the selected case's auth handoff more specific than the generic doctor
+ * advice. For example, if a detached profile is already closed and capturable,
+ * do not tell the next agent to reopen or focus a browser first.
+ */
 const authRefreshCommands =
-  authDoctor?.preferredAuthHandoff === 'detached-capture'
-    ? [
-        'npm run auth:bc:focus-detached',
-        'npm run auth:bc:capture-detached',
-        'npm run auth:bc:capture-detached -- --confirm',
-        'npm run auth:bc:check',
-        'npm run agent:resume:check'
-      ]
-    : [
-        'npm run auth:bc:open-login',
-        'npm run auth:bc:check',
-        'npm run agent:resume:check'
-      ];
+  Array.isArray(selectedReadFirstAuthRefreshCommands) && selectedReadFirstAuthRefreshCommands.length
+    ? selectedReadFirstAuthRefreshCommands
+    : authDoctor?.preferredAuthHandoff === 'detached-capture'
+      ? [
+          'npm run auth:bc:focus-detached',
+          'npm run auth:bc:capture-detached',
+          'npm run auth:bc:capture-detached -- --confirm',
+          'npm run auth:bc:check',
+          'npm run agent:resume:check'
+        ]
+      : [
+          'npm run auth:bc:open-login',
+          'npm run auth:bc:check',
+          'npm run agent:resume:check'
+        ];
+const authRefreshInstruction =
+  selectedReadFirstSafeCheck?.authRefresh?.nextStep ??
+  'Refresh Playwright auth in the Playwright-managed profile, not normal Chrome. After auth:bc:check is green, rerun agent:resume:check before any live BC/Playwright case.';
 
 const output = {
   schemaVersion: 1,
@@ -422,9 +433,7 @@ const output = {
   authOnlyBlocker: authRefreshRequired,
   selectedCaseLocalReady,
   recommendedAuthRefreshCommands: authRefreshRequired ? authRefreshCommands : [],
-  authRefreshInstruction: authRefreshRequired
-    ? 'Refresh Playwright auth in the Playwright-managed profile, not normal Chrome. After auth:bc:check is green, rerun agent:resume:check before any live BC/Playwright case.'
-    : null,
+  authRefreshInstruction: authRefreshRequired ? authRefreshInstruction : null,
   steps: steps.map((step) => ({
     id: step.id,
     ok: step.ok,
